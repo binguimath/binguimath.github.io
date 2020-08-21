@@ -38,4 +38,4 @@ Polynomial energy bounds for type $F_4$ WZW-models, to appear in **Internat. J. 
 
 
 ## Notes
-[Notes on Conformal Blocks](Files/2020_conformal_blocks.pdf)
+[Notes on Conformal Blocks](Files/2020_Conformal_blocks.pdf)
