@@ -1,6 +1,4 @@
----
-title-heading: false
----
+
 
 # Bin Gui
 
