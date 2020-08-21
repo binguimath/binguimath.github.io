@@ -41,4 +41,4 @@ unitary affine vertex operator algebras,  **Trans. Amer. Math. Soc.**, 372 (2019
 
 
 ## Notes
-[Notes on Conformal Blocks](Files/2020_Conformal_blocks.pdf)
+[Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf)
