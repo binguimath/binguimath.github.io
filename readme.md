@@ -17,7 +17,7 @@ I'm interested in the mathematical areas that are related to two-dimensional Con
 
 ## Publications and Preprints 
 
-:electron: 
+:roll_eyes:
 
 The preprints on this website might be more updated than the [arXiv versions](https://arxiv.org/a/gui_b_1.html).
 
