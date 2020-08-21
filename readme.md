@@ -37,7 +37,7 @@ Bisognano-Wichmann property for rigid categorical extensions and non-local exten
 
 Unbounded field operators in categorical extensions of conformal nets, arXiv:2001.03095
 
-Regular vertex operator subalgebras and compressions of intertwining operators, **J. Algebra.** (2020) 564. 32-48, arXiv:2003.02921
+Regular vertex operator subalgebras and compressions of intertwining operators, **J. Algebra**, (2020) 564. 32-48, arXiv:2003.02921
 
 Polynomial energy bounds for type F_4 WZW-models, to appear in **Internat. J. Math.**, arXiv:2004.02064
 
