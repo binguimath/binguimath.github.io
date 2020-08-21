@@ -24,10 +24,7 @@ Unitarity of the modular tensor categories associated to unitary vertex operator
 
  Unitarity of the modular tensor categories associated to unitary vertex operator algebras, II,  **Comm. Math. Phys.**, (2019) 372: 893-950. arXiv:1712.04931.
  
-Energy bounds condition for intertwining operators of type 
-<img src="https://latex.codecogs.com/gif.latex?\bg_white&space;B" title="B" />,
-<img src="https://latex.codecogs.com/gif.latex?\bg_white&space;C" title="C" />, and
-<img src="https://latex.codecogs.com/gif.latex?\bg_white&space;G_2" title="G_2" />
+Energy bounds condition for intertwining operators of type B, C, and G_2
 unitary affine vertex operator algebras,  **Trans. Amer. Math. Soc.**, 372 (2019), 7371-7424. arXiv:1809.07003.
 
 
@@ -42,9 +39,7 @@ Unbounded field operators in categorical extensions of conformal nets, arXiv:200
 
 Regular vertex operator subalgebras and compressions of intertwining operators, **J. Algebra.** (2020) 564. 32-48, arXiv:2003.02921
 
-Polynomial energy bounds for type
-<img src="https://latex.codecogs.com/gif.latex?\bg_white&space;F_4" title="F_4" />
-WZW-models, to appear in **Internat. J. Math.**, arXiv:2004.02064
+Polynomial energy bounds for type F_4 WZW-models, to appear in **Internat. J. Math.**, arXiv:2004.02064
 
 
 ## Notes
