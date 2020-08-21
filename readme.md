@@ -6,17 +6,16 @@ My name in Chinese: 归斌/歸斌
 
 Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
-[My Google Scholar webpage](https://scholar.google.com/citations?user=J1eHXH0AAAAJ&hl=en)
 
 
 
 
 
-##  Research Interests
+## :atom: Research Interests
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Operator Algebras, Tensor Categories.
 
-## Publications and Preprints 
+## :electron: Publications and Preprints 
 
 The preprints on this website might be more updated than the [arXiv versions](https://arxiv.org/a/gui_b_1.html).
 
