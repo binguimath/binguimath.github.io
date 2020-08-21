@@ -1,6 +1,5 @@
 
-
-
+## <h2> About  me
 
 I'm now a Hill assistant professor (postdoc) at Department of Mathematics, Rutgers University-New Brunswick. I received my Ph.D degree at Vanderbilt University, advised by Vaughan Jones.
 
@@ -14,7 +13,7 @@ Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
 
 
-## Research Interests
+##  Research Interests
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Operator Algebras, Tensor Categories.
 
