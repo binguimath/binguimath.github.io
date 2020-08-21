@@ -6,7 +6,7 @@ My name in Chinese: 归斌/歸斌
 
 Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
-arXiv: arxiv.org/a/gui_b_1.html
+[My arXiv webpage](arxiv.org/a/gui_b_1.html)
 
 
 
