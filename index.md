@@ -23,7 +23,11 @@ Unitarity of the modular tensor categories associated to unitary vertex operator
 
  Unitarity of the modular tensor categories associated to unitary vertex operator algebras, II,  **Comm. Math. Phys.**, (2019) 372: 893-950. arXiv:1712.04931.
  
-Energy bounds condition for intertwining operators of type $B$, $C$, and $G_2$ unitary affine vertex operator algebras,  **Trans. Amer. Math. Soc.**, 372 (2019), 7371-7424. arXiv:1809.07003.
+Energy bounds condition for intertwining operators of type 
+<a href="https://www.codecogs.com/eqnedit.php?latex=B" target="_blank"><img src="https://latex.codecogs.com/gif.latex?B" title="B" /></a>, 
+<a href="https://www.codecogs.com/eqnedit.php?latex=C" target="_blank"><img src="https://latex.codecogs.com/gif.latex?C" title="C" /></a>, and
+<a href="https://www.codecogs.com/eqnedit.php?latex=G_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?G_2" title="G_2" /></a>
+unitary affine vertex operator algebras,  **Trans. Amer. Math. Soc.**, 372 (2019), 7371-7424. arXiv:1809.07003.
 
 Categorical extensions of conformal nets, to appear in **Comm. Math. Phys.**, arXiv:1812.04470.
 
