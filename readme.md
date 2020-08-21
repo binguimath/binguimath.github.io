@@ -12,7 +12,6 @@ Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
 
 
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
 
 ## Research Interests
