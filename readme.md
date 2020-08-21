@@ -6,7 +6,6 @@ My name in Chinese: 归斌/歸斌
 
 Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
-[My arXiv webpage](https://arxiv.org/a/gui_b_1.html)
 
 
 
@@ -18,7 +17,7 @@ I'm interested in the mathematical areas that are related to two-dimensional Con
 
 ## Publications and Preprints 
 
-The preprints on this website might be more updated than the arXiv versions.
+The preprints on this website might be more updated than the [arXiv versions](https://arxiv.org/a/gui_b_1.html).
 
 1. Unitarity of the modular tensor categories associated to unitary vertex operator algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. arXiv:1711.02840. [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
 
