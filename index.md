@@ -39,7 +39,9 @@ Unbounded field operators in categorical extensions of conformal nets, arXiv:200
 
 Regular vertex operator subalgebras and compressions of intertwining operators, **J. Algebra.** (2020) 564. 32-48, arXiv:2003.02921
 
-Polynomial energy bounds for type $F_4$ WZW-models, to appear in **Internat. J. Math.**, arXiv:2004.02064
+Polynomial energy bounds for type
+<a href="https://www.codecogs.com/eqnedit.php?latex=F_4" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F_4" title="F_4" /></a>
+WZW-models, to appear in **Internat. J. Math.**, arXiv:2004.02064
 
 
 ## Notes
