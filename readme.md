@@ -11,11 +11,13 @@ Email: binguimath@gmail.com, bin.gui@rutgers.edu
 
 
 
-## :atom: Research Interests
+##  Research Interests
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Operator Algebras, Tensor Categories.
 
-## :electron: Publications and Preprints 
+## Publications and Preprints 
+
+:electron: 
 
 The preprints on this website might be more updated than the [arXiv versions](https://arxiv.org/a/gui_b_1.html).
 
