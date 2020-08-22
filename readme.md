@@ -45,4 +45,4 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 
 ## Notes
-[Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) (Main body finished. Preface and many references to be added)
+* [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) (Main body finished. Preface and many references to be added)
