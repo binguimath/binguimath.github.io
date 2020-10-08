@@ -39,7 +39,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Bisognano-Wichmann property for rigid categorical extensions and non-local extensions of conformal nets, submitted, arXiv:1912.10682 [Preprint](Files/2019_Bisognano-Wichmann.pdf)
 
-1. Unbounded field operators in categorical extensions of conformal nets, arXiv:2001.03095 [Preprint](Files/2020_Strong-Braiding.pdf)
+1. Unbounded field operators in categorical extensions of conformal nets, submitted, arXiv:2001.03095 [Preprint](Files/2020_Strong-Braiding.pdf)
 
 1. Regular vertex operator subalgebras and compressions of intertwining operators, ***J. Algebra***, (2020) 564. 32-48, arXiv:2003.02921 [Preprint](Files/2020_Compressions.pdf)
 
@@ -48,7 +48,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 ## Notes
 
-- [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) (Main body finished. Preface and many references to be added soon.)
+- [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) (Main body finished. Preface and many references to be added soon. I'm now working on the last chapter discussing some of the properties of the connections on sheaves of conformal blocks.)
 
 
 > In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs developed by (e.g.) Frenkel & Ben-Zvi [[FB]](https://math.berkeley.edu/~frenkel/BOOK/) and further explored by Damiolini-Gibney-Tarasca [[DGT1]](https://arxiv.org/abs/1901.06981) [[DGT2]](https://arxiv.org/abs/1909.04683). 
