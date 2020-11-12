@@ -48,8 +48,8 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 ## Notes
 
-- [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) (Main body finished. Preface and many references to be added soon. I'm now working on the last chapter discussing some basic properties of the connections on sheaves of conformal blocks.)
+- [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) 
 
 
-> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs developed by (e.g.) Frenkel & Ben-Zvi [[FB]](https://math.berkeley.edu/~frenkel/BOOK/) and further explored by Damiolini-Gibney-Tarasca [[DGT1]](https://arxiv.org/abs/1901.06981) [[DGT2]](https://arxiv.org/abs/1909.04683). 
+> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs.
 
