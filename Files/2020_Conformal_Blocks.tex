@@ -30,7 +30,8 @@
 \allowdisplaybreaks  %allow aligns to break between pages
 \usepackage{latexsym}
 \usepackage{chngcntr}
-\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,linktocpage,pagebackref]{hyperref}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue,linktocpage%,pagebackref
+]{hyperref}
 \hypersetup{citecolor=[rgb]{0,0.5,0}}
 
 %\setcounter{tocdepth}{1}	 hide subsections in the content
@@ -161,6 +162,8 @@
 \newcommand{\Coker}{\mathrm{Coker}}
 \newcommand{\Sbf}{\mathbf{S}}
 \newcommand{\low}{\mathrm{low}}
+\newcommand{\Crm}{\mathrm C}
+\newcommand{\Brm}{\mathrm B}
 
 
 
@@ -172,7 +175,7 @@
 
 
 
-\title{Conformal Blocks:\\ \Large Local Freeness, Sewing, and Factorization}
+\title{Conformal Blocks:\\[0.5ex] \large Vector bundle structures, Sewing, and Factorization}
 \author{{\sc Bin Gui}
 	%\\
 	%{\small Department of Mathematics, Rutgers university}\\
@@ -206,7 +209,7 @@
 
 
 \vspace{-0.5cm}
-\blfootnote{First version: August 2020. Last update: October 2020}
+\blfootnote{First version: August 2020. Last update: November 2020}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \makeatletter
@@ -240,9 +243,88 @@
 	
 	
 	
+\chapter*{Introduction}	
+	
+	
+	
+Conformal blocks are central objects in  $2$-dimensional conformal field theory (CFT). Mathematically rigorous definitions of conformal blocks were first introduced for special examples (e.g. minimal models, Weiss-Zumino-Witten models, see \cite{BFM91,TUY89}), and were later given for general vertex operator algebras (VOAs) (see \cite{Zhu94,FB04}). Conformal blocks  are the building blocks of correlation functions of CFT. They are mainly discussed in the literature of algebraic geometry, although they have important applications also to many other areas related to CFT, such as low-dimensional topology, tensor categories, VOAs, von Neumann algebras and subfactors, etc. Thus, we believe it is  necessary to introduce the beautiful theory of conformal blocks to the people working in these areas without assuming they have any previous knowledge in algebraic geometry. This is a main goal of the present monograph.
+
+We shall give a comprehensive exploration of the theory of conformal blocks in the framework of VOAs and complex \emph{analytic} geometry. Unlike most approaches, we work in the complex analytic setting rather than algebraic one, using the language of complex manifolds and complex spaces\footnote{Nodal curves and their open subsets are the only singular complex spaces (i.e. complex spaces which are not complex manifolds) we will consider in this monograph.} rather than schemes or stacks. This is partly due to the author's own taste, but also due to the following reason: Despite that an analytic theory of conformal blocks is necessary for application to many areas,  some  results of conformal blocks (e.g. proving that spaces of conformal blocks form a holomorphic vector bundle) cannot be directly translated without suitable adaption from algebraic to  analytic setting, and certain results (e.g. convergence of sewing conformal blocks) can only be proved using analytic methods. Let me explain this in more details.
+
+\subsection*{Vector bundle structures}
+
+
+Given a (CFT-type) VOA $\Vbb$,   an $N$-pointed compact Riemann surface $\fk X=(C;x_1,\dots,x_N)$ (i.e. $C$ has $N$ distinct marked points $x_1,\dots,x_N$) and $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$, a conformal block $\upphi$ is a linear functional on $\Wbb_\blt:=\Wbb_1\otimes\cdots\otimes\Wbb_N$ invariant under the action of the sections of \textbf{sheaf of VOAs} $\scr V_C$ defined using $\Vbb$ and $C$. The vector space of all conformal blocks associated to $C$ and these $\Vbb$-modules is called the \textbf{space of conformal blocks} $\scr T_{\fk X}^*(\Wbb_\blt)$. Assume that $\Vbb$ satisfies $C_2$-cofinite property, a natural finiteness condition introduced by Zhu \cite{Zhu96}. Then  $\scr W_{\fk X}(\Wbb_\blt)$ is expected to be finite-dimensional. Moreover, one should expect that its dimension is independent of the complex structure of $C$ and the positions of marked points, and these vector spaces should form a holomorphic vector bundle over the moduli space of $N$-pointed compact Riemann surfaces (with possibly extra data). In other words, suppose we have a holomorphic family of $N$-pointed compact Riemann surfaces $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ where $\mc C,\mc B$ are complex manifolds, $\sgm_1,\dots,\sgm_N:\mc B\rightarrow\mc C$ are sections (i.e. families of mark points). Let $\mc C_b$ be the fiber $\pi^{-1}(b)$ for each $b\in\mc B$, which is a compact Riemann surface. Let $\fk X_b$ be $\mc C_b$ with marked points $\sgm_1(b),\dots,\sgm_N(b)$. Then $b\in\mc B\mapsto\dim\scr T_{\fk X_b}^*(\Wbb_\blt)$ should be locally constant, and the vector spaces $\scr T_{\fk X_b}^*(\Wbb_\blt)$ (for all $b\in\mc B$) should form a holomorphic vector bundle over $\mc B$.
+	
+	
+A usual way of constructing vector bundle structures for spaces of conformal blocks is to first define \textbf{sheaf of covacuua} $\scr T_{\fk X}(\Wbb_\blt)$. This is an $\scr O_{\mc B}$-module (where $\scr O_{\mc B}$ is the structure sheaf of $\mc B$), which is locally a quotient of the sheaf $\scr W_{\fk X}(\Wbb_\blt)$ of $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$-valued holomorphic functions. Its dual module $\scr T_{\fk X}^*(\Wbb_\blt)$ is called \textbf{sheaf of conformal blocks}. Using some basic results in complex analytic or algebraic geometry, one can identify the fibers of $\scr T_{\fk X}(\Wbb_\blt)$ with the spaces of covacuua (the dual spaces of the spaces of conformal blocks) in a natural way (Thm. \ref{lb69}). Thus, once we have proved that $\scr T_{\fk X}(\Wbb_\blt)$ is locally free (of finite rank), i.e., $\scr T_{\fk X}(\Wbb_\blt)$ is a vector bundle, then $\scr T_{\fk X}^*(\Wbb_\blt)$ is also locally free, which is the vector bundle structure we are looking for. 
+
+In the algebraic setting, one proves  that $\scr T_{\fk X}(\Wbb_\blt)$ admits  local connections \cite{FB04,DGT19a}, and that $\scr T_{\fk X}(\Wbb_\blt)$ is coherent \cite{DGT19b}. Then a standard argument shows that $\scr T_{\fk X}(\Wbb_\blt)$ is locally free. It is obvious that $\scr T_{\fk X}(\Wbb_\blt)$ is quasi-coherent, i.e., is the cokernal of a morphism between two possibly infinite-rank locally free sheaves. Thus, once we can show that $\scr T_{\fk X}(\Wbb_\blt)$ is a finitely-generated $\scr O_{\mc B}$-module, we can conclude that $\scr T_{\fk X}(\Wbb_\blt)$ is coherent, thanks to the fact that $\scr O_{\mc B}$ is Noetherian.  In the analytic setting, $\scr O_{\mc B}$ is not Noetherian, and $\scr T_{\fk X}(\Wbb_\blt)$ is not quasi-coherent (in the sense of \cite{EP96}). Thus, although one can still define connections and show that $\scr T_{\fk X}(\Wbb_\blt)$ is finitely-generated, one cannot conclude that $\scr T_{\fk X}(\Wbb_\blt)$ is coherent or locally free. In this monograph, we fix this issue by proving a stronger finiteness theorem for $\scr T_{\fk X}(\Wbb_\blt)$ (Thm. \ref{lb67}), and show that this result together with the existence of connections imply the local freeness (Thm. \ref{lb66}).
+	
+
+
+
+\subsection*{Convergence of sewing}
+
+
+Suppose  we have an $(N+2)$-pointed compact Riemann surface
+\begin{align*}
+\wtd{\fk X}=(\wtd C;x_1,\dots,x_N,x',x'').
+\end{align*}
+Then we can sew $\wtd{\fk X}$ along the pair of points $x',x''$ to obtain another Riemann surface with possibly higher genus. More precisely, we choose $\xi,\varpi$ to be local coordinates of $\wtd C$ at $x',x''$. Namely, they are univalent  (i.e. holomorphic and injective) functions defined respectively in neighborhoods $U'\ni x',U''\ni x''$ satisfying $\xi(x')=0,\varpi(x'')=0$. For each $r>0$ we let $\mc D_r=\{z\in\Cbb:|z|<r\}$ and $\mc D_r^\times=\mc D_r-\{0\}$. We choose $r,\rho>0$ so that the neighborhoods $U',U''$ can be chosen to satisfy that $\xi(U')=\mc D_r$ and $\varpi(U'')=\mc D_\rho$, that  $U'\cap U''=\emptyset$, and that none of $x_1,\dots,x_N$ is in $U'$ or $U''$. Then, for each $q\in\mc D_{r\rho}^\times$, we remove the closed subdiscs of $U',U''$ determined respectively by $|\xi|\leq \frac {|q|}\rho$ and $|\varpi|\leq \frac{|q|}r$, and glue the remaining part using the relation $\xi\varpi=q$. Then we obtain an $N$-pointed compact Riemann surface
+\begin{align*}
+\fk X_q=(\mc C_q;x_1,\dots,x_N)
+\end{align*}
+which clearly depends on $\xi$ and $\varpi$. By varying $q$, we obtain a family of $N$-pointed compact Riemann surfaces $\fk X=(\pi:\mc C\rightarrow\mc D_{r\rho}^\times;\sgm_1,\dots,\sgm_N)$.
+
+Now, if we associate $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N,\Mbb,\Mbb'$ (where $\Mbb'$ is the contragredient (i.e. dual) module of $\Mbb$) to $x_1,\dots,x_N,x',x''$, and choose a conformal block $\uppsi$ associated to $\wtd{\fk X}$ and these $\Vbb$-modules, then its \textbf{sewing} $\mc S\uppsi$ is an $\Wbb_\blt^*=(\Wbb_1\otimes\cdots\Wbb_N)^*$-valued formal series of $q$ defined by sending each $w_\blt=w_1\otimes\cdots\otimes w_N\in\Wbb_\blt$ to
+\begin{align*}
+\mc S\uppsi(w_\blt)=\uppsi(w_\blt\otimes q^{L_0}\btr\otimes\btl)\quad\in\Cbb\{q\}
+\end{align*}
+where $\btr\otimes\btl$ is the element of the ``algebraic completion" of $\Mbb\otimes\Mbb'$ corresponding to the identity element of $\End_\Cbb(\Mbb)$, and $L_0$ is the zero mode of the Virasoro operators $\{L_n:n\in\Zbb\}$. The sewing problem is about proving that $\mc S\uppsi(w_\blt)$ converges absolutely to a (possibly) multivalued function on $\mc D_{r\rho}^\times$. Moreover, for each $q\in\mc D_{r\rho}^\times$, $\mc S\uppsi(\cdot,q)$ defines a conformal block associated to $\fk X_q$ and $\Wbb_1,\dots,\Wbb_N$. If we sew $\wtd C$ along $n$ pairs of points, and if we let  $x_1,\dots,x_N$ and  $\wtd C$ and $\uppsi$    vary and be parametrized holomorphically by variables $\tau_\blt=(\tau_1,\dots,\tau_m)$ (see Sec. \ref{lb24} for details), then  sewing  conformal blocks is also absolutely  convergent with respect to $q_1,\dots,q_n$ and (locally) uniform with respect to $\tau_\blt$. 	The sewing problem is analytic by nature. It cannot be proved using purely algebro-geometric method since $\fk X$ is not an algebraic family; in particular, $\mc D_{r\rho}^\times$ is not an algebraic variety or scheme, and is not considered in algebraic geometry. In the monograph, we will give a detailed proof of the  sewing problem using analytic methods. See Section \ref{lb147}.
 	
 
 	
+
+
+
+\section*{Factorization}
+
+
+In the above setting, the factorization property of conformal blocks says that if $\Vbb$ is $C_2$-cofinite and rational (which means that certain classes of generalized $\Vbb$-modules are completely reducible), then  for any $q\in\mc D_{r\rho}^\times$, any conformal block associated to $\fk X_q$ and $\Wbb_1,\dots,\Wbb_N$ is a sum of $\mc S\uppsi(q)$ where $\uppsi\in\scr T_{\wtd{\fk X}}^*(\Wbb_\blt\otimes\Mbb\otimes\Mbb')$ (i.e. $\uppsi$ is a conformal block associated to $\wtd{\fk X}$ and $\Wbb_1,\dots,\Wbb_N,\Mbb,\Mbb'$) and $\Mbb$ is simple.  One can phrase the factorization as a relation between the dimensions of spaces of conformal blocks associated to $\wtd{\fk X}$ and to $\fk X_q$ as follows. For each equivalence class of simple $\Vbb$-module we choose a representative and let them form a set $\mc E$. Then for each $q\in\mc D_{r\rho}^\times$,
+\begin{align*}
+\dim\scr T_{\fk X_q}^*(\Wbb_\blt)=\sum_{\Mbb\in\mc E}\dim \scr T_{\wtd{\fk X}}^*(\Wbb_\blt\otimes\Mbb\otimes\Mbb').
+\end{align*}
+Factorization in this form was proved in \cite{TUY89} for WZW models and in \cite{DGT19b} for any $C_2$-cofinite rational VOA. Note that the left hand side is independent of $q$, and is a priori no less than the right hand side since the linear map $\uppsi\mapsto\mc S\uppsi(q)$ is indeed injective (Thm. \ref{lb114}).
+
+
+Let us call the right hand side of this equation to be $D$. So $D\leq \dim\scr T_{\fk X_q}^*(\Wbb_\blt)$. To prove the factorization, we add $\fk X_0$, which is an $N$-pointed nodal curve, to the family $\fk X$. Then $\fk X$ is a family of $N$-pointed complex curves with base manifold $\mc D_{r\rho}$. We can still define the sheaf of covacuua $\scr T_{\fk X}(\Wbb_\blt)$ and show that it is finitely generated (Thm. \ref{lb67}). Then by Nakayama's lemma (Prop. \ref{lb60}), the dimension of fibers of $\scr T_{\fk X}(\Wbb_\blt)$ (which can be identified with spaces of conformal blocks (Thm. \ref{lb69})) is upper-semicontinuous with respect to $q\in \mc D_{r\rho}$. Thus, for each $q\neq 0$, $\dim\scr T_{\fk X_q}^*(\Wbb_\blt)\leq \dim\scr T_{\fk X_0}^*(\Wbb_\blt)$. Therefore, it suffices to prove the \textbf{nodal factorization}:  that $\dim\scr T_{\fk X_0}^*(\Wbb_\blt)\leq D$.
+
+To prove the nodal factorization, we should realize each $\upphi\in\scr T_{\fk X_0}^*(\Wbb_\blt)$ as an element of $\bigoplus_{\Mbb\in\mc E}\scr T_{\wtd{\fk X}}^*(\Wbb_\blt\otimes\Mbb\otimes\Mbb')$. For that purpose, we consider $\wtd{\fk X}$ as a Riemann surface with input points $x_1,\dots,x_N$ and output points $x',x''$.  Then we can define the \textbf{dual $\wtd{\fk X}$-tensor product} of $\Wbb_1,\dots,\Wbb_N$ (associated to $x_1,\dots,x_N$ respectively) to be a vector space $\boxbackslash_{\wtd{\fk X}}(\Wbb_\blt)$, which is the subspace of linear functional on $\Wbb_\blt$ satisfying certain properties that $\upphi$ satisfy. The difficulty of this approach is to define an action of $\Vbb\times\Vbb$ on $\boxbackslash_{\wtd{\fk X}}(\Wbb_\blt)$ which makes the latter a weak $\Vbb\times\Vbb$-module. Then using the $C_2$-cofiniteness and rationality, it is not hard to show that  $\boxbackslash_{\wtd{\fk X}}(\Wbb_\blt)$ (or a suitable $\Vbb\times\Vbb$-submodule containing $\upphi$) is a direct sum of irreducible $\Vbb\times\Vbb$ modules which must be of the form $\Mbb\otimes\Mbb'$ for some $\Mbb\in\mc E$. Nodal factorization follows.
+
+\cite{DGT19b} defines the weak $\Vbb\times\Vbb$-module structure on $\boxbackslash_{\wtd{\fk X}}(\Wbb_\blt)$ using Zhu's algebras. Our approach does not use Zhu's algebra, but relies heavily on the \textbf{propagations of conformal blocks} (Sec.\ref{lb149}) and more generally, \textbf{propagations  of dual tensor product elements} (Sec. \ref{lb110}). Moreover, our proofs of propagations and some related properties are analyic and different from those in \cite{FB04} or \cite{DGT19b}: we use the sewing of an $N$-pointed compact Riemann surface and a $3$-pointed $\Pbb^1$; the convergence of the corresponding sewing of conformal blocks is due to  the strong residue theorem for \emph{families of} compact Riemann surfaces (Thm. \ref{lb18}).
+
+
+
+
+\subsection*{Prerequisite and outline}
+
+We assume the readers know some basic properties of complex manifolds; sheaves,  sheaves of modules, and their morphisms; sheaf (\v Cech) cohomology. See for instance \cite[Sec. 0.2, 0.3]{GH78}, \cite[Chapter B]{Huy06}, \cite[Annex]{GR84}. Some familiarity with computations in VOA (cf. for instance \cite{FHL93}) is helpful but not necessary. No knowledge on algebraic geometry is required.
+
+More advanced topics in complex geometry will be discussed in Chapter 1. In particular, we review the basic properties of compact Riemann surfaces, which will be generalized to nodal curves. Since we do not assume the readers have any previous knowledge on complex spaces or nodal curves, we give complete and self-contained account of these properties. We also introduce the necessary tools for studying families of compact Riemann surfaces and, more generally, families of complex curves. We  also give a detailed description of how to sew a family of compact Riemann surfaces along several pairs of points to obtain a family of complex curves. We prove strong residue theorem for families of compact Riemann surfaces, which is necessary for proving the propagations of conformal blocks. Basic properties of holomorphic differential equations are recalled, which will be used to prove the convergence of sewing conformal blocks. We also give criteria on local freeness of sheaves.
+
+In Chapter 2 we discuss sheaves of VOAs for families of complex curves introduced in \cite{FB04} (for smooth curves) and \cite{DGT19a} (for nodal curves). These sheaves are infinite rank holomorphic vector bundles whose transition functions are discovered in \cite{Hua97}. We also give a formula for Lie derivatives of sheaves of VOAs, generalizing those of tangent fields and tensor fields. This formula is due to the author, and is used in the next chapter to define connections on sheaves of conformal blocks.
+
+Following \cite{FB04,DGT19a}, we define in Chapter 3 sheaves of conformal blocks for families of complex curves. We define the sewing of conformal blocks which corresponds to the geometric construction of sewing families of compact Riemann surfaces. We prove that the sewing of conformal blocks are also conformal blocks in the formal sense, which is due to \cite{DGT19b}. We then prove  propagation of conformal blocks. Single propagation is due to \cite{FB04}, and multiple propagations are due to the author. Double propagations play an important role of defining weak $\Vbb\times\Vbb$-module structures on dual tensor products in Chapter 4. As mentioned previously, our treatment of single propagation is new and relies on sewing. We then prove that sheaves of conformal blocks support locally logarithmic connections. This result is due to \cite{FB04} and \cite{DGT19a} for smooth families and general families respectively. Our treatment is different from theirs and uses the result on Lie derivatives in Chapter 2. With the help of connections, we then prove that for $C_2$-cofinite VOAs, the sheaves of conformal blocks are locally free.
+
+The first three sections of Chapter 4 are devoted to the proof that sewing conformal blocks is convergent when $\Vbb$ is $C_2$-cofinite. Our treatment of projective structures is motivated by \cite[Sec. 8.2]{FB04}. We also prove that the sewing map is injective. We then define the vector space of dual tensor products, and use (single and double) propagations of dual tensor product elements to define weak $\Vbb\times\Vbb$-module structures.  For an approach using Zhu's algebra, see \cite{DGT19b}. We then prove factorization for conformal blocks associated to $C_2$-cofinite rational VOAs, which is originally due to \cite{DGT19b}.
+
+The connections defined locally in Chapter 3 are in general not flat but only projectively flat. In chapter 5, we explain how to slightly modify the definition and obtain flat connections on sheaves of conformal blocks. Typically, the construction of flat connections uses determinant line bundles. It turns out that tensor products of these line bundles are equivalent to sheaves of conformal blocks associated to holomorphic VOAs. We use the latter sheaves instead of determinant line bundles. This treatment is motivated by \cite{AU07a,AU07b}. We also provide in this chapter all the necessary results for constructing modular functors from conformal blocks. In the last section, we explain how the famous and mysterious factor $q^{-\frac c{24}}$ appears in genus $1$ CFT.
+
+We remark that before \cite{FB04,DGT19a,DGT19b}, the definition of conformal blocks, and the proof of propagation, local freeness, and factorization of conformal blocks were given in \cite{BFM91,TUY89} for minimal models and WZW-models respectively, and in \cite{NT05} for general VOAs (satisfying $C_2$-cofiniteness, rationality, and some other small conditions) but only genus $0$ curves. Proofs of convergence of sewing and factorization were also given in \cite{Hua95,Hua98,Hua05a} for general VOAs as above for genus $0$ curves, and in \cite{Zhu96,Hua05b} for genus $1$ curves.
+
+
+
 
 
 
@@ -3154,7 +3236,7 @@ which is exactly $\wtd{\mc S}\uppsi(v\cdot w)$. This finishes the proof that $\w
 
 
 
-\section{Propagation of conformal blocks}
+\section{Propagation of conformal blocks}\label{lb149}
 
 
 
@@ -3336,7 +3418,7 @@ Finally, we assume that $N=1$. Then, by \eqref{eq130}, $\upphi$ is the restricti
 
 
 
-\subsection*{Multiple propagation}
+\subsection*{Multiple propagations}
 
 Although single and double propagations are sufficient for proving the main results of this monograph, it would be interesting to generalize them to multiple propagation.
 
@@ -4207,7 +4289,7 @@ Since the action of $\wtd\upnu(\theta)$ is zero, the action of $\upnu(\theta)$ e
 
 
 
-\section{Convergence of sewing}
+\section{Convergence of sewing}\label{lb147}
 
 
 In this section, we assume the setting of Section \ref{lb76}. In particular, $\fk X$ is a family of $N$-pointed complex curves with local coordinates obtained by sewing the smooth family
@@ -4743,7 +4825,7 @@ This proves the Jacobi identity \eqref{eq192} since we have $\oint_{C_2}P(z)z^hd
 
 \subsection*{Lowest weight weak $\Vbb$-modules}
 
-
+Most results in this section is well-known.
 
 Let $(\Wbb,Y_\Wbb)$ be a weak $\Vbb$-module. We define its \textbf{lowest weight subspace} to be \index{zz@$\Omega(\Wbb),\Omega_{+-}(\Wbb)$}
 \begin{align*}
@@ -4898,15 +4980,19 @@ The following are equivalent.
 
 
 \begin{df}\label{lb133}
-If $\Vbb$ satisfies one of the three conditions of Proposition \ref{lb132}, we say that $\Vbb$ is \textbf{almost rational}.
+If $\Vbb$ satisfies one of the three conditions of Proposition \ref{lb132}, we say that $\Vbb$ is \textbf{rational}.
 \end{df}
 
 
-Note that by Corollary \ref{lb99}, if $\Vbb$ is $C_2$-cofinite and almost rational, each lowest weight weak  $\Vbb$-module $\Wbb$  with finite dimensional $\Omega(\Wbb)$ is a finite direct sum of irreducible (ordinary) $\Vbb$-modules.
+
+
+Note that by Corollary \ref{lb99}, if $\Vbb$ is $C_2$-cofinite and rational, each lowest weight weak  $\Vbb$-module $\Wbb$  with finite dimensional $\Omega(\Wbb)$ is a finite direct sum of irreducible (ordinary) $\Vbb$-modules.
 
 
 
-
+\begin{rem}
+Our definition of rationality is weaker than the usual one, which says any admissible $\Vbb$-module is completely reducible. Assuming $\Vbb$ is $C_2$-cofinite, then the two notations are equivalent. Indeed, our rationality is equivalent to the semisimplicity of the Zhu's algebra $A(\Vbb)$ of $\Vbb$. The latter is equivalent to the usual rationality due to \cite{DJ08}.
+\end{rem}
 
 
 
@@ -5105,7 +5191,7 @@ Our next goal is to define a weak $\Vbb\times\Vbb$-module structure on $\boxback
 \subsection*{Actions of $\Vbb$}
 
 
-Similar to the treatment for conformal blocks, one can prove that the formal sewing of a dual tensor product element is a formal dual tensor product element. Moreover, if one is sewing $\fk X$ with  $(\Pbb^1;0,1,\infty)$ (which has $0$ outputs), the a.l.u. of sewing can be proved with the help of the strong residue theorem. Thus, we are able to prove the propagation of dual tensor product elements.  For each $a,b,n\in\Nbb,\upphi\in\scr T_{\fk X,a,b}^*(\Wbb_\blt),w_\blt\in\Wbb_\blt$, we have a homomorphism of $\scr O_C^{\boxtimes n}$-modules
+Similar to the treatment for conformal blocks, one can prove that the formal sewing of a dual tensor product element is a formal dual tensor product element. Moreover, if one is sewing $\fk X$ with  $(\Pbb^1;0,1,\infty)$ (which has $0$ outputs), the a.l.u. of sewing can be proved with the help of the strong residue theorem. Thus, we are able to prove the \textbf{propagation of dual tensor product elements}.  For each $a,b,n\in\Nbb,\upphi\in\scr T_{\fk X,a,b}^*(\Wbb_\blt),w_\blt\in\Wbb_\blt$, we have a homomorphism of $\scr O_C^{\boxtimes n}$-modules
 \begin{gather*}
 \wr^n\upphi(w_\blt):\scr V_{\fk X,a,b}^{\boxtimes n}\rightarrow\scr O_{\Conf_n(C-\SX)},
 \end{gather*}
@@ -5330,7 +5416,7 @@ The equation follows directly from Lemma \ref{lb103} and the definition of $\Ome
 
 
 
-The following result is claimed in Remark \ref{lb111}. We are now ready to prove it. Note that neither $C_2$-cofiniteness nor almost rationality is assumed here.
+The following result is claimed in Remark \ref{lb111}. We are now ready to prove it. Note that neither $C_2$-cofiniteness nor rationality is assumed here.
 
 \begin{pp}\label{lb117}
 Let $\Mbb,\wht\Mbb$ be irreducible (ordinary) $\Vbb$-modules. Suppose that the $\fk U_0(\Vbb)$-modules $\Omega(\Mbb),\Omega(\wht\Mbb)$ are equivalent. Then $\Mbb\simeq\wht\Mbb$.	
@@ -5406,11 +5492,11 @@ Similarly, its evaluation with $\mc U_\varrho(\varpi)^{-1}v$ is $\uppsi(w_\blt\o
 
 \subsection*{The weak $\Vbb\times\Vbb$-module $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$}
 
-In application, it would be more suitable to consider   $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$, \index{W@$\boxbackslash_{\fk X}(\Wbb_\blt),\boxbackslash_{\fk X}^\low(\Wbb_\blt)$} the $\fk U(\Vbb)\times\fk U(\Vbb)$-submodule of $\boxbackslash_{\fk X}(\Wbb_\blt)$ generated by $\Omega_{+-}\big(\boxbackslash_{\fk X}(\Wbb_\blt)\big)$. Recall in Definition \ref{lb133} the meaning of almost rationality.
+In application, it would be more suitable to consider   $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$, \index{W@$\boxbackslash_{\fk X}(\Wbb_\blt),\boxbackslash_{\fk X}^\low(\Wbb_\blt)$} the $\fk U(\Vbb)\times\fk U(\Vbb)$-submodule of $\boxbackslash_{\fk X}(\Wbb_\blt)$ generated by $\Omega_{+-}\big(\boxbackslash_{\fk X}(\Wbb_\blt)\big)$. Recall in Definition \ref{lb133} the meaning of rationality.
 
 
 \begin{lm}\label{lb106}
-Assume that $\Vbb$ is $C_2$-cofinite and almost rational. Then we have the following equivalence of weak $\Vbb\times\Vbb$-modules
+Assume that $\Vbb$ is $C_2$-cofinite and rational. Then we have the following equivalence of weak $\Vbb\times\Vbb$-modules
 \begin{align}
 \boxbackslash_{\fk X}^\low(\Wbb_\blt)\simeq\bigoplus_i \Mbb_i\otimes\wht\Mbb_i\label{eq212}
 \end{align}
@@ -5434,10 +5520,10 @@ whose lowest weight subspace is denoted by $\Omega_+(\mbb X_b)$. Using the commu
 \begin{align*}
 (\id\times\fk U_{-b}(\Vbb))\scr T_{\fk X,0,0}^*(\Wbb_\blt)\subset\Omega_+(\mbb X_b)\subset \scr T_{\fk X,0,b}^*(\Wbb_\blt).
 \end{align*}
-The first inclusion shows that $\Omega_+(\mbb X_b)$ generates $\mbb X_b$. The second one shows that $\Omega_+(\mbb X_b)$ is finite-dimensional since $\scr T_{\fk X,0,b}^*(\Wbb_\blt)$ is so by the proof of Theorem \ref{lb67}. Thus,  by the almost rationality of $\Vbb$, $\mbb X_b$ is a direct sum of irreducible admissible $\Vbb\times\id$-modules. Since $\boxbackslash_{\fk X}^\low(\Wbb_\blt)=\bigvee_{b\in\Nbb}\mbb X_b$, we conclude that $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$ is a sum, and hence a direct sum, of irreducible admissible $\Vbb\times\id$-modules. The claim for $\id\times\Vbb$ is proved similarly.
+The first inclusion shows that $\Omega_+(\mbb X_b)$ generates $\mbb X_b$. The second one shows that $\Omega_+(\mbb X_b)$ is finite-dimensional since $\scr T_{\fk X,0,b}^*(\Wbb_\blt)$ is so by the proof of Theorem \ref{lb67}. Thus,  by the rationality of $\Vbb$, $\mbb X_b$ is a direct sum of irreducible admissible $\Vbb\times\id$-modules. Since $\boxbackslash_{\fk X}^\low(\Wbb_\blt)=\bigvee_{b\in\Nbb}\mbb X_b$, we conclude that $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$ is a sum, and hence a direct sum, of irreducible admissible $\Vbb\times\id$-modules. The claim for $\id\times\Vbb$ is proved similarly.
 \end{proof}
 
-Let $\mc E$ be a complete list of mutually inequivalent irreducible (ordinary) $\Vbb$-modules, which is finite by Corollary \ref{lb118}. The word ``complete" means that any irreducible $\Vbb$-module is equivalent to one object in $\mc E$. The following theorem gives a complete characterization of $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$ when $\Vbb$ is $C_2$-cofinite and almost rational.
+Let $\mc E$ be a complete list of mutually inequivalent irreducible (ordinary) $\Vbb$-modules, which is finite by Corollary \ref{lb118}. The word ``complete" means that any irreducible $\Vbb$-module is equivalent to one object in $\mc E$. The following theorem gives a complete characterization of $\boxbackslash_{\fk X}^\low(\Wbb_\blt)$ when $\Vbb$ is $C_2$-cofinite and rational.
 
 \begin{thm}\label{lb134}
 Define a homomorphism of weak $\Vbb\times\Vbb$-modules
@@ -5445,7 +5531,7 @@ Define a homomorphism of weak $\Vbb\times\Vbb$-modules
 \Psi:\bigoplus_{\Mbb,\wht\Mbb\in\mc E}\Mbb\otimes\wht\Mbb\otimes\scr T_{\fk X}^*(\Wbb_\blt\otimes\Mbb\otimes\wht\Mbb)\rightarrow \boxbackslash_{\fk X}^\low(\Wbb_\blt),\\
 m\otimes\wht m\otimes\upphi\mapsto \Psi_\upphi(m\otimes \wht m)\nonumber
 \end{gather}
-where $\Psi_\upphi$ is defined in example \ref{lb112}. Then $\Psi$ is injective. If $\Vbb$ is $C_2$-cofinite and almost rational, then $\Psi$ is an isomorphism.
+where $\Psi_\upphi$ is defined in example \ref{lb112}. Then $\Psi$ is injective. If $\Vbb$ is $C_2$-cofinite and rational, then $\Psi$ is an isomorphism.
 \end{thm}
 
 
@@ -5457,7 +5543,7 @@ Note that that the image of each $\Psi_\upphi$ is in $\boxbackslash_{\fk X}^\low
 \begin{proof}
 If $\Ker(\Psi)$ is non-trivial, then it is a non-trivial $\fk U(\Vbb)\times\fk U(\Vbb)$-submodule of the domain $\Dom(\Psi)$ of $\Psi$. Since $\Dom(\Psi)$	 is clearly completely reducible, by basic representation theory, so is $\Ker(\Psi)$. Thus, $\Ker(\Psi)$ contains an irreducible $\fk U(\Vbb)\times\fk U(\Vbb)$-submodule $\mbf W$. The projection of $\mbf W$ onto one of the irreducible component of $\Dom(\Psi)$ is non-trivial. Thus, $\mbf W\simeq \Mbb\otimes\wht\Mbb$ for some $\Mbb,\wht\Mbb\in\mc E$. By Corollary \ref{lb107}, there exists a nonzero $\upphi\in\scr T_{\fk X}^*(\Wbb_\blt\otimes\Mbb\otimes\wht\Mbb)$ such that $\mbf W=\Mbb\otimes\wht\Mbb\otimes\upphi$. As $\mbf W\subset\Ker(\Psi)$, we have $\Psi_\upphi=0$. By \eqref{eq216}, for any $w_\blt\in\Wbb_\blt,m\in\Mbb,\wht m\in\wht\Mbb$, we have $\upphi(w_\blt\otimes m\otimes \wht m)=0$. So $\upphi=0$, which gives a contradiction.
 
-When $\Vbb$ is $C_2$-cofinite and almost rational, the surjectivity of $\Psi$ follows from Proposition \ref{lb109} and Lemma \ref{lb106}.
+When $\Vbb$ is $C_2$-cofinite and rational, the surjectivity of $\Psi$ follows from Proposition \ref{lb109} and Lemma \ref{lb106}.
 \end{proof}
 
 
@@ -5470,7 +5556,7 @@ When $\Vbb$ is $C_2$-cofinite and almost rational, the surjectivity of $\Psi$ fo
 
 We assume the setting of Section \ref{lb104}. Thus, we recall that $\fk X$ is a family over $\mc D_{r\rho}$ obtained by sewing an $N$-pointed compact Riemann surface  $\wtd{\fk X}=(\wtd C;x_1,\dots,x_N;x';x'';\eta_1,\dots,\eta_N;\xi,\varpi)$. Recall $\SX=x_1+\cdots+x_N$ and $\DX=x'+x''$.  Note that for each $q\in\mc D_{r\rho}$, the fiber $\mc C_q$ is nodal (with one node) if and only if $q=0$. Moreover, $\wtd C$ is the normalization of the nodal curve $C:=\mc C_0$. In particular, we have  $\nu:\wtd C\rightarrow C$ defined by gluing $x',x''$. Also, $\fk X_0=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)$.
 
-We assume  that $\Vbb$ is both $C_2$-cofinite and almost rational. By Convention \ref{lb36}, for each irreducible $\Vbb$-module $\Mbb$,  its lowest $\wtd L_0$-weight (with nontrivial weight space) is $0$. Thus $\Omega(\Mbb)=\Mbb(0)$.
+We assume  that $\Vbb$ is both $C_2$-cofinite and rational. By Convention \ref{lb36}, for each irreducible $\Vbb$-module $\Mbb$,  its lowest $\wtd L_0$-weight (with nontrivial weight space) is $0$. Thus $\Omega(\Mbb)=\Mbb(0)$.
 
 Choose any $\upphi\in\scr T_{\fk X_0}^*(\Wbb_\blt)$. Then $\upphi$ is a linear functional on $\Wbb_\blt$.
 
@@ -5565,7 +5651,7 @@ Thus $\upphi=\sum_i\lambda_i\wtd{\mc S}\uppsi_i(0)$. It is now clear that $\upph
 
 
 \begin{thm}[Factorization]\label{lb135}
-Assume that $\Vbb$ is $C_2$-cofinite and almost rational. Then $\wtd{\fk S}_q$ is an isomorphism for each $q\in\mc D_{r\rho}$, and $\fk S_q$ is an isomorphism for each $q\in\mc D_{r\rho}^\times$.
+Assume that $\Vbb$ is $C_2$-cofinite and rational. Then $\wtd{\fk S}_q$ is an isomorphism for each $q\in\mc D_{r\rho}$, and $\fk S_q$ is an isomorphism for each $q\in\mc D_{r\rho}^\times$.
 \end{thm}
 
 \begin{proof}
@@ -5577,7 +5663,7 @@ As explained before Theorem \ref{lb114}, it suffices to prove that $\wtd{\fk S}_
 \begin{rem}\label{lb136}
 The above two theorems show that if a nodal curve $C$ (with normalization $\wtd C$) has one node, then its dimensions of spaces of conformal blocks can be calculated from those of $\wtd C$. Note that the results in Section \ref{lb110} can be generalized to $N$-pointed compact Riemann surfaces with local coordinates and arbitrary numbers  of outputs. Accordingly, we may prove the nodal factorization for an $N$-pointed nodal curve $(C;x_1,\dots,x_N)$ with an arbitrary number $M$ of nodes in the same way: the dimension of the space of conformal blocks associated to the modules $\Wbb_1,\dots,\Wbb_N$ is
 \begin{align}
-\sum_{\Mbb_1,\dots,\Mbb_M\in\mc E} \dim\scr T_{\wtd{\fk X}}^*(\Wbb\otimes\Mbb_\blt\otimes\Mbb_\blt')\label{eq243}
+\sum_{\Mbb_1,\dots,\Mbb_M\in\mc E} \dim\scr T_{\wtd{\fk X}}^*(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt')\label{eq243}
 \end{align}
 where $\wtd{\fk X}$ is the compact Riemann surface $\wtd C$ with $N+2M$ marked points, and $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$, $\Mbb_\blt=\Mbb_1\otimes\cdots\otimes\Mbb_M$, $\Mbb_\blt'=\Mbb_1'\otimes\cdots\otimes\Mbb_M'$, as usual.
 \end{rem}
@@ -5585,7 +5671,7 @@ where $\wtd{\fk X}$ is the compact Riemann surface $\wtd C$ with $N+2M$ marked p
 
 
 \begin{thm}
-Assume that $\Vbb$ is $C_2$-cofinite and almost rational. Let $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ be a family of $N$-pointed complex curves. Then $\scr T_{\fk X}(\Wbb_\blt)$ and (hence) $\scr T_{\fk X}^*(\Wbb_\blt)$ are locally free. Consequently, the function $b\in\mc B\mapsto \dim\scr T_{\fk X_b}^*(\Wbb_\blt)$ is locally constant.
+Assume that $\Vbb$ is $C_2$-cofinite and rational. Let $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ be a family of $N$-pointed complex curves. Then $\scr T_{\fk X}(\Wbb_\blt)$ and (hence) $\scr T_{\fk X}^*(\Wbb_\blt)$ are locally free. Consequently, the function $b\in\mc B\mapsto \dim\scr T_{\fk X_b}^*(\Wbb_\blt)$ is locally constant.
 \end{thm}
 
 \begin{proof}
@@ -5628,12 +5714,12 @@ be a holomorphic family of transformations whose value at each $b\in\mc B$ is de
 \begin{align}
 \alpha_i\circ(\eta_i,\pi)=(\mu_i,\pi).\label{eq249}
 \end{align}
-Let $\alpha_i'(0)\in\scr O(\mc B)$ whose value at each $b\in\mc B$ is  $\partial_z\alpha_{i,b}(z)|_{z=0}$. Assume $\Vbb$ has central charge $c$, and $\Wbb_1,\dots,\Wbb_N$ are simple $\Vbb$-modules. For each $\Wbb_i$, we let $\varDelta_i\in\Cbb$ be the unique number such that $\Wbb_i=\bigoplus_{n\in\Nbb}(\Wbb_i)_{(\varDelta_i+n)}$ and $(\Wbb_i)_{(\varDelta_i)}$ is non-trivial.   Thus, according to Convention \ref{lb36}, $L_0-\wtd L_0=\varDelta_i\id$ on $\Wbb_i$. $\varDelta_i$ is called the \textbf{conformal weight} of $\Wbb_i$.
+Let $\alpha_i'(0)\in\scr O(\mc B)$ whose value at each $b\in\mc B$ is  $\partial_z\alpha_{i,b}(z)|_{z=0}$. Assume $\Vbb$ has central charge $c$, and $\Wbb_1,\dots,\Wbb_N$ are simple $\Vbb$-modules. For each $\Wbb_i$, we let $\Delta_{\Wbb_i}\in\Cbb$ be the unique number such that $\Wbb_i=\bigoplus_{n\in\Nbb}(\Wbb_i)_{(\Delta_{\Wbb_i}+n)}$ and $(\Wbb_i)_{(\Delta_{\Wbb_i})}$ is non-trivial.   Thus, according to Convention \ref{lb36}, $L_0-\wtd L_0=\Delta_{\Wbb_i}\id$ on $\Wbb_i$. $\Delta_{\Wbb_i}$ is called the \textbf{conformal weight} of $\Wbb_i$. \index{zz@$\Delta_{\Wbb}$}
 
 \begin{thm}\label{lb144}
 Let $f\in\scr O(\mc B)$ be 
 \begin{align}\label{eq245}
-f=\sum_{i=1}^N\Big(\Res_{\eta_i=0} ~\frac c{12}h_i(\eta_i,\tau_\blt)\Sbf_{\eta_i}\mu_i d\eta_i-\varDelta_i\sum_{j=1}^m g_j(\tau_\blt)\partial_{\tau_j}\log\alpha_i'(0)  \Big).
+f=\sum_{i=1}^N\Big(\Res_{\eta_i=0} ~\frac c{12}h_i(\eta_i,\tau_\blt)\Sbf_{\eta_i}\mu_i d\eta_i-\Delta_{\Wbb_i}\sum_{j=1}^m g_j(\tau_\blt)\partial_{\tau_j}\log\alpha_i'(0)  \Big).
 \end{align}
 Then for each section  $s$ of $\scr T_{\fk X}(\Wbb_\blt)$,
 \begin{align*}
@@ -5668,7 +5754,7 @@ where
 \end{align*}
 Thus
 \begin{align}
-\mc U(\mu_\blt)\nabla_\yk^{(\eta_\blt)} s=\sum_i \mc U(\alpha_1)w_1\otimes\cdots\otimes \mc U(\alpha_i)\wtd w_i\otimes\cdots\otimes\mc U(\alpha_N^{-1}) w_N.\label{eq251}
+\mc U(\mu_\blt)\nabla_\yk^{(\eta_\blt)} s=\sum_i \mc U(\alpha_1)w_1\otimes\cdots\otimes \mc U(\alpha_i)\wtd w_i\otimes\cdots\otimes\mc U(\alpha_N) w_N.\label{eq251}
 \end{align}
 By \eqref{eq169},
 \begin{align*}
@@ -5713,12 +5799,12 @@ or simply
 \end{align*}
 Use this relation and apply Lemma \ref{lb141} to the family $\alpha_i$, we have
 \begin{align*}
-&\partial_{\tau_j}\mc U(\alpha_i)w_i=\Res_{z=0}~(\partial_{\tau_j}\alpha_i)(\alpha_i^{-1}(z)) Y_\Wbb(\cbf,z) \mc U(\alpha_i)w_i dz-\varDelta_i\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i\nonumber\\
-=&\Res_{\mu_i=0}~\partial_{\tau_j/\eta_i}\mu_i\cdot Y_\Wbb(\cbf,\mu_i) \mc U(\alpha_i)w_i d\mu_i-\varDelta_i\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i.
+&\partial_{\tau_j}\mc U(\alpha_i)w_i=\Res_{z=0}~(\partial_{\tau_j}\alpha_i)(\alpha_i^{-1}(z)) Y_\Wbb(\cbf,z) \mc U(\alpha_i)w_i dz-\Delta_{\Wbb_i}\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i\nonumber\\
+=&\Res_{\mu_i=0}~\partial_{\tau_j/\eta_i}\mu_i\cdot Y_\Wbb(\cbf,\mu_i) \mc U(\alpha_i)w_i d\mu_i-\Delta_{\Wbb_i}\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i.
 \end{align*}
 Thus
 \begin{align}
-\upupsilon_i=-\Res_{\mu_i=0}~h_i\partial_{\eta_i}\mu_i Y_{\Wbb_i}(\cbf,\mu_i)\mc U(\alpha_i)w_id\mu_i-\varDelta_i\sum_j g_j\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i.\label{eq254}
+\upupsilon_i=-\Res_{\mu_i=0}~h_i\partial_{\eta_i}\mu_i Y_{\Wbb_i}(\cbf,\mu_i)\mc U(\alpha_i)w_id\mu_i-\Delta_{\Wbb_i}\sum_j g_j\partial_{\tau_j}\log\alpha_i'(0)\mc U(\alpha_i)w_i.\label{eq254}
 \end{align}
 Combine \eqref{eq251}, \eqref{eq252}, \eqref{eq253}, \eqref{eq254} together, and notice \eqref{eq250}, we obtain $\mc U(\mu_\blt)\nabla_\yk^{(\eta_\blt)}s-\mc U(\mu_\blt)\nabla_\yk^{(\mu_\blt)}s=-f\mc U(\mu_\blt)s$.
 \end{proof}
@@ -5802,10 +5888,10 @@ and hence
 \end{align*}
 Similarly,
 \begin{align*}
-\nabla_\zk\nabla_\yk s=YZs-Z\sum_i (h_i\cbf d\eta_i)\cdot s-\sum_i(k_i\cbf d\eta_i) Ys+\sum_{i,j} (k_j\cbf d\eta_j)(h_i\cbf d\eta_i) s.
+\nabla_\zk\nabla_\yk s=ZYs-Z\sum_i (h_i\cbf d\eta_i)\cdot s-\sum_i(k_i\cbf d\eta_i) Ys+\sum_{i,j} (k_j\cbf d\eta_j)(h_i\cbf d\eta_i) s.
 \end{align*}
 
-Note that $[Y,k_i\cbf d\eta_i]=(Yk_i)\cbf d\eta_i$ and $[Z,k_i\cbf d\eta_i]=(Zk_i)\cbf d\eta_i$ since $Y,Z$ are orthogonal to $\eta_i$. Also, if $i\neq j$ then $h_i\cbf d\eta_i$ and $k_j\cbf d\eta_j$ are acting on different tensor-components of $s$. So they commute. Using Proposition \ref{lb51}, we see that in the case that $i=j$, the action of $[h_i\cbf d\eta_i,k_i\cbf d\eta_i]$ on $\scr T_{\fk X}(\Wbb_\blt)$ equals
+Note that $[Y,k_i\cbf d\eta_i]=(Yk_i)\cbf d\eta_i$ and $[Z,k_i\cbf d\eta_i]=(Zk_i)\cbf d\eta_i$ since $Y,Z$ are orthogonal to $d\eta_i$. Also, if $i\neq j$ then $h_i\cbf d\eta_i$ and $k_j\cbf d\eta_j$ are acting on different tensor-components of $s$. So they commute. Using Proposition \ref{lb51}, we see that in the case that $i=j$, the action of $[h_i\cbf d\eta_i,k_i\cbf d\eta_i]$ on $\scr T_{\fk X}(\Wbb_\blt)$ equals
 \begin{align*}
 &[h_i\cbf d\eta_i,k_i\cbf d\eta_i]=\mbf L_{h_i\cbf d\eta_i}k_i\cbf d\eta_i \xlongequal{\eqref{eq149}} \sum_{n\geq 0}\frac 1{n!}(\partial_{\eta_i}^nh_i)k_i Y(\cbf)_n\cbf d\eta_i\\
 =&\sum_{n\geq 0}\frac 1{n!}(\partial_{\eta_i}^nh_i) k_i L_{n-1}\cbf d\eta_i \xlongequal{\text{Rem. }\ref{lb58}} h_ik_i L_{-1}\cbf d\eta_i+ 2(\partial_{\eta_i}h_i)k_i\cbf d\eta_i+\frac c{12} (\partial_{\eta_i}^3h_i)k_i\id d\eta_i
@@ -5833,7 +5919,7 @@ which shows $\nabla_{[\yk,\zk]}s$ equals the sum of all the terms on the right h
 
 
 
-\section{The flat connections}
+\section{Constructing flat connections}\label{lb146}
 
 
 The goal of this section is to define flat connections on sheaves of conformal blocks depending on as few parameters as possible. We adopt the following notation: If $\scr L$ is a line bundle on a complex manifold $X$, then for any sections $s_1,s_2$ of $\scr L$ on an open $U\subset X$, if $s_2$ is nowhere zero, then $\frac {s_1}{s_2}$ is the unique element of $\scr O(U)$ whose multiplication with $s_2$ is $s_1$.
@@ -5842,104 +5928,84 @@ Assume $\Wbb_1,\dots,\Wbb_N$ are simple $\Vbb$-modules. We explain how to obtain
 \begin{align*}
 \fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N;\nu_1,\dots,\nu_N)
 \end{align*}
-be a \textbf{family of $N$-framed compact Riemann surfaces}. This means that $(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ is $N$-pointed, and 
+be a \textbf{family of $N$-pointed compact Riemann surfaces with jets}. This means that $(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ is $N$-pointed, and the jet
 \begin{align*}
 \nu_i\in\sgm_i^*\omega_{\mc C/\mc B}(\mc B)
 \end{align*}
 is nowhere zero for each $1\leq i\leq N$. Thus, for each $b\in\mc B$, $\nu_i(b)$ can be regarded as a (holomorphic) cotangent vector of $\mc C_b$ at $\sgm_i(b)$.
 
+
+
+
 \begin{eg}
-If $\fk X$ is a family of $N$-pointed compact Riemann surfaces with local coordinates $\eta_\blt$, then $\fk X$ has a natural choice of framing: let $\nu_i=\sgm_i^*d\eta_i$.
+If $\fk X$ is a family of $N$-pointed compact Riemann surfaces with local coordinates $\eta_\blt$, then $\fk X$ has a natural choice of jets: let $\nu_i=\sgm_i^*d\eta_i$.
 \end{eg}
 
 
 \begin{eg}
-Assume $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_\blt)$ is $N$-pointed. For each $i$, we let $\mc B^i$ be the open subset of non-zero vectors of the line bundle $\sgm_i^*\omega_{\mc C/\mc B}$.  Let $p_i:\mc B^i\rightarrow\mc B$ be the projection sending the vectors to their initial points. Using these projections, we define the relative product $\mc B^\triangle=\mc B^1\times_{\mc B}\mc B^2\times_{\mc B}\cdots \times_{\mc B}\mc B^N$, i.e., the closed submanifold of all $(\gamma^1,\dots,\gamma^N)\in \mc B^1\times\cdots\times \mc B^N$ satisfying $p_1(\gamma^1)=\cdots= p_N(\gamma^N)$. Let $p:\mc B^\triangle\rightarrow\mc B$ be the natural projection defined by $p_1,\dots,p_N$. Then we may pull back $\fk X$ along $p:\mc B^\triangle\rightarrow\mc B$ to obtain an $N$-pointed $\fk X^\triangle=(\pi:\mc C^\triangle\rightarrow\mc B^\triangle;\sgm_\blt^\triangle)$. More precisely: we let $\mc C^\triangle=\mc C\times_{\mc B}\mc B^\triangle$ which can be considered as a submanifold of $\mc C\times\mc B^\triangle$. $\sgm_i^\triangle$ is determined by $\sgm_i^\triangle(b^\triangle)=(\sgm_i(p(b^\triangle)),b^\triangle)$ for every $b^\triangle\in\mc B^\triangle$. Then $\fk X^\triangle$ has a natural framing $\nu_\blt$ such that for each $b\in\mc B^\triangle$, if we consider $b^\triangle=(\gamma^1,\dots,\gamma^N)$  as an element of $\mc B^1\times\cdots\times\mc B^N=\sgm_1^*\omega_{\mc C/\mc B}\times\cdots\times\sgm_N^*\omega_{\mc C/\mc B}$ and set $b=p(b^\triangle)$, then $\nu_i(b^\triangle)$, a cotangent vector of $\mc C^\triangle_{b^\triangle}=\mc C_b\times b^\triangle\simeq \mc C_b$ at $\sgm_i^\triangle(b^\triangle)=(\sgm_i(b),b^\triangle)\simeq \sgm_i(b)$, is $\gamma^i$.
+Assume $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_\blt)$ is $N$-pointed. For each $i$, we let $\mc B^i$ be the open subset of non-zero vectors of the line bundle $\sgm_i^*\omega_{\mc C/\mc B}$.  Let $p_i:\mc B^i\rightarrow\mc B$ be the projection sending the vectors to their initial points. Using these projections, we define the relative product $\mc B^\triangle=\mc B^1\times_{\mc B}\mc B^2\times_{\mc B}\cdots \times_{\mc B}\mc B^N$, i.e., the closed submanifold of all $(\gamma^1,\dots,\gamma^N)\in \mc B^1\times\cdots\times \mc B^N$ satisfying $p_1(\gamma^1)=\cdots= p_N(\gamma^N)$. Let $p:\mc B^\triangle\rightarrow\mc B$ be the natural projection defined by $p_1,\dots,p_N$. Then we may pull back $\fk X$ along $p:\mc B^\triangle\rightarrow\mc B$ to obtain an $N$-pointed $\fk X^\triangle=(\pi:\mc C^\triangle\rightarrow\mc B^\triangle;\sgm_\blt^\triangle)$. More precisely: we let $\mc C^\triangle=\mc C\times_{\mc B}\mc B^\triangle$ which can be considered as a submanifold of $\mc C\times\mc B^\triangle$. $\sgm_i^\triangle$ is determined by $\sgm_i^\triangle(b^\triangle)=(\sgm_i(p(b^\triangle)),b^\triangle)$ for every $b^\triangle\in\mc B^\triangle$. Then $\fk X^\triangle$ has natural jets $\nu_\blt$ such that for each $b^\triangle\in\mc B^\triangle$, if we consider $b^\triangle=(\gamma^1,\dots,\gamma^N)$  as an element of $\mc B^1\times\cdots\times\mc B^N=\sgm_1^*\omega_{\mc C/\mc B}\times\cdots\times\sgm_N^*\omega_{\mc C/\mc B}$ and set $b=p(b^\triangle)$, then $\nu_i(b^\triangle)$, a cotangent vector of $\mc C^\triangle_{b^\triangle}=\mc C_b\times b^\triangle\simeq \mc C_b$ at $\sgm_i^\triangle(b^\triangle)=(\sgm_i(b),b^\triangle)\simeq \sgm_i(b)$, is $\gamma^i$.
 \end{eg}
 
 
-\subsection*{(Logarithmic) flat connections depending on the framing $\nu_\blt$}
 
-Let $\fk X$ be $N$-framed as above with framing $\nu_\blt$. Fix a $C_2$-cofinite almost rational VOA $\Ubb$ with non-zero central charge $c_\Ubb$. We assume that $\Ubb$ is holomorphic, i.e., $\Ubb$ has only one simple module which is $\Ubb$ itself. For instance, one can take $\Ubb$ to be the VOA associated to an even self-dual lattice, or the moonshine VOA. By factorization, any space of conformal block associated to $\Ubb$ and a pointed curve has dimension one. Thus the sheaves of conformal blocks of $\Ubb$ are line bundles. We fix the sheaf of conformal blocks of $\Ubb$ associated to $\fk X$ and the $\Ubb$-modules $\Ubb,\dots,\Ubb$:
+
+Let $\fk X$ be $N$-pointed with jets $\nu_\blt$ as above. Fix a $C_2$-cofinite rational VOA $\Ubb$ with non-zero central charge $c_\Ubb$. We assume that $\Ubb$ is holomorphic, i.e., $\Ubb$ has only one simple module which is $\Ubb$ itself. For instance, one can take $\Ubb$ to be the VOA associated to an even self-dual lattice, or the moonshine VOA. By factorization, any space of conformal block associated to $\Ubb$ and a pointed curve has dimension one. Thus the sheaves of conformal blocks of $\Ubb$ are line bundles. We fix the sheaf of conformal blocks of $\Ubb$ associated to $\fk X$ and the $\Ubb$-modules \index{LXU@$\scr L_{\fk X}^\Ubb$} $\Ubb,\dots,\Ubb$:
 \begin{align*}
 \scr L_{\fk X}^\Ubb=\scr T_{\fk X}^*(\Ubb\otimes\cdots\otimes\Ubb)
 \end{align*}
-and consider it as a line bundle on $\mc B$. Then $\mc B$ can be considered as a closed submanifold of $\scr L_{\fk X}^\Ubb$ consisting of zero vectors. Note that we have a natural projection 
-\begin{align*}
-p:\scr L_{\fk X}^\Ubb\rightarrow\mc B
-\end{align*}
-sending each vector to its initial point. By pulling back $\scr T^*_{\fk X}(\Wbb_\blt)$ along $p$ to $\scr L_{\fk X}^\Ubb$, we have an $\scr O_{\mc B}$-module $p^*\scr T^*_{\fk X}(\Wbb_\blt)$.
+and consider it as a line bundle on $\mc B$.
 
-When $\frac c{c_\Ubb}$ is an integer, it is not hard to see that the connection on $\scr T_{\fk X}^*(\Wbb_\blt)\otimes(\scr L_{\fk X}^\Ubb)^{-\frac c{c_\Ubb}}$ over $\mc B$ is flat and (after adding certain projective terms) is independent of the choice of local coordinates and the lifts of tangent fields of $\mc B$. However, when $\frac c{c_\Ubb}$ is not an integer, $(\scr L_{\fk X}^\Ubb)^{-\frac c{c_\Ubb}}$ may not be well-defined. To overcome this difficult, we shall define a flat  connection $\nabla$ on $p^*\scr T^*_{\fk X}(\Wbb_\blt)$  over the complex manifold $\scr L_{\fk X}^\Ubb$ with logarithmic singularities at $\mc B$. 
+\subsection*{Flat connections depending on $\nu_\blt$ and a nowhere zero $\uptheta\in\scr L_{\fk X}^\Ubb(\mc B)$}
 
 
-To define such $\nabla$, it suffices to consider when $\mc B$ is Stein and small enough such that $\fk X$ admits local coordinates $\eta_\blt$ and show that $\nabla$ is independent of lifting and local coordinates. Then the general case can be easily treated by gluing. For each $i$, $\sgm_i^*d\eta_i\in\sgm_i\omega_{\mc C/\mc B}(\mc B)$ is nowhere zero. Thus $\sgm_i^*d\eta_i/\nu_i\in\scr O(\mc B)$. 
+
+
+We assume that there is a nowhere zero section  $\uptheta\in\scr L_{\fk X}^\Ubb(\mc B)$. Then we shall define a flat connection $\nabla^\uptheta$ independent of local coordinates and lifts of tangent vectors. It suffices to define such connection locally. So we assume temporarily that $\mc B$ is Stein and small  enough so that we can choose local coordinates $\eta_\blt$. For each $i$, $\sgm_i^*d\eta_i\in\sgm_i^*\omega_{\mc C/\mc B}(\mc B)$ is nowhere zero. Thus $\sgm_i^*d\eta_i/\nu_i\in\scr O(\mc B)$. 
 If $\mu_\blt$ is another set of local coordinates, we define $\alpha_i$ and hence $\alpha_i'(0)\in\scr O(\mc B)$ as in \eqref{eq249}. Then it is easy to see
 \begin{align}
 \sgm_i^*d\mu_i=\alpha_i'(0)\cdot \sgm_i^*d\eta_i.\label{eq258}
 \end{align}
-
-Choose a nowhere zero section $\uptheta\in\scr L_{\fk X}^\Ubb(\mc B)$. We have a trivialization
-\begin{gather*}
-\mc F_{\uptheta}:\Cbb\times\mc B\xrightarrow{\simeq} \scr L_{\fk X}^\Ubb,\qquad (z^\uptheta,b)\mapsto z^\uptheta\cdot \uptheta(b).
-\end{gather*}
-Assume this trivialization, we define $\nabla$ determined by the following descriptions. Choose any open $U\subset\scr L_{\fk X}^\Ubb$. Then any section of $p^*\scr T_{\fk X}^*(\Wbb_\blt)(U)$ is a linear combination of $fp^*\upphi=f\otimes p^*\upphi$ where $f\in\scr O(U)$ and $\upphi\in\scr T_{\fk X}^*(\Wbb_\blt)(p(U))$. For  $\yk\in\Theta(\mc B)(p(U))$, let $\nabla_\yk^{(\eta_\blt)}$ be the differential operator on $\scr T_{\fk X}^*(\Wbb_\blt)$ defined by $\eta_\blt$ and a lift $\wtd\yk$ as in Section \ref{lb84}. Let $\Delta_i$ be the conformal dimension of the simple module $\Wbb_i$ as in Section \ref{lb142}. Then $\nabla$ is determined by
-\begin{gather}
-\nabla_{\yk^\uptheta}(p^*\upphi)=p^*\nabla_\yk^{(\eta_\blt)}\upphi-\frac c{c_\Ubb}\cdot \frac{\nabla_\yk^{(\eta_\blt)}\uptheta}{\uptheta}\cdot p^*\upphi-\sum_{i=1}^N \Delta_i\cdot \yk\Big(\log\frac{\sgm_i^*d\eta_i}{\nu_i}\Big)\cdot p^*\upphi,\label{eq256}\\
-\nabla_{z^\uptheta\partial_{z^\uptheta}}(p^*\upphi)=-\frac c{c_\Ubb}\cdot p^*\upphi \label{eq257}
-\end{gather}
-where $\yk^\uptheta$  is the tangent field of $\scr L_{\fk X}^\Ubb\simeq\Cbb\times\mc B$ defined by pulling back $\yk$ on $\mc B$ along the projection $\Cbb\times\mc B\rightarrow\mc B$. Note that $\yk^\theta$ depends on $\mc F_\uptheta$ and hence on $\uptheta$. 
+For each section $\yk$ of $\Theta_{\mc B}$, choose a lift $\wtd\yk$. Define $\nabla^{(\eta_\blt)}$ using $\eta_\blt$ and $\wtd\yk$ as in Section \ref{lb84}.  For each section $\upphi$ of $\scr T_{\fk X}^*(\Wbb_\blt)$, let 
+\begin{align}
+\nabla^\uptheta_\yk \upphi=\nabla_\yk^{(\eta_\blt)}\upphi-\frac c{c_\Ubb}\cdot \frac{\nabla_\yk^{(\eta_\blt)}\uptheta}{\uptheta}\cdot \upphi-\sum_{i=1}^N \Delta_{\Wbb_i}\cdot \yk\Big(\log\frac{\sgm_i^*d\eta_i}{\nu_i}\Big)\cdot \upphi.\label{eq264}
+\end{align}
 
 \begin{thm}
-The logarithmic connection $\nabla$ of $p^*\scr T_{\fk X}^*(\Wbb_\blt)$  is flat. Moreover, $\nabla$ depends on the framing $\nu_\blt$ but not on $\wtd\yk$, $\eta_\blt$, or $\uptheta$.
+$\nabla^\uptheta$ is a flat connection of $\scr T_{\fk X}^*(\Wbb_\blt)$. Moreover,  $\nabla^\uptheta$ depends on the jets $\nu_\blt$ and the nowhere zero section $\uptheta\in\scr L_{\fk X}^\Ubb(\mc B)$ but not on  $\eta_\blt$ or the lift $\wtd\yk$ of $\yk$. Therefore, $\nabla^\uptheta$ can be defined globally without assuming $\mc B$ is Stein or local coordinates exist.
 \end{thm}
 
 \begin{proof}
-By Proposition \ref{lb73} and Remark \ref{lb143}, $\nabla_{\yk^\vartheta}$ is independent of $\wtd\yk$. Suppose $\upvartheta$ is another nowhere zero section of $\scr L_{\fk X}^\Ubb$. Let $f=\upvartheta/\uptheta$. Then $\mc F_{\uptheta}^{-1}\mc F_{\upvartheta}:(z,b)\mapsto (zf(b),b)$. Thus $z^\uptheta=fz^\upvartheta$. Using change of coordinate formulas for tangent fields, we have $\yk^{\upvartheta}=\yk^\uptheta+\yk(f)z^\upvartheta\partial_{z^\uptheta}$ and $\partial_{z^\upvartheta}=f\partial_{z^\uptheta}$. So
-\begin{gather*}
-\yk^{\upvartheta}=\yk^\uptheta+\frac{\yk(f)}{f}\cdot z^\uptheta\partial_{z^\uptheta},\qquad  z^\upvartheta\partial_{z^\upvartheta}=z^\uptheta\partial_{z^\uptheta}.
-\end{gather*}
-Thus, the definitions of $\nabla_{z^\uptheta\partial_{z^\uptheta}}=\nabla_{z^\upvartheta\partial_{z^\upvartheta}}$ using $\vartheta$ and $\upvartheta$ agree and are clearly independent of $\wtd\yk$ or $\eta_\blt$. Let $A$ be the summation on the right hand side of \eqref{eq257}.  If we define $\nabla$ using $\uptheta$, then
-\begin{align*}
-&\nabla_{\yk^{\upvartheta}}(p^*\upphi)=\nabla_{\yk^\uptheta}(p^*\upphi)+\frac{\yk(f)}{f}\cdot\nabla_{z^\uptheta\partial_{z^\uptheta}}(p^*\upphi)\\
-=&p^*\nabla_\yk^{(\eta_\blt)}\upphi-\frac c{c_\Ubb}\cdot \frac{\nabla_\yk^{(\eta_\blt)}\uptheta}{\uptheta}\cdot p^*\upphi-A-\frac c{c_\Ubb}\cdot \frac{\yk(f)}{f}\cdot p^*\upphi\\
-=&p^*\nabla_\yk^{(\eta_\blt)}\upphi-\frac c{c_\Ubb}\cdot \frac{\nabla_\yk^{(\eta_\blt)}(f\uptheta)}{f\uptheta}\cdot p^*\upphi-A,
-\end{align*}
-which clearly equals $\nabla_{\yk^{\upvartheta}}(p^*\upphi)$ defined using $\upvartheta$.
-
-That $\nabla_{\yk^\vartheta}$ is independent of the local coordinates $\eta_\blt$ follows from \eqref{eq258} and Theorem \ref{lb144}. Note that if $f\uptheta=\nabla_\zk^{(\mu_\blt)}\uptheta$, then $\nabla_\yk^{(\mu_\blt)}\nabla_\zk^{(\mu_\blt)}\uptheta=\nabla_\yk^{(\mu_\blt)}(f\uptheta)=\yk(f)\uptheta+f\nabla_\yk^{(\mu_\blt)}\uptheta$. From this we see
-\begin{align*}
-\yk\Big(\frac{\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta} \Big)=\frac{\nabla_\yk^{(\mu_\blt)}\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta}-\frac{\nabla_\yk^{(\mu_\blt)}\uptheta}{\uptheta}\cdot \frac{\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta} .
-\end{align*}
-With help of this relation and Theorem \ref{lb145}, it is straightforward to check that $\nabla$ is has zero curvature.
+	By Proposition \ref{lb73} and Remark \ref{lb143}, $\nabla^{\uptheta}_\yk$ is independent of $\wtd\yk$.  That $\nabla_{\yk^\vartheta}$ is independent of the local coordinates $\eta_\blt$ follows from \eqref{eq258} and Theorem \ref{lb144}. Note that if $f\uptheta=\nabla_\zk^{(\mu_\blt)}\uptheta$, then $\nabla_\yk^{(\mu_\blt)}\nabla_\zk^{(\mu_\blt)}\uptheta=\nabla_\yk^{(\mu_\blt)}(f\uptheta)=\yk(f)\uptheta+f\nabla_\yk^{(\mu_\blt)}\uptheta$. From this we see
+	\begin{align*}
+	\yk\Big(\frac{\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta} \Big)=\frac{\nabla_\yk^{(\mu_\blt)}\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta}-\frac{\nabla_\yk^{(\mu_\blt)}\uptheta}{\uptheta}\cdot \frac{\nabla_\zk^{(\mu_\blt)}\uptheta}{\uptheta} .
+	\end{align*}
+	With help of this relation and Theorem \ref{lb145}, it is straightforward to check that $\nabla$ is has zero curvature.
 \end{proof}
 
 
-\begin{rem}
-The definition of $\nabla$ on $p^*\scr T_{\fk X}(\Wbb_\blt)$ is similar, except that the minus signs in \eqref{eq256} and \eqref{eq257} should be positive. 
-\end{rem}
+
+\begin{eg}
+In the case that one cannot find a nowhere zero $\uptheta\in\scr L_{\fk X}^\Ubb(\mc B)$, one can consider a ``central extension" of $\fk X$ as follows. Regard $\mc B$  as a closed submanifold of $\scr L_{\fk X}^\Ubb$ consisting of zero vectors. Note that we have a natural projection 
+\begin{align*}
+p:\scr L_{\fk X}^\Ubb\rightarrow\mc B
+\end{align*}
+sending each vector to its initial point. We can pull back $\fk X$ along $p:\scr L_{\fk X}^\Ubb-\mc B\rightarrow\mc B$ and obtain a new family $\fk Y$ (with base manifold $\scr L_{\fk X}^\Ubb-\mc B$). One can also pullback the jets of $\fk X$. Then $\fk Y$  has a natural global nowhere section $\uptheta$ of $\scr L_{\fk Y}^\Ubb$.
+\end{eg}
 
 
 
-\subsection*{Flat connections depending on $\nu_\blt$ and a global section $\uptheta$ of $\scr L_{\fk X}^\Ubb$}
 
 
 
-The disadvantage of the above construction is that $\nabla$ is not defined on $\mc B$ but on  a line bundle $\scr L_{\fk X}^\Ubb$ over $\mc B$ (more precisely, on the open subset of non-zero vectors of $\scr L_{\fk X}^\Ubb$). However, if we assume there is a nowhere zero section $\uptheta\in\scr L_{\fk X}^\Ubb$, then one can define a flat connection $\nabla^\uptheta$ of $\scr T_{\fk X}^*(\Wbb_\blt)$ on $\mc B$. Indeed, consider $\uptheta$ as a map from $\mc B$ to $\scr L_{\fk X}^\Ubb$, then $\nabla^\uptheta$ is the pullback of $\nabla$ along $\uptheta$. Its explicit expression is similar to \eqref{eq256}.
 
-To be more precise, assume without loss of generality that $\mc B$ is Stein and small enough so that we can choose local coordinates $\eta_\blt$. For each section $\yk$ of $\Theta_{\mc B}$, choose a lift $\wtd\yk$. Define $\nabla^{(\eta_\blt)}$ using $\eta_\blt$ and $\wtd\yk$ as in Section \ref{lb84}.  Then for each section $\upphi$ of $\scr T_{\fk X}^*(\Wbb_\blt)$, 
-\begin{align}
-\nabla^\uptheta_\yk \upphi=\nabla_\yk^{(\eta_\blt)}\upphi-\frac c{c_\Ubb}\cdot \frac{\nabla_\yk^{(\eta_\blt)}\uptheta}{\uptheta}\cdot \upphi-\sum_{i=1}^N \Delta_i\cdot \yk\Big(\log\frac{\sgm_i^*d\eta_i}{\nu_i}\Big)\cdot \upphi.
-\end{align}
-$\nabla^\uptheta$ is flat, and  is independent of the choice of $\eta_\blt$ and the lift $\wtd\yk$. So it can be defined when $\mc B$ is not Stein or small.
 
 
 
 \subsection*{Connections depending on $\nu_\blt$ and a projective structure $\fk P$}
 
-Suppose $\fk X$ has a projective structure $\fk P$ and a framing $\nu_\blt$,  one can define a connection $\nabla^{\fk P}$ as follows. Choose a lift $\wtd\yk$ of the tangent field $\yk$, and let $h_i$ be as in \eqref{eq259}. Then
+Suppose $\fk X$ has a projective structure $\fk P$ and jets $\nu_\blt$,  one can define a connection $\nabla^{\fk P}$ as follows. Choose a lift $\wtd\yk$ of the tangent field $\yk$, and let $h_i$ be as in \eqref{eq259}. Then
 \begin{align}
-\nabla^{\fk P}_\yk \upphi=\nabla_\yk^{(\eta_\blt)}\upphi-\sum_{i=1}^N\Res_{\eta_i=0} ~\frac c{12}h_i(\eta_i,\tau_\blt)\Sbf_{\eta_i}\fk P d\eta_i-\sum_{i=1}^N \Delta_i\cdot \yk\Big(\log\frac{\sgm_i^*d\eta_i}{\nu_i}\Big)\cdot \upphi.
+\nabla^{\fk P}_\yk \upphi=\nabla_\yk^{(\eta_\blt)}\upphi-\sum_{i=1}^N\Res_{\eta_i=0} ~\frac c{12}h_i(\eta_i,\tau_\blt)\Sbf_{\eta_i}\fk P d\eta_i-\sum_{i=1}^N \Delta_{\Wbb_i}\cdot \yk\Big(\log\frac{\sgm_i^*d\eta_i}{\nu_i}\Big)\cdot \upphi.\label{eq263}
 \end{align}
 
 
@@ -5949,16 +6015,220 @@ $\nabla^{\fk P}$ is independent of the choice of $\eta_\blt$ and the lift $\wtd\
 
 
 \begin{proof}
-To compare the definition of $\nabla$ using two sets of local coordinates $\eta_\blt$ and $\mu_\blt$, it suffices to assume $\mu_1,\dots,\mu_N$ belong to $\fk P$. Then the coincidence of follows from Theorem \ref{lb144}. When the local coordinates belong to $\fk P$, $\nabla$ is independent of the choice of lift by Remark \ref{lb143} and Lemma \ref{lb74} (or equation \eqref{eq179}). Thus, for a general $\eta_\blt$, the independence on $\wtd\yk$ is also true.
+To compare the definition of $\nabla$ using two sets of local coordinates $\eta_\blt$ and $\mu_\blt$, it suffices to assume $\mu_1,\dots,\mu_N$ belong to $\fk P$. Then the coincidence  follows from Theorem \ref{lb144}. When the local coordinates belong to $\fk P$, $\nabla$ is independent of the choice of lift by Remark \ref{lb143} and Lemma \ref{lb74} (or equation \eqref{eq179}). Thus, for a general $\eta_\blt$, the independence on $\wtd\yk$ is also true.
 \end{proof}
 
 
 
-Note that unlike the previous two connections, $\nabla^{\fk P}$ might not be flat. 
+Note that unlike the previous connection, $\nabla^{\fk P}$ might not be flat. 
 
 
 
 
+
+\section{Functoriality}
+
+
+
+Assume for simplicity that $\Vbb$ is $C_2$-cofinite so that the sheaves of conformal blocks are holomorphic vector bundles. If $F_i:\Wbb_i\rightarrow\Mbb_i$ is a homomorphism of $\Vbb$-modules for each $1\leq i\leq N$, then we clearly have an $\scr O_{\mc B}$-module homomorphism $F_\blt^*:\scr T_{\fk X}^*(\Mbb_\blt)\rightarrow \scr T_{\fk X}^*(\Wbb_\blt)$ defined by sending each $\upphi$ to $\upphi\circ(F_1\otimes\cdots\otimes F_n)$. If we have $G_i:\Mbb_i\rightarrow \mathbb P_i$ where each $\mbb P_i$ is also an $\Vbb$-module, then by setting $(GF)_i=G_iF_i$, we have $(GF)_\blt^*=F_\blt^* G_\blt^*$. Moreover, if each $F_i$ is identity, then so is $F_\blt^*$. Thus, we have a contravariant functor $\Wbb_\blt\rightarrow\scr T_{\fk X}^*(\Wbb_\blt)$.
+
+We may also fix $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$, and consider morphisms between two families of compact Riemann surfaces. To be more precise, if $\fk X^j=(\pi^j:\mc C^j\rightarrow\mc B^j;\sgm_1^j,\dots,\sgm_N^j)$ ($j=1,2$) are families of $N$-pointed compact Riemann surfaces, then a \textbf{morphism} $F:\fk X^1\rightarrow\fk X^2$ is a pair $F=(F_\Crm,F_\Brm)$ where $F_\Crm:\mc C^1\rightarrow\mc C^2$ and $F_\Brm:\mc B^1\rightarrow \mc B^2$ are holomorphic maps, $\pi^2\circ F_\Crm=F_\Brm\circ \pi^1$, $F_\Crm\circ \sgm_i^1=\sgm_i^2$ for each $1\leq i\leq N$, and $F_\Crm$ restricts to an isomorphism of compact Riemann surfaces $\mc C^1_{b}\rightarrow \mc C^2_{F_\Brm(b)}$ for each $b\in\mc B^1$. We will write both $F_\Crm$ and $F_\Brm$ as $F$ for short when no confusion arises. 
+
+We can pull back $\scr T_{\fk X^2}^*(\Wbb_\blt)$ along $F_\Brm$ to get an $\scr O_{\mc B^1}$-module $F^*\scr T_{\fk X^2}^*(\Wbb_\blt)\equiv F_\Brm^*\scr T_{\fk X^2}^*(\Wbb_\blt)$. Thus we have $F^*:\scr T_{\fk X^2}^*(\Wbb_\blt)(V)\rightarrow F^*\scr T_{\fk X^2}^*(\Wbb_\blt)(F^{-1}(V))$ for each open $V\in\mc B^2$. We can define a similar \index{F@$F^\diamond$} map 
+\begin{align}
+F^\diamond:\scr T_{\fk X^2}^*(\Wbb_\blt)(V)\rightarrow \scr T_{\fk X^1}^*(\Wbb_\blt)(F^{-1}(V))
+\end{align}
+as follows.  For each $b\in F^{-1}(V)$, $F_\Crm$ restricts to an isomorphism of $N$-pointed fibers $\mc C^1_b\rightarrow\mc C^2_{F(b)}$. This gives a natural isomorphism
+\begin{align*}
+F_b^\diamond:\scr T_{\fk X^2}^*(\Wbb_\blt)|F(b)\rightarrow \scr T_{\fk X^1}^*(\Wbb_\blt)|b.
+\end{align*}
+Then $F^\diamond$ is defined such that for each $\upphi\in\scr T_{\fk X^2}^*(\Wbb_\blt)(V)$ and $b\in F^{-1}(V)$, $(F^\diamond\upphi)(b)=F_b^\diamond\upphi(F(b))$. One can write down the explicit formula: Assume the restriction $\fk X^2_V$ admits local coordinates $\eta_\blt^2$. Then one can define local coordinates $\eta_\blt^1$ of the restricted family $\fk X^1_{F^{-1}(V)}$ such that 
+\begin{align}
+\eta_i^1=\eta_i^2\circ F_\Crm
+\end{align}
+for each $1\leq i\leq N$. Choose $w\in\Wbb_\blt$. Then
+\begin{align}
+(F^\diamond\upphi)(\mc U(\eta_\blt^1)^{-1}w)=\upphi(\mc U(\eta_\blt^2)^{-1}w).\label{eq261}
+\end{align}
+If $G:\fk X^2\rightarrow\fk X^3$ is another morphism, we clearly have
+\begin{align}
+(GF)^\diamond=F^\diamond G^\diamond.\label{eq262}
+\end{align}
+Also, if $F$ is the identity map, then $F^\diamond$ is clearly also the identity.
+
+
+ 
+$F^\diamond$ and $F^*$ can be related in the following way. Define an $\scr O_{\mc B^1}$-module \index{zz@$\Phi_F$} isomorphism
+\begin{gather}
+\Phi_F:F^*\scr T_{\fk X^2}^*(\Wbb_\blt)\xrightarrow{\simeq} \scr T_{\fk X^1}^*(\Wbb_\blt),\nonumber\\
+\Phi_F F^*\upphi=F^\diamond\upphi
+\end{gather}
+for each section $\upphi$ of $\scr T_{\fk X^2}^*(\Wbb_\blt)$. Namely, it is defined by $\Phi_F (f\cdot F^*\upphi)=fF^\diamond\upphi$ for any holomorphic function $f$ of $\mc B^1$. To check that $\Phi_F$ is well-defined and is an $\scr O_{\mc B^1}$-isomorphism, note that for each $b\in \mc B^1$ we define an isomorphism of vector spaces $F_b^*\equiv (F_B)_b^*:\scr T_{\fk X^2}^*(\Wbb_\blt)|F(b)\rightarrow F^*\scr T_{\fk X^2}^*(\Wbb_\blt)|b$ by pullback. Then we can define an isomorphism
+\begin{gather*}
+\Phi_{F,b}:F^*\scr T_{\fk X^2}^*(\Wbb_\blt)|b\xrightarrow{\simeq} \scr T_{\fk X^1}^*(\Wbb_\blt)|b,\\
+\Phi_{F,b}F^*_b=F_b^\diamond.
+\end{gather*}
+Then it is clear that $\Phi_F(f\cdot  F^*\upphi)(b)=f(b)\cdot (F^\diamond\upphi)(b)=f(b)\cdot F_b^\diamond\cdot \upphi(b)=f(b)\cdot \Phi_{F,b}F^*_b\cdot \upphi(b)$ which depends only on $f(b)\upphi(b)$. So $\Phi_F$ is a well-defined isomorphism of vector bundles whose restriction to each fiber over $b$ is $\Phi_{F,b}$. To summarize, we have
+\begin{thm}
+For each morphism $F:\fk X^1\rightarrow\fk X^2$ of families of $N$-pointed compact Riemann surfaces, there is an isomorphism of (holomorphic) vector bundles $\Phi_F:F^*\scr T_{\fk X^2}^*(\Wbb_\blt)\xrightarrow{\simeq} \scr T_{\fk X^1}^*(\Wbb_\blt)$ such that $\Phi_F F^*\upphi=F^\diamond\upphi$ for each section $\upphi$ of $\scr T_{\fk X^2}^*(\Wbb_\blt)$, and $F^\diamond\upphi$ is described by \eqref{eq261}. If $F$ is the identity morphism, then $\Phi_F$ is the identity map. If $G:\fk X^2\rightarrow\fk X^3$ is also a morphism, then for each open $W\subset\mc B^3$, the following maps from $\scr T_{\fk X^3}^*(\Wbb_\blt)(W)\rightarrow \scr T_{\fk X^1}^*(\Wbb_\blt)(F^{-1}G^{-1}(W))$ are equal.
+\begin{align*}
+\Phi_{GF}\cdot (GF)^*=\Phi_F \cdot F^*\cdot  \Phi_G\cdot  G^*.
+\end{align*}
+\end{thm}
+The last equation is due to \eqref{eq262}.
+
+
+
+
+
+
+
+Recall that if $\nabla$ is a connection on $\scr T_{\fk X^2}^*(\Wbb_\blt)$, then its pullback $F^*\nabla=F_\Brm^*\nabla$ is a connection on $F^*\scr T_{\fk X^2}^*(\Wbb_\blt)$ defined by $(F^*\nabla)_{\yk}(F^*\upphi)=F^*(\nabla_{dF(\yk)}\upphi)$ for each section $\upphi$ of $\scr T_{\fk X^2}^*(\Wbb_\blt)$ and each tangent vector $\yk$ of $\mc B^1$. 
+
+Suppose that $\fk X^2$ admits jets $\nu_\blt^2$. Then one can define jets $\nu_\blt^1$ of $\fk X^1$ such that for each $b\in\mc B^1$, the cotangent vector $\nu^1_i(b)$ of $\mc C^1_b$ at $\sgm^1_i(b)$ is $F^*d\nu_i^2(b)$. If $\fk X^2$ also admits a projective structure $\fk P^2$, then one can define a projective chart (and hence a projective structure) $\fk P^1$ consisting of all $(F_\Crm^{-1}(U),\eta\circ F_\Crm)$ where $(U,\eta)$ belongs to $\fk P^1$. (In particular, $U$ is an open subset of $\mc C^2$ and $\eta\in\scr O(U)$ is univalent on each fiber.) Then for the connections defined by \eqref{eq263} (assume $\Wbb_1,\dots,\Wbb_N$ are simple), it is not hard to check that for any tangent field $\yk$ of $\mc B^1$,
+\begin{align}
+\nabla^{\fk P^1}_\yk=\Phi_F\cdot (F^*\nabla^{\fk P^2})_\yk \cdot \Phi_F^{-1}\label{eq265}
+\end{align}
+when acting on sections of $\scr T_{\fk X^1}^*(\Wbb_\blt)$.
+
+
+Alternatively, suppose that, instead of projective structures, we have a global section $\uptheta^2$ of $\scr L_{\fk X^2}^\Ubb$. We can define a global section of $\scr L_{\fk X^1}^\Ubb$ to be $\uptheta^1=F^\diamond\uptheta^2=\Phi_F F^*\uptheta^2$. Then for the flat connections defined by \eqref{eq264}, we also have
+\begin{align}
+\nabla^{\uptheta^1}_\yk=\Phi_F\cdot (F^*\nabla^{\uptheta^2})_\yk \cdot \Phi_F^{-1}.
+\end{align}
+
+
+
+
+
+\begin{eg}\label{lb148}
+Let $G$ be a group of automorphisms of $\fk X$, i.e., we have a homomorphism $G\rightarrow\mathrm{Aut}(\fk X)$. For each $g\in G$, we have an action $g^\diamond=\Phi_g\cdot g^*:\scr T_{\fk X}^*(\Wbb_\blt)(V)\rightarrow \scr T_{\fk X}^*(\Wbb_\blt)(g^{-1}V)$ for each open $V\subset\mc B$, and we have $(gh)^\diamond=h^\diamond g^\diamond$ for each $g,h\in G$. Thus, we have a right action of $G$ on $\scr T_{\fk X}^*(\Wbb_\blt)(\mc B)$.
+
+Suppose that $\fk X$ admits jets $\nu_\blt$ and a projective structure $\fk P$, and both are invariant under the action of $G$. Suppose also that $\mc B$ is simply-connected and $\nabla^{\fk P}$ is flat. We can define the vector space  $\scr C_{\fk X}(\Wbb_\blt)$ of all $\upphi\in\scr T_{\fk X}^*(\Wbb_\blt)(\mc B)$ which are parallel under $\nabla^{\fk P}$, i.e., annihilated by $\nabla^{\fk P}_\yk$ for each tangent field $\yk$ of $\mc B$. Then $\dim\scr C_{\fk X}(\Wbb_\blt)$ is equal to the rank of the vector bundle $\scr T_{\fk X}^*(\Wbb_\blt)$. Moreover, $g\in G\rightarrow (g^{-1})^\diamond$ defines a (left) action of $G$ on  the vector space $\scr C_{\fk X}(\Wbb_\blt)$. This is also true when we not assume the existence of a set of $G$-invariant jets, but assume $\Wbb_1,\dots,\Wbb_N$ are all $\Vbb$ so that $\Delta_{\Wbb_1}=\dots=\Delta_{\Wbb_N}=0$.
+\end{eg}
+
+
+
+
+
+
+
+\section{Modular invariance}
+
+
+
+
+Let $\Vbb$ be $C_2$-cofinite and rational. Let $\wtd{\fk Y}=(\Pbb^1;1,0,\infty)$. We associate local coordinates $z$ to $0$ and $z^{-1}$ to $\infty$. Then we can sew $\wtd{\fk Y}$ along $0,\infty$ to get a family $\fk Y=(\mc R\rightarrow\mc D_1^\times;\sigma)$ of $1$-pointed elliptic curves. Recall $\mc D_1^\times$ is the punctured unit open disc. Associate to $1,0,\infty$ simple $\Vbb$-modules $\Wbb,\Mbb,\Mbb'$ where $\Mbb'$ is contragredient to $\Mbb$. Then for each $\uppsi\in\scr T_{\wtd{\fk Y}}^*(\Wbb\otimes\Mbb\otimes\Mbb')$, we have the sewn conformal block $\wtd{\mc S}\uppsi\in \scr T_{\fk Y}^*(\Wbb)(\mc D_1^\times)$ and $\mc S\uppsi=q^{\Delta_\Mbb}\wtd{\mc S}\uppsi$. Let $\wtd{\fk Q}$ be unique projective structure of $\Pbb^1$, i.e., the one containing $(\Cbb,z)$. This in turn gives a projective structure $\fk Q$ of $\fk Y$. More precisely: the local coordinate $z-1$ of $\mbb P^1$ at $1$ extends constantly (with respect to sewing) to a local coordinate $\mu$ of $\fk Y$. $\fk Q$ is the projective structure containing $\mu$. 
+
+Let $\gamma$ be a jet of $\fk Y$ whose value at each $q\in\mc D_1^\times$ is the cotangent vector $d\mu$. Then the definition of the connection $\nabla^{(\mu)}$ of $\scr T_{\fk Y}^*(\Wbb)$ using the local coordinate $\mu$ (as in Section \ref{lb84})  is the same as the connection $\nabla^{\fk Q,\lambda}$ defined by $\fk Q$ and the jet $\gamma$ (as in \eqref{eq263}), and is independent of the choice of lifts. Since the local coordinates of $0,\infty$ belong to $\fk Q$, by Theorem \ref{lb85} and Remark \ref{lb138}, $\mc S\uppsi$ is parallel under $\nabla^{\fk Q,\mu}$.
+
+
+Let $\mbb H$ be the (open) upper half plane of $\Cbb$. Define
+\begin{align*}
+\mc B=\mbb H\times\Cbb^\times.
+\end{align*}
+Define an action of $\Zbb^2$ on $\Cbb\times\mc B$ such that for each $a,b\in\Zbb$ and $(z,\tau,\zeta)\in\Cbb\times\mbb H\times\Cbb^\times$, $(a,b)(z,\tau,\zeta)=(z+a+b\tau,\tau,\zeta)$. Then we have a (universal) family of $1$-pointed elliptic curves
+\begin{align*}
+\fk X=(\pi:\mc C\rightarrow\mc B;\sgm)
+\end{align*}
+where 
+\begin{align*}
+\mc C=(\Cbb\times\mc B)/\Zbb^2,
+\end{align*}
+the projection $\pi$ is defined by the standard one $\Cbb\times\mc B\rightarrow\mc B$, and $\sgm$ comes from the section $\mc B\rightarrow\Cbb\times \mc B$, $(\tau,\zeta)\mapsto (0,\tau,\zeta)$. Let $\Gamma$ be the modular group, i.e.,
+\begin{align*}
+\Gamma=SL_2(\Zbb)=\bigg\{\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}
+:a,b,c,d\in\Zbb,~ad-bc=1
+\bigg\}.
+\end{align*}
+Then we have a group action of $\Gamma$ on $\fk X$ such that for any $g=\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}\in \Gamma$, 
+\begin{gather*}
+g:\mc B\rightarrow\mc B,\qquad g(\tau,\zeta)=\Big(\frac{a\tau+b}{c\tau+d},\frac \zeta{c\tau+d}  \Big),
+\end{gather*}
+and the action of $g$ on $\mc C$ descends from the one on $\Cbb\times\mc B$ determined by
+\begin{gather*}
+g:\Cbb\times\mc B\rightarrow \Cbb\times\mc B,\qquad g(z,\tau,\zeta)=\Big(\frac z{c\tau+d},\frac{a\tau+b}{c\tau+d},\frac \zeta{c\tau+d}  \Big).
+\end{gather*}
+Then we have  $\fk X/\Gamma=(\mc C/\Gamma\rightarrow \mc B/\Gamma;\sgm)$ where $\mc B/\Gamma$ is the (fine) moduli space of $1$-pointed elliptic curves with jet.\footnote{One reason to work with $\mc B$ instead of $\mbb H$ and to consider jets is that pointed elliptic curves with jet have trivial automorphism groups. So we can have a fine moduli space.} The jet of $\fk X/\Gamma$ come from $\nu$ of $\fk X$ which will be described later. By example \ref{lb148}, $\Gamma$ acts on $\scr T_{\fk X}^*(\Wbb)(\mc B)$.
+
+
+There are two natural choices of flat connections on $\scr T_{\fk X}^*(\Wbb)$. We have a morphism $F:\fk X\rightarrow\fk Y$ described as follows. As a holomorphic map between base manifolds, we have
+\begin{gather*}
+F:\mc B=\mbb H\times\Cbb^\times\rightarrow \mc D_1^\times,\qquad (\tau,\zeta)\mapsto \exp(2\im\pi\tau).
+\end{gather*}
+The map $F:\mc C\rightarrow\mc R$ is defined such that  for each $(\tau,\zeta)\in\mc B$, the map 
+\begin{align*}
+\Cbb\rightarrow\Pbb^1,\qquad z\mapsto \exp(2\im\pi z)
+\end{align*}
+descends to $\Cbb\rightarrow \mc R_{\exp(2\im\pi\tau)}$, and furthermore descends to $\mc C_{(\tau,\zeta)}\xrightarrow{\simeq}\mc R_{\exp(2\im\pi\tau)}$. Then we can pullback the projective structure $\fk Q$ and the jet $\lambda$ of $\fk Y$ to $\fk P',\nu'$ of $\fk X$ as described above \eqref{eq265}. Then by \eqref{eq265}, $\nabla^{\fk P',\nu'}$ is equivalent to $F^*\nabla^{\fk Q,\lambda}$ via $\Phi_F:F^*\scr T_{\fk Y}^*(\Wbb)\xrightarrow{\simeq}\scr T_{\fk X}^*(\Wbb)$, and is therefore flat since $\nabla^{\fk Q,\lambda}$ is acting on a $1$-dimensional complex manifold. So 
+\begin{align*}
+F^\diamond\mc S\uppsi=\Phi_F F^*\mc S\uppsi=e^{2\im\pi\tau\Delta_\Mbb}\cdot \Phi_F F^*\wtd{\mc S}\uppsi
+\end{align*}
+is a global section of $\scr T_{\fk X}^*(\Wbb)$ parallel under $\nabla^{\fk P',\nu'}$. (Recall that $F^\diamond$ is described by \eqref{eq261}.) By factorization, $\scr T_{\fk X}^*(\Wbb)$ is $\scr O_{\mc B}$-generated by, and hence the  vector space of $\nabla^{\fk P',\nu'}$-parallel sections in $\scr T_{\fk X}^*(\Wbb)(\mc B)$ is spanned by all $F^\diamond\mc S\uppsi$ where $\uppsi\in\scr T_{\wtd{\fk Y}}^*(\Wbb\otimes\Mbb\otimes\Mbb')$ and $\Mbb$ is a simple $\Vbb$-module.
+
+
+
+Unfortunately, neither $\fk P'$ nor $\nu'$ is modular invariant (i.e. $\Gamma$-invariant). As a consequence, $\nabla^{\fk P',\nu'}$ is not modular invariant. To get modular invariant ones, we let $\fk P$ be the projective structure of $\fk X$ whose pull back to the family $\Cbb\times\mc B\rightarrow\mc B$ is the standard one, i.e., its restriction to each fiber $\Cbb$ is the one containing $(\Cbb,z)$. We let $\nu$ be the jet of $\fk X$ to be 
+\begin{align*}
+\nu=\zeta^{-1}\cdot dz
+\end{align*}
+i.e., for each $(\tau,\zeta)\in\mc B$, $\nu(\tau,\zeta)$ is the cotangent vector $\zeta^{-1} dz$ of the fiber $\mc C_{(\tau,\zeta)}$ at $0$ (when lifted to $\Cbb$) where $dz$ is defined by the standard coordinate $z$ of $\Cbb$. Then both $\fk P$ and $\nu$ are modular invariant. So is $\nabla^{\fk P,\nu}$.
+
+\begin{thm}
+Let $\tau,\zeta$ also denote the standard coordinates of $\mbb H,\mbb C^\times$ respectively. Then, when acting on sections of $\scr T_{\fk X}^*(\Wbb)$, we have
+\begin{gather*}
+\nabla_{\partial_\tau}^{\fk P,\nu}=\nabla_{\partial_\tau}^{\fk P',\nu'}+\frac{\im c\pi}{12}\id,\\
+\nabla_{\partial_\zeta}^{\fk P,\nu}=\nabla_{\partial_\zeta}^{\fk P',\nu'}-\frac{\Delta_\Wbb}\zeta\id.
+\end{gather*}
+\end{thm}
+As an immediate consequence,  $\nabla^{\fk P,\nu}$ is also flat.
+
+
+\begin{proof}
+$\nu'$ is the differential of $\exp(2\im\pi z)$ at $z=0$. So $\nu'=2\im\pi dz$, and hence $\nu=\frac{1}{2\im\pi\zeta}\nu'$. Hence  $\partial_\zeta(\log(\nu/\nu'))=-\zeta^{-1}$. This, together with \eqref{eq263}, shows the second the identity. Since $\partial_\tau(\log(\nu/\nu'))=0$, we have $\nabla_{\partial_\tau}^{\fk P',\nu}=\nabla_{\partial_\tau}^{\fk P',\nu'}$. Thus, it suffices to prove $\nabla_{\partial_\tau}^{\fk P,\nu}=\nabla_{\partial_\tau}^{\fk P',\nu}+\frac{\im c\pi}{12}\id$. Let $\eta$ be the local coordinate of $\fk X$ defined by the standard coordinate $dz$ of $\Cbb$. Let $\eta'$ be the pullback of $\mu$ along $F$, i.e., $\eta'=\exp(2\im\pi z)-1$. Then $\eta$ belongs to $\fk P$ and $\eta'$ belongs to $\fk P'$. Let $\wtd\yk$ be a lift of $\partial_\tau$, and assume its expression near $\sgm(\mc B)$ is
+\begin{align*}
+h(\eta,\tau,\zeta)\partial_\eta+\partial_\tau
+\end{align*}
+where the partial derivatives are defined by the coordinates $(\eta,\tau,\zeta)$. Then by Theorem \ref{lb144} and relation \eqref{eq263}, we have $\nabla_{\partial_\tau}^{\fk P,\nu}-\nabla_{\partial_\tau}^{\fk P',\nu}=f\id$ where
+\begin{align*}
+f=\Res_{\eta=0}~\frac c{12}h(\eta,\tau,\zeta)\Sbf_\eta \eta' d\eta.
+\end{align*}
+
+It is easy to calculate that $\Sbf_\eta\eta'=\Sbf_z(\exp(2\im\pi z)-1)=(2\im\pi)^2-\frac 32 (2\im\pi)^2=2\pi^2$. We can pullback $\wtd\yk$ to a global meromorphic tangent field of $\Cbb\times\mc B$ whose poles are in $\Zbb^2\cdot (\{0\}\times\mc B)$. Denote this pullback also by $\wtd\yk$, and notice $\eta$ is just the standard coordinate $z$ of $\Cbb$, we have $\wtd\yk=h(z,\tau,\zeta)\partial_z+\partial_\tau$ and $h$ is a meromorphic function on $\Cbb\times\mc B$ with poles in $\Zbb^2\cdot (\{0\}\times\mc B)$. Moreover, $\wtd\yk$ is invariant under the action of $\Zbb^2$. From this it is easy to see that
+\begin{align*}
+h(z+1,\tau,\zeta)=h(z,\tau,\zeta),\qquad h(z+\tau,\tau,\zeta)=h(z,\tau,\zeta)+1.
+\end{align*}
+Let $\gamma_\tau$ be an anticlockwise parallelogram of $\Cbb$ around $0$ described by $A_\tau\rightarrow B_\tau\rightarrow C_\tau\rightarrow D_\tau\rightarrow A_\tau$, where $A_\tau=-0.5-0.5\tau$, $B_\tau=0.5-0.5\tau$, $C_\tau=0.5+0.5\tau$, $D_\tau=-0.5+0.5\tau$. Then by the above relation,
+\begin{gather*}
+\int_{A_\tau B_\tau}hdz+\int_{C_\tau D_\tau}hdz=\int_{A_\tau B_\tau}hdz-\int_{A_\tau B_\tau}(h+1)dz=-\int_{A_\tau B_\tau}dz=-1,\\
+\int_{B_\tau C_\tau}hdz+\int_{D_\tau A_\tau}hdz=\int_{A_\tau D_\tau}hdz-\int_{A_\tau D_\tau}hdz=0.
+\end{gather*}
+So
+\begin{align*}
+\Res_{z=0}~hdz=\frac 1{2\im\pi}\oint_{\gamma_\tau}hdz=-\frac 1{2\im\pi}.
+\end{align*}
+Thus $f=\Res_{z=0}~\frac c{12} h\cdot 2\pi^2dz=\frac{\im c\pi}{12}$, which completes the proof.
+\end{proof}
+
+
+\begin{co}
+For any simple $\Mbb$ and any $\uppsi\in\scr T_{\wtd{\fk Y}}^*(\Wbb\otimes\Mbb\otimes\Mbb')$, 
+\begin{align}
+\zeta^{\Delta_\Wbb} \exp\Big(-\frac{\im c\pi}{12}\tau\Big)F^\diamond\mc S\uppsi\label{eq266}
+\end{align}
+is a multivalued (with respect to $\zeta$) global section of $\scr T_{\fk X}^*(\Wbb)$ parallel under the modular invariant flat connection $\nabla^{\fk P,\nu}$. Moreover, any such $\nabla^{\fk P,\nu}$-parallel section of $\scr T_{\fk X}^*(\Wbb)$ is a $\Cbb$-linear combination of sections of this form.
+\end{co}
+If we let $q_\tau=F(\tau)=\exp(2\im\pi\tau)$, then the projective factor $\exp(-\frac{\im c\pi}{12}\tau)$ becomes the celebrated $q_\tau^{-\frac c{24}}$.
+
+\begin{co}[Modular invariance]
+For any $\upphi$ in the form \eqref{eq266}, and for any $g\in\Gamma=SL_2(\Zbb)$, $g^\diamond\upphi$ is also a $\Cbb$-linear combination of sections of the form \eqref{eq266}.
+\end{co}
 
 
 \printindex
@@ -5977,6 +6247,15 @@ Note that unlike the previous two connections, $\nabla^{\fk P}$ might not be fla
 \bibitem[ACG11]{ACG11}
 Arbarello, E., Cornalba, M. and Griffiths, P., 2011. Geometry of algebraic curves: volume II with a contribution by Joseph Daniel Harris (Vol. 268). Springer Science \& Business Media.
 
+\bibitem[AU07a]{AU07a}
+Andersen, J.E. and Ueno, K., 2007. Abelian conformal field theory and determinant bundles. Internat. J.  Math., 18(08), pp.919-993.
+
+\bibitem[AU07b]{AU07b}
+Andersen, J.E. and Ueno, K., 2007. Geometric construction of modular functors from conformal field theory. Journal of Knot theory and its Ramifications, 16(02), pp.127-202.
+
+\bibitem[BFM91]{BFM91}
+Beilinson, A., Feigin, B. and Mazur, B., 1991. Introduction to algebraic field theory on curves. Preprint.
+
 \bibitem[BS76]{BS76}
 Bănică, C. and Stănăşilă, O., 1976. Algebraic methods in the global theory of complex spaces.
 
@@ -5985,6 +6264,15 @@ Buhl, G., 2002. A spanning set for VOA modules. Journal of Algebra, 254(1), pp.1
 
 \bibitem[DLM97]{DLM97}
 Dong, C., Li, H. and Mason, G., 1997. Regularity of Rational Vertex Operator Algebras. Advances in Mathematics, 1(132), pp.148-166.
+
+\bibitem[DGT19a]{DGT19a}
+Damiolini, C., Gibney, A., and Tarasca, N., 2019. Conformal blocks from vertex algebras and their connections on $\ovl{\mc M}_{g,n}$.  To appear in Geometry \& Topology, arXiv:1901.06981.
+
+\bibitem[DGT19b]{DGT19b}
+Damiolini, C., Gibney, A. and Tarasca, N., 2019. On factorization and vector bundles of conformal blocks from vertex algebras. arXiv preprint arXiv:1909.04683.
+
+\bibitem[DJ08]{DJ08}
+Dong, C. and Jiang, C., 2008. Bimodules associated to vertex operator algebras. Mathematische Zeitschrift, 259(4), pp.799-826.
 
 \bibitem[EP96]{EP96}
 Eschmeier, J. and Putinar, M., 1996. Spectral decompositions and analytic sheaves (No. 10). Oxford University Press.
@@ -6002,6 +6290,9 @@ Fischer, G., Complex analytic geometry. Lecture Notes in Mathematics, Vol. 538. 
 \bibitem[For81]{For81}
 Forster, O., 1981. Lectures on Riemann surfaces (Vol. 81). Springer Science \& Business Media.
 
+\bibitem[GH78]{GH78}
+Griffiths, P. and Harris, J., 1978. Principles of algebraic geometry (Vol. 19, No. 8). New York: Wiley.
+
 \bibitem[GPR94]{GPR94}
 Grauert, H., Peternell, T., and Remmert, R. eds., 1994. Several complex variables VII: sheaf-theoretical methods in complex analysis. Springer-Verlag.
 
@@ -6014,17 +6305,41 @@ Grauert, H., 1960. Ein Theorem der analytischen Garbentheorie und die Modulr\"au
 \bibitem[Hain08]{Hain08}
 Hain, R., 2008. Lectures on moduli spaces of elliptic curves. arXiv preprint arXiv:0812.1803.
 
+\bibitem[Hua95]{Hua95}
+Huang, Y.Z., 1995. A theory of tensor products for module categories for a vertex operator algebra, IV. Journal of Pure and Applied Algebra, 100(1-3), pp.173-216.	
+
 \bibitem[Hua97]{Hua97}
 Huang, Y.Z., 1997. Two-dimensional conformal geometry and vertex operator algebras (Vol. 148). Springer Science \& Business Media.
+
+\bibitem[Hua98]{Hua98}
+Huang, Y.Z., 1998. Genus-zero modular functors and intertwining operator algebras. International Journal of Mathematics, 9(07), pp.845-863.		
+
+\bibitem[Hua05a]{Hua05a}
+Huang, Y.Z., 2005. Differential equations and intertwining operators. Communications in Contemporary Mathematics, 7(03), pp.375-400.
+
+\bibitem[Hua05b]{Hua05b}
+Huang, Y.Z., 2005. Differential equations, duality and modular invariance. Communications in Contemporary Mathematics, 7(05), pp.649-706.
 
 \bibitem[Huy06]{Huy06}
 Huybrechts, D., 2006. Complex geometry: an introduction. Springer Science \& Business Media.
 
+\bibitem[NT05]{NT05}
+Nagatomo, K. and Tsuchiya, A., 2005. Conformal field theories associated to regular chiral vertex operator algebras, I: Theories over the projective line. Duke Mathematical Journal, 128(3), pp.393-471.
+
 \bibitem[Lang]{Lang}
 Lang, S., Algebra, volume 211 of. Graduate Texts in Mathematics
 
+\bibitem[TUY89]{TUY89}
+Tsuchiya, A., Ueno, K. and Yamada, Y., 1989. Conformal field theory on universal family of stable curves with gauge symmetries. In Integrable Sys Quantum Field Theory (pp. 459-566). Academic Press.
+
 \bibitem[Ueno08]{Ueno08}
 Ueno, K., 2008. Conformal field theory with gauge symmetry (Vol. 24). American Mathematical Soc..
+
+\bibitem[Zhu94]{Zhu94}
+Zhu, Y., 1994. Global vertex operators on Riemann surfaces. Communications in Mathematical Physics, 165(3), pp.485-531.
+
+\bibitem[Zhu96]{Zhu96}
+Zhu, Y., 1996. Modular invariance of characters of vertex operator algebras. Journal of the American Mathematical Society, 9(1), pp.237-302.
 
 
 	
