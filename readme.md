@@ -53,5 +53,5 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - [Notes on Conformal Blocks](Files/2020_Conformal_Blocks.pdf) 
 
 
-> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs.
+> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note is adapted and form the main body of my article *Convergence of sewing conformal blocks*.
 
