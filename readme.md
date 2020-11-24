@@ -25,7 +25,7 @@ I'm interested in the mathematical areas that are related to two-dimensional Con
 
 > The following articles are listed in the order they were finished and submitted to arXiv. The arXiv indentifiers (YYMM.NNNNN) indicate the time of submission. Note that the preprints on this website might be more updated than the arXiv versions.
 
-1. Unitarity of the modular tensor categories associated to unitary vertex operator algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. arXiv:1711.02840. [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
+1. Unitarity of the modular tensor categories associated to unitary vertex operator algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840.` [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
 
 
 1. Unitarity of the modular tensor categories associated to unitary vertex operator algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. arXiv:1712.04931. [Preprint](Files/2017_UU2.pdf)
