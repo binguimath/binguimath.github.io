@@ -33,10 +33,7 @@ I'm interested in the mathematical areas that are related to two-dimensional Con
 1. Energy bounds condition for intertwining operators of type B, C, and G_2
 unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (2019), 7371-7424. `arXiv:1809.07003` [Preprint](Files/2018_BCG.pdf)
 
-
-
 1. Categorical extensions of conformal nets, to appear in ***Comm. Math. Phys.***. `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf)
-
 > Here is a [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) on this topic, and [slides](Files/2021_Categorical_Extensions_MPPM.pdf).
 
 1. Q-systems and extensions of completely unitary vertex operator algebras, to appear in ***Int. Math. Res. Not. IMRN***. `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
