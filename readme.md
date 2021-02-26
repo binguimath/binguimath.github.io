@@ -37,6 +37,8 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Categorical extensions of conformal nets, to appear in ***Comm. Math. Phys.***. `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf)
 
+> A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc)
+
 1. Q-systems and extensions of completely unitary vertex operator algebras, to appear in ***Int. Math. Res. Not. IMRN***. `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
 
 1. Bisognano-Wichmann property for rigid categorical extensions and non-local extensions of conformal nets, submitted. `arXiv:1912.10682` [Preprint](Files/2019_Bisognano-Wichmann.pdf)
