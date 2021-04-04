@@ -33,7 +33,7 @@ I'm interested in the mathematical areas that are related to two-dimensional Con
 1. Energy bounds condition for intertwining operators of type B, C, and G_2
 unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (2019), 7371-7424. `arXiv:1809.07003` [Preprint](Files/2018_BCG.pdf)
 
-1. Categorical extensions of conformal nets, to appear in ***Comm. Math. Phys.***. `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
+1. Categorical extensions of conformal nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
 
 1. Q-systems and extensions of completely unitary vertex operator algebras, to appear in ***Int. Math. Res. Not. IMRN***. `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
 
@@ -43,7 +43,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Regular vertex operator subalgebras and compressions of intertwining operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](Files/2020_Compressions.pdf)
 
-1. Polynomial energy bounds for type F_4 WZW-models, to appear in ***Internat. J. Math.***. `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
+1. Polynomial energy bounds for type F_4 WZW-models, ***Internat. J. Math.***, Vol. 31, No. 12 (2020). `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
 
 1. Convergence of sewing conformal blocks, submitted. `arXiv: 2011.07450`  [Preprint](Files/2020_Sewing.pdf)
 
