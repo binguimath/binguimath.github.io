@@ -7,7 +7,7 @@ My name in Chinese: 归斌/歸斌
 
 Email: binguimath(at)gmail(dot)com
 
-I am leaving Rutgers this fall. Please to not send emails to my Rutgers email address.
+I am leaving Rutgers this fall. Please do not send emails to my Rutgers email address.
 
 [Google Scholar](https://scholar.google.com/citations?user=J1eHXH0AAAAJ&hl=en)
 
