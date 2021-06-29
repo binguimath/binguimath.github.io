@@ -56,3 +56,8 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 > In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note is adapted and form the main body of my article *Convergence of sewing conformal blocks*.
 
+- [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
+
+
+> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph.
+
