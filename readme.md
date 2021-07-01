@@ -7,7 +7,7 @@ My name in Chinese: 归斌/歸斌
 
 Email: binguimath(at)gmail(dot)com
 
-I am not affiliated to Rutgers now. Please do not contact me at my Rutgers email address.
+I am not currently affilicated with Rutgers. Please do not contact me at my Rutgers email address.
 
 [Google Scholar](https://scholar.google.com/citations?user=J1eHXH0AAAAJ&hl=en)
 
