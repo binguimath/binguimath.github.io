@@ -1,7 +1,7 @@
 Welcome to my homepage
 
 ## About me
-I will joint Tsinghua University, Yau Mathematical Sciences Center as an assistant professor in Septermber 2021. Before that, I was a Hill assistant professor (postdoc) at Department of Mathematics, Rutgers University-New Brunswick (2018.9-2021.6). My postdoc mentor is Yi-Zhi Huang. I received my Ph.D degree at Vanderbilt University in 2018, advised by Vaughan Jones.
+I will join Tsinghua University, Yau Mathematical Sciences Center as an assistant professor in Septermber 2021. Before that, I was a Hill assistant professor (postdoc) at Department of Mathematics, Rutgers University-New Brunswick (2018.9-2021.6). My postdoc mentor is Yi-Zhi Huang. I received my Ph.D degree at Vanderbilt University in 2018, advised by Vaughan Jones.
 
 My name in Chinese: 归斌/歸斌
 
