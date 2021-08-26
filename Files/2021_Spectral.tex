@@ -217,7 +217,7 @@
 \tableofcontents
 
 \vspace{-0.5cm}
-\blfootnote{Last major revision:  2021.6}
+\blfootnote{Last major revision:  2021.8}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %\makeatletter
@@ -2074,14 +2074,14 @@ It is now straightforward to verify the claimed properties.
 
 We begin this section with a useful criterion on self-adjoint operators.
 
-\begin{pp}
+\begin{thm}
 Let $T$ be a closed and symmetric (i.e. $T\subset T^*$) operator on $\mc H$. The following are equivalent.
 \begin{enumerate}[label=(\alph*)]
 \item $T$ is self-adjoint.
 \item The ranges of $T+\im$ and $T-\im$ are both $\mc H$.
 \item  The ranges of $T+\im$ and $T-\im$ are both dense in $\mc H$.
 \end{enumerate}
-\end{pp}
+\end{thm}
 
 
 \begin{proof}
@@ -2204,6 +2204,34 @@ Let $U_t=e^{\im tH}$. We have shown in the proof of Thm. \ref{lb54} that $\{H\}'
 \end{proof}
 
 
+
+Let $f$ be a Lebesgue $L^1$ function on $\Rbb$. Its Fourier transform is $\wht f(s)=\int_\Rbb f(t)e^{-\im ts}dt$, which is a bounded continuous function on $\Rbb$. On the other hand, we can define $\int_\Rbb f(t)e^{-\im tH}dt$ to be the bounded operator sending any $\xi\in\mc H$ to the vector whose evaluation with every $\eta\in\mc H$ is
+\begin{align*}
+\Big\langle \big(\int_\Rbb f(t)e^{-\im tH}dt\big)\xi|\eta  \Big\rangle	=\int_\Rbb\big\langle f(t)e^{-\im tH}\xi|\eta\big\rangle dt.
+\end{align*} 
+The following proposition relates functional calculus and the one parameter group $e^{\im tH}$.
+
+
+\begin{pp}
+We have
+\begin{align*}
+\wht f(H)=	\int_\Rbb f(t)e^{-\im tH}dt.
+\end{align*}
+\end{pp}
+
+
+
+\begin{proof}
+By spectral theorem, it suffices to assume $\mc H=\bigoplus_{n\in\fk N}L^2(\Rbb,\mu_n)$ (where each $\mu_n$ is Borel) and $H$ is the multiplication of the function $x\in\Rbb\mapsto x$ on each direct sum component. Then for any $\xi=(g_n)_{n\in\fk N},\eta=(h_n)_{n\in\fk N}$ in $\mc H$, 
+\begin{align*}
+\int_\Rbb\bk{f(t)e^{-\im tH}\xi|\eta}dt=\int_\Rbb\sum_n \int_\Rbb f(t)e^{-\im ts}g_n(s)\ovl{h_n(s)}d\mu_n(s)dt.	
+\end{align*}
+The above sum and integrals are interchangeable, since the stuff to be integrated and summed are $L^1$. So the above expression becomes
+\begin{align*}
+\sum_n \int_\Rbb \int_\Rbb f(t)e^{-\im ts}g_n(s)\ovl{h_n(s)}dt d\mu_n(s)=	\sum_n \int_\Rbb  \wht f(s)g_n(s)\ovl{h_n(s)}dt d\mu_n(s),
+\end{align*}
+which equals $\bk{\wht f(H)\xi|\eta}$.
+\end{proof}
 
 
 
