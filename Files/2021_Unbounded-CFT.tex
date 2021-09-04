@@ -1,0 +1,866 @@
+\documentclass[12pt,a4paper,notitlepage]{article}
+
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
+%\usepackage{ulem} %wave underline
+\usepackage{palatino}  %template
+\usepackage{slashed} % Dirac operator
+\usepackage{mathrsfs} % Enable using \mathscr
+%\usepackage{eufrak}  another template/font
+\usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
+\usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
+
+\usepackage{fancyhdr} % date in footer
+
+
+
+
+\usepackage{tikz-cd}
+\usepackage[nottoc]{tocbibind}   % Add  reference to ToC
+
+
+\makeindex
+
+
+% The following set up the line spaces between items in \thebibliography
+\usepackage{lipsum}
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+	\OLDthebibliography{#1}
+	\setlength{\parskip}{0pt}
+	\setlength{\itemsep}{2pt} 
+}
+
+
+\allowdisplaybreaks  %allow aligns to break between pages
+\usepackage{latexsym}
+\usepackage{chngcntr}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue, linktocpage,
+%pagebackref
+]{hyperref}
+\hypersetup{ urlcolor=cyan,
+	citecolor=[rgb]{0,0.5,0}}
+
+
+%\setcounter{tocdepth}{1}	 hide subsections in the content
+
+\usepackage{fullpage}
+\counterwithin{figure}{subsection}
+
+\pagestyle{plain}
+
+\captionsetup[figure]
+{
+	labelsep=none	
+}
+
+
+\theoremstyle{definition}
+\newtheorem{df}{Definition}[subsection]
+\newtheorem{eg}[df]{Example}
+\newtheorem{exe}[df]{Exercise}
+\newtheorem{rem}[df]{Remark}
+\newtheorem{ass}[df]{Assumption}
+\newtheorem{cv}[df]{Convention}
+\newtheorem{nota}[df]{Notation}
+\newtheorem{st}{Step}
+\newtheorem{thma}[df]{Theorem}
+\theoremstyle{plain}
+\newtheorem{thm}[df]{Theorem}
+\newtheorem{thd}[df]{Theorem-Definition}
+\newtheorem{pp}[df]{Proposition}
+\newtheorem{co}[df]{Corollary}
+\newtheorem{lm}[df]{Lemma}
+\newtheorem{cond}{Condition}
+\renewcommand{\thecond}{\Alph{cond}} % "letter-numbered" theorems
+
+
+
+%\substack   multiple lines under sum
+%\underset{b}{a}   b is under a
+
+
+% Remind: \overline{L_0}
+
+
+
+\newcommand{\fk}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\wtd}{\widetilde}
+\newcommand{\wht}{\widehat}
+\newcommand{\wch}{\widecheck}
+\newcommand{\ovl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\tr}{\mathrm{t}} %transpose
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\id}{\mathbf{1}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\KZ}{\mathrm{KZ}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\coev}{\mathrm{coev}}
+\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Dom}{\scr D}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\con}{\mathrm{c}}
+\newcommand{\uni}{\mathrm{u}}
+\newcommand{\ssp}{\mathrm{ss}}
+\newcommand{\di}{\slashed d}
+\newcommand{\Diffp}{\mathrm{Diff}^+}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\Vir}{\mathrm{Vir}}
+\newcommand{\Witt}{\mathscr W}
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\pri}{\mathrm{p}}
+\newcommand{\ER}{E^1(V)_{\mathbb R}}
+\newcommand{\bk}[1]{\langle {#1}\rangle}
+\newcommand{\GA}{\mathscr G_{\mathcal A}}
+\newcommand{\vs}{\varsigma}
+\newcommand{\Vect}{\mathrm{Vec}}
+\newcommand{\Vectc}{\mathrm{Vec}^{\mathbb C}}
+\newcommand{\scr}{\mathscr}
+\newcommand{\sjs}{\subset\joinrel\subset}
+\newcommand{\Jtd}{\widetilde{\mathcal J}}
+\newcommand{\gk}{\mathfrak g}
+\newcommand{\hk}{\mathfrak h}
+\newcommand{\xk}{\mathfrak x}
+\newcommand{\yk}{\mathfrak y}
+\newcommand{\zk}{\mathfrak z}
+\newcommand{\hr}{\mathfrak h_{\mathbb R}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\DHR}{\mathrm{DHR}_{I_0}}
+\newcommand{\Repi}{\mathrm{Rep}_{\wtd I_0}}
+\newcommand{\im}{\mathbf{i}}
+\newcommand{\Co}{\complement}
+%\newcommand{\Cu}{\mathcal C^{\mathrm u}}
+\newcommand{\RepV}{\mathrm{Rep}^\uni(V)}
+\newcommand{\RepA}{\mathrm{Rep}^\uni(A)}
+\newcommand{\RepAU}{\mathrm{Rep}^\uni(A_U)}
+\newcommand{\RepU}{\mathrm{Rep}^\uni(U)}
+\newcommand{\BIM}{\mathrm{BIM}^\uni}
+\newcommand{\BIMA}{\mathrm{BIM}^\uni(A)}
+\newcommand{\shom}{\underline{\Hom}}
+\newcommand{\divi}{\mathrm{div}}
+\newcommand{\sgm}{\varsigma}
+\newcommand{\SX}{{S_{\fk X}}}
+\newcommand{\DX}{D_{\fk X}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bsb}{\boldsymbol}
+\newcommand{\blt}{\bullet}
+\newcommand{\coker}{\mathrm{coker}}
+\newcommand{\Vbb}{\mathbb V}
+\newcommand{\Ubb}{\mathbb U}
+\newcommand{\Xbb}{\mathbb X}
+\newcommand{\Wbb}{\mathbb W}
+\newcommand{\Mbb}{\mathbb M}
+\newcommand{\Gbb}{\mathbb G}
+\newcommand{\Cbb}{\mathbb C}
+\newcommand{\Nbb}{\mathbb N}
+\newcommand{\Zbb}{\mathbb Z}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\Rbb}{\mathbb R}
+\newcommand{\Ebb}{\mathbb E}
+\newcommand{\cbf}{\mathbf c}
+\newcommand{\wt}{\mathrm{wt}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\btl}{\blacktriangleleft}
+\newcommand{\btr}{\blacktriangleright}
+\newcommand{\svir}{\mathcal V\!\mathit{ir}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Coker}{\mathrm{Coker}}
+\newcommand{\Sbf}{\mathbf{S}}
+\newcommand{\low}{\mathrm{low}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Rng}{\mathrm{Rng}}
+\newcommand{\vN}{\mathrm{vN}}
+\newcommand{\Ebf}{\mathbf E}
+\newcommand{\Stb}{\mathrm {Stb}}
+\newcommand{\SXb}{{S_{\fk X_b}}}
+\newcommand{\pr}{\mathrm {pr}}
+\newcommand{\SXtd}{S_{\wtd{\fk X}}}
+\newcommand{\univ}{\mathrm {univ}}
+\newcommand{\vbf}{\mathbf v}
+\newcommand{\ubf}{\mathbf u}
+\newcommand{\wbf}{\mathbf w}
+
+
+
+
+
+
+
+\usepackage{tipa} % wierd symboles e.g. \textturnh
+\newcommand{\tipar}{\text{\textrtailr}}
+\newcommand{\tipayogh}{\text{\textctyogh}}
+\newcommand{\tipaomega}{\text{\textcloseomega}}
+\newcommand{\tipae}{\text{\textrhookschwa}}
+\newcommand{\tipaee}{\text{\textreve}}
+\newcommand{\tipak}{\text{\texthtk}}
+
+
+
+\usepackage{tipx}
+\newcommand{\tipxgamma}{\text{\textfrtailgamma}}
+\newcommand{\tipxcc}{\text{\textctstretchc}}
+\newcommand{\tipxphi}{\text{\textqplig}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\numberwithin{equation}{subsection}
+
+
+
+
+\title{Unbounded Operators in Unitary Conformal Field Theory}
+\author{{\sc Bin Gui}
+	%\\
+	%{\small Department of Mathematics, Rutgers university}\\
+	%{\small bin.gui@rutgers.edu}
+}
+\date{}
+\begin{document}\sloppy % avoid stretch into margins
+	\pagenumbering{arabic}
+	%\pagenumbering{gobble}
+	%\newpage
+	%\setcounter{page}{1}
+	%\setcounter{section}{-1}
+	%\setcounter{equation}{6}
+	
+	
+	
+	\maketitle
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+% Footnote without marker
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\vspace{-0.5cm}
+\blfootnote{Last update:  2021.08.25}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%\makeatletter
+%\newcommand*{\toccontents}{\@starttoc{toc}}
+%\makeatother
+%\toccontents
+
+% title and table of contents same page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+\section{Methods of unbounded operators}
+
+
+\subsection{Strong commutativity and cores}
+
+$\Nbb=\{0,1,2,3,\dots\}$, $\Zbb_+=\{1,2,3,\dots\}$.
+
+
+We always denote by $\mc H$ a complex Hilbert space. We assume unbounded operators are always densely defined, unless otherwise stated. If an unbounded operator $A$ from $\mc H_1$ to $\mc H_2$ is continuous (with respect to the norms of $\mc H_1,\mc H_2$), we do not assume the dense domain $\Dom(A)$ of $A$ is $\mc H_1$. If $A$ is both continuous and everywhere-defined on $\mc H_1$, then $A$ is called bounded.
+
+The set of bounded operators from $\mc H_1$ to $\mc H_2$ is denoted by $\Hom(\mc H_1,\mc H_2)$. We set $\End(\mc H)=\Hom(\mc H,\mc H)$. \index{Hom@$\Hom(\mc H_1,\mc H_2)$,$\End(\mc H)$}
+
+If $A$ is preclosed, then $\ovl A=A^{**}$ denotes the closure of $A$.
+
+It is a routine check that if $T:\mc H_1\rightarrow\mc H_2$ is preclosed and $A_1\in\End(\mc H_1),A_2\in\End(\mc H_2)$, then
+\begin{align*}
+A_2T\subset TA_1\qquad\Longrightarrow\qquad A_2\ovl T\subset \ovl TA_1.	
+\end{align*}
+
+If $H$ is a self-adjoint (closed) operator on $\mc H$, then (cf. \cite[Sec. 10]{G-Sp})
+\begin{align*}
+\{H\}''=\{e^{\im tH}:t\in\Rbb\}''.	
+\end{align*}
+
+
+We refer the readers to \cite[Sec. 6]{G-Sp} for basic properties of strong commutativity. If $S,T$ are preclosed operators on a Hilbert space $\mc H$, then the \textbf{strong commutativity} of $S,T$ means that their closures $\ovl S,\ovl T$ commute strongly in the sense of \cite[Sec. 6]{G-Sp}. Also, recall that if $A$ is normal and $f:\Cbb\rightarrow\Cbb$ is Borel, then $\{f(A)\}\subset\{A\}''$ (cf. \cite[Sec. 9]{G-Sp}). The following is from \cite[Sec. 8]{G-Sp}
+
+\begin{pp}\label{lb1}
+Let $T:\mc H_1\rightarrow\mc H_2$ be a closed operator, and let $A$ be a bounded operator on $\mc H_1$. Assume $TA$ has dense domain. 
+\begin{enumerate}
+\item $TA$ is closed.
+\item If the linear map $TA:\Dom(TA)\rightarrow\mc H_2$ is continuous, then $TA$ is an (everywhere defined and) bounded operator from $\mc H_1$ to $\mc H_2$. In particular, $A\mc H_1\subset\Dom(T)$.
+	\end{enumerate}
+\end{pp}
+
+
+\begin{rem}\label{lb4}
+If $T$ is closed on $\mc H$, $A$ is bounded on $\mc H$, and $T$ commutes strongly with $A$, then $AT\subset TA$ implies that $TA$ has dense domain (containing $\Dom(T)$). Thus, by part 1 of Prop. \ref{lb1}, $TA$ is closed, and is bounded when it is continuous.
+
+For instance, suppose that $S$ is a normal operator on $\mc H$, $f,g:\Cbb\rightarrow\Cbb$ are Borel functions, and both $g$ and $fg$ are bounded. By the properties of Borel functional calculus, $f(S)g(S)\subset (fg)(S)$ and $(fg)(S)$ is bounded. Thus, as $g(S)$ is also bounded and as $g(S)$ commutes strongly with $f(S)$, we conclude that $f(S)g(S)$ is bounded. In particular, $f(S)g(S)=(fg)(S)$.  
+\end{rem}
+
+
+
+
+
+\begin{thm}\label{lb3}
+Let $H,K$ be  self-adjoint closed operators on $\mc H$, and assume that $K$ is  affiliated with $\{H\}''$, the (abelian) von Neumann algebra generated by $H$. Suppose that $\scr D_0$ is a dense subspace of $\mc H$, that $\scr D_0\subset\Dom(K)$, and that $e^{\im tH}\scr D_0\subset\scr D_0$ for any $t\in\mbb R$. Then $\scr D_0$ is a core for $K$.
+\end{thm}
+
+
+A typical case where this theorem applies is when $K=f(H)$ for some Borel function $f:\Rbb\rightarrow\Rbb$.
+
+
+
+\begin{proof}
+Let $T_0=K|_{\scr D_0}$ and $T=\ovl{T_0}$. Then $T\subset K$. We shall show $\Dom(K)\subset\Dom(T)$. 
+
+Since $K$ commutes strongly with $H$, it also commutes strongly with each $e^{\im tH}$. Since  $e^{\im tH}\scr D_0\subset\scr D_0$ and $e^{\im tH}K\subset Ke^{\im tH}$, for each $\xi\in\Dom_0$, we have $e^{\im tH}T_0\xi=e^{\im tH}K\xi=Ke^{\im tH}\xi$, which equals $T_0e^{\im tH}\xi$ since $e^{\im tH}\xi\in\Dom_0$. Thus $e^{\im tH}T_0\subset T_0e^{\im tH}$. So $T$ commutes strongly with each $e^{\im tH}$, and hence with $K$. Let $p_t=\chi_{(-t,t)}(H)$, which commutes strongly with $T$. Thus, by Rem. \ref{lb4}, $Tp_t$ has dense domain.
+
+Since $Tp_t\subset Kp_t$ and $Kp_t$ is continuous, $Tp_t$ is  continuous. So by Prop. \ref{lb1}, we have
+\begin{align*}
+p_t\mc H\subset\Dom(T).	
+\end{align*}
+Choose any $\xi\in\Dom(K)$. Then $p_t\xi\in\Dom(T)$, and as $t\rightarrow+\infty$, we have $p_t\xi\rightarrow\xi$ and  $Tp_t\xi=Kp_t\xi=p_tK\xi\rightarrow K\xi$. Thus $\xi\in\Dom(T)$ and $T\xi=K\xi$.
+\end{proof}
+
+\begin{lm}\label{lb2}
+Let $T$ be a closed operators on the Hilbert space $\mathcal H$,   and $\mathfrak X$  a locally compact Hausdorff space. Let  $W:\mathfrak X\rightarrow \End(\mathcal H)$ be a continuous function (where $\End(\mathcal H)$ is given the strong-operator topology), such that
+\begin{align*}
+\sup_{t\in\fk X}	\lVert W(t)\lVert<+\infty.
+\end{align*}
+Assume that $\Dom_{\fk X}$ is a (non-necessarily dense) subspace of $\Dom(T)$, and that for any $t\in\mathfrak X$ we have
+\begin{align}
+W(t)T\big|_{\Dom_{\fk X}}\subset TW(t).\label{eq4}
+\end{align}
+	Then for any Radon measure $\mu$ on $\mathfrak X$, and any Borel function $f\in L^1(\mathfrak X,\mu)$, the bounded operator
+	\begin{align}
+		W(f)=\int_{\mathfrak X}f(t)W(t)d\mu(t)\label{eq2}
+	\end{align}
+	satisfies
+	\begin{align}
+W(f)T\big|_{\Dom_{\fk X}}\subset TW(f).\label{eq1}
+	\end{align}
+\end{lm}
+
+Note that \eqref{eq2} means that for each $\eta\in\mc H$, $W(f)\eta=\int_{\fk X}f(t)W(t)\eta d\mu(t)$ is the vector whose evaluation with any $\psi\in\mc H$ is 
+\begin{align*}
+\bk{W(f)\eta|\psi}=\int_{\fk X}f(t)\bk{W(t)\eta|\psi}d\mu(t).
+\end{align*}
+From this expression, it is clear that
+\begin{align}
+\lVert W(f)\lVert\leq \lVert f\lVert_{L^1(\fk X,\mu)}\cdot \sup_{t\in\fk X}\lVert W(t)\lVert.\label{eq3}	
+\end{align}
+
+Also, note that \eqref{eq4} means that $W(t)\Dom_{\fk X}\subset\Dom(T)$, and that $TW(t)\xi=W(t)T\xi$ for each $\xi\in\Dom_{\fk X}$. \eqref{eq1} can be understood in the same way.
+
+
+\begin{proof}
+First we assume that $f$ is continuous, and has compact support in $\mathfrak X$. Choose any $\xi\in\Dom_{\fk X}$. Then for any $\varepsilon>0$, we can easily find $t_1,\dots,t_n\in\mathfrak X$ and $c_1,\dots,c_n\in\mathbb C$, such that the operator $W_\varepsilon=\sum_{i=1}^nc_iW(t_i)$ satisfies $\lVert W_\varepsilon\xi-W(f)\xi\lVert<\varepsilon$ and $\lVert W_\varepsilon T\xi-W(f)T\xi\lVert<\varepsilon$. Note that $TW_\varepsilon\xi=W_\varepsilon T\xi$, we therefore have $\lVert TW_\varepsilon\xi-W(f)T\xi\lVert<\varepsilon$. If $\varepsilon\rightarrow 0$, then $W_\varepsilon\xi\rightarrow W(f)\xi$ and $TW_\varepsilon \xi\rightarrow W(f)T\xi$. Thus, as $T$ is closed, we conclude that $W(f)\xi\in\Dom(T)$ and $TW(f)\xi=W(f)T\xi$. This proves \eqref{eq1}	
+	
+Now for a general $L^1$ function $f$, we can choose a sequence of continuous functions $f_n$ with compact supports, such that $\lVert f-f_n\lVert_{L^1(\fk X,\mu)}\rightarrow 0$ as $n\rightarrow \infty$ (\cite[Thm. 3.14]{Rud-R}). Then by \eqref{eq3}, $W(f_n)\rightarrow W(f)$ in the norm topology. An argument similar to the previous paragraph shows \eqref{eq1}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+The following is \cite[Lemma 7.2]{CKLW18}. We present a proof whose  structure is similar to that of Thm. \ref{lb4}.
+
+\begin{thm}\label{lb5}
+	Let $H$ be a self-adjoint (closed) operator on $\mathcal H$, and $k\in\mathbb Z_{\geq0}$. Let $\Dom$ be a dense subspace of $\Dom(H^k)$. If there exists $\delta>0$ and a dense subspace $\Dom_\delta\subset\Dom$, such that $e^{\im tH}\Dom_\delta\subset\Dom$ for any $t\in(-\delta,\delta)$, then $\Dom$ is a core for $H^k$. 
+\end{thm}
+\begin{proof}
+Let $T_0=H^k|_{\Dom}$ and $T=\ovl {T_0}$. Then $T\subset H^k$. We shall show $\Dom(H^k)\subset \Dom(T)$.
+
+
+
+Since $H^k$ commutes strongly with $H$, for any $t\in(-\delta,\delta)$ and $\xi\in\Dom_\delta$, we have $e^{\im tH}\xi\in\Dom\subset\Dom(T)$ and (as $e^{\im tH}$ commutes strongly with $H^k$) $Te^{\im tH}\xi=H^ke^{\im tH}\xi=e^{\im tH}H^k\xi=e^{\im tH}T\xi$. We conclude
+\begin{align*}
+e^{\im tH}T\big|_{\Dom_\delta}\subset Te^{\im tH}.
+\end{align*}
+Choose a positive function $h\in C^\infty_c((-\delta,\delta))$ such that $\int_{\mathbb R} h(t)dt=1$. Then, by lemma \ref{lb2}, the operator $\widehat h(H)=\int_{\mathbb R}h(t)e^{-\im tH}dt$ (where $\wht h(s):=\int_\Rbb h(t)e^{-\im ts}dt$) satisfies 
+\begin{align*}
+\widehat h(H)T\big|_{\Dom_\delta}\subset T\wht h(H).
+\end{align*}
+This proves that $T\wht h(H)$ has dense domain. $\wht h(H)$ will play the role of $p_t$ in the proof of Thm. \ref{lb3}.
+	
+By the basic properties of Borel functional calculus, $H^k\widehat h(H)$ is preclosed and its closure equals $((-\im\frac{\partial}{\partial t})^kh)^{\widehat{}}(H)$, which is a bounded operator because $(-\im\frac{\partial}{\partial t})^kh$ is bounded. As $T\subset H^k$, we conclude that  $T\widehat h(H)$ is continuous, and hence bounded by Prop. \ref{lb1}. So
+\begin{align*}
+\widehat h(H)\mathcal H\subset\Dom(T).
+\end{align*}
+Choose any $\xi\in\Dom(H^k)$. Then $\wht h(H)\xi\in\Dom (T)$. If we let such $h$ approach the $\delta$-function at $0$ (for instance, we fix one such $h$ and consider the sequence $h_n(t)=nh(nt)$), then $\widehat h(H)\rightarrow 1$ strongly, which implies $\widehat h(H)\xi\rightarrow\xi$ and $T\wht h(H)\xi= H^k\wht h(H)\xi=\wht h(H)H^k\xi\rightarrow H^k\xi$. This proves that $\xi\in\Dom(T)$ and $T\xi=H^k\xi$.
+\end{proof}	
+	
+	
+
+\begin{eg}[Nelson's counterexample]
+We use Thm. \ref{lb3} to construct an example (cf. \cite{Nel65}) of self-adjoint operators $A,B$ on a Hilbert space, together with a core $\Dom$ for both $A$ and $B$, such that $A\Dom\subset\Dom$, $B\Dom\subset \Dom$, that $AB\xi=BA\xi$ for every $\xi\in\Dom$, and that $A$ does \textit{not} commute strongly with $B$.
+
+Let $M=\Cbb^\times:=\Cbb\setminus\{0\}$ and $\varphi:M\rightarrow\Cbb^\times$ be the covering map $\varphi(z)=z^2$. We define a Borel measure $\mu$ on $M$ to be the pullback of the Lebesgue measure on $\Cbb^\times$ along $\varphi$. Define vector fields $X,Y$ on $M$ as follows: $X$ resp. $Y$ is the pullback of $\frac\partial{\partial x}$ resp. $\frac\partial{\partial y}$ along $\varphi$. Namely, since locally $\varphi$ is a diffeomorphism, it transports  $\frac\partial{\partial x}$ locally to $X$ and $\frac\partial{\partial y}$ locally to $Y$.
+
+$X,Y$ generate one parameter groups of diffeomorphisms $\sigma_X(t),\sigma_Y(t)$. These flows preserve $\mu$ since the flows generated by $\frac\partial{\partial x}$  and by $\frac\partial{\partial y}$ preserve the Lebesgue measure. Set $\mc H=L^2(M,\mu)$. Thus, for  each $f\in L^2(M,\mu)$ and $t\in\Rbb$, we can define unitary operators $U(t),V(t)$ such that
+\begin{align*}
+U(t)f	=f\circ\sigma_X(-t),\qquad V(t)f=f\circ \sigma_Y(-t).
+\end{align*}
+It is a routine check that $U(t),V(t)$ are strongly continuous one-parameter groups, and that when $f$ is smooth the derivatives of $U(t)f,V(t)f$ at $t=0$ is $-Xf,-Yf$. Thus, by Stone's theorem, there exist self-adjoint $A,B$ such that $e^{\im tA}=U(t)$, $e^{\im tB}=V(t)$, and $\im Af=-Xf,\im Bf=-Yf$ when $f$ is smooth. Let $\Dom$ be the subspace of smooth functions with compact supports on $M$. Then for any $f\in\Dom$ we have $ABf=BAf$ because $XYf=YXf$. 
+
+We now show that $\Dom$ is a core for both $A$ and $B$, and $U(t)V(s)\neq V(s)U(t)$ for some $s,t$ (which implies that $A$ and $B$ do not commute strongly).  Consider $M$ as the gluing of two $\Cbb^\times$ along $(0,+\infty)$: the $(0,+\infty)$ of the first $\Cbb^\times$ is glued from below (resp. from above) to the $(0,+\infty)$ of the second $\Cbb^\times$ from above (resp. from below). Then the $-1-\im$ of the first $\Cbb^\times$ is sent by $\sigma_X(1)\sigma_Y(1)$ to the $1+\im$ of the second $\Cbb^\times$, and sent by $\sigma_Y(1)\sigma_X(1)$ to the $1+\im$ of the first $\Cbb^\times$. So, for some smooth $f$ supported in a small neighborhood of the $-1-\im$ of the first $\Cbb^\times$, we have $U(1)V(1)f\neq V(1)U(1)f$. Now, let $\Dom_x$ be the set of smooth functions supported on the union of the two $\Cbb^\times\setminus \Rbb$. Then $\Dom_x$ is a dense subspace of $\mc H$ invariant under $U(t)$ for all $t$. Thus, by Thm. \ref{lb3} (or by Thm. \ref{lb5}), $\Dom\supset\Dom_x$ is a core for $A$. A similar argument shows that $\Dom$ is a core for $B$.
+\end{eg}
+
+
+
+
+
+\subsection{A criterion on self-adjointness}
+
+
+
+
+In this section, we introduce a classical criterion on self-adjointness. Recall that an unbounded operator $T$ on $\mc H$ is called \textbf{symmetric} if $T\subset T^*$, or equivalently, $\bk{T\xi|\eta}=\bk{\xi|T\eta}$ for every $\xi,\eta\in\Dom(T)$. A symmetric operator is necessarily preclosed.
+
+\begin{thm}\label{lb6}
+Assume $H$ is a closed operator on $\mc H$ such that $H-a$ is positive for some $a>0$. (Namely, $\Sp(H)\subset [a,+\infty)$.) Let $\Dom_0\subset\Dom(H)$ be a (dense) core for $H$. Assume $T$ is a closed symmetric operator on $\mc H$, $\Dom_0\subset\Dom(T)$, and there exists $C>0$ such that for every $\xi,\eta\in\Dom_0$ we have
+\begin{gather}
+\lVert T\xi\lVert\leq C\lVert H\xi\lVert,\label{eq5}\\
+\big|\bk{T\xi|H\eta}-\bk{H\xi|T\eta}\big|\leq C\lVert H\xi\lVert\cdot\lVert\eta\lVert.	\label{eq6}
+\end{gather}
+Then $\Dom_0$ is a core for $T$, and $T=T^*$.
+\end{thm}
+
+
+Roughly speaking, this theorem tells us that if $T$ is symmetric, and if  both $T$  and the commutator $[H,T]$ are bounded by $C\cdot H$, then $T$ is self-adjoint. This property (as well as the following strong-commutativity criterion) can be presented in many different ways which assume different conditions, cf. \cite[Prop. 2]{Nel72}, \cite{FL74}, \cite{DF77}, \cite[Thm. 19.4.3]{GJ}. Our proof follows the approach in \cite{FL74}. 
+
+\begin{proof}
+	
+Suppose that we can prove $T=T^*$ whenever $\Dom_0$ is a core for $T$. Then, for a general $T$ satisfying the requirements of this theorem,	we let $\wtd T$ be the closure of $T|_{\Dom_0}$. Then, as $\wtd T$ is symmetric and also satisfies \eqref{eq5} and \eqref{eq6}, we conclude $\wtd T=\wtd T^*$. Since $\wtd T\subset T\subset T^*\subset \wtd T^*$, we must have $\wtd T=T=T^*$, which shows that $\Dom_0$ is a core for $T$ and $T=T^*$. Thus, in the following, we assume $\Dom_0$ is a core for $T$.
+
+
+Step 1. We claim that $\Dom(H)\subset\Dom(T)$, and that \eqref{eq5} and \eqref{eq6} hold for all $\xi,\eta\in\Dom(H)$. This result will imply that we can assume $\Dom_0=\Dom(H)$.
+
+Choose any $\xi\in\Dom(H)$. Since $\Dom_0$ is a core for $\Dom(H)$, we can find a sequence $\xi_n\in\Dom_0$ converging to $\xi$ such that $H\xi_n\rightarrow H\xi$. Apply \eqref{eq5} to $\xi_n$, we conclude that $T\xi_n$ is a Cauchy sequence, which must converge. Since $T$ is closed, we have $\xi\in\Dom(T)$ and $T\xi_n\rightarrow T\xi$. Since \eqref{eq5} and \eqref{eq6} hold for $\xi_n$ and for all $\eta\in\Dom_0$, they hold for all $\xi\in\Dom(H)$ and $\eta\in\Dom_0$.
+
+Now assume $\xi\in\Dom(H)$ and $\eta\in\Dom(H)$. We choose a sequence $\eta_n\in\Dom_0$ satisfying $\eta_n\rightarrow\eta$ and $H\eta_n\rightarrow H\eta$. By  similar reasoning, $T\eta_n\rightarrow T\eta$. So, as \eqref{eq6} holds for $\xi$ and $\eta_n$, it holds for $\xi$ and $\eta$.
+
+
+Step 2. Recall the well-known fact that $T$, as a symmetric closed operator, is self-adjoint if and only if $T+\im$ and $T-\im$ have dense ranges (cf. \cite[Sec. 10]{G-Sp}). Thus, if for some $\lambda>0$ we can prove that $T\pm\lambda\im$ have dense ranges, then $\lambda^{-1}T$ (and hence $T$) is self-adjoint. 
+
+By the spectral theorem for $H$, we know that $H^{-1}$ is bounded, $HH^{-1}=\id_{\mc H}$, and
+\begin{align*}
+	\Rng(H^{-1})=\Dom(H)\subset\Dom(T).
+\end{align*}
+(Alternatively, one may use the result in \cite[Sec. 4]{G-Sp} on the relation between $H$ and its inverse.) Choose any $\xi\in\mc H$ orthogonal to $\Rng(T+\lambda\im)$ where $\lambda\in\Rbb\setminus\{0\}$. Then
+\begin{align*}
+\mathrm{Im}\bk{(T+\lambda\im)H^{-2}\xi|\xi}=0,	
+\end{align*}
+namely,
+\begin{align*}
+2\lambda\bk{H^{-1}\xi|H^{-1}\xi}=-\bk{TH^{-2}\xi|\xi}+\bk{\xi|TH^{-2}\xi}.
+\end{align*}
+
+
+Let us use \eqref{eq6} to show that $[H^{-2},T]\leq 2CH^{-2}$. More precisely, we compute that
+\begin{align}
+&\bk{TH^{-2}\xi|\xi}=\bk{TH^{-2}\xi|HH^{-1}\xi}\\
+=&C_1+\bk{HH^{-2}\xi|TH^{-1}\xi} =C_1+\bk{TH^{-1}\xi|HH^{-2}\xi}\\
+=&C_1+C_2+\bk{HH^{-1}\xi|TH^{-2}\xi}=	C_1+C_2+\bk{\xi|TH^{-2}\xi}\label{eq8}
+\end{align}
+where
+\begin{gather*}
+C_1=\bk{TH^{-2}\xi|HH^{-1}\xi}-\bk{HH^{-2}\xi|TH^{-1}\xi},\\
+C_2=\bk{TH^{-1}\xi|HH^{-2}\xi}-\bk{HH^{-1}\xi|TH^{-2}\xi}.
+\end{gather*}
+By \eqref{eq6}, we have $|C_1|,|C_2|\leq C\bk{H^{-1}\xi|H^{-1}\xi}$.
+
+It now follows that $2\lambda\bk{H^{-1}\xi|H^{-1}\xi}\leq 2C\bk{H^{-1}\xi|H^{-1}\xi}$. Thus, by choosing $\lambda=\pm 2C$, we conclude that $H^{-1}\xi=0$ and hence $\xi=HH^{-1}\xi=0$. So $T\pm 2C\im$ have dense ranges. This proves $T=T^*$.
+\end{proof}
+
+
+
+\begin{eg}
+Let $\mc H=L^2(\Rbb,m)$ where $m$ is the Lebesgue measure. Set $\partial_x=\frac d{dx}$. Let $\Dom_0$ be the space of rapid decreasing functions. Then by Fourier transform (which preserves $\Dom_0$ and transforms $\partial_x$ to the multiplication of $\im x$), we have a positive operator $-\partial_x^2$ with core $\Dom_0$, and whose action on $\Dom_0$ is understood in the usual way.
+
+Let $V$ be a real valued function on $\Rbb$ (the potential function) such that $V''$ exists, and that $V,V',V''$ are continuous and  uniformly bounded on $\Rbb$ by $C>0$. Let
+\begin{align*}
+T=-\partial_x^2+V	
+\end{align*}
+with domain $\Dom_0$, where $V$ is the multiplication of the function $V$. Then $[-\partial_x^2,T]=-\partial_x\cdot V'-V'\cdot \partial_x=-V''-2V'\cdot\partial_x$. Using Fourier transform or Spectral theorem, it is easy to see that for each $\xi\in\Dom_0$,
+\begin{align*}
+\lVert \partial_x\xi\lVert^2=\bk{-\partial_x^2\xi|\xi}\leq 	\bk{(1-\partial_x^2)^2\xi|\xi}=\lVert (1-\partial_x^2)\xi\lVert^2.
+\end{align*}
+Thus $\lVert[-\partial_x^2,T]\xi\lVert\leq C\lVert \xi\lVert+2C\lVert (1-\partial_x^2)\xi\lVert\leq 3C\lVert (1-\partial_x^2)\xi\lVert$. Set $H=-\partial_x^2+1+C$, which is a positive operator with core $\Dom_0$, we have
+\begin{align*}
+\lVert T\xi\lVert\leq \lVert H\xi\lVert,\qquad \lVert [H,T]\xi\lVert \leq 3C\lVert H\xi\lVert	
+\end{align*}
+for every $\xi\in\Dom_0$. By Thm. \ref{lb6}, $\ovl T$ is self-adjoint.
+\end{eg}
+
+
+
+
+
+
+
+
+\subsection{Taylor's theorem for $e^{\im\ovl T}\xi$ and strong commutativity}
+
+The main reference of this section is \cite{TL99}.
+
+Throughout this section, we assume $H$ is a closed operator on a Hilbert space $\mc H$ such that $H-a$ is positive for some $a>0$. $H-a$ will play the role of Hamiltonian $L_0$ in conformal field theory.
+
+
+
+
+
+We set \index{DH@$\Dom(H^\infty)$}
+\begin{gather*}
+	\Dom(H^\infty):=\bigcap_{n\in\Nbb}\Dom(H^n)=\bigcap_{s\in [0,+\infty)}\Dom(H^s). 
+\end{gather*}
+
+\begin{rem}\label{lb8}
+$\Dom(H^\infty)$ is a core for $H^n$ (for every $n\in\Zbb$) and for every $f(H)$ where $f:\Cbb\rightarrow\Cbb$ is bounded and Borel, since $\Dom(H^\infty)$ contains the range of $\chi_{(-a,a)}(H)$ for all $a>0$. 
+\end{rem}
+
+
+
+Let $T$ be a preclosed operator on $\mc H$ with \textbf{invariant domain}\index{00@$T$-invariant domain} $\Dom(H^\infty)$, which means that $T\Dom(H^\infty)\subset\Dom(H^\infty)$. Note that $H^n\Dom(H^m)\subset\Dom(H^{n+m})$ shows that $\Dom(H^\infty)$ is $H^n$-invariant for every $n\in\Zbb$. 
+
+\begin{df}
+We say that $T$ satisfies \textbf{$H$-bounds of order $r$}\index{00@$H$-bounds of order $r$} (where $r\geq 0$) if for each $n\in\Nbb$ there exists a constant $|T|_n\geq0$ (the \textbf{$n$-th bounding constant}) such that for every $\xi\in\Dom(H^\infty)$ we have
+\begin{align}
+\lVert H^nT\xi\lVert\leq |T|_n\cdot \lVert H^{n+r}\xi\lVert.\label{eq7}	
+\end{align}
+$H$-bounds of order $1$ are called \textbf{linear $H$-bounds}.
+\end{df}
+
+
+\begin{rem}
+Note that if $0\leq a<b$, then there is $C> 0$ such that $\lVert H^a\xi\lVert\leq C\lVert H^b\xi\lVert$ for all $\xi\in\Dom(H^\infty)$. It follows that if $0\leq r_1<r_2$, and if $T$ satisfies $H$-bounds of order $r_1$, then it satisfies $H$-bounds of order $r_2$.
+\end{rem}
+
+
+
+\begin{lm}
+Choose $n\in\Nbb$. Assume \eqref{eq7} holds for all $\xi\in\Dom(H^\infty)$. Then
+\begin{align*}
+\Dom(H^{n+r})\subset\Dom(\ovl T),\qquad	 \ovl T\Dom(H^{n+r})\subset \Dom(H^n),
+\end{align*}
+and \eqref{eq7} holds for all $\xi\in\Dom(H^{n+r})$ if $T$ is replaced by $\ovl T$.
+\end{lm}
+
+
+\begin{proof}
+Let $\xi\in\Dom(H^{n+r})\subset\Dom(H^r)$. Choose $\xi_k=\chi_{(-k,k)}(H)\xi$, which is in $\Dom(H^\infty)$. Since $H^r\xi_k$ converges to $H^r\xi$, by \eqref{eq7} (where $n=0$), $T\xi_k$ is a Cauchy sequence. So, since $\xi_k\rightarrow \xi$, we conclude $\xi\in\Dom(\ovl T)$ and $T\xi_k\rightarrow\ovl T\xi$. 
+
+Similarly, since $H^{n+r}\xi_k\rightarrow H^{n+r}\xi$, by \eqref{eq7}, we conclude that $H^nT\xi_k$ converges to a vector whose norm is bounded by $|T|_n\lVert H^{n+r}\xi\lVert$. Thus, because $T\xi_k\rightarrow \ovl T\xi$, we have $\ovl T\xi\in\Dom(H^n)$ and $H^n\ovl T\xi$ has norm bounded by $|T|_n\lVert H^{n+r}\xi\lVert$.
+\end{proof}
+
+
+\begin{lm}\label{lb7}
+Assume $T$ is preclosed with invariant  domain $\Dom(H^\infty)$. Assume also that $T$ satisfies linear $H$-bounds. Then for every $n\in\Zbb$ there exists a bounding constant $|T|_n\geq 0$ such that for every $\xi\in\Dom(H^\infty)$ we have
+\begin{align*}
+\lVert H^nT\xi\lVert\leq |T|_n\cdot \lVert H^{n+1}\xi\lVert.	
+\end{align*}
+\end{lm}
+
+\begin{proof}
+We know this is true when $n\geq 0$. Now assume $n<0$ and let $m=-n$. Then for every $\xi,\eta\in\Dom(H^\infty)$,
+\begin{align*}
+&\big|\bk{H^{-m}T\xi|H^m\eta} \big|=\big|\bk{\xi|T\eta} \big|	=\big|\bk{H^{-m+1}\xi|H^{m-1}T\eta}  \big|\\
+\leq&	\lVert H^{-m+1}\xi\lVert\cdot |T|_{m-1}\lVert H^m\eta\lVert.	
+\end{align*}
+Since $H^m\Dom(H^\infty)\supset\Dom(H^\infty)$ because $\Dom(H^\infty)$ is $H^{-m}$-invariant, $H^m\Dom(H^\infty)$ is dense. Therefore $\lVert H^{-m}T\xi\lVert\leq |T|_{m-1}\lVert H^{-m+1}\xi\lVert$. 
+\end{proof}
+
+
+
+
+
+\begin{thm}\label{lb9}
+Assume $T$ is symmetric with dense invariant domain $\Dom(T)=\Dom(H^\infty)$. Assume that both $T$ and $[H,T]$ satisfy linear $H$-bounds. Then $\ovl T$ is self-adjoint. Moreover,  for any $n\in\Nbb$, $\Dom(H^n)$ is $e^{\im t\ovl T}$-invariant, and there exists a constant $C_n\geq 0$ such that for every  $\xi\in\Dom(H^n)$ and $t\in\Rbb$ we have
+\begin{align}
+\lVert H^n e^{\im t\ovl T}\xi\lVert\leq e^{C_n|t|}\cdot \lVert H^n\xi\lVert.	\label{eq11}
+\end{align}
+\end{thm}
+
+It follows that $\Dom(H^\infty)$ is $e^{\im t\ovl T}$-invariant, and $e^{\im t\ovl T}$ satisfies $H$-bounds of order $0$.
+
+
+\begin{proof}[Idea of the proof]
+We know from Thm. \ref{lb5} that $\ovl T$ is self-adjoint. Take $N=H^{2n}$. Using the fact that $[H,T]$ satisfies linear $H$-bounds, it is not hard to check that $[N,T]$ satisfies $H$-bounds of order $2n$, and hence satisfies linear $N$-bounds. From this, one shows that $\im[N,T]\leq cN$ for $c>0$, namely, $\im\bk{[N,T]\eta|\eta}\leq c\bk{N\eta|\eta}$ where $\eta\in\Dom(H^\infty)$.
+
+We ``integrate" the inequality $\im[N,T]\leq cN$ for $t\geq 0$, which gives $e^{-\im t\ovl T}Ne^{\im t\ovl T}\leq e^{ct}N$ evaluate in $\bk{\cdot \xi|\xi}$ for every ``nice" vector $\xi$. This shows $\lVert H^ne^{\im t\ovl T}\xi\lVert^2\leq e^{ct}\lVert H^n\xi\lVert^2$. To be more precise about ``integrating" the inequality, we consider the function $f_\xi(t)=e^{-ct}\bk{e^{-\im t\ovl T}Ne^{\im t\ovl T}\xi|\xi}$. Then $f_\xi'(t)=\im\bk{e^{-\im t\ovl T}[N,T]e^{\im t\ovl T}\xi|\xi}- c\bk{Ne^{\im t\ovl T}\xi|e^{\im t\ovl T}\xi}\leq 0$. So $f_\xi(t)\leq f_\xi(0)$, which shows \eqref{eq11} when $t\geq 0$. In the case $t\leq 0$, we replace $t$ by $-t$ and $T$ by $-T$, to obtain again \eqref{eq11}.
+
+The problem with this argument is that we don't know if every $\xi\in\Dom(\mc H^n)$ is good or not. To overcome this difficulty, we replace $N$ by the bounded operator $N_\epsilon=N(1+\epsilon N)^{-1}$ so that all the expressions in the above paragraph can be defined. One shows again that $\im\bk{[N_\epsilon,T]\eta|\eta}\leq c\bk{N_\epsilon\eta|\eta}$ where $\eta\in\Dom(H^\infty)$, and by approximation, $\im\bk{N_\epsilon \ovl T\eta|\eta}-\im\bk{N_\epsilon\eta|\ovl T\eta}\leq c\bk{N_\epsilon\eta|\eta}$ when $\eta\in\Dom(\ovl T)$. Using the argument in the previous paragraph, we obtain (for $t\geq 0$) $e^{-\im t\ovl T}N_\epsilon e^{\im t\ovl T}\leq e^{ct}N_\epsilon$  evaluated in $\bk{\cdot \xi|\xi}$ whenever $\xi\in\Dom(\ovl T)$, and hence whenever $\xi\in\mc H$. Assume $\xi\in\Dom(H^n)$.  Then the limit of this inequality when $\epsilon\searrow0$ yields the desired result.
+\end{proof}
+
+
+
+
+\begin{proof}
+By symmetry, it suffices to prove the claim for $t\geq 0$. By Thm. \ref{lb5}, $\ovl T$ is self-adjoint. Set $N=T^{2n}$. 
+
+Step 1. For each $k\in\Zbb$, let $|T|_k$ be a $k$-th bounding constant for both $T$ and $[H,T]$. (Cf. Lemma \ref{lb7}.) Then, when acting on $\Dom(H^\infty)$, 
+\begin{align*}
+	[N,T]=\sum_{j=0}^{2n-1}H^j[H,T]H^{2n-1-j}.	
+\end{align*}
+Set $c=\sum_{j=0}^{2n-1}|T|_{j-n}$. For each $\eta\in\Dom(H^\infty)$,  
+\begin{align}
+	&\im \bk{[N,T]\eta|\eta}\leq \lVert H^n\eta \lVert\cdot \lVert H^{-n}[N,T]\eta \lVert\nonumber\\
+	=&\sum_{j=0}^{2n-1}	\lVert H^n\eta \lVert\cdot\lVert H^{j-n}[H,T]H^{2n-1-j}\eta \lVert\leq \sum_{j=0}^{2n-1}	|T|_{j-n}	\lVert H^n\eta \lVert^2\nonumber\\
+	\leq &c\bk{N\eta|\eta}.\label{eq12}
+\end{align}
+
+
+Step 2. In general,  $[S^{-1},T]=-S^{-1}[S,T]S^{-1}$ if $S$ and its inverse $S^{-1}$ is defineable on $\Dom(H^\infty)$. Choose $\epsilon>0$. Then, when acting on $\Dom(H^\infty)$, we have
+\begin{align*}
+	[(1+\epsilon N)^{-1},T]=-\epsilon (1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1},
+\end{align*}
+and hence
+\begin{align*}
+	&[N(1+\epsilon N)^{-1},T]=-N\cdot \epsilon (1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1}+[N,T](1+\epsilon N)^{-1}\\
+	=&	(1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1}.
+\end{align*}
+Note that (by Rem. \ref{lb8}) $\Dom(H^\infty)$ is invariant under $T,N,(1+\epsilon N)^{-1}$. It follows that for every $\eta\in\Dom(H^\infty)$, we have (by \eqref{eq12})
+\begin{align*}
+&\im\bk{[N(1+\epsilon N)^{-1},T]\eta|\eta}=\im\bk{[N,T](1+\epsilon N)^{-1}\eta|(1+\epsilon N)^{-1}\eta}\\
+\leq &c\bk{(1+\epsilon N)^{-1}N(1+\epsilon N)^{-1}\eta|\eta}.
+\end{align*}
+By Borel functional calculus, $N(1+\epsilon N)^{-1}-N(1+\epsilon N)^{-2}$ is positive (since its closure is $g(N)$ where the function $g(x)=x(1+\epsilon x)^{-1}-x(1+\epsilon x)^{-2}$ is positive). Therefore
+\begin{align}
+\im\bk{[N(1+\epsilon N)^{-1},T]\eta|\eta}\leq 	c\bk{N(1+\epsilon N)^{-1}\eta|\eta}\label{eq13}
+\end{align}
+for all $\eta\in\Dom(H^\infty)$.
+
+Now suppose $\eta\in\Dom(\ovl T)$. Since $\Dom(H^\infty)=\Dom(T)$ is a core for $\ovl T$, we may choose a sequence $\eta_n\in\Dom(H^\infty)$ converging to $\eta$ such that $T\eta_n$ converges to $T\eta$. Note that $N(1+\epsilon N)^{-1}$ is bounded by Rem. \ref{lb4}. Therefore, since each $\eta_n$ satisfies \eqref{eq13}, we obtain
+\begin{align}
+\im\bk{N(1+\epsilon N)^{-1}\ovl T\eta|\eta}-\im\bk{N(1+\epsilon N)^{-1}\eta|\ovl T\eta}	\leq 	c\bk{N(1+\epsilon N)^{-1}\eta|\eta}\label{eq14}.
+\end{align}
+
+
+Step 3. By Rem. \ref{lb4}, $N^{\frac 12}(1+\epsilon N)^{-\frac 12}$ and $N(1+\epsilon N)^{-1}$ are  bounded. For any $\xi\in\mc H$, we set
+\begin{gather*}
+\xi_t=e^{\im t\ovl T}\xi,\\
+f_{\epsilon,\xi}(t)=	e^{-ct}\big\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi_t}\big\lVert^2=e^{-ct}\bk{N(1+\epsilon N)^{-1}\xi_t|\xi_t}.
+\end{gather*}
+
+
+Assume $\xi\in\Dom(\ovl T)$. Then $\xi_t\in\Dom(\ovl T)$ and $\frac d{dt}\xi_t=\im\ovl T\xi_t$. So the derivative $f'_{\epsilon,\xi}(t)=\frac d{dt}f_{\epsilon,\xi}(t)$ exists for all $t\in\Rbb$.  We compute
+\begin{align}
+f'_{\epsilon,\xi}(t)=-cf_{\epsilon,\xi}(t)+\im\bk{N(1+\epsilon N)^{-1}\ovl T\xi_t|\xi_t}-\im\bk{N(1+\epsilon N)^{-1}\xi_t|\ovl T\xi_t}.\label{eq9}
+\end{align}
+By \eqref{eq14},
+\begin{align*}
+f'_{\epsilon,\xi}(t)\leq-cf_{\epsilon,\xi}(t)+c\bk{N(1+\epsilon N)^{-1}\xi_t|\xi_t}=0.
+\end{align*}
+Therefore, when $t\geq 0$, we have $f_{\epsilon,\xi}(t)\leq f_{\epsilon,\xi}(0)$, namely,
+\begin{align}
+e^{-ct}\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi_t}\big\lVert^2\leq \lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi}\big\lVert^2.\label{eq10}
+\end{align}
+By approximation, \eqref{eq10} holds for all $\xi\in\mc H$.
+
+By spectral theorem, for each $\eta\in\mc H$, $a_\epsilon:=\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi}\big\lVert^2$ increases as $\epsilon$ decreases; $\lim_{\epsilon\rightarrow 0}a_\epsilon$ converges if and only if $\eta\in\Dom(N^{\frac 12})=\Dom(H^n)$; if it converges, then it must converge to $\lVert H^n\eta\lVert^2$.
+
+We now assume $\xi\in\Dom(H^n)$.  Let $\epsilon\rightarrow 0$. Then, by the previous paragraph, the right hand side of \eqref{eq10} converges to $\lVert N^{\frac 12}\xi\lVert^2=\lVert H^n\xi\lVert^2$. So the left hand side of \eqref{eq10} (which increases as $\epsilon\searrow 0$) must converge to $e^{-ct}\lVert H^n\xi_t\lVert^2$ where we have $\xi_t\in\Dom(H^n)$. This proves $\lVert H^n\xi_t\lVert^2\leq e^{2C_nt}\lVert H^n\xi\lVert^2$ when $t\geq 0$, if we set $C_n=c/2$.
+\end{proof}
+
+
+
+\begin{df}
+For each $n\in\Nbb$, we let $o_H(h)$ \index{oh@$o_H(h^n)$} be the set of $\Dom(H^\infty)$-valued functions $\psi=\psi(h)$ where each $\psi$ is  defined on a neighborhood of $0\in\Rbb$ and satisfies  for all $m\in\Nbb$ that
+\begin{align}
+	\lim_{h\rightarrow 0}\frac{~\lVert H^m \psi(h)\lVert~}{h^n}=0.\label{eq16} 
+\end{align}
+
+\end{df}
+
+
+
+\begin{rem}\label{lb11}
+If $S$ is preclosed on $\mc H$ with invariant domain $\Dom(H^\infty)$, and if $S$ satisfies $H$-bounds of some order $r$, then for all $n\in\Nbb$ it is clear that
+\begin{align*}
+S\cdot o_H(h^n)\subset o_H(h^n).	
+\end{align*}
+Moreover, by Thm. \ref{lb9}, we also have for all $t\in\Rbb$ that
+\begin{align*}
+e^{\im t\ovl S}o_H(h)\subset o_H(h),\qquad e^{\im (t+h)\ovl S}o_H(h)\subset o_H(h).	
+\end{align*}
+\end{rem}
+
+By Taylor series expansion, if $f$ is a smooth function on $(a,b)\subset\Rbb$, then for any $t,t+h\in(a,b)$ and $n\in\Nbb$, we have (cf. \cite[Thm. 9.29]{Apo})
+\begin{align}
+	f(t+h)=\sum_{k=0}^n\frac{f^{(k)}(t)}{k!}h^k+\frac 1{n!}\int_t^{t+h}(t-s)^nf^{(n+1)}(s)ds.	\label{eq15}
+\end{align}
+We are now ready prove the Taylor theorem for $e^{\im t\ovl T}\xi$.
+
+\begin{thm}\label{lb10}
+Let $T$ be as in Thm. \ref{lb9}. Then for every $\xi\in\Dom(H^\infty)$ and $n\in\Nbb$, we have
+\begin{align}
+e^{\im(t+h)\ovl T}\xi=\sum_{k=0}^n\frac{(\im T)^k}{k!}e^{\im t\ovl T}\xi+R(h)\xi	
+\end{align}
+where each summand is in $\Dom(H^\infty)$, and  $R(h)\xi\in o_H(h^n)$.
+\end{thm}
+
+
+\begin{proof}
+Apply \eqref{eq15} to $f(t)=\bk{e^{\im(t+h)\ovl T}\xi|\eta}$ for every $\eta\in\mc H$, we obtain
+\begin{align*}
+R(h)\xi=\frac 1{n!}\int_t^{t+h}(t-s)^nT^{n+1}e^{\im s\ovl T}\xi ds.
+\end{align*}
+Thus, for any $\eta\in\mc H$, by \eqref{eq7} and Thm. \ref{lb9}, there exist $\lambda,C>0$ such that
+\begin{align*}
+&|\bk{H^mR(h)\xi|\eta}|\leq \frac {h^{n+1}}{n!}\sup_{t\leq s\leq t+h}\big|\bk{H^mT^{n+1}e^{\im s\ovl T}\xi|\eta}\big|\\
+\leq&\frac {h^{n+1}}{n!}\lambda\cdot\sup_{t\leq s\leq t+h}\lVert H^{m+n+1}e^{\im s\ovl T}\xi\lVert\cdot\lVert\eta\lVert\\
+	\leq&\frac {h^{n+1}}{n!}\lambda e^{C|h|}\cdot\lVert H^{m+n+1}e^{\im t\ovl T}\xi\lVert\cdot\lVert\eta\lVert.
+\end{align*}
+This proves $R(h)\xi\in o_H(h^n)$.
+\end{proof}
+	
+	
+	
+	
+	
+\begin{thm}
+Let $S,T$ be preclosed operators on $\mc H$ with common ($S$- and $T$-)invariant domain $\Dom(S)=\Dom(T)=\Dom(H^\infty)$. Assume $T$ is symmetric, $T$ and $[H,T]$ satisfies linear $H$-bounds,  $T$ satisfies $H$-bounds of some order $r\geq 0$, and $ST\xi=TS\xi$ for every $\xi\in\Dom(H^\infty)$. Then $S$ commutes strongly with $T$.
+\end{thm}	
+	
+
+
+
+\begin{proof}
+By Thm. \ref{lb9}, $\ovl T$ is self-adjoint, and $e^{\im t\ovl T}$ leaves $\Dom(H^\infty)$ invariant. Since $\{\ovl T\}''=\{e^{\im t\ovl T}:t\in\Rbb\}$, we need to show $e^{\im t\ovl T}\ovl S=Te^{\im t}$ for all $t$, which follows if we can show $e^{\im t\ovl T}S=Se^{\im t\ovl T}$.
+
+Let us choose any $\xi\in\Dom(H^\infty)$, and let
+\begin{align*}
+\Xi(t)=e^{\im t\ovl T}Se^{-\im t\ovl T}\xi.	
+\end{align*}
+If we can show that the derivative $\Xi'(t)$ exists and is $0$ everywhere, then $\Xi(t)=\Xi(0)=S$, which will finish the proof. Choose $h\in\Rbb$. Then by Thm. \ref{lb10},
+\begin{align*}
+&\Xi(t+h)=e^{\im (t+h)\ovl T}Se^{-\im(t+h)\ovl T}\xi\\
+\in&~	e^{\im (t+h)\ovl T}S\big((1-\im h T) e^{-\im t\ovl T}\xi+o_H(h)\big).
+\end{align*}
+By Rem. \ref{lb11}, we have $e^{\im (t+h)\ovl T}So_H(h)\subset o_H(h)$. So
+\begin{align*}
+\Xi(t+h)\in~e^{\im (t+h)\ovl T}S(1-\im h T)e^{-\im t\ovl T}\xi+o_H(h).
+\end{align*}
+By Thm. \ref{lb10} and Rem. \ref{lb10} again,
+\begin{align*}
+&\Xi(t+h)\in~(1+\im hT)e^{\im t\ovl T}S(1-\im h T)e^{-\im t\ovl T}\xi+o_H(h)\\
+=&e^{\im t\ovl T}(1+\im hT)S(1-\im h T)e^{-\im t\ovl T}\xi+o_H(h)\\
+=&e^{\im t\ovl T}(S+\im[T,S]-h^2T^2)e^{-\im t\ovl T}\xi+o_H(h)\\
+=&e^{\im t\ovl T}(S+\im[T,S])e^{-\im t\ovl T}\xi+o_H(h).
+\end{align*}
+Since $TS=ST$ on $\Dom(H^\infty)$, we have
+\begin{align*}
+\Xi(t+h)\in~e^{\im t\ovl T}Se^{-t\im T}	\xi+o_H(h)=\Xi(t)+o_H(h).
+\end{align*}
+This shows that $\lim_{h\rightarrow 0}h^{-1}(\Xi(t+h)-\Xi(t))=0$ for all $t$. We are done. 
+\end{proof}
+
+
+
+
+
+
+	
+	
+
+	
+	
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%\newpage
+	%$~$
+	%\renewcommand\contentsname{} % the empty name
+	
+	%\begingroup
+	%\let\clearpage\relax
+	%\vspace{-2cm} % the removed space. Set as appropriate
+	
+	
+	% Remove header of table of contents
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+\printindex	
+	\begin{thebibliography}{999999}
+		\footnotesize	
+
+
+\bibitem[Apo]{Apo}
+Apostol, Tom (1974), Mathematical analysis, second edition, Addison–Wesley.
+
+		
+		
+\bibitem[CKLW18]{CKLW18}
+Carpi, S., Kawahigashi, Y., Longo, R. and Weiner, M., 2018. From vertex operator algebras to conformal nets and back (Vol. 254, No. 1213). Memoirs of the American Mathematical Society	
+
+\bibitem[DF77]{DF77}
+Driessler, W. and Fröhlich, J., 1977. The reconstruction of local observable algebras from the Euclidean Green's functions of relativistic quantum field theory. In Annales de l'IHP Physique théorique (Vol. 27, No. 3, pp. 221-236).
+
+\bibitem[FL74]{FL74}
+Faris, W.G. and Lavine, R.B., 1974. Commutators and self-adjointness of Hamiltonian operators. Communications in Mathematical Physics, 35(1), pp.39-48.	
+		
+\bibitem[GJ]{GJ}
+Glimm, J. and Jaffe, A., 2012. Quantum physics: a functional integral point of view. Springer Science \& Business Media.		
+		
+\bibitem[G-Sp]{G-Sp}
+Gui, B., 2019. Spectral Theory for Strongly Commuting Normal Closed Operators
+
+\bibitem[Nel65]{Nel65}
+Nelson, E., 1959. Analytic vectors. Annals of Mathematics, pp.572-615.
+
+\bibitem[Nel72]{Nel72}
+Nelson, E., 1972. Time-ordered operator products of sharp-time quadratic forms. Journal of functional analysis, 11(2), pp.211-219.
+
+
+\bibitem[Rud-R]{Rud-R}
+Rudin, Walter. Real and Complex Analysis. New York: McGraw-Hill, 1987.
+		
+		
+		
+\bibitem[TL99]{TL99}
+Toledano Laredo, V., 1999. Integrating unitary representations of infinite-dimensional Lie groups. Journal of functional analysis, 161(2), pp.478-508.
+		
+\end{thebibliography}
+	%\noindent {\small \sc Department of Mathematics, Rutgers University, New Brunswick, USA.}
+	
+	\noindent {\textit{E-mail}}: binguimath@gmail.com
+\end{document}
