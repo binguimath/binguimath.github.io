@@ -217,7 +217,7 @@
 \tableofcontents
 
 \vspace{-0.5cm}
-\blfootnote{Last major revision:  2021.8}
+\blfootnote{Last major revision:  2021.9}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %\makeatletter
@@ -434,7 +434,7 @@ By changing variables $z_j=x_j+\im y_j,\ovl z_j=x_j-\im y_j$, elements $f$ of $\
 \uwave f(x_1,y_1,\dots,x_N,y_N)=f(x_1+\im y_1,x_1-\im y_1,\dots,x_N+\im y_N,x_N-\im y_N),	\\
 f(z_1,\ovl z_1,\dots,z_N,\ovl z_N)=\uwave f(\Re(z_1),\Im(z_1),\dots,\Re(z_N),\Im(z_N))	
 \end{gather*}
-where $\Re(z_j)=(z_j+\ovl z_j)/2,\Im(z_j)=(z_j-\ovl z_j)/(2\im)$. We have $x_j^*=x_j,y_j^*=y_j$. We will not distinguish between $f$ and $\uwave f$ in the following.
+where $\Re(z_j)=(z_j+\ovl z_j)/2,\Im(z_j)=(z_j-\ovl z_j)/(2\im)$. We have $x_j^*=x_j,y_j^*=y_j$. %We will not distinguish between $f$ and $\uwave f$ in the following.
 
 
 Note that $\End(\mc H)$ is also a $*$-algebra whose involution $*$ is given by the adjoint of operators. We have a unique unital \textbf{$*$-homomorphism} $\pi:\mc P_N\rightarrow\End(\mc H)$ defined by
@@ -455,13 +455,17 @@ for each $f,g\in\mc P_N$.
 We know that in Linear algebra, polynomial rings play an important role in the study of spectral theory/Jordan decomposition. In the infinite-dimensional case, polynomial rings (or more precisely, polynomial $*$-algebras) are not sufficient. We need to consider $C(X)$ \index{CX@$C(X),C_c(X)$}, the $*$-algebra of continous functions on a compact Hausdorff space $X$. It's $*$-structure is given by $f^*(x)=\ovl{f(x)}$ for each $f\in C(X),x\in X$. $\ovl{\cdot}$ stands for the complex conjugate. Moreover, $C(X)$ is equipped with the norm topology $L^\infty(X)$.
 
 
-The first question in spectral theory is: what is an appropriate $X$? To answer this question, we need the following crucial result. For each $r>0$, set $B_r=[-r,r]^2$, \index{Br@$B_r=[-r,r]^2$} regarded as a subset of $\Cbb$.
+The first question in spectral theory is: what is an appropriate $X$? To answer this question, we need the following crucial result. For each $r>0$, set \index{Br@$B_r=[-r,r]^2$}
+\begin{align}
+B_r=[-r,r]^2	
+\end{align}
+regarded as a subset of $\Cbb$.
 
 \begin{pp}\label{lb1}
 Let $r_j$ be $\lVert T_j\lVert$, the operator norm of $T_j$. Then for each $f\in\mc P_N$, 
-\begin{align*}
-\lVert \pi(f)\lVert\leq \sup_{x_j,y_j\in[-r_j,r_j]}| f(x_1,y_1,\dots,x_N,y_N)|.	
-\end{align*}
+\begin{align}\label{eq25}
+\lVert \pi(f)\lVert\leq \sup_{x_j,y_j\in[-r_j,r_j]}| \uwave f(x_1,y_1,\dots,x_N,y_N)|.	
+\end{align}
 \end{pp}
 
 
@@ -469,18 +473,41 @@ Let
 \begin{align*}
 X=B_{r_1}\times\cdots \times B_{r_N}.
 \end{align*}
-We clearly have a $*$-homomorphism $\varphi:\mc P_N\rightarrow C(X)$ defined by sending each $z_j$ to the function indicating the $j$-th complex component $B_{r_j}$ of $X$. Equivalently, $\varphi$ sends each $x_j,y_j$ to the first and second real component of $B_{r_j}$. We identify $f$ with $\varphi(f)$ when no confusion arises. ($\varphi$ is indeed injective, so that we can regard $\mc P_N$ as a $*$-subalgebra of $C(X)$.)
+
 \begin{thm}\label{lb17}
 There is a unique  continuous (unital) $*$-homomorphism $\pi:C(X)\rightarrow\End(\mc H)$ satisfying that for each $j$, $\pi(z_j)=T_j,\pi(\ovl z_j)=T_j^*$. (Equivalently, $\pi(x_j)=\Re(T_j),\pi(y_j)=\Im (T_j)$.)
 \end{thm}
 
 
 \begin{proof}
-It is easy to define $\pi$ on $\varphi(\mc P_N)$, which is continuous with respect to the topology of $C(X)$ due to Prop. \ref{lb1}. By Stone-Weierstrass Theorem, $\varphi(\mc P_N)$ is dense in $C(X)$. Thus $\pi$ is extended uniquely to a continuous map satisfying the desired property.
+For each  $f\in\mc P_N$, $\uwave f$ can be regarded as a continuous function of the variables $x_1,y_1,\dots,x_N,y_N$. So $\uwave f\in C(X)$. Moreover, $\uwave f$ as a polynomial is determined by $\uwave f$ as a function (since all the coefficients of the polynomial can be calculated by the values of the multi partial derivatives of $\uwave f$). Thus, $\mc P_N$ is identified with a unital $*$-subalgebra of $C(X)$ by identifying $f\in\mc P_N$ with $\uwave f\in C(X)$.
+
+By Stone-Weierstrass theorem, $\mc P_N$ is dense in $C(X)$. Moreover, by Prop. \ref{lb1}, the $\pi$ defined on $\mc P_N$ is continuous with respect to the norm of $C(X)$. Therefore, $\pi$ can be extended uniquely to a continuous unital $*$-homomorphism from $C(X)$ to $\End(\mc H)$.
 \end{proof}
 
 
-The crucial step of proving Prop. \ref{lb1} is to extend $\pi$ to a unital $*$-homomorphism from a larger class $\mc A$ of functions, where $\mc A$ contains  $\mc P_N$ and the positive ``square root" (defined in a proper sense) of any $r^2-f^*f$ where $f\in\mc P_N$ and $r>\lVert f\lVert_{L^\infty(X)}$. As we see below, $\mc A$ is the set of analytic functions defined near $X$.
+To prepare for the proof of Prop. \ref{lb1}, let us consider a slightly different $*$-algebra $\mc Q_N=\Cbb[t_1,\dots,t_N]$ of polynomials of $t_1,\dots,t_N$, and the involution $*$ is defined by $t_j^*=t_j$ for each $j$. 
+
+\begin{lm}\label{lb69}
+Suppose that for every $N\in\Zbb_+$ and every self-adjoint bounded operators $H_1,\dots,H_N$ on $\mc H$, the unique unital $*$-homomorphism $\varphi:\mc Q_N\rightarrow\End(\mc H)$ defined by $\varphi(H_j)=t_j$ for every $1\leq j\leq N$ satisfies (by setting $r_j=\lVert H_j\lVert$)
+\begin{align}
+\lVert \varphi(f)\lVert \leq\sup_{t_j\in[-r_j,r_j]}|f(t_1,\dots,t_N)|\label{eq24}
+\end{align}
+for every $f\in\mc Q_N$. Then Prop. \ref{lb1} is true.
+\end{lm}
+
+\begin{proof}
+Let us assume the condition in this theorem. Choose any $f\in\mc P_N$. Let $T_1,\dots,T_N$ be adjointly commuting normal bounded operators, and let $H_j=\Re(T_j)$, $K_j=\Im(T_j)$. Let $\varphi:\mc Q_{2N}\rightarrow\End(\mc H)$ be the unique unital $*$-homomorphism sending each $H_j$ to $t_{2j-1}$ and $K_j$ to $t_{2j}$. Consider the polynomial $\uwave f(x_1,y_1,\dots,x_N,y_N)$ as an element of $\mc Q_{2N}$ by identifying $x_j=t_{2j-1},y_j=t_{2j}$. Then $\varphi(\uwave f)=\pi(f)$ for all $f\in\mc P_N$ since this is true when $f=x_1,y_1,\dots,x_N,y_N$.
+
+Let $r_j=\lVert T_j\lVert$. Then $\lVert H_j\lVert,\lVert K_j\lVert\leq r_j$. By \eqref{eq24}, we have
+\begin{align*}
+\lVert\pi(f)\lVert=\lVert \varphi(\uwave f)\lVert \leq\sup_{x_j,y_j\in[-r_j,r_j]}|\uwave f(x_1,y_1\dots,x_N,y_N)|.	
+\end{align*}
+\end{proof}
+
+
+
+The crucial step of proving Prop. \ref{lb1} is to extend the $\varphi$ in Lemma \ref{lb69} to a unital $*$-homomorphism from a larger class $\mc A$ of functions, where $\mc A$ contains  $\mc Q_N$ and the positive ``square root" (defined in a proper sense) of any $r^2-f^*f$ where $f\in\mc Q_N$ and $r>\lVert f\lVert_{L^\infty(X)}$. As we see below, $\mc A$ is the set of analytic functions defined near $X$.
 
 \subsection*{Holomorphic functional calculus}
 
@@ -488,7 +515,7 @@ Let $T\in\End(\mc H)$. Define the \textbf{spectrum}
 \begin{align}
 	\Sp(T)=\{\lambda\in\Cbb:\lambda-T\text{ is not invertible}\}.	\label{eq23}
 \end{align}
-Note the following easy facts:
+Note the following easy fact:
 
 \begin{pp}
 Let $r=\lVert T\lVert$. Then $\Sp(T)\subset \{\lambda\in\Cbb:|\lambda|\leq r\}$. Moreover, if $T$ is self-adjoint, then $\Sp(T)\subset[-r,r]$.
@@ -535,85 +562,88 @@ converges to $-(z-T)^{-2}$ by the continuity proved in the previous paragraph.
 
 
 
-Let $\mc A$ be the set of complex analytic functions $ f(x_1,y_1,\dots,x_N,y_N)$, analytic on a connected neighborhood of $(x_1,y_1,\dots,x_N,y_N)\in X$. (Thus, here we understand $x_\blt,y_\blt$ as complex variables.) $\mc A$ is a $*$-algebra, whose involution $*$ is defined by.
+We now let $H_1,\dots,H_N$ be self-adjoint operators on $\mc H$ with operator norms $r_1,\dots,r_N$. Let
 \begin{align*}
- f^*(x_1,y_1,\dots,x_N,y_N)=\ovl{ f(\ovl x_1,\ovl y_1,\dots,\ovl x_N,\ovl y_N)}.	
+Y=[-r_1,r_1]\times\cdots\times[-r_N,r_N]	
 \end{align*}
-(Note that $f^*$ is holomorphic, cf. Prop. \ref{lb57}.) In this way, $\mc P_N$ can be identified naturally  as a (unital) $*$-subalgebra of $\mc A$. Note that any $f\in\mc A$ is determined by its values on $X$. This is due to the fact that any single-valued holomorphic function on a connected open subset of $\Cbb$ is determined by its values on a line segment inside this open subset. Thus, we equip $\mc A$ with the topology of $L^\infty(X)$-norm.
+Let $\mc A$ be the set of complex analytic functions $f(t_1,\dots,t_N)$ analytic on a connected neighborhood of $(t_1,\dots,t_N)\in Y$. (Thus, here we understand $t_\blt,t_\blt$ as complex variables. By saying that $f$ is analytic, we mean that it is continous as a multi-variable functions, and that it is holomorphic on each variable.) $\mc A$ is a $*$-algebra, whose involution $*$ is defined by.
+\begin{align*}
+ f^*(t_1,\dots,t_N)=\ovl{ f(\ovl t_1,\dots,\ovl t_N)}.	
+\end{align*}
+(Note that $f^*$ is holomorphic, cf. Prop. \ref{lb57}.) In this way, $\mc Q_N$ can be identified naturally  as a unital $*$-subalgebra of $\mc A$. Note that any $f\in\mc A$ is determined by its values on $Y$. This is due to the fact that any single-valued holomorphic function on a connected open subset of $\Cbb$ is determined by its values on a line segment inside this open subset; our case of multi-valued functions follows from induction on the number of variables. Thus, we equip $\mc A$ with the topology of $L^\infty(Y)$-norm.
 
 
-Now, we come back to the setting that $T_1,\dots,T_N$ are adjointly commuting normal operators. For each $j$, we choose anticlockwise piecewise-smooth simple closed curves $R_j,R'_j\subset\Cbb$ such that $R_j$ surrounds $[-r_j,r_j]\supset \Sp(\Re(T_j))$, $R_j'$ surrounds $[-r_j,r_j]\supset\Sp(\Im(T_j))$, $ f$ is holomorphic when $(x_1,y_1,\dots,x_N,y_N)$ is holomorphic inside and also on a neighborhood of $R_1\times R'_1\times \cdots\times R_N\times R'_N$. Define
+For each $j$, we choose an anticlockwise piecewise-smooth simple closed curves $R_j\subset\Cbb$ such that $R_j$ surrounds $[-r_j,r_j]\supset \Sp(H_j)$,  and that $ f$ is holomorphic when $(t_1,\dots,t_N)$ is inside and also on a neighborhood of $R_1\times  \cdots\times R_N$. Define
 \begin{align}
-&\pi( f)\nonumber\\
-=&\oint_{x_j\in R_j,y_j\in R'_j}(2\pi\im)^{-2N} f(x_1,y_1,\dots,x_N,y_N)\nonumber\\
-&\cdot(x_1-\Re(T_1))^{-1}(y_1-\Im(T_1))^{-1}\cdots(x_N-\Re(T_N))^{-1}(y_N-\Im(T_N))^{-1}\cdot dx_1dy_1\cdots dx_Ndy_N.	\label{eq2}
+\varphi( f)=\oint_{t_j\in R_j}(2\pi\im)^{-N} f(t_1,\dots,t_N)\cdot(t_1-H_1)^{-1}\cdots(t_N-H_N)^{-1}\cdot dt_1\cdots dt_N.	\label{eq2}
 \end{align}
-Note that the integrand is holomorphic in the sense of Sec. \ref{lb55}, thanks to Lemma \ref{lb4}. The integral is defined as in Sec. \ref{lb55}. By complex analysis,  \eqref{eq2} is independent of the choice of $R_1,R_1',\dots,R_N,R_N'$.
+Note that the integrand is holomorphic in the sense of Sec. \ref{lb55}, thanks to Lemma \ref{lb4}. The integral is defined as in Sec. \ref{lb55}. By complex analysis,  \eqref{eq2} is independent of the choice of $R_1,R_1',\dots,R_N,R_N'$. Also, note that $(t_i-H_i)^{-1}$ commutes with $(t_j-H_j)^{-1}$.
 
 
 
 \begin{thm}\label{lb2}
-$\pi:\mc A\rightarrow\End(\mc H)$ is a continuous $*$-homomorphism and satisfies $\lVert\pi( f)\lVert\leq \lVert  f\lVert_{L^\infty(X)}$ for each $ f\in\mc A$.  Moreover, if $f\in\mc P_N$, then the $\pi( f)$ defined by \eqref{eq2} agrees with the $\pi(f)$ defined in \eqref{eq1}. 
+$\varphi:\mc A\rightarrow\End(\mc H)$ is a continuous $*$-homomorphism and satisfies $\lVert\varphi( f)\lVert\leq \lVert  f\lVert_{L^\infty(X)}$ for each $ f\in\mc A$.  Moreover, if $f\in\mc Q_N$, then the $\varphi( f)$ defined by \eqref{eq2} agrees with the $\varphi(f)$ defined in Lemma \ref{lb69}. 
 \end{thm}
 
 \begin{proof}
-For each connected open set $O$ containing $X$, we let $\mc A_O$ be the set  of bounded analytic functions on $O$. Then $\mc A$ is the union of all $\mc A_O$.
+For each connected open set $O$ containing $X$, we let $\mc A_O$ be the set  of  analytic functions on $O$. Then $\mc A$ is the union of all $\mc A_O$.
 
-Step 1. Assume $ f=x_1^{m_1}y_1^{n_1}\cdots x_N^{m_N}y_N^{n_N}$, and assume each $R_j,R'_j$ are circles with radii larger than $\lVert T_j\lVert$ so that we can substitute each $(x_j-\Re(T_j))^{-1}=\sum_{n\geq 0}x_j^{-n-1}\Re(T_j)^n$ and  $(y_j-\Im(T_j))^{-1}=\sum_{n\geq 0}y_j^{-n-1}\Im(T_j)^n$ into \eqref{eq2}. One then checks easily that the $\pi( f)$ equals the $\pi(f)$ defined by \eqref{eq1}. 
+Step 1. Assume $ f=t_1^{n_1}\cdots t_N^{n_N}$, and assume each $R_j$ is a circle with radius larger than $\lVert T_j\lVert$ so that we can substitute each $(t_j-H_j)^{-1}=\sum_{n\geq 0}t_j^{-n-1}H_j^n$ into \eqref{eq2}. One then checks easily that the $\varphi( f)$ equals the $\varphi(f)$ defined by \eqref{eq1}. 
 
-Step 2. We show that $\pi$ restricts to a unital $*$-homomorphism from each $\mc A_O$ to $\End(\mc H)$. Then $\pi:\mc A\rightarrow\End(\mc H)$ is a unital $*$-homomorphism. That $\pi(1)=1$ follows from step 1. That $\pi(f^*)=\pi(f)^*$ follows by applying successively Prop. \ref{lb57} to each single variable integral of the multiple integral in \eqref{eq2}. (Note that according to the notations in Prop. \ref{lb57}, if $C$ is anticlockwise then $\ovl C$ is clockwise.)
+Step 2. We show that $\varphi$ restricts to a unital $*$-homomorphism from each $\mc A_O$ to $\End(\mc H)$. This will imply that $\varphi:\mc A\rightarrow\End(\mc H)$ is a unital $*$-homomorphism. That $\varphi(1)=1$ follows from step 1. That $\varphi(f^*)=\varphi(f)^*$ follows by applying successively Prop. \ref{lb57} to each single variable integral of the multiple integral in \eqref{eq2}. (Note that according to the notations in Prop. \ref{lb57}, if $C$ is anticlockwise then $\ovl C$ is clockwise.)
 
-We now show $\pi(f)\pi(g)=\pi(fg)$ for every $f,g\in \mc A_O$. For simplicity, we assume $N=1$ and write $x_1=x,y_1=y,R=R_1=R_1',T=T_1$. (We assume for simplicity that $R_1=R_1'$.)  The general case of $N$ variables follows from the same method. We choose a smooth simple closed anticlockwise $\Gamma$ containing $[-r,r]:=[-r_1,r_1]$, and assume $R$ is small enough so that it is inside the interior of $\Gamma$. Set differential $\di=(2\im\pi)^{-1}d$. Then
+We now show $\varphi(f)\varphi(g)=\varphi(fg)$ for every $f,g\in \mc A_O$. Assume for simplicity that $N=2$. The general case of $N$ variables follows from the same method. For each $i=1,2$, we choose a smooth simple closed anticlockwise $\Gamma_i,R_i$ containing $[-r_i,r_i]$,  assume $R_i$ is small enough so that it is inside the interior of $\Gamma_i$, and assume $f$ is analytic near and inside $\Gamma_1\times \Gamma_2$. Set differential $\di=(2\im\pi)^{-1}d$. Then
 \begin{align*}
-&\pi(f)\pi(g)\\
-=&\int_{x,y\in R}\int_{z,w\in \Gamma}f(x,y)g(z,w)(x-\Re(T))^{-1}(z-\Re(T))^{-1}(y-\Im(T))^{-1}(w-\Im(T))^{-1}\\
+&\varphi(f)\varphi(g)\\
+=&\int_{x\in R_1,y\in R_2}\int_{z\in\Gamma_1,w\in \Gamma_2}f(x,y)g(z,w)(x-H_1)^{-1}(z-H_1)^{-1}(y-H_2)^{-1}(w-H_2)^{-1}\\
 &\cdot\di x\di y \di z \di w
 \end{align*}
 Note that when $z\neq x$,
 \begin{align*}
-(x-\Re(T))^{-1}(z-\Re(T))^{-1}=(z-x)^{-1}(x-\Re(T))^{-1}-(z-x)^{-1}(z-\Re(T))^{-1}.
+(x-H_1)^{-1}(z-H_1)^{-1}=(z-x)^{-1}(x-H_1)^{-1}-(z-x)^{-1}(z-H_1)^{-1}.
 \end{align*}
-Since $x\in R,z\in\Gamma$, and since $R$ is inside $\Gamma$, by complex analysis, we see that 
+Since $x\in R_1,z\in\Gamma_1$, and since $R_1$ is inside $\Gamma_1$, by complex analysis, we see that 
 \begin{align*}
-\int_{x\in R}f(x,y)g(z,w)\cdot (z-x)^{-1}(z-\Re(T))^{-1}\cdot (y-\Im(T))^{-1}(w-\Im(T))^{-1}\di x=0.
+\int_{x\in R_1}f(x,y)g(z,w)\cdot (z-x)^{-1}(z-H_1)^{-1}\cdot (y-H_2)^{-1}(w-H_2)^{-1}\di x=0.
 \end{align*}
 So
 \begin{align*}
-&\pi(f)\pi(g)\\
-=&\int_{x,y\in R}\int_{z,w\in \Gamma}(z-x)^{-1}f(x,y)g(z,w)(x-\Re(T))^{-1}(y-\Im(T))^{-1}(w-\Im(T))^{-1}\\
+&\varphi(f)\varphi(g)\\
+=&\int_{x\in R_1,y\in R_2}\int_{z\in\Gamma_1,w\in \Gamma_2}(z-x)^{-1}f(x,y)g(z,w)(x-H_1)^{-1}(y-H_2)^{-1}(w-H_2)^{-1}\\
 &\cdot \di x\di y \di z \di w.
 \end{align*}
 In this integrand, only $(z-x)^{-1}g(z,w)$ depends on $z$, and
 \begin{align*}
-\int_{z\in\Gamma}	(z-x)^{-1}g(z,w)\cdot \di z= g(x,w) 
+\int_{z\in\Gamma_1}	(z-x)^{-1}g(z,w)\cdot \di z= g(x,w) 
 \end{align*}
 by Cauchy's formula. Thus
 \begin{align*}
-&\pi(f)\pi(g)\\
-=&\int_{x,y\in R}\int_{w\in \Gamma}f(x,y)g(x,w)(x-\Re(T))^{-1}(y-\Im(T))^{-1}(w-\Im(T))^{-1}\cdot \di x\di y \di w\\
-=&\int_{x\in R}(x-\Re(T))^{-1}\\
-&\cdot\Big(\int_{y\in R}\int_{w\in\Gamma}f(x,y)g(x,w)(y-\Im(T))^{-1}(w-\Im(T))^{-1} \di y\di w\Big)\di x.
+&\varphi(f)\varphi(g)\\
+=&\int_{x\in R_1,y\in R_2}\int_{w\in \Gamma_2}f(x,y)g(x,w)(x-H_1)^{-1}(y-H_2)^{-1}(w-H_2)^{-1}\cdot \di x\di y \di w\\
+=&\int_{x\in R_1}(x-H_1)^{-1}\\
+&\cdot\Big(\int_{y\in R_2}\int_{w\in\Gamma_2}f(x,y)g(x,w)(y-H_2)^{-1}(w-H_2)^{-1} \di y\di w\Big)\di x.
 \end{align*}
-A similar factorization for $(y-\Im(T))^{-1}(w-\Im(T))^{-1}$ shows
+A similar factorization for $(y-H_2)^{-1}(w-H_2)^{-1}$ shows
 \begin{align*}
-&\int_{y\in R}\int_{w\in\Gamma}f(x,y)g(x,w)(y-\Im(T))^{-1}(w-\Im(T))^{-1} \di y\di w\\
-=&\int_{y\in R}f(x,y)g(x,y)(y-\Im(T))^{-1}\di y.
+&\int_{y\in R_2}\int_{w\in\Gamma_2}f(x,y)g(x,w)(y-H_2)^{-1}(w-H_2)^{-1} \di y\di w\\
+=&\int_{y\in R_2}f(x,y)g(x,y)(y-H_2)^{-1}\di y.
 \end{align*}
-This proves $\pi(f)\pi(g)=\pi(fg)$. 
+This proves $\varphi(f)\varphi(g)=\varphi(fg)$. 
 
 
-Step 3. It remains to show that for each $ f\in\mc A$ we have $\lVert\pi( f)\lVert\leq \lVert  f\lVert_{L^\infty(X)}$. Choose any $\delta>0$, and let $r=\delta+\lVert  f\lVert_{L^\infty(X)}$. Choose $O$ such that $ f\in\mc A_O$. Note that $r^2- f^* f$ takes values in $[\delta^2,+\infty)$ when restricted to $X$. Thus, we may choose $O$ small enough such that $r^2- f^* f$ takes values in $\Cbb\setminus(-\infty,0]$ when defined on $O$. Since we can define a holomorphic square root function $\sqrt z$ on $\Cbb\setminus(-\infty,0]$ which is positive on $(0,+\infty)$, we can define $ g=\sqrt{r^2- f^* f}$  in $\mc A_O$ which satisfies $ g^2=r^2- f^* f$ and takes positive real values on $X$. So $ g$ equals $ g^*$ on $X$ and hence on $O$. It follows that $ g^* g=r^2- f^* f$. Thus, for any $\xi\in\mc H$, we have
+Step 3. It remains to show that for each $ f\in\mc A$ we have $\lVert\varphi( f)\lVert\leq \lVert  f\lVert_{L^\infty(X)}$. Choose any $\delta>0$, and let $r=\delta+\lVert  f\lVert_{L^\infty(X)}$. Choose $O$ such that $ f\in\mc A_O$. Note that $r^2- f^* f$ takes values in $[\delta^2,+\infty)$ when restricted to $X$. Thus, we may choose $O$ small enough such that $r^2- f^* f$ takes values in $\Cbb\setminus(-\infty,0]$ when defined on $O$. Since we can define a holomorphic square root function $\sqrt z$ on $\Cbb\setminus(-\infty,0]$ which is positive on $(0,+\infty)$, we can define $ g=\sqrt{r^2- f^* f}$  in $\mc A_O$ which satisfies $ g^2=r^2- f^* f$ and takes positive real values on $X$. So $ g$ equals $ g^*$ on $X$ and hence on $O$. It follows that $ g^* g=r^2- f^* f$. Thus, for any $\xi\in\mc H$, we have
 \begin{align*}
-\lVert \pi( f)\xi\lVert^2=\bk{\pi( f^* f)\xi|\xi}=r^2\lVert\xi\lVert^2-\bk{\pi( g^* g)\xi|\xi}	=r^2\lVert\xi\lVert^2-\lVert \pi( g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
+\lVert \varphi( f)\xi\lVert^2=\bk{\varphi( f^* f)\xi|\xi}=r^2\lVert\xi\lVert^2-\bk{\varphi( g^* g)\xi|\xi}	=r^2\lVert\xi\lVert^2-\lVert \varphi( g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
 \end{align*}
-This proves $\lVert\pi( f)\lVert^2\leq r^2=(\delta+\lVert f\lVert_{L^\infty(X)})^2$ for each $\delta>0$, hence finishes the proof.
+This proves $\lVert\varphi( f)\lVert^2\leq r^2=(\delta+\lVert f\lVert_{L^\infty(X)})^2$ for each $\delta>0$, hence finishes the proof.
 \end{proof}
 
-Proposition \ref{lb1} follows immediately from the above Theorem.
+Prop.  \ref{lb1} follows immediately from the above Theorem and Lemma \ref{lb69}.
 
 
 \subsection*{Spectral theorem}
 
+We come back to the setting of adjointly commuting normal bounded operators $T_1,\dots,T_2$ on $\mc H$ with norms $r_1,\dots,r_N$. Recall that $X$ is defined by \eqref{eq25}.
 
 The Riesz-Markov representation theorem for $C(X)$ can be presented in terms of cyclic representations. First of all, we say a vector $\xi\in\mc H$ is \textbf{cyclic} for $C(X)$, if $\pi(C(X))\xi$ spans a dense subspace of $\mc H$. If $\mu$ is a Borel measure on $X$, then $C(X)$ acts on $L^2(X,\mu)$ by multiplication.
 
