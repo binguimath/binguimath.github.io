@@ -20,7 +20,7 @@ I am currently not affilicated with Rutgers. Please do not contact me at my Rutg
 
 ##  Research Interests
 
-I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Operator Algebras, Tensor Categories.
+I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Von Neumann Algebras, Tensor Categories.
 
 ## Publications and Preprints 
 
