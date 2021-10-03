@@ -22,7 +22,7 @@ I am currently not affilicated with Rutgers. Please do not contact me at my Rutg
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Von Neumann Algebras, Tensor Categories.
 
-I identify myself as half operator algebraist and half vertex algebraist. I'm especially interested in the interplay between the operator algebraic and the vertex algebraic approach to 2d conformal field theory (CFT).
+I consider myself a half-operator algebraist (more precisely speaking, von Neumann algebraist)  and half-vertex algebraist. I'm especially interested in the interplay between the operator algebraic and the vertex algebraic approach to 2d conformal field theory (CFT).
 
 ## Publications and Preprints 
 
@@ -35,10 +35,11 @@ I identify myself as half operator algebraist and half vertex algebraist. I'm es
 
 1. Unitarity of the modular tensor categories associated to unitary vertex operator algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](Files/2017_UU2.pdf)
 
->> These two papers initiated the study of the unitarity of the representation braided tensor categories for unitary strongly-rational VOAs. Surprisingly, unitarity, a purely algebraic condition, was proved (for many examples) using functional analytic (von Neumann algebraic) methods.
  
 1. Energy bounds condition for intertwining operators of type B, C, and G_2
 unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (2019), 7371-7424. `arXiv:1809.07003` [Preprint](Files/2018_BCG.pdf)
+
+
 
 1. Categorical extensions of conformal nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
 
