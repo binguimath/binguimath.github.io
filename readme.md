@@ -22,7 +22,7 @@ I am currently not affilicated with Rutgers. Please do not contact me at my Rutg
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Von Neumann Algebras, Tensor Categories.
 
-I consider myself a half-operator algebraist (more precisely speaking, von Neumann algebraist)  and half-vertex algebraist. I'm especially interested in the interplay between the operator algebraic and the vertex algebraic approach to 2d conformal field theory (CFT).
+I consider myself a half-operator algebraist  and half-vertex algebraist. I'm especially interested in the interplay between the operator algebraic (more precisely speaking, von Neumann algebraic)  and the vertex algebraic approach to 2d conformal field theory (CFT).
 
 ## Publications and Preprints 
 
