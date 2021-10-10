@@ -219,6 +219,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
 \tableofcontents
 
 %\vspace{-0.5cm}
@@ -263,16 +266,173 @@
 	
 \newpage
 
+\begin{abstract}
+Propagation is a standard way of producing new conformal blocks from old ones that corresponds to the geometric procedure of adding new  distinct points to a pointed compact Riemann surface. On the other hand, sewing conformal blocks corresponds to sewing compact Riemann surfaces. 
+
+In this article, we clarify the relations between these two procedures. Most importantly, we show that "sewing and propagation are commuting procedures". More precisely: let $\upphi$ be a conformal block associated to a vertex operator algebra $\Vbb$ and a compact Riemann surface to be sewn, and let $\wr^n\upphi$ be its $n$-times propagation. If the  sewing $\wtd{\mc S}\upphi$  converges, then $\wtd{\mc S}\wr^n\upphi$ (the sewing of $\wr^n\upphi$)  converges to $\wr^n\wtd{\mc S}\upphi$ (the $n$-times propagation of the sewing $\wtd{\mc S}\upphi$). 
+
+As an application, we can prove the convergence of sewing conformal blocks in certain important cases without assuming $\Vbb$ to be CFT-type, $C_2$-cofinite, or rational. We also provide a new method of explicitly constructing the permutation-twisted modules associated to the  tensor product VOA $\Vbb^{\otimes k}$, originally due to \cite{BDM02}. Our results are crucial for relating the (genus-$0$) permutation-twisted $\Vbb^{\otimes k}$-conformal blocks and the untwisted $\Vbb$-conformal blocks (of possibly higher genera)  \cite{Gui}.
+\end{abstract}
+
+
+
+
+
+
+
+
+\section{Introduction}
+
+\subsection*{Propagating conformal blocks}
+
+
+Let $\Vbb$ be a vertex operator algebra (VOA) with vacuum vector $\id$. Let $\fk X=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)$ be an $N$-pointed compact Riemann surface with local coordinates, namely, each connected component of the compact Riemann surface $C$ contains at least one of the distinct marked points $x_1,\dots,x_N$, and each $\eta_j$ is an injective holomorphic function on a neighborhood of $x_j$ sending $x_j$ to $0$ (i.e., an (analytic) local coordinate at $x_j$). Associate to each $x_j$ a $\Vbb$-module $\Wbb_j$. Then a conformal block  associated to $\fk X$ and $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$ is a linear functional $\upphi:\Wbb_\blt\rightarrow\Cbb$ ``invariant" under the actions of $\Vbb$ (Cf. \cite{Zhu94,FB04,DGT19a}). When $C$ is the Riemann sphere $\Pbb^1$, the simplest examples of conformal blocks are as follows. (We let $\zeta$ be the standard coordinate of $\Cbb$.)
+
+\begin{enumerate}
+\item $\fk X=(\Pbb^1;0;\zeta)$, $\Wbb$ is associated to the marked point $0$. Then each $T\in\Hom_\Vbb(\Wbb,\Vbb')$ (where $\Vbb'$ is the contragredient module of the vacuum $\Vbb$) provides a conformal block
+\begin{align*}
+w\in\Wbb\mapsto \bk{Tw,\id}	
+\end{align*}
+Here $\bk{\cdot,\cdot}$ refers to the standard pairing of $\Vbb$ and $\Vbb'$. Of particular interest is the case that an isomorphism of $\Vbb$-modules $T:\Vbb\xrightarrow{\simeq}\Vbb'$ exists and is fixed. Then there is a canonical conformal block associated to $\fk X$ and $\Vbb$.
+\item $\fk X=(\Pbb^1;0,\infty;\zeta,\zeta^{-1})$, and $\Wbb,\Wbb'$ are associated to $0,\infty$. Then  we have a conformal block
+\begin{align}
+\uptau_\Wbb:\Wbb\otimes\Wbb'\rightarrow\Cbb,w\otimes w'\mapsto \bk{w,w'}.	\label{eq58}
+\end{align}
+\item $\fk X=(\Pbb^1;0,z,\infty;\zeta,\zeta-z,\zeta^{-1})$, and $\Wbb,\Vbb,\Wbb'$ are associated to $0,z,\infty$. The the vertex operation $Y$ for $\Wbb$ defines a conformal block
+\begin{align}
+w\otimes v\otimes w'\in\Wbb\otimes\Vbb\otimes\Wbb'\mapsto \bk{Y(v,z)w,w'}.\label{eq55}
+\end{align}
+\end{enumerate}
+
+
+
+
+Now, we add a new point $y\in C\backslash\{x_1,\dots,x_N\}$ (together with a local coordinate $\mu$) to $\fk X$ and call this new data $\wr\fk X_y$, and associate the vacuum module $\Vbb$ to $y$. Then  each conformal block $\upphi:\Wbb_\blt\rightarrow\Cbb$ associated to $\fk X$ and $\Wbb_\blt$ canonically gives rise to one $\wr\upphi_y:\Vbb\otimes\Wbb\rightarrow\Cbb$ associated to $\wr\fk X_y$ and $\Vbb\otimes\Wbb$, called the \textbf{propagation} of $\upphi$ at $y$. The propagation is uniquely determined by the fact that
+\begin{align}
+\wr\upphi(\id\otimes w_\blt)_y=\upphi(w_\blt).\label{eq53}
+\end{align}
+For example, it follows easily from such uniqueness that the third example above is the propagation of the second one at $z$, i.e.
+\begin{align*}
+\wr\uptau_\Wbb(v\otimes w\otimes w)_z=	\bk{Y(v,z)w,w'}.
+\end{align*} 
+More generally, when $y\in C$ is close to $x_i$ and the local coordinate $\mu$ at $y$ is $\eta_i-\eta_i(y)$, 
+\begin{align}
+\wr\upphi(v\otimes w_\blt)_y=\upphi(w_1\otimes\cdots\otimes Y(v,\eta_j(y))w_i\otimes\cdots\otimes w_N)	\label{eq54}
+\end{align}
+where the right hand side converges absolutely as a formal Laurent series of $\eta_j(y)$. (Cf. \cite[Thm. 6.2]{Zhu94}, \cite[Chapter 10]{FB04}, or Thm. \ref{lb4} of this article.) The uniqueness of $\wr\upphi$ satisfying \eqref{eq53} is not hard to show; what is more difficult is to prove the existence of propagation (cf. \cite{TUY89,Zhu94,Zhu96,FB04,Cod19,DGT19a}).
+
+
+
+\subsection*{Sewing conformal blocks}
+
+
+It is worth noting that the right hand side of \eqref{eq54} is the sewing of $\upphi$ and $\wr\tau_\Wbb$ ($=$the conformal block defined in \eqref{eq55}) corresponding the geometric sewing of $C$ and $\Pbb^1$ along the points $x_i,\infty$ with respect to their local coordinates $\eta_i,\zeta^{-1}$. In general, given an $(N+2)$-pointed compact Riemann surface with local coordinates $\wtd{\fk X}=(\wtd C;x_1,\dots,x_N,x',x'';\eta_1,\dots,\eta_N,\xi,\varpi)$ where each connected component of $\wtd C$ intersects $\{x_1,\dots,x_N\}$, if $\xi$ (resp. $\varpi$) is defined on a neighborhood $W'$ of $x'$ (resp. $W''$ of $x''$) such that $\xi(W')$ is the open disc $\mc D_r$ with radius $r$ (resp. $\varpi(W'')=\mc D_\rho$), and that $W'$ (resp. $W''$) contains only one point among $x_1,\dots,x_N,x',x''$. Then for each $0<|q|<r\rho$, we remove
+\begin{align*}
+F'=\{y\in W':|\xi(y)|\leq |q|/\rho\},\qquad F''=\{y\in W'':|\varpi(y)|\leq |q|/r\},	
+\end{align*}
+from $\wtd C$, and glue the remaining part by identifying all $y'\in W'$ with $y''\in W''$ if $\xi(y')\varpi(y'')=q$. As a result, we obtain a new compact Riemann surface $\mc C_q$ with marked points $x_1,\dots,x_N$ and local coordinates $\eta_1,\dots,\eta_N$. We denote this data by $\fk X_q$. Corresponding to this geometric sewing, we associated $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N,\Mbb,\Mbb'$ to the marked points $x_1,\dots,x_N,x',x''$ where $\Mbb'$ is contragredient to $\Mbb$, and assume that the modules are $\Nbb$-gradable (i.e., admissible) with grading operator $\wtd L_0$ such that each graded subspace is finite-dimensional. $q^{\wtd L_0}\in\End(\Mbb)[[q]]$ can be regarded as an element of  $\Mbb\otimes\Mbb'[[q]]$, which we denote by $q^{\wtd L_0}\btr\otimes\btl$. If $\uppsi:\Wbb_\blt\otimes\Mbb\otimes\Mbb'\rightarrow\Cbb$ is a conformal block associated to $\wtd{\fk X}$, we define a linear $\wtd{\mc S}\uppsi:\Wbb_\blt\rightarrow\Cbb[[q]]$ sending each $w\in\Wbb_\blt$ to
+\begin{gather}
+	\wtd{\mc S}\uppsi(w)=\uppsi(w\otimes q^{\wtd L_0}\btr\otimes\btl).\label{eq56}
+\end{gather}
+It was shown in \cite[Thm. 8.5.1]{DGT19b} that the above linear map defines a ``formal conformal block" (i.e., a ``conformal block" when $q$ is infinitesimal). If this series converges absolutely on $|q|<r\rho$, then it defines an actual conformal block associated to $\fk X_q$ \cite[Thm. 11.2]{Gui20}, called the \textbf{sewing} of $\uppsi$.
+
+In the above process, if $\wtd C$ is connected, then $\mc C_q$ is the self-sewing of $\wtd C$. For instance, if we sew the  $\fk X$ in the above example 3 along $0$ and $\infty$ to get a torus, we accordingly sew the conformal block \eqref{eq55} to obtain the (normalized) character of $\Wbb$-module $v\mapsto \Tr (Y(v,z)q^{\wtd L_0})$, which plays an important role in the early development of VOA theory. If $\wtd C$ has two connected component $\wtd C_1,\wtd C_2$, and if we sew $\wtd C$ along $x'\in\wtd C_1,x''\in\wtd C_2$, we obtain a connected sum of $\wtd C_1$ and $\wtd C_2$. If we choose $\wtd C=C\sqcup\Pbb^1$ and sew $\wtd C$ along $x_i\in C$ and $\infty\in\Pbb^1$, then at $q=1$, the corresponding sewing of the conformal blocks $\upphi$ and \eqref{eq55} is just \eqref{eq54}, and the new Riemann surface we get is naturally equivalent to $C$.
+
+
+
+\subsection*{Sewing and propagation}
+
+Now,  \eqref{eq54} indicates that propagation and sewing are related: when the inserted point $y$ is close to a marked point $x_i$, the propagation is defined by sewing. When $y$ is far from the marked points, the propagation is defined by analytic continuation (provided that it exists). 
+
+This observation actually gives us a new proof of the existence of propagation: when $y$ is close to a marked point $x_i$, we simply define the propagation by the series on the right hand side of \eqref{eq54}. The convergence of that series follows from \cite[10.1.1]{FB04}. Or, if we define conformal blocks to be those vanishing on the actions of certain global meromorphic $1$-forms of the sheaf of VOA $\scr V_C$ on $\Wbb_\blt$ (which is the definition we take in this article), namely, the ``dual definition" in \cite[10.1.2]{FB04}, then the convergence of the series, as well as the existence of the analytic continuation, follows from the Strong Residue Theorem (\cite[9.2.9]{FB04}, see also Thm. \ref{lb7}). That the right hand side of \eqref{eq54} defines a conformal block follows from the previously mentioned fact that the sewing of a conformal block is again a conformal block. See Sec. \ref{lb22} for details.
+
+
+In \cite{Gui20}, we have proved a very general result on the convergence of sewing conformal blocks, assuming that $\Vbb$ is CFT-type and $C_2$-cofinite, and the module $\Mbb$ is semi-simple. To prove the convergence, we have to establish a differential equation satisfied by the formal series  \eqref{eq56}, and the $C_2$-cofiniteness is crucial for finding that differential equation. Here, we see a different pattern for proving the convergence of sewing: \textit{if this sewing process is related to propagation, then its convergence follows from the Strong Residue Theorem}. In particular, $C_2$-cofinite (or CFT-type) is not needed for proving the convergence. (Note that in \cite{Gui20}, the main reason for assuming CFT-type when proving convergence is to use Buhl's result \cite{Buhl02}.)
+
+
+\subsection*{Main result: sewing and propagation are commuting}
+
+A main goal of this article (already mentioned in the abstract) is to take the above idea (i.e. proving the convergence using the Strong Residue Theorem) to the extreme: we prove that if (in the setting of \eqref{eq56}) $\wtd{\mc S}\uppsi$ converges absolutely on $|q|<r\rho$, then for distinct $y_1,\dots,y_n\in \wtd C$ away from $\{x_1,\dots,x_N\}$ and from $W',W''$ (therefor they are also  points on $\mc C_q$), $\wtd{\mc S}(\wr^n\uppsi_{y_1,\dots,y_n})$, the sewing of the $n$-propagation of $\uppsi$ at $y_1,\dots,y_n$, converges absolutely to $\wr^n{\wtd{\mc S}\uppsi}_{y_1,\dots,y_n}$. Moreover, the convergence should be uniform when $y_1,\dots,y_n$ vary on compact sets. More generally, we prove such result for the simultaneous sewing of $\wtd C$ along several pairs of points. See Thm. \ref{lb21} for details. Even more generally, we prove such result for families of compact Riemann surfaces (cf. Rem. \ref{lb23}).
+
+The above main result of this article can be summarized by
+\begin{align}
+\wr^n\wtd{\mc S}\uppsi=\wtd{\mc S}\wr^n\uppsi,	\label{eq57}
+\end{align}
+i.e. ``the propagation of sewing equals the sewing of propagation". Note that the non-trivial part of this result is  that the convergence of $\wtd{\mc S}\uppsi$ guarantees the convergence of $\wtd{\mc S}\wr^n\uppsi$. For if we assume or already know the convergence, then the equality \eqref{eq57} follows directly from the fact that $\wr^n\wtd{\mc S}\uppsi$ is the unique conformal block sending $\id\otimes\cdots\otimes\id\otimes w\in\Vbb^{\otimes n}\otimes\Wbb_\blt$ to $\wtd{\mc S}\uppsi(w)$ (cf. \eqref{eq53}).
+
+
+\subsection*{Applications}
+
+We give an application of this result. Let $\fk Y=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)$, associate $\Wbb_j$ to $x_j$ for each $j$, and choose a conformal block $\upphi:\Wbb_\blt\rightarrow\Cbb$ associated to $\fk Y$. Choose $1\leq i\leq N$. Let $\fk P=(\Pbb^1;0,\infty;\zeta,\zeta^{-1})$, and associate $\Wbb_i,\Wbb_i'$ to $0,\infty$. Then $\uppsi:=\upphi\otimes\uptau_{\Wbb_i}:\Wbb_\blt\otimes\Wbb_i\otimes\Wbb_i'\rightarrow\Cbb$ (recall \eqref{eq58}) is a conformal block associate to the disjoint union $\wtd{\fk X}=\fk Y\sqcup\fk P$. If we sew $\wtd{\fk X}$ along $x_i\in C$ and $\infty\in\Pbb^1$ at $q$, the new pointed Riemann surface with local coordinates $\fk X_q$ is
+\begin{align*}
+\fk X_q=(C;x_1,\dots,x_N;\eta_1,\dots,q^{-1}\eta_i,\dots,\eta_N),	
+\end{align*}
+and  (setting $w_\blt=w_1\otimes\cdots\otimes w_N$ as usual)
+\begin{align}
+\wtd{\mc S}\uppsi(w_\blt)=\upphi(w_1\otimes\cdots\otimes q^{\wtd L_0}w_i\otimes\cdots\otimes w_N),\label{eq59}
+\end{align}
+which clearly converges absolutely for all $q$. Assume $\eta_i$ is defined on an open disc $W_i\ni x_i$ such that $\eta_i(W_i)=\mc D_{r_i}$ has radius $r_i$, and that $W_i$ contains only $x_i$ among $x_1,\dots,x_N$. Choose $r>0$. Then, according to our main result, the sewing of $n$-propagation
+\begin{align*}
+&\wtd{\mc S}\wr^n\uppsi	(v_1\otimes\cdots\otimes v_n\otimes w_\blt)_{\eta_i^{-1}(qz_1),\dots,\eta_i^{-1}(qz_n)}\\
+=&\upphi(w_1\otimes\cdots\otimes w_{i-1} \otimes q^{\wtd L_0}\btr\otimes w_{i+1}\otimes\cdots\otimes w_N)\cdot\wr^n\uptau_{\Wbb_i}(v_1\otimes\cdots\otimes v_n\otimes w_i\otimes\btl)_{z_1,\dots,z_n}
+\end{align*}
+(assuming that the local coordinate at each $z_j\in\Pbb^1$ is $\zeta-z_j$, and the one at $\eta_i^{-1}(qz_j)\in C$ is $q^{-1}\eta_i-z_j$) converges absolutely and uniformly when $z_1,\dots,z_n$ vary on any compact set of the configuration space $\Conf^n(\mc D_r^\times)$ (where $\mc D_r^\times=\{z\in\Cbb:0<|z|<r\}$) and when $|q|<r_i/r$.
+
+We are especially interested in the case that $q=1$, which is accessible when $r<r_i$, namely, when $0<|z_1|,\dots,|z_n|<r_i$. Then $\wr^n\wtd{\mc S}\uppsi=\wtd{\mc S}\wr^n\uppsi$ implies (notice \eqref{eq59})
+\begin{align}
+&\wr^n\upphi(v_1\otimes\cdots\otimes v_n\otimes w_\blt)_{\eta_i^{-1}(z_1),\dots,\eta_i^{-1}(z_n)}\nonumber\\
+=&\upphi(w_1\otimes\cdots\otimes w_{i-1} \otimes \btr\otimes w_{i+1}\otimes\cdots\otimes w_N)\cdot\wr^n\uptau_{\Wbb_i}(v_1\otimes\cdots\otimes v_n\otimes w_i\otimes\btl)_{z_1,\dots,z_n}.\label{eq60}
+\end{align}
+In the special case that $0<|z_1|<\cdots<|z_n|<r_i$, the above relation becomes
+\begin{align}
+&\wr^n\upphi(v_1\otimes\cdots\otimes v_n\otimes w_\blt)_{\eta_i^{-1}(z_1),\dots,\eta_i^{-1}(z_n)}\nonumber\\
+=&\upphi\big(w_1\otimes\cdots\otimes Y(v_n,z_n)\cdots Y(v_1,z_1)w_i\otimes\cdots\otimes w_N\big)\label{eq61}	
+\end{align}
+where the right hand side converges absolutely. Zhu proved relation \eqref{eq61} in \cite[Thm. 6.2]{Zhu94} when $v_1,\dots,v_n$ are primary, or when the local coordinates are contained in a projective structure (i.e., an atlas whose transition functions are M\"obius transforms). But, as explained below, the general case, especially when $0<|z_1|=\cdots=|z_n|<r_i$, is also important.
+
+Take an automorphism $g$ of $\Vbb^{\otimes k}$ to be the permutation associated to the cycle $(12\cdots k)$. Starting from a $\Vbb$-module $\Wbb$, Barron-Dong-Mason constructed in \cite{BDM02} a (canonical) $g$-twisted $\Vbb^{\otimes k}$-module structure on the same vector space $\Wbb$. In particular, they explicitly described the twisted vertex operator $Y^g$ for vectors in $\Vbb^{\otimes k}$ of the form $\id\otimes\cdots\otimes v\otimes\cdots\otimes\id$. For an arbitrary vector of $\Vbb^{\otimes k}$, the $Y^g$  can then be described using normal ordering. Their proof that $Y^g$ satisfies the axioms of a $g$-twisted module is algebraic, and in particular relies on a previous algebraic result of \cite{Li96}. Recently, another algebraic proof was given by Dong-Xu-Yu in \cite{DXY21} using Zhu's algebras.
+
+Now, our observation in this article is that $Y^g(v_1\otimes\cdots\otimes v_k,z)$ can be described by $\wr^k\uptau_{\Wbb_i}$ at $(z_1,\dots,z_k)$, where $z_1,\dots,z_k$ are the distinct $k$-th roots of unity of $z$. Thus, using the consequences of our main result such as relation \eqref{eq60}, we can give a geometric proof that $Y^g$ satisfies the axioms of a $g$-twisted module. See \eqref{lb24} for details. Moreover,   our point of view will be generalized in \cite{Gui} to construct permutation twisted conformal blocks from untwisted ones, and vice versa.
+
+
+
+
+\subsection*{Outline}
+
+
+This article is organized as follows. In Section 2, we fix the geometric notations used in later sections, and define the (multi) propagations for an (analytic) family of compact Riemann surfaces. In the case of a single compact Riemann surface $C$ with marked points $S=\{x_1,\dots,x_N\}$, its $n$-propagation is easy to describe: If we let several distinct points $y_1,\dots,y_n$ move on $C\setminus S$, we obtain a family of compact Riemann surfaces (all isomorphic to $C$) with $N$ fixed marked points and $n$ varying points over the base manifold $\Conf^n(C\setminus S)$.
+
+We recall the definitions and basic properties of sheaves of VOAs (i.e. VOA bundles) and conformal blocks in Sections 3 and 4. In Section 5, we recall some important facts about the sewing of conformal blocks associated to the sewing of a family of compact Riemann surfaces. In Section 6, we relate sheaves of VOAs and the $\scr W$-sheaves which were naturally introduced to define (sheaves of) conformal blocks.
+
+In Section 7, we give a new proof of conformal block propagation for (analytic) families of compact Riemann surfaces. In particular, we prove that propagation is compatible (in the complex analytic sense) with the deformation of pointed compact Riemann surfaces. Roughly speaking, this means that if the original conformal blocks are parametrized by $\tau\in\mc B$ where $\mc B$ is the base manifold of the family, and if the propagation on each fiber is parametrized by $z$, then the propagation is a multivariable analytic function of $(z,\tau)$. The precise statement is formulated using the language of sheaves; see Thm. \ref{lb4}. These results were proved in \cite[Thm. 3.6]{Cod19} for CFT type VOAs using a Lie-theoretic method, which relies on the fact that such VOAs have PBW bases. As explained earlier, our proof is based on the idea of sewing, and relies on the Strong Residue Theorem and the fact that the sewing of conformal blocks are conformal blocks \cite[Thm. 11.2]{Gui20}, whose  formal version was proved in \cite{DGT19b}. 
+
+Note that here we should use the Strong Residue Theorem for analytic families of compact Riemann surfaces. This result is well-known, although we are not able to find a proof in the literature. So we include a proof in the Appendix Section A.
+
+We discuss elementary properties of multi-propagation in Section 8.  Most of these important properties were more or less known before (cf. \cite{FB04}) but not explicitly written down. We collect these results under Thm. \ref{lb17} so that they can be directly cited or used in future works on VOA. These results follow rather directly from those in the previous sections.
+
+The main theorem of this article, summarized by the slogan ``sewing commutes with propagation", is proved in Section 9. To give an application of this result, we construct in Section 10 permutation-twisted modules for tensor product VOAs.
+
+
+
+\subsection*{Acknowledgment}
+
+I would like to thank Nicola Tarasca for helpful discussions.
+
+
+
+
+
 \section{The geometric setting}\label{lb2}
 
 
-We set $\Nbb=\{0,1,2,\dots\}$ and $\Zbb_+=\{1,2,3,\dots\}$. Let $\Cbb^\times=\Cbb\setminus\{0\}$. \index{C@$\Cbb^\times$} For each $r>0$, we let $\mc D_r=\{z\in\Cbb:|z|<r\}$ and $\mc D_r^\times=\mc D_r\setminus\{0\}$. \index{Dr@$\mc D_r,\mc D_r^\times$} For any topological space $X$, we define the configuration space $\Conf^n(X)=\{(x_1,\dots,x_N)\in X^n:x_i\neq x_j~\forall 1\leq i<j<n\}$. \index{Conf@$\Conf^n(X)$}
+We set $\Nbb=\{0,1,2,\dots\}$ and $\Zbb_+=\{1,2,3,\dots\}$. Let $\Cbb^\times=\Cbb\setminus\{0\}$. \index{C@$\Cbb^\times$} For each $r>0$, we let $\mc D_r=\{z\in\Cbb:|z|<r\}$ and $\mc D_r^\times=\mc D_r\setminus\{0\}$. \index{Dr@$\mc D_r,\mc D_r^\times$} For any topological space $X$, we define the configuration space $\Conf^n(X)=\{(x_1,\dots,x_N)\in X^n:x_i\neq x_j~\forall 1\leq i<j\leq n\}$. \index{Conf@$\Conf^n(X)$}
 
 For each complex manifold $X$, $\scr O_X$ is the sheaf of holomorphic functions of $X$. For each $x\in X$ and any $\scr O_X$-module $\scr E$, $\scr E_x$ is the stalk of $\scr E$ at $x$. $\fk m_{X,x}$ (or simply $\fk m_x$ when no confusion arises)  is by definition $\{f\in\scr O_{X,x}:f(x)=0\}$. $\scr E|_x:=\scr E_x/\fk m_x\scr E_x\simeq\scr E\otimes_{\scr O_X}\scr O_{X,x}/\fk m_x$ is the fiber of $\scr E$ at $x$. More generally, if $Y$ is a closed complex sub-manifold of $X$ with $\scr I_Y$ being the ideal sheaf (the sheaf of all sections of $\scr O_X$ vanishing at $Y$), then the restriction $\scr E|_Y$ is defined to be $\scr E\otimes_{\scr O_X}\scr O_X/\scr I_Y$ (restricted to the set $Y$). We suppress the subscript $\scr O_X$ under $\otimes$ when taking tensor products of $\scr O_X$-modules. If $s$ is a section of $\scr E$, then $s|_Y$ is the corresponding value $s\otimes 1$ in $\scr E|_Y$. 
 
 
-(To the readers not familiar with the language of sheaf of modules: we only consider the case that $\scr E$ is locally free, i.e., a holomorphic vector bundle. Then $\scr E|_Y$ resp. $s|_Y$ is the usual restriction of the vector bundle resp. vector field to the submanifold $Y$.)
+(For the readers not familiar with the language of sheaf of modules: we only consider the case that $\scr E$ is locally free (with finite or infinite rank), i.e., a holomorphic vector bundle. Then $\scr E|_Y$ resp. $s|_Y$ is the usual restriction of the vector bundle resp. vector field to the submanifold $Y$.)
 
+If $\scr E$ is locally free, $\scr E^\vee$ denotes its dual vector bundle.
 
 For a Riemann surface $C$, its cotangent line bundle is denoted by $\omega_C$. \index{zz@$\omega_C$, $\omega_{\mc C_b}$}
 
@@ -280,7 +440,7 @@ A \textbf{family of compact Riemann surfaces} $\fk X$ is by definition a holomor
 \begin{align*}
 \fk X=(\pi:\mc C\rightarrow\mc B)	
 \end{align*}
-which is submersion and satisfies that each fiber $\mc C_b:=\pi^{-1}(b)$ (where $b\in\mc B$) is a (non-necessarily connected) compact Riemann surface.  
+that is a submersion and satisfies that each fiber $\mc C_b:=\pi^{-1}(b)$ (where $b\in\mc B$) is a (non-necessarily connected) compact Riemann surface.  
 
 %We let $\omega_{\mc C/\mc B}$ \index{zz@$\omega_{\mc C/\mc B}$} be the relative dualizing sheaves of the family $\pi:\mc C\rightarrow\mc B$, which is a line bundle. It is the inverse of the relative tangent bundle $\Theta_{\mc C/\mc B}$ whose sections are the tangent sections of $\mc C$ annihilated by $d\pi$. More concretely, for each open $U\subset\mc C$ and a holomorphic $\eta\in\scr O(U)$ which is injective on each fiber $U_b=U\cap\pi^{-1}(b)$ (where $b\in\mc B$) of $U$, we can represent a generic element of $\omega_{\mc C/\mc B}$ as $fd\eta$ where $f\in\scr O(U)$. The transformation law is given by $fd\eta=(\partial_\mu f)d\mu$ for another $\mu\in\scr O(U)$ injective on each fiber, where $\partial_\mu$ is the tangent section orthogonal to $d\pi$ and restricts to $\frac d{d\mu}$ on each fiber.
 
@@ -319,7 +479,7 @@ For each $1\leq j\leq N$, a \textbf{local coordinate} of $\fk X$ at $\sgm_j$ is 
 \end{align*}
 In particular, $S_{\fk X_b}=\sum_j\sgm_j(b)$ is a divisor of $\mc C_b$.
 
-We let $\fk X=\eqref{eq2}$ be $N$-pointed but not necessarily equipped with local coordinates. Define the \textbf{propagated family} $\wr\fk X$ as follows. Consider the commutative diagram 
+Now, we let $\fk X=\eqref{eq2}$ be $N$-pointed but not necessarily equipped with local coordinates. Define the \textbf{propagated family} $\wr\fk X$ as follows. Consider the commutative diagram 
 \begin{equation*}
 \begin{tikzcd}
 \mc C\times_{\mc B}(\mc C\setminus\SX) \arrow[r] \arrow[d, "\wr\pi"] & \mc C \arrow[d, "\pi"] \\
@@ -342,12 +502,12 @@ Then we obtain an $(N+1)$-pointed family $\wr\fk X$ of compact Riemann surfaces 
 \begin{align}
 \wr\fk X=(\wr\pi:\wr\mc C\rightarrow\wr\mc B;\sigma,\wr\sgm_1,\dots,\wr\sgm_N).	\label{eq7}
 \end{align}
+Intuitively, $\wr\fk X$ is the result of adding one extra marked point to each fiber $\mc C_b$ disjoint from $\SXb$, letting this marked point vary on $\mc C_b\setminus\SXb$ over all $b\in\mc B$, and fixing the other marked points.
 
 
 
 
-
-One can define multi-propagation inductively by $\wr^n\fk X=\wr\wr^{n-1}\fk X$. Write
+One can define multi-propagation inductively by $\wr^n\fk X=\wr\wr^{n-1}\fk X$, which corresponds to varying $n$ extra distinct points of $\mc C_b\backslash S_{\fk X_b}$. Write
 \begin{align*}
 \wr^n\fk X=(\wr^n\pi:\wr^n\mc C\rightarrow\wr^n\mc B;\sigma_1,\dots,\sigma_n,\wr^n\sgm_1,\dots,\wr^n\sgm_N).	
 \end{align*}
@@ -390,13 +550,13 @@ For any ($\Cbb$-)vector space $W$, we define four spaces of formal series \index
 W[[z]]=\bigg\{\sum_{n\in\mathbb N}w_nz^n:\text{each }w_n\in W\bigg\},\\
 W[[z^{\pm 1}]]=\bigg\{\sum_{n\in\mathbb Z}w_nz^n:\text{each }w_n\in W\bigg\},\\
 W((z))=\Big\{f(z):z^kf(z)\in W[[z]]\text{ for some }k\in\mbb Z \Big\},\\
-W\{z\}=\Big\{z^{a_1}f_1(z)+\cdots+z^{a_k}f_k(z):k\in\Zbb_+,a_1,\dots,a_k\in\Cbb,f_1,\dots,f_k\in W[[z^{\pm 1}]]\Big\}.
+W\{z\}=\bigg\{\sum_{n\in\mathbb \Cbb}w_nz^n:\text{each }w_n\in W\bigg\}.
 \end{gather*}
 
 
 Throughout this article, $\Vbb$ is a positive-energy vertex operator algebra (VOA) with vacuum $\id$ and conformal vector $\cbf$. We write $Y(v,z)=\sum_{z\in\Zbb}Y(v)_nz^{-n-1}$. Then $\{L_n=Y(\cbf)_{n+1}\}$ are Virasoro algebras, and $L_0$ gives grading $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$, where each $\Wbb(n)$ is finite-dimensional. 
 
-In this article,  a $\Vbb$-module $\Wbb$ means a \textbf{finitely-admissible $\Vbb$-module}. This means that $\Wbb$ is a weak $\Vbb$-module in the sense of \cite{DLM97}, that $\Wbb$ is equipped with a diagonalizable operator $\wtd L_0$ satisfying \index{L0@$\wtd L_0$}  
+In this article,  a $\Vbb$-module $\Wbb$ means a \textbf{finitely-admissible $\Vbb$-module}. This means that $\Wbb$ is a weak $\Vbb$-module in the sense of \cite{DLM97} with vertex operators $Y_\Wbb(v,z)=\sum_{n\in\Zbb}Y_\Wbb(v)_nz^{-n-1}$, that $\Wbb$ is equipped with a diagonalizable operator $\wtd L_0$ satisfying \index{L0@$\wtd L_0$}  
 \begin{align}\label{eq34}
 [\wtd L_0,Y_\Wbb(v)_n]=Y_\Wbb(L_0 v)_n-(n+1)Y_\Wbb(v)_n,	
 \end{align}
@@ -420,22 +580,22 @@ Therefore, if we let $\bk{\cdot,\cdot}$ be the pairing between $\Wbb$ and $\Wbb'
 
 
 
-The vertex operator of $\Wbb$ is denoted by $Y_\Wbb$. Write $Y_\Wbb(v,z)=\sum_{n\in\Zbb}Y_\Wbb(v)_nz^{-n-1}$, which gives a linear map $Y_\Wbb:\Vbb\otimes\Wbb\rightarrow \Wbb((z))$ sending $v\otimes w$ to $Y(v,z)w$. We will write $Y_\Wbb$ as $Y$ when the context is clear. By identifying $\Vbb$ with $\Vbb\otimes 1$ in $\Vbb\otimes\Cbb((z))$ and similarly $\Wbb$ with $\Wbb\otimes 1$ in $\Wbb\otimes\Cbb((z))$, $Y_\Wbb$ can be extended $\Cbb((z))$-bilinearly to \index{YW@$Y_\Wbb$}
+The vertex operator  $Y_\Wbb$ for $\Wbb$ (abbreviated as $Y$ in the following) gives a linear map $Y:\Vbb\otimes\Wbb\rightarrow \Wbb((z))$ sending $v\otimes w$ to $Y(v,z)w$. We will write $Y_\Wbb$ as $Y$ when the context is clear. By identifying $\Vbb$ with $\Vbb\otimes 1$ in $\Vbb\otimes\Cbb((z))$ and similarly $\Wbb$ with $\Wbb\otimes 1$ in $\Wbb\otimes\Cbb((z))$, $Y$ can be extended $\Cbb((z))$-bilinearly to \index{Y@$Y_\Wbb=Y$}
 \begin{gather}
 \begin{array}{c}
-Y_\Wbb:\Big(\Vbb\otimes\Cbb((z))\Big)\otimes\Big(\Wbb\otimes \Cbb((z))\Big)\rightarrow \Wbb\otimes\Cbb((z)),\\[1.5ex]
-Y_\Wbb(u\otimes f,z)w\otimes g=f(z)g(z)Y_\Wbb(u,z)w
+Y:\Big(\Vbb\otimes\Cbb((z))\Big)\otimes\Big(\Wbb\otimes \Cbb((z))\Big)\rightarrow \Wbb\otimes\Cbb((z)),\\[1.5ex]
+Y(u\otimes f,z)w\otimes g=f(z)g(z)Y(u,z)w
 \end{array}\label{eq3}
 \end{gather}
 (for each $u\in\Vbb,w\in\Wbb,f,g\in\Cbb((z))$). It can furthermore be extended to 
 \begin{align}
-Y_\Wbb:	\Big(\Vbb\otimes\Cbb((z))dz\Big)\otimes \Big(\Wbb\otimes\Cbb((z))\Big)\rightarrow \Wbb\otimes \Cbb((z))dz \label{eq4}
+Y:	\Big(\Vbb\otimes\Cbb((z))dz\Big)\otimes \Big(\Wbb\otimes\Cbb((z))\Big)\rightarrow \Wbb\otimes \Cbb((z))dz \label{eq4}
 \end{align}
 in an obvious way. Thus, for each $v\in\Vbb\otimes\Cbb((z))dz$, we can define the residue \index{Res@$\Res$}
 \begin{align}
-\Res_{z=0}~Y_\Wbb(v,z)w,\label{eq5}
+\Res_{z=0}~Y(v,z)w,\label{eq5}
 \end{align}
-which, in case $v=u\otimes fdz,w=m\otimes g$ where $u\in\Vbb$, $m\in\Wbb$,  and $f,g\in\Cbb((z))$, is the $\Wbb$-coefficient of  $f(z)g(z)Y_\Wbb(v,z)mdz$ before $z^{-1}dz$.
+which, in case $v=u\otimes fdz,w=m\otimes g$ where $u\in\Vbb$, $m\in\Wbb$,  and $f,g\in\Cbb((z))$, is the $\Wbb$-coefficient of  $f(z)g(z)Y(v,z)mdz$ before $z^{-1}dz$.
 
 We define a group $\Gbb=\{f\in\scr O_{\Cbb,0}:f(0)=0,f'(0)\neq 0\}$ \index{G@$\Gbb$} where the stalk $\scr O_{\Cbb,0}$ is the set of holomorphic functions defined on a neighborhood of $0$. The multiplication  rule of $\Gbb$ is the composition $\rho_1\circ\rho_2$ of any two elements $\rho_1,\rho_2\in\Gbb$. By \cite{Hua97}, for each $\Vbb$-module $\Wbb$, there is a homomorphism $\mc U:\Gbb\rightarrow\Wbb$ defined in the following way: If we choose the unique $c_0,c_1,c_2\dots\in\Cbb$ satisfying
 \begin{align*}
@@ -448,13 +608,13 @@ then we necessarily have $c_0=\rho'(0)$, and we set \index{U@$\mc U(\rho)$}
 If $X$ is a complex manifold,  a (holomorphic) \textbf{family of transformations} $\rho:X\rightarrow\Gbb$ is by definition an analytic function $\rho=\rho(x,z)=\rho_x(z)$ on a neighborhood of  $X\times\{0\}\subset X\times\Cbb$. Then $\mc U(\rho)$ (on each $\Wbb$) is defined pointwisely, which is an $\End(\Wbb)$-valued function on $X$ whose value at each $x\in X$ is $\mc U(\rho_x)$. $\mc U(\rho)$ can be regarded as an $\scr O_X$-module automorphism of $\Wbb\otimes_\Cbb\scr O_X$. 
 
 
-Let $\fk X=(\pi:\mc C\rightarrow\mc B)$ be a family of compact Riemann surfaces. Associated to $\fk X$ one can define a sheaf of $\scr O_X$-modules $\scr V_{\fk X}$ as follows. (See \cite[Sec. 5]{Gui20} for details.) First, suppose $U,V\subset\mc C$ are open subsets, and we have two holomorphic functions $\eta\in\scr O(U),\mu\in\scr O(V)$ locally injective (i.e., \'etale) on  each fiber $U_b:=U\cap\pi^{-1}(b),V_b=V\cap\pi^{-1}(b)$ ($b\in\mc B$) of $U$ and $V$ respectively. We can define a family of transformations $\varrho(\eta|\mu):U\cap V\rightarrow\Gbb$  as follows: for each $p\in\mc C$, both $\eta-\eta(p)$ and $\mu-\mu(p)$ restricts to an injective holomorphic function on the fiber $(U\cap V)_{\pi(p)}=U\cap V\cap\pi^{-1}(\pi(p))$ vanishing at $p$. Then $\varrho(\eta|\mu)_p\in\Gbb$ is determined by \index{zz@$\varrho(\eta\vert\mu)$}
+Let $\fk X=(\pi:\mc C\rightarrow\mc B)$ be a family of compact Riemann surfaces. Associated to $\fk X$ one can define a sheaf of $\scr O_X$-modules $\scr V_{\fk X}$ as follows. (Cf. \cite[Chapter 6, 17]{FB04}; our presentation follows \cite[Sec. 5]{Gui20}.) First, suppose $U,V\subset\mc C$ are open subsets, and we have two holomorphic functions $\eta\in\scr O(U),\mu\in\scr O(V)$ locally injective (i.e., \'etale) on  each fiber $U_b:=U\cap\pi^{-1}(b),V_b=V\cap\pi^{-1}(b)$ ($b\in\mc B$) of $U$ and $V$ respectively. We can define a family of transformations $\varrho(\eta|\mu):U\cap V\rightarrow\Gbb$  as follows: for each $p\in\mc C$, both $\eta-\eta(p)$ and $\mu-\mu(p)$ restricts to an injective holomorphic function on the fiber $(U\cap V)_{\pi(p)}=U\cap V\cap\pi^{-1}(\pi(p))$ vanishing at $p$. Then $\varrho(\eta|\mu)_p\in\Gbb$ is determined by \index{zz@$\varrho(\eta\vert\mu)$}
 \begin{align}
 \boxed{~\eta-\eta(p)\big|_{(U\cap V)_{\pi(p)}}	=\varrho(\eta|\mu)_p\big(\mu-\mu(p)\big|_{(U\cap V)_{\pi(p)}}\big)~}\label{eq10}
 \end{align}
 on a neighborhood of $0\in\Cbb$. Then $\mc U(\varrho(\eta|\mu))$ is an $\scr O_{U\cap V}$-module automorphism of $\Vbb\otimes_\Cbb\scr O_{U\cap V}$ which restricts to an automorphism of $\Vbb^{\leq n}\otimes_\Cbb\scr O_{U\cap V}$ for each $n\in\Nbb$. The cocycle condition $\varrho(\eta|\mu)\varrho(\mu|\nu)=\varrho(\eta|\nu)$ holds for any holomorphic function $\nu$ on a neighborhood of $\mc C$ which is injective on each fiber. 
 
-Thus, we can define $\scr V_{\fk X}^{\leq n}$ \index{V@$\scr V_{\fk X}^{\leq n},\scr V_{\fk X}$} to be the holomorphic vector bundle on $\mc C$ which associates to each open $U\subset\mc C$ and each $\eta\in\scr O(U)$ injective on fibers a trivialization (i.e., an isomorphism of $\scr O_U$-modules) \index{U@$\mc U_\varrho(\eta)$}
+Thus, we can define $\scr V_{\fk X}^{\leq n}$  to be the holomorphic vector bundle on $\mc C$ which associates to each open $U\subset\mc C$ and each $\eta\in\scr O(U)$ locally injective on fibers a trivialization (i.e., an isomorphism of $\scr O_U$-modules) \index{U@$\mc U_\varrho(\eta)$}
 \begin{align}
 \mc U_\varrho(\eta):\scr V_{\fk X}^{\leq n}|_U\xrightarrow{\simeq}\Vbb^{\leq n}\otimes_\Cbb\scr O_U	\label{eq1}
 \end{align}
@@ -466,13 +626,13 @@ If $n'>n$, we have clearly an  $\scr O_{\mc C}$-module monomorphism $\scr V_{\fk
 \begin{align*}
 \scr V_{\fk X}=\varinjlim_{n\in\Nbb}\scr V_{\fk X}^{\leq n}.
 \end{align*}
-Alternatively, one can directly define $\scr V_{\fk X}$ to be the $\scr O_{\mc C}$-module which is locally free and isomorphic to $\Vbb\otimes_\Cbb\scr O_U$ via a morphism $\mc U_\varrho(\eta)$, and whose transition function is given by $\mc U(\varrho(\eta|\mu))$. We call $\scr V_{\fk X}$ the \textbf{sheaf of VOA} associated to $\fk X$ and $\Vbb$.
+Alternatively, one can directly define $\scr V_{\fk X}$ to be the $\scr O_{\mc C}$-module which is locally free (of infinite rank) and isomorphic to $\Vbb\otimes_\Cbb\scr O_U$ via a morphism $\mc U_\varrho(\eta)$, and whose transition function is given by $\mc U(\varrho(\eta|\mu))$. We call $\scr V_{\fk X}$ the \textbf{sheaf of VOA} associated to $\fk X$ and $\Vbb$. If $\fk X$ is a single compact Riemann surface $C$, we write $\scr V_{\fk X}$ as $\scr V_C$. \index{V@$\scr V_{\fk X}^{\leq n},\scr V_{\fk X},\scr V_C$}
 
 For each fiber $\mc C_b$ (where $b\in\mc B$), we have a canonical equivalence
 \begin{align}
 \scr V_{\fk X}|_{\mc C_b}\simeq\scr V_{\mc C_b}\equiv\scr V_{\fk X_b}\label{eq15}
 \end{align}
-such that if these two $\scr O_{\mc C_b}$-modules are identified through this isomorphism, then  the restriction of the trivialization \eqref{eq1} to $U_b=U\cap\pi^{-1}(b)$ equals
+such that if these two $\scr O_{\mc C_b}$-modules are identified by this isomorphism, then  the restriction of the trivialization \eqref{eq1} to $U_b=U\cap\pi^{-1}(b)$ equals
 \begin{align*}
 \mc U_\varrho(\eta|_{\mc C_b}):\scr V_{\mc C_b}|_{U_b}\xrightarrow{\simeq}\Vbb\otimes_\Cbb\scr O_{U_b}.
 \end{align*}
@@ -511,14 +671,14 @@ This gives the definition of $\scr W_{\fk X}(\Wbb_\blt)$.
 
 In particular, $\scr W_{\fk X_b}(\Wbb_\blt)$ is a vector space equivalent to $\Wbb_\blt$ through $\mc U(\eta_\blt|_{\mc C_b})$. It is easy to see that for each $b\in\mc B$, the restriction $\scr W_{\fk X}(\Wbb_\blt)|_b$ (i.e., the fiber of the vector bundle at $b$) is naturally equivalent to $\scr W_{\fk X_b}(\Wbb_\blt)$:
 \begin{align}
-\scr W_{\fk X}(\Wbb_\blt)|_b\simeq	 \scr W_{\fk X_b}(\Wbb_\blt)\label{eq6}
+\scr W_{\fk X}(\Wbb_\blt)|_b\simeq	 \scr W_{\fk X_b}(\Wbb_\blt).\label{eq6}
 \end{align}
-This equivalence is uniquely determined by the fact that if we identify the two spaces, then  the restriction of $\mc U(\eta_\blt)$ to the map $\scr W_{\fk X_b}(\Wbb_\blt)\rightarrow\Cbb$ equals $\mc U(\eta_\blt|_{\mc C_b})$. 
+This equivalence is uniquely determined by the fact that if we identify the two spaces, then  the restriction of $\mc U(\eta_\blt)$ to the map $\scr W_{\fk X_b}(\Wbb_\blt)\rightarrow\Wbb_\blt$ equals $\mc U(\eta_\blt|_{\mc C_b})$. 
 
 %Thus, if $\mc B$ is small enough  we identify $\scr W_{\fk X}(\Wbb_\blt)$ with $\Wbb\otimes_\Cbb\scr O_{\mc B}$ via $\mc U(\eta|_\blt)$ and identify $\scr W_{\fk X|_b}(\Wbb_\blt)$ with $\Wbb_\blt$ via $\mc U(\eta_\blt|_{\mc C_b})$, then the 
 
 
-To define conformal blocks, we first consider the case that $\mc B$ is a single point. Then $C:=\mc C$ is a compact Riemann surface. Write $\scr V_{\fk X}$ as $\scr V_C$. Then we can define a linear action of $H^0(C,\scr V_C\otimes\omega_C(\star\SX))$ on $\scr W_{\fk X}(\Wbb_\blt)$ as follows. Choose any local coordinate $\eta_i$ of $C$ at the point $x_j:=\sgm_j(\mc B)$, defined on a neighboorhood $W_j$ of $x_j$ (so, in particular, $\eta_j(x_j)=0$). Note $\SX=\{x_1,\dots,x_N\}$. We assume
+To define conformal blocks, we first consider the case that $\mc B$ is a single point. Then $C:=\mc C$ is a compact Riemann surface. We can define a linear action of $H^0(C,\scr V_C\otimes\omega_C(\star\SX))$ on $\scr W_{\fk X}(\Wbb_\blt)$ as follows. Choose any local coordinate $\eta_i$ of $C$ at the point $x_j:=\sgm_j(\mc B)$, defined on a neighboorhood $W_j$ of $x_j$ (so, in particular, $\eta_j(x_j)=0$). Note $\SX=\{x_1,\dots,x_N\}$. We assume
 \begin{align*}
 W_j\cap\SX=\{x_j\}.	
 \end{align*}
@@ -536,13 +696,13 @@ Then for each $v\in H^0(C,\scr V_C\otimes\omega_C(\star\SX))$, we have a section
 \end{align*}
 for each $w_\blt\in\Wbb_\blt$, where the residue is defined as in \eqref{eq5}. That this definition is independent of the choice of local coordinates $\eta_\blt$ follows from \cite[Thm. 6.5.4]{FB04} (see also \cite[Thm. 3.2]{Gui20}), which relies on a crucial change of variable formula (cf. \cite[Thm. 3.3]{Gui20}) proved by Huang \cite{Hua97}.
 
-Now that we have linear action of $H^0(C,\scr V_C\otimes\omega_C(\star\SX))$ on $\scr W_{\fk X}(\Wbb_\blt)$, we say that a linear functional $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\Cbb$ is a \textbf{conformal block} (associated to $\fk X$ and $\Wbb_\blt$) exactly when $\upphi$ vanishes on the vector space
+Now that we have a linear action of $H^0(C,\scr V_C\otimes\omega_C(\star\SX))$ on $\scr W_{\fk X}(\Wbb_\blt)$, we say that a linear functional $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\Cbb$ is a \textbf{conformal block} (associated to $\fk X$ and $\Wbb_\blt$) exactly when $\upphi$ vanishes on the vector space
 \begin{align*}
 \scr J:=H^0(C,\scr V_C\otimes\omega_C(\star\SX))\cdot \scr W_{\fk X}(\Wbb_\blt)
 \end{align*}
-where $\Span_\Cbb$ is suppressed on the right hand side. The space of conformal blocks is denoted by $\scr T^*_{\fk X}(\Wbb_\blt)$.
+where $\Span_\Cbb$ is suppressed on the right hand side of the equality. %The space of conformal blocks is denoted by $\scr T^*_{\fk X}(\Wbb_\blt)$.
 
-Now we come back to the general setting that $\fk X$ is a family of $N$-pointed compact Riemann surfaces. Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be an $\scr O_{\mc B}$-module morphism. If locally we identify $\scr W_{\fk X}(\Wbb_\blt)|_V$ (where $V$ is an open subset of $\mc B$) with $\Wbb_\blt\otimes_\Cbb\scr O_V$, then $\upphi$ associates to each vector $w\in\Wbb_\blt$ (considered as the constant section $w\otimes 1\in\Wbb_\blt\otimes\scr O(V)$) a holomorphic function $\upphi(w)$ on $U$.
+Now we come back to the general setting that $\fk X$ is a family of $N$-pointed compact Riemann surfaces. Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be an $\scr O_{\mc B}$-module morphism, which can be understood in the following way: If locally we identify $\scr W_{\fk X}(\Wbb_\blt)|_V$ (where $V$ is an open subset of $\mc B$) with $\Wbb_\blt\otimes_\Cbb\scr O_V$, then $\upphi$ associates to each vector $w\in\Wbb_\blt$ (considered as the constant section $w\otimes 1\in\Wbb_\blt\otimes\scr O(V)$) a holomorphic function $\upphi(w)$ on $U$.
 
 
 \begin{df}
@@ -567,7 +727,7 @@ Let $N,M\in\Zbb_+$. Let
 \begin{align*}
 \wtd{\fk X}=(\wtd\pi:\wtd{\mc C}\rightarrow\wtd{\mc B};\sgm_1,\dots,\sgm_N;\sgm_1',\dots,\sgm_M';\sgm_1'',\dots,\sgm_M'';)
 \end{align*}
-be a family of $(N+2M)$-pointed compact Riemann surfaces, assuming that every connected component of each fiber intersects one of $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd{\mc B})$.  For each $1\leq j\leq M$,  we assume $\wtd{\fk X}$ has  local coordinates $\xi_j$ at $\sgm_j'(\wtd{\mc B})$ defined on a neighborhood $W_j'\subset\wtd{\mc C}$ of $\sgm_j'(\wtd{\mc B})$ and similarly $\varpi_j$ at $\sgm_j''(\wtd{\mc B})$ defined on a neighborhood $W_j''$. We assume all $W_j',W_j''$ ($1\leq j\leq M$) are mutually disjoint and are also disjoint from $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd {\mc B})$. We also assume that for each $1\leq j\leq M$, we can choose $r_j,\rho_j>0$  such that
+be a family of $(N+2M)$-pointed compact Riemann surfaces, assuming that every connected component of each fiber intersects one of $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd{\mc B})$.  For each $1\leq j\leq M$,  we assume $\wtd{\fk X}$ has  local coordinates $\xi_j$ at $\sgm_j'(\wtd{\mc B})$ defined on a neighborhood $W_j'\subset\wtd{\mc C}$ of $\sgm_j'(\wtd{\mc B})$ and similarly $\varpi_j$ at $\sgm_j''(\wtd{\mc B})$ defined on a neighborhood $W_j''$. We assume all $W_j',W_j''$ ($1\leq j\leq M$) are mutually disjoint and are also disjoint from $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd {\mc B})$, so that $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd {\mc B})$ remain after sewing. We also assume that for each $1\leq j\leq M$, we can choose $r_j,\rho_j>0$  such that
 \begin{gather}
 	(\xi_j,\wtd\pi):W_j'\xrightarrow{\simeq} \mc D_{r_j}\times\wtd{\mc B}\qquad\text{resp.}\qquad (\varpi_j,\wtd\pi):W_j''\xrightarrow{\simeq} \mc D_{\rho_j}\times\wtd{\mc B}\label{eq94}
 \end{gather}
@@ -590,9 +750,13 @@ of compact Riemann surfaces. Here, \index{Drrho@$\mc D_{r_\blt\rho_\blt}^\times$
 \end{gather*}
 $\fk X$ is described as follows.
 
-For each $b\in\wtd{\mc B}$, $\mc C_{(q_\blt,b)}$ is obtained by choosing $\wtd r_j<r_j,\wtd\rho_j<\rho_j$ satisfying $\wtd r_j\wtd \rho_j=|q_j|$, removing for each $j$ a closed disc in $W_j'$ (resp. in $W_j''$) slightly smaller than the circle $|\xi_j|=\wtd r_j$ (resp. $|\varpi_j|=\wtd\rho_j$), and then gluing the remaining part of the Riemann surface $\wtd {\mc C}_b$ by the relation $\xi_j\varpi_j=q_j$ for all $j$. This construction is independent of the choice of $\wtd r_j,\wtd \rho_j$.  This procedure can be performed in a consistent way over all $b\in\wtd{\mc B}$, which gives $\pi:\mc C\rightarrow\mc B$. See for instance \cite[Sec. 4]{Gui20} for details.\footnote{Indeed,  one can extend $\fk X$ to a slightly larger flat family of complex curves (with at worst nodal singularities) with base manifold $\mc D_{r_\blt\rho_\blt}\times\wtd{\mc B}$ (cf. for instance \cite[Sec. 4]{Gui20}).} 
+For each $q_\blt\in\mc D_{r_\blt\rho_\blt}^\times$ and $b\in\wtd{\mc B}$, the fiber $\mc C_{(q_\blt,b)}$ is obtained by  removing the closed discs 
+\begin{align*}
+F_{j,b}'=\{y\in W_j'\cap\wtd{\mc C}_b:|\xi_j(y)|\leq |q_j|/\rho_j\},\qquad F_{j,b}''=\{y\in W_j''\cap\wtd{\mc C}_b:|\varpi_j(y)|\leq |q_j|/r_j\}	
+\end{align*}
+(for all $j$) from $\wtd{\mc C}_b$, and gluing the remaining part of the Riemann surface $\wtd {\mc C}_b$ by identifying (for all $j$) $y'\in W_j'\cap \wtd{\mc C}_b$ with $y''\in W_j''\cap\wtd{\mc C}_b$ if $\xi_j(y')\varpi_j(y'')=q_j$. This procedure can be performed in a consistent way over all $b\in\wtd{\mc B}$, which gives $\pi:\mc C\rightarrow\mc B$. See for instance \cite[Sec. 4]{Gui20} for details.\footnote{Indeed,  one can extend $\fk X$ to a slightly larger flat family of complex curves (with at worst nodal singularities) with base manifold $\mc D_{r_\blt\rho_\blt}\times\wtd{\mc B}$ (cf. for instance \cite[Sec. 4]{Gui20}).} 
 
-Since $\Omega=\wtd{\mc C}\setminus \bigcup_j(W_j'\cup W_j'')$ is not affected when gluing, $\mc D_{r_\blt\rho_\blt}^\times\times\Omega$ can be viewed as a subset of $\fk X$, and the restriction of $\pi$ to this set is $\mc D_{r_\blt\rho_\blt}^\times\times\Omega\xrightarrow{1\otimes\wtd\pi}\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}=\mc B$. Thus, for each $1\leq i\leq N$ the section $\sgm_i$ for $\wtd{\fk X}$  defines the corresponding section $1\times\sgm_i:\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}\rightarrow \mc D_{r_\blt\rho_\blt}^\times\times\Omega$, also denoted by $\sgm_i$. A local coordinate $\eta_i$ of $\wtd{\fk X}$ at $\sgm_i(\wtd{\mc B})$ extends constantly over $\mc D_{r_\blt\rho_\blt}^\times$ to a local coordinate of $\fk X$ at $\sgm_i(\mc B)$, also denoted by $\eta_i$.
+Since $\Omega=\wtd{\mc C}\setminus \bigcup_j(W_j'\cup W_j'')$ is not affected by gluing, $\mc D_{r_\blt\rho_\blt}^\times\times\Omega$ can be viewed as a subset of $\fk X$, and the restriction of $\pi$ to this set is $\mc D_{r_\blt\rho_\blt}^\times\times\Omega\xrightarrow{1\otimes\wtd\pi}\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}=\mc B$. Thus, for each $1\leq i\leq N$ the section $\sgm_i$ for $\wtd{\fk X}$  defines the corresponding section $1\times\sgm_i:\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}\rightarrow \mc D_{r_\blt\rho_\blt}^\times\times\Omega$, also denoted by $\sgm_i$. A local coordinate $\eta_i$ of $\wtd{\fk X}$ at $\sgm_i(\wtd{\mc B})$ extends constantly over $\mc D_{r_\blt\rho_\blt}^\times$ to a local coordinate of $\fk X$ at $\sgm_i(\mc B)$, also denoted by $\eta_i$.
 
 
 
@@ -602,7 +766,7 @@ Since $\Omega=\wtd{\mc C}\setminus \bigcup_j(W_j'\cup W_j'')$ is not affected wh
 \subsection*{Sewing conformal blocks}
 	
 	
-We now define sewing conformal blocks associated to $\wtd{\fk X}$. Associate to $\sgm_1,\dots,\sgm_N$  $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$. Then we have $\scr W_{\wtd{\fk X}}(\Wbb_\blt)$ defined by $(\wtd\pi:\wtd{\mc C}\rightarrow\wtd{\mc B};\sgm_1,\dots,\sgm_N)$. For each open $\wtd V\subset\wtd{\mc B}$, $\scr W_{\wtd{\fk X}}(\Wbb_\blt)(\wtd V)$ can be identified canonically with a subspace of $\scr W_{\fk X}(\Wbb_\blt)(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V)$ consisting of sections of the latter which are constant with respect to sewing. More precisely, this identification is compatible with restrictions to open subsets of $\wtd V$; moreover, if $\wtd V$ is small enough such that $\wtd{\fk X}|_{\wtd V}$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\wtd V),\dots,\sgm_N(\wtd V)$ which give rise to $\eta_1,\dots,\eta_N$ of $\eta_1,\dots,\eta_N$ of $\fk X|_{\mc D_{r_\blt\rho_\blt}^\times\times\wtd V}$ at $\sgm_1(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V),\dots,\sgm_N(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V)$ (which are constant over $\mc D_{r_\blt\rho_\blt}^\times$), then the following diagram commutes:
+We now define sewing conformal blocks associated to $\wtd{\fk X}$. Associate to $\sgm_1,\dots,\sgm_N$  $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$. Then we have $\scr W_{\wtd{\fk X}}(\Wbb_\blt)$ defined by $(\wtd\pi:\wtd{\mc C}\rightarrow\wtd{\mc B};\sgm_1,\dots,\sgm_N)$. For each connected open $\wtd V\subset\wtd{\mc B}$, $\scr W_{\wtd{\fk X}}(\Wbb_\blt)(\wtd V)$ can be identified canonically with a subspace of $\scr W_{\fk X}(\Wbb_\blt)(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V)$ consisting of sections of the latter which are constant with respect to sewing. More precisely, this identification is compatible with restrictions to open subsets of $\wtd V$; moreover, if $\wtd V$ is small enough such that $\wtd{\fk X}|_{\wtd V}$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\wtd V),\dots,\sgm_N(\wtd V)$ which give rise to $\eta_1,\dots,\eta_N$ of $\eta_1,\dots,\eta_N$ of $\fk X|_{\mc D_{r_\blt\rho_\blt}^\times\times\wtd V}$ at $\sgm_1(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V),\dots,\sgm_N(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V)$ (which are constant over $\mc D_{r_\blt\rho_\blt}^\times$), then the following diagram commutes:
 \begin{equation}\label{eq28}
 \begin{tikzcd}
 \scr W_{\wtd{\fk X}}(\Wbb_\blt)(\wtd V) \arrow[r,hook] \arrow[dd,"\simeq"',"\mc U(\eta_\blt)"] &\scr W_{\fk X}(\Wbb_\blt)(\mc D_{r_\blt\rho_\blt}^\times\times\wtd V)\arrow[dd,"\simeq","\mc U(\eta_\blt)"']\\\\
@@ -625,7 +789,7 @@ where the order has be changed so that each $\Mbb_j'$ is next to $\Mbb_j$. We ca
 such that whenever $\wtd V\subset\wtd{\mc B}$ is open such that $\wtd{\fk X}|_{\wtd V}$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\wtd V),\dots,\sgm_N(\wtd V)$ as before, the following diagram commutes:
 \begin{equation}
 \begin{tikzcd}
-\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt')\big|_{\wtd V} \arrow[rr,leftrightarrow,"="] \arrow[ddr,"\simeq"',"{\mc U(\eta_\blt,\xi_\blt,\varpi\blt)}"] &&\scr W_{\wtd{\fk X}}(\Wbb_\blt)\big|_{\wtd V}\otimes_\Cbb\Mbb_\blt\otimes\Mbb_\blt'\arrow[ddl,"\simeq","\mc U(\eta_\blt)\otimes\id"']\\{}\\
+\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt')\big|_{\wtd V} \arrow[rr,leftrightarrow,"="] \arrow[ddr,"\simeq"',"{\mc U(\eta_\blt,\xi_\blt,\varpi_\blt)}"] &&\scr W_{\wtd{\fk X}}(\Wbb_\blt)\big|_{\wtd V}\otimes_\Cbb\Mbb_\blt\otimes\Mbb_\blt'\arrow[ddl,"\simeq","\mc U(\eta_\blt)\otimes\id"']\\{}\\
 &\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt'\otimes_\Cbb\scr O_{\wtd V} 
 \end{tikzcd}	
 \end{equation}
@@ -641,7 +805,7 @@ where for each $n\in\Nbb,s\in\Cbb$, $\{m{(n,a)}:a\in\fk A_{j,n}\}$ is a basis of
 	
 %Note that $\scr O_{\mc B}$ can be considered as inside $\scr O_{\wtd{\mc B}}[[q_1^{\pm 1},\dots,q_M^{\pm1}]]$ by taking Laurent series for each elements. In particular, $\scr O_{\wtd{\mc B}}[[q_1^{\pm 1},\dots,q_M^{\pm1}]]$ and similarly $\scr O_{\wtd{\mc B}}\{q_1,\dots,q_M\}$ are $\scr O_{\wtd{\mc B}}$-modules. 
 
-Now, for any conformal block $\uppsi:\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt')\rightarrow\scr O_{\wtd{\mc B}}$ associated to the family $\wtd{\fk X}$ and $\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt'$, we define $\scr O_{\wtd{\mc B}}$-module morphisms \index{S@$\wtd{\mc S}\uppsi$}
+Now, for any conformal block $\uppsi:\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt')\rightarrow\scr O_{\wtd{\mc B}}$ associated to the family $\wtd{\fk X}$ and $\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt'$, we define an $\scr O_{\wtd{\mc B}}$-module morphism \index{S@$\wtd{\mc S}\uppsi$}
 \begin{gather*}
 \wtd{\mc S}\uppsi:\scr W_{\wtd{\fk X}}(\Wbb_\blt)\rightarrow\scr O_{\wtd{\mc B}}[[q_1,\dots,q_M]]
 \end{gather*}
@@ -669,7 +833,7 @@ In the case that $f\in\scr O(X)[[q_1^{\pm 1},\dots,q_M^{\pm 1}]]$, it is clear f
 \end{df}
 
 \begin{df}
-We say that $\wtd{\mc S}\uppsi$ \textbf{converges a.l.u.} (on $\mc B=\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}$), if for any open subset $\wtd V\subset\wtd{\mc B}$ and any section $w$ of $\scr W_{\fk X}(\Wbb_\blt)(\wtd V)$, $\wtd{\mc S}\uppsi(w)$  converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times\times\wtd V$.
+We say that $\wtd{\mc S}\uppsi$ \textbf{converges a.l.u.} (on $\mc B=\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}$), if for any open subset $\wtd V\subset\wtd{\mc B}$ and any section $w$ of $\scr W_{\wtd{\fk X}}(\Wbb_\blt)(\wtd V)$, $\wtd{\mc S}\uppsi(w)$  converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times\times\wtd V$.
 \end{df}
 
 
@@ -684,13 +848,13 @@ If $\wtd{\mc S}\uppsi$ converges a.l.u. on  $\mc B=\mc D_{r_\blt\rho_\blt}^\time
 
 
 \begin{eg}\label{lb9}
-Let $\fk Y=(C;x_1,\dots,x_N)$ be an $N$-pointed compact Riemann surface with local coordinates $\eta_1,\dots,\eta_N$ at $x_1,\dots,x_N$, defined on neighborhoods $W_1,\dots,W_N$ satisfying $W_j\cap\{x_1,\dots,x_N\}=x_j$ for each $1\leq j\leq N$. Assume $\eta_1(W_1)=\mc D_r$ for some $r>0$. Let $z$ be the standard coordinate of $\Cbb$. Let $\wtd{\fk X}$ be the disjoint union of $\fk Y$ and $(\Pbb^1;0,1,\infty)$, namely, we have an $(N+3)$-pointed compact Riemann surface
+Let $\fk Y=(C;x_1,\dots,x_N)$ be an $N$-pointed compact Riemann surface with local coordinates $\eta_1,\dots,\eta_N$ at $x_1,\dots,x_N$, defined on neighborhoods $W_1,\dots,W_N$ satisfying $W_j\cap\{x_1,\dots,x_N\}=x_j$ for each $1\leq j\leq N$. Assume $\eta_1(W_1)=\mc D_r$ for some $r>0$. Let $\zeta$ be the standard coordinate of $\Cbb$. Let $\wtd{\fk X}$ be the disjoint union of $\fk Y$ and $(\Pbb^1;0,1,\infty)$, namely, we have an $(N+3)$-pointed compact Riemann surface
 \begin{align*}
 \wtd{\fk X}=(C\sqcup \Pbb^1;x_1,\dots,x_N,0,1,\infty).	
 \end{align*}
-We equip $\wtd{\fk X}$ with local coordinates $\eta_1,\dots,\eta_N,z,(z-1),z^{-1}$. The local coordinate $z$ at $0$ should be defined at $|z|<1$ so that no marked points other than $0$ is inside this region.
+We equip $\wtd{\fk X}$ with local coordinates $\eta_1,\dots,\eta_N,\zeta,(\zeta-1),\zeta^{-1}$. The local coordinate $\zeta$ at $0$ should be defined at $|z|<1$ so that no marked points other than $0$ is inside this region.
 
-We sew $\wtd{\fk X}$ along $x_1$ and $\infty$ using the chosen local coordinates $\eta_1$ and $1/z$ to obtain a family $\fk X$. Then
+We sew $\wtd{\fk X}$ along $x_1\in C$ and $\infty\in\Pbb^1$ using the chosen local coordinates $\eta_1$ and $1/\zeta$ to obtain a family $\fk X$. Then
 \begin{align*}
 \fk X=(\pi: C\times\mc D_r^\times\rightarrow\mc D_r^\times;x_1,x_2,\dots,x_N,\sgm)	
 \end{align*}
@@ -700,21 +864,21 @@ where $\pi$ is the projection onto the $\mc D_r^\times$-component, the sections 
 \end{align}
 are $q^{-1}\eta_1,\eta_2,\dots,\eta_N,q^{-1}(\eta_1-q)$. 
 
-Attach $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N,\Wbb_1,\Vbb,\Wbb_1'$ with simple $L_0$-grading to the marked points $x_1,\dots,x_N,0,1,\infty$ respectively of $\wtd{\fk X}$. Fix trivializations using the chosen local coordinates. Let $\upphi:\Wbb_1\otimes\cdots\otimes\Wbb_N\rightarrow\Cbb$ be a conformal block associated to $(C;x_1,\dots,x_N)$ and $\Wbb_1,\dots,\Wbb_N$. Let
+Attach $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N,\Wbb_1,\Vbb,\Wbb_1'$ with simple $L_0$-grading to the marked points $x_1,\dots,x_N,0,1,\infty$ respectively of $\wtd{\fk X}$. Fix the trivializations of $\scr W$-sheaves using the chosen local coordinates. Let $\upphi:\Wbb_1\otimes\cdots\otimes\Wbb_N\rightarrow\Cbb$ be a conformal block associated to $(C;x_1,\dots,x_N)$ and $\Wbb_1,\dots,\Wbb_N$. Let
 \begin{gather*}
 \upomega:\Wbb_1\otimes\Vbb\otimes\Wbb_1'\rightarrow\Cbb,	\\
 w\otimes u\otimes w'\mapsto \bk{Y(u,1)w,w'}=\sum_{n\in\Zbb}\bk{Y(u)_nw,w'},
 \end{gather*}
-which is a conformal block associated to $(\Pbb^1;0,1,\infty)$ and $\Wbb_1,\Vbb,\Wbb_1'$. Then $\uppsi:=\upphi\otimes\upomega$ is a conformal block for $\wtd{\fk X}$. Note that when $u,w$ are $\wtd L_0$-homogeneous  (i.e. eigenvectors of $\wtd L_0$) with eigenvalues (weights) $\wtd\wt(u),\wtd\wt(w)\in\Nbb$ respectively, by \eqref{eq34}, $Y(u)_nw$ is $\wtd L_0$-homogeneous with weight $\wtd\wt(u)+\wtd\wt(w)-n-1$. Then
+which is a conformal block associated to $(\Pbb^1;0,1,\infty)$ and $\Wbb_1,\Vbb,\Wbb_1'$. Then $\uppsi:=\upphi\otimes\upomega$ is a conformal block for $\wtd{\fk X}$. Note that when $u,w_1$ are $\wtd L_0$-homogeneous  (i.e. eigenvectors of $\wtd L_0$) with eigenvalues (weights) $\wtd\wt(u),\wtd\wt(w_1)\in\Nbb$ respectively, by \eqref{eq34}, $Y(u)_nw_1$ is $\wtd L_0$-homogeneous with weight $\wtd\wt(u)+\wtd\wt(_1)-n-1$. Then
 \begin{gather}
 \begin{array}{c}
 \wtd{\mc S}\uppsi:\Wbb_1\otimes\cdots\Wbb_N\otimes\Vbb\rightarrow\Cbb[[q]]\\[1.5ex]
-\wtd{\mc S}\uppsi(w_1\otimes\cdots\otimes w_N\otimes u)=\sum\limits_{n\in\Zbb} q^{\wtd\wt(u)+\wtd\wt(w)-n-1}\cdot\uppsi\big(Y(u)_nw_1\otimes w_2\otimes\cdots\otimes w_N \big)
+\wtd{\mc S}\uppsi(w_1\otimes\cdots\otimes w_N\otimes u)=\sum\limits_{n\in\Zbb} q^{\wtd\wt(u)+\wtd\wt(w_1)-n-1}\cdot\uppsi\big(Y(u)_nw_1\otimes w_2\otimes\cdots\otimes w_N \big)
 \end{array}	\label{eq29}
 \end{gather}
-when $u,w$ are $\wtd L_0$-homogeneous. 
+when $u,w_1$ are $\wtd L_0$-homogeneous. 
 
-From \cite[Sec. 10.1]{FB04} (or more generally, from the proof of the existence of $\wr\upphi$ of our Thm. \ref{lb4}), this series, and hence also $\mc S\uppsi$, converge a.l.u. on $\mc D_r^\times$ (i.e. when $0<|q|<r$). Then, by Theorem \ref{lb8}, for each $0<|q|<r$, \eqref{eq29} converges to a conformal block associated to $\fk X_q$ and the local coordinates mentioned after \eqref{eq31}. If we change the coordinates at $x_1$ and $\eta_1^{-1}(q)$ to $\eta_1$ and $\eta_1-q$ respectively, then in the formula \eqref{eq29},  $u$ and $w_1$ should be multiplied both by $q^{-\wtd L_0}$. Under the trivialization given by the new coordinates, $\wtd{\mc S}\uppsi(w_1\otimes\cdots\otimes w_N\otimes u)$ equals
+From \cite[Sec. 10.1]{FB04}, this series converges a.l.u. on $\mc D_r^\times$ (i.e. when $0<|q|<r$). (See the proof of Thm. \ref{lb4} for the detailed explanation.) Then, by Theorem \ref{lb8}, for each $0<|q|<r$, \eqref{eq29} converges to a conformal block associated to $\fk X_q$ and the local coordinates mentioned after \eqref{eq31}. If we change the coordinates at $x_1$ and $\eta_1^{-1}(q)$ to $\eta_1$ and $\eta_1-q$ respectively, then in the formula \eqref{eq29},  $u$ and $w_1$ should be multiplied both by $q^{-\wtd L_0}$. Under the trivialization given by the new coordinates, $\wtd{\mc S}\uppsi(w_1\otimes\cdots\otimes w_N\otimes u)$ equals
 \begin{align}
 \uppsi\big(Y(u,q)w_1\otimes w_2\otimes\cdots\otimes w_N \big):=\sum\limits_{n\in\Zbb} q^{-n-1}\cdot\uppsi\big(Y(u)_nw_1\otimes w_2\otimes\cdots\otimes w_N \big).\label{eq30}	
 \end{align}
@@ -738,7 +902,7 @@ Recall $\wr\fk X=(\wr\pi:\wr\mc C\rightarrow\wr\mc B;\sigma,\wr\sgm_1,\dots,\wr\
 \begin{align*}
 \scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\simeq	\scr V_{\fk X}\otimes\pi^*\scr W_{\fk X}(\Wbb_\blt)|_{\mc C\setminus\SX},
 \end{align*}
-which relates the sheaves of VOAs with the $\scr W$-sheaves.
+which relates the sheaves of VOAs and the $\scr W$-sheaves.
 
 Note that $\pi^*\scr W_{\fk X}(\Wbb_\blt)$ is the pullback sheaf $\scr W_{\fk X}(\Wbb_\blt)\otimes_{\scr O_{\mc B}}\scr O_{\mc C}$. This is the sheaf for the presheaf associating to each open $U\subset\mc C$ the $\scr O(U)$-module $\scr W_{\fk X}(\Wbb_\blt)\big(\pi(U)\big)\otimes_{\scr O(\pi(U))}\scr O(U)$. (Note that $\pi$ is an open map.)  Assume the restriction $\fk X_{\pi(U)}$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\pi(U)),\dots,\sgm_N(\pi(U))$. We write
 \begin{align*}
@@ -760,7 +924,7 @@ Choose $\mu\in\scr O(U)$ injective on each fiber of $U$. Then we have a triviali
 
 
 
-Now assume $U\subset\mc C\setminus\SX=\wr\mc B$. Then we can equip the family $\wr\fk X_U$ with local coordinates as follows. For the local coordinate at each submanifold $\wr\sgm_j(U)$ of $\wr\mc C_U=\wr\mc C\cap\wr\pi^{-1}(U)$, we choose $\eta_j$ defined by \index{zz@$\wr\eta_j$, $\wr^n\eta_j$}
+Now assume $U\subset\mc C\setminus\SX=\wr\mc B$. Then we can equip the family $\wr\fk X_U$ with local coordinates as follows. For the local coordinate at each submanifold $\wr\sgm_j(U)$ of $\wr\mc C_U=\wr\mc C\cap\wr\pi^{-1}(U)$, we choose $\wr\eta_j$ defined by \index{zz@$\wr\eta_j$, $\wr^n\eta_j$}
 \begin{gather}
 \wr\eta_j(x,y)=\eta_j(x)
 \end{gather}
@@ -778,7 +942,7 @@ We shall relate the two trivializations. First, we need a lemma. Recall $U\subse
 
 
 \begin{lm}\label{lb3}
-Suppose $\eta'_1,\dots,\eta_N'$ are local coordinates of $\fk X_{\pi(U)}$ at $\sgm_1(\pi(U)),\dots,\sgm_N(\pi_U)$ respectively, and $\mu'\in\scr O(U)$ is injective on each fiber of $U$. Then, for each $x\in U$, we have
+Suppose $\eta'_1,\dots,\eta_N'$ are local coordinates of $\fk X_{\pi(U)}$ at $\sgm_1(\pi(U)),\dots,\sgm_N(\pi(U))$ respectively, and $\mu'\in\scr O(U)$ is injective on each fiber of $U$. Then, for each $x\in U$, we have
 \begin{gather*}
 (\wr\eta_j|\wr\eta'_j)_x=(\eta_j|\eta_j')_{\pi(x)},\qquad (\triangle\mu|\triangle\mu')_x=\varrho(\mu|\mu')_x.
 \end{gather*}
@@ -788,7 +952,7 @@ Note that $(\wr\eta_j|\wr\eta'_j)$ is a family of transformations over $U\subset
 
 
 \begin{proof}
-We identify $\wr\mc C_x$ with $\mc C_{\pi(x)}$ by identifying $(y,x)\in\mc C\times_{\mc B}\mc C\setminus\SX$ with $y\in\mc C_{\pi(x)}$. Then, from the definition of $\wr\eta_j,\wr\eta_j;$, we clearly have $\wr\eta_j|_{\wr\mc C_x}=\eta_j|_{\mc C_{\pi(x)}}$ and $\wr\eta_j'|_{\wr\mc C_x}=\eta_j'|_{\mc C_{\pi(x)}}$. By \eqref{eq8}, we have
+We identify $\wr\mc C_x$ with $\mc C_{\pi(x)}$ by identifying $(y,x)\in\mc C\times_{\mc B}\mc C\setminus\SX$ with $y\in\mc C_{\pi(x)}$. Then, from the definition of $\wr\eta_j,\wr\eta_j'$, we clearly have $\wr\eta_j|_{\wr\mc C_x}=\eta_j|_{\mc C_{\pi(x)}}$ and $\wr\eta_j'|_{\wr\mc C_x}=\eta_j'|_{\mc C_{\pi(x)}}$. By \eqref{eq8}, we have
 \begin{gather*}
 (\wr\eta_j|\wr\eta_j')_x\circ\wr\eta_j'|_{\wr\mc C_x}=\wr\eta_j|_{\wr\mc C_x},\\
 (\eta_j|\eta_j')_{\pi(x)}\circ\eta_j'|_{\mc C_{\pi(x)}}=\eta_j|_{\mc C_{\pi(x)}}.
@@ -833,7 +997,7 @@ such that for any open $U\subset\mc C\setminus\SX$ and $\mu,\triangle\mu,\wr\eta
 
 
 \begin{proof}
-One can define the isomorphism $\Psi_{\fk X}$ such that the above diagram commutes. Such isomorphism is clearly unique. Thus, it remains to check that $\Psi_{\fk X}$ is well-defined. We will do so by checking that the transition functions of the two sheaves agree.
+One can define an isomorphism $\Psi_{\fk X}$ such that the above diagram commutes. Such isomorphism is clearly unique. Thus, it remains to check that $\Psi_{\fk X}$ is well-defined. We will do so by checking that the transition functions of the two sheaves agree.
 
 Assume $U$ is small enough such that we can have another set of $\mu',\eta_\blt'$ similar to $\mu,\eta_\blt$. Then by \eqref{eq11} and Lemma \ref{lb3}, for each $x\in U$, we have equalities
 \begin{align}
@@ -862,30 +1026,30 @@ which equals \eqref{eq14}.
 
 
 
-\section{Propagation of conformal blocks}
+\section{Propagation of conformal blocks}\label{lb22}
 
-Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be a conformal block associated to $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$ and a family $\fk X$ of $N$-pointed compact Riemann surfaces. Recall $\wr\mc C=\mc C\times_{\mc B}(\mc C\setminus\SX)$, $\wr\mc B=\mc C\setminus\SX$. The goal of this section is to prove:
+Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be a conformal block associated to $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$ and a family $\fk X$ of $N$-pointed compact Riemann surfaces. Recall $\wr\mc C=\mc C\times_{\mc B}(\mc C\setminus\SX)$, $\wr\mc B=\mc C\setminus\SX$. The goal of this section is to prove the following theorem. (Cf. \cite[Sec. 6]{Zhu94}, \cite[Thm. 10.3.1]{FB04}, \cite[Thm. 3.6]{Cod19}.)
 
 \begin{thm}\label{lb4}
 There is a unique $\scr O_{\mc C\setminus\SX}$-module morphism $\wr\upphi:\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{\mc C\setminus\SX}$ satisfying the  following property: \index{zz@$\wr\upphi$}
 
-"Choose any open subset $V\subset\mc B$  such that the restricted family $\fk X_V$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_j(V)$. For each $j$, we choose a neighborhood $W_j\subset\mc C_V$ of $\sgm_j(V)$ on which $\eta_j$ is defined, such that  any one of $\sgm_1(V),\dots,\sgm_N(V)$ other than $\sgm_j(V)$ does not intersect $W_j$. Identify 
+"Choose any open subset $V\subset\mc B$  such that the restricted family $\fk X_V$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_j(V)$. For each $j$, we choose a neighborhood $W_j\subset\mc C_V$ of $\sgm_j(V)$ on which $\eta_j$ is defined, such that $W_j$ intersects only $\sgm_j(V)$ among $\sgm_1(V),\dots,\sgm_N(V)$. Identify 
 \begin{align*}
-W_j=(\eta_j,\pi)(W_j)	
+W_j=(\eta_j,\pi)(W_j)	\qquad\text{via }(\eta_j,\pi)
 \end{align*}
-via $(\eta_j,\pi)$ so that $W_j$ is a neighborhood of $\{0\}\times V$ in $\Cbb\times V$. Let
+so that $W_j$ is a neighborhood of $\{0\}\times V$ in $\Cbb\times V$. Let
 \begin{align*}
 U_j:=W_j\setminus\SX=W_j\setminus(\{0\}\times V)	
 \end{align*}
 which is inside $\Cbb^\times\times V$. Let $z$ be the standard coordinate of $\Cbb$. Identify
 \begin{align*}
-\scr W_{\fk X}(\Wbb_\blt)\big|_V=\Wbb_\blt\otimes_\Cbb\scr O_V	
+\scr W_{\fk X}(\Wbb_\blt)\big|_V=\Wbb_\blt\otimes_\Cbb\scr O_V	\qquad\text{via }\mc U(\eta_\blt).
 \end{align*}
-through $\mc U(\eta_\blt)$. Identify 
+Identify 
 \begin{align}
-\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\big|_{U_j}=\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O_{U_j}\label{eq25}	
+\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\big|_{U_j}=\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O_{U_j}\qquad\text{via }\mc U(\triangle\eta_j,\wr\eta_\blt)\label{eq25}	
 \end{align}
-through $\mc U(\triangle\eta_j,\wr\eta_\blt)$ (cf. \eqref{eq17}). For each $u\in\Vbb,w_\blt\in\Wbb_\blt$, consider each vector of $\Wbb_\blt$ as a constant section of $\Wbb_\blt\otimes\scr O(U_j)$ and  $u\otimes w_\blt$ as a constant section of $\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O(U_j)$. Then the following equation holds on the level of $\scr O(V)[[z^{\pm 1}]]$:
+(cf. \eqref{eq17}). For each $u\in\Vbb,w_\blt\in\Wbb_\blt$, consider each vector of $\Wbb_\blt$ as a constant section of $\Wbb_\blt\otimes\scr O(U_j)$ and  $u\otimes w_\blt$ as a constant section of $\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O(U_j)$. Then the following equation holds on the level of $\scr O(V)[[z^{\pm 1}]]$:
 \begin{align}
 \boxed{~\upphi\big(w_1\otimes\cdots\otimes Y(u,z)w_j\otimes\cdots\otimes w_N\big)=\wr\upphi(u\otimes w_\blt)~}\label{eq18}
 \end{align}
@@ -901,7 +1065,7 @@ Note that the left hand side of \eqref{eq18} is understood as
 which is in $\scr O(U_j)((z))$.
 
 \begin{proof}[Proof of the uniqueness of $\wr\upphi$]
-It suffices to restrict to the propagation of each fiber $\fk X_b$, i.e., restrict $\wr\upphi$ to a morphism $\upphi|_{\wr(\fk X_b)}:\scr W_{\wr(\fk X_b)}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{\mc C_b\setminus \SXb}$.	(Note that $\wr(\fk X_b)$ is $\mc C_b\times(\mc C_b\setminus\SXb)\rightarrow\mc C_b\setminus\SXb$ with marked points.) By \eqref{eq18}, we know $\wr\upphi|_{\wr(\fk X_b)}$ is uniquely determined on $(W_1\cup\cdots\cup W_N)\cap\mc C_b$. For two possible propagations $\wr_1\upphi,\wr_2\upphi$, let $\Omega$ be the set of all $x\in\mc C_b\setminus\SXb$ on a neighborhood of which $\wr_1\upphi|_{\wr(\fk X_b)}$ agrees with $\wr_2\upphi|_{\wr(\fk X_b)}$. Then $\Omega$ is open and  intersect any connected component of $\mc C_b$. By complex analysis, it is clear that if $U$ is a simply-connected open subset of $\mc C_b\setminus\SXb$ intersecting $\Omega$ such that the restriction $\scr W_{\wr(\fk X_b)}(\Vbb\otimes\Wbb_\blt)|_U$ is equivalent to $\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O_U$, then $U\subset\Omega$. So $\Omega$ is closed, and hence must be $\mc C\setminus\SXb$. This proves the uniqueness.
+It suffices to restrict to the propagation of each fiber $\fk X_b$, i.e., restrict $\wr\upphi$ to a morphism $\upphi|_{\wr(\fk X_b)}:\scr W_{\wr(\fk X_b)}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{\mc C_b\setminus \SXb}$.	(Note that $\wr(\fk X_b)$ is $\mc C_b\times(\mc C_b\setminus\SXb)\rightarrow\mc C_b\setminus\SXb$ with marked points.) By \eqref{eq18}, we know $\wr\upphi|_{\wr(\fk X_b)}$ is uniquely determined on $(W_1\cup\cdots\cup W_N)\cap\mc C_b$. For two possible propagations $\wr_1\upphi,\wr_2\upphi$, let $\Omega$ be the set of all $x\in\mc C_b\setminus\SXb$ on a neighborhood of which $\wr_1\upphi|_{\wr(\fk X_b)}$ agrees with $\wr_2\upphi|_{\wr(\fk X_b)}$. Then $\Omega$ is open and  intersect any connected component of $\mc C_b$. By complex analysis, it is clear that if $U$ is a connected open subset of $\mc C_b\setminus\SXb$ intersecting $\Omega$ such that the restriction $\scr W_{\wr(\fk X_b)}(\Vbb\otimes\Wbb_\blt)|_U$ is equivalent to $\Vbb\otimes\Wbb_\blt\otimes_\Cbb\scr O_U$, then $U\subset\Omega$. So $\Omega$ is closed, and hence must be $\mc C\setminus\SXb$. This proves the uniqueness.
 \end{proof}
 
 \begin{proof}[Proof  of the existence of $\wr\upphi$]
@@ -912,24 +1076,24 @@ We identify $\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)$ with $\scr V_{\fk X}\otime
 
 For each $k\in\Nbb$, we let
 \begin{align*}
-	\scr E=(\scr V_{\fk X}^{\leq k})^\vee.	
+	\scr E=(\scr V_{\fk X}^{\leq k})^\vee	
 \end{align*}
-Then the identifications $W_j=(\eta_j,\pi)(W_j)$ and that
+be the dual bundle of $\scr V_{\fk X}^{\leq k}$. Then the identifications $W_j=(\eta_j,\pi)(W_j)$ and
 \begin{align}
-\scr V_{\fk X}^{\leq k}|_{W_j}=\Vbb^{\leq k}\otimes_\Cbb\scr O_{W_j}	\label{eq24}
+\scr V_{\fk X}^{\leq k}|_{W_j}=\Vbb^{\leq k}\otimes_\Cbb\scr O_{W_j} \qquad\text{via }\mc U_\varrho(\eta_j)	\label{eq24}
 \end{align}
-(identified via $\mc U_\varrho(\eta_j)$) are compatible with the identifications in Sec. \ref{lb6} if we set the $E_i$ in that section to be $(\Vbb^{\leq k})^\vee$. Choose any $w_\blt\in\Wbb_\blt$. Let $s_j=\sum_{n\in\Zbb}e_{j,n}\cdot z^n$ as in Sec. \ref{lb6} where each $e_{j,n}\in (\Vbb^{\leq k})^\vee\otimes_\Cbb\scr O(\mc B)$ is defined by
+are compatible with the identifications in Sec. \ref{lb6} if we set the $E_i$ in that section to be $(\Vbb^{\leq k})^\vee$. Choose any $w_\blt\in\Wbb_\blt$. Let $s_j=\sum_{n\in\Zbb}e_{j,n}\cdot z^n$ as in Sec. \ref{lb6} where each $e_{j,n}\in (\Vbb^{\leq k})^\vee\otimes_\Cbb\scr O(\mc B)$ is defined by
 \begin{align*}
 u\in\Vbb^{\leq k}\mapsto\upphi\big(w_1\otimes\cdots\otimes Y(u)_{-n-1}w_j\otimes\cdots\otimes w_N\big)\in\scr O(\mc B).
 \end{align*}
-For each $b\in\mc B$, since $\upphi|_b$ is a conformal block, it vanishes on $H^0(\mc C_b,\scr V_{\mc C_b}^{\leq k}\otimes\omega_{\mc C_b}(\star\SXb))\cdot w_\blt$. This means that $s_1,\dots,s_N$ satisfy condition (b) of Theorem \ref{lb7}. Hence, by that theorem, $s_1,\dots,s_N$ are series expansions of a unique element $s\in H^0(\mc C,(\scr V_{\fk X}^{\leq k})^\vee(\star\SX))$, which restricts to $s\in H^0(\mc C\setminus\SX,(\scr V_{\fk X}^{\leq k})^\vee)$ and hence defines an $\scr O_{\mc C\setminus\SX}$-module morphism $\scr V_{\fk X}^{\leq k}|_{\mc C\setminus\SX}\otimes_\Cbb w_\blt\rightarrow\scr O_{\mc C\setminus\SX}$. These morphisms are compatible for different $k$, and is extended $\scr O_{\mc C\setminus\SX}$-linearly to a morphism $\wr\upphi:\scr V_{\fk X}\otimes\pi^*\scr W_{\fk X}(\Wbb_\blt)\big|_{\mc C\setminus\SX}\rightarrow \scr O_{\mc C\setminus\SX}$ (recall \eqref{eq20}). 
+For each $b\in\mc B$, since $\upphi|_b$ is a conformal block, it vanishes on $H^0(\mc C_b,\scr V_{\mc C_b}^{\leq k}\otimes\omega_{\mc C_b}(\star\SXb))\cdot w_\blt$. This means that $s_1,\dots,s_N$ satisfy condition (c) of Theorem \ref{lb7}. Hence, by that theorem, $s_1,\dots,s_N$ are series expansions of a unique element $s\in H^0(\mc C,(\scr V_{\fk X}^{\leq k})^\vee(\star\SX))$, which restricts to $s\in H^0(\mc C\setminus\SX,(\scr V_{\fk X}^{\leq k})^\vee)$ and hence defines an $\scr O_{\mc C\setminus\SX}$-module morphism $\scr V_{\fk X}^{\leq k}|_{\mc C\setminus\SX}\otimes_\Cbb w_\blt\rightarrow\scr O_{\mc C\setminus\SX}$. These morphisms are compatible for different $k$, and is extended $\scr O_{\mc C\setminus\SX}$-linearly to a morphism $\wr\upphi:\scr V_{\fk X}\otimes\pi^*\scr W_{\fk X}(\Wbb_\blt)\big|_{\mc C\setminus\SX}\rightarrow \scr O_{\mc C\setminus\SX}$ (recall \eqref{eq20}). 
 
 By Prop. \ref{lb5}, we can regard $\wr\upphi$ as a morphism $\wr\upphi:\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{\mc C\setminus\SX}$. Note that the identifications \eqref{eq20} and \eqref{eq24} are compatible with \eqref{eq25}, thanks to the commutative diagram \eqref{eq26}. Thus, $\wr\upphi$  satisfies \eqref{eq18} under the required identifications.
 \end{proof}
 
 
 \begin{proof}[Proof that $\wr\upphi$ is a conformal block]
-It suffices to assume each $\Wbb_j$ has simple $L_0$-grading. Since being a conformal block is a fiberwise condition, we may prove $\wr\upphi$ is a conformal block by restricting it to each fiber $\fk X_b$ and its propagation $\wr(\fk X_b)$. Therefore, we may assume that $\mc B$ is a single point. So $C:=\mc C$ is a compact Riemann surface. We trim each $W_j$ so that $\eta_j(W_j)=\mc D_{r_j}$ for some $r_j>0$.
+Since being a conformal block is a fiberwise condition, we may prove $\wr\upphi$ is a conformal block by restricting it to each fiber $\fk X_b$ and its propagation $\wr(\fk X_b)$. Therefore, we may assume that $\mc B$ is a single point. So $C:=\mc C$ is a compact Riemann surface. We trim each $W_j$ so that $\eta_j(W_j)=\mc D_{r_j}$ for some $r_j>0$.
 
 From the previous proof, we have a morphism $\wr\upphi:\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{C\setminus\SX}$ which, given the trivializations in the statement of Theorem \ref{lb4}, is equal to \eqref{eq18} when restricted to $W_j\setminus\SX=W_j\setminus\{\sgm_j\}$. This shows that the series \eqref{eq18} converges a.l.u. on $0<|z|<r_j$. Therefore, as explained in Example \ref{lb9}, we can use Thm. \ref{lb8} to conclude that $\wr\upphi$ is a conformal block when restricted to each $W_j$. By Prop. \ref{lb10}, $\wr\upphi$ is globally a conformal block.
 \end{proof}
@@ -945,9 +1109,9 @@ Let $\fk X=(C;x_1,\dots,x_N)$ be an $N$-pointed connected compact Riemann surfac
 \end{pp}
 
 \begin{proof}
-Assume $\upphi$ vanishes on $\Wbb_1\otimes\Ebb_2\otimes\cdots\otimes\Ebb_N$. We shall show that $\upphi$ vanishes on $\Wbb_1\otimes Y(u)_n\Ebb_2\otimes\cdots\otimes\Ebb_N$ for each $u\in\Vbb,n\in\Zbb$. Then, repeating this result, we obtain that $\upphi$ vanishes on $\Wbb_1\otimes\Wbb_2\otimes\Ebb_3\otimes\cdots\otimes\Ebb_N$, and hence (by repeating again this procedure several times) vanishes on $\Wbb_1\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N$.
+Assume $\upphi$ vanishes on $\Wbb_1\otimes\Ebb_2\otimes\cdots\otimes\Ebb_N$. We shall show that $\upphi$ vanishes on $\Wbb_1\otimes Y(u)_n\Ebb_2\otimes\cdots\otimes\Ebb_N$ for each $u\in\Vbb,n\in\Zbb$. Then, by successively applying this result, we see that $\upphi$ vanishes on $\Wbb_1\otimes\Wbb_2\otimes\Ebb_3\otimes\cdots\otimes\Ebb_N$, and hence (by repeating again this procedure several times) vanishes on $\Wbb_1\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N$.
 
-Identify $\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)=\scr V_{\fk X}\big|_{\SX}\otimes_\Cbb\Wbb_\blt$ using \eqref{eq32}. Then we can consider $\wr\upphi$ as a morphism $\wr\upphi:\scr V_{\fk X}\big|_{C\setminus\SX}\otimes_\Cbb\Wbb_\blt\rightarrow\scr O_{C\setminus\SX}$. Let $\Omega$ be the open set of all $x\in C\setminus\SX$ such that $x$ has a neighborhood $U\subset C\setminus\SX$ such that the restriction
+Identify $\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)=\scr V_{\fk X}\big|_{C\setminus\SX}\otimes_\Cbb\Wbb_\blt$ using \eqref{eq32}. Then we can consider $\wr\upphi$ as a morphism $\wr\upphi:\scr V_{\fk X}\big|_{C\setminus\SX}\otimes_\Cbb\Wbb_\blt\rightarrow\scr O_{C\setminus\SX}$. Let $\Omega$ be the open set of all $x\in C\setminus\SX$ such that $x$ has a neighborhood $U\subset C\setminus\SX$ such that the restriction
 \begin{align*}
 \wr\upphi|_U:\scr V_{\fk X}|_U\otimes_\Cbb\Wbb_1\otimes\Ebb_2\otimes\cdots\otimes\Ebb_N\rightarrow\scr O_U	
 \end{align*}
@@ -963,13 +1127,13 @@ also vanishes. This finishes the proof.
 \end{proof}
 
 \begin{rem}\label{lb14}
-Since $\id$ generates $\Vbb$, we see that if $\Vbb,\Wbb_2,\dots,\Wbb_N$ (where $N\geq 2$) are associated to a connected $\fk X=(C;x_1,\dots,x_N)$, then any conformal block $\upphi:\Vbb\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N\rightarrow\Cbb$ is determined by its values on $\id\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N$. This proves the following two well-known results.
+Since $\id$ generates $\Vbb$, we see that if $\Vbb,\Wbb_2,\dots,\Wbb_N$ (where $N\geq 2$) are associated to a connected $\fk X=(C;x_1,\dots,x_N)$, then any conformal block $\upphi:\Vbb\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N\rightarrow\Cbb$ is determined by its values on $\id\otimes\Wbb_2\otimes\cdots\otimes\Wbb_N$. This proves the following two well-known results. In fact, in the literature, the propagation of conformal blocks is best known in the form of the following two corollaries.
 \end{rem}
 
 
 
 \begin{co}\label{lb13}
-Let $\fk X=(C;x_1,\dots,x_N)$ be an $N$-pointed compact Riemann surface associated with $\Vbb$-module $\Wbb_1,\dots,\Wbb_N$. Identify $\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)=\scr V_{\fk X}\big|_{\mc C\setminus\SX}\otimes_\Cbb\scr W_{\fk X}(\Wbb_\blt)$ through \eqref{eq32}. Then for each $x\in\mc C\setminus\SX$, $\wr\upphi|_x$ is the unique linear map $\scr V_{\fk X}\big|_x\otimes_\Cbb\scr W_{\fk X}(\Wbb_\blt)\rightarrow\Cbb$ which is a conformal block and satisfies
+Let $\fk X=(C;x_1,\dots,x_N)$ be an $N$-pointed compact Riemann surface associated with $\Vbb$-module $\Wbb_1,\dots,\Wbb_N$. Identify $\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)=\scr V_{\fk X}\big|_{\mc C\setminus\SX}\otimes_\Cbb\scr W_{\fk X}(\Wbb_\blt)$ via \eqref{eq32}. Then for each $x\in\mc C\setminus\SX$, $\wr\upphi|_x$ is the unique linear map $\scr V_{\fk X}\big|_x\otimes_\Cbb\scr W_{\fk X}(\Wbb_\blt)\rightarrow\Cbb$ which is a conformal block and satisfies
 \begin{align*}
 \wr\upphi|_x(\id\otimes w)=\upphi(w)	
 \end{align*}
@@ -980,8 +1144,8 @@ for each vector $w\in\scr W_{\fk X}(\Wbb_\blt)$.
 The uniqueness follows from the previous remark. We shall show that $\wr\upphi(\id\otimes w)$, which is an element of $\scr O(C\setminus\SX)$, equals the constant function $\upphi(w)$. By complex analysis, it suffices to prove $\wr\upphi(\id\otimes w)=\upphi(w)$ when restricted to each $W_j\setminus\{x_j\}$ (where $W_j$ is a small disc containing $x_j$ on which a local coordinate is defined). This is true by \eqref{eq18}.
 \end{proof}
 
-\begin{co}
-Let $\fk X=(C;x_1,\dots,x_N)$ be an $N$-pointed connected compact Riemann surface associated with $\Vbb$-module $\Wbb_1,\dots,\Wbb_N$. Choose $x\in C\setminus\{x_1,\dots,x_N\}$. Then the space of conformal blocks associated to $\fk X$ and $\Wbb_\blt$ is isomorphism to the space of conformal blocks associated to $(\wr\fk X)_x=(C;x,x_1,\dots,x_N)$ and $\Vbb,\Wbb_1,\dots,\Wbb_N$.
+\begin{co}\label{lb25}
+Let $\fk X=(C;x_1,\dots,x_N)$ be an $N$-pointed connected compact Riemann surface associated with $\Vbb$-module $\Wbb_1,\dots,\Wbb_N$. Choose $x\in C\setminus\{x_1,\dots,x_N\}$. Then the space of conformal blocks associated to $\fk X$ and $\Wbb_\blt$ is isomorphic to the space of conformal blocks associated to $(\wr\fk X)_x=(C;x,x_1,\dots,x_N)$ and $\Vbb,\Wbb_1,\dots,\Wbb_N$.
 \end{co}
 
 \begin{proof}
@@ -1009,7 +1173,7 @@ We define local coordinate \index{zz@$\wr\eta_j$, $\wr^n\eta_j$}
 \begin{align}
 	\wr^n\eta_j(x,y_1,\dots,y_n)=\eta_j(x)
 \end{align}
-of $\wr^n\fk X$ at $x_j\times\Conf^n(C\setminus\SX)$, defined on $W_j\times\Conf^n(C\setminus\SX)$. Suppose $U$ is an open subset of $C\setminus\SX$ which admits an injective $\mu\in\scr O(U)$, then we can define a local coordinate $\triangle_i\mu$ of $(\wr^n\fk X)_U$ at $\sigma_i(U)$ defined by \index{zz@$\triangle\mu$, $\triangle_i\mu$}
+of $\wr^n\fk X$ at $x_j\times\Conf^n(C\setminus\SX)$, defined on $W_j\times\Conf^n(C\setminus\SX)$. Suppose $U$ is an open subset of $C\setminus\SX$ which admits an injective $\mu\in\scr O(U)$. Then a local coordinate $\triangle_i\mu$ of $(\wr^n\fk X)_U$ at $\sigma_i(U)$ is defined by \index{zz@$\triangle\mu$, $\triangle_i\mu$}
 \begin{align}
 \triangle_i\mu(x,y_1,\dots,y_n)=\mu(x)-\mu(y_i)	
 \end{align}
@@ -1070,7 +1234,7 @@ Choose (non-necessarily disjoint) open $U_1,\dots,U_n\subset C$ and write \index
 \begin{align*}
 \Conf(U_\blt\setminus\SX)=(U_1\times\cdots\times U_n)\cap\Conf^n(C\setminus\SX).	
 \end{align*}
-Choose any sections $v_i\in\scr V_C(U_i)$ and any $w\in\scr W_{\fk X}(\Wbb_\blt)$, we write \index{zz@$\wr^n\upphi$}
+For any sections $v_i\in\scr V_C(U_i)$ and any $w\in\scr W_{\fk X}(\Wbb_\blt)$, we write \index{zz@$\wr^n\upphi$}
 \begin{align}
 \wr^n\upphi(v_1,\dots,v_n,w):=\wr^n\upphi\Big(\pr_1^*v_1\otimes\cdots\otimes\pr_n^*v_n\otimes w\big|_{\Conf(U_\blt\setminus\SX)}\Big)&\nonumber\\[1ex]
 \in\scr O\big(\Conf(U_\blt\setminus\SX)\big).&
@@ -1080,34 +1244,31 @@ We now summarize some important properties of $\wr^n\upphi$ in this setting.
 
 As an elementary fact, the map $(v_1,\dots,v_n)\mapsto\wr^n\upphi(v_1,\dots,v_n,w)$ intertwines the action of each $\scr O(U_i)$ on the $i$-th component. (Here, each $f\in\scr O(U_i)$ acts on $\scr O(\Conf(U_\blt\setminus\SX))$ by the multiplication of $(f\circ\pr_i)|_{\Conf(U_\blt\setminus\SX)}$). Moreover, it is compatible with restricting to open subsets of $U_i$.
 
+We set $\wr^0\upphi=\upphi$.
 
 \begin{thm}\label{lb17}
 Identify
 \begin{align*}
-\scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt	
+\scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt	\qquad\text{via }\mc U(\eta_\blt).
 \end{align*}
-using $\mc U(\eta_\blt)$. Choose any $w_\blt\in\Wbb_\blt$. For each $1\leq i\leq n$, choose an open subset  $U_i$  of $C$ equipped with an injective $\mu_i\in\scr O(U_u)$. Identify 
+Choose any $w_\blt\in\Wbb_\blt$. For each $1\leq i\leq n$, choose an open subset  $U_i$  of $C$ equipped with an injective $\mu_i\in\scr O(U_i)$. Identify 
 \begin{align*}
-U_i=\mu_i(U_i)	
+\scr V_C\big|_{U_i}=\Vbb\otimes_\Cbb\scr O_{U_i}\qquad\text{via }\mc U_\varrho(\mu_i).
 \end{align*}
-via $\mu_i$ so that $\mu_i$ is identified with the standard coordinate $z$. Identify 
-\begin{align*}
-\scr V_C\big|_{U_i}=\Vbb\otimes_\Cbb\scr O_{U_i}	
-\end{align*}
-via trivialization $\mc U_\varrho(\mu_k)$.  Choose $v_i\in\scr V_C(U_i)=\Vbb\otimes_\Cbb\scr O(U_i)$, and choose $(y_1,\dots,y_n)\in\Conf(U_\blt\setminus\SX)$. Then the following are true.
+Choose $v_i\in\scr V_C(U_i)=\Vbb\otimes_\Cbb\scr O(U_i)$. Choose $(y_1,\dots,y_n)\in\Conf(U_\blt\setminus\SX)$. Then the following are true.
 \begin{enumerate}[label=(\arabic*)]
-\item If $U_1=W_j$ (where $1\leq j\leq N$) and contains only $y_1,x_j$ of all the points $x_\blt,y_\blt$, if $\mu_1=\eta_j$, and if $U_1$ contains the closed disc with center $x_j$ and radius $|\eta_j(y_1)|$ (under the coordinate $\eta_j$), then
+\item If $U_1=W_j$ (where $1\leq j\leq N$) and contains only $y_1,x_j$ among all $x_\blt,y_\blt$, if $\mu_1=\eta_j$, and if $U_1$ contains the closed disc with center $x_j$ and radius $|\eta_j(y_1)|$ (under the coordinate $\eta_j$), then
 \begin{align}
 &\wr^n\upphi(v_1,v_2,\dots,v_n,w_\blt)\big|_{y_1,y_2,\dots,y_n}\nonumber\\
 =&\wr^{n-1}\upphi\big(v_2,\dots,v_n,w_1\otimes\cdots\otimes Y(v_1,z)w_j\otimes\cdots\otimes w_N\big)\big|_{y_2,\dots,y_n}~\big|_{z=\eta_j(y_1)}\label{eq35}
 \end{align}
-where the series of $z$ on the right hand side converges absolutely.
-\item If $U_1=U_2$ and contains only $y_1,y_2$ of all the  points $x_\blt,y_\blt$, if $\mu_1=\mu_2$, and if $U_2$ contains the closed disc with center $y_2$ and radius $|\mu_2(y_1)-\mu_2(y_2)|$ (under the coordinate $\mu_2$), then
+where the series of $z$ on the right hand side converges absolutely, and $v_1$ is considered as an element of $\Vbb\otimes\Cbb((z))$ by taking Taylor series expansion with respect to the variable $\eta_j$ at $x_j$.
+\item If $U_1=U_2$ and contains only $y_1,y_2$ among all $x_\blt,y_\blt$, if $\mu_1=\mu_2$, and if $U_2$ contains the closed disc with center $y_2$ and radius $|\mu_2(y_1)-\mu_2(y_2)|$ (under the coordinate $\mu_2$), then
 \begin{align}
 &\wr^n\upphi(v_1,v_2,v_3,\dots,v_n,w_\blt)\big|_{y_1,y_2,\dots,y_n}\nonumber\\
 =&\wr^{n-1}\upphi\big(Y(v_1,z)v_2,v_3,\dots,v_n,w_\blt\big)\big |_{y_2,\dots,y_n}~\big |_{z=\mu_2(y_1)-\mu_2(y_2)}\label{eq36}
 \end{align}
-where the series of $z$ on the right hand side converges absolutely.
+where the series of $z$ on the right hand side converges absolutely, and $v_1$ is considered as an element of $\Vbb\otimes\Cbb((z))$ by taking Taylor series expansion with respect to the variable $\mu_2-\mu_2(y_2)$ at $y_2$.
 \item  We have
 \begin{align}
 \wr^n\upphi(\id,v_2,v_3,\dots,v_n,w_\blt)=\wr^{n-1}\upphi(v_2,\dots,v_n,w_\blt).
@@ -1119,7 +1280,7 @@ where the series of $z$ on the right hand side converges absolutely.
 \end{enumerate}
 \end{thm}
 
-Note that the right hand side of \eqref{eq35} (resp. \eqref{eq36})  is defined via \eqref{eq3} by identifying $\scr O(U_1)$ with a subspace of $\Cbb[[z]]$ by taking the series expansions at $0=\eta_j(x_j)=x_j$ (resp. $\mu_2(y_2)=y_2$).
+%Note that the right hand side of \eqref{eq35} (resp. \eqref{eq36})  is defined via \eqref{eq3} by identifying $\scr O(U_1)$ with a subspace of $\Cbb[[z]]$ by taking the series expansions at $0=\eta_j(x_j)=x_j$ (resp. $\mu_2(y_2)=y_2$).
 
 \begin{proof}
 When $v_1,v_2$ are constant sections (i.e. in $\Vbb$), (1) and (2) follow from Thm. \ref{lb4} and especially formula \eqref{eq18}. The general case follows immediately. (3) follows from Cor. \ref{lb13}. By  (3), part (4) holds when $v_1,\dots,v_n$ are all the vacuum section $\id$. Thus, it hols for all $v_1,\dots,v_n$ due to Prop. \ref{lb12}.
@@ -1139,13 +1300,11 @@ where each connected component of $\wtd C$ contains one of $x_1,\dots,x_N$. For 
 \begin{align*}
 S_{\wtd{\fk X}}=\{x_1,\dots,x_N\}.	
 \end{align*}
-
-
 Also, for each $1\leq i\leq N$, choose a local coordinate $\eta_i$ at $x_i$. Identify
 \begin{align*}
-\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb'_\blt)=\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb'_\blt	
+\scr W_{\wtd{\fk X}}(\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb'_\blt)=\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb'_\blt	\qquad\text{via }\mc U(\eta_\blt,\xi_\blt,\varpi_\blt).
 \end{align*}
-through $\mc U(\eta_\blt,\xi_\blt,\varpi_\blt)$.
+
 
 
 We sew $\wtd{\fk X}$ along each $x_j',x_j''$ to obtain a family
@@ -1154,9 +1313,9 @@ We sew $\wtd{\fk X}$ along each $x_j',x_j''$ to obtain a family
 \end{align*}
 where the points $x_1,\dots,x_N$  on $\wtd C$  and the local coordinates $\eta_1,\dots,\eta_N$ at these points extend constantly (over $\mc D_{r_\blt\rho_\blt}^\times$) to sections and local coordinates of $\fk X$, denoted by the same symbols. (Cf. Sec. \ref{lb18}.) For each $q_\blt\in\mc D_{r_\blt\rho_\blt}^\times$, we identify
 \begin{align*}
-\scr W_{\fk X_{q_\blt}}(\Wbb_\blt)=\Wbb_\blt
+\scr W_{\fk X_{q_\blt}}(\Wbb_\blt)=\Wbb_\blt\qquad\text{via }\mc U(\eta_\blt).
 \end{align*}
-through $\mc U(\eta_\blt)$.
+
 
 Let $\upphi:\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt'\rightarrow\Cbb$ be a conformal block associated to $\wtd{\fk X}$ that converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times$. Let $U_1,\dots,U_n\subset \wtd C$ be open and disjoint from each $W_j',W_j''$. For each $q_\blt\in\mc D_{r_\blt\rho_\blt}^\times$, since the fiber $\mc C_{q_\blt}$ is obtained by removing a small part of each $W_j',W_j''\subset\wtd C$ and gluing the remaining part of $\wtd C$, we see that each $U_i$ can be regarded as an open subset of the fiber $\mc C_{q_\blt}$. By Thm. \ref{lb8},  \index{S@$\wtd{\mc S}_{q_\blt}\upphi$} 
 \begin{align*}
@@ -1166,25 +1325,25 @@ is a conformal block associated to $\fk X_{q_\blt}$. Thus, we can consider its $
 \begin{align*}
 \Conf(U_\blt\setminus\SXtd)=(U_1\times\cdots\times U_n)\cap\Conf^n(\wtd C\setminus\SXtd),	
 \end{align*}
-for each $v_i\in\scr V_{\wtd{\fk X}}(U_i)$ and $w_\blt\in\Wbb_\blt$,
+for each $v_i\in\scr V_{\wtd C}(U_i)=\scr V_{\mc C_{q_\blt}}(U_i)$ and $w_\blt\in\Wbb_\blt$,
 \begin{align*}
 \wr^n\wtd{\mc S}_{q_\blt}\upphi(v_1,\dots,v_n,w_\blt)\qquad\in\scr O(\Conf(U_\blt\setminus\SXtd)).
 \end{align*}
-This expression relies holomorphically on $q_\blt$ due to  Thm. \ref{lb4}. Thus, by varying $q_\blt$, we obtain
+This expression relies holomorphically on $q_\blt$ due to  Thm. \ref{lb4} (applied $n$ times). Thus, by varying $q_\blt$, we obtain
 \begin{align}
 \wr^n\wtd{\mc S}\upphi(v_1,\dots,v_n,w_\blt)\qquad\in\scr O\big(\mc D_{r_\blt\rho_\blt}^\times\times\Conf(U_\blt\setminus\SXtd)\big).	\label{eq37}
 \end{align}
 
 
-Since $\wr^n\upphi$ is a conformal block associated to $\wr^n\wtd{\fk X}$, we can talk about the a.l.u. convergence of its sewing $\wtd{\mc S}\wr^n\upphi$, which is a conformal block by Thm. \ref{lb8} again. In the setting of Thm. \ref{lb17}, this means that for each $v_i\in\scr V_{\wtd{\fk X}}(U_i)$ and $w_\blt\in\Wbb_\blt$
+Since $\wr^n\upphi$ is a conformal block associated to $\wr^n\wtd{\fk X}$, we can talk about the a.l.u. convergence of its sewing $\wtd{\mc S}\wr^n\upphi$, which is a conformal block by Thm. \ref{lb8} again. In the setting of Thm. \ref{lb17}, this means  for each $v_i\in\scr V_{\wtd C}(U_i)$ and $w_\blt\in\Wbb_\blt$ the a.l.u. convergence of
 \begin{align}
 \wtd{\mc S}\wr^n\upphi(v_1,\dots,v_n,w_\blt)&:=\wr^n\upphi\Big(v_1,\dots,v_n,w_\blt\otimes(q_1^{\wtd  L_0}\btr\otimes_1\btl)\otimes\cdots\otimes (q_M^{\wtd  L_0}\btr\otimes_M\btl)\Big)	\label{eq39}\\
 &\in\scr O(\Conf(U_\blt\setminus\SXtd))[[q_1,\dots,q_M]]\nonumber
 \end{align}
-converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times\times \Conf(U_\blt\setminus\SXtd)$ in the sense of Def. \ref{lb19}. Assuming this a.l.u. convergence, we can ask whether the value of this expression at $q_\blt$ equals \eqref{eq37}. The answer is Yes.
+on $\mc D_{r_\blt\rho_\blt}^\times\times \Conf(U_\blt\setminus\SXtd)$ in the sense of Def. \ref{lb19}. We may ask whether this convergence is true, and if it is true, whether the value of this expression at $q_\blt$ equals \eqref{eq37}. The answer is Yes.
 
 \begin{thm}\label{lb21}
-Assume $\upphi$ converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times$. Then for each open $U_1,\dots,U_n\subset \wtd C$ disjoint from $W_j',W_j''$ ($1\leq j\leq N$), each $v_i\in\scr V_{\wtd{\fk X}}(U_i)$ and $w_\blt\in\Wbb_\blt$, the relation
+Assume $\wtd{\mc S}\upphi$ converges a.l.u. on $\mc D_{r_\blt\rho_\blt}^\times$. Then for each open $U_1,\dots,U_n\subset \wtd C$ disjoint from $W_j',W_j''$ ($1\leq j\leq N$), each $v_i\in\scr V_{\wtd C}(U_i)$ and $w_\blt\in\Wbb_\blt$, the relation
 \begin{align}
 \wtd{\mc S}\wr^n\upphi(v_1,\dots,v_n,w_\blt)=	\wr^n\wtd{\mc S}\upphi(v_1,\dots,v_n,w_\blt)\label{eq38}
 \end{align}
@@ -1203,12 +1362,12 @@ We prove this theorem by induction on $n$. Let us assume the case for  $n-1$ is 
 
 Step 1.  Note that we can clearly shrink $\mc D_{r_\blt\rho_\blt}^\times$ since the formal series in \eqref{eq38} are independent of the size of this punctured polydisc. Therefore, we can also shrink each $W_j',W_j''$ to smaller discs, so that the interior of $\wtd C\setminus\bigcup_{1\leq j\leq M}(W_j'\cup W_j'')$ (denoted by $\mbf H$) is homotopic to $\mbf H_0=\wtd C\setminus\{x_1',\dots,x_M',x_1'',\dots,x_M''\}$. Therefore, since each connected component of $\wtd C$ (and hence each one of $\mbf H_0$) intersects $x_1,\dots,x_N$, each one of $\mbf H_0$ contains at least one of $W_1,\dots,W_N$. The same is true for $\mbf H$. So each connected component of $\mbf H\setminus\SXtd$ contains at lease one $W_j\setminus\{x_j\}$.
 
-Fix $U_2,\dots,U_n$ and $v_2,\dots,v_n,w_\blt$ as in the statement of this theorem. Let $\Omega$ be the open set of all $y_1\in\mbf H\setminus\SXtd$ which is contained in an open $U_1\subset\mbf H\setminus\SXtd$ such that  \eqref{eq38} holds for all $v_1\in\scr V_{\wtd{\fk X}}(U_1)$. By complex analysis, if $V_1\subset\mbf H\setminus\SXtd$ is open such that $\scr V_{\wtd{\fk X}}|_{V_1}$ is trivializable (e.g., when there is an injective element of $\scr O(V_1)$), then $V_1\subset\Omega$ whenever $V_1\cap \Omega\neq\emptyset$. So $\Omega$ is closed. Thus, if $\Omega$ intersects $W_1\setminus\{x_1\},\dots,W_N\setminus\{x_N\}$, then $\Omega=\mbf H\setminus\SXtd$, which finishes the proof.
+Fix $U_2,\dots,U_n$ and $v_2,\dots,v_n,w_\blt$ as in the statement of this theorem. Let $\Omega$ be the open set of all $y_1\in\mbf H\setminus\SXtd$ contained in an open $U_1\subset\mbf H\setminus\SXtd$ such that  \eqref{eq38} holds for all $v_1\in\scr V_{\wtd C}(U_1)$. By complex analysis, if $V_1\subset\mbf H\setminus\SXtd$ is open such that $\scr V_{\wtd C}|_{V_1}$ is trivializable (e.g., when there is an injective element of $\scr O(V_1)$), then $V_1\subset\Omega$ whenever $V_1\cap \Omega\neq\emptyset$. So $\Omega$ is closed. Thus, if $\Omega$ intersects $W_1\setminus\{x_1\},\dots,W_N\setminus\{x_N\}$, then $\Omega=\mbf H\setminus\SXtd$, which finishes the proof.
 
 Step 2. We show $\Omega$ intersects $W_1\setminus\{x_1\}$, and hence intersects the other $W_i\setminus\{x_i\}$ by a similar argument. Indeed, we shall show that \eqref{eq38} holds whenever $U_1=W_1$. 
 
 
-Note $w_\blt=w_1\otimes w_2\otimes\cdots\otimes w_N$ by convention. We let $w_\circ=w_2\otimes\cdots \otimes w_N$. Identify $W_1$ with $\eta_1(W_1)$ throught $W_1$ so that $\eta_1$ is identified with the standard coordinate $z$. Let $U_\circ=U_2\times\cdots\times U_n$. Identify $\scr V_{\wtd{\fk X}}|_{W_1}$ with $\Vbb\otimes_\Cbb\scr O_{W_1}$ through $\mc U_\varrho(\eta_1)$. Choose any $v_1\in\Vbb\otimes_\Cbb\scr O(W_1)$. Then by Thm. \ref{lb17},
+Note $w_\blt=w_1\otimes w_2\otimes\cdots\otimes w_N$ by convention. We let $w_\circ=w_2\otimes\cdots \otimes w_N$. Identify $W_1$ with $\eta_1(W_1)$ via $\eta_1$ so that $\eta_1$ is identified with the standard coordinate $z$. Let $\Conf(U_\circ\setminus\SXtd)=(U_2\times\cdots\times U_n)\cap\Conf^{n-1}(\wtd C\setminus\SXtd)$. Identify $\scr V_{\wtd C}|_{W_1}$ with $\Vbb\otimes_\Cbb\scr O_{W_1}$ using $\mc U_\varrho(\eta_1)$. Choose any $v_1\in\Vbb\otimes_\Cbb\scr O(W_1)$. Then by Thm. \ref{lb17},
 \begin{align*}
 \wtd{\mc S}\wr^n\upphi(v_1,v_2,\dots,v_n,w_\blt)=\wtd{\mc S}\wr^{n-1}\upphi(v_2,\dots,v_n,Y(v_1,z)w_1\otimes w_\circ)	
 \end{align*}
@@ -1224,18 +1383,18 @@ on this level. Since the above is an element of $\scr O(\mc D_{r_\blt\rho_\blt}^
 \end{proof}
 
 
-\begin{rem}
+\begin{rem}\label{lb23}
 We discuss how to generalize Thm. \ref{lb21} to the case that $\wtd{\fk X}$ is a family of compact Riemann surfaces as in Sec. \ref{lb18}. We assume the setting of that section, together with one more assumption that $\wtd{\fk X}$ has local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\wtd{\mc B}),\dots,\sgm_N(\wtd{\mc B})$ so that we can identify the $\scr W$-sheaves with the free ones using the trivialization $\mc U(\eta_\blt)$ or $\mc U(\eta_\blt,\xi_\blt,\varpi_\blt)$.
 
 We use freely the notations in Sec. \ref{lb18}. Let $\SXtd=\bigcup_{1\leq i\leq M}\sgm_i(\wtd{\mc B})$. Let
 \begin{align*}
 \upphi:\Wbb_\blt\otimes\Mbb_\blt\otimes\Mbb_\blt'\otimes_\Cbb\scr O_{\wtd{\mc B}}\rightarrow \scr O_{\wtd{\mc B}}	
 \end{align*}
-be a conformal block associated to $\wtd{\fk X}$ which converges a.l.u. on $\mc B=\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}$. Choose any open $U_1,\dots,U_n\subset\wtd{\mc C}$ disjoint from all $W_j',W_j''$. Choose $v_i\in\scr V_{\wtd{\fk X}}(U_i)$ and $w_\blt\in\Wbb_\blt$. Let $\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd)$ be the set of all $(y_1,\dots,y_n)\in\Conf(U_\blt\setminus\SXtd)$ satisfying $\wtd\pi(y_1)=\cdots=\wtd\pi(y_n)$.  For each $m_j\in\Mbb_j,m_j'\in\Mbb_j'$, we have
+be a conformal block associated to $\wtd{\fk X}$ converging a.l.u. on $\mc B=\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}$. Choose any open $U_1,\dots,U_n\subset\wtd{\mc C}$ disjoint from all $W_j',W_j''$. Choose $v_i\in\scr V_{\wtd{\fk X}}(U_i)$ and $w_\blt\in\Wbb_\blt$. Let $\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd)$ be the set of all $(y_1,\dots,y_n)\in\Conf(U_\blt\setminus\SXtd)$ satisfying $\wtd\pi(y_1)=\cdots=\wtd\pi(y_n)$.  For each $m_j\in\Mbb_j,m_j'\in\Mbb_j'$, we have
 \begin{align*}
 	\wr^n\upphi(v_1,\dots,v_n,w_\blt\otimes m_\blt\otimes m_\blt')\qquad \in\scr O(\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd))	
 \end{align*}
-whose restriction to each $\wtd{\mc C}_b^{\times n}$ (where $b\in\wtd{\mc B}$ is such that $\wtd{\mc C_b}$ intersects $U_1,\dots,U_n$) is $\wr^n(\upphi|_b)(v_1,\dots,v_n,w_\blt\otimes m_\blt\otimes m_\blt')$. (Indeed, this expression is a priori only a function which is holomorphic when restricted to each $\wtd{\mc C}_b^{\times n}$; that it is holomorphic on $\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd)$ (i.e., holomorphic when $b$ also varies) is due to Thm. \ref{lb4}.) Thus, we can define
+whose restriction to each $\wtd{\mc C}_b^{\times n}$ (where $b\in\wtd{\mc B}$ is such that $\wtd{\mc C_b}$ intersects $U_1,\dots,U_n$) is $\wr^n(\upphi|_b)(v_1,\dots,v_n,w_\blt\otimes m_\blt\otimes m_\blt')$. (Indeed, this expression is a priori only a function holomorphic when restricted to each $\wtd{\mc C}_b^{\times n}$; that it is holomorphic on $\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd)$ (i.e., holomorphic when $b$ also varies) is due to Thm. \ref{lb4}.) Thus, we can define
 \begin{align}
 \wtd{\mc S}\wr^n\upphi(v_1,\dots,v_n,w_\blt)\qquad\in\scr O(\Conf_{\wtd{\mc B}}(U_\blt\setminus\SXtd))[[q_1^{\pm 1},\dots,q_M^{\pm 1}]] \label{eq40}
 \end{align}
@@ -1254,7 +1413,7 @@ Consider \eqref{eq41} on the level of $\scr O(\Conf_{\wtd{\mc B}}(U_\blt\setminu
 
 
 
-\section{Application: twisted representations for permutation orbifold VOAs}
+\section{A geometric construction of permutation-twisted $\Vbb^{\otimes k}$-modules}\label{lb24}
 
 
 
@@ -1277,19 +1436,24 @@ In particular, for each $w\in\mc W$ the lower truncation condition follows: $Y^g
 \begin{align}
 Y^g(gu,z)=Y^g(u,e^{-2\im\pi}z):=\sum_{n\in \frac 1k \Zbb}Y^g(u)_nw\cdot e^{2(n+1)\im\pi}z^{-n-1}.\label{eq45}
 \end{align}
-\item (Jacobi identity-analytic version) Let $\mc W'=\bigoplus_{n\in\frac 1k\Nbb}\mc W(n)^*$. Let $P_n$ be the projection of $\mc W$ onto $\mc W(n)$ and also $\Vbb$ onto $\Vbb(n)$. Then for each $u,v\in\Ubb,w\in\mc W,w'\in\mc W'$, and for each $z\neq \xi$ in $\Cbb^\times$ with chosen $\arg z,\arg \xi$, the following series of $n$
+\item (Jacobi identity-analytic version) Let $\mc W'=\bigoplus_{n\in\frac 1k\Nbb}\mc W(n)^*$. Let $P_n$ be the projection of $\ovl{\mc W}=\coprod_{n\in\frac 1k\Nbb}\mc W(n)^*$ (the dual space of $\mc W'$) onto $\mc W(n)$ and similarly $\ovl{\Ubb}$ (the dual space of $\Ubb'$) onto $\Ubb(n)$. Then for each $u,v\in\Ubb,w\in\mc W,w'\in\mc W'$, and for each $z\neq \xi$ in $\Cbb^\times$ with chosen $\arg \xi$, the following series of $n$
 \begin{gather}
 \bk{Y^g(u,z)Y^g(v,\xi)w,w'}:=\sum_{n\in\frac 1k\Nbb}	\bk{Y^g(u,z)P_nY^g(v,\xi)w,w'}\label{eq50}\\
 \bk{Y^g(v,\xi)Y^g(u,z)w,w'}:=\sum_{n\in\frac 1k\Nbb}	\bk{Y^g(v,\xi)P_nY^g(u,z)w,w'}\label{eq51}\\
 \bk{Y^g(Y(u,z-\xi)v,\xi)w,w'}:=\sum_{n\in\Nbb}	\bk{Y^g(P_nY(u,z-\xi)v,\xi)w,w'}\label{eq52}
 \end{gather}
-converges absolutely when $|z|>|\xi|$, $|z|<|\xi|$, $|z-\xi|<|\xi|$ respectively. Moreover, for any fixed $\xi\in\Cbb^\times$ with chosen argument $\arg \xi$, let $R_{\xi}$ be the ray with argument $\arg \xi$ from $0$ to $\infty$, but with $0,\xi,\infty$ removed. Any point on $R_{\xi}$ is assumed to have argument $\arg \xi$. Then the above three expressions, considered as functions of $z$ defined on $R_{\xi}$ satisfying the three mentioned inequalities respectively, can be analytically continued to the same multivalued holomorphic function $f_{\xi}(z)$ on $\Cbb^\times\setminus\{\xi\}$ (i.e., a holomorphic function on the universal cover of $\Cbb^\times\setminus\{\xi\}$.)
+(where $\xi$ is fixed) converge a.l.u. for $z$ in $|z|>|\xi|$, $|z|<|\xi|$, $|z-\xi|<|\xi|$ respectively. Moreover, for any fixed $\xi\in\Cbb^\times$ with chosen argument $\arg \xi$, let $R_{\xi}$ be the ray with argument $\arg \xi$ from $0$ to $\infty$, but with $0,\xi,\infty$ removed. Any point on $R_{\xi}$ is assumed to have argument $\arg \xi$. Then the above three expressions, considered as functions of $z$ defined on $R_{\xi}$ satisfying the three mentioned inequalities respectively, can be analytically continued to the same holomorphic function on the open set
+\begin{align*}
+	\Updelta_\xi=\Cbb\setminus\{\xi,-t\xi:t\geq 0\},
+\end{align*}
+which can furthermore be extended to a multivalued holomorphic function $f_{\xi}(z)$ on $\Cbb^\times\setminus\{\xi\}$ (i.e., a holomorphic function on the universal cover of $\Cbb^\times\setminus\{\xi\}$).
 \end{enumerate}
 
+In the above Jacobi identity, if we let the series $\sum_n h_n(z)$ be any of \eqref{eq50}, \eqref{eq51}, \eqref{eq52}, then by saying that this series converges a.l.u. for $z$ in an open set $\Omega$, we mean $\sup_{z\in K}\sum_n|f_n(z)|<+\infty$ for each compact $K\subset\Omega$; the $\sup$ is over all $z\in K$ with all possible $\arg z$.
 
 
 \begin{rem}
-The above analytic version of Jacobi identity is equivalent to the usual algebraic one. Indeed, assume without loss of generality that $gu=e^{2\im j\pi/k}u$. Then the $g$-equivariance condition shows that $z^{\frac jk}Y^g(u,z)$ is single-valued over $z$. Thus,  $z^{\frac jk}$ times \eqref{eq50}, \eqref{eq51}, \eqref{eq52} are series expansions on $|z|>|\xi|$, $|z|<|\xi|$, $|z-\xi|<|\xi|$ respectively (not necessarily restricting to $R_\xi$) of the same single-valued holomorphic function $z^{\frac jk}f_\xi$ on $\Cbb^\times\setminus\{\xi\}$. By strong residue theorem, this is equivalent to that for each $m,n\in\Zbb$,
+The above analytic version of Jacobi identity is equivalent to the usual algebraic one. Indeed, assume without loss of generality that $gu=e^{2\im j\pi/k}u$. Then the $g$-equivariance condition shows that $z^{\frac jk}Y^g(u,z)$ is single-valued over $z$. Thus,  $z^{\frac jk}$ times \eqref{eq50}, \eqref{eq51}, \eqref{eq52} are series expansions on $|z|>|\xi|$, $|z|<|\xi|$, $|z-\xi|<|\xi|$ respectively (not necessarily restricting to $R_\xi$) of the same single-valued holomorphic function $z^{\frac jk}f_\xi$ on $\Cbb^\times\setminus\{\xi\}$. By Strong Residue Theorem, this is equivalent to that for each $m,n\in\Zbb$,
 \begin{align*}
 \Big(\oint_{|z|=2|\xi|}-\oint_{|z|=|\xi|/3}-\oint_{|z-\xi|=|\xi|/3}\Big)z^{\frac jk+m}(z-\xi)^nf_\xi(z)dz=0,
 \end{align*}
@@ -1324,14 +1488,16 @@ Let $\zeta$ be the standard coordinate of $\Cbb$. Let $\fk X=(\Pbb^1;0,\infty)$.
 \begin{align*}
 \mc U(\zeta,\zeta^{-1}):\scr W_{\fk X}(\Wbb\otimes\Wbb')\xrightarrow{\simeq}\Wbb\otimes\Wbb'	
 \end{align*}
-We define a conformal block
+Let  $\bk{\cdot,\cdot}$ be  the pairing for $\Wbb$ and $\Wbb'$. We define a conformal block
 \begin{gather*}
-\uptau_\Wbb:\scr W_{\fk X}(\Wbb\otimes\Wbb')\mapsto\Cbb,\\
-\mc U(\zeta,\zeta^{-1})^{-1}(w\otimes w')\mapsto \bk{w,w'}
+\uptau_\Wbb:\scr W_{\fk X}(\Wbb\otimes\Wbb')\rightarrow\Cbb,\\
+\mc U(\eta_0,\eta_\infty)^{-1}(w\otimes w')\mapsto \bk{w,w'}
 \end{gather*}
-where $\bk{\cdot,\cdot}$ is the pairing for $\Wbb$ and $\Wbb'$. In the setting of Thm. \ref{lb17}, we have
+whenever the local coordinates $\eta_0,\eta_\infty$ at $0,\infty$ is such that $(\Pbb^1;0,\infty;\eta_0,\eta_\infty)\simeq(\Pbb^1;0,\infty;\zeta,\zeta^{-1})$. It is easy to see that this definition is independent of the choice of such $\eta_0,\eta_\infty$. 
+
+In the setting of Thm. \ref{lb17}, we have
 \begin{gather*}
-\wr^k\uptau_\Wbb:\underbrace{\scr V_{\fk X}(\Cbb^\times)\otimes\cdots \otimes\scr V_{\fk X}(\Cbb^\times)}_k\otimes_\Cbb\scr W_{\fk X}(\Wbb\otimes\Wbb')\rightarrow\scr O(\Conf^k(\Cbb^\times))
+\wr^k\uptau_\Wbb:\underbrace{\scr V_{\fk X}(\Cbb^\times)\otimes\cdots \otimes\scr V_{\fk X}(\Cbb^\times)}_k\otimes\scr W_{\fk X}(\Wbb\otimes\Wbb')\rightarrow\scr O(\Conf^k(\Cbb^\times))
 \end{gather*}
 where all the $\otimes$ are over $\Cbb$. Let  \index{zz@$\omega_k=e^{-2\im\pi/k}$}
 \begin{align*}
@@ -1352,7 +1518,7 @@ Then, for each $w\in\Wbb,w'\in\Wbb'$, and for each $v_1,\dots,v_n\in\Vbb$ (consi
 \end{equation}
 where, for each $z\in\Cbb^\times$ with argument $\arg z$, \index{zz@$\omega_k^{\blt-1}\sqrt[k]{z}$}
 \begin{align}
-\omega_k^{\blt-1}\sqrt[k]{z}:=(\sqrt[k]{z},\omega_k\sqrt[k]{z},\omega_k^2\sqrt[k]{z},\dots,\omega_k^{k-1}\sqrt[k]{z})	\qquad \in\Conf^n(\Cbb^\times),\label{eq48}
+\omega_k^{\blt-1}\sqrt[k]{z}:=(\sqrt[k]{z},\omega_k\sqrt[k]{z},\omega_k^2\sqrt[k]{z},\dots,\omega_k^{k-1}\sqrt[k]{z})	\qquad \in\Conf^k(\Cbb^\times),\label{eq48}
 \end{align}
 and $\sqrt[k]z$ is assumed to have argument $\frac 1k\arg z$.
 
@@ -1363,29 +1529,29 @@ and $\sqrt[k]z$ is assumed to have argument $\frac 1k\arg z$.
 which defines $Y^g(v_\blt)_n$ as a linear map $\Wbb\otimes\Wbb'\rightarrow\Cbb$.
 
 \begin{lm}
-Each $Y^g(v_\blt)_n$ is a linear map on $\Wbb$. Moreover, \eqref{eq43} is satisfied.
+Each $Y^g(v_\blt)_n$ is a linear operator on $\Wbb$. Moreover, \eqref{eq43} is satisfied.
 \end{lm}
 
 \begin{proof}
-For each $q\in\Cbb^\times$ with chosen $\arg q$. By \eqref{eq11} we have
+For each $q\in\Cbb^\times$ with chosen $\arg q$, by \eqref{eq11} we have
 \begin{align*}
 \mc U(q^{\frac 1k}\zeta,q^{-\frac 1k}\zeta^{-1})\mc U(\zeta,\zeta^{-1})^{-1}=q^{\frac 1k\wtd L_0}\otimes q^{-\frac 1k\wtd L_0}=q^{\wtd L_0^g}\otimes q^{-\wtd L_0^g}.	
-\end{align*}
-By \eqref{eq12} and \eqref{eq10}, on $\Vbb$ we have
-\begin{align*}
-\mc U_\varrho(\zeta^k)\mc U_\varrho(q^{-1}\zeta^k)^{-1}=\mc U(\varrho(\zeta^k|q^{-1}\zeta^k))=q^{L_0}.	
 \end{align*}
 Thus
 \begin{align}
 &\bk{Y^g(v_\blt,z)q^{-\wtd L_0^g}w,q^{\wtd L_0^g}w'}\nonumber\\
-=&\wr^k\uptau_\Wbb\big(\mc U_\varrho(\zeta^k)^{-1}v_1,\dots,\mc U_\varrho(\zeta^k)^{-1}v_k,\mc U(q\zeta,q^{-1}\zeta^{-1})^{-1}(w\otimes w')\big)\Big|_{\omega_k^{\blt-1}\sqrt[k]z}.	\label{eq44}
+=&\wr^k\uptau_\Wbb\big(\mc U_\varrho(\zeta^k)^{-1}v_1,\dots,\mc U_\varrho(\zeta^k)^{-1}v_k,\mc U(q^{\frac 1k}\zeta,q^{-\frac 1k}\zeta^{-1})^{-1}(w\otimes w')\big)\Big|_{\omega_k^{\blt-1}\sqrt[k]z}.	\label{eq44}
 \end{align}
 We have an equivalence of pointed Riemann spheres with locally injective functions and local coordinates (at the last two marked points)
 \begin{align*}
 &(\Pbb^1;\omega_k^{\blt-1}\sqrt[k]z,0,\infty;\zeta^k,q^{\frac 1k}\zeta,q^{-\frac 1k}\zeta^{-1})\\
 \simeq&	(\Pbb^1;\omega_k^{\blt-1}\sqrt[k]{qz},0,\infty;q^{-1}\zeta^k,\zeta,\zeta^{-1})
 \end{align*}
-defined by $z\in\Pbb^1\mapsto \sqrt[k]{q}z\in\Pbb^1$, where $\sqrt[k]{q}$ has argument $\frac 1k\arg q$. So \eqref{eq44} equals
+defined by $z\in\Pbb^1\mapsto \sqrt[k]{q}z\in\Pbb^1$, where $\sqrt[k]{q}$ has argument $\frac 1k\arg q$. By \eqref{eq12} and \eqref{eq10}, on $\Vbb$ we have
+\begin{align*}
+	\mc U_\varrho(\zeta^k)\mc U_\varrho(q^{-1}\zeta^k)^{-1}=\mc U(\varrho(\zeta^k|q^{-1}\zeta^k))=q^{L_0}.	
+\end{align*}
+So \eqref{eq44} equals
 \begin{align*}
 &\wr^k\uptau_\Wbb\big(\mc U_\varrho(q^{-1}\zeta^k)^{-1}v_1,\dots,\mc U_\varrho(q^{-1}\zeta^k)^{-1}v_k,\mc U(\zeta,\zeta^{-1})^{-1}(w\otimes w')\big)\Big|_{\omega_k^{\blt-1}\sqrt[k]{qz}}\\
 =&\wr^k\uptau_\Wbb\big(\mc U_\varrho(\zeta^k)^{-1}q^{L_0}v_1,\dots,\mc U_\varrho(\zeta^k)^{-1}q^{L_0}v_k,\mc U(\zeta,\zeta^{-1})^{-1}(w\otimes w')\big)\Big|_{\omega_k^{\blt-1}\sqrt[k]{qz}}
@@ -1398,7 +1564,7 @@ So, if $L_0 v_\blt=\alpha v_\blt$, $\wtd L_0^gw=\beta w$, $\wtd L_0^g w'=\gamma 
 \begin{align*}
 \bk{Y^g(v_\blt,z)w,w'}=q^{\alpha+\beta-\gamma}\bk{Y^g(v_\blt,qz)w,w'},	
 \end{align*}
-which shows, by looking at the coefficients before  $z^{-n-1}$, that $\bk {Y^g(v_\blt)_nw,w'}$ equals $0$ unless $\alpha+\beta-\gamma-n-1=0$. This proves $Y^g(v_\blt)_n\mc W(\beta)\subset \mc W(\alpha+\beta-n-1)$. In particular, $Y^g(v_\blt)_n$ can be regarded as a linear map on $\mc W$.
+which shows, by looking at the coefficients before  $z^{-n-1}$, that $\bk {Y^g(v_\blt)_nw,w'}$ equals $0$ unless $\alpha+\beta-\gamma-n-1=0$. This proves $Y^g(v_\blt)_n\mc W(\beta)\subset \mc W(\alpha+\beta-n-1)$. In particular, $Y^g(v_\blt)_n$ can be regarded as a linear operator on $\mc W$.
 \end{proof}
 
 Using part (3) and (4) of Thm. \ref{lb17}, it is easy to show $Y^g(\id,z)=\id_{\mc W}$ and show \eqref{eq45}. Moreover:
@@ -1415,37 +1581,55 @@ f_\xi(z)=\wr^{2k}\uptau_\Wbb(u_1,\dots,u_k,v_1,\dots,v_k,w\otimes w')\Big|_{\ome
 \end{align}
 where $\omega_k^{\blt-1}\sqrt[k]{\xi}$ is a $k$-tuple understood in a similar way as \eqref{eq48}. Then $f_\xi$ is a multivalued holomorphic function which lifts to a single-valued one on the  $k$-fold covering space  $\Cbb^\times\setminus(\omega_k^{\blt-1}\sqrt[k]{\xi})$ of $\Cbb^\times\setminus\{\xi\}$.
 
-Let $(m_{n,\alpha})_{\alpha\in\fk A}$ be a set of basis of $\Wbb(n)$ with dual basis $(\wch m_{n,\alpha})_{\alpha\in\fk A}$. Assume $0<|z|<\xi$. We shall show that the following infinite sum over $n$
+Let $(m_{n,\alpha})_{\alpha\in\fk A}$ be a set of basis of $\Wbb(n)$ with dual basis $(\wch m_{n,\alpha})_{\alpha\in\fk A}$. Assume $0<|z|<|\xi|$. We shall show that the following infinite sum over $n$
 \begin{align}
 &\bk{Y^g(v_\blt,\xi)Y^g(u_\blt,z)w,w'}\nonumber\\
 =&\sum_{n\in\Nbb}\sum_{\alpha\in\fk A}\wr^k\uptau_\Wbb(u_1,\dots,u_k,w\otimes \wch m_{n,\alpha})_{\omega_k^{\blt-1}\sqrt[k]{z}}\cdot 	\wr^k\uptau_\Wbb(v_1,\dots,v_k,m_{n,\alpha}\otimes w')_{\omega_k^{\blt-1}\sqrt[k]{\xi}}\label{eq46}
 \end{align}
-converges absolutely to $f_\xi(z)$. Indeed, this expression is the sewing at $q=1$ of the $2k$-propagation of the conformal block
+converges a.l.u. to $f_\xi(z)$. Indeed, this expression is the sewing at $q=1$ of the $2k$-propagation of the conformal block
 \begin{gather*}
 \upphi:\Wbb\otimes\Wbb'\otimes\Wbb\otimes\Wbb'\rightarrow\Cbb,\\ w_1\otimes w_1'\otimes w_2	\otimes w_2'\mapsto \bk{w_1,w_1'}\cdot \bk{w_2,w_2'}
 \end{gather*}
-associated to $(\Pbb^1_a\sqcup\Pbb^1_b;0_a,\infty_a,0_b,\infty_b)$. Here, $\Pbb^1_a,\Pbb^1_b$ are two identical Riemann spheres.  The sewing is along $\infty_a$ and $0_b$ using local coordinates $\zeta,\zeta^{-1}$, and by choosing suitable open discs $W'\ni\infty_a,W''\ni 0_b$ with radius $r,\rho$ satisfying $r\rho>1$ such that $W',W''$ do not intersect $\omega_k^{\blt-1}\sqrt[k]{z}$ and $\omega_k^{\blt-1}\sqrt[k]{\xi}$. (Note that $|z|<|\xi|$ guarantees the existence of such $W',W''$.) Since the sewing of $\upphi$ clearly converges a.l.u. on a punctured open disc with radius $r\rho$, by Thm. \ref{lb21}, the sewing at $q=1$ of $\wr^{2k}\upphi$ (which is \eqref{eq46}) converges absolutely to the $2k$-propagation of the sewing, which is just $f_\xi(z)$. A similar argument shows that when $0<|\xi|<|z|$, $\bk{Y^g(u_\blt,z)Y^g(v_\blt,\xi)w,w'}$ converges absolutely to $f_\xi(z)$.
+associated to $(\Pbb^1_a\sqcup\Pbb^1_b;0_a,\infty_a,0_b,\infty_b)$. Here, $\Pbb^1_a,\Pbb^1_b$ are two identical Riemann spheres.  The sewing is along $\infty_a$ and $0_b$ using local coordinates $\zeta,\zeta^{-1}$, and by choosing suitable open discs $W'\ni\infty_a,W''\ni 0_b$ with radius $r,\rho$ satisfying $r\rho>1$ such that $W',W''$ do not intersect $\omega_k^{\blt-1}\sqrt[k]{z}$ and $\omega_k^{\blt-1}\sqrt[k]{\xi}$. (Note that $|z|<|\xi|$ guarantees the existence of such $W',W''$.) Since the sewing of $\upphi$ clearly converges a.l.u. on $\mc D_{r\rho}^\times$, by Thm. \ref{lb21}, the sewing at $q=1$ of $\wr^{2k}\upphi$ (which is \eqref{eq46}) converges a.l.u. (for varying $z$) to the $2k$-propagation of the sewing, which is just $f_\xi(z)$. A similar argument shows that when $0<|\xi|<|z|$, $\bk{Y^g(u_\blt,z)Y^g(v_\blt,\xi)w,w'}$ converges a.l.u. (for varying $z$) to $f_\xi(z)$.
 
 
 
-Consider $g_\xi\in\Conf^n(\Cbb\setminus\omega_k^{\blt-1}\sqrt[k]{\xi})$ defined by
+Consider $g_\xi\in\Conf^k(\Cbb\setminus\omega_k^{\blt-1}\sqrt[k]{\xi})$ defined by
 \begin{align*}
 g_\xi(z_1,\dots,z_k)=\wr^{2k}\uptau_\Wbb(u_1,\dots,u_k,v_1,\dots,v_k,w\otimes w')\Big|_{z_1,\dots,z_k,~\omega_k^{\blt-1}\sqrt[k]{\xi}}.	
 \end{align*}
-The region $\Omega=\{z\in\Cbb^\times:|z^k-\xi|<|\xi|\}$ has $k$ connected components $\Omega_1,\dots,\Omega_k$, each one $\Omega_i$ contains exactly one element $\omega_k^{i-1}\sqrt[k]{\xi}$ of $\omega_k^{\blt-1}\sqrt[k]{\xi}$, and $\Omega_i\simeq\zeta^k(\Omega_i)$ where $\zeta^k(\Omega_i)$ is the open disc with center $\xi$ and radius $|\xi|$. By Thm. \ref{lb17}-(2) and the definition \eqref{eq42}, whenever $z_i\in\Omega_i$ for each $i$, we have  (letting $x_1,\dots,x_k$ be formal variables)
+The region $\Omega=\{z\in\Cbb^\times:|z^k-\xi|<|\xi|\}$ has $k$ connected components $\Omega_1,\dots,\Omega_k$, each one $\Omega_i$ contains exactly one element $\omega_k^{i-1}\sqrt[k]{\xi}$ of $\omega_k^{\blt-1}\sqrt[k]{\xi}$, and $\Omega_i\simeq\zeta^k(\Omega_i)$ where $\zeta^k(\Omega_i)$ is the open disc with center $\xi$ and radius $|\xi|$. By Thm. \ref{lb17} and the definition \eqref{eq42}, whenever $z_i\in\Omega_i$ for each $i$, we have  (letting $x_1,\dots,x_k$ be formal variables)
 \begin{align}
 &g_\xi(z_1,\dots,z_k)\nonumber\\
 =&\wr^k\uptau_\Wbb(Y(u_1,x_1)v_1,\dots,Y(u_k,x_k)v_k,w\otimes w')\Big|_{\omega_k^{\blt-1}\sqrt[k]{\xi}}\Big|_{x_k=z_k^k-\xi}\cdots \Big|_{x_1=z_1^k-\xi}\nonumber\\
 =&\bk{Y^g(Y(u_1,x_1)v_1\otimes\cdots\otimes Y(u_k,x_k)v_k,\xi)w,w'}\Big|_{x_k=z_k^k-\xi}\cdots \Big|_{x_1=z_1^k-\xi}.\label{eq49}
 \end{align}
-where the right hand side converges absolutely and successively for $x_k,x_{k-1},\dots,x_1$. Since the simultaneous Laurent series expansion of the holomorphic function $h(\varkappa_1,\dots\varkappa_k)=g_\xi(\sqrt[k]{\xi+\varkappa_1},\dots \sqrt[k]{\xi+\varkappa_1})$ in the region $0<|\varkappa_i|<|\xi|$ (for all $i$) clearly converges a.l.u., and since the coefficients of these series agree with those before the powers of $x_1,\dots,x_k$ on the right hand side of \eqref{eq49} (by taking Laurent series expansion through contour integrals), we see that \eqref{eq49} converges absolutely (as a multi-variable series) to $g_\xi(z_1,\dots,z_k)$  at the desired points. 
+where the right hand side converges absolutely and successively for $x_k,x_{k-1},\dots,x_1$. Since the simultaneous Laurent series expansion of the holomorphic function $h(\varkappa_1,\dots\varkappa_k)=g_\xi(\sqrt[k]{\xi+\varkappa_1},\omega_k\sqrt[k]{\xi+\varkappa_2},\dots,\omega_k^{k-1} \sqrt[k]{\xi+\varkappa_k})$ in the region $0<|\varkappa_i|<|\xi|$ (for all $i$) clearly converges a.l.u., and since the coefficients of these series agree with those before the powers of $x_1,\dots,x_k$ on the right hand side of \eqref{eq49} (by taking Laurent series expansion through contour integrals), we see that \eqref{eq49} converges absolutely (as a multi-variable series) to $g_\xi(z_1,\dots,z_k)$  at the desired points. 
 
-Now we  assume $0<|z-\xi|<|\xi|$, assume  $\arg z$ is such that $\sqrt[k]{z}\in\Omega_1\ni\sqrt[k]{\xi}$ (which is true when $\arg z=\arg \xi$), and  set $(z_1,\dots,z_k)=\omega_k^{\blt-1}\sqrt[k]{z}$. Then we see that $\bk{Y^g(Y(u_\blt,z-\xi)v_\blt,\xi)w,w'}$ converges absolutely to $g_\xi(\omega_k^{\blt-s}\sqrt[k]{z})=f_\xi(z)$. This finishes the verification of the Jacobi identity.
+Now we  assume $0<|z-\xi|<|\xi|$, assume  $\arg z$ is such that $\sqrt[k]{z}\in\Omega_1\ni\sqrt[k]{\xi}$ (which is true when $\arg z=\arg \xi$), and  set $(z_1,\dots,z_k)=\omega_k^{\blt-1}\sqrt[k]{z}$. Then we see that $\bk{Y^g(Y(u_\blt,z-\xi)v_\blt,\xi)w,w'}$ converges a.l.u. to $g_\xi(\omega_k^{\blt-s}\sqrt[k]{z})=f_\xi(z)$. This finishes the verification of the Jacobi identity.
 \end{proof}
 
+\begin{rem}
+Using Thm. \ref{lb17}, it is easy to see that
+\begin{align*}
+\wr^k\uptau_\Wbb(\id,\cdots,\mc U_\varrho(\zeta)^{-1}v_i,\cdots,\id,w\otimes w')|_z=\bk{Y(v,z)w,w'}.
+\end{align*}
+By \eqref{eq12}, $\mc U_\varrho(\zeta)\mc U_\varrho(\zeta^k)^{-1}=\mc U(\varrho(\zeta|\zeta^k))$. Thus, when $v_\blt=v_1\otimes\id\otimes\cdots\otimes\id$, \eqref{eq42} becomes
+\begin{align*}
+\bk{Y(\mc U(\varrho(\zeta|\zeta^k)_{\sqrt[k]z})v_1,\sqrt[k]z)w,w'}.	
+\end{align*}
+By \eqref{eq10}, $\varrho(\zeta|\zeta^k)_{\sqrt[k]z}$ sends $z_1^k-z$ to $z_1-\sqrt[k]z$ when $z_1$ is close to $\sqrt[k]z$. Hence this transformation equals $\delta_{k,z}$ where 
+\begin{align*}
+\delta_{k,z}(t)=(z+t)^{\frac 1k}-z^{\frac 1k}.	
+\end{align*}
+We conclude
+\begin{align}
+Y^g(v_1\otimes\id\otimes\cdots\otimes \id,z)=Y(\mc U(\delta_{k,z})v_1,\sqrt[k]z).	
+\end{align}
+This equation uniquely determines the $g$-twisted module structure of $\mc W$, since $\Vbb^{\otimes k}$ is $g$-generated by vectors of the form $v_1\otimes\id\otimes\cdots\otimes \id$.
 
-
-
+It is not hard to check that $\mc U(\delta_{k,z})$ agrees with the operator $\Delta_k(z)$ in \cite{BDM02}. Thus, our $g$-twisted module $(\mc W,Y^g)$ agrees with the one $(T^k_g(\Wbb),Y_g)$ in \cite[Thm. 3.9]{BDM02}.
+\end{rem}
 
 
 
@@ -1455,31 +1639,31 @@ Now we  assume $0<|z-\xi|<|\xi|$, assume  $\arg z$ is such that $\sqrt[k]{z}\in\
 \section{Strong residue theorem for analytic families of curves}\label{lb6}
 
 
-Let $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ be a (holomorphic) family of $N$-pointed compact Riemann surfaces. Recall the definition in Sec. \ref{lb2}. In particular, we assume each connected component of each fiber $\mc C_b=\pi^{-1}(b)$ contains at least one of $\sgm_1(b),\dots,\sgm_N(b)$. We let $\scr E$ be a holomorphic vector bundle on $\mc C$ with finite rank with dual bundle $\scr E^\vee$.
+Let $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ be a (holomorphic) family of $N$-pointed compact Riemann surfaces. Recall the definition in Sec. \ref{lb2}. In particular, we assume each connected component of each fiber $\mc C_b=\pi^{-1}(b)$ contains at least one of $\sgm_1(b),\dots,\sgm_N(b)$. We let $\scr E$ be a holomorphic vector bundle on $\mc C$ with finite rank, and let $\scr E^\vee$ be its dual bundle.
 
-We assume that $\fk X$ is equipped with local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\mc B),\dots,\sgm_N(\mc B)$ respectively. Assume each $\eta_j$ is defined on a neighborhood $W_j\subset\mc C$ of $\sgm_j(\mc B)$ which does not intersect any of $\sgm_1(\mc B),\dots,\sgm_N(\mc B)$ other than $\sgm_j(\mc B)$.For each $j$, we fix a trivialization
+We assume that $\fk X$ is equipped with local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1(\mc B),\dots,\sgm_N(\mc B)$ respectively. Assume for each $j$ that  $\eta_j$ is defined on a neighborhood $W_j\subset\mc C$ of $\sgm_j(\mc B)$ which intersects only $\sgm_j(\mc B)$ among $\sgm_1(\mc B),\dots,\sgm_N(\mc B)$, and that there is a  trivialization
 \begin{align*}
 \scr E_j|_{W_j}\simeq E_j\otimes_\Cbb\scr O_{W_j}	
 \end{align*}
-and its dual trivialization
+with dual trivialization
 \begin{align*}
 \scr E_j^\vee|_{W_j}\simeq E_j^\vee\otimes_\Cbb\scr O_{W_j},	
 \end{align*}
-where $E_j$ is a finite-dimensional vector space and $E_j^\vee$ is its dual space.
+where $E_j$ is a finite-dimensional vector space and $E_j^\vee$ is its dual space. We identify $\scr E_j|_{W_j}$ and $\scr E^\vee|_{W_j}$ with their trivializations.
 
 For each $j$, we identify
 \begin{align*}
-W_j=(\pi,\eta_j)(W_j)	
+W_j=(\pi,\eta_j)(W_j)	\qquad\text{via }(\pi,\eta_j).
 \end{align*}
-via the open injective holomorphic map $(\pi,\eta_j)$. Then $W_j$ is a neighborhood of $\mc B\times\{0\}$ in $\mc B\times\Cbb$. We let $z$ be the standard coordinate of $\Cbb$. Consider
+Then $W_j$ is a neighborhood of $\mc B\times\{0\}$ in $\mc B\times\Cbb$. We let $z$ be the standard coordinate of $\Cbb$. Consider
 \begin{gather}
 s_j=\sum_{n\in\Zbb} e_{j,n}\cdot z^n\qquad \in\big(E_j\otimes_\Cbb\scr O(\mc B) \big)((z)),\label{eq19}	
 \end{gather}
-where each $e_{j,n}\in E_j\otimes_\Cbb\scr O(\mc B)$ is $0$ when $n$ is sufficiently small. Considering $e_{j,n}$ as an $E_j$-valued holomorphic on $\scr O(\mc B)$, we let $e_{j,n}\in E_j$ be its value at $b\in\mc B$. Then $s_j(b)$, the restriction of $s_j$ to $\mc C_b$, is represented by
+where each $e_{j,n}\in E_j\otimes_\Cbb\scr O(\mc B)$ is $0$ when $n$ is sufficiently small. Considering $e_{j,n}$ as an $E_j$-valued holomorphic on $\scr O(\mc B)$, we let $e_{j,n}(b)\in E_j$ be its value at $b\in\mc B$. Then $s_j(b)$, the restriction of $s_j$ to $\mc C_b$, is represented by
 \begin{align*}
 s_j(b)=\sum_n e_{j,n}(b)z^n\qquad\in E_j((z)).	
 \end{align*} 
-Suppose that $s$ is a section of $\scr E(\star\SX)$ defined on $W_j$. Then $s|_{W_j}=s|_{W_j}(b,z)$ is an $E_j$-valued meromorphic function on $W_j$ with poles at $z=0$. We say that $s$ \textbf{has series expansion $s_j$ at $\sgm_j(\mc B)$} if for each $b\in\mc B$, the meromorphic function $s|_{W_j}(b,z)$ of $z$ has Laurent series expansion \eqref{eq19} near $z=0$.
+Suppose that $s$ is a section of $\scr E(\star\SX)$ defined on $W_j$. Then $s|_{W_j}=s|_{W_j}(b,z)$ is an $E_j$-valued meromorphic function on $W_j$ with poles at $z=0$. We say that $s$ \textbf{has series expansion $s_j$ at $\sgm_j(\mc B)$} if for each $b\in\mc B$, the meromorphic function $s|_{W_j}(b,z)$ of $z$ has Laurent series expansion \eqref{eq19} at $z=0$.
 
 
 
@@ -1494,12 +1678,16 @@ where $\phi_{j,n}\in E_j^\vee$. We define the residue pairing
 \end{align} 
 in which the pairing between $E_j$ and $E_j^\vee$ is denoted by $\bk{\cdot,\cdot}$.
 
+We now prove the Strong Residue Theorem for $\scr E$. Our proof is inspired by that of \cite[Thm. 1.22]{Ueno08}.
+
 \begin{thm}\label{lb7}
 For each $1\leq j\leq N$, choose $s_j$ as in \eqref{eq19}.  Then the following statements are equivalent.
 	
-	(a) There exists $s\in H^0(\mc C,\scr E(\star\SX))$ whose series expansion at $\sgm_j(\mc B)$ (for each $1\leq j\leq N$) is $s_j$.
+(a) There exists $s\in H^0(\mc C,\scr E(\star\SX))$ whose series expansion at $\sgm_j(\mc B)$ (for each $1\leq j\leq N$) is $s_j$.
+
+(b) For each $b\in\mc B$, there exists $s_b\in H^0(\mc C_b,\scr E|_{\mc C_b}(\star\SXb))$ whose series expansion at $\sgm_j(b)$ (for each $1\leq j\leq N$) is $s_j(b)$.
 	
-	(b) For any $b\in\mc B$ and any $\sigma_b\in H^0\big(\mc C_b,\scr E^\vee|_{\mc C_b}\otimes\omega_{\mc C_b}(\star S_{\fk X_b})\big)$,
+(c) For any $b\in\mc B$ and any $\sigma_b\in H^0\big(\mc C_b,\scr E^\vee|_{\mc C_b}\otimes\omega_{\mc C_b}(\star S_{\fk X_b})\big)$,
 	\begin{align}
 		\sum_{j=1}^N\Res_j\bk{s_j,\sigma_b}=0.
 	\end{align}
@@ -1509,17 +1697,17 @@ For each $1\leq j\leq N$, choose $s_j$ as in \eqref{eq19}.  Then the following s
 
 
 \begin{proof}
-That (a) implies (b) follows from Residue theorem (i.e., Stokes theorem): The evaluation between $s$ and $\sigma_b$ is an element of $H^0(\mc C_b,\omega_{\mc C_b}(\star S_{\fk X_b}))$ whose total residue over all poles is $0$.
+(a) trivially implies (b). That (b) implies (c) follows from Residue theorem (i.e., Stokes theorem): The evaluation between $s_b$ and $\sigma_b$ is an element of $H^0(\mc C_b,\omega_{\mc C_b}(\star S_{\fk X_b}))$ whose total residue over all poles is $0$.
 	
 If $s$ satisfies (a), then for each $b\in\mc B$, $s|_{\mc C_b}$ is uniquely determined by its series expansions near $\sgm_1(b),\dots,\sgm_N(b)$ (since each component of $\mc C_b$ contains some $\sgm_j(b)$). Therefore the sections satisfying (a) is unique.
 	
-Now assume (b) is true.  Suppose for each $b\in\mc B$ we can find a neighborhood $V\subset\mc B$ such that an $s$ satisfying (a) exists for the family $\fk X_V$. Then, by the uniqueness proved above, we can glue all these locally defined $s$ to a global one. Thus, we may shrink $\mc B$ to a small neighborhood of a given $b_0\in\mc B$ when necessary. 
+Now assume (c) is true. We shall prove (a).  Suppose that for each $b\in\mc B$ we can find a neighborhood $V\subset\mc B$ such that an $s$ satisfying (a) exists for the family $\fk X_V$. Then, by the uniqueness proved above, we can glue all these locally defined $s$ to a global one. Thus, we may shrink $\mc B$ to a small neighborhood of a given $b_0\in\mc B$ when necessary. 
 
 We first note that, by replacing $\mc B$ with a neighborhood of a given $b_0\in\mc B$, we may assume $\pi_*\scr E(k\SX)=0$ for sufficiently large $k$. Indeed, choose any $b_0\in\mc B$. Then by Serre duality,
 \begin{align}
 H^0\big(\mc C_b,\scr E|_{\mc C_b}(-kS_{\fk X_b})\big)\simeq H^1\big(\mc C_b,\scr E^\vee|_{\mc C_b}\otimes\omega_{\mc C_b}(kS_{\fk X_b})\big),	\label{eq21}
 \end{align}
-which, by Serre vanishing theorem, equals $0$ for some $k=k_0$ when $b=b_0$. Since $\pi$ is open, $\fk X$ is a flat family (\cite[Sec. 3.20]{Fis76}). Thus, we can apply the upper-semicontinuity theorem (cf. \cite[Thm. III.4.12]{BS76}) and see that \eqref{eq21} vanishes for $k=k_0$ and (by shrinking $\mc B$ to a neighborhood of $b_0$) any $b\in\mc B$. Since the vector space $H^0\big(\mc C_b,\scr E|_{\mc C_b}(-kS_{\fk X_b})\big)$ decreases as $k$ increases, \eqref{eq21} is constantly zero for all $b\in\mc B$ and $k\geq k_0$. This implies $\pi_*\scr E(-k\SX)=0$ for all $k\geq k_0$ (cf. \cite[Cor. III.3.5]{BS76}).
+which, by Serre vanishing theorem, equals $0$ for some $k=k_0$ when $b=b_0$. Since $\pi$ is open, $\fk X$ is a flat family (\cite[Thm. II.2.13]{GPR} or \cite[Sec. 3.20]{Fis76}). Thus, we can apply the upper-semicontinuity theorem (\cite[Thm. III.4.7]{GPR} or \cite[Thm. III.4.12]{BS76}) to see that \eqref{eq21} vanishes for $k=k_0$ and (by shrinking $\mc B$ to a neighborhood of $b_0$) any $b\in\mc B$. Since the vector space $H^0\big(\mc C_b,\scr E|_{\mc C_b}(-kS_{\fk X_b})\big)$ shrinks as $k$ increases, \eqref{eq21} is constantly zero for all $b\in\mc B$ and $k\geq k_0$. This implies $\pi_*\scr E(-k\SX)=0$ for all $k\geq k_0$ (\cite[Thm. III.4.7-(d)]{GPR} or \cite[Cor. III.3.5]{BS76}).
 	
 Choose $p\in\mathbb N$ such that for each $1\leq j\leq N$, the $e_{j,n}$ in \eqref{eq19} equals $0$ when $n<-p$. For any $k\geq k_0$, as $\pi_*\scr E(-k\SX)=0$, the short exact sequence
 \begin{align*}
@@ -1537,7 +1725,7 @@ For each $1\leq j\leq N$, set $s_j|_k=\sum_{n<k}e_{j,n}\cdot z^n$, which can be 
 \end{align*}
 Then $\delta\psi=\big((\delta\psi)_{i,j}\big)_{0\leq i,j\leq N}\in Z^1(\fk U,\scr E(-k\SX))$ is described as follows: $(\delta\psi)_{0,0}=0$; if $i,j>0$ then $(\delta\psi)_{i,j}$ is not defined since $W_i\cap W_j=\emptyset$; if $1\leq j\leq N$ then $(\delta\psi)_{j,0}=-(\delta\psi)_{0,j}$ equals $s_j|_k$ (considered as a section in $\scr E(-k\SX)(W_j\cap W_0)$).
 	
-Consider $\delta\psi$ as a section of $R^1\pi_*\scr E(-k\SX)$. We shall show that $\delta\psi=0$.  By the fact that \eqref{eq21} vanishes and the invariance of Euler characteristic,  $\dim H^1\big(\mc C_b,(\scr E|_{\mc C_b})(-kS_{\fk X_b})\big)$ is locally constant over $b\in\mc B$, which shows  that $R^1\pi_*(\mc C,\scr E(-k\SX))$ is locally free and its fiber at $b$ is naturally equivalent to $H^1\big(\mc C_b,(\scr E|_{\mc C_b})(-kS_{\fk X_b})\big)$. (Cf. \cite[Thm. III.4.12]{BS76}.) Thus, it suffices to show that for each fiber $\mc C_b$, the restriction $\delta\psi|_{\mc C_b}\in H^1(\mc C_b,\scr E|_{\mc C_b}(-k S_{\fk X_b}))$ is zero.
+Consider $\delta\psi$ as a section of $R^1\pi_*\scr E(-k\SX)$. We shall show that $\delta\psi=0$.  By the fact that \eqref{eq21} vanishes and the invariance of Euler characteristic,  $\dim H^1\big(\mc C_b,(\scr E|_{\mc C_b})(-kS_{\fk X_b})\big)$ is locally constant over $b\in\mc B$, which shows  that $R^1\pi_*(\mc C,\scr E(-k\SX))$ is locally free and its fiber at $b$ is naturally equivalent to $H^1\big(\mc C_b,(\scr E|_{\mc C_b})(-kS_{\fk X_b})\big)$. (Cf. \cite[Thm. III.4.7]{GPR}  or \cite[Thm. III.4.12]{BS76}.) Thus, it suffices to show that for each fiber $\mc C_b$, the restriction $\delta\psi|_{\mc C_b}\in H^1(\mc C_b,\scr E|_{\mc C_b}(-k S_{\fk X_b}))$ is zero.
 
 The residue pairing for the Serre duality
 \begin{align*}
@@ -1561,7 +1749,7 @@ By this uniqueness, we must have $s|_{k_0}=s|_{k_0+1}=s|_{k_0+2}=\cdots$. Let $s
 \end{proof}
 
 
-
+We remark that the above proof also applies to locally free sheaves over a proper flat family of pointed complex curves (with at worst nodal singularities) such that each $S_{\fk X_b}$ does not intersect the node of $\mc C_b$, and that $S_{\fk X_b}$ intersects each irreducible component of $\mc C_b$. This is because the residue pairing for Serre duality is described in the same way as in the smooth case.
 
 
 
@@ -1588,13 +1776,35 @@ By this uniqueness, we must have $s|_{k_0}=s|_{k_0+1}=s|_{k_0+2}=\cdots$. Let $s
 		%\bibitem[ABD04]{ABD04}
 		%Abe, T., Buhl, G. and Dong, C., 2004. Rationality, regularity, and $C_2$-cofiniteness. Transactions of the American Mathematical Society, 356(8), pp.3391-3402.
 
+\bibitem[BDM02]{BDM02}
+Barron, K., Dong, C. and Mason, G., 2002. Twisted sectors for tensor product vertex operator algebras associated to permutation groups. Communications in mathematical physics, 227(2), pp.349-384.
+
+
 
 \bibitem[BS76]{BS76}
 Bănică, C. and Stănăşilă, O., 1976. Algebraic methods in the global theory of complex spaces.
 
+		
+\bibitem[Buhl02]{Buhl02}
+Buhl, G., 2002. A spanning set for VOA modules. Journal of Algebra, 254(1), pp.125-151.
+
+\bibitem[Cod19]{Cod19}
+Codogni, G., 2019. Vertex algebras and Teichm\"uller modular forms. arXiv preprint arXiv:1901.03079.	
+
+
+\bibitem[DGT19a]{DGT19a}
+Damiolini, C., Gibney, A., and Tarasca, N., 2019. Conformal blocks from vertex algebras and their connections on $\ovl{\mc M}_{g,n}$.  To appear in Geometry \& Topology, arXiv:1901.06981.
+
+\bibitem[DGT19b]{DGT19b}
+Damiolini, C., Gibney, A. and Tarasca, N., 2019. On factorization and vector bundles of conformal blocks from vertex algebras. arXiv preprint arXiv:1909.04683.
+
 
 \bibitem[DLM97]{DLM97}
 Dong, C., Li, H. and Mason, G., 1997. Regularity of Rational Vertex Operator Algebras. Advances in Mathematics, 132(1), pp.148-166.
+
+
+\bibitem[DXY21]{DXY21}
+Dong, C., Xu, F. and Yu, N., 2021. Permutation orbifolds and associative algebras. Science China Mathematics, pp.1-10.
 
 
 
@@ -1612,23 +1822,44 @@ Frenkel, I., Huang, Y. Z., \& Lepowsky, J. (1993). On axiomatic approaches to ve
 Fischer, G., Complex analytic geometry. Lecture Notes in Mathematics, Vol. 538. Springer-Verlag, Berlin-New York, 1976. vii+201 pp.
 
 
+\bibitem[GPR]{GPR}
+Hrauert, H., Peternell, T.,  Remmert, R. eds., 1994. Several complex variables VII: sheaf-theoretical methods in complex analysis (Vol. 74, p. 369). Springer.
+
 
 \bibitem[Gui20]{Gui20}
 Gui, B., 2020. Convergence of Sewing Conformal Blocks. arXiv preprint arXiv:2011.07450.
 
+
+\bibitem[Gui]{Gui}
+Gui, B., Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras, to appear.
+
 \bibitem[Hua97]{Hua97}
 Huang, Y.Z., 1997. Two-dimensional conformal geometry and vertex operator algebras (Vol. 148). Springer Science \& Business Media.
 
+\bibitem[Li96]{Li96}
+Li, H.S., 1996. Local Systems of Twisted Vertex Operators. In Moonshine, the Monster, and Related Topics: Joint Research Conference on Moonshine, the Monster, and Related Topics, June 18-23, 1994, Mount Holyoke College, South Hadley, Massachusetts (Vol. 193, p. 203). American Mathematical Soc..
 
+\bibitem[TUY89]{TUY89}
+Tsuchiya, A., Ueno, K. and Yamada, Y., 1989. Conformal field theory on universal family of stable curves with gauge symmetries. In Integrable Sys Quantum Field Theory (pp. 459-566). Academic Press.
+
+\bibitem[Ueno08]{Ueno08}
+Ueno, K., 2008. Conformal field theory with gauge symmetry (Vol. 24). American Mathematical Soc..
+
+
+\bibitem[Zhu94]{Zhu94}
+Zhu, Y., 1994. Global vertex operators on Riemann surfaces. Communications in Mathematical Physics, 165(3), pp.485-531.
+
+\bibitem[Zhu96]{Zhu96}
+Zhu, Y., 1996. Modular invariance of characters of vertex operator algebras. Journal of the American Mathematical Society, 9(1), pp.237-302.
 		
 		
 		
 		
 		
 	\end{thebibliography}
-	%\noindent {\small \sc Department of Mathematics, Rutgers University, New Brunswick, USA.}
+	\noindent {\small \sc Yau Mathematical Sciences Center, Tsinghua University, Beijing, China.}
 	
-	\noindent {\textit{E-mail}}: binguimath@gmail.com
+	\noindent {\textit{E-mail}}: binguimath@gmail.com\qquad bingui@tsinghua.edu.cn
 \end{document}
 
 
