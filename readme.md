@@ -58,9 +58,9 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Polynomial Energy Bounds for Type F_4 WZW-models, ***Internat. J. Math.***, Vol. 31, No. 12 (2020). `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
 
-1. Convergence of Sewing Conformal Blocks, submitted. `arXiv: 2011.07450`  [Preprint](Files/2020_Sewing.pdf)
+1. Convergence of Sewing Conformal Blocks, submitted. `arXiv:2011.07450`  [Preprint](Files/2020_Sewing.pdf)
 
-1. Sewing and Propagation of Conformal Blocks, [Preprint](Files/2021_Propagation.pdf)
+1. Sewing and Propagation of Conformal Blocks. `arXiv:2110.04774`  [Preprint](Files/2021_Propagation.pdf)
 
 
 ## Notes
