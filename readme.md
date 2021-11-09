@@ -62,6 +62,8 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Sewing and Propagation of Conformal Blocks. `arXiv:2110.04774`  [Preprint](Files/2021_Propagation.pdf)
 
+1. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-separable Case.  `arXiv:2111.04662`  [Preprint (Files/2021_Permutation.pdf)  
+
 
 ## Notes
 
