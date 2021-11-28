@@ -35,7 +35,7 @@ I consider myself a half-operator algebraist  and half-vertex algebraist. I'm es
 
 > The following articles are listed in the order they were finished and submitted to arXiv. The arXiv indentifiers (YYMM.NNNNN) indicate the time of submission. Note that the preprints on this website might be more updated than the arXiv versions.
 
-1. Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
+1. Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, <ins>***Comm. Math. Phys.***</ins>, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
 
 
 1. Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](Files/2017_UU2.pdf)
