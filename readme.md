@@ -50,28 +50,28 @@ I consider myself a half-operator algebraist  and half-vertex algebraist. I'm es
 </details>
 
  
--. Energy Bounds Condition for Intertwining Operators of Type B, C, and G_2
+- Energy Bounds Condition for Intertwining Operators of Type B, C, and G_2
 unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***</ins>, 372 (2019), 7371-7424. `arXiv:1809.07003` [Preprint](Files/2018_BCG.pdf)
 
 
 
--. Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
+- Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
 
--. Q-systems and extensions of completely unitary vertex operator algebras, to appear in ***Int. Math. Res. Not. IMRN***. `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
+- Q-systems and extensions of completely unitary vertex operator algebras, to appear in ***Int. Math. Res. Not. IMRN***. `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
 
--. Bisognano-Wichmann Property for Rigid Categorical Extensions and Non-local Extensions of Conformal Nets, ***Ann. Henri Poincaré***, 22, 4017-4062 (2021). `arXiv:1912.10682` [Preprint](Files/2019_Bisognano-Wichmann.pdf)
+- Bisognano-Wichmann Property for Rigid Categorical Extensions and Non-local Extensions of Conformal Nets, ***Ann. Henri Poincaré***, 22, 4017-4062 (2021). `arXiv:1912.10682` [Preprint](Files/2019_Bisognano-Wichmann.pdf)
 
--. Unbounded Field Operators in Categorical Extensions of Conformal Nets, submitted. `arXiv:2001.03095` [Preprint](Files/2020_Strong-Braiding.pdf)
+- Unbounded Field Operators in Categorical Extensions of Conformal Nets, submitted. `arXiv:2001.03095` [Preprint](Files/2020_Strong-Braiding.pdf)
 
--. Regular Vertex Operator Subalgebras and Compressions of Intertwining Operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](Files/2020_Compressions.pdf)
+- Regular Vertex Operator Subalgebras and Compressions of Intertwining Operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](Files/2020_Compressions.pdf)
 
--. Polynomial Energy Bounds for Type F_4 WZW-models, ***Internat. J. Math.***, Vol. 31, No. 12 (2020). `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
+- Polynomial Energy Bounds for Type F_4 WZW-models, ***Internat. J. Math.***, Vol. 31, No. 12 (2020). `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
 
--. Convergence of Sewing Conformal Blocks, submitted. `arXiv:2011.07450`  [Preprint](Files/2020_Sewing.pdf)
+- Convergence of Sewing Conformal Blocks, submitted. `arXiv:2011.07450`  [Preprint](Files/2020_Sewing.pdf)
 
--. Sewing and Propagation of Conformal Blocks. `arXiv:2110.04774`  [Preprint](Files/2021_Propagation.pdf)
+- Sewing and Propagation of Conformal Blocks. `arXiv:2110.04774`  [Preprint](Files/2021_Propagation.pdf)
 
--. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-separable Case.  `arXiv:2111.04662`  [Preprint](Files/2021_Permutation.pdf)  [Slides](Files/2021_BIRS.pdf)
+- Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-separable Case.  `arXiv:2111.04662`  [Preprint](Files/2021_Permutation.pdf)  [Slides](Files/2021_BIRS.pdf)
 
 
 ## Notes
