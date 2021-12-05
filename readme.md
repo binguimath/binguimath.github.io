@@ -39,6 +39,16 @@ I consider myself a half-operator algebraist  and half-vertex algebraist. I'm es
 
 1. Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](Files/2017_UU2.pdf)
 
+<details>
+  <summary>Comments</summary>
+  
+  ## Heading
+  1. A numbered
+  2. list
+     * With some
+     * Sub bullets
+</details>
+
  
 1. Energy Bounds Condition for Intertwining Operators of Type B, C, and G_2
 unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***</ins>, 372 (2019), 7371-7424. `arXiv:1809.07003` [Preprint](Files/2018_BCG.pdf)
