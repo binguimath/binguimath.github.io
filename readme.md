@@ -21,16 +21,16 @@ bingui(at)tsinghua(dot)edu(dot)cn
 - (2013.8-2018.6) Ph.D., Math Department, Vanderbilt University. Advisor: Vaughan Jones
 - (2009.9-2013.6) B.S., Zhiyuan College, Shanghai Jiaotong University. Advisors: Jin Liang, Yijun Yao
 
-## Courses
-- (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
-
-
 
 ##  Research Interests
 
 I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Von Neumann Algebras, Tensor Categories.
 
 I consider myself a half-operator algebraist  and half-vertex algebraist. I'm especially interested in the interplay between the operator algebraic (more precisely speaking, von Neumann algebraic)  and the vertex algebraic approaches to 2d conformal field theory.
+
+## Courses
+- (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
+
 
 ## Publications and Preprints 
 
