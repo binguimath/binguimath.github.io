@@ -16,9 +16,9 @@ This course is an introduction to the basic theory of VOAs, their representation
 
 ## Prerequisites
 (Many instructors say in a topic course that the only prerequisites are the basics of "A", though the actual ones are a firm understanding of "ABCDE". Here I am trying to be as honest as possible.)
-- Complex analysis
-- You should be familiar with the materials taught in any course or textbook called "Differential Manifolds". You should also know the definition of its complex analog: complex manifolds. 
-- You should have some rough idea of how the representations of Lie algebras and Lie groups are related. 
+* Complex analysis
+* You should be familiar with the materials taught in any course or textbook called "Differential Manifolds". You should also know the definition of its complex analog: complex manifolds. 
+* You should have some rough idea of how the representations of Lie algebras and Lie groups are related. 
 
 
 
@@ -27,31 +27,35 @@ References for vertex operator algebras
 
 Note: I list these books simply because they are often recommended by others. Some topics in these books might be rather advanced or technical for beginners.
 
-- E.Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §1-5
+* E.Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §1-5
 
-- I,Frenkel, Huang, Lepowsky, On axiomatic approaches to vertex operator algebras and modules
+* I,Frenkel, Huang, Lepowsky, On axiomatic approaches to vertex operator algebras and modules
 
-- Kac, Vertex algebras for Beginners
+* Kac, Vertex algebras for Beginners
 
-- Lepowsky & Li, Introduction to vertex operator algebras and their representations
+* Lepowsky & Li, Introduction to vertex operator algebras and their representations
 
 References for conformal blocks
 
-- Khono, Conformal Field Theory and Topology, §1. (My favorite introductory book on conformal blocks. Brief and concise. Assumes little background knowledge.)
+* Khono, Conformal Field Theory and Topology, §1. (My favorite introductory book on conformal blocks. Brief and concise. Assumes little background knowledge.)
 
-- Tsuchiya-Kanie, Vertex operators in conformal field theory on P^1 and monodromy representations of braid group. (Very classical paper. Also assumes little background knowledge, although some of the terminology and methods are a bit outdated. Conformal blocks are called “primary fields” in this paper.)
+* Tsuchiya-Kanie, Vertex operators in conformal field theory on P^1 and monodromy representations of braid group. (Very classical paper. Also assumes little background knowledge, although some of the terminology and methods are a bit outdated. Conformal blocks are called “primary fields” in this paper.)
 
-- My notes: [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
+* My notes: [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
 
 > Our course could be viewed as a friendly introduction to the topics in this monograph. When studying these topics, we will make simplifications when possible. For instance, some results will be proved only for the genus 0 surface so that everything can be worked out using basic complex analysis.
 
 The following references require a solid background in algebraic geometry, which we do NOT require in our course.
 
-- Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §6,9,10,17,18
+* Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §6,9,10,17,18
 
-- Tsuchiya-Ueno-Yamada (TUY), Conformal field theory on universal family of stable curves with gauge symmetries. (Very classical paper. Continuation of Tuchiya-Kanie. Notations are complicated.)
+* Tsuchiya-Ueno-Yamada (TUY), Conformal field theory on universal family of stable curves with gauge symmetries. (Very classical paper. Continuation of Tuchiya-Kanie. Notations are complicated.)
 
-- Ueno, Conformal field theory with gauge symmetry. (Interpretation and clarification of TUY. Notations in TUY are simplified.)
+* Ueno, Conformal field theory with gauge symmetry. (Interpretation and clarification of TUY. Notations in TUY are simplified.)
 
-- Bakalov-Kirillov, Lectures on tensor categories and modular functors, last chapter. (Interpretation of TUY)
+* Bakalov-Kirillov, Lectures on tensor categories and modular functors, last chapter. (Interpretation of TUY)
+
+## Tentative Schedule
+
+* 
 
