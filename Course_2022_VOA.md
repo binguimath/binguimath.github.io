@@ -55,7 +55,5 @@ The following references require a solid background in algebraic geometry, which
 
 * Bakalov-Kirillov, Lectures on tensor categories and modular functors, last chapter. (Interpretation of TUY)
 
-## Tentative Schedule
 
-* 
 
