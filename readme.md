@@ -22,7 +22,7 @@ bingui(at)tsinghua(dot)edu(dot)cn
 - (2009.9-2013.6) B.S., Zhiyuan College, Shanghai Jiaotong University. Advisors: Jin Liang, Yijun Yao
 
 ## Courses
-- (2021 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Pages/2022_VOA.md)
+- (2021 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
 
 
 
