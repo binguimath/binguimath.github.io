@@ -29,7 +29,7 @@ Note: I list these books simply because they are often recommended by others. So
 
 * E.Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §1-5
 
-* I,Frenkel, Huang, Lepowsky, On axiomatic approaches to vertex operator algebras and modules
+* I.Frenkel, Huang, Lepowsky, On axiomatic approaches to vertex operator algebras and modules
 
 * Kac, Vertex algebras for Beginners
 
