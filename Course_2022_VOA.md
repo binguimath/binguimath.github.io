@@ -59,7 +59,9 @@ The following references require a solid background in algebraic geometry, which
 ## Tentative Schedule
 
 2/21 Segal's picture; motivations of VOAs and conformal blocks
+
 2/24 Virasoro algebras; change of boundary parametrizations
+
 2/28 The definition of VOAs
 
 
