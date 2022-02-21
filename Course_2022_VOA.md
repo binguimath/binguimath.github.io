@@ -4,9 +4,11 @@
 2.21~5.13 (Mon./Thurs.) 19:20-20:55 <br>
 Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告厅 (Jinchunyuan West Building) Lecture Hall
 
-## Lecture Notes
+## Lecture Notes and Videos
 
 [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA.pdf)
+
+[Videos](https://1drv.ms/u/s!An4-WYL4ugmJg6UYoO_4tVOvk28H1w?e=0Ja6Zf)
 
 ## Course Description:
 Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral conformal field theory. The representation category of a “strongly rational” VOA is a modular tensor category (which yields a 3d topological quantum field theory), and conjecturally, all modular tensor categories arise from such VOA representations. Conformal blocks are the crucial ingredients in the representation theory of VOAs.
