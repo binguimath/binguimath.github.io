@@ -15,6 +15,9 @@ These are the important topics that we didn't have time to cover in class. It wo
 
 - 02/21 1.12 (a rought description of the algebraic structure of the VOA V, and why V is closed under taking products) 1.14 1.15
 
+## Wechat Group Barcode
+[Here](Files/2022_VOA_barcode.png)
+
 ## Course Description:
 Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral conformal field theory. The representation category of a “strongly rational” VOA is a modular tensor category (which yields a 3d topological quantum field theory), and conjecturally, all modular tensor categories arise from such VOA representations. Conformal blocks are the crucial ingredients in the representation theory of VOAs.
 
