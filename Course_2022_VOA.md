@@ -10,10 +10,6 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 [Videos](https://1drv.ms/u/s!An4-WYL4ugmJg6UZvD-CaRgY9Sqq2g?e=Ae4QEi)
 
-## Please read the following lecture notes subsections after class
-These are the important topics that we didn't have time to cover in class. It would be even better if you read the whole sections of the lecture notes. The discussions in the notes are usually more detailed than those in the lectures.
-
-- 02/21 1.12 (a rought description of the algebraic structure of the VOA V, and why V is closed under taking products) 1.14 1.15
 
 ## Wechat Group Barcode
 [Here](Files/2022_VOA_barcode.png)
