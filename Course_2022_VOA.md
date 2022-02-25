@@ -66,8 +66,10 @@ The following references require a solid background in algebraic geometry, which
 
 2/21 Segal's picture of 2d CFT; motivations of VOAs and conformal blocks
 
-2/24 Virasoro algebras; change of boundary parametrizations
+2/24 Virasoro algebras
 
-2/28 The definition of VOAs
+2/28 Change of boundary parametrizations
+
+3/3 The definition of VOAs
 
 
