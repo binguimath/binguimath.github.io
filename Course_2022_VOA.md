@@ -70,6 +70,6 @@ The following references require a solid background in algebraic geometry, which
 
 2/28 Change of boundary parametrizations
 
-3/3 The definition of VOAs
+3/3 Definition of VOAs
 
 
