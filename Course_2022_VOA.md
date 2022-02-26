@@ -4,11 +4,10 @@
 2.21~5.13 (Mon./Thurs.) 19:20-20:55 <br>
 Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告厅 (Jinchunyuan West Building) Lecture Hall
 
-## Lecture Notes and Videos
+## Lecture Notes
 
 [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA.pdf)
 
-[Videos](https://1drv.ms/u/s!An4-WYL4ugmJg6UZvD-CaRgY9Sqq2g?e=Ae4QEi)
 
 
 ## Wechat Group Barcode
