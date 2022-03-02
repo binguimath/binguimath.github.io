@@ -13,7 +13,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 
 ## Wechat Group Barcode
-[Here](Files/2022_VOA_barcode.png)
+[Here](Files/2022_VOA_barcode.png) (updated on 3/2)
 
 ## Course Description:
 Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral conformal field theory. The representation category of a “strongly rational” VOA is a modular tensor category (which yields a 3d topological quantum field theory), and conjecturally, all modular tensor categories arise from such VOA representations. Conformal blocks are the crucial ingredients in the representation theory of VOAs.
