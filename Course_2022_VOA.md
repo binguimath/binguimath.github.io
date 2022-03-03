@@ -73,4 +73,10 @@ The following references require a solid background in algebraic geometry, which
 
 3/3 Definition of VOAs
 
+3/7 Definition of VOAs
+
+3/10 Jacobi identity
+
+3/14 Consequences of Jacobi identidy
+
 
