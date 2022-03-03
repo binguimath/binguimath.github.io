@@ -15,6 +15,26 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 ## Wechat Group Barcode
 [Here](Files/2022_VOA_barcode.png) (updated on 3/2)
 
+
+
+## Tentative Schedule
+
+2/21 Segal's picture of 2d CFT; motivations of VOAs and conformal blocks
+
+2/24 Virasoro algebras
+
+2/28 Change of boundary parametrizations
+
+3/3 Definition of VOAs
+
+3/7 Definition of VOAs
+
+3/10 Jacobi identity
+
+3/14 Consequences of Jacobi identidy
+
+
+
 ## Course Description:
 Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral conformal field theory. The representation category of a “strongly rational” VOA is a modular tensor category (which yields a 3d topological quantum field theory), and conjecturally, all modular tensor categories arise from such VOA representations. Conformal blocks are the crucial ingredients in the representation theory of VOAs.
 
@@ -63,20 +83,5 @@ The following references require a solid background in algebraic geometry, which
 * Bakalov-Kirillov, Lectures on tensor categories and modular functors, last chapter. (Interpretation of TUY)
 
 
-## Tentative Schedule
-
-2/21 Segal's picture of 2d CFT; motivations of VOAs and conformal blocks
-
-2/24 Virasoro algebras
-
-2/28 Change of boundary parametrizations
-
-3/3 Definition of VOAs
-
-3/7 Definition of VOAs
-
-3/10 Jacobi identity
-
-3/14 Consequences of Jacobi identidy
 
 
