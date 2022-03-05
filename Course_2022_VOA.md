@@ -8,7 +8,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA.pdf)
 
-[Videos (Chinese starting from the second lecture)](https://1drv.ms/f/s!An4-WYL4ugmJg6UZvD-CaRgY9Sqq2g) 
+[Videos (Chinese starting from the second lecture)](https://1drv.ms/u/s!An4-WYL4ugmJg6UZOSs2DXi8m2tLYg?e=5m7bUY) 
 
 
 
