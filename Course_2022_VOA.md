@@ -33,6 +33,10 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 3/14 Consequences of Jacobi identity
 
+3/17 Construction of examples of VOAs
+
+
+
 
 
 ## Course Description:
