@@ -17,7 +17,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 
 
-## Tentative Schedule
+## Schedule
 
 2/21 Segal's picture of 2d CFT; motivations of VOAs and conformal blocks
 
