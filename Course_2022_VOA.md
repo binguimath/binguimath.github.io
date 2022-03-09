@@ -13,7 +13,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 
 ## Wechat Group Barcode
-[Here](Files/2022_VOA_barcode.png) (updated on 3/2)
+[Here](Files/2022_VOA_barcode.png) (updated on 3/9)
 
 
 
