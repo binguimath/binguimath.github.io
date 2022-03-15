@@ -12,8 +12,12 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 
 
+<!--
 ## Wechat Group Barcode
 [Here](Files/2022_VOA_barcode.png) (updated on 3/9)
+-->
+
+
 
 
 
@@ -38,6 +42,10 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 3/21 Constructing examples of VOAs
 
 3/24 Local fields
+
+3/28 Local fields; n-point functions for vertex operators
+
+3/31 Proof of reconstuction theorem; VOA modules
 
 
 
