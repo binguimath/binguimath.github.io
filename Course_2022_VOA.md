@@ -57,6 +57,7 @@ Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral co
 This course is an introduction to the basic theory of VOAs, their representations, and conformal blocks from the complex analytic point of view. Our goal in the first half of this course is to get familiar with the computations in VOA theory and some basic examples. The second half is devoted to the study of conformal blocks. The goal is to understand the following three crucial properties of conformal blocks and the roles they play in the representation categories of VOAs. (1) The spaces of conformal blocks form a vector bundle with (projectively flat) connections. (2) Sewing conformal blocks is convergent (3) Factorization property.
 
 
+
 ## Prerequisites
 (Many instructors say in a topic course that the only prerequisites are the basics of "A", though the actual ones are a firm understanding of "ABCDE". In the following, I am trying to be as honest as possible.)
 * Complex analysis
