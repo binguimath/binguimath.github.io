@@ -39,7 +39,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 3/17 Constructing examples of VOAs
 
-3/21 Constructing examples of VOAs
+3/21 Constructing examples of VOAs; local fields
 
 3/24 Local fields
 
