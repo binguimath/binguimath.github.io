@@ -49,6 +49,8 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/2 Contragredient modules; change of coordinate theorem
 
+4/7 Change of coordinate theorem; VOA bundles
+
 
 
 
