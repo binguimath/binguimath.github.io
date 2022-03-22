@@ -47,9 +47,9 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 3/31 Proof of reconstuction theorem; VOA modules
 
-4/2 Contragredient modules; change of coordinate theorem
+4/2 Contragredient modules; change of coordinate theorems
 
-4/7 Change of coordinate theorem; VOA bundles
+4/7 Change of coordinate theorems; VOA bundles
 
 
 
