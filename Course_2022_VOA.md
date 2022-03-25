@@ -1,5 +1,11 @@
 # 2022 Spring YMSC Course: Vertex Operator Algebras, Conformal Blocks, and Tensor Categories
- 
+
+## Schedule change due to Qingming festival
+We have class on 4/2 (Saturday, same time as usual). The class on 4/5 will be cancelled.
+
+
+
+
 ## Time and Venue:
 2.21~5.13 (Mon./Thurs.) 19:20-20:55 <br>
 Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告厅 (Jinchunyuan West Building) Lecture Hall
