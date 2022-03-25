@@ -1,7 +1,7 @@
 # 2022 Spring YMSC Course: Vertex Operator Algebras, Conformal Blocks, and Tensor Categories
 
 ## Schedule change due to Qingming festival
-We have class on 4/2 (Saturday, same time as usual). The class on 4/5 will be cancelled.
+We have class on 4/2 (Saturday, usual time). The class on 4/5 will be cancelled.
 
 
 
