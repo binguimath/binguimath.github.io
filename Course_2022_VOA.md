@@ -57,6 +57,8 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/7 Change of coordinate theorems
 
+4/11 Conformal blocks and sheaves of VOAs
+
 
 
 
