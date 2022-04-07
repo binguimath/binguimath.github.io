@@ -67,6 +67,8 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/21 Families of compact Riemann surfaces and parellel sections of conformal blocks
 
+4/25 Sheaves of covacua and conformal blocks
+
 
 
 
