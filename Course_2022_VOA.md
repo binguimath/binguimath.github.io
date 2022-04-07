@@ -61,7 +61,11 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/11 Definitions of conformal blocks and sheaves of VOAs
 
-4/14 Differential geometry of sheaves of VOAs
+4/14 Definitions of conformal blocks and sheaves of VOAs; pushforward in sheaves of VOAs
+
+4/18 Lie derivatives in sheaves of VOAs; families of compact Riemann surfaces
+
+4/21 Families of compact Riemann surfaces and parellel sections of conformal blocks
 
 
 
