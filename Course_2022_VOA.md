@@ -69,6 +69,8 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/25 Sheaves of covacua and conformal blocks
 
+4/28 Connections on sheaves of covacua and conformal blocks
+
 
 
 
