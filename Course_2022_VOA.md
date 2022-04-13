@@ -71,6 +71,8 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 4/28 Connections on sheaves of coinvariants and conformal blocks
 
+5/9 Local freeness of sheaves of coinvariants and conformal blocks
+
 
 
 
