@@ -232,6 +232,7 @@
 \newcommand{\Dbb}{\mathbb D}
 \newcommand{\Hbb}{\mathbb H}
 \newcommand{\cbf}{\mathbf c}
+\newcommand{\Rbf}{\mathbf R}
 \newcommand{\wt}{\mathrm{wt}}
 \newcommand{\Lie}{\mathrm{Lie}}
 \newcommand{\btl}{\blacktriangleleft}
@@ -270,6 +271,7 @@
 \newcommand{\Imag}{\mathrm{Im}}
 \newcommand{\cl}{\mathrm{cl}}
 \newcommand{\Ind}{\mathrm{Ind}}
+
 
 
 
@@ -322,21 +324,27 @@
 	%\setcounter{section}{-1}
 	%\setcounter{equation}{6}
 	
+
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 	
 	
 	\maketitle
-\tableofcontents	
 	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-\newcommand\blfootnote[1]{%
-	\begingroup
-	\renewcommand\thefootnote{}\footnote{#1}%
-	\addtocounter{footnote}{-1}%
-	\endgroup
-}
-% Footnote without marker
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\vspace{-0.5cm}
+\makeatletter
+\newcommand*{\toccontents}{\@starttoc{toc}}
+\makeatother
+\toccontents
+	
+% title and table of contents same page, no content title
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -600,7 +608,7 @@ To study the representations of a topological group $G$, one must first understa
 
 This Ansatz is very vague. Let me explain it in more details. Consider the annulus $A_{r,R}$ with boundary parametrization as in \ref{lb3}. We move the inside circle to another one centered at $z$ (where $z\in A_{r,R}$ is reasonably small), still with radius $r$. The new eccentric annulus $A_{z,r,R}$ has larger outgoing string parametrized by $R/\zeta$ and the smaller incoming one parametrized by $(\zeta-z)/r$, where $\zeta$ is the standard coordinate of $\Pbb^1$. Namely, it is determined by the data
 \begin{align}
-(\Pbb^1;z,\infty;(\zeta-z)/r,R/\zeta).	
+(\Pbb^1;z,\infty;(\zeta-z)/r,R/\zeta).	\label{eq224}
 \end{align}
 Let $T_z:\mc H\rightarrow\mc H$ be the corresponding map. As we have said, for general vectors $\xi,\eta\in\mc H$, the expression $\bk{\eta|T_z\xi}=\bk{\Theta\eta,T_z\xi}$ can be chosen to be real analytic with respect to $z$. We now let
 \begin{align}\label{eq2}
@@ -4438,9 +4446,9 @@ where $\wtd L_n=L_n$ when $n\geq 1$, and $\partial_\zeta\rho^{(n)}_\zeta(z)=\par
 \begin{rem}\label{lb112}
 The geometric meaning of Prop. \ref{lb98} is the following. Assume that $\rho:U\rightarrow\Gbb$ is a holomorphic family with $\rho_0(z)=z$. Then for each $z_0$ near $0$, $\zeta\mapsto \rho_\zeta(z_0)$ is a path in $\Cbb$ whose initial value is $z_0$. So $\partial_\zeta\rho_\zeta(z_0)\partial_z\big|_{\zeta=0}$ is the tangent vector at $z_0$ describing the velocity of the path. By assembling these tangent vectors, we get a holomorphic tangent vector field $\partial_\zeta\rho_\zeta(z)\partial_z\big|_{\zeta=0}$, which equals
 \begin{align}
-\partial_\zeta\rho_\zeta(z)\partial_z\Big|_{\zeta=0}=\sum_{n\geq 1}\partial_\zeta\rho_\zeta^{(n)}(0)z^n\partial_z\Big|_{\zeta=0}.
+\partial_\zeta\rho_\zeta(z)\partial_z\Big|_{\zeta=0}=\sum_{n\geq 1}\frac 1{n!}\partial_\zeta\rho_\zeta^{(n)}(0)z^n\partial_z\Big|_{\zeta=0}.
 \end{align}
-In view of the correspondence $z^n\partial_z\leftrightarrow L_{n-1}$, Prop. \ref{lb98} says that $\partial_\zeta\mc U(\varrho_\zeta)$ is exactly the linear operator corresponding to the tangent vector field.
+In view of the correspondence $z^n\partial_z\leftrightarrow L_{n-1}$, Prop. \ref{lb98} says that $\partial_\zeta\mc U(\varrho_\zeta)\big|_{\zeta=0}$ is exactly the linear operator corresponding to the tangent vector field.
 \end{rem}
 
 
@@ -4477,7 +4485,7 @@ Substituting this relation into \eqref{eq169} proves \eqref{eq166}.
 $\mc U:\mc G\rightarrow\End(\Wbb)$ is a group representation. Namely, $\mc U(\alpha\circ\beta)=\mc U(\alpha)\mc U(\beta)$ for all $\alpha,\beta\in\mc G$.
 \end{thm}
 
-With the help of this theorem, we can calculate $\partial_\zeta\mc U(\varrho_\zeta)$ at $\zeta=0$ without assuming $\rho_0(z)=z$ by computing $\partial_\zeta\mc U(\varrho_\zeta\circ\varrho^{-1}_0)$ using Prop. \ref{lb98}.
+With the help of this theorem, we can calculate $\partial_\zeta\mc U(\rho_\zeta)$ at $\zeta=0$ without assuming $\rho_0(z)=z$ by computing $\partial_\zeta\mc U(\rho_\zeta\circ\rho^{-1}_0)$ using Prop. \ref{lb98}.
 
 \begin{proof}
 It suffices to consider the following two cases: (a) $\alpha,\beta\in\mc G_+$ (b) $\alpha\in\mc G_+$ and $\beta$ is a scaling. Let $l_n=z^{n+1}\partial_z$.
@@ -4609,7 +4617,7 @@ We present the proof of \eqref{eq160} below. The idea is the same as in the proo
 \begin{proof}[Proof of Thm. \ref{lb93}]
 Step 1. Let us first assume $\alpha\in\Gbb_+$ so that $\alpha'(0)=1$. Choose $c_1,c_2,\dots\in\Cbb$ such that
 \begin{align}
-	\alpha(z)=\exp\Big(\sum_{n\geq 1}\tau c_nz^{n+1}\partial_z\Big)(z),\label{eq172}	
+	\alpha(z)=\exp\Big(\sum_{n\geq 1} c_nz^{n+1}\partial_z\Big)(z),\label{eq172}	
 \end{align}
 and set
 \begin{align*}
@@ -4715,14 +4723,17 @@ Let
 \begin{align}
 \fk X=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)	\label{eq181}
 \end{align}
-be an $N$-pointed compact Riemann surface with local coordinates.  Assume that $\eta_j$ is holomorphic (and injective) on an neighborhood $U_j$ of $x_j$.
+be an $N$-pointed compact Riemann surface with local coordinates.  Assume that $\eta_j$ is holomorphic (and injective) on an neighborhood $U_j$ of $x_j$. Assume that $x_j\notin U_i$ if $i\neq j$. 
+
 \begin{ass}\label{lb102}
 Unless otherwise stated, by an $N$-pointed compact Riemann surface, we assume that each connected component contains at least one marked point.
 \end{ass}
 
 Recall that in Segal's picture, we have decomposition $\mc H^\fin=\bigoplus \Wbb_i\otimes\wht\Wbb_i$, and the correlation function decomposes to $\Vbb$- and $\wht\Vbb$-conformal blocks $T_{\fk X}=\sum_{i_1,\dots,i_N\in\fk I}\upphi_{\fk X,i_\blt}\otimes\uppsi_{\ovl{\fk X},i_\blt}$ as in \eqref{eq174}, where each $\upphi_{\fk X,i_\blt}$ is a linear functional on $\Wbb_{i_\blt}:=\Wbb_{i_1}\otimes\cdots\otimes \Wbb_{i_N}$. 
 
-In the following discussions, we fix a vector $\wht w_i$ in each $\wht\Wbb_i$, fix a choice of $i_\blt=(i_1,\dots,i_N)$, and fix a $\wht\Vbb$-conformal block $\uppsi_{\ovl{\fk X},i_\blt}:\wht\Wbb_{i_\blt}\rightarrow\Cbb$ such that its value on $\wht w_\blt=\wht w_1\otimes\cdots\otimes\wht w_N$ is $1$. Then we can identify each $\Wbb_i$ with $\Wbb_i\otimes \wht w_i$ and $\upphi_{\fk X,i_\blt}$ with $\upphi_{\fk X,i_\blt}\otimes\uppsi_{\ovl{\fk X},i_\blt}$ so that $\upphi_{\fk X,i_\blt}$ can be viewed as the restriction of $T_{\fk X}$ onto $\Wbb_{i_\blt}$. Namely, we do not distinguish between conformal blocks and correlation functions.
+In the following discussions, we fix a vector $\wht w_i$ in each $\wht\Wbb_i$, and identify each $\Wbb_i$ with $\Wbb_i\otimes \wht w_i$ so that we can restrict the correlation function $T_{\fk X}$ onto $\Wbb_{i_\blt}$ to get a conformal block. Thus, we shall not distinguish between conformal blocks and (restrictions of) correlation functions.
+
+%In the following discussions, we fix a vector $\wht w_i$ in each $\wht\Wbb_i$, fix a choice of $i_\blt=(i_1,\dots,i_N)$, and fix a $\wht\Vbb$-conformal block $\uppsi_{\ovl{\fk X},i_\blt}:\wht\Wbb_{i_\blt}\rightarrow\Cbb$ such that its value on $\wht w_\blt=\wht w_1\otimes\cdots\otimes\wht w_N$ is $1$. Then we can identify each $\Wbb_i$ with $\Wbb_i\otimes \wht w_i$ and $\upphi_{\fk X,i_\blt}$ with $\upphi_{\fk X,i_\blt}\otimes\uppsi_{\ovl{\fk X},i_\blt}$ so that $\upphi_{\fk X,i_\blt}$ can be viewed as the restriction of $T_{\fk X}$ onto $\Wbb_{i_\blt}$. Namely, we do not distinguish between conformal blocks and correlation functions.
 
 
 
@@ -4731,7 +4742,7 @@ We write $\Wbb_{i_k}=\Wbb_k$ and $\upphi_{\fk X_{i_\blt}}=\upphi$ for simplicity
 
 We add a point $x$ to $\fk X$ different from $x_1,\dots,x_N$. Then we get a new $(N+1)$-pointed compact Riemann surface $\wr\fk X_x$. We insert vectors of $\Vbb\simeq \Vbb\otimes\id$ to $x$. Then we get a new conformal block $\wr\upphi_x:\Vbb\otimes\Wbb_\blt\rightarrow\Cbb$, which is the restriction of the correlation function $T_{\wr\fk X_x}$ to $\Vbb\otimes\Wbb_\blt$. $\wr\upphi_x$ has the following two features. (Let $\zeta$ be the standard coordinate of $\Cbb$.)
 
-First, assume  $\eta_j(U_j)\supset\Dbb_{r_j}$.  Let $x\in\eta_j^{-1}(\Dbb_{r_j})$. We assign local coordinate $\eta_j-\eta_j(x)$ to $x$. Let 
+First, assume  $\eta_j(U_j)\supset\Dbb_{r_j}$.  Let $x\in\eta_j^{-1}(\Dbb_{r_j})$. We assign local coordinate $\eta_j-\eta_j(x)$ to $x$ so that every marked point of $\wr\fk X_x$ has an associated local coordinate. Let 
 \begin{align}
 	\fk P_{\eta_j(x)}=(\Pbb^1;0,\eta_j(x),\infty;\zeta,\zeta-\eta_j(x),1/\zeta).	
 \end{align}
@@ -4739,7 +4750,7 @@ Consider the sewing $\fk P_{\eta_j(x)}\#\fk X$ along $\infty\in\fk P_{\eta_j(x)}
 \begin{align}
 	\fk P_{\eta_j(x)}\#\fk X \simeq \wr\fk X_x	
 \end{align}
-where the parts $\Pbb^1\setminus\Dbb_{r_j}$ and $x_j$ of $\fk P_{\eta_j(x)}$ and $\fk X$ are discarded; any $\gamma\in\Dbb_{r_j}$ is equivalent to $\eta_j^{-1}(\gamma)$ of $\wr\fk X_x$, and is glued with $\eta_j^{-1}(\gamma)$ of $\fk X$ when $\gamma\in\Dbb_{r_j}^\times$; in particular, the marked points $0,\eta_j(x)$ of $\fk P_{\eta_j(x)}$ (which are not discarded) are identified respectively with $x,x_j$ of $\wr\fk X_x$. 
+where the parts $\Pbb^1\setminus\Dbb_{r_j}$ and $x_j$ of $\fk P_{\eta_j(x)}$ and $\fk X$ are discarded; any $\gamma\in\Dbb_{r_j}$ is equivalent to $\eta_j^{-1}(\gamma)$ of $\wr\fk X_x$, and is glued with $\eta_j^{-1}(\gamma)$ of $\fk X$ when $\gamma\in\Dbb_{r_j}^\times$; in particular, the marked points $0,\eta_j(x)$ of $\fk P_{\eta_j(x)}$ (which are not discarded) are identified respectively with $x_j,x$ of $\wr\fk X_x$. 
 \begin{align}
 	\begin{aligned}
 		&\vcenter{\hbox{{
@@ -4769,11 +4780,11 @@ Besides the translation of $x$, we also allow $v$ to vary holomorphically with r
 \begin{align}
 v\in\Vbb^{\leq n}\otimes_\Cbb \scr O(U).	
 \end{align}
-Assume that there is a \textbf{univalent} \index{00@Univalent functions} (i.e., holomorphic+injective) function $\mu:U\rightarrow\Cbb$.\footnote{Indeed, one only needs to assume that $d\mu$ is nowhere zero on $U$. Then $\mu$ must be locally univalent, which is sufficient for applications.} (It is helpful to think of $\mu$ vanishing at some point $y\in U$, i.e., $\mu$ is a local coordinate at $y$. But technically this is not necessary.) Then at each $x\in U$ there is a natural local coordinate $\mu-\mu(x)$. If we let $\wr\upphi_x$ act on abstract vectors instead of concrete ones, then for each $v$ as above (so that each $\mc U(\mu-\mu(x))^{-1}v(x)$ is an abstract vector)
+Assume that there is a \textbf{univalent} \index{00@Univalent functions} (i.e., holomorphic+injective) function $\mu:U\rightarrow\Cbb$.\footnote{Indeed, one only needs to assume that $d\mu$ is nowhere zero on $U$. Then $\mu$ must be locally univalent, which is sufficient for applications.} (It is helpful to think of $\mu$ vanishing at some point $y\in U$, i.e., $\mu$ is a local coordinate at $y$. But technically this is not necessary.) Then at each $x\in U$ there is a natural local coordinate $\mu-\mu(x)$. If we let $\wr\upphi_x$ act on abstract vectors instead of concrete ones, then for each $v$ as above (so that each $\mc U(\mu-\mu(x))^{-1}v(x)$ is a concrete vector)
 \begin{align}
 x\in U\mapsto \wr\upphi_x\big(\mc U(\mu-\mu(x))^{-1}v(x)\otimes w_\blt\big)	\label{eq178}
 \end{align}
-is a holomorphic function.
+is a holomorphic function. The choice of local coordinate $\mu-\mu(x)$ is in accordance with $(\zeta-z)/r$ in \eqref{eq224} if we assume $r=1$ and identify $\mu$ with the standard coordinate $\zeta$ of $\Cbb$.
 
 
 \subsection{}
@@ -4787,12 +4798,24 @@ for any $y\in C$ close to $x$. Equivalently,
 \begin{align}
 \varrho(\eta|\mu)_x(z)=\eta\circ\mu^{-1}(z+\mu(x))-\eta(x),\label{eq205}
 \end{align}
-from which we see that $\varrho(\eta|\mu):X\rightarrow\Gbb,x\mapsto\varrho(\eta|\mu)_x$ is a holomorphic family of transformations. Thus, by \eqref{eq170}, $\mc U(\varrho(\eta|\mu))\big|_{\Vbb^{\leq n}}$ is in $\End\Vbb^{\leq n}\otimes\scr O(U)$. Thus, by $\scr O(U)$-linearity, $\mc U(\varrho(\eta|\mu))$ sends each section of $\Vbb^{\leq n}\otimes\scr O(U)$ to $\Vbb^{\leq n}\otimes\scr O(U)$, such that its valued at each $x$ is an automorphism of $\Vbb^{\leq n}$. 
+from which we see that $\varrho(\eta|\mu):X\rightarrow\Gbb,x\mapsto\varrho(\eta|\mu)_x$ is a holomorphic family of transformations. Thus, by \eqref{eq170}, $\mc U(\varrho(\eta|\mu))\big|_{\Vbb^{\leq n}}$ is in $\End\Vbb^{\leq n}\otimes\scr O(U)$. Thus, by $\scr O(U)$-linearity, $\mc U(\varrho(\eta|\mu))$ sends each section of $\Vbb^{\leq n}\otimes\scr O(U)$ to $\Vbb^{\leq n}\otimes\scr O(U)$ such that its valued at each $x$ is an automorphism of $\Vbb^{\leq n}$. 
 
-This property can be summarized in the following way: Let $\scr O_U$ be the trivial holomorphic line (i.e. $1$-dimensional vector bundle) over $U$. So $\Vbb^{\leq n}\otimes_\Cbb\scr O_U$ is the trivial (holomorphic) vector bundle\footnote{In our notes, all vector bundles are holomorphic unless otherwise stated.} with fiber $\Vbb^{\leq n}$. Then  we have an automorphism of vector bundle (equivalently, an automorphism of $\scr O_U$-module)
+This property can be summarized in the following way: Let $\scr O_U$ be the trivial holomorphic line (i.e. $1$-dimensional vector bundle) over $U$. So $\Vbb^{\leq n}\otimes_\Cbb\scr O_U$ is the trivial (holomorphic) vector bundle\footnote{In our notes, all vector bundles are holomorphic with finite ranks unless otherwise stated.} with fiber $\Vbb^{\leq n}$. Then  we have an automorphism of vector bundle (equivalently, an automorphism of $\scr O_U$-module)
 \begin{align*}
 \mc U(\varrho(\eta|\mu)):\Vbb^{\leq n}\otimes_\Cbb \scr O_U\xrightarrow{\simeq} \Vbb^{\leq n}\otimes_\Cbb \scr O_U.	
 \end{align*}
+
+
+
+
+By Subsec. \ref{lb15},
+\begin{align*}
+\wr\upphi_x\big(\mc U(\mu-\mu(x))^{-1}v(x)\otimes w_\blt\big)=	\wr\upphi_x\big(\mc U(\eta-\eta(x))^{-1}u(x)\otimes w_\blt\big)	
+\end{align*}
+where $u(x)=\mc U\mc(\varrho(\eta|\mu)_x)v(x)$. Thus, the function $v$ on $U$ is holomorphic iff $u$ is so. This implies that the holomorphicity of \eqref{eq178} is independent of the choice of $\mu$.
+
+
+
 
 \begin{eg}
 Let $\zeta$ be the standard coordinate of $\Cbb^\times$. Then for each $\gamma\in\Cbb^\times$,
@@ -4804,14 +4827,6 @@ where $\vartheta_\gamma(z)=\frac 1{\gamma+z}-\frac 1\gamma$ (cf. \eqref{eq195}).
 \mc U\big(\varrho\big(1/\zeta\big|\zeta\big)_\gamma\big)=\mc U\big(\varrho\big(\zeta\big|1/\zeta\big)_{1/\gamma}\big)=e^{\gamma L_1}(-\gamma^{-2})^{L_0}.\label{eq197}
 \end{align}
 \end{eg}
-
-
-By Subsec. \ref{lb15},
-\begin{align*}
-\wr\upphi_x\big(\mc U(\mu-\mu(x))^{-1}v(x)\otimes w_\blt\big)=	\wr\upphi_x\big(\mc U(\eta-\eta(x))^{-1}u(x)\otimes w_\blt\big)	
-\end{align*}
-where $u(x)=\mc U\mc(\varrho(\eta|\mu)_x)v(x)$. Thus, the function $v$ on $U$ is holomorphic iff $u$ is so. This implies that the holomorphicity of \eqref{eq178} is independent of the choice of $\mu$.
-
 
 
 
@@ -4857,7 +4872,7 @@ Now, the property that  $\wr\upphi$ is holomorphic with respect to the motion an
 \wr\upphi(\cdot\otimes w_\blt):\scr V^{\leq n}_C(U)\rightarrow \scr O(U),\qquad \vbf\mapsto \wr\upphi(\vbf\otimes w_\blt)	
 \end{align}
 is an $\scr O(U)$-module (homo)morphism. (The reason that it intertwines the actions of $\scr O(U)$ is clear.)
-\item $\wr\upphi(\cdot\otimes w_\blt)$ is compatible with the restriction to open subsets. Namely, $v\subset U$ is open, then $\wr\upphi(\vbf|_V\otimes w_\blt)=\wr\upphi(\vbf\otimes w_\blt)|_V$.
+\item $\wr\upphi(\cdot\otimes w_\blt)$ is compatible with the restriction to open subsets. Namely, if $V\subset U$ is open, then $\wr\upphi(\vbf|_V\otimes w_\blt)=\wr\upphi(\vbf\otimes w_\blt)|_V$.
 \end{enumerate}
 
 
@@ -4962,7 +4977,7 @@ By complex analysis, it is clear that the definition of conformal blocks is inde
 \end{rem}
 
 \begin{rem}
-By $\scr O(U_i)$-linearity, to verify \eqref{eq182} for all $v\in\Vbb\otimes\scr O(U_i)$, it suffices to verify it for all constant $v\in\Vbb\simeq \Vbb\otimes 1$.
+By $\scr O(U_i)$-linearity, to verify \eqref{eq182} for all $v\in\Vbb\otimes\scr O(U_i)$, it suffices to verify it for all constant $v\in\Vbb\simeq \Vbb\otimes \id$.
 \end{rem}
 
 
@@ -5007,7 +5022,7 @@ where $\eta_\infty=1/\zeta$ is the local coordinate at $\infty$. This proves \eq
 
 
 \begin{exe}
-Let $\Wbb_1,\Wbb_2$ be admissible $\Vbb$-modules, and let $T:\Wbb_1\rightarrow\Wbb_2$ be an $\Vbb$-module homomorphism, i.e., a linear map intertwines the $\Vbb$-actions. Let $\fk P=(\Pbb^1;0,\infty;\zeta,1/\zeta)$, and associate $\Wbb_1,\Wbb_2'$ to $0,\infty$ respectively. Show that the following linear functional is a conformal block associated to $\fk P$ and $\Wbb_1,\Wbb_2'$.
+Let $\Wbb_1,\Wbb_2$ be admissible $\Vbb$-modules, and let $T:\Wbb_1\rightarrow\Wbb_2$ be a $\Vbb$-module homomorphism, i.e., a linear map intertwines the $\Vbb$-actions. Let $\fk P=(\Pbb^1;0,\infty;\zeta,1/\zeta)$, and associate $\Wbb_1,\Wbb_2'$ to $0,\infty$ respectively. Show that the following linear functional is a conformal block associated to $\fk P$ and $\Wbb_1,\Wbb_2'$.
 \begin{gather}
 \Wbb_1\otimes\Wbb_2'\rightarrow\Cbb\qquad w_1\otimes w_2'\mapsto \bk{Tw_1,w_2'} 
 \end{gather}
@@ -5024,11 +5039,11 @@ Let $\Wbb_1,\Wbb_2$ be admissible $\Vbb$-modules, and let $T:\Wbb_1\rightarrow\W
 
 \subsection{}
 
-Due the fact that \eqref{eq182} belongs to $\Cbb((z))$, we may regard $\wr\upphi(\cdot,w_\blt)$ as a section of $(\scr V_C^{\leq n})^\vee$ that has finite poles at $x_\blt$:
+Due to the fact that \eqref{eq182} belongs to $\Cbb((z))$, we may regard $\wr\upphi(\cdot,w_\blt)$ as a section of $(\scr V_C^{\leq n})^\vee$ that has finite poles at $x_\blt$:
 \begin{align}
 \wr\upphi(\cdot,w_\blt)\in H^0(C,(\scr V_C^{\leq n})^\vee(\star x_\blt)).
 \end{align}
-The meaning of the notation is the following. Let $\scr E$ be a vector bundle over a $C$. Then for each $k_1,\dots,k_N\in\Zbb$,
+The meaning of the notation is the following. Let $\scr E$ be a vector bundle over $C$. Then for each $k_1,\dots,k_N\in\Zbb$,
 \begin{align*}
 \scr E(k_1x_1+\cdots+k_Nx_N)
 \end{align*}
@@ -5133,9 +5148,9 @@ of $\Wbb_\blt$, where we have suppressed $\Span_\Cbb$ in \eqref{eq189}.
 \begin{df}
 The vector space \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*(\Wbb_\blt)$}
 \begin{align}
-\scr T_{\fk X}(\Wbb_\blt)=\frac{\Wbb_\blt}{H^0\big(C,\scr V_C\otimes\omega_C(\star\{x_\blt\})\big)\cdot\Wbb_\blt}
+\scr T_{\fk X}(\Wbb_\blt)=\frac{\Wbb_\blt}{H^0\big(C,\scr V_C\otimes\omega_C(\star x_\blt)\big)\cdot\Wbb_\blt}
 \end{align}
-is called the \textbf{space of covacua} associated to $\fk X$ and $\Wbb_\blt$. Its dual space is denoted by $\scr T_{\fk X}^*(\Wbb_\blt)$ and called the \textbf{space of conformal blocks} (or space of vacua). 
+is called the \textbf{space of coinvariants} (also called space of covacua) associated to $\fk X$ and $\Wbb_\blt$. Its dual space is denoted by $\scr T_{\fk X}^*(\Wbb_\blt)$ and called the \textbf{space of conformal blocks} (or space of vacua, space of invariants). 
 \end{df}
 
 
@@ -5156,27 +5171,31 @@ We continue our discussions in the previous section. The residue action of $\sig
 
 
 
-We now only assume that $\sigma$ is a section of $\scr V_C\otimes\omega_C(\star\{x_\blt\})$ defined on a connected neighborhood of $x_i$, say on $U_i$. (Namely, $\sigma$ is a section of $\scr V_C\otimes\omega_C$ on $U_i\setminus\{x_i\}$ with finite poles at $x_i$.) Let $\mc V_\varrho(\eta_i)\sigma$ be $v_i(z)dz$ in \eqref{eq190}. Then \eqref{eq190} reads
+We now only assume that $\sigma$ is a section of $\scr V_C\otimes\omega_C(\star x_\blt)$ defined on a neighborhood of $x_i$, say on $U_i$. (Namely, $\sigma$ is a section of $\scr V_C\otimes\omega_C$ on $U_i\setminus\{x_i\}$ with finite poles at $x_i$.) Let $\mc V_\varrho(\eta_i)\sigma$ be $v_i(z)dz$ in \eqref{eq190}. Then \eqref{eq190} reads
 \begin{gather}
 \sigma\cdot w_i=\Res_{z=0} ~Y(\mc V_\varrho(\eta_i)\sigma,z)w_i. \label{eq193}
 \end{gather}
 
-Let us  describe $\mc V_\varrho(\eta_i)$ in a more geometric way. Notice that we have a trivialization
+Let us  describe $\mc V_\varrho(\eta_i)$ in a more geometric way. Notice that we
+have an obvious equivalence
 \begin{align*}
-\mc U_\varrho(\eta_i)\otimes\id:\scr V_{U_i}\otimes\omega_{U_i}(\star x_i)\xrightarrow{\simeq}\Vbb\otimes\omega_{U_i}(\star x_i)
+(\eta_i)_*:\scr O_{U_i}\xrightarrow{\simeq}\scr O_{\eta_i(U_i)}
 \end{align*}
-which we denote also by $\mc U_\varrho(\eta_i)$ for simplicity. Let
-\begin{align*}
-(\eta_i)_*:\omega_{U_i}\xrightarrow{\simeq}\omega_{\eta_i(U_i)}
-\end{align*}
-be the pushforward of differentials, i.e., $(\eta_i)_*=(\eta_i^*)^{-1}$ where the pullback $\eta_i^*$ sends any $f(z)dz\in\omega_{\eta_i(U_i)}$ to $(f\circ\eta_i)d\eta_i$. We denote $\id_\Vbb\otimes(\eta_i)_*:\Vbb\otimes\omega_{U_i}(\star x_i)\xrightarrow{\simeq} \Vbb\otimes\omega_{\eta_i(U_i)}(\star 0)$ also by $(\eta_i)_*$. (Recall that $\eta_i$ sends $x_i$ to $0$.) Then \index{V@$\mc V_\varrho(\eta_i),\mc V_\varrho(\varphi)$}
+sending $f$ to $f\circ\eta_i^{-1}$. Then $\id_\Vbb\otimes(\eta_i)_*:\Vbb\otimes_\Cbb\scr O_{U_i}\xrightarrow{\simeq}\Vbb\otimes_\Cbb\scr O_{\eta_i(U_i)}$. We define the \textbf{pushforward} \index{V@$\mc V_\varrho(\eta_i),\mc V_\varrho(\varphi)$}
 \begin{gather}\label{eq218}
 \begin{gathered}
-\mc V_\varrho(\eta_i):\scr V_{U_i}\otimes\omega_{U_i}(\star x_i)\xrightarrow{\simeq}\Vbb\otimes\omega_{\eta_i(U_i)}(\star 0)\\
-\mc V_\varrho(\eta_i)=(\eta_i)_*\mc U_\varrho(\eta_i)
+\mc V_\varrho(\eta_i):\scr V_{U_i}\xrightarrow{\simeq}\Vbb\otimes\scr O_{\eta_i(U_i)}\\
+\mc V_\varrho(\eta_i)=(\id_\Vbb\otimes(\eta_i)_*)\mc U_\varrho(\eta_i)
 \end{gathered}
 \end{gather}
-is called the \textbf{pushforward} induced by $\eta_i$.
+Its tensor product with $(\eta_i)_*=(\eta_i^{-1})^*:\omega_{U_i}\xrightarrow{\simeq}\omega_{\eta_i(U_i)}$ is also denoted by $\mc V_\varrho(\eta_i)$:
+\begin{gather}
+\begin{gathered}
+\mc V_\varrho(\eta_i)\equiv \mc V_\varrho(\eta_i)\otimes(\eta_i)_*:\scr V_{U_i}\otimes\omega_{U_i}(\star x_i)\xrightarrow{\simeq}\Vbb\otimes\omega_{\eta_i(U_i)}(\star 0).
+\end{gathered}
+\end{gather}
+
+
 
 
 \subsection{}
@@ -5196,7 +5215,7 @@ for any local coordinate $\eta_i$ of $C$ at $x_i$, such that if $\mu_i$ is also 
 \end{align}
 Note that $\eta_i\circ\mu_i^{-1}\in\Gbb$ is the change of coordinate from $\mu_i$ to $\eta_i$, and $\mc U(\eta_i\circ\mu_i^{-1})$ is the corresponding invertible operator on $\Wbb_i$ defined by \eqref{eq192}.
 
-For each $\sigma\in H^0(U_i,\scr V_{U_i}\otimes\omega_{U_i}(\star x_i))$ and $\wbf_i\in\scr W(\Wbb_i)$, define
+For each $\sigma\in H^0(U_i,\scr V_{U_i}\otimes\omega_{U_i}(\star x_i))$ and $\wbf\in\scr W(\Wbb_i)$, define
 \begin{align}
 \sigma\cdot \wbf=\mc U(\eta_i)^{-1}\cdot \sigma\cdot \mc U(\eta_i)\wbf\label{eq194}
 \end{align}
@@ -5205,7 +5224,7 @@ where the action of $\sigma$ on $\mc U(\eta_i)\wbf$ is defined by \eqref{eq193}.
 
 \subsection{}
 
-\begin{pp}
+\begin{pp}\label{lb123}
 The definition of residue action $\sigma\cdot \wbf$ is independent of the choice of local coordinates $\eta_i$ at $x_i$.
 \end{pp}
 
@@ -5263,7 +5282,7 @@ This finishes the proof.
 
 
 
-\subsection{}
+\subsection{}\label{lb124}
 
 
 We are now ready to give a coordinate independent definition of conformal blocks. Let $\fk X=(C;x_\blt)$ be an $N$-pointed compact Riemann surface, for which we do not fix local coordinates. Again, we associate admissible $\Vbb$-modules $\Wbb_\blt$ to the markd points $x_\blt$. Let  \index{W@$\scr W(\Wbb_i)$, $\scr W_{\fk X}(\Wbb_\blt)$}
@@ -5275,30 +5294,30 @@ Then for each choice of local coordinates $\eta_\blt$, we have trivialization \i
 \mc U(\eta_\blt):=\mc U(\eta_1)\otimes\cdots\otimes\mc U(\eta_N):\scr W_{\fk X}(\Wbb_\blt)\xrightarrow{\simeq}\Wbb_\blt.
 \end{align}
 If $\mu_\blt$ is another set of local coordinates, then we have transition function
-\begin{align}
+\begin{align}\label{eq225}
 \begin{aligned}
 \mc U(\eta_\blt)\mc U(\mu_\blt)^{-1}=\mc U(\eta_\blt\circ\mu_\blt^{-1}):=\mc U(\eta_1\circ\mu_1^{-1})\otimes\cdots\otimes\mc U(\eta_N\circ\mu_N^{-1}).
 \end{aligned}
 \end{align}
 
 
-For each $\wbf_\blt=\wbf_1\otimes\cdots\wbf_N\in\scr W_{\fk X}(\Wbb_\blt)$ and $\sigma\in H^0(C;\scr V_C\otimes\omega_C(\star\{x_\blt\}))$, define the residue action
+For each $\wbf_\blt=\wbf_1\otimes\cdots\wbf_N\in\scr W_{\fk X}(\Wbb_\blt)$ and $\sigma\in H^0(C;\scr V_C\otimes\omega_C(\star x_\blt))$, define the residue action
 \begin{align}
-\sigma\cdot\wbf=\sum_{i=1}^N \wbf_1\otimes\cdots\otimes \sigma\cdot \wbf_i\otimes\cdots\otimes \wbf_N
+\sigma\cdot\wbf_\blt=\sum_{i=1}^N \wbf_1\otimes\cdots\otimes \sigma\cdot \wbf_i\otimes\cdots\otimes \wbf_N
 \end{align}
-(where each $\sigma\cdot \wbf_i$ is defined by \eqref{eq194}). This gives a linear action of $H^0(C;\scr V_C\otimes\omega_C(\star\{x_\blt\}))$ on $\scr W_{\fk X}(\Wbb_\blt)$.
+(where each $\sigma\cdot \wbf_i$ is defined by \eqref{eq194}). This gives a linear action of $H^0(C;\scr V_C\otimes\omega_C(\star x_\blt))$ on $\scr W_{\fk X}(\Wbb_\blt)$.
 
 \begin{df}
 The vector space \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*(\Wbb_\blt)$}
 \begin{align}
-\scr T_{\fk X}(\Wbb_\blt)=\frac{\scr W_{\fk X}(\Wbb_\blt)}{H^0\big(C,\scr V_C\otimes\omega_C(\star\{x_\blt\})\big)\cdot\scr W_{\fk X}(\Wbb_\blt)}
+\scr T_{\fk X}(\Wbb_\blt)=\frac{\scr W_{\fk X}(\Wbb_\blt)}{H^0\big(C,\scr V_C\otimes\omega_C(\star x_\blt)\big)\cdot\scr W_{\fk X}(\Wbb_\blt)}
 \end{align}
-and its dual space $\scr T^*_{\fk X}(\Wbb_\blt)$ are called respectively  the \textbf{space of covacua} and the \textbf{space of conformal blocks} associated to $\fk X$ and $\Wbb_\blt$.
+and its dual space $\scr T^*_{\fk X}(\Wbb_\blt)$ are called respectively  the \textbf{space of coinvariants} and the \textbf{space of conformal blocks} associated to $\fk X$ and $\Wbb_\blt$.
 \end{df}
 
 
 
-\subsection{}
+\subsection{}\label{lb128}
 
 
 Let us generalize the pushforward in Subsec. \ref{lb105} to a more general geometric setting. Let $X$ and $Y$ be (non-necessarily compact)  Riemann surfaces, and let $\varphi:X\xrightarrow{\simeq}Y$ be a bi-holomorphism. Let
@@ -5352,7 +5371,7 @@ defined locally by \eqref{eq200} or \eqref{eq199}. We call $\mc V_\varrho(\varph
 \begin{align}
 \mc V_\varrho(\varphi)\equiv \mc V_\varrho(\varphi)\otimes\varphi_*:\scr V_X\otimes\omega_X\xrightarrow{\simeq}\scr V_Y\otimes\omega_Y\label{eq206}
 \end{align}
-where $\varphi_*$ is  $(\varphi^*)^{-1}=(\varphi^{-1})^*:\omega_Y\rightarrow\omega_X$.
+where $\varphi_*$ is  $(\varphi^*)^{-1}=(\varphi^{-1})^*:\omega_X\rightarrow\omega_Y$.
 
 \subsection{}
 
@@ -5373,24 +5392,24 @@ Now $\mc V_\varrho(\eta)$ has two meanings: as an equivalence $\scr V_V\rightarr
 
 
 
-\subsection{}
+\subsection{}\label{lb150}
 
 That one can define pushforward for (co)tangent bundles as well as for sheaves of VOAs implies that these two classes of objects are closely related. Indeed, one can view $\scr V_C$ as a twisted direct sum of tensor products of the holomorphic tangent line bundle $\Theta_C$ of $C$. \index{zz@$\Theta_C$} (Note that $\omega_C$ is the dual of $\Theta_C$.)
 
 To see this, let us look at the transition function $\mc U(\varrho(\eta|\mu)):\Vbb^{\leq n}\otimes\scr O_U\xrightarrow{\simeq}\Vbb^{\leq n}\otimes\scr O_U$ where $\mu,\eta\in\scr O(U)$ are univalent. By \eqref{eq192}, $\mc U(\varrho(\eta|\mu))_x=\varrho(\eta|\mu)_x'(0)^{L_0}(1+\text{products of }L_{>0})$ on $\Vbb$. From \eqref{eq177}, $\varrho(\eta|\mu)_x'(0)=\frac{\partial\eta}{\partial\mu}(x)$. Thus, as $L_{>0}$ lowers weights, we conclude that for each $v=v(x)\in\Vbb^{\leq n}\otimes\scr O_U$,
 \begin{align}
-\mc U_\varrho(\eta)\mc U_\varrho(\mu)^{-1}=\mc U(\varrho(\eta|\mu))v=(\partial\eta/\partial\mu)^nv\qquad\mod~\Vbb^{\leq n-1}\otimes\scr O_U.
+\mc U_\varrho(\eta)\mc U_\varrho(\mu)^{-1}v=\mc U(\varrho(\eta|\mu))v=(\partial\eta/\partial\mu)^nv\qquad\mod~\Vbb^{\leq n-1}\otimes\scr O_U.
 \end{align}
 Thus, the transition function $\mc U(\varrho(\eta|\mu))$ from the $\mu$-coordinate to the $\eta$-coordinate for the quotient bundle $\scr V^{\leq n}_C/\scr V^{\leq n-1}_C$ is $(\partial\eta/\partial\mu)^n$, which agrees that of $\Vbb(n)\otimes_\Cbb\Theta_C^{\otimes n}$. We conclude:
 \begin{pp}
 There is an equivalence of $\scr O_C$-modules
 \begin{align}
-\scr V^{\leq n}_C/\scr V^{\leq n-1}_C\simeq \Vbb(n)\otimes_\Cbb\Theta_C^{\otimes n}
+\scr V^{\leq n}_C/\scr V^{\leq n-1}_C\simeq \Vbb(n)\otimes_\Cbb\Theta_C^{\otimes n}\label{eq247}
 \end{align}
-such that if $U\subset C$ is open and $\eta\in\scr O(U)$ is univalent, then for each $v\in\Vbb(n)$, $v\otimes \partial_\eta^n$ (which is an element in the RHS) is equivalent to the equivalence class of $\mc U_\varrho(\eta)^{-1}v$.
+such that if $U\subset C$ is open and $\eta\in\scr O(U)$ is univalent, then for each $v\in\Vbb(n)$, $v\otimes \partial_\eta^n$ (which is an element in the RHS of \eqref{eq247}) is equivalent to the equivalence class of $\mc U_\varrho(\eta)^{-1}v$ in the LHS of \eqref{eq247}.
 \end{pp}
 
-Thus, in general, an element of $\Vbb(n)\otimes\Theta_C^{\otimes n}(U)$ is a sum of those of the form $v\otimes f\partial_\eta^n$ where $v\in\Vbb(n)$ and $f\in\scr O(U)$. It is identified with $f\cdot \mc U_\varrho(\eta)^{-1}v$.
+Thus, in general, an element of $\Vbb(n)\otimes\Theta_C^{\otimes n}(U)$ is a sum of those of the form $v\otimes f\partial_\eta^n$ where $v\in\Vbb(n)$ and $f\in\scr O(U)$. It is identified with $f\cdot \mc U_\varrho(\eta)^{-1}v$ in the LHS of \eqref{eq247}.
 
 \subsection{}
 
@@ -5402,13 +5421,13 @@ If we focus on only primary vectors, we can get subbundles of $\scr V_C$ natural
 
 Since the basic properties of line bundles $\Theta_C^{\otimes n}$ are well known, in the early development of the mathematical theory of conformal blocks, sheaves of VOAs were not yet defined, and the sheaves $\scr P^n_C$ were sometimes used instead to define and study conformal blocks. Specifically, in the landmark paper \cite{TUY89}, conformal blocks for a WZW model $\Vbb=L_l(\gk,0)$ (where $\gk$ is simple and $l\in\Nbb$) was defined using
 \begin{align*}
-\scr P^1_C\otimes \omega_C(\star\{x_\blt\})\simeq\mbf P(1)\otimes_\Cbb \Theta_C\otimes\omega_C(\star\{x_\blt\})=\gk\otimes_\Cbb\scr O_C(\star\{x_\blt\}).
+\scr P^1_C\otimes \omega_C(\star x_\blt)\simeq\mbf P(1)\otimes_\Cbb \Theta_C\otimes\omega_C(\star x_\blt)=\gk\otimes_\Cbb\scr O_C(\star x_\blt).
 \end{align*}
 (Note that $\Theta_C\otimes\omega_C\simeq\scr O_C$ since $\omega$ is dual to $\Theta_C$.) Thus, for WZW models, the space of vacuua was defined (for $\fk X$ with local coordinates) in \cite{TUY89} to be
 \begin{align*}
-\frac{\Wbb_\blt}{H^0\big(C,\gk\otimes_\Cbb\scr O_C(\star\{x_\blt\})\big)\cdot\Wbb_\blt}
+\frac{\Wbb_\blt}{H^0\big(C,\gk\otimes_\Cbb\scr O_C(\star x_\blt)\big)\cdot\Wbb_\blt}
 \end{align*}
-Fortunately, this definition agrees with the one defined using $H^0(C,\scr V_C\otimes\omega_C(\star\{x_\blt\}))$. See \cite[Sec. 9.3]{FB04}.
+Fortunately, this definition agrees with the one defined using $H^0(C,\scr V_C\otimes\omega_C(\star x_\blt))$. See \cite[Sec. 9.3]{FB04}.
 
 
 
@@ -5424,7 +5443,7 @@ Let $W\subset C$ be an open subset, and choose $\fk x\in\Theta_C(W)$, namely, $\
 
 In the following, we write $\exp(\zeta\xk)(x)$ as $\exp_{\zeta\xk}(x)$.
 
-\begin{df}
+\begin{df}\label{lb129}
 For any $\vbf\in\scr V_C^{\leq n}(W)$ and $\xk\in\Theta_C(W)$, define the \textbf{Lie derivative} $\mc L_\xk\vbf\in\scr V_C^{\leq n}(W)$ \index{L@$\mc L_\xk$, the Lie derivative} as follows. Choose any precompact open subset $V$ in $W$. Then
 \begin{align}\label{eq207}
 \mc L_\xk\vbf\big|_V=\lim_{\zeta\rightarrow0} \frac{\mc V_\varrho(\exp_{\zeta\xk})^{-1}\big(\vbf\big|_{\exp_{\zeta\xk}(V)}\big)-\vbf\big|_V}{\zeta}
@@ -5484,7 +5503,7 @@ In Prop. \ref{lb108}, if we assume that  $u\in\mbf P(n)\otimes_\Cbb\scr O(W)$, i
 
 Since we have pushforward for sections of $\scr V_C^{\leq n}\otimes\omega_C$ (cf. \eqref{eq206}), we can also define Lie derivatives in this bundle using the same formula \eqref{eq207}. The result is easy to guess by Leibniz rule and prove rigorously:
 
-\begin{co}
+\begin{co}\label{lb130}
 Let $\sigma\in\scr V^{\leq n}_C\otimes\omega_C(W)$, and set
 \begin{align*}
 u\cdot d\eta=\mc U_\varrho(\eta)\sigma\qquad\in\Vbb^{\leq n}\otimes_\Cbb\omega_C(W)
@@ -5506,7 +5525,7 @@ where $u\in\Vbb^{\leq n}\in\scr O(W)$. Write $\xk=h\partial_\eta$ where $h\in\sc
 
 
 \begin{df}
-A \textbf{family of compact Riemann surfaces} is the data $\pi:\mc C\rightarrow\mc B$ where $\mc B,\mc C$ are Riemann surfaces,  the holomorphic map $\pi$ is proper (i.e. $\pi^{-1}(\text{compact})$ is compact) and a submersion (i.e. the linear map $d\pi$ between holomorphic tangent spaces is everywhere surjective), and for each $b\in\mc B$ the fiber $\mc C_b=\pi^{-1}(b)$ \index{Cb@$\mc C_b=\pi^{-1}(b),U_b=\mc C_b\cap U$, the fibers of $\mc C,U$ at $b$} is a compact Riemann surface. Clearly, $\pi$ is an open map.
+A \textbf{family of compact Riemann surfaces} is the data $\pi:\mc C\rightarrow\mc B$ where $\mc B,\mc C$ are Riemann surfaces,  the holomorphic map $\pi$ is proper (i.e. $\pi^{-1}(\text{compact})$ is compact) and a submersion (i.e. the linear map $d\pi$ between holomorphic tangent spaces is everywhere surjective), and for each $b\in\mc B$ the fiber $\mc C_b=\pi^{-1}(b)$ \index{Cb@$\mc C_b=\pi^{-1}(b)$, the fiber of $\mc C$ at $b$} is a compact Riemann surface. Clearly, $\pi$ is an open map.
 \end{df}
 
 
@@ -5675,14 +5694,14 @@ The marked points of $\mc C_\tau$, together with local coordinates, are chosen t
 
 \subsection{}\label{lb110}
 In the previous example, suppose we associate $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$ to $0\in\mc R_\tau,x_2,\dots,x_N$ respectively, and let $\upphi_\tau$ denote a conformal block associated to $\fk X_\tau$. Let $\xk=\sum_{n\in\Zbb} c_nz^{n+1}\partial_z$.  $\fk X_0$ is changed to $\fk X_\tau$ by changing the local coordinate $\eta$ of $C$ at $x_1$ to the first one of $\fk X_\tau$, which is $\exp_{\tau\xk}\circ\eta$ when restricted to $C\setminus\eta^{-1}(\Dbb_r^\cl)$. Thus, intuitively, for each given $\upphi_0$, one can construct $\upphi_\tau$ using the formal expression
-\begin{align*}
-\upphi_\tau(w_\blt)=\upphi_0(e^{-\tau\sum_n c_nL_n}w_1\otimes w_2\otimes\cdots\otimes w_N).
-\end{align*}
-This expression actually converges in certain good cases, e.g. when $c_n=0$ for sufficiently negative $n$. In case that the expression converges, the map $\upphi_0\mapsto\upphi_\tau$ defines a linear map between the spaces of conformal blocks $\scr T^*_{\fk X_0}(\Wbb_\blt)\rightarrow\scr T^*_{\fk X_\tau}(\Wbb_\blt)$, which is an isomorphism since the operator $e^{-\tau\sum_n c_nL_n}$ is invertible. In particular, the dimensions of $\scr T^*_{\fk X_0}(\Wbb_\blt)$ and $\scr T^*_{\fk X_\tau}(\Wbb_\blt)$ are equal.
-
-$\upphi_\tau$ satisfies the differential equation $\partial_\tau+\sum c_n\upphi_\tau\circ(L_n\otimes\id_{\Wbb_2\otimes\cdots\otimes \Wbb_N})$. This fact can be rephrased by saying that
 \begin{align}
-\nabla_{\partial_\tau}:=\partial_\tau+\sum_n c_n (L_n\otimes\id_{\Wbb_2\otimes\cdots\otimes \Wbb_N})^\tr
+\upphi_\tau(w_\blt)=\upphi_0(e^{-\tau\sum_n c_nL_n}w_1\otimes w_2\otimes\cdots\otimes w_N).\label{eq245}
+\end{align}
+This expression actually converges in certain good cases, e.g. when $c_n=0$ for sufficiently negative $n$. (See Example \ref{lb149}.) In case that the expression converges, the map $\upphi_0\mapsto\upphi_\tau$ defines a linear map between the spaces of conformal blocks $\scr T^*_{\fk X_0}(\Wbb_\blt)\rightarrow\scr T^*_{\fk X_\tau}(\Wbb_\blt)$, which is an isomorphism since the operator $e^{-\tau\sum_n c_nL_n}$ is invertible. In particular, the dimensions of $\scr T^*_{\fk X_0}(\Wbb_\blt)$ and $\scr T^*_{\fk X_\tau}(\Wbb_\blt)$ are equal.
+
+$\upphi_\tau$ satisfies the differential equation $\partial_\tau+\sum c_n\upphi_\tau\circ(L_n\otimes\id_{\Wbb_2}\otimes\cdots\otimes \id_{\Wbb_N})$. This fact can be rephrased by saying that
+\begin{align}
+\nabla_{\partial_\tau}:=\partial_\tau+\sum_n c_n (L_n\otimes\id_{\Wbb_2}\otimes\cdots\otimes \id_{\Wbb_N})^\tr
 \end{align}
 defines a natural connection $\nabla$  on the sheaf of conformal blocks (associated to $\fk X$) over $\Delta$, and $\tau\mapsto\upphi_\tau$ is a parallel section under this connection.
 
@@ -5691,7 +5710,7 @@ defines a natural connection $\nabla$  on the sheaf of conformal blocks (associa
 
 \subsection{}
 
-Example \ref{lb109} can be easily generalized to the case that on each neighborhood of $\Sbf^1$ around $x_i$ a holomorphic vector field $\xk_i$ is associated. The flows generated by these fields define a family.
+Example \ref{lb109} can be easily generalized to the case that on each neighborhood of $\Sbb^1$ around $x_i$ a holomorphic vector field $\xk_i$ is associated. The flows generated by these fields define a family.
 
 We now consider another important generalization of Example \ref{lb109}:
 
@@ -5743,25 +5762,25 @@ We first consider $\partial_\zeta\mc U(\beta_\zeta)$ at $\zeta=0$. Recall $\beta
 \begin{align}
 h(z,\zeta)=\sum_{n\in\Zbb}h_n(\zeta)z^n\label{eq216}
 \end{align}
-(where $h_n\in\scr O(\Delta)$). Then $h(z,0)\partial_z=\sum_{n\in\Zbb}h_n(0)z^n\partial_z$, which corresponds to $\sum_n h_n(0)L_{n-1}$. This should be the formula of $\partial_\zeta \mc U(\beta_\zeta)$ at $\zeta=0$.
+(where $h_n\in\scr O(\Delta)$). Then $h(z,0)\partial_z=\sum_{n\in\Zbb}h_n(0)z^n\partial_z$, which corresponds to $\sum_n h_n(0)L_{n-1}$. This should be the formula for $\partial_\zeta \mc U(\beta_\zeta)$ at $\zeta=0$.
 
 For an arbitrary $\zeta\in\Delta$, we find the formula of $\partial_\zeta\mc U(\beta_\zeta)=\partial_\lambda\mc U(\beta_{\lambda+\zeta})\big|_{\lambda=0}$ using the same method. Write $\mc U(\beta_{\lambda+\zeta})=\mc U(\beta_{\lambda+\zeta}\circ\beta_\zeta^{-1})\circ\mc U(\beta_\zeta)$. Then the $\partial_\lambda$ of $\beta_{\lambda+\zeta}\circ\beta_\zeta^{-1}$ at $\lambda=0$ is $(\partial_\zeta\beta)\circ\beta_\zeta^{-1}$, which by \eqref{eq210} equals $h(z,\zeta)$. Thus
 \begin{align}
 \partial_\zeta\mc U(\beta_\zeta)=\sum_{n\in\Zbb} h_n(\zeta)L_{n-1}\mc U(\beta_\zeta).
 \end{align}
-Thus, since the derivative of the LHS of \eqref{eq211} is zero, we conclude that $\upphi_\zeta$ is killed by $\partial_\zeta+\sum_n h_n(\zeta)(L_{n-1}\otimes\id_{\Wbb_2\otimes\cdots\otimes\Wbb_N})^\tr$. Equivalently, $\upphi_\zeta$ is parallel under the connection $\nabla$ defined by
+Thus, since the derivative of the LHS of \eqref{eq211} is zero, we conclude that $\upphi_\zeta$ is killed by $\partial_\zeta+\sum_n h_n(\zeta)(L_{n-1}\otimes\id_{\Wbb_2}\otimes\cdots\otimes \id_{\Wbb_N})^\tr$. Equivalently, $\upphi_\zeta$ is parallel under the connection $\nabla$ defined by
 \begin{align}
-\nabla_{\partial_\zeta}=\partial_\zeta+\sum_{n\in\Zbb} h_n(\zeta)\big(L_{n-1}\otimes\id_{\Wbb_2\otimes\cdots\otimes\Wbb_N}\big)^\tr.
+\nabla_{\partial_\zeta}=\partial_\zeta+\sum_{n\in\Zbb} h_n(\zeta)\big(L_{n-1}\otimes\id_{\Wbb_2}\otimes\cdots\otimes \id_{\Wbb_N}\big)^\tr.
 \end{align}
 
 
-\subsection{}
+\subsection{}\label{lb144}
 
 The importance of Example \ref{lb111} (or its generalization to the case that around each $x_i$ there is a vector field) is that any family is locally of this form. Let us explain this fact in more details.
 
 Let $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_\blt;\eta_\blt)$ be a family of $N$-pointed compact Riemann surfaces with local coordinates. Recall that by our convention, $\Theta_{\mc C}$ and $\Theta_{\mc B}$ are respectively holomorphic tangent bundle of $\mc C$ and $\Theta_{\mc B}$. Let $U\subset \mc C$ be open, and $\xk\in\Theta_{\mc C}(U)$. Note that $W=\pi(U)$ is open. Choose $\yk\in\Theta_{\mc B}(W)$. We say that $\xk$ is a \textbf{lift} \index{00@A lift $\xk$ of $\yk\in H^0(\mc B,\Theta_{\mc B})$} of $\yk$ if for each $x\in\mc C$, the differential map $d\pi:\Theta_{\mc C}|_x\rightarrow\Theta_{\mc B}|_{\pi(x)}$ between tangent spaces sends $\xk(x)$ to $\yk(\pi(x))$. 
 
-If we have $\eta\in\scr O(U)$ univalent on each fiber $U_b=U\cap\mc C_b$ (where $b\in\mc B$) of $U$, then the relationship between $\xk$ and $\yk$ can be written in an explicit way. 
+If we have $\eta\in\scr O(U)$ univalent on each fiber $U_b=U\cap\mc C_b$ (where $b\in\mc B$) \index{Ub@$U_b=\mc C_b\cap U$} of $U$, then the relationship between $\xk$ and $\yk$ can be written in an explicit way. 
 
 \begin{ass}\label{lb113}
 Assume $W$ is biholomorphic to an open subset of $\Cbb^m$ via a map $\tau_\blt=(\tau_1,\dots,\tau_m):W\rightarrow\Cbb^m$. Identify $W$ with $\tau_\blt(W)$ so that $\tau_\blt$ are identified with the standard coordinates of $\Cbb^m$. Note that $(\eta,\pi)$ is a biholomorphism between $U$ and an open subset of $\Cbb\times\Cbb^{m+1}$. We identify $U$ with $(\eta,\pi)(U)$ so that $\eta$ becomes the standard coordinate $z$ of $\Cbb$, and $\pi$ becomes the standard coordinates $\tau_\blt$ of $\Cbb^m$.
@@ -5803,7 +5822,7 @@ Stein manifolds are those that many local problems related to vector bundles hav
 
 
 
-\subsection{}
+\subsection{}\label{lb126}
 
 
 We now assume $\mc B$ is a connected Stein open subset of $\Cbb^m$ containing $0$, and let $\tau_\blt$ be the standard coordinates of $\Cbb^m$. Choose
@@ -5835,11 +5854,11 @@ which plays the same role as $C\setminus\eta^{-1}(\Dbb_r^\cl)$ in Example \ref{l
 \begin{align*}
 b_\zeta=\exp_{\zeta\yk}(0)\qquad\in\Cbb^m.
 \end{align*}
-Then $\mc C_{b_\zeta}$ has an open submanifold $\exp_{\zeta\xk}(\mc C_0^+)$ equivalent to $\mc C_0^+$. Note that $b_0=0$.
-\begin{align*}
+It is not hard to check that $\exp_{\zeta\xk}(\mc C_0^+)$ is inside $\mc C_{b_\zeta}$. So $\mc C_{b_\zeta}$ has an open submanifold $\exp_{\zeta\xk}(\mc C_0^+)$ equivalent to $\mc C_0^+$. Note that $b_0=0$.
+\begin{align}\label{eq237}
 \vcenter{\hbox{{
 \includegraphics[height=3cm]{fig29.png}}}}
-\end{align*}
+\end{align}
 
 
 %For sufficiently small $\Delta$, we may assume that $\eta_i|_{\mc C_{b_\zeta}}$ is defined on the annulus $\exp_{\zeta\xk}(\eta_i^{-1}(A_{r,R}))$ (since this is true when $\zeta=0$).
@@ -5850,7 +5869,7 @@ $\mc C_{b_\zeta}$ can be viewed as gluing $\exp_{\zeta\xk}(\mc C_0^+)$ with $U_1
 \end{align}
 where $\beta^i_\zeta=\alpha^i_\zeta(z,0)$ and $(\eta_i,\pi)\circ\exp_{\zeta\xk}\circ (\eta_i,\pi)^{-1}(z,\tau_\blt)$ equals $(\alpha^i_\zeta(z,\tau_\blt),\exp_{\zeta\yk}(\tau_\blt))$. Namely, $\alpha^i$ is determined by the fact that under the identification of $U_i$ with $(\eta_i,\pi)(U_i)$ via $(\eta_i,\pi)$, 
 \begin{align}
-\exp_{\zeta\xk}(z,\tau_\blt)=(\alpha^i_\zeta(z,\tau_\blt),\exp_{\zeta\yk}(\tau_\blt)).
+\exp_{\zeta\xk}(z,\tau_\blt)=(\alpha^i_\zeta(z,\tau_\blt),\exp_{\zeta\yk}(\tau_\blt)).\label{eq236}
 \end{align}
 
 
@@ -5898,7 +5917,7 @@ This fact can be rephrased as follows: on the complex path $\zeta\mapsto b_\zeta
 
 We close this section by giving some examples of lifts. 
 
-\begin{eg}
+\begin{eg}\label{lb148}
 Let $\fk X$ the family in Example \ref{lb111}. Let $h(z,\tau)$ be defined by \eqref{eq210} whose Laurent series expansion with respect to $z$ (cf. \eqref{eq216}) has only finitely many negative powers of $z$.  
 
 Let $\yk\in H^0(\Delta,\Theta_\Delta)$ be $\partial_\tau$ where $\tau$ is the standard coordinate of $\Cbb$. Recall (cf. the end of Example \ref{lb111}) that $\mc C$ is the gluing of $\Delta\times(C\setminus\eta^{-1}(\Dbb_r^\cl))$ and $\mc A\cup O$, where the latter is an open subset of $\Cbb\times\Cbb$. We define the lift $\xk$ to be the canonical one $\partial_\tau$ on $\Delta\times(C\setminus\eta^{-1}(\Dbb_r^\cl))$, i.e., the one parallel to the $\Delta$-component  and hence orthogonal to the $(C\setminus\eta^{-1}(\Dbb_r^\cl))$-component. Then on $\mc A\cup O$, using the standard coordinates $(z,\tau)$ of $\Cbb\times\Cbb$, $\xk$ is $h(z,\tau)\partial_z+\partial_\tau$, which has finite poles at $z=0$. This shows that $\xk\in H^0(\mc C,\Theta_{\mc C}(\star\SX))$, and that (not surprisingly) the  $\nabla_\yk$ defined as in Subsec. \ref{lb117} agrees with that in Subsec. \ref{lb116}.  \hfill\qedsymbol
@@ -5922,17 +5941,17 @@ Associate $\Wbb_0,\Wbb_1,\dots,\Wbb_N,\Wbb_\infty$ to the marked points $0,\sgm_
 
 
 
-\section{Sheaves of covacua and conformal blocks, and their connections}
+\section{Sheaves of coinvariants and conformal blocks, and their connections}\label{lb136}
 
 
 
-\subsection{}
+\subsection{}\label{lb127}
 
-In this section, we study conformal blocks for families of compact Riemann surfaces in a rigorous way. Let
+We study conformal blocks for families of compact Riemann surfaces in a rigorous way. In this section and the next one, we let
 \begin{align*}
 \fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)
 \end{align*}
-be a family of $N$-pointed compact Riemann surface. Associate $\Vbb$-modules $\Wbb_1\dots,\Wbb_N$ to $\sgm_1,\dots,\sgm_N$ respectively. Choose a neighborhood $U_i\subset\mc C$ of $\sgm_i(\mc B)$ disjoint from $\sgm_j(\mc B)$ if $i\neq j$. If we choose local coordinate $\eta_i$ at $\sgm_i$, we assume $\eta_i$ is defined on $U_i$. 
+be a family of $N$-pointed compact Riemann surface. Associate $\Vbb$-modules $\Wbb_1\dots,\Wbb_N$ to $\sgm_1,\dots,\sgm_N$ respectively. Choose a  neighborhood $U_i\subset\mc C$ of $\sgm_i(\mc B)$ disjoint from $\sgm_j(\mc B)$ if $i\neq j$. If we choose local coordinate $\eta_i$ at $\sgm_i$, we assume $\eta_i$ is defined on $U_i$. 
 
 
 \subsection{}
@@ -5950,7 +5969,7 @@ The map $\varrho(\eta|\mu):p\in U\rightarrow\varrho(\eta|\mu)_p\in\Gbb$ is clear
 \mc U(\varrho(\eta|\mu)):\Vbb^{\leq n}\otimes\scr O_U\xrightarrow{\simeq}\Vbb^{\leq n}\otimes\scr O_U.
 \end{align}
 
-Similar to the case of a single compact Riemann surface, we define $\scr V^{\leq n}_{\fk X}$ \index{VX@$\scr V^{\leq n}_{\fk X},\scr V_{\fk X}$} to be the locally free $\scr O_{\mc C}$-module such that each open $U\subset\mc C$ with $\eta\in\scr O(U)$ univalent on each fiber is associated with a trivialization $\mc U_\varrho(\eta)$ \index{U@$\mc U_\varrho(\eta)$}
+Similar to the case of a single compact Riemann surface, we define $\scr V^{\leq n}_{\fk X}$ \index{VX@$\scr V^{\leq n}_{\fk X},\scr V_{\fk X}$} to be the locally free $\scr O_{\mc C}$-module such that each open $U\subset\mc C$ with $\eta\in\scr O(U)$ univalent on each fiber is associated with a trivialization \index{U@$\mc U_\varrho(\eta)$}
 \begin{align}
 \mc U_\varrho(\eta):\scr V^{\leq n}_{\fk X}|_U\xrightarrow{\simeq}\Vbb^{\leq n}\otimes\scr O_U
 \end{align}
@@ -5996,10 +6015,10 @@ Given $\eta\in\scr O(U)$ univalent on each fiber, we have an obvious equivalence
 (\eta,\pi)_*:\scr O_U\xrightarrow{\simeq}\scr O_{(\eta,\pi)(U)}
 \end{align}
 defined by pulling back functions using $(\eta,\pi)^{-1}$. We define the \textbf{pushforward}\footnote{A better notation would be $\mc V_\varrho(\eta,\pi)$. However, we use $\mc V_\varrho(\eta)$ to make the notation shorter.} \index{V@$\mc V_\varrho(\eta_i),\mc V_\varrho(\varphi)$}
-\begin{gather}
+\begin{gather}\label{eq233}
 \begin{gathered}
 \mc V_\varrho(\eta):\scr V_{\fk X}|_U\xrightarrow{\simeq}\Vbb\otimes\scr O_{(\eta,\pi)(U)}\\
-\mc V_\varrho(\eta)=(\eta,\pi)_*\mc U_\varrho(\eta).
+\mc V_\varrho(\eta)=(\id_\Vbb\otimes(\eta,\pi)_*)\mc U_\varrho(\eta).
 \end{gathered}
 \end{gather}
 Its restriction to each fiber $U_b=U\cap\mc C_b$ equals the pushforward $\mc V_\varrho(\eta|_{\mc C_b}):\scr V_{U_b}\xrightarrow{\simeq}\Vbb\otimes\scr O_{\eta(U_b)}$ defined by \eqref{eq218}.
@@ -6028,21 +6047,21 @@ We let $\mc V_\varrho(\eta)$ also denote
 %\end{align}
 %Then we have obvious isomorphism $\scr W_{\fk X}(\Wbb_\blt)|b\simeq\Wbb_\blt$ for each $b\in\mc B$. 
 
-To define sheaves of covacua and conformal blocks, we first consider the case that local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1,\dots,\sgm_N$ are chosen and defined on $U_1,\dots,U_N$.
+To define sheaves of coinvariants and conformal blocks, we first consider the case that local coordinates $\eta_1,\dots,\eta_N$ at $\sgm_1,\dots,\sgm_N$ are chosen and defined on $U_1,\dots,U_N$.
 
 For each open $V\subset\mc B$, let \index{CV@$\mc C_V=\pi^{-1}(V)$}
 \begin{align}
 \mc C_V=\pi^{-1}(V),
 \end{align}
-and we have an $\scr O(V)$-linear action of $H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ on $\Wbb_\blt\otimes\scr O(V)$ whose restriction to each fiber is the action of $H^0(\mc C_b,\scr V_{\fk X_b}\otimes\omega_{\mc C_b}(\star\SXb))$ on $\Wbb_\blt$ defined by Def. \ref{lb120}. So this action is compatible with the restriction to open subsets of $V$.
+and we have an $\scr O(V)$-linear action of $H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ on $\Wbb_\blt\otimes\scr O(V)$ whose restriction to each fiber is the residue action of $H^0(\mc C_b,\scr V_{\fk X_b}\otimes\omega_{\mc C_b}(\star\SXb))$ on $\Wbb_\blt$ defined by Def. \ref{lb120}. So this action is compatible with the restriction to open subsets of $V$.
 
 Let us describe this action in more details. Suppose $\sigma\in H^0(U_i\cap\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$. Note that by \eqref{eq219} we have (noting $\pi(U_i)=\mc B$)
 \begin{align}
 \mc V_\varrho(\eta_i):\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big|_{U_i}\xrightarrow{\simeq} \Vbb\otimes_\Cbb\omega_{(\eta_i,\pi)(U_i)/\mc B}(\star \{0\}\times\mc B)
 \end{align}
-since $\sgm_i(\mc B)$ is the only one of $\sgm_\blt(\mc B)$ intersecting (and also inside) $U_i$, and $(\eta_i,\pi)$ sends $\sgm_i(\mc B)$ to $\{0\}\times\mc B$ (cf. \eqref{eq220}). Then for each $w_i\in\Wbb_i\otimes\scr O(V)$ (we regard $w_i=w_i(b)$ as a $\Wbb_i$-valued holomorphic functions on $V$), we define 
+since $\sgm_i(\mc B)$ is the only one of $\sgm_\blt(\mc B)$ intersecting (and also inside) $U_i$, and $(\eta_i,\pi)$ sends $\sgm_i(\mc B)$ to $\{0\}\times\mc B$ (cf. \eqref{eq220}). Then for each $w_i\in\Wbb_i\otimes\scr O(V)$ (we regard $w_i=w_i(b)$ as a $\Wbb_i$-valued holomorphic functions on $V$), we define \textbf{residue action}
 \begin{align}
-\sigma\cdot w_i=\Res_{z=0}~Y\big(\mc V_\varrho(\eta_i)\sigma,z \big)w_i.
+\sigma\cdot w_i=\Res_{z=0}~Y\big(\mc V_\varrho(\eta_i)\sigma,z \big)w_i.\label{eq226}
 \end{align}
 
 More precisely, write
@@ -6055,31 +6074,31 @@ where $v=v(z,b)$ is a $\Vbb$-valued holomorphic function on $(\eta_i,\pi)(U_i\ca
 \end{align}
 
 Now, any element of $\Wbb_\blt\otimes_\Cbb\scr O(V)$ is a ($\Cbb$-)linear combination of $\Wbb_\blt$-valued holomorphic functions $w_\blt$ where (for each $b\in V$)
-\begin{align*}
-w_\blt(b)=w_1(b)\otimes_\Cbb\cdots\otimes_\Cbb w_N(b)\qquad\in\Wbb_\blt
-\end{align*}
-and each $w_i$ is an $\Wbb_i$-valued holomorphic function on $V$. Alternatively, 
-\begin{align*}
-w_\blt=w_1\otimes_{\scr O(V)}\cdots\otimes_{\scr O(V)}w_N
-\end{align*}
+\begin{align}
+w_\blt(b)=w_1(b)\otimes_\Cbb\cdots\otimes_\Cbb w_N(b)\qquad\in\Wbb_\blt\label{eq228}
+\end{align}
+and each $w_i$ is an $\Wbb_i$-valued holomorphic function on $V$. Alternatively, \index{w@$w_\blt=w_1\otimes\cdots\otimes w_N$ as an element $\Wbb_\blt\otimes_\Cbb\scr O(V)$} 
+\begin{align}
+w_\blt=w_1\otimes_{\scr O(V)}\cdots\otimes_{\scr O(V)}w_N\label{eq229}
+\end{align}
 is in
 \begin{align*}
 (\Wbb_1\otimes_\Cbb\scr O(V))\otimes_{\scr O(V)}\cdots\otimes_{\scr O(V)}(\Wbb_N\otimes_\Cbb\scr O(V))\simeq \Wbb_\blt\otimes_\Cbb\scr O(V).
 \end{align*}
-So the expression $w_\blt=w_1\otimes\cdots\otimes w_N$ can be understood in an unambiguous way. The action of any $\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ on $w_\blt$ is given by
+So the expression $w_\blt=w_1\otimes\cdots\otimes w_N$ can be understood in an unambiguous way. The \textbf{residue action} of any $\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ on $w_\blt$ is given by
 \begin{align}
 \sigma\cdot w_\blt=\sum_{i=1}^N w_1\otimes\cdots\otimes \sigma\cdot w_i\otimes\cdots\otimes w_N.
 \end{align}
 (It is sufficient to understand this action when $w_\blt$ is a constant function, i.e., $w_\blt\in\Wbb_\blt$.)
 
-\subsection{}
+\subsection{}\label{lb125}
 Define an infinite-rank vector bundle over $\mc B$: \index{W@$\scr W(\Wbb_i)$, $\scr W_{\fk X}(\Wbb_\blt)$}
 \begin{align}
 \scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt\otimes_\Cbb\scr O_{\mc B}.
 \end{align}
-Define an $\scr O(V)$-module \index{JX@$\scr J_{\fk X}(\Wbb_\blt)$}
+Define an $\scr O(V)$-module \index{JX@$\scr J_{\fk X}(\Wbb_\blt),\scr J_{\fk X_b}(\Wbb_\blt)$}
 \begin{align}
-\scr J_{\fk X}(\Wbb_\blt)(V)=H^0\big(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)\cdot H^0\big(V,\scr W_{\fk X}(\Wbb_\blt)\big).
+\scr J_{\fk X}(\Wbb_\blt)(V)=H^0\big(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)\cdot H^0\big(V,\scr W_{\fk X}(\Wbb_\blt)\big).\label{eq221}
 \end{align}
 where we have suppressed $\Span_\Cbb$. Then we have a presheaf of $\scr O_{\mc B}$-modules whose space of sections on any open $V\subset\mc B$ is $\scr J_{\fk X}(\Wbb_\blt)(V)$. This is a sub-presheaf of $\scr W_{\fk X}(\Wbb_\blt)$.
 
@@ -6089,11 +6108,380 @@ The $\scr O_{\mc B}$-module \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*
 \begin{align}
 \scr T_{\fk X}(\Wbb_\blt)=\frac{\scr W_{\fk X}(\Wbb_\blt)}{\scr J_{\fk X}(\Wbb_\blt)}
 \end{align}
-(defined by sheafifying the presheaf $V\mapsto \frac{\scr W_{\fk X}(\Wbb_\blt)(V)}{\scr J_{\fk X}(\Wbb_\blt)(V)}$) and its dual $\scr O_{\mc B}$-module $\scr T_{\fk X}^*(\Wbb_\blt)$ are called respectively the \textbf{sheaf of covacua} and the \textbf{sheaf of conformal blocks} associated to $\fk X$ and $\Wbb_\blt$.
+(defined by sheafifying the presheaf $V\mapsto \frac{\scr W_{\fk X}(\Wbb_\blt)(V)}{\scr J_{\fk X}(\Wbb_\blt)(V)}$) and its dual $\scr O_{\mc B}$-module $\scr T_{\fk X}^*(\Wbb_\blt)$ are called respectively the \textbf{sheaf of coinvariants} and the \textbf{sheaf of conformal blocks} associated to $\fk X$ and $\Wbb_\blt$. Sections of $\scr T_{\fk X}^*(\Wbb_\blt)$ are called \textbf{conformal blocks}.
 \end{df} 
 
 
 
+\subsection{}
+
+Let us give an explicit description of $\scr T_{\fk X}^*(\Wbb_\blt)$. The following is easy to see:
+\begin{rem}
+Sections $\scr T_{\fk X}^*(\Wbb_\blt)$ over $V$ are all morphisms $\upphi:\scr W_{\fk X}(\Wbb_\blt)|_V\rightarrow\scr O_V$ that vanish when evaluated with any section of $\scr J_{\fk X}(\Wbb_\blt)|_V$, i.e., $\upphi(s)=0$ for all $s\in\scr J_{\fk X}(\Wbb_\blt)(V_1)$ where $V_1\subset V$ is open.
+\end{rem}
+
+
+
+\begin{rem}
+A morphism $\upphi:\scr W_{\fk X}(\Wbb_\blt)|_V=\Wbb_\blt\otimes_\Cbb\scr O_V\rightarrow\scr O_V$ is equivalently a linear map $\Phi:\Wbb_\blt\rightarrow\scr O(V)$. Indeed, given $\upphi$, we define $\Phi$ to be $\Phi(w)=\upphi(w)\in\scr O(V)$ where each $w\in\Wbb_\blt$ is identified with the constant section $w\otimes 1\in\Wbb_\blt\otimes_\Cbb\scr O(V)$. Conversely, given $\Phi$, we define $\upphi$ sending each $w\otimes f\in\Wbb_\blt\otimes\scr O(V_1)$ (where $V_1\subset V$ is open) to $f\cdot \Phi(w)|_{V_1}$.
+
+Thus, for each $b\in V$, the fiber map $\upphi|_b:\scr W_{\fk X}(\Wbb_\blt)|_b\simeq\Wbb_\blt\rightarrow \scr O_V|_b\simeq\Cbb$ is given by $w\in\Wbb_\blt\simeq\Wbb_\blt\otimes 1\mapsto \upphi(w)(b)$ where $\upphi(w)(b)$ is the value of $\upphi(w)\in\scr O(V)$ at $b$.  \hfill\qedsymbol
+\end{rem}
+
+
+\subsection{}
+
+
+We can now relate conformal blocks for families and for single complex Riemann surfaces. For simplicity, we assume $V=\mc B$; otherwise we just need to restrict $\fk X$ to the subfamily $\fk X_V$ with base manifold $V$.
+
+\begin{pp}\label{lb121}
+Choose an $\scr O_{\mc B}$-module morphism $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$. If $\mc B$ is a Stein manifold, then $\upphi$ vanishes on $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$ if and only if the restriction $\upphi|_b$ to fiber is a conformal block for each $b\in\mc B$, i.e., $\upphi|_b$ vanishes on \index{JX@$\scr J_{\fk X}(\Wbb_\blt),\scr J_{\fk X_b}(\Wbb_\blt)$}
+\begin{align}
+\scr J_{\fk X_b}(\Wbb_\blt)=H^0\big(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SXb)\big)\cdot \Wbb_\blt
+\end{align}
+\end{pp}
+
+
+
+\begin{proof}
+%If each $\upphi_b$ is a conformal block, then for each open $V\subset\mc B$ and $\sigma\in H^0\big(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)$ and $w\in\Wbb_\blt$,
+%\begin{align*}
+%\upphi(\sigma\cdot w)|_b=\upphi(\sigma|_b\cdot w)
+%\end{align*}
+%equals $0$ for all $b\in V$, where $\sigma|_b=H^0(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SXb))$ is the value of $\sigma$ at the fiber. So $\upphi$ is a conformal block over $\mc B$.
+
+%Conversely, assume $\upphi$ vanishes on  $\scr J_{\fk X}(\Wbb_\blt)(V)$ for each open $V\subset\mc B$. To show that $\upphi$ vanishes on $\scr J_{\fk X_b}(\Wbb_\blt)$, we need to show that every element of $H^0(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SXb))$ can be writen as $\sigma|_b$ for some $\sigma$ in $H^0\big(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)$ where $V$ is a neighborhood of $b$. This follows from the next proposition.
+This follows from the fact that any element of $\scr J_{\fk X_b}(\Wbb_\blt)$ is the restriction of an element of $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$ due to the next proposition.
+\end{proof}
+
+\begin{pp}\label{lb122}
+Let $V$ be a Stein open subset of $\mc B$. Then every element of $H^0\big(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SXb)\big)$ is $\sigma|_b$ for some $\sigma\in H^0\big(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)$.
+\end{pp}
+
+
+To prove this proposition one needs the base change theorem of Grauert \cite[Sec. III.4.2]{GR-c}. See  \cite[Sec. 2.5]{Gui} for a detailed explanation.
+
+
+From Prop. \ref{lb121} we immediately get:
+
+\begin{co}\label{lb143}
+Choose an $\scr O_{\mc B}$-module morphism $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$. Then $\upphi$ is a conformal block iff $\upphi|_b$ is a conformal block for each $b\in\mc B$. If $\mc B$ is Stein, then these two conditions are also equivalent to that $\upphi$ vanishes on $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$.
+\end{co}
+
+
+\subsection{}
+
+
+
+There are two advantages of working with sheaves of coinvariants instead of sheaves of conformal blocks. First, it is easier to relate the fibers of $\scr T_{\fk X}(\Wbb_\blt)$ and spaces of coinvariants than to do so for sheaves and spaces of conformal blocks. Second, though our ultimate interest lies in  the local freeness of $\scr T_{\fk X}^*(\Wbb_\blt)$, it is easier to first study the local freeness of $\scr T_{\fk X}(\Wbb_\blt)$.
+
+For each $b\in\mc B$, note that
+\begin{align*}
+\scr T_{\fk X}(\Wbb_\blt)_b=\frac{\scr W_{\fk X}(\Wbb_\blt)_b}{\scr J_{\fk X}(\Wbb_\blt)_b}.
+\end{align*}
+Let $\fk m_b=\fk m_{\mc B,b}$. Then we have an obvious equivalence
+\begin{align}
+\scr T_{\fk X}(\Wbb_\blt)\big|_b=\frac{\scr T_{\fk X}(\Wbb_\blt)_b}{\fk m_b\cdot \scr T_{\fk X}(\Wbb_\blt)_b}\simeq \frac{\scr W_{\fk X}(\Wbb_\blt)_b}{\fk m_b\cdot \scr W_{\fk X}(\Wbb_\blt)_b+ \scr J_{\fk X}(\Wbb_\blt)_b}.
+\end{align}
+Recall also that
+\begin{align}
+\scr T_{\fk X_b}(\Wbb_\blt)=\frac{\Wbb_\blt}{\scr J_{\fk X_b}(\Wbb_\blt)}.
+\end{align}
+
+
+\begin{pp}\label{lb134}
+The linear map 
+\begin{gather}\label{eq222}
+\begin{gathered}
+\scr W_{\fk X}(\Wbb_\blt)_b=\Wbb_\blt\otimes_\Cbb\scr O_{\mc B,b}\rightarrow \Wbb_\blt\\
+w\mapsto w(b)
+\end{gathered}
+\end{gather}
+descends to an isomorphism of vector spaces
+\begin{align}\label{eq223}
+\scr T_{\fk X}(\Wbb_\blt)\big|_b\xlongrightarrow{\simeq} \scr T_{\fk X_b}(\Wbb_\blt).
+\end{align}
+\end{pp}
+
+\begin{proof}
+The map \eqref{eq222} sends $\fk m_b\cdot \scr W_{\fk X}(\Wbb_\blt)_b=\Wbb_\blt\otimes \fk m_b$ to $0$ and sends $\scr J_{\fk X}(\Wbb_\blt)_b$ into $\scr J_{\fk X_b}(\Wbb_\blt)$ (indeed onto by Prop. \ref{lb122}). So \eqref{eq222} descends to a linear map \eqref{eq223} which is clearly surjective. If $w(b)\in\scr J_{\fk X_b}(\Wbb_\blt)$, then by Prop. \ref{lb122}, $w(b)$ equals $s(b)$ for some $s\in\scr J_{\fk X}(\Wbb_\blt)_b$. So $w-s\in\Wbb_\blt\otimes \scr O_{\mc B,b}$ vanishes at $b$. So clearly $w-s\in\Wbb_\blt\otimes \fk m_b$. Therefore \eqref{eq223} is injective.
+\end{proof}
+
+
+
+\subsection{}
+
+Now we do not assume that the local coordinates of $\fk X$ are chosen. We shall define sheaves of coinvariants and conformal blocks associated to $\fk X$ and $\Wbb_\blt$.
+
+Let $\scr W_{\fk X}(\Wbb_\blt)$ be an infinite rank locally free $\scr O_{\mc B}$-module \index{W@$\scr W(\Wbb_i)$, $\scr W_{\fk X}(\Wbb_\blt)$} determined by the following facts. For any open subset $V\subset\mc B$ together with local coordinates $\eta_1,\dots,\eta_N$ of the restricted family \index{XV@$\fk X_V$}
+\begin{align}
+\fk X_V=(\pi:\mc C_V=\pi^{-1}(V)\rightarrow V;\sgm_1|V,\dots,\sgm_N|_V)
+\end{align}
+defined near $\sgm_1(V),\dots,\sgm_N(V)$ respectively, we have a trivialization
+\begin{align}
+\mc U(\eta_\blt)\equiv \mc U(\eta_1)\otimes\cdots\mc U(\eta_N):\scr W_{\fk X}(\Wbb_\blt)|_V\xrightarrow{\simeq}\Wbb_\blt\otimes_\Cbb\scr O_V
+\end{align}
+compatible with the restriction of $\eta_\blt$ and $\fk X_V$ tod open subsets of $V$, such that if $\mu_\blt$ is another set of local coordinates, then \index{U@$\mc U(\alpha),\mc U(\eta),\mc U(\eta_\blt)$}
+\begin{align*}
+\mc U(\eta_\blt)\mc U(\mu_\blt)^{-1}:\Wbb_\blt\otimes\scr O_V\xrightarrow{\simeq}\Wbb_\blt\otimes\scr O_V
+\end{align*}
+is defined by the transition function
+\begin{align}
+\mc U(\eta_\blt)\mc U(\mu_\blt)^{-1}\equiv \mc U(\eta_\blt|\mu_\blt)=\mc U((\eta_1|\mu_1))\otimes\cdots\otimes\mc U((\eta_N|\mu_N)).
+\end{align}
+Here, each $(\eta_i|\mu_i):V\rightarrow\Gbb$ is a holomorphic family of transformations such that for each $b\in V$, $(\eta_i|\mu_i)_b$ changes $\mu_i|_{\mc C_b}$ to $\eta_i|_{\mc C_b}$, i.e., 
+\begin{align*}
+\eta_i|_{\mc C_b}=(\eta_i|\mu_i)_b\circ \mu_i|_{\mc C_b}
+\end{align*}
+holds on a neighborhood of $\sgm_i(b)$ in $\mc C_b$. So we have an isomorphism
+\begin{align*}
+\mc U((\eta_i|\mu_i)):\Wbb_\blt\otimes\scr O_V\xrightarrow{\simeq}\Wbb_\blt\otimes\scr O_V.
+\end{align*}
+
+
+The restriction of $\mc U((\eta_i|\mu_i))$ to each fiber at $b$ is clearly the transition function for $\scr W_{\fk X_b}(\Wbb_\blt)$ (cf. \eqref{eq225}). Thus, we have an obvious equivalence
+\begin{align}
+\scr W_{\fk X}(\Wbb_\blt)\big|_b\simeq \scr W_{\fk X_b}(\Wbb_\blt).
+\end{align}
+
+We define the (obviously $\scr O(V)$-linear) \textbf{residue action} of $\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ on $\wbf=H^0(V,\scr W_{\fk X}(\Wbb_\blt))$ to be
+\begin{align}
+\sigma\cdot\wbf=\mc U(\eta_\blt)\cdot\sigma\cdot \mc U(\eta_\blt)^{-1}\wbf\label{eq227}
+\end{align}
+where the action of $\sigma$ on $\mc U(\eta_\blt)^{-1}\wbf$ is defined by \eqref{eq226}.
+When restricted to each fiber,  \eqref{eq227} is equivalent to the residue action of $H^0(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SXb))$ on $\scr W_{\fk X_b}(\Wbb_\blt)$ defined as in \eqref{eq194}. Since the later is coordinate-independent (cf. Prop. \ref{lb123}), so is \eqref{eq227}.
+
+Thus, using the residue action, we can define the presheaf $\scr J_{\fk X}(\Wbb_\blt)$, the sheaf of coinvariants $\scr T_{\fk X}(\Wbb_\blt)$, and the sheaf of conformal blocks $\scr T_{\fk X}^*(\Wbb_\blt)$ \index{JX@$\scr J_{\fk X}(\Wbb_\blt),\scr J_{\fk X_b}(\Wbb_\blt)$} \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*(\Wbb_\blt)$} in the exact same way as in Subsec. \ref{lb125}.
+
+
+
+
+\subsection{}
+
+
+Our next goal is to define connections on $\scr T_{\fk X}(\Wbb_\blt)$ and $\scr T_{\fk X}(\Wbb_\blt)$. We begin with the following general definition:
+
+\begin{df}
+Let $\scr E$ be an $\scr O_X$-module where $X$ is a complex manifold with holomorphic tangent line bundle $\Theta_X$. A \textbf{connection} $\nabla$ on $\scr E$ associates to each open $U\subset X$ a bilinear map
+\begin{align*}
+\nabla:\Theta_X(U)\times\scr E(U)\rightarrow\scr E(U),\qquad (\yk,s)\mapsto\nabla_\yk s
+\end{align*}
+satisfying the following conditions.
+\begin{enumerate}[label=(\alph*)]
+\item If $V$ is an open subset of $U$ then $\nabla_{\yk|_V}s|_V=(\nabla_{\yk}s)|_V$.
+\item If $f\in\scr O(U)$ then
+\begin{subequations}
+\begin{gather*}
+\nabla_{f\yk}s=f\nabla_{\yk}s\\
+\nabla_\yk(fs)=\yk(f)s+f\nabla_\yk s
+\end{gather*}
+\end{subequations}
+\end{enumerate}
+If a connection $\nabla$ on $\scr E$ is chosen, the corresponding \textbf{dual connection} $\nabla$ on the dual sheaf $\scr E^\vee$ is defined by
+\begin{align}
+\bk{\nabla_\yk\varphi,s}=\yk\bk{\varphi,s}-\bk{\varphi,\nabla_\yk s}\label{eq230}
+\end{align}
+for each $\varphi\in \scr E^\vee(U)=\Hom_{\scr O_U}(\scr E_U,\scr O_U)$, each $\yk\in\Theta(U)$, and each $s\in\scr E_U$.
+\end{df}
+
+Note that $\xk\bk{\varphi,s}$ is the action of the vector field $\xk$ on the holomorphic function $\bk{\varphi,s}$.
+
+
+\subsection{}
+
+
+We now suppose that local coordinates $\eta_\blt$ are chosen for $\fk X$, and identify
+\begin{align*}
+\scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt\otimes_\Cbb\scr O_{\mc B}\qquad\text{via }\mc U(\eta_\blt).
+\end{align*}
+We assume that $\mc B$ is a Stein manifold. Choose $\yk\in\Theta_{\mc B}(\mc B)$, together with a lift $\xk\in H^0(\mc C,\Theta_{\mc C}(\star\SX))$. (Cf. Prop. \ref{lb114}).   We first define the \textbf{differential operator $\nabla_\yk$ on $\scr W_{\fk X}(\Wbb_\blt)$}. 
+
+\emph{$\boxed{\text{Assume the setting of Subsec. \ref{lb126}.}}$} Then for each open $V\in\mc B$, $\nabla_\yk$ is the linear operator on $\Wbb_\blt\otimes_\Cbb\scr O(V)$ such that for each $w_i\in\Wbb_i\otimes_\Cbb\scr O(V)$ and $w_\blt=w_1\otimes\cdots\otimes w_N$ in $\Wbb_\blt\otimes_\Cbb\scr O(V)$ (cf. \eqref{eq228} or \eqref{eq229}),
+\begin{align}
+\nabla_\yk w_\blt=\sum_{j=1}^m  g_j(\tau_\blt)\partial_{\tau_j} w_\blt-\sum_{i=1}^N\sum_{n\in\Zbb}h_{i,n}(\tau_\blt)w_1\otimes\cdots\otimes L_{n-1}w_i\otimes\cdots\otimes w_N.\label{eq231}
+\end{align}
+Using this formula and \eqref{eq230}, we can define $\nabla_\yk$ on the dual sheaf of $\scr W_{\fk X}(\Wbb_\blt)$, i.e., define $\nabla_\yk\upphi$ for each $\scr O_V$-module morphism $\upphi:\scr W_{\fk X}(\Wbb_\blt)|_V\rightarrow\scr O_V$. This definition of $\nabla_\yk\upphi$ clearly agrees with \eqref{eq217} when $w_1,\dots,w_N$ are constant sections.
+
+\begin{rem}
+In Subsec. \ref{lb126} we assumed that $\mc B$ is inside $\Cbb^m$. In other words, when defining $\nabla_\yk$ using \eqref{eq231}, we have fixed an embedding of the abstract complex manifold $\mc B$ into $\Cbb^m$ as an open subset. However, it is easy to check that this definition is independent of the embedding. Thus, to define $\nabla_\yk$, we assume only that $\mc B$ is Stein, but not necessarily that $\mc B$ can be embedded into $\Cbb^m$.
+\end{rem}
+
+
+\subsection{}
+
+\eqref{eq231} can be written in a more compact way. Recall the neighborhood $U_i$  of $\sgm_i(\mc B)$ on which $\eta_i$ is defined (cf. Subsec. \ref{lb127}). Define
+\begin{gather}
+\begin{gathered}
+\upnu(\xk)\in H^0\big(U_1\cup\cdots\cup U_N,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX)\big)\\
+\mc V_\varrho(\eta_i)\upnu(\xk)|_{U_i}=h_i(z,\tau_\blt)\cbf dz.
+\end{gathered}
+\end{gather}
+Then it is easy to verify that
+\begin{align}
+\nabla_\yk w_\blt=\sum_{j=1}^m  g_j(\tau_\blt)\partial_{\tau_j} w_\blt-\upnu(\xk)\cdot w_\blt.\label{eq232}
+\end{align}
+where $\upnu(\xk)\cdot w_\blt$ is the residue action.
+
+
+\subsection{}
+
+
+\begin{thm}\label{lb132}
+$\nabla_\yk$ preserves $\scr J_{\fk X}(\Wbb_\blt)(V)$ for each open $V\subset\mc B$. So $\nabla_\yk$ is a linear operator on $\scr T_{\fk X}(\Wbb_\blt)$ and (via the formula \eqref{eq232}) on $\scr T^*_{\fk X}(\Wbb_\blt)$.
+
+More precisely, for each $\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ and $\wbf=H^0(V,\scr W_{\fk X}(\Wbb_\blt))$, we have
+\begin{align}
+[\nabla_\yk,\sigma]\wbf=(\mc L_\xk \sigma)\cdot\wbf
+\end{align}
+where $\mc L_\xk\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$ is the Lie derivative of $\sigma$ under $\xk$.
+\end{thm}
+
+Thus, when $\mc B$ is a Stein open subset of $\Cbb^m$, we may define a connection $\nabla$ on $\scr T_{\fk X}(\Wbb_\blt)$ and $\scr T_{\fk X}^*(\Wbb_\blt)$ by choosing lifts of $\partial_{\tau_1},\dots,\partial_{\tau_m}$, defining $\nabla_{\tau_1},\dots,\nabla_{\tau_m}$, and then extend $\nabla$ to a connection using $\scr O_{\mc B}$-linearity.
+
+We refer the readers to \cite[Sec. 3.6]{Gui} for the proof of this theorem. Here, we explain the meaning of Lie derivative. 
+
+\subsection{}
+
+Let $U,W\subset\mc C$ be open, and let $\varphi:U\rightarrow W$ be a biholomorphism from $U$ onto $W$. We assume that $\varphi$ preserves fibers, i.e. $\varphi(U_b)=W_{\varphi(b)}$ (recall our notation $U_b=U\cap\mc C_b$ and $W_{\varphi(b)}=W\cap\mc C_{\varphi(b)}$). For instance, if $U\subset\mc C\setminus\SX$ is open and precompact, then for sufficiently small $\zeta$,  $\exp_{\zeta\xk}$ from $U$ to its image preserves fibers. (See \eqref{eq237} for the figure.)
+
+The \textbf{pushforward} \index{V@$\mc V_\varrho(\eta_i),\mc V_\varrho(\varphi)$}
+\begin{align*}
+\mc V_\varrho(\varphi):\scr V_{\fk X}|_U\xrightarrow{\simeq}\scr V_{\fk X}|_W
+\end{align*}
+is defined such that for each $\eta\in\scr O(W)$ univalent on fibers, noting the pushforward $\mc V_\varrho(\eta):\scr V_{\fk X}|_W\xrightarrow{\simeq}\Vbb\otimes_\Cbb\scr O_{(\eta,\pi)(W)}$ defined by \eqref{eq233}, we have
+\begin{align}
+\mc V_\varrho(\eta)\mc V_\varrho(\varphi)=\mc V_\varrho(\eta\circ\varphi).
+\end{align}
+Then for each $b\in\mc B$, the restriction of $\mc V_\varrho(\varphi)$ to  $\scr V_{\fk X}|_{U_b}\xrightarrow{\simeq}\scr V_{\fk X}|_{V_{\varphi(b)}}$ is equivalent to the pushforward $\mc V_\varrho(\varphi):\scr V_{U_b}\xrightarrow{\simeq}\scr V_{V_{\varphi(b)}}$ defined in Subsec. \ref{lb128}. 
+
+By tensoring $\mc V_\varrho(\varphi)$ with $\varphi_*=(\varphi^{-1})^*:\omega_{\mc C/\mc B}|_U\xrightarrow{\simeq}\omega_{\mc C/\mc B}|_W$ sending $(f\circ\varphi)d(\eta\circ\varphi)$ to $fd\eta$ where $f\in\scr O_W$, we get a pushforward which we also denote by $\mc V_\varrho(\varphi)$:
+\begin{align}
+\mc V_\varrho(\varphi)\equiv \mc V_\varrho(\varphi)\otimes\varphi_*:\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}\big|_U\xrightarrow{\simeq}\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}\big|_W.
+\end{align}
+
+We can define the \textbf{Lie derivative} in the same way as Def. \ref{lb129}. Let $\xk$ be  as in Subsec. \ref{lb126}. Suppose $U\subset \mc C\setminus\SX$ is open and precompact, and $\sigma\in H^0(U,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B})$. Define \index{L@$\mc L_\xk$, the Lie derivative}
+\begin{align}\label{eq234}
+\mc L_\xk\sigma\big|_U=\lim_{\zeta\rightarrow0} \frac{\mc V_\varrho(\exp_{\zeta\xk})^{-1}\big(\sigma\big|_{\exp_{\zeta\xk}(U)}\big)-\sigma\big|_U}{\zeta}
+\end{align}
+Of course, $\mc L_\xk\sigma$ is well-defined even when the open set $U\subset\mc C\setminus\SX$ is non-necessarily precompact.
+
+The following Proposition can be proved in the same way as Cor. \ref{lb130}. (Or see \cite[Sec. 2.6]{Gui} for details.) Formula \eqref{eq235} is necessary for the proof of Theorem \ref{lb132}.
+\begin{pp}\label{lb131}
+Let $\eta\in\scr O(U)$ be univalent on fibers. Choose $u\in H^0(U,\Vbb\otimes_\Cbb\scr O_{\mc C})$ such that
+\begin{align*}
+u\cdot d\eta=\mc U_\varrho(\eta)\sigma\qquad\in H^0(U,\Vbb\otimes_\Cbb\omega_{\mc C/\mc B}).
+\end{align*}
+Choose $h\in\scr O(U)$ such that if $U$ is identified with $(\eta,\pi)(U)\subset\Cbb\times\Cbb^m$ via $(\eta,\pi)$, then 
+\begin{align*}
+\xk|_U=h\partial_z+\sum_{j=1}^mg_j(\tau_\blt)\partial_{\tau_j}.
+\end{align*}
+Then the $\eta$-trivialiation of $\mc L_\xk\sigma$ is
+\begin{align}
+\mc U_\varrho(\eta)\mc L_\xk\sigma=h\partial_\eta u\cdot d\eta+\sum_{j=1}^m g_j\partial_{\tau_j}u\cdot d\eta-\sum_{k\geq1} \frac 1{k!}\partial_\eta^k h\cdot L_{k-1}u\cdot d\eta+\partial_\eta h\cdot u\cdot d\eta.\label{eq235}
+\end{align}
+\end{pp}
+
+\begin{rem}
+If we set $U=U_i\setminus\SX=U_i\setminus\sgm_i(\mc B)$, choose $\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$, and let $\eta$ be the local coordinate $\eta_i$, then the $u$ in Prop. \ref{lb131} has finite poles at $\SX$, i.e., $u\in H^0(U_i,\Vbb\otimes_\Cbb\omega_{\mc C/\mc B}(\star\SX))$. The $h$ in Prop. \ref{lb131} should be the $h_i$ in Subsec. \ref{lb126}, which has finite poles at $\SX$. Therefore, by \eqref{eq235},  the Lie derivative $\mc L_\xk\sigma$, as a section of $\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}$ defined on $\mc C_V\setminus\SX$, has finite poles at $\SX$. So $\mc L_\xk\sigma\in H^0(\mc C_V,\scr V_{\fk X}\otimes\omega_{\mc C/\mc B}(\star\SX))$, as claimed at the end of Thm. \ref{lb132}.
+\end{rem}
+ 
+
+\subsection{}
+
+Recall that we are assuming $\mc B$ is Stein (but not necessarily open inside $\Cbb^m$) and local coordinates $\eta_\blt$ are given to $\fk X$. As we have seen, the definition of $\nabla_\yk$ depends not only on $\eta_\blt$ but also on the lift $\xk$ of $\yk\in\Theta_{\mc B}(\mc B)$.
+
+
+\begin{pp}\label{lb152}
+Let $\nabla_\yk$ and $\nabla'_\yk$ be defined by $\eta_\blt$ and two lifts $\xk,\xk'\in H^0(\mc C,\Theta_{\mc C}(\star\SX))$ of $\yk$. Then there exists $f\in \scr O(\mc B)$ depending only on $\fk X$, the local coordinates $\eta_\blt$, $\xk$ and $\xk'$, and the central charge $c$ of $\Vbb$, such that
+\begin{align}
+\nabla_\yk'=\nabla_\yk+f\id\qquad\text{on }\scr T_{\fk X}(\Wbb_\blt).
+\end{align}
+\end{pp}
+
+See the end of Sec. 3.6 (and also Sec. 4.2) of \cite{Gui} for the formula of $f$.
+
+In the next subsection, we shall discuss an important case where the projective term $f$ in Prop. \ref{lb152} equals $0$.
+
+\begin{pp}[Projective flatness]
+Suppose $\yk_1,\yk_2\in\Theta_{\mc B}(\mc B)$, and $\nabla_{\yk_1}$ and $\nabla_{\yk_2}$ are defined using a set of local coordinates $\eta_\blt$ and the lifts $\xk_1,\xk_2$ of $\yk_1,\yk_2$ respectively. Then  there exists $f\in\scr O(\mc B)$ depending only on $\fk X$, $\eta_\blt$, $\xk_1$ and $\xk_2$, and $c$, such that the curvature
+\begin{align*}
+[\nabla_{\yk_1},\nabla_{\yk_2}]-\nabla_{[\yk_1,\yk_2]}=f\id\qquad \text{on }\scr T_{\fk X}(\Wbb_\blt).
+\end{align*}
+\end{pp}
+
+\begin{pp}
+Suppose  that on each $\Wbb_i$, $L_0-\wtd L_0$ is a constant $\Delta_i$ (for instance, when $\Wbb_i$ is irreducible). Suppose also that $\nabla_\yk,\nabla_\yk'$ are defined by a lift $\xk$ and two sets of local coordinates $\eta_\blt,\eta'_\blt$. Then  there exists $f\in\scr O(\mc B)$ depending only on $\fk X$, $\eta_\blt$ and $\eta_\blt'$, $\xk$, $c$, and $\Delta_1,\dots,\Delta_N$ such that
+\begin{align}
+\nabla_\yk'=\nabla_\yk+f\id\qquad\text{on }\scr T_{\fk X}(\Wbb_\blt).
+\end{align}
+\end{pp}
+Clearly, similar results hold on $\scr T_{\fk X}^*(\Wbb_\blt)$.
+
+We refer the readers to Sections 5.1 and 5.2 of \cite{Gui} for details of these two propositions.
+
+
+
+\subsection{}
+
+\begin{df}
+Let $C$ be a Riemann surface, and let $(U_{\alpha},\eta_\alpha)_{\alpha\in\fk A}$ be a chart, i.e., $(U_\alpha)_{\alpha\in\fk A}$ is an open covering of $C$ and $\eta_\alpha\in\scr O(U_\alpha)$ is univalent. We say that $(U_{\alpha},\eta_\alpha)_{\alpha\in\fk A}$ is a \textbf{projective chart} if for each $\alpha,\beta\in\fk A$, the function $\eta_\alpha\circ\eta_\beta^{-1}$ on $\eta_\beta(U_\alpha\cap U_\beta)\subset\Cbb$ is a M\"obius transformation $z\mapsto \frac{az+b}{cz+d}$.
+\end{df}
+
+
+
+
+
+
+
+
+
+
+\begin{df}
+For the family $\fk X$. Let $(U_{\alpha},\eta_\alpha)_{\alpha\in\fk A}$ where $(U_\alpha)_{\alpha\in\fk A}$ is a cover of $\mc C$ and each $\eta_\alpha\in\scr O(U_\alpha)$ is univalent. We say that  $(U_{\alpha},\eta_\alpha)_{\alpha\in\fk A}$ is a \textbf{projective chart} of $\fk X$ if its restriction to each fiber $\mc C_b$ is a projective chart. A maximal projective chart is called a \textbf{projective structure}.
+\end{df}
+
+
+
+\begin{eg}
+$\Pbb^1$ has an obvious projective structure consisting of all M\"obius transformations. It is the unique projective structure containing the standard coordinate $\zeta$ of $\Cbb$.
+\end{eg}
+
+\begin{thm}
+For any family $\fk X$ of $N$-pointed compact Riemann surfaces, if $\mc B$ is Stein then $\fk X$ has a projective structure.
+\end{thm}
+This theorem is due to \cite{Hub80}. See also \cite[Sec. 4.1]{Gui} or \cite[Sec. B]{Gui}. According to this theorem, for any $N$-pointed family $\fk X$, by shrinking the base manifold $\mc B$, we may find local coordinates $\eta_\blt$ of $\fk X$ that are contained in a projective structure of $\fk X$.
+
+
+
+
+
+\begin{pp}\label{lb151}
+Suppose that $(U_1,\eta_1),\dots,(U_N,\eta_N)$ belong to a projective structure of $\fk X$. Then the operator $\nabla_\yk$ on $\scr T_{\fk X}(\Wbb_\blt)$ defined by $\eta_\blt$ is independent of the lift $\xk$ of $\yk$.
+\end{pp}
+
+
+
+
+\begin{rem}
+The rough reason for this Proposition is the following: Let $\xk$ and $\xk'$ be two lifts of $\yk$. Then $d\pi$ sends $\zk=\xk-\xk'$ to $0$. This means that $\zk\in H^0(\mc C,\Theta_{\mc C/\mc B}(\star\SX))$. In view of \eqref{eq232}, we need to show that the residue action of $\upnu(\zk)=\upnu(\xk)-\upnu(\xk')$ is $0$ on $\scr T_{\fk X}(\Wbb_\blt)$, or equivalently, $\upnu(\zk)w_\blt\in\scr J_{\fk X}(\Wbb_\blt)(\mc B)$ for each $w_\blt\in\Wbb_\blt$. The map $\zk\mapsto \upnu(\zk)$ sends a section of $\Theta_{\mc C/\mc B}(\star\SX)$ on $U_1\cup\cdots\cup U_N$ to one of $\scr V_{\fk X}^{\leq 2}\otimes\omega_{\mc C/\mc B}(\star\SX)$ whose trivialization is described by  $\cbf dz$. Locally and under reasonable trivializations, this map sends $h(z,\tau_\blt)\partial_z$ to $h(z,\tau_\blt)\cbf dz$. Since $\cbf$ has weight $2$, the coordinate transformation formula for $\partial_z$ in $\Theta_{\mc C/\mc B}$ equals that of $\cbf dz$ mod a section of $\scr V_{\fk X}^{\leq 1}\otimes\omega_{\mc C/\mc B}(\star\SX)$ (cf. Subsec. \ref{lb150}).  The expression of section is determined by $L_2\cbf=\frac c{2}\id$.
+
+Here comes the crucial point: Since all $(U_i,\eta_i)$ are contained in a projective structure $(U_\alpha,\eta_\alpha)_{\alpha\in\fk A}$, and since in the change or coordinate formula for M\"obius transformations only $L_0,L_{\pm1}$ are involved but $L_2$ is not, the change of coordinate formulas for $\cbf dz$ and for $\partial_z$ are equal. Therefore, as $\zk$ is a global section of $\Theta_{\mc C/\mc B}(\star\SX)$, $\upnu(\zk)$ can be extended to a global section of $\scr V_{\fk X}^{\leq 2}\otimes\omega_{\mc C/\mc B}(\star\SX)$. So $\upnu(\zk)w_\blt\in\scr J_{\fk X}(\Wbb_\blt)(\mc B)$. \hfill\qedsymbol
+\end{rem}
+
+
+
+Due to Prop. \ref{lb151}, if $\mc B$ is Stein and $\eta_\blt$ belong to a projective structure of $\fk X$, then we can define a connection $\nabla$ on $\scr T_{\fk X}(\Wbb_\blt)$ and hence on $\scr T_{\fk X}^*(\Wbb_\blt)$ such that for each $\yk\in\Theta_{\mc B}$, $\nabla_\yk$ is the one defined by \eqref{eq232} using any lift $\xk$ of $\yk$.
+
+
+\begin{eg}
+For each $\tau\in\Hbb=\{z\in\Cbb:\Imag z>0\}$, the torus $\mbb T_\tau$ defined by $\Cbb$ mod the rank $2$ lattice $\Zbb+\tau\Zbb$ has a standard projective structure: the one inherited from the standard projective structure of $\Cbb$. This projective structure is \textbf{modular invariant}: Let $g\in\mathrm{PSL}(2,\Zbb)$ be $g(z)=\frac{az+b}{cz+d}$ where $a,b,c,d\in\Zbb$ and $ad-bc=1$. Then the biholomorphism
+\begin{align*}
+\mbb T_\tau\rightarrow\mbb T_{g(\tau)},\qquad z\mapsto g(z)
+\end{align*}
+sends the standard projective structure of $\mbb T_\tau$ to that of $\mbb T_{g(\tau)}$.
+
+Thus, for sheaves of conformal blocks associated to a family of $N$-pointed tori, standard connections are those defined by the local coordinates inside this modular invariant projective structure.  \hfill  \qedsymbol
+\end{eg}
 
 
 
@@ -6106,6 +6494,284 @@ The $\scr O_{\mc B}$-module \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*
 
 
 
+\section{Local freeness of sheaves of coinvariants and conformal blocks}
+
+
+
+\subsection{}
+
+As in Subsec. \ref{lb127}, we associate admissible $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$ to the marked points $\sgm_1,\dots,\sgm_N$ of $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_\blt)$. We do not assume that $\mc B$ can be embedded as an open subset of $\Cbb^m$ or the local coordinates are chosen.
+ 
+\begin{df}
+We say that $\Vbb$ is \textbf{$C_2$-cofinite} if $\Vbb/C_2(\Vbb)$ is finite-dimensional where  $C_2(\Vbb)=\Span_\Cbb\{Y(u)_{-2}v:u,v\in\Vbb\}$.
+\end{df}
+
+
+We say that a weak $\Vbb$-module $\Wbb$ is \textbf{generated} by a subset $\fk S$ if the smallest $\Vbb$-invariant subspace of $\Wbb$ containing $\fk S$ is $\Wbb$.  We say that $\Wbb$ is \textbf{finitely generated} if it is generated by finitely many vectors. When $\Wbb$ is admissible, this is clearly equivalent to saying that $\Wbb$ is generated by finitely many homogeneous vectors.
+
+The following important result is due to \cite[Lemma 2.4]{Miy04}. Some weaker versions of this result are due to \cite{GN03,Buhl02}. 
+
+
+\begin{thm}\label{lb133}
+Assume that $\Vbb$ is $C_2$-cofinite. Let $E\subset \Vbb$ be a finite subset such that $\Vbb=\Span(E)+C_2(\Vbb)$. If $\Wbb$ is a weak $\Vbb$-module $\Wbb$ generated by a finite set $\fk S$ of vectors, then $\Wbb$ is spanned by vectors of the form
+\begin{align}
+Y(v_k)_{-n_k}\cdots Y(v_1)_{-n_1}w
+\end{align}
+where $k\in\Nbb$, $w\in\fk S$, $v_1,\dots,v_k\in E$, and $n_1,\dots,n_k\in\Zbb$ satisfy $n_1<n_2<\cdots<n_k$.
+\end{thm}
+
+
+\begin{exe}\label{lb139}
+Show that if $\Vbb$ is $C_2$-cofinite, then every finitely-generated admissible $\Vbb$-module is finitely-admissible.
+\end{exe}
+
+
+\subsection{}
+
+\begin{ass}
+In this section, we assume that $\Vbb$ is $C_2$-cofinite and $\Wbb_1,\dots,\Wbb_N$ are finitely-generated.
+\end{ass}
+
+In our notes, we do not use Thm. \ref{lb133} directly. Instead, we use the following consequence of Thm. \ref{lb133}. See \cite[Sec. 7]{Gui20} or \cite[Sec. 3.7]{Gui} for the proof.
+
+\begin{thm}\label{lb138}
+For each Stein open subset $V\subset\mc B$, the $\scr O(V)$-module
+\begin{align}
+\frac{\scr W_{\fk X}(\Wbb_\blt)(V)}{\scr J_{\fk X}(\Wbb_\blt)(V)}\label{eq244}
+\end{align}
+is generated by finitely many elements.
+\end{thm}
+
+\begin{co}
+$\scr T_{\fk X}(\Wbb_\blt)$ is a finite type $\scr O_{\mc B}$-module.
+\end{co}
+
+\begin{proof}
+Assume without loss of generality that $\mc B$ is a Stein open subset of $\Cbb^m$. Then $\scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt\otimes\scr O_{\mc B}$ is generated by constant sections, i.e., elements of $\Wbb_\blt\simeq\Wbb_\blt\otimes 1$. So $\scr T_{\fk X}(\Wbb_\blt)$ is generated by $\Wbb_\blt$. Choose $w_1,\dots,w_n\in \scr W_{\fk X}(\Wbb_\blt)(\mc B)$ generating the $\scr O({\mc B})$-module \eqref{eq244}. So each element of $\Wbb_\blt$ is an $\scr O(\mc B)$-linear combination of $w_1,\dots,w_N$ in the sheaf \eqref{eq244}. So $\scr T_{\fk X}(\Wbb_\blt)$ is generated by $w_1,\dots,w_N$.
+\end{proof}
+
+
+By the basic properties of finite type sheaves (see the appendix section), each fiber $\scr T_{\fk X}(\Wbb_\blt)|_b$ (which are equivalent to $\scr T_{\fk X_b}(\Wbb_\blt)\simeq\scr T_{\fk X_b}^*(\Wbb_\blt)$ by Prop. \ref{lb134}) is finite-dimensional; the following rank function $\Rbf:\mc B\rightarrow\Nbb$,
+\begin{align}
+\Rbf(b)=\dim \scr T_{\fk X}(\Wbb_\blt)|_b=\dim\scr T_{\fk X_b}(\Wbb_\blt)=\dim\scr T_{\fk X_b}^*(\Wbb_\blt) \label{eq246}
+\end{align}
+is upper semicontinuous; if $\Rbf$ is also lower semicontinuous and hence locally constant, then $\scr T_{\fk X}(\Wbb_\blt)$ is locally free and so is its dual sheaf $\scr T_{\fk X}^*(\Wbb_\blt)$. Then we will have a natural equivalence $\scr T_{\fk X}^*(\Wbb_\blt)\simeq\scr T_{\fk X_b}^*(\Wbb_\blt)$. Namely, if we can show that $\Rbf$ is locally constant, then \emph{the spaces of conformal blocks for all fibers $\fk X_b$ of $\fk X$ form a vector bundle over $\mc B$}.
+
+
+
+
+
+\subsection{}
+
+\begin{thm}\label{lb135}
+$\scr T_{\fk X}(\Wbb_\blt)$ and hence $\scr T_{\fk X}^*(\Wbb_\blt)$ are locally free $\scr O_{\mc B}$-modules. In particular, the rank function $\Rbf$ defined by \eqref{eq246} is locally constant.
+\end{thm}
+
+As discussed above, to prove Thm. \ref{lb135}, it suffices to prove that $\Rbf$ is locally constant. Suppose we can show that $\Rbf|_{\mc B_0}$ is lower semicontinuous for any one-dimensional complex submanifold $\mc B_0$ of $\mc B$ biholomorphic to an open disc, then $\Rbf|_{\mc B_0}$ is constant since it is also upper semicontinuous. It then follows that $\Rbf$ is locally constant
+
+Therefore, we may just assume that $\mc B$ is a simply-connected open subset of $\Cbb$ containing $0$, and $\fk X$ admits a set of local coordinates $\eta_\blt$. Then either $\mc B=\Cbb$ or $\mc B$ is not closed. So, as any connected non-compact Riemann surface is Stein, $\mc B$ is Stein.  Identify
+\begin{align*}
+\scr W_{\fk X}(\Wbb_\blt)=\Wbb_\blt\otimes_\Cbb\scr O_{\mc B}\qquad\text{via }\mc U(\eta_\blt).
+\end{align*}
+It suffices to show: 
+
+\begin{lm}\label{lb137}
+$\Rbf$ is lower semicontinuous at $0$.
+\end{lm}
+ 
+
+
+
+
+
+
+\subsection{}
+
+
+Let $\tau$ be the standard coordinate of $\mc B\subset\Cbb$. By Sec. \ref{lb136}, we can define a differential operator $\nabla_\tau$ on $\Wbb_\blt\otimes_\Cbb\scr O_{\mc B}$ which preserves $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$ due to Thm. \ref{lb132}. We shall prove Lemma \ref{lb137} using this fact and Thm. \ref{lb138}.
+
+We fix an element $\upphi_0\in\scr W_{\fk X_0}(\Wbb_\blt)$, i.e.  a linear functional on $\Wbb_\blt$ vanishing on $\scr J_{\fk X_0}(\Wbb_\blt)$. Let us prove Lemma \ref{lb137} by constructing a conformal block $\upphi_\tau\in\scr W_{\fk X_\tau}(\Wbb_\blt)$  for each $\tau\in\mc B$ such that  the map $\upphi_0\mapsto \upphi_\tau$ is linear and injective.
+
+
+\begin{cv}
+Let $\Wbb_\blt^{\leq k}$ \index{W@$\Wbb_\blt^{\leq k}$} be the subspace of $\Wbb_\blt$ spanned by homogeneous $w_1\otimes\cdots \otimes w_N$ satisfying $\wtd\wt(w_1)+\cdots+\wtd\wt(w_N)\leq k$. Note that $\Wbb_\blt^{\leq k}$ is finite-dimensional since each $\Wbb_i$ is finitely-admissible (cf. Exercise \ref{lb139}).
+\end{cv}
+
+In view of \eqref{eq232}, for each $k\in\Nbb$ and $w_\blt\in \Wbb_\blt^{\leq k}\otimes\scr O_{\mc B}$, we can write
+\begin{align}
+\nabla_{\partial_\tau}w_\blt=\partial_\tau w_\blt+A(\tau)w_\blt\label{eq238}
+\end{align}
+where $A\in\End(\Wbb_\blt^{\leq k})\otimes\scr O(\mc B)$ is given by $A(\tau)w_\blt=-\upnu(\xk)\cdot w_\blt$. Such $A$ is compatible for different $k$. So we can regard $A$ an endomorphism of $\Wbb_\blt\otimes\scr O_{\mc B}$. We take power series expansion
+\begin{align*}
+A(\tau)=\sum_{n\in\Nbb}A_n\tau^n
+\end{align*}
+where $A_n\in\End(\Wbb_\blt^{\leq k})$ for each $k$, and hence $A_n\in\End(\Wbb_\blt)$.
+
+\begin{df}\label{lb147}
+Define a linear map
+\begin{align*}
+\upphi:\Wbb_\blt\rightarrow \Cbb[[\tau]],\qquad w\mapsto \upphi_\tau(w)
+\end{align*}
+such that for each $w\in\Wbb_\blt\otimes\scr O(\mc B)$, $\upphi_\tau(w)$ is determined by the formal differential equation
+\begin{align}
+\partial_\tau\upphi_\tau(w)=\upphi_\tau (A(\tau)w).\label{eq242}
+\end{align}
+whose initial value $\upphi_\tau|_{\tau=0}$ is the conformal block $\upphi_0$ chosen at the beginning.
+\end{df}
+
+More precisely, if we write $\upphi_\tau(w)=\sum_{n\in\Nbb}\upphi_n(w)\tau^n$ where each $\upphi_n:\Wbb_\blt\rightarrow\Cbb$ is linear and $\upphi_0$ is just the previously chosen conformal block, then
+\begin{align*}
+\sum_{n\in\Nbb}n\upphi_n(w)\tau^{n-1}=\sum_{m,n\in\Nbb}\upphi_n(A_m w)\tau^{m+n}.
+\end{align*}
+So for each $n\in\Zbb_+$,
+\begin{align}
+n\upphi_n=\sum_{l=0}^{n-1}\upphi_l\circ A_{n-l-1}.\label{eq241}
+\end{align}
+This determines all $\upphi_n$ inductively. Our goal is to show that $\upphi_\tau(w)$ is the series expansion of an analytic function on $\mc B$.
+
+
+\subsection{}
+
+By $\Cbb[[\tau]]$-linearity, we can extend $\upphi$ to a linear map from $\Wbb_\blt\otimes\Cbb[[\tau]]$ to $\Cbb[[\tau]]$. Note that $\Wbb\otimes\scr O(\mc B)$ is an $\Cbb[[\tau]]$-submodule of $\Wbb_\blt\otimes[[\tau]]$ by taking power series expansions. We are interested in the restriction
+\begin{align*}
+\upphi:\Wbb_\blt\otimes\scr O(\mc B)\rightarrow\Cbb[[\tau]],\qquad w\mapsto \upphi_\tau(w).
+\end{align*}
+It clearly satisfies the differential equation $\partial_\tau\upphi_\tau(w)=\upphi_\tau (\partial_\tau w+A(\tau)w)$, namely (cf. \eqref{eq238})
+\begin{align}
+\partial_\tau\upphi_\tau(w)=\upphi_\tau(\nabla_{\partial_\tau} w).\label{eq239}
+\end{align}
+
+\begin{lm}\label{lb140}
+$\upphi_\tau$ vanishes on $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$.
+\end{lm}
+
+
+\begin{proof}
+Choose any $w\in \scr J_{\fk X}(\Wbb_\blt)(\mc B)$, which by power series expansion is an element of $\Wbb_\blt\otimes\Cbb[[\tau]]$. Then by \eqref{eq239}, $\upphi_\tau(w)$ has series expansion
+\begin{align*}
+\upphi_\tau(w)=\sum_{n\in\Nbb}\frac {\tau^n}{n!}\partial^n_\tau\upphi_\tau(w)\big|_{\tau=0}=\sum_{n\in\Nbb}\frac {\tau^n}{n!}\upphi_\tau(\nabla^n_{\partial_\tau} w)\big|_{\tau=0}.
+\end{align*}
+By Thm. \ref{lb132},  $s_n=\nabla^n_{\partial_\tau}w$ belongs to $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$. In particular, $s_n(\tau)|_{\tau=0}\in\scr J_{\fk X_0}(\Wbb_\blt)$. Clearly $\upphi_\tau(s_n)|_{\tau=0}=\upphi_0(s_n(0))$, which equals $0$ because $\upphi_0$ is a conformal block associated to $\fk X_0$. This proves the lemma.
+\end{proof}
+
+
+
+\subsection{}
+
+To prove that $\upphi_\tau$ is analytic, we need a basic fact from differential equation:
+
+\begin{lm}\label{lb141}
+Let $W$ be a finite dimensional vector space. Suppose $f(\tau)=\sum_{n\in\Nbb}f_n\tau^n\in W((\tau))$ satisfies a formal differential equation
+\begin{align}
+\partial_\tau f(\tau)=A(\tau)f(\tau)\label{eq240}
+\end{align}
+for some $A\in\End(W)\otimes_\Cbb\scr O(\mc B)$, then $f(\tau)$ is the power series expansion of an element of $W\otimes\scr O(\mc B)$ which we also denote by $f(\tau)$.
+\end{lm}
+
+\begin{proof}
+It is clear that any formal solution $f(\tau)$ of \eqref{eq240} is uniquely determined by its constant term $f_0\in W$. (Cf. the argument for \eqref{eq241}.) By the basic theory of differential equations (e.g. \cite[Thm. B.1]{Kna}), \eqref{eq240} must have a solution in $W\otimes\scr O(\mc B)$ with initial value $f_0$. So this solution must equal $f$ because their constant terms are equal.
+\end{proof}
+
+
+
+\begin{lm}\label{lb142}
+$\upphi$ is an $\scr O(\mc B)$-module morphism from $\Wbb_\blt\otimes\scr O(\mc B)$ to $\scr O(\mc B)$. Thus, it is automatically an $\scr O_{\mc B}$-module morphism $\Wbb_\blt\otimes\scr O_{\mc B}\rightarrow\scr O_{\mc B}$.
+\end{lm}
+
+\begin{proof}
+By $\scr O(\mc B)$-linearity, it suffices to prove that $\upphi$ sends each constant section $w\in\Wbb_\blt$ to $\upphi_\tau(w)\in\Wbb_\blt\otimes\scr O(\mc B)$.
+
+By Thm. \ref{lb138}, we can find finitely many elements $s_1,s_2,\dots\in\Wbb_\blt\otimes\scr O(\mc B)$ generating $\Wbb_\blt\otimes\scr O(\mc B)$ mod $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$. We fix $k_0\in\Nbb$ such that $s_1,s_2,\dots\in\Wbb_\blt^{\leq k_0}\otimes\scr O(\mc B)$. Consider the restriction of $\upphi$ to $\Wbb_\blt^{\leq k}\rightarrow \Cbb[[\tau]]$ for all $k\geq k_0$, which we denote by $\upphi^{\leq k}$. Recall that $\Wbb_\blt^{\leq k}$ is finite-dimensional.  So $\upphi^{\leq k}$ is an element of $(\Wbb_\blt^{\leq k})^*\otimes\Cbb[[\tau]]$.
+
+Let $\{e_j\}_{j\in J}$ be a basis of $\Wbb_\blt^{\leq k}$. By \eqref{eq242} or \eqref{eq239}, $\partial_\tau\upphi_\tau(e_j)=\upphi_\tau(\nabla_{\partial_\tau} e_j)$ where $\nabla_{\partial_\tau} e_j\in\Wbb_\blt\otimes\scr O(\mc B)$. Since $\nabla_{\partial_\tau} e_j$ is an $\scr O(\mc B)$-linear combination of $s_1,s_2,\dots$ mod $\scr J_{\fk X}(\Wbb_\blt)(\mc B)$, we can find $\Upomega_{i,j}(\tau)\in\scr O(\mc B)$ for all $i,j\in J$ such that
+\begin{align*}
+\nabla_{\partial_\tau} e_i=\sum_{j\in J}\Upomega_{i,j}(\tau)e_j\qquad\text{mod }\scr J_{\fk X}(\Wbb_\blt)(\mc B).
+\end{align*}
+Thus, by Lemma \ref{lb140}, we have
+\begin{align}
+\partial_\tau\upphi_\tau^{\leq k}(e_i)=\sum_{j\in J}\Upomega_{i,j}(\tau)\upphi_\tau^{\leq k}(e_j).\label{eq243}
+\end{align}
+Therefore,  $\upphi_\tau^{\leq k}$ as an element of $((\Wbb_\blt)^{\leq k})^*\otimes\Cbb[[\tau]]$ satisfies a linear holomorphic differential equation similar to \eqref{eq240}. So by Lemma \ref{lb141}, this series is an element of $(\Wbb_\blt^{\leq k})^*\otimes\scr O(\mc B)$. This finishes the proof.
+\end{proof}
+
+
+
+\begin{rem}
+The differential equation \eqref{eq243} has a significant role in conformal field theory. Take $\Vbb$ to be a WZW model $L_l(\gk,0)$ and let $\Wbb_1,\dots,\Wbb_N$ be irreducible, and assume that the lowest $\wtd L_0$-eigenvalue for each $\Wbb_i$ is $0$. Take $\fk X$ to be the genus-$0$ family in Example \ref{lb117}. Then we can choose the $k_0$ in the proof of Lemma \ref{lb142} to be $0$. By restricting the base manifold $\Conf^N(\Cbb^\times)$ of $\fk X$ to any complex line parallel to the $z_j$-axis, then \eqref{eq243} shows that $\upphi^{\leq 0}$ satisfies a $\partial_{z_j}$-linear holomorphic differential equation. This is the celebrated \textbf{Knizhnik–Zamolodchikov (KZ) equation}.
+\end{rem}
+
+
+\subsection{}
+
+To summarize the results proved so far, we have:
+\begin{thm}\label{lb145}
+Let $\mc B$ be a simply-connected open subset of $\Cbb$ containing $0$, and choose local coordinates $\eta_\blt$ for $\fk X$. Define $\nabla_{\partial_\tau}$ using a lift of $\partial_\tau$. Then for each $\upphi_0\in\scr T_{\fk X_0}^*(\Wbb_\blt)$, the $\upphi_\tau$ defined by Def. \ref{lb147} is an element of $\scr T^*_{\fk X}(\Wbb_\blt)(\mc B)$ whose value at $\tau=0$ is $\upphi_0$, and which is annihilated by $\nabla_{\partial_\tau}$.
+\end{thm}
+
+\begin{proof}
+By Lemma \ref{lb142}, we can define $\upphi$ to be an $\scr O_{\mc B}$-module morphism $\Wbb_\blt\otimes\scr O_{\mc B}\rightarrow\scr O_{\mc B}$. It is a conformal block by Lemma \ref{lb140} and Cor. \ref{lb143}. It is annihilated by $\nabla_{\partial_\tau}$ due to \eqref{eq239} and \eqref{eq230}.
+\end{proof}
+
+
+
+\begin{proof}[Proof of Lemma \ref{lb137}]
+For each $\tau_0\in\mc B$, then map $\upphi_0\mapsto\upphi_{\tau_0}$ is linear. Moreover, for sufficiently large $k$, $\upphi_\tau^{\leq k}$ satisfies a linear holomorphic differential equation \eqref{eq243} whose solutions are determined by their values at any fixed point of $\mc B$, say $\tau_0$. So the function $\upphi^{\leq k}_\tau$ of $\tau$ is uniquely determined by $\upphi^{\leq k}_{\tau_0}$. So $\upphi_0^{\leq k}$ is determined by $\upphi_{\tau_0}^{\leq k}$ for all large $k$. So the linear map $\upphi_0\mapsto\upphi_{\tau_0}$ is injective.
+\end{proof}
+
+
+The proof of Thm. \ref{lb135} is complete.
+
+
+\begin{eg}\label{lb149}
+Assume the setting of Example \ref{lb109}. Assume moreover that $\Delta\subset\Cbb$ is an open disc centered at $0$, and that  the holomorphic function $h$ defined near $\Sbb^1$ is holomorphic on $\Dbb_r^\times$ for some $r>1$ with finite poles at $0$. So $h(z)=\sum_{n\in\Zbb}c_nz^{n+1}$ where $c_n=0$ for sufficiently negative $n$. Using Example \ref{lb148}, it is easy to see that for each $\upphi_0\in\scr T_{\fk X_0}^*(\Wbb_\blt)$, the $\upphi_\tau$ defined by \eqref{eq245} as a formal power series of $\tau$ satisfies Def. \ref{lb147}. So $\upphi_\tau\in\scr T_{\fk X}^*(\Wbb_\blt)$. In particular, for each $w\in\Wbb_\blt$, $\upphi_\tau(w)$ converges a.l.u. on $\tau\in\Delta$.
+\end{eg}
+
+
+\subsection{}
+
+\begin{co}\label{lb146}
+Assume the setting of Thm. \ref{lb145}. Then for each $\tau\in\mc B$, the linear map
+\begin{align*}
+\scr T_{\fk X_0}^*(\Wbb_\blt)\rightarrow\scr T_{\fk X_\tau}^*(\Wbb_\blt),\qquad \upphi_0\mapsto\upphi_\tau
+\end{align*}
+is bijective.
+\end{co}
+
+
+\begin{proof}
+The injectivity follows from the proof of Lemma \ref{lb135}. The bijectivity follows from the fact that the two vector spaces have the same dimension (due to Thm. \ref{lb135}). Alternatively, it follows from that by switching the role of $\tau$ and $0$, we have a similar injective linear map $\scr T^*_{\fk X_\tau}(\Wbb_\blt)\rightarrow\scr T^*_{\fk X_0}(\Wbb_\blt)$.
+\end{proof}
+
+
+\begin{co}
+Assume the setting of Thm. \ref{lb145}. Then $\scr T_{\fk X}^*(\Wbb_\blt)$ and hence $\scr T_{\fk X}(\Wbb_\blt)$ are  trivial vector bundles on $\mc B$.
+\end{co}
+
+\begin{proof}
+The $\scr O_{\mc B}$-module morphism
+\begin{align*}
+\scr T_{\fk X_0}^*(\Wbb_\blt)\otimes_\Cbb\scr O_{\mc B}\rightarrow\scr T_{\fk X}^*(\Wbb_\blt)
+\end{align*}
+sending each constant section $\upphi_0$ to $\upphi_\tau$ (and hence each $\upphi_0\otimes f$ to $f\upphi_\tau$ where $f\in\scr O_{\mc B}$) is an isomorphism due to Cor. \ref{lb146}.
+\end{proof}
+
+
+
+\begin{co}
+Let $\fk Y=(C;x_1,\dots,x_N)$ be an $N$-pointed compact Riemann surface where $C$ is connected with genus $g$, and associate $\Wbb_i$ to $x_i$. Then the dimension of space of conformal blocks $\dim\scr T_{\fk Y}^*(\Wbb_\blt)$ depends only on $g$, $N$, and the admissible $\Vbb$-modules $\Wbb_1,\dots,\Wbb_N$.
+\end{co}
+
+So, $\dim\scr T_{\fk Y}^*(\Wbb_\blt)$ does not depend on the complex structure of $C$, the position of $x_\blt$, or the choice of local coordinates. 
+
+\begin{proof}
+There is a family $\fk T_{g,N}$ of $N$-pointed compact connected genus-$g$ Riemann surfaces whose base manifold is the Teichm\"uller space $\mc T_{g,N}$ (which is connected), and any $\fk Y$ is equivalent to some fiber of $\fk T_{g,N}$. (See for instance \cite[Chapter XV]{ACG}.) Thus, the corollary follows immediately from Thm. \ref{lb135}.
+\end{proof}
+
+
+
+
+
+\section{Sewing and factorization of conformal blocks}
 
 
 
@@ -6116,26 +6782,6 @@ The $\scr O_{\mc B}$-module \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*
 
 
 
-
-
-
-
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	%\newpage
-	%$~$
-	%\renewcommand\contentsname{} % the empty name
-	
-	%\begingroup
-	%\let\clearpage\relax
-	%\vspace{-2cm} % the removed space. Set as appropriate
-	
-	
-	% Remove header of table of contents
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	
 
 
 
@@ -6151,7 +6797,16 @@ The $\scr O_{\mc B}$-module \index{T@$\scr T_{\fk X}(\Wbb_\blt),\scr T_{\fk X}^*
 \printindex	
 	\begin{thebibliography}{999999}
 		\footnotesize	
-		
+
+
+\bibitem[ACG]{ACG}
+Arbarello, E., Cornalba, M. and Griffiths, P.A., 2011. Geometry of algebraic curves: volume II with a contribution by Joseph Daniel Harris. Springer Berlin Heidelberg.
+
+
+\bibitem[Buhl02]{Buhl02}
+Buhl, G., 2002. A spanning set for VOA modules. Journal of Algebra, 254(1), pp.125-151.		
+
+
 \bibitem[CKLW18]{CKLW18}
 Carpi, S., Kawahigashi, Y., Longo, R. and Weiner, M., 2018. From vertex operator algebras to conformal nets and back (Vol. 254, No. 1213). Memoirs of the American Mathematical Society
 
@@ -6178,11 +6833,17 @@ Francesco, P., Mathieu, P. and Sénéchal, D., 2012. Conformal field theory. Spr
 \bibitem[FZ92]{FZ92}
 Frenkel, I.B. and Zhu, Y., 1992. Vertex operator algebras associated to representations of affine and Virasoro algebras. Duke Mathematical Journal, 66(1), pp.123-168.
 
+\bibitem[GN03]{GN03}
+Gaberdiel, M.R. and Neitzke, A., 2003. Rationality, quasirationality and finite W-algebras. Communications in mathematical physics, 238(1), pp.305-331.
+
 \bibitem[GR-a]{GR-a}
 Grauert, H. and Remmert, R., 2012. Coherent analytic sheaves (Vol. 265). Springer Science \& Business Media.
 
 \bibitem[GR-b]{GR-b}
 Grauert, H. and Remmert, R., 2013. Theory of Stein spaces (Vol. 236). Springer Science \& Business Media.
+
+\bibitem[GR-c]{GR-c}
+Grauert, H. and Remmert, R., 1994. Several complex variables VII: sheaf-theoretical methods in complex analysis (Vol. 74). Berlin: Springer-Verlag.
 
 \bibitem[Gui]{Gui}
 Gui, B., Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization.
@@ -6196,14 +6857,23 @@ Gui, B., Convergence of Sewing Conformal Blocks,  arXiv:2011.07450
 \bibitem[Hua97]{Hua97}
 Huang, Y.Z., 1997. Two-dimensional conformal geometry and vertex operator algebras (Vol. 148). Springer Science \& Business Media.
 
+\bibitem[Hub80]{Hub80}
+Hubbard, J.H., 1980. The monodromy of projective structures. In Riemann surfaces and related topics: Proceedings of the 1978 Stony Brook Conference (State Univ. New York, Stony Brook, NY, 1978) (Vol. 97, pp. 257-275).
+
 \bibitem[Jac]{Jac}
 Jacobson, N., 1979. Lie algebras (No. 10). Courier Corporation.
 
+
+\bibitem[Kna]{Kna}
+Knapp, A.W., 2016. Representation theory of semisimple groups. In Representation Theory of Semisimple Groups. Princeton university press.
 
 
 
 \bibitem[LL]{LL}
 Lepowsky, J. and Li, H., 2004. Introduction to vertex operator algebras and their representations (Vol. 227). Springer Science \& Business Media.
+
+\bibitem[Miy04]{Miy04}
+Miyamoto, M., 2004. Modular invariance of vertex operator algebras satisfying C2-cofiniteness. Duke Mathematical Journal, 122(1), pp.51-91.
 
 
 \bibitem[Muk10]{Muk10}
