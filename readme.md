@@ -81,5 +81,5 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
 
 
-> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Field Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.
+> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.
 
