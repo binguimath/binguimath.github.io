@@ -73,7 +73,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 5/9 Projective structures and uniqueness of connections; sewing and propagation of conformal blocks
 
-5/12 Sewing, propagation, and factorization of conformal blocks; tensor categories of VOA modules
+5/12 Factorization of conformal blocks; tensor categories of VOA modules
 
 
 
