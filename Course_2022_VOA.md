@@ -1,8 +1,5 @@
 # 2022 Spring YMSC Course: Vertex Operator Algebras, Conformal Blocks, and Tensor Categories
 
-## Class cancellation due to International Workers' Day
-We have no classes during the week of 5/2~5/8
-
 
 
 
