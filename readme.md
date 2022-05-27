@@ -85,5 +85,5 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
 
-> These are the lecture notes for my course "Vertex Operator Algebras, Conformal Blocks, and Tensor Categories" given at Yau Mathematical Sciences Center in 2022 Spring.
+> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
 
