@@ -21,9 +21,13 @@ bingui(at)tsinghua(dot)edu(dot)cn
 
 ##  Research Interests
 
-I'm interested in the mathematical areas that are related to two-dimensional Conformal Field Theory, including:  Algebraic Quantum (Conformal) Field Theory, Vertex Operator Algebras, Subfactors and Von Neumann Algebras, Tensor Categories.
+I'm interested in vertex operator algebras and related mathematical areas such as algebraic quantum field theories, von Neumann algebras and subfactors, tensor categories, etc. 
 
-I consider myself a half-operator algebraist  and half-vertex algebraist. I'm especially interested in the interplay between the operator algebraic (more precisely speaking, von Neumann algebraic)  and the vertex algebraic approaches to 2d conformal field theory.
+I view myself an analyst rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.
+
+A leitmotif of my research is to understand fusion.
+
+
 
 ## Courses
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
