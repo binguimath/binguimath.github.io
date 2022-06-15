@@ -1,6 +1,6 @@
 Welcome to my homepage
 
-## About me
+## About me 😼
 I am now an assistant professor at Tsinghua University, Yau Mathematical Sciences Center.
 
 My name in Chinese: 归斌/歸斌
@@ -19,21 +19,21 @@ bingui(at)tsinghua(dot)edu(dot)cn
 
 
 
-##  Research Interests
+##  Research Interests 🧐
 
 I'm interested in vertex operator algebras and related mathematical areas such as algebraic quantum field theories, von Neumann algebras and subfactors, tensor categories, etc. 
 
-I view myself an analyst 😏 rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.
+I view myself an analyst】 rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.
 
-A leitmotif of my research is to understand fusion. 🤯
+A leitmotif of my research is to understand fusion💥.
 
 
 
-## Courses
+## Courses 😪
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
 
 
-## Publications and Preprints 
+## Publications and Preprints 😵‍💫
 
 
 
@@ -72,7 +72,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - On a Connes Fusion Approach to Finite Index Extensions of Conformal Nets. `arXiv:2112.15396`  [Preprint](Files/2021_Extensions.pdf)
 
 
-## Notes
+## Notes 🥱
 
 - [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
 
