@@ -14,12 +14,9 @@ bingui(at)tsinghua(dot)edu(dot)cn
 
 [arXiv webpage](https://arxiv.org/a/gui_b_1.html)
 
+[Biography](Bio.md)
 
-## Academic Experiences
-- (2021.9-)  Assistant Professor, Yau Mathematical Sciences Center, Tsinghua University
-- (2018.9-2021.6)  Postdoc (Hill Assistant Professor), Math Department, Rutgers University-New Brunswick. Mentor: Yi-Zhi Huang
-- (2013.8-2018.6) Ph.D., Math Department, Vanderbilt University. Advisor: Vaughan Jones
-- (2009.9-2013.6) B.S., Zhiyuan College, Shanghai Jiaotong University. Advisors: Jin Liang, Yijun Yao
+
 
 
 ##  Research Interests
