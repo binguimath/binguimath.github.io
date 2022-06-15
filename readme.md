@@ -1,6 +1,6 @@
 Welcome to my homepage
 
-## About me 😼
+## About Me 😼
 I am now an assistant professor at Tsinghua University, Yau Mathematical Sciences Center.
 
 My name in Chinese: 归斌/歸斌
