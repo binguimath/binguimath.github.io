@@ -21,7 +21,7 @@ bingui(at)tsinghua(dot)edu(dot)cn
 
 ##  Research Interests 🧐
 
-I am a mathematician working in areas related to 2d conformal field theories, including vertex operator algebras, conformal nets (more generally, von Neumann algebras and subfactors), tensor categories, etc. 
+I am a mathematician working in areas related to 2d conformal field theories, including vertex operator algebras, conformal nets (more generally, algebraic quantum field thoery, which uses the methods of von Neumann algebras and subfactors), tensor categories, etc. 
 
 <!--I view myself an analyst rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.-->
 
