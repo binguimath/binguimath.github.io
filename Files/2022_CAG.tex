@@ -1,0 +1,1417 @@
+% !TeX spellcheck = en_US
+\documentclass[12pt,b5paper,notitlepage]{report}
+\usepackage[b5paper, margin={0.5in,0.75in}]{geometry}
+%\usepackage{fullpage}
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
+%\usepackage{ulem} %wave underline
+\usepackage[dvipsnames]{xcolor}
+\usepackage{palatino}  %template
+\usepackage{slashed} % Dirac operator
+\usepackage{mathrsfs} % Enable using \mathscr
+%\usepackage{eufrak}  another template/font
+\usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
+\usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
+
+\usepackage{fancyhdr} % date in footer
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% circled colon and thick colon \hcolondel and \colondel
+
+\usepackage{pdfrender}
+
+\newcommand*{\hollowcolon}{%
+	\textpdfrender{
+		TextRenderingMode=Stroke,
+		LineWidth=.1bp,
+	}{:}%
+}
+
+\newcommand{\hcolondel}[1]{%
+	\mathopen{\hollowcolon}#1\mathclose{\hollowcolon}%
+}
+\newcommand{\colondel}[1]{%
+	\mathopen{:}#1\mathclose{:}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+\usepackage{tikz-cd}
+\usepackage[nottoc]{tocbibind}   % Add  reference to ToC
+
+
+\makeindex
+
+
+% The following set up the line spaces between items in \thebibliography
+\usepackage{lipsum}
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+	\OLDthebibliography{#1}
+	\setlength{\parskip}{0pt}
+	\setlength{\itemsep}{2pt} 
+}
+
+
+\allowdisplaybreaks  %allow aligns to break between pages
+\usepackage{latexsym}
+\usepackage{chngcntr}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue, linktocpage,
+%pagebackref
+]{hyperref}
+\hypersetup{ urlcolor=cyan,
+	citecolor=[rgb]{0,0.5,0}}
+
+
+\setcounter{tocdepth}{1}	 %hide subsections in the content
+
+
+\counterwithin{figure}{section}
+
+\pagestyle{plain}
+
+\captionsetup[figure]
+{
+	labelsep=none	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{df}{Definition}[section]
+\newtheorem{eg}[df]{Example}
+\newtheorem{exe}[df]{Exercise}
+\newtheorem{rem}[df]{Remark}
+\newtheorem{ass}[df]{Assumption}
+\newtheorem{cv}[df]{Convention}
+\newtheorem{prin}[df]{Principle}
+\newtheorem{nota}[df]{Notation}
+\newtheorem{st}{Step}
+\newtheorem{thma}[df]{Theorem}
+\newtheorem{coa}[df]{Theorem}
+\theoremstyle{plain}
+\newtheorem{thm}[df]{Theorem}
+\newtheorem{ccl}[df]{Conclusion}
+\newtheorem{thd}[df]{Theorem-Definition}
+\newtheorem{pp}[df]{Proposition}
+\newtheorem{co}[df]{Corollary}
+\newtheorem{lm}[df]{Lemma}
+
+
+
+\newtheorem{cond}{Condition}
+\newtheorem{Mthm}{Main Theorem}
+\renewcommand{\thecond}{\Alph{cond}} % "letter-numbered" theorems
+\renewcommand{\theMthm}{\Alph{Mthm}} % "letter-numbered" theorems
+
+
+%\substack   multiple lines under sum
+%\underset{b}{a}   b is under a
+
+
+% Remind: \overline{L_0}
+
+
+
+\usepackage{calligra}
+\DeclareMathOperator{\shom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\DeclareMathOperator{\sext}{\mathscr{E}\text{\kern -3pt {\calligra\large xt}}\,}
+
+
+
+
+
+\newcommand{\fk}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\wtd}{\widetilde}
+\newcommand{\wht}{\widehat}
+\newcommand{\wch}{\widecheck}
+\newcommand{\ovl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\tr}{\mathrm{t}} %transpose
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\id}{\mathbf{1}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\KZ}{\mathrm{KZ}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\coev}{\mathrm{coev}}
+\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Dom}{\scr D}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\con}{\mathrm{c}}
+\newcommand{\uni}{\mathrm{u}}
+\newcommand{\ssp}{\mathrm{ss}}
+\newcommand{\di}{\slashed d}
+\newcommand{\Diffp}{\mathrm{Diff}^+}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\PSU}{\mathrm{PSU}(1,1)}
+\newcommand{\Vir}{\mathrm{Vir}}
+\newcommand{\Witt}{\mathscr W}
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\pri}{\mathrm{p}}
+\newcommand{\ER}{E^1(V)_{\mathbb R}}
+\newcommand{\bk}[1]{\langle {#1}\rangle}
+\newcommand{\prth}[1]{( {#1})}
+\newcommand{\bigbk}[1]{\big\langle {#1}\big\rangle}
+\newcommand{\Bigbk}[1]{\Big\langle {#1}\Big\rangle}
+\newcommand{\biggbk}[1]{\bigg\langle {#1}\bigg\rangle}
+\newcommand{\Biggbk}[1]{\Bigg\langle {#1}\Bigg\rangle}
+\newcommand{\GA}{\mathscr G_{\mathcal A}}
+\newcommand{\vs}{\varsigma}
+\newcommand{\Vect}{\mathrm{Vec}}
+\newcommand{\Vectc}{\mathrm{Vec}^{\mathbb C}}
+\newcommand{\scr}{\mathscr}
+\newcommand{\sjs}{\subset\joinrel\subset}
+\newcommand{\Jtd}{\widetilde{\mathcal J}}
+\newcommand{\gk}{\mathfrak g}
+\newcommand{\hk}{\mathfrak h}
+\newcommand{\xk}{\mathfrak x}
+\newcommand{\yk}{\mathfrak y}
+\newcommand{\zk}{\mathfrak z}
+\newcommand{\hr}{\mathfrak h_{\mathbb R}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\DHR}{\mathrm{DHR}_{I_0}}
+\newcommand{\Repi}{\mathrm{Rep}_{\wtd I_0}}
+\newcommand{\im}{\mathbf{i}}
+\newcommand{\Co}{\complement}
+%\newcommand{\Cu}{\mathcal C^{\mathrm u}}
+\newcommand{\RepV}{\mathrm{Rep}^\uni(V)}
+\newcommand{\RepA}{\mathrm{Rep}(\mathcal A)}
+\newcommand{\RepN}{\mathrm{Rep}(\mathcal N)}
+\newcommand{\RepfA}{\mathrm{Rep}^{\mathrm f}(\mathcal A)}
+\newcommand{\RepAU}{\mathrm{Rep}^\uni(A_U)}
+\newcommand{\RepU}{\mathrm{Rep}^\uni(U)}
+\newcommand{\RepL}{\mathrm{Rep}^{\mathrm{L}}}
+\newcommand{\HomL}{\mathrm{Hom}^{\mathrm{L}}}
+\newcommand{\EndL}{\mathrm{End}^{\mathrm{L}}}
+\newcommand{\Bim}{\mathrm{Bim}}
+\newcommand{\BimA}{\mathrm{Bim}^\uni(A)}
+%\newcommand{\shom}{\scr Hom}
+\newcommand{\divi}{\mathrm{div}}
+\newcommand{\sgm}{\varsigma}
+\newcommand{\SX}{{S_{\fk X}}}
+\newcommand{\DX}{D_{\fk X}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bsb}{\boldsymbol}
+\newcommand{\blt}{\bullet}
+\newcommand{\coker}{\mathrm{coker}}
+\newcommand{\Vbb}{\mathbb V}
+\newcommand{\Ubb}{\mathbb U}
+\newcommand{\Xbb}{\mathbb X}
+\newcommand{\Kbb}{\mathbb K}
+\newcommand{\Abb}{\mathbb A}
+\newcommand{\Wbb}{\mathbb W}
+\newcommand{\Mbb}{\mathbb M}
+\newcommand{\Gbb}{\mathbb G}
+\newcommand{\Cbb}{\mathbb C}
+\newcommand{\Nbb}{\mathbb N}
+\newcommand{\Zbb}{\mathbb Z}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\Rbb}{\mathbb R}
+\newcommand{\Ebb}{\mathbb E}
+\newcommand{\Dbb}{\mathbb D}
+\newcommand{\Hbb}{\mathbb H}
+\newcommand{\cbf}{\mathbf c}
+\newcommand{\Rbf}{\mathbf R}
+\newcommand{\wt}{\mathrm{wt}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\btl}{\blacktriangleleft}
+\newcommand{\btr}{\blacktriangleright}
+\newcommand{\svir}{\mathcal V\!\mathit{ir}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Coker}{\mathrm{Coker}}
+\newcommand{\Sbf}{\mathbf{S}}
+\newcommand{\low}{\mathrm{low}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Rng}{\mathrm{Rng}}
+\newcommand{\vN}{\mathrm{vN}}
+\newcommand{\Ebf}{\mathbf E}
+\newcommand{\Nbf}{\mathbf N}
+\newcommand{\Stb}{\mathrm {Stb}}
+\newcommand{\SXb}{{S_{\fk X_b}}}
+\newcommand{\pr}{\mathrm {pr}}
+\newcommand{\SXtd}{S_{\wtd{\fk X}}}
+\newcommand{\univ}{\mathrm {univ}}
+\newcommand{\vbf}{\mathbf v}
+\newcommand{\ubf}{\mathbf u}
+\newcommand{\wbf}{\mathbf w}
+\newcommand{\CB}{\mathrm{CB}}
+\newcommand{\Perm}{\mathrm{Perm}}
+\newcommand{\Orb}{\mathrm{Orb}}
+\newcommand{\Lss}{{L_{0,\mathrm{s}}}}
+\newcommand{\Lni}{{L_{0,\mathrm{n}}}}
+\newcommand{\UPSU}{\widetilde{\mathrm{PSU}}(1,1)}
+\newcommand{\Sbb}{{\mathbb S}}
+\newcommand{\Gc}{\mathscr G_c}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\bpr}{{}^\backprime}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Ann}{\mathbf{Ann}}
+\newcommand{\Real}{\mathrm{Re}}
+\newcommand{\Imag}{\mathrm{Im}}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Supp}{\mathrm{Supp}}
+\newcommand{\Specan}{\mathrm{Specan}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\uph}{\upharpoonright}
+\newcommand{\Mor}{\mathrm{Mor}}
+\newcommand{\pre}{\mathrm{pre}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usepackage{tipa} % wierd symboles e.g. \textturnh
+\newcommand{\tipar}{\text{\textrtailr}}
+\newcommand{\tipaz}{\text{\textctyogh}}
+\newcommand{\tipaomega}{\text{\textcloseomega}}
+\newcommand{\tipae}{\text{\textrhookschwa}}
+\newcommand{\tipaee}{\text{\textreve}}
+\newcommand{\tipak}{\text{\texthtk}}
+
+
+
+\usepackage{tipx}
+\newcommand{\tipxgamma}{\text{\textfrtailgamma}}
+\newcommand{\tipxcc}{\text{\textctstretchc}}
+\newcommand{\tipxphi}{\text{\textqplig}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\numberwithin{equation}{section}
+
+
+
+
+\title{Notes on Complex Analytic Geometry}
+\author{{\sc Bin Gui}
+	%\\
+	%{\small Department of Mathematics, Rutgers university}\\
+	%{\small bin.gui@rutgers.edu}
+}
+\date{Last update: July 2022}
+\begin{document}\sloppy % avoid stretch into margins
+	\pagenumbering{arabic}
+	%\pagenumbering{gobble}
+	\setcounter{page}{0}
+	\setcounter{section}{-1}
+	%\setcounter{equation}{6}
+	
+
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+	
+	\maketitle
+\thispagestyle{empty}	
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-0.5cm}
+\makeatletter
+\newcommand*{\toccontents}{\@starttoc{toc}}
+\makeatother
+\toccontents
+	
+% title and table of contents same page, no content title
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+
+
+
+
+
+\chapter{Complex spaces, holomorphic maps, and fiber products}
+
+\section{Notations and conventions}
+The following notations and conventions are assumed throughout the monograph.
+
+$\Nbb=\{0,1,2,3,\dots\}$ and $\Zbb_+=\{1,2,3,\dots\}$.
+
+$\im=\sqrt{-1}$.
+
+$\{0\},\Cbb,\Cbb^2,\Cbb^3,\dots$ are called \textbf{(complex) number spaces}.
+
+Unless otherwise stated, all vector spaces are over $\Cbb$.
+
+$\Cbb\{z_1,\dots,z_n\}$ \index{Cz@$\Cbb\{z_1,\dots,z_n\}:=\scr O_{\Cbb^n,0}$} denotes $\scr O_{\Cbb^n,0}$, the algebra of convergent power series of $z_1,\dots,z_n$. $\Cbb[z_1,\dots,z_n]$ denotes the algebra of polynomials of $z_1,\dots,z_n$. \index{Cz@$\Cbb[z_1,\dots,z_n]$}
+
+We assume the readers are familiar with the basic notions of sheaves and their maps (morphisms), sheafifications, image sheaves, kernels and cokernels of sheaves. (A review of these concepts can be found e.g. in \cite[Sec.A]{Gui22}.) For each presheaf $\scr E$ on a topological space $X$, we let $\scr E_x$ denote the stalk of $\scr E_x$ at $x$. If $\varphi:X\rightarrow Y$ is a continuous map of topological spaces, then the \textbf{direct image} $\varphi_*\scr E$\index{00@Direct image $\varphi_*\scr E$} denotes the sheaf on $Y$ whose space of sections over any open $V\subset Y$ is $\scr E(\varphi^{-1}(V))$, i.e.
+\begin{align*}
+(\varphi_*\scr E)(V)=\scr E(\varphi^{-1}(V)).
+\end{align*}
+
+If $\scr F$ is an $\scr O_Y$-module, the \textbf{inverse image} $\varphi^{-1}(\scr F)$ \index{00@Inverse image sheaf $\varphi^{-1}(\scr Y)$} is the sheafification of the presheaf on $X$ associating to each open subsets of $X$: 
+\begin{align*}
+U\mapsto \varinjlim_{V\supset\varphi(U)}\scr Y(V)
+\end{align*}
+where the direct limit is over all open subset $V\subset Y$ containing $\varphi(U)$. For each $x\in X$ there is a natural equivalence
+\begin{align}
+(\varphi^{-1}\scr F)_x\simeq \scr F_{\varphi(x)}.
+\end{align}
+
+
+
+
+$\scr E_U$, $\scr E|U$, $\scr E|_U$, $\scr E\upharpoonright_U$ all denote the restriction of an  $X$-sheaf $\scr E$ to the open subset $U$. If $Y$ is a subset of $X$, we define the \textbf{set theoretic restriction} \index{00@Set theoretic restriction $\scr E\uph_Y$}
+\begin{align}
+\scr E\uph_Y=\iota^{-1}(\scr E).
+\end{align}
+In particular, for each $y\in Y$, we have a canonical identification
+\begin{align}
+(\scr E\uph_Y)_y=\scr E_y.\label{eq4}
+\end{align}
+Warning: in the future, we will define the restriction $\scr E|_Y=\scr E|Y$ when $Y$ is a complex subspace of a complex space $X$ and $\scr E$ is an $\scr O_X$-module. $\scr E|Y$ will be different from $\scr E\uph_Y$. In particular, $(\scr E|_Y)_y$ is not $\scr E_y$. 
+
+
+
+
+We also write $\scr E(U)$ as $H^0(U,\scr E)$.
+
+Recall that the \textbf{support of an $X$-sheaf} $\scr E$, denoted by $\Supp(\scr E)$, \index{SE@$\Supp(\scr E)$, the support of a sheaf $\scr E$} is the subset of all $x\in X$ such that $\scr E_x=0$.
+
+
+\section{$\Cbb$-ringed spaces and sheaves of modules}
+
+\subsection{$\Cbb$-ringed spaces}
+
+
+
+
+\begin{df}\label{lb2}
+A \textbf{$\Cbb$-ringed space} is a topological space $X$ together with a \textbf{sheaf  of local $\Cbb$-algebras} $\scr O_X$ on $X$ (i.e., for each open $U\subset X$, $\scr O_X(U)$ is a $\Cbb$-algebra with unity, and the additions and multiplications are compatible with the restriction to open subsets of $U$; each stalk $\scr O_{X,x}$ is a \textbf{local $\Cbb$-algebra}). 
+
+By saying that $\scr O_{X,x}$ is a local $\Cbb$-algebra, we mean that there is a unique maximal ideal $\fk m_{X,x}$ of $\scr O_{X,x}$, and that we have an isomorphism of vector spaces \index{Cx@$\Cbb_x:=\scr O_{X,x}/\fk m_{X,x}$}
+\begin{gather*}
+\Cbb\xrightarrow{\simeq}\Cbb_x:=\scr O_{X,x}/\fk m_{X,x},\qquad \lambda\mapsto \lambda 1.
+\end{gather*}
+We write $\fk m_{X,x}$ as $\fk m_x$ \index{mx@$\fk m_{X,x}=\fk m_x$} when no confusion arises. For each $f\in\scr O_{X,x}$, we let $f(x)\in\Cbb$ denote the residue class of $f$ in $\scr O_{X,x}/\fk m_x$, called the \textbf{value} of $f$ at $x$. In this way, any section of $\scr O_X$ can be viewed as a function.
+
+$\scr O_X$ is called the \textbf{structure sheaf} of $X$. Each open subset $U\subset X$ is automatically a $\Cbb$-ringed subspace of $X$ with structure sheaf $\scr O_U:=\scr O_X|_U$.\hfill\qedsymbol
+\end{df}
+
+For the sake of brevity, we write \index{OX@$\scr O(X):=\scr O_X(X)$}
+\begin{align}
+\scr O(X)=\scr O_X(X)
+\end{align}
+
+The following important fact is obvious:
+
+\begin{pp}
+An element $f\in\scr O_{X,x}$ is a unit (i.e. invertible in the ring $\scr O_{X,x}$) iff $f(x)\neq 0$.
+\end{pp}
+\begin{proof}
+$f(x)=0$ iff $f\in\fk m_{X,x}$ iff $f$ is not a unit.
+\end{proof}
+
+
+\begin{df}
+A \textbf{morphism of $\Cbb$-ringed spaces} $\varphi:X\rightarrow Y$ is a continuous map of topological spaces, together with a morphism of sheaves of $\Cbb$-algebras $\varphi^\#:\scr O_Y\rightarrow \varphi_*\scr O_X$ \index{zz@$\varphi^\#:\scr O_Y\rightarrow \varphi_*\scr O_X$} (namely, $\varphi^\#$ is a sheaf map, and $\varphi^\#:\scr O_Y(V)\rightarrow\scr O_X(\varphi^{-1}(V))$ is a morphism of $\Cbb$-algebra for each open $V\subset Y$), and for each $x\in X$ and $y=\varphi(x)$, the restriction $\varphi^\#:\scr O_{Y,y}\rightarrow \scr O_{X,x}$ is a \textbf{morphism of local $\Cbb$-algebras}, i.e. a morphism of $\Cbb$-algebras such that
+\begin{align}
+\varphi^\#(\fk m_{Y,y})\subset\fk m_{X,x}.
+\end{align}
+The set of morphisms of $\Cbb$-ringed spaces $X\rightarrow Y$ is denoted by $\Mor(X,Y)$. \index{Mor@$\Mor(X,Y)$}
+\end{df}
+
+We leave it to the readers to define isomorphisms of $\Cbb$-ringed spaces.
+
+\begin{pp}
+For each section $f\in\scr O_Y$ defined at $y=\varphi(x)$, we have
+\begin{align}
+(\varphi^\#f)(x)=f\circ\varphi(x).\label{eq8}
+\end{align}
+\end{pp}
+
+\begin{proof}
+This is true when $f=1$ since $\varphi^\#$ preserves $1$. It is also true when $f\in\fk m_{Y,y}$. So it is true in general.
+\end{proof}
+
+Thus, $\varphi^\#$ may be viewed as the transpose of $\varphi$. When studying morphisms between complex spaces, we may write $\varphi^\# f$ as $f\circ\varphi$ (cf. Rem. \ref{lb6}).
+
+\begin{eg}
+A complex manifold is a $\Cbb$-ringed space if we define the structure sheaf $\scr O_X$ to be the sheaf of (germs of) holomorphic functions. If $X$ and $Y$ are complex manifolds, then a morphism of $\Cbb$-ringed spaces from $X$ to $Y$ is exactly a holomorphic map.
+\end{eg}
+
+\subsection{Modules over $\Cbb$-ringed spaces}
+
+We begin this section the following general observation:
+\begin{rem}\label{lb11}
+If $\scr M,\scr N$ are two subsheaves of an $X$-sheaf such that $\scr M_x=\scr N_x$ for all $x\in X$, then $\scr M=\scr N$. (For any $s\in \scr M$, $s_x\in\scr M_x=\scr N_x$ for all $x$ on which $s$ is defined. So $s\in\scr N$. So $\scr M\subset\scr N$, and vice versa.) Thus, we can talk about`` the \emph{unique} subsheaf of a given sheaf whose stalks are..." where the unique part is automatic. 
+\end{rem}
+
+\begin{df}
+A \textbf{presheaf of $\scr O_X$-modules} $\scr E$ on a $\Cbb$-ringed space $X$ is a sheaf such that for each open $U\subset X$, $\scr E(U)$ is an $\scr O(U)$-module, and that the linear combination and the action of $\scr O(U)$ on $\scr E(U)$ are compatible with the restriction to open subsets of $U$. If $\scr E$ is a sheaf, we call $\scr E$ an \textbf{$\scr O_X$-module}. We call the vector space \index{00@Fiber $\scr E\lvert x=\scr E_x/{\fk m_{X,x}\scr E_x}=\scr E_x\otimes(\scr O_{X,x}/\fk m_{X,x})$}
+\begin{align}
+\scr E|x=\scr E_x/{\fk m_{X,x}\scr E_x}=\scr E_x\otimes(\scr O_{X,x}/\fk m_{X,x})\label{eq5}
+\end{align}
+the \textbf{fiber} of $\scr E$ at $x$. The right most expression of \eqref{eq5} will be explained in Rem. \ref{lb4}. The residue class of $s\in \scr E$ in $\scr E|x$ is denoted by $s(x)$ or $s|x$. 
+\end{df}
+
+\begin{df}
+A \textbf{morphism of (presheaves of) $\scr O_X$-modules} $\varphi:\scr E\rightarrow\scr F$, where $\scr E$ and $\scr F$ are (presheaves of) $\scr O_X$-modules, is a sheaf map intertwining the actions of $\scr O_X$. More precisely, for each open $U\subset X$, $\varphi:s\in\scr E(U)\mapsto \varphi(s)\in\scr F(U)$ is a morphism of $\scr O(U)$-modules; if $V\subset U$ is open, then $\varphi(s|_U)=\varphi(s)|_U$. 
+
+$\varphi$ is called \textbf{injective} resp. \textbf{surjective} if it is so as a sheaf map, namely $\varphi:\scr E_x\rightarrow\scr F_x$ is injective resp surjective for all $x\in X$. $\scr E\xrightarrow{\varphi}\scr F\xrightarrow{\psi}\scr G$ is called \textbf{exact} if the corresponding sequence of stalk map $\scr E_x\xrightarrow{\varphi}\scr F_x\xrightarrow{\psi}\scr G_x$ is exact for all $x\in X$. $\varphi$ is an \textbf{isomorphism} of $\scr O_X$-modules iff $\varphi$ has an inverse iff $\varphi$ is both injective and surjective. \hfill\qedsymbol
+\end{df}
+
+
+
+\begin{rem}[\textbf{Gluing construction of sheaves}]\label{lb12}
+Let $(V_\alpha)_{\alpha\in\fk A}$ be an open cover of a topological space $X$. Suppose that for each $\alpha\in\fk A$, we have a sheaf $\scr E^\alpha$, that for any $\alpha,\beta\in\fk A$, we have a sheaf isomorphism $\phi_{\beta,\alpha}:\scr E^\alpha_{V_\alpha\cap V_\beta}\xrightarrow{\simeq}\scr E^\beta_{V_\alpha\cap V_\beta}$, that $\phi_{\alpha,\alpha}=\id$, and that $\phi_{\gamma,\alpha}=\phi_{\gamma,\beta}\phi_{\beta,\alpha}$ when restricted to $V_\alpha\cap V_\beta\cap V_\gamma$. Then we can define a sheaf $\scr E$ on $X$ as follows. For any open $U\subset X$, $\scr E(U)$ is the set of all $(s_\alpha)_{\alpha\in\fk A}\in\prod_{\alpha\in\fk A}\scr E^\alpha(U\cap V_\alpha)$ (where each component $s_\alpha$ is in $\scr E^\alpha(U\cap V_\alpha)$) satisfying that $s_\beta|_{V_\alpha\cap V_\beta}=\phi_{\beta,\alpha}(s_\alpha|_{V_\alpha\cap V_\beta})$ for any $\alpha,\beta\in\fk A$. If $W$ is an open subset of $U$, then the restriction $\scr E(U)\rightarrow\scr E(W)$ is defined by that of $\scr E^\alpha(U\cap V_\alpha)\rightarrow \scr E^\alpha(W\cap V_\alpha)$. Then for each $\beta\in\fk A$, we have a canonical isomorphism (trivialization) $\phi_\beta:\scr E_{V_\beta}\xrightarrow{\simeq} \scr E^\beta_{V_\beta}$ defined by $(s_\alpha)_{\alpha\in\fk A}\mapsto s_\beta$. It is clear that for each $\alpha,\beta\in\fk A$, we have $\phi_\beta=\phi_{\beta,\alpha}\phi_\alpha$ when restricted to $V_\alpha\cap V_\beta$.
+
+In the case that $X$ is a $\Cbb$-ringed space, that each $\scr E^\alpha$ is an $\scr O_{U_\alpha}$-module, and that $\phi_{\beta,\alpha}$ is an equivalence of $\scr O_{U_\alpha\cap U_\beta}$-modules, then $\scr E$ is a sheaf of $\scr O_X$-modules. \hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+
+
+Let $X$ be a $\Cbb$-ringed space.
+\begin{df}
+A set of sections $\fk S\subset\scr O_X(X)$ is said to \textbf{generate} the $\scr O_X$-module $\scr E$ if they generate each stalk $\scr E_x$, i.e., each element of $\scr E_x$ is an $\scr O_{X,x}$-linear combination of finitely many elements of $\fk S$. Equivalently, this means that the $\scr O_X$-module morphism
+\begin{align}
+\bigoplus_{s\in\fk S}\scr O_X\rightarrow\scr E,\qquad \oplus_s f_s\mapsto \sum_s f_s\cdot s 
+\end{align}
+(where $f_s\in \scr O_X$) is surjective. If it is also injective, we say $\fk S$ \textbf{generates freely} $\scr E$.
+\end{df}
+
+
+
+
+
+
+\begin{df}
+We say an $\scr O_X$-module $\scr E$ is of \textbf{finite type} if each $x\in X$ is contained in a neighborhood $U$ such that the restriction $\scr E|_U$ is generated by finitely many elements of $\scr E(U)$, or equivalently, there is a surjective $\scr O_U$-module morphism $\scr O_U^n\rightarrow\scr E|_U$.
+\end{df}
+
+
+
+
+\begin{exe}
+Show that if $\scr E$ is a finite type $\scr O_X$-module, then each stalk $\scr E_x$ is a finitely generated $\scr O_{X,x}$-module, and hence each fiber $\scr E|x$ is finite-dimensional.
+\end{exe}
+\begin{df}
+If $\scr E_1,\scr E_2$ are $\scr O_X$-submodules of an $\scr O_X$-module $\scr F$. The sheafification of the presheaf
+\begin{align}
+(\scr E_1+\scr E_2)^\pre(U)=\scr E_1(U)+\scr E_2(U)
+\end{align}
+is denoted by $\scr E_1+\scr E_2$. \index{EE@$\scr E_1+\scr E_2$} It is the unique subsheaf of $\scr F$ (cf. Rem. \ref{lb11}) whose stalks are $(\scr E_1+\scr E_2)_x=\scr E_1+\scr E_2$. It follows that if $\scr E_1$ is generated by $s_1,s_2,\dots\in\scr E_1(X)$ and $\scr E_2$ is generated by $t_1,t_2,\dots\in\scr E_2(X)$, then $\scr E_1+\scr E_2$ is generated by $s_1,s_2,\dots,t_1,t_2,\dots$.
+\end{df}
+
+
+We recall the well-known
+
+\begin{thm}[\textbf{Nakayama's lemma}]\index{00@Nakayama's lemma}
+If $A$ is a $\Cbb$-local algebra with maximal ideal $\fk m$, and if $\mc M$ is a finitely generated $A$-module. Then a finite set of elements $s_1,\dots,s_n\in\mc M$ generate the $A$-module $\mc M$ (i.e. elements of $\mc M$ are $A$-linear combinations of $s_1,\dots,s_n$) iff their residue classes in $\mc M/\fk m\cdot\mc M$ span the vector space $\mc M/\fk m\cdot\mc M$.
+\end{thm}
+Indeed, this is true when $A$ is in general a local ring. In that case, $\mc M/\fk m\cdot\mc M$ is a vector space over the field $A/\fk m$.
+\begin{proof}
+\cite[Prop. 2.8]{AM} or \cite[Sec. A]{Gui22}.
+\end{proof}
+
+
+\begin{exe}
+Use Nakayama's lemma to show that if $\scr E$ is a finite type $\scr O_X$-module, and if $s_1,\dots,s_n\in\scr E(U)$ (where $U$ is a neighborhood of $x$) are such that $s_1(x),\dots,x_n(x)$ span the fiber $\scr E|x$, then they generate $\scr E|_V$ for a possibly smaller neighborhood $V$ of $x$. (The opposite direction is obvious.) Nakayama's lemma is most often used in this form.
+\end{exe}
+
+
+
+\begin{df}
+We say that an $\scr O_X$-module $\scr E$ is \textbf{free} if is is isomorphic to $\scr O_X^n$ for some $n\in\Nbb$. We say $\scr E$ is \textbf{locally free} if each $x\in X$ is contained in a neighborhood $U$ such that $\scr E|_U$ is free (or equivalently, that $\scr E|_U$ is generated freely by finitely many elements of $\scr E(U)$).
+\end{df}
+
+\begin{exe}
+Show that for a complex manifold $X$, locally free $\scr O_X$-modules $\scr E$ are the same as holomorphic vector bundles on $X$. Describe local trivializations and transition functions in terms of local free generators of $\scr E$. (See e.g. \cite[Sec. A]{Gui22} for details.)
+\end{exe}
+
+
+\begin{df}
+An \textbf{ideal sheaf} \index{00@Ideal sheaves} $\mc J$ on a $\Cbb$-ringed space $X$ is an $\scr O_X$-submodule of $\scr O_X$. In particular, each stalk $\mc J_x$ is an ideal of $\scr O_{X,x}$. The \textbf{zero set} $N(\mc J)$ \index{00@Zero set $N(\mc J)$} is defined to be
+\begin{align}
+\begin{aligned}\label{eq3}
+&N(\mc J):=\{x\in X:f(x)=0\text{ for all }f\in\mc J_x\}=\{x\in X:\mc J_x\subsetneq\fk m_{X,x}\}\\
+=&\{x\in X:\mc J_x\neq\scr O_{X,x}\}=\Supp(\scr O_U/\mc J).
+\end{aligned}
+\end{align}
+\end{df}
+
+\begin{proof}
+Note that $(\scr O_U/\mc J)_x=\scr O_{U,x}/\mc J_x$. So $x\in\Supp(\scr O_U/\mc J)$ iff $\scr O_{U,x}/\mc J_x\neq0$ iff $\mc J_x\subsetneq\scr O_{U,x}$ iff $\mc J_x\subset\fk m_x$ (as $\fk m_x$ is the unique maximal ideal) iff $f(x)=0$ for all $f\in\fk m_x$.
+\end{proof}
+
+
+
+
+\begin{rem}\label{lb1}
+If $\mc J$ is generated by $f_1,\dots,f_n\in\scr O_X$, written as
+\begin{align*}
+\mc J=f_1\scr O_X+\cdots+f_n\scr O_X,
+\end{align*}
+then clearly
+\begin{align}
+N(\mc J)=\{\text{The common zeros of }f_1,\dots,f_n\},
+\end{align}
+which is a closed subset of $X$. Thus, in general, if $\mc J$ is finite-type, then each $x\in X$ is contained in a neighborhood $U$ such that $U\cap N(\mc J)$ is closed in $U$; so $N(\mc J)$ is closed in $X$.
+\begin{align*}
+\text{$\mc J$ is finite type $\Longrightarrow$ $N(\mc J)$ is closed in $X$}
+\end{align*}
+\end{rem}
+
+
+
+
+
+
+
+
+
+\section{Complex spaces and subspaces}
+
+
+
+
+\begin{df}
+A \textbf{(complex) model space} \index{00@Model spaces} is
+\begin{align}
+\Specan(\scr O_U/\mc I):=\big(N(\mc I),(\scr O_U/\mc I)\uph_{N(\mc I)}\big)
+\end{align}
+where $U$ is an open subset of a number space $\Cbb^n$, $\scr O_U$ is the sheaf of holomorphic functions on $U$,  $\mc I$ is a \emph{finite-type} ideal of $\scr O_U$. $\Specan(\scr O_U/\mc I)$ is called the \textbf{analytic spectrum} \index{00@Analytic spectrum $\Specan$} of the sheaf $\scr O_U/\mc I$. Its underlying topological space is $\Supp(\scr O_U/\mc I)$ as a subset of $U$, and its structure sheaf is $(\scr O_U/\mc I)\uph_{N(\mc I)}$, whose stalk at any $x\in N(\mc I)$ is $\scr O_{U,x}/\mc I_x$ (cf. \eqref{eq4}). With abuse of notations, one also writes for simplicity 
+\begin{align}
+\Specan(\scr O_U/\mc I):=\big(N(\mc I),\scr O_U/\mc I\big).
+\end{align}
+The stalk at $x\in N(\mc I)$ of the structure sheaf is a local $\Cbb$-algebra
+\begin{align*}
+\big(\scr O_{U,x}/\mc I_x,\fk m_{U,x}/\mc I_x\big)
+\end{align*}
+\end{df}
+
+
+\begin{df}
+A $\Cbb$-ringed Hausdorff space $X$ is called a \textbf{complex space} if each point $x\in X$ is contained in a neighborhood $V$ such that the $\Cbb$-ringed space $V$ (whose structure sheaf is defined by $\scr O_V:=\scr O_X|_V$) is isomorphic  to a model space. Sections of $\scr O_X(X)$ are called \textbf{holomorphic functions on $X$}. $\scr O_{X,x}$ is called an \textbf{analytic local $\Cbb$-algebra}. \index{00@Analytic local $\Cbb$-algebra $\scr O_{X,x}$} Equivalently, an analytic local $\Cbb$-algebra is $\Cbb\{z_1,\dots,z_n\}/I$ for some finitely generated ideal $I$.\footnote{As we shall see, $\Cbb\{z_1,\dots,z_n\}$ is Noetherian. So the condition that $I$ is finitely generated is redundant.}
+
+If $X,Y$ are complex spaces, a morphism $\varphi:X\rightarrow Y$ of $\Cbb$-ringed spaces is called a \textbf{holomorphic map}. \index{Holomorphic maps} If $\varphi$ has an inverse morphism $Y\rightarrow X$, we say that $\varphi$ is a \textbf{biholomorphism}. \index{Biholomorphism} Clearly, a holomorphic map $\varphi$ is a biholomorphism iff it is a homeomorphism of topological spaces and induces isomorphisms $\varphi^\#:\scr O_{Y,\varphi(x)}\xrightarrow{\simeq}\scr O_{X,x}$ for each $x\in X$.  \hfill\qedsymbol
+\end{df}
+
+\begin{df}
+Let $X$ be a complex space. An \textbf{open complex subspace} \index{Complex subspaces (open or closed)} is $(U,\scr O_X|_U)$ where $U$ is an open subset of $X$. A \textbf{closed complex subspace} is \index{00@Analytic spectrum $\Specan$}
+\begin{align}
+\Specan(\scr O_X/\mc I):=\big(N(\mc I),(\scr O_X/\mc I)\uph_{N(\mc I)}\big)
+\end{align}
+where $\mc I$ is a finite type ideal of $\scr O_X$. (The closedness is justified by Rem. \ref{lb1}.) The stalk of the structure sheaf at $x\in N(\mc I)$ is a local $\Cbb$-algebra
+\begin{align*}
+\big(\scr O_{X,x}/\mc I_x,\fk m_x/\mc I_x\big).
+\end{align*}
+We have an obvious inclusion map which is holomorphic:
+\begin{gather*}
+\iota:\Specan(\scr O_X/\mc I)\hookrightarrow X
+\end{gather*}
+such that $\iota^\#$ is the quotient map $\scr O_X\rightarrow\scr O_X/\mc I=\iota_*\iota^{-1}(\scr O_X/\mc I)$.
+\end{df}
+
+\begin{rem}\label{lb10}
+Let $X_0=\Specan(\scr O_X/\mc I)$. The construction of $\scr O_{X_0}=(\scr O_X/\mc I)\uph_{N(\mc I)}$ involves two sheafifications: one for quotient, and one for set-theoretic restriction. It would be convenient to combine these two into one: $\scr O_{X_0}$ is the sheafification of the presheaf $\scr O_{X_0}^\pre$ sending each open $U_0\subset X_0$ (more precisely, $U_0\subset N(\mc I)$) to 
+\begin{align}
+\scr O_{X_0}^\pre(U_0)=\varinjlim_{U\supset U_0}\scr O_X(U)/\mc I(U)
+\end{align}
+where the direct limit is over all open $U\subset X$ containing $U_0$. Indeed, one can also take the direct limit over all open $U$ satisfying $U\cap N(\mc I)=U_0$.
+\end{rem}
+
+
+
+Complex spaces arise from 
+\begin{rem}[\textbf{Gluing construction of complex spaces}]\label{lb5}
+Suppose $X$ is a Hausdorff space with an open cover $\fk V=(V_\alpha)$. Suppose that for each $V_\alpha$ there is a homoemorphism $\varphi_\alpha:V_\alpha\rightarrow U_\alpha$ where $U_\alpha$ is a complex space. Suppose also that for each $\alpha,\beta$, the homeomorphism $\varphi_\beta\varphi_\alpha^{-1}:\varphi_\alpha(V_\alpha\cap V_\beta)\rightarrow\varphi_\beta(V_\alpha\cap V_\beta)$ (where the source and the target are regarded as open subspaces of $U_\alpha$ and $U_\beta$ respectively) can be extended to an isomorphism $\varphi_{\beta,\alpha}$ of $\Cbb$-ringed spaces satisfying for all $\alpha,\beta,\gamma$ that $\varphi_{\alpha,\alpha}=\id$ and that $\varphi_{\gamma,\alpha}=\varphi_{\gamma,\beta}\varphi_{\beta,\alpha}$ (from $\varphi_\alpha(V_\alpha\cap V_\beta\cap V_\gamma)$ to $\varphi_\gamma(V_\alpha\cap V_\beta\cap V_\gamma)$). Then $X$ is naturally a complex space such that $\varphi_\alpha:V_\alpha\rightarrow U_\alpha$ is extended to an isomorphism  of $\Cbb$-ringed spaces such that $\varphi_\beta=\varphi_{\beta,\alpha}\varphi_\alpha$ (from $V_\alpha\cap V_\beta$ to $\varphi_\beta(V_\alpha\cap V_\beta)$). Indeed, $\scr O_X$ is constructed by gluing all the $V_\alpha$-sheaves $\varphi_\alpha^{-1}\scr O_{U_\alpha}$ (cf. Rem. \ref{lb12}). 
+\end{rem}
+
+
+
+
+
+
+
+Let us see some examples of complex spaces. We begin with an easier class of examples:
+
+\begin{df}
+Let $X$ be a complex space, and let $\scr C_X$ \index{CX@$\scr C_X$} be the sheaf of complex valued continuous functions on $X$. Then there is a natural \textbf{morphism of sheaves of local $\Cbb$-algebras} \index{00@Morphism of sheaves of local $\Cbb$-algebras} (i.e. a morphism of $X$-sheaves which preserve the linear structures and algebra multiplications when restricted to each open subset, and whose stalk maps send the maximal ideals into maximal ones) \index{red@$\red$}
+\begin{align}
+\red:\scr O_X\rightarrow\scr C_X
+\end{align}
+sending each $f\in\scr O_X$ to $f$ as a function (cf. Def. \ref{lb2}). If $\red:\scr O_{X,x}\rightarrow\scr C_{X,x}$ is injective, we say $X$ is \textbf{reduced at $x\in X$}. If $X$ is reduced everywhere, $X$ is called a \textbf{reduced complex space} (also called a \textbf{(complex) analytic variety}). \index{00@Reduced complex spaces}
+\end{df}
+
+Thus, a holomorphic function on a reduced complex space can be viewed as a genuine continuous function without losing information. (Formally speaking: $\scr O_X$ is a subsheaf of $\scr C_X$.) For non-reduced spaces, holomorphic functions cannot be viewed as genuine functions.
+
+\begin{rem}
+In commutative algebra, there is a notion of reducedness: $\scr O_{X,x}$ is called reduced if it has no non-zero nilpotent element. We will see later that a complex space $X$ is reduced at $x$ iff $\scr O_{X,x}$ is a reduced ring. This is the famous Nullstellensatz.
+\end{rem}
+
+\begin{eg}\label{lb3}
+Let $U\subset \Cbb^m\times\Cbb^n$ be open, and let $\mc J=z_1\scr O_U+\cdots+z_m\scr O_U$. Then $X=\Specan(\scr O_U/\mc J)$ is naturally equivalent to the complex submanifold $U\cap (0\times\Cbb^n)\simeq U\cap\Cbb^n$ (whose structure sheaf is the sheaf of holomorphic functions $f(\zeta_1,\dots,\zeta_n)$).
+\end{eg}
+
+\begin{proof}
+Clearly $N(\mc J)=U\cap \Cbb^n$ (cf. Rem. \ref{lb1}). Consider the identity map $\varphi:U\cap\Cbb^n\rightarrow X$ as a homeomorphism of topological spaces. In particular, we have an isomorphism $\red\varphi^\#:\scr C_X\rightarrow\scr C_{U\cap\Cbb^n}$. We shall construct $\varphi^\#:\scr O_X=\scr O_U/\mc J\uph_{N(\mc J)}\rightarrow\scr O_{U\cap\Cbb^n}$ such that $\varphi$ is an isomorphism of $\Cbb$-ringed spaces.
+
+By \eqref{eq4}, for each $x\in U\cap\Cbb^n$,
+\begin{align*}
+\scr O_{X,x}=((\scr O_U/\mc J)\uph_{N(\mc J)})_x\simeq\scr O_{\Cbb^{m+n},x}/\mc J_x\simeq\scr O_{\Cbb^n,x}
+\end{align*}
+where the last isomorphism can be seen  by taking power series expansions of $f(z_\blt,\zeta_\blt)=f(z_1,\dots,z_m,\zeta_1,\dots,\zeta_n)$ at $n$ and throwing away every terms containing powers of $\zeta_\blt$. Define a sheaf map
+\begin{align*}
+\varphi^\#:\scr O_X\xrightarrow{\red}\scr C_X\xrightarrow[\simeq]{\red\varphi^\#}\scr C_{U\cap\Cbb^n}.
+\end{align*}
+Its stalk map is $\scr O_{\Cbb^n,x}\rightarrow\scr C_{U\cap\Cbb^n}$ sending each $f$ to the function $f$ itself. From this we see that the stalk map is injective and has image $\scr O_{U\cap\Cbb^n,x}$. This shows that $\varphi^\#$ is an injective sheaf map with image $\scr O_{U\cap\Cbb^n}$. So $\varphi^\#$ restricts to an isomorphism of sheaves of local $\Cbb$-algebras $\scr O_X\rightarrow\scr O_{U\cap\Cbb^n}$.
+\end{proof}
+
+
+
+\begin{rem}
+The proof of Exp. \ref{lb3} suggests a way of understanding a \emph{reduced} model space $X=\Specan(\scr O_U/\mc J)$: 1. Find the underlying topological space $N(\mc J)$. 2. Understand each stalk $\scr O_{X,x}=\scr O_{U,x}/\mc J_x$ and show that $\red:\scr O_{X,x}\rightarrow\scr C_{X,x}$ is injective. 3. Find a familiar sheaf of local $\Cbb$-subalgebras $\scr A\subset\scr C_X$ such that $\scr A_x=\red(\scr O_{X,x})$. Then $X\simeq (N(\mc J),\scr A)$.
+\end{rem}
+
+
+\begin{exe}
+Let $U$ be a neighborhood of $0\in\Cbb^2$. Let $z,w$ be the standard coordinates of $\Cbb^2$. Let $\mc J=zw\cdot \scr O_U$, the ideal sheaf generated by the function $zw$. Show that $\Specan(\scr O_U/\mc J)$ is equivalent to the $\Cbb$-ringed space whose underlying topological space  is $N(\mc J)=\{(z,w)\in U:z=0\text{ or }w=0\}$, and whose structure sheaf is the sheaf of continuous functions on open subsets of $N(\mc J)$ that are holomorphic when restricted respectively to the $z$-axis and to the $w$-axis.
+\end{exe}
+
+
+\begin{eg}
+Let $k\in\Zbb_+$. Let $U$ be a neighborhood of $0\in\Cbb$. We call $\Specan(\scr O_U/z^k\scr O_U)=(0,\Cbb\{z\}/z^k\Cbb\{z\})=(0,\Cbb[z]/z^k\Cbb[z])$ the \textbf{$k$-fold point}. It is not reduced when $k>1$. A single point denotes a $1$-fold point, which is the same as the connected $0$-dimensional complex manifold $\Cbb^0$.  
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Holomorphic maps}
+
+In order to construct complex spaces by gluing model spaces (Rem. \ref{lb5}), and to understand holomorphic maps between complex spaces, we need to understand morphisms (i.e. holomorphic maps) between model spaces $\Specan(\scr O_U/\mc I)\rightarrow\Specan(\scr O_V/\mc J)$ (where $U\subset\Cbb^m$ and $V\subset \Cbb^n$ are open). This is a main goal of this section. 
+
+The first step is to understand the case that target is just $V$. As one may expect, holomorphic maps in this case are described by an $n$-tuple of holomorphic functions. Recall that $\Mor(X,Y)$ is the set of holomorphic maps from the complex space $X$ to  $Y$. Let $z_1,\dots,z_n$ be the standard coordinates of $\Cbb^n$.
+
+
+\begin{thm}\label{lb7}
+Let $X$ be a complex space. Then the following map is bijective:
+\begin{gather}
+\Mor(X,\Cbb^n)\rightarrow\scr O(X)^n,\qquad \varphi\mapsto (\varphi^\#z_1,\dots,\varphi^\#z_n).\label{eq6}
+\end{gather}
+\end{thm}
+
+
+
+
+
+
+
+
+
+
+
+\begin{rem}\label{lb6}
+Due to this theorem, if $\psi:X\rightarrow Y$ is a holomorphic map and $f\in\scr O(Y)$, then we may write
+\begin{align}
+f\circ\psi=\psi^\#f
+\end{align}
+by viewing $f$ as a holomorphic map $Y\rightarrow\Cbb$.
+\end{rem}
+
+
+Our main interest in this chapter is the following special case of Thm. \ref{lb7}:
+\begin{lm}\label{lb9}
+Assume that $X$ is a model space $\Specan(\scr O_V/\mc I)$ where $V\subset\Cbb^m$ is open and $\mc I$ is a finite-type ideal. Then for each $F=(f_1,\dots,f_n)\in\scr O(X)^n$ that can be extended to $\wtd F=(\wtd f_1,\dots,\wtd f_n)\in\scr O(V)^n$, there exists $\varphi\in\Mor(X,\Cbb^n)$ sent to $F$ by the map \eqref{eq6}.
+\end{lm}
+
+
+\begin{proof}
+$\wtd F$ can be viewed as a holomorphic map $V\rightarrow\Cbb^n$. Its composition with the inclusion $\iota:\Specan(\scr O_V/\mc I)\hookrightarrow V$ gives the desired holomorphic map $\varphi$.
+\end{proof}
+
+To generalize the above lemma to Thm. \ref{lb7}, we need the fact that $\scr O_{X,x}$ is Noetherian, which will be proved in the next chapter. Thus, we will not use Thm. \ref{lb7} (or Prop. \ref{lb8}) until the next chapter.
+
+
+
+
+\begin{proof}[Proof that \eqref{eq6} is surjective assuming \eqref{eq6} is injective]
+Assume \eqref{eq6} is injective for all complex spaces. Fix $X$ and $F=(f_1,\dots,f_n)\in\scr O(X)^n$. We claim that each $x\in X$ is contained in a neighborhood $U_x$ such that $F|_{U_x}\in\scr O(U_x)^n$ corresponds to some $\varphi_x\in\Mor(U_x,\Cbb^n)$. By the injectivity, for every $x,y\in X$, $\varphi_x$ and $\varphi_y$ agree on $U_x\cap U_y$. Gluing all $\varphi_x$ together gives the desired $\varphi$ corresponding to $F$.
+
+To prove the claim, we may assume $U_x$ is a model space $\Specan(\scr O_V/\mc I)$ where $V\subset\Cbb^m$ is open and $\mc I$ is finite-type. Since the stalk $(\scr O_V/\mc I)|_x$ equals $\scr O_{V,x}/\mc I_x$, we can further shrink $U_x$ so that $F|_{U_x}$ can be lifted to $\wtd F|_V\in\scr O(V)^n$. The existence of $\varphi_x$ follows from Lemma \ref{lb9}.
+\end{proof}
+
+
+\begin{proof}[Proof that \eqref{eq6} is injective]
+Let $\varphi_1,\varphi_2\in\Mor(X,\Cbb^n)$ correspond to the same element $(f_1,\dots,f_n)$ of $\scr O(X)^n$. By \eqref{eq8}, $z_i\circ\varphi_\blt(x)=(\varphi_\blt^\# z_i)(x)=f_i(x)$. So $\varphi_1$ equals $\varphi_2$ as set maps, i.e. $\varphi_\blt(x)=(f_1(x),\dots,f_n(x))$. Checking that they are equal as morphisms of $\Cbb$-ringed spaces is equivalent to showing for any $x$ that $\varphi_1^\#=\varphi_2^\#$ as maps from $\scr O_{\Cbb^n,\varphi_\blt(x)}=\scr O\{z_1-f_1(x),\dots,z_n-f_n(x)\}$ to $\scr O_{X,x}$. We know that they both send each $z_i-f_i(x)$ to $f_i-f_i(x)$. So they are equal by the uniqueness part of the following proposition.
+\end{proof}
+
+The following proposition can be viewed as the infinitesimal version of Thm. \ref{lb7}.
+
+\begin{pp}\label{lb8}
+Let $\scr O_{X,x}$ be an analytic local $\Cbb$-algebra. Fix $n\in\Nbb$ and $f_1,\dots,f_n\in\scr O_{X,x}$. Then there is a unique morphism of local $\Cbb$-algebras satisfying
+\begin{align}
+\Phi:\scr O_{\Cbb^n,0}=\Cbb\{z_1,\dots,z_n\}\rightarrow \scr O_{X,x},\qquad z_i\mapsto f_i-f_i(x).
+\end{align}
+\end{pp}
+
+Note that as a morphism of \emph{local} rings, $\Phi$ is assumed to send $\fk m_{\Cbb^n,0}=\sum_{j=1}^n z_j\Cbb\{z_1,\dots,z_n\}$ into $\fk m_{X,x}$.
+
+
+
+\begin{proof}
+Assume for simplicity that $f_\blt(x)=0$.
+
+Existence: By the second paragraph of the proof that \eqref{eq6} is surjective (which does not rely on the injectivity of \eqref{eq6}), by shrinking $X$, we may choose a holomorphic map $\phi:X\rightarrow\Cbb^n$ corresponding to $(f_1,\dots,f_n)$. Then the stalk map $\phi^\#:\scr O_{\Cbb^n,0}\rightarrow\scr O_{X,x}$ gives $\Phi$.
+
+Injectivity: Assume $\Phi_1,\Phi_2$ both satisfy the requirement. Then they clearly agree when restricted to the polynomial ring $\Cbb[z_1,\dots,z_n]$. Now we choose $g\in\Cbb\{z_\blt\}$. For each $k\in\Nbb$, we may write $g$ as a polynomial of $z_\blt$ plus $g_k\in\fk m_{\Cbb^n,0}^k$. So $\Phi_1(g)-\Phi_2(g)$ equals $\Phi_1(g_k)-\Phi_2(g_k)$, which belongs to $\fk m_{X,x}^k$ since  $\Phi_i$  sends $\fk m_{\Cbb,0}$ into $\fk m_{X,x}$ and hence $\fk m_{\Cbb,0}^k$ into $\fk m_{X,x}^k$. So $\Phi_1(g)-\Phi_2(g)$ belongs to $\bigcap_{k\in\Nbb}\fk m_{X,x}^k$, which is $0$ due to the following theorem \emph{and the fact that $\scr O_{X,x}$ is Noetherian}.
+\end{proof}
+
+
+
+\begin{thm}[\textbf{Krull's intersection theorem}] \index{00@Krull's intersection theorem}
+Let $(A,\fk m)$ be a Noetherian local ring, and let $\mc M$ be a finitely-generated $A$-module. Then $\bigcap_{k\in\Nbb}\fk m^k\cdot \mc M=0$.
+\end{thm}
+
+\begin{proof}
+The submodule $\mc N=\bigcap_{k\in\Nbb}\fk m^k\cdot \mc M$ is also finitely generated as $A$ is Noetherian. Then $\mc N=0$ will follow from $\fk m\mc N=\mc N$ (equivalently, $0$ spans the ``fiber" $\mc N/\fk m\mc N$) and  Nakayama's lemma. That  $\fk m\mc N=\mc N$ is due to Artin-Rees lemma (applied to the $\fk m$-stable filtration $(\fk m^k\mc M)_{k\in\Nbb}$ to show that $(\mc N\cap\fk m^k\mc M)_{k\in\Nbb}=(\mc N)_{k\in\Nbb}$ is $\fk m$-stable).
+\end{proof}
+
+Recall that if $I$ is an ideal of a ring $A$, an \textbf{$I$-filtration} $(\mc M_n)_{n\in\Nbb}$ (of $\mc M_0$) is a descending chain of $A$-modules $\mc M_0\supset\mc M_1\supset\mc M_2\supset\cdots$ satisfying $I\mc M_n\subset\mc M_{n+1}$ for all $n\in\Nbb$. It is called \textbf{$I$-stable} if for some $N\in\Nbb$ we have $I\mc M_n=\mc M_{n+1}$ for all $n\geq N$.
+
+\begin{thm}[\textbf{Artin-Rees lemma}] \index{00@Artin-Rees lemma}
+Let $I$ be an ideal of a Noetherian ring $A$. Then for any $I$-stable filtration of $(\mc M_n)_{n\in\Nbb}$ inside a finitely-generated $A$-module $\mc M$, and for any submodule $\mc N\subset\mc M$, $(\mc N\cap\mc M_n)_{n\in\Nbb}$ is $I$-stable.
+\end{thm}
+
+\begin{proof}
+This follows from two ingredients: 1. The graded ring $A_\blt=(A,I,I^2,\cdots)$ is a quotient of the Noetherian ring $A[z_1,\dots,z_m]$ if $I$ is generated by $m$ elements. So $A_\blt$ is Noetherian. 2. An $I$-filtration $(\mc M_0)_{n\in\Nbb}$ of finitely-generated $A$-modules is $I$-stable iff the graded $A_\blt$-module $\mc M_\blt=(\mc M_0,\mc M_1,\mc M_2,\cdots)$ is finitely-generated. See \cite[Sec. 10.3]{AM} for details.
+\end{proof}
+
+
+We have seen how a holomorphic map from a model space $\Specan(\scr O_U/\mc I)$ to $V\subset\Cbb^n$ looks like. The next question is when this map ``has image in $\Specan(\scr O_V/\mc J)$"? This is answered by the following theorem.
+
+
+
+\begin{thm}\label{lb13}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map of complex spaces. Let $X_0=\Specan(\scr O_X/\mc I)$ and $Y_0=\Specan(\scr O_Y/\mc J)$ be closed complex subspaces of $X$ and $Y$ respectively. Then the following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item There is a (necessarily unique) holomorphic map $\psi:X_0\rightarrow Y_0$ such that the following diagram commutes:
+\begin{equation}\label{eq7}
+\begin{tikzcd}
+X_0 \arrow[r, "\psi"] \arrow[d, hook] & Y_0 \arrow[d, hook] \\
+X \arrow[r,"\varphi"]                                            & Y               
+\end{tikzcd}
+\end{equation}
+\item For each $x\in X$ and $y=\varphi(x)$, the stalk map $\varphi^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$ satisfies
+\begin{align*}
+\varphi^\#(\mc J_y)\subset\mc I_x
+\end{align*}
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Assume (a). If $x\in X_0$, then each $f\in\mc J_y\subset\scr O_{Y,y}$ is sent by the transpose $\iota_{Y_0,Y}^\#$ to $0$. Also $f$ is sent by $\varphi^\#$ to $\varphi^\#(f)\in\scr O_{X,x}$, and then sent by $\iota_{X_0,X}^\#$ to $\varphi^\#(f)+\mc I_x$ in $\scr O_{X_0,x}=\scr O_{X,x}/\mc I_x$, which must be $0$ since \eqref{eq7} commutes. So $\varphi^\#(f)\in\mc I_x$.
+
+If $x\in X\setminus X_0$, then $x\neq N(\mc I)$. So some element of $\mc I_x$ has non-zero value at $x$, which must be invertible. So $\mc I_x=\scr O_{X,x_0}$. Then clearly $\varphi^\#(\mc J_y)\subset\mc I_x$. (b) is proved.
+
+Now assume (b). If $y\notin N(\mc J)$, then $\mc J_y=\scr O_{Y,y}$. So $1\in\mc J_y$, and so $1=\varphi^\#(1)$ belongs to $\mc I_x$. Therefore $x\notin N(\mc I)$. This proves $\varphi(N(\mc I))\subset\varphi(N(\mc J))$. So $\psi$ exists as a continuous map of topological spaces, and such a map is clearly unique.
+
+Choose $x\in X_0$ i.e. $x\in N(\mc I)$. By (b), we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+\scr O_{X_0,x}=\scr O_{X,x}/\mc I_x                     & \scr O_{Y_0,y}=\scr O_{Y,y}/\mc J_y \arrow[l,"\psi^\#"']                      \\
+\scr O_{X,x} \arrow[u, two heads] & \scr O_{Y,y} \arrow[l,"\varphi^\#"'] \arrow[u, two heads]
+\end{tikzcd}
+\end{equation*}
+for a unique stalk map $\psi^\#:\scr O_{Y_0,y}\rightarrow\scr O_{X_0,x}$, which is clearly a morphism of local $\Cbb$-algebras. It remains to show that these stalk maps can be assembled into a sheaf map. 
+
+Recall the presheaves in Rem. \ref{lb10}. For each open $V\subset Y$,  (b) implies $\varphi^\#(\mc J(V))\subset\mc I(\varphi^{-1}(V))$. So the map $\varphi^\#:\scr O_Y(V)\rightarrow (\varphi_*\scr O_X)(V)=\scr O_X(\varphi^{-1}(V))$ descends to
+\begin{align*}
+\scr O_Y(V)/\mc J(V)\rightarrow \scr O_X(\varphi^{-1}(V))/\mc I(\varphi^{-1}(V)).
+\end{align*}
+By taking direct limit over all $V$ containing a fixed open $V_0\subset X_0$, we obtain
+\begin{align*}
+\scr O_{Y_0}^\pre(V_0)\rightarrow \scr O_{X_0}^\pre(\varphi^{-1}(V_0))\xrightarrow{\text{restriction}}\scr O_{X_0}^\pre(\psi^{-1}(V_0))
+\end{align*}
+(note that $\psi^{-1}(V_0)$ is precisely $\varphi^{-1}(V_0)\cap X_0$). Its composition with
+\begin{align*}
+\scr O_{X_0}^\pre(\psi^{-1}(V_0))\rightarrow\scr O_{X_0}(\psi^{-1}(V_0))=(\psi_*\scr O_{X_0})(V_0)
+\end{align*}
+gives a presheaf map $\scr O_{Y_0}^\pre\rightarrow\psi_*\scr O_{X_0}$  whose sheafification is the desired $\psi^\#:\scr O_{Y_0}\rightarrow\psi_*\scr O_{X_0}$.
+\end{proof}
+
+
+
+\section{Weierstrass division theorem and Noetherian property of $\scr O_{X,x}$}
+
+
+\subsection{Main results}
+
+Now that we have seen the importance of the Noetherian property, we prove this in this section. Since $\scr O_{X,x}$ is a quotient of $\scr O_{\Cbb^n,0}$, it suffices to prove that $\scr O_{\Cbb^n,0}$ is Noetherian. The proof relies on Weierstrass division theorem, which we prove first.
+
+\begin{df}
+We say that $f(z)\in\Cbb\{z\}$ has \textbf{order} $k\in\Nbb\cup\{\infty\}$ if $f(z)=z^k(a_k+a_{k+1}z+a_{k+2}z^2+\cdots)$ and $a_k\neq0$; $f$ has order $\infty$ iff $f=0$. More generally, for $m\in\Nbb$, we say that $f(w_\blt,z)=f(w_1,\dots,w_m,z)\in\Cbb\{w_\blt,z\}$ has \textbf{order $k$ (in $z$)}  if $f(0,z)\in\Cbb\{z\}$ has order $k$. \index{00@Orders of elements of $\Cbb\{w_\blt,z\}$} Equivalently, $f(w_\blt,z)=\sum_{i=0}^\infty a_k(w_\blt)z^k$ where
+\begin{align}
+a_0(0)=\cdots=a_{k-1}(0)=0,\qquad a_k(0)\neq 0.
+\end{align}
+That $f$ has order $\infty$ in $z$ means $a_i(0)=0$ for all $i$. 
+
+Recall that the \textbf{degree} of a polynomial $p(w_\blt,z)\in \Cbb\{w_\blt\}[z]$ is the smallest power of $z$ whose coefficient is a non-zero element of $\Cbb\{w_\blt\}$. The degree of zero polynomial is set to be $-\infty$. \hfill\qedsymbol
+\end{df}
+
+\begin{rem}\label{lb16}
+Let $f(w_\blt,z)$ have order $k<\infty$ in $z$, defined on a neighborhood of $0$. Then inside this neighborhood we can find a smaller one  $U\times V\subset\Cbb^m\times\Cbb$ such that $f(0,z)$ has one zero in $V$ (namely $z=0$) with multiplicity $k$. By Rouch\'e's theorem, we may shrink $U$ such that for each fixed $w_\blt\in U$, the holomorphic function $f(w_\blt,z)$ of $z$ has $k$ zeros in $V$ counting multiplicities; see Fig. \ref{fig1}
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=2.5cm]{fig1}
+	\caption{}
+	\label{fig1}
+\end{figure}
+\end{rem}
+
+
+In the following, we suppress the variable $w_\blt$ when necessary.
+
+\begin{thm}[\textbf{Weierstrass division theorem (WDT)}] \index{00@WDT: Weierstrass division theorem}
+Suppose $g\in\Cbb\{w_\blt,z\}$ has order $k<\infty$ in $z$. Then for each $f\in\Cbb\{w_\blt,z\}$, there exist unique $q\in\Cbb\{w_\blt,z\}$ and $r\in\Cbb\{w_\blt\}[z]$ with degree $<k$ such that $f=gq+r$.
+\end{thm}
+
+
+We shall prove the Noetherian property using the following equivalent form of WDT.
+\begin{thm}[\textbf{Weierstrass preparation theorem (WDT)}] 
+Suppose $g\in\Cbb\{w_\blt,z\}=\scr O_{\Cbb^{m+1}}$ has order $k<\infty$ in $z$. Then $\scr O_{\Cbb^{m+1},0}/g\scr O_{\Cbb^{m+1},0}$ is a rank-$k$ free $\scr O_{\Cbb^m}$-module. $1,z,\dots,z^{k-1}$ are a set of free generators.
+\end{thm}
+
+
+\begin{thm}
+Every analytic local $\Cbb$-algebra $\scr O_{X,x}$ is Noetherian.
+\end{thm}
+
+\begin{proof}
+It suffices to discuss $\scr O_{\Cbb^n,0}$. We prove this by induction on $n$. The case $n=0$ is trivial. Suppose the case $m=n-1$ is known. We prove the case $m+1$. Choose any ideal non-zero $I\subset\scr O_{\Cbb^{m+1},0}$. Choose $0\neq g\in I$. Then  on a complex line passing through $0$, $0$ must be an isolated zero of $h$. (Otherwise, on each line, $g$ vanishes on a neighborhood of $0$. So $g$ vanishes on each line (and hence each domain containing $0$) by complex analysis.) By choosing a new coordinates, we may assume the last coordinate axis is that line. Namely, writing $g=g(w_1,\dots,w_m,z)$, $g$ has finite order $k$ in $z$.
+
+By WDT, $\scr O_{\Cbb^{m+1},0}/g\scr O_{\Cbb^{m+1},0}$ is a finitely-generated $\scr O_{\Cbb^m}$-module. Its submodule $I/I\cap g\scr O_{\Cbb^{m+1},0}$ is generated by finitely many elements $f_1,\dots,f_N\in I$, thanks to the assumption that $\scr O_{\Cbb^m}$ is Noetherian. So elements of $I$ are  $\scr O_{\Cbb^{m+1}}$-linear combinations of $f_1,\dots,f_N,g$.
+\end{proof}
+
+
+\subsection{Proof of WDT}
+
+We prove the first version of WDT.
+\begin{proof}[Proof of the uniqueness]
+Let $f=gq_1+r_1=gq_2+r_2$. Then $g(q_1-q_2)=r_2-r_1$. Choose a small enough neighborhood $U\times V\subset\Cbb^m\times\Cbb$ as in Rem. \ref{lb16} such that for all fixed $w_\blt\in U$, $g(z)$ has $k$ zeros in $V$ (counting multiplicities). So $g(q_1-q_2)$ has $\geq k$ zeros in $z$. Since $r_2-r_1$ has degree $<k$ in $z$, for the fixed $w_\blt$, the number of zeros of $r_2-r_1$ is either $<k$ (which is impossible), or is $\infty$. Since the latter is the only possible case, we conclude $(r_1-r_2)(z)=0$ for all $w_\blt$. And $(q_1-q_2)(z)=0$  since it is so outside the (finitely many) zeros of $g$.
+\end{proof}
+
+
+
+
+\begin{proof}[Discussion]
+We now discuss the proof of the existence part. Let $\wht f,\wht g$ be the first $k$ terms in their power series expansions of $z$. So
+\begin{gather*}
+g(w_\blt,z)=\underbrace{a_0+a_1z+\cdots+a_{k-1}z^{k-1}}_{\wht g}+z^k(a_k+a_{k+1}z+a_{k+2}z^2+\cdots)
+\end{gather*}
+where all $a_i=a_i(w_\blt)\in\Cbb\{w_\blt\}$ and $a_0(0)=\cdots=a_{k-1}(0)=0$, $a_k(0)\neq 0$. So $(g-\wht g)z^{-k}$ and similarly $(f-\wht f)z^{-k}$ are naturally elements of $\Cbb\{w_\blt,z\}$. Moreover, $(g-\wht g)z^{-k}$ is a unit.
+
+A na\"ive attempt to find the decomposition $f=gq+r$ is to write
+\begin{align*}
+f=g\cdot \frac{f-\wht f}{g}+\wht f
+\end{align*}
+since clearly $f\in\Cbb\{w_\blt\}[z]$ has degree $<k$ in $z$. This certainly works for single-variable functions. However, when $m>0$, the expression $(f-\wht f)/g$ might not be continuous at the origin. (Take for instance the quotient to be $z^2/(wz+z^2)$.) We can only divide $f-\wht f$ by $g-\wht g$, which gives an element of $\Cbb\{w_\blt,z\}$. So we write
+\begin{align*}
+f=(g-\wht g)\cdot\frac{f-\wht f}{g-\wht g}+\wht f=g\cdot\frac{f-\wht f}{g-\wht g}+\wht f+\underbrace{\left(-\wht g\cdot \frac{f-\wht f}{g-\wht g}\right)}_{f_1}
+\end{align*}
+
+We then decompose $f_1$, find $f_2$, and then repeat this procedure again and again to produce an infinite series, which we hope would converge to the expected. Namely, we let $f_0=f$. So the above defines $f_1$ in terms of $f_0$. We define in a similar way $f_{n+1}$ in terms of $f_n$:
+\begin{align}
+f_n=g\cdot\frac{f_n-\wht f_n}{g-\wht g}+\wht f_n+f_{n+1}.\label{eq11}
+\end{align}  
+Substituting $f_0,f_1,\dots,f_n$ into $f$, we get
+\begin{align}
+&f=\left(g\cdot\frac{f_0-\wht f_0}{g-\wht g}+\wht f_0\right)+f_1\nonumber\\
+=&\left(g\cdot\frac{f_0-\wht f_0}{g-\wht g}+\wht f_0\right)+\left(g\cdot\frac{f_1-\wht f_1}{g-\wht g}+\wht f_1\right)+f_2=\cdots\nonumber\\
+=&g\cdot\sum_{i=0}^n\frac{f_i-\wht f_i}{g-\wht g}+\sum_{i=0}^n \wht f_i+f_{n+1}.\label{eq14}
+\end{align}
+In the following formal proof, we give careful analysis when $n\rightarrow\infty$.
+\end{proof}
+
+
+
+
+
+\begin{proof}[Finishing the proof of WDT]
+For each $(r_\blt,\rho)=(r_1,\dots,r_m,\rho)\in\Rbb_{>0}^m\times\Rbb_{>0}$, define a norm $\lVert\cdot \lVert_{r_\blt,\rho}$ on $\Cbb\{w_\blt,z\}$ as follows: if $h=\sum_{i_1,\dots,i_m,j\in\Nbb}b_{i_\blt,j}w_1^{i_1}\cdots w_m^{i_m}z^j$ then
+\begin{align*}
+\lVert h\lVert_{r_\blt,\rho}=\sum_{i_1,\dots,i_m,j\in\Nbb}|b_{i_\blt,j}|r_1^{i_1}\cdots r_m^{i_m}\rho^j,
+\end{align*}
+which might take value $\infty$. We have
+\begin{align}
+\lVert h_1h_2\lVert_{r_\blt,\rho}\leq \lVert h_1\lVert_{r_\blt,\rho}\cdot\lVert h_2\lVert_{r_\blt,\rho}\qquad \lVert h-\wht h\lVert_{r_\blt,\rho}\leq \lVert h\lVert_{r_\blt,\rho}.\label{eq13}
+\end{align}
+
+
+We write \eqref{eq11} as
+\begin{align}
+-f_{n+1}=&\frac{\wht g}{(g-\wht g)}\cdot (f_n-\wht f_n)\nonumber\\
+=&\frac{\wht g}{z^{-k}(g-\wht g)}\cdot z^{-k}(f_n-\wht f_n)=:\beta\cdot \alpha_n.\label{eq12}
+\end{align}
+Recall the first paragraph in the previous \emph{Discussion}: $\beta,\alpha_n\in\Cbb\{w_\blt,z\}$ and $\beta$ is a unit of the ring. Choose $r_\blt,\rho$ such that $f,g$ are defined (and holomorphic) and $g-\wht g$ has no zeros in the polydisc $D$ with multiradii $r_\blt,\rho$. Then \eqref{eq12} shows that all $f_n$ are defined in this domain.
+
+Slightly shrink $\rho$ so that $C:=\lVert f\lVert_{r_\blt,\rho}<\infty$. \emph{Now we use the condition that $g$ has order $k$ in $z$ in full power}: it tells us that $\beta(0,z)=0$. So we may shrink $r_\blt$ such that $\lVert\beta\lVert_{r_\blt,\rho}<\frac 12\rho^k$. Clearly $\lVert f_n-\wht f_n\lVert_{r_\blt,\rho}=\rho^k\lVert\alpha_n\lVert_{r_\blt,\rho}$. So by \eqref{eq13}, 
+\begin{align*}
+\lVert f_{n+1}\lVert_{r_\blt,\rho}<\frac 12\lVert f_n-\wht f_n\lVert_{r_\blt,\rho}\leq \frac 12\lVert f_n\lVert_{r_\blt,\rho}.
+\end{align*}
+Thus $\lVert f_n\lVert_{r_\blt,\rho}< 2^{-n}C$. So $\lVert z^{-k}(f_n-\wht f_n)\lVert_{r_\blt,\rho}<2^{-n}\rho^{-k}C$ and $\lVert\wht f_n\lVert_{r_\blt,\rho}<2^{-n}C$.
+
+The uniform norm on the polydisc with multi-radii $(r_\blt,\rho)$ is clearly $\leq \lVert\cdot\lVert_{r_\blt,\rho}$. So $f_n\rightarrow 0$ uniformly on the polydisc $D$. 
+The infinite series $\sum_{i=0}^\infty\frac{z^{-k}(f_i-\wht f_i)}{z^{-k}(g-\wht g)}$ converges uniformly to a continuous function $q$ on any compact subset of $D$. $q$ is holomorphic, since it is so on each variable by Morera's theorem. Similarly, $\sum_{i=0}^\infty\wht f_i$ converges uniformly to a holomorphic $r$. Residue theorem and the fact that contour integrals commute with (uniformly convergent) infinite sum show that $r$ does not have $\geq k$ powers of $z$ (since each $\wht f_n$ does not). Thus, we obtain the decomposition $f=gq+r$ by letting $n\rightarrow\infty$ in \eqref{eq14}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Immersions and closed embeddings; generating $\scr O_{X,x}$ analytically}
+
+\begin{df}
+A holomorphic map $\varphi:X\rightarrow Y$ is called an \textbf{immersion at $x\in X$}  if $\varphi^\#:\scr O_{Y,\varphi(y)}\rightarrow\scr O_{X,x}$ is surjective. $\varphi$ is called an \textbf{immersion} if it is an immersion at every $x\in X$. $\varphi$ is called a \textbf{closed embedding} if there is a commutative diagram
+\begin{equation}\label{key}
+\begin{tikzcd}
+X \arrow[rd,"\simeq"] \arrow[rr,"\varphi"] &              & Y \\
+                        & Y_0 \arrow[ru,hook,"\iota"] &  
+\end{tikzcd}
+\end{equation}
+where $Y_0$ is a closed complex subspace of $Y$ and $X\xrightarrow{\simeq}Y_0$ is a biholomorphic map.
+\end{df}
+
+
+A closed embedding is clearly an immersion. The converse is also true if $\varphi$ is an injective and closed map of topological spaces. Moreover, an immersion is locally a closed embedding. These facts will be proved in the next chapter after establishing the Noetherian property of analytic local $\Cbb$-algebras and the coherence of structure sheaves. For now, we prove a weaker result which is useful for applications.
+
+
+
+
+\begin{pp}\label{lb14}
+Let $X$ be complex spaces and  $\varphi:X\rightarrow Y$ a holomorphic immersion. Assume that $\varphi$ is an injective and closed map\footnote{$\varphi$ is called closed if it maps closed subsets to closed subsets.} of topological spaces. Let $\mc J$ be a finite type ideal of $Y$ such that $N(\mc J)$ equals the image of $\varphi$, and that
+\begin{align}
+\mc J_y=\ker(\scr O_{Y,y}\xrightarrow{\varphi^\#}\scr O_{X,x})\label{eq9}
+\end{align}
+for all $x\in X$ and $y=\varphi(x)$. Then $\varphi$ is a closed embedding. More precisely, $\varphi$ restricts to a biholomorphism
+\begin{align}
+\wtd\varphi:X\xrightarrow{\simeq}\Specan(\scr O_Y/\mc J).\label{eq10}
+\end{align}
+\end{pp}
+
+In the next chapter, we will see that such $\mc J$ always exists: it is the kernel of $\varphi^\#:\scr O_Y\rightarrow\varphi_*(\scr O_X)$. The difficulty is to show that this kernel is a finitely-type ideal, and that its stalks are the RHS of \eqref{eq9}.
+
+
+
+\begin{proof}
+Let $Y_0:=\Specan(\scr O_Y/\mc J)$. By Thm. \ref{lb13}, the restriction \eqref{eq10} as a holomorphic map exists, i.e., we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[r, "\wtd\varphi"] \arrow[rd, "\varphi"'] & Y_0 \arrow[d, hook] \\
+                                  & Y                
+\end{tikzcd}
+\end{equation*}
+The underlying topological space of $Y_0:=\Specan(\scr O_X/\mc J)$ is $N(\mc J)$. So $\wtd\varphi$ is a continuous closed bijection from $X$ to $N(\mc J)$, which is therefore a homeomorphism. For each $x\in X,y=\varphi(x)$, the stalk map $\wtd\varphi^\#:\scr O_{Y_0,y}=\scr O_{Y,y}/\mc J_y\rightarrow\scr O_{X,x}$ is surjective since $\varphi$ is an immersion, and is injective by \eqref{eq9}. So $\wtd\varphi$ is a biholomorphism.
+\end{proof}
+
+
+
+\begin{exe}
+Apply Prop. \ref{lb14} to the immersion $0\times\Cbb^n\rightarrow\Cbb^m\times\Cbb^n$ to reprove Exp. \ref{lb3}.
+\end{exe}
+
+
+
+\begin{eg}
+Let $X$ be a complex space, and let $\mc I,\mc J$ be finite-type ideals of $\scr O_X$. Let $Y=\Specan(\scr O_X/\mc I)$. So $\scr O_Y=(\scr O_X/\mc I)|_{N(\mc I)}$. Then
+\begin{align*}
+\wtd {\mc J}=\big((\mc I+\mc J)/\mc I\big)\uph_{N(\mc I)}
+\end{align*}
+is a finite-type ideal of $\scr O_Y$, and is the unique ideal whose stalk at each $x\in N(\mc I)$ equals $(\mc I_x+\mc J_x)/\mc I_x$. Then there is a canonical biholomorphism
+\begin{align}
+\Specan(\scr O_X/(\mc I+\mc J))\xlongrightarrow[\simeq]{\varphi} \Specan(\scr O_Y/\wtd{\mc J}).
+\end{align}
+\end{eg}
+
+
+
+\begin{proof}[Explanation]
+Consider the diagrams
+\begin{equation}
+\begin{tikzcd}
+                                             & \Specan(\scr O_Y/\wtd{\mc J}) \arrow[d, hook] \\
+\Specan(\scr O_X/(\mc I+\mc J)) \arrow[r, "\alpha"] \arrow[rd,hook ] \arrow[ru,"\varphi"] & Y \arrow[d, hook] \\
+                                             & X                
+\end{tikzcd}
+\end{equation}
+By Thm. \ref{lb13}, there is a holomorphic map $\alpha$ such that the lower triangle commutes. Again by Thm. \ref{lb13}, there is $\varphi$ such that the upper triangle commutes. By Prop. \ref{lb14}, $\wtd\varphi$ is a biholomorphism. Indeed, as a map of topological spaces it equals $N(\mc I+\mc J)\xrightarrow{=}N(\mc I)\cap N(\mc J)$. The stalk maps of $\varphi^\#$ are
+\begin{align*}
+\scr O_{Y,x}/\wtd{\mc J}_x=(\scr O_{X,x}/\mc I_x)/((\mc I_x+\mc J_x)/\mc I_x)\xlongrightarrow{\simeq}\scr O_{X,x}/(\mc I_x+\mc J_x).
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let us consider the special case $\varphi:X\rightarrow\Cbb^n$, where $\varphi$ is represented by $(f_1,\dots,f_n)\in\scr O_X^n$ (cf. Thm. \ref{lb7}). Assume for simplicity that $\varphi(x)=0$. Then $\varphi$ is an immersion at $x$ iff the morphism of analytic local $\Cbb$-algebras  defined in Prop. \ref{lb8}, namely $\Cbb\{z_\blt\}\rightarrow\scr O_{X,x}$ sending $z_j$ to $f_j$, is surjective. This actually mean that \emph{$f_1,\dots,f_n$ generate (analytically) the analytic local $\Cbb$-algebra $\scr O_{X,x}$}. (They certainly do not generate the ring $\scr O_{X,x}$ algebraically. But one can imagine that the subalgebra generated algebraically by $f_\blt$ is ``dense" in $\scr O_{X,x}$, where the density means approximation by power series of $f_1,\dots,f_n$.) The situation is similar to the case of a surjective morphism of $\Cbb$-algebras $\Cbb[z_\blt]\rightarrow A$, whose algebro-geometric meaning is that the affine scheme $\mathrm{Spec}(A)$ is embedded into the affine plane $\Cbb^n$.
+
+
+
+We must find a criterion on whether $f_1,\dots,f_n$ generate $\scr O_{X,x}$ (analytically). At first sight, this problem seems not easy even if $X$ is smooth. (For instance, take $f_1,\dots,f_n$ to be some arbitrary holomorphic functions and deduce whether they generate $\scr O_{X,x}$.) There is indeed a simple criterion, which is proved using the (holomorphic version of) inverse function theorem. To begin with, we define:
+\begin{df}
+If $X$ is a complex space and $x\in X$, the vector space $\fk m_{X,x}/\fk m_{X,x}^2$ is called the \textbf{cotangent space}  of $X$ at $x$, and its dual space $(\fk m_x/\fk m_x^2)^*$ is called the \textbf{tangent space}.\index{00@Cotangent space $\fk m_x/\fk m_x^2$ and tangent space $(\fk m_x/\fk m_x^2)^*$}
+\end{df}
+
+It is inspiring to write the residue class of $f-f(x)$ (where $f\in\scr O(X)$) in the cotangent space $\fk m_{X,x}/\fk m_{X,x}^2$ as $df_x$.
+
+\begin{lm}\label{lb15}
+$\fk m_{X,x}$ is a finitely-generated ideal of $\scr O_{X,x}$. Hence $\fk m_{X,x}/\fk m_{X,x}^2$ is finite-dimensional.
+\end{lm}
+
+Of course, this follows from the (not yet proved) general fact that $\scr O_{X,x}$ is Noetherian. But it can be proved directly.
+\begin{proof}
+Regard $X$ as a model space $\Specan(\scr O_U/\mc I)$ where $U\subset\Cbb^n$ is open and $x=0\in\Cbb^n$. Then
+\begin{align}
+\fk m_{X,x}=\fk m_{U,x}/\mc I_x
+\end{align}
+is clearly a finitely-generated ideal of $\scr O_{X,x}=\scr O_{U,x}/\mc I_x$, e.g. generated by the residue classes of $z_1,\dots,z_n$.
+\end{proof}
+
+
+
+\begin{thm}
+Let $X$ be a complex space and $x\in X$. Let $f_1,\dots,f_n\in\scr O(X)$. Consider $(f_1,\dots,f_n)$ as a holomorphic map $\varphi:X\rightarrow\Cbb^n$ (cf. Thm. \ref{lb7}). The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is an immersion at $x$.
+\item The morphism of analytic local $\Cbb$-algebras $\Phi:\Cbb\{z_1,\dots,z_n\}\rightarrow\scr O_{X,x}$ sending $z_i$ to $f_i-f_i(x)$ (cf. Prop. \ref{lb8}) is surjective.
+\item (The residue classes of) $f_1-f_1(x),\dots,f_n-f_n(x)$ span $\fk m_{X,x}/\fk m_{X,x}^2$.
+\item (The germs of) $f_1-f_1(x),\dots,f_n-f_n(x)$ generate the ideal $\fk m_{X,x}$.
+\item There are neighborhoods $U\subset X$ of $x$ and $V\subset\Cbb^n$ of $\varphi(x)$ such that $\varphi$ restricts to a closed embedding $\varphi:X\cap U\rightarrow V$.
+\end{enumerate}
+If any of these conditions holds, we say that $f_1,\dots,f_n$ \textbf{generate $\scr O_{X,x}$ analytically}. \index{00@Analytically generating $\scr O_{X,x}$}
+\end{thm}
+
+\begin{proof}
+Assume for simplicity that $\varphi(x)=0$. Clearly (1)$\Leftrightarrow$(2), (3)$\Leftrightarrow$(4), and (5)$\Rightarrow$(1). (Note that (3)$\Rightarrow$(4) follows from Lemma \ref{lb15} and Nakayama's lemma.) It remains to prove (2)$\Rightarrow$(3) and (3)$\Rightarrow$(5). 
+
+Assume (2). Choose any $g\in\fk m_{X,x}$. Then there is $h(z_\blt)\in\scr O_{\Cbb^n,0}$ sent by $\Phi$ to $g$. We may write $h(z_\blt)=\sum_i a_iz_i+\text{an element of }\fk m_{\Cbb^n,0}^2$ where $a_i\in\Cbb$. Since $\Phi(z_i)=f_i$ and $\Phi(\fk m_{\Cbb}^2)\subset\fk m_{X,x}^2$, we have $g\in \sum_i a_i f_i+\fk m_{X,x}^2$. This proves (3).
+
+Asume (5).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{$\scr E\otimes_{\scr O_X}\scr F$, $\Hom_{\scr O_X}(\scr E,\scr F)$, and $\shom_{\scr O_X}(\scr E,\scr F)$}
+
+
+We fix a $\Cbb$-ringed space $X$. 
+
+\subsection{Tensor product}
+
+
+
+\begin{df}
+Let $\scr E$ and $\scr F$ be $\scr O_X$-modules. Consider the presheaf $\scr G$ of $\scr O_X$-modules defined by $\scr G(U)=\scr E(U)\otimes_{\scr O(U)}\scr F(U)$. The tensor product of restriction maps $\scr E(U)\rightarrow\scr E(V)$ and $\scr F(U)\rightarrow\scr F(V)$ gives the restriction map $\scr G(U)\rightarrow\scr G(V)$. The sheafification of $\scr G$ is denoted by $\scr E\otimes_{\scr O_X}\scr F$ or simply $\scr E\otimes\scr F$ \index{00@Tensor product $\scr E\otimes_{\scr O_X}\scr F$} and called the \textbf{tensor product} of $\scr E$ and $\scr F$.
+\end{df}
+
+
+
+\begin{rem}
+Let $A$ be a commutative ring, and fix an $A$-module $\mc N$. Recall the following basic facts:
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{Tensor products commute with direct limits}. More precisely, let $(\mc M_\alpha)$ be a direct system of $A$-modules. Then the canonical map $\mc M_\beta\otimes_A\mc N\rightarrow(\varinjlim_\alpha \mc M_\alpha)\otimes_A\mc N$ (for each fixed $\beta$) defines, by passing to the direct limit, an isomorphism
+\begin{align}
+\varinjlim_\alpha (\mc M_\alpha\otimes_A\mc N)\xrightarrow{\simeq} (\varinjlim_\alpha \mc M_\alpha)\otimes_A\mc N.
+\end{align}
+(Proof: Construct the inverse map explicitly.)
+\item \textbf{The tensor product functor $-\otimes\mc N$ is right exact}. \index{00@Right exact} Namely, if
+\begin{align*}
+\mc M_1\xrightarrow{f}\mc M_2\xrightarrow{g}\mc M_3\rightarrow0
+\end{align*}
+is an exact sequence of $A$-modules, then so is
+\begin{align*}
+\mc M_1\otimes\mc N\xrightarrow{f\otimes\id}\mc M_2\otimes\mc N\xrightarrow{g\otimes\id}\mc M_3\otimes\mc N\rightarrow 0.
+\end{align*}
+Identify $\mc M_3$ with $\coker f=\mc M_2/f(\mc M_1)$. Then the right exactness of tensor product is equivalent to that \textbf{tensor products commute with cokernels}: we have an equivalence of $A$-modules
+\begin{align}
+\coker\big(\mc M_1\otimes_A\mc N\xrightarrow{f\otimes\id}\mc M_2\otimes_A\mc N \big)\quad\xlongrightarrow{\simeq}\quad \coker\big(\mc M_1\xrightarrow{f}\mc M_2\big)\otimes_A\mc N\label{eq1}
+\end{align}
+descended from the canonical morphism
+\begin{align}
+\mc M_2\otimes_A\mc N\longrightarrow \frac{\mc M_2}{f(\mc M_1)}\otimes_A\mc N.
+\end{align}
+\end{enumerate}
+\hfill\qedsymbol
+\end{rem}
+
+\begin{proof}
+We have a well-defined map sending $\frac{\mc M_2}{f(\mc M_1)}\times\mc N$ to $\frac{\mc M_2\otimes_A\mc N}{(f\otimes\id)(\mc M_1\otimes_A\mc N)}$ (i.e. the LHS of \eqref{eq1}) sending $[\xi]\times\eta$ to $[\xi\otimes_A\eta]$, where $[\cdots]$ stands for the residue classes, and $\xi\in\mc M_2,\eta\in\mc N$. This map is clearly $A$-biinvariant. So it gives an $A$-module morphism from the RHS to the LHS of \eqref{eq1}, which is clearly the inverse of the map in \eqref{eq1} from LHS to RHS. So \eqref{eq1} is an isomorphism.
+\end{proof}
+
+\begin{rem}\label{lb4}
+We can now use \eqref{eq1} to explain the last equality of \eqref{eq5}:
+\begin{align*}
+&\scr E_x\otimes_{\scr O_{X,x}}(\scr O_{X,x}/\fk m_x)=\scr E_x\otimes \coker(\fk m_x\hookrightarrow \scr O_{X,x})\\
+=&\coker(\scr E_x\otimes\fk m_x\rightarrow \scr E_x\otimes\scr O_{X,x})=\coker(\scr E_x\otimes\fk m_x\rightarrow \scr E_x)=\scr E_x/{\fk m_x\scr E_x}
+\end{align*}
+since the image of the multiplication map $\scr E_x\otimes\fk m_x\rightarrow \scr E_x$ is $\fk m_x\scr E_x$.
+\end{rem}
+
+
+\begin{pp}
+The canonical morphism of $\scr O(U)$-modules
+\begin{align*}
+\scr E(U)\otimes_{\scr O(U)}\scr F(U)\rightarrow\scr E_x\otimes_{\scr O_{X,x}}\scr F_x
+\end{align*}
+(where $U\ni x$ is open and the map is the tensor product of $\scr E(U)\rightarrow\scr E_x$ and $\scr F(U)\rightarrow\scr F_x$) induces an isomorphism
+\begin{align}
+(\scr E\otimes\scr F)_x=\varinjlim_{U\ni x}\scr E(U)\otimes_{\scr O(U)}\scr F(U)\quad\xlongrightarrow{\simeq}\quad\scr E_x\otimes_{\scr O_{X,x}}\scr F_x.\label{eq2}
+\end{align}
+\end{pp}
+\begin{proof}
+Define a canonical map from $\scr E_x\times\scr F_x$ to $\varinjlim_{U\ni x}\scr E(U)\otimes_{\scr O(U)}\scr F(U)$ and show that it is $\scr O_{X,x}$-biinvariant.  This descends to the inverse map of \eqref{eq2}.
+\end{proof}
+
+\begin{co}
+For each $\scr O_X$-module $\scr F$, the functor $-\otimes\scr F$ on the abelian category of $\scr O_X$-modules is right exact: if
+\begin{align*}
+\scr E_1\rightarrow\scr E_2\rightarrow\scr E_3\rightarrow 0
+\end{align*}
+is exact, then so is
+\begin{align*}
+\scr E_1\otimes\scr F\rightarrow\scr E_2\otimes\scr F\rightarrow\scr E_3\otimes\scr F\rightarrow 0.
+\end{align*}
+\end{co}
+
+\begin{proof}
+Exactness of sheaves can be checked at the level of stalks. Then this follows from the isomorphism \eqref{eq2} and the right exactness of $-\otimes_{\scr O_{X,x}}\scr F_x$.
+\end{proof}
+
+
+\subsection{Hom}
+
+We leave it to the readers to check the following easy facts:
+\begin{rem}
+Let $A$ be a commutative ring, and fix an $A$-module $\mc N$:
+\begin{enumerate}[label=\arabic*.]
+\item \textbf{$\Hom_A(\mc N,-)$ is a left exact functor}. \index{00@Left exact (contravarient) functor} Namely, for any exact sequence of $A$-modules
+\begin{align}
+0\rightarrow\mc M_1\xrightarrow{f} \mc M_2\xrightarrow{g}\mc M_3,
+\end{align}
+we have an exact sequence 
+\begin{align*}
+0\rightarrow\Hom_A(\mc N,\mc M_1)\xrightarrow{f_*} \Hom_A(\mc N,\mc M_2)\xrightarrow{g_*}\Hom_A(\mc N,\mc M_3)
+\end{align*}
+where $f_*$ sends $T$ to $f\circ T$ and $g_*$ is defined similarly. Equivalently, \textbf{$\Hom_A(\mc N,-)$ commutes with kernels}: there is a canonical equivalence
+\begin{align}
+\Hom_A\big(\mc N,\ker(\mc M_2\xrightarrow{g}\mc M_3)\big)\simeq \ker \big(\Hom_A(\mc N,\mc M_2)\xrightarrow{g_*}\Hom_A(\mc N,\mc M_3)\big).
+\end{align}
+\item \textbf{$\Hom_A(-,\mc N)$ is a left exact contravariant functor}. \index{00@Left exact (contravarient) functor} for any exact sequence of $A$-modules
+\begin{align}
+\mc M_1\xrightarrow{f} \mc M_2\xrightarrow{g}\mc M_3\rightarrow 0
+\end{align}
+we have an exact sequence 
+\begin{align*}
+0\rightarrow\Hom_A(\mc M_3,\mc N)\xrightarrow{g^*} \Hom_A(\mc M_2,\mc N)\xrightarrow{f^*}\Hom_A(\mc M_1,\mc N)
+\end{align*}
+where $f^*$ sends $T$ to $T\circ f$ and $g^*$ is defined similarly. Equivalently, \textbf{$\Hom_A(-,\mc N)$ turns cokernels into kernels}: there is a canonical equivalence
+\begin{align}
+\Hom_A\big(\coker(\mc M_1\xrightarrow{f}\mc M_2),\mc N\big)\simeq \ker \big(\Hom_A(\mc M_2,\mc N)\xrightarrow{f^*}\Hom_A(\mc M_1,\mc N)\big).
+\end{align}
+\end{enumerate}
+\end{rem}
+
+
+
+\begin{df}
+Let $\scr E,\scr F$ be $\scr O_X$-modules.  The \textbf{hom space} $\Hom_{\scr O_X}(\scr E,\scr F)$ is defined to be the space of all $\scr O_X$-module morphims from $\scr E$ to $\scr F$. \index{Hom@$\Hom_{\scr O_X}(\scr E,\scr F)$, $\shom_{\scr O_X}(\scr E,\scr F)$} 
+
+The presheaf of $\scr O_X$-modules sending each open $U\subset X$ to the $\scr O(U)$-module $\Hom_{\scr O_U}(\scr E_U,\scr F_U)$, and whose restriction map is the obvious restriction of sheaf morphisms, is automatically a sheaf of $\scr O_X$-modules. It is called the \textbf{hom sheaf} and denoted by  $\shom_{\scr O_X}(\scr E,\scr F)$.
+
+The dual and the double dual of $\scr E$ is defined by \index{Dual sheaf $\scr E^\vee$}
+\begin{gather}
+\scr E^\vee=\shom_{\scr O_X}(\scr E,\scr O_X),\qquad \scr E^{\vee\vee}=(\scr E^\vee)^\vee.
+\end{gather}
+\hfill\qedsymbol
+\end{df}
+
+\begin{exe}
+Describe canonical equivalences
+\begin{align}
+\scr E\simeq\scr E\otimes_{\scr O_X}\scr O_X\simeq\scr O_X\otimes_{\scr O_X}\scr E\simeq \shom_{\scr O_X}(\scr O_X,\scr E).
+\end{align}
+\end{exe}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printindex	
+	\begin{thebibliography}{999999}
+		\footnotesize	
+
+
+\bibitem[AM]{AM}
+M. Atiyah and I. Macdonald, Introduction to Commutative Algebra, Addison-Wesley Publ. Co., Reading, MA, 1969
+
+
+
+\bibitem[Gui22]{Gui22}
+B. Gui, Lectures on Vertex Operator Algebras and Conformal Blocks, 2022
+		
+		
+\end{thebibliography}
+
+\noindent {\small \sc Yau Mathematical Sciences Center, Tsinghua University, Beijing, China.}
+
+\noindent {\textit{E-mail}}: binguimath@gmail.com\qquad bingui@tsinghua.edu.cn
+\end{document}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%
+
+
+
+
