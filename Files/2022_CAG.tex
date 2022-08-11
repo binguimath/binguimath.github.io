@@ -135,9 +135,9 @@
 \usepackage{calligra}
 \DeclareMathOperator{\shom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \DeclareMathOperator{\sext}{\mathscr{E}\text{\kern -3pt {\calligra\large xt}}\,}
-
-
-
+\DeclareMathOperator{\Rel}{\mathscr{R}\text{\kern -3pt {\calligra\large el}~}\,}
+\DeclareMathOperator{\sann}{\mathscr{A}\text{\kern -3pt {\calligra\large nn}}\,}
+\DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
 
 
 \newcommand{\fk}{\mathfrak}
@@ -219,7 +219,6 @@
 \newcommand{\mbf}{\mathbf}
 \newcommand{\bsb}{\boldsymbol}
 \newcommand{\blt}{\bullet}
-\newcommand{\coker}{\mathrm{coker}}
 \newcommand{\Vbb}{\mathbb V}
 \newcommand{\Ubb}{\mathbb U}
 \newcommand{\Xbb}{\mathbb X}
@@ -244,7 +243,7 @@
 \newcommand{\btr}{\blacktriangleright}
 \newcommand{\svir}{\mathcal V\!\mathit{ir}}
 \newcommand{\Ker}{\mathrm{Ker}}
-\newcommand{\Coker}{\mathrm{Coker}}
+\newcommand{\Cok}{\mathrm{Coker}}
 \newcommand{\Sbf}{\mathbf{S}}
 \newcommand{\low}{\mathrm{low}}
 \newcommand{\Sp}{\mathrm{Sp}}
@@ -271,7 +270,7 @@
 \newcommand{\Obj}{\mathrm{Obj}}
 \newcommand{\bpr}{{}^\backprime}
 \newcommand{\fin}{\mathrm{fin}}
-\newcommand{\Ann}{\mathbf{Ann}}
+\newcommand{\Ann}{\mathrm{Ann}}
 \newcommand{\Real}{\mathrm{Re}}
 \newcommand{\Imag}{\mathrm{Im}}
 \newcommand{\cl}{\mathrm{cl}}
@@ -336,7 +335,7 @@
 	%{\small Department of Mathematics, Rutgers university}\\
 	%{\small bin.gui@rutgers.edu}
 }
-\date{Last update: July 2022}
+\date{Last update: August 2022}
 \begin{document}\sloppy % avoid stretch into margins
 	\pagenumbering{arabic}
 	%\pagenumbering{gobble}
@@ -381,6 +380,8 @@
 \section{Notations and conventions}
 The following notations and conventions are assumed throughout the monograph.
 
+All commutative rings and algebras are assumed to have a unity $1$. Their morphisms are assumed to map $1$ to $1$.
+
 $\Nbb=\{0,1,2,3,\dots\}$ and $\Zbb_+=\{1,2,3,\dots\}$.
 
 $\im=\sqrt{-1}$.
@@ -389,13 +390,19 @@ $\{0\},\Cbb,\Cbb^2,\Cbb^3,\dots$ are called \textbf{(complex) number spaces}.
 
 Unless otherwise stated, all vector spaces are over $\Cbb$.
 
-$\Cbb\{z_1,\dots,z_n\}$ \index{Cz@$\Cbb\{z_1,\dots,z_n\}:=\scr O_{\Cbb^n,0}$} denotes $\scr O_{\Cbb^n,0}$, the algebra of convergent power series of $z_1,\dots,z_n$. $\Cbb[z_1,\dots,z_n]$ denotes the algebra of polynomials of $z_1,\dots,z_n$. \index{Cz@$\Cbb[z_1,\dots,z_n]$}
+A \textbf{precompact subset $U$} \index{00@Precompact subsets} of a topological space $X$ is a subset such that the closure $U^\cl$ in $X$ is compact. 
+
+$\Cbb\{z_1,\dots,z_n\}$ \index{Cz@$\Cbb\{z_1,\dots,z_n\}:=\scr O_{\Cbb^n,0}$} denotes $\scr O_{\Cbb^n,0}$, the algebra of convergent power series of $z_1,\dots,z_n$. It is clearly an integral domain. $\Cbb[z_1,\dots,z_n]$ denotes the algebra of polynomials of $z_1,\dots,z_n$. \index{Cz@$\Cbb[z_1,\dots,z_n]$} 
 
 We assume the readers are familiar with the basic notions of sheaves and their maps (morphisms), sheafifications, image sheaves, kernels and cokernels of sheaves. (A review of these concepts can be found e.g. in \cite[Sec.A]{Gui22}.) For each presheaf $\scr E$ on a topological space $X$, we let $\scr E_x$ denote the stalk of $\scr E_x$ at $x$. If $\varphi:X\rightarrow Y$ is a continuous map of topological spaces, then the \textbf{direct image} $\varphi_*\scr E$\index{00@Direct image $\varphi_*\scr E$} denotes the sheaf on $Y$ whose space of sections over any open $V\subset Y$ is $\scr E(\varphi^{-1}(V))$, i.e.
 \begin{align*}
 (\varphi_*\scr E)(V)=\scr E(\varphi^{-1}(V)).
 \end{align*}
-If $f:\scr E_1\rightarrow\scr E_2$ is a sheaf map, then we have a canonical $\varphi_*f:\varphi_*\scr E_1\rightarrow\varphi_*\scr E_2$.
+If $\psi:Y\rightarrow Z$ is continuous, we clearly have
+\begin{align*}
+(\psi\circ\varphi)_*\scr E=\psi_*(\varphi_*\scr E).
+\end{align*}
+If $f:\scr E_1\rightarrow\scr E_2$ is an $X$-sheaf map, then we have a canonical $\varphi_*f:\varphi_*\scr E_1\rightarrow\varphi_*\scr E_2$. $\varphi_*$ is a \textbf{left exact functor} from the category of $X$-sheaves to that of $Y$-sheaves. (Cf. Rem. \ref{lb51}.)
 
 If $\scr F$ is an $\scr O_Y$-module, the \textbf{inverse image} $\varphi^{-1}(\scr F)$ \index{00@Inverse image sheaf $\varphi^{-1}(\scr Y)$} is the sheafification of the presheaf on $X$ associating to each open subsets of $X$: 
 \begin{align*}
@@ -424,7 +431,33 @@ Warning: in the future, we will define the restriction $\scr E|_Y=\scr E|Y$ when
 
 We also write $\scr E(U)$ as $H^0(U,\scr E)$.
 
-Recall that the \textbf{support of an $X$-sheaf} $\scr E$, denoted by $\Supp(\scr E)$, \index{SE@$\Supp(\scr E)$, the support of a sheaf $\scr E$} is the subset of all $x\in X$ such that $\scr E_x\neq0$.
+Recall that the \textbf{support of an $X$-sheaf} $\scr E$, denoted by $\Supp(\scr E)$, \index{00@Support of a sheaf $\Supp(\scr E)$} is the subset of all $x\in X$ such that $\scr E_x\neq0$.
+
+
+
+If $U$ is an open subset of $\Cbb^N$, then a \textbf{holomorphic function} $f$ on $U$ is, by definition, a continuous function $f:U\rightarrow\Cbb$ which is separately holomorphic on each variable (i.e., if $z_1,\dots,z_{i-1},z_{i+1},\dots,z_N$ are fixed, then $f(z_\blt)=f(z_1,\dots,z_N)$ is holomorphic with respect to $z_i$).
+
+\begin{rem}
+The above definition agrees with our usual understanding of analytic functions, i.e., $f$ has convergent power series expansions $f(z_\blt)=\sum_{n_1,\dots,n_N\in\Nbb}a_{n_1,\dots,n_N}(z_1-w_1)^{n_1}\cdots (z_N-w_N)^{n_N}$ if $(w_\blt)\in U$. To see this, choose a holomorphic $f$ on $U$. Let us assume for simplicity $w_1=\cdots=w_N=0$, and $U$ is the polydisc $\Dbb_{R_\blt}=\{(z_\blt)\in\Cbb^N:|z_1|<R_1,\dots,|z_N|<R_N\}$ where $R_1,\dots,R_N>0$. Then for each $0<r_i<R_i$ and $z_\blt\in\Dbb_{r_\blt}$,
+\begin{align*}
+f(z_\blt)=\oint_{|\zeta_1|=r_1}\cdots\oint_{|\zeta_N|=r_N}\frac{f(\zeta_\blt)}{(\zeta_1-z_1)\cdots(\zeta_N-z_N)}\cdot \frac{d\zeta_1\cdots d\zeta_N}{(2\im\pi)^N}
+\end{align*}
+by applying residue theorem successively to the variables $\zeta_1,\dots,\zeta_N$. Write each $(\zeta_i-z_i)^{-1}$ as $\sum_{n_i=0}^\infty z_i^{n_i}/\zeta_i^{n_i+1}$ which converges absolutely and uniformly on $|\zeta_i|=r_i$ and $z_\blt$ on any compact subset of $\Dbb_{r_\blt}$, and substitute them into the above integral, we get the desired series expansion which is absolutely and uniformly convergent on $|z_1|\leq r_1,\dots,|z_N|\leq r_N$ for all $0<r_i<R_i$. This proves one direction. For the other direction, namely absolutely convergent power series give holomorphic functions, one simply applies Morera's theorem to each complex variable.
+\end{rem}
+
+
+\index{00@Identit\"atssatz}
+\begin{lm}[\textbf{Identit\"atssatz}]\label{lb68}
+If $U$ is an open connected subset of $\Cbb^n$, and if $h$ is a non-zero (i.e. not constantly zero) holomorphic function on $U$, then $h$ is non-zero when restricted to any open subset $W$ of $U$.
+\end{lm}
+
+\begin{proof}
+Consider the special case that $U,W$ are open polydiscs. We know the lemma is true when $n=1$ (by e.g. taking power series). For a general $n$, if $h|_W=0$, we may enlarge successively the disc-shape domains of each variable $z_1,\dots,z_n$ on which $h$ is constantly zero to get $h=0$.
+
+In general, we let $\Omega$ be the (clearly open) subset of all $x\in U$ such that $h$ is constantly zero on a neighborhood of $x$ (i.e. the germ of $h$ at $x$ is zero). If $x\in U\setminus\Omega$, then every open polydisc in $U$ containing $x$ must be disjoint from $\Omega$, according to the previous paragraph. So $U\setminus\Omega$ is open. Since $U$ is connected, $\Omega$ must be either $\emptyset$ or $U$. Thus $\Omega=\emptyset$ since $h\neq0$.
+\end{proof}
+
+
 
 
 \section{$\Cbb$-ringed spaces and sheaves of modules}
@@ -518,6 +551,27 @@ $\varphi$ is called \textbf{injective} resp. \textbf{surjective} if it is so as 
 \end{df}
 
 
+\begin{rem}\label{lb47}
+In the following diagrams, assume that all objects are $\scr O_X$-modules, that all horizontal arrows are morphisms of $\scr O_X$-modules, and that the two horizontal lines are exact.
+\begin{equation}\label{eq21}
+\begin{tikzcd}
+0 \arrow[r] & \scr E \arrow[r] \arrow[d, "\alpha"'] & \scr F \arrow[r] \arrow[d, "\beta"'] & \scr G\arrow[d, "\gamma"']\\
+0 \arrow[r] & \scr E' \arrow[r]                     & \scr F' \arrow[r]                    & \scr G'                    
+\end{tikzcd}
+\end{equation}
+If there are morphisms $\beta,\gamma$ such that the second square in \eqref{eq21} commutes, then $\beta$ restricts to a (necessarily unique) morphism $\alpha$ such that the first square commutes. 
+\begin{equation}\label{eq22}
+\begin{tikzcd}
+\scr E \arrow[r] \arrow[d, "\alpha"'] & \scr F \arrow[r] \arrow[d, "\beta"'] & \scr G \arrow[r] \arrow[d, "\gamma"'] & 0 \\
+\scr E' \arrow[r]                     & \scr F' \arrow[r]                    & \scr G' \arrow[r]                     & 0
+\end{tikzcd}
+\end{equation}
+If there are morphisms $\alpha,\beta$ such that the first square in \eqref{eq22} commutes, then $\beta$ descends to a (necessarily unique) morphism $\gamma$ such that the second square commutes.
+
+Of course, the same observations hold for morphisms of modules of any commutative ring/algebra, and for general sheaf maps.\hfill\qedsymbol
+\end{rem}
+
+
 
 \begin{rem}[\textbf{Gluing construction of sheaves}]\label{lb12}
 Let $(V_\alpha)_{\alpha\in\fk A}$ be an open cover of a topological space $X$. Suppose that for each $\alpha\in\fk A$, we have a sheaf $\scr E^\alpha$, that for any $\alpha,\beta\in\fk A$, we have a sheaf isomorphism $\phi_{\beta,\alpha}:\scr E^\alpha_{V_\alpha\cap V_\beta}\xrightarrow{\simeq}\scr E^\beta_{V_\alpha\cap V_\beta}$, that $\phi_{\alpha,\alpha}=\id$, and that $\phi_{\gamma,\alpha}=\phi_{\gamma,\beta}\phi_{\beta,\alpha}$ when restricted to $V_\alpha\cap V_\beta\cap V_\gamma$. Then we can define a sheaf $\scr E$ on $X$ as follows. For any open $U\subset X$, $\scr E(U)$ is the set of all $(s_\alpha)_{\alpha\in\fk A}\in\prod_{\alpha\in\fk A}\scr E^\alpha(U\cap V_\alpha)$ (where each component $s_\alpha$ is in $\scr E^\alpha(U\cap V_\alpha)$) satisfying that $s_\beta|_{V_\alpha\cap V_\beta}=\phi_{\beta,\alpha}(s_\alpha|_{V_\alpha\cap V_\beta})$ for any $\alpha,\beta\in\fk A$. If $W$ is an open subset of $U$, then the restriction $\scr E(U)\rightarrow\scr E(W)$ is defined by that of $\scr E^\alpha(U\cap V_\alpha)\rightarrow \scr E^\alpha(W\cap V_\alpha)$. Then for each $\beta\in\fk A$, we have a canonical isomorphism (trivialization) $\phi_\beta:\scr E_{V_\beta}\xrightarrow{\simeq} \scr E^\beta_{V_\beta}$ defined by $(s_\alpha)_{\alpha\in\fk A}\mapsto s_\beta$. It is clear that for each $\alpha,\beta\in\fk A$, we have $\phi_\beta=\phi_{\beta,\alpha}\phi_\alpha$ when restricted to $V_\alpha\cap V_\beta$.
@@ -586,18 +640,27 @@ Since $\scr E$ is finite-type, we may find $U$ such that $\scr E|_U$ is generate
 \end{proof}
 
 
+\begin{co}\label{lb43}
+Let $\scr E$ be a finite-type $\scr O_X$-module. Then $\Supp(\scr E)$ is a closed subset of $X$.
+\end{co}
+
+\begin{proof}
+Assume the setting of Rem. \ref{lb17}. If $\scr E_x=0$ then the stalks of $s_1,\dots,s_n$ are zero at $x$. So we may shrink $U$ so that $s_1=\cdots=s_n=0$ in $\scr E(U)$. So $\scr E|_U=0$.
+\end{proof}
 
 
 
 
 
 
-
-
-\begin{exe}
-Use Nakayama's lemma and Rem. \ref{lb17} to show that if $\scr E$ is a finite type $\scr O_X$-module, and if $s_1,\dots,s_n\in\scr E(U)$ (where $U$ is a neighborhood of $x$) are such that $s_1(x),\dots,x_n(x)$ span the fiber $\scr E|x$, then they generate $\scr E|_V$ for a possibly smaller neighborhood $V$ of $x$. (The opposite direction is obvious.) Nakayama's lemma is most often used in this form.
+\begin{exe}\label{lb64}
+Use Nakayama's lemma and Rem. \ref{lb17} to show that if $\scr E$ is a finite type $\scr O_X$-module, and if $s_1,\dots,s_n\in\scr E(U)$ (where $U$ is a neighborhood of $x$) are such that $s_1(x),\dots,s_n(x)$ span the fiber $\scr E|x$, then they generate $\scr E|_V$ for a possibly smaller neighborhood $V$ of $x$. (The opposite direction is obvious.) Nakayama's lemma is most often used in this form.
 \end{exe}
 
+
+\begin{co}
+Let $\scr E$ be a finite-type $\scr O_X$-module. Then the \textbf{rank function} \index{00@Rank function} $x\in X\mapsto \dim(\scr E|x)$ is upper-semicontinuous.
+\end{co}
 
 
 \begin{df}
@@ -617,6 +680,7 @@ An \textbf{ideal sheaf} \index{00@Ideal sheaves} $\mc I$ on a $\Cbb$-ringed spac
 =&\{x\in X:\mc I_x\neq\scr O_{X,x}\}=\Supp(\scr O_U/\mc I).
 \end{aligned}
 \end{align}
+Note that this is a closed subset of $X$ by Cor. \ref{lb43}.
 \end{df}
 
 \begin{proof}
@@ -625,14 +689,6 @@ Note that $(\scr O_U/\mc I)_x=\scr O_{U,x}/\mc I_x$. So $x\in\Supp(\scr O_U/\mc 
 
 
 
-\begin{rem}\label{lb20}
-Assume that for each open $U\subset X$, each element $f\in\scr O_X(U)$ is a continuous function on $X$. Then for each ideal $\mc I$ of $\scr O_X$, the subset $N(\mc I)$ is closed in $X$.
-\end{rem}
-
-
-\begin{proof}
-Suppose $x\neq N(\mc I)$. Then for some $f\in\mc I_x$ we have $f(x)\neq 0$. Choose a neighborhood $U$ of $x$ so that $f\in\scr O_X(U)$. Since $f$ is continuous, by shrinking $U$ we may assume $f(y)\neq 0$ for all $y\in U$. So $U\cap N(\mc I)=\emptyset$.
-\end{proof}
 
 
 
@@ -665,7 +721,7 @@ A \textbf{(complex) model space} \index{00@Model spaces} is
 \begin{align}
 \Specan(\scr O_U/\mc I):=\big(N(\mc I),(\scr O_U/\mc I)\uph_{N(\mc I)}\big)
 \end{align}
-where $U$ is an open subset of a number space $\Cbb^n$, $\scr O_U$ is the sheaf of holomorphic functions on $U$,  $\mc I$ is a \emph{finite-type} ideal of $\scr O_U$. $\Specan(\scr O_U/\mc I)$ is called the \textbf{analytic spectrum} \index{00@Analytic spectrum $\Specan$} of the sheaf $\scr O_U/\mc I$. Its underlying topological space is $\Supp(\scr O_U/\mc I)$ as a subset of $U$, and its structure sheaf is $(\scr O_U/\mc I)\uph_{N(\mc I)}$, whose stalk at any $x\in N(\mc I)$ is $\scr O_{U,x}/\mc I_x$ (cf. \eqref{eq4}). With abuse of notations, one also writes for simplicity 
+where $U$ is an open subset of a number space $\Cbb^n$, $\scr O_U$ is the sheaf of holomorphic functions on $U$,  $\mc I$ is a \emph{finite-type} ideal of $\scr O_U$. $\Specan(\scr O_U/\mc I)$ is called the \textbf{analytic spectrum} \index{00@Analytic spectra $\Specan$} of the sheaf $\scr O_U/\mc I$. Its underlying topological space is $\Supp(\scr O_U/\mc I)$ as a subset of $U$, and its structure sheaf is $(\scr O_U/\mc I)\uph_{N(\mc I)}$, whose stalk at any $x\in N(\mc I)$ is $\scr O_{U,x}/\mc I_x$ (cf. \eqref{eq4}). With abuse of notations, one also writes for simplicity 
 \begin{align}
 \Specan(\scr O_U/\mc I):=\big(N(\mc I),\scr O_U/\mc I\big).
 \end{align}
@@ -689,11 +745,11 @@ A \textbf{morphism of (analytic) local $\Cbb$-algebras} \index{00@Morphisms of (
 
 
 \begin{df}
-Let $X$ be a complex space. An \textbf{open complex subspace} \index{00@Complex subspaces (open or closed)} is $(U,\scr O_X|_U)$ where $U$ is an open subset of $X$. A \textbf{closed complex subspace} is \index{00@Analytic spectrum $\Specan$}
+Let $X$ be a complex space. An \textbf{open complex subspace} \index{00@Complex subspaces (open or closed)} is $(U,\scr O_X|_U)$ where $U$ is an open subset of $X$. A \textbf{closed complex subspace} is \index{00@Analytic spectra $\Specan$}
 \begin{align}
 \Specan(\scr O_X/\mc I):=\big(N(\mc I),(\scr O_X/\mc I)\uph_{N(\mc I)}\big)
 \end{align}
-where $\mc I$ is a finite type ideal of $\scr O_X$. (The closedness is justified by Rem. \ref{lb20}.) The stalk of the structure sheaf at $x\in N(\mc I)$ is a local $\Cbb$-algebra
+where $\mc I$ is a finite type ideal of $\scr O_X$. The stalk of the structure sheaf at $x\in N(\mc I)$ is a local $\Cbb$-algebra
 \begin{align*}
 \big(\scr O_{X,x}/\mc I_x,\fk m_x/\mc I_x\big).
 \end{align*}
@@ -784,27 +840,29 @@ Let $U$ be a neighborhood of $0\in\Cbb^2$. Let $z,w$ be the standard coordinates
 
 
 \begin{eg}
-Let $k\in\Zbb_+$. Let $U$ be a neighborhood of $0\in\Cbb$. We call $\Specan(\scr O_U/z^k\scr O_U)=(0,\Cbb\{z\}/z^k\Cbb\{z\})=(0,\Cbb[z]/z^k\Cbb[z])$ the \textbf{$k$-fold point}. It is not reduced when $k>1$. A single point denotes a $1$-fold point, which is the same as the connected $0$-dimensional complex manifold $\Cbb^0$.  
+Let $k\in\Zbb_+$. Let $U$ be a neighborhood of $0\in\Cbb$. We call $\Specan(\scr O_U/z^k\scr O_U)=(0,\Cbb\{z\}/z^k\Cbb\{z\})=(0,\Cbb[z]/z^k\Cbb[z])$ the \textbf{$k$-fold point}. It is not reduced when $k>1$. A single reduced point is precisely a $1$-fold point, which is the same as the connected $0$-dimensional complex manifold $\Cbb^0$.  
 \end{eg}
 
 
 
-%\begin{pp}
-%Let $\varphi:X\rightarrow Y$ be holomorphic, and define the ideal of $\scr O_Y$
-%\begin{align}
-%\mc J=\ker\big(\varphi^\#:\scr O_Y\rightarrow\varphi_*\scr O_X\big).
-%\end{align}
-%Then $N(\mc J)$ is the closure of the image $\varphi(X)$. When $\mc J$ is finite-type and $\varphi(X)$ is closed in $Y$, we make $\varphi(X)$ a complex space:
-%\begin{align}
-%\varphi(X):=\Specan(\scr O_Y/\mc J)
-%\end{align} 
-%and call it the \textbf{image complex space of $\varphi$} \index{00@Image complex spaces $\varphi(X)$}.
-%\end{pp}
+
+We close this section by discussing a useful relationship between local-freeness and rank functions. A locally-free sheaf clearly has locally constant rank. The converse holds under some conditions which are often easy to verify:
 
 
-%\begin{proof}
-%If $y\notin\varphi(X)^\cl$, we choose a neighborhood $V\ni y$ disjoint from $\varphi(X)$. So $\varphi^\#$ send $\scr O_Y(V)$ to $(\varphi_*\scr O_X)(V)=\scr O_X(\varphi^{-1}(V))=\scr O_X(\emptyset)=0$. So $\scr O_{Y,y}=\mc J_y$. Assume $y\in\varphi(X)^\cl$. It suffices to prove $1\neq\mc J_y$, since it will follow that $\mc J_y\subset\fk m_{Y,y}$ and hence that $y\in N(\mc J)$. To prove the claim, we show that $1\neq \mc J(V)$ for any neighborhood $V$ of $y$. Indeed, since $\scr O_X(\varphi^{-1}(V))\neq 0$ (as $\varphi^{-1}(V)\neq 0$), $\varphi^\# 1=1$ is not zero in $\scr O_X(\varphi^{-1}(V))$.
-%\end{proof}
+
+\begin{pp}\label{lb65}
+Let $X$ be a \textbf{reduced} complex space, and let $\scr E$ be a finite-type $\scr O_X$-module. Then $\scr E$ is locally free if and only if the rank function $\Rbf:x\in X\mapsto \dim(\scr E|x)$ is locally constant. Moreover, if $\Rbf$ has constant value $n$, and if $s_1,\dots,s_n\in\scr E(X)$ generate $\scr E$, then $s_1,\dots,s_n$ generate $\scr E$ freely.
+\end{pp}
+
+
+\begin{proof}
+Suppose $\Rbf$ has constant value $n$ and $s_1,\dots,s_n\in\scr E(X)$ generate $\scr E$. Then for each open $U\subset X$ and $f_1,\dots,f_n\in\scr O(U)$ satisfying $f_1s_1+\cdots+f_ns_n=0$, we have for each $x\in U$ that $f_1(x)s_1(x)+\cdots+f_n(x)s_n(x)=0$ where $s_i(x)$ is the restriction of $s_i$ to the fiber $\scr E|x$. Clearly $s_1(x),\dots,s_n(x)$ span $\scr E|x$. Since $\dim(\scr E|x)=n$, $s_1(x),\dots,s_n(x)$ form a basis of $\scr E|x$. So $f_1(x)=\cdots=f_n(x)=0$. As holomorphic functions on a reduced space are determined by their values, we have $f_1=\cdots=f_n=0$. This proves that $s_1,\dots,s_n$ are $\scr O_X$-free.
+
+Assume in general that $\scr E$ is finite-type and $\Rbf$ is locally constant. By shrinking $X$ to a neighborhood of $x\in X$ we may assume $\Rbf$ has constant value $n$. Choose $s_1,\dots,s_n\in\scr E_x$ whose values at $x$ form a basis of $\scr E|x$. By Nakayam's lemma (Exe. \ref{lb64}), we may shrink $X$ so that $s_1,\dots,s_n\in\scr E(X)$ generate $\scr E$. So by the first paragraph, $\scr E$ is locally-free.
+\end{proof}
+
+
+
 
 
 
@@ -986,7 +1044,7 @@ gives a presheaf map $\scr O_{Y_0}^\pre\rightarrow\psi_*\scr O_{X_0}$  whose she
 
 Now that we have seen the importance of the Noetherian property, we prove this in this section. Since $\scr O_{X,x}$ is a quotient of $\scr O_{\Cbb^n,0}$, it suffices to prove that $\scr O_{\Cbb^n,0}$ is Noetherian. The proof relies on Weierstrass division theorem, which we state below.
 
-\begin{df}
+\begin{df}\label{lb61}
 We say that $f(z)\in\Cbb\{z\}$ has \textbf{order} $k\in\Nbb\cup\{\infty\}$ if $f(z)=z^k(a_k+a_{k+1}z+a_{k+2}z^2+\cdots)$ and $a_k\neq0$; $f$ has order $\infty$ iff $f=0$. More generally, for $m\in\Nbb$, we say that $f(w_\blt,z)=f(w_1,\dots,w_m,z)\in\Cbb\{w_\blt,z\}$ has \textbf{order $k$ (in $z$)}  if $f(0,z)\in\Cbb\{z\}$ has order $k$. \index{00@Orders of elements of $\Cbb\{w_\blt,z\}$} Equivalently, $f(w_\blt,z)=\sum_{i=0}^\infty a_k(w_\blt)z^k$ where
 \begin{align}
 a_0(0)=\cdots=a_{k-1}(0)=0,\qquad a_k(0)\neq 0.
@@ -997,7 +1055,7 @@ Recall that the \textbf{degree} of a polynomial $p(w_\blt,z)\in \Cbb\{w_\blt\}[z
 \end{df}
 
 \begin{rem}\label{lb16}
-Let $f(w_\blt,z)$ have order $k<\infty$ in $z$, defined on a neighborhood of $0$. Then inside this neighborhood we can find a smaller one  $U\times V\subset\Cbb^m\times\Cbb$ such that $f(0,z)$ has one zero in $V^\cl$ (namely $z=0$) with multiplicity $k$. By Rouch\'e's theorem, we may shrink $U$ such that for each fixed $w_\blt\in U$, the holomorphic function $f(w_\blt,z)$ of $z$ has $k$ zeros in $V$ counting multiplicities; see Fig. \ref{fig1}
+Let $f(w_\blt,z)$ have order $k<\infty$ in $z$, defined on a neighborhood of $0$. Then inside this neighborhood we can find a smaller one  $U\times V\subset\Cbb^m\times\Cbb$ such that $f(0,z)$ has one zero in $V^\cl$ (namely $z=0$) with multiplicity $k$. By Rouch\'e's theorem, we may shrink $U$ such that for each fixed $w_\blt\in U$, the holomorphic function $f(w_\blt,z)$ of $z$ has $k$ zeros in $V$ counting multiplicities; see Fig. \ref{fig1}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=2.5cm]{fig1}
@@ -1020,7 +1078,7 @@ Suppose $g\in\Cbb\{w_\blt,z\}=\scr O_{\Cbb^{m+1}}$ has order $k<\infty$ in $z$. 
 \end{thm}
 
 
-\begin{thm}
+\begin{thm}\label{lb70}
 Every analytic local $\Cbb$-algebra $\scr O_{X,x}$ is Noetherian.
 \end{thm}
 
@@ -1035,7 +1093,7 @@ By WDT, $\scr O_{\Cbb^{m+1},0}/g\scr O_{\Cbb^{m+1},0}$ is a finitely-generated $
 
 We prove the first version of WDT following \cite{GR}.
 \begin{proof}[Proof of the uniqueness]
-Let $f=gq_1+r_1=gq_2+r_2$. Then $g(q_1-q_2)=r_2-r_1$. Choose a small enough neighborhood $U\times V\subset\Cbb^m\times\Cbb$ as in Rem. \ref{lb16} such that for all fixed $w_\blt\in U$, $g(z)$ has $k$ zeros in $V$ (counting multiplicities). So $g(q_1-q_2)$ has $\geq k$ zeros in $z$. Since $r_2-r_1$ has degree $<k$ in $z$, for the fixed $w_\blt$, the number of zeros of $r_2-r_1$ is either $<k$ (which is impossible), or is $\infty$. Since the latter is the only possible case, we conclude $(r_1-r_2)(z)=0$ for all $w_\blt$. And $(q_1-q_2)(z)=0$  since it is so outside the (finitely many) zeros of $g$.
+Let $f=gq_1+r_1=gq_2+r_2$. Then $g(q_1-q_2)=r_2-r_1$. Choose a small enough neighborhood $U\times V\subset\Cbb^m\times\Cbb$ as in Rem. \ref{lb16} such that for all fixed $w_\blt\in U$, $g(z)$ has $k$ zeros in $V$ (counting multiplicities). So $g(q_1-q_2)$ has $\geq k$ zeros in $z$. Since $r_2-r_1$ has degree $<k$ in $z$, for the fixed $w_\blt$, the number of zeros of $r_2-r_1$ is either $<k$ (which is impossible), or is $\infty$. Since the latter is the only possible case, we conclude $(r_1-r_2)(z)=0$ for all $w_\blt$. And $(q_1-q_2)(z)=0$  since it is so outside the (finitely many) zeros of $g$. (One can also deduce $q_1=q_2$ from the fact that $\scr O_{\Cbb^{m+1},0}$ is an integral domain.)
 \end{proof}
 
 
@@ -1119,7 +1177,7 @@ The category of analytic local $\Cbb$-algebras is understood in the obvious way:
 
 
 \begin{thm}\label{lb19}
-The contravariant function $\fk F$ from the category of germs of complex spaces to the category of analytic local $\Cbb$-algebras, sending $(X,x)$ to $\scr O_{X,x}$ and sending $\varphi:(X,y)\rightarrow(Y,y)$ to $\varphi^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$, is an \textbf{antiequivalence of categories}. \index{00@Antiequivalence of categories} Namely:
+The contravariant functor $\fk F$ from the category of germs of complex spaces to the category of analytic local $\Cbb$-algebras, sending $(X,x)$ to $\scr O_{X,x}$ and sending $\varphi:(X,y)\rightarrow(Y,y)$ to $\varphi^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$, is an \textbf{antiequivalence of categories}. \index{00@Antiequivalence of categories} Namely:
 \begin{enumerate}[label=(\arabic*)]
 \item For each $(X,x)$ and $(Y,y)$, the following map is bijective
 \begin{align}
@@ -1206,7 +1264,7 @@ By assumption, $\varphi^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$ is surjective. L
 \begin{align*}
 \varphi^\#:\scr O_{Y,y}\twoheadrightarrow \scr O_{Y,y}/J=\scr O_{Z,y}\xlongrightarrow[\simeq]{\Psi}\scr O_{X,x}.
 \end{align*}
-By Cor. \ref{lb18}, we may shrink $X$ so that there is an open embedding $\wtd\varphi:X\rightarrow Z$, $\wtd\varphi(x)=y$, such that $\wtd\varphi^\#:\scr O_{Z,y}\rightarrow\scr O_{X,x}$ equals $\Psi$. Let $\iota:Z\rightarrow Y$ be the inclusion. Then $(\iota\wtd\varphi)^\#=\wtd\varphi^\#\iota^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$ equals $\varphi^\#$. By Thm. \ref{lb19}, we may find open $U\ni x$  such that $\varphi=\iota\wtd\varphi$. Since $\wtd\varphi(U)$ is an open subset of $Z$, we may find open $V\subset Y$ such that $\wtd\varphi(U)=V\cap Z=V\cap N(\mc J)$. So $\varphi$ restricts to the biholomorphism $\wtd\varphi:U\rightarrow\wtd\varphi(U)$ where $\wtd\varphi(U)$ is a closed subspace of $V$.
+By Cor. \ref{lb18}, we may shrink $X$ so that there is an open embedding $\wtd\varphi:X\rightarrow Z$, $\wtd\varphi(x)=y$, such that $\wtd\varphi^\#:\scr O_{Z,y}\rightarrow\scr O_{X,x}$ equals $\Psi$. Let $\iota:Z\rightarrow Y$ be the inclusion. Then $(\iota\wtd\varphi)^\#=\wtd\varphi^\#\iota^\#:\scr O_{Y,y}\rightarrow\scr O_{X,x}$ equals $\varphi^\#$. By Thm. \ref{lb19}, we may find open $U\ni x$  such that $\varphi=\iota\wtd\varphi$ on $U$. Since $\wtd\varphi(U)$ is an open subset of $Z$, we may find open $V\subset Y$ such that $\wtd\varphi(U)=V\cap Z=V\cap N(\mc J)$. So $\varphi$ restricts to the biholomorphism $\wtd\varphi:U\rightarrow\wtd\varphi(U)$ where $\wtd\varphi(U)$ is a closed subspace of $V$.
 \end{proof}
 
 
@@ -1218,7 +1276,7 @@ We now discuss when an immersion is a closed embedding and give some examples.
 \begin{pp}\label{lb14}
 Let $X$ be complex spaces and  $\varphi:X\rightarrow Y$ a holomorphic immersion. Assume that $\varphi$ is an injective and closed map\footnote{$\varphi$ is called closed if it maps closed subsets to closed subsets.} of topological spaces. Suppose we have a finite type ideal $\mc J$ of $\scr O_Y$ such that $N(\mc J)$ equals the image of $\varphi$, and that
 \begin{align}
-\mc J_y=\ker(\scr O_{Y,y}\xrightarrow{\varphi^\#}\scr O_{X,x})\label{eq9}
+\mc J_y=\Ker(\scr O_{Y,y}\xrightarrow{\varphi^\#}\scr O_{X,x})\label{eq9}
 \end{align}
 for all $x\in X$ and $y=\varphi(x)$. Then $\varphi$ is a closed embedding. More precisely, $\varphi$ restricts to a biholomorphism
 \begin{align}
@@ -1226,7 +1284,7 @@ for all $x\in X$ and $y=\varphi(x)$. Then $\varphi$ is a closed embedding. More 
 \end{align}
 \end{pp}
 
-
+We will see in Cor. \ref{lb84} that the assumption on the existence of $\mc J$ is redundant.
 
 
 
@@ -1270,7 +1328,7 @@ which equals $N(\mc I+\mc J)\xrightarrow{=}N(\mc I)\cap N(\mc J)$ as maps of top
 
 
 \begin{proof}
-The key point is to show that the above stalk isomorphisms can be assembled into a sheaf isomorphism. Consider the diagrams
+The key point is to show that the above stalk isomorphisms can be assembled into a sheaf isomorphism. Consider the diagram
 \begin{equation}\label{eq16}
 \begin{tikzcd}
                                              & \Specan(\scr O_Y/\wtd{\mc J}) \arrow[d, hook] \\
@@ -1284,7 +1342,7 @@ By Thm. \ref{lb13}, there is a holomorphic map $\alpha$ such that the lower tria
 
 
 Exp. \ref{lb23} shows that a closed complex subspace of a closed subspace is again a closed subspace of the original space. Thus, we have more generally:
-\begin{co}
+\begin{co}\label{lb81}
 If $\alpha:X\rightarrow Y$ and $\beta:Y\rightarrow Z$ are closed embeddings, then so is the composition $\beta\circ\alpha:X\rightarrow Z$.
 \end{co}
 
@@ -1317,7 +1375,7 @@ It is inspiring to write the residue class of $f-f(x)$ (where $f\in\scr O(X)$) i
 Let $X$ be a complex space and $x\in X$. Let $f_1,\dots,f_n\in\scr O(X)$. Consider $(f_1,\dots,f_n)$ as a holomorphic map $\varphi:X\rightarrow\Cbb^n$ (cf. Thm. \ref{lb7}). The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $\varphi$ is an immersion at $x$.
-\item The morphism of analytic local $\Cbb$-algebras $\Phi:\Cbb\{z_1,\dots,z_n\}\rightarrow\scr O_{X,x}$ sending $z_i$ to $f_i-f_i(x)$ (cf. Prop. \ref{lb8}) is surjective.
+\item The morphism of analytic local $\Cbb$-algebras $\Phi:\scr O_{\Cbb^n,\varphi(x)}\rightarrow\scr O_{X,x}$ sending each $z_i$ to $f_i$ (cf. Prop. \ref{lb8}) is surjective. 
 \item (The residue classes of) $f_1-f_1(x),\dots,f_n-f_n(x)$ span $\fk m_{X,x}/\fk m_{X,x}^2$.
 \item (The germs of) $f_1-f_1(x),\dots,f_n-f_n(x)$ generate the ideal $\fk m_{X,x}$.
 \end{enumerate}
@@ -1333,7 +1391,7 @@ Asume (3). By discarding some elements, we may assume that $f_1,\dots,f_n$ form 
 \begin{align*}
 \fk m_{X,x}/\fk m_{X,x}^2=\fk m_{\Cbb^N,0}/(\fk m_{\Cbb^N,0}^2+\mc I_0).
 \end{align*}
-Lift $f_\blt$ to elements of $\mc I_{\Cbb^N,0}$, still denoted by $f_\blt$. Then we can extend $f_1,\dots,f_n$ to a list $f_1,\dots,f_N$ whose residue classes form a basis of $\fk m_{\Cbb^N,0}/\fk m_{\Cbb^N,0}^2$ such that $f_{n+1},\dots,f_N\in\mc I_0$. By the inverse function theorem, we may assume $x=0$ and $f_1,\dots,f_N$ are the standard coordinates $z_1,\dots,z_N$ of $\Cbb^N$. By shrinking $U$, we may assume $z_{n+1},\dots,z_N\in\mc I(U)$.
+Lift $f_\blt$ to elements of $\scr O_{\Cbb^N,0}$, still denoted by $f_\blt$. Then we can extend $f_1,\dots,f_n$ to a list $f_1,\dots,f_N$ whose residue classes form a basis of $\fk m_{\Cbb^N,0}/\fk m_{\Cbb^N,0}^2$ such that $f_{n+1},\dots,f_N\in\mc I_0$. By the inverse function theorem, we may assume $x=0$ and $f_1,\dots,f_N$ are the standard coordinates $z_1,\dots,z_N$ of $\Cbb^N$. By shrinking $U$, we may assume $z_{n+1},\dots,z_N\in\mc I(U)$.
 
 Assume for simplicity that $\mc I$ is generated by $z_{n+1},\dots,z_N$ together with $g_1,\dots,g_k\in\mc I(U)$. Let $\mc I_1=z_{n+1}\scr O_U+\cdots+z_N\scr O_U$. Then by Exp. \ref{lb23}, $X=\Specan(\scr O_U/\mc I)$ is naturally a closed subspace of $X_1=\Specan(\scr O_U/\mc I_1)$ (defined by $g_1,\dots,g_k$). By Exp. \ref{lb22}, $X_1$ is naturally equivalent to $U\cap(\Cbb^n\times 0)$. So the map $(z_1,\dots,z_n):X_1\rightarrow \Cbb^n$ is an open embedding. $\varphi$ is its restriction to $X$, which is therefore an immersion at $0$. This proves (1) and hence (2).
 \end{proof}
@@ -1347,7 +1405,7 @@ We give an application of analytically generating elements.
 
 \item Let $\Phi,\Psi:\scr O_{Y,y}\rightarrow\scr O_{X,x}$ be morphisms of analytic local $\Cbb$-algebras. Assume $f_1,\dots,f_n\in\scr O_{Y,y}$ generate the algebra $\scr O_{Y,y}$ analytically. 
 \begin{enumerate}[label=(\arabic*)]
-\item If $\Phi\big(f_i-f_i(x)\big)=\Psi\big(f_i-f_i(x)\big)$ for all $i=1,\dots,n$, then $\Phi=\Psi$.
+\item If $\Phi(f_i)=\Psi(f_i)$ for all $i=1,\dots,n$, then $\Phi=\Psi$.
 \item Let $I$ be the ideal of $\scr O_{X,x}$ generated by $\Phi(f_i)-\Psi(f_i)$ for all $i$. Then $I$ contains $\Phi(h)-\Psi(h)$ for every $h\in\scr O_{Y,y}$.
 \end{enumerate}
 \end{pp}
@@ -1443,7 +1501,7 @@ Assume the setting of Thm. \ref{lb26}. Assume $\varphi(x)=\psi(x)=:y$. Let $V_y$
 \section{$\scr E\otimes_{\scr O_X}\scr F$, $\Hom_{\scr O_X}(\scr E,\scr F)$, and $\shom_{\scr O_X}(\scr E,\scr F)$}
 
 
-We fix a complex space $X$. 
+We fix a $\Cbb$-ringed space $X$. 
 
 \subsection{Tensor product}
 
@@ -1471,9 +1529,9 @@ is an exact sequence of $A$-modules, then so is
 \begin{align*}
 \mc M_1\otimes\mc N\xrightarrow{f\otimes\id}\mc M_2\otimes\mc N\xrightarrow{g\otimes\id}\mc M_3\otimes\mc N\rightarrow 0.
 \end{align*}
-Identify $\mc M_3$ with $\coker f=\mc M_2/f(\mc M_1)$. Then the right exactness of tensor product is equivalent to that \textbf{tensor products commute with cokernels}: we have an equivalence of $A$-modules
+Identify $\mc M_3$ with $\Cok f=\mc M_2/f(\mc M_1)$. Then the right exactness of tensor product is equivalent to that \textbf{tensor products commute with cokernels}: we have an equivalence of $A$-modules
 \begin{align}
-\coker\big(\mc M_1\otimes_A\mc N\xrightarrow{f\otimes\id}\mc M_2\otimes_A\mc N \big)\quad\xlongrightarrow{\simeq}\quad \coker\big(\mc M_1\xrightarrow{f}\mc M_2\big)\otimes_A\mc N\label{eq1}
+\Cok\big(\mc M_1\otimes_A\mc N\xrightarrow{f\otimes\id}\mc M_2\otimes_A\mc N \big)\quad\xlongrightarrow{\simeq}\quad \Cok\big(\mc M_1\xrightarrow{f}\mc M_2\big)\otimes_A\mc N\label{eq1}
 \end{align}
 descended from the canonical morphism
 \begin{align}
@@ -1493,8 +1551,8 @@ We have a well-defined map sending $\frac{\mc M_2}{f(\mc M_1)}\times\mc N$ to $\
 \begin{rem}\label{lb4}
 We can now use \eqref{eq1} to explain the last equality of \eqref{eq5}:
 \begin{align*}
-&\scr E_x\otimes_{\scr O_{X,x}}(\scr O_{X,x}/\fk m_x)=\scr E_x\otimes \coker(\fk m_x\hookrightarrow \scr O_{X,x})\\
-\simeq&\coker(\scr E_x\otimes\fk m_x\rightarrow \scr E_x\otimes\scr O_{X,x})\simeq\coker(\scr E_x\otimes\fk m_x\rightarrow \scr E_x)=\scr E_x/{\fk m_x\scr E_x}
+&\scr E_x\otimes_{\scr O_{X,x}}(\scr O_{X,x}/\fk m_x)=\scr E_x\otimes \Cok(\fk m_x\hookrightarrow \scr O_{X,x})\\
+\simeq&\Cok(\scr E_x\otimes\fk m_x\rightarrow \scr E_x\otimes\scr O_{X,x})\simeq\Cok(\scr E_x\otimes\fk m_x\rightarrow \scr E_x)=\scr E_x/{\fk m_x\scr E_x}
 \end{align*}
 since the image of the multiplication map $\scr E_x\otimes\fk m_x\rightarrow \scr E_x$ is $\fk m_x\scr E_x$.
 \end{rem}
@@ -1514,7 +1572,7 @@ The canonical morphism of $\scr O(U)$-modules
 Define a canonical map from $\scr E_x\times\scr F_x$ to $\varinjlim_{U\ni x}\scr E(U)\otimes_{\scr O(U)}\scr F(U)$ and show that it is $\scr O_{X,x}$-biinvariant.  This descends to the inverse map of \eqref{eq2}.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb44}
 For each $\scr O_X$-module $\scr F$, the functor $-\otimes\scr F$ on the abelian category of $\scr O_X$-modules is right exact: if
 \begin{align*}
 \scr E_1\rightarrow\scr E_2\rightarrow\scr E_3\rightarrow 0
@@ -1533,7 +1591,7 @@ Exactness of sheaves can be checked at the level of stalks. Then this follows fr
 \subsection{Hom}
 
 We leave it to the readers to check the following easy facts:
-\begin{rem}
+\begin{rem}\label{lb51}
 Let $A$ be a commutative ring, and fix an $A$-module $\mc N$:
 \begin{enumerate}[label=\arabic*.]
 \item \textbf{$\Hom_A(\mc N,-)$ is a left exact functor}. \index{00@Left exact (contravarient) functor} Namely, for any exact sequence of $A$-modules
@@ -1544,10 +1602,14 @@ we have an exact sequence
 \begin{align*}
 0\rightarrow\Hom_A(\mc N,\mc M_1)\xrightarrow{f_*} \Hom_A(\mc N,\mc M_2)\xrightarrow{g_*}\Hom_A(\mc N,\mc M_3)
 \end{align*}
-where $f_*$ sends $T$ to $f\circ T$ and $g_*$ is defined similarly. Equivalently, \textbf{$\Hom_A(\mc N,-)$ commutes with kernels}: there is a canonical equivalence
+where $f_*$ sends $T$ to $f\circ T$ and $g_*$ is defined similarly. Equivalently, \textbf{$\Hom_A(\mc N,-)$ commutes with kernels}: there is a equivalence
 \begin{align}
-\Hom_A\big(\mc N,\ker(\mc M_2\xrightarrow{g}\mc M_3)\big)\simeq \ker \big(\Hom_A(\mc N,\mc M_2)\xrightarrow{g_*}\Hom_A(\mc N,\mc M_3)\big).
+\Hom_A\big(\mc N,\Ker(\mc M_2\xrightarrow{g}\mc M_3)\big)\simeq \Ker \big(\Hom_A(\mc N,\mc M_2)\xrightarrow{g_*}\Hom_A(\mc N,\mc M_3)\big)
 \end{align}
+induced by the obvious inclusion
+\begin{align*}
+\Hom_A\big(\mc N,\Ker(\mc M_2\xrightarrow{g}\mc M_3)\big)\hookrightarrow\Hom_A(\mc N,\mc M_2).
+\end{align*}
 \item \textbf{$\Hom_A(-,\mc N)$ is a left exact contravariant functor}. \index{00@Left exact (contravarient) functor} for any exact sequence of $A$-modules
 \begin{align}
 \mc M_1\xrightarrow{f} \mc M_2\xrightarrow{g}\mc M_3\rightarrow 0
@@ -1558,8 +1620,12 @@ we have an exact sequence
 \end{align*}
 where $f^*$ sends $T$ to $T\circ f$ and $g^*$ is defined similarly. Equivalently, \textbf{$\Hom_A(-,\mc N)$ turns cokernels into kernels}: there is a canonical equivalence
 \begin{align}
-\Hom_A\big(\coker(\mc M_1\xrightarrow{f}\mc M_2),\mc N\big)\simeq \ker \big(\Hom_A(\mc M_2,\mc N)\xrightarrow{f^*}\Hom_A(\mc M_1,\mc N)\big).
+\Hom_A\big(\Cok(\mc M_1\xrightarrow{f}\mc M_2),\mc N\big)\simeq \Ker \big(\Hom_A(\mc M_2,\mc N)\xrightarrow{f^*}\Hom_A(\mc M_1,\mc N)\big)
 \end{align}
+induced by the obvious inclusion
+\begin{align*}
+\Hom_A\big(\Cok(\mc M_1\xrightarrow{f}\mc M_2),\mc N\big)\hookrightarrow\Hom_A(\mc M_2,\mc N).
+\end{align*}
 \end{enumerate}
 \end{rem}
 
@@ -1584,7 +1650,7 @@ Describe canonical equivalences
 \end{align}
 \end{exe}
 
-In general, the stalks of $\shom_{\scr O_X}(\scr E,\scr F)$ cannot be identified with $\Hom_{\scr O_{X,x}}(\scr E_x,\scr F_x)$. But good things happen when $\scr E,\scr F$ are coherent, as we will see in the next chapter.
+In general, the stalks of $\shom_{\scr O_X}(\scr E,\scr F)$ cannot be identified with $\Hom_{\scr O_{X,x}}(\scr E_x,\scr F_x)$. But good things happen when $\scr E$ is coherent, as we will see in Cor. \ref{lb50}.
 
 
 
@@ -1685,10 +1751,11 @@ Let $\iota:Y=\Specan(\scr O_X/\mc I)\hookrightarrow X$ be a closed subspace of $
 \end{align}
 \end{df}
 
-\begin{rem}
-If $\iota:Y\rightarrow X$ is an embedding of closed complex subspace, one may view an $\scr O_Y$-module $\scr F$ as the corresponding $\scr O_X$-module $\iota_*\scr F$. In particular, we have natural isomorphisms
+\begin{rem}\label{lb52}
+If $\iota:Y=\Specan(\scr O_X/\mc I)\rightarrow X$ is an embedding of closed complex subspace, one may view an $\scr O_Y$-module $\scr F$ as the corresponding $\scr O_X$-module $\iota_*\scr F$. A more precise statement is that the functor $\iota_*$ from the category of $\scr O_Y$-modules to the category of $\scr O_X$-modules annihilated by the multiplication of $\mc I$, sending each morphism $\varphi$ to $\iota_*\varphi$, is an equivalence of categories. (Cf. Thm. \ref{lb19} or Thm. \ref{lb49} for the precise meaning.) An inverse functor can be chosen to be $\iota^*$. In particular, we have a canonical equivalence $\scr F\simeq\iota^*\iota_*\scr F$ for any $\scr O_Y$-module $\scr F$ and $\scr E\simeq\iota_*\iota^*\scr E$ for any $\scr O_X$-module $\scr E$ annihilated by $\mc I$ (so that $\scr E=\scr E/\mc I\scr E\simeq\scr E\otimes_{\scr O_X}(\scr O_X/\mc I)$).
+
+Moreover, the functor $\iota_*$ is an equivalence of tensor categories. Namely, we have functorial isomorphisms
 \begin{gather*}
-\Hom_{\scr O_Y}(\scr F_1,\scr F_2)\simeq\Hom_{\scr O_X}(\iota_*\scr F_1,\iota_*\scr F_2),\\
 \iota_*(\scr F_1\otimes_{\scr O_Y}\scr F_2)\simeq (\iota_*\scr F_1)\otimes_{\scr O_X}(\iota_*\scr F_2).
 \end{gather*}
 Note that since $\scr O_{X,y}\rightarrow\scr O_{Y,y}$ is surjective (if $y\in Y$), we have
@@ -1699,7 +1766,7 @@ If $\scr E$ is an $\scr O_X$-module, we also have a natural isomorphism
 \begin{align}
 \iota_*(\scr E|_Y)\simeq (\scr O_X/\mc I)\otimes_{\scr O_X}\scr E.
 \end{align}
-Thus, the study of the restriction $\scr E|_Y$ can be turned into the study of an $\scr O_X$-module.
+Thus, the study of the restriction $\scr E|_Y$ can be turned into the study of an $\scr O_X$-module. \hfill\qedsymbol
 \end{rem}
 
 
@@ -1709,7 +1776,7 @@ Thus, the study of the restriction $\scr E|_Y$ can be turned into the study of a
 
 
 \begin{df}\label{lb36}
-Let $\varphi:X\rightarrow S$ and $\psi:Y\rightarrow S$ be holomorphic maps of complex spaces. A \textbf{fiber product} of these two maps, also called the \textbf{pullback/base change} of $\varphi$ along $\psi$, \index{00@Fiber products/pullbacks/base changes $X\times_SY$} is a complex space $X\times_SY$ together with holomorphic maps $\pr_X:X\times_SY\rightarrow X$ and $\pr_Y:X\times_SY\rightarrow Y$ satisfying:
+Let $\varphi:X\rightarrow S$ and $\psi:Y\rightarrow S$ be holomorphic maps of complex spaces. A \textbf{fiber product} of these two maps \index{00@Fiber products/pullbacks/base changes $X\times_SY$} is a complex space $X\times_SY$ together with holomorphic maps $\pr_X:X\times_SY\rightarrow X$ and $\pr_Y:X\times_SY\rightarrow Y$ satisfying:
 \begin{enumerate}[label=(\arabic*)]
 \item $\varphi\circ\pr_X=\psi\circ\pr_Y$.
 \item For each complex space $Z$ and holomorphic maps $\alpha:Z\rightarrow X$ and $\beta:Z\rightarrow Y$ satisfying $\varphi\circ\alpha=\psi\circ\beta$ there is a unique holomorphic map $\alpha\vee\beta:Z\rightarrow X\times_SY$ \index{zz@$\alpha\vee\beta$} such that $\alpha=\pr_X\circ(\alpha\vee\beta)$ and that $\beta=\pr_Y\circ(\alpha\vee\beta)$.
@@ -1721,7 +1788,7 @@ X \arrow[d, "\varphi"'] & X\times_SY \arrow[l, "\pr_X"] \arrow[d, "\pr_Y"'] &   
 S                 & Y \arrow[l, "\psi"]                  &                                                              
 \end{tikzcd}
 \end{equation}
-The commutative square diagram above involving $S,X,Y,X\times_SY$ is called a \textbf{Cartesian square}. \index{00@Cartesian square}   \hfill\qedsymbol 
+The commutative square diagram above involving $S,X,Y,X\times_SY$ is called a \textbf{Cartesian square}. \index{00@Cartesian square}  $\pr_Y:X\times_SY\rightarrow Y$ is called the \textbf{pullback/base change} of $\varphi:X\rightarrow S$ along $\psi:Y\rightarrow S$.  \hfill\qedsymbol 
 \end{df}
 
 The following is easy to check:
@@ -1769,7 +1836,7 @@ Let $\varphi:X\rightarrow S$, $\psi:Y\rightarrow S$, $\alpha:X'\rightarrow X$, $
 \begin{align}
 \alpha\times\beta:X'\times_S Y'\rightarrow X\times_SY
 \end{align}
-denotes $(\alpha\circ\pr_{X'})\vee(\beta\circ\pr_{Y'})$, the unique holomorphic map making the following diagrams commute.
+denotes $(\alpha\circ\pr_{X'})\vee(\beta\circ\pr_{Y'})$, the unique holomorphic map making the following diagram commute.
 \begin{equation}
 \begin{tikzcd}
                   &           X'     \arrow[ld,"\alpha"']                    & X'\times_SY' \arrow[ld, "\alpha\times\beta" description] \arrow[l, "\pr_{X'}"'] \arrow[d, "\pr_{Y'}"] \\
@@ -1865,6 +1932,11 @@ If $V\subset S$ is open and $\mc J|_V$ is generated by finitely many $g_1,g_2,\d
 
 
 \begin{rem}
+Using the explicit construction of $\mc J$ in the proof of Prop. \ref{lb39}, one sees that the underlying set of $\varphi^{-1}(S_0)$ is the usual preimage of $S_0$, i.e., $\{x\in X:\varphi(x)\in S_0\}$.
+\end{rem}
+
+
+\begin{rem}\label{lb58}
 As an $\scr O_X$-module, $\scr O_{\varphi^{-1}(S_0)}$ has a natural equivalence
 \begin{align}
 \scr O_{\varphi^{-1}(S_0)}=\scr O_X/\mc J\scr O_X\simeq \scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\varphi^*(\scr O_{S_0}).
@@ -1873,14 +1945,14 @@ As an $\scr O_X$-module, $\scr O_{\varphi^{-1}(S_0)}$ has a natural equivalence
 \begin{proof}
 Using the right exactness of $\scr O_X\otimes_{\scr O_S}-$, we have
 \begin{align*}
-&\scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\scr O_X\otimes_{\scr O_S}\coker(\mc J\hookrightarrow\scr O_S)\\
-\simeq &\coker (\scr O_X\otimes_{\scr O_S}\mc J\rightarrow \scr O_X\otimes_{\scr O_S}\scr O_S)\simeq \coker(\scr O_X\otimes_{\scr O_S}\mc J\rightarrow\scr O_X)
+&\scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\scr O_X\otimes_{\scr O_S}\Cok(\mc J\hookrightarrow\scr O_S)\\
+\simeq &\Cok (\scr O_X\otimes_{\scr O_S}\mc J\rightarrow \scr O_X\otimes_{\scr O_S}\scr O_S)\simeq \Cok(\scr O_X\otimes_{\scr O_S}\mc J\rightarrow\scr O_X)
 \end{align*}
-which equals $\scr O_X/\mc J\scr O_X$ since the term insider the last $\coker$ is the multiplication map. (Compare Rem. \ref{lb4}.)
+which equals $\scr O_X/\mc J\scr O_X$ since the term insider the last $\Cok$ is the multiplication map. (Compare Rem. \ref{lb4}.)
 \end{proof}
 
 
-\begin{eg}
+\begin{eg}\label{lb79}
 Let $\mc I,\mc J$ be finite-type ideals of $\scr O_S$. Using Thm. \ref{lb13} again, one easily checks that there is a  Cartesian square that breaks into two commuting triangles.
 \begin{equation}
 \begin{tikzcd}
@@ -1942,7 +2014,7 @@ X_0'\times_SY_0' \arrow[rr, "\alpha|_{X_0'}\times\beta|_{Y_0'}"] \arrow[u, hook'
 \begin{df}
 Let $X,Y$ be complex spaces. A \textbf{direct product} of $X,Y$, or simply a \textbf{product} of $X,Y$, is a fiber product of $X\rightarrow 0$ and $Y\rightarrow 0$ and denoted by $X\times Y$ (together with the projections $\pr_X:X\times Y\rightarrow X$ and $\pr_Y:X\times Y\rightarrow Y$).
 
-To spell out the definition: For each complex space $Z$ and holomorphic $\alpha:Z\rightarrow X,\beta:Z\rightarrow Y$, there is a unique holomorphic map $\alpha\vee\beta:Z\rightarrow X\times Y$ such that the following diagrams commute.
+To spell out the definition: For each complex space $Z$ and holomorphic $\alpha:Z\rightarrow X,\beta:Z\rightarrow Y$, there is a unique holomorphic map $\alpha\vee\beta:Z\rightarrow X\times Y$ such that the following diagram commute.
 \begin{equation*}
 \begin{tikzcd}
   & Z \arrow[ld, "\alpha"'] \arrow[rd, "\beta"] \arrow[d,"\alpha\vee\beta"'] &   \\
@@ -1996,7 +2068,7 @@ If $X$ and $Y$ are model spaces $\Specan(\scr O_U/\mc I)$ and $\Specan(\scr O_V/
 
 In the following, we give two proofs that fiber products always exist. We need the following notion:
 
-\begin{pp}
+\begin{pp}\label{lb80}
 Let $\varphi:X\rightarrow Y$ be a holomorphic map. Then $\id_X\vee\varphi:X\rightarrow X\times Y$ is an equalizer:
 \begin{equation}
 \begin{tikzcd}
@@ -2052,7 +2124,7 @@ S                       & S\times Y_1 \arrow[l]
 We now give another way of constructing fiber products. This construction is very explicit when $X$ and $Y$ are model spaces.
 
 
-\begin{pp}
+\begin{pp}\label{lb90}
 Let $\varphi:X\rightarrow S,\varphi:Y\rightarrow S$ be holomorphic maps of complex spaces. Let $\pr_X:X\times Y\rightarrow X$ and $\pr_Y:X\times Y\rightarrow Y$ be the projections of $X\times Y$. Then the canonical equalizer $E$ of the following double arrow is a fiber product $X\times_SY$:
 \begin{equation}
 \begin{tikzcd}
@@ -2073,6 +2145,8 @@ Using Thm. \ref{lb26}, we can describe the fiber product $X\times_SY$ inside a g
 (f\circ\varphi)\otimes 1-1\otimes (f\circ\psi)
 \end{align}
 for all $f\in\scr O_{S,\varphi(x)}$ (equivalently, for a set of $f$ generating the algebra $\scr O_{S,\varphi(x)}$ analytically). The underlying topological space of $X\times_SY$ is  $\{x\times y\in X\times Y:\varphi(x)=\psi(y)\}$.
+
+From this, it is clear that given a fiber product $X\times_SY$, if $x\in X,y\in Y$ and $\varphi(x)=\psi(y)$, then there is a unique point of $X\times_SY$, denoted by $(x,y)$ or $x\times y$, \index{xy@$x\times y\in X\times_SY$} whose projections to $X,Y$ are $x,y$ respectively. Moreover, all points of $X\times_SY$ are in this form. \hfill\qedsymbol
 \end{rem}
 
 \begin{exe}
@@ -2093,6 +2167,1454 @@ Write $\wtd Y$ as $\Specan(\scr O_{Y\times Y},\mc J)$. Then by Rem. \ref{lb15}, 
 
 Write $E$ as $\Specan(\scr O_X/\mc I)$. Then by Prop. \ref{lb39}, if $\varphi(x)\neq\psi(x)$ then $\mc I_x$ equals $\scr O_{X,x}$ (since $\mc J_{\varphi(x),\psi(x)}=\scr O_{Y\times Y,\varphi(x)\times\psi(x)}$); if $\varphi(x)=\psi(x)$ then $\mc I_x$ is generated by $(f\otimes 1-1\otimes f)\circ (\varphi\vee\psi)$ (i.e. by $f\circ\varphi-f\circ\psi$) for all $f\in\scr O_{Y,\varphi(x)}$. Comparing this description with Thm. \ref{lb26}, we see that $E$ is the canonical equalizer.
 \end{proof}
+
+
+
+
+
+
+\chapter{Finite holomorphic maps and coherence}
+
+\section{Coherent sheaves}
+
+We fix a $\Cbb$-ringed space $X$.
+
+\begin{df}
+An $\scr O_X$-module $\scr E$ is called \textbf{coherent} if the following conditions are satisfied:
+\begin{enumerate}
+\item $\scr E$ is of finite-type.
+\item For every open set $U\subset X$, any $n\in\Nbb$, and any $\scr O_U$-module morphism $\varphi:\scr O_U^n\rightarrow\scr E|_U$, the kernel $\Ker\varphi$ is a finite-type $\scr O_U$-module. 
+\end{enumerate}
+Set $s_1=\varphi(1,0,\cdots,0),\dots,s_n=\varphi(0,0,\dots,1)$. Then $\Ker\varphi$ is called the \textbf{sheaf of relations of $s_1,\dots,s_n$} and denoted by $\Rel(s_\blt)=\Rel(s_1,\dots,s_n)$. \index{00@Sheaves of relations $\Rel(s_1,\dots,s_n)$}
+\end{df}
+
+In other words, $\Rel(s_\blt)$ is the sheaf of all $(f_1,\dots,f_n)\in\scr O_U^n$ such that $f_1s_1+\cdots+f_ns_n=0$. A coherent $\scr O_X$-module is a finite-type $\scr O_X$-module such that any sheaf of relations is finite-type.
+
+
+
+\begin{rem}
+It is clear that a finite type submodule of a coherent $\scr O_X$-module is coherent.
+\end{rem}
+
+
+
+
+
+\begin{thm}\label{lb20}
+Let $0\rightarrow\scr E\rightarrow\scr F\xrightarrow{\varphi}\scr G\rightarrow0$ be an exact sequence of $\scr O_X$-modules. If two of the three sheaves are coherent, then the remaining one is also coherent.
+\end{thm}
+
+We view $\scr E$ as a subsheaf of $\scr F$.
+
+\begin{proof}[Proof of $\scr E,\scr F$ coherent $\Rightarrow$ $\scr G$ coherent]
+Since $\scr F$ is finite-type and $\varphi$ is surjective, it is easy to see that $\scr G$ is of finite-type. Choose any $x\in X$, any neighborhood $U\ni x$, and any $t_1,\dots,t_n\in\scr G(U)$. We shall show that $\Rel(t_\blt)$ is generated by finitely many global sections after shrinking $U$ to a smaller neighborhood of $x$. 
+
+Shrink $U$ so that we can find $s_1,\dots,s_n\in \scr F(U)$ sent to $t_1,\dots,t_n$ by $\varphi$, and that $\scr E|_U$ is generated by $e_1,\dots,e_k\in\scr E(U)$. As $\scr F$ is coherent, $\Rel(e_\blt,s_\blt)$ is finite-type. So we can further shrink $U$ so that $\Rel(e_\blt,s_\blt)$ is generated by $(f_1^l,\dots,f_k^l,g_1^l,\dots,g_n^l)\in\scr O(U)^{k+n}$ where $l=1,2,\dots,N$.
+
+Clearly $(g_1^l,\dots,g_n^l)\in\scr O(U)^n$ are in $\Rel(t_\blt)$. We claim that they generate $\Rel(t_\blt)$. Choose any $y\in U$ and $h_1,\dots,h_n\in\scr O_{X,y}$ such that $h_1t_1+\cdots+h_nt_n=0$ in $\scr G_x$. So $h_1s_1+\cdots+h_ns_n\in\scr E_y$. So $\mu_1e_1+\cdots+\mu_ke_k+h_1s_1+\cdots+h_ns_n=0$ in $\scr F_y$ for some $\mu_1,\dots,\mu_k\in\scr O_{X,y}$. So $(\mu_\blt,h_\blt)\in\Rel(e_\blt,s_\blt)_y$. So $(\mu_\blt,h_\blt)$ is an $\scr O_{X,y}$-linear combination of $(f_\blt^l,g_\blt^l)$. Hence $(h_\blt)$ is an $\scr O_{X,y}$-linear combination of $(g_\blt^l)$.
+\end{proof}
+
+
+\begin{proof}[Proof of $\scr F,\scr G$ coherent $\Rightarrow$ $\scr E$ coherent]
+As $\scr E$ is a subsheaf of $\scr F$ and $\scr F$ is coherent, the sheaves of relations of $\scr E$ are clearly finite-type. Let us prove that $\scr E$ is finite-type. Choose $x\in X$ and a neighborhood $U\ni x$ such that $\scr F|_U$ is generated by $s_1,\dots,s_n\in\scr F(U)$. Then each $t_i=\varphi(s_i)$ is in $\scr G(U)$. Since $\scr G$ is coherent, $\Rel(t_\blt)$ is finite-type. Thus, after shrinking $U$ to a smaller neighborhood, $\Rel(t_\blt)$ is generated by $(f_1^l,\dots,f_n^l)\in\scr O(U)^n$ for finitely many $l$.
+
+Let $e^l=f_1^ls_1+\cdots+f_n^ls_n$. Then $\varphi(e^l)=0$, and hence $e^l\in\scr E(U)$. We claim that $e^1,e^2,\dots$ generate $\scr E|_U$. Choose any $y\in U$ and $\sigma\in\scr E_y$. Then $\varphi(\sigma)=0$ and $\sigma=g_1s_1+\cdots+g_ns_n$ for some $g_1,\dots,g_n\in\scr O_{X,y}$. So $(g_\blt)\in\Rel(t_\blt)_y$. Hence $(g_\blt)$ is an $\scr O_{X,y}$-linear combination of $(f_\blt^1),(f_\blt^2),\dots$. So $\sigma$ is the same $\scr O_{X,y}$-linear combination of $e^1,e^2,\dots$.
+\end{proof}
+
+
+\begin{proof}[Proof of $\scr E,\scr G$ coherent $\Rightarrow$ $\scr F$ coherent]
+Step 1. We prove that $\scr F$ is finite-type. Choose $x\in X$ and a neighborhood $U\ni x$. Shrink $U$ so that we can find $s_1,\dots,s_n\in\scr F(U)$ such that $t_1=\varphi(s_1),\dots,t_n=\varphi(s_n)$ generate $\scr G|_U$, and that there are $e_1,\dots,e_k\in\scr E(U)$ generating $\scr E|_U$. Then for each $y\in U$ and $\sigma\in\scr E_y$, $\varphi(\sigma)=f_1t_1+\cdots+f_nt_n$ for some $f_1,\dots,f_n\in\scr O_{X,y}$. So $\sigma-f_1s_1-\cdots-f_ns_n$ belongs to $\scr E_y$, which is an $\scr O_{X,y}$-linear combination of $e_1,\dots,e_k$. This shows that $s_1,\dots,s_n,e_1,\dots,e_k$ generate $\scr F|_U$.
+
+Step 2. We prove that all sheaves of relations of $\scr F$ are finite-type. Again we choose $x\in X$ and a neighborhood $U\ni x$. Choose any $s_1,\dots,s_n\in\scr F(U)$, and let $t_\blt=\varphi(s_\blt)$. Since $\Rel(t_\blt)$ is finite-type, we may shrink $U$ to a smaller neighborhood such that we can find $G\in \scr O(U)^{n\times k}$ (i.e. an $\scr O(U)$-valued $n\times k$ matrix) such that the columns $G_{\blt,1},\dots,G_{\blt,k}\in\scr O(U)^n$ generate $\Rel(t_\blt)$. Set
+\begin{align*}
+(e_1,\dots,e_k)=(s_1,\dots,s_n)G\qquad\in\scr F(U)^k,
+\end{align*}
+namely, $e_j=\sum_{j=1}^ns_iG_{i,j}$. Then $e_1,\dots,e_n$ are killed by $\varphi$, i.e. they are in $\scr E(U)$. As $\Rel(e_\blt)$ is finite-type, we may shrink $U$ and find a $k\times m$ matrix $E\in\scr O(U)^{k\times m}$ whose columns generate $\Rel(e_\blt)$. Let $F=GE$ (which is in $\scr O(U)^{n\times m}$). We claim that the columns of $F$ generate $\Rel(s_\blt)$.
+
+Choose any $y\in U$ and an element of $\Rel(s_\blt)_y$, written as an $n\times 1$ matrix $A\in\scr O_{X,x}^{n\times 1}$. So $(s_1,\dots,s_n)A=0$. Hence $(t_1,\dots,t_n)A=0$. So $A\in\Rel(t_\blt)_y$. Since $G_{\blt,1},\dots,G_{\blt,k}$ generate $\Rel(t_\blt)_y$, we may write $A=GB$ for some $B\in\scr O_{X,y}^{k\times 1}$. So $(e_1,\dots,e_k)B=0$. Thus, as $E_{\blt,1},\dots,E_{\blt,m}$ generate $\Rel(e_\blt)_y$, we may write $B=EC$ for some $C\in\scr O_{X,y}^{m\times 1}$. Thus $A=FC$. So $A$ is an $\scr O_{X,y}$-linear combination of columns of $F$.
+\end{proof}
+
+\begin{co}\label{lb45}
+$\scr E_1,\scr E_2$ are coherent $\scr O_X$-modules if and only if $\scr E_1\oplus\scr E_2$ is coherent.
+\end{co}
+\begin{proof}
+The exactness of $0\rightarrow\scr E_1\rightarrow\scr E_1\otimes\scr E_2\rightarrow\scr E_2\rightarrow0$ shows that ``$\scr E_1,\scr E_2$ coherent" $\Rightarrow$ ``$\scr E_1\oplus\scr E_2$ coherent", and that if $\scr E_1\oplus\scr E_2$ is coherent then $\scr E_2$ is finite type and the sheaves of relations of $\scr E_1$ are finite-type. Exchanging the roles of $\scr E_1,\scr E_2$ shows that  ``$\scr E_1\oplus\scr E_2$ coherent" $\Rightarrow$ ``$\scr E_1,\scr E_2$ coherent".
+\end{proof}
+
+
+\begin{co}\label{lb46}
+Let $\varphi:\scr F\rightarrow\scr G$ be a morphism of coherent $\scr O_X$-modules. Then $\Imag\varphi,\Ker\varphi,\Cok\varphi$ are coherent.
+\end{co}
+
+\begin{proof}
+$\Imag\varphi$ is finite-type since  $\scr F\rightarrow\Imag\varphi$ is surjective and $\scr F$ is finite-type. The sheaves of relations of $\Imag\varphi$ are finite-type because $\scr G$ is coherent and $\Imag\varphi$ is its $\scr O_X$-submodule. So $\Imag\varphi$ is coherent. That $\Ker\varphi$ and $\Cok\varphi$ are coherent follows from Thm. \ref{lb20} and the exact sequences $0\rightarrow\Ker\varphi\rightarrow\scr F\rightarrow\Imag\varphi\rightarrow0$ and $0\rightarrow\Imag\varphi\rightarrow\scr G\rightarrow\Cok\varphi\rightarrow0$.
+\end{proof}
+
+
+
+
+\begin{thm}\label{lb48}
+Assume that $\scr O_X$ is a coherent $\scr O_X$-module. Then an $\scr O_X$-module $\scr E$ is coherent if and only if for each $x\in X$ there is a neighborhood $U\ni x$ such that $\scr E|_U$ is isomorphic to $\Cok\varphi$ for some morphism of free $\scr O_U$-modules $\varphi:\scr O_U^m\rightarrow\scr O_U^n$ (where $m,n\in\Nbb$).
+\end{thm}
+Indeed, the ``only if" part does not need $\scr O_X$ to be coherent.
+
+\begin{proof}
+``If": Since $\scr O_U$ is coherent, $\scr O_U^m$ and $\scr O_U^n$ are coherent. So $\Cok\varphi$ is coherent by Thm. \ref{lb20}.
+
+``Only if": Let $\scr E$ be coherent. Choose $x\in X$. Since $\scr E$ is finite-type, we may find a neighborhood $U$ such that there is a surjective $\psi:\scr O_U^n\rightarrow\scr E|_U$. Since $\scr E$ is coherent, $\Ker\psi$ is finite-type. Thus, after shrinking $U$, we may find a surjective $\pi:\scr O_U^m\rightarrow\Ker\psi$. Then $\scr E|_U\simeq\Cok(\iota\circ\pi)$ where $\iota:\Ker\psi\rightarrow\scr O_U^n$ is the inclusion. 
+\end{proof}
+
+
+\begin{co}
+For any coherent $\scr O_X$-modules $\scr E,\scr F$, the tensor product $\scr E\otimes_{\scr O_X}\scr F$ is coherent.
+\end{co}
+
+\begin{proof}
+Choose any $x\in X$. By Thm. \ref{lb48}, we may shrink $X$ to a neighborhood of $x$ such that $\scr E\simeq\Cok\varphi$ where $\varphi:\scr O_X^m\rightarrow\scr O_X^n$ is a morphism. By the right exactness of $-\otimes\scr F$ (cf. Prop. \ref{lb44}), $\scr E\otimes\scr F$ is equivalent to $\Cok (\scr O_X^m\otimes\scr F\rightarrow\scr O_X^n\otimes\scr F)$, which is $\Cok(\scr F^m\rightarrow\scr F^n)$. By Cor. \ref{lb45}, $\scr F^m,\scr F^n$ are coherent. So the cokernel is coherent by Cor. \ref{lb46}.
+\end{proof}
+
+
+
+
+We end this section with some criteria on coherence.
+
+\begin{pp}\label{lb53}
+Let $\varphi:X\rightarrow S$ be a morphism of $\Cbb$-ringed spaces, and let $\scr E$ be a finite-type $\scr O_S$-module. Then $\varphi^*\scr E$ is a finite type $\scr O_X$-module. If moreover $\scr E$ is $\scr O_S$-coherent and $\scr O_X$ is $\scr O_X$-coherent, then $\varphi^*\scr E$ is a coherent $\scr O_X$-module.
+\end{pp}
+
+\begin{proof}
+If $\scr E$ is finite-type, then for each $x\in X$, we may shrink $X$ to a neighborhood of $x$ such that $\scr E$ is generated by finitely many $s_1,s_2,\dots\in\scr E(X)$. So $\varphi^*\scr E=\scr O_X\otimes_{\scr O_S}\scr E$ is generated by all $\varphi^*s_i=1\otimes s_i$. So $\varphi^*\scr E$ is finite-type.
+
+Now assume $\scr E$ is $\scr O_S$-coherent and $\scr O_X$ is $\scr O_X$-coherent. By Thm. \ref{lb48}, we may shrink $X$ so that $\scr E\simeq\Cok(\scr O_S^m\rightarrow\scr O_S^n)$. Then
+\begin{align*}
+&\varphi^*\scr E\simeq\scr O_X\otimes_{\scr O_S}\Cok(\scr O_S^m\rightarrow\scr O_S^n)\simeq \Cok(\scr O_X\otimes_{\scr O_S}\scr O_S^m\rightarrow\scr O_X\otimes_{\scr O_S}\scr O_S^n)\\
+\simeq&\Cok(\scr O_X^m\rightarrow\scr O_X^n)
+\end{align*}
+which is $\scr O_X$-coherent by Thm. \ref{lb48}
+\end{proof}
+
+
+\begin{pp}[\textbf{Extension principle}]\label{lb73}
+Let $Y=\Specan(\scr O_X/\mc I)$ be a closed complex subspace of a complex space $X$ where $\mc I$ is finite-type. Let $\iota:Y\rightarrow X$ be the inclusion, and let $\scr E$ be an $\scr O_Y$-module. Assume that $\scr O_X$ is a coherent $\scr O_X$-module. Then $\scr E$ is a coherent $\scr O_Y$-module if and only if $\iota_*\scr E$ is a coherent $\scr O_X$-module.
+\end{pp}
+
+Extension principle is an important special case of Finite mapping Thm. \ref{lb74} which we will prove later.
+
+
+\begin{proof}
+We identify $\scr E$ with $\iota_*\scr E$ and $\scr O_Y$ with $\iota_*\scr O_Y=\scr O_X/\mc I$. (Cf. Rem. \ref{lb52}.) Clearly $\mc I$ is $\scr O_X$-coherent. So $\scr O_Y$ is $\scr O_X$-coherent by Cor. \ref{lb46}.
+
+Assume $\iota_*\scr E$ is $\scr O_X$-coherent. Then by Prop. \ref{lb53}, $\scr E\simeq\iota^*\iota_*\scr E$ is a finite-type $\scr O_Y$-module. Suppose that after shrinking $X$ we have a morphism $\alpha:\scr O_Y^n\rightarrow\scr E$. Since $\scr O_Y^n$ is $\scr O_X$-coherent, $\Ker\alpha$ is $\scr O_X$-coherent by Cor. \ref{lb46}. So $\Ker\alpha$ (or more precisely, $\iota_*(\Ker\alpha)$) is a finite-type $\scr O_X$-module. So by Prop. \ref{lb53}, it is a finite-type $\scr O_Y$-module.
+
+
+Assume $\scr E$ is $\scr O_Y$-coherent. Then by Thm. \ref{lb48}, $\scr E\simeq\Cok(\scr O_Y^m\rightarrow\scr O_Y^n)$ after shrinking $X$ to a neighborhood of $x\in Y\subset X$. Since $\scr O_Y$ is $\scr O_X$-coherent, by Cor. \ref{lb45} we know that $\scr O_Y^m,\scr O_Y^n$ are $\scr O_X$-coherent. So $\scr E$ is $\scr O_X$-coherent by \ref{lb46}.
+\end{proof}
+
+
+\begin{co}\label{lb67}
+Let $Y$ be a closed complex subspace of $X$. Assume $\scr O_X$ is $\scr O_X$-coherent. Then $\scr O_Y$ is $\scr O_Y$-coherent.
+\end{co}
+
+\begin{proof}
+Write $Y=\Specan(\scr O_X/\mc I)$ where $\mc I$ is a finite-type ideal of $\scr O_X$. So $\mc I$ is $\scr O_X$-coherent. Hence $\scr O_Y=\scr O_X/\mc I$ is $\scr O_X$-coherent, and hence $\scr O_Y$-coherent by extension principle.
+\end{proof}
+
+
+
+Thus, if we can show that $\scr O_{\Cbb^n}$ is coherent for any $n$, then all model spaces, and hence all complex spaces have coherent structure sheaves.
+
+
+
+
+
+\section{Germs of coherent sheaves; coherence of hom sheaves}
+
+Let $X$ be a $\Cbb$-ringed space.
+
+An important reason for studying coherent sheaves is that germs of coherent sheaves are equivalent to finitely-generated modules of local analytic $\Cbb$-algebras, just as germs of complex spaces are equivalent to local analytic $\Cbb$-algebras (Thm. \ref{lb19}). Let us be more precise.
+
+
+\begin{df}
+Let $X$ be a $\Cbb$-ringed space and $x\in X$. The \textbf{category of germs of coherent modules at $x$} is the category whose objects are coherent $\scr O_U$-modules $\scr E_U$ where $U\ni x$ is open. If $V\subset U$ is a neighborhood of $x$, then $\scr E_U$ and $\scr E_V:=\scr E_U|_V$ are viewed as the same object. 
+
+A \textbf{morphism} between two objects $\scr E_U,\scr F_U$ is an element $\varphi\in\Hom_{\scr O_V}(\scr E_V,\scr F_V)$ for a possibly smaller neighborhood $V\ni x$. Two morphisms are regarded as equal if then agree when restricted to a possibly smaller neighborhood of $x$ on which both are defined. Compositions of morphisms are defined in the obvious way. Thus, in this category the set of morphisms from $\scr E_U$ to $\scr F_U$ is precisely the stalk $\shom_{\scr O_U}(\scr E_U,\scr F_U)_x$ of $\shom_{\scr O_U}(\scr E_U,\scr F_U)$. \hfill\qedsymbol
+\end{df}
+
+
+
+
+
+\begin{thm}\label{lb49}
+Let $X$ be a $\Cbb$-ringed space and $x\in X$. Assume that $\scr O_X$ is a coherent $\scr O_X$-module, and $\scr O_{X,x}$ is Noetherian. Then the functor $\fk F$ from the category of germs of coherent modules at $x$ to the category of finitely-generated $\scr O_{X,x}$-modules, sending $\scr E_U$ to the $\scr O_{X,x}$-module $\scr E_x$ and sending each $\varphi\in\shom_{\scr O_U}(\scr E_U,\scr F_U)_x$ (namely, each $\varphi\in\Hom_{\scr O_V}(\scr E_V,\scr F_V)$ for a possibly smaller neighborhood $V\ni x$) to the corresponding stalk map $\scr E_x\rightarrow\scr F_x$, is an \textbf{equivalence of categories}. \index{00@Equivalence of categories} Namely, the following two statements hold:
+\begin{enumerate}[label=(\arabic*)]
+\item For each objects $\scr E_U,\scr F_U$, the following $\scr O_{X,x}$-module morphism is bijective:
+\begin{align}\label{eq23}
+\fk F:\shom_{\scr O_U}(\scr E_U,\scr F_U)_x\xrightarrow{\simeq}\Hom_{\scr O_{X,x}}(\scr E_x,\scr F_x)
+\end{align}
+\item Each finitely-generated $\scr O_{X,x}$ is isomorphic to $\fk F(\scr E_U)$ for some object $\scr E$. Namely, it is isomorphic to $\scr E_{U,x}$.
+\end{enumerate}
+\end{thm}
+
+From the proof, we shall see that the $\fk F$ in \eqref{eq23} is an isomorphism even without assuming that $\scr O_X,\scr F_U$ are coherent or $\scr O_{X,x}$ is Noetherian. 
+
+
+\begin{proof}[Proof of (2)]
+Choose any finitely generated $\scr O_{X,x}$-module $\mc M$. Then we have a surjective morphism $\alpha:\scr O_{X,x}^n\rightarrow\mc M$. $\Ker\alpha$ is an $\scr O_{X,x}$-submodule of $\scr O_{X,x}$, which is finitely-generate since $\scr O_{X,x}$ is Noetherian. Thus we have a surjective $\beta:\scr O_{X,x}^m\rightarrow\Ker\alpha$. Let $\gamma:\scr O_{X,x}^m\rightarrow\scr O_{X,x}^n$ be the composition of $\beta$ and the inclusion $\iota:\Ker\alpha\rightarrow\scr O_{X,x}^n$. Then $\mc M\simeq\Cok\gamma$.
+
+We can extend $\gamma$ to an $\scr O_U$-module morphism $\varphi:\scr O_U^m\rightarrow\scr O_U^n$ for some neighborhood $U\ni x$. Namely, the stalk map of $\varphi$ at $x$ is $\gamma$. (For instance, choose $U$ such that $s_1=\gamma(1,0,\dots,0),\dots,s_n=\gamma(0,0,\dots,1)\in\scr O_{X,x}^n$ be defined on $U$. Then $\varphi$ is defined to be the $\scr O_U$-module morphism sending $(1,0,\dots,0)\in\scr O(U)^m$ to $s_1\in\scr O(U)^n$, etc., and $(0,0,\dots,1)$ to $s_n$.) Then $\Cok\varphi$ is a coherent $\scr O_U$-module (Cor. \ref{lb45} and \ref{lb46}) whose stalk at $x$ is $\Cok\gamma\simeq\mc M$.
+\end{proof}
+
+
+\begin{proof}[Proof of (1)]
+Choose an $\scr O_U$-module morphism $\varphi:\scr E_U\rightarrow\scr F_U$ such that $\fk F(\varphi)=0$. So the stalk map $\varphi:\scr E_{U,x}\rightarrow\scr F_{U,x}$ is zero. Since $\scr E_U$ is finite-type, $\scr E_{U,x}$ is finitely-generated. So we may choose $s_1,\dots,s_n\in\scr E_{U,x}$ generating $\scr E_{U,x}$. We may find a neighborhood $V\ni x$ in $U$ such that $s_1,\dots,s_n\in\scr E(V)$, that $\varphi(s_1)=\cdots=\varphi(s_n)=0$ in $\scr F(V)$, and that (by Rem. \ref{lb17} and that $\scr E_U$ is finite-type) $s_1,\dots,s_n$ generate $\scr E_V$. So $\varphi$ sends all sections of $\scr E_V$ to $0$. This proves that $\fk F$ is injective and uses only the condition that $\scr E_U$ is finite-type.
+
+We now prove that $\fk F$ is surjective. Choose any $\eta\in\Hom_{\scr O_{X,x}}(\scr E_x,\scr F_x)$. By Thm. \ref{lb48}, there is a neighborhood $V\ni x$ inside $U$ and $\scr O_V$-module morphisms $\alpha:\scr O_V^m\rightarrow\scr O_V^n$ such that $\scr E_V=\Cok(\alpha)$. Let $\pi_x:\scr O_{V,x}^n\rightarrow\scr E_x=\Cok(\alpha_x:\scr O_{V,x}^m\rightarrow\scr O_{V,x}^n)$ be the quotient map. Let $\eta'$ be $\scr O_{V,x}^n\xrightarrow{\pi_x}\scr E_x\xrightarrow{\eta}\scr F_x$. Then as argued in the proof of part (2), the stalk map $\eta'$ can be extended to an $\scr O_V$-module morphism $\wtd\eta':\scr O_V^n\rightarrow\scr E_V$ after shrinking $V$. $\wtd\eta'\circ\alpha:\scr O_V^m\rightarrow\scr E_V$ has stalk map $\eta\circ\pi_x\circ\alpha_x$ at $x$, which is $0$. So by the injectivity of $\fk F$, we may shrink $V$ so that $\wtd\eta'\circ\alpha=0$. So $\wtd\eta'$ equals $\scr O_V^n\xrightarrow{\pi} \scr E_V=\Cok(\alpha)\xrightarrow{\wtd\eta}\scr F_V$ for some $\scr O_V$-module morphism $\wtd\eta$. Then $\wtd\eta_x=\eta$, i.e. $\fk F(\wtd\eta)=\eta$.
+\end{proof}
+
+
+
+Let us emphasize the following crucial special case of Thm. \ref{lb49}:
+
+\begin{co}\label{lb50}
+Let $X$ be a $\Cbb$-ringed space and $x\in X$. Let $\scr E$ and $\scr F$ be $\scr O_X$-modules. Then the canonical $\scr O_{X,x}$-module morphism
+\begin{align}
+\fk F:\shom_{\scr O_X}(\scr E,\scr F)_x\rightarrow\Hom_{\scr O_{X,x}}(\scr E_x,\scr F_x)
+\end{align}
+is injective if $\scr E$ is finite-type, and is bijective if $\scr E$ is coherent.
+\end{co}
+
+
+
+\begin{co}
+Let $\scr F$ be an $\scr O_X$-module.
+\begin{enumerate}
+\item The contravariant functor  $\shom_{\scr O_X}(-,\scr F)$ on the category of coherent $\scr O_X$-modules is left exact, where the contravariant functor sends each $\varphi\in\Hom_{\scr O_X}(\scr E_1,\scr E_2)$ to $\shom_{\scr O_X}(\scr E_2,\scr F)\rightarrow\shom_{\scr O_X}(\scr E_1,\scr F),\psi\mapsto \psi\circ\varphi$.
+\item Assume that $\scr F$ is coherent. Then the functor  $\shom_{\scr O_X}(\scr F,-)$ on the category of $\scr O_X$-modules is left exact, where the functor sends each $\varphi\in\Hom_{\scr O_X}(\scr E_1,\scr E_2)$ to $\shom_{\scr O_X}(\scr F,\scr E_1)\rightarrow\shom_{\scr O_X}(\scr F,\scr E_2),\psi\mapsto \varphi\circ\psi$.
+\end{enumerate}
+
+\end{co}
+Note that these two exactness is equivalent to saying that we have equivalences
+\begin{subequations}
+\begin{gather}
+\shom_{\scr O_X}\big(\Cok(\scr E_1\rightarrow\scr E_2),\scr F\big)\simeq\Ker\big(\shom_{\scr O_X}(\scr E_2,\scr F)\rightarrow\shom_{\scr O_X}(\scr E_1,\scr F)\big)\label{eq24}\\
+\shom_{\scr O_X}\big(\scr F,\Ker(\scr E_1\rightarrow\scr E_2)\big)\simeq\Ker\big(\shom_{\scr O_X}(\scr F,\scr E_1)\rightarrow\shom_{\scr O_X}(\scr F,\scr E_2)\big)\label{eq25}
+\end{gather}
+\end{subequations}
+induced by the obvious inclusions
+\begin{gather*}
+\shom_{\scr O_X}\big(\Cok(\scr E_1\rightarrow\scr E_2),\scr F\big)\hookrightarrow\shom_{\scr O_X}(\scr E_2,\scr F),\\
+\shom_{\scr O_X}\big(\scr F,\Ker(\scr E_1\rightarrow\scr E_2)\big)\hookrightarrow\shom_{\scr O_X}(\scr F,\scr E_1).
+\end{gather*}
+
+
+
+\begin{proof}
+Let $\scr E_1\rightarrow\scr E_2\rightarrow\scr E_3\rightarrow0$ be an exact sequence of coherent $\scr O_X$-modules. Then we have $0\rightarrow\shom(\scr F,\scr E_3)\rightarrow\shom(\scr F,\scr E_2)\rightarrow\shom(\scr F,\scr E_1)$ which, thanks to Cor. \ref{lb50}, gives stalk maps $0\rightarrow\Hom_{\scr O_{X,x}}(\scr F_x,\scr E_{3,x})\rightarrow\Hom_{\scr O_{X,x}}(\scr F_x,\scr E_{2,x})\rightarrow\Hom_{\scr O_{X,x}}(\scr F_x,\scr E_{1,x})$ at each $x\in X$  which is exact by Rem. \ref{lb51}. This proves part 1. Part 2 is proved in a similar way.
+\end{proof}
+
+
+\begin{co}\label{lb83}
+Assume that $\scr E,\scr F$ are coherent $\scr O_X$-modules. Then $\shom_{\scr O_X}(\scr E,\scr F)$ is coherent. So $\scr E^\vee$ is coherent if $\scr E,\scr O_X$ are coherent.
+\end{co}
+
+\begin{proof}
+If $\scr E=\scr O_X^n$ then $\shom(\scr E,\scr F)\simeq\scr F^n$ is coherent by Cor. \ref{lb45}. In the general case, choose $x\in X$. Then by Thm. \ref{lb48} we may shrink $X$ to a neighborhood of $x$ such that $\scr E\simeq\Cok(\scr E_1\rightarrow\scr E_2)$ where $\scr E_1,\scr E_2$ are free $\scr O_X$-modules. The coherence of $\shom(\scr E,\scr F)$ follows from \eqref{eq24} and Cor. \ref{lb46}.
+\end{proof}
+
+
+\section{Supports and annihilators of coherent sheaves; image spaces}
+
+
+In this section, we assume $X,Y$ are complex spaces.
+
+From Rem. \ref{lb52}, we know that if $\mc I$ is a finite-type ideal of $\scr O_X$ annihilating an $\scr O_X$-module $\scr E$, then the study of $\scr E$ is equivalent to the study of the $\scr O_Y$-module $\scr E|_Y$ where $Y=\Specan(\scr O_X/\mc I)$. A natural question is whether we can find a largest such $\mc I$, i.e., a smallest such $Y$. To study this problem, we introduce:
+
+\begin{df}
+Let $\scr E$ be an $\scr O_X$-module. Then the \textbf{annihilator sheaf} \index{00@Annihilator sheaf $\sann_{\scr O_X}(\scr E)$} of $\scr E$, written as $\sann_{\scr O_X}(\scr E)$ or simply $\sann(\scr E)$, is the ideal sheaf of $\scr O_X$ defined to be the kernel of the $\scr O_X$-module morphism $\scr O_X\rightarrow\shom_{\scr O_X}(\scr E,\scr E)=:\send_{\scr O_X}(\scr E)$ \index{End@$\send_{\scr O_X}(\scr E)=\shom_{\scr O_X}(\scr E,\scr E)$} sending each $f\in\scr O_X$ to the multiplication of $f$ on $\scr E$. So we have an exact sequence
+\begin{align}\label{eq26}
+0\rightarrow\sann_{\scr O_X}(\scr E)\rightarrow \scr O_X\rightarrow\send_{\scr O_X}(\scr E).
+\end{align} 
+If $\scr E$ and $\scr O_X$ are coherent then so is $\sann_{\scr O_X}(\scr E)$ (due to Cor. \ref{lb46} and \ref{lb83}).
+\end{df}
+
+Similarly, if $A$ is a commutative ring and $\mc M$ an $A$-module, then the \textbf{annihilator} $\Ann_A(\mc M)$ \index{00@Annihilators of modules $\Ann_A(\mc M)$} is defined to be the kernel of $A\rightarrow\End_A(\mc M)$.
+
+\begin{rem}
+\eqref{eq26} gives an exact sequence of stalks at each $x$. Assume that $\scr E$ is $\scr O_X$-coherent. Then by Prop. \ref{lb50}, $\send_{\scr O_X}(\scr E)_x\simeq\End_{\scr O_{X,x}}(\scr E_x)$. This shows that we have a canonical equivalence of $\scr O_{X,x}$-modules
+\begin{align}
+\sann_{\scr O_X}(\scr E)_x\simeq\Ann_{\scr O_{X,s}}(\scr E_x)\label{eq36}
+\end{align}
+if $\scr E$ is coherent.
+\end{rem}
+
+
+
+\begin{df}
+Assume $\scr O_X$ is coherent. Given a coherent $\scr O_X$-module $\scr E$, we define the \textbf{support of $\scr E$}, written as $\Supp(\scr E)$, \index{00@Support of a sheaf $\Supp(\scr E)$} to be the complex space
+\begin{align}
+\Supp(\scr E)=\Specan\big(\scr O_X/\sann_{\scr O_X}(\scr E)\big).
+\end{align}
+\end{df}
+
+\begin{rem}
+$\Ann(\scr E_x)=\scr O_{X,x}$ iff $1\in\Ann(\scr E_x)$ iff $1$ annihilates $\scr E_x$ iff $\scr E_{X,x}=0$. This shows that the underlying topological space of $\Supp(\scr E)$ defined above (i.e. the set of all $x$ such that $\scr O_{X,x}/\sann(\scr E)_x\neq 0$) agrees with the usual one (i.e. the set of all $x$ such that $\scr E_x\neq 0$) when $\scr E$ is coherent.
+\end{rem}
+
+
+\begin{rem}
+We know that the support  (as a set) of a finite-type $\scr O_X$-module is a closed subset of $X$ (Cor. \ref{lb43}). Now we know that if $\scr E,\scr O_X$ are coherent, then $\Supp(\scr E)$ as a set is an \textbf{analytic subset} \index{00@Analytic subsets} of $X$, which means that it is $N(\mc I)$ for a finite-type ideal $\mc I$.
+\end{rem}
+
+\begin{cv}
+If $\scr E,\scr O_X$ are coherent, we understand $\Supp(\scr E)$ as a complex subspace of $X$. Otherwise we understand it as only a subset of $X$. 
+\end{cv}
+
+
+\begin{exe}
+Show that if $\mc I$ is a finite-type (and hence coherent) ideal of $\scr O_X$, then
+\begin{align}
+\Supp(\scr O_X/\mc I)=\Specan(\scr O_X/\mc I).
+\end{align}
+\end{exe}
+
+
+\begin{df}\label{lb76}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map of complex spaces. Assume that $\scr O_Y,\varphi_*\scr O_X$ are coherent $\scr O_Y$-modules and $\Imag(\varphi)=\{\varphi(x):x\in X\}$ is a closed subset of $Y$. We define the \textbf{image space $\varphi(X)$} \index{00@Image complex space $\varphi(X)$} of $\varphi$ to be
+\begin{align}
+\varphi(X)=\Supp(\varphi_*\scr O_X)=\Specan\big(\scr O_Y/\sann_{\scr O_Y}(\varphi_*\scr O_X)\big).
+\end{align}
+\end{df}
+
+The notation $\varphi(X)$ and the name ``image space" is justified by the following lemma.
+
+\begin{lm}
+The underlying topological space of $\varphi(X)$ is the usual one $\Imag(\varphi)=\{\varphi(x):x\in X\}$. In particular, $\Imag(\varphi)$ is an analytic subset of $Y$.
+\end{lm}
+
+
+\begin{proof}
+Choose $y\in Y$. We show that $(\varphi_*\scr O_X)_y=0$ iff $y\notin\Imag(\varphi)$.  First assume $(\varphi_*\scr O_X)_y=0$. Choose a neighborhood $V$ of $y$. The non-zero element $1\in(\varphi_*\scr O_X)(V)=\scr O_X(\varphi^{-1}(V))$ becomes $0$ in $(\varphi_*\scr O_X)_y$, which means that we may shrink $V$ so that $1=0$ in $\scr O_X(\varphi^{-1}(V))$. So $\varphi^{-1}(V)=\emptyset$. Hence $y\in\Imag(\varphi)$. Conversely, suppose $y\in\Imag(\varphi)$. Since $\Imag(\varphi)$ is closed, we may find small enough neighborhoods $V\ni y$ such that $\varphi^{-1}(V)=\emptyset$. So $(\varphi_*\scr O_X)_y=0$.
+\end{proof}
+
+\begin{rem}
+In the setting of Def. \ref{lb76}, using \eqref{eq36}, it is easy to see that we have a canonical equivalence of $\scr O_{Y,y}$-modules
+\begin{align}
+\sann_{\scr O_Y}(\varphi_*\scr O_X)_y\simeq \Ker\big(\varphi^\#:\scr O_{Y,y}\rightarrow(\varphi_*\scr O_X)_y\big).\label{eq37}
+\end{align}
+\end{rem}
+
+
+
+To study a coherent sheaf $\scr E$ one can restrict the underlying complex space to $\Supp(\scr E)$. Likewise, to study $\varphi$ when $\varphi_*\scr O_X$ and $\scr O_Y$ are coherent and $\Imag(\varphi)$ is closed, one can restrict the codomain of $\varphi$ to $\varphi(X)$:
+
+\begin{pp}\label{lb77}
+Let $\varphi:X\rightarrow Y$ be holomorphic. Assume that $\scr O_Y,\varphi_*\scr O_X$ are coherent $\scr O_Y$-modules and $\Imag(\varphi)$ is closed in $Y$. Then there is a unique holomorphic map $\wtd\varphi:X\rightarrow\varphi(Y)$ (the restriction of $\varphi$) such that the following diagram commutes:
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[rr, "\varphi"] \arrow[rd, "\wtd\varphi"'] &                             & Y \\
+                                                   & \varphi(X) \arrow[ru, hook] &  
+\end{tikzcd}
+\end{equation*}
+\end{pp}
+
+\begin{proof}
+This follows immediately from Thm. \ref{lb13}.
+\end{proof}
+
+
+Let us give another application of supports of coherent sheaves. Recall that if $A$ is a commutative ring and $\mc M$ is an $A$-module, an element $a\in A$ is called a \textbf{zero divisor of $\mc M$} \index{00@Zero divisors and non-zero-divisors} if $a\xi=0$ for a non-zero $\xi\in\mc M$. Equivalently $a$ is a zero divisor iff $\Ker(\mc M\xrightarrow{\times a}\mc M)$ is non-zero. If $a$ is not a zero divisor of $\mc M$, we call it a \textbf{non zero-divisor of $\mc M$}, not to be confused with a \textbf{non-zero zero divisor}, which is by definition a zero divisor which itself is not zero. Finally, a zero divisor means a zero divisor of $A$.
+
+In the following we assume $\scr O_X$ is coherent.
+
+\begin{pp}
+Let $X$ be a complex space, $\scr E$ a coherent $\scr O_X$-module, and choose $f\in\scr O(X)$. Then 
+\begin{align*}
+Z=\{x\in X:\text{The germ of $f$ at $x$ is a zero divisor of $\scr E_x$}\}
+\end{align*}
+is an analytic subset of $X$. In particular, the set of $x\in X$ such that $f$ is a non zero-divisor of $\scr E_x$ is open in $X$.
+\end{pp}
+
+
+\begin{proof}
+Let $\scr K=\Ker(\scr E\xrightarrow{f}\scr E)$, which is coherent by Cor. \ref{lb46}. Then $\Supp(\scr K)$ is a complex subspace of $X$. A point $x\in X$ belongs to $\Supp(\scr K)$ iff $\scr K_x=\Ker(\scr E_x\xrightarrow{f}\scr E_x)$ is non-zero iff $f$ is a zero divisor of $\scr E_x$. This shows that $Z$ equals $\Supp(\scr K)$ as sets.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Finite maps}
+
+The proof of coherence of the structure sheaves of complex spaces is closely related to the study of finite holomorphic maps $\varphi:X\rightarrow Y$ and the coherence of $\varphi_*\scr O_X$. In this section, we discuss finite maps in the purely topological setting. 
+
+We assume $X,Y$ are topological spaces. Recall that a continuous map $\varphi:X\rightarrow Y$ is called \textbf{closed} if $\varphi$ sends closed subsets of $X$ to closed subsets of $Y$. \index{00@Closed maps}
+
+
+\begin{pp}\label{lb91}
+The pullback of a finite holomorphic map is finite. More precisely, assume that $\pi:X\rightarrow S$ and $\psi:Y\rightarrow S$ are holomorphic maps of complex spaces, and $\pi$ is finite. Then $\pr_Y:X\times_SY\rightarrow Y$ is finite.
+\end{pp}
+
+
+\begin{proof}
+As a topological space, $X\times_SY$ is the closed subset of all $(x,y)\in X\times Y$ such that $\pi(x)=\psi(y)$ (Prop. \ref{lb90}). Then $\pr_Y$ is the composition of the inclusion $X\times_SY\hookrightarrow X\times Y$ and the projection $X\times Y\rightarrow Y$, both are closed. So $\pr_Y$ is closed. It is finite because $\pr_Y^{-1}(y)=\pi^{-1}(\psi(y))$.
+\end{proof}
+
+
+\begin{pp}\label{lb54}
+Let $\varphi:X\rightarrow Y$ be a continuous map. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is a closed map.
+\item For each $y\in Y$,
+\begin{align*}
+\{\varphi^{-1}(V):V\subset Y\text{\normalfont{ is a neighborhood of }}y\}
+\end{align*}
+is a \textbf{basis of neighborhoods of $\varphi^{-1}(y)$} \index{00@Base of neighborhoods of a subset}, which means that for each open $U\subset X$ containing $\varphi^{-1}(y)$ there is a neighborhood $V\ni y$ such that $\varphi^{-1}(V)\subset U$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+Assume (1). For each open $U\subset X$ containing $\varphi^{-1}(y)$, set $V\subset Y$ such that $Y\setminus V=\varphi(X\setminus U)$ which is closed because $\varphi$ is closed. So $V$ is open and clearly contains $y$. Since $V\cap\varphi(X\setminus U)=\emptyset$, $\varphi^{-1}(V)\cap (X\setminus U)=\emptyset$. So $\varphi^{-1}(V)\subset U$. This proves (2).
+
+Assume (2). Choose any closed subset $E\subset X$. We shall show that $\varphi(E)$ is closed in $Y$. Choose any $y\in Y\setminus\varphi(E)$. Then $X\setminus E$ is a neighborhood of $\varphi^{-1}(y)$. So we can choose a neighborhood $V\subset Y$ of $y$ such that $\varphi^{-1}(V)\subset X\setminus E$. So $\varphi^{-1}(V)\cap E=\emptyset$, and hence $V\cap \varphi(E)=\emptyset$. This proves that $y$ is an interior point of $Y\setminus\varphi(E)$. So $Y\setminus\varphi(E)$ is open, and (1) is proved.
+\end{proof}
+
+
+
+\begin{rem}\label{lb88}
+The above proposition shows that closeness a local property (with respect to the base $Y$): If $Y$ has an open cover $(V_\alpha)_\alpha$ such that for each $\alpha$, the restriction $\varphi:\varphi^{-1}(V_\alpha)\rightarrow V_\alpha$ is closed. Then $\varphi:X\rightarrow Y$ is closed.
+\end{rem}
+
+\begin{df}
+A continuous map $\varphi:X\rightarrow Y$ is called \textbf{finite} if it is a closed map and if $\varphi^{-1}(y)$ is a finite set for all $y\in Y$. \index{00@Finite (holomorphic) maps} The composition of two finite maps is clearly finite. If $\varphi:X\rightarrow Y$ is a holomorphic map of complex spaces which is finite as a continuous map of topological spaces, we say $\varphi$ is a \textbf{finite holomorphic map}.
+\end{df}
+
+
+\begin{rem}\label{lb55}
+A main reason that we require finite maps to be closed is the following: Suppose $\varphi$ is finite. Given $y\in Y$, choose mutually disjoint neighborhoods $U_x\subset X$ for all $x\in\varphi^{-1}(y)$. Then by Prop. \ref{lb54}, there is a sufficiently small neighborhood $V\subset Y$ of $y$ such that
+\begin{align}
+\varphi^{-1}(V)=\coprod_{x\in\varphi^{-1}(y)} \varphi^{-1}(V)\cap U_x.\label{eq28}
+\end{align}
+In other words, we can shrink each $U_x$ to a smaller neighborhood of $x$ such that
+\begin{align}
+\varphi^{-1}(V)=\coprod_{x\in\varphi^{-1}(y)}U_x.\label{eq29}
+\end{align}
+From this it is clear that the restriction $\varphi|_{U_x}:U_x\rightarrow Y$ is finite.
+\end{rem}
+
+As applications of this observation, we prove several important facts about direct images.
+
+\begin{pp}\label{lb56}
+Let $\varphi:X\rightarrow Y$ be a finite continuous map, and let $\scr E$ be an $X$-sheaf. Then for each $y\in Y$, we have an isomorphism of sheaves
+\begin{align}\label{eq27}
+\Phi:(\varphi_*\scr E)_y\xlongrightarrow{\simeq} \bigoplus_{x\in\varphi^{-1}(y)}\scr E_x
+\end{align}
+defined by the obvious restriction maps.
+\end{pp}
+If $\varphi$ is a morphism of $\Cbb$-ringed spaces and $\scr E$ is an $\scr O_X$-module, then $\Phi$ is clearly an isomorphism of $\scr O_X$-modules.
+
+\begin{proof}
+$\Psi$ is defined by passing to the direct limit of the map
+\begin{align}
+\Phi_V:\scr E(\varphi^{-1}(V))\rightarrow\bigoplus_{x\in\varphi^{-1}(y)}\scr E_x
+\end{align}
+over all open $V\ni y$. If $s\in\scr E(\varphi^{-1}(V))$ and $\Phi_V(s)=0$, then we may find disjoint neighborhoods $U_x\ni x$ such that $s|_{U_x}=0$. After shrinking $V$ such that \eqref{eq28} holds, we have $s=0$. So $\Phi$ is injective.
+
+Conversely, choose $s_x\in\scr E_x$ for each $x\in\varphi^{-1}(y)$. Then we may choose small enough neighborhoods $U_x\ni x$ and $V\ni y$ such that $s_x\in\scr E(U_x)$ and \eqref{eq29} holds. Let $s\in\scr E(\varphi^{-1}(V))$ be $s_x$ when restricted to $U_x$. Then $\Phi_V(s)=s_x$. So $\Phi$ is surjective.
+\end{proof}
+
+Recall that for an arbitrary continuous map $\varphi$, the functor $\varphi_*$ is left exact.
+
+\begin{co}\label{lb71}
+Let $\varphi:X\rightarrow Y$ be a finite continuous map. Then $\varphi_*$ is an \textbf{exact functor} (i.e. an left and right exact functor) from the category of $X$-sheaves to that of $Y$-sheaves. \index{00@Exact (contravariant) functors} Namely: if a sequence of $X$-sheaves
+\begin{align}
+0\rightarrow\scr E\rightarrow\scr F\rightarrow\scr G\rightarrow0,\label{eq35}
+\end{align}
+is an exact sequence then the following is exact:
+\begin{align}
+0\rightarrow(\varphi_*\scr E)_y\rightarrow(\varphi_*\scr F)_y\rightarrow(\varphi_*\scr G)_y\rightarrow0.\label{eq30}
+\end{align}
+
+
+Indeed, \eqref{eq35} is exact if and only if \eqref{eq30} is exact.
+\end{co}
+
+\begin{proof}
+By Prop. \ref{lb56}, \eqref{eq30} is the same as
+\begin{align*}
+0\rightarrow\bigoplus_{x\in\varphi^{-1}(y)}\scr E_x\rightarrow\bigoplus_{x\in\varphi^{-1}(y)}\scr F_x\rightarrow\bigoplus_{x\in\varphi^{-1}(y)}\scr G_x\rightarrow0.
+\end{align*}
+The equivalence of the exactness of \eqref{eq35} and \eqref{eq30} follows.
+\end{proof}
+
+
+
+\begin{pp}[\textbf{Base change proposition}]\label{lb59}
+Let $\pi:X\rightarrow S$ be a finite continuous map. Let $\scr E$ be an $\scr O_X$-module and $\scr M$ an $\scr O_S$-module. Then we have a (clearly functorial) $\scr O_S$-module isomorphism 
+\begin{gather}
+\begin{gathered}
+\Upsilon:(\pi_*\scr E)\otimes_{\scr O_S}\scr M\xlongrightarrow{\simeq} \pi_*(\scr E\otimes_{\scr O_S}\scr M)\\[0.8ex]
+\sigma\otimes\mu\in \scr E(\pi^{-1}(W))\otimes_{\scr O_S(W)}\scr M(W)\quad\mapsto \quad \sigma\otimes\mu \in(\scr E\otimes_{\scr O_S}\scr M)(\pi^{-1}(W))
+\end{gathered}
+\end{gather}
+for all open $W\subset S$.
+\end{pp}
+
+Note that the stalk map of $\Phi$ at any $t\in S$ is the canonical morphism
+\begin{gather}
+\Upsilon:(\pi_*\scr E)_t\otimes_{\scr O_{S,t}}\scr M_t\longrightarrow \pi_*(\scr E\otimes_{\scr O_S}\scr M)_t \label{eq42}
+\end{gather}
+
+\begin{proof}
+By Prop. \ref{lb56}, the stalk map \eqref{eq42} can be extended to a commutative diagram
+\begin{equation}
+\begin{tikzcd}
+(\pi_*\scr E)_t\otimes_{\scr O_{S,t}}\scr M_t \arrow[r,"\Upsilon"] \arrow[d,"\simeq"'] & \pi(\scr E\otimes_{\scr O_S}\scr M)_t \arrow[d,"\simeq"] \\
+\left(\bigoplus_{x\in\pi^{-1}(t)}\scr E_x\right)\otimes_{\scr O_{S,t}}\scr M_t \arrow[r,"\simeq"]           & \bigoplus_{x\in\pi^{-1}(t)}(\scr E\otimes_{\scr O_S}\scr M)_x          
+\end{tikzcd}
+\end{equation}
+where the other three morphisms of $\scr O_{S,t}$-modules are isomorphisms. So \eqref{eq42} is an isomorphism.
+\end{proof}
+
+
+
+\begin{lm}\label{lb87}
+Let $\varphi:X\rightarrow Y$ be a finite continuous map. Assume that $\scr E$ is a coherent $\scr O_X$-module. Then each $y$ is contained in neighborhood $V\subset Y$ such that $\scr E|_{\pi^{-1}(V)}$ is the cokernel of a morphism of free $\scr O_{\pi^{-1}(V)}$-modules.
+\end{lm}
+
+\begin{proof}
+Choose $W$ such that \eqref{eq29} holds and $U_x$ is a small enough neighborhood of $x\in\varphi^{-1}(y)$ such that $\scr E|_{U_x}$ is equivalent to $\Cok(\scr O_{U_x}^m\rightarrow\scr O_{U_x}^n)$. The natural numbers $m,n$ might initially depend on $x$, but we can enlarge $m,n$ so that they do not. Then $\scr E|_{\pi^{-1}(V)}$ is clearly the cokernel of a morphism $\scr O_{\pi^{-1}(V)}^m\rightarrow\scr O_{\pi^{-1}(V)}^n$.
+\end{proof}
+
+
+
+
+
+
+
+\begin{df}
+A continuous map $\varphi:X\rightarrow Y$ is called \textbf{proper} \index{00@Proper maps} if for each compact subset $K\subset Y$, $\varphi^{-1}(K)$ is compact.
+\end{df}
+
+Finite maps are special cases of proper maps as shown by the following proposition. Indeed, a deep theorem by Grauert says that if $\varphi$ is a proper holomorphic map then $\varphi_*\scr E$ is $\scr O_Y$-coherent whenever $\scr E$ is $\scr O_X$-coherent. In particular, $\varphi_*\scr O_X$ is $\scr O_Y$-coherent. So we can study $f(X)$. In the special case that $\varphi$ is finite, the study of the coherence of $\varphi_*\scr O_X$ is crucial to the proof of coherence of all structure sheaves of complex spaces.
+
+
+\begin{pp}\label{lb98}
+Let $\varphi:X\rightarrow Y$ be a continuous map of topological spaces. If $X$ and $Y$ are locally compact, then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is proper.
+\item $\varphi$ is closed, and $\varphi^{-1}(y)$ is compact for each $y\in Y$.
+\end{enumerate}
+Thus, a finite map is precisely a proper map whose fibers $\varphi^{-1}(y)$ are all finite sets.
+\end{pp}
+Note: To prove (1)$\Rightarrow$(2) we don't need $X$ to be locally compact.
+\begin{proof}
+Assume (1). Let us prove that $\varphi$ is closed by proving part (2) of Prop. \ref{lb54}. Choose $y\in Y$ and any neighborhood $U\supset\varphi^{-1}(Y)$. Since $Y$ is locally compact, we can fix a precompact neighborhood $V_0\subset Y$ of $y$. Then $E:=(X\setminus U)\cap \varphi^{-1}(V_0^\cl)$ is compact by the properness of $V$. Let $\fk V$ be the set of all precompact open subsets of $V_0$ containing $y$. Then $E\cap \bigcap_{V\in\fk V}\varphi^{-1}(V^\cl)$ is empty. So by the compactness of $E$, there is $V\in\fk V$ such that $E\cap\varphi^{-1}(V^\cl)=0$. So $\varphi^{-1}(V^\cl)\subset U$.
+
+Assume (2). For each $y\in Y$, since $\varphi^{-1}(y)$ is compact and $X$ is locally compact, we may find a precompact neighborhood $U\subset X$ of $\varphi^{-1}(y)$. By Prop. \ref{lb54}, we can find a neighborhood $V$ of $y$ such that $\varphi^{-1}(V)\subset U$. So $\varphi^{-1}(V)^\cl$ is compact since it is closed in $U^\cl$.
+
+The above discussion shows that any compact $K\subset Y$ can be covered by finitely many open sets $V_1,V_2,\dots$ such that $\varphi^{-1}(V_j)^\cl$ is compact. Then $\varphi^{-1}(K)$ as a closed subset of $\bigcup_j \varphi^{-1}(V_j)^\cl$ is compact.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Weierstrass maps and Weierstrass preparation theorem}
+
+
+The goal of this section is to study an important class of finite holomorphic maps called Weierstrass maps. 
+
+
+
+
+\begin{df}\label{lb57}
+Let $S$ be a complex space. Let $k\in\Zbb$. For each $i=1,\dots,k$, we choose a polynomial of degree $n_i$
+\begin{align*}
+p_i(z_i)=1\otimes a_{i,0}+(1\otimes a_{i,1})z_i+\cdots +(1\otimes a_{i,n_i})z_i^{n_i}\qquad\in \scr O(\Cbb^k\times S)[z_i]
+\end{align*}
+where $a_{i,j}\in\scr O(S)$, $n_i\in\Zbb_+$, and $a_{i,n_i}(t)\neq 0$ for all $t\in S$. Consider $p_i$ as an element of $\scr O(\Cbb^k\times S)$. Let
+\begin{gather}
+X=\Specan(\scr O_{\Cbb^k\times S}/\mc I)\qquad \mc I=p_1\scr O_{\Cbb^k\times S}+\cdots+p_k\scr O_{\Cbb^k\times S}.
+\end{gather}
+Then the holomorphic map $\pi:X\rightarrow S$ defined by restricting the projection $\pr_S:\Cbb^k\times S\rightarrow S$ is called a \textbf{Weierstrass map}.
+\end{df}
+
+Recall that by our notations, $1\otimes a_{i,j}$ means $\pr_S^\# a_{i,j}=a_{i,j}\circ\pr_S$. We shall write $1\otimes a_{i,j}$ as $a_{i,j}$ if no confusion arises.
+
+
+\begin{pp}
+Weierstrass maps are finite.
+\end{pp}
+
+\begin{proof}
+Clearly each fiber of $\pi:X\rightarrow S$ is a finite set. To check that $\pi$ is closed, by Prop. \ref{lb54} it suffices to show that we can shrink $S$ to a neighborhood of any given point and shrink $X$ to $\pi^{-1}(S)$ such that the new $\pi:X\rightarrow S$ is finite. 
+
+By Rem. \ref{lb15} we can shrink $S$ and find an open disc $D\subset\Cbb$ centered at $0$ such that for each $t\in S$ and each $i$, the polynomial $p_i(z_i,t)$ of $z_i$ has $n_i$ zeros in $D$ counting multiplicities. So $X$ (as a topological space, namely $N(\mc I)$) is a closed subset of $(D^\cl)^k\times S$. Therefore $\pi:X\rightarrow S$ is the restriction of the projection $(D^\cl)^k\times S\rightarrow S$ to a closed subset, which is closed because the projection $(D^\cl)^k\times S\rightarrow S$ is proper and hence closed (Prop. \ref{lb98}).
+\end{proof}
+
+
+The next proposition shows that the pullback $Y\rightarrow T$ of a Weierstrass map $X\rightarrow S$ along a holomorphic map $\psi:T\rightarrow S$ is Weierstrass.
+\begin{pp}\label{lb66}
+Assume the setting of Def. \ref{lb57}. Let $\psi:T\rightarrow S$ be a holomorphic map of complex spaces. Set
+\begin{gather*}
+\wtd a_{i,j}=a_{i,j}\circ\psi\in\scr O(T)\\
+\wtd p_i(z_i)=1\otimes \wtd a_{i,0}+(1\otimes \wtd a_{i,1})z_i+\cdots +(1\otimes \wtd a_{i,n_i})z_i^{n_i}\qquad\in \scr O(\Cbb^k\times T)[z_i]
+\end{gather*}
+and set
+\begin{gather}
+Y=\Specan(\scr O_{\Cbb^k\times T}/\mc J)\qquad \mc J=\wtd p_1\scr O_{\Cbb^k\times T}+\cdots+\wtd p_k\scr O_{\Cbb^k\times T}.
+\end{gather}
+Then the Cartesian square
+\begin{equation*}
+\begin{tikzcd}
+\Cbb^k\times S \arrow[d] & \Cbb^k\times T \arrow[l, "\id\times\psi"'] \arrow[d] \\
+S          & T \arrow[l, "\psi"']          
+\end{tikzcd}
+\end{equation*}
+restricts to a Cartesian square
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d,"\pi"'] & Y\arrow[l,"\wtd\psi"'] \arrow[d,"\wtd\pi"] \\
+S          & T \arrow[l, "\psi"']          
+\end{tikzcd}
+\end{equation*}
+\end{pp}
+
+
+\begin{proof}
+By Prop. \ref{lb39} we have a Cartesian square
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d,hook'] & Y \arrow[d,hook'] \arrow[l] \\
+\Cbb^k\times S           & \Cbb^k\times T \arrow[l]          
+\end{tikzcd}
+\end{equation*}
+which, together with Rem. \ref{lb31}, proves our proposition.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+The following theorem is the first major result of this chapter. Many subsequent major results in this chapter are proved using this theorem.
+
+\index{00@Fundamental theorem of Weierstrass maps}
+\begin{thm}[\textbf{Fundamental theorem of Weierstrass maps}]\label{lb60}
+Assume the setting of Def. \ref{lb57}. Then
+\begin{align}\label{eq32}
+\{z_1^{\nu_1}\cdots z_k^{\nu_k}:0\leq \nu_i\leq n_i-1\text{ for all }1\leq i\leq k\}
+\end{align}
+(or more precisely, these elements acted on by $\Pr_{\Cbb^k\times S\rightarrow \Cbb^k}^\#$) is a set of free generators of the $\scr O_S$-module $\pi_*\scr O_X$.
+\end{thm}
+
+In particular, $\pi_*\scr O_X$ is a free $\scr O_S$-module of rank $n_1n_2\cdots n_k$.
+
+
+
+\begin{lm}\label{lb92}
+If Thm. \ref{lb60} holds when $S$ is smooth, then Thm. \ref{lb60} holds when $S$ is any complex space.
+\end{lm}
+
+\begin{proof}
+Note that Thm. \ref{lb60} is local by nature since it can be checked at the level of stalks. So we may assume $S$ is so small that it is a closed subspace of an open subset $\Omega\subset\Cbb^m$, and that each $a_{i,j}$ is the restriction of an element of $\scr O(\Omega)$. Therefore, by Prop. \ref{lb66}, we have a Weierstrass map $Y\hookrightarrow \Cbb^k\times\Omega\rightarrow\Omega$ (which we also denote by $\pi$) such that the following two squares are Cartesian.
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, hook] \arrow[r, hook]              & Y \arrow[d, hook]            \\
+\Cbb^k\times S \arrow[r, hook] \arrow[d] & \Cbb^k\times\Omega \arrow[d] \\
+S \arrow[r, hook]                        & \Omega                      
+\end{tikzcd}
+\end{equation*}
+In particular, $\pi:X\rightarrow S$ is the base change of $\pi:Y\rightarrow\Omega$ to $S$. 
+
+Write $S=\Specan(\scr O_\Omega/\mc I)$. Then by Rem. \ref{lb58}, $\scr O_X$ is $\scr O_Y\otimes_{\scr O_\Omega}\scr O_S$ (if we regard $\scr O_X$ as an $\scr O_Y$-module and $\scr O_S$ as an $\scr O_\Omega$-module). By Base change Prop. \ref{lb59}, we have canonical isomorphisms of $\scr O_\Omega$-modules
+\begin{align*}
+\pi_*\scr O_X\simeq\pi_*(\scr O_Y\otimes_{\scr O_\Omega}\scr O_S)\simeq \pi_*\scr O_Y\otimes_{\scr O_\Omega}\scr O_S.
+\end{align*}
+Equivalently, $\pi_*\scr O_X\simeq\pi_*\scr O_Y|_S$ as $\scr O_S$-modules. Since we assume that Thm. \ref{lb60} holds for $\pi:Y\rightarrow \Omega$, we know that $\pi_*\scr O_Y$ is generated freely by \eqref{eq32}. So $\pi_*\scr O_X$ is generated freely by (the restrictions to $S$ of) \eqref{eq32}.
+\end{proof}
+
+
+
+
+Due to Lemma \ref{lb92}, we can assume that:
+\begin{cv}
+In the remaining part of this section, $S$ is an open subset of $\Cbb^m$. Let $t_\blt=(t_1,\dots,t_m)$ be the variables of $S$.
+\end{cv}
+
+
+
+To prepare for the proof, we let $N(p_i)\subset \Cbb\times S$ be the subset of all $(z_i,t_\blt)$ such that $p_i(z_i,t_\blt)=0$. For each $(t_\blt)\in S$, define a subset of $\Cbb$
+\begin{align*}
+N(p_i)_{t_\blt}=N(p_i)\cap\pr_{\Cbb\times S\rightarrow S}^{-1}(t_\blt),
+\end{align*}
+which is the set of all  $z_i$ satisfying $p_i(t_\blt,z_i)=0$. Then by Prop. \ref{lb56}, we have an obvious isomorphism of $\scr O_{S,t_\blt}$-modules
+\begin{align}
+(\pi_*\scr O_X)_{t_\blt}\simeq\bigoplus_{\begin{subarray}{c}
+w_i\in N(p_i)_{t_\blt}\\
+1\leq i\leq k
+\end{subarray}} \scr O_{\Cbb^k\times S,(w_\blt,t_\blt)}/\mc I_{(w_\blt,t_\blt)}\label{eq31}
+\end{align}
+where
+\begin{align*}
+\mc I_{(w_\blt,t_\blt)}=p_1\scr O_{\Cbb^k\times S,(w_\blt,t_\blt)}+\cdots+p_k\scr O_{\Cbb^k\times S,(w_\blt,t_\blt)}.
+\end{align*}
+Our goal is to show that \eqref{eq32} generates \eqref{eq31} freely.
+
+
+\subsection{Proof of Thm. \ref{lb60}, I}
+
+
+In this subsection, we assume $(t_\blt)=0\in S\subset\Cbb^m$ for simplicity, and show that $z_1,\dots,z_k$ generate $(\pi_*\scr O_X)_0$. We let $(\tau_\blt)$ denote a set of general variables of $S$. \eqref{eq31} reads
+\begin{align}\label{eq33}
+(\pi_*\scr O_X)_0\simeq\bigoplus_{\begin{subarray}{c}
+w_i\in N(p_i)_0\\
+1\leq i\leq k
+\end{subarray}} \scr O_{\Cbb^k\times S,(w_\blt,0)}/\mc I_{(w_\blt,0)}.
+\end{align}
+
+
+\begin{lm}\label{lb62}
+\eqref{eq32} generates $(\pi_*\scr O_X)_0$.
+\end{lm}
+\begin{proof}[Proof, special case]
+We consider the special case that for each $i$, $N(p_i)_0$ is the single point $0$. In this case, $p_i(z_i,\tau_\blt)$ has order $n_i$ in $z_i$ (recall Def. \ref{lb61}). (Namely, $p_i$ is a \emph{Weierstrass polynomial} of $z_i$.) Now \eqref{eq33} reads
+\begin{align*}
+(\pi_*\scr O_X)_0\simeq \scr O_{\Cbb^k\times S,(0,0)}/\mc I_{(0,0)}.
+\end{align*}
+We explain the proof when $k=2$. The general case follows from exactly the same argument.
+
+Choose $f(z_1,z_2,\tau_\blt)\in\scr O_{\Cbb^2\times S,(0,0)}$. Then by WDT (Weierstrass division theorem), 
+\begin{align*}
+f(z_1,z_2,\tau_\blt)=\sum_{j=0}^{n_1-1}z_1^j\cdot g_j(z_2,\tau_\blt)\qquad \mathrm{mod~~}p_1\scr O_{\Cbb^2\times S,(0,0)}
+\end{align*}
+where $g_j\in\scr O_{\Cbb\times S,(0,0)}$. Apply WDT again, we have
+\begin{align*}
+g_j(z_2,\tau_\blt)=\sum_{l=0}^{n_2-1}z_2^l\cdot h_l(\tau_\blt)\qquad \mathrm{mod~~}p_2\scr O_{\Cbb\times S,(0,0)}
+\end{align*}
+where $h_l\in\scr O_{S,0}$. This finishes the proof.
+\end{proof}
+
+To prove the general case, for each $w_i\in N(p_i)_0$ we define integer
+\begin{align*}
+\mu_i(w_i)=\{\text{The multiplicity of the root }z_i=w_i\text{ of }p_i(z_i,0)\}
+\end{align*}
+So $0<\mu_i(w_i)\leq n_i$.
+
+\begin{lm}\label{lb63}
+For each $i$, choose $w_i\in N(p_i)_0$. Then there is an $\scr O_{S,0}$-coefficients polynomial $q_1(z_\blt,\tau_\blt)$ of $z_1,\dots,z_n$ with multi-degree $\leq \big(n_1-\mu_1(w_1),\dots,n_k-\mu_k(w_k)\big)$ satisfying the following conditions.
+\begin{enumerate}[label=(\arabic*)]
+\item Its germ at $(w_\blt,0)$ is an invertible element of the ring $\scr O_{\Cbb^k\times S,(w_\blt,0)}/\mc I_{(w_\blt,0)}$. 
+\item Its germ at $(\wtd w_\blt,0)$ is $0$ in the ring $\scr O_{\Cbb^k\times S,(\wtd w_\blt,0)}/\mc I_{(\wtd w_\blt,0)}$ for any $(\wtd w_\blt)=(\wtd w_1,\dots,\wtd w_k)\in\Cbb^k$ such that $\wtd w_i\in N(p_i)_0$ (for all $i$) and that $(\wtd w_\blt)\neq (w_\blt)$.
+\end{enumerate}
+\end{lm}
+
+This lemma can be viewed as a partition of unity of $(\pi_*\scr O_X)_0$. We postpone the proof of this lemma until after proving Lemma \ref{lb62}.
+
+\begin{proof}[Proof of Lemma \ref{lb62}, general case]
+In view of \eqref{eq33}, it suffices to show prove the following claim:
+\begin{itemize}
+\item Choose any $(w_\blt)\in\Cbb^k$ such that $w_i\in N(p_i)_0$, and choose any $f(z_\blt,\tau_\blt)\in(\pi_*\scr O_X)_0$ which is zero in $\scr O_{\Cbb^k\times S,(\wtd w_\blt,0)}/\mc I_{(\wtd w_\blt,0)}$ whenever $(\wtd w_\blt)\neq (w_\blt)$. Then $f$ belongs to the $\scr O_{S,0}$-submodule of $(\pi_*\scr O_X)_0$ generated by \eqref{eq32}.
+\begin{itemize}
+\item Namely, there is an $\scr O_{S,0}$-coefficients polynomial $q(z_\blt,\tau_\blt)$ of $z_\blt$ with multi-degree $\leq (n_1-1,\dots,n_k-1)$ whose germ at $(w_\blt,0)$ is equal to the germ of $f$ mod $\mc I_{(w_\blt,0)}$, and whose germ at $(\wtd w_\blt,0)$ (where $(\wtd w_\blt)\neq (w_\blt)$) is in $\mc I_{(\wtd w_\blt,0)}$.
+\end{itemize}
+\end{itemize}
+
+Let $q_1$ be as in Lemma \ref{lb63}, whose germ at $(w_\blt,0)$ is an invertible element of $\scr O_{\Cbb^k\times S,(w_\blt,0)}$. Note that $f/q_1$ is in $\scr O_{\Cbb^k\times S,(w_\blt,0)}$ (but not in $(\pi_*\scr O_X)_0$). We now apply the proof of the special case to $f/q_1$. Then by WDT (noting that $p_i(z_i,\tau_\blt)$ has order $\mu_i(w_i)$ in $z_i-w_i$), there is an $\scr O_{S,0}$-coefficients polynomial $q_2(z_\blt,\tau_\blt)$ of $z_\blt$ with multi-degree $\leq (\mu_1(n_1)-1,\dots,\mu_k(n_k)-1)$ which equals $f/q_1$ in $\scr O_{\Cbb^k\times S,(w_\blt,0)}/\mc I_{(w_\blt,0)}$. Then $f$ and $q:=q_1q_2$ are clearly equal in $\scr O_{\Cbb^k\times S,(w_\blt,0)}/\mc I_{(w_\blt,0)}$. They are also equal in $\scr O_{\Cbb^k\times S,(\wtd w_\blt,0)}/\mc I_{(\wtd w_\blt,0)}$ since both are $0$.
+\end{proof}
+
+We are done with the proof of Lemma \ref{lb62}.
+
+
+\subsection{Proof of Lemma \ref{lb63}}
+
+
+
+\begin{df}
+A polynomial $q(z,\tau_\blt)\in\Cbb\{\tau_\blt\}[z]$ is called a \textbf{Weierstrass polynomial of $z$} \index{00@Weierstrass polynomials} if it is monic and the degree equals the order in $z$. Namely,
+\begin{align}
+q(z,\tau_\blt)=a_0(\tau_\blt)+a_1(\tau_\blt)z+\cdots+a_{n-1}(\tau_\blt)z^{n-1}
++z^n
+\end{align}
+where $a_0,\dots,a_{n-1}\in\Cbb\{\tau_\blt\}$, and
+\begin{align*}
+a_0(0)=a_1(0)=\cdots=a_{n-1}(0)=0.
+\end{align*}
+\end{df}
+
+\index{00@WPT: Weierstrass preparation theorem}
+\begin{thm}[\textbf{Weierstrass preparation theorem (WPT)}]
+Choose $f(z,\tau_\blt)\in\Cbb\{z,\tau_\blt\}$ with finite order $n$ in $z$. Then there exist a unique invertible $u\in\Cbb\{z,\tau_\blt\}$ and a Weiertrass polynomial $q\in\Cbb\{\tau_\blt\}[z]$ of $z$ such that in $\Cbb\{z,\tau_\blt\}$ we have
+\begin{align*}
+f=uq.
+\end{align*}
+\end{thm}
+
+\begin{proof}
+Uniqueness: $f=uq$ can be written as $q=u^{-1}f$. Write $q(z,\tau_\blt)=z^n-r$ where the polynomial $r\in\Cbb\{\tau_\blt\}[z]$ of $z$ has degree $<n$. Then $z^n=u^{-1}f+r$ gives the unique Weierstrass division of $z^n$ by $f$. So $u,q$ are unique.  
+
+Existence: By WDT, we have $z^n=\alpha f+r$ where $\alpha\in\Cbb\{z,\tau_\blt\}$ and $r\in\Cbb\{\tau_\blt\}[z]$ has degree $<n$. Now, $z^n=\alpha(z,0)f(z,0)+r(z,0)$ gives the unique Weierstrass division of $z^n$ by $f(z,0)$. Since $f$ has order $n$ in $z$, we may write $f(z,0)=z^nh(z)$ where $h\in\Cbb\{z\}$ is invertible. So $z^n=h(z)^{-1}\cdot f(z,0)$ also gives a Weierstrass division. Therefore $r(z,0)=0$ and $\alpha(z,0)=h(z)^{-1}$. So $\alpha(0,0)\neq 0$, i.e. $\alpha$ is invertible in $\Cbb\{z,\tau_\blt\}$. We have $f=\alpha^{-1}q$ where $q=z^n-r$.
+\end{proof}
+
+
+
+We are ready to prove Lemma \ref{lb63}.
+
+\begin{proof}[\textbf{Proof of Lemma \ref{lb63}}]
+Recall the polynomials $p_i$ in Def. \ref{lb57}. By WPT, for each $w_i\in N(p_i)_0$,  in $\Cbb\{z_i,\tau_\blt\}$, $p_i(\tau_\blt,z_i)$ equals a unit times a Weierstrass polynomial $r_{i,w_i}(z_i,\tau_\blt)$ of $z_i-w_i$. So $r_{i,w_i}(z_i,\tau_\blt)\in\scr O_{S,0}[z_i]$ has degree $\mu_i(w_i)$ in $z_i$, and $r_{i,w_i}(z_i,0)=(z_i-w_i)^{\mu_i(w_i)}$. So in the ring $\scr O_{\Cbb^k\times S,(\wtd w_\blt,0)/\mc I_{(\wtd w_\blt,0)}}$, $r_{i,w_i}$ is invertible when $\wtd w_i\neq w_i$ (since $r_{i,w_i}(\wtd w_i,0)\neq 0$), and is $0$ when $\wtd w_i=w_i$. Thus
+\begin{align*}
+R_i:=\prod_{\begin{subarray}{c}\wtd w_i\in N(p_i)_0\\
+\wtd w_i\neq w_i\end{subarray}}r_{i,w_i}
+\end{align*}
+is invertible in $\scr O_{\Cbb^k\times S,(\wtd w_\blt,0)/\mc I_{(\wtd w_\blt,0)}}$ when $\wtd w_i=w_i$ and is zero when $\wtd w_i\neq w_i$. $R_i\in\scr O_{S,0}[z_i]$ has degree $n-\mu_i(w_i)$ in $z_i$. So $p_1=\prod_{i=1}^k R_i$ gives the desired polynomial.
+\end{proof}
+
+
+
+\subsection{Proof of Thm. \ref{lb60}, II}
+
+
+
+\begin{proof}[\textbf{Finishing the proof of Thm. \ref{lb60}}]
+We have already shown that the set \eqref{eq32} (which has $n_1\cdots n_k$ elements) generate $\pi_*\scr O_X$. In particular, $\pi_*\scr O_X$ is a finite-type $\scr O_S$-module. To show that \eqref{eq32} generates $\pi_*\scr O_S$ freely, by Prop. \ref{lb65}, it suffices to show that the fiber $(\pi_*\scr O_X)|y=(\pi_*\scr O_X)\otimes_{\scr O_S}(\scr O_S/\fk m_{S,y})$ has dimension $n_1\cdots n_k$ for each $y\in S$.
+
+By Base change Prop. \ref{lb59},
+\begin{align*}
+(\pi_*\scr O_X)|y=(\pi_*\scr O_X)\otimes_{\scr O_S}(\scr O_S/\fk m_{S,y})
+\end{align*}
+is canonically equivalent to
+\begin{align*}
+\pi_*(\scr O_X\otimes_{\scr O_S}(\scr O_S/\fk m_{S,y})),
+\end{align*}
+which equals $\pi_*\scr O_{X_y}=\scr O(X_y)$ (where $X_y=\pi^{-1}(y)$ is the inverse image of $y$ and is a closed subspace of $X$) by Rem. \ref{lb58}. By Prop. \ref{lb66}, $\pi:\pi^{-1}(y)\rightarrow\{y\}$ is a Weierstrass map. It is the restriction of $\Cbb^k\rightarrow \{y\}$ to the complex subspace of $\Cbb^k$ defined by the ideal sheaf generated by $p_i(z_i,y)=a_{i,0}(y)+a_{i,1}(y)z_i+\cdots+a_{i,n_i}(y)z_i^{n_i}$ for all $1\leq i\leq k$. Thus, it suffices to prove the following lemma.
+\end{proof}
+
+
+\begin{lm}
+Let $X=\Specan(\scr O_{\Cbb^k}/\mc I)$ where $\mc I$ is the ideal sheaf generated by $p_1,\dots,p_k$ where each $p_i(z_i)\in\Cbb[z_i]$ has degree $n_i$. Then $\scr O(X)$ has dimension $n_1\cdots n_k$.
+\end{lm}
+
+\begin{proof}
+We are still in the setting of Def. \ref{lb57}, but assuming that $S$ is a single point $0$. So $N(p_i)_0=N(p_i)$. By \eqref{eq33},
+\begin{align*}
+\scr O(X)\simeq\bigoplus_{\begin{subarray}{c}
+w_i\in N(p_i)\\
+1\leq i\leq k
+\end{subarray}} \scr O_{\Cbb^k,w_\blt}/\mc I_{w_\blt}.
+\end{align*}
+Clearly $\mc I_{w_\blt}$ is the ideal generated by $(z_i-w_i)^{\mu_i(w_i)}$ for all $1\leq i\leq \mu_i(w_i)$. So
+\begin{align*}
+\left\{\prod_{i=1}^k(z_i-w_i)^{\nu_i}:0\leq\nu_i\leq \mu_i(w_i)-1\right\}
+\end{align*}
+is a basis of $\scr O_{\Cbb^k,w_\blt}/\mc I_{w_\blt}$. This calculates the dimension of $\scr O(X)$.
+\end{proof}
+
+
+
+
+\section{Coherence of $\scr O_X$}
+
+The goal of this section is to prove that $\scr O_X$ is coherent for every complex space $X$. By Cor. \ref{lb67}, it suffices to prove that $\scr O_{\Cbb^n}$ is coherent. The role that Thm. \ref{lb60} plays in the proof of coherence of $\scr O_{\Cbb^n}$ is similar to the role that WDT plays in the proof that $\scr O_{\Cbb^n,0}$ is Noetherian.
+
+
+
+
+
+
+\begin{lm}\label{lb69}
+Assume that $X$ is an open subset of $\Cbb^n$. Assume that for each open connected $U\subset X$ and each non-zero $h\in\scr O(U)$, $\scr O_U/h\scr O_U$ is a coherent $\scr O_U/h\scr O_U$-module. Then $\scr O_X$ is a coherent $\scr O_X$-module. 
+\end{lm}
+
+More precisely, our assumption is that the structure sheaf of $\Specan(\scr O_U/h\scr O_U)$ is coherent.
+
+\begin{proof}
+Choose any open connected $U\subset X$ and $h_1,\dots,h_N\in\scr O(U)$. We want to show that $\Rel(h_1,\dots,h_N)$ is a finite-type $\scr O_U$-submodule of $\scr O_U^N$. We assume one of $h_1,\dots,h_N$ is non-zero, say $h_1\neq 0$; otherwise the proof is obvious. For each $f\in\scr O_U$, we let $[f]$ denotes its residue class in $\scr O_Y=(\scr O_U/h_1\scr O_U)\uph_{N(h_1\scr O_U)}$ where $Y=\Specan(\scr O_U/h_1\scr O_U)$.
+
+Choose any $x\in U$. By assumption, $\scr O_Y$ is coherent. So $\Rel([h_2],\dots,[h_N])$ is a finite type $\scr O_Y$-submodule of $\scr O_Y^{N-1}$. Thus, after shrinking $U$ to a smaller neighborhood of $x$, we may find $(s_2^i,\dots,s_N^i)\in\scr O(U)$ (for finitely many $i$) such that $([s_2^i],\dots,[s_N^i])$ generate $\Rel([h_2],\dots [h_N])$. This means:
+\begin{enumerate}[label=(\alph*)]
+\item For each $i$, $s_2^ih_2+\cdots+s_N^ih_N\in h_1\scr O_U$. (This can be checked at the level of stalks.)
+\item For each $y\in U$ and $(\sigma_2,\dots,\sigma_N)\in\scr O_{U,y}^{N-1}$ such that
+\begin{align*}
+\sigma_2h_2+\cdots+\sigma_N h_N\in h_1\scr O_{U,y},
+\end{align*}
+there exist $f_i\in\scr O_{U,y}$ for all $i$ and $g_2,\dots,g_N\in\scr O_{U,y}$ such that
+\begin{align}
+(\sigma_2,\dots,\sigma_N)=\sum_i f_i(s_2^i,\dots,s_N^i)+h_1(g_2,\dots,g_N).
+\end{align}
+\end{enumerate}
+
+By (a), we may shrink $U$ further so that for each $i$, we may find $s_1^i\in\scr O(U)$ such that $s_1^ih_1+s_2^ih_2+\cdots+s_N^ih_N=0$. We claim that
+\begin{align*}
+(s_1^i,\dots,s_N^i)
+\end{align*}
+for all $i$ and 
+\begin{align*}
+(-h_2,h_1,0,\dots,0),\quad(-h_3,0,h_1,\dots,0),\quad\dots,\quad(-h_N,0,0,\dots,h_1)
+\end{align*}
+(which are clearly in $\Rel(h_1,h_2,\dots,h_N)$) generate $\Rel(h_1,h_2,\dots,h_N)$. 
+
+Choose any $y\in U$ and $(\sigma_1,\dots,\sigma_N)\in\scr O_{U,y}^N$ in $\Rel(h_1,\dots,h_N)_y$, namely $\sigma_1h_1+\cdots+\sigma_Nh_N=0$. Then by (b), we can find $f_i,g_2,\dots,g_N\in\scr O_{U,y}$ such that the relation
+\begin{align}
+(\sigma_1,\sigma_2,\dots,\sigma_N)=&\sum_i f_i(s_1^i,s_2^i,\dots,s_N^i)\nonumber\\
+&+\sum_{j=2}^N g_j(-h_j,0,\dots,\underset{
+\begin{subarray}{c}
+\uparrow\\
+i\text{-th component}
+\end{subarray}}{h_1},\dots,0)\label{eq34}
+\end{align}
+holds for the last $N-1$ components. To show that it holds also for the first component, we write the RHS of \eqref{eq34} as $(\wtd\sigma_1,\sigma_2,\dots,\sigma_N)$, which is an element of $\Rel(h_1,\dots,h_N)_y$. So
+\begin{align*}
+\sigma_1h_1+\sigma_2h_2\cdots+\sigma_Nh_N=\wtd\sigma_1h_1+\sigma_2h_2\cdots+\sigma_Nh_N=0,
+\end{align*}
+which shows $(\sigma_1-\wtd\sigma_1)h_1=0$. Since $h_1$ is a non-zero element of $\scr O(U)$, by the Identit\"atssatz \ref{lb68}, the germ of $h_1$ at $\scr O_{U,y}$ is non-zero. So $\sigma_1=\wtd\sigma_1$ since $\scr O_{U,y}$ is an integral domain. This proves \eqref{eq34}.
+\end{proof}
+
+
+
+\index{00@Oka's coherence theorem}
+\begin{thm}[\textbf{Oka's coherence theorem}]\label{lb86}
+For every complex space $X$, $\scr O_X$ is a coherent $\scr O_X$-module.
+\end{thm}
+
+
+\begin{proof}
+We prove the coherence of $\scr O_{\Cbb^m}$ by induction on $m$. The case $m=0$ is obvious. Assume that $\scr O_{\Cbb^m}$ is coherent. Let us prove that $\scr O_{\Cbb^{m+1}}$ is coherent.
+
+By Lemma \ref{lb69}, it suffices to show that for each open connected $U\subset \Cbb^{m+1}$ and non-zero $h\in\scr O(U)$, if we write $Y=\Specan(\scr O_U/h\scr O_U)$ then $\scr O_Y$ is a coherent $\scr O_Y$-module. Let $\scr K$ be the kernel of a morphism $\scr O_Y^N\rightarrow\scr O_Y$. So we have an exact sequence of $\scr O_Y$-modules
+\begin{align*}
+0\rightarrow\scr K\rightarrow\scr O_Y^N\rightarrow\scr O_Y.
+\end{align*}
+We need to show that for each $x\in U$, say $x=0$, after shrinking $U$ to a neighborhood of $x$, $\scr K$ is $\scr O_U$-generated by finitely many elements of $\scr K(U)$.
+
+The germ of $h$ in $\scr O_{U,x}$ is non-zero by the Identit\"atssatz \ref{lb68}. Thus, by choosing a new set of coordinates $(z,t_1,\dots,t_m)$ of $U$ such that $x=0$, we may assume that the germ of $h$ at $0$, which is an element of $\Cbb\{z,t_1,\dots,t_m\}$, has finite order $n$ in $z$. (Cf. the proof of Thm. \ref{lb70}). Thus, by WPT, after shrinking $U$ to a smaller neighborhood of $0$ we may assume that $h\in\Cbb\{t_\blt\}[z]$ is a Weierstrass polynomial of degree=order $n$ in $z$.
+
+We assume $U=V\times W$ where $V\subset\Cbb$ and $W\subset\Cbb^m$ are neighborhoods of $0$. By Rem. \ref{lb16}, we may assume that $N(h)=\{(z,t_\blt)\in\Cbb\times W:h(z,t_\blt)=0\}$ is like Fig. \ref{fig1}: for each $(t_\blt)\in W$, the polynomial $h(z,t_\blt)$ of $z$ has $n$ zeros in $V$ counting multiplicities. Thus $N(h)\subset U$. Therefore
+\begin{align*}
+\scr O_U/h\scr O_U=\scr O_{\Cbb\times W}/h\scr O_{\Cbb\times W}.
+\end{align*}
+So the projection of $\pi:Y\rightarrow W$ (inherited from $\Cbb\times W\rightarrow W$) is a Weierstrass map. By the Fundamental Thm. \ref{lb60} of Weierstrass maps, $\pi_*\scr O_Y$ and hence $\pi_*(\scr O_Y^N)=(\pi_*\scr O_Y)^N$ are $\scr O_W$-free. So they are $\scr O_W$-coherent \emph{by our assumption that $\scr O_{\Cbb^m}$ is coherent}.  Thus, $\pi_*\scr K$ is $\scr O_W$-coherent by Cor. \ref{lb46} and the exactness of
+\begin{align*}
+0\rightarrow\pi_*\scr K\rightarrow \pi_*\scr O_Y^N\rightarrow\pi_*\scr O_Y.
+\end{align*}
+So $\scr K$ is $\scr O_Y$-finite-type by the following lemma.
+\end{proof}
+
+
+\begin{lm}\label{lb85}
+Let $\pi:X\rightarrow S$ be a finite morphism of $\Cbb$-ringed spaces, and let $\scr E$ be an $\scr O_X$-module. If $\pi_*\scr E$ is $\scr O_S$-finite-type, then $\scr E$ is $\scr O_X$-finite-type.
+\end{lm}
+
+
+\begin{proof}
+Choose any $t\in S$. By shrinking $S$ to a neighborhood of $t$ (and shrinking $X$ to $\pi^{-1}(S)$), we can find $\sigma_1,\dots,\sigma_k\in\scr E(X)=(\pi_*\scr E)(S)$ which $\scr O_S$-generate $\pi_*\scr E$. For each $x\in X$, by Prop. \ref{lb56}, $\scr E_x$ is a direct summand of the $\scr O_{S,\pi(x)}$-module $(\pi_*\scr E)_{\pi(x)}$. So $\scr E_x$ is $\scr O_{S,\pi(x)}$-generated (and hence $\scr O_{X,x}$-generated) by $\sigma_1,\dots,\sigma_k$. This proves that $\scr E$ is $\scr O_X$-generated by $\sigma_1,\dots,\sigma_k$.
+\end{proof}
+
+
+\begin{co}
+Let $X$ be a complex space. An ideal of $\scr O_X$ is finite-type if and only if it is coherent.
+\end{co}
+
+
+
+\section{Finite mapping theorem}
+
+The following two theorems are the main results of this section.
+
+
+\begin{thm}[\textbf{Finite mapping theorem}]\label{lb74}
+Let $\pi:X\rightarrow S$ be a finite holomorphic map of complex spaces, and let $\scr E$ be an $\scr O_X$-module. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\scr E$ is $\scr O_X$-coherent.
+\item $\pi_*\scr E$ is $\scr O_S$-coherent.
+\end{enumerate}
+\end{thm}
+
+
+\begin{thm}\label{lb75}
+Let $\pi:X\rightarrow S$ be a holomorphic map of complex spaces. Let $t\in S$, and assume that $x\in\pi^{-1}(t)$ is an isolated point of $\pi^{-1}(t)$. Then there are neighborhoods $U\subset X$ of $x$ and $W\subset S$ of $\pi(U)$ such that $\pi$ restricts to a finite holomorphic map $\pi:U\rightarrow W$.
+\end{thm}
+
+\begin{rem}
+It follows immediately from Thm. \ref{lb75} that if $\pi:X\rightarrow S$ is holomorphic and if $t\in S$ is such that $\pi^{-1}(t)$ is a finite set, then there are neighborhoods $U\subset X$ of $\pi^{-1}(t)$ and $W\subset S$ of $\pi(U)$ such that the restriction $\pi:U\rightarrow W$ is finite. 
+\end{rem}
+
+
+
+We begin with the following preliminary discussion.
+
+\begin{lm}\label{lb72}
+Given a finite holomorphic $\pi:X\rightarrow S$, if $\pi_*\scr O_X$ is $\scr O_S$-coherent, then for each coherent $\scr O_X$-module $\scr E$, $\pi_*\scr E$ is $\scr O_S$-coherent.
+\end{lm}
+
+\begin{proof}
+Choose any $t\in S$. By Lemma \ref{lb87}, we can shrink $S$ to a neighborhood of $t$ and shrink $X$ to $\pi^{-1}(S)$ so that $\scr E\simeq\Cok(\scr O_X^m\rightarrow\scr O_X^n)$ for a morphism $\scr O_X^m\rightarrow\scr O_X^n$.
+Thus, by the (right) exactness of $\pi_*$ (Cor. \ref{lb71}), $\pi_*\scr E\simeq\Cok(\pi_*\scr O_X^m\rightarrow\pi_*\scr O_X^n)$, which is coherent since $\pi_*\scr O_X$ is coherent.
+\end{proof}
+
+
+
+
+
+
+
+
+
+The crucial part of the proof is the following lemma.
+
+\begin{lm}\label{lb78}
+Choose open subspaces $R\subset\Cbb^k$ and $S\subset \Cbb^m$. Let $X=\Specan(\scr O_{R\times S}/\mc I)$ where $\mc I$ is a coherent ideal of $\scr O_{R\times S}$. Let $\pi:X\rightarrow S$ be the holomorphic map restricted from the projection $R\times S\rightarrow S$. Let $t\in S$ and assume that $x\in\pi^{-1}(t)$ is an isolated point of $\pi^{-1}(t)$. Then there are neighborhoods $U\subset R$ of $x$ and $W\subset S$ of $\pi(U)$ such that the restriction $\pi:(U\times W)\cap X\rightarrow W$ is finite, and that $\pi_*\scr O_{(U\times W)\cap X}$ is $\scr O_W$-coherent.
+\end{lm}
+
+
+We assume $x=0_R$ and $t=0_S$ for simplicity, and prove the lemma by induction on $k$. 
+
+\begin{proof}[Proof for the case $k=1$]
+Shrink $R$ to a neighborhood of $0_R$ such that $\pi^{-1}(0_S)=(R\times 0_S)\cap N(\mc I)$ is $\{0\}$. So we may shrink $R$ further so that we can find $f\in\mc I(R)$ such that $(R\times 0_S)\cap N(f)=\{0\}$. So $f$, as an element of $\Cbb\{z,t_1,\dots,t_m\}$, has finite order in $z$. So we may shrink $S$ further and replace $f$ by a Weierstrass polynomial of $z$, which we still denote by $f$.
+
+Let $\mc J=f\scr O_{R\times S}$ and $Y=\Specan(\scr O_{R\times S}/\mc J)$. Let $\wtd\pi:Y\rightarrow S$ be the restriction of $R\times S\rightarrow S$ to $Y$. As in the proof of Oka's coherence theorem, we may shrink $R$ and $S$ so that Fig. \ref{fig1} holds, and hence that $\wtd \pi$ is a Weierstrass map.  So $\pi=\wtd\pi\circ\iota_{X,Y}$ is finite since both $\wtd\pi$ and the inclusion map $\iota=\iota_{X,Y}$ are finite.
+
+By the Fundamental Thm. \ref{lb60} of Weierstrass maps (and Oka's coherence theorem), $\wtd\pi_*\scr O_Y$ is $\scr O_S$-coherent. So by Lemma \ref{lb72}, $\wtd\pi_*$ sends coherent $\scr O_Y$-modules to coherent $\scr O_S$-modules. But $\iota_*\scr O_X$ is $\scr O_Y$-coherent by Extension principle \ref{lb73}. So $\pi_*\scr O_X=\wtd\pi_*\iota_*\scr O_X$ is $\scr O_S$-coherent.
+\end{proof}
+
+
+
+\begin{proof}[Proof that case $k$ $\Rightarrow$ case $k+1$]
+Assume that case $k$ is true. Now assume $R$ is an open subset of $\Cbb^{k+1}$. By shrinking $R$ to a neighborhood of $0_R$ we assume $R=U\times V$ where $U\subset\Cbb$ and $V\subset\Cbb^k$ are open subsets containing $0_\Cbb$ and $0_{\Cbb^k}$ respectively, and that $\pi^{-1}(0_S)=(U\times V\times 0_S)\cap N(\mc I)$ equals $\{0\}$. 
+
+Let $\alpha:X\rightarrow V\times S$ be the restriction of the projection $U\times V\times S\rightarrow V\times S$. Then $\alpha^{-1}(0_{V\times S})=(U\times 0_V\times 0_S)\times N(\mc I)$ is $\{0\}$. So by the case $k=1$, we may shrink $U,V,S$ to smaller neighborhoods of $0_U,0_V,0_S$ respectively so that $\alpha$ is finite and $\alpha_*\scr O_X$ is $\scr O_{V\times S}$-coherent. So by Def. \ref{lb76} we can define the image space $\alpha(X)$  whose underlying topological space is $\Imag(\alpha)$, and by Prop. \ref{lb77}, $\alpha$ factors as the composition of a holomorphic $\wtd\alpha:X\rightarrow\alpha(X)$ and the inclusion $\alpha(X)\hookrightarrow V\times S$. We thus obtain a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=small,column sep=large]
+                                                             & V\times S \arrow[rd, "\pr_S"]                     &   \\
+X=\Specan(\scr O_{U\times V\times S}/\mc I) \arrow[ru, "\alpha", shift left] \arrow[rd, "\wtd\alpha"'] &                                                   & S \\
+                                                             & \alpha(X) \arrow[ru, "\wtd\pi"'] \arrow[uu, hook, "\iota"'] &  
+\end{tikzcd}
+\end{equation*}
+where $\wtd\pi$ is the restriction of $\pr_S$ to $\alpha(X)$. We have $\pi=\pr_S\circ\alpha=\wtd\pi\circ\wtd\alpha$.
+
+Clearly $\wtd\pi^{-1}(0_S)=\{0_{V\times S}\}$. Thus, by our assumption on case $k$, we may shrink $V,S$ so that $\wtd\pi$ is finite and (by Lemma \ref{lb72}) sends coherent $\scr O_{\alpha(X)}$-modules to coherent $\scr O_S$-modules. Note that we still have that $\alpha$ is finite and $\iota_*\wtd\alpha_*\scr O_X=\alpha_*\scr O_X$ is $\scr O_{V\times S}$-coherent after shrinking $V,S$ (but not shrinking $U$). So $\wtd\alpha$ is finite, and by Extension principle \ref{lb73}, $\wtd\alpha_*\scr O_X$ is $\scr O_{\alpha(X)}$-coherent. So $\pi=\wtd\pi\circ\wtd\alpha$ is finite, and $\pi_*\scr O_X=\wtd\pi_*\wtd\alpha_*\scr O_X$ is $\scr O_S$-coherent. We are done with the proof of Lemma \ref{lb78}.
+\end{proof}
+
+
+
+We are now ready to prove Thm. \ref{lb75} and more:
+
+\begin{lm}\label{lb82}
+Thm. \ref{lb75} is true. Moreover, in Thm. \ref{lb75}, $U$ and $W$ can be chosen so that (besides that $\pi$ is finite) $\pi_*\scr O_U$ is also $\scr O_W$-coherent.
+\end{lm}
+
+
+\begin{proof}
+It suffices to assume that $X$ is a model space, say a closed subspace of an open $R\subset\Cbb^k$. We first assume $S$ is an open subset of $\Cbb^m$. Define $\varphi:X\rightarrow R\times S$ so that the following triangular diagram commutes
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+                        & X\times S \arrow[rd,"\iota_{X,R}\times\id"] &                     &   \\
+X \arrow[ru,"\id\vee\pi"] \arrow[rr,"\varphi"'] &                      & R\times S \arrow[r,"\pr_S"'] & S
+\end{tikzcd}
+\end{equation*}
+By Prop. \ref{lb80} and Prop. \ref{lb32}, $\id\vee\pi$ and $\iota_{X,R}\vee\id$ are closed embeddings. So their composition $\varphi$ is a closed embedding (Cor. \ref{lb81}). By Prop. \ref{lb30},
+\begin{align*}
+\pr_S\circ\varphi=\pr_S\circ(\iota\times\id)\circ(\id\vee\pi)=\pr_S\circ (\iota\vee\pi)=\pi.
+\end{align*}
+Thus, by identifying $X$ with $\varphi(X)$, the assumptions of Lemma \ref{lb78} are satisfied. The conclusions of Lemma \ref{lb78} prove what we want to prove.
+
+In the general case, we may shrink $S$ (and shrink $X$ accordingly) so that $S$ is a closed subspace of an open $\Omega\subset\Cbb^m$. Let $\iota:S\rightarrow\Omega$ be the inclusion. Then by shrinking $X$ and $\Omega$ (and $S$ accordingly) to neighborhoods of any given points, $\iota\circ\pi:X\rightarrow\Omega$ is finite and $\iota_*\pi_*\scr O_X$ is $\scr O_\Omega$-coherent. Clearly $\pi$ is finite, and by Extension principle \ref{lb73}, $\pi_*\scr O_X$ is $\scr O_S$-coherent.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb74}, (1)$\Rightarrow$(2)}]
+Let us prove that $\pi_*\scr O_X$ is coherent. Choose any $t\in S$. By Lemma \ref{lb82}, for each $x\in\pi^{-1}(t)$ we can choose neighborhoods $U_x\ni x$ and $W_x\supset \pi(U_x)$ such that $\pi_*\scr O_{U_x}$ is $\scr O_{W_x}$-coherent, and that $U_x\cap U_{x'}=\emptyset$ if $x\neq x'$. So for each open $W\subset \bigcap_{x\in\pi^{-1}(t)}W_x$, we have that $\pi_*\scr O_{U_x\cap\pi^{-1}(W)}$ is $\scr O_W$-coherent. Therefore, if we set $U=\bigcup_{x\in\pi^{-1}(t)}U_x$, then
+\begin{align*}
+\pi_*\scr O_{U\cap\pi^{-1}(W)}\simeq\bigoplus_{x\in\pi^{-1}(t)}\pi_*\scr O_{U_x\cap\pi^{-1}(W)}
+\end{align*}
+is $\scr O_W$-coherent.
+
+Since $\pi:X\rightarrow S$ is finite, by Prop. \ref{lb54}, there is a neighborhood $W\ni t$ inside $\bigcup_{x\in\pi^{-1}(t)}W_x$ such that $\pi^{-1}(W)=U\cap\pi^{-1}(W)$. So $\pi_*\scr O_{\pi^{-1}(W)}=(\pi_*\scr O_X)|_W$ is $\scr O_W$-coherent.
+\end{proof}
+
+
+The proof of (2)$\Rightarrow$(1) is similar to that of Oka's coherence Thm. \ref{lb86}:
+\begin{proof}[\textbf{Proof of Thm. \ref{lb74}, (2)$\Rightarrow$(1)}]
+Assume that $\pi_*\scr E$ is coherent. Then $\scr E$ is $\scr O_X$-finite-type by Lemma \ref{lb85}. Let us show that the sheaves of relations of $\scr E$ are finite-type. By Prop. \ref{lb54} or Rem. \ref{lb55}, we have a neighborhood $W$ of $t$ such that
+\begin{align*}
+\pi^{-1}(W)=\coprod_{y\in\pi^{-1}(t)}U_y
+\end{align*}
+where each $U_y$ is a small enough neighborhood of $y$. Shrink $Y$ to $W$ and $X$ to $\pi^{-1}(W)$.  So we have an equivalence of $\scr O_W$-modules
+\begin{align*}
+\pi_*\scr E\simeq\bigoplus_{y\in\pi^{-1}(t)}\pi_*(\scr E|_{U_y}).
+\end{align*}
+
+
+Suppose $\alpha:\scr O_{U_x}^N\rightarrow\scr E_{U_x}$ is a morphism of $\scr O_{U_x}$-modules. Let $\scr K=\Ker(\alpha)$ so that we have an exact
+\begin{align*}
+0\rightarrow\scr K\rightarrow\scr O_{U_x}^N\rightarrow\scr E_{U_x}.
+\end{align*}
+We regard $\scr K,\scr O_{U_x},\scr E_{U_x}$ as $\scr O_X$-modules by identifying them with their direct images under $U_x\hookrightarrow X$. Clearly $\scr O_{U_x}$ is $\scr O_X$-coherent. So $\pi_*\scr O_{U_x}$ is $\scr O_S$-coherent. Also $\pi_*\scr E_{U_x}$ is $\scr O_S$ coherent since it is a direct summand of the coherent sheaf $\pi_*\scr E$ (cf. Cor. \ref{lb45}). Thus, the exact sequence of $\scr O_S$-modules
+\begin{align*}
+0\rightarrow \pi_*\scr K\rightarrow \pi_*\scr O_{U_x}^N\rightarrow\pi_*\scr E_{U_x},
+\end{align*}
+together with Cor. \ref{lb46} show that $\pi_*\scr K$ is $\scr O_S$-coherent. Therefore, by Lemma \ref{lb85}, $\scr K$ is $\scr O_X$-finite-type.
+\end{proof}
+
+
+
+We are done with the proofs of Thm. \ref{lb74} and \ref{lb75}. In the following, we give some applications.
+
+
+\begin{co}\label{lb84}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map complex spaces. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is a closed embedding.
+\item $\varphi$ is an immersion of complex spaces, and it is a closed and injective map of topological spaces.
+\end{enumerate}
+\end{co}
+
+\begin{proof}
+(1)$\Rightarrow$(2) is obvious. Assume (2). Then as $\varphi$ is finite, $\varphi_*\scr O_X$ is $\scr O_Y$-coherent. By \eqref{eq37}, the coherent ideal
+\begin{align*}
+\mc J=\sann_{\scr O_Y}(\varphi_*\scr O_X)
+\end{align*}
+satisfies the assumptions in Prop. \ref{lb14}. Thus (1) follows from Prop. \ref{lb14}.
+\end{proof}
+
+
+
+Rem. \ref{lb40} tells us that any holomorphic map factors as the composition of a closed embedding and the projection of a direct product. When the holomorphic map is finite, such decomposition might not be useful because, although closed embeddings are finite, projections are usually not. The following proposition gives a refinement of this decomposition. It says that any finite holomorphic map locally factors as the composition of a closed embedding and a Weierstrass map. This result will be used e.g. in the proof of Base change Thm. \ref{lb94}.
+
+
+\begin{pp}\label{lb89}
+Let $\pi:X\rightarrow S$ be a finite holomorphic map of complex spaces. Then each $t\in S$ is contained in a neighborhood $W\subset S$ such that the restriction $\pi:\pi^{-1}(W)\rightarrow W$ is equivalent to the restriction of a Weierstrass map. More precisely, there exist a Weierstrass map $\kappa:Y\rightarrow W$ and a closed embedding $\varphi:\pi^{-1}(W)\rightarrow Y$ such that the following diagram commutes.
+\begin{equation}
+\begin{tikzcd}[column sep=small]
+\pi^{-1}(W) \arrow[rd,"\pi"'] \arrow[rr,"\varphi"] &   & Y \arrow[ld,"\kappa"] \\
+                        & W &             
+\end{tikzcd}
+\end{equation} 
+\end{pp}
+
+
+
+\begin{proof}[Proof-Step 1]
+By Finite mapping theorem, $\pi_*\scr O_X$ is coherent. So we may shrink $S$ to a neighborhood of $t$ and shrink $X$ accordingly (i.e. replace $X$ by the new $\pi^{-1}(S)$) so that $\pi_*\scr O_X$ is $\scr O_S$-generated by $f_1,\dots,f_k\in\scr O(X)$. Consider $F=(f_1,\dots,f_k)$ as a holomorphic map $F:X\rightarrow\Cbb^k$ (Thm. \ref{lb7}). Then we have a commutative diagram
+\begin{equation}\label{eq38}
+\begin{tikzcd}[column sep=small]
+X\arrow[rd,"\pi"'] \arrow[rr,"F\vee\pi"] &   & \Cbb^k\times S \arrow[ld,"\pr_S"] \\
+                        & S &             
+\end{tikzcd}
+\end{equation}
+We want to show that $F\vee\pi$ is a closed embedding.
+
+Since $\pi$ is closed, one checks easily using \eqref{eq38} that $F\vee\pi$ is closed. To show that $F\vee\pi$ is injective, it suffices to show that $F$ is injective when restricted to each fiber $\pi^{-1}(\tau)$ (where $\tau\in S$). By Prop. \ref{lb56},
+\begin{align}
+(\pi_*\scr O_X)_\tau\simeq\bigoplus_{x\in\pi^{-1}(\tau)}\scr O_{X,x}\label{eq39}
+\end{align}
+which is $\scr O_{S,s}$-generated by $f_1,\dots,f_k$. If $x,x'\in\pi^{-1}(\tau)$ and $x\neq x'$, then an $\scr O_{S,\tau}$-linear combination of $f_1,\dots,f_k$ is $1$ in $\scr O_{X,x}$ and $0$ in $\scr O_{X,x'}$. So a $\Cbb$-linear combination of $f_1,\dots,f_k$ takes value $1$ at $x$ and $0$ at $x'$. So $F(x)\neq F(x')$. To show that $F\vee\pi$ is an immersion, note that by \eqref{eq39}, the $\Cbb$-algebra morphism
+\begin{align*}
+F^\#:\scr O_{\Cbb^k,F(x)}\rightarrow \scr O_{X,x}
+\end{align*}
+sends $z_1,\dots,z_k$ to (the germs at $x$ of) $f_1,\dots,f_k$ respectively. So the morphism
+\begin{align*}
+(F\vee\pi)^\#:\scr O_{\Cbb^k\times S,x\times \tau}=\scr O_{\Cbb^k,x}\wht\otimes\scr O_{S,\tau} \longrightarrow \scr O_{X,x}
+\end{align*}
+sends $z_i\otimes h$ (where $h\in\scr O_{S,\tau}$) to $h\cdot f_i$. Thus, this morphism is surjective since $\scr O_{X,x}$ is $\scr O_{S,\tau}$-generated by $f_1,\dots,f_k$. So $F\vee\pi$ is an immersion. By Cor. \ref{lb84}, $F\vee\pi$ is a closed embedding.
+\end{proof}
+
+
+\begin{proof}[Proof-Step 2]
+Since $(\pi_*\scr O_X)_t$ is a finitely generated module of the Noetherian ring $\scr O_{S,t}$, for each $i$, the $\scr O_{S,t}$-submodule of $(\pi_*\scr O_X)_t$ generated by all non-negative powers of $f_i$ is finitely generated. So $f_i$ is \textbf{integral over} $\scr O_{S,t}$. Namely, we may find $n_i\in\Nbb_+$ such that
+\begin{align}
+a_{i_0}+a_{i,1}f_i+\cdots+a_{i,n_i-1}f_i^{n_i-1}+f_i^{n_i}=0 \label{eq40}
+\end{align}
+where each $a_{i,j}\in\scr O_{S,t}$. 
+
+Shrink $S$ to a neighborhood of $t$ (and shrink $X$ accordingly to $\pi^{-1}(S)$) so that all $a_{i,j}$ are elements of $\scr O(S)$, and that \eqref{eq40} holds at the level of $\scr O(X)$. Then
+\begin{align*}
+p_i(z_i)=a_{i_0}+a_{i,1}z_i+\cdots+a_{i,n_i-1}z_i^{n_i-1}+z_i^{n_i}
+\end{align*}
+is a Weierstrass polynomial of $z_i$, viewed also as in $\scr O(X)$. Note that $F\vee\pi$ is still a closed embedding. We let $\mc I$ be the ideal of $\scr O_{\Cbb^k\times S}$ generated by $\mc I$, and let $Y=\Specan(\scr O_{\Cbb^k\times S}/\mc I)$. Then $\pr_S:\Cbb^k\times S\rightarrow S$ restricts to a Weierstrass map $\kappa:Y\rightarrow S$. By Thm. \ref{lb13}, $F\vee\pi:X\rightarrow\Cbb^k\times S$ restricts to $\varphi:X\rightarrow Y$, which is clearly a closed embedding. And we clearly have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=tiny]
+X \arrow[rd,"\pi"'] \arrow[rr,"\varphi"] &   & Y \arrow[ld,"\kappa"] \\
+                        & S &             
+\end{tikzcd}
+\end{equation*}
+This finishes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+\section{Base change theorem for finite holomorphic maps}
+
+
+
+In algebraic geometry, if $X,S,Y$ are affine schemes, then $\scr O(X\times_SY)\simeq\scr O(X)\otimes_{\scr O(S)}\scr O(Y)$. In complex analytic geometry, fiber products are in general related to completed tensor products. But in the case that one holomorphic map is finite, the usual (algebraic) tensor products are sufficient. The goal of this section is to explore the relationship between $X\times_SY$ and tensor products in the analytic setting and at the level of stalks. This goal will be achieved in Cor. \ref{lb97}. We shall prove this result as a consequence of the Base change theorem.
+
+
+
+\subsection{The setting}\label{lb93}
+
+Consider a Cartesian square of holomorphic maps of complex spaces.
+\begin{equation}\label{eq46}
+\begin{tikzcd}
+X \arrow[d, "\pi"'] & X\times_SY \arrow[l, "\pr_X"'] \arrow[d, "\pr_Y"] \\
+S                       & Y \arrow[l, "\psi"']                              
+\end{tikzcd}
+\end{equation}
+Let $\scr E$ be an $\scr O_X$-module. Then we have an $\scr O_Y$-module morphism
+\begin{align}
+\Psi:\psi^*\pi_*\scr E\longrightarrow \pr_{Y,*}\pr_X^*\scr E,
+\end{align}
+namely, a morphism
+\begin{align}\label{eq43}
+\Psi:(\pi_*\scr E)\otimes_{\scr O_S}\scr O_Y\longrightarrow \pr_{Y,*}(\scr E\otimes_{\scr O_X}\scr O_{X\times_SY})
+\end{align}
+such that for each open $V\subset Y$ and each open $W\subset S$ containing $\psi(V)$, $\Psi$ sends
+\begin{align}
+\sigma\otimes g\qquad\in \scr E(\pi^{-1}(W))\otimes_{\scr O_S(W)}\scr O_Y(V)
+\end{align}
+to
+\begin{align}
+\sigma\otimes \pr_Y^\#g\qquad\in\scr E(\pi^{-1}(W))\otimes_{\scr O_X(\pi^{-1}(W))}\scr O_{X\times_SY}(\pr_Y^{-1}(V)).
+\end{align}
+(Note that $\pr_X(\pr_Y^{-1}(V))\subset\pi^{-1}(W)$.) It is easy to see that $\Psi$ is functorial. We call $\Psi$ the \textbf{base change morphism}.
+
+
+\begin{rem}
+The stalk map of $\Psi$ at each $y\in Y$ is the $\scr O_{Y,y}$-module morphism determined by
+\begin{gather}\label{eq41}
+\begin{gathered}
+\Psi:(\pi_*\scr E)_{\psi(y)}\otimes_{\scr O_{S,\psi(y)}}\scr O_{Y,y}\longrightarrow \pr_{Y,*}(\scr E\otimes_{\scr O_X}\scr O_{X\times_SY})_y\\[0.8ex]
+\sigma\otimes 1\quad\mapsto\quad \sigma\otimes 1
+\end{gathered}
+\end{gather}
+\end{rem}
+
+
+
+
+
+
+\subsection{Base change theorem}
+
+
+
+
+The following theorem is the main result of this section.
+
+
+
+\begin{thm}[\textbf{Base change theorem}]\label{lb94}
+In the setting of Subsec. \ref{lb93}, assume that $\pi:X\rightarrow S$ is finite and $\scr E$ is a coherent $\scr O_X$-module. Then the base change morphism $\Psi$ (cf. \eqref{eq43}) is an isomorphism of $\scr O_Y$-modules.
+\end{thm}
+
+
+Note that this theorem is local by nature. Namely, in the proof we may shrink $S$ to a neighborhood of any given point, and replace $X$ by $\pi^{-1}(S)$ and $Y$ by $\psi^{-1}(S)$. 
+
+%Moreover, in that case we have $X\times_SY=X\times_\Omega Y$, and $\otimes_{\scr O_{S,\psi(y)}}$ equals $\otimes_{\scr O_{\Omega,\psi(y)}}$ since $\scr O_{\Omega,\psi(y)}\rightarrow\scr O_{S,\psi(y)}$ is surjective. Thus, in the proof of Base change theorem we may replace $S$ by $\Omega$. In other words, we may assume without loss of generality that $S$ itself is an open subset of $\Cbb^m$.
+
+In the special case that $\scr E=\scr O_X$, we have:
+
+\begin{co}\label{lb95}
+Let \eqref{eq46} be a Cartesian square of holomorphic maps of complex spaces. Assume that $\pi:X\rightarrow S$ is finite. Then we have an $\scr O_Y$-module isomorphism
+\begin{align}\label{eq44}
+\Psi:(\pi_*\scr O_X)\otimes_{\scr O_S}\scr O_Y\xlongrightarrow{\simeq} \pr_{Y,*}\scr O_{X\times_SY}
+\end{align}
+whose stalk map at each $y\in Y$ is an $\scr O_{Y,y}$-module morphism determined by
+\begin{gather}\label{eq45}
+\begin{gathered}
+\Psi:(\pi_*\scr O_X)_{\psi(y)}\otimes_{\scr O_{S,\psi(y)}}\scr O_{Y,y}\longrightarrow \pr_{Y,*}(\scr O_{X\times_SY})_y\\[0.8ex]
+f\otimes 1\quad\mapsto\quad \pr_X^\#f
+\end{gathered}
+\end{gather}
+\end{co}
+
+
+\begin{co}\label{lb97}
+Let \eqref{eq46} be a Cartesian square, and assume that $\pi:X\rightarrow S$ is finite. Then for each $x\in X$ and $y\in Y$ such that $\pi(x)$ equals $t=\psi(y)$, there is an isomorphism of $\scr O_{S,t}$-modules
+ \begin{gather}\label{eq48}
+\begin{gathered}
+\scr O_{X,x}\otimes_{\scr O_{S,t}}\scr O_{Y,y}\xlongrightarrow{\simeq} \scr O_{X\times_SY,x\times y}\\[0.8ex]
+f\otimes g\quad\mapsto\quad \pr_X^\#f\cdot \pr_Y^\#g
+\end{gathered}
+\end{gather}
+\end{co}
+
+\begin{proof}[First Proof]
+By Thm. \ref{lb75}, we may shrink $X$ and $S$ to neighborhoods of $x$ and $t$ respectively, and shrink $Y$ to $\psi^{-1}(S)$, so that $\pi^{-1}(t)=\{x\}$ (as sets) and $\pi$ is still finite. Then in view of Prop. \ref{lb56}, we see that \eqref{eq45} becomes exactly \eqref{eq48}.
+\end{proof}
+
+\begin{proof}[Second Proof]
+By Prop. \ref{lb56}, for each $y$ and $t=\psi(y)$, \eqref{eq45} is precisely the direct sum of \eqref{eq48} over all $x\in \pi^{-1}(t)=\pr_Y^{-1}(y)$. 
+\end{proof}
+
+The second proof shows that Cor. \ref{lb95} and Cor. \ref{lb97} are indeed equivalent.
+
+
+
+
+\subsection{Proof of Base change Thm. \ref{lb94}}
+
+
+\begin{lm}\label{lb96}
+Assume that Thm. \ref{lb94} holds when $\scr E=\scr O_X$. Then Thm. \ref{lb94} holds for any coherent $\scr O_X$-module $\scr E$.
+\end{lm}
+
+\begin{proof}
+If Thm. \ref{lb94} holds when $\scr E=\scr O_X$, then it holds when $\scr E$ is $\scr O_X$-free. Now in the general case, by Lemma \ref{lb87} we can assume that $S$ is small enough such that there is an exact sequence of $\scr O_X$-modules
+\begin{align*}
+\scr F\rightarrow\scr G\rightarrow\scr E\rightarrow0
+\end{align*}
+where $\scr F$ and $\scr G$ are $\scr O_X$-free. By the right exactness of $\psi^*$ and $\pi_*$ (Cor. \ref{lb71}), we have an exact sequence
+\begin{align*}
+\psi^*\pi_*\scr F\rightarrow\psi^*\pi_*\scr G\rightarrow\psi^*\pi_*\scr E\rightarrow0.
+\end{align*}
+Since the base change map $\Psi$ is functorial, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+\psi^*\pi_*\scr F \arrow[r] \arrow[d,"\Psi"',"\simeq"] & \psi^*\pi_*\scr G \arrow[r] \arrow[d,"\Psi"',"\simeq"] & \psi^*\pi_*\scr E \arrow[r] \arrow[d,"\Psi"'] & 0 \\
+\pr_{Y,*}\pr_X^*\scr F \arrow[r]                           & \pr_{Y,*}\pr_X^*\scr G \arrow[r]                           & \pr_{Y,*}\pr_X^*\scr E \arrow[r]                           & 0
+\end{tikzcd}
+\end{equation*}
+where the first two $\Psi$ are isomorphisms by assumption. So the third $\Psi$ is an isomorphism by Five Lemma.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{lm}
+Cor. \ref{lb95} holds if $\pi:X\rightarrow S$ is a Weierstrass map.
+\end{lm}
+
+
+\begin{proof}
+By Prop. \ref{lb66}, we may assume that $\pr_Y:X\times_SY\rightarrow Y$ is a Weierstrass map. More precisely, we may assume that \eqref{eq46} factors as
+\begin{equation*}
+\begin{tikzcd}[row sep=small]
+X \arrow[d, hook]        & X\times_SY \arrow[l] \arrow[d, hook] \\
+\Cbb^k\times S \arrow[d] & \Cbb^k\times Y \arrow[l] \arrow[d]   \\
+S                        & Y \arrow[l]               
+\end{tikzcd}
+\end{equation*}
+where the two small squares are Cartesian. By the Fundamental Thm. \ref{lb60} of Weierstrass maps, $\pi_*\scr O_X$ is $\scr O_S$-freely generated by \eqref{eq32}, and so $(\pi_*\scr O_X)\otimes_{\scr O_S}\scr O_Y$ is $\scr O_Y$-freely generated by  $\eqref{eq32}\otimes 1$. Also, $\pr_{Y,*}\scr O_{X\times_SY}$ is $\scr O_Y$-freely generated by \eqref{eq32}. Using e.g. \eqref{eq45} one checks that $\Psi$ sends the given free generators of $(\pi_*\scr O_X)\otimes_{\scr O_S}\scr O_Y$ bijectively to those of $\pr_{Y,*}\scr O_{X\times_SY}$. So $\Psi$ must be an isomorphism.
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb94}}]
+By Lemma \ref{lb96}, it suffices to prove Cor. \ref{lb95}. By Prop. \ref{lb89}, we may assume $S$ is so small that $\pi:X\rightarrow S$ factors as $X\hookrightarrow Z\xrightarrow{\wtd\pi}S$ where $\wtd\pi$ is equivalent to a Weierstrass map. Thus, \eqref{eq46} factors as the combination of two Cartesian squares
+\begin{equation}\label{eq47}
+\begin{tikzcd}[row sep=scriptsize]
+X \arrow[d, hook, "\iota"']        & X\times_SY \arrow[l] \arrow[d, hook, "\iota\times\id"] \\
+Z \arrow[d, "\wtd\pi"'] & Z\times_S Y \arrow[l] \arrow[d,"\wtd\pr_Y"]   \\
+S                        & Y \arrow[l,"\psi"']               
+\end{tikzcd}
+\end{equation}
+where $\pr_Y:X\times_SY\rightarrow Y$ is $\wtd\pr_Y\circ(\iota\times\id)$.
+
+We have proved that Cor. \ref{lb95} holds (and hence Thm. \ref{lb94} holds, cf. Lemma \ref{lb96}) for the lower Cartesian square. Apply Thm. \ref{lb94} to the lower square and the coherent $\scr O_Z$-module $\iota_*\scr O_X$: The domain of the isomorphism $\Psi$ is
+\begin{align*}
+(\wtd\pi_*\iota_*\scr O_X)\otimes_{\scr O_S}\scr O_Y=\pi_*\scr O_X\otimes_{\scr O_S}\scr O_Y
+\end{align*}
+and the codomain is
+\begin{align*}
+\wtd\pr_{Y,*}(\iota_*\scr O_X\otimes_{\scr O_Z}\scr O_{X\times_SY})\simeq \wtd\pr_{Y,*}\big((\iota\times\id)_*\scr O_{X\times_SY}\big)=\pr_{Y,*}\scr O_{X\times_SY}.
+\end{align*}
+By e.g. checking stalkwisely with the help of \eqref{eq41} and \eqref{eq45}, it is easy to see that this morphism (i.e. the base change morphism for the lower square of \eqref{eq47} and the $\scr O_Z$-module $\iota_*\scr O_X$) agrees with the morphism $\Psi$ in Cor. \ref{lb95}. So the latter must be an isomorphism.
+\end{proof}
+
+
+
+\section{Analytic spectra $\Specan$}
+
+We fix a complex space $S$.
+
+\subsection{Main results}
+
+
+
+\begin{df}
+A \textbf{morphism} from a finite holomorphic map $\pi:X\rightarrow S$ to finite holomorphic $\kappa:Y\rightarrow S$ is a holomorphic map $\varphi:X\rightarrow Y$ such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[column sep=tiny]
+X \arrow[rd,"\pi"'] \arrow[rr,"\varphi"] &   & Y \arrow[ld,"\kappa"] \\
+                        & S &             
+\end{tikzcd}
+\end{equation*}
+The set of morphisms is denoted by $\Mor_S(X,Y)$. This defines the \textbf{category of finite holomorphic maps to $S$}.
+\end{df}
+
+
+
+\begin{df}
+An \textbf{$\scr O_S$-algebra} is an $S$-sheaf of $\Cbb$-algebras $\scr A$ together with a morphism of sheaves of $\Cbb$-algebras $\scr O_S\rightarrow \scr A$. Since $\scr A$ is an $\scr A$-module, it becomes an $\scr O_S$-module. We say that $\scr A$ is a \textbf{coherent $\scr O_S$-algebra} if it is an $\scr O_S$-algebra which is coherent as an $\scr O_S$-module. 
+
+A \textbf{morphism} of $\scr O_S$-algebras from $\scr B$ to $\scr A$ is by definition a morphism $\Phi:\scr B\rightarrow\scr A$ of sheaves of $\Cbb$-algebras such that the following diagram commutes.
+\begin{equation*}
+\begin{tikzcd}[column sep=tiny]
+\scr A & & \scr B \arrow[ll,"\Phi"']\\
+& \scr O_S \arrow[ul] \arrow[ru] &
+\end{tikzcd}
+\end{equation*}
+In particular, it is a morphism of $\scr O_S$-modules. The set of morphisms is denoted by $\Mor_{\scr O_S}(\scr B,\scr A)$. This defines the \textbf{category of coherent $\scr O_S$-algebras}.
+\end{df}
+
+We have avoided using the symbol $\Hom_{\scr O_S}(\scr B,\scr A)$, which is the set of $\scr O_S$-module morphisms but not $\scr O_S$-algebra morphisms.
+
+
+\begin{thm}
+The contravariant functor $\fk F$ from the category of finite holomorphic maps to $S$ to the category of coherent $\scr O_S$-algebras is an antiequivalence of categories. The functor $\fk F$ sends each finite holomorphic map $\pi:X\rightarrow S$ to the coherent $\scr O_S$-algebra $\pi_*\scr O_X$. And
+\begin{gather*}
+\fk F:\Mor_S(X,Y)\rightarrow\Mor_{\scr O_S}(\kappa_*\scr O_Y,\pi_*\scr O_X),\qquad \varphi\mapsto\varphi^\#.
+\end{gather*}
+\end{thm}
+
+
+Thus, for each coherent $\scr O_S$-algebra $\scr A$ there is,  \emph{up to isomorphisms}, a unique finite holomorphic map $\pi:X\rightarrow S$ such that $\pi_*\scr O_X=\scr A$. We write this map as $\Specan(\scr A)\rightarrow S$ and call this map (or simply call the complex space $\Specan(\scr A)$) the \textbf{analytic spectrum} of $\scr A$. \index{00@Analytic spectra $\Specan$} 
+
+Note that when $\scr A=\scr O_S/\mc I$ where $\mc I$ is a coherent ideal of $\scr O_S$, as before, $\Specan(\scr A)$ denotes the unique analytic spectrum as a closed subspace of $S$. For a general $\scr A$,  $\Specan(\scr A)$ is not unique.
+
+
+
+
+\begin{co}
+Let $\psi:Z\rightarrow S$ be a holomorphic map of complex spaces. Then
+\begin{align*}
+\Specan(\scr A\otimes_{\scr O_S}\scr O_Z)\simeq\Specan(\scr A)\times_SZ
+\end{align*}
+\end{co}
+\begin{proof}
+This is just a rephrasing of Cor. \ref{lb95}.
+\end{proof}
+
+
+
+
+
+
+
 
 
 
