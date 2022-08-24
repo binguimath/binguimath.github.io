@@ -2,7 +2,7 @@
 \documentclass[12pt,b5paper,notitlepage]{report}
 \usepackage[b5paper, margin={0.5in,0.75in}]{geometry}
 %\usepackage{fullpage}
-\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \wtidecheck
 %\usepackage{ulem} %wave underline
 \usepackage[dvipsnames]{xcolor}
 \usepackage{palatino}  %template
@@ -43,7 +43,11 @@
 
 
 
-
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
 
 \usepackage{tikz-cd}
 \usepackage[nottoc]{tocbibind}   % Add  reference to ToC
@@ -353,13 +357,13 @@
 
 	
 	\maketitle
-\thispagestyle{empty}	
+%\thispagestyle{empty}	 %remove page number of this page
 
 
-
+Contents hyperlinks: \hyperlink{page.2}{Page 2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{-0.5cm}
+%\vspace{-0.5cm}
 \makeatletter
 \newcommand*{\toccontents}{\@starttoc{toc}}
 \makeatother
@@ -736,7 +740,7 @@ The stalk at $x\in N(\mc I)$ of the structure sheaf is a local $\Cbb$-algebra
 
 
 \begin{df}
-A $\Cbb$-ringed Hausdorff space $X$ is called a \textbf{complex space} if each point $x\in X$ is contained in a neighborhood $V$ such that the $\Cbb$-ringed space $V$ (whose structure sheaf is defined by $\scr O_V:=\scr O_X|_V$) is isomorphic  to a model space. Sections of $\scr O_X(X)$ are called \textbf{holomorphic functions on $X$}. $\scr O_{X,x}$ is called an \textbf{analytic local $\Cbb$-algebra}. \index{00@Analytic local $\Cbb$-algebra $\scr O_{X,x}$} Equivalently, an analytic local $\Cbb$-algebra is $\Cbb\{z_1,\dots,z_n\}/I$ for some finitely generated ideal $I$.\footnote{As we shall see, $\Cbb\{z_1,\dots,z_n\}$ is Noetherian. So the condition that $I$ is finitely generated is redundant.} 
+A $\Cbb$-ringed Hausdorff space $X$ is called a \textbf{complex space} \index{00@Complex spaces} if each point $x\in X$ is contained in a neighborhood $V$ such that the $\Cbb$-ringed space $V$ (whose structure sheaf is defined by $\scr O_V:=\scr O_X|_V$) is isomorphic  to a model space. Sections of $\scr O_X(X)$ are called \textbf{holomorphic functions on $X$}. $\scr O_{X,x}$ is called an \textbf{analytic local $\Cbb$-algebra}. \index{00@Analytic local $\Cbb$-algebra $\scr O_{X,x}$} Equivalently, an analytic local $\Cbb$-algebra is $\Cbb\{z_1,\dots,z_n\}/I$ for some finitely generated ideal $I$.\footnote{As we shall see, $\Cbb\{z_1,\dots,z_n\}$ is Noetherian. So the condition that $I$ is finitely generated is redundant.} 
 
 If $X,Y$ are complex spaces, a morphism $\varphi:X\rightarrow Y$ of $\Cbb$-ringed spaces is called a \textbf{holomorphic map}. \index{00@Holomorphic maps} If $\varphi$ has an inverse morphism $Y\rightarrow X$, we say that $\varphi$ is a \textbf{biholomorphism}. \index{00@Biholomorphism} Clearly, a holomorphic map $\varphi$ is a biholomorphism iff it is a homeomorphism of topological spaces and induces isomorphisms $\varphi^\#:\scr O_{Y,\varphi(x)}\xrightarrow{\simeq}\scr O_{X,x}$ for each $x\in X$.  \hfill\qedsymbol
 \end{df}
@@ -854,7 +858,7 @@ We close this section by discussing a useful relationship between local-freeness
 
 
 \begin{pp}\label{lb65}
-Let $X$ be a \textbf{reduced} complex space, and let $\scr E$ be a finite-type $\scr O_X$-module. Then $\scr E$ is locally free if and only if the rank function $\Rbf:x\in X\mapsto \dim(\scr E|x)$ is locally constant. Moreover, if $\Rbf$ has constant value $n$, and if $s_1,\dots,s_n\in\scr E(X)$ generate $\scr E$, then $s_1,\dots,s_n$ generate $\scr E$ freely.
+Let $X$ be a {\color{red}reduced} complex space, and let $\scr E$ be a finite-type $\scr O_X$-module. Then $\scr E$ is locally free if and only if the rank function $\Rbf:x\in X\mapsto \dim(\scr E|x)$ is locally constant. Moreover, if $\Rbf$ has constant value $n$, and if $s_1,\dots,s_n\in\scr E(X)$ generate $\scr E$, then $s_1,\dots,s_n$ generate $\scr E$ freely.
 \end{pp}
 
 
@@ -1061,7 +1065,36 @@ Recall that the \textbf{degree} of a polynomial $p(w_\blt,z)\in \Cbb\{w_\blt\}[z
 Let $f(w_\blt,z)$ have order $k<\infty$ in $z$, defined on a neighborhood of $0$. Then inside this neighborhood we can find a smaller one  $U\times V\subset\Cbb^m\times\Cbb$ such that $f(0,z)$ has one zero in $V^\cl$ (namely $z=0$) with multiplicity $k$. By Rouch\'e's theorem, we may shrink $U$ such that for each fixed $w_\blt\in U$, the holomorphic function $f(w_\blt,z)$ of $z$ has $k$ zeros in $V$ counting multiplicities; see Fig. \ref{fig1}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=2.5cm]{fig1}
+
+
+
+\scalebox{1}{\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Flowchart: Process [id:dp43048504471762983] 
+\draw   (257.42,59.7) -- (281.68,59.7) -- (281.68,129.5) -- (257.42,129.5) -- cycle ;
+%Curve Lines [id:da4002736123725257] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (258.08,88.79) .. controls (269.74,86.33) and (267.57,105.94) .. (280.93,105.44) ;
+%Curve Lines [id:da507595058105385] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (258.08,104.8) .. controls (274.5,98.34) and (264.35,90.14) .. (281.53,88.15) ;
+%Curve Lines [id:da1716431524122486] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (258.08,96.48) .. controls (268.6,94.88) and (268.54,98.51) .. (282.28,95.03) ;
+%Straight Lines [id:da29626072607817044] 
+\draw    (250.16,79.48) -- (250.35,56.37) ;
+\draw [shift={(250.37,54.37)}, rotate = 90.48] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da21464363781912077] 
+\draw    (276.89,137.07) -- (294.19,136.98) ;
+\draw [shift={(296.19,136.97)}, rotate = 179.7] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+
+% Text Node
+\draw (237.62,57.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle z$};
+% Text Node
+\draw (288.84,123.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle w_\blt$};
+
+
+\end{tikzpicture}}
 	\caption{}
 	\label{fig1}
 \end{figure}
@@ -1243,7 +1276,7 @@ We say that $X$ is \textbf{smooth at $x$} (equivalently, $x$ is a \textbf{smooth
 \section{Immersions and closed embeddings; generating $\scr O_{X,x}$ analytically}
 
 \begin{df}
-A holomorphic map $\varphi:X\rightarrow Y$ is called an \textbf{immersion at $x\in X$}  if $\varphi^\#:\scr O_{Y,\varphi(y)}\rightarrow\scr O_{X,x}$ is surjective. $\varphi$ is called an \textbf{immersion} if it is an immersion at every $x\in X$. $\varphi$ is called a \textbf{closed (resp. open) embedding} if there is a commutative diagram
+A holomorphic map $\varphi:X\rightarrow Y$ is called an \textbf{immersion at $x\in X$} \index{00@Immersions}  if $\varphi^\#:\scr O_{Y,\varphi(y)}\rightarrow\scr O_{X,x}$ is surjective. $\varphi$ is called an \textbf{immersion} if it is an immersion at every $x\in X$. $\varphi$ is called a \textbf{closed (resp. open) embedding} if there is a commutative diagram \index{00@Closed embeddings} \index{00@Open embeddings}
 \begin{equation}
 \begin{tikzcd}
 X \arrow[rd,"\simeq"] \arrow[rr,"\varphi"] &              & Y \\
@@ -1429,7 +1462,7 @@ Prop. \ref{lb24}-(2) is the stalk version of a geometric construction called equ
 
 \section{Equalizers of $X\rightrightarrows Y$}
 
-\begin{df}
+\begin{df}\label{lb139}
 Let $\varphi,\psi:X\rightarrow Y$ be holomorphic maps of complex spaces. A \index{00@Equalizers} \textbf{kernel} or an \textbf{equalizer of the double arrow} $\begin{tikzcd}
 X \arrow[r,shift left, "\varphi"] \arrow[r,shift right,"\psi"'] & Y
 \end{tikzcd}$
@@ -2186,6 +2219,19 @@ Write $E$ as $\Specan(\scr O_X/\mc I)$. Then by Prop. \ref{lb39}, if $\varphi(x)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Finite holomorphic maps and coherence}
 
 \section{Coherent sheaves}
@@ -2413,7 +2459,7 @@ is injective if $\scr E$ is finite-type, and is bijective if $\scr E$ is coheren
 
 
 
-\begin{co}
+\begin{co}\label{lb138}
 Let $\scr F$ be an $\scr O_X$-module.
 \begin{enumerate}
 \item The contravariant functor  $\shom_{\scr O_X}(-,\scr F)$ on the category of coherent $\scr O_X$-modules is left exact, where the contravariant functor sends each $\varphi\in\Hom_{\scr O_X}(\scr E_1,\scr E_2)$ to $\shom_{\scr O_X}(\scr E_2,\scr F)\rightarrow\shom_{\scr O_X}(\scr E_1,\scr F),\psi\mapsto \psi\circ\varphi$.
@@ -2494,6 +2540,9 @@ $\Ann(\scr E_x)=\scr O_{X,x}$ iff $1\in\Ann(\scr E_x)$ iff $1$ annihilates $\scr
 \begin{rem}
 We know that the support  (as a set) of a finite-type $\scr O_X$-module is a closed subset of $X$ (Cor. \ref{lb43}). Now we know that if $\scr E,\scr O_X$ are coherent, then $\Supp(\scr E)$ as a set is an \textbf{analytic subset} \index{00@Analytic subsets} of $X$, which means that it is $N(\mc I)$ for a finite-type ideal $\mc I$.
 \end{rem}
+
+Our definition of analytic subsets seems stronger than the usual one, which says that a subset $A\subset X$ is analytic if each $x\in X$ is contained in a neighborhood $U$ such that $A\cap U$ is the zero set of finitely many elements of $\scr O(U)$. These two definitions are indeed equivalent, which follows from the coherence of the radicals of coherent ideals. See Cor. \ref{lb136}.
+
 
 \begin{cv}
 If $\scr E,\scr O_X$ are coherent, we understand $\Supp(\scr E)$ as a complex subspace of $X$. Otherwise we understand it as only a subset of $X$. 
@@ -3191,6 +3240,20 @@ It follows immediately from Thm. \ref{lb75} that if $\pi:X\rightarrow S$ is holo
 \end{rem}
 
 
+
+
+
+\begin{co}\label{lb144}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map and $A$ an analytic subset of $X$. Then the set $\varphi(A)$ is an analytic subset of $Y$.
+\end{co}
+
+\begin{proof}
+$A$ is the underlying set of a closed subspace of $X$, which we also denote by $A$. Then the inclusion $\iota:A\hookrightarrow X$ is finite, and hence $\varphi\circ\iota:A\rightarrow Y$ is finite. So by Thm. \ref{lb74} and Def. \ref{lb76}, $\varphi(A)=\varphi\circ\iota(A)$ can be viewed as a closed subspace of $Y$ whose underlying set is the image of $\varphi\circ\iota$.
+\end{proof}
+
+
+
+
 \subsection{Proof of the main results}
 
 
@@ -3745,7 +3808,7 @@ If $X$ is a $\Cbb$-ringed space and $\mc I$ is an ideal of $\scr O_X$, then the 
 So $\mc I$ is determined by $(\sqrt{\mc I})_x=\sqrt{\mc I_x}$ for all $x\in X$.
 \end{df}
 
-Then there is an equivalent way of stating Nullstellensatz:
+Then there is an equivalent way of stating Nullstellensatz: \index{00@Nullstellensatz}
 
 
 \begin{thm}[\textbf{Nullstellensatz}]
@@ -3776,6 +3839,10 @@ There are some other equivalent statements of \textbf{Nullstellensatz}:
 
 
 
+
+
+
+
 \subsection{Proof of Nullstellensatz}
 
 We start by proving a special case.
@@ -3799,7 +3866,50 @@ h(z,w,t_\blt)=\sum_{n=0}^\infty a_n(w,t_\blt)z^n\label{eq52}
 where $a_0\neq 0$. Then as in the proof of Thm. \ref{lb70}, we may choose a new set of coordinates $(w,t_\blt)$ for $\Cbb^m$ such that $a_0(w,t_\blt)=h(0,w,t_\blt)$ has finite order in $w$, i.e. $a(w,0)$ is non-zero. So $0_{\Cbb^{m+1}}$ is an isolated point of the fiber at $0_{\Cbb^m}$ of the holomorphic map $\pi:Y\rightarrow \Cbb^m$ defined by the restriction of $\Cbb^{m+1}\rightarrow\Cbb^m,(z,w,t_\blt)\mapsto (z,t_\blt)$. We shrink $X$ to a neighborhood of $0$ so that $0_{\Cbb^{m+1}}$ is the only point of that fiber, and that (by Thm. \ref{lb75}) $\pi:Y\rightarrow V$ is finite where  $V$ is a neighborhood of $0\in\Cbb^m$. See Fig. \ref{fig2}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=2.5cm]{fig2.png}
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,310); %set diagram left start at 0, and has height of 310
+
+%Straight Lines [id:da8716581873145328] 
+\draw    (264,126.5) -- (234.24,154.98) ;
+\draw [shift={(232.79,156.36)}, rotate = 316.27] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da25538335623560116] 
+\draw    (264,126.5) -- (263.02,82.45) ;
+\draw [shift={(262.97,80.45)}, rotate = 88.72] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da15856873623352485] 
+\draw    (264,126.5) -- (321.32,126.8) ;
+\draw [shift={(323.32,126.81)}, rotate = 180.3] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Curve Lines [id:da31658562114637734] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (237.03,115.3) .. controls (277.26,115.81) and (252.2,137.8) .. (290.2,135.13) ;
+%Curve Lines [id:da7192611023303519] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (233.32,128.34) .. controls (258.74,147.7) and (267.21,107.96) .. (295.79,116.11) ;
+%Shape: Parallelogram [id:dp48485531317354624] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][dash pattern={on 4.5pt off 4.5pt}] (240.24,105.92) -- (324.87,105.92) -- (293.06,141.13) -- (208.44,141.13) -- cycle ;
+%Straight Lines [id:da4807100139421694] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (296.42,153.81) -- (305.24,146.55) -- (313.94,139.29) ;
+\draw [shift={(315.48,138.01)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9540546352598236] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (297.48,162.47) -- (306.29,155.21) -- (315,147.95) ;
+\draw [shift={(316.54,146.67)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da49858931103629067] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (309.66,161.96) -- (318.47,154.7) -- (327.18,147.44) ;
+\draw [shift={(328.72,146.16)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (252.28,72.04) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle z$};
+% Text Node
+\draw (221.02,157.09) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle x$};
+% Text Node
+\draw (323.76,114.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle y$};
+% Text Node
+\draw (283.85,159.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle \pi $};
+
+
+\end{tikzpicture}
 	\caption{}
 	\label{fig2}
 \end{figure}
@@ -3820,6 +3930,60 @@ Let $X$ be a complex space, and assume that $f\in\scr O(X)$ vanishes at every $x
 
 As a set, $\fk G(f)$ is contained in $0\times U$. Let $z\in\scr O(\Cbb)$ be the standard coordinate of $\Cbb$. Then by Lemma \ref{lb100}, $z\otimes 1\in\scr O_{\Cbb\times U,0\times 0}$ is nilpotent in $\scr O_{\fk G(f),0\times 0}$. But the restriction $f\vee\id:X\rightarrow\fk G(f)$ is a biholomorphism, and it pulls $z\otimes 1=\pr_\Cbb^\# z$ (where $\pr_\Cbb:\Cbb\times U\rightarrow\Cbb$ is the projection) back to $z\circ \pr_\Cbb\circ(f\vee\id)=z\circ f=f$. So $f$ is nilpotent in $\scr O_{X,0}$.
 \end{proof}
+
+
+
+
+\begin{subappendices}
+\section{Kernels and cokernels in categories of modules}
+
+In a category $\mc C$, if $\varphi,\psi:X\rightarrow Y$ are two morphisms of objects, then the equalizers of double arrow
+$\begin{tikzcd}
+X \arrow[r,shift left, "\varphi"] \arrow[r,shift right,"\psi"'] & Y
+\end{tikzcd}$
+can be defined in the same way as in Def. \ref{lb139}. Likewise, a \textbf{coequalizer} \index{00@Coequalizers} of this double arrow is an object $C\in\mc C$ and a morphism $\pi:Y\rightarrow C$ such that $\pi\circ\varphi=\pi\circ\psi$, and that for every object $T$ and morphism $\nu:Y\rightarrow Y$ there is a unique morphism $\wtd\nu:C\rightarrow T$ such that $\nu=\wtd\nu\circ\pi$.
+\begin{equation}
+\begin{tikzcd}
+X \arrow[r, "\varphi", shift left] \arrow[r, "\psi"', shift right] & Y \arrow[r, "\pi"] \arrow[rd, "\nu"'] & C \arrow[d, "\wtd\nu", dashed] \\
+                                                                   &                                       & T                             
+\end{tikzcd}
+\end{equation}
+
+
+Thus, if a functor (resp. contravariant functor) $\fk F:\mc C\rightarrow\mc D$ is an equivalence (resp. antiequivalence) of categories (cf. Thm. \ref{lb19} and \ref{lb49}), then $\fk F$ sends the (co)equalizer of a double arrow $\begin{tikzcd}
+X \arrow[r,shift left, "\varphi"] \arrow[r,shift right,"\psi"'] & Y
+\end{tikzcd}$
+(on the $\mc C$ side) to a (co)equalizer of 
+$\begin{tikzcd}
+\fk F(X) \arrow[r,shift left, "\fk F(\varphi)"] \arrow[r,shift right,"\fk F(\psi)"'] & \fk F(Y)
+\end{tikzcd}$
+(resp. sends equalizers to coequalizers of $\begin{tikzcd}
+\fk F(Y) \arrow[r,shift left, "\fk F(\varphi)"] \arrow[r,shift right,"\fk F(\psi)"'] & \fk F(X)
+\end{tikzcd}$ and coequalizers to equalizers).
+
+
+The category of modules of a commutative rings and the one of (coherent) $\scr O_X$-modules (where $X$ is a $\Cbb$-ringed space) are both additive categories, which means roughly that one can take direct sums,  that the morphism spaces are abelian groups, and that there is a zero object. A functor between additive functions, called an \textbf{additive functor}, is assumed to preserve the abelian group structures of the morphism spaces. 
+
+Moreover, the above categories are \textbf{abelian categories}. This means that the kernel of a morphism $\varphi:\mc M\rightarrow\mc N$ (which is an object together with the ``inclusion" morphism) is equivalent to the equalizer of $\begin{tikzcd}
+\mc M \arrow[r,shift left, "\varphi"] \arrow[r,shift right,"0"'] & \mc N
+\end{tikzcd}$
+and that the cokernel is equivalent to the coequalizer of this double arrow. From this, it is clear that if a functor (resp. contravariant functor) $\fk F:\mc C\rightarrow\mc D$ is an equivalence (resp. antiequivalence) of abelian categories, then {\color{red}\emph{$\fk F$ must be an exact functor}}, because $\fk F$ commutes with kernels and cokernels (resp. sends kernels to cokernels and cokernels to kernels).
+
+
+
+We refer the readers to \cite[Chapter 1]{Vak17} for a more detailed introduction to abelian categories.
+
+
+
+
+
+
+\end{subappendices}
+
+
+
+
+
 
 
 
@@ -3848,14 +4012,14 @@ In view of Nullstellensatz, the first equality says that ``the zero sets defined
 The two equalities in \eqref{eq53} are clearly $\subset$. If $f\in\cap_i\sqrt I_i$ then $f^{n_i}\in I_i$ for some $n_i\in\Zbb_+$. Then $f^{n_1+\cdots+n_k}\in I_1\cdots I_k$, and hence $f\in\sqrt{I_1\cdots I_k}$. This proves \eqref{eq53}.
 \end{proof}
 
-\begin{lm}\label{lb103}
-Let $\fk p$ be an ideal of $\mc A$. Then the following are equivalent.
+\begin{pp}\label{lb103}
+Let $\fk p\subsetneq\mc A$ be an ideal.\footnote{Recall that a prime ideal $\pk$ is required not to be the whole ring $\mc A$.} Then the following are equivalent.
 \begin{enumerate}[label=(\alph*)]
 \item $\pk$ is a prime ideal. Equivalently, $\mc A/\pk$ is an integral domain.
 \item $\pk=\sqrt\pk$. Moreover, if $\pk=I_1\cap I_2$ where $I_1,I_2$ are ideals of $\mc A$, then $I_1=\pk$ or $I_2=\pk$.
 \item $\pk=\sqrt\pk$.  Moreover, if $\pk=I_1\cap I_2$ where $I_1,I_2$ are ideals of $\mc A$ satisfying $I_1=\sqrt{I_1}$ and $I_2=\sqrt{I_2}$, then $I_1=\pk$ or $I_2=\pk$.
 \end{enumerate}
-\end{lm}
+\end{pp}
 
 We leave it to the readers to figure out the geometric meaning of this lemma (in the case that $\mc A$ is an analytic $\Cbb$-algebra).
 
@@ -3877,24 +4041,25 @@ and that for each $1\leq i\leq N$,
 \begin{align}
 \{0\}\neq \bigcap_{j\neq i}\fk p_j.\label{eq56}
 \end{align}
-Moreover the prime ideals $\pk_1,\dots,\pk_N$ satisfying \eqref{eq55} and \eqref{eq56} are unique. We call this unique decomposition the \textbf{prime decomposition}. \index{00@Prime decomposition}
+Moreover the prime ideals $\pk_1,\dots,\pk_N$ satisfying \eqref{eq55} and \eqref{eq56} are unique. We call this unique decomposition the \textbf{prime decomposition of $\{0\}\subset\mc A$}. \index{00@Prime decomposition}
 \end{thm}
 
 The geometric meaning of \eqref{eq55} is that an element $f\in \mc A$ is zero iff $f$ restricts to zero on $\mc A/\pk_i$ (i.e. ``$f$ vanishes on the zero set $N(\pk_i)$") for all $i$.
 
 Note that if $\pk=\sqrt{\pk}$ is an ideal of a Noetherian ring $\mc A$, then Thm. \ref{lb102} applied to $\mc A/\pk$ says that there are prime ideals $\pk_1,\dots,\pk_N$ of $\mc A$ such that
-\begin{align*}
-\pk=\pk_1\cap\cdots\cap\pk_N
-\end{align*}
-and that for each $1\leq i\leq N$,
-\begin{align*}
-\pk\neq \bigcap_{j\neq i}\fk p_j.
-\end{align*}
+\begin{subequations}\label{eq72}
+\begin{gather}
+\pk=\pk_1\cap\cdots\cap\pk_N\\
+\pk\neq \bigcap_{j\neq i}\fk p_j\qquad\forall 1\leq i\leq N
+\end{gather}
+\end{subequations}
+called the \textbf{prime decomposition of $\pk$}.
+
 
 \begin{proof}[Proof of the existence]
 We first note that if we can find prime ideals $\pk_1,\dots,\pk_N$ satisfying \eqref{eq55}, then by discarding some members of these ideals so that the intersection of the remaining ones is still $\{0\}$ until we cannot do this anymore, \eqref{eq56} is automatically satisfied. So we only need to find prime ideals satisfying \eqref{eq55}.
 
-Let $\fk A$ be the set of all ideals $\fk a$ not equal to $\mc A$ such that $\fk a=\sqrt{\fk a}$ and that $\mc A/\fk a$ has no prime decomposition (equivalently, $\fk a$ is not a finite intersection of prime ideals). Note that if $\fk a\in\fk A$, then $\fk a=\sqrt{\fk a}$ and $\fk a$ is not prime. So by Lemma \ref{lb103}, $\fk a=\fk b\cap \fk c$ where the ideals $\fk b,\fk c$ are not $\fk a$ and are the radicals of themselves. One of $\fk b,\fk c$ is not a finite intersection of prime ideals, otherwise $\fk a$ is a finite intersection of prime ideals. So one of $\fk b,\fk c$ is in $\fk A$. 
+Let $\fk A$ be the set of all ideals $\fk a$ not equal to $\mc A$ such that $\fk a=\sqrt{\fk a}$ and that $\mc A/\fk a$ has no prime decomposition (equivalently, $\fk a$ is not a finite intersection of prime ideals). Note that if $\fk a\in\fk A$, then $\fk a=\sqrt{\fk a}$ and $\fk a$ is not prime. So by Prop. \ref{lb103}, $\fk a=\fk b\cap \fk c$ where the ideals $\fk b,\fk c$ are not $\fk a$ and are the radicals of themselves. One of $\fk b,\fk c$ is not a finite intersection of prime ideals, otherwise $\fk a$ is a finite intersection of prime ideals. So one of $\fk b,\fk c$ is in $\fk A$. 
 
 The above argument shows that if $\fk a_1=\{0\}$ belongs to $\fk A$, then we can construct a strictly increasing infinite chain of elements of $\fk A$: $\fk a_1\subsetneq\fk a_2\subsetneq\fk a_3\subsetneq\cdots$, contradicting that $\mc A$ is Noetherian. So $\{0\}\notin\fk A$.
 \end{proof}
@@ -3905,7 +4070,7 @@ In Thm. \ref{lb102}, \eqref{eq55} and \eqref{eq56} imply that
 \begin{align*}
 \bigcap_{j\neq i}\pk_j\Big\backslash\pk_i\neq\emptyset.
 \end{align*}
-This means that we can find $f\in \mc A$ which is non-zero when restricted to $\mc A/\pk_i$ (i.e. ``non-zero on $N(\pk_i)$") and zero in the other $\mc A/\pk_j$. Thus, by taking sums, we see that there always exists $f\in \mc A$ which is non-zero precisely when restricted to the given ones of $\mc A/\pk_1,\dots,\mc A/\pk_N$.
+This means that we can find $f\in \mc A$ which is non-zero when restricted to $\mc A/\pk_i$ (i.e. ``non-zero on $N(\pk_i)$") and zero in the other $\mc A/\pk_j$. Thus, by taking sums, we see that there always exists $f\in \mc A$ which is non-zero precisely when restricted to the given ones of $\mc A/\pk_1,\dots,\mc A/\pk_N$. 
 \end{rem}
 
 
@@ -3955,7 +4120,7 @@ In Thm. \ref{lb102}, $\pk_1,\dots,\pk_N$ are precisely the \textbf{associated pr
 
 
 \begin{proof}
-We first note that an intersection of more than one members of $\pk_1,\dots,\pk_N$ is not prime. This together with Lemma \ref{lb107} would imply that $\Ann_{\mc A}(f)$ is prime only if $\Ann_{\mc A}(f)=\pk_i$ for some $i$, and hence that the associated primes are among $\pk_1,\dots,\pk_N$. To prove the claim, consider for instance $\pk=\pk_1\cap\pk_2\cap\cdots\cap\pk_k$ where $k>1$. Suppose $\pk$ is prime. Then by Lemma \ref{lb103}, either $\pk_1$ or $\pk_2\cap\cdots\cap\pk_k$ equals $\pk$, contradicting \eqref{eq56}. So $\pk$ cannot be prime.
+We first note that an intersection of more than one members of $\pk_1,\dots,\pk_N$ is not prime. This together with Lemma \ref{lb107} would imply that $\Ann_{\mc A}(f)$ is prime only if $\Ann_{\mc A}(f)=\pk_i$ for some $i$, and hence that the associated primes are among $\pk_1,\dots,\pk_N$. To prove the claim, consider for instance $\pk=\pk_1\cap\pk_2\cap\cdots\cap\pk_k$ where $k>1$. Suppose $\pk$ is prime. Then by Prop. \ref{lb103}, either $\pk_1$ or $\pk_2\cap\cdots\cap\pk_k$ equals $\pk$, contradicting \eqref{eq56}. So $\pk$ cannot be prime.
 
 For each $i$, by Rem. \ref{lb106} we can choose $f\in \mc A$ non-zero on $\mc A/\pk_i$ but zero on $\mc A/\pk_j$ whenever $j\neq i$. Then $\pk_i=\Ann_{\mc A}(f)$ by Lemma \ref{lb107}, which shows that $\pk_i$ must be an associated prime.
 \end{proof}
@@ -4005,9 +4170,9 @@ By Thm. \ref{lb108}, we may shrink $X$ so that $Y$ is reduced everywhere on $X$.
 
 \begin{co}
 Let $X$ be a complex space. Then for each analytic subset $A$ of $X$, the \textbf{ideal associated to $A$} defined by \index{00@Ideal $\scr I_A$ associated to an analytic subset} \index{IA@$\scr I_A$}
-\begin{align*}
-\scr I_A=\{f\in\scr O_X:f(x)=0\quad\forall x\in A\}
-\end{align*}
+\begin{align}
+\scr I_A=\{f\in\scr O_X:f(x)=0\quad\forall x\in A\cap\text{domain of }f\} \label{eq67}
+\end{align}
 is coherent.
 \end{co}
 
@@ -4022,7 +4187,7 @@ If locally $A=N(\mc I)$ for some coherent ideal $\mc I$ then
 \end{proof}
 
 \begin{rem}\label{lb118}
-For a reduced complex space $X$, we clearly have a bijection
+Let $X$ be a reduced complex space. By Nullstellensatz, we have a bijection
 \begin{gather}
 \begin{gathered}
 \{\text{Analytic subsets of $X$}\}\xleftrightarrow{\simeq} \{\text{Coherent ideals  $\mc I\subset\scr O_X$ satisfying }\mc I=\sqrt{\mc I}\}\\
@@ -4053,7 +4218,7 @@ There is no such a problem when taking unions: We haven't defined unions for clo
 
 
 
-\begin{co}
+\begin{co}\label{lb135}
 Let $X$ be a complex space. Then the set of all non-reduced points of $X$ is an analytic subset of $X$.
 \end{co}
 
@@ -4061,6 +4226,27 @@ Let $X$ be a complex space. Then the set of all non-reduced points of $X$ is an 
 \begin{proof}
 $x\in X$ is not reduced iff $x\in\Supp(\sqrt{0_X})$.
 \end{proof}
+
+
+
+\begin{co}\label{lb136}
+Let $A$ be a subset of a complex space $X$. Then the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $A$ is an analytic subset of $X$. (Recall this means that $A=N(\mc I)$ for a coherent ideal $\mc I\subset\scr O_X$.)
+\item Each $x\in X$ is contained in a neighborhood $U$ such that $A\cap U$ is analytic in $U$.
+\end{enumerate}
+\end{co}
+
+
+Therefore $A$ is analytic iff each $x\in X$ is contained in a neighborhood $U$ such that $A\cap U$ is the zero set of finitely many elements of $\scr O(U)$.
+
+
+\begin{proof}
+Clearly (1)$\Rightarrow$(2). Assume (2). Let $\scr I_A$ be defined by \eqref{eq67}. For each $x\in X$ there is a neighborhood $U$ of $x$ such that $A\cap U$ is analytic, i.e. $A\cap U=N(\mc I_U)$ for a coherent ideal $\mc I_U$ of $\scr O_U$. Then $\scr I_A|_U$ equals $\scr I_{A\cap U}=\sqrt{\mc I_U}$ which is coherent. Therefore $\scr I_A$ is coherent. We have $N(\scr I_A)=A$ since $N(\scr I_A)\cap U=N(\scr I_{A\cap U})=A\cap U$. So $A$ is analytic.
+\end{proof}
+
+
+
 
 
 
@@ -4171,7 +4357,7 @@ To be more explicit, if a germ $A$ in (1) is represented by an analytic subset $
 We list some easy but useful facts about this correspondence. Let $(X,x)$ be a germ of reduced complex space.
 \begin{itemize}
 \item $I_{A\cup B}=I_A\cap I_B=\sqrt{I_A\cdot I_B}$.
-\item By Lemma \ref{lb103}-(c), $\scr O_{X,x}$ is an integral domain if and only if $(X,x)$ is an irreducible germ, namely if $(X,x)=(A,x)\cup (B,x)$ where $(A,x),(B,x)$ are germs of analytic subsets then $(A,x)=(X,x)$ or $(B,x)=(X,x)$.
+\item By Prop. \ref{lb103}-(c), $\scr O_{X,x}$ is an integral domain if and only if $(X,x)$ is an irreducible germ, namely if $(X,x)=(A,x)\cup (B,x)$ where $(A,x),(B,x)$ are germs of analytic subsets then $(A,x)=(X,x)$ or $(B,x)=(X,x)$.
 \begin{itemize}
 \item More precisely, $\scr O_{X,x}$ is an integral domain iff for every neighborhood $U$ of $x$ written as $U=A\cup B$ where $A,B$ are analytic subsets of $U$, one of $A$ and $B$ contains a neighborhood of $x\in X$.
 \end{itemize}
@@ -4191,7 +4377,7 @@ Such decomposition of $X$ is unique up to shrinking $X$ to smaller neighborhoods
 \begin{align}
 \{0\}=\scr I_{X_1,x}\cap\cdots\cap\scr I_{X_N,x}  \label{eq63}
 \end{align}
-which gives the prime decomposition of $\scr O_{X,x}$.
+which gives the prime decomposition of $\{0\}\subset\scr O_{X,x}$.
 \end{thm}
 
 Note that (assuming \eqref{eq61} then) \eqref{eq62} is equivalent to saying that
@@ -4203,7 +4389,7 @@ X\Big\backslash \bigcup_{j\neq i}X_j=X_i\Big\backslash \bigcup_{j\neq i}X_j\quad
 \begin{proof}
 Uniqueness: Every local decomposition \eqref{eq61} clearly gives a prime decomposition \eqref{eq63}, where the condition $\bigcap_{j\neq i}\scr I_{X_j,x}\neq 0$ corresponds precisely to \eqref{eq62}. The uniqueness of prime decomposition implies the uniqueness of local decomposition.
 
-Existence: Let $\{0\}=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition of $\scr O_{X,x}$. By shrinking $X$, for each $i$ we may find a coherent ideal $\scr P_i$ whose stalk at $x$ is $\pk_i$. Since $\scr P_1\cap\cdots\cap\scr P_N$ is coherent (Cor. \ref{lb110}), we can shrink $X$ further so that $\scr P_1\cap\cdots\cap\scr P_N=0_X$. So by Rem. \ref{lb105},
+Existence: Let $\{0\}=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition of $\{0\}\subset\scr O_{X,x}$. By shrinking $X$, for each $i$ we may find a coherent ideal $\scr P_i$ whose stalk at $x$ is $\pk_i$. Since $\scr P_1\cap\cdots\cap\scr P_N$ is coherent (Cor. \ref{lb110}), we can shrink $X$ further so that $\scr P_1\cap\cdots\cap\scr P_N=0_X$. So by Rem. \ref{lb105},
 \begin{align*}
 X=N(0_X)=N(\scr P_1\cap\cdots\cap\scr P_N)=N(\scr P_1\cdots\scr P_N)=X_1\cup\cdots\cup X_N.
 \end{align*}
@@ -4250,7 +4436,7 @@ Let $X$ be a reduced complex space and $x\in X$. Choose $f\in\scr O(X)$. Then th
 \end{pp}
 
 \begin{proof}
-Assume (1) is true. Then by Prop. \ref{lb113}, after shrinking $X$ to a neighborhood of $x$, $f$ is a non-zero divisor of $\scr O_{X,x}$ for all $x\in X$. If $N(f)$ contains an open subset $V$ of $X$, then $f$ takes zero value everywhere on $V$. So $f|_V=0$ because $X$ is reduced, contradicting the fact that $f$ is a non zero-divisor of $\scr O_{V,x}$ when $x\in V$.  So (2) must be true.
+Assume (1) is true. Then by Prop. \ref{lb113}, after shrinking $X$ to a neighborhood of $x$, $f$ is a non-zero divisor of $\scr O_{X,x}$ for all $x\in X$. If $N(f)$ contains an open subset $V$ of $X$, then $f$ takes value zero everywhere on $V$. So $f|_V=0$ because $X$ is reduced, contradicting the fact that $f$ is a non zero-divisor of $\scr O_{V,x}$ when $x\in V$.  So (2) must be true.
 
 Assume that (1) is not true. By shrinking $X$, we may find a local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$. By Cor. \ref{lb120}, the germ of $f$ at $x$ belongs to $\scr I_{X_i,x}$ for some $i$. Shrink $X$ so that $f\in\scr I_{X_i}(X)$. Then $f$ vanishes on $X_i$. Thus, after shrinking $X$ to any neighborhood $U$ of $x$, $N(f)\supset X_i$ contains an open subset $X\setminus \bigcup_{j\neq i}X_j$ of $X$ which is non-empty by \eqref{eq34}. So (2) is not true.
 \end{proof}
@@ -4274,6 +4460,7 @@ Let $A$ be an analytic subset of a reduced complex space $X$. The following are 
 \end{enumerate}
 \end{pp}
 
+Another description of nowhere dense analytic subsets is given by Ritt's lemma \ref{lb147}.
 
 
 \begin{proof}
@@ -4289,7 +4476,7 @@ Therefore, we have $\scr I_{A,x}\nsubset \scr I_{X_i,x}$ for all $i$. The existe
 
 
 
-\begin{lm}
+\begin{lm}\label{lb145}
 Let $X=X^1\cup\cdots\cup X^N$ be a decomposition of reduced complex space $X$ into analytic subsets. Let $x\in X$, and assume that each $X^j$ has a local decomposition at $x$:
 \begin{align*}
 X^j=X^j_1\cup X^j_2\cup\cdots
@@ -4302,7 +4489,7 @@ Then there is an element of $\scr W$ which is a non zero-divisor of $\scr O_{X^1
 \end{lm}
 
 \begin{proof}
-Let $\scr W=\Span\fk A$. Then $\scr W\nsubset\scr I_{X^j_i,x}$ for all $i,j$. Then $\scr W\cap \scr I_{X^j_i,x}$ is not the full space $\scr W$. Therefore the \emph{finite} union $\bigcup_{i,j} (\scr W\cap\scr I_{X_i^j,x})=\scr W\cap \big(\bigcup_{i,j}\scr I_{X_i^j,x}\big)$ is not $\scr W$. So there is an element $f\in\scr W$ which is not in $\bigcup_{i,j}\scr I_{X_i^j,x}$. By Cor. \ref{lb120}, $f$ is a non zero-divisor of each $\scr O_{X^j,x}$.
+Since each $\scr W\cap \scr I_{X^j_i,x}$ is not the full space $\scr W$, the \emph{finite} union $\bigcup_{i,j} (\scr W\cap\scr I_{X_i^j,x})=\scr W\cap \big(\bigcup_{i,j}\scr I_{X_i^j,x}\big)$ is not $\scr W$. So there is an element $f\in\scr W$ which is not in $\bigcup_{i,j}\scr I_{X_i^j,x}$. By Cor. \ref{lb120}, $f$ is a non zero-divisor of each $\scr O_{X^j,x}$.
 \end{proof}
 
 Note that in the above proof we have used the fact that $\Cbb$ is an infinite field. Over a finite field, a finite union of proper linear subspaces might be the full linear space.
@@ -4478,7 +4665,7 @@ In Step 1 and 2, we have not used the fact that $X$ is irreducible at $x$. This 
 
 
 \begin{proof}[\textbf{Proof-Step 3}]
-Assume that $\scr O_{X,0}$ is an integral domain, and hence reduced. For each $i,j>r$, the two observations in Step 2 show that the holomorphic function $\varDelta\cdot h_i^j$ on $U$ takes zero value at every point of $X$. So its germ at $0$ is a nilpotent element of $\scr O_{X,0}$ by Nullstellensatz, and hence is zero. We can thus shrink $U$ to a neighborhood of $0$ so that $\varDelta\cdot h_i^j$ is zero in $\scr O_X(X)$ for all $i,j>r$. If $x\in X\setminus N(\varDelta)$, then $\varDelta(x)\neq 0$ and hence $\varDelta$ is invertible in $\scr O_{X,x}$. Therefore in $\scr O_{X,x}$ we have $h_i^j=0$ and hence $\partial_{w_i}f^j=0$ if $i,j>r$. This proves the claim in Step 2 that $\partial_{w_i}f^j$ is in $\mc I_x$.
+Assume that $\scr O_{X,0}$ is an integral domain, and hence reduced. For each $i,j>r$, the two observations in Step 2 show that the holomorphic function $\varDelta\cdot h_i^j$ on $U$ takes value zero at every point of $X$. So its germ at $0$ is a nilpotent element of $\scr O_{X,0}$ by Nullstellensatz, and hence is zero. We can thus shrink $U$ to a neighborhood of $0$ so that $\varDelta\cdot h_i^j$ is zero in $\scr O_X(X)$ for all $i,j>r$. If $x\in X\setminus N(\varDelta)$, then $\varDelta(x)\neq 0$ and hence $\varDelta$ is invertible in $\scr O_{X,x}$. Therefore in $\scr O_{X,x}$ we have $h_i^j=0$ and hence $\partial_{w_i}f^j=0$ if $i,j>r$. This proves the claim in Step 2 that $\partial_{w_i}f^j$ is in $\mc I_x$.
 \end{proof}
 
 We are done with the proof of Lemma. \ref{lb112}.
@@ -4528,10 +4715,11 @@ The only thing in Lemma \ref{lb132} unproved so far is $\Sing(X)\supset X\cap Z_
 
 The rank of $\partial_{z_\blt}f^\blt$ in Subsec. \ref{lb116} depends on how $X$ is embedded into an open subset of a number space. Using Jacobi criterion, we can relate this rank to intrinsic numbers of $X$ call embedding dimensions.
 
+\subsection{Embedding dimensions}
 
 
 
-\begin{df}
+\begin{df}\label{lb149}
 Let $X$ be a complex space and $x\in X$. The \textbf{embedding dimension} of $X$ at $x$, \index{00@Embedding dimension $\emb_xX=\emb\scr O_{X,x}$} denoted by $\emb_xX$ or $\emb\scr O_{X,x}$, is the smallest $n$ such that a neighborhood $U$ of $x$ can be closely embedded to an open subset of $\Cbb^n$. 
 
 Equivalently (Prop. \ref{lb21}), $\emb_xX$ is the smallest $n$ such that there is a neighborhood $U$ of $x$ and a holomorphic $f:U\rightarrow\Cbb^n$ which is an immersion at $x$.  \hfill\qedsymbol
@@ -4572,11 +4760,428 @@ the middle one has dimension $m$ and the right one has dimension $\dim\fk m_{X,x
 \end{proof}
 
 
+
+\subsection{Analysis of singular loci}
+
+
+
 \begin{proof}[\textbf{Proof of Lemma \ref{lb132}}]
 Under the assumptions of (1), we need to show that each $x\in X\cap Z_{r-1}$ is a singular point. If $x$ is smooth, we can find a neighborhood $W\subset X$ of $x$ which is a complex manifold. In particular, the embedding dimensions of $W$ must be constant on $W$. Thus, by Jacobi criterion, the ranks of $\partial_{z_\blt}f^\blt$ are constant on $W$.
 
 Notice the assumptions in (1) that $X\cap Z_{r-1}$ is nowhere dense in $X$. So $W\nsubset X\cap Z_{r-1}$. From the definition of $Z_\blt$, we know that the ranks of $\partial_{z_\blt}f^\blt$ on $Z_{r-1}$ (and in particular at $x\in W$) are $\leq r-1$, and that the rank on the non-empty set $W\setminus Z_{r-1}$ is $r$ (since $X\subset Z_r$). This is impossible. So $x$ is singular.
 \end{proof}
+
+
+
+Lemma \ref{lb132} shows that if $X$ is irreducible at $0$, then the singular locus of a neighborhood of $0\in X$ is a nowhere dense analytic subset of that neighborhood. This property can be generalized.
+
+\begin{pp}\label{lb134}
+Let $X$ be a complex space reduced at $x$. Then after shrinking $X$ to a neighborhood of $x$, there is a local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$ such that
+\begin{align}\label{eq66}
+\Sing(X)=\Big(\bigcup_{i\neq j}X_i\cap X_j\Big)\cup\Big(\bigcup_i\Sing(X_i)\Big).
+\end{align}
+In particular, after shrinking $X$ further, $\Sing(X)$ is a nowhere dense analytic subset of $X$.
+\end{pp}
+
+Note that each $\Sing(X_i)$ can be described by Lemma \ref{lb132}. We thus have an explicit local description of singular loci of reduced complex spaces.
+
+\begin{proof}
+Clearly we have $\subset$ in \eqref{eq66}. To show $\supset$ we only need to show that $\Sing(X)\supset X_i\cap X_j$ if $i\neq j$ and after shrinking $X$. This is due to Thm. \ref{lb125}, since a reducible point must be singular.
+\end{proof}
+
+\begin{thm}
+Let $X$ be a complex space. Then $\Sing(X)$ is an analytic subset of $X$. If $X$ is reduced, then $\Sing(X)$ is nowhere dense in $X$.
+\end{thm}
+
+\begin{proof}
+Prop. \ref{lb134} (together with Lemma \ref{lb132}) shows that if $X$ is reduced, then each $x\in X$ is contained in a neighborhood $U_x\subset X$ such that $\Sing(X)\cap U_x$ is analytic and nowhere sense in $U_x$. Therefore by Cor. \ref{lb136}, $\Sing(X)$ is analytic and nowhere dense in $X$. In the general case, $X=X'\cup (X\setminus X')$ where $X'$ is the set of non-reduced points of $X$, which is an analytic subset by Cor. \ref{lb105}. Clearly
+\begin{align}
+\Sing(X)=X'\cup\Sing(X\setminus X').
+\end{align}
+So $\Sing(X)$ must be analytic.
+\end{proof}
+
+
+
+\section{Non locally-free loci of coherent sheaves}
+
+
+In this section, we use (co)rank functions to study the non locally-free loci of coherent sheaves.
+
+\begin{df}
+Let $X$ be a complex space and $\scr E$ an $\scr O_X$-module. We say that $\scr E$ is \textbf{locally free at $x$} \index{00@Locally free at a point} if there is a neighborhood $U\subset X$ of $x$ such that $\scr E|_U$ is $\scr O_U$-free. (Recall our convention that free sheaves are assumed to have finite ranks). When $\scr E$ is $\scr O_X$-coherent, then this is equivalent to saying that $\scr E_x$ is a free $\scr O_{X,x}$-module (Thm. \ref{lb49}).
+
+The (clearly closed) subset of all $x\in X$ at which $\scr E$ is not locally free is called the \textbf{non locally-free locus} of $\scr E$. \index{00@Non locally-free loci}   \hfill\qedsymbol
+\end{df}
+
+
+\begin{lm}\label{lb137}
+Let $\mc A$ be a commutative Noetherian local ring and $\mc M$ an $\mc A$-module together with a surjective morphism of $\mc A$-modules $\varphi:\mc A^n\rightarrow\mc M$. Then $\mc M$ is $\mc A$-free if and only if the morphism
+\begin{align*}
+\varphi_*:\Hom_{\mc A}(\mc M,\mc A^n)\rightarrow \Hom_{\mc A}(\mc M,\mc M),\qquad \alpha\mapsto \varphi\circ\alpha
+\end{align*}
+is surjective.
+\end{lm}
+
+\begin{proof}
+If $\mc M$ is free then $\varphi_*$ is surjective because $\Hom_{\mc A}(\mc M,-)$ is right exact. Conversely, if $\varphi_*$ is surjective, then the fact that $\id_{\mc M}$ is in the image of $\varphi_*$ means that there is a lift $\psi:\mc M\rightarrow\mc A^n$ such that $\varphi\circ\psi=\id_{\mc M}$. This proves that $\mc M$ is a direct summand of $\mc A^n$, and hence that $\mc M$ is a projective $\mc A$-module. So it is flat, and hence free.
+\end{proof}
+
+
+
+\begin{thm}
+Let $X$ be a complex space and $\scr E$ a coherent $\scr O_X$-module. Then
+\begin{align*}
+E=\{x\in X:\scr E\text{ is not locally free at }x\}
+\end{align*}
+is an analytic subset of $X$. If $X$ is reduced, then $E$ is nowhere dense.
+\end{thm}
+
+
+
+\begin{proof}[Proof-Step 1]
+Let us prove that $E$ is analytic. By Cor. \ref{lb136}, it suffices to show that each $x\in X$ is contained in a neighborhood such that $E\cap U$ is analytic in $U$. So let us assume $X$ is so small that there is a surjective $\scr O_X$-module morphism $\varphi:\scr O_X^n\rightarrow\scr E$. This yields a morphism of coherent modules (cf. Cor. \ref{lb138})
+\begin{align*}
+\shom_{\scr O_X}(\scr E,\scr O_X^n)\rightarrow\shom_{\scr O_X}(\scr E,\scr E).
+\end{align*}
+The support of the cokernel of this morphism is, by Lemma \ref{lb137}, the set of all $x$ such that $\scr E_x$ is not $\scr O_{X,x}$-free, namely $E$. So $E$ is analytic since it is (as a set) the support of a coherent sheaf.
+\end{proof}
+
+
+
+\begin{proof}[Proof-Step 2]
+Assume that $X$ is reduced. We need to show that $E$ contains no nonempty open subsets of $X$. By shrinking $X$, it suffices to prove that $E\neq X$. So let us assume $E=X$ and find a contradiction. 
+
+Now our assumption is that $\scr E$ is nowhere locally free on $X$. By shrinking $X$, we assume that 
+\begin{align*}
+\scr E\simeq\Cok(\varphi:\scr O_X^m\rightarrow\scr O_X^n).
+\end{align*}
+Let $\xi_1=\varphi(1,0,\dots,0),\dots,\xi_m=\varphi(0,0,\dots,1)$, which are elements of $\scr O(X)^n$. Then $F=(\xi_1,\dots,\xi_m)$ can be viewed as an element of $\scr O(X)^{n\times m}$, i.e. an $n\times m$ matrix-valued holomorphic function on $X$. And for each $x\in X$, setting $\Cbb_x=\scr O_{X,x}/\fk m_{X,x}\scr O_{X,x}$, we have
+\begin{align*}
+&n-\rank F(x)=\dim\Cok(\varphi(x):\Cbb_x^m\rightarrow\Cbb_x^n)\\
+=&\dim \Cok(\varphi\otimes 1:\scr O_X^m\otimes_\Cbb \Cbb_x\rightarrow\scr O_X^n\otimes_\Cbb \Cbb_x)\\
+=&\dim \Cok(\varphi:\scr O_X^m\rightarrow\scr O_X^n)\otimes_\Cbb \Cbb_x=\dim(\scr E|x).
+\end{align*}
+
+As in Subsec. \ref{lb116}, for each $k\in\Nbb$, the set
+\begin{align*}
+\Gamma_k=\{x\in X:\rank F(x)\leq k\}
+\end{align*}
+is an analytic subset of $X$. We let $r$ be the smallest number such that $\Gamma_r$ contains a nonempty open subset of $X$. Then $\Gamma_r\setminus \Gamma_{r-1}$ also contains a non-empty open subset $U\subset X$. By restricting $X$ to $U$, we assume that $X=\Gamma_r$. So the dimensions of the fibers $\dim(\scr E|x)$ are constant on $X$. Therefore, since $X$ is reduced, Prop. \ref{lb65} implies that $\scr E$ is locally free on $X$. Impossible.
+\end{proof}
+
+
+\begin{exe}
+Let $X$ be a reduced complex space irreducible at $x\in X$. Show that after shrinking $X$ to a neighborhood of $x$, there is $r\in\Nbb$ such that $X=\Gamma_r$ and that $\Gamma_{r-1}$ is nowhere dense in $X$. Show that if $X=\Gamma_r$ and if $\Gamma_{r-1}$ is nowhere dense then $\Gamma_{r-1}$ is the non locally-free locus of $\scr E$.
+\end{exe}
+
+
+
+
+\section{Dimensions}
+
+
+
+\begin{df}\label{lb140}
+Let $X$ be a complex space and $x\in X$. The \textbf{(Chevalley) dimension of $\scr O_{X,x}$}, also called the  \textbf{dimension of $X$ at $x$} \index{00@Dimension at a point $\dim_xX=\dim\scr O_{X,x}$} and denoted by $\dim\scr O_{X,x}$ or equivalently $\dim_xX$, is the smallest $n\in \Nbb$ such that:
+\begin{itemize}
+\item There exists a neighborhood $U$ of $x$ and $f_1,\dots,f_n\in\scr O(U)$ such that $x$ is an isolated point of $N(f_1,\dots,f_n)$.
+\end{itemize}
+It is clear that $\dim_xX=0$ iff $x$ is an isolated point of $X$. 
+%We set
+%\begin{align}
+%\dim_xX=-1\qquad\text{if }x\notin X.
+%\end{align}
+
+The \textbf{global dimension} \index{00@Global dimension $\dim X$} is defined to be
+\begin{align*}
+\dim X=\sup_{x\in X}\dim_xX.
+\end{align*}
+We say that $X$ is \textbf{pure dimensional} \index{00@Pure dimensional complex spaces} if $x\in X\mapsto\dim_xX$ is a constant function. \hfill\qedsymbol
+\end{df}
+
+\subsection{Basic facts about dimensions}
+
+
+\begin{pp}\label{lb142}
+Let $X$ be a complex space and $x\in X$. Then
+\begin{align*}
+\dim_xX=\dim_x\red(X).
+\end{align*}
+Equivalently, for $\scr A=\scr O_{X,x}$ we have
+\begin{align*}
+\dim\scr A=\dim\scr A/\sqrt{0_{\scr A}}.
+\end{align*}
+\end{pp}
+
+\begin{proof}
+If $X$ is small enough such that $f_1,\dots,f_n\in\scr O(X)$ makes $x$ an isolated point of $N(f_\blt)$, then their restrictions to $\red(X)$ (i.e. their residue classes in $\red(X)$) also make $x$ an isolated point of the zero set. 
+
+Conversely, if $f_1,\dots,f_n\in\scr O(\red(X))$ makes $x$ an isolated point of $N(f_\blt)$, then after shrinking $X$ to a neighborhood of $x$, we can assume $f_1,\dots f_n$ are the restrictions of elements of $\scr O(X)$, whose zero set also has $x$ as an isolated point.
+\end{proof}
+
+\begin{pp}\label{lb141}
+We have $\dim_xX\leq n$ if and only if there exist a neighborhood $U_x\subset X$ of $x$, an open subset $V\subset\Cbb^n$, and a finite holomorphic map $F:U_x\rightarrow V$.
+\end{pp}
+
+\begin{proof}
+The ``if" part is clear. The ``only if" part follows by choosing $F=(f_1,\dots,f_n)$ (where $f_\blt$ are in Def. \ref{lb140}) and applying Thm. \ref{lb75} to deduce the finiteness.
+\end{proof}
+
+\begin{co}
+For each complex space $X$, the dimension function
+\begin{align*}
+X\rightarrow \Nbb\qquad x\mapsto\dim_xX
+\end{align*}
+is upper semicontinuous.
+\end{co}
+
+
+\begin{proof}
+Fix any $p\in X$ and let $n=\dim_pX$. Then by Prop. \ref{lb141}, we may shrink $X$ to a neighborhood of $p$ and find an open subset $V\subset\Cbb^n$ such that there is a finite map $\varphi:X\rightarrow\Cbb^n$. Then clearly $\dim_xX\leq n$ for each $x\in X$.
+\end{proof}
+
+\begin{co}\label{lb143}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map. Then for each $x\in X$,
+\begin{align}
+\dim_x X\leq \dim_{\varphi(x)}Y.
+\end{align}
+\end{co}
+
+\begin{proof}
+Let $y=\varphi(x)$ and $n=\dim_yY$. By Prop. \ref{lb141}, after shrinking $Y$ and replacing $X$ by $\varphi^{-1}(Y)$, we have a finite holomorphic may $\pi:Y\rightarrow V$ where $V$ is an open subset of $\Cbb^n$. Since $F\circ\varphi:X\rightarrow V$ is finite, by Prop. \ref{lb141} we conclude $\dim_xX\leq n$.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{pp}
+Let $X$ be a complex space and $x\in X$. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\dim_xX=0$, namely, $x$ is an isolated point of $X$.
+\item $\scr O_{X,x}$ is a finite-dimensional vector space.
+\item $\scr O_{X,x}$ is an Artinian ring.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+(1)$\Rightarrow$(2): By shrinking $X$, we assume $x$ is the only point of $X$. Let $\{0\}$ be the reduced point (whose structure sheaf is $\Cbb$). Then the obvious holomorphic map $X\rightarrow\{0\}$ is finite. Therefore, by Thm. \ref{lb74}, $\scr O_{X,x}$ is $\Cbb$-coherent, i.e., $\Cbb$-finite-dimensional.
+
+(2)$\Rightarrow$(3): Obvious.
+
+(3)$\Rightarrow$(1): Let $X$ be a closed subspace of an open subset $V$ of $\Cbb^n$ and assume $x=0$. Then for each $1\leq i\leq n$, we have a decreasing sequence of ideals
+\begin{align*}
+\fk m_{X,x}\supset z_i\fk m_{X,x}\supset z_i^2\fk m_{X,x}\supset\cdots
+\end{align*}
+which must be stable at $z_i^k\fk m_{X,x}$ for some $k\in\Zbb_+$ independent of $i$. So $z_i^k\fk m_{X,x}=z_i^{k+1}\fk m_{X,x}$ and hence $z_i^k=z_i^{k+1}f_i$ for some $f_i\in \fk m_{X,x}$. Hence
+\begin{align*}
+z_i^k(1-z_if_i)=0.
+\end{align*}
+Since $f_i(0)=0$, $1-z_if_i$ is invertible in $\scr O_{X,x}$. So $z_i^k=0$ in $\scr O_{X,x}$. Thus, after shrinking $V$ to a neighborhood of $0$, the residue class of  $z_i^k\in\scr O(V)$ is zero in $\scr O(X)$. Therefore the underlying set of $X$ is contained in $N(z_1^k,\dots,z_n^k)=\{0\}$.
+\end{proof}
+
+
+
+
+\section{Active lemma for dimensions}
+
+
+
+Let $X$ be a complex space.
+
+\subsection{Active lemma}
+
+
+\begin{df}
+An element $f\in\scr O(X)$ is called \textbf{active at $x$} \index{00@Active elements} if $f$ (or more precisely $\red(f)$) is a non zero-divisor of $\scr O_{\red(X),x}$.
+\end{df}
+
+Non zero-divisors are always active, but the converse is not true.
+
+\begin{pp}
+If $f\in\scr O(X)$ is a non zero-divisor of $\scr O_{X,x}$, then $f$ is active at $x$.
+\end{pp}
+
+\begin{proof}
+Let $\scr A=\scr O_{X,x}$. Suppose that $f$ is not active at $x$, i.e. $f$ is a zero-divisor of $\scr A/\sqrt{0}$. Then $fg\in\sqrt{0}$ for some $g\in\scr A$ and $g\notin\sqrt{0}$. So for some $n\in\Zbb_+$ we have $f^ng^n=0$ in $\scr A$. Notice that $g^n\neq 0$. So we can find $k\in\Nbb$ such that in $\scr A$ we have $f^kg^n\neq 0$ and $f\cdot f^kg^n=0$. Therefore $f$ is a zero-divisor of $\scr A$.
+\end{proof}
+
+
+
+\index{00@Active lemma}
+
+
+
+\begin{thm}[\textbf{Active lemma}]
+Let $f\in\scr O(X)$ and $x\in N(f)$. If $f$ is a non zero-divisor of $\scr O_{X,x}$, then
+\begin{align}
+\dim_x N(f)=\dim_x X-1.\label{eq68}
+\end{align}
+Thus, by Prop. \ref{lb142}, if $f$ is active at $x$ then \eqref{eq68} also holds.
+\end{thm}
+
+
+
+
+
+
+\begin{proof}
+Let $m=\dim_x N(f)$ and $n=\dim_xX$. Then, after shrinking $X$ to a neighborhood of $x$, there are $g_1,\dots,g_m\in\scr O(X)$ such that $N(f)\cap N(g_1,\dots,g_m)=\{x\}$.  Thus $n\leq m+1$.
+
+Let us prove $m\leq n-1$. Let $A=N(f)$. By Prop. \ref{lb141}, we may shrink $X$ and find a finite holomorphic map $\varphi:X\rightarrow V$ sending $x$ to $0$, where $V\subset\Cbb^n$ is open. By Cor. \ref{lb144}, $\varphi(A)$ is an analytic subset of $V$. So $m\leq \dim_0\varphi(A)$ by Cor. \ref{lb143}. Therefore, it suffices to prove $\dim_0\varphi(A)\leq n-1$.
+
+By Thm. \ref{lb74}, $\varphi_*\scr O_X$ is $\scr O_V$-coherent. Therefore $\scr O_{X,x}$ is a finitely-generated $\scr O_{V,0}$-module since it is a direct summand of $(\varphi_*\scr O_X)_x$ (cf. Prop. \ref{lb56}). Thus, as $\scr O_{X,x}$ is Noetherian, the germ of $f$ in $\scr O_{X,x}$ is integral over $\scr O_{V,0}$, i.e.
+\begin{align*}
+f^N+a_{N-1}f^{N-1}+\cdots+a_kf^k=0
+\end{align*}
+for some $a_k,\dots,a_{N-1}\in\scr O_{V,0}$ where $a_k$ is non-zero in $\scr O_{V,0}$. Since $f$ is a non zero-divisor of $\scr O_{X,x}$, we conclude that $a_k$ (or more precisely  $\varphi^\# a_k$) equals
+\begin{align*}
+-f^{N-k}-a_{N-1}f^{N-k-1}-\cdots-a_{k+1}f
+\end{align*}
+in $\scr O_{X,x}$. Therefore, after shrinking $V$ to a neighborhood of $0$ and replacing $X$ by $\varphi^{-1}(V)$, we have $a_k\in\scr O(V)$ and that $\varphi^\#a_k$ takes value zero on $N(f)$. Therefore $\varphi(A)\subset N(a_k)$. So it suffices to prove $\dim_0 N(a_k)\leq n-1$.
+
+Since $a_k$ is non-zero in $\scr O_{V,0}$, as in the proof of Thm. \ref{lb70} we may choose a new set of coordinates $(z_1,\dots,z_n)$ of $\Cbb^n$ such that $a_k$ has finite order in $z_1$. So $0_{\Cbb^n}$ is an isolated point of the fiber $\pi^{-1}(0_{\Cbb^{n-1}})$, where $\pi:N(a_k)\rightarrow\Cbb^{n-1}$ is the restriction of $\pr_{\Cbb^{n-1}}:\Cbb\times\Cbb^{n-1}\rightarrow\Cbb^{n-1}$. This proves $\dim_0 N(a_k)\leq n-1$.
+\end{proof}
+
+
+\begin{rem}\label{lb148}
+Assume $\dim_xX>0$. By taking local decomposition of $\red(X)$ at $x$ and using Cor. \ref{lb120} or Lemma \ref{lb145}, we can find $f\in\fk m_{X,x}$ which is active at $x$. By Active lemma, we can repeat this procedure to obtain $f_1,\dots,f_n\in\fk m_{X,x}$ such that, after shrinking $X$ to a neighborhood of $x$, each $f_i$ is in $\scr O(X)$ and is an active germ of $N(f_1,\dots,f_{i-1})$ at $x$. And $x$ is an isolated point of $N(f_1,\dots,f_n)$.
+
+Contrary to active elements, if $\scr O_{X,x}$ is not reduced then $\fk m_{X,x}$ might not contain a non zero-divisor of $\scr O_{X,x}$. Thus, we may not be able to find $f_1,\dots,f_n\in\fk m_{X,x}$ such that each $f_i$ is a non zero-divisor of $\scr O_{X,x}/(f_1\scr O_{X,x}+\cdots+f_{i-1}\scr O_{X,x})$. In the case that we can, we will call $\scr O_{X,x}$ a \textbf{Cohen-Macaulay ring}. 
+\end{rem}
+
+
+
+
+
+
+
+\subsection{Applications of Active lemma}
+
+
+\index{00@Ritt's lemma}
+
+
+
+
+\begin{co}
+If $x\in\Cbb^n$ then
+\begin{align*}
+\dim_x\Cbb^n=n.
+\end{align*}
+\end{co}
+\begin{proof}
+This is clear when $n=0$. That $\dim_x\Cbb^n=n$ implies $\dim_x\Cbb^{n+1}=n+1$ follows from Active lemma.
+\end{proof}
+
+
+
+
+\begin{co}[\textbf{Ritt's lemma}]\label{lb147}
+Let $A$ be an analytic subset of a complex space $X$. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $A$ is nowhere dense in $X$.
+\item $\dim_xA<\dim_xX$ for all $x\in X$.
+\end{enumerate}
+\end{co}
+
+
+\begin{proof}
+By Prop. \ref{lb142}, it suffices to assume that $X$ is reduced. Clearly (2)$\Rightarrow$(1). Assume (1). Then by Prop. \ref{lb123}, for each $x$ there is a non zero-divisor $f\in\scr O_{X,x}$ vanishing on the germ $(A,x)$. Therefore $\dim_xA\leq \dim_xN(f)=\dim_xX-1$ by Active lemma. This proves (2).
+\end{proof}
+
+
+
+
+\begin{pp}\label{lb146}
+Let $X=A_1\cup\cdots\cup A_N$ be a union of analytic subsets. Then
+\begin{align}
+\dim_xX=\max_{1\leq i\leq N}\dim_xA_i\label{eq69}
+\end{align}
+\end{pp}
+
+\begin{proof}
+By Prop. \ref{lb142}, we may assume that $X$ is reduced. ``$\geq$" clearly holds. We prove ``$\leq$" by induction on $m=\max_i\dim_xA_i$. We may assume that $x$ is in each $A_i$ and hence $\dim_xA_i\geq0$. 
+
+The base case $m=0$ is obvious. Assume that \eqref{eq69} holds for any decomposition such that $\max_i\dim_xA_i=m-1$. Now assume $\max_i\dim_xA_i=m$. Shrink $X$ to a neighborhood of $x$ so that each $A_i$ has a local decomposition $A_i=B_{i,1}\cup B_{i,2}\cup\cdots$ at $x$. Then for each $i,j$ we have $\scr O_{X,x}\nsubset\scr I_{B_{i,j},x}$ since $1\notin\scr I_{B_{i,j},x}$. Therefore, by Lemma \ref{lb145}, we can find $f\in\scr O_{X,x}$ which is a non zero-divisor of $\scr O_{X,x}$ and of every $\scr O_{A,x}$. Thus, by Active lemma, $\dim_xN(f)=\dim_xX-1$ and $\max_i\dim_x N(f)\cap A_i=m-1$, and these two numbers are equal by our assumption that \eqref{eq69} So $\dim_xX=m$.
+\end{proof}
+
+
+\begin{pp}
+Let $X,Y$ be complex spaces and $x\in X,y\in Y$. Then
+\begin{align}
+\dim_{x\times y} X\times Y=\dim_xX+\dim_yY.\label{eq70}
+\end{align}
+\end{pp}
+
+
+
+\begin{proof}
+We prove this by induction on $m=\dim_xX$. The case $\dim_xX=0$ is obvious. Suppose \eqref{eq70} holds whenever $\dim_xX=m-1$. In the case that $\dim_xX=m$, choose an active element $f\in\fk m_{X,x}$ (Rem. \ref{lb148}). By shrinking $X$ to a neighborhood of $x$ we may assume $f\in\scr O(X)$. By Prop. \ref{lb121}, we may shrink $X$ further so that $N(f)$ is nowhere dense in $X$. So $N(f\otimes 1)=N(f)\times Y$ is nowhere dense in $Y$. By Prop. \ref{lb121} again, $f\otimes 1$ is an active germ of $X\times Y$ at $x\times y$. Therefore, by Active lemma,  $\dim_{x\times y}N(f)\times Y=\dim_{x\times y}X\times Y-1$, and $\dim_x N(f)=\dim X-1$. By assumption, $\dim_{x\times y}N(f)\times Y=\dim_xN(f)+\dim_yY$. This proves \eqref{eq70}.
+\end{proof}
+
+\subsection{Comparing different versions of dimensions}
+
+We first compare (Chevalley) dimensions and embedding dimensions.
+
+\begin{pp}
+Let $X$ be a complex space and $x\in X$. Then $\dim_xX\leq \emb_xX$. Moreover, $X$ is smooth at $x$ if and only if $\dim_xX=\emb_xX$.
+\end{pp}
+
+
+\begin{proof}
+Clearly $\dim_x X\leq\emb_xX$ in general (Recall Def. \ref{lb149}) and $\dim_xX=\emb_xX$ if $X$ is smooth at $x$. We now assume $n:=\emb_xX$ equals $\dim_xX$ and prove that $X$ is smooth at $x$. 
+
+By Def. \ref{lb149}, after shrinking $X$ to a neighborhood of $x$, we may view $X$ as a closed subspace of an open subset $V$ of $\Cbb^n$. Write $X=\Specan(\scr O_V/\mc I)$. We claim that $\mc I_x=0$. Then we can choose a neighborhood $W\subset V$ of $x$ such that $\mc I|_W=0$ (Rem. \ref{lb17}), and clearly the complex subspace $X\cap W$ of $X$ is smooth. Hence $X$ is smooth at $x$.
+
+Suppose $\mc I_x\neq0$. Then $\mc I_x$ contains a nonzero element $f$, which is a non zero-divisor of the integral domain $\scr O_{\Cbb^n,0}$. Since $f$ vanishes on the germ $(X,0)$, by Active lemma we have $\dim_xX\leq n-1$, which is  impossible. 
+\end{proof}
+
+
+
+In algebraic geometry, the dimension of a commutative ring usually means Krull dimension. Fortunately, it agrees with Chevalley dimension when the ring is an analytic local $\Cbb$-algebra.
+
+\begin{df}
+Let $\mc A$ be a commutative ring. The \textbf{Krull dimension} of $\mc A$ is the largest $n\in\Nbb$ such that there exists a chain $\pk_0\subsetneq\pk_1\subsetneq\cdots\subsetneq \pk_n$ of prime ideals of $\mc A$. If such $n$ can be arbitrarily large, we set the Krull dimension to be $+\infty$.
+\end{df}
+
+
+
+
+
+
+
+
+\begin{lm}\label{lb150}
+Let $\pk'\subsetneq\pk$ be prime ideals of $\scr O_{X,x}$. Then
+\begin{align}
+1+\dim\scr O_{X,x}/\pk\leq\dim\scr O_{X,x}/\pk'. \label{eq71}
+\end{align}
+\end{lm}
+Recall that a prime ideal of $\scr O_{X,x}$ is not equal to $\scr O_{X,x}$, and hence is contained in $\fk m_{X,x}$.
+
+\begin{proof}
+By replacing $\scr O_{X,x}$ by $\scr O_{X,x}/\pk'$ (and replacing $X$ by a closed subspace of a neighborhood of $x$), it suffices to assume that $\pk'=0$ and that $\scr A=\scr O_{X,x}$ is an integral domain. Then $0\subsetneq\pk\subsetneq\scr A$. Choose a non-zero $f\in\pk$. Then $f$ is a non zero-divisor of $\scr A$. Thus by Active lemma, $\dim\scr A/\pk\leq \dim\scr A/f\scr A=\dim\scr A-1$. This proves \eqref{eq71}.
+\end{proof}
+
+\begin{pp}
+$\dim_xX$ equals the Krull dimension of $\scr O_{X,x}$.
+\end{pp}
+
+
+\begin{proof}
+Lemma \ref{lb150} shows that $n=\dim_xX$ is no less than the Krull dimension of $\scr O_{X,x}$. To prove the equality, we need to show the existence of a chain of prime ideals $\pk_0\subsetneq\pk_1\subsetneq\cdots\subsetneq \pk_n$. We prove this by induction on $n$. The case $n=0$ is obvious. Assume this is true whenever $\dim_xX=n-1$. Now assume $\dim_xX=n$. By Rem. \ref{lb148}, we can find an active germ $f\in\fk m_{X,x}$ at $x$. Then $\dim_x N(f)=n-1$ by Active lemma. By Prop. \ref{lb146}, in the prime decomposition of $f\scr O_{X,x}\subset\scr O_{X,x}$ there is a prime component $\pk_0$ such that $\dim\scr O_{X,x}/\pk_0=n-1$. By assumption, we have a strictly increasing chain of $n$ prime ideals of  $\scr O_{X,x}/\pk_0$. These are prime ideals of $\scr O_{X,x}$ containing $\pk_0$. In this way, we get a strictly increasing chain of $n+1$ prime ideals of $\scr O_{X,x}$.
+\end{proof}
+
+
+\section{Dimensions and openness}
+
+
 
 
 
@@ -4621,6 +5226,9 @@ Grauert, H., \& Remmert, R. (1984). Coherent analytic sheaves (Vol. 265). Spring
 
 %\bibitem[Gui22]{Gui22}
 %B. Gui, Lectures on Vertex Operator Algebras and Conformal Blocks, 2022
+
+\bibitem[Vak17]{Vak17}
+Vakil, R. (2017). The rising sea: Foundations of algebraic geometry. preprint. November 18, 2017 draft
 		
 		
 \end{thebibliography}
