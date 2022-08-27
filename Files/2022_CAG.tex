@@ -802,7 +802,7 @@ Suppose $X$ is a Hausdorff space with an open cover $\fk V=(V_\alpha)$. Suppose 
 
 Let us see some examples of complex spaces. We begin with an easier class of examples:
 
-\begin{df}
+\begin{df}\label{lb154}
 Let $X$ be a complex space, and let $\scr C_X$ \index{CX@$\scr C_X$} be the sheaf of complex valued continuous functions on $X$. Then there is a natural \textbf{morphism of sheaves of local $\Cbb$-algebras} \index{00@Morphism of sheaves of local $\Cbb$-algebras} (i.e. a morphism of $X$-sheaves which preserve the linear structures and algebra multiplications when restricted to each open subset, and whose stalk maps send the maximal ideals into maximal ones) \index{00@Reduction map $\red:\scr O_X\rightarrow\scr C_X$}
 \begin{align}
 \red:\scr O_X\rightarrow\scr C_X
@@ -956,7 +956,7 @@ Injectivity: Assume $\Phi_1,\Phi_2$ both satisfy the requirement. Then they clea
 
 
 
-\begin{thm}[\textbf{Krull's intersection theorem}] \index{00@Krull's intersection theorem}
+\begin{thm}[\textbf{Krull's intersection theorem}]\label{lb162} \index{00@Krull's intersection theorem}
 Let $(A,\fk m)$ be a Noetherian local ring, and let $\mc M$ be a finitely-generated $A$-module. Then $\bigcap_{k\in\Nbb}\fk m^k\cdot \mc M=0$.
 \end{thm}
 
@@ -2320,6 +2320,30 @@ Note that the \textbf{intersection sheaf} \index{00@Intersection sheaves} $\scr 
 Clearly $\scr E+\scr F$ is finite-type and hence coherent. So by Cor. \ref{lb46}, $\scr E/(\scr E\cap\scr F)\simeq(\scr E+\scr F)/\scr F$ is coherent, and hence $\scr E\cap\scr F$ is coherent.
 \end{proof}
 
+\begin{df}\label{lb171}
+Let $\varphi:\scr F\rightarrow\scr G$ be a morphism of $\scr O_X$-module. If $\scr L$ is an $\scr O_X$-submodule of $\scr G$, we define $\varphi^{-1}(\scr L)$ \index{zz@$\varphi^{-1}(\scr L)$} to be the $\scr O_X$-module such that for each open $U\subset X$,
+\begin{align}
+\varphi^{-1}(\scr L)(U)=\{s\in\scr F(U):\varphi(s)_x\in\scr L_x\text{ for all } x\in U\}
+\end{align}
+where $\varphi(s)_x$ is the germ of $\varphi(s)$ at $x$. 
+\end{df}
+
+We have an obvious canonical equivalence
+\begin{align}
+\varphi^{-1}(\scr L)_x\simeq \varphi^{-1}(\scr L_x).
+\end{align}
+Therefore, by checking at the level of stalks, we see that the sequence
+\begin{align}
+0\rightarrow\ker(\varphi)\rightarrow\varphi^{-1}(\scr L)\rightarrow\scr L\rightarrow0
+\end{align}
+is exact. Thus, by Thm. \ref{lb20} and Cor. \ref{lb46}, we have:
+
+\begin{co}\label{lb172}
+Let $\varphi:\scr F\rightarrow\scr G$ be a morphism of $\scr O_X$-module. If $\scr L$ is a coherent $\scr O_X$-submodule of $\scr G$, then $\varphi^{-1}(\scr L)$ is $\scr O_X$-coherent.
+\end{co}
+
+
+
 
 
 \begin{thm}\label{lb48}
@@ -2537,7 +2561,7 @@ $\Ann(\scr E_x)=\scr O_{X,x}$ iff $1\in\Ann(\scr E_x)$ iff $1$ annihilates $\scr
 \end{rem}
 
 
-\begin{rem}
+\begin{rem}\label{lb167}
 We know that the support  (as a set) of a finite-type $\scr O_X$-module is a closed subset of $X$ (Cor. \ref{lb43}). Now we know that if $\scr E,\scr O_X$ are coherent, then $\Supp(\scr E)$ as a set is an \textbf{analytic subset} \index{00@Analytic subsets} of $X$, which means that it is $N(\mc I)$ for a finite-type ideal $\mc I$.
 \end{rem}
 
@@ -2581,6 +2605,11 @@ In the setting of Def. \ref{lb76}, using \eqref{eq36}, it is easy to see that we
 \sann_{\scr O_Y}(\varphi_*\scr O_X)_y\simeq \Ker\big(\varphi^\#:\scr O_{Y,y}\rightarrow(\varphi_*\scr O_X)_y\big).\label{eq37}
 \end{align}
 \end{rem}
+
+
+\begin{exe}\label{lb155}
+Assume that $\varphi_*\scr O_X$ is $\scr O_Y$-coherent and $\varphi$ is a closed map. Show that if $X$ is reduced then the complex space $\varphi(X)$ is reduced. (Recall Def. \ref{lb154}.) Show that if $A$ is an analytic subset of $X$, then the set $\varphi(A)$ is analytic in $Y$.
+\end{exe}
 
 
 
@@ -3240,16 +3269,15 @@ It follows immediately from Thm. \ref{lb75} that if $\pi:X\rightarrow S$ is holo
 \end{rem}
 
 
-
-
-
-\begin{co}\label{lb144}
-Let $\varphi:X\rightarrow Y$ be a finite holomorphic map and $A$ an analytic subset of $X$. Then the set $\varphi(A)$ is an analytic subset of $Y$.
+\begin{co}\label{lb173}
+Let $X$ be a complex space which, as a set, is $\{x\}$. Then an $\scr O_X$-module $\scr E$ is $\scr O_X$-coherent if and only if $\scr E$ (or more precisely $\scr E(\{x\})$) is a finite-dimensional vector space.
 \end{co}
 
 \begin{proof}
-$A$ is the underlying set of a closed subspace of $X$, which we also denote by $A$. Then the inclusion $\iota:A\hookrightarrow X$ is finite, and hence $\varphi\circ\iota:A\rightarrow Y$ is finite. So by Thm. \ref{lb74} and Def. \ref{lb76}, $\varphi(A)=\varphi\circ\iota(A)$ can be viewed as a closed subspace of $Y$ whose underlying set is the image of $\varphi\circ\iota$.
+Let $\pi:X\rightarrow\{0\}$ be the obvious map where $\{0\}$ is the reduced single point. (Note that $x$ is not assumed to be reduced.) Then $\pi$ is clearly finite. That $\scr E$ is finite-dimensional is equivalent to that $\pi_*\scr E$ is $\scr O_{\{0\}}$-coherent. Thus the proof is finished by Thm. \ref{lb74}.
 \end{proof}
+
+
 
 
 
@@ -3891,13 +3919,13 @@ where $a_0\neq 0$. Then as in the proof of Thm. \ref{lb70}, we may choose a new 
 \draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][dash pattern={on 4.5pt off 4.5pt}] (240.24,105.92) -- (324.87,105.92) -- (293.06,141.13) -- (208.44,141.13) -- cycle ;
 %Straight Lines [id:da4807100139421694] 
 \draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (296.42,153.81) -- (305.24,146.55) -- (313.94,139.29) ;
-\draw [shift={(315.48,138.01)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw [shift={(315.48,138.01)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
 %Straight Lines [id:da9540546352598236] 
 \draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (297.48,162.47) -- (306.29,155.21) -- (315,147.95) ;
-\draw [shift={(316.54,146.67)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw [shift={(316.54,146.67)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
 %Straight Lines [id:da49858931103629067] 
 \draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (309.66,161.96) -- (318.47,154.7) -- (327.18,147.44) ;
-\draw [shift={(328.72,146.16)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+\draw [shift={(328.72,146.16)}, rotate = 140.2] [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
 
 % Text Node
 \draw (252.28,72.04) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle z$};
@@ -4070,7 +4098,7 @@ In Thm. \ref{lb102}, \eqref{eq55} and \eqref{eq56} imply that
 \begin{align*}
 \bigcap_{j\neq i}\pk_j\Big\backslash\pk_i\neq\emptyset.
 \end{align*}
-This means that we can find $f\in \mc A$ which is non-zero when restricted to $\mc A/\pk_i$ (i.e. ``non-zero on $N(\pk_i)$") and zero in the other $\mc A/\pk_j$. Thus, by taking sums, we see that there always exists $f\in \mc A$ which is non-zero precisely when restricted to the given ones of $\mc A/\pk_1,\dots,\mc A/\pk_N$. 
+This means that we can find $f\in \mc A$ which is non-zero when restricted to $\mc A/\pk_i$ (i.e. ``non-zero on $N(\pk_i)$") and zero in the other $\mc A/\pk_j$. Thus, by taking linear combinations, we see that there always exists $f\in \mc A$ which is non-zero precisely when restricted to the given ones of $\mc A/\pk_1,\dots,\mc A/\pk_N$. 
 \end{rem}
 
 
@@ -4336,7 +4364,7 @@ By taking power series expansions one sees immediately (1)$\Rightarrow$(2). Now 
 \section{Local decomposition of reduced complex spaces}
 
 
-\subsection{Local decomposition}
+\subsection{Germs of analytic subsets and ideals}\label{lb157}
 
 
 Fix a complex space $X$. Suppose that $X$ is reduced and $x\in X$. Then similar to Rem. \ref{lb118}, we have a bijection $A\mapsto I_A,N(I)\mapsfrom I$:
@@ -4363,6 +4391,9 @@ We list some easy but useful facts about this correspondence. Let $(X,x)$ be a g
 \end{itemize}
 \end{itemize}
 \end{rem}
+
+\subsection{Local decomposition}
+
 
 \begin{thm}\label{lb124}
 Let $X$ be a reduced complex space and $x\in X$. Then after shrinking $X$ to a neighborhood of $x$, we have
@@ -4410,7 +4441,7 @@ In that case, $X$ is reducible at each point of $X_i\cap X_j$ where $i\neq j$.
 Note that \eqref{eq65} implies, for instance, that if $1\leq k<N$ then $(X_1\cup\cdots\cup X_k)\cap (X_{k+1}\cup\cdots\cup X_N)$ is nowhere dense in every $X_i$. Hence it is nowhere dense in any union of subclass of $X_1,\dots,X_N$.
 
 
-We will prove Thm. \ref{lb125} in Subsec. \ref{lb126}. Note that (cf. Rem. \ref{lb127}) here $X_i\cap X_j$ means set-theoretic intersection (i.e. intersection of analytic subsets), but not intersection of complex spaces. But this is not really a big issue here; we are just reminding the readers of the conventions we set before.
+We will prove Thm. \ref{lb125} in Sec. \ref{lb126}. Note that (cf. Rem. \ref{lb127}) here $X_i\cap X_j$ means set-theoretic intersection (i.e. intersection of analytic subsets), but not intersection of complex spaces. But this is not really a big issue here; we are just reminding the readers of the conventions we set before.
 
 
 
@@ -4418,7 +4449,7 @@ We will prove Thm. \ref{lb125} in Subsec. \ref{lb126}. Note that (cf. Rem. \ref{
 
 
 
-\subsection{Non zero-divisors and nowhere dense analytic subsets}\label{lb126}
+\section{Non zero-divisors and nowhere dense analytic subsets}\label{lb126}
 
 
 As an application of local decomposition, we give a useful method for showing that an analytic subset is nowhere dense:
@@ -4829,7 +4860,7 @@ If $\mc M$ is free then $\varphi_*$ is surjective because $\Hom_{\mc A}(\mc M,-)
 
 
 
-\begin{thm}
+\begin{thm}\label{lb168}
 Let $X$ be a complex space and $\scr E$ a coherent $\scr O_X$-module. Then
 \begin{align*}
 E=\{x\in X:\scr E\text{ is not locally free at }x\}
@@ -4897,7 +4928,7 @@ The \textbf{global dimension} \index{00@Global dimension $\dim X$} is defined to
 \begin{align*}
 \dim X=\sup_{x\in X}\dim_xX.
 \end{align*}
-We say that $X$ is \textbf{pure dimensional} \index{00@Pure dimensional complex spaces} if $x\in X\mapsto\dim_xX$ is a constant function. \hfill\qedsymbol
+We say that $X$ is \textbf{(resp. locally) pure dimensional} \index{00@Pure dimensional and locally pure dimensional complex spaces} if $x\in X\mapsto\dim_xX$ is a (resp. locally) constant function. We say that $X$ has \textbf{pure dimension $n$ at $x$} \index{00@Pure dimensional at a point} if $X$ has dimension $n$ at every point of a neighborhood of $x$. \hfill\qedsymbol
 \end{df}
 
 \subsection{Basic facts about dimensions}
@@ -4928,7 +4959,7 @@ We have $\dim_xX\leq n$ if and only if there exist a neighborhood $U_x\subset X$
 The ``if" part is clear. The ``only if" part follows by choosing $F=(f_1,\dots,f_n)$ (where $f_\blt$ are in Def. \ref{lb140}) and applying Thm. \ref{lb75} to deduce the finiteness.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb153}
 For each complex space $X$, the dimension function
 \begin{align*}
 X\rightarrow \Nbb\qquad x\mapsto\dim_xX
@@ -4970,7 +5001,7 @@ Let $X$ be a complex space and $x\in X$. The following are equivalent.
 
 
 \begin{proof}
-(1)$\Rightarrow$(2): By shrinking $X$, we assume $x$ is the only point of $X$. Let $\{0\}$ be the reduced point (whose structure sheaf is $\Cbb$). Then the obvious holomorphic map $X\rightarrow\{0\}$ is finite. Therefore, by Thm. \ref{lb74}, $\scr O_{X,x}$ is $\Cbb$-coherent, i.e., $\Cbb$-finite-dimensional.
+(1)$\Rightarrow$(2): By shrinking $X$, we assume $x$ is the only point of $X$. Let $\{0\}$ be the reduced single point (whose structure sheaf is $\Cbb$). Then the obvious holomorphic map $X\rightarrow\{0\}$ is finite. Therefore, by Thm. \ref{lb74}, $\scr O_{X,x}$ is $\Cbb$-coherent, i.e., $\Cbb$-finite-dimensional.
 
 (2)$\Rightarrow$(3): Obvious.
 
@@ -4991,20 +5022,20 @@ Since $f_i(0)=0$, $1-z_if_i$ is invertible in $\scr O_{X,x}$. So $z_i^k=0$ in $\
 \section{Active lemma for dimensions}
 
 
-
 Let $X$ be a complex space.
 
 \subsection{Active lemma}
 
 
+
 \begin{df}
-An element $f\in\scr O(X)$ is called \textbf{active at $x$} \index{00@Active elements} if $f$ (or more precisely $\red(f)$) is a non zero-divisor of $\scr O_{\red(X),x}$.
+An element $f\in\scr O(X)$ is called \textbf{active at $x$} or \textbf{active in $\scr O_{X,x}$} \index{00@Active elements} if $f$ (or more precisely $\red(f)$) is a non zero-divisor of $\scr O_{\red(X),x}$.
 \end{df}
 
 Non zero-divisors are always active, but the converse is not true.
 
 \begin{pp}
-If $f\in\scr O(X)$ is a non zero-divisor of $\scr O_{X,x}$, then $f$ is active at $x$.
+If $f\in\scr O(X)$ is a non zero-divisor of $\scr O_{X,x}$, then $f$ is active in $\scr O_{X,x}$.
 \end{pp}
 
 \begin{proof}
@@ -5033,7 +5064,7 @@ Thus, by Prop. \ref{lb142}, if $f$ is active at $x$ then \eqref{eq68} also holds
 \begin{proof}
 Let $m=\dim_x N(f)$ and $n=\dim_xX$. Then, after shrinking $X$ to a neighborhood of $x$, there are $g_1,\dots,g_m\in\scr O(X)$ such that $N(f)\cap N(g_1,\dots,g_m)=\{x\}$.  Thus $n\leq m+1$.
 
-Let us prove $m\leq n-1$. Let $A=N(f)$. By Prop. \ref{lb141}, we may shrink $X$ and find a finite holomorphic map $\varphi:X\rightarrow V$ sending $x$ to $0$, where $V\subset\Cbb^n$ is open. By Cor. \ref{lb144}, $\varphi(A)$ is an analytic subset of $V$. So $m\leq \dim_0\varphi(A)$ by Cor. \ref{lb143}. Therefore, it suffices to prove $\dim_0\varphi(A)\leq n-1$.
+Let us prove $m\leq n-1$. Let $A=N(f)$. By Prop. \ref{lb141}, we may shrink $X$ and find a finite holomorphic map $\varphi:X\rightarrow V$ sending $x$ to $0$, where $V\subset\Cbb^n$ is open. By Exe. \ref{lb155}, $\varphi(A)$ is an analytic subset of $V$. So $m\leq \dim_0\varphi(A)$ by Cor. \ref{lb143}. Therefore, it suffices to prove $\dim_0\varphi(A)\leq n-1$.
 
 By Thm. \ref{lb74}, $\varphi_*\scr O_X$ is $\scr O_V$-coherent. Therefore $\scr O_{X,x}$ is a finitely-generated $\scr O_{V,0}$-module since it is a direct summand of $(\varphi_*\scr O_X)_x$ (cf. Prop. \ref{lb56}). Thus, as $\scr O_{X,x}$ is Noetherian, the germ of $f$ in $\scr O_{X,x}$ is integral over $\scr O_{V,0}$, i.e.
 \begin{align*}
@@ -5050,7 +5081,7 @@ Since $a_k$ is non-zero in $\scr O_{V,0}$, as in the proof of Thm. \ref{lb70} we
 
 
 \begin{rem}\label{lb148}
-Assume $\dim_xX>0$. By taking local decomposition of $\red(X)$ at $x$ and using Cor. \ref{lb120} or Lemma \ref{lb145}, we can find $f\in\fk m_{X,x}$ which is active at $x$. By Active lemma, we can repeat this procedure to obtain $f_1,\dots,f_n\in\fk m_{X,x}$ such that, after shrinking $X$ to a neighborhood of $x$, each $f_i$ is in $\scr O(X)$ and is an active germ of $N(f_1,\dots,f_{i-1})$ at $x$. And $x$ is an isolated point of $N(f_1,\dots,f_n)$.
+Assume $\dim_xX>0$. By taking local decomposition of $\red(X)$ at $x$ and using Cor. \ref{lb120} or Lemma \ref{lb145}, we can find $f\in\fk m_{X,x}$ which is an active germ of $X$ at $x$. By Active lemma, we can repeat this procedure to obtain $f_1,\dots,f_n\in\fk m_{X,x}$ such that, after shrinking $X$ to a neighborhood of $x$, each $f_i$ is in $\scr O(X)$ and is an active germ of $N(f_1,\dots,f_{i-1})$ at $x$. And $x$ is an isolated point of $N(f_1,\dots,f_n)$.
 
 Contrary to active elements, if $\scr O_{X,x}$ is not reduced then $\fk m_{X,x}$ might not contain a non zero-divisor of $\scr O_{X,x}$. Thus, we may not be able to find $f_1,\dots,f_n\in\fk m_{X,x}$ such that each $f_i$ is a non zero-divisor of $\scr O_{X,x}/(f_1\scr O_{X,x}+\cdots+f_{i-1}\scr O_{X,x})$. In the case that we can, we will call $\scr O_{X,x}$ a \textbf{Cohen-Macaulay ring}. 
 \end{rem}
@@ -5061,7 +5092,7 @@ Contrary to active elements, if $\scr O_{X,x}$ is not reduced then $\fk m_{X,x}$
 
 
 
-\subsection{Applications of Active lemma}
+\subsection{Immediate consequences of Active lemma}
 
 
 \index{00@Ritt's lemma}
@@ -5101,7 +5132,7 @@ By Prop. \ref{lb142}, it suffices to assume that $X$ is reduced. Clearly (2)$\Ri
 \begin{pp}\label{lb146}
 Let $X=A_1\cup\cdots\cup A_N$ be a union of analytic subsets. Then
 \begin{align}
-\dim_xX=\max_{1\leq i\leq N}\dim_xA_i\label{eq69}
+\dim_xX=\sup_{1\leq i\leq N}\dim_xA_i\label{eq69}
 \end{align}
 \end{pp}
 
@@ -5112,7 +5143,7 @@ The base case $m=0$ is obvious. Assume that \eqref{eq69} holds for any decomposi
 \end{proof}
 
 
-\begin{pp}
+\begin{pp}\label{lb152}
 Let $X,Y$ be complex spaces and $x\in X,y\in Y$. Then
 \begin{align}
 \dim_{x\times y} X\times Y=\dim_xX+\dim_yY.\label{eq70}
@@ -5122,7 +5153,7 @@ Let $X,Y$ be complex spaces and $x\in X,y\in Y$. Then
 
 
 \begin{proof}
-We prove this by induction on $m=\dim_xX$. The case $\dim_xX=0$ is obvious. Suppose \eqref{eq70} holds whenever $\dim_xX=m-1$. In the case that $\dim_xX=m$, choose an active element $f\in\fk m_{X,x}$ (Rem. \ref{lb148}). By shrinking $X$ to a neighborhood of $x$ we may assume $f\in\scr O(X)$. By Prop. \ref{lb121}, we may shrink $X$ further so that $N(f)$ is nowhere dense in $X$. So $N(f\otimes 1)=N(f)\times Y$ is nowhere dense in $Y$. By Prop. \ref{lb121} again, $f\otimes 1$ is an active germ of $X\times Y$ at $x\times y$. Therefore, by Active lemma,  $\dim_{x\times y}N(f)\times Y=\dim_{x\times y}X\times Y-1$, and $\dim_x N(f)=\dim X-1$. By assumption, $\dim_{x\times y}N(f)\times Y=\dim_xN(f)+\dim_yY$. This proves \eqref{eq70}.
+We prove this by induction on $m=\dim_xX$. The case $\dim_xX=0$ is obvious. Suppose \eqref{eq70} holds whenever $\dim_xX=m-1$. In the case that $\dim_xX=m$, choose  $f\in\fk m_{X,x}$ active at $x$ (Rem. \ref{lb148}). By shrinking $X$ to a neighborhood of $x$ we may assume $f\in\scr O(X)$. By Prop. \ref{lb121}, we may shrink $X$ further so that $N(f)$ is nowhere dense in $X$. So $N(f\otimes 1)=N(f)\times Y$ is nowhere dense in $Y$. By Prop. \ref{lb121} again, $f\otimes 1$ is an active germ of $X\times Y$ at $x\times y$. Therefore, by Active lemma,  $\dim_{x\times y}N(f)\times Y=\dim_{x\times y}X\times Y-1$, and $\dim_x N(f)=\dim X-1$. By assumption, $\dim_{x\times y}N(f)\times Y=\dim_xN(f)+\dim_yY$. This proves \eqref{eq70}.
 \end{proof}
 
 \subsection{Comparing different versions of dimensions}
@@ -5160,7 +5191,7 @@ Let $\mc A$ be a commutative ring. The \textbf{Krull dimension} of $\mc A$ is th
 \begin{lm}\label{lb150}
 Let $\pk'\subsetneq\pk$ be prime ideals of $\scr O_{X,x}$. Then
 \begin{align}
-1+\dim\scr O_{X,x}/\pk\leq\dim\scr O_{X,x}/\pk'. \label{eq71}
+\dim\scr O_{X,x}/\pk<\dim\scr O_{X,x}/\pk'. \label{eq71}
 \end{align}
 \end{lm}
 Recall that a prime ideal of $\scr O_{X,x}$ is not equal to $\scr O_{X,x}$, and hence is contained in $\fk m_{X,x}$.
@@ -5179,7 +5210,65 @@ Lemma \ref{lb150} shows that $n=\dim_xX$ is no less than the Krull dimension of 
 \end{proof}
 
 
-\section{Dimensions and openness}
+
+\section{Noether property for coherent sheaves}
+
+Let $X$ be a complex space. In this section, we use dimension theory and Active lemma to prove the Noether property for coherent sheaves of $X$.
+
+\begin{df}
+Let $\scr E$ be a coherent $\scr O_X$-module. An \textbf{ascending chain of coherent $\scr O_X$-submodules} of $\scr E$ is a collection $(\scr E_i)_{i\in\fk I}$ where $\fk I$ is a directed set, and $\scr E_i\subset\scr E_j$ if $i\leq j$. We say that the chain is \textbf{stationary at $x\in X$} if there is a neighborhood $U\subset X$ of $x$ and $i\in\fk I$ such that $\scr E_i|_U=\scr E_j|_U$ for all $j\geq i$. We say that $\scr E$ satisfies \textbf{Noether property at $x$} \index{00@Noether property for coherent sheaves} every every ascending chain of coherent submodules of $\scr E$ is stationary at $x$. We say that $\scr E$ satisfies \textbf{Noether property} if it satisfies Noether property at every $x\in X$.
+\end{df}
+
+It is clear that if $\scr E$ satisfies Noether property, then any ascending chain of submodules of $\scr E$ is stationary on any precompact open subset of $X$.
+
+
+\begin{lm}\label{lb175}
+Let $0\rightarrow\scr E\rightarrow\scr F\xrightarrow{\psi}\scr G\rightarrow0$ be an exact sequence of $\scr O_X$-modules. If $\scr F$ satisfies Noether property at $x$ then so does $\scr G$. If $\scr E$ and $\scr G$ satisfy Noether property at $x$ then so does $\scr F$.
+\end{lm}
+
+
+\begin{proof}
+Assume that $\scr F$ satisfies Noether property at $x$. Let $(\scr G_i)_{i\in\fk I}$ be an ascending chain of coherent submodules of $\scr G$. By Cor. \ref{lb172}, $\psi^{-1}(\scr G_i)$ is $\scr O_X$-coherent. So we have an ascending chain $(\scr G_i)_{i\in\fk I}$ which is stationary at $x$. Then $(\scr G_i)_{i\in\fk I}=(\psi(\psi^{-1}(\scr G_i)))_{i\in\fk I}$ is stationary at $x$.
+
+Now assume that $\scr E$ and $\scr G$ satisfy Noether property at $x$. Let $(\scr F_i)_{i\in\fk I}$ be an ascending chain of coherent submodules of $\scr F$. We regard $\scr E$ as a submodule of $\scr F$. Then $(\psi(\scr F_i))_{i\in\fk I}$ and $(\scr E\cap\scr F_i)_{i\in\fk I}$ are ascending chains of coherent submodules of $\scr G$ and $\scr E$ respectively, where the coherence is due to Cor. \ref{lb46} and \ref{lb110}. So they are stationary at $x$. From this one deduces that $(\scr F_i)_{i\in\fk I}$ is stationary at $x$.
+\end{proof}
+
+
+\begin{lm}\label{lb174}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map of complex spaces, and let $\scr E$ be an $\scr O_X$-module. Let $x\in X$. If $\varphi_*\scr E$ satisfies Noether property at $y=\varphi(x)$, then $\scr E$ satisfies Noether property at $x$. 
+\end{lm}
+
+
+\begin{proof}
+Let $(\scr E_i)_{i\in\fk I}$ be an ascending chain of coherent submodules of $\scr E$. Then $(\varphi_*\scr E_i)_{i\in\fk I}$ is an ascending chain of coherent submodules of $\varphi_*\scr E$. By assumption, after shrinking $Y$ to a neighborhood of $y$ and shrinking $X$ to $\varphi^{-1}(Y)$, there is $i\in\fk I$ such that for all  $j\geq i$ we have $\varphi_*\scr E_i=\varphi_*\scr E_j$, namely $(\varphi_*\scr E_i)_\yk=(\varphi_*\scr E_j)_\yk$ for all $\yk\in Y$. This means, by Prop. \ref{lb56}, that $\scr E_{i,\xk}=\scr E_{j,\xk}$ for all $\xk\in\varphi^{-1}(\yk)$ and $j\geq i$. So $\scr E_i=\scr E_j$ when $j\geq i$.
+\end{proof}
+
+
+\begin{lm}\label{lb176}
+Let $X$ be a connected open subset of $\Cbb^n$, and let $\mc I$ be a coherent ideal of $\scr O_U$. If $\mc I\neq 0_X$, then $\mc I_x\neq 0$ for every $x\in X$.
+\end{lm}
+
+\begin{proof}
+We know that $\Supp(\mc I)$ is a (closed) analytic subset of $X$. If we can show that $\Supp(\mc I)$ is open in $X$, then $\Supp(\mc I)=X$, which finishes the proof of the lemma. 
+
+Choose any $x\in\Supp(\mc I)$. Then $\mc I_x\neq 0$. There are a connected neighborhood $U$ of $x$ and $f\in\mc I(U)$ such that $f$ is non-zero in $\scr O_{U,x}$. By Identit\"atssatz \ref{lb68}, $f$ is non-zero in $\scr O_{U,p}$ for all $p\in U$, which shows $U\subset\Supp(\mc I)$.
+\end{proof}
+
+
+
+
+\begin{thm}
+Let $X$ be a complex space and $\scr E$ a coherent $\scr O_X$-module. Then $\scr E$ satisfies Noether property.
+\end{thm}
+
+
+\begin{proof}
+We need to prove that any coherent module $\scr E$ satisfies Noether property at $x$. We prove this by induction on $\dim_xX$. Then case $\dim_xX=0$ is obvious since $\scr E$ is a finite-dimensional vector space (Cor. \ref{lb173}). Now assume that coherent sheaves satisfy Noether property at $x$ (for all $X$ and $x\in X$) whenever $\dim_xX\leq n-1$ and $n\in\Zbb_+$. Let us prove that this is true when $\dim_xX\leq n$.
+
+By Prop. \ref{lb141}, after shrinking $X$ to a neighborhood of $x$, we may find a finite map from $X$ to an open subset of $\Cbb^n$. Therefore, by Lemma \ref{lb174}, it suffices to assume that $X$ is an open subset of $\Cbb^n$. Let $\scr E$ be a coherent $\scr O_{X,x}$-module. After shrinking $X$ further, $\scr E$ is the cokernel of a morphism of free $\scr O_X$-modules (Thm. \ref{lb48}). Thus, by Lemma \ref{lb175}, it suffices to assume that $\scr E$ is $\scr O_X$-free, and hence that $\scr E=\scr O_X$.
+
+Let $(\mc I_i)_{i\in\fk I}$ be an ascending chain of ideals of $\scr O_X$. We need to show that it is stationary at $x$. It suffices to assume that $\mc I_k\neq 0_X$ for some $k$. By Lemma \ref{lb176}, $\mc I_{k,x}\neq 0$. Shrink $X$ so that we can find $f\in\mc I_k(X)$ non-zero in $\scr O_{X,x}$. By discarding all $i<k$, we assume that $f\scr O_X\subset\mc I_i$ for all $i\in\fk I$. Let $\mc J_i=\mc I_i/f\scr O_X$, which is an $\scr O_X$-submodule of $\scr O_X/f\scr O_X$. Identify $\mc J_i$ with its restriction to $Y=\Specan(\scr O_X/f\scr O_X)$. Then $(\mc J_i)_{i\in\fk I}$ is an ascending chain of coherent ideals of $\scr O_Y$. Since $\scr O_{X,x}$ is an integral domain, we have $\dim \scr O_{Y,x}=\dim\scr O_{X,x}-1=n-1$ by Active lemma. Thus, by assumption, $(\mc J_i)_{i\in\fk I}$ is stationary at $x$. Therefore $(\mc I_i)_{i\in\fk I}$ is stationary at $x$.
+\end{proof}
 
 
 
@@ -5195,6 +5284,449 @@ Lemma \ref{lb150} shows that $n=\dim_xX$ is no less than the Krull dimension of 
 
 
 
+
+
+
+
+
+\section{Openness and dimensions of fibers I}
+
+\begin{df}
+Let $\varphi:X\rightarrow Y$ be a continuous map of topological spaces. We say that $\varphi$ is \textbf{open at $x\in X$} \index{00@Open maps} if for each neighborhood $U\subset X$ of $x$, $\varphi(U)$ contains a neighborhood of $\varphi(x)$. We say that $\varphi$ is \textbf{open (on $X$)} if $\varphi$ is open at every point of $X$.
+
+It is clear that $\varphi$ is open at $x$ iff
+\begin{align*}
+\{U\subset X:U\text{ is a neighborhood of }X\text{ and }\varphi(U)\text{ is open in }Y\}
+\end{align*}
+is a base of neighborhoods of $x$. \hfill\qedsymbol
+\end{df}
+
+
+
+\subsection{Dimension Formula \eqref{eq73}}
+
+
+
+In the following, $\varphi:X\rightarrow Y$ always denotes a holomorphic map of complex spaces. For each $y\in Y$, the \textbf{fiber} $X_y$ means the inverse image $\varphi^{-1}(y)$ (cf. Prop. \ref{lb39}), \index{00@Fiber $X_y=\varphi^{-1}(y)$} namely
+\begin{align*}
+X_y=\varphi^{-1}(y)=\Specan(\scr O_X/\fk m_{Y,y}\scr O_X).
+\end{align*}
+
+
+\begin{pp}\label{lb151}
+The following are true for $\varphi:X\rightarrow Y$.
+\begin{enumerate}[label=(\arabic*)]
+\item For each $x\in X$,
+\begin{align}
+\dim_x X_{\varphi(x)}\geq\dim_x X-\dim_{\varphi(x)} Y.
+\end{align}
+\item The function $x\in X\mapsto \dim_x X_{\varphi(x)}$ is upper semicontinuous.
+\end{enumerate}
+\end{pp}
+
+Note that part (1) generalizes Cor. \ref{lb143}, and part (1) generalizes Cor. \ref{lb153}.
+
+
+\begin{proof}
+Fix $x\in X$. Let $m=\dim_x X_{\varphi(x)}$ and $n=\dim_{\varphi(x)}Y$. By the definition of dimensions, we may shrink $Y$ to a neighborhood of $y=\varphi(x)$ and $X$ to a neighborhood of $x$ inside $\varphi^{-1}(Y)$ such that there exist $f_1,\dots,f_m\in\scr O(X)$ such that $x$ is the only point of $N(f_1,\dots,f_m)\cap X_y$. Consider $(f_\blt)\in\scr O(X)^m$ as a holomorphic map $X\rightarrow\Cbb^m$, and let $\Psi=(f_\blt)\vee\varphi:X\rightarrow \Cbb^m\times Y$. Then $x$ is the only point of $\Psi^{-1}(\Psi(x))=\Psi^{-1}(0\times y)$. Therefore, by Thm. \ref{lb75}, we may shrink $X$ and $Y$ further so that $\Psi$ is finite. Then by Cor. \ref{lb143} and Prop. \ref{lb152},
+\begin{align*}
+\dim_xX\leq\dim_{0\times y}\Cbb^m\times Y=m+n.
+\end{align*}
+This proves (1) .
+
+Since $\Psi$ is finite, each $p\in X$ is an isolated point of $\Psi^{-1}(\Psi(p))$. Since
+\begin{align*}
+\Psi^{-1}(\Psi(p))=N(f_1-f_1(p),\dots,f_m-f_m(p))\cap X_{\varphi(p)}
+\end{align*}
+we must have $\dim_pX_{\varphi(p)}\leq m$. This proves (2).
+\end{proof}
+
+Our main goal of this section and the next one is to understand when the following \textbf{Dimension Formula} holds:
+\begin{align}
+{\color{red}\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y}\label{eq73}
+\end{align}
+More precisely, our goal is to understand the following result of Remmert which relates the openness of $\varphi$ and \eqref{eq73}.
+\begin{co}\label{lb159}
+Assume that $Y$ is locally irreducible. Then $\varphi:X\rightarrow Y$ is open if and only if Dimension Formula \eqref{eq73} holds for all $x\in X$.
+\end{co}
+\begin{proof}
+This follows from Thm. \ref{lb164} and \ref{lb165}, together with the fact that every locally irreducible space is locally pure dimensional (Thm. \ref{lb170}).
+\end{proof}
+
+
+
+The following proposition is helpful for the proof of Thm. \ref{lb164} and \ref{lb165}.
+
+\begin{pp}\label{lb160}
+Assume that $X$ and $Y$ are locally pure dimensional. If Dimension Formula \eqref{eq73} holds at $x_0\in X$, then it holds everywhere on a neighborhood of $x_0$.
+\end{pp}
+
+\begin{proof}
+Since $X$ and $Y$ are locally pure dimensional, we may shrink $X$ to a neighborhood of $x_0$ so that the RHS of \eqref{eq73} is constant over all $x\in X$. By Prop. \ref{lb151}-(2), after further shrinking $X$, $\dim_x X_{\varphi(x)}\leq \dim_{x_0} X_{\varphi(x_0)}$ for all $x\in X$. By Prop. \ref{lb151}-(1), ``$\geq$" holds if \eqref{eq73} holds at $x$. So ``$=$" holds. So $\dim_x X_{\varphi(x)}$ is constant over $x\in X$. Therefore \eqref{eq73} holds for all $x\in X$. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Openness and Dimension Formula: the finite case}
+
+
+
+In this subsection, we study the relation between Dimension Formula and openness when $\varphi$ is finite.
+
+
+\begin{lm}\label{lb156}
+Assume that $\varphi:X\rightarrow Y$ is finite. Let $x\in X$ and $y=\varphi(x)$, and assume that $x$ is the only point of $\varphi^{-1}(y)$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is open at $x$.
+\item The set $\varphi(X)$ contains a neighborhood of $y$ in $Y$.
+\end{enumerate}
+\end{lm}
+\begin{proof}
+Clearly (1)$\Rightarrow$(2). Assume (2). By Prop. \ref{lb54}, for each neighborhood $U\subset X$ of $x$ there is a neighborhood $V\subset Y$ of $y$ such that $\varphi^{-1}(V)\subset U$. Then $\varphi(U)$ contains $\varphi(\varphi^{-1}(U))=U\cap\varphi(X)$, and $U\cap\varphi(X)$ contains a neighborhood of $y\in Y$ by (2). This proves (1).
+\end{proof}
+
+
+\begin{thm}\label{lb158}
+Assume that $\varphi:X\rightarrow Y$ is finite, and let $x\in X$. Consider the following statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is open at $x$.
+\item Dimension Formula \eqref{eq73} holds at $x$, namely
+\begin{align}
+\dim_xX=\dim_{\varphi(x)}Y. \label{eq74}
+\end{align}
+\end{enumerate}
+Then (1)$\Rightarrow$(2). If $Y$ is irreducible at $\varphi(x)$, then (2)$\Rightarrow$(1).
+\end{thm}
+
+
+\begin{proof}[Proof of (1)$\Rightarrow$(2)]
+Assume for simplicity that $X,Y$ are reduced, and that (by Thm. \ref{lb75}) $x$ is the only point of $\varphi^{-1}(y)$ where $y=\varphi(x)$. Assume (1). If $\dim_xX=0$ then $y$ contains a neighborhood of itself. So $y$ is isolated in $Y$ and hence \eqref{eq74} holds.
+
+Now assume $\dim_xX>0$. By Prop. \ref{lb54}, after shrinking $Y$ to a neighborhood of $y$ and shrinking $X$ to $\varphi^{-1}(Y)$, we may assume that $X$ has local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$. Then $x$ is not an isolated point of any $X_i$, otherwise \eqref{eq64} does not hold. Thus $\dim_x X_i>0$.
+
+Recall that each $Y_i=\varphi(X_i)$ is an analytic subset (i.e. reduced complex subspace) of $Y$, cf. Exe. \ref{lb155}. By Cor. \ref{lb143}, $\dim_y Y_i>0$. Therefore, after shrinking $Y$ and $X$ further, we have a local decomposition $Y_i=Y_{i,1}\cup Y_{i,2}\cup\cdots$ at $y$ for all $i$, and $y$ is not an isolated point of each $Y_{i,j}$. Therefore $\scr I_{Y_{i,j},y}\subsetneq \fk m_{Y,y}$ for each $i,j$. By Lemma \ref{lb145}, there exists $g\in\fk m_{Y,y}$ which is a non zero-divisor of $\scr O_{Y_{i,j},y}=\scr O_{Y,y}/\scr I_{Y_{i,j},y}$ for all $i,j$. Shrink $Y$ and shrink $X$ to $\varphi^{-1}(X)$ so that $g\in\scr O(Y)$. Then, by Active lemma, $\dim_y N(g)\cap Y_{i,j}=\dim Y_{i,j}-1$. Thus, by Prop. \ref{lb146}, $\dim_y N(g)=\dim_y Y-1$.
+
+We have
+\begin{align*}
+\scr O_{Y_i,y}=\big(\varphi_*\scr O_{X_i}/\sann(\varphi_*\scr O_{X_i})\big)_y=\scr O_{X_i,x}/\Ann_{\scr O_{Y,y}}((\varphi_*\scr O_{X_i})_y),
+\end{align*}
+where we have used Prop. \ref{lb56} in the last equality. Since $g$ is nonzero in $\scr O_{Y,y}$, $g\circ\varphi$ is non-zero in the integral domain $\scr O_{X_i,x}$. So by Active lemma, $\dim_y N(g\circ\varphi)=\dim_xX-1$. Clearly the restriction $\varphi:N(g\circ\varphi)\rightarrow N(\varphi)$ is finite and open. Therefore, if (2) holds for this restriction then (2) holds for $\varphi:X\rightarrow Y$. This proves (2) by induction on $\dim_xX$.
+\end{proof}
+
+
+
+\begin{proof}[Proof of (2)$\Rightarrow$(1)]
+Assume that (1) is not true and that $Y$ is irreducible at $y=\varphi(x)$. By Thm. \ref{lb75}, we may assume that $x$ is the only point of $\varphi^{-1}(y)$. By Lemma \ref{lb156}, the analytic subset $\varphi(X)$ contains no neighborhoods of $y\in Y$. Equivalently, the germs of sets $(\varphi(X),y)$ and $(Y,y)$ are not equal. So $\scr J_{\varphi(X),y}$ is not $0$ in $\scr O_{Y,y}$  (cf. Subsec. \ref{lb157}). After shrinking $Y$ and shrinking $X$ to $\varphi^{-1}(Y)$, we may find $g\in\scr O(Y)$ non-zero in $\scr O_{Y,y}$ and vanishing on $\varphi(X)$. Since $Y$ is irreducible at $y$, $g$ is a non zero-divisor of $\scr O_{Y,y}$. So by Cor. \ref{lb143} and Active lemma,
+\begin{align*}
+\dim_xX\leq\dim_y\varphi(X)\leq\dim_y N(g)=\dim_yY-1.
+\end{align*}
+This disproves (2).
+\end{proof}
+
+
+
+\begin{eg}
+Consider analytic subsets $X=0\times 0\times\Cbb^2$ and $Y=(\Cbb^2\times 0\times 0)\cup (0\times 0\times\Cbb^2)$ of $\Cbb^4$, viewed as reduced complex spaces. Then $Y$ is pure dimensional but is reducible at $0$. Dimension Formula \eqref{eq73} holds for the inclusion map $\iota_{X,Y}$ at every point of $X$, but $\iota_{X,Y}$ is not open at $0$. Therefore, in Thm. \ref{lb158}, to deduce (2)$\Rightarrow$(1) one cannot remove the irreducibility condition.
+\end{eg}
+
+
+
+\begin{co}[\textbf{Invariance of dimensions}]
+Assume that $\varphi:X\rightarrow Y$ is finite, and let $y\in Y$. Then
+\begin{align}
+\dim_y \varphi(X)=\sup_{x\in X_y} \dim_x X.
+\end{align}
+\end{co}
+
+
+\begin{proof}
+By Rem. \ref{lb55}, we may assume $Y$ is small enough such that $\varphi^{-1}(Y)$ is a disjoint union $\coprod_{x\in X_y}U_x$ where each $U_x$ is a neighborhood of $x\in X$, and each restriction $\varphi:U_x\rightarrow Y$ is finite. Then $\varphi(X)=\bigcup_{x\in X_y}\varphi(U_x)$, and so by Prop. \ref{lb146}, we have $\dim_y\varphi(X)=\sup_{x\in X_y}\dim_y\varphi(U_x)$. By Lemma \ref{lb156}, $\varphi:U_x\rightarrow\varphi(U_x)$ is open at $x$. Thus, by Thm. \ref{lb158}, $\dim_y\varphi(U_x)=\dim_x U_x=\dim_x X$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\section{Openness and dimensions of fibers II}
+
+
+We fix a holomorphic map $\varphi:X\rightarrow Y$. 
+
+\subsection{Openness and Dimension Formula: the general case}
+
+The following theorem generalizes the part (2)$\Rightarrow$(1) of Thm. \ref{lb158}.
+
+
+\begin{thm}\label{lb163}
+Let $x\in X$, and assume that $Y$ is irreducible at $\varphi(x)$. If Dimension Formula \eqref{eq73} holds at $x$, then $\varphi$ is open at $x$.
+\end{thm}
+
+\begin{proof}
+Let $y=\varphi(x)$ and $\dim_xX_y=m$, and assume that \eqref{eq73} holds at $x$. We may shrink $X$ to a neighborhood of $x$ so that there exist $f_1,\dots,f_m\in\scr O(X)$ such that $N(f_1,\dots,f_m)\cap X_y=\{x\}$. Consider $F=(f_1,\dots,f_m)$ as a holomorphic map $X\rightarrow\Cbb^m$. Then $\Upsilon=\varphi\vee F:X\rightarrow Y\times \Cbb^m$ satisfies that $x$ is the only point of $\Upsilon^{-1}(y\times 0)$. Since the projection $\pr_Y:Y\times\Cbb^m\rightarrow Y$ is open and $\varphi=\pr_Y\circ\Upsilon$, in order to show that $\varphi$ is open at $x$ it suffices to show that $\Upsilon$ is open at $x$. 
+
+By Thm. \ref{lb75}, we may shrink $X$ further so that $\Upsilon$ is finite map from $X$ to a neighborhood of $y\times 0$ in $Y\times\Cbb^m$. By assumption, Dimension formula holds for $\Upsilon$ at $x$. Thus, $\Upsilon$ is open at $x$ by Thm. \ref{lb158} and the fact that $Y\times\Cbb^m$ is irreducible at $y\times 0$ (due to Lemma \ref{lb161}).
+\end{proof}
+
+\begin{lm}\label{lb161}
+If $Y$ is irreducible at $y$, then $Y\times\Cbb^m$ is irreducible at $y\times 0$.
+\end{lm}
+
+\begin{proof}
+By induction, it suffices to assume $m=1$. Let $\scr A=\scr O_{Y,y}$ and $\scr B=\scr O_{Y\times\Cbb,y\times 0}$. It suffices to prove that there is a monomorphism of $\Cbb$-algebras $\scr B\rightarrow \scr A[[z]]$ where $\scr A[[z]]$ is the algebra of formal power series of $z$ whose coefficients are elements of $\scr A$. Then since $\scr A$ is an integral domain, $\scr A[[z]]$ is clearly also an integral domain, and so is $\scr B$.
+
+We may write $\scr A=\scr O_{\Cbb^n,0}/J$ where $J$ is an ideal of $\scr O_{\Cbb^n,0}$, and write $y=0$ (in $\Cbb^n$). Let $(w_1,\dots,w_n,z)$ be the set of coordinates of $\Cbb^{n+1}$. Then we have a $\Cbb$-algebra monomorphism $\Phi:\scr O_{\Cbb^{n+1},0}\rightarrow\scr O_{\Cbb^n,0}[[z]]$ defined by taking power series expansions with respect to $z$. More precisely, if $f(w_\blt,z)$ is in $\scr O_{\Cbb^{n+1},0}$, then $\Phi(f)=\sum_{k\in\Nbb} a_k(w_\blt)z^k$ where
+\begin{align*}
+a_k(w_\blt)=\Res_{z=0}f(w_\blt,z)z^{-k-1}dz.
+\end{align*}
+This formula shows that if $f(w_\blt,z)$ belongs to $J\scr O_{\Cbb^{n+1},0}$ (i.e. $f$ is a (finite) $\scr O_{\Cbb^{n+1},0}$-linear combination of elements $g(w_\blt)\in J$) then each coefficient $a_k$ belongs to $J$. Thus $\Phi$ restricts to a morphism
+\begin{align*}
+\Psi:\scr B=\scr O_{\Cbb^{n+1},0}/J\scr O_{\Cbb^{n+1},0}\rightarrow\scr A[[z]]=(\scr O_{\Cbb^n,0}/J)[[z]]
+\end{align*} 
+
+If $\Psi$ sends the residue class $[f]\in\scr B$ of $f\in\scr O_{\Cbb^{n+1},0}$ to the zero element of $\scr A[[z]]$, then each $a_k$ belongs to $J$. The power series expansion $f=\sum_k a_kz^k$ shows that $[f]$ belongs to $z^k\scr B\subset\fk m_{Y\times\Cbb,0}^k$ for all $k\in\Nbb$. Thus $[f]=0$ by Krull's intersection Thm. \ref{lb162}. This proves that $\Psi$ is injective.
+\end{proof}
+
+
+\begin{thm}\label{lb164}
+Assume that $Y$ is locally pure dimensional. If $\varphi:X\rightarrow Y$ is open, then Dimension Formula \eqref{eq73} holds for every $x\in X$. 
+\end{thm}
+
+This theorem can not be proved by Thm. \ref{lb158}. Instead, a prototype of this theorem is Prop. \ref{lb165}-A which can be proved before we prove Thm. \ref{lb164}.
+
+\begin{proof}
+Assume that $Y$ has pure dimensions $n$. Fix $x\in X$ and $y=\varphi(x)$. Then \eqref{eq73} obviously holds when $n=0$. Now assume $n>0$. To prove \eqref{eq73} by induction on $n$, it suffices to show that after shrinking $Y$ to a neighborhood of $y$ and $X$ to $\varphi^{-1}(Y)$, there exists $g\in\scr O(Y)$ with $g(y)=0$ such that
+\begin{enumerate}[label=(\alph*)]
+\item $N(g)$ has pure dimension $n-1$.
+\item $\dim_x N(g\circ\varphi)=\dim_xX-1$.
+\end{enumerate}
+Then \eqref{eq73} holds at $x$ for the restriction of $\varphi$ to $N(g\circ\varphi)\rightarrow N(g)$ (since it is clearly open), and hence holds for $\varphi:X\rightarrow Y$.
+
+By Rem. \ref{lb148}, we may shrink $Y$ (and shrink $X$ accordingly) so that there exists $g\in\scr O(Y)$ with $g(y)=0$ so that $g$ is active in $\scr O_{Y,y}$. Then by Active lemma, Dimension Formula \eqref{eq73} holds for $g:Y\rightarrow\Cbb$ at $y$. Thus, by Prop. \ref{lb160}, \eqref{eq73} holds for $g$ at every point of $Y$. This proves (a). It also proves, together with Thm. \ref{lb163}, that $g:Y\rightarrow\Cbb$ is open. So $g\circ\varphi:X\rightarrow\Cbb$ is open. Thus, by Prop. \ref{lb165}-A to be proved in the next subsection, $g\circ\varphi$ is active in $\scr O_{X,x}$. This proves (b) by Active lemma.
+\end{proof}
+
+
+
+\begin{co}
+Let $\varphi:X\rightarrow S$ and $\psi:Y\rightarrow S$ be open holomorphic maps of complex spaces. Assume that $S$ is locally pure dimensional. Then for each $x\in X,y\in Y$ such that $s=\varphi(x)$ equals $\psi(y)$,
+\begin{align}
+\dim_{x\times y}X\times_SY=\dim_x X+\dim_y Y-\dim_sS.
+\end{align}
+\end{co}
+
+\begin{proof}
+By Thm. \ref{lb164}, Dimension Formula \eqref{eq73} holds at $x\times y$ for both $\varphi\times\psi:X\times Y\rightarrow S\times S$ (which, together with Prop. \ref{lb152}, shows that as an analytic subset of $X\times Y$ the fiber $X_s\times Y_s=(X\times_SY)_s$ has dimension $\dim_x X+\dim_yY-2\dim_sS$ at $x\times y$) and $X\times_SY\rightarrow S$ (which shows that $\dim_{x\times y}X\times_SY$ equals $\dim_{x\times y}(X\times_SY)_s+\dim_sS$).
+\end{proof}
+
+
+
+
+
+\subsection{Openness and active elements}
+
+
+
+Active lemma tells us that Dimension Formula \eqref{eq73} holds if $Y=\Cbb$ and $\varphi:X\rightarrow\Cbb$ (considered as a holomorphic function) is active at $x$. This suggests that active elements are related to openness. Let us give a result indicating their relationship.
+
+\begin{pp}\label{lb165}
+Let $f\in\scr O(X)$. Consider the following conditions for $x\in X$.
+\begin{enumerate}[label=(\arabic*)]
+\item The holomorphic map $f:X\rightarrow\Cbb$ is open at $x$.
+\item $f-f(x)$ is active in $\scr O_{X,x}$.  
+\end{enumerate}
+Then the following are true.
+\begin{enumerate}[label=\boxed{\Alph*}]
+\item If (1) holds for all $x\in X$ then (2) holds for all $x\in X$.
+\item If (2) holds for a given $x\in X$ then (1) holds for the same point $x$.
+\end{enumerate}
+\end{pp}
+
+
+
+\begin{proof}[Proof of $\boxed{A}$]
+Assume that $f$ is open on $X$. Choose any $x\in X$. Let us prove (2) for $x$. Assume for simplicity that $X$ is reduced and $f(x)=0$. If $f$ is not active, then after shrinking $X$ to a neighborhood of $x$, there exists a non-zero $g\in\scr O(X)$ such that $fg=0$ in $\scr O(X)$. Then $U=\{p\in X:g(p)\neq 0\}$ is a non-empty open subset of $X$, and $f(U)=\{0\}$. This contradicts the fact that $f$ is open.
+\end{proof}
+
+
+
+
+\begin{proof}[Proof of $\boxed{B}$]
+Assume that (2) is true for a given $x\in X$. Then by Active lemma, \eqref{eq73} holds for $f:X\rightarrow \Cbb$ at $x$. Thus $f$ is open at $x$ by Thm. \ref{lb163}.
+\end{proof}
+
+
+
+The proof of B shows that for any $f\in\scr O(X)$,
+\begin{gather}\label{eq75}
+\begin{gathered}
+f-f(x)\text{ is active in }\scr O_{X,x}\\
+\Downarrow\\
+\text{Dimension Formula \eqref{eq73} holds for $f:X\rightarrow \Cbb$ at }x\\
+\Downarrow\\
+f:X\rightarrow\Cbb\text{ is open at }x
+\end{gathered}
+\end{gather}
+
+
+
+The following example shows that in Thm. \ref{lb164}, knowing that $\varphi$ is open at a point $x$ is not sufficient to imply Dimension Formula \eqref{eq73} at $x$. It also shows that in Prop. \ref{lb165}, knowing that (1) holds at $x$ is not sufficient to imply (2) at $x$.
+
+
+\begin{eg}
+Let $X$ be reduced with local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$ where $N\geq 2$. Let $n=\dim_xX>0$. By Rem. \ref{lb106}, we may shrink $X$ to a neighborhood of $x$ and find $f\in\scr O(X)$ which belongs to $\scr I_{X_2,x},\dots,\scr I_{X_N,x}$ but not to $\scr I_{X_1,x}$. Then $f|_{X_1}$ is active in the integral domain $\scr O_{X_1,x}=\scr O_{X,x}/\scr I_{X_1,x}$, and hence $f(X_1)$ contains a neighborhood of $0=f(x)$ in $\Cbb$ by Prop. \ref{lb165}-B. This shows that $f$ is open at $x$. However, by Cor. \ref{lb120}, $f$ is not active in $\scr O_{X,x}$. 
+
+Now we assume that $\dim_xX_1=\dim_x X_2=n$. By Active lemma, $\dim_x N(f)\cap X_1=n-1$ and $\dim_x N(f)\cap X_2=n$. Apply Prop. \ref{lb146} to $N(f)=\bigcup_i (N(f)\cap X_i)$. Then we see that $\dim_x N(f)=n$. So Dimension Formula \eqref{eq73} does not hold for $f:X\rightarrow\Cbb$ at $x$.
+\end{eg}
+
+
+
+\section{Openness and torsion sheaves; irreducible and pure dimensional}
+
+
+The goal of this section is to use torsion sheaves to establish a relationship between irreducibility and pure dimensionality.
+
+\subsection{Coherence of torsion sheaves}
+
+
+\begin{df}
+Let $\mc A$ be a commutative ring and $\mc M$ an $\mc A$-module. A \textbf{torsion element} of $\mc M$ \index{00@Torsion elements and torsion modules $T_{\mc A}(\mc M)$} is an element $\xi\in\mc M$ such that $a\xi=0$ for a non zero-divisor $a\in \mc A$ of $\mc A$. The set of torsion elements clearly form an $\mc A$-submodule, and is denoted by $T_{\mc A}(\mc M)$ or simply $T(\mc M)$ and called the \textbf{torsion module} of $\mc M$. We say that $\mc M$ is \textbf{torsion free} \index{00@Torsion free} if $T(\mc M)=0$. In general, $\mc M/T(\mc M)$ is always torsion free.
+\end{df}
+
+
+
+\begin{df}
+Let $X$ be a complex space and $\scr E$ and $\scr O_X$-module. The \textbf{torsion sheaf} \index{00@Torsion sheaf $\scr T_{\scr O_X}(\scr E)$} of $\scr E$, denoted by $\scr T_{\scr O_X}(\scr E)$ or simply $\scr T(\scr E)$, is the sheaf associating to each open $U\subset X$:
+\begin{align*}
+\scr T_{\scr O_X}(\scr E)(U)=\{s\in\scr E(U):\text{the stalk }s_x\in T_{\scr O_{X,x}}(\scr E_x), \forall x\in U\}
+\end{align*}
+We have a canonical equivalence
+\begin{align}
+\scr T_{\scr O_X}(\scr E)_x \simeq T_{\scr O_{X,x}}(\scr E_x).\label{eq76}
+\end{align}
+\end{df}
+
+Note that to show \eqref{eq76} one needs the fact that any $s\in\scr T(\scr E)$ torsion in $\scr E_x$ is torsion in $\scr E_p$ for all $p$ in a neighborhood of $x$. This follows from Prop. \ref{lb113}.
+
+
+In the following discussion of torsion sheaves, we are mainly interested in integral domains and locally irreducible spaces.
+
+
+\begin{pp}
+Let $\mc M$ be a finitely generated module of an integral domain $\mc A$. Then $T_{\mc A}(\mc M)$ is the kernel of the canonical morphism $\mc M\rightarrow\mc M^{\vee\vee}$, where $\mc M^{\vee\vee}$ is the double dual of $\mc M$. 
+\end{pp}
+
+
+
+
+
+\begin{proof}
+Choose any $\xi\in\mc M$. Then $\xi$ belongs to the kernel of $\Phi:\mc M\rightarrow\mc M^{\vee\vee}$ iff $\psi(\xi)=0$ for all $\psi\in\mc M^\vee=\Hom_{\mc A}(\mc M,\mc A)$. If $\xi\in T(\mc M)$ then $a\xi=0$ for a nonzero $a\in\mc A$. So $a\psi(\xi)=\psi(a\xi)=0$, and hence $\psi(\xi)=0$ because $a$ is a non zero-divisor.
+
+Conversely, choose any $\xi\in\mc M\setminus T(\mc M)$. We need to show that there exists $\psi\in\mc M^\vee$ such that $\psi(\xi)\neq 0$. Let $\mc M/\mc A^\times$ be the division of $\mc M$ by $\mc A^\times=\{a\in\mc A:a\neq 0\}$, which is a vector space over the factional field $\mc Q=\mc A/\mc A^\times$. (So elements of $\mc M/\mc A^\times$ are of the form $\xi/a,\eta/b,\dots$ where $\xi,\eta\in\mc M$ and $a,b\in\mc A^\times$. $\xi/a=\eta/b$ iff $ca\xi=cb\eta$ for some $c\in\mc A^\times$. See \cite[Chapter 3]{AM} for details). So $\xi/1$ is not zero in $\mc M/\mc A^\times$. We can thus choose a $\mc Q$-linear functional $\lambda:\mc M/\mc A^\times\rightarrow\mc Q$ such that $\lambda(\xi/1)\neq 0$.
+
+Since $\mc M$ is $\mc A$-generated by finitely many elements $\eta_1,\eta_2,\dots$, we may find $a\neq 0$ in $\mc A$ such that $a\lambda(\eta_i)\in\mc A$ for each $i$. Then
+\begin{align*}
+\psi:\mc M\rightarrow\mc M/\mc A^\times\xrightarrow{a\lambda}\mc A
+\end{align*}
+is an $\mc A$-module morphism non-zero at $\xi$.
+\end{proof}
+
+
+
+From this proposition it follows immediately that:
+
+\begin{co}\label{lb166}
+Let $X$ be a locally irreducible complex space and $\scr E$ a coherent $\scr O_X$-module. Then $\scr T_{\scr O_X}(\scr E)$ is the kernel of the canonical morphism $\scr E\rightarrow\scr E^{\vee\vee}$. Consequently, $\scr T_{\scr O_X}(\scr E)$ is $\scr O_X$-coherent.
+\end{co}
+
+\begin{rem}
+In Cor. \ref{lb166}, note that the support of $\scr T(\scr E)$ (as a set) is an analytic subset of $X$ (Rem. \ref{lb167}). It is clearly inside the non locally-free locus of $\scr E$. Therefore, by Thm. \ref{lb168}, the support of $\scr T(\scr E)$ is nowhere dense in $X$.
+\end{rem}
+
+
+\subsection{Openness and torsion sheaves}
+
+
+\begin{pp}\label{lb169}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map of reduced complex spaces. Let $y\in Y$. Consider the following statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $(\varphi_*\scr O_X)_y$ is a torsion free $\scr O_{Y,y}$-module.
+\item $\varphi$ is open at every $x\in X_y=\varphi^{-1}(y)$. 
+\end{enumerate}
+Then the following are true.
+\begin{enumerate}[label=\boxed{\Alph*}]
+\item If $Y$ is irreducible at $y\in Y$ then (1)$\Rightarrow$(2).
+\item If $X$ is irreducible at every $x\in X_y$ then (2)$\Rightarrow$(1).
+\end{enumerate}
+\end{pp}
+
+Recall that $\varphi_*\scr O_X$ is $\scr O_Y$-coherent by Thm. \ref{lb74}. Also, note that $(\varphi_*\scr O_X)_y=\bigoplus_{x\in X_y}\scr O_{X,x}$ by Prop. \ref{lb56}. Thus $(\varphi_*\scr O_X)_y$ is $\scr O_{Y,y}$-torsion-free iff $\scr O_{X,x}$ is $\scr O_{Y,y}$-torsion-free for every $x\in X_y$.
+
+
+\begin{proof}[Proof of \boxed{A}]
+Assume that $Y$ is irreducible at $y\in Y$ and (2) is not true. Then $\varphi$ is not open at some $x\in X$. By Thm. \ref{lb75} there is a neighborhood $U$ of $x$ and $V$ of $\varphi(U)$ so that $\varphi$ restricts to a finite holomorphic map $\varphi:U\rightarrow W$ such that $x$ is the only point of $U_y=U\cap\varphi^{-1}(y)$. By Lemma \ref{lb156}, the germ of analytic subset $(\varphi(U),y)$ does not equal $(W,y)$. Thus, after shrinking $U$ and $W$ to smaller neighborhoods of $x$ and $y$ respectively, we can find $g\in\scr O(W)$ non-zero in the integral domain $\scr O_{Y,y}$ such that $g$ vanishes on $\varphi(U)$. So $g$ annihilates $1\in\scr O_{X,x}$. Thus $\scr O_{X,x}$ is not $\scr O_{Y,x}$-torsion-free. Therefore (1) is not true.
+\end{proof}
+
+
+
+\begin{proof}[Proof of \boxed{B}]
+Assume that $X$ is irreducible at every $x\in X_y$ and (2) is true. If $\scr O_{X,x}$ is not $\scr O_{X,x}$-torsion free for some $x\in X_y$, then we can find a non zero-divisor (and hence nonzero) $g\in\scr O_{Y,y}$ and nonzero $f\in\scr O_{X,x}$ such that $fg=0$. More precisely: $(g\circ\varphi)\cdot f=0$. Since $\scr O_{X,x}$ is an integral domain, $g\circ\varphi$ is zero in $\scr O_{X,x}$. Shrink $Y$ to a neighborhood of $y$ so that $g\in\scr O(Y)$, and shrink $X$ to $\varphi^{-1}(Y)$. Then we can find a neighborhood $U$ of $x$ such that $g\circ\varphi$ is zero in $\scr O(U)$. Therefore $g$ vanishes on $\varphi(U)$. Since $\varphi$ is open at $x$, $\varphi(U)$ contains a neighborhood of $y$. This implies that $g$ is zero in $\scr O_{Y,y}$, impossible. So (1) must be true.
+\end{proof}
+
+
+
+
+\subsection{Irreducible and pure dimensional}
+
+\begin{thm}\label{lb170}
+Let $X$ be a complex space irreducible at $x$. Then $X$ is pure dimensional at $x$.
+\end{thm}
+
+
+Recall Def. \ref{lb140} for the definition of pure dimensionality at a point.
+
+
+\begin{proof}
+We may shrink $X$ so that $X$ is reduced. Let $n=\dim_xX$. Then after shrinking $X$ further, we may find a finite holomorphic map $\varphi:X\rightarrow V$ such that $V$ is open in $\Cbb^n$, $\varphi(x)=0$, and $x$ is the only point of $\varphi^{-1}(0)$ (due to Thm. \ref{lb75}). By Thm. \ref{lb158}, $\varphi$ is open at $x$. So by Prop. \ref{lb169}, $(\varphi_*\scr O_X)_0$ is $\scr O_{V,0}$-torsion-free.  By Cor. \ref{lb166}, $\scr T(\varphi_*\scr O_X)$ is $\scr O_V$-coherent. Thus, after shrinking $V$ to a neighborhood of $0$ and replacing $X$ by $\varphi^{-1}(V)$, $\varphi_*\scr O_X$ is $\scr O_V$-torsion-free. By Prop. \ref{lb169}, $\varphi$ is open at every point of $X$. Therefore, by Thm. \ref{lb158}, $X$ has pure dimension $n$. 
+\end{proof}
+
+
+
+
+
+\begin{co}
+Let $X$ be a complex space and $x\in X$. Let $n\in\Nbb$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item In the prime decomposition $\sqrt{0_{X,x}}=\pk_1\cap\cdots\cap\pk_N$ of $\sqrt{0_{X,x}}\subset\scr O_{X,x}$ we have
+\begin{align*}
+\dim \scr O_{X,x}/\pk_i=n
+\end{align*}
+for all $1\leq i\leq N$.
+\item $X$ has pure dimension $n$ at $x$.
+\end{enumerate}
+\end{co}
+
+\begin{proof}
+This is clear from Thm. \ref{lb170}, Prop. \ref{lb146}, and \eqref{eq64} (for the direction (2)$\Rightarrow$(1)).
+\end{proof}
 
 
 
