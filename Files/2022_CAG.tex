@@ -4484,10 +4484,10 @@ Actually, if $A$ is expected to be nowhere dense, then one must be able to find 
 
 
 \begin{pp}\label{lb123}
-Let $A$ be an analytic subset of a reduced complex space $X$. The following are equivalent.
+Let $X$ be a reduced complex space and $\mc I$ a coherent ideal of $\scr O_X$. Let $A=N(\mc I)$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $A$ is nowhere dense in $X$.
-\item For each $x\in X$, $\scr I_{A,x}$ contains a non zero-divisor of $\scr O_{X,x}$.
+\item For each $x\in X$, $\mc I_x$ contains a non zero-divisor of $\scr O_{X,x}$.
 \end{enumerate}
 \end{pp}
 
@@ -4499,7 +4499,7 @@ Another description of nowhere dense analytic subsets is given by Ritt's lemma \
 
 Assume that $A$ is nowhere dense. By shrinking $X$ to a neighborhood of $x$ we may find a local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$.  For each $i$, we have $(X_i,x)\nsubset(A,x)$, namely, we cannot find any neighborhood $U\subset X$ of $x$ such that $X_i\cap U\subset A\cap U$: Otherwise, by \eqref{eq64}, $X_i$ contains an open subset (namely $X_i\setminus\bigcap_j X_j$) which intersects $U$, contradicting the fact that $A$ is nowhere dense. 
 
-Therefore, we have $\scr I_{A,x}\nsubset \scr I_{X_i,x}$ for all $i$. The existence of a non zero-divisor follows from the next lemma.
+Therefore, we have $\scr I_{A,x}\nsubset \scr I_{X_i,x}$ for all $i$. Since $\sqrt{\mc I_x}=\scr I_{A,x}$ and $\scr I_{X_i,x}$ is its own radical, we have $\mc I_x\nsubset\scr I_{X_i,x}$. The existence of a non zero-divisor follows from the next lemma.
 \end{proof}
 
 
@@ -5395,7 +5395,7 @@ Assume that $\varphi:X\rightarrow Y$ is finite. Let $x\in X$ and $y=\varphi(x)$,
 \end{enumerate}
 \end{lm}
 \begin{proof}
-Clearly (1)$\Rightarrow$(2). Assume (2). By Prop. \ref{lb54}, for each neighborhood $U\subset X$ of $x$ there is a neighborhood $V\subset Y$ of $y$ such that $\varphi^{-1}(V)\subset U$. Then $\varphi(U)$ contains $\varphi(\varphi^{-1}(U))=U\cap\varphi(X)$, and $U\cap\varphi(X)$ contains a neighborhood of $y\in Y$ by (2). This proves (1).
+Clearly (1)$\Rightarrow$(2). Assume (2). By Prop. \ref{lb54}, for each neighborhood $U\subset X$ of $x$ there is a neighborhood $V\subset Y$ of $y$ such that $\varphi^{-1}(V)\subset U$. Then $\varphi(U)$ contains $\varphi(\varphi^{-1}(V))=V\cap\varphi(X)$, and $V\cap\varphi(X)$ contains a neighborhood of $y\in Y$ by (2). This proves (1).
 \end{proof}
 
 
@@ -5429,7 +5429,7 @@ where we have used Prop. \ref{lb56} in the last equality. Since $g$ is nonzero i
 
 
 \begin{proof}[Proof of (2)$\Rightarrow$(1)]
-Assume that (1) is not true and that $Y$ is irreducible at $y=\varphi(x)$. By Thm. \ref{lb75}, we may assume that $x$ is the only point of $\varphi^{-1}(y)$. By Lemma \ref{lb156}, the analytic subset $\varphi(X)$ contains no neighborhoods of $y\in Y$. Equivalently, the germs of sets $(\varphi(X),y)$ and $(Y,y)$ are not equal. So $\scr J_{\varphi(X),y}$ is not $0$ in $\scr O_{Y,y}$  (cf. Subsec. \ref{lb157}). After shrinking $Y$ and shrinking $X$ to $\varphi^{-1}(Y)$, we may find $g\in\scr O(Y)$ non-zero in $\scr O_{Y,y}$ and vanishing on $\varphi(X)$. Since $Y$ is irreducible at $y$, $g$ is a non zero-divisor of $\scr O_{Y,y}$. So by Cor. \ref{lb143} and Active lemma,
+Assume that (1) is not true and that $Y$ is irreducible at $y=\varphi(x)$. By Thm. \ref{lb75}, we may assume that $x$ is the only point of $\varphi^{-1}(y)$. By Lemma \ref{lb156}, the analytic subset $\varphi(X)$ contains no neighborhoods of $y\in Y$. Equivalently, the germs of sets $(\varphi(X),y)$ and $(Y,y)$ are not equal. So $\scr I_{\varphi(X),y}$ is not $0$ in $\scr O_{Y,y}$  (cf. Subsec. \ref{lb157}). After shrinking $Y$ and shrinking $X$ to $\varphi^{-1}(Y)$, we may find $g\in\scr O(Y)$ non-zero in $\scr O_{Y,y}$ and vanishing on $\varphi(X)$. Since $Y$ is irreducible at $y$, $g$ is a non zero-divisor of $\scr O_{Y,y}$. So by Cor. \ref{lb143} and Active lemma,
 \begin{align*}
 \dim_xX\leq\dim_y\varphi(X)\leq\dim_y N(g)=\dim_yY-1.
 \end{align*}
@@ -5590,11 +5590,36 @@ f:X\rightarrow\Cbb\text{ is open at }x
 The following example shows that in Thm. \ref{lb164}, knowing that $\varphi$ is open at a point $x$ is not sufficient to imply Dimension Formula \eqref{eq73} at $x$. It also shows that in Prop. \ref{lb165}, knowing that (1) holds at $x$ is not sufficient to imply (2) at $x$.
 
 
+
+
+
 \begin{eg}
 Let $X$ be reduced with local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$ where $N\geq 2$. Let $n=\dim_xX>0$. By Rem. \ref{lb106}, we may shrink $X$ to a neighborhood of $x$ and find $f\in\scr O(X)$ which belongs to $\scr I_{X_2,x},\dots,\scr I_{X_N,x}$ but not to $\scr I_{X_1,x}$. Then $f|_{X_1}$ is active in the integral domain $\scr O_{X_1,x}=\scr O_{X,x}/\scr I_{X_1,x}$, and hence $f(X_1)$ contains a neighborhood of $0=f(x)$ in $\Cbb$ by Prop. \ref{lb165}-B. This shows that $f$ is open at $x$. However, by Cor. \ref{lb120}, $f$ is not active in $\scr O_{X,x}$. 
 
 Now we assume that $\dim_xX_1=\dim_x X_2=n$. By Active lemma, $\dim_x N(f)\cap X_1=n-1$ and $\dim_x N(f)\cap X_2=n$. Apply Prop. \ref{lb146} to $N(f)=\bigcup_i (N(f)\cap X_i)$. Then we see that $\dim_x N(f)=n$. So Dimension Formula \eqref{eq73} does not hold for $f:X\rightarrow\Cbb$ at $x$.
 \end{eg}
+
+
+
+\begin{co}[\textbf{Open mapping theorem}]
+Assume that $X$ is reduced, and choose $f\in\scr O(X)$ and $x\in X$. If $f$ is not a constant function on any neighborhood of $x\in X$, then there is a neighborhood $U$ of $x$ such that $f:U\rightarrow\Cbb$ is open.
+\end{co}
+
+Note that the condition that $f$ is not constant on neighborhoods of $x$ means precisely that $f-f(x)$ is not zero in $\scr O_{X,x}$.
+
+
+\begin{proof}
+We may assume $X$ is small enough that there is a local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$, corresponding to the prime decomposition $\{0\}=\scr I_{X_1,x}\cap\cdots\cap\scr I_{X_N,x}$. Since $f-f(x)$ is not zero in $\scr O_{X,x}$, it does not belong to $\scr I_{X_i,x}$ for some $i$. So $f-f(x)$ is active in $\scr O_{X_i,x}=\scr O_{X,x}/\scr I_{X_i,x}$. Therefore, for each neighborhood $U$ of $x\in X$, Prop. \ref{lb165} implies that $f(X_i\cap U)$ contains a neighborhood of $f(x)\in\Cbb$. So $f(U)$ contains a neighborhood of $f(x)$. $f$ is open at $x$. 
+\end{proof}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5666,7 +5691,7 @@ In Cor. \ref{lb166}, note that the support of $\scr T(\scr E)$ (as a set) is an 
 
 
 \begin{pp}\label{lb169}
-Let $\varphi:X\rightarrow Y$ be a finite holomorphic map of reduced complex spaces. Let $y\in Y$. Consider the following statements:
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map of complex spaces. Let $y\in Y$. Consider the following statements:
 \begin{enumerate}[label=(\arabic*)]
 \item $(\varphi_*\scr O_X)_y$ is a torsion free $\scr O_{Y,y}$-module.
 \item $\varphi$ is open at every $x\in X_y=\varphi^{-1}(y)$. 
@@ -5682,13 +5707,13 @@ Recall that $\varphi_*\scr O_X$ is $\scr O_Y$-coherent by Thm. \ref{lb74}. Also,
 
 
 \begin{proof}[Proof of \boxed{A}]
-Assume that $Y$ is irreducible at $y\in Y$ and (2) is not true. Then $\varphi$ is not open at some $x\in X$. By Thm. \ref{lb75} there is a neighborhood $U$ of $x$ and $V$ of $\varphi(U)$ so that $\varphi$ restricts to a finite holomorphic map $\varphi:U\rightarrow W$ such that $x$ is the only point of $U_y=U\cap\varphi^{-1}(y)$. By Lemma \ref{lb156}, the germ of analytic subset $(\varphi(U),y)$ does not equal $(W,y)$. Thus, after shrinking $U$ and $W$ to smaller neighborhoods of $x$ and $y$ respectively, we can find $g\in\scr O(W)$ non-zero in the integral domain $\scr O_{Y,y}$ such that $g$ vanishes on $\varphi(U)$. So $g$ annihilates $1\in\scr O_{X,x}$. Thus $\scr O_{X,x}$ is not $\scr O_{Y,x}$-torsion-free. Therefore (1) is not true.
+Assume that $Y$ is irreducible at $y\in Y$ and (2) is not true. Then $\varphi$ is not open at some $x\in X$. By Thm. \ref{lb75} there is a neighborhood $U$ of $x$ and $V$ of $\varphi(U)$ so that $\varphi$ restricts to a finite holomorphic map $\varphi:U\rightarrow W$ such that $x$ is the only point of $U_y=U\cap\varphi^{-1}(y)$. By Lemma \ref{lb156}, the germ of analytic subset $(\varphi(U),y)$ does not equal $(W,y)$. Thus, after shrinking $U$ and $W$ to smaller neighborhoods of $x$ and $y$ respectively, we can find $g\in\scr O(W)$ non-zero in the integral domain $\scr O_{Y,y}$ such that $g$ vanishes on $\varphi(U)$. So $g\circ\varphi$ takes value zero on $U$. Thus, by Nullstellensatz, $g^n$ annihilates $1\in\scr O_{X,x}$ for some $n\in\Zbb_+$. Thus $\scr O_{X,x}$ is not $\scr O_{Y,x}$-torsion-free. Therefore (1) is not true.
 \end{proof}
 
 
 
 \begin{proof}[Proof of \boxed{B}]
-Assume that $X$ is irreducible at every $x\in X_y$ and (2) is true. If $\scr O_{X,x}$ is not $\scr O_{X,x}$-torsion free for some $x\in X_y$, then we can find a non zero-divisor (and hence nonzero) $g\in\scr O_{Y,y}$ and nonzero $f\in\scr O_{X,x}$ such that $fg=0$. More precisely: $(g\circ\varphi)\cdot f=0$. Since $\scr O_{X,x}$ is an integral domain, $g\circ\varphi$ is zero in $\scr O_{X,x}$. Shrink $Y$ to a neighborhood of $y$ so that $g\in\scr O(Y)$, and shrink $X$ to $\varphi^{-1}(Y)$. Then we can find a neighborhood $U$ of $x$ such that $g\circ\varphi$ is zero in $\scr O(U)$. Therefore $g$ vanishes on $\varphi(U)$. Since $\varphi$ is open at $x$, $\varphi(U)$ contains a neighborhood of $y$. This implies that $g$ is zero in $\scr O_{Y,y}$, impossible. So (1) must be true.
+Assume that $X$ is irreducible at every $x\in X_y$ and (2) is true. If $\scr O_{X,x}$ is not $\scr O_{X,x}$-torsion free for some $x\in X_y$, then we can find a non zero-divisor $g\in\scr O_{Y,y}$ and nonzero $f\in\scr O_{X,x}$ such that $fg=0$. More precisely: $(g\circ\varphi)\cdot f=0$. Since $\scr O_{X,x}$ is an integral domain, $g\circ\varphi$ is zero in $\scr O_{X,x}$. Shrink $Y$ to a neighborhood of $y$ so that $g\in\scr O(Y)$, and shrink $X$ to $\varphi^{-1}(Y)$. Then we can find a neighborhood $U$ of $x$ such that $g\circ\varphi$ is zero in $\scr O(U)$. Therefore $g$ takes zero value on $\varphi(U)$. Since $\varphi$ is open at $x$, $\varphi(U)$ contains a neighborhood of $y$. Therefore, by Nullstellensatz, $g$ is nilpotent in $\scr O_{Y,y}$, contrary to the fact that $g$ is a non zero-divisor. So (1) must be true.
 \end{proof}
 
 
@@ -5727,6 +5752,21 @@ for all $1\leq i\leq N$.
 \begin{proof}
 This is clear from Thm. \ref{lb170}, Prop. \ref{lb146}, and \eqref{eq64} (for the direction (2)$\Rightarrow$(1)).
 \end{proof}
+
+
+
+
+
+
+\begin{co}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map of complex spaces. Assume that $Y$ is locally irreducible. Let $x\in X$ and $y=\varphi(x)$. If $X$ is pure dimensional at $x$ and $\varphi$ is open at $x$, then $\varphi$ is open on a neighborhood of $X$. 
+\end{co}
+
+
+\begin{proof}
+By Thm. \ref{lb170}, $Y$ is locally pure dimensional. By Thm. \ref{lb75}, we may shrink $X$ and $Y$ to neighborhoods of $x$ and $y$ respectively such that $X$ has pure dimension $m$ and $Y$ has pure dimension $n$, and that $\varphi$ is still finite. By Thm. \ref{lb158}, Dimension Formula \eqref{eq73} holds for $\varphi$ at $x$. Thus, by Prop. \ref{lb160}, we may shrink $X$ and $Y$ further so that $\varphi$ is finite and \eqref{eq73} holds at every point of $X$. So $\varphi$ is open by Thm. \ref{lb158}.
+\end{proof}
+
 
 
 
