@@ -471,13 +471,13 @@ by applying residue theorem successively to the variables $\zeta_1,\dots,\zeta_N
 
 \index{00@Identit\"atssatz}
 \begin{lm}[\textbf{Identit\"atssatz}]\label{lb68}
-If $U$ is an open connected subset of $\Cbb^n$, and if $h$ is a non-zero (i.e. not constantly zero) holomorphic function on $U$, then $h$ is non-zero when restricted to any open subset $W$ of $U$.
+If $X$ is a connected complex manifold, and if $h$ is a non-zero (i.e. not constantly zero) holomorphic function on $X$, then $h$ is non-zero when restricted to any open subset $U$ of $X$.
 \end{lm}
 
 \begin{proof}
-Consider the special case that $U,W$ are open polydiscs. We know the lemma is true when $n=1$ (by e.g. taking power series). For a general $n$, if $h|_W=0$, we may enlarge successively the disc-shape domains of each variable $z_1,\dots,z_n$ on which $h$ is constantly zero to get $h=0$.
+Consider the special case that $X,U$ are open polydiscs in $\Cbb^n$. We know the lemma is true when $n=1$ (by e.g. taking power series). For a general $n$, if $h|_U=0$, we may enlarge successively the disc-shape domains of each variable $z_1,\dots,z_n$ on which $h$ is constantly zero to get $h=0$.
 
-In general, we let $\Omega$ be the (clearly open) subset of all $x\in U$ such that $h$ is constantly zero on a neighborhood of $x$ (i.e. the germ of $h$ at $x$ is zero). If $x\in U\setminus\Omega$, then every open polydisc in $U$ containing $x$ must be disjoint from $\Omega$, according to the previous paragraph. So $U\setminus\Omega$ is open. Since $U$ is connected, $\Omega$ must be either $\emptyset$ or $U$. Thus $\Omega=\emptyset$ since $h\neq0$.
+In general, we let $\Omega$ be the (clearly open) subset of all $x\in X$ such that $h$ is constantly zero on a neighborhood of $x$ (i.e. the germ of $h$ at $x$ is zero). If $x\in X\setminus\Omega$, then every neighborhood of $x\in X$ biholomorphic to an open polydisc must be disjoint from $\Omega$, according to the previous paragraph. So $X\setminus\Omega$ is open. Since $X$ is connected, $\Omega$ must be either $\emptyset$ or $U$. Thus $\Omega=\emptyset$ since $h\neq0$.
 \end{proof}
 
 
@@ -4468,6 +4468,27 @@ Note that \eqref{eq65} implies, for instance, that if $1\leq k<N$ then $(X_1\cup
 We will prove Thm. \ref{lb125} in Sec. \ref{lb126}. Note that (cf. Rem. \ref{lb127}) here $X_i\cap X_j$ means set-theoretic intersection (i.e. intersection of analytic subsets), not intersection of complex spaces. But this is not really a big issue here; we are just reminding the readers of the conventions we set before.
 
 
+It is easy to see that if $X_1,\dots,X_N$ are irreducible at $x$ and if \eqref{eq65} is satisfied for all $i\neq j$, then \eqref{eq62} is satisfied, and hence $X=X_1\cup\cdots\cup X_N$ is the unique local decomposition of $X$ at $x$. This observation can be generalized:
+
+\begin{pp}\label{lb214}
+Let $X=X_1\cup\cdots\cup X_N$ be a decomposition of reduced complex space $X$ into analytic subsets. Choose $x\in X_1\cap\cdots\cap X_N$. Assume $X$ is small enough such that for each $1\leq i\leq N$, $X_i$ has a local decomposition
+\begin{align*}
+X_i=X_{i,1}\cup X_{i,2}\cup\cdots
+\end{align*}
+at $x$. Assume that \eqref{eq65} holds for all $1\leq i\neq j\leq N$. Then
+\begin{align*}
+X=\bigcup_{i,k}X_{i,k}
+\end{align*}
+is the local decomposition of $X$ at $x$.
+\end{pp}
+
+\begin{proof}
+It suffices to show that, after shrinking $X$ to a neighborhood of $x$, $X_{i,k}\cap X_{j,l}$ is nowhere dense in $X_{i,k}$ if $(i,k)\neq (j,l)$. By Thm. \ref{lb125}, we may shrink $X$ so that this is true whenever $i=j$. So let us assume $i\neq j$. Suppose that $X_{i,k}\cap X_{j,l}$ contains a non-empty open subset $U\subset X_{i,k}$. Since $X_{i,k}\cap (\bigcup_{k'\neq k}X_{i,k'})$ is nowhere dense in $X_{i,k}$, it does not contain $U$. Thus $U$ intersects $X_{i,k}\setminus\bigcup_{k'\neq k}X_{i,k'}$, where the latter equals $X_i\setminus\bigcup_{k'\neq k}X_{i,k'}$ and is hence an open subset of $X_i$. This shows that $X_{i,k}\cap X_{j,l}$ contains an open subset of $X_i$, contradicting the fact that $X_i\cap X_j$ is nowhere dense in $X_i$.
+\end{proof}
+
+
+
+
 
 
 
@@ -5641,7 +5662,7 @@ Consider analytic subsets $X=0\times 0\times\Cbb^2$ and $Y=(\Cbb^2\times 0\times
 
 
 
-\begin{co}[\textbf{Invariance of dimensions}]
+\begin{co}[\textbf{Invariance of dimensions}]\label{lb221}
 Assume that $\varphi:X\rightarrow Y$ is finite, and let $y\in Y$. Then
 \begin{align}
 \dim_y \varphi(X)=\sup_{x\in X_y} \dim_x X.
@@ -6015,7 +6036,7 @@ We fix a \emph{reduced} complex space $X$. So non zero-divisors and active eleme
 
 
 \begin{df}
-The \textbf{sheaf of (germs of) densely defined holomorphic functions} of $X$ is \index{MX@$\fk W_X$, sheaves of densely defined holomorphic functions} \index{MX@$\fk W_X^\pre$, presheaves of densely defined holomorphic functions} the sheaf $\fk W_X$ associated to presheaf $\fk W_X^\pre$ such that for each open $U\subset X$,
+The \textbf{sheaf of (germs of) densely defined holomorphic functions} of $X$ is \index{WX@$\fk W_X$, sheaves of densely defined holomorphic functions} \index{WX@$\fk W_X^\pre$, presheaves of densely defined holomorphic functions} the sheaf $\fk W_X$ associated to presheaf $\fk W_X^\pre$ such that for each open $U\subset X$,
 \begin{align*}
 \fk W_X^\pre(U)=\varinjlim_{\begin{subarray}{c}
 \text{nowhere dense}\\
@@ -6087,8 +6108,8 @@ Let $\scr E$ be a finite-type $\scr O_X$-submodule of $\scr M_X$. It suffices to
 
 
 
-\begin{eg}
-Let $X$ be a reduced complex space with local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$ such that Thm. \ref{lb125} holds. Then we can define the \textbf{characteristic function} \index{00@$\chi_{X_k}$, the characteristic function}
+\begin{eg}\label{lb213}
+Let $X$ be a reduced complex space with local decomposition $X=X_1\cup\cdots\cup X_N$ at $x$ such that Thm. \ref{lb125} holds. Then we can define the \textbf{characteristic function} \index{zz@$\chi_{X_k}$, the characteristic function}
 \begin{gather}
 \begin{gathered}
 \chi_{X_k}\in\scr O\Big(X\Big\backslash\bigcup_{1\leq i<j\leq N}X_i\cap X_j\Big)\qquad\subset \fk W_X(X)\\[0.5ex]
@@ -6229,25 +6250,55 @@ Under the assumption of Prop. \ref{lb192}, suppose moreover that $\varphi$ is su
 
 
 
-\begin{pp}
+\begin{thm}\label{lb217}
 Assume $X=X_1\cup\cdots\cup X_N$ where $X_1,\dots,X_N$ are analytic subsets of $X$, and assume for each $1\leq i\neq j\leq N$ that $X_i\cap X_j$ is nowhere dense in $X_i$. Then the closed embedding $\iota_i:X_i\hookrightarrow X$ satisfies the assumption in Prop. \ref{lb192}. Moreover, we have isomorphisms of $\scr O_X$-algebras
 \begin{subequations}\label{eq85}
-\begin{align}
-\bigoplus_i\iota_i^\#:\quad\fk W_X\xlongrightarrow{\simeq}\bigoplus_{1\leq i\leq N}\fk W_{X_i}\\
-\bigoplus_i\iota_i^\#:\quad\Owht_X\xlongrightarrow{\simeq}\bigoplus_{1\leq i\leq N}\Owht_{X_i}
-\end{align}
+\begin{gather}
+\bigoplus_i\iota_i^\#:\quad\fk W_X\xlongrightarrow{\simeq}\bigoplus_{1\leq i\leq N}\fk W_{X_i}\label{eq89}\\
+\bigoplus_i\iota_i^\#:\quad\scr M_X\xlongrightarrow{\simeq}\bigoplus_{1\leq i\leq N}\scr M_{X_i}\label{eq90}\\
+\bigoplus_i\iota_i^\#:\quad\Owht_X\xlongrightarrow{\simeq}\bigoplus_{1\leq i\leq N}\Owht_{X_i}\label{eq91}
+\end{gather}
 \end{subequations}
-\end{pp}
+\end{thm}
 
 
-\begin{proof}
+\begin{proof}[Proof-Step 1]
 Let us show that $\iota_i$ satisfies the assumption in Prop. \ref{lb192}. Let $U\subset X$ be open and $A$ be a nowhere dense analytic subset of $U$. Then we need to show that $A\cap X_i$ is nowhere dense in $U\cap X_i$. Set $Y=U$ and $Y_i=U\cap X_i$, which is an analytic subset of $Y$. Then $A$ is a nowhere dense analytic subset of $Y$, and we need to show that $A\cap Y_i$ is nowhere dense in $Y_i$. We assume for simplicity that $i=1$.
 
 
-Consider the open subset $Y_1^\circ=Y_1\setminus(Y_2\cup\cdots\cup Y_N)$ of $Y_1$. Then $A\cap Y_1^\circ$ contains no open subsets of $Y_1^\circ$. If $\Omega$ is an open subset of $Y_1$ contained inside $A\cap Y_1$, then $\Omega\cap Y_1^\circ$ is an open subset of $Y_1^\circ$ contained inside $A\cap Y_1^\circ$, which is empty. Thus $\Omega\subset Y_1'$ where $Y_1'=Y_1\setminus Y_1^\circ$. But $Y_1'=\bigcup_{j>1}Y_1\cap Y_j$ is nowhere dense in $Y_1$ since $\bigcup_{j>1}X_1\cap X_j$ is nowhere dense in $X_1$. So $\Omega$ is empty. Thus $A\cap Y_1$ is nowhere dense in $Y_1$.
-
-That \eqref{eq85} are isomorphisms is not hard to check and is left to the readers.
+Consider the open subset $Y_1^\circ=Y_1\setminus(Y_2\cup\cdots\cup Y_N)=Y\setminus(Y_2\cup\cdots\cup Y_N)$ of $Y$. Then $A\cap Y_1^\circ$ contains no open subsets of $Y_1^\circ$. If $\Omega$ is an open subset of $Y_1$ contained inside $A\cap Y_1$, then $\Omega\cap Y_1^\circ$ is an open subset of $Y_1^\circ$ contained inside $A\cap Y_1^\circ$, which is empty. Thus $\Omega\subset Y_1'$ where $Y_1'=Y_1\setminus Y_1^\circ$. But $Y_1'=\bigcup_{j>1}Y_1\cap Y_j$ is nowhere dense in $Y_1$ since $\bigcup_{j>1}X_1\cap X_j$ is nowhere dense in $X_1$. So $\Omega$ is empty. Thus $A\cap Y_1$ is nowhere dense in $Y_1$.
 \end{proof}
+
+
+
+\begin{proof}[Proof-Step 2]
+That \eqref{eq89} and \eqref{eq91} are isomorphisms is not hard to check and is left to the readers. Since \eqref{eq90} is the restriction of \eqref{eq89}, \eqref{eq90} is injective. Let us show that the stalk map of \eqref{eq90} at any $x\in X$ is surjective. By discarding those $X_i$ not containing $x$, we assume $x\in\bigcap_{i=1}^N X_i$. Also, if \eqref{eq90} is surjective (and hence isomorphic) in the special case that each $X_i$ is irreducible at $x$, then it is isomorphic in the general case due to Prop. \ref{lb214} and the special case. So we may well assume that each $X_i$ is irreducible at $x$.
+
+It suffices to show that each $\scr M_{X_i,x}$ (which is inside $\fk W_{X_i,x}\subset\bigoplus_j \fk W_{X_j,x}\simeq\fk W_{X,x}$) belongs to $\scr M_{X,x}$. Set $i=1$ for simplicity. Then we need to show that the zero-extension of each $f_1\in\scr M_{X_1,x}$ from the germ $(X_1,x)$ to $(X,x)$, still denoted by $f_1$ but now belonging to $\fk W_{X,x}$, is inside $\scr M_{X,x}$.
+
+
+
+Choose $v_1\in\Nzd(\scr O_{X_1,x})$ such that $g_1:=v_1f_1\in\scr O_{X_1,x}$. Since $\scr O_{X_1,x}=\scr O_{X,x}/\scr I_{X_1,x}$, we can lift (i.e. extend) $v_1$ and $g_1$ to elements
+\begin{align*}
+\wtd v_1,\wtd g_1\in\scr O_{X,x}.
+\end{align*}
+We add $\wtd{~~}$ since $\wtd v_1$ and $\wtd g_1$ are not necessarily the \emph{zero}-extensions of $v_1$ and $g_1$. By contrast, $\wtd v_1f_1$ (as an element of $\fk W_{X,x}$) is the zero-extension of $g_1$.
+
+We write the characteristic function $\chi_{X_i}$ (cf. Exp. \ref{lb213}) as $\chi_i$, which is in $\scr M_{X,x}$. Then $\chi_1\wtd v_1f_1=\chi_1\wtd g_1$ in $\fk W_{X,x}$. Also, it is clear that $\chi_jf_1=0$ in $\fk W_{X,x}$ if $j>1$. Let
+\begin{align*}
+u=\chi_1\wtd v_1+\chi_2+\cdots+\chi_N\qquad \in\scr M_{X,x}
+\end{align*}
+Then $uf_1=\chi_1\wtd g_1$ holds in $\fk W_{X,x}$. Since $\wtd g_1\in\scr O_{X,x}$ and $\chi_1\in\scr M_{X,x}$, we conclude $uf_1\in\scr M_{X,x}$.
+
+
+
+To show that $f_1\in\scr M_{X,x}$, it now remains to show that $u$ is a unit of $\scr M_{X,x}$, namely, $u$ is the quotient of two elements of $\Nzd(\scr O_{X,x})$. Shrink $X$ to a neighborhood of $x$ so that $v_1\in\scr O_X(X)$ and $\chi_1,\dots,\chi_N\in\scr M_X(X)$. Then $u\in\scr M_X(X)$. $u$ equals $v_1\in\scr O_{X_1}(X_1)$ on $X_1\setminus X_1'$ where $X_1'=X_2\cup\cdots\cup X_N$, and equals $1$ on $X_1'\setminus X_1$. Since $v_1$ is a non zero-divisor of $\scr O_{X_1,x}$, by Prop. \ref{lb121}, we can shrink $X$ further so that $N(v_1)$ is nowhere dense in $X_1$. Choose $w\in\Nzd(\scr O_{X,x})$ such that $wu\in\scr O_{X,x}$, and shrink $X$ so that $w\in\scr O(X)$ and that $N(w)$ is nowhere dense in $X$ (again by Prop. \ref{lb121}). Then
+\begin{align*}
+N(wu)\subset N(v_1)\cup (X_1\cap X'_1)\cup N(w)
+\end{align*}
+is nowhere dense in $X$, which implies that $wu$ is a non zero-divisor of $\scr O_{X,x}$.
+\end{proof}
+
 
 
 
@@ -6342,7 +6393,7 @@ and hence $R\leq nM$. This shows $|f(p)|\leq \max\{1,nM\}$ for all $p\in X\setmi
 
 
 
-\section{Riemann extension theorems; $\scr O_{\Cbb^n,0}$ is a UFD}
+\section{Riemann extension theorems; $\scr O_{\Cbb^n,0}$ is normal}
 
 
 
@@ -6399,7 +6450,7 @@ A closed subset $A\subset X$ is called \textbf{thin} if each $x\in X$ (equivalen
 
 
 
-\begin{co}
+\begin{co}\label{lb215}
 Assume that $X$ is smooth and $A$ is a thin subset of $X$. Then $X$ is connected if and only if $X\setminus A$ is connected.
 \end{co}
 
@@ -6451,7 +6502,7 @@ By Euclidean division (which is available because $p(z)$ is monic), $ab=gp+r$ wh
 
 
 
-\begin{thm}[\textbf{Second Riemann extension theorem}]
+\begin{thm}[\textbf{Second Riemann extension theorem}]\label{lb219}
 If $X$ is smooth and $A$ is a thin subset of $X$ of order $2$, then
 \begin{align*}
 \scr O_{X\setminus A}=\scr O_X
@@ -6482,7 +6533,7 @@ The study of $\Owht_X$ for singular (reduced) complex spaces is more difficult a
 Let $\mc A$ be a commutative ring. In this section, we collect some facts about polynomials that will be helpful for the subsequent study of branched coverings.
 
 \begin{df}
-Let $f(z)=a_0+a_1z+\cdots+a_mz^m$ and $g(z)=b_0+b_1z+\cdots+b_nz^n$ be polynomials in $\mc A[z]$ of degree $m,n$ respectively. Then the \textbf{resultant $\res(f,g)$} \index{00@$\res(f,g)$: the resultant} of $f$ and $g$ is the determinant of the $(m+n)\times(m+n)$ matrix
+Let $f(z)=a_0+a_1z+\cdots+a_mz^m$ and $g(z)=b_0+b_1z+\cdots+b_nz^n$ be polynomials in $\mc A[z]$ of degree $m,n$ respectively. Then the \textbf{resultant $\res(f,g)$} \index{res@$\res(f,g)$: the resultant} of $f$ and $g$ is the determinant of the $(m+n)\times(m+n)$ matrix
 \begin{align}\label{eq86}
 \left[
 \begin{array}{ccccccc}
@@ -6653,7 +6704,7 @@ Let $\Delta\subset S$ be a branch locus. Then $X$ clearly has pure dimension $n$
 
 
 
-Assume the setting of Def. \ref{lb57}. So $\pi:X\rightarrow S$ is a Weierstrass map defined by polynomials $p_1(z_1),\dots,p_k(z_k)$. We assume that $S$ is reduced. We do not assume at the beginning that $X$ is reduced. Then we have discriminants
+Assume the setting of Def. \ref{lb57}. So $\pi:X\rightarrow S$ is a Weierstrass map defined by polynomials $p_1(z_1),\dots,p_k(z_k)$. We assume that $S$ is reduced. We do not assume that $X$ is reduced. Then we have discriminants
 \begin{align*}
 D(p_i)\in\scr O(S).
 \end{align*}
@@ -6770,6 +6821,29 @@ Now we consider the general case. Since $S$ has pure dimension $n$, by Prop. \re
 
 
 
+\section{$\Owht_{X,x}$ is the integral closure of $\scr O_{X,x}$ in $\scr M_{X,x}$}
+
+Let $X$ be a reduced complex space. The main result of this section (Cor. \ref{lb220}) is indicated in the title. This is an immediate consequence of Thm. \ref{lb216} which says that the two equivalent conditions in Lemma \ref{lb212} always hold.
+
+
+\begin{lm}\label{lb212}
+Let $x\in X$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item There exists $\delta\in\Nzd(\scr O_{X,x})$ satisfying that $\delta\cdot\Owht_{X,x}\subset\scr O_{X,x}$. We call $\delta$ a \textbf{universal denominator} \index{00@Universal denominators} of $\Owht_{X,x}$.
+\item $\Owht_{X,x}$ is a finitely-generated $\scr O_{X,x}$-submodule of $\scr M_{X,x}$.
+\end{enumerate}
+\end{lm}
+
+
+\begin{proof}
+Assume (1). Then clearly $\Owht_{X,x}\subset\scr M_{X,x}$. The $\scr O_{X,x}$-module morphism $\scr M_{X,x}\xrightarrow{\times\delta}\scr M_{X,x}$ is injective, and it sends $\Owht_{X,x}$ to $\delta\Owht_{X,x}$ which is an ideal of $\scr O_{X,x}$ and hence $\scr O_{X,x}$-finitely-generated because $\scr O_{X,x}$ is Noetherian. Therefore $\Owht_{X,x}$ is $\scr O_{X,x}$-finitely-generated. (2) is true.
+
+
+Assume (2). Then $\Owht_{X,x}$ is $\scr O_{X,x}$-generated by $f_1,\dots,f_n\in\Owht_{X,x}$. Since each $f_i\scr O_{X,x}$ belongs to $\scr M_{X,x}$, there is $\delta_i\in\Nzd(\scr O_{X,x})$ such that $\delta_if_i\in\scr O_{X,x}$. Then $\delta=\delta_1\cdots\delta_n$ is a universal denominator.
+\end{proof}
+
+
+\subsection{Primitive elements}
 
 
 
@@ -6778,6 +6852,121 @@ Now we consider the general case. Since $S$ has pure dimension $n$, by Prop. \re
 
 
 
+\begin{df}
+A branched covering $\pi:X\rightarrow S$ is called a \textbf{$b$-sheeted (branched) covering} \index{00@b-sheeted (branched) covering} (where $b\in\Zbb_+$) if for each $t\in S\setminus\Delta$, $\pi^{-1}(t)$ has $b$ distinct elements. Note that the function
+\begin{align*}
+t\in S\setminus\Delta\mapsto |\pi^{-1}(t)|
+\end{align*}
+is clearly locally constant. Therefore, if a branched covering $\pi:X\rightarrow S$ satisfies that $S\setminus\Delta$ is connected, then $\pi$ is $b$-sheeted for some $b$.
+\end{df}
+
+
+
+
+
+
+In the following part of this section, we assume that $\pi:X\rightarrow S$ is a branched covering and $S$ is a connected complex manifold. Then by Cor. \ref{lb215}, $S\setminus\Delta$ is connected. So $\pi$ is $b$-sheeted for some $b$.
+
+Choose $e\in\scr O(X)$. We can define $\gamma_e(z)\in\scr O(S\setminus\Delta)[z]$ such that for each $t\in S\setminus\Delta$,
+\begin{align}
+\gamma_e(t,z)=\prod_{x\in \pi^{-1}(t)}(z-e(x)).
+\end{align}
+Clearly $\gamma_e(z)$ is a monic polynomial with degree $b$. 
+
+\begin{lm}
+$\gamma_e(z)$ is an element of $\scr O(S)[z]$.
+\end{lm}
+
+\begin{proof}
+$e$ is (uniformly) bounded on any compact subset of $X$. Since $\pi$ is finite and hence proper (Prop. \ref{lb98}), the coefficients of $\gamma_e(z)$ are  bounded on $V\setminus\Delta$ for each precompact open subset $V\subset S$. So these coefficients belong to $\Owht_S(S)$, and hence belong to $\scr O_S(S)$ by Riemann extension Thm. \ref{lb190}.
+\end{proof}
+
+\begin{df}
+We say that $e$ is a \textbf{primitive element} \index{00@Primitive elements} of $\scr O(X)$ over $\scr O(S)$ if the discriminant $D(\gamma_e(z))\in\scr O(S)$ is non-zero at some $t\in S$. In that case, by Identit\"atssatz \ref{lb68}, the zero set of $D(\gamma_e(z))$ is nowhere dense in $S$. By Cor. \ref{lb202}, $e$ is primitive if and only if there is some $t\in S\setminus\Delta$ such that the restriction $e:\pi^{-1}(t)\rightarrow\Cbb$ is injective.
+\end{df}
+
+\begin{lm}\label{lb218}
+If $X$ is biholomorphic to a closed analytic subset of an open subset $U$ of $\Cbb^N$, then there exists a primitive element $e\in\scr O(X)$ over $\scr O(S)$.
+\end{lm}
+
+\begin{proof}
+Let $X$ be a closed analytic subset of $U\subset\Cbb^N$. Let $(z_1,\dots,z_N)$ be the standard coordinates of $\Cbb^N$. Choose any $t\in S\setminus\Delta$. Then one can easily find $a_1,\dots,a_N\in\Cbb$ such that $e=a_1z_1+\cdots+a_Nz_N$ is injective on $\pi^{-1}(t)$. The restriction of $e$ to $X$ is a primitive element.
+\end{proof}
+
+
+\subsection{Main results}
+
+
+
+\begin{thm}\label{lb216}
+Let $X$ be a reduced complex space and $x\in X$. Then $\Owht_{X,x}$ is a finitely-generated $\scr O_{X,x}$-submodule of $\scr M_{X,x}$. 
+\end{thm}
+
+
+
+\begin{proof}
+By Thm. \ref{lb217} and local decomposition (Thm. \ref{lb125}), it suffices to assume that $X$ is irreducible at $x$. Thus, we can shrink $X$ to a neighborhood of $x$ so that (by Thm. \ref{lb170}) $X$ has pure dimension $n$ and that (by Prop. \ref{lb141}) there is a finite map $\pi:X\rightarrow S$ where $S$ is a connected open subset of $\Cbb^n$. By Thm. \ref{lb158}, $\pi$ is an open map. Thus, we may replace $S$ by $\pi(X)$ so that $\pi$ is surjective (and clearly still finite). By Thm. \ref{lb198}, $\pi$ is a branched covering with branch locus $\Delta$. By shrinking $S$ to a neighborhood of $\pi(x)$ and shrinking $X$ to $\pi^{-1}(S)$, we may assume that $S$ is connected so that $\pi$ is $b$-sheeted.
+
+By Prop. \ref{lb54}, we may shrink $S$ further and shrink $X$ to $\pi^{-1}(S)$ so that $X$ is biholomorphic to a model space. Therefore, by Lemma \ref{lb218}, there is a primitive element $e\in\scr O(X)$ over $\scr O(S)$. For each $t\in S\setminus\Delta$, write $\pi^{-1}(t)=\{x_1,\dots,x_b\}$, and let
+\begin{align}\label{eq92}
+M(t)=\det \left[
+\begin{array}{ccccc}
+1&e(x_1)&e(x_1)^2&\cdots&e(x_1)^{b-1}\\
+1&e(x_2)&e(x_2)^2&\cdots&e(x_2)^{b-1}\\
+&&\vdots&&\\
+1&e(x_b)&e(x_b)^2&\cdots&e(x_b)^{b-1}
+\end{array}
+\right]
+\end{align}
+be the Vandermonde determinant. Then $M(t)^2$ is independent of the order $x_1,\dots,x_b$ of elements of $\pi^{-1}(t)$. Therefore, by varying $t\in S\setminus\Delta$, we get $\delta\in\scr O(S\setminus\Delta)$ such that
+\begin{align*}
+\delta(t)=M(t)^2
+\end{align*}
+for all $t\in S\setminus\Delta$. Since $e$ is continuous on $X$ and hence bounded on compact subsets of $X$, and since $\pi$ is proper (Prop. \ref{lb98}), $\delta$ must belong to $\Owht_S(S)$. Thus, by Riemann extension Thm. \ref{lb190}, $\delta\in\scr O(S)$. Clearly $N(\delta)$ is contained in $\Delta$ (because $e$ is primitive), so $N(\pi^\#\delta)$ is contained in the thin subset $\pi^{-1}(\Delta)$ of $X$. So $\pi^\#\delta\in\Nzd(\scr O_{X,x})$ by Prop. \ref{lb121}.
+
+In view of Lemma \ref{lb212}, let us show that $\pi^\#\delta$ is a universal denominator of $\Owht_{X,x}$. Choose any $f\in\Owht_{X,x}$. By Prop. \ref{lb54}, we may shrink $S$ further and shrink $X$ to $\pi^{-1}(S)$ so that $f\in \scr O(X\setminus A)$ for some thin subset $A\subset X$, and that $f$ is bounded on $X\setminus A$. Note that $\pi(A)$ is thin in $S$ (Rem. \ref{lb209}). For each $1\leq j\leq b$ and $t\in S\setminus(\Delta\cup \pi(A))$, let $K_j(t)$ be the determinant of the matrix defined by replacing the $j$-th column of the Vandermonde matrix in \eqref{eq92} with $(f(x_1),\dots,f(x_b))^\tr$. Then
+\begin{align*}
+\omega_j(t)=M(t)K_j(t)
+\end{align*}
+is independent of the order $x_1,\dots,x_b$. Thus, by varying $t$, $\omega_j$ becomes a (clearly bounded) holomorphic function on $S\setminus(\Delta\cup\pi(A))$. Thus, we have $\omega_j\in\scr O(S)$, again by Riemann extension Thm. \ref{lb190}. By Cramer's rule, for each $x_i\in\pi^{-1}(t)$,
+\begin{align*}
+\delta(t)\cdot f(x_i)=\sum_{i=1}^{b}\omega_j(t)\cdot e(x_i)^{j-1}
+\end{align*}
+Therefore, the following relation holds in $\scr O(X\setminus(\pi^{-1}(\Delta)\cup A))$
+\begin{align}
+\pi^\#\delta\cdot f=\sum_{i=1}^b\pi^\#\omega_j\cdot e^{j-1} \label{eq93}
+\end{align}
+where the RHS is an element of $\scr O(X)$.
+\end{proof}
+
+
+
+
+\begin{co}\label{lb220}
+For each reduced complex space $X$ and each $x\in X$, $\Owht_{X,x}$ is the integral closure of $\scr O_{X,x}$ in $\scr M_{X,x}$.
+\end{co}
+
+
+
+
+\begin{proof}
+Thm. \ref{lb216} shows that $\Owht_{X,x}$ is included in the integral closure of $\scr O_{X,x}$. That it contains the integral closure is already shown in Lemma \ref{lb189}.
+\end{proof}
+
+
+
+The proof of Thm. \ref{lb216} implies the following generalization of Second Riemann extension Thm. \ref{lb219}.
+
+\begin{thm}
+Let $X$ be a reduced pure-dimensional complex space and let $A$ be a thin subset of $X$ of order $2$. Then $\scr O_{X\setminus A}\subset\Owht_X$.
+\end{thm}
+
+
+\begin{proof}
+Assume that $X$ has pure dimension $n$. Let us check that $\scr O_{X\setminus A,x}\subset\Owht_{X,x}$ for each $x\in X$. As in the proof of Thm. \ref{lb216}, we may shrink $X$ to a neighborhood of $x$ to get a $b$-sheeted branched covering $\pi:X\rightarrow S$ where $S$ is a connected open subset of $\Cbb^n$ and there is a primitive $e\in\scr O(X)$. Again, we have $\delta\in\scr O(S)$. Let us show that $\delta\cdot\scr O_{X\setminus A,x}\subset\scr O_{X,x}$. Then the argument in Lemma \ref{lb212} shows that $\scr O_{X\setminus A,x}$ belongs to the integral closure of $\scr O_{X,x}$ in $\scr M_{X,x}$, namely $\scr O_{X\setminus A,x}\subset\Owht_{X,x}$.
+
+If $f\in\scr O_{X\setminus A,x}$, we may shrink $X$ and $S$ so that $f\in\scr O(X\setminus A)$. Then $f\in\scr O(X\setminus A)$, and hence $\omega_j\in\scr O(S\setminus(\Delta\cup\pi(A)))$ is locally bounded at each point of $\Delta\setminus\pi(A)$, because $f$ is continuous at each point of $\pi^{-1}(\Delta)\setminus A$. Therefore, $\omega_j$ is holomorphic on $S\setminus \pi(A)$ by First Riemann extension Thm. \ref{lb190}. Since $A$ is thin in $X$ of order $2$, by Cor. \ref{lb221}, $\pi(A)$ is thin in $S$ of order $2$. Therefore $\omega_j\in\scr O(S)$ by Second Riemann extension Thm. \ref{lb219}. Thus $\delta\cdot f$ belongs to $\scr O_{X,x}$ by \eqref{eq93}.
+\end{proof}
 
 
 
