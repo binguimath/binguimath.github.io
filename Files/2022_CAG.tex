@@ -143,7 +143,7 @@
 \DeclareMathOperator{\Rel}{\mathscr{R}\text{\kern -3pt {\calligra\large el}~}\,}
 \DeclareMathOperator{\sann}{\mathscr{A}\text{\kern -3pt {\calligra\large nn}}\,}
 \DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
-
+\DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
 
 \usepackage{aurical}
 \DeclareMathOperator{\VVir}{\text{\Fontlukas V}\text{\kern -0pt {\Fontlukas\large ir}}\,}
@@ -302,6 +302,18 @@
 \newcommand{\Sg}{\mathrm{Sg}}
 \newcommand{\Nzd}{\mathrm{Nzd}}
 \newcommand{\Owht}{\widehat{\scr O}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\Com}{\mathrm{Com}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\nk}{\mathfrak n}
+\newcommand{\mk}{\mathfrak m}
+
+
+
+
+
+
 
 
 
@@ -399,7 +411,7 @@ Contents hyperlinks: \hyperlink{page.2}{Page 2}
 
 The following notations and conventions are assumed throughout the monograph.
 
-All commutative rings and algebras are assumed to have a unity $1$. Their morphisms are assumed to map $1$ to $1$.
+All rings and algebras are assumed to have a unity $1$.  Their morphisms are assumed to map $1$ to $1$. ``Rings" and "$\Cbb$-algebras" are always assumed to be commutative, unless otherwise stated. In general, an $\mc B$-algebra $\mc A$ means a morphism of rings $\mc B\rightarrow\mc A$. If $\mc A$ and $\mc B$ are already $\Cbb$-algebras, we require the morphisms to be also $\Cbb$-linear.
 
 $\Nbb=\{0,1,2,3,\dots\}$ and $\Zbb_+=\{1,2,3,\dots\}$.
 
@@ -655,12 +667,30 @@ is denoted by $\scr E_1+\scr E_2$. \index{EE@$\scr E_1+\scr E_2$} It is the uniq
 
 We recall the well-known
 
-\begin{thm}[\textbf{Nakayama's lemma}]\index{00@Nakayama's lemma}
-If $A$ is a $\Cbb$-local algebra with maximal ideal $\fk m$, and if $\mc M$ is a finitely generated $A$-module. Then a finite set of elements $s_1,\dots,s_n\in\mc M$ generate the $A$-module $\mc M$ (i.e. elements of $\mc M$ are $A$-linear combinations of $s_1,\dots,s_n$) iff their residue classes in $\mc M/\fk m\cdot\mc M$ span the vector space $\mc M/\fk m\cdot\mc M$.
+\begin{thm}[\textbf{Nakayama's lemma}]\label{lb281}  \index{00@Nakayama's lemma}
+Let $(\mc A,\mk)$ be a local ring with maximal ideal $\fk m$, and let $\mc M$ be a finitely generated $\mc A$-module. Choose a finite set of elements $s_1,\dots,s_n\in\mc M$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $s_1,\dots,s_n$ generate the $\mc A$-module $\mc M$ (i.e. elements of $\mc M$ are $\mc A$-linear combinations of $s_1,\dots,s_n$).
+\item The residue classes of $s_1,\dots,s_n$ span the $(\mc A/\mk)$-vector space $\mc M/(\fk m\mc M)$.
+\end{enumerate}
 \end{thm}
-Indeed, this is true when $A$ is in general a local ring. In that case, $\mc M/\fk m\cdot\mc M$ is a vector space over the field $A/\fk m$.
+
 \begin{proof}
-\cite[Prop. 2.8]{AM}. %or \cite[Sec. A]{Gui22}.
+Clearly (1) implies (2). Let us prove (2)$\Rightarrow$(1).  Assume $s_1,\dots,s_n$ span $\mc M/(\mk\mc M)$. We extend the list $s_1,\dots,s_n$ to $s_1,\dots,s_N\in\mc M$ (where $N\geq n$) such that they generate $\mc M$. If $N=n$ then there is nothing to prove.
+
+Assume $N>n$. Then every element of $\mc M$, and in particular $s_N$,  can be written as
+\begin{align*}
+s_N=a_1s_1+\cdots+a_ns_n+\sigma
+\end{align*}
+where $a_1,\dots,a_n\in\mc A$ and $\sigma\in\mk\mc M$. Since $s_1,\dots,s_N$ generate the $\mc A$-module $\mc M$, we have $\sigma=f_1s_1+\cdots+f_Ns_N$ where $f_1,\dots,f_N\in\mk$. So
+\begin{align*}
+s_N=g_1s_1+\cdots+g_Ns_N
+\end{align*}
+where $g_{n+1},g_{n+2},\dots,g_N\in\mk$. Since $g_1\in\mk$, $1-g_1$ is invertible in $\mc A$. So
+\begin{align*}
+s_N=(1-g_N)^{-1}\sum_{i=1}^{N-1}g_is_i.
+\end{align*}
+This proves that $s_1,\dots,g_{N-1}$ generate $\mc M$. By repeating this procedure several times, we conclude that $s_1,\dots,s_n$ generate $\mc M$.
 \end{proof}
 
 
@@ -995,7 +1025,7 @@ The submodule $\mc N=\bigcap_{k\in\Nbb}\fk m^k\cdot \mc M$ is also finitely gene
 
 Recall that if $I$ is an ideal of a ring $A$, an \textbf{$I$-filtration} $(\mc M_n)_{n\in\Nbb}$ (of $\mc M_0$) is a descending chain of $A$-modules $\mc M_0\supset\mc M_1\supset\mc M_2\supset\cdots$ satisfying $I\mc M_n\subset\mc M_{n+1}$ for all $n\in\Nbb$. It is called \textbf{$I$-stable} if for some $N\in\Nbb$ we have $I\mc M_n=\mc M_{n+1}$ for all $n\geq N$.
 
-\begin{thm}[\textbf{Artin-Rees lemma}] \index{00@Artin-Rees lemma}
+\begin{thm}[\textbf{Artin-Rees lemma}]\label{lb266} \index{00@Artin-Rees lemma}
 Let $I$ be an ideal of a Noetherian ring $A$. Then for any $I$-stable filtration $(\mc M_n)_{n\in\Nbb}$ inside a finitely-generated $A$-module $\mc M$, and for any submodule $\mc N\subset\mc M$, $(\mc N\cap\mc M_n)_{n\in\Nbb}$ is $I$-stable.
 \end{thm}
 
@@ -1588,7 +1618,7 @@ Let $\scr E$ and $\scr F$ be $\scr O_X$-modules. Consider the presheaf $\scr G$ 
 
 
 
-\begin{rem}
+\begin{rem}\label{lb258}
 Let $A$ be a commutative ring, and fix an $A$-module $\mc N$. Recall the following basic facts:
 \begin{enumerate}[label=\arabic*.]
 \item \textbf{Tensor products commute with direct limits}. More precisely, let $(\mc M_\alpha)$ be a direct system of $A$-modules. Then the canonical map $\mc M_\beta\otimes_A\mc N\rightarrow(\varinjlim_\alpha \mc M_\alpha)\otimes_A\mc N$ (for each fixed $\beta$) defines, by passing to the direct limit, an isomorphism
@@ -1819,7 +1849,7 @@ for all open $U\subset X$ and $V\supset \varphi(U)$ pass to $F:\varphi^*\scr M\r
 
 
 
-\begin{df}
+\begin{df}\label{lb268}
 Let $\iota:Y=\Specan(\scr O_X/\mc I)\hookrightarrow X$ be a closed subspace of $X$. Let $\scr E$ be an $\scr O_X$-module. Then the \textbf{(sheaf theoretic) restriction of $\scr E$ to $Y$}, denoted by $\scr E|_Y$ or $\scr E|Y$ \index{00@Restriction of sheaves of modules $\scr E\lvert Y\equiv\scr E\lvert_Y$} is 
 \begin{align}
 \scr E|_Y=\iota^*\scr E=(\scr O_X/\mc I)\uph_{N(\mc I)}\otimes_{\scr O_X}\scr E.
@@ -2013,8 +2043,12 @@ Using the explicit construction of $\mc J$ in the proof of Prop. \ref{lb39}, one
 
 \begin{rem}\label{lb58}
 As an $\scr O_X$-module, $\scr O_{\varphi^{-1}(S_0)}$ has a natural equivalence
-\begin{align}
-\scr O_{\varphi^{-1}(S_0)}=\scr O_X/\mc J\scr O_X\simeq \scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\varphi^*(\scr O_{S_0}).
+\begin{align}\label{eq125}
+\scr O_{\varphi^{-1}(S_0)}=\scr O_X/\mc J\scr O_X\simeq \scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\varphi^*(\scr O_{S_0})
+\end{align}
+Thus, for any $\scr O_X$-module $\scr E$, we have canonical equivalences of $\scr O_X$-modules
+\begin{align}\label{eq126}
+\scr E|_{\varphi^{-1}(S_0)}=\scr E\otimes_{\scr O_X}\scr O_{\varphi^{-1}(S_0)}\simeq  \scr E\otimes_{\scr O_S}(\scr O_S/\mc J)\simeq\scr E/\mc J\scr E
 \end{align}
 \end{rem}
 \begin{proof}
@@ -2023,7 +2057,7 @@ Using the right exactness of $\scr O_X\otimes_{\scr O_S}-$, we have
 &\scr O_X\otimes_{\scr O_S}(\scr O_S/\mc J)=\scr O_X\otimes_{\scr O_S}\Cok(\mc J\hookrightarrow\scr O_S)\\
 \simeq &\Cok (\scr O_X\otimes_{\scr O_S}\mc J\rightarrow \scr O_X\otimes_{\scr O_S}\scr O_S)\simeq \Cok(\scr O_X\otimes_{\scr O_S}\mc J\rightarrow\scr O_X)
 \end{align*}
-which equals $\scr O_X/\mc J\scr O_X$ since the term insider the last $\Cok$ is the multiplication map. (Compare Rem. \ref{lb4}.)
+which equals $\scr O_X/\mc J\scr O_X$ since the term insider the last $\Cok$ is the multiplication map. (Compare Rem. \ref{lb4}.) This proves \eqref{eq125}. \eqref{eq126} follows from a similar argument.
 \end{proof}
 
 
@@ -2369,7 +2403,7 @@ We have an obvious canonical equivalence
 \end{align}
 Therefore, by checking at the level of stalks, we see that the sequence
 \begin{align}
-0\rightarrow\ker(\varphi)\rightarrow\varphi^{-1}(\scr L)\rightarrow\scr L\rightarrow0
+0\rightarrow\Ker(\varphi)\rightarrow\varphi^{-1}(\scr L)\rightarrow\scr L\rightarrow0
 \end{align}
 is exact. Thus, by Thm. \ref{lb20} and Cor. \ref{lb46}, we have:
 
@@ -3569,7 +3603,7 @@ to
 (Note that $\pr_X(\pr_Y^{-1}(V))\subset\pi^{-1}(W)$.) It is easy to see that $\Psi$ is functorial. We call $\Psi$ the \textbf{base change morphism}.
 
 
-\begin{rem}
+\begin{rem}\label{lb269}
 The stalk map of $\Psi$ at each $y\in Y$ is the $\scr O_{Y,y}$-module morphism determined by
 \begin{gather}\label{eq41}
 \begin{gathered}
@@ -4005,7 +4039,7 @@ In a category $\mc C$, if $\varphi,\psi:X\rightarrow Y$ are two morphisms of obj
 $\begin{tikzcd}
 X \arrow[r,shift left, "\varphi"] \arrow[r,shift right,"\psi"'] & Y
 \end{tikzcd}$
-can be defined in the same way as in Def. \ref{lb139}. Likewise, a \textbf{coequalizer} \index{00@Coequalizers} of this double arrow is an object $C\in\mc C$ and a morphism $\pi:Y\rightarrow C$ such that $\pi\circ\varphi=\pi\circ\psi$, and that for every object $T$ and morphism $\nu:Y\rightarrow Y$ there is a unique morphism $\wtd\nu:C\rightarrow T$ such that $\nu=\wtd\nu\circ\pi$.
+can be defined in the same way as in Def. \ref{lb139}. Likewise, a \textbf{coequalizer} \index{00@Coequalizers} of this double arrow is an object $C\in\mc C$ and a morphism $\pi:Y\rightarrow C$ such that $\pi\circ\varphi=\pi\circ\psi$, and that for every object $T$ and morphism $\nu:Y\rightarrow T$ satisfying $\nu\circ\varphi=\nu\circ\psi$ there is a unique morphism $\wtd\nu:C\rightarrow T$ such that $\nu=\wtd\nu\circ\pi$.
 \begin{equation}
 \begin{tikzcd}
 X \arrow[r, "\varphi", shift left] \arrow[r, "\psi"', shift right] & Y \arrow[r, "\pi"] \arrow[rd, "\nu"'] & C \arrow[d, "\wtd\nu", dashed] \\
@@ -4973,7 +5007,7 @@ Let $X,Y$ be complex spaces and $x\in X,y\in Y$. Let $f\in\scr O_{X,x}$ be a non
 
 Recall the meaning of $f\otimes g$ in \eqref{eq78}. Since $f\otimes g=(f\otimes 1)(1\otimes g)$ and the product of two non zero-divisors is a non zero-divisor, it suffices to prove that $f\otimes 1$ is a non zero-divisor.
 
-
+A different proof of this proposition is given in Sec. \ref{lb277}, after Cor. \ref{lb276}.
 
  
 \begin{proof}[Proof-Step 1]
@@ -5047,7 +5081,7 @@ is surjective.
 \end{lm}
 
 \begin{proof}
-If $\mc M$ is free then $\varphi_*$ is surjective because $\Hom_{\mc A}(\mc M,-)$ is right exact. Conversely, if $\varphi_*$ is surjective, then the fact that $\id_{\mc M}$ is in the image of $\varphi_*$ means that there is a lift $\psi:\mc M\rightarrow\mc A^n$ such that $\varphi\circ\psi=\id_{\mc M}$. This proves that $\mc M$ is a direct summand of $\mc A^n$, and hence that $\mc M$ is a projective $\mc A$-module. So it is flat, and hence free.
+If $\mc M$ is free then $\varphi_*$ is surjective because $\Hom_{\mc A}(\mc M,-)$ is right exact. Conversely, if $\varphi_*$ is surjective, then the fact that $\id_{\mc M}$ is in the image of $\varphi_*$ means that there is a lift $\psi:\mc M\rightarrow\mc A^n$ such that $\varphi\circ\psi=\id_{\mc M}$. This proves that $\mc M$ is a direct summand of $\mc A^n$. Therefore $\mc M$ is a projective $\mc A$-module by Prop. \ref{lb282}, and hence is free of finite rank by Thm. \ref{lb280}.
 \end{proof}
 
 
@@ -5221,7 +5255,7 @@ Let $X$ be a complex space.
 
 
 \begin{df}
-An element $f\in\scr O(X)$ is called \textbf{active at $x$} or \textbf{active in $\scr O_{X,x}$} \index{00@Active elements} if $f$ (or more precisely $\red(f)$) is a non zero-divisor of $\scr O_{\red(X),x}$.
+An element $f\in\scr O(X)$ is called \textbf{active at $x$} or \textbf{active in $\scr O_{X,x}$} \index{00@Active elements} if $f$ (or more precisely $\red(f)$) is a non zero-divisor of $\scr O_{\red(X),x}=\scr O_{X,x}/\sqrt{0_{X,x}}$~.
 \end{df}
 
 Non zero-divisors are always active, but the converse is not true.
@@ -5510,7 +5544,7 @@ Let $(\mc I_i)_{i\in\fk I}$ be an ascending chain of ideals of $\scr O_X$. We ne
 
 
 
-\section{Openness and dimensions of fibers I}
+\section{Openness and dimensions of fibers I}\label{lb283}
 
 \begin{df}
 Let $\varphi:X\rightarrow Y$ be a continuous map of topological spaces. We say that $\varphi$ is \textbf{open at $x\in X$} \index{00@Open maps} if for each neighborhood $U\subset X$ of $x$, $\varphi(U)$ contains a neighborhood of $\varphi(x)$. We say that $\varphi$ is \textbf{open (on $X$)} if $\varphi$ is open at every point of $X$.
@@ -5567,6 +5601,7 @@ Our main goal of this section and the next one is to understand when the followi
 {\color{red}\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y}\label{eq73}
 \end{align}
 More precisely, our goal is to understand the following result of Remmert which relates the openness of $\varphi$ and \eqref{eq73}.
+
 \begin{co}\label{lb159}
 Assume that $Y$ is locally irreducible. Then $\varphi:X\rightarrow Y$ is open if and only if Dimension Formula \eqref{eq73} holds for all $x\in X$.
 \end{co}
@@ -5648,7 +5683,7 @@ By Cor. \ref{lb143}, $\dim_y Y_i>0$. Therefore $\fk m_{Y,y}\nsubset\scr I_{Y_i,y
 \begin{align*}
 \dim_x N(g\circ\varphi)=\dim_xX-1.
 \end{align*}
-By assumption (1) and Lemma \ref{lb156}, $\varphi(X)$ contains a neighborhood of $y\in Y$. So
+By assumption (1), $\varphi(X)$ contains a neighborhood of $y\in Y$. So
 \begin{align*}
 \dim_y N(g)=\dim_y Y-1.
 \end{align*}
@@ -5700,7 +5735,7 @@ By Rem. \ref{lb55}, we may assume $Y$ is small enough such that $\varphi^{-1}(Y)
 
 
 
-\section{Openness and dimensions of fibers II}
+\section{Openness and dimensions of fibers II}\label{lb284}
 
 
 We fix a holomorphic map of complex spaces $\varphi:X\rightarrow Y$. 
@@ -7376,7 +7411,7 @@ is a biholomorphism, which further restricts to a biholomorphism
 \begin{align*}
 \nu:\wht X_\alpha\setminus\nu^{-1}(T)\xrightarrow{\simeq}\nu(\wht X_\alpha\setminus\nu^{-1}(T))=X_\alpha\setminus T.
 \end{align*}
-Since $\wht X_\alpha$ is an open and closed connected component of $\wht X$, $\nu^{-1}(T)$ is nowhere dense in $\wht X_\alpha$. So $\wht X_\alpha\setminus\nu^{-1}(T)$ is dense in $\wht X_\alpha$. Therefore $X_\alpha$ must be the closure of $X_\alpha\setminus T$ in $X$. So $T\cap X_\alpha$ is a thin subset of $X_\alpha$. Thus $\nu_\alpha:\wht X_\alpha\rightarrow X_\alpha$ is a $1$-sheeting covering with branch locus $T\cap X_\alpha$. Since $\wht X_\alpha$ is normal, $\nu_\alpha$ is the normalization of $X_\alpha$.
+Since $\wht X_\alpha$ is an open and closed connected component of $\wht X$, $\nu^{-1}(T)\cap\wht X_\alpha$ is nowhere dense in $\wht X_\alpha$. So $\wht X_\alpha\setminus\nu^{-1}(T)$ is dense in $\wht X_\alpha$. Therefore $X_\alpha$ must be the closure of $X_\alpha\setminus T$ in $X$. So $T\cap X_\alpha$ is a thin subset of $X_\alpha$. Thus $\nu_\alpha:\wht X_\alpha\rightarrow X_\alpha$ is a $1$-sheeting covering with branch locus $T\cap X_\alpha$. Since $\wht X_\alpha$ is normal, $\nu_\alpha$ is the normalization of $X_\alpha$.
 
 By Prop. \ref{lb237}, we have global decomposition
 \begin{align*}
@@ -7390,8 +7425,16 @@ $\nu$ sends this decomposition biholomorphically to $X\setminus T=\coprod_{\alph
 
 \section{Basic properties of irreducible complex spaces}
 
-Let $X$ be a reduced complex space.
+Let $X$ be a reduced complex space. In this section, we collect some useful facts about irreducible complex spaces. 
 
+
+\begin{pp}
+If $X$ is irreducible, then $X$ is pure dimensional.
+\end{pp}
+
+\begin{proof}
+By definition of irreducible complex spaces, the normalization $\wht X$ is connected. Thus, by Prop. \ref{lb245}, $\wht X$ has pure dimension $n$. Therefore $X$ has pure dimension $n$ by Cor. \ref{lb221}.
+\end{proof}
 
 
 
@@ -7513,22 +7556,6 @@ Conversely, if $\nu$ is homeomorphism, then $\nu$ is bijective, and Prop. \ref{l
 
 
 
-When $X$ is not necessarily locally irreducible, $\nu$ is not open. But we have:
-
-
-\begin{pp}
-$\nu:\wht X\rightarrow X$ is a quotient map of topological spaces. Namely, a subset $U\subset X$ is open if and only if $\nu^{-1}(U)$ is open in $\wht X$.
-\end{pp}
-
-
-
-
-\begin{proof}
-Suppose that $\nu^{-1}(U)$ is open. Choose any $x\in U$. We need to show that $x$ is an interior point of $U$. Choose a neighborhood $V$ of $x\in X$ such that (by Thm. \ref{lb125}) $V$ has local decomposition $V=V_1\cup\cdots\cup V_N$ at $x$ and that $V_i\cap V_j$ is nowhere dense in $V_i$ for all $1\leq i\neq j\leq N$. Then by Rem. \ref{lb236}, $\nu^{-1}(V)=\coprod_{i=1}^N\wht V_i$. By Prop. \ref{lb246}, $\nu^{-1}(x)\cap \wht V_i$ has only one element, which we denote by $p_i$. Then by Prop. \ref{lb247}, $\nu$ is open at each $p_i$. Therefore, the image of $\nu^{-1}(U)\cap \wht V_i$ (which is an open subset of $\wht X$ containing $p_i$) under $\nu$ contains a neighborhood of $x$ in $V_i$, written as $W_i\cap V_i$ where $W_i$ is a neighborhood of $x$ in $X$. 
-
-Clearly $W_i\cap  V_i$ is inside $U$. Let $W=W_1\cap\cdots\cap W_N$. Then $W\cap V_i\subset U$. So $W\cap V=W\cap \bigcup_i V_i\subset U$. Therefore $W\cap V$ is a neighborhood of $x\in X$ contained in $U$.
-\end{proof}
-
 
 
 
@@ -7570,6 +7597,1296 @@ Conversely, assume that $x$ and $y$ are irreducible. For each neighborhood of $x
 
 
 
+\chapter{Flatness}
+
+
+
+\section{$\delta$-functors}
+
+
+
+Let $\fk A$ be an abelian category, for instance, the category of (finitely-generated) modules of a commutative ring,  the category of (coherent) $\scr O_X$-modules where $X$ is a complex space, or more generally the category of $X$-sheaves of abelian groups.
+
+
+
+In this section, we describe how the homology and cohomology in complex geometry should look like. Roughly speaking, in a cohomology theory, one should be able to get long exact sequences from short ones. For instance, given a short exact sequence of $\scr O_X$-modules, one can get long exact sequences of vector spaces being the cohomology groups of $\scr O_X$-modules. Moreover, the process of taking long exact sequences should be compatible with the morphisms of short exact sequences, i.e. a commutative diagram \eqref{eq103} where the top and the bottom sequences are exact. $\delta$-functors are a precise way to describe such cohomology. 
+
+Another question is whether or  in which sense the cohomology theories are unique. (Those unique cohomologies are called universal $\delta$-functors.) It turns out that the cohomologies are determined by their degree-zero parts if the objects in the categories (e.g. the $\scr O_X$-modules) can always be embedded into an acyclic object, i.e., an object whose positive-degree cohomology groups vanish. This is Thm. \ref{lb252}, the main result of this section.
+
+
+\begin{df}\label{lb251}
+A \textbf{(cohomological covariant) $\delta$-functor} \index{00@Cohomological $\delta$-functors} $(H^\blt,\delta^\blt)$ from an abelian category $\fk A$ to another one $\fk B$ is a collection of additive functors $H^n:\fk A\rightarrow\fk B$ ($n\in\Nbb$) together with $\delta^n:H^n(\mc G)\rightarrow H^{n+1}(\mc E)$ for each short exact sequence in $\fk A$
+\begin{align}
+0\rightarrow\mc E\rightarrow\mc F\rightarrow\mc G\rightarrow 0\label{eq99}
+\end{align}
+such that the following conditions hold.
+\begin{enumerate}[label=(\arabic*)]
+\item Each exact sequence of $\fk A$-objects \eqref{eq99} gives a long exact sequence 
+\begin{align*}
+&0\rightarrow H^0(\mc E)\rightarrow H^0(\mc F)\rightarrow H^0(\mc G)\\
+\xrightarrow{\delta^0}& H^1(\mc E)\rightarrow H^1(\mc F)\rightarrow H^1(\mc G)\xrightarrow{\delta^1} H^2(\mc E)\rightarrow \cdots
+\end{align*}
+In particular, the functor $H^0:\fk A\rightarrow\fk B$ is left exact.
+\item For each morphism of short exact sequences in $\fk A$
+\begin{equation}\label{eq103}
+\begin{tikzcd}
+0 \arrow[r] & \mc E \arrow[r] \arrow[d] & \mc F \arrow[r] \arrow[d] & \mc G \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \mc E' \arrow[r]          & \mc F' \arrow[r]          & \mc G' \arrow[r]          & 0
+\end{tikzcd}
+\end{equation}
+and each $n\in\Nbb$, the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+H^n(\mc G) \arrow[r,"\delta^n"] \arrow[d] & H^{n+1}(\mc E) \arrow[d] \\
+H^n(\mc G') \arrow[r,"\delta^n"]           & H^{n+1}(\mc E')          
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+We abbreviate $\delta^n$ to $\delta$ when no confusion arises.
+\end{df}
+
+\begin{df}
+Modify the statements in Def. \ref{lb251} as follows. For each short exact sequence \eqref{eq99} and each $n\in\Nbb$. We have $\delta^n:H^n(\mc E)\rightarrow H^{n+1}(\mc G)$ such that the following hold, we say $(H^\blt,\delta^\blt)$ is a \textbf{(cohomological) contravariant $\delta$-functor}, if
+\begin{enumerate}[label=(\arabic*)]
+\item Each exact sequence of $\fk A$-objects \eqref{eq99} gives a long exact sequence 
+\begin{align*}
+&0\rightarrow H^0(\mc G)\rightarrow H^0(\mc F)\rightarrow H^0(\mc E)\\
+\xrightarrow{\delta^0}& H^1(\mc G)\rightarrow H^1(\mc F)\rightarrow H^1(\mc E)\xrightarrow{\delta^1} H^2(\mc G)\rightarrow \cdots
+\end{align*}
+In particular, the contravariant functor $H^0:\fk A\rightarrow\fk B$ is left exact.
+\item For each morphism of short exact sequences \eqref{eq103} and each $n\in\Nbb$, the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+H^n(\mc E) \arrow[r,"\delta^n"] \arrow[d] & H^{n+1}(\mc G) \arrow[d] \\
+H^n(\mc E') \arrow[r,"\delta^n"]           & H^{n+1}(\mc G')          
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+\end{df}
+
+
+
+\begin{df}
+Modify the statements in Def. \ref{lb251} as follows. For each short exact sequence \eqref{eq99} and each $n\in\Nbb$, we have $\delta_n:H_{n+1}(\mc G)\rightarrow H_n(\mc E)$ such that the following hold. We say $(H_\blt,\delta_\blt)$ is a \textbf{homological (covariant) $\delta$-functor}, if
+\begin{enumerate}[label=(\arabic*)]
+\item Each exact sequence of $\fk A$-objects \eqref{eq99} gives a long exact sequence 
+\begin{align*}
+\cdots&\rightarrow H_2(\mc G)\xrightarrow{\delta_1} H_1(\mc E)\rightarrow H_1(\mc F)\rightarrow H_1(\mc G)\\
+\xrightarrow{\delta_0} &H_0(\mc E)\rightarrow H_0(\mc F)\rightarrow H_0(\mc G)\rightarrow 0
+\end{align*}
+In particular, the functor $H_0:\fk A\rightarrow\fk B$ is right exact.
+\item For each morphism of short exact sequences \eqref{eq103} and each $n\in\Nbb$, the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+H_{n+1}(\mc G) \arrow[r,"\delta_n"] \arrow[d] & H_n(\mc E) \arrow[d] \\
+H_{n+1}(\mc G') \arrow[r,"\delta_n"]           & H_n(\mc E')          
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+\end{df}
+
+
+\begin{df}
+A \textbf{morphism of $\delta$-functors} \index{00@Morphisms of $\delta$-functors} $\Phi^\blt:(H^\blt,\delta^\blt)\rightarrow (\wch H^\blt,\delta^\blt)$ associates to each $n\in \Nbb$ and $\mc E\in\fk A$ a morphism of $\fk B$-objects $\Phi=\Phi^n: H^n(\mc E)\rightarrow \wch H^n(\mc E)$ such that:
+\begin{enumerate}[label=(\arabic*)]
+\item For each $n\in\Nbb$, $\Phi^n$ is functorial (natural). Namely, for each morphism $\mc E\rightarrow\mc F$ of $\fk A$-objects, the diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+H^n(\mc E) \arrow[r] \arrow[d,"\Phi^n"',"\simeq"] & H^n(\mc F) \arrow[d,"\Phi^n","\simeq"'] \\
+\wch H^n(\mc E) \arrow[r]           & \wch H^n(\mc F)          
+\end{tikzcd}
+\end{equation*}
+\item $\Phi$ commutes with $\delta$. More precisely, for each $n\in\Nbb$ and each exact sequence \eqref{eq99} in $\fk A$, the diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+H^n(\mc G) \arrow[r,"\delta^n"] \arrow[d,"\Phi^n"',"\simeq"] & H^{n+1}(\mc E) \arrow[d,"\Phi^n","\simeq"'] \\
+\wch H^n(\mc G) \arrow[r,"\delta^n"]           & \wch H^{n+1}(\mc E)          
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+We leave it to the readers to define morphisms of cohomological contravariant and homological covariant $\delta$-functors.
+\end{df}
+
+
+Hohomology and cohohomology in complex geometry are characterized uniquely by the following property.
+
+\begin{df}
+A $\delta$-functor $(H^\blt,\delta^\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} \index{00@Universal $\delta$-functors} if for any other $\delta$-functor $(\wch H^\blt,\delta^\blt)$, any functorial morphism of functors $\Phi^0:H^0\rightarrow\wch H^0$ can be extended uniquely to a morphism of $\delta$-functors $\Phi^\blt:(H^\blt,\delta^\blt)\rightarrow(\wch H^\blt,\delta^\blt)$. Universal cohomological contravariant functors are defined in a similar way.
+
+A homological covariant $\delta$-functor $(H_\blt,\delta_\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} if for any other homological covariant $\delta$-functor $(\wch H_\blt,\delta_\blt)$, any functorial morphism of functors $\Phi_0:\wch H_0\rightarrow H_0$ can be extended uniquely to a morphism of homological $\delta$-functors $\Phi_\blt:(\wch H_\blt,\delta_\blt)\rightarrow (H_\blt,\delta_\blt)$.   \hfill\qedsymbol
+\end{df}
+
+It is clear that any two universal (co)homological covariant/contravariant $\delta$-functors with the same degree-zero part $H^0$ resp. $H_0$ are isomorphic.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{thm}\label{lb252}
+Suppose that $(H^\blt,\delta^\blt)$ is a cohomological covariant $\delta$-functor from $\fk A$ to $\fk B$, and each $\mc E\in\fk A$ has a monomorphism $\mc E\hookrightarrow\mc E^0$ such that $H^{>0}(\mc E^0)=0$. Then $(H^\blt,\delta^\blt)$ is a universal $\delta$-functor.
+
+
+The same statement holds for cohomological contravariant and homological covariant $\delta$-functors, except that one assumes instead that each $\mc E\in\fk A$ has an epimorphism $\mc E_0\twoheadrightarrow\mc E$ such that $H^{>0}(\mc E_0)=0$ resp. $H_{>0}(\mc E_0)=0$.
+\end{thm}
+
+Thus, the uniqueness of (co)hohomology in complex geometry is addressed. We will discuss the existence problem in the next section.
+
+
+\begin{proof}
+We prove the theorem only for cohomological covariant $\delta$-functors, since the other cases can be treated in a similar way. Choose a $\delta$-functor $(\wch H^\blt,\delta^\blt)$. We construct $\Phi^n$ and verifies the desired properties by induction on $n$. The case $n=0$ is obvious. Assume the unique functorial morphisms $\Phi^0,\dots,\Phi^n$ intertwinined by $\delta^0,\dots,\delta^{n-1}$ are constructed. Let us construct a unique functorial $\Phi^{n+1}$ such that $\delta^n$ intertwines $\Phi^n$ and $\Phi^{n+1}$. \\
+
+Step 1. For each $\mc E$, find  a monomorphism $\mc E\hookrightarrow\mc E^0$ such that $H^{>0}(E^0)=0$. Then we have an exact sequence $0\rightarrow\mc E\rightarrow\mc E^0\rightarrow \mc E^0/\mc E\rightarrow 0$. Since $H^{n+1}(\mc E^0)=0$, by Rem. \ref{lb47}, there is a unique morphism $\Phi^{n+1}:H^{n+1}(\mc E)\dashrightarrow\wch H^{n+1}(\mc E)$ which yields a morphism of long exact sequences
+\begin{equation}\label{eq100}
+\begin{tikzcd}
+H^n(\mc E^0) \arrow[r] \arrow[d, "\Phi^n"'] & H^n(\mc E^0/\mc E) \arrow[d,  "\Phi^n"'] \arrow[r, "\delta"] & H^{n+1}(\mc E) \arrow[r] \arrow[d, dashed, "\Phi^{n+1}"'] & 0\\
+\wch H^n(\mc E^0) \arrow[r]                     & \wch H^n(\mc E^0/\mc E) \arrow[r, "\delta"]                     & \wch H^{n+1}(\mc E)                   &           
+\end{tikzcd}
+\end{equation}
+
+
+
+Step 2. Choose any $\mc E,\mc F\in\fk A$. Suppose that we have a commutative diagram
+\begin{equation}\label{eq101}
+\begin{tikzcd}
+\mc E \arrow[r, hook] \arrow[d] & \mc E^0 \arrow[d] \\
+\mc F \arrow[r, hook]           & \mc F^0          
+\end{tikzcd}
+\end{equation}
+where the horizontal arrows are injective and $H^{>0}(\mc E^0)=H^{>0}(\mc F^0)=0$. By Rem. \ref{lb47} again, this diagram can be extended uniquely to a morphism of exact sequences
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r] & \mc E \arrow[r, no head] \arrow[d] & \mc E^0 \arrow[d] \arrow[r] & \mc E^0/\mc E \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \mc F \arrow[r, hook]             & \mc F^0 \arrow[r]           & \mc F^0/\mc F \arrow[r]           & 0
+\end{tikzcd}
+\end{equation*}
+This gives rise to a diagram where all the vertical arrows are $\Phi$:
+\begin{equation}
+\begin{tikzcd}[column sep=0.1in,row sep=0.1in]
+                        & H^n(\mc E^0) \arrow[ld] \arrow[dd] \arrow[rr] &                         & H^n(\mc E^0/\mc E) \arrow[rr] \arrow[dd] \arrow[ld] &              & H^{n+1}(\mc E) \arrow[ld, ForestGreen] \arrow[dd, ForestGreen] \\
+H^n(\mc F^0) \ar[dd] \arrow[rr, crossing over] &                                    & H^n(\mc F^0/\mc F) \arrow[rr, crossing over]  &                                    & H^{n+1}(\mc F) &                         \\
+                        & \wch H^n(\mc E^0) \arrow[ld] \ar[rr]            &                         & \wch H^n(\mc E^0/\mc E) \arrow[ld] \arrow[rr]            &              & \wch H^{n+1}(\mc E) \arrow[ld, ForestGreen]            \\
+\wch H^n(\mc F^0) \arrow[rr]            &                                    & \wch H^n(\mc F^0/\mc F)\arrow[from=uu, crossing over] \arrow[rr]            &                                    & \wch H^{n+1}(\mc F)  \arrow[from=uu, crossing over, ForestGreen]           &                        
+\end{tikzcd}
+\end{equation}
+By the assumption on case $n$, the left front and the left back rectangles commute, and the left and the middle vertical cells commute. The right front and the right back rectangles commute due to the construction of $\Phi^{n+1}$ in Step 1. The top and the bottom four horizontal cells commute by the definition of $\delta$-functors. Since $H^{n+1}(\mc E^0)=0$, the morphism $H^n(\mc E^0/\mc E)\rightarrow H^{n+1}(\mc E)$ on the top is surjective. Therefore the rightmost vertical (green) parallelogram commutes. To summarize, we have a commutative diagram
+\begin{equation}\label{eq102}
+\begin{tikzcd}
+H^{n+1}(\mc F) \arrow[d, "\Phi^{n+1}"', ForestGreen] & H^{n+1}(\mc E) \arrow[l, ForestGreen] \arrow[d, "\Phi^{n+1}", ForestGreen] \\
+\wch H^{n+1}(\mc F)                     & \wch H^{n+1}(\mc E) \arrow[l, ForestGreen]                   
+\end{tikzcd}
+\end{equation}
+This proves that $\Phi^{n+1}$ is functorial, once we have shown that $\Phi^{n+1}$ is independent of the choice of inclusions $\mc E\hookrightarrow\mc E^0$. 
+
+
+
+
+To prove that $\Phi^{n+1}$ is well-defined, choose  monomorphisms $\alpha:\mc E\hookrightarrow\mc E^0$ and  $\beta:\mc E\hookrightarrow\mc E^1$ such that $H^{>0}(\mc E^0)=H^{>0}(\mc E^1)=0$. Then $H^{>0}(\mc E^0\oplus\mc E^1)=0$. Let \eqref{eq101} be
+\begin{equation*}
+\begin{tikzcd}
+\mc E \arrow[r, hook, "\alpha\vee\beta"] \arrow[d, "="'] & \mc E^0\oplus \mc E^1 \arrow[d] \\
+\mc E \arrow[r, hook, "\alpha"]           & \mc E^0          
+\end{tikzcd}
+\end{equation*}
+where the right vertical arrow is the projection onto the first component. Then the commutativity of the corresponding diagram \eqref{eq102} shows that the $\Phi^{n+1}:H^{n+1}(\mc E)\rightarrow\wch H^{n+1}(\mc E)$ defined by $\alpha\vee\beta$ agrees with the one defined by $\alpha$, and hence similarly agrees with the one defined by $\beta$.\\
+
+
+Step 3. We now check that $\delta$ intertwines $\Phi^n$ and $\Phi^{n+1}$. Choose any exact sequence \eqref{eq99}. Choose a monomorphism $\mc F\hookrightarrow\mc E^0$ where $H^{>0}(\mc E^0)=0$, and let its composition with $\mc E\rightarrow\mc F$ be the monomorphism $\mc E\hookrightarrow\mc E^0$ in the following diagram.
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r] & \mc E \arrow[r] \arrow[d, "="'] & \mc F \arrow[d] \arrow[r] & \mc G \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \mc E \arrow[r, hook]             & \mc E^0 \arrow[r]           & \mc E^0/\mc E \arrow[r]           & 0
+\end{tikzcd}
+\end{equation*}
+The first cell commutes. Thus there is a morphism $\mc G\rightarrow\mc E^0/\mc E$ making the second cell commute. This morphism of exact sequences gives
+\begin{equation}
+\begin{tikzcd}[column sep=0.1in,row sep=0.1in]
+                        & H^n(\mc F) \arrow[ld] \arrow[dd] \arrow[rr] &                         & H^n(\mc G) \arrow[rr, ForestGreen] \arrow[dd, ForestGreen] \arrow[ld] &              & H^{n+1}(\mc E) \arrow[ld] \arrow[dd, ForestGreen] \\
+H^n(\mc E^0) \ar[dd] \arrow[rr, crossing over] &                                    & H^n(\mc E^0/\mc E) \arrow[rr, crossing over]  &                                    & H^{n+1}(\mc E) &                         \\
+                        & \wch H^n(\mc F) \arrow[ld] \ar[rr]            &                         & \wch H^n(\mc G) \arrow[ld] \arrow[rr, ForestGreen]            &              & \wch H^{n+1}(\mc E) \arrow[ld]            \\
+\wch H^n(\mc E^0) \arrow[rr]            &                                    & \wch H^n(\mc E^0/\mc E)\arrow[from=uu, crossing over] \arrow[rr]            &                                    & \wch H^{n+1}(\mc E)  \arrow[from=uu, crossing over]           &                        
+\end{tikzcd}
+\end{equation}
+
+
+Due to the functoriality of $\Phi^n$ and $\Phi^{n+1}$, the left front and the back front rectangle commute, and the three vertical cells commute. By the definition of $\delta$-functors, the top and the bottom four horizontal cells commute. By the construction of $\Phi^n$ in Step 1, the right front rectangle commutes. Therefore, since $\wch H^{n+1}(\mc E)\rightarrow\wch H^{n+1}(\mc E)$ is the identity, the right back (green) rectangle commutes.
+\end{proof}
+
+
+
+
+\section{Derived functors}
+
+Let $\fk A$ be an abelian category. Recall that an object $\mc Q\in\fk A$ is called \textbf{injective} \index{00@Injective objects/modules} if the contravariant functor $\Hom(-,\mc Q)$ is right exact (and hence exact), namely, for each injective morphism $\mc E\hookrightarrow\mc F$ of objects of $\fk A$ and for each morphism $\mc E\rightarrow\mc Q$ there is a morphism $\mc Q\dashrightarrow\mc F$ such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+	0 & {\mc E} & {\mc F} \\
+	& {\mc Q}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[dashed, to=2-2, from=1-3]
+\end{tikzcd}
+\end{equation*}
+$\mc Q$ is called \textbf{projective} \index{00@Projective objects/modules} if the functor $\Hom(\mc Q,-)$ is right exact (and hence exact), namely, for each surjective morphism $\mc F\twoheadrightarrow\mc G$ of objects of $\fk A$ and for each morphism $\mc Q\rightarrow\mc G$, there is a morphism $\mc Q\dashrightarrow\mc F$ such that the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+                & \mc Q \arrow[d] \arrow[ld, dashed] &   \\
+\mc F \arrow[r] & \mc G \arrow[r]                    & 0
+\end{tikzcd}
+\end{equation*}
+
+
+\begin{df}
+We say that $\fk A$ has \textbf{enough injectives} \index{00@Enough injectives/projectives} if each object $\mc Q\in\fk A$ has a monomorphism into an injective object. We say that $\fk A$ has \textbf{enough projectives} if each object $\mc Q$ has an epimorphism from a projective object.
+\end{df}
+
+
+\subsection{Main result}
+
+Choose another abelian category $\fk B$.
+
+\begin{thm}\label{lb253}
+If $\fk A$ has enough injectives, then any left exact covariant functor $T:\fk A\rightarrow\fk B$ can be extended uniquely (up to isomorphism) to a universal covariant $\delta$-functor. If $\fk A$ has enough projectives, then any left exact contravariant functor $T:\fk A\rightarrow\fk B$ can be extended uniquely (up to isomorphism) to a universal contravariant $\delta$-functor. In both cases, this functor is denoted by $R^\blt T$ and called the \textbf{right derived functor} of $T$. \index{00@Derived functors, left and right $R^\blt T,L_\blt T$}
+
+If $\fk A$ has enough projectives, then any right exact covariant functor $T:\fk A\rightarrow\fk B$ can be extended uniquely (up to isomorphism) to a universal homological $\delta$-functor $L_\blt T$, called the \textbf{left derived functor} of $T$. 
+
+In the above three cases, $R^{>0}T$ resp. $R^{>0}T$ resp. $L_{>0}T$ vanish on the injectives resp. projectives resp. projectives of $\fk A$.
+\end{thm}
+
+\begin{rem}
+By saying $R^\blt T=(R^nT)_{n\in\Nbb}$ resp. $L_\blt T=(L_nT)_{n\in\Nbb}$ extends $T$, we mean $R^0T=T$ resp. $L_0 T=T$.
+\end{rem}
+
+
+
+We need some preparations for the proof of this theorem.
+
+\begin{df}
+Let $\mc E\in\fk A$. A \textbf{right resolution} \index{00@Resolutions, left and right} $0\rightarrow\mc E\rightarrow \mc E^\blt$ of $\mc E$ is an exact sequence
+\begin{align}\label{eq104}
+0\rightarrow\mc E\rightarrow\mc E^0\xrightarrow{\varphi^0}\mc E^1\xrightarrow{\varphi^1}\mc E^2\xrightarrow{\varphi^2}\cdots
+\end{align}
+If each $\mc E^n$ (but not necessarily $\mc E$) is injective, we call $0\rightarrow\mc E\rightarrow \mc E^\blt$ an \textbf{injective resolution} of $\mc E$. \index{00@Resolutions, injective and projective}
+
+Similarly, a \textbf{left resolution} $\mc E_\blt\rightarrow\mc E\rightarrow 0$ of $\mc E$ is an exact sequence
+\begin{align}\label{eq110}
+\cdots\xrightarrow{\varphi_3}\mc E_2\xrightarrow{\varphi_2}\mc E_1\xrightarrow{\varphi_1}\mc E_0\rightarrow\mc E\rightarrow 0
+\end{align}
+If each $\mc E_\blt$ is projective, we call $\mc E_\blt\rightarrow\mc E\rightarrow 0$ a \textbf{projective resolution} of $\mc E$. \hfill\qedsymbol
+\end{df}
+
+
+\begin{rem}
+If $\fk A$ has enough injectives (resp. projectives), then any $\mc E\in\fk A$ has an injective (resp. projective) resolution.
+
+Indeed, suppose that $\fk A$ has enough injectives. Then we have an exact sequence $0\rightarrow\mc E\rightarrow\mc E^0\rightarrow\mc E^0/\mc E\rightarrow0$ where $\mc E^0$ is injective. Embed $\mc E^0/\mc E$ into an inject object $\mc E^1$. This gives an exact sequnce $0\rightarrow\mc E\rightarrow\mc E^0\xrightarrow{\varphi^1}\mc E^1$. Embed $\Cok(\varphi^1)$ into an injective $\mc E^2$, and repeat this procedure again and again to obtain the injective resolution. \hfill\qedsymbol
+\end{rem}
+
+\subsection{Motivations}
+
+
+We now explain the ideas  of constructing derived functors. Suppose that a left exact functor $T:\fk A\rightarrow\fk B$ can be extended to a $\delta$-functor $R^\blt T$. Suppose moreover that  $\mc E$ has a right resolution \eqref{eq104} such that $R^{>0}T$ vanishes on $\mc E^\blt$. Then the short exact sequence
+\begin{align*}
+0\rightarrow\mc E\rightarrow\mc E^0\xrightarrow{\varphi^0}\Ker(\varphi^1)\rightarrow0
+\end{align*}
+produces a long exact sequence, which yields exact sequences
+\begin{subequations}
+\begin{gather}
+0\rightarrow T(\mc E)\rightarrow T(\mc E^0)\rightarrow T(\Ker\varphi^1)\xrightarrow{\delta} R^1T(\mc E)\rightarrow0  \label{eq105}\\
+R^nT(\Ker\varphi^1)\xlongrightarrow[\simeq]{\delta}R^{n+1}T(\mc E)\qquad {\color{ForestGreen}(n\geq 1)}  \label{eq106}
+\end{gather}
+\end{subequations}
+Thus, by \eqref{eq105},
+\begin{align}
+R^1(\mc E)\simeq\frac{T(\Ker\varphi^1)}{\Imag\big(T(\mc E^0)\xrightarrow{T(\varphi^0)} T(\Ker\varphi^1) \big)}\label{eq107}
+\end{align}
+Since $T$ is left exact, the exactness of $0\rightarrow\Ker\varphi^1\xrightarrow{\iota^1}\mc E^1\xrightarrow{\varphi^1}\mc E^2$ gives an exact sequence
+\begin{align*}
+0\rightarrow T(\Ker\varphi^1)\xrightarrow{T(\iota^1)}T(\mc E^1)\xrightarrow{T(\varphi^1)} T(\mc E^2)
+\end{align*}
+Therefore, $T(\iota^1)$ sends $T(\Ker\varphi^1)$ isomorphically to $\Ker\big(T(\mc E^1)\rightarrow T(\mc E^2)\big)$, and sends the bottom of the RHS of \eqref{eq107} isomorphically to the image of $T(\iota^1\circ\varphi^1):T(\mc E^0)\rightarrow T(\mc E^1)$. Thus, by \eqref{eq107} we obtain an isomorphism
+\begin{align}
+R^1T(\mc E)\simeq \frac{\Ker\big(T(\mc E^1)\rightarrow T(\mc E^2)\big)}{\Imag\big(T(\mc E^0)\rightarrow T(\mc E^1)\big)}  \label{eq108}
+\end{align}
+
+
+To compute $R^nT(\mc E)$ when $n>1$, we use \eqref{eq106}, which says that it is isomorphic to $R^{n-1}T(\Ker\varphi^1)$. Note that $0\rightarrow\Ker\varphi^1\rightarrow\mc E^1\rightarrow\mc E^2\rightarrow\cdots$ is a resolution of $\Ker\varphi^1$ where all the terms after $\Ker\varphi^1$ are killed by $R^{>0}T$. Apply \eqref{eq106} again and repeat the same procedure, we obtain
+\begin{align}
+R^nT(\mc E)\simeq R^{n-1}T(\Ker\varphi^1)\simeq R^{n-2}T(\Ker\varphi^2)\simeq\cdots\simeq R^1T(\Ker\varphi^{n-1}).\label{eq109}
+\end{align}
+Apply \eqref{eq108} to the resolution
+\begin{align*}
+0\rightarrow\Ker\varphi^{n-1}\rightarrow\mc E^{n-1}\rightarrow\mc E^n\rightarrow\mc E^{n+1}\rightarrow\cdots
+\end{align*}
+of $\Ker\varphi^{n-1}$, we see that \eqref{eq109} is isomorphic to
+\begin{align}
+R^nT(\mc E)\simeq \frac{\Ker\big(T(\mc E^n)\rightarrow T(\mc E^{n+1})\big)}{\Imag\big(T(\mc E^{n-1})\rightarrow T(\mc E^n)\big)} 
+\end{align}
+Since this is also true when $n=1$ and when $n=0$ if we set $\mc E^{<0}=0$, we conclude {\color{red}$R^\star T(\mc E)\simeq\mc H^\star(T(\mc E^\blt))$}, namely, that $R^\star T(\mc E)$ is isomorphic to the cohomology of the complex $T(\mc E^\blt)$. In the proof of Thm. \ref{lb253}, we will use injective resolutions and $\mc H^\star(T(\mc E^\blt))$ to construct right derived functors.
+
+
+
+In the case that $T:\fk A\rightarrow\fk B$ is a right exact functor and can be extended to a homological $\delta$-functor $L_\blt T$, the argument is slightly different: we use the fact that for any morphisms of $\fk B$-objects $C_1\overset{\begin{subarray}{c}
+f\\[-0.6ex]
+\end{subarray}}{\twoheadrightarrow}C_2\xrightarrow{g}C_3$ where $f$ is an epimorphism and the exactness of the sequence is not assumed, there is an isomorphism
+\begin{align}\label{eq113}
+f:~~\frac{\Ker(C_1\xrightarrow{g\circ f}C_3)}{\Ker(C_1\overset{
+\begin{subarray}{c}
+f\\[-0.6ex]
+\end{subarray}
+}{\twoheadrightarrow}C_2)}~~\xlongrightarrow{\simeq}~~\Ker(C_2\xrightarrow{g}C_3)
+\end{align}
+
+Suppose that $\mc E$ has a left resolution \eqref{eq110} such that $L_\blt T$ vanishes on $\mc E_\blt$. Then we have a short exact sequence
+\begin{align*}
+0\rightarrow\Imag(\varphi_1)\xrightarrow{\iota_1}\mc E_0\rightarrow\mc E\rightarrow0
+\end{align*}
+whose long exact sequence gives exact sequences
+\begin{gather}
+0\rightarrow L_1T(\mc E)\xrightarrow{\delta} T(\Imag\varphi_1)\xrightarrow{T(\iota_1)} T(\mc E_0)\rightarrow T(\mc E)\rightarrow0  \label{eq111}\\
+L_{n+1}T(\mc E)\xlongrightarrow[\simeq]{\delta}L_nT(\Imag\varphi_1)\qquad {\color{ForestGreen}(n\geq 1)}  \label{eq112}
+\end{gather}
+Thus $L_1(\mc E)\simeq\Ker\big(T(\Imag(\varphi_1))\xrightarrow{T(\iota_1)} T(\mc E_0)\big)$. Since $L$ is right exact and $\varphi_1:\mc E_1\twoheadrightarrow\Imag\varphi_1$ is surjective, the first morphism in the following non-necessarily exact sequence is surjective
+\begin{equation*}
+\begin{tikzcd}
+T(\mc E_1)\arrow[r, two heads, "T(\varphi_1)"] & T(\Imag\varphi_1) \arrow[r, "T(\iota_1)"] & T(\mc E_0)
+\end{tikzcd}
+\end{equation*}
+Therefore, by \eqref{eq113}, 
+\begin{align*}
+L_1T(\mc E)\simeq\frac{\Ker(T(\mc E_1)\rightarrow T(\mc E_0))}{\Ker(T(\mc E_1)\xrightarrow{T(\varphi_1)}T(\Imag\varphi_1))}
+\end{align*}
+where the bottom is clearly equal to $\Imag(T(\mc E_2)\rightarrow T(\mc E_1))$ because the right exact functor $T$ preserves the exactness of $\mc E_2\rightarrow\mc E_1\xrightarrow{\varphi_1} \Imag\varphi_1\rightarrow0$. This implies that
+\begin{align}
+L_nT(\mc E)\simeq\frac{\Ker(T(\mc E_n)\rightarrow T(\mc E_{n-1}))}{\Imag(T(\mc E_{n+1})\rightarrow T(\mc E_n))}  \label{eq114}
+\end{align}
+holds when $n=1$. It clearly holds when $n=0$ if we set $\mc E_{<0}=0$. Thus, similar to the previous case of left exact functors, we can use \eqref{eq112} to show that \eqref{eq114} holds for all $n\in\Nbb$. Thus {\color{Red}$L_\star T(\mc E)\simeq\mc H_\star(T(\mc E_\blt))$},  namely, $L_\star T(\mc E)$ is isomorphic to the homology of the complex $T(\mc E_\blt)$. 
+
+
+
+
+
+\subsection{$\delta$-functors for complexes}\label{lb254}
+
+
+We recall some basic facts from homological algebra. They can be found in any textbook on algebraic topology (e.g. \cite[Sec. 2.1]{Hat}). 
+
+There is a canonical $\delta$-functor $(\mc H^\blt,\delta^\blt)$ \index{HC@$\mc H^\star(C^\blt)$ and $H_\star(C_\blt)$, the cohomology and the homology of complexes}  from the category $\Com(\fk B)$ of (cochain) complexes of $\fk B$ to $\fk B$. (Here we assume $\blt\in\Zbb$ instead of $\blt\in\Nbb$.) If $C^\blt=(C^n\xrightarrow{d^n} C^{n+1})_{n\in\Zbb}$ is a complex in $\fk B$ (in particular $d^{n+1}\circ d^n=0$ for all $n$), then $\mc H^\star(C^\blt)$ is the cohomology of this complex, namely
+\begin{align*}
+\mc H^n(C^\blt)=\frac{\Ker(C^n\rightarrow C^{n+1})}{\Imag(C^{n-1}\rightarrow C^n)}
+\end{align*}
+Given any morphism of complexes $f^\blt:B^\blt\rightarrow C^\blt$, namely, whenever we have commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=0.2in]
+\cdots \arrow[r] & B^{n-1} \arrow[r] \arrow[d, "f^{n-1}"'] & B^n \arrow[r] \arrow[d, "f^n"'] & B^{n+1} \arrow[r] \arrow[d, "f^{n+1}"'] & \cdots \\
+\cdots \arrow[r] & C^{n-1} \arrow[r]                       & C^n \arrow[r]                   & C^{n+1} \arrow[r]                       & \cdots
+\end{tikzcd}
+\end{equation*}
+we have a canonical morphism $\mc H^n(f^\blt):\mc H^n(B^\blt)\rightarrow\mc H^n(C^\blt)$ for each $n$.
+
+To finish constructing the $\delta$-functor, we note that any short exact sequence of complexes induces functorially a long exact sequence of their (co)homology. More precisely, suppose we have a short exact sequence of complexes in $\fk B$: $0\rightarrow A^\blt\rightarrow B^\blt\rightarrow C^\blt\rightarrow0$, namely, a commuting diagram  of morphisms in $\fk B$ where $n$ runs through all integers, see Fig. \ref{fig3}.
+\begin{figure}[h]
+	\centering
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+            & \vdots                      & \vdots                      & \vdots                      &   \\
+0 \arrow[r] & A^{n+1} \arrow[r] \arrow[u] & B^{n+1} \arrow[r] \arrow[u] & C^{n+1} \arrow[r] \arrow[u] & 0 \\
+0 \arrow[r] & A^n \arrow[r] \arrow[u]     & B^n \arrow[r] \arrow[u]     & C^n \arrow[r] \arrow[u]     & 0 \\
+0 \arrow[r] & A^{n-1} \arrow[r] \arrow[u] & B^{n-1} \arrow[r] \arrow[u] & C^{n-1} \arrow[r] \arrow[u] & 0 \\
+            & \vdots \arrow[u]            & \vdots \arrow[u]            & \vdots \arrow[u]            &  
+\end{tikzcd}
+\end{equation*}
+\caption{}
+\label{fig3}
+\end{figure}
+Then we have a long exact sequence
+\begin{align*}
+\cdots\rightarrow\mc H^{n-1}(C^\blt)\rightarrow\mc H^n(A^\blt)\rightarrow\mc H^n(B^\blt)\rightarrow\mc H^n(C^\blt)\rightarrow\mc H^{n+1}(A^\blt)\rightarrow\cdots
+\end{align*}
+The connecting morphisms $\mc H^n(C^\blt)\xrightarrow{\delta^n}\mc H^{n+1}(A^\blt)$ are defined by ``diagram chasing". Moreover, if we have a morphism of short exact sequences of complexes
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r] & A^\blt \arrow[r] \arrow[d] & B^\blt \arrow[r] \arrow[d] & C^\blt \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \wtd A^\blt \arrow[r]      & \wtd B^\blt \arrow[r]      & \wtd C^\blt \arrow[r]      & 0
+\end{tikzcd}
+\end{equation*}
+(namely, if we replace $\blt$ by each $n$, then this diagram commutes, and the two horizontal sequences are exact), then we have a commutative diagram
+\begin{equation}
+\begin{tikzcd}[row sep=0.2in, column sep=0.2in]
+\cdots \arrow[r] & \mc H^{n-1}(C^\blt) \arrow[r] \arrow[d] & \mc H^n(A^\blt) \arrow[r] \arrow[d] & \mc H^n(B^\blt) \arrow[r] \arrow[d] & \mc H^n(C^\blt) \arrow[r] \arrow[d] & \mc H^{n+1}(A^\blt) \arrow[r] \arrow[d] & \cdots \\
+\cdots \arrow[r] & \mc H^{n-1}(\wtd C^\blt) \arrow[r]           & \mc H^n(\wtd A^\blt) \arrow[r]           & \mc H^n(\wtd B^\blt) \arrow[r]           & \mc H^n(\wtd C^\blt) \arrow[r]           & \mc H^{n+1}(\wtd A^\blt)\arrow[r]           & \cdots
+\end{tikzcd}
+\end{equation}
+So $(\mc H^\blt,\delta^\blt)$ is a $\delta$-functor where $\blt\in\Zbb$.
+
+
+It is important that homotopic maps of complexes give the same map on (co)homology. To be more precise, let $B^\blt,C^\blt$ be a complexes of $\fk B$, and let $f,g:B^\blt\rightarrow C^\blt$ be morphisms of complexes. We say that $f$ and $g$ are \textbf{homotopic} \index{00@Homotopic morphisms of complexes} if there are morphisms $w=w^n:B^n\rightarrow C^{n-1}$ for all $n$ such that $f-g=dw+wd$: more precisely, $f-g:B^n\rightarrow C^n$ equals $d^{n-1}w^n+w^{n+1}d^n$ where $d^n:B^n\rightarrow B^{n+1}$ and $d^{n-1}:C^{n-1}\rightarrow C^n$. Then $f$ and $g$ induce the same map $\mc H^n(f)=\mc H^n(g):\mc H^n(B^\blt)\rightarrow \mc H^n(C^\blt)$ for all $n$.
+
+If there are morphisms of complexes $\varphi:B^\blt\rightarrow C^\blt$ and $\psi:C^\blt\rightarrow B^\blt$ such that $\psi\circ\varphi$ is homotopic to $\id_{\mc B^\blt}$ and $\varphi\circ\psi$ is homotopic to $\id_{\mc C^\blt}$, we say that $B^\blt$ and $C^\blt$ are \textbf{homotopic}. \index{00@Homotopic complexes} In that case, we clearly have an isomorphism
+\begin{align*}
+\mc H^\star(\varphi):\mc H^\star(\mc B^\blt)\xrightarrow{\simeq} \mc H^\star(\mc C^\blt)
+\end{align*}
+with inverse $\mc H^\star(\psi)$.
+
+
+
+
+\subsection{Proof of Thm. \ref{lb253}}  \label{lb256}
+
+Step 1 of the following proof is important: it gives an explicit way of constructing derived functors using resolutions.
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb253}}]
+We only prove the first case; the other two cases can be treated in a similar way. Also, the uniqueness of derived functors is clear from the definition of universal $\delta$-functors. So it suffices to prove the existence.\\
+
+Step 1. Assume that $\fk A$ has enough injectives and choose a left exact functor $T:\fk A\rightarrow\fk B$. We construct the functor $R^nT$ for each $n$. For each $\mc E\in\fk A$, we fix an injective resolution $0\rightarrow\mc E\rightarrow\mc E^\blt$, and set $\mc E^{<0}=0$ so that $(\mc E^n)_{n\in\Zbb}$ is a complex in $\fk A$.  We define
+\begin{align}
+R^nT(\mc E)=\mc H^n(T(\mc E^\blt))=\frac{\Ker\big(T(\mc E^n)\rightarrow T(\mc E^{n+1})\big)}{\Imag\big(T(\mc E^{n-1})\rightarrow T(\mc E^n)\big)} 
+\end{align}
+
+Choose any $\mc F\in\fk A$ together with an injective resolution $0\rightarrow\mc F\rightarrow\mc F^\blt$. If $\varphi:\mc E\rightarrow\mc F$ is a morphism, we need to construct $R^nT(\varphi):R^nT(\mc E)\rightarrow R^nT(\mc F)$ for all $n\in\Nbb$. We construct morphisms $\varphi^n:\mc E^n\rightarrow\mc F^n$ by induction on $n\in\Nbb$ such that the following diagram commutes
+\begin{equation}\label{eq115}
+\begin{tikzcd}
+0 \arrow[r] & \mc E \arrow[r] \arrow[d, "\varphi"'] & \mc E^0 \arrow[r,"d^0"] \arrow[d, "\varphi^0"'] & \mc E^1 \arrow[r,"d^1"] \arrow[d, "\varphi^1"'] & \mc E^2 \arrow[r,"d^2"] \arrow[d, "\varphi^2"'] & \cdots \\
+0 \arrow[r] & \mc F \arrow[r]                       & \mc F^0 \arrow[r,"d^0"]                         & \mc F^1 \arrow[r,"d^1"]                         & \mc F^2 \arrow[r,"d^2"]                         & \cdots
+\end{tikzcd}
+\end{equation}
+The existence of $\varphi^0$ follows easily from that $\mc F^0$ is injective and that $\mc E\hookrightarrow\mc E^0$ is a monomorphism. Suppose $\varphi^0,\dots,\varphi^n$ are constructed. Then the commutativity of
+\begin{equation*}
+\begin{tikzcd}[sep=0.2in]
+\mc E^{n-1} \arrow[r] \arrow[d,"\varphi^{n-1}"'] & \mc E^n \arrow[d,"\varphi^n"'] \\
+\mc F^{n-1} \arrow[r]           & \mc F^n          
+\end{tikzcd}
+\end{equation*}
+implies that $\varphi^n$ descends to a morphism $\Cok(\mc E^{n-1}\rightarrow\mc E^n)\rightarrow\Cok(\mc F^{n-1}\rightarrow\mc F^n)$. Thus, by the injectivity of $\mc F^{n+1}$, there is a morphism $\varphi^{n+1}$ such that the diagram
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r]&\Cok(\mc E^{n-1}\rightarrow\mc E^n) \arrow[r] \arrow[d,"\varphi^n"'] & \mc E^{n+1} \arrow[d,"\varphi^{n+1}"'] \\
+0 \arrow[r]&\Cok(\mc F^{n-1}\rightarrow\mc F^n) \arrow[r]           & \mc F^{n+1}        
+\end{tikzcd}
+\end{equation*}
+This finishes the construction of $\varphi^n$ when $n\geq 0$.
+
+Let $\varphi^n=0$ if $n<0$. Then we have a morphism of $\fk A$-complexes $\varphi^\blt:\mc E^\blt\rightarrow\mc F^\blt$, and hence a morphism of $\fk B$-complexes $\mc H^\star(T(\varphi^\blt)):\mc H^\star(T(\mc E^\blt))\rightarrow\mc H^\star(T(\mc F^\blt))$. The degree $n$ morphism is simply defined to be
+\begin{align}
+R^nT(\varphi)=\mc H^n(T(\varphi^\blt))\label{eq116}
+\end{align}
+{~}
+
+Step 2. To verify that $R^nT$ is a functor, we still need to show that $R^nT$ preserves the composition of morphisms. This fact is clearly true if we can show that $R^nT(\varphi)$ is independent of the choice of $\varphi^\blt$. Thus, it suffices to show that if $\phi^\blt:\mc E^\blt\rightarrow\mc F^\blt$ also makes \eqref{eq115} commutes, then $\varphi^\blt$ and $\phi^\blt$ are homotopic (Subsec. \ref{lb254}). Then $T(\varphi^\blt)$ and $T(\phi^\blt)$ will be homotopic and hence $\mc H^n(T(\varphi^\blt))=\mc H^n(T(\phi^\blt))$.
+
+Recall that we set $\mc E^{<0}=\mc F^{<0}=0$. So certainly we set $w^n:\mc E^n\rightarrow\mc F^{n-1}$ to be $0$ if $n\leq 0$. Since $\varphi^0,\phi^0:\mc E^0\rightarrow\mc F^0$ restrict to the same morphism $\varphi:\mc E\rightarrow\mc F$, $\varphi^0-\phi^0$ vanishes on $\mc E$, and hence restricts to a morphism $\mc E^0/\mc E\rightarrow\mc F^0$. The injectivity of $\mc F^0$ implies that there is a morphism $w^1:\mc E^1\rightarrow\mc F^0$ such that the diagram 
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+0 \arrow[r] & \mc E^0/\mc E \arrow[r] \arrow[d] & \mc E^1 \arrow[ld,"w^1"] \\
+            & \mc F^0                           &                   
+\end{tikzcd}
+\end{equation*}
+commutes. Then clearly $\varphi^0-\phi^0=d^{-1}w^0+w^1d^0$.
+
+To avoid confusions, we write the coboundary maps of complexes as $d^\blt_{\mc E}:\mc E^\blt\rightarrow\mc E^{\blt+1}$ and $d^\blt_{\mc F}:\mc F^\blt\rightarrow\mc F^{\blt+1}$. Suppose $w^{\leq n+1}$ are constructed and $\varphi^n-\phi^n=d^{n-1}_{\mc F}w^n+w^{n+1}d^n_{\mc E}$ where $n\in\Nbb$. Let us construct $w^{n+2}$. We compute that
+\begin{align*}
+(\varphi^{n+1}-\phi^{n+1})d_{\mc E}^n=d_{\mc F}^n(\varphi^n-\phi^n)=d_{\mc F}^n(d^{n-1}_{\mc F}w^n+w^{n+1}d^n_{\mc E})=(d_{\mc F}^nw^{n+1})d_{\mc E}^n
+\end{align*}
+where we have used the commutativity of \eqref{eq115} and its analog for $\phi^\blt$ to derive the first equality. This shows that $\varphi^{n+1}-\phi^{n+1}-d_{\mc F}^nw^{n+1}$ vanishes on $\Imag d_{\mc E}^n$, and hence descends to a morphism $\mc E^{n+1}/\Imag(d_{\mc E}^n)\rightarrow\mc F^{n+1}$. Thus, by the injectivity of $\mc F^{n+1}$, there is a morphism $w^{n+2}:\mc E^{n+2}\rightarrow\mc F^{n+1}$ such that the diagram 
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r] & \mc E^{n+1}/\Imag(d_{\mc E}^n)\arrow[r] \arrow[d] & \mc E^{n+2} \arrow[ld,"w^{n+2}"] \\
+            & \mc F^{n+1}                          &                   
+\end{tikzcd}
+\end{equation*}
+commutes. This finishes the construction of the homotopy map $w^\blt$.
+
+Consider the special case that $\mc F=\mc E$ and $\varphi=\id_{\mc E}$ in \eqref{eq115}. (Namely, we choose injective resolutions $0\rightarrow\mc E\rightarrow\mc E^\blt$ and $0\rightarrow\mc E\rightarrow\mc F^\blt$) Then the existence of homotopy maps shows that $\mc E^\blt$ is homotopic to $\mc F^\blt$, and hence $T(\mc E^\blt)$ is homotopic to $T(\mc F^\blt)$. Therefore, the equivalence class of $R^nT(\mc E)$ is independent of the choice of injective resolutions of $\mc E$. In particular, if $\mc E$ is injective, since $0\rightarrow\mc E\rightarrow\mc E\rightarrow0\rightarrow\cdots$ is an injective resolution of $\mc E$, we have $R^{>0}T(\mc E)=0$. \\
+
+Step 3. Given a short exact sequence $0\rightarrow\mc E\rightarrow\mc F\rightarrow\mc G\rightarrow 0$, if we find morphisms for complexes such that the sequence $0\rightarrow\mc E^\blt\rightarrow\mc F^\blt\rightarrow\mc G^\blt\rightarrow0$ is exact, then we can define the connecting morphism $\delta:R^\star T(\mc G)\rightarrow R^{\star+1}T(\mc E)$ to be the one $\delta:\mc H^\star(T(\mc G^\blt))\rightarrow\mc H^{\star+1}(T(\mc E^\blt))$. To do this, we need to choose a different injective resolution for $\mc F$: 
+\begin{align*}
+0\rightarrow\mc F\rightarrow\mc E^0\oplus \mc G^0\rightarrow\mc E^1\oplus \mc G^1\rightarrow\mc E^2\oplus \mc G^2\rightarrow\cdots
+\end{align*}
+We explain the morphism $\mc F\rightarrow\mc E^0\oplus \mc G^0$, since the others are clear. It is the diagonal map of $\mc F\rightarrow\mc E^0$ and $\mc F\rightarrow\mc G^0$. The latter is the composition of $\mc F\rightarrow G$ and the monomorphism $\mc G\hookrightarrow\mc G^0$. The first one is one that makes the following diagram commutes, which exists because $\mc E^0$ is injective:
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+            & \mc E^0                   &                  \\
+0 \arrow[r] & \mc E \arrow[r] \arrow[u] & \mc F \arrow[lu]
+\end{tikzcd}
+\end{equation*}
+Set $\wtd{\mc F}^n=\mc E^n\oplus\mc G^n$. Then we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=0.15in, column sep=small]
+            & \vdots                      & \vdots                            & \vdots                      &   \\
+0 \arrow[r] & \mc E^1 \arrow[r] \arrow[u] & \wtd{\mc F}^1 \arrow[r] \arrow[u] & \mc G^1 \arrow[r] \arrow[u] & 0 \\
+0 \arrow[r] & \mc E^0 \arrow[r] \arrow[u] & \wtd{\mc F}^0 \arrow[r] \arrow[u] & \mc G^0 \arrow[r] \arrow[u] & 0 \\
+0 \arrow[r] & \mc E \arrow[r] \arrow[u]   & \mc F \arrow[r] \arrow[u]         & \mc G \arrow[u] \arrow[r]   & 0\\
+&0 \arrow[u] & 0 \arrow[u]   & 0 \arrow[u] &   
+\end{tikzcd}
+\end{equation*}
+where all the rows are exact, the $\mc E$-column and the $\mc G$-column are (clearly) exact. Then it is not hard to check that the middle column is exact. (A quick way to see this is to view the above diagram as a short exact sequence of complexes $0\rightarrow \upalpha\rightarrow\upbeta\rightarrow\upgamma\rightarrow0$, which induces a long exact sequence in which the cohomologies of $\upalpha$ and $\upgamma$ are zero. Therefore the cohomology of $\upbeta$ vanishes, which means precisely that the $\mc F$-column in the above diagram is exact.)
+
+Thus, we have $\delta:R^\star T(\mc G)\rightarrow R^{\star+1}T(\mc E)$ which clearly satisfies requirement (2) of Def. \ref{lb251}. Since the functor $\mc H^\star\circ T$ preserves the composition of morphisms of complexes, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+\mc H^{n-1}(T(\mc G^\blt)) \arrow[d, "="'] \arrow[r] & \mc H^n(T(\mc E^\blt)) \arrow[d, "="'] \arrow[r] & \mc H^n(T(\wtd{\mc F}^\blt)) \arrow[r] \arrow[d] & \mc H^n(T(\mc G^\blt)) \arrow[r] \arrow[d, "="'] & \mc H^{n+1}(T(\mc E^\blt)) \arrow[d, "="'] \\
+\mc H^{n-1}(T(\mc G^\blt)) \arrow[r]                 & \mc H^n(T(\mc E^\blt)) \arrow[r]                 & \mc H^n(T(\mc F^\blt)) \arrow[r]           & \mc H^n(T(\mc G^\blt)) \arrow[r]                 & \mc H^{n+1}(T(\mc E^\blt))                
+\end{tikzcd}
+\end{equation*}
+where the morphisms are either induced by the morphisms of complexes through $H^\star\circ T$, or are the previously defined $\delta$. The first line is exact because $\mc H^\star$ is a $\delta$-functor (Subsec. \ref{lb254}). Therefore the second line is also exact. Thus $(R^\star T,\delta)$ also satisfies condition (1) of Def. \ref{lb251}. So it is a $\delta$-functor. We have shown at the end of Step 2 that $R^{>0}T$ vanishes on injective objects. So $(R^\star T,\delta)$ is universal by Thm. \ref{lb252}.
+\end{proof}
+
+
+
+
+\begin{rem}
+Let $\mc A$ be a ring and $\fk A$ the category of $\mc A$-modules $\Mod(\mc A)$. Suppose that $T:\fk A\rightarrow\fk A$ is a left/right exact covariant/contravariant functor. We say that $T$ \textbf{preserves multiplications \index{00@Preserves multiplications}} if, for all $a\in\mc A$ and $\mc E\in\fk A$, if we let $\mu_a:\mc E\xrightarrow{\times a}\mc E$ denote the multiplication by $a$ (which is clearly a morphism), then $T(\mu_a)$ is the multiplication of $a$ on $T(\mc E)$. For instance, tensor product and $\Hom$ preserve multiplications.
+
+We will see that $\fk A$ has enough injectives and projectives. In \eqref{eq115}, if we let $\mc F=\mc E$, $\mc F^\blt=\mc E^\blt$, and let $\varphi$ be $\mu_a$, then one can clearly choose all $\varphi^\blt$ to be $\mu_a$. It follows from \eqref{eq116} that if $T$ preserves multiplications, then $R_n T$ resp. $L_n T$ preserves multiplications for all $n\in\Nbb$.  \hfill\qedsymbol
+\end{rem}
+
+
+
+\section{$\Ext$ and $\Tor$}
+
+
+We fix a commutative ring $\mc A$ and let $\Mod(\mc A)$ be the category of $\mc A$-modules. It is clear that any $\mc A$-object has an epimorphism from a free $\mc A$-module. Since \emph{\color{red}free $\mc A$-modules are clearly projective objects in $\Mod(\mc A)$}, we see that $\Mod(\mc A)$ has enough projectives.
+
+
+We shall prove that $\Mod(\mc A)$ has enough injectives, and we shall mainly focus on the case that $\mc A$ is a $\Cbb$-algebra, since this is enough for the purpose of our notes. First we need a lemma.
+
+\begin{lm}\label{lb255}
+Assume that $\mc A$ is a $\Cbb$-algebra. Then for any $\mc A$-modules $\mc M,\mc N$ and any $\Cbb$-vector space $\mc V$ we have a canonical equivalence of $\mc A$-modules
+\begin{align}
+\Hom_\Cbb(\mc M\otimes_{\mc A}\mc N,\mc V)\simeq \Hom_{\mc A}(\mc M,\Hom_\Cbb(\mc N,\mc V)) \label{eq117}
+\end{align}
+where the $\mc A$-module structure on $\Hom_\Cbb(\mc M\otimes_{\mc A}\mc N,\mc V)$ resp. $\Hom_\Cbb(\mc N,\mc V)$ is defined by that of $\mc M\otimes_{\mc A}\mc N$ resp. $\mc N$. In particular, taking $\mc N=\mc A$, we have
+\begin{align}
+\Hom_\Cbb(\mc M,\mc V)\simeq \Hom_{\mc A}(\mc M,\Hom_\Cbb(\mc A,\mc V)).  \label{eq118}
+\end{align}
+\end{lm}
+
+\begin{proof}
+The RHS of \eqref{eq117} is equivalently the $\mc A$-module $\mc W$ of $\Cbb$-bilinear maps $T:\mc M\times\mc N\rightarrow \mc V$ satisfying $\Phi(a\xi,\eta)=\Phi(\xi, a\eta)$ for all $\xi\in\mc M,\eta\in\mc N,a\in\mc A$. The action of $a\in\mc A$ on $\Phi$ is $\Phi(a\cdot,\cdot)$.
+
+
+Given a $\Cbb$-linear map $S:\mc M\otimes_{\mc A}\mc N\rightarrow\mc V$, one can compose it with the obvious map $\mc M\times\mc N\rightarrow\mc M\otimes_{\mc A}\mc N$ to get $T$. The correspondence $S\mapsto T$ is clearly injective. To show that it is surjective, note that if the $\mc A$-module structure on $\Hom_\Cbb(\mc W,\mc V)$ is defined by that of $\mc W$, then the map
+\begin{gather*}
+\mc M\times\mc N\rightarrow\Hom_\Cbb(\mc W,\mc V)\\
+(\xi,\eta)\mapsto  \big(T\in\mc W\mapsto T(\xi,\eta) \big)
+\end{gather*}
+is clearly $\mc A$-bilinear, and hence gives rise to an $\mc A$-module morphism
+\begin{align*}
+\Phi:\mc M\otimes_{\mc A}\mc N\rightarrow \Hom_\Cbb(\mc W,\mc V).
+\end{align*}
+Each $T\in\mc W$ gives rise to a canonical $\mc A$-module morphism $\Hom_\Cbb(\mc W,\mc V)\rightarrow \mc V$, whose composition with $\Phi$ is the desired $S$.
+\end{proof}
+
+
+\begin{rem}
+The above lemma can be easily generalized: assume $\mc A$ is a $\mc B$-ring, namely, $\mc A,\mc B$ are rings and a ring homomorphism $\mc B\rightarrow\mc A$ is fixed. Let $\mc M,\mc N$ be $\mc A$-modules and $\mc V$ be $\mc B$-modules. Then we have a canonical $\mc A$-module isomorphism
+\begin{align*}
+\Hom_{\mc B}(\mc M\otimes_{\mc A}\mc N,\mc V)\simeq \Hom_{\mc A}(\mc M,\Hom_{\mc B}(\mc N,\mc V))
+\end{align*}
+\end{rem}
+
+
+
+\begin{pp}
+$\Mod(\mc A)$ has enough injectives.
+\end{pp}
+
+
+
+
+\begin{proof}
+We prove the proposition only in the special case that $\mc A$ is an algebra over a field (say $\Cbb$), and refer the readers to \cite[Sec. XX.4]{Lang} for the proof in the general case. For each $\mc E\in\mc A$,
+\begin{gather*}
+\mc E\rightarrow \mc E^0=\Hom_\Cbb(\mc A,\mc E)\\
+\xi\mapsto \big(a\in\mc A\mapsto a\xi\big)
+\end{gather*}
+is an $\mc A$-module monomorphism. Since $\Hom_\Cbb(-,\mc E)$ is exact on $\Mod(\mc A)$ (and indeed on the category of $\Cbb$-vector spaces), by Lemma \ref{lb255}, $\Hom_{\mc A}(-,\mc E^0)$ is exact. Therefore $\mc E^0$ is injective.
+\end{proof}
+
+Recall that for each $\mc E\in\Mod(\mc A)$, $\Hom_{\mc A}(\mc E,-)$ is a left exact functor, and $\mc E\otimes_{\mc A}-$ is a right exact functor.
+
+\begin{df}
+For each $\mc E\in\Mod(\mc A)$, we define the functor $\Ext^n_{\mc A}(\mc E,-)$ ($n\in\Nbb$) to be the right derived functor of $\Hom_{\mc A}(\mc E,-)$, and define the functor $\Tor_n^{\mc A}(\mc E,-)$ to be the left derived functor of $\mc E\otimes_{\mc A}-$. In particular, we have
+\begin{align*}
+\Ext^0_{\mc A}(\mc E,\mc F)=\Hom_{\mc A}(\mc E,\mc F)\qquad \Tor_0^{\mc A}(\mc E,\mc F)=\mc E\otimes_{\mc A}\mc F
+\end{align*}
+\end{df}
+
+
+
+\begin{thm}\label{lb257}
+Choose any $\mc F\in\Mod(\mc A)$. Then by defining its action on morphisms and defining $\delta$, $\Ext^\blt_{\mc A}(-,\mc F)$ can be extended to a right derived contravariant functor  of $\Hom_{\mc A}(-,\mc F)$, and $\Tor^{\mc A}_\blt(-,\mc F)$ can be extended to a left derived homological (covariant) functor of $-\otimes_{\mc A}\mc F$.
+\end{thm}
+
+
+\begin{proof}
+We prove the theorem for $\Ext$. $\Tor$ can be treated in a similar way. Also, we suppress the subscript $\mc A$ for simplicity.
+
+Fix an injective resolution $0\rightarrow\mc F\rightarrow\mc F^\blt$. For each morphism $\varphi:\mc M\rightarrow\mc N$ in $\Mod(\mc A)$, we have an obvious morphism of complexes
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+0 \arrow[r] & {\Hom(\mc M,\mc F^0)} \arrow[r]           & {\Hom(\mc M,\mc F^1)} \arrow[r]           & {\Hom(\mc M,\mc F^2)} \arrow[r]           & \cdots \\
+0 \arrow[r] & {\Hom(\mc N,\mc F^0)} \arrow[r] \arrow[u] & {\Hom(\mc N,\mc F^1)} \arrow[r] \arrow[u] & {\Hom(\mc N,\mc F^2)} \arrow[r] \arrow[u] & \cdots
+\end{tikzcd}
+\end{equation*}
+By Subsec. \ref{lb254} or Step 1 in Subsec \ref{lb256}, $\Ext^\star(\mc M,\mc F)=\mc H^\star(\Hom(\mc M,\mc F^\blt))$ and the same relation holds if we replace $\mc M$ with $\mc N$. Thus $\mc H^\star$ acting on the above morphism of complexes defines a morphism $\Ext^n(\mc M,\mc F)\leftarrow\Ext^n(\mc N,\mc F)$ for all $n\in\Nbb$.
+
+Suppose $0\rightarrow\mc M\rightarrow\mc N\rightarrow\mc P\rightarrow0$ is an exact sequence in $\Mod(\mc A)$. Since each $\mc F^n$ is injective, we get a short exact sequence of chain complexes
+\begin{align*}
+0\leftarrow \Hom(\mc M,\mc F^\blt)\leftarrow \Hom(\mc N,\mc F^\blt)\leftarrow\Hom(\mc P,\mc F^\blt)\leftarrow0
+\end{align*}
+which yields a long exact sequence through $\mc H^\star$. In this way, we obtain a connecting morphism $\delta:\mc H^\star(\mc M,\mc F^\blt)\rightarrow\mc H^{\star+1}(\mc P,\mc F^\blt)$. This makes $\Ext^\blt_{\mc A}(-,\mc F)$ a contavariant $\delta$-functor. One checks easily that $\mc H^{>0}(\Hom(\mc M,\mc F^\blt))$ vanishes when $\mc M$ is free. Since any $\mc A$-module has an epimorphism from a free module, we conclude from Thm. \ref{lb252} that $\Ext^\blt_{\mc A}(-,\mc F)$ is universal.
+\end{proof}
+
+
+
+Thus, the isomorphism class of $\Ext^n_{\mc A}(\mc E,\mc F)$ can be defined either via the right derived functor of $\Hom_{\mc A}(\mc E,-)$ or via the the right derived contravariant functor of $\Hom_{\mc A}(-,\mc F)$. The isomorphism class of $\Tor_n^{\mc A}(\mc E,\mc F)$ can be defined using the left derived functor of either $\mc E\otimes_{\mc A}-$ or $-\otimes_{\mc A}\mc F$. Thus, as $\mc E\otimes_{\mc A}\mc F\simeq\mc F\otimes_{\mc A}\mc E$, we see immediately that:
+
+
+\begin{co}
+For each $n\in\Nbb$ and $\mc E,\mc F\in\Mod(\mc A)$, we have an isomorphism of $\mc A$-modules
+\begin{align*}
+\Tor_n^{\mc A}(\mc E,\mc F)\simeq\Tor_n^{\mc A}(\mc F,\mc E)
+\end{align*}
+\end{co}
+
+Using $\Ext$, we give a criterion on projectivity.
+
+\begin{pp}\label{lb282}
+Let $\mc E\in\Mod(\mc A)$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\mc E$ is projective.
+\item $\Ext^1_{\mc A}(\mc E,-)$ is zero on $\Mod(\mc A)$. (It then follows automatically that $\Ext^{>0}_{\mc A}(\mc E,-)$ is trivial.)
+\item $\mc E$ is a direct summand of a free $\mc A$-module.
+\end{enumerate} 
+\end{pp}
+
+\begin{proof}
+Suppose (1) is true. For each $\mc F\in\Mod(\mc A)$, $\Ext_{\mc A}^\blt(-,\mc F)$ is a right derived  contravariant functor. So by Thm. \ref{lb253}, $\Ext_{\mc A}^{>0}(-,\mc F)$ vanishes on projective objects. This proves (2). Conversely, assume $\Ext_{\mc A}^1(\mc E,-)$ is zero. Then since each short exact sequence $0\rightarrow\mc F'\rightarrow\mc F\rightarrow\mc F''\rightarrow0$ in $\Mod(\mc A)$ gives a long exact sequence
+\begin{align*}
+0\rightarrow \Hom_{\mc A}(\mc E,\mc F')\rightarrow \Hom_{\mc A}(\mc E,\mc F)\rightarrow \Hom_{\mc A}(\mc E,\mc F'')\rightarrow \Ext_{\mc A}^1(\mc E,\mc F'),
+\end{align*}
+$\Hom_{\mc A}(\mc E,-)$ is exact, and hence $\mc E$ is projective. We have finished proving (1)$\Leftrightarrow$(2).
+
+(1)$\Rightarrow$(3): Assume (1). Choose an epimorphism $\alpha:\mc E'\twoheadrightarrow\mc E$ where $\mc E'$ is a free $\mc A$-module. Since $\mc E$ is projective, $\Hom_{\mc A}(\mc E,\mc E')\rightarrow\Hom_{\mc A}(\mc E,\mc E)$ is surjective. Choose $\beta\in\Hom_{\mc A}(\mc E,\mc E')$ sent to $\id_{\mc E}\in\Hom_{\mc A}(\mc E,\mc E)$. This means that $\alpha\circ\beta=\id_{\mc E}$. So $\alpha$ splits. Therefore $\mc E'\simeq\mc E\oplus\Ker\alpha$. This proves (3).
+
+(3)$\Rightarrow$(2): Assume that $\mc E'\simeq\mc E\oplus\mc E_0$ where $\mc E'$ is free. Then for each $\mc F\in\Mod(\mc A)$,
+\begin{align*}
+\Ext_{\mc A}^1(\mc E,\mc F)\oplus\Ext_{\mc A}^1(\mc E_0,\mc F)\simeq\Ext_{\mc A}^1(\mc E',\mc F)=0.
+\end{align*}
+So $\Ext_{\mc A}^1(\mc E,\mc F)=0$.
+\end{proof}
+
+
+
+\begin{rem}\label{lb259}
+It is not hard to check that taking direct limit is an exact functor from the category of direct systems of $\mc A$-modules to $\Mod(\mc A)$. Namely, if $(\mc E_i)_{i\in I},(\mc F_i)_{i\in I},(\mc G_i)_{i\in I}$ are direct systems in $\Mod(\mc A)$, an if we have an exact sequence of morphisms of direct systems
+\begin{align*}
+0\rightarrow\mc E_\blt\rightarrow\mc F_\blt\rightarrow\mc G_\blt\rightarrow0
+\end{align*}
+then we have an exact sequence
+\begin{align*}
+0\rightarrow\lim_{i\in I}\mc E_i\rightarrow\lim_{i\in I}\mc F_i\rightarrow\lim_{i\in I}\mc G_i\rightarrow0
+\end{align*}
+\end{rem}
+
+Using this fact, we prove:
+
+\begin{pp}\label{lb260}
+Let $(\mc E_i)_{i\in I}$ be a direct system of $\mc A$-modules and let $\mc F$ be an $\mc A$-module. Then for each $n\in\Nbb$, we have a natural isomorphism
+\begin{gather}\label{eq120}
+\varinjlim_{i\in I}\Tor_n^{\mc A}(\mc E_i,\mc F)\simeq\Tor_n^{\mc A}\Big(\varinjlim_{i\in I}\mc E_i,\mc F\Big)
+\end{gather}
+\end{pp}
+
+
+\begin{proof}
+We only prove the first relation, since the other two can be proved in a similar way. Choose an projective resolution $\mc F_\blt\rightarrow\mc F\rightarrow 0$. Then we have a chain complex of systems in $\mc A$
+\begin{align*}
+\cdots\rightarrow \mc E_\blt\otimes_{\mc A}\mc F_2\rightarrow \mc E_\blt\otimes_{\mc A}\mc F_1\rightarrow \mc E_\blt\otimes_{\mc A}\mc F_0\rightarrow0
+\end{align*}
+More precisely, if $i,j\in I$ and $i\leq j$, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+\cdots \arrow[r] & \mc E_i\otimes_{\mc A}\mc F_2 \arrow[r] \arrow[d] & \mc E_i\otimes_{\mc A}\mc F_1 \arrow[r] \arrow[d] & \mc E_i\otimes_{\mc A}\mc F_0 \arrow[r] \arrow[d] & 0 \\
+\cdots \arrow[r] & \mc E_j\otimes_{\mc A}\mc F_2 \arrow[r]           & \mc E_j\otimes_{\mc A}\mc F_1 \arrow[r]           & \mc E_j\otimes_{\mc A}\mc F_0 \arrow[r]           & 0
+\end{tikzcd}
+\end{equation*}
+
+By Rem. \ref{lb259}, taking direct limit commutes with taking kernels and cokernels. Therefore it commutes with talking homology. This proves
+\begin{gather*}
+\varinjlim_{i\in I}\mc H_n(\mc E_i\otimes_{\mc A}\mc F)\simeq\mc H_n\Big(\Big(\varinjlim_{i\in I}\mc E_i\otimes_{\mc A}\mc F\Big)\Big)\simeq\mc H_n\Big(\Big(\varinjlim_{i\in I}\mc E_i\Big)\otimes_{\mc A}\mc F\Big)
+\end{gather*}
+where the second equivalence is due to the fact that direct limit commutes with tensor product (Rem. \ref{lb258}). This proves \eqref{eq120}.
+\end{proof}
+
+
+\begin{eg}\label{lb262}
+Let $I,J$ be ideals of a ring $\mc A$. Let us compute $\Tor_1^{\mc A}(\mc A/I,\mc A/J)$. Tensoring $\mc A/I$ with the short exact sequence
+\begin{align*}
+0\rightarrow J\rightarrow\mc A\rightarrow\mc A/J\rightarrow0
+\end{align*}
+we get a long exact sequence
+\begin{align*}
+0\rightarrow\Tor_1^{\mc A}(\mc A/I,\mc A/J)\rightarrow(\mc A/I)\otimes_{\mc A}J\rightarrow(\mc A/I)\otimes_{\mc A}\mc A\rightarrow(\mc A/I)\otimes_{\mc A}(\mc A/J)\rightarrow0
+\end{align*}
+Since tensor products commute with cokernels, we have natural equivalences $(\mc A/I)\otimes_{\mc A}\mc A\simeq\mc A/I$, $(\mc A/I)\otimes_{\mc A}J\simeq J/I J$, and $(\mc A/I)\otimes_{\mc A}(\mc A/J)\simeq \big(\mc A/J\big)\big/\big((I+J)/J\big)\simeq\mc A/(I+J)$ so that the above long exact sequence is equivalent to
+\begin{align*}
+0\rightarrow\Tor_1^{\mc A}(\mc A/I,\mc A/J)\rightarrow J/IJ\rightarrow \mc A/I\rightarrow \mc A/(I+J)\rightarrow0
+\end{align*}
+Therefore $\Tor_1^{\mc A}(\mc A/I,\mc A/J)$ is equivalent to the kernel of $J/IJ\rightarrow\mc A/I$, which is $(I\cap J)/IJ$. We conclude
+\begin{align}
+\Tor_1^{\mc A}(\mc A/I,\mc A/J)\simeq \frac{I\cap J}{IJ}
+\end{align}
+\end{eg}
+
+\begin{eg}\label{lb265}
+Let $\mc E$ be an $\mc A$-module, and let $I\subset\mc A$ be an ideal. Since $\mc A$ is $\mc A$-free and hence projective, $\Tor_1^{\mc A}(-,\mc A)=0$. So we have a long exact sequence
+\begin{align}
+0\rightarrow \Tor_1^{\mc A}(\mc E,\mc A/I)\rightarrow\mc E\otimes_{\mc A}I\rightarrow\mc E\otimes_{\mc A}\mc A
+\end{align}
+which shows that $\Tor_1^{\mc A}(\mc E,\mc A/I)=0$ iff $\mc E\otimes_{\mc A}I\rightarrow\mc E\otimes_{\mc A}\mc A$ is injective (i.e. the multiplication map $\mc E\otimes_{\mc A}I\rightarrow\mc E$ is injective).
+\end{eg}
+
+
+
+
+
+
+
+
+\section{Flatness is preserved by base change}
+
+In this section,  $\mc A,\mc B$ denote commutative rings, and $X,Y,S$ denote complex spaces. Recall that by saying that $\mc A$ is a $\mc B$-algebra, we mean that a morphism of rings $\mc B\rightarrow\mc A$ is fixed so that any $\mc A$-module is also a $\mc B$-module. We write $(\mc A,\fk m)$ when we mean that $\mc A$ is a local ring with maximal ideal $\fk m$. Recall that by definition, a morphism of local rings $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ is a ring homomorphism sending $\fk n$ into $\fk m$.
+
+
+\begin{pp}
+Let $\mc E$ be an $\mc A$-module. Then the following statements are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item The functor $\mc E\otimes_{\mc A}-$ is exact on $\Mod(\mc A)$.
+\item $\Tor_n^{\mc A}(\mc E,\mc F)=0$ for each $n>0$ and $\mc F\in\Mod(\mc A)$.
+\item $\Tor_1^{\mc A}(\mc E,\mc F)=0$ for each $\mc F\in\Mod(\mc A)$.
+\item $\Tor_1^{\mc A}(\mc E,\mc A/I)=0$ for each ideal $I\subset\mc A$.
+\end{enumerate}
+If one of these statements holds, we say that $\mc E$ is a \textbf{flat $\mc A$-module}. \index{00@Flat modules}
+\end{pp}
+
+\begin{proof}
+(1)$\Rightarrow$(2): Suppose (1) is true. If we let $T$ be the functor $\mc E\otimes_{\mc A}-$, then by Thm. \ref{lb252}, $L_\blt T$ is the universal $\delta$-functor extending $T$ if we set $L_0T=T$ and $L_{>0}T=0$. So $L_\blt T=\Tor^{\mc A}_\blt(\mc E,-)$. This proves (2).  
+
+(2)$\Rightarrow$(3): Obvious.
+
+(3)$\Rightarrow$(1): If (3) is true, then any short exact sequence $0\rightarrow\mc M\rightarrow\mc N\rightarrow\mc P\rightarrow0$ in $\Mod(\mc A)$ induces a long exact sequence
+\begin{align*}
+\Tor_1^{\mc A}(\mc E,\mc M)\rightarrow \mc E\otimes_{\mc A}\mc M\rightarrow\mc E\otimes_{\mc A}\mc N\rightarrow\mc E\otimes_{\mc A}\mc P\rightarrow0
+\end{align*}
+where the first term is $0$. So (1) follows.
+
+(3)$\Rightarrow$(4): Obvious.
+
+(4)$\Rightarrow$(3): Assume (3). Since any $\mc A$-module is a union (i.e. direct limit) of its finitely-generated $\mc A$-submodules, by Prop. \ref{lb259}, it suffices to show that $\Tor_1^{\mc A}(\mc E,\mc F)=0$ whenever $\mc F$ is finitely generated. We prove this by induction on $n$, the minimal number of elements generating $\mc F$. The case $n=0$ is trivial. Assume case $\leq n-1$ is proved. Let $\mc F$ be $\mc A$-generated by $n$ elements, and let $\mc F'$ be its submodule generated by the first $n-1$ elements. Denote the last element by $x$. Then we have an exact sequence
+\begin{align*}
+0\rightarrow\mc F'\rightarrow\mc F\rightarrow\mc A/I\rightarrow0
+\end{align*}
+where $I=\{a\in\mc A:ax\in\mc F'\}$. We obtain an exact sequence
+\begin{align*}
+\Tor_1^{\mc A}(\mc E,\mc F')\rightarrow \Tor_1^{\mc A}(\mc E,\mc F)\rightarrow\Tor_1^{\mc A}(\mc E,\mc A/I)
+\end{align*}
+where the first term vanishes by induction and the third term vanishes by (4). So the middle term vanishes. This proves (3).
+\end{proof}
+
+
+
+
+\begin{df}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map and $\scr E$ be an $\scr O_X$-module. If $x\in X$, we say that $\scr E$ is \textbf{flat (over $Y$) at $x$} or \textbf{$\varphi$-flat at $x$}, \index{00@Flat over $Y$} if $\scr E_x$ is a flat $\scr O_{Y,\varphi(x)}$-module. If $\scr E$ is $\varphi$-flat for all $x\in X$, we say that $\scr E$ is \textbf{flat over $Y$} or that $\scr E$ is \textbf{$\varphi$-flat}.
+
+If $\scr O_X$ is flat over $Y$ at $x$, we say that $\varphi$ is \textbf{flat at $x$}. If $\scr O_X$ is flat over $Y$, we say that $\varphi$ is a \textbf{flat holomorphic map}. \index{00@Flat holomorphic maps}   \hfill  \qedsymbol
+\end{df}
+
+
+\begin{eg}
+If $Y$ is a reduced point, then $\scr O_{Y}=\Cbb$. So any $\scr O_X$-module is clearly flat over $Y$.
+\end{eg}
+
+
+\begin{eg}
+Since free modules are flat, by Thm. \ref{lb60}, Weierstrass maps are flat.
+\end{eg}
+
+
+\begin{eg}
+Let $\varphi:X\rightarrow Y$ and $Y\rightarrow Z$ be holomorphic maps of complex spaces. Let $\scr E$ be an $\scr O_X$-module. Let $x\in X$. Suppose that $\psi$ is flat at $\varphi(x)$ and $\scr E$ is $\varphi$-flat at $x$. The $\scr E$ is clearly $(\psi\circ\varphi)$-flat at $x$.
+\end{eg}
+
+
+\begin{eg}
+Let $\mc I$ be an idea of $\scr O_Y$, and let $X=\Specan(\scr O_Y/\mc I)$. Suppose $x\in X$ (i.e. $x\in N(\mc I)$) and $\mc I_x\neq 0$, then $\varphi$ is not flat at $x$.
+
+Indeed, if $\varphi$ is flat at $x$, then $\scr O_{X,x}=\scr O_{Y,x}/\mc I_x$ is not $\scr O_{Y,x}$-flat. By Exp. \ref{lb262},
+\begin{align*}
+0=\Tor^{\scr O_{Y,x}}_1(\scr O_{Y,x}/\mc I_x,\scr O_{Y,x}/\mc I_x)=\mc I_x/\mc I_x^2.
+\end{align*}
+Therefore $\mc I_x^2=\mc I_x$, and hence $\mc I_x^n=\mc I_x$ for all $n\in\Zbb_+$. Thus $\mc I_x\subset\bigcap_{n\in\Zbb_+}\fk m_{Y,x}^n=0$ by Krull's intersection Thm. \ref{lb162}. This contradicts the assumption $\mc I_x\neq0$. \hfill\qedsymbol
+\end{eg}
+
+
+
+
+The goal of this section is to show that flatness is preserved by base change (Thm. \ref{lb271}). Its proof relies on the following crucial theorem, which allows us to reduce the study of arbitrary base changes to finite ones.
+
+
+
+\begin{thm}\label{lb267}
+Let $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ be a morphism of Noetherian local rings. Let $\mc E$ be a finitely-generated $\mc A$-module. Assume that there exists $k_0\in\Nbb$ such that $\mc E\otimes_{\mc B}(\mc B/\fk n^k)$ is $(\mc B/\fk n^k)$-flat for all $k\geq k_0$. Then $\mc E$ is $\mc B$-flat.
+\end{thm}
+
+
+
+\begin{proof}
+We shall prove $\Tor_1^{\mc B}(\mc E,\mc B/J)=0$ for each ideal $J\subset\mc B$. Namely (Exp. \ref{lb265}), we shall prove that $\mc E\otimes_{\mc B}J\rightarrow\mc E\otimes_{\mc B}\mc B$ is injective. The natural idea is to tensor it by $\mc B/\fk n^k$, where we choose $k\geq k_0$. But this is not a good choice, since $J\rightarrow\mc B$ tensored by $\mc B/\fk n^k$ is not even injective. Indeed, by Exp. \ref{lb262}, if we tensor $\mc B/\fk n^k$ with the short exact sequence $0\rightarrow J\rightarrow\mc B\rightarrow\mc B/J$, we get a long one
+\begin{align}
+0\rightarrow\Tor_1^{\mc B}(\mc B/\fk n^k,\mc B/J)\rightarrow J/\fk n^kJ\rightarrow\mc B/\fk n^k\rightarrow\mc B/(\fk n^k+J)\rightarrow0 \label{eq124}
+\end{align}
+But we clearly have an exact sequence
+\begin{align}
+0\rightarrow J/(\fk n^k\cap J)\rightarrow\mc B/\fk n^k\rightarrow\mc B/(\fk n^k+J)\rightarrow0   \label{eq122}
+\end{align}
+where $J/(\fk n^k\cap J)=(\fk n^k+J)/\fk n^k$ is the kernel of the subsequent morphism.
+
+One may tensor $\mc E$ with \eqref{eq122}. But since we know that $\mc E\otimes_{\mc B}(\mc B/\fk n^k)$ is $(\mc B/\fk n^k)$-flat, namely, $\Tor_1^{\mc B/\fk n^k}(\mc E\otimes_{\mc B}(\mc B/\fk n^k),-)$ vanishes, and since \eqref{eq122} is clearly an exact sequence in $\Mod(\mc B/\fk n^k)$, we $(\mc B/\fk n^k)$-tensor $\mc B\otimes_{\mc B}(\mc B/\fk n^k)$ with \eqref{eq122} to get an exact sequence as the second line of the following diagram:
+\begin{equation}\label{eq123}
+\begin{tikzcd}[column sep=small]
+            & \mc E\otimes_{\mc B}J \arrow[r] \arrow[d,"\phi"'] & \mc E\otimes_{\mc B}\mc B \arrow[r] \arrow[d] & \mc E\otimes_{\mc B}(\mc B/J) \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \mc E\otimes_{\mc B}\big(J/(\fk n^k\cap J)\big) \arrow[r]           & \mc E\otimes_{\mc B}(\mc B/\fk n^k) \arrow[r]           & \mc E\otimes_{\mc B}\big(\mc B/(\fk n^k+J)\big) \arrow[r]           & 0
+\end{tikzcd}
+\end{equation}
+The first row is clearly exact, and we can easily find canonical morphisms as the vertical arrows making the above diagram commutes.
+
+Choose any $\xi$ in the kernel of $\mc E\otimes_{\mc B}J\rightarrow\mc E\otimes_{\mc B}\mc B$. Our goal is to show that $\xi=0$. By the commutativity of the first cell in \eqref{eq123}, $\xi$ is sent by $\phi$ to $0$ in $\mc E\otimes_{\mc B}\big(J/(\fk n^k\cap J)\big)$ for each $k\in\Zbb_+$.
+Now, by Artin-Rees lemma \ref{lb266}, there exists $s\in\Zbb_+$ such that
+\begin{align*}
+\fk n^t(\fk n^s\cap J)=\fk n^{t+s}\cap J
+\end{align*}
+for all $t\in\Nbb$. So $\fk n^{t+s}\cap J\subset\fk n^tJ$. Assume for simplicity that $s\geq k_0$. Then for each $k\geq s$ we have
+\begin{align*}
+\fk n^k\cap J\subset\fk n^{k-s}J.
+\end{align*}
+Therefore we have a surjection $\mc E\otimes_{\mc B}\big(J/(\fk n^k\cap J)\big)\rightarrow \mc E\otimes_{\mc B}(J/\fk n^{k-s}J)$. (To summarize, we are using Artin-Rees lemma to replace the $J/(\fk n^k\cap J)$ in \eqref{eq122} with the $J/\fk n^kJ$ in \eqref{eq124}!) Compose this morphism with $\phi$, and we see that $\xi$ is sent to $0$ in
+\begin{align*}
+\mc E\otimes_{\mc B}(J/\fk n^{k-s}J)\simeq \frac{\mc E\otimes_{\mc B}J}{\fk n^{k-s}(\mc E\otimes_{\mc B}J)}
+\end{align*}
+for all $k\geq s$. So $\xi$ belongs to $\fk n^t(\mc E\otimes_{\mc B}J)$ for all $t\in\Nbb$. 
+
+Consider $\mc E\otimes_{\mc B}J$ as an $\mc A$-module. Then it is clearly finitely-generated. Since $\fk n^t(\mc E\otimes_{\mc B}J)\subset \fk m^t(\mc E\otimes_{\mc B}J)$, we have $\xi\in\bigcap_{t\in\Nbb}\mk^t(\mc E\otimes_{\mc B}J)=0$ by Krull's intersection Thm. \ref{lb162}.
+\end{proof}
+
+
+
+Let us phrase Thm. \ref{lb267} in the language of complex analytic geometry.
+
+
+\begin{thm}\label{lb270}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map, and let $\scr E$ be a finite-type $\scr O_X$-module. Let $x\in X$, $y=\varphi(x)$. Let $Y_k=\Specan(\scr O_Y/\fk m_{Y,y}^k)$ where $\fk m_{Y,y}$ is considered as the ideal of all $g\in\scr O_Y$ vanishing at $y$. Suppose that there exists $k_0\in\Nbb$ such that the $\scr O_{\varphi^{-1}(Y_k)}$-module $\scr E|_{\varphi^{-1}(Y_k)}$ is flat over $Y_k$ at $x$ for all $k\geq k_0$. Then $\scr E$ is flat over $Y$ at $x$.
+\end{thm}
+
+Recall that by Rem. \ref{lb58}, there is a canonical $\scr O_X$-module isomorphism
+\begin{subequations}
+\begin{gather*}
+\scr E|_{\varphi^{-1}(Y_k)}\simeq\scr E\otimes_{\scr O_Y}(\scr O_Y/\fk m_{Y,y}^k)
+\end{gather*}
+\end{subequations}
+
+
+
+\begin{thm}\label{lb271}
+Let $\varphi:X\rightarrow S$ and $\psi:Y\rightarrow S$ be holomorphic maps, and let $\scr E$ be a finite-type $\scr O_X$-module. Consider the Cartesian product
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & X\times_SY \arrow[d, "\pr_Y"] \arrow[l, "\pr_X"'] \\
+S                       & Y \arrow[l, "\psi"']                             
+\end{tikzcd}
+\end{equation*}
+Choose $x\in X,y\in Y$ such that $t=\varphi(x)$ equals $\psi(y)$. Assume that $\scr E$ is flat over $S$ at $x$. Then $\pr_X^*\scr E$ is flat over $Y$ at $(x,y)$.
+\end{thm}
+
+
+\begin{proof}
+We first consider the special case that $\psi$ is finite. By Thm. \ref{lb75}, we can shrink $X,S$ to neighborhoods of $x,t$ respectively and replace $Y$ by $\psi^{-1}(S)$, so that $x$ is the single point of the set $\varphi^{-1}(t)$. Then $(x,y)$ is the single point of the set $\pr_Y^{-1}(t)$. By Prop. \ref{lb56}, we have isomorphisms of $\scr O_{S,t}$-modules and of $\scr O_{Y,y}$-modules
+\begin{align*}
+(\varphi_*\scr E)_t\simeq\scr E_x\qquad (\pr_{Y,*}\pr_X^*\scr E)_y\simeq (\pr_X^*\scr E)_{x\times y}
+\end{align*}
+Thus, by Thm. \ref{lb94} (and Rem. \ref{lb269}), we have an $\scr O_{Y,y}$-module isomorphism
+\begin{align*}
+(\pr_X^*\scr E)_{x\times y}\simeq \scr E_x\otimes_{\scr O_{S,t}}\scr O_{Y,y}
+\end{align*}
+Since $\scr E_x$ is $\scr O_{S,t}$-flat, $\scr E_x\otimes_{\scr O_{S,t}}\scr O_{Y,y}$ is clearly $\scr O_{Y,y}$-flat. Therefore $(\pr_X^*\scr E)_{x\times y}$ is $\scr O_{Y,y}$-flat.
+
+Now consider the general case. For each $k\in\Zbb_+$, let $Y_k=\Specan(\scr O_Y/\fk m_{Y,y}^k)$. Then we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & X\times_SY \arrow[d, "\pr_Y"] \arrow[l, "\pr_X"']  & \pr_Y^{-1}(Y_k) \arrow[d] \arrow[l, hook',"\wtd\iota"']\\
+S                       & Y \arrow[l, "\psi"']    & Y_k \arrow[l,hook', "\iota"']                         
+\end{tikzcd}
+\end{equation*}
+where the two cells are Cartesian squares. So the largest rectangle is also Cartesian. Since $Y_k\rightarrow S$ is clearly finite, by the first paragraph, $\wtd\iota^*\pr_X^*\scr E=(\pr_X^*\scr E)|_{\pr_Y^{-1}(Y_k)}$ is flat over $Y_k$ at $(x,y)$ for all $k\in\Zbb_+$. Therefore, by Thm. \ref{lb270}, $\pr_X^*\scr E$ is flat over $Y$ at $(x,y)$.
+\end{proof}
+
+
+
+\begin{eg}\label{lb278}
+Let $\pr_Y:X\times Y\rightarrow Y$ be the projection onto the $Y$-component. Then $\pr_Y$ is flat, because it is the pullback of $X\rightarrow \{0\}$ (which is clearly flat) along $Y\rightarrow\{0\}$.
+\end{eg}
+
+
+\begin{eg}
+Any holomorphic submersion of complex manifolds is flat because it is locally equivalent to $X\times Y\rightarrow Y$ where $X,Y$ are open subsets of number spaces.
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+\section{Slicing criterion for flatness}\label{lb277}
+
+
+
+In this section, we give more useful criteria on flatness.
+
+\begin{lm}\label{lb261}
+Fix a ring morphism $\mc B\rightarrow\mc A$. Let
+\begin{align*}
+0\rightarrow\mc E''\rightarrow\mc E'\rightarrow\mc E\rightarrow0
+\end{align*}
+be an exact sequence in $\Mod(\mc A)$. Then for every $\mc M\in\Mod(\mc B)$, we have an isomorphism of $\mc B$-modules
+\begin{align}\label{eq119}
+\begin{aligned}
+&\Cok\Big(\Tor_1^{\mc B}(\mc M,\mc E')\rightarrow\Tor_1^{\mc B}(\mc M,\mc E) \Big)\\
+\simeq&\Cok\Big(\Tor_1^{\mc A}(\mc M\otimes_{\mc B}\mc A,\mc E')\rightarrow\Tor_1^{\mc A}(\mc M\otimes_{\mc B}\mc A,\mc E) \Big)
+\end{aligned}
+\end{align}
+\end{lm}
+
+\begin{proof}
+Apply $\mc M\otimes_{\mc B}-$ to the above short exact sequence to get a long one
+\begin{align*}
+\Tor_1^{\mc B}(\mc M,\mc E')\rightarrow\Tor_1^{\mc B}(\mc M,\mc E)\rightarrow\mc M\otimes_{\mc B}\mc E''\rightarrow\mc M\otimes_{\mc B}\mc E'
+\end{align*}
+Applying $\mc M\otimes_{\mc B}\mc A\otimes_{\mc A}-$ instead, we get a long exact sequence
+\begin{align*}
+\Tor_1^{\mc A}(\mc M\otimes_{\mc B}\mc A,\mc E')\rightarrow\Tor_1^{\mc A}(\mc M\otimes_{\mc B}\mc A,\mc E)\rightarrow\mc M\otimes_{\mc B}\mc E''\rightarrow\mc M\otimes_{\mc B}\mc E'
+\end{align*}
+These two exact sequences imply \eqref{eq119}.
+\end{proof}
+
+
+We consider two important special cases of Lemma \ref{lb261}:
+
+\begin{pp}\label{lb272}
+Fix a ring morphism $\mc B\rightarrow\mc A$. Choose $\mc E\in\Mod(\mc A)$ and $\mc M\in\Mod(\mc B)$. Then
+\begin{align}
+\Tor_1^{\mc B}(\mc M,\mc E)=0\qquad\Longrightarrow\qquad \Tor_1^{\mc A}(\mc M\otimes_{\mc B}\mc A,\mc E)=0
+\end{align}
+\end{pp}
+
+\begin{proof}
+Choose an epimorphism $\mc E'\twoheadrightarrow\mc E$ where $\mc E'$ is a free $\mc A$-module. Then $\Tor_1^{\mc A}(-,\mc E')=0$ since free modules are clearly flat. The proposition follows immediately from \eqref{eq119}.
+\end{proof}
+
+
+
+\begin{pp}\label{lb263}
+Let $\mc M$ be a $\mc B$-module, and let $\mc F$ be a $(\mc B/\tau\mc B)$-module where $\tau\in\mc B$. Assume that $\tau$ is a non zero-divisor of both $\mc B$ and $\mc M$. Then
+\begin{align}  \label{eq121}
+\Tor_1^{\mc B/\tau\mc B}\big(\mc M\otimes_{\mc B}(\mc B/\tau\mc B),\mc F \big)\simeq\Tor_1^{\mc B}(\mc M,\mc F)
+\end{align}
+\end{pp}
+
+
+
+\begin{proof}
+Again we choose an epimorphism $\mc F'\rightarrow\mc F\rightarrow0$ where $\mc F'$ is a free $(\mc B/\tau\mc B)$-module. Then $\Tor_1^{\mc B/\tau\mc B}(-,\mc F')=0$. So \eqref{eq121} follows immediately from \eqref{eq119} if we can show that $\Tor_1^{\mc B}(\mc M,\mc F')=0$. Since $\mc F'$ is a direct sum of $\mc B/\tau\mc B$, by Prop. \ref{lb260}, it suffices to show $\Tor_1^{\mc B}(\mc M,\mc B/\tau\mc B)=0$. This follows from the next result.
+\end{proof}
+
+\begin{lm}\label{lb273}
+Let $\mc B$ be a ring and let $\tau\in\mc B$ be a non zero-divisor of $\mc B$. Let $\mc M$ be a $\mc B$-module. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\tau$ is a non zero-divisor of $\mc M$.
+\item $\Tor_1^{\mc B}(\mc M,\mc B/\tau\mc B)=0$.
+\end{enumerate}
+\end{lm}
+
+
+\begin{proof}
+Indeed, since $\tau$ is a non zero-divisor of $\mc B$, we have a short exact sequence
+\begin{align*}
+0\rightarrow\mc B\xrightarrow{\times\tau}\mc B\rightarrow\mc B/\tau\mc B\rightarrow 0
+\end{align*}
+which, tensored by $\mc M$, gives a commutative diagram where the horizontal lines are exact
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+0 \arrow[r] & \Tor_1^{\mc B}(\mc M,\mc B/\tau\mc B) \arrow[r] & \mc M\otimes_{\mc B}\mc B \arrow[r,] \arrow[d, "\simeq"'] & \mc M\otimes_{\mc B}\mc B \arrow[r] \arrow[d, "\simeq"'] & \mc M\otimes_{\mc B}(\mc B/\tau\mc B) \arrow[r] \arrow[d, "\simeq"'] & 0 \\
+            &             & \mc M \arrow[r,"\times\tau"]                      & \mc M \arrow[r]                      & \mc M/\tau\mc M                               &  
+\end{tikzcd}
+\end{equation*}
+This shows
+\begin{align}
+\Tor_1^{\mc B}(\mc M,\mc B/\tau\mc B)\simeq\Ker(\mc M\xrightarrow{\times\tau}\mc M)
+\end{align}
+The equivalence of (1) and (2) follows immediately.
+\end{proof}
+
+
+As an application of Prop. \ref{lb272},  we prove a variant of Thm. \ref{lb267}
+
+\begin{thm}\label{lb274}
+Let $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ be a morphism of Noetherian local rings. Let $\mc E$ be a finitely-generated $\mc A$-module. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\mc E$ is $\mc B$-flat.
+\item $\Tor_1^{\mc B}(\mc E,\mc B/\fk n)=0$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Clearly (1) implies (2). Assume (2). To prove that $\mc E$ is $\mc B$-flat, by Thm. \ref{lb267}, it suffices to prove that
+\begin{align*}
+\Tor_1^{\mc B/\nk^k}(\mc E\otimes_{\mc B}(\mc B/\nk^k),\mc N)=0
+\end{align*}
+for any $k\in\Zbb_+$ and any $(\mc B/\nk^k)$-module $\mc N$ (equivalently, any $\mc B$-module $\mc N$ such that $\nk^k\mc N=0$). By Prop. \ref{lb272}, it suffices to prove $\Tor_1^{\mc B}(\mc E,\mc N)$ whenever $\nk^k\mc N=0$ for some $k>0$.
+
+
+If $\nk\mc N=0$, then $\mc N=\mc N/\fk n\mc N\simeq\mc N\otimes_{\mc B}(\mc B/\fk n)$ is a vector space over the field $\mc B/\fk n$. Thus $\mc N$ is a direct sum of $\mc B/\fk n$. So clearly $\Tor_1^{\mc B}(\mc E,\mc N)=0$ by assumption (2) and Prop. \ref{lb260}. The general case follows by induction on $k$ and the exact sequence
+\begin{align*}
+\Tor_1^{\mc B}(\mc E,\nk\mc N)\rightarrow \Tor_1^{\mc B}(\mc E,\mc N)\rightarrow\Tor_1^{\mc B}(\mc E,\mc N/\nk\mc N)
+\end{align*}
+where the last term is $0$ because $\mc N/\nk\mc N$ is annihilated by $\nk$.
+\end{proof}
+
+
+
+
+
+
+\begin{thm}[\textbf{Slicing criterion}]\label{lb275}\index{00@Slicing criterion}
+Let $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ be a morphism of Noetherian local rings. Let $\mc E$ be a finitely-generated $\mc A$-module. Let $\tau\in\nk$ be a non zero-divisor of $\mc B$. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\mc E$ is $\mc B$-flat.
+\item $\tau$ is a non zero-divisor of $\mc E$, and $\mc E\otimes_{\mc B}(\mc B/\tau\mc B)$ is $(\mc B/\tau\mc B)$-flat.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+Assume (1). Then $\Tor_1^{\mc B}(\mc E,\mc B/\tau\mc B)=0$ implies that $\tau$ is a non zero-divisor of $\mc E$ (by Lemma \ref{lb273}). And $\Tor_1^{\mc B/\tau\mc B}(\mc E\otimes_{\mc B}(\mc B/\tau\mc B),-)$ is trivial by Lemma \ref{lb272} or Prop. \ref{lb263}. Conversely, assume (2). Then by Prop. \ref{lb263},
+\begin{align*}
+\Tor_1^{\mc B}(\mc E,\mc B/\nk)\simeq\Tor_1^{\mc B/\tau\mc B}(\mc E\otimes_{\mc B}(\mc B/\tau\mc B),\mc B/\nk)=0
+\end{align*}
+So $\mc E$ is $\mc B$-flat by Thm. \ref{lb274}.
+\end{proof}
+
+
+
+Let us phrase Thm. \ref{lb275} in the language of complex geometry.
+
+
+\begin{thm}[\textbf{Slicing criterion}]\label{lb264}   \index{00@Slicing criterion}
+Let $\varphi:X\rightarrow Y$ be holomorphic and let $\scr E$ be a finite-type $\scr O_X$-module. Choose $\tau\in\scr O(Y)$. Let $T=\Specan(\scr O_Y/\tau\scr O_Y)$. Choose $y\in T$ and $x\in\varphi^{-1}(T)$, and assume that $\tau$ is a non zero-divisor of $\scr O_{Y,y}$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\scr E$ is flat over $Y$ at $x$.
+\item $\tau$ is a non zero-divisor of $\scr E_x$, and $\scr E|_{\varphi^{-1}(T)}$ is flat over $T$ at $x$.
+\end{enumerate}
+\end{thm}
+
+
+
+
+\begin{co}\label{lb276}
+Let $f\in\scr O(X)$ and $x\in X$. Let $\scr E$ be a finite-type $\scr O_X$-module. Let $z$ be the standard coordinate of $\Cbb$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\scr E$ is $f$-flat at $x$.
+\item $f-f(x)$ is a non zero-divisor of $\scr E_x$.
+\end{enumerate}
+\end{co}
+
+\begin{proof}
+In this case, $T=\Specan(\scr O_\Cbb/z\scr O_\Cbb)$ is a single reduced point. So $\scr E|_{f^{-1}(T)}$ is clearly flat over $T$.
+\end{proof}
+
+
+We now give a new
+
+\begin{proof}[\textbf{Proof of Prop. \ref{lb180}}]
+It suffices to show that if $f\in\scr O(X)$ is a non zero-divisor of $\scr O_{X,x}$ then $f\otimes 1$ is a non zero-divisor of $\scr O_{X\times Y,x\times y}$. This is clearly true when $f(x)\neq 0$. So let us assume $f(x)=0$. By Cor. \ref{lb276}, $f:X\rightarrow\Cbb$ is flat at $x$. Since $f\otimes 1:X\times Y\rightarrow\Cbb$ is the composition of the projection $X\times Y\rightarrow X$ (which is flat by Exp. \ref{lb278}) and $f$, $f\otimes 1$ is flat at $x\times 1$. By Cor. \ref{lb276}, $f\otimes 1$ is a non zero-divisor.
+\end{proof}
+
+
+Cor. \ref{lb276} can be easily generalized to a criterion on the flatness of a holomorphic map from a complex space to a complex manifold (Cor. \ref{lb279}).
+
+
+\begin{df}
+Let $\mc E$ be an $\mc A$-module. A finite sequence $a_1,\dots,a_n\in\mc A$ is called an \textbf{$\mc E$-regular sequence} \index{00@Regular sequences} if the following are satisfied:
+\begin{enumerate}[label=(\arabic*)]
+\item For each $1\leq i\leq n$, $a_i$ is a non zero-divisor of $\displaystyle\frac{\mc E}{\sum_{j<i}a_j\mc E}$. In particular, $a_1$ is a non zero-divisor of $\mc E$.
+\item $\sum_{i=1}^n a_i\mc E\neq \mc E$.
+\end{enumerate}
+\end{df}
+
+
+We are mainly interested in the case that $(\mc A,\mk)$ is a Noetherian local ring and $a_1,\dots,a_n\in\mk$. In this case, if $\mc E$ is a non-zero finitely-generated $\mc A$-module, then $\mk\mc E\neq\mc E$ by Krull's intersection Thm. \ref{lb162}. Then condition (2) is redundant.
+
+
+\begin{co}\label{lb279}
+Let $\scr E$ be an $\scr O_X$-module, and let $f_1,\dots,f_n\in\scr O(X)$. Let $x\in X$. Set $F=(f_1,\dots,f_n):X\rightarrow\Cbb^n$. Then $\scr E$ is $F$-flat at $x$ if and only if the germs at $x$ of $f_1-f_1(x),\dots,f_n-f_n(x)$ form an $\scr E_x$-regular sequence.
+\end{co}
+
+
+
+\begin{proof}
+By induction on $n$. The case $n=0$ is obvious. Assume case $n-1$ holds where $n\in\Zbb_+$. Now consider case $n$. Let $(z_1,\dots,z_n)$ be the standard coordinates of $\Cbb^n$. Then $\Cbb^{n-1}\simeq 0\times\Cbb^{n-1}$ is $\Specan(\scr O_{\Cbb^n}/z_1\scr O_{\Cbb^n})$. Note that that $z_1$ is a non zero-divisor of $\scr E_x$ is the same as that $f_1$ is a non zero-divisor of $\scr E_x$. Thus, by Slicing criterion \eqref{lb264}, $\scr E$ is $F$-flat at $x$ if and only if $f_1$ is a non zero-divisor of $\scr E_x$ and $\scr E|_{F^{-1}(\Cbb^{n-1})}\simeq\scr E/z_1\scr E$ is flat over $\Cbb^{n-1}$ at $x$. By induction, the second condition is equivalent to that $f_2-f_2(x),\dots,f_n-f_n(x)$ is an $(\scr E_x/z_1\scr E_x)$-regular sequence.
+\end{proof}
+
+
+We close this section with another interesting application of Thm. \ref{lb274}. In this application, the $(\mc B,\nk)$ and $(\mc A,\mk)$ in Thm. \ref{lb274} are set to be equal.
+
+\begin{thm}\label{lb280}
+Let $(\mc A,\mk)$ be a Noetherian local ring. Let $\mc E$ be a finitely-generated $\mc A$-module. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\mc E$ is a free $\mc A$-module of finite rank.
+\item $\mc E$ is a projective $\mc A$-module.
+\item $\mc E$ is a flat $\mc A$-module.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+Clearly (1)$\Rightarrow$(2). By Thm. \ref{lb253}, if $\mc E$ is projective then $\Tor_{>0}^{\mc A}(\mc E,-)=0$. Therefore   (2)$\Rightarrow$(3).
+
+Assume (3). Choose $x_1,\dots,x_n\in\mc E$ forming a basis of the $(\mc A/\mk)$-vector space $\mc E\otimes_{\mc A}(\mc A/\mk)$. By Nakayama's lemma \ref{lb281}, the morphism $\mc A^n\rightarrow\mc M$ sending the $j$-th basis of $\mc A^n$ to $x_j$ is surjective. Let $\mc N$ be the kernel of this morphism. Then the short exact sequence $0\rightarrow\mc N\rightarrow\mc A^n\rightarrow\mc E\rightarrow0$ gives a long one
+\begin{align*}
+0\rightarrow\Tor_1^{\mc A}(\mc A/\mk,\mc E)\rightarrow\mc N\otimes_{\mc A}(\mc A/\mk)\rightarrow (\mc A/\mk)^n\xrightarrow{\simeq}\mc E\otimes_{\mc A}(\mc A/\mk)\rightarrow0
+\end{align*}
+That the second last morphism is an isomorphism is due to the fact that $x_1,\dots,x_n$ are a basis. Since $\mc E$ is flat, $\Tor_1^{\mc A}(\mc A/\mk,\mc E)=0$. So $\mc N\otimes_{\mc A}(\mc A/\mk)=0$. Hence $\mc N=0$ by Nakayama's lemma. Therefore $\mc A^n\rightarrow\mc M$ is an isomorphism. This proves (1).
+\end{proof}
+
+
+
+
+
+\section{Flatness, openness, and dimensions of fibers I}
+
+
+In this section, $X,Y$ denote complex spaces.
+
+\begin{thm}\label{lb286}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map, and let $x\in X$. Suppose that $\varphi$ is flat at $x\in X$. Then the following Dimension Formula holds
+\begin{align}
+\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y\label{eq127}
+\end{align}
+and $\varphi$ is open at $x$.
+\end{thm}
+
+Recall that $X_y$ (where $y\in Y$) means the inverse image $\varphi^{-1}(y)$ of the reduced point $\{y\}$.
+\begin{proof}[Proof-Step 1]
+Let $y=\varphi(x)$. We prove \eqref{eq127} by induction on $\dim_y Y$. The case $\dim_y Y=0$ is obvious. Assume the theorem is proved when $\dim Y_y\leq n-1$, where $n\in\Zbb_+$. Assume $\dim_y Y=n$. Note that if we let $Y_0$ be the reduction $\red(Y)$, and let $X_0=\varphi^{-1}(Y_0)$, then $\varphi:X_0\rightarrow Y_0$ is flat at $x$ by Thm. \ref{lb271}, and it suffices to prove \eqref{eq127} where $X,Y$ are replaced by $X_0,Y_0$ (since dimensions are invariant under reductions). Therefore, by replacing $X,Y$ with $X_0,Y_0$, we may well assume that $Y$ is reduced.
+
+By Rem. \ref{lb148}, we may shrink $Y$ to a neighborhood of $y$ and shrink $X$ to $\varphi^{-1}(Y)$ so that there exists $\tau\in\scr O_Y$ which is a non zero-divisor of $\scr O_{Y,y}$. Let $Y'=\Specan(\scr O_Y/\tau\scr O_Y)$ and $X'=\varphi^{-1}(Y')=\Specan(\scr O_X/\tau\scr O_X)$. By Active lemma, 
+\begin{align*}
+\dim_y Y'=\dim_yY-1.
+\end{align*}
+Clearly $X_y=X'_y$. By Thm. \ref{lb271}, the restriction $\varphi:X'\rightarrow Y'$ is flat at $x$. Therefore, by case $n-1$,
+\begin{align*}
+\dim_x X_y=\dim_x X'-\dim_yY'.
+\end{align*}
+Since $\varphi$ is flat at $x$, by Slicing criterion \ref{lb264} (indeed, here we do not use the full power of Slicing criterion), $\tau$ is a non zero-divisor of $\scr O_{X,x}$. So by Active lemma, 
+\begin{align*}
+\dim_xX'=\dim_x X-1.
+\end{align*}
+Dimension Formula \eqref{eq127} follows.
+\end{proof}
+
+\begin{proof}[Proof-Step 2]
+We now prove that $\varphi$ is open at $x$. As in Step 1, we may well assume that $Y$ is reduced. If $Y$ is locally irreducible, then the openness of $\varphi$ at $x$ follows immediately from Dimension Formula \eqref{eq127} and Thm. \ref{lb163}. In the general case, we let $\nu:\wht Y\rightarrow Y$ be the normalization of $Y$, and consider the Cartesian square
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\pi"'] \arrow[d, "\psi"] \\
+Y                       & \wht Y \arrow[l, "\nu"']             
+\end{tikzcd}
+\end{equation*}
+Choose any neighborhood $U\subset X$ of $x$. The commutativity of the above diagram implies
+\begin{align*}
+\psi(\pi^{-1}(U))\subset \nu^{-1}(\nu\circ\psi(\pi^{-1}(U)))=\nu^{-1}(\varphi\circ\pi(\pi^{-1}(U)))\subset\nu^{-1}(\varphi(U))
+\end{align*}
+But note that as a set, $Z$ is $\{(x,\wht y)\in X\times\wht Y:\varphi(x)=\nu(\wht y)\}$. From this observation, we see
+\begin{align}
+\psi(\pi^{-1}(U))=\nu^{-1}(\varphi(U)).  \label{eq128}
+\end{align}
+
+Note that $\pi$ is finite (Prop. \ref{lb91}). By Thm. \ref{lb271}, $\psi$ is flat at any point of the finite set $\pi^{-1}(x)$. So $\psi$ is open at any point of $\pi^{-1}(x)$ because $\wht Y$ is locally irreducible (Prop. \ref{lb245}). Note that $\psi(\pi^{-1}(x))=\nu^{-1}(y)$. So $\psi(\pi^{-1}(U))$ contains a neighborhood of $\nu^{-1}(y)$, which (due to Prop. \ref{lb54}) can be of the form $\nu^{-1}(V)$ where $V\subset Y$ is a neighborhood of $y$. By \eqref{eq128}, $\nu^{-1}(V)\subset\nu^{-1}(\varphi(U))$. Hence $V\subset \varphi(U)$ because $\nu$ is surjective. So $\varphi(U)$ contains a neighborhood of $y$. 
+\end{proof}
+
+
+We shall give a converse of Thm. \ref{lb286}. We first need a preparatory result on reducedness.
+
+\begin{pp}\label{lb287}
+Choose $f\in\scr O(X)$ and $x\in X$ such that $f(x)=0$. Assume that $f$ is active at $x$, and that $\Specan(\scr O_X/f\scr O_X)$ is reduced at $x$. Then $X$ is reduced at $x$, and hence $f$ is a non zero-divisor of $\scr O_{X,x}$.
+\end{pp}
+
+
+\begin{proof}
+By Prop. \ref{lb121}, we may shrink $X$ to a neighborhood of $x$ so that $Z$ is nowhere dense in $X$. We claim that $\sqrt{0_{X,x}}\subset f_x\sqrt{0_{X,x}}$. Then $\sqrt{0_{X,x}}\subset \mk_{X,x}\sqrt{0_{X,x}}$, and hence $\sqrt{0_{X,x}}\subset \mk_{X,x}^k\sqrt{0_{X,x}}$ for all $k\in\Nbb$. By Krull's intersection Thm. \ref{lb162}, we conclude $\sqrt{0_{X,x}}=0$. Hence $X$ is reduced at $x$.
+
+To prove the claim, choose any $g\in\sqrt{0_{X,x}}$. By shrinking $X$ further, we have $g\in\scr O(X)$ and $g$ takes value $0$ at any point of $X$. In particular, $g$ vanishes on $N(f)$.  So $g_x\in f_x\scr O_{X,x}$ because $\scr O_{X,x}/f_x\scr O_{X,x}$ is reduced by assumption. Shrink $X$ so that $g=fh$ where $h\in\scr O(X)$. Since $N(f)$ is nowhere dense in $X$ and $f$ vanishes at every point, $h$ also vanishes at every point. Thus $h_x\in\sqrt{0_{X,x}}$. 
+\end{proof}
+
+
+
+\begin{thm}\label{lb288}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map where $Y$ is a complex manifold. Assume that one of the following equivalent conditions hold:
+\begin{enumerate}[label=(\arabic*)]
+\item Dimension Formula \eqref{eq127} holds for all $x\in X$.
+\item $\varphi$ is open.
+\end{enumerate}
+Choose $x\in X$, let $y=\varphi(x)$, and assume that $X_y=\varphi^{-1}(y)$ is reduced at $x$. Then $X$ is reduced at $x$, and $\varphi$ is flat at $x$.
+\end{thm}
+
+Recall that the equivalence of (1) and (2) is due to Cor. \ref{lb159}.
+
+
+\begin{proof}
+By shrinking $Y$ to a neighborhood of $y$ and shrinking $X$ to $\varphi^{-1}(X)$, we assume that $Y$ is an open subset of $\Cbb^n$. We prove the theorem by induction on $n$. The case $n=0$ is obvious. Assume case $n-1$ is proved. Assume for simplicity that $y=0$. Let $(z_1,\dots,z_n)$ be the standard coordinates of $\Cbb^n$. Let $Y'=\Specan(\scr O_Y/z_1\scr O_Y)$, namely, $Y'$ is the intersection of $Y$ and $\Cbb^{n-1}\simeq0\times\Cbb^{n-1}$. Let $X'=\varphi^{-1}(Y')=\Specan(\scr O_X/z_1\scr O_X)$. Then by case $n-1$, $X'$ is reduced at $x$, and $\scr O_{X',x}$ is $\scr O_{Y',0}$-flat. If we can show that $z_1$ is active in $\scr O_{X,x}$, then by Prop. \ref{lb287}, $X$ is reduced at $x$, and hence $z_1$ is a non zero-divisor of $\scr O_{X,x}$. Therefore $\varphi$ is flat at $x$ due to Slicing criterion \ref{lb264}.
+
+Let us show that $z_1$ is active in $\scr O_{X,x}$. In other words, we need to show that $z_1\circ\varphi$ is active at $x$. But this follows immediately from Prop. \ref{lb165} and the fact that $z_1\circ\varphi:X\rightarrow\Cbb$ is open.
+\end{proof}
+
+
+
+The assumption on the reducedness of fibers is sometimes too strong for applications. For instance, all Weierstrass maps are flat, but their fibers are not necessarily reduced even when the base spaces are smooth. We will give a different criterion on flatness later, in which the reducedness condition in Thm. \ref{lb288} is replaced by assuming that $\scr O_{X,x}$ is Cohen-Macaulay. Indeed, the rest of this chapter is devoted to proving and understanding this criterion.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -7595,6 +8912,12 @@ Grauert, H., Peternell, T., and Remmert, R. eds., 1994. Several complex variable
 
 \bibitem[GR]{GR}
 Grauert, H., \& Remmert, R. (1984). Coherent analytic sheaves (Vol. 265). Springer Science \& Business Media.
+
+\bibitem[Hat]{Hat}
+Hatcher, A., Algebraic Topology.
+
+\bibitem[Lang]{Lang}
+Lang, Serge. Algebra, revised 3rd edition. Vol. 211. Springer Science \& Business Media, 2012.
 
 %\bibitem[Lee]{Lee}
 %J.M. Lee, Introduction to Smooth Manifolds, 2nd edition, Springer, New York, 2013
