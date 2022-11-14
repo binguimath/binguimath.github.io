@@ -308,8 +308,8 @@
 \newcommand{\Mod}{\mathrm{Mod}}
 \newcommand{\nk}{\mathfrak n}
 \newcommand{\mk}{\mathfrak m}
-
-
+\newcommand{\Ass}{\mathrm{Ass}}
+\newcommand{\depth}{\mathrm{depth}}
 
 
 
@@ -362,7 +362,7 @@
 	%{\small Department of Mathematics, Rutgers university}\\
 	%{\small bin.gui@rutgers.edu}
 }
-\date{Last update: Oct. 2022}
+\date{Last update: Nov. 2022}
 \begin{document}\sloppy % avoid stretch into margins
 	\pagenumbering{arabic}
 	%\pagenumbering{gobble}
@@ -2625,7 +2625,7 @@ Assume $\scr O_X$ is coherent. Given a coherent $\scr O_X$-module $\scr E$, we d
 \end{align}
 \end{df}
 
-\begin{rem}\label{lb186}
+\begin{rem}
 $\Ann(\scr E_x)=\scr O_{X,x}$ iff $1\in\Ann(\scr E_x)$ iff $1$ annihilates $\scr E_x$ iff $\scr E_{X,x}=0$. This shows that the underlying topological space of $\Supp(\scr E)$ defined above (i.e. the set of all $x$ such that $\scr O_{X,x}/\sann(\scr E)_x\neq 0$) agrees with the usual one (i.e. the set of all $x$ such that $\scr E_x\neq 0$) when $\scr E$ is coherent.
 \end{rem}
 
@@ -4212,7 +4212,7 @@ In Thm. \ref{lb102}, $f\in \mc A$ is a non zero-divisor if and only if $f\notin\
 
 Now the uniqueness of prime decomposition follows immediately from the following fact:
 
-\begin{pp}
+\begin{pp}\label{lb291}
 In Thm. \ref{lb102}, $\pk_1,\dots,\pk_N$ are precisely the \textbf{associated primes} \index{00@Associated primes} of $\mc A$, i.e. prime ideals of the form $\Ann_{\mc A}(f)$ for some $f\in \mc A$.
 \end{pp}
 
@@ -5216,12 +5216,13 @@ Let $y=\varphi(x)$ and $n=\dim_yY$. By Prop. \ref{lb141}, after shrinking $Y$ an
 
 
 
-\begin{pp}
+\begin{pp}\label{lb301}
 Let $X$ be a complex space and $x\in X$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $\dim_xX=0$, namely, $x$ is an isolated point of $X$.
 \item $\scr O_{X,x}$ is a finite-dimensional vector space.
 \item $\scr O_{X,x}$ is an Artinian ring.
+\item There exists $k\in\Zbb_+$ such that $\mk_{X,x}^k=0$.
 \end{enumerate}
 \end{pp}
 
@@ -5231,15 +5232,10 @@ Let $X$ be a complex space and $x\in X$. The following are equivalent.
 
 (2)$\Rightarrow$(3): Obvious.
 
-(3)$\Rightarrow$(1): Let $X$ be a closed subspace of an open subset $V$ of $\Cbb^n$ and assume $x=0$. Then for each $1\leq i\leq n$, we have a decreasing sequence of ideals
-\begin{align*}
-\fk m_{X,x}\supset z_i\fk m_{X,x}\supset z_i^2\fk m_{X,x}\supset\cdots
-\end{align*}
-which must be stable at $z_i^k\fk m_{X,x}$ for some $k\in\Zbb_+$ independent of $i$. So $z_i^k\fk m_{X,x}=z_i^{k+1}\fk m_{X,x}$ and hence $z_i^k=z_i^{k+1}f_i$ for some $f_i\in \fk m_{X,x}$. Hence
-\begin{align*}
-z_i^k(1-z_if_i)=0.
-\end{align*}
-Since $f_i(0)=0$, $1-z_if_i$ is invertible in $\scr O_{X,x}$. So $z_i^k=0$ in $\scr O_{X,x}$. Thus, after shrinking $V$ to a neighborhood of $0$, the residue class of  $z_i^k\in\scr O(V)$ is zero in $\scr O(X)$. Therefore the underlying set of $X$ is contained in $N(z_1^k,\dots,z_n^k)=\{0\}$.
+
+(3)$\Rightarrow$(4): The decreasing chain $\mk_{X,x}\supset\mk_{X,x}^2\supset\mk_{X,x}^3\supset\cdots$ must be stationary as $\scr O_{X,x}$ is Artinian. So there is $k\in\Zbb_+$ such that $\mk_{X,x}^k=\mk_{X,x}^{k+1}$. So $\mk_{X,x}^k=0$ by Nakayama's lemma \ref{lb281}.
+
+(4)$\Rightarrow$(1): $\mk_{X,x}$ is the stalk at $x$ of $\scr I_{\{x\}}=\{f\in\scr O_X:f(x)=0\}$. Suppose $\mk_{X,x}^k=0$. Then after shrinking $X$ to a neighborhood of $x$, we have $\scr I_{\{x\}}^k=0$. So $\{x\}=N(\scr I_{\{x\}})=N(\scr I_{\{x\}}^k)=N(0_X)=X$.
 \end{proof}
 
 
@@ -5274,7 +5270,7 @@ Let $\scr A=\scr O_{X,x}$. Suppose that $f$ is not active at $x$, i.e. $f$ is a 
 
 
 
-\begin{thm}[\textbf{Active lemma}]
+\begin{thm}[\textbf{Active lemma}]\label{lb302}
 Let $f\in\scr O(X)$ and $x\in N(f)$. If $f$ is a non zero-divisor of $\scr O_{X,x}$, then
 \begin{align}
 \dim_x N(f)=\dim_x X-1.\label{eq68}
@@ -6094,7 +6090,7 @@ We have $\geq$ by Cor. \ref{lb153}. To show $\leq$, we need to show that there e
 
 
 
-\chapter{Normalization}
+\chapter{Normalization and global irreducibility}
 
 
 
@@ -7601,6 +7597,7 @@ Conversely, assume that $x$ and $y$ are irreducible. For each neighborhood of $x
 
 
 
+
 \section{$\delta$-functors}
 
 
@@ -8145,10 +8142,10 @@ where the morphisms are either induced by the morphisms of complexes through $H^
 
 
 
-\begin{rem}
+\begin{rem}\label{lb297}
 Let $\mc A$ be a ring and $\fk A$ the category of $\mc A$-modules $\Mod(\mc A)$. Suppose that $T:\fk A\rightarrow\fk A$ is a left/right exact covariant/contravariant functor. We say that $T$ \textbf{preserves multiplications \index{00@Preserves multiplications}} if, for all $a\in\mc A$ and $\mc E\in\fk A$, if we let $\mu_a:\mc E\xrightarrow{\times a}\mc E$ denote the multiplication by $a$ (which is clearly a morphism), then $T(\mu_a)$ is the multiplication of $a$ on $T(\mc E)$. For instance, tensor product and $\Hom$ preserve multiplications.
 
-We will see that $\fk A$ has enough injectives and projectives. In \eqref{eq115}, if we let $\mc F=\mc E$, $\mc F^\blt=\mc E^\blt$, and let $\varphi$ be $\mu_a$, then one can clearly choose all $\varphi^\blt$ to be $\mu_a$. It follows from \eqref{eq116} that if $T$ preserves multiplications, then $R_n T$ resp. $L_n T$ preserves multiplications for all $n\in\Nbb$.  \hfill\qedsymbol
+We will see that $\fk A$ has enough injectives and projectives. In \eqref{eq115}, if we let $\mc F=\mc E$, $\mc F^\blt=\mc E^\blt$, and let $\varphi$ be $\mu_a$, then one can clearly choose all $\varphi^\blt$ to be $\mu_a$. It follows from \eqref{eq116} that if $T$ preserves multiplications, then $R^n T$ resp. $L_n T$ preserves multiplications for all $n\in\Nbb$.  \hfill\qedsymbol
 \end{rem}
 
 
@@ -8858,7 +8855,7 @@ To prove the claim, choose any $g\in\sqrt{0_{X,x}}$. By shrinking $X$ further, w
 
 
 \begin{thm}\label{lb288}
-Let $\varphi:X\rightarrow Y$ be a holomorphic map where $Y$ is a complex manifold. Assume that one of the following equivalent conditions hold:
+Let $\varphi:X\rightarrow Y$ be a holomorphic map where $Y$ is a complex manifold. Assume that one of the following equivalent conditions holds:
 \begin{enumerate}[label=(\arabic*)]
 \item Dimension Formula \eqref{eq127} holds for all $x\in X$.
 \item $\varphi$ is open.
@@ -8877,7 +8874,418 @@ Let us show that $z_1$ is active in $\scr O_{X,x}$. In other words, we need to s
 
 
 
-The assumption on the reducedness of fibers is sometimes too strong for applications. For instance, all Weierstrass maps are flat, but their fibers are not necessarily reduced even when the base spaces are smooth. We will give a different criterion on flatness later, in which the reducedness condition in Thm. \ref{lb288} is replaced by assuming that $\scr O_{X,x}$ is Cohen-Macaulay. Indeed, the rest of this chapter is devoted to proving and understanding this criterion.
+The assumption on the reducedness of fibers is sometimes too strong for applications. For instance, all Weierstrass maps are flat, but their fibers are not necessarily reduced even when the base spaces are smooth. We will give a different criterion on flatness later (cf. Thm. \ref{lb308}), in which the reducedness condition in Thm. \ref{lb288} is replaced by assuming that $\scr O_{X,x}$ is Cohen-Macaulay. Indeed, the rest of this chapter is devoted to proving and understanding Thm. \ref{lb308}.
+
+
+
+
+\section{Associated primes}
+
+
+We fix a Noetherian ring $\mc A$.
+
+\begin{df}
+Let $\mc E\in\Mod(\mc A)$. An \textbf{associated prime} \index{00@Associated primes} of $\mc E$ is a prime ideal $\pk$ of the form $\Ann_{\mc A}(\xi)$ where $\xi\in\mc E$. The set of associated primes is denoted by $\Ass(\mc E)$. \index{Ass@$\Ass(\mc E)$, the set of associated primes}
+\end{df}
+
+
+For instance, if $X$ is a complex space and $\scr E$ is a coherent $\scr O_X$-module, then by Def. \ref{lb186}, for each $\sigma\in\scr E$ we have $\Supp(\scr O_X\sigma)=\Specan(\scr O_X/\sann_{\scr O_X}(\sigma))$. So the complex subspace $\Supp(\scr O_X\sigma)$ is irreducible at $x$ iff $\Ann_{\scr O_{X,x}}(\sigma_x)$ is prime.
+
+
+\begin{eg}\label{lb292}
+By Cor. \ref{lb291}, we know that if $\mc A$ is reduced, then the prime ideals in the prime decomposition of $0\subset\mc A$ form the set $\Ass(\mc A)$. More generally, if $I$ is an ideal of $\mc A$ such that $I=\sqrt I$, and we let $I=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition of $I\subset\mc A$, then $\pk_1,\dots,\pk_N$ are precisely the associated primes of the $\mc A$-module $\mc A/I$.
+\end{eg}
+
+
+
+
+Recall that prime ideals are assumed to be not $\mc A$. And $\Ann_{\mc A}(\xi)=\mc A$ iff $\xi=0$. There is a simple criterion on whether the ideal $\Ann_{\mc A}(\xi)$ is prime.
+
+\begin{lm}\label{lb289}
+Let $\mc E\in\Mod(\mc A)$ and assume that $\xi\in\mc E$ is non-zero. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\Ann_{\mc A}(\xi)$ is prime.
+\item For each $a\in\mc A$, if $a\xi\neq 0$ then $\Ann_{\mc A}(a\xi)=\Ann_{\mc A}(\xi)$.
+\end{enumerate}
+\end{lm}
+
+
+
+\begin{proof}
+Clearly $\Ann_{\mc A}(a\xi)\supset \Ann_{\mc A}(\xi)$ in general. Suppose that $\Ann_{\mc A}(\xi)$ is prime. If $b\in \Ann_{\mc A}(a\xi)$, then $ab\xi=0$, and hence $ab$ belongs to the prime ideal $\Ann_{\mc A}(\xi)$. Since $a\xi\neq 0$, $a\notin\Ann_{\mc A}(\xi)$. So $b\in\Ann_{\mc A}(\xi)$. This proves (2).
+
+Conversely, if $\Ann_{\mc A}(\xi)$ is not prime, then there is $a,b\in\mc A$ not in $\Ann_{\mc A}(\xi)$ such that $ab\in\Ann_{\mc A}(\xi)$. Namely, $a\xi\neq0$, $b\xi\neq 0$, and $ab\xi=0$. Then $b$ belongs to $\Ann_{\mc A}(a\xi)$ but not to $\Ann_{\mc A}(\xi)$.
+\end{proof}
+
+
+\begin{pp}\label{lb290}
+Let $\mc E\in\Mod(\mc A)$. Then for any non-zero $\xi\in\mc E$, there exists $a\in\mc A$ such that ($a\xi\neq 0$ and) $\Ann_{\mc A}(a\xi)$ is prime. In particular, if $\mc E$ is non-zero then $\Ass(\mc E)$ is non-empty.
+\end{pp}
+
+\begin{proof}
+The Noether property of $\mc A$ implies that any chain of the partially ordered set $\{\Ann_{\mc A}(a\xi):a\in\mc A,a\xi\neq0\}$ must be stationary, and hence has an upper bound. By Zorn's lemma, this set contains a maximal element, which we denote by $\Ann_{\mc A}(a\xi)$. If $b\in\mc A$ and $ab\xi\neq 0$, then the maximality shows that $\Ann_{\mc A}(ab\xi)=\Ann_{\mc A}(\xi)$. Therefore $\Ann_{\mc A}(a\xi)$ is prime by Lemma \ref{lb289}.
+\end{proof}
+
+
+\begin{co}\label{lb294}
+Let $\mc E\in\Mod(\mc A)$. Let $x\in\mc A$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $x$ is a non zero-divisor of $\mc E$.
+\item $x$ does not belong to any associated prime of $\mc E$.
+\end{enumerate}
+\end{co}
+
+Note that this property generalizes Cor. \ref{lb120}.
+
+\begin{proof}
+If $x$ belongs to an associated prime $\Ann_{\mc A}(\xi)$ then $\xi\neq0$ and $x\xi=0$. So $x$ is a zero-divisor of $\mc E$. Conversely, if $x$ is a zero-divisor of $\mc E$, then $a\xi=0$ for some non-zero $\xi\in\mc E$. By Prop. \ref{lb290}, we may find $a\in\mc A$ so that $\Ass_{\mc A}(a\xi)$ is prime, which clearly contains $\xi$.
+\end{proof}
+
+
+According to the above corollary, associated primes are useful for studying the zero-divisors of modules. But why are we interested in those $\Ann_{\mc A}(\xi)$ that are prime? A main reason is that any finitely generated $\mc A$-module has finitely many associated primes. To prove this important fact,  we first need a lemma.
+
+\begin{lm}\label{lb293}
+Let $0\rightarrow\mc E'\rightarrow\mc E\rightarrow\mc E''\rightarrow0$ be an exact sequence in $\Mod(\mc A)$. Then $\Ass(\mc E)\subset\Ass(\mc E')\cup\Ass(\mc E'')$.
+\end{lm}
+
+\begin{proof}
+Choose $\xi\in\mc E$ such that $\Ann_{\mc A}(\xi)\in\mc E$. We view $\mc E''$ as $\mc E/\mc E'$, and let $[\xi]$ be the residue class of $\xi$ in $\mc E/\mc E''$. Then $\Ann_{\mc A}([\xi])=\{a\in\mc A:a\xi\in\mc E'\}$. Clearly $\Ann_{\mc A}(\xi)\subset\Ann_{\mc A}([\xi])$. Assume that $\Ann_{\mc A}(\xi)$ does not belong to $\Ass(\mc E'')$. Then $\Ann_{\mc A}(\xi)\neq\Ann_{\mc A}([\xi])$, otherwise $\Ann_{\mc A}([\xi])$ would be an associated prime of $\mc E''$. 
+
+Pick $a\in\mc A$ belonging to $\Ann_{\mc A}([\xi])$ but not $\Ann_{\mc A}(\xi)$. So $a\xi$ is a non-zero element of $\mc E'$. Since $\Ann_{\mc A}(\xi)$ is prime, by Lemma \ref{lb289}, $\Ann_{\mc A}(\xi)$ equals $\Ann_{\mc A}(a\xi)$, and hence is an associated prime of $\mc E'$.
+\end{proof}
+
+
+\begin{thm}\label{lb295}
+Let $\mc E$ be a finitely-generated $\mc A$-module. Then $\mc E$ has finitely many associated primes.
+\end{thm}
+
+\begin{proof}
+If $\mc N$ is a submodule of $\mc E$ and $\mc N\neq\mc E$, then by the fact that $\mc E/\mc N$ has at least one associated prime, we can find $\xi\in\mc E\setminus\mc N$ such that $\Ann_{\mc A}([\xi])$ is prime. Here $[\xi]$ denotes the residue class of $\xi$ in $\mc N$. Let $\mc N_1$ be generated by $\mc N$ and $\xi$. Then $\mc N_1/\mc N\simeq \mc A/\Ann_{\mc A}([\xi])$ has $\Ann_{\mc A}([\xi])$ as its only associated prime (cf. Exp. \ref{lb292}).
+
+The above discussion shows that we can find a chain of submodules $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subsetneq\cdots$ of $\mc E$ such that each $\mc E_{i+1}/\mc E_i$ is equivalent to $\mc A/\pk$ for some prime ideal $\pk$. Since $\mc E$ is finitely-generated and $\mc A$ is Noetherian, this chain must have finite length. So it is of the form $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subset\cdots\subsetneq\mc E_n=\mc E$.  We know that $\mc E_{i+1}/\mc E_i$ has only one associated prime. Thus, if $\mc E_i$ has finitely many associated primes, then so does $\mc E_{i+1}$ by Lemma \ref{lb293}. Thus, by induction, $\mc E=\mc E_n$ has finitely many associated primes.
+\end{proof}
+
+
+
+
+\section{Depth}
+
+
+
+In this section, we fix a Noetherian local ring $\mc A$ with maximal ideal $\mk$. 
+
+
+
+\begin{df}
+For any $\mc A$-module $\mc E$, the \textbf{depth of $\mc E$} \index{00@Depth} \index{depth@$\depth_{\mc A}(\mc E)=\depth(\mc E)$}, written as $\depth_{\mc A}(\mc E)$ or simply $\depth(\mc E)$, is 
+\begin{align*}
+\depth(\mc E)=\sup\{n:\text{there exists an $\mc E$-regular sequence $a_1,\dots,a_n\in\mk$} \}
+\end{align*}
+In particular, $\mc E$ has a non zero-divisor in $\mk$ iff $\depth(\mc E)>0$.
+\end{df}
+
+
+
+
+Our starting point of analysis is the following application of associated primes. Interestingly, the statement of this lemma does not involve associated primes, but the proof actually does.
+
+
+\begin{lm}\label{lb296}
+Let $\mc E\in\Mod(\mc A)$ be finitely generated. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\depth(\mc E)>0$, i.e., $\mc E$ has a non zero-divisor in $\mk$.
+\item $\Hom_{\mc A}(\mc A/\mk,\mc E)=0$.
+\end{enumerate}
+\end{lm}
+
+
+\begin{proof}
+We first observe that $\Hom_{\mc A}(\mc A/\mk,\mc E)$ is equivalent to $\Ker(\Hom_{\mc A}(\mc A,\mc E)\rightarrow\Hom_{\mc A}(\mk,\mc E))$. In particular, if we identify $\Hom_{\mc A}(\mc A,\mc E)$ naturally with $\mc E$, then
+\begin{align*}
+\Hom_{\mc A}(\mc A/\mk,\mc E)\simeq\{\xi\in\mc E:\mk\xi=0\}
+\end{align*}
+It follows that $\Hom_{\mc A}(\mc A/\mk,\mc E)$ is non-zero iff $\mk$ is an associated prime of $\mc E$.
+
+Assume that (2) does not hold. Then $\mk$ is an associated prime. Write $\mk=\Ann_{\mc A}(\xi)$ where $\xi\neq 0$. Then every element of $\mk$ annihilates $\xi$. So every element of $\mk$ is a zero-divisor of $\mc E$. So (1) does hot hold.
+
+Assume that (2) holds. Then $\mk$ is not an associated prime. By Thm. \ref{lb295}, $\mc E$ has finitely may associated primes $\pk_1,\dots,\pk_N$, which are all proper subspaces of $\mk$. In the special case that $\mc A$ is a local $\Cbb$-algebra (which is indeed the only situation we will encounter in out notes), $\mk$ does not equal any finite union of proper subspaces. So we can find $a\in\mk$ not inside $\pk_1\cup\cdots\cup\pk_N$. Then by Cor. \ref{lb294}, $a$ is a non zero-divisor of $\mc E$. Therefore (1) holds. In the general case, that $\mk\neq\pk_1\cup\cdots\cup\pk_N$ follows from the prime avoidance property. We refer the readers to (for instance) \cite[Sec. 11.2]{Vak17} for details.  
+\end{proof}
+
+
+
+Starting from Lemma \ref{lb296}, we can establish a cohomological characterization of depth. This is achieved with the help of the following fact:
+
+\begin{lm}\label{lb298}
+Let $\mc E\in\Mod(\mc A)$, and let $a\in\mk$ be a non zero-divisor of $\mc E$. Then for each $n\in\Nbb$,
+\begin{align*}
+\Ext_{\mc A}^n(\mc A/\mk,\mc E/a\mc E)\simeq \Ext_{\mc A}^{n+1}(\mc A/\mk,\mc E)
+\end{align*}
+\end{lm}
+
+
+\begin{proof}
+The short exact sequence $0\rightarrow\mc E\xrightarrow{\times a}\mc E\rightarrow \mc E/a\mc E\rightarrow0$ yields a long exact sequence
+\begin{align*}
+&\cdots\rightarrow\Ext_{\mc A}^n(\mc A/\mk,\mc E)\rightarrow\Ext_{\mc A}^n(\mc A/\mk,\mc E)\rightarrow\Ext_{\mc A}^n(\mc A/\mk,\mc E/a\mc E)\rightarrow\Ext_{\mc A}^{n+1}(\mc A/\mk,\mc E)\\
+&\rightarrow\Ext_{\mc A}^{n+1}(\mc A/\mk,\mc E)\rightarrow\Ext_{\mc A}^{n+1}(\mc A/\mk,\mc E)\rightarrow\cdots
+\end{align*}
+By Rem. \ref{lb297}, the $\Ext$ functor preserves multiplications on both components since $\Hom$ clearly does. This implies that the morphism $\Ext_{\mc A}^n(\mc A/\mk,\mc E)\rightarrow\Ext_{\mc A}^n(\mc A/\mk,\mc E)$ in the above long exact sequence, which is $\Ext_{\mc A}^n(\mc A/\mk,\times a)$, is simply the action of $a$ on the $\mc A$-module $\Ext_{\mc A}^n(\mc A/\mk,\mc E)$. It also equals $\Ext_{\mc A}^n(\times a,\mc E)$, which is indeed zero since $\mc A/\mk\xrightarrow{\times a}\mc A/\mk$ is zero. So $\Ext_{\mc A}^n(\mc A/\mk,\times a)$ is zero, and similarly $\Ext_{\mc A}^{n+1}(\mc A/\mk,\times a)$ is zero. Therefore, by the exactness of the above sequence, the connecting map $\Ext_{\mc A}^n(\mc A/\mk,\mc E/a\mc E)\rightarrow\Ext_{\mc A}^{n+1}(\mc A/\mk,\mc E)$ must be an isomorphism.
+\end{proof}
+
+
+Now we can generalize Lemma \ref{lb296} as follows.
+
+\begin{pp}\label{lb299}
+Let $\mc E\in\Mod(\mc A)$ be finitely generated. Let $k\in\Nbb$, and let $a_1,\dots,a_k\in\mk$ be an $\mc E$-regular sequence. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $a_1,\dots,a_k$ can be extended to an $\mc E$-regular sequence $a_1,\dots,a_k,a_{k+1}\in\mk$.
+\item $\Ext_{\mc A}^k(\mc A/\mk,\mc E)=0$.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+By Prop. \ref{lb298},
+\begin{align*}
+&\Ext_{\mc A}^k(\mc A/\mk,\mc E)\simeq\Ext_{\mc A}^{k-1}(\mc A/\mk,\mc E/a_1\mc E)\simeq\Ext_{\mc A}^{k-2}(\mc A/\mk,\mc E/(a_1\mc E+a_2\mc E))\\
+\simeq&\cdots\simeq\Hom_{\mc A}(\mc A/\mk,\mc E/(a_1\mc E+\cdots+a_k\mc E))
+\end{align*}
+By Lemma \ref{lb296}, the last term is zero if and only if $\mc E/(a_1\mc E+\cdots+a_k\mc E)$ has a non zero-divisor in $\mk$. This is equivalent to saying that (1) holds.
+\end{proof}
+
+
+
+\begin{thm}\label{lb300}
+Let $\mc E\in\Mod(\mc A)$ be finitely generated. Then $\depth(\mc E)$ is the smallest $n\in\Nbb$ such that $\Ext_{\mc A}^k(\mc A/\mk,\mc E)=0$ for all $k<n$.
+\end{thm}
+
+
+\begin{proof}
+Apply Prop. \ref{lb299} to any longest $\mc E$-regular sequence in $\mk$.
+\end{proof}
+
+
+\begin{co}\label{lb305}
+Let $\mc E\in\Mod(\mc A)$ be finitely generated, and let $a_1,\dots,a_k\in\mk$ be an $\mc E$-regular sequence. Then
+\begin{align*}
+\depth(\mc E)=\depth\big(\mc E/(a_1\mc E+\cdots+a_k\mc E)\big)+k
+\end{align*}
+\end{co}
+
+\begin{proof}
+By induction, it suffices to prove the case $k=1$. Then the formula follows from Lemma \ref{lb298} and Thm. \ref{lb300}.
+\end{proof}
+
+
+
+\begin{co}
+Let $\mc E\in\Mod(\mc A)$ be finitely generated with depth $n$. Then any $\mc E$-regular sequence in $\mk$ of length $k<n$ can be extended to one of length $n$.
+\end{co}
+
+\begin{proof}
+Immediate from Cor. \ref{lb305}.
+\end{proof}
+
+
+\begin{thm}\label{lb303}
+Let $X$ be a complex space and let $x\in X$. Let $\scr E,\scr M$ be coherent $\scr O_X$-modules. Assume that 
+\begin{align*}
+\depth_{\scr O_{X,x}}(\scr E_x)=n,  \qquad  \dim_x\Supp(\scr M)=m.
+\end{align*}
+Then we have
+\begin{align}
+\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)=0    \qquad \forall k<n-m.   \label{eq129}
+\end{align}
+\end{thm}
+
+
+This theorem (as well as the subsequent corollary) also holds for any finitely-generated modules of Noetherian local rings. And the proof for the general case is similar to the one below. (See \cite[Sec. 26.1]{Vak17}.) Since we have established dimension theory only for analytic local $\Cbb$-algebras, we shall focus on this special case, which is clearly sufficient for our applications.
+
+\begin{proof}
+First note that if we have an exact sequence of morphisms of coherent $\scr O_X$-modules $0\rightarrow\scr M'\rightarrow\scr M\rightarrow\scr M''\rightarrow0$, then we clearly have
+\begin{align*}
+\Supp(\scr M)=\Supp(\scr M')\cup\Supp(\scr M'')
+\end{align*}
+as analytic subsets of $X$. (Namely, for each $p\in X$, $\scr M_p=0$ iff $\scr M'_p=\scr M''_p=0$.) Therefore, by Prop. \ref{lb146}, we have
+\begin{align}
+\dim_x\Supp(\scr M)=\max\big\{\dim_x\Supp(\scr M'),\dim_x\Supp(\scr M'') \big\}  \label{eq130}
+\end{align}
+
+Recall that the germs of coherent $\scr O_X$-modules at $x$ are equivalent to finitely-generated $\scr O_{X,x}$-modules (Thm. \ref{lb49}). We now prove the theorem by induction on $\dim_x\Supp(\scr M)$. \eqref{eq129} clearly holds whenever $\dim_x\Supp(\scr M)=-\infty$, i.e. when $\scr M_x=0$. It also holds when $\scr M_x=\Cbb=\scr O_{X,x}/\mk_{X,x}$ due to Thm. \ref{lb300}. Thus, if $\dim_x\Supp(\scr M)=0$, then $x$ is a single point of $\Supp(\scr M)$. Hence $\mk_{X,x}^k\scr M_x=0$ for some $k\in\Zbb_+$ by Nullstellensatz (Rem. \ref{lb115}-3). So $\scr M_x\simeq\scr M_x\otimes_{\scr O_{X,x}}\Cbb$ is a direct sum of $\Cbb$. Therefore \eqref{eq129} holds if $\dim_x\Supp(\scr M)=0$.
+
+Now suppose that the theorem holds whenever $\dim_x\Supp(\scr M)<m$. Assume $\dim_x\Supp(\scr M)=m$. As in the proof of Prop. \ref{lb295}, we may shrink $X$ to a neighborhood of $x$ and find a chain of coherent $\scr O_X$-modules $0=\scr M_0\subset\scr M_1\subset\scr M_2\subset\cdots\subset\scr M_l=\scr M$ such that for each $1\leq i\leq l$, $\scr M_i/\scr M_{i-1}$ is equivalent to $\scr O_X/\scr P_i$ where $\scr P_i$ is a coherent ideal of $\scr O_X$ such that $\scr P_{i,x}$ is prime. Therefore, by \eqref{eq130},
+\begin{align*}
+\dim_x\Supp(\scr M)=\sup_{i}\dim_x N(\scr P_i).
+\end{align*}
+So $\dim_x N(\scr P_i)\leq m$ for all $i$. Since we have an exact sequence
+\begin{align*}
+\Ext_{\scr O_{X,x}}^k(\scr M_{i-1,x},\scr E_x)\rightarrow\Ext_{\scr O_{X,x}}^k(\scr M_{i,x},\scr E_x)\rightarrow\Ext_{\scr O_{X,x}}^k(\scr O_{X,x}/\scr P_{i,x},\scr E_x)
+\end{align*}
+if we can show that $\Ext_{\scr O_{X,x}}^k(\scr O_{X,x}/\scr P_{i,x},\scr E_x)=0$ for all $i$, then by induction on $i$, we obtain $\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)=0$.
+
+Therefore, it suffices to prove \eqref{eq129} in the special case that $\scr M=\scr O_X/\scr P$ where $\scr P$ is a coherent ideal of $\scr O_X$, $\scr P_x$ is prime, and $\dim_x N(\scr P)=m\geq 1$. Shrink $X$ further so that we can choose $a\in\scr O(X)$ with $a(x)=0$ such that the germ $a_x\in\mk_{X,x}$ is not in $\scr P_x$. So $a_x$ is a non zero-divisor of $\scr M_x$. Thus we have a short exact sequence
+\begin{align*}
+0\rightarrow\scr M_x\xrightarrow{\times a_x}\scr M_x\rightarrow \scr M_x/a_x\scr M_x\rightarrow0
+\end{align*}
+which gives rise to a long one
+\begin{align*}
+\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)\rightarrow\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)\rightarrow\Ext_{\scr O_{X,x}}^{k+1}(\scr M_x/a_x\scr M_x,\scr E_x)
+\end{align*}
+The support of $\scr M_x/a_x\scr M_x$ has dimension $m-1$ at $x$ by Active lemma \ref{lb302}. Assume $k<n-m$. Then by case $m-1$, $\Ext_{\scr O_{X,x}}^{k+1}(\scr M_x/a_x\scr M_x,\scr E_x)$ is zero. So the endomorphism $\Ext_{\scr O_{X,x}}^k(\times a_x,\scr E_x)$ on $\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)$ is surjective. By Rem. \ref{lb297}, this endomorphism is the multiplication of $a_x$ on the $\scr O_{X,x}$-module $\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)$. Since $\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)$ is finitely generated (because we can choose a finite-rank free resolution of $\scr M_x$), and since $a_x\in\mk_{X,x}$, $\Ext_{\scr O_{X,x}}^k(\scr M_x,\scr E_x)$ must be zero by Nakayama's lemma \ref{lb281}.
+\end{proof}
+
+
+
+We shall only use the following very special case of Thm. \ref{lb303}:
+
+\begin{co}\label{lb304}
+Let $X$ be a complex space and $x\in X$. Let $\scr E$ be a coherent $\scr O_X$-module. Then
+\begin{align*}
+\depth(\scr E_x)\leq \inf\big\{\dim \scr O_{X,x}/\pk:\pk\in\Ass(\scr E_x) \big\}
+\end{align*}
+In particular, $\depth(\scr E_x)\leq\dim_x X$.
+\end{co}
+
+
+
+\begin{proof}
+Choose any associated prime $\pk$ of $\scr E_x$. Let $m=\dim\scr O_{X,x}/\pk$ and $n=\depth(\scr E_x)$. If $n>m$, then $\Hom_{\scr O_{X,x}}(\scr O_{X,x}/\pk,\scr E_x)=0$ by Thm. \ref{lb303}. But 
+\begin{align*}
+&\Hom_{\scr O_{X,x}}(\scr O_{X,x}/\pk,\scr E_x)\simeq\Ker\big(\Hom_{\scr O_{X,x}}(\scr O_{X,x},\scr E_x)\rightarrow \Hom_{\scr O_{X,x}}(\pk,\scr E_x)\big)\\
+\simeq&\{\xi\in\scr E_x:\pk\xi=0\}
+\end{align*}
+and the set $\{\xi\in\scr E_x:\pk\xi=0\}$ is non-zero by the very definition of associate primes. This is impossible. So $n\leq m$.
+\end{proof}
+
+
+\section{Flatness, openness, and dimensions of fibers II: Cohen-Macaulay}
+
+In this section, $X$ is a complex space. Note that if $x\in X$, then $\depth(\scr O_{X,x})\leq\dim_xX$ by Cor. \ref{lb304}.
+
+\begin{df}
+Let $x\in X$. We say that $X$ is \textbf{Cohen-Macaulay at $x$} or that $\scr O_{X,x}$ is a \textbf{Cohen-Macaulay ring}, if
+\begin{align*}
+\depth(\scr O_{X,x})=\dim_xX.
+\end{align*}
+If $X$ is Cohen-Macaulay at every $x\in X$, we say that $X$ is a \textbf{Cohen-Macaulay complex space}.
+\end{df}
+
+
+
+
+\begin{eg}
+If $X$ is smooth of dimension $n$ at $x$, then there clearly exists an $\scr O_{X,x}$-regular sequence in $\mk_{X,x}$ of length $n$. (Take the coordinate functions.) Therefore, complex manifolds are Cohen-Macaulay.
+\end{eg}
+
+
+\begin{eg}
+If $\dim_xX=0$ then $X$ is clearly Cohen-Macaulay at $x$.
+\end{eg}
+
+
+
+\begin{pp}\label{lb306}
+Choose $f_1,\dots,f_n\in\scr O(X)$ vanishing at $x$, and assume that their germs $f_{1,x},\dots,f_{n,x}$ form an $\scr O_{X,x}$-regular sequence. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is Cohen-Macaulay at $x$.
+\item $Y=\Specan\big(\scr O_X/(f_1\scr O_X+\cdots+f_n\scr O_X)\big)$ is Cohen-Macaulay at $x$.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+By Active lemma \ref{lb302}, $\dim_xX=\dim_xY+n$. Then the equivalence of the two statements follows immediately from Cor. \ref{lb305}.
+\end{proof}
+
+
+
+\begin{pp}\label{lb307}
+Suppose that $X$ is Cohen-Macaulay at $x$. For each associated prime $\pk$ of $\scr O_{X,x}$, we have $\dim\scr O_{X,x}/\pk=\dim_xX$.
+\end{pp}
+
+\begin{proof}
+Clearly, in general we have $\dim\scr O_{X,x}/\pk=\dim_x N(\pk)\leq\dim_xX$. That we have $``\geq"$ when $\scr O_{X,x}$ is Cohen-Macaulay is due to Cor. \ref{lb304}.
+\end{proof}
+
+
+The miracle of Cohen-Macaulayness lies in the following fact:
+
+
+
+\begin{thm}\label{lb309}
+Let $f\in\scr O(X)$ vanish at $x$. Let $Z=\Specan(\scr O_X/f\scr O_X)$. Suppose that $X$ is Cohen-Macaulay at $x$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $f$ is a non zero-divisor of $\scr O_{X,x}$.
+\item $\dim_x X=\dim_x Z+1$.
+\end{enumerate}
+If one of them holds, then $Z$ is Cohen-Macaulay at $x$.
+\end{thm}
+
+
+\begin{proof}
+(1)$\Rightarrow$(2): By Active lemma \ref{lb302}. Then by Prop. \ref{lb306}, $Z$ is Cohen-Macaulay at $x$.
+
+Not (1) $\Rightarrow$ Not (2): Assume that the germ $f_x$ is a zero-divisor of $\scr O_{X,x}$. Then by Cor. \ref{lb294}, $f_x$ belongs to some associated prime $\pk$ of $\scr O_{X,x}$. We shrink $X$ to a neighborhood of $x$ so that $\pk=\scr P_x$ for a coherent ideal $\scr P$ of $\scr O_X$, and that $f\in\scr P(X)$. Let $n=\dim_xX$. Then by Prop. \ref{lb307}, $\dim_xN(\scr P)=n$. Hence
+\begin{align*}
+\dim_xZ=\dim_x N(f)\geq\dim_x N(\scr P)=n.
+\end{align*}
+So (2) does not hold.
+\end{proof}
+
+
+We are now able to prove the following remarkable result which is parallel to Thm. \ref{lb288}.
+
+
+\begin{thm}[\textbf{Miracle flatness theorem}]\label{lb308}  \index{00@Miracle flatness theorem}
+Let $\varphi:X\rightarrow Y$ be a holomorphic map where $Y$ is a complex manifold. Assume that $X$ is Cohen-Macaulay at $x\in X$.  Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item The following Dimension Formula holds
+\begin{align}
+\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y\label{eq131}
+\end{align}
+\item $\varphi$ is flat at $x$.
+\end{enumerate}
+Moreover, if any of them holds, then $X_{\varphi(x)}=\varphi^{-1}\big(\varphi(x)\big)$ is Cohen-Macaulay at $x$.
+\end{thm}
+
+\begin{proof}
+That (2)$\Rightarrow$(1) is due to Thm. \ref{lb286}. To prove (1)$\Rightarrow$(2), we may assume that $Y$ is an open subset of $\Cbb^n$, and that $\varphi(x)=0$. Then $\varphi$ is represented by $(f_1,\dots,f_n)\in\scr O(X)^n$. For each $1\leq k\leq n$, let
+\begin{align*}
+Z^k=\Specan(\scr O_X/(f_1\scr O_X+\cdots+f_k\scr O_X)).
+\end{align*}
+Set $Z^0=X$. Then $Z^k=\Specan(\scr O_{Z^{k-1}}/f_k\scr O_{Z^{k-1}})$. So by the definition of dimensions (Def. \ref{lb140}), 
+\begin{align*}
+\dim_x Z^k+1\geq\dim_x Z^{k-1}. 
+\end{align*}
+Thus we have (noting that $Z^n=\varphi^{-1}(0)=X_{\varphi(x)}$)
+\begin{align*}
+\dim_x Z^n+n\geq \dim_x Z^0 \qquad \text{equivalently}\qquad \dim_x X_{\varphi(x)}+n\geq\dim_x X
+\end{align*}
+and ``$\geq$" becomes ``$=$" whenever
+\begin{align}
+\dim_x Z^k+1=\dim_x Z^{k-1}\qquad \forall 1\leq k\leq n \label{eq132}
+\end{align}
+
+Since we assume (1) is true, we have \eqref{eq132}. By assumption, $Z^0$ is Cohen-Macaulay at $x$. Suppose we have proved that $Z^{k-1}$ is Cohen-Macaulay at $x$ where $1\leq k\leq n$, then by \eqref{eq132} and Thm. \ref{lb309}, $f_k$ is a non zero-divisor of $\scr O_{Z^{k-1},x}$ and $Z^k$ is Cohen-Macaulay at $x$. Therefore, by induction, we see that the germs $f_{1,x},\dots,f_{n,x}$ form an $\scr O_{X,x}$-regular sequence, and $Z^n=X_{\varphi(x)}$ is Cohen-Macaulay at $x$. Hence $\varphi$ is flat at $x$ by Cor. \ref{lb279}.
+\end{proof}
+
+
+\begin{co}
+Assume that $X$ is a Cohen-Macaulay complex space (e.g. a complex manifold) and $Y$ is a complex manifold. Let $\varphi:X\rightarrow Y$ be a holomorphic map. Then the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item Dimension Formula \eqref{eq131} holds for all $x\in X$.
+\item $\varphi$ is open.
+\item $\varphi$ is flat.
+\end{enumerate}
+\end{co}
+
+
+\begin{proof}
+By Cor. \ref{lb159} and Thm. \ref{lb308}.
+\end{proof}
+
+
+
 
 
 
