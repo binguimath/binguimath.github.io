@@ -17,6 +17,15 @@
 
 \usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+% box around equations   \tcboxmath
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % circled colon and thick colon \hcolondel and \colondel
@@ -106,6 +115,7 @@
 \newtheorem{eg}[df]{Example}
 \newtheorem{exe}[df]{Exercise}
 \newtheorem{rem}[df]{Remark}
+\newtheorem{obs}[df]{Observation}
 \newtheorem{ass}[df]{Assumption}
 \newtheorem{cv}[df]{Convention}
 \newtheorem{prin}[df]{Principle}
@@ -310,12 +320,12 @@
 \newcommand{\mk}{\mathfrak m}
 \newcommand{\Ass}{\mathrm{Ass}}
 \newcommand{\depth}{\mathrm{depth}}
-
-
-
-
-
-
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\Gode}{\mathrm{Gode}}
+\newcommand{\Fbb}{\mathbb F}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Modf}{\mathrm{Mod}^{\mathrm f}}
 
 
 
@@ -362,7 +372,7 @@
 	%{\small Department of Mathematics, Rutgers university}\\
 	%{\small bin.gui@rutgers.edu}
 }
-\date{Last update: Nov. 2022}
+\date{Last update: Dec. 2022}
 \begin{document}\sloppy % avoid stretch into margins
 	\pagenumbering{arabic}
 	%\pagenumbering{gobble}
@@ -382,7 +392,7 @@
 %\thispagestyle{empty}	 %remove page number of this page
 
 
-Contents hyperlinks: \hyperlink{page.2}{Page 2}
+Contents hyperlinks: \hyperlink{page.2}{Page 2}, \hyperlink{page.3}{Page 3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\vspace{-0.5cm}
@@ -723,7 +733,7 @@ Use Nakayama's lemma and Rem. \ref{lb17} to show that if $\scr E$ is a finite ty
 \end{exe}
 
 
-\begin{co}
+\begin{co}\label{lb351}
 Let $\scr E$ be a finite-type $\scr O_X$-module. Then the \textbf{rank function} \index{00@Rank function} $x\in X\mapsto \dim(\scr E|x)$ is upper-semicontinuous.
 \end{co}
 
@@ -1186,7 +1196,7 @@ By WDT, $\scr O_{\Cbb^{m+1},0}/g\scr O_{\Cbb^{m+1},0}$ is a finitely-generated $
 
 \subsection{Proof of WDT}
 
-We prove the first version of WDT following \cite{GR}.
+We prove the first version of WDT following \cite{GR-b}.
 \begin{proof}[Proof of the uniqueness]
 Let $f=gq_1+r_1=gq_2+r_2$. Then $g(q_1-q_2)=r_2-r_1$. Choose a small enough neighborhood $U\times V\subset\Cbb^m\times\Cbb$ as in Rem. \ref{lb16} such that for all fixed $w_\blt\in U$, $g(z)$ has $k$ zeros in $V$ (counting multiplicities). So $g(q_1-q_2)$ has $\geq k$ zeros in $z$. Since $r_2-r_1$ has degree $<k$ in $z$, for the fixed $w_\blt$, the number of zeros of $r_2-r_1$ is either $<k$ (which is impossible), or is $\infty$. Since the latter is the only possible case, we conclude $(r_1-r_2)(z)=0$ for all $w_\blt$. And $(q_1-q_2)(z)=0$  since it is so outside the (finitely many) zeros of $g$. (One can also deduce $q_1=q_2$ from the fact that $\scr O_{\Cbb^{m+1},0}$ is an integral domain.)
 \end{proof}
@@ -1778,7 +1788,7 @@ For each $x\in X$, we have a canonical equivalence
 Thus $\scr M\mapsto \scr E\otimes_{\scr O_S}\scr M$ is a right exact functor.
 \end{df}
 
-\begin{df}
+\begin{df}\label{lb336}
 The \textbf{pullback sheaf} of $\scr M$ along $\varphi$ is the $\scr O_X$-module defined by \index{00@Pullback sheaf $\varphi^*\scr M$, pullback of sections  and morphisms}
 \begin{align}
 \varphi^*\scr M:=\scr O_X\otimes_{\scr O_S}\scr M
@@ -1812,12 +1822,12 @@ The notation $\scr E\otimes_{\scr O_S}\scr M$ is a generalization of $\scr E\oti
 
 
 
-\begin{pp}
-$(\varphi^*,\varphi_*)$ is a pair of \textbf{adjoint functors} between the categories of $\scr O_X$-modules and $\scr O_S$-modules \index{00@Adjoint functors} (with $\varphi^*$ the left adjoint and $\varphi_*$ the right one). Namely, there is a functorial isomphism
+\begin{pp}\label{lb337}
+$(\varphi^*,\varphi_*)$ is a pair of \textbf{adjoint functors} between the categories of $\scr O_X$-modules and $\scr O_S$-modules \index{00@Adjoint functors} (with $\varphi^*$ the left adjoint and $\varphi_*$ the right one). Namely, there is a natural isomphism
 \begin{align}
 \Hom_{\scr O_X}(\varphi^*\scr M,\scr E)\xrightarrow{\simeq}\Hom_{\scr O_S}(\scr M,\varphi_*\scr E).
 \end{align}
-The word \textbf{functorial} (also called \textbf{natural}) \index{00@Functorial (i.e. natural) morphisms} means that for any morphisms $g:\scr M_2\rightarrow\scr M_1$ of $\scr O_S$-modules and $f:\scr E_1\rightarrow\scr E_2$ of $\scr O_X$-modules, $\varphi^*g$ and $\varphi_*f$ induce a commutative diagram
+The word \textbf{natural} \index{00@Natural morphisms} means that for any morphisms $g:\scr M_2\rightarrow\scr M_1$ of $\scr O_S$-modules and $f:\scr E_1\rightarrow\scr E_2$ of $\scr O_X$-modules, $\varphi^*g$ and $\varphi_*f$ induce a commutative diagram
 \begin{equation}
 \begin{tikzcd}
 \Hom_{\scr O_X}(\varphi^*\scr M_1,\scr E_1) \arrow[d] \arrow[r,"\simeq"] & \Hom_{\scr O_S}(\scr M_1,\varphi_*\scr E_1) \arrow[d] \\
@@ -1831,7 +1841,7 @@ Given a morphism $F:\varphi^*\scr M\rightarrow\scr E$, the composition of $\scr 
 \begin{align}
 G(\sigma)=F(1\otimes\sigma).
 \end{align}
-We leave it to the readers to check that $F\mapsto G$ is functorial.
+We leave it to the readers to check that $F\mapsto G$ is natural.
 
 Conversely, given $G:\scr M\rightarrow\varphi_*\scr E$. The $\scr O(U)$-module morphisms
 \begin{gather*}
@@ -1859,7 +1869,7 @@ Let $\iota:Y=\Specan(\scr O_X/\mc I)\hookrightarrow X$ be a closed subspace of $
 \begin{rem}\label{lb52}
 If $\iota:Y=\Specan(\scr O_X/\mc I)\rightarrow X$ is an embedding of closed complex subspace, one may view an $\scr O_Y$-module $\scr F$ as the corresponding $\scr O_X$-module $\iota_*\scr F$. A more precise statement is that the functor $\iota_*$ from the category of $\scr O_Y$-modules to the category of $\scr O_X$-modules annihilated by the multiplication of $\mc I$, sending each morphism $\varphi$ to $\iota_*\varphi$, is an equivalence of categories. (Cf. Thm. \ref{lb19} or Thm. \ref{lb49} for the precise meaning.) An inverse functor can be chosen to be $\iota^*$. In particular, we have a canonical equivalence $\scr F\simeq\iota^*\iota_*\scr F$ for any $\scr O_Y$-module $\scr F$ and $\scr E\simeq\iota_*\iota^*\scr E$ for any $\scr O_X$-module $\scr E$ annihilated by $\mc I$ (so that $\scr E=\scr E/\mc I\scr E\simeq\scr E\otimes_{\scr O_X}(\scr O_X/\mc I)$). These equivalences are the identity maps at the level of stalks.
 
-Moreover, the functor $\iota_*$ is an equivalence of tensor categories. Namely, we have functorial isomorphisms
+Moreover, the functor $\iota_*$ is an equivalence of tensor categories. Namely, we have natural isomorphisms
 \begin{gather*}
 \iota_*(\scr F_1\otimes_{\scr O_Y}\scr F_2)\simeq (\iota_*\scr F_1)\otimes_{\scr O_X}(\iota_*\scr F_2).
 \end{gather*}
@@ -2834,7 +2844,7 @@ The equivalence of the exactness of \eqref{eq35} and \eqref{eq30} follows.
 
 
 \begin{pp}[\textbf{Base change proposition}]\label{lb59}
-Let $\pi:X\rightarrow S$ be a finite continuous map. Let $\scr E$ be an $\scr O_X$-module and $\scr M$ an $\scr O_S$-module. Then we have a (clearly functorial) $\scr O_S$-module isomorphism 
+Let $\pi:X\rightarrow S$ be a finite continuous map. Let $\scr E$ be an $\scr O_X$-module and $\scr M$ an $\scr O_S$-module. Then we have a (clearly natural) $\scr O_S$-module isomorphism 
 \begin{gather}
 \begin{gathered}
 \Upsilon:(\pi_*\scr E)\otimes_{\scr O_S}\scr M\xlongrightarrow{\simeq} \pi_*(\scr E\otimes_{\scr O_S}\scr M)\\[0.8ex]
@@ -3069,7 +3079,7 @@ Our goal is to show that \eqref{eq32} generates \eqref{eq31} freely.
 \subsection{Proof of Thm. \ref{lb60}, I}
 
 
-In this subsection, we assume $(t_\blt)=0\in S\subset\Cbb^m$ for simplicity, and show that $z_1,\dots,z_k$ generate $(\pi_*\scr O_X)_0$. We let $(\tau_\blt)$ denote a set of general variables of $S$. \eqref{eq31} reads
+In this subsection, we assume $(t_\blt)=0\in S\subset\Cbb^m$ for simplicity, and show that \eqref{eq32} generate $(\pi_*\scr O_X)_0$. We let $(\tau_\blt)$ denote a set of general variables of $S$. \eqref{eq31} reads
 \begin{align}\label{eq33}
 (\pi_*\scr O_X)_0\simeq\bigoplus_{\begin{subarray}{c}
 w_i\in N(p_i)_0\\
@@ -3600,7 +3610,7 @@ to
 \begin{align}
 \sigma\otimes \pr_Y^\#g\qquad\in\scr E(\pi^{-1}(W))\otimes_{\scr O_X(\pi^{-1}(W))}\scr O_{X\times_SY}(\pr_Y^{-1}(V)).
 \end{align}
-(Note that $\pr_X(\pr_Y^{-1}(V))\subset\pi^{-1}(W)$.) It is easy to see that $\Psi$ is functorial. We call $\Psi$ the \textbf{base change morphism}.
+(Note that $\pr_X(\pr_Y^{-1}(V))\subset\pi^{-1}(W)$.) It is easy to see that $\Psi$ is natural. We call $\Psi$ the \textbf{base change morphism}.
 
 
 \begin{rem}\label{lb269}
@@ -3650,11 +3660,12 @@ whose stalk map at each $y\in Y$ is an $\scr O_{Y,y}$-module morphism determined
 f\otimes 1\quad\mapsto\quad \pr_X^\#f
 \end{gathered}
 \end{gather}
+Clearly \eqref{eq44} is also an isomorphism of $\scr O_S$-algebras.
 \end{co}
 
 
 \begin{co}\label{lb97}
-Let \eqref{eq46} be a Cartesian square, and assume that $\pi:X\rightarrow S$ is finite. Then for each $x\in X$ and $y\in Y$ such that $\pi(x)$ equals $t=\psi(y)$, there is an isomorphism of $\scr O_{S,t}$-modules
+Let \eqref{eq46} be a Cartesian square, and assume that $\pi:X\rightarrow S$ is finite. Then for each $x\in X$ and $y\in Y$ such that $\pi(x)$ equals $t=\psi(y)$, there is an isomorphism of $\scr O_{S,t}$-algebras
  \begin{gather}\label{eq48}
 \begin{gathered}
 \scr O_{X,x}\otimes_{\scr O_{S,t}}\scr O_{Y,y}\xlongrightarrow{\simeq} \scr O_{X\times_SY,x\times y}\\[0.8ex]
@@ -3692,7 +3703,7 @@ where $\scr F$ and $\scr G$ are $\scr O_X$-free. By the right exactness of $\psi
 \begin{align*}
 \psi^*\pi_*\scr F\rightarrow\psi^*\pi_*\scr G\rightarrow\psi^*\pi_*\scr E\rightarrow0.
 \end{align*}
-Since the base change map $\Psi$ is functorial, we have a commutative diagram
+Since the base change map $\Psi$ is natural, we have a commutative diagram
 \begin{equation*}
 \begin{tikzcd}
 \psi^*\pi_*\scr F \arrow[r] \arrow[d,"\Psi"',"\simeq"] & \psi^*\pi_*\scr G \arrow[r] \arrow[d,"\Psi"',"\simeq"] & \psi^*\pi_*\scr E \arrow[r] \arrow[d,"\Psi"'] & 0 \\
@@ -3877,7 +3888,7 @@ $\mc T\scr O_Y$ is a finite-type ideal of $\scr O_Y$ since $\mc T$ is $\scr O_S$
 \section{Nullstellensatz}
 
 
-In this section, we give another application of Finite mapping Thm. \ref{lb74} and Thm. \ref{lb75}: we prove the complex analytic version of Hilbert Nullstellensatz, called R\"uckert Nullstellensatz in \cite{GR} and \cite{GPR}. Nullstellensatz will be used in an essential way to prove that every complex space $X$ has an associated reduced complex space $X_\red$, and that if $X$ is reduced at $x$ then $X$ is reduced near $x$. 
+In this section, we give another application of Finite mapping Thm. \ref{lb74} and Thm. \ref{lb75}: we prove the complex analytic version of Hilbert Nullstellensatz, called R\"uckert Nullstellensatz in \cite{GR-b} and \cite{GPR}. Nullstellensatz will be used in an essential way to prove that every complex space $X$ has an associated reduced complex space $X_\red$, and that if $X$ is reduced at $x$ then $X$ is reduced near $x$. 
 
 
 
@@ -5508,7 +5519,7 @@ Choose any $x\in\Supp(\mc I)$. Then $\mc I_x\neq 0$. There exist a connected nei
 
 
 
-\begin{thm}
+\begin{thm}\label{lb331}
 Let $X$ be a complex space and $\scr E$ a coherent $\scr O_X$-module. Then $\scr E$ satisfies Noether property.
 \end{thm}
 
@@ -5594,7 +5605,7 @@ we must have $\dim_pX_{\varphi(p)}\leq m$. This proves (2).
 
 Our main goal of this section and the next one is to understand when the following \textbf{Dimension Formula} holds:
 \begin{align}
-{\color{red}\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y}\label{eq73}
+\tcboxmath{\dim_x X_{\varphi(x)}=\dim_x X-\dim_{\varphi(x)} Y}\label{eq73}
 \end{align}
 More precisely, our goal is to understand the following result of Remmert which relates the openness of $\varphi$ and \eqref{eq73}.
 
@@ -5922,7 +5933,7 @@ Note that to show \eqref{eq76} one needs the fact that any $s\in\scr T(\scr E)$ 
 
 There is a geometric description of torsion elements:
 
-\begin{pp}
+\begin{pp}\label{lb354}
 Let $X$ be a reduced complex space, $\scr E$ a coherent $\scr O_X$-module, and $s\in\scr E(X)$. Then $s$ belongs to $\scr T(\scr E)(X)$ if and only if $\Supp(s):=\Supp(s\scr O_X)$ is nowhere dense in $X$.
 \end{pp}
 
@@ -7117,7 +7128,7 @@ Choose any $x\in X$. We need to show that
 
 Part 1. Assume $\Owht_{X,x}\neq\scr O_{X,x}$. Choose $f\in\Owht_{X,x}$ not in $\scr O_{X,x}$. Shrink $X$ to a neighborhood of $x$ so that $f\in\Owht_X(X)\subset\scr M_X(X)$, and that $\scr I_{\Sg(X)}$ is generated by finitely many sections $g_1,g_2,\dots\in\scr I_{\Sg(X)}(X)$. The polar set $P(f)$ is contained in $\Sg(X)$ due to First Riemann extension Thm. \ref{lb190}.  By Prop. \ref{lb187}, $\scr O_Xf$ is a coherent $\scr O_X$-submodule of $\scr M_X$. So $\scr O_Xf/(\scr O_Xf\cap\scr O_X)$ is coherent, and its support is $P(f)$ (cf. \eqref{eq94}) on which the functions $g_1,g_2,\dots$ vanish.
 
-By applying Nullstellensatz (Rem. \ref{lb115}-3) to $\scr O_Xf/(\scr O_Xf\cap\scr O_X)$, we see that there is $n\in\Zbb_+$ such that $(g_i^nf)_x\in\scr O_{X,x}$ for all $i$, thus $f\scr I_{\Sg(X),x}^n\in\scr O_{X,x}$. Since $f\notin\scr O_{X,x}$, we can find the smallest $n\in\Zbb_+$ such that $f\scr I_{\Sg(X),x}^n\in\scr O_{X,x}$. Choose any $\wtd f\in f\scr I_{\Sg(X),x}^{n-1}$ not in $\scr O_{X,x}$. (But note that $\wtd f$ belongs to $\Owht_{X,x}$ since $f$ does.) Then $\wtd f\scr I_{\Sg(X),x}\in\scr O_{X,x}$. We claim that $\wtd f\scr I_{\Sg(X),x}\in\scr I_{\Sg(X),x}$. Then the multiplication of $\wtd f$ gives an element of $\End_{\scr O_{X,x}}(\scr I_{\Sg(X),x})$ not inside $\scr O_{X,x}$, which disproves the RHS of \eqref{eq95}.
+By applying Nullstellensatz (Rem. \ref{lb115}-3) to $\scr O_Xf/(\scr O_Xf\cap\scr O_X)$, we see that there is $n\in\Zbb_+$ such that $(g_i^nf)_x\in\scr O_{X,x}$ for all $i$, thus $f\scr I_{\Sg(X),x}^n\subset\scr O_{X,x}$. Since $f\notin\scr O_{X,x}$, we can find the smallest $n\in\Zbb_+$ such that $f\scr I_{\Sg(X),x}^n\subset\scr O_{X,x}$. Choose any $\wtd f\in f\scr I_{\Sg(X),x}^{n-1}$ not in $\scr O_{X,x}$. (But note that $\wtd f$ belongs to $\Owht_{X,x}$ since $f$ does.) Then $\wtd f\scr I_{\Sg(X),x}\subset\scr O_{X,x}$. We claim that $\wtd f\scr I_{\Sg(X),x}\subset\scr I_{\Sg(X),x}$. Then the multiplication of $\wtd f$ gives an element of $\End_{\scr O_{X,x}}(\scr I_{\Sg(X),x})$ not inside $\scr O_{X,x}$, which disproves the RHS of \eqref{eq95}.
 
 Shrink $X$ further so that $\wtd f\in\Owht_X(X)$ and that $\wtd fg_i\in\scr O(X)$ for each $i$. By Thm. \ref{lb190} again, $\wtd f$ belongs to $\scr O(S\setminus\Sg(X))$ and is locally bounded on $X$. Therefore, each $\wtd fg_i$ vanishes on $\Sg(X)$, and hence must belong to $\scr I_{\Sg(X)}(X)$. This proves the claim.
 
@@ -7683,20 +7694,20 @@ H_{n+1}(\mc G') \arrow[r,"\delta_n"]           & H_n(\mc E')
 \end{df}
 
 
-\begin{df}
+\begin{df}\label{lb315}
 A \textbf{morphism of $\delta$-functors} \index{00@Morphisms of $\delta$-functors} $\Phi^\blt:(H^\blt,\delta^\blt)\rightarrow (\wch H^\blt,\delta^\blt)$ associates to each $n\in \Nbb$ and $\mc E\in\fk A$ a morphism of $\fk B$-objects $\Phi=\Phi^n: H^n(\mc E)\rightarrow \wch H^n(\mc E)$ such that:
 \begin{enumerate}[label=(\arabic*)]
-\item For each $n\in\Nbb$, $\Phi^n$ is functorial (natural). Namely, for each morphism $\mc E\rightarrow\mc F$ of $\fk A$-objects, the diagram commutes
+\item For each $n\in\Nbb$, $\Phi^n$ is natural. Namely, for each morphism $\mc E\rightarrow\mc F$ of $\fk A$-objects, the diagram commutes
 \begin{equation*}
 \begin{tikzcd}
-H^n(\mc E) \arrow[r] \arrow[d,"\Phi^n"',"\simeq"] & H^n(\mc F) \arrow[d,"\Phi^n","\simeq"'] \\
+H^n(\mc E) \arrow[r] \arrow[d,"\Phi^n"'] & H^n(\mc F) \arrow[d,"\Phi^n"] \\
 \wch H^n(\mc E) \arrow[r]           & \wch H^n(\mc F)          
 \end{tikzcd}
 \end{equation*}
 \item $\Phi$ commutes with $\delta$. More precisely, for each $n\in\Nbb$ and each exact sequence \eqref{eq99} in $\fk A$, the diagram commutes
 \begin{equation*}
 \begin{tikzcd}
-H^n(\mc G) \arrow[r,"\delta^n"] \arrow[d,"\Phi^n"',"\simeq"] & H^{n+1}(\mc E) \arrow[d,"\Phi^n","\simeq"'] \\
+H^n(\mc G) \arrow[r,"\delta^n"] \arrow[d,"\Phi^n"'] & H^{n+1}(\mc E) \arrow[d,"\Phi^n"] \\
 \wch H^n(\mc G) \arrow[r,"\delta^n"]           & \wch H^{n+1}(\mc E)          
 \end{tikzcd}
 \end{equation*}
@@ -7707,10 +7718,10 @@ We leave it to the readers to define morphisms of cohomological contravariant an
 
 Hohomology and cohohomology in complex geometry are characterized uniquely by the following property.
 
-\begin{df}
-A $\delta$-functor $(H^\blt,\delta^\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} \index{00@Universal $\delta$-functors} if for any other $\delta$-functor $(\wch H^\blt,\delta^\blt)$, any functorial morphism of functors $\Phi^0:H^0\rightarrow\wch H^0$ can be extended uniquely to a morphism of $\delta$-functors $\Phi^\blt:(H^\blt,\delta^\blt)\rightarrow(\wch H^\blt,\delta^\blt)$. Universal cohomological contravariant functors are defined in a similar way.
+\begin{df}\label{lb314}
+A $\delta$-functor $(H^\blt,\delta^\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} \index{00@Universal $\delta$-functors} if for any other $\delta$-functor $(\wch H^\blt,\delta^\blt)$, any natural morphism of functors $\Phi^0:H^0\rightarrow\wch H^0$ can be extended uniquely to a morphism of $\delta$-functors $\Phi^\blt:(H^\blt,\delta^\blt)\rightarrow(\wch H^\blt,\delta^\blt)$. Universal cohomological contravariant functors are defined in a similar way.
 
-A homological covariant $\delta$-functor $(H_\blt,\delta_\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} if for any other homological covariant $\delta$-functor $(\wch H_\blt,\delta_\blt)$, any functorial morphism of functors $\Phi_0:\wch H_0\rightarrow H_0$ can be extended uniquely to a morphism of homological $\delta$-functors $\Phi_\blt:(\wch H_\blt,\delta_\blt)\rightarrow (H_\blt,\delta_\blt)$.   \hfill\qedsymbol
+A homological covariant $\delta$-functor $(H_\blt,\delta_\blt)$ from $\fk A$ to $\fk B$ is called \textbf{universal} if for any other homological covariant $\delta$-functor $(\wch H_\blt,\delta_\blt)$, any natural morphism of functors $\Phi_0:\wch H_0\rightarrow H_0$ can be extended uniquely to a morphism of homological $\delta$-functors $\Phi_\blt:(\wch H_\blt,\delta_\blt)\rightarrow (H_\blt,\delta_\blt)$.   \hfill\qedsymbol
 \end{df}
 
 It is clear that any two universal (co)homological covariant/contravariant $\delta$-functors with the same degree-zero part $H^0$ resp. $H_0$ are isomorphic.
@@ -7741,9 +7752,9 @@ Thus, the uniqueness of (co)hohomology in complex geometry is addressed. We will
 
 
 \begin{proof}
-We prove the theorem only for cohomological covariant $\delta$-functors, since the other cases can be treated in a similar way. Choose a $\delta$-functor $(\wch H^\blt,\delta^\blt)$. We construct $\Phi^n$ and verifies the desired properties by induction on $n$. The case $n=0$ is obvious. Assume the unique functorial morphisms $\Phi^0,\dots,\Phi^n$ intertwinined by $\delta^0,\dots,\delta^{n-1}$ are constructed. Let us construct a unique functorial $\Phi^{n+1}$ such that $\delta^n$ intertwines $\Phi^n$ and $\Phi^{n+1}$. \\
+We prove the theorem only for cohomological covariant $\delta$-functors, since the other cases can be treated in a similar way. Choose a $\delta$-functor $(\wch H^\blt,\delta^\blt)$. We construct $\Phi^n$ and verifies the desired properties by induction on $n$. The case $n=0$ is obvious. Assume the unique natural morphisms $\Phi^0,\dots,\Phi^n$ intertwinined by $\delta^0,\dots,\delta^{n-1}$ are constructed. Let us construct a unique natural $\Phi^{n+1}$ such that $\delta^n$ intertwines $\Phi^n$ and $\Phi^{n+1}$. \\
 
-Step 1. For each $\mc E$, find  a monomorphism $\mc E\hookrightarrow\mc E^0$ such that $H^{>0}(E^0)=0$. Then we have an exact sequence $0\rightarrow\mc E\rightarrow\mc E^0\rightarrow \mc E^0/\mc E\rightarrow 0$. Since $H^{n+1}(\mc E^0)=0$, by Rem. \ref{lb47}, there is a unique morphism $\Phi^{n+1}:H^{n+1}(\mc E)\dashrightarrow\wch H^{n+1}(\mc E)$ which yields a morphism of long exact sequences
+Step 1. For each $\mc E$, find  a monomorphism $\mc E\hookrightarrow\mc E^0$ such that $H^{>0}(\mc E^0)=0$. Then we have an exact sequence $0\rightarrow\mc E\rightarrow\mc E^0\rightarrow \mc E^0/\mc E\rightarrow 0$. Since $H^{n+1}(\mc E^0)=0$, by Rem. \ref{lb47}, there is a unique morphism $\Phi^{n+1}:H^{n+1}(\mc E)\dashrightarrow\wch H^{n+1}(\mc E)$ which yields a morphism of long exact sequences
 \begin{equation}\label{eq100}
 \begin{tikzcd}
 H^n(\mc E^0) \arrow[r] \arrow[d, "\Phi^n"'] & H^n(\mc E^0/\mc E) \arrow[d,  "\Phi^n"'] \arrow[r, "\delta"] & H^{n+1}(\mc E) \arrow[r] \arrow[d, dashed, "\Phi^{n+1}"'] & 0\\
@@ -7783,7 +7794,7 @@ H^{n+1}(\mc F) \arrow[d, "\Phi^{n+1}"', ForestGreen] & H^{n+1}(\mc E) \arrow[l, 
 \wch H^{n+1}(\mc F)                     & \wch H^{n+1}(\mc E) \arrow[l, ForestGreen]                   
 \end{tikzcd}
 \end{equation}
-This proves that $\Phi^{n+1}$ is functorial, once we have shown that $\Phi^{n+1}$ is independent of the choice of inclusions $\mc E\hookrightarrow\mc E^0$. 
+This proves that $\Phi^{n+1}$ is natural, once we have shown that $\Phi^{n+1}$ is independent of the choice of inclusions $\mc E\hookrightarrow\mc E^0$. 
 
 
 
@@ -7816,7 +7827,7 @@ H^n(\mc E^0) \ar[dd] \arrow[rr, crossing over] &                                
 \end{equation}
 
 
-Due to the functoriality of $\Phi^n$ and $\Phi^{n+1}$, the vertical cells commute. By the definition of $\delta$-functors, the top right and the bottom right horizontal cells commute. By the construction of $\Phi^n$ in Step 1, the right front rectangle commutes. Therefore, since $\wch H^{n+1}(\mc E)\rightarrow\wch H^{n+1}(\mc E)$ is the identity, the right back (green) rectangle commutes.
+Due to the naturality of $\Phi^n$ and $\Phi^{n+1}$, the vertical cells commute. By the definition of $\delta$-functors, the top right and the bottom right horizontal cells commute. By the construction of $\Phi^n$ in Step 1, the right front rectangle commutes. Therefore, since $\wch H^{n+1}(\mc E)\rightarrow\wch H^{n+1}(\mc E)$ is the identity, the right back (green) rectangle commutes.
 \end{proof}
 
 
@@ -7928,9 +7939,23 @@ Apply \eqref{eq108} to the resolution
 \end{align*}
 of $\Ker\varphi^{n-1}$, we see that \eqref{eq109} is isomorphic to
 \begin{align}
-R^nT(\mc E)\simeq \frac{\Ker\big(T(\mc E^n)\rightarrow T(\mc E^{n+1})\big)}{\Imag\big(T(\mc E^{n-1})\rightarrow T(\mc E^n)\big)} 
+R^nT(\mc E)\simeq \frac{\Ker\big(T(\mc E^n)\rightarrow T(\mc E^{n+1})\big)}{\Imag\big(T(\mc E^{n-1})\rightarrow T(\mc E^n)\big)}   \label{eq150}
 \end{align}
 Since this is also true when $n=1$ and when $n=0$ if we set $\mc E^{<0}=0$, we conclude {\color{red}$R^\star T(\mc E)\simeq\mc H^\star(T(\mc E^\blt))$}, namely, that $R^\star T(\mc E)$ is isomorphic to the cohomology of the complex $T(\mc E^\blt)$. In the proof of Thm. \ref{lb253}, we will use injective resolutions and $\mc H^\star(T(\mc E^\blt))$ to construct right derived functors.
+
+
+\begin{exe}\label{lb328}
+Under the assumptions at the beginning of Subsec. \ref{lb310}, assume moreover that $\mc F\in\fk A$ has a right resolution $0\rightarrow\mc F\rightarrow\mc F^\blt$ such that $R^{>0}T$ vanishes on $\mc F^\blt$. Let $\Phi:\mc E\rightarrow\mc F$ be a morphism which can be extended to a commutative diagram in $\fk A$:
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+0 \arrow[r] & \mc E \arrow[r] \arrow[d, "\Phi"'] & \mc E^0 \arrow[r,"d^0"] \arrow[d, "\Phi^0"'] & \mc E^1 \arrow[r,"d^1"] \arrow[d, "\Phi^1"'] & \mc E^2 \arrow[r,"d^2"] \arrow[d, "\Phi^2"'] & \cdots \\
+0 \arrow[r] & \mc F \arrow[r]                       & \mc F^0 \arrow[r,"d^0"]                         & \mc F^1 \arrow[r,"d^1"]                         & \mc F^2 \arrow[r,"d^2"]                         & \cdots
+\end{tikzcd}
+\end{equation*}
+For each $q\in\Nbb$, show that under the identification $R^q T(\mc E)\simeq\mc H^q(T(\mc E^\blt))$ and $R^q T(\mc F)\simeq\mc H^q(T(\mc F^\blt))$, the morphism $R^qT(\Phi):R^qT(\mc E)\rightarrow R^qT(\mc F)$ is equal to $\mc H^q(T(\Phi^\blt))$. 
+
+(Hint: Case $q=0$: obvious. Case $q=1$: construct a morphism of exact sequences from \eqref{eq105} to a similar one about $\mc F$ and $\mc F^\blt$. Case $q>1$: by induction and a suitable morphism of exact sequences from \eqref{eq106}.)   \hfill\qedsymbol
+\end{exe}
 
 
 
@@ -7945,7 +7970,7 @@ f\\[-0.6ex]
 }{\twoheadrightarrow}C_2)}~~\xlongrightarrow{\simeq}~~\Ker(C_2\xrightarrow{g}C_3)
 \end{align}
 
-Suppose that $\mc E$ has a left resolution \eqref{eq110} such that $L_\blt T$ vanishes on $\mc E_\blt$. Then we have a short exact sequence
+Suppose that $\mc E$ has a left resolution \eqref{eq110} such that $L_{>0} T$ vanishes on $\mc E_\blt$. Then we have a short exact sequence
 \begin{align*}
 0\rightarrow\Imag(\varphi_1)\xrightarrow{\iota_1}\mc E_0\rightarrow\mc E\rightarrow0
 \end{align*}
@@ -7992,7 +8017,7 @@ Given any morphism of complexes $f^\blt:B^\blt\rightarrow C^\blt$, namely, whene
 \end{equation*}
 we have a canonical morphism $\mc H^n(f^\blt):\mc H^n(B^\blt)\rightarrow\mc H^n(C^\blt)$ for each $n$.
 
-To finish constructing the $\delta$-functor, we note that any short exact sequence of complexes induces functorially a long exact sequence of their (co)homology. More precisely, suppose we have a short exact sequence of complexes in $\fk B$: $0\rightarrow A^\blt\rightarrow B^\blt\rightarrow C^\blt\rightarrow0$, namely, a commuting diagram  of morphisms in $\fk B$ where $n$ runs through all integers, see Fig. \ref{fig3}.
+To finish constructing the $\delta$-functor, we note that any short exact sequence of complexes induces naturally a long exact sequence of their (co)homology. More precisely, suppose we have a short exact sequence of complexes in $\fk B$: $0\rightarrow A^\blt\rightarrow B^\blt\rightarrow C^\blt\rightarrow0$, namely, a commuting diagram  of morphisms in $\fk B$ where $n$ runs through all integers, see Fig. \ref{fig3}.
 \begin{figure}[h]
 	\centering
 \begin{equation*}
@@ -8195,7 +8220,7 @@ The above lemma can be easily generalized: assume $\mc A$ is a $\mc B$-algebra, 
 
 
 
-\begin{pp}
+\begin{pp}\label{lb311}
 $\Mod(\mc A)$ has enough injectives.
 \end{pp}
 
@@ -8368,7 +8393,7 @@ which shows that $\Tor_1^{\mc A}(\mc E,\mc A/I)=0$ iff $\mc E\otimes_{\mc A}I\ri
 In this section,  $\mc A,\mc B$ denote commutative rings, and $X,Y,S$ denote complex spaces. Recall that by saying that $\mc A$ is a $\mc B$-algebra, we mean that a morphism of rings $\mc B\rightarrow\mc A$ is fixed so that any $\mc A$-module is also a $\mc B$-module. We write $(\mc A,\fk m)$ when we mean that $\mc A$ is a local ring with maximal ideal $\fk m$. Recall that by definition, a morphism of local rings $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ is a ring homomorphism sending $\fk n$ into $\fk m$.
 
 
-\begin{pp}
+\begin{pp}\label{lb343}
 Let $\mc E$ be an $\mc A$-module. Then the following statements are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item The functor $\mc E\otimes_{\mc A}-$ is exact on $\Mod(\mc A)$.
@@ -9293,6 +9318,326 @@ By Cor. \ref{lb159} and Thm. \ref{lb308}.
 
 
 
+\chapter{Cohomology and base change}
+
+
+
+\section{Sheaf cohomology and higher direct images}
+
+
+Let $X$ be a ringed space with structure sheaf $\scr O_X$. Let $\Mod(\scr O_X)$ and $\Coh(\scr O_X)$ (or simply $\Mod(X)$ and $\Coh(X)$) \index{Mod@$\Mod(\scr O_X)=\Mod(X)$, the category of $\scr O_X$-modules} \index{Coh@$\Coh(\scr O_X)=\Coh(X)$, the category of coherent $\scr O_X$-modules} be respectively the category of $\scr O_X$-modules and the category of coherent $\scr O_X$-modules. Note that if $\scr O_X$ equals $\Zbb$, the sheaf of locally constant $\Zbb$-valued functions, then $\Mod(\scr O_X)$ is the category of sheaves (of abelian groups) on the topological space $X$.
+
+
+\subsection{$\Mod(\scr O_X)$ has enough injectives}
+
+
+Our aim of this section is to construct various derived functors from $\Mod(\scr O_X)$. The first step is to show that $\Mod(\scr O_X)$ has enough injectives. (In general, $\Mod(\scr O_X)$ need not have enough projectives.) We first note the following elementary fact:
+
+\begin{rem}\label{lb312}
+If $(\scr E_\alpha)_\alpha$ is a family of $\scr O_X$-modules, we can define the \textbf{direct product} $\prod_\alpha\scr E_\alpha$ \index{00@Direct product sheaf $\prod_\alpha\scr E_\alpha$} in a natural way, i.e. whose spaces of sections on each open subset $U\subset X$ is $\prod_\alpha\scr E_\alpha(U)$. (It is in general not true that the stalk of the direct product equals the direct product of stalks.)
+
+If $\scr F\in\Mod(\scr O_X)$, then a morphism $\varphi:\scr F\rightarrow\prod_\alpha\scr E_\alpha$ is equivalently a collection of morphism $\scr F\rightarrow\scr E_\alpha$ for all $\alpha$. Namely, we have a natural equivalence
+\begin{align}
+\Hom_{\scr O_X}(\scr F,\prod_\alpha\scr E_\alpha)\simeq \prod_\alpha\Hom_{\scr O_X}(\scr F,\scr E_\alpha)  \label{eq135}
+\end{align}
+From \eqref{eq135}, it is clear that if each $\scr E_\alpha$ is injective, then $\prod_\alpha\scr E_\alpha$ is injective. \hfill\qedsymbol
+\end{rem}
+
+
+
+\begin{df}
+Let $\scr E\in\Mod(\scr O_X)$. We view each stalk $\scr E_x$ as an $\scr O_X$-module: if $U\subset X$ is open and $f\in\scr O_X(U)$, and if $s\in\scr E_x$, then $fs=0$ if $x\neq U$ and $fs=f_xs$ if $x\in U$. Then the $\scr O_X$-module
+\begin{align}
+\Gode(\scr E)=\prod_{x\in X}\scr E_x
+\end{align}
+is called the \textbf{Godement sheaf} \index{Gode@$\Gode(\scr E)$: Godement sheaf} \index{00@Godement sheaf $\Gode(\scr E)$} of $\scr E$. More explicitly, if $U\subset X$ is open, then
+\begin{align}
+\Gode(\scr E)(U)=\prod_{x\in U}\scr E_x
+\end{align}
+namely, a section $s\in\Gode(\scr E)(U)$ is equivalently a function on $U$ whose value at each $x\in X$ is an element of $\scr E$. 
+
+We have an obvious monomorphism $\scr E\hookrightarrow\Gode(\scr E)$ sending each $s\in\scr E(U)$ to the function on $U$ whose value at each $x\in U$ is the stalk $s_x$. \hfill\qedsymbol
+\end{df}
+
+
+
+
+
+\begin{pp}\label{lb313}
+$\Mod(\scr O_X)$ has enough injectives, namely, for each $\scr O_X$-module $\scr E$, there is an injective object $\scr E^0\in\Mod(\scr O_X)$ and a monomorphism $\scr E\hookrightarrow\scr E^0$.
+\end{pp}
+
+
+
+
+\begin{proof}
+For each $x\in X$, we choose a monomorphism $\scr E_x\hookrightarrow\scr I_x$ of $\scr O_{X,x}$-modules, which exists due to Prop. \ref{lb311}. Set
+\begin{align*}
+\scr E^0=\prod_{x\in X}\scr I_x
+\end{align*}
+and define the monomorphism $\scr E\hookrightarrow\scr E^0$ to be the composition
+\begin{align*}
+\scr E\hookrightarrow\prod_{x\in X}\scr E_x\hookrightarrow\prod_{x\in X}\scr I_x.
+\end{align*}
+
+
+To show that $\scr E^0$ is injective, by Rem. \ref{lb312}, it suffices to show that each $\scr I_x$ is an injective $\scr O_X$-module. But this is clear because  $\scr I_x$ is injective in $\Mod(\scr O_{X,x})$, and 
+\begin{align*}
+\Hom_{\scr O_X}(\scr F,\scr I_x)\simeq\Hom_{\scr O_{X,x}}(\scr F_x,\scr I_x)
+\end{align*}
+for each $\scr F\in\Mod(\scr O_X)$.
+\end{proof}
+
+
+\subsection{$H^q(X,\scr E)$ and $R^q\varphi_*(\scr E)$}
+
+
+Thanks to Prop. \ref{lb313}, we can make the following definition:
+
+\begin{df}
+Let $H^\blt(X,-)$ be the right derived functor (cf. Thm. \ref{lb253}) of the functor $H^0(X,-)$ from $\Mod(\scr O_X)$ to $\Mod(\scr O(X0)00)$, sending $\scr E$ to $H^0(X,\scr E)=\scr E(X)$. For each $q\in\Nbb$, $H^q(X,\scr E)$ \index{Hq@$H^q(X,\scr E)$, sheaf cohomology} is called the \textbf{$q$-th cohomology group}  of $X$ with coefficients in $\scr E$. 
+
+Note that if $\scr O_X$ is a sheaf of $\Fbb$-algebras where $\Fbb$ is a field, then $H^q(X,\scr E)$ is a vector space over $\Fbb$.   \hfill\qedsymbol
+\end{df}
+
+
+\begin{rem}\label{lb316}
+If $U\subset X$ is open and $V\subset U$ is open, then as $H^\blt(U,-)$ is a universal $\delta$-functor, the natural morphism $H^0(U,-)\rightarrow H^0(V,-)$ defined by restriction extends uniquely to a morphism of $\delta$-functors $H^\blt(U,-)\rightarrow H^\blt(V,-)$. (See Def. \ref{lb314}.) 
+
+Namely (Def. \ref{lb315}), we have a unique collection of morphisms $H^q(U,\scr E)\rightarrow H^q(V,\scr E)$ for all $q\in\Nbb$ and $\scr E\in\Mod(\scr O_X)$ satisfying the following: If $\scr E\rightarrow\scr F$ is a morphism in $\Mod(\scr O_X)$, the following diagram commutes
+\begin{equation}
+\begin{tikzcd}[sep=small]
+H^q(U,\scr E) \arrow[r] \arrow[d] & H^q(U,\scr F) \arrow[d] \\
+H^q(V,\scr E)\arrow[r]           & H^q(V,\scr F)         
+\end{tikzcd}
+\end{equation}
+If $0\rightarrow\scr E\rightarrow\scr F\rightarrow\scr G\rightarrow0$ is a short exact sequence in $\Mod(\scr O_X)$, the following diagram commutes
+\begin{equation}
+\begin{tikzcd}[sep=small]
+H^q(U,\scr G) \arrow[r,"\delta"] \arrow[d] & H^{q+1}(U,\scr E) \arrow[d] \\
+H^q(V,\scr G)\arrow[r,"\delta"]           & H^{q+1}(V,\scr E)         
+\end{tikzcd}
+\end{equation}
+\hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+
+
+
+
+\begin{df}
+Let $\varphi:X\rightarrow Y$ be a morphism of ringed spaces. Note that the direct image functor $\varphi_*:\Mod(\scr O_X)\rightarrow\Mod(\scr O_Y)$ sending $\scr E$ to $\varphi_*\scr E$ is left exact. Note that for each open $V\subset Y$, we have
+\begin{align*}
+\varphi_*\scr E(V)=\scr E(\varphi^{-1}(V))=H^0(\varphi^{-1}(V),\scr E)
+\end{align*}
+by our notations. For each $q\in\Nbb$, the sheafification of the presheaf of $\scr O_Y$-modules associated to each open $V\subset Y$ the $\scr O_Y(V)$-module
+\begin{align*}
+(R^q\varphi_*(\scr E))^\pre(V)=H^q(\varphi^{-1}(V),\scr E)
+\end{align*}
+is denoted by $R^q\varphi_*(\scr E)$ and called the \textbf{$q$-th higher direct image} \index{Rq@$R^q\varphi_*\scr E$, higher direct image} of $\varphi$. 
+
+Clearly $R^0\varphi_*(\scr E)=\varphi_*\scr E$, and the stalk of $R^q\varphi_*(\scr E)$ at each $y\in Y$ is
+\begin{align}
+R^q\varphi_*(\scr E)_y=\varinjlim_{V\ni y}H^q(\varphi^{-1}(V),\scr E)
+\end{align}
+where the direct limit is over all neighborhoods of $y$.  \hfill\qedsymbol
+\end{df}
+
+
+
+
+
+Since $H^\blt(\varphi^{-1}(V),-)$ is a $\delta$-functor, for each short exact sequence $0\rightarrow\scr E\rightarrow\scr F\rightarrow\scr G\rightarrow 0$ in $\Mod(\scr O_X)$ we have a long exact sequence
+\begin{align}
+&0\rightarrow H^0(\varphi^{-1}(V),\scr E)\rightarrow H^0(\varphi^{-1}(V),\scr F)\rightarrow H^0(\varphi^{-1}(V),\scr G) \nonumber\\
+&\xrightarrow{\delta} H^1(\varphi^{-1}(V),\scr E)\rightarrow H^1(\varphi^{-1}(V),\scr F)\rightarrow H^1(\varphi^{-1}(V),\scr G)\nonumber\\
+&\xrightarrow{\delta} H^2(\varphi^{-1}(V),\scr E)\rightarrow\cdots   \label{eq136}
+\end{align}
+By Rem. \ref{lb316}, if $W\subset V$ is open, we have a morphism of exact sequences from \eqref{eq136} to a similar one about $\varphi^{-1}(W)$. Therefore, since direct limit preserves exactness, we obtain an exact sequence in $\Mod(\scr O_Y)$
+\begin{align}
+0\rightarrow \varphi_*\scr E\rightarrow \varphi_*\scr F\rightarrow\varphi_*\scr G\xrightarrow{\delta} R^1\varphi_*\scr E\rightarrow R^1\varphi_*\scr F\rightarrow R^1\varphi_*\scr G\xrightarrow{\delta} R^2\varphi_*\scr E\rightarrow\cdots
+\end{align}
+since its stalk at each $y\in Y$ is the direct limit of \eqref{eq136} over all neighborhoods $V$ of $y$.
+
+
+\begin{pp}
+$(R^\blt\varphi_*,\delta)$ is the universal $\delta$-functor (cf. Def. \ref{lb314}) from $\Mod(\scr O_X)$ to $\Mod(\scr O_Y)$ extending $\varphi_*$. Therefore, it is the right derived functor of $\varphi_*$.
+\end{pp}
+
+
+\begin{proof}
+Since $H^\blt(\varphi^{-1}(V),-)$ is a $\delta$-functor, a morphism of short exact squences in $\Mod(\scr O_X)$
+\begin{equation}\label{eq140}
+\begin{tikzcd}[sep=small]
+0 \arrow[r] & \scr E \arrow[r] \arrow[d] & \scr F \arrow[r] \arrow[d] & \scr G \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \scr E' \arrow[r]          & \scr F' \arrow[r]          & \scr G' \arrow[r]          & 0
+\end{tikzcd}
+\end{equation}
+gives rise to a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+H^q(\varphi^{-1}(V),\scr G) \arrow[r,"\delta"] \arrow[d] & H^{q+1}(\varphi^{-1}(V),\scr E) \arrow[d] \\
+H^q(\varphi^{-1}(V),\scr G')\arrow[r,"\delta"]           & H^{q+1}(\varphi^{-1}(V),\scr E')         
+\end{tikzcd}
+\end{equation*}
+for each $q\in\Nbb$ and open $V\subset Y$. By passing to direct limits, we obtain a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+R^q\varphi_*(\scr G) \arrow[r,"\delta"] \arrow[d] & R^{q+1}\varphi_*(\scr E) \arrow[d] \\
+R^q\varphi_*(\scr G')\arrow[r,"\delta"]           & R^{q+1}\varphi_*(\scr E')
+\end{tikzcd}
+\end{equation*}
+This verifies that $(R^\blt\varphi_*,\delta)$ is a $\delta$-functor. 
+
+To show that it is universal, by Thm. \ref{lb252} and that $\Mod(\scr O_X)$ has enough injectives, it suffices to show that $R^q\varphi_*(\scr I)$ is zero whenever $q>0$ and $\scr I$ is an injective object in $\Mod(\scr O_X)$. But this is obvious since the cohomology groups of positive degrees vanish on injective objects (as right derived functors do, cf. Thm. \ref{lb253}), which shows that $H^q(\varphi^{-1}(V),\scr I)=0$ for every open $V\subset Y$.
+\end{proof}
+
+
+
+
+\section{\v Cech cohomology}\label{lb323}
+
+Fix a ringed topological space $(X,\scr O_X)$. In this section, we introduce \v Cech cohomology as an easier way to compute sheaf cohomology. We follow mainly the approach of \cite{Dem}. \v Cech cohomology is equivalent to sheaf cohomology in most cases. \v Cech cohomology is easier to compute, while sheaf cohomology is more functorial and can easily explain why other cohomology theories (e.g. de Rham cohomology, Dolbeault cohomology) agree with \v Cech cohomolgy in explicit situations.   
+
+Most part of this section is self-contained in the sense that it does not assume the knowledge of sheaf cohomology or derived functors. Indeed, it is recommended that the readers read this section before they read the more abstract approach of sheaf cohomology. 
+
+
+
+\subsection{\v Cech cohomology $\wch H^q(\fk U,\scr E)$}
+
+
+Fix an open cover $\fk U=(U_\alpha)_{\alpha\in I}$ of $X$. For each $\alpha_0,\alpha_1,\dots,\alpha_q\in I$, set
+\begin{align*}
+U_{\alpha_0\alpha_1\cdots\alpha_q}=U_{\alpha_0}\cap U_{\alpha_1}\cap\cdots\cap U_{\alpha_q}
+\end{align*}
+
+
+\begin{df}
+For each $q\in\Nbb$, the \textbf{(alternate) \v Cech  $q$-cochain} \index{00@\v Cech cochains} is the $\scr O(X)$-module
+\begin{align*}
+C^q(\fk U,\scr E)=\Big\{&(c_{\alpha_0\alpha_1\cdots\alpha_q})\in\prod_{(\alpha_0,\dots,\alpha_q)\in I^{q+1}}\scr E(U_{\alpha_0\alpha_1\cdots\alpha_q}):\\
+&c_{\alpha_0\cdots\alpha_q}=\sgn(\sigma)\cdot c_{\alpha_{\sigma(0)}\cdots\alpha_{\sigma(q)}}\text{ for all }\sigma\in\Aut\{0,1,\dots,q\} \Big\}
+\end{align*}
+where $\sgn(\sigma)$ denotes the sign of the permutation $\sigma$.\footnote{One can also define \v Cech cohomology without assuming the alternate condition. The resulting theory is equivalent to the alternate one. See \cite{Dem} Sec. IV.5.D.} The $q$-th \textbf{coboundary operator} $\delta=\delta^q:C^q(\fk U,\scr E)\rightarrow C^{q+1}(\fk U,\scr E)$ is an $\scr O(X)$-module morphism defined by
+\begin{align}
+(\delta^qc)_{\alpha_0\cdots\alpha_q}=\sum_{0\leq j\leq q+1}(-1)^j c_{\alpha_0\cdots\wht{\alpha_j}\cdots\alpha_{q+1}}\big|_{U_{\alpha_0\cdots\alpha_q}} \label{eq143}
+\end{align}
+We set $C^q(\fk A,\scr E)=0$ if $q<0$.
+
+It is not hard to check that $d^{q+1}d^q=0$. So $(C^\blt(\fk U,\scr E),\delta)$ is a complex. Its cohomology
+\begin{align*}
+H^\star(\fk U,\scr E):=\mc H^\star(C^\blt(\fk U,\scr E))
+\end{align*}
+is called the \textbf{\v Cech cohomology groups} of $\fk U$ with coefficients in $\scr E$.  \index{Hq@$\wch H^q(\fk U,\scr E),\wch H^q(X,\scr E)$, \v Cech cohomology}  \hfill\qedsymbol
+\end{df}
+
+
+
+\begin{rem}
+The boundary operators can be defined in a similar way as the differential operators of differential forms. Choose any $s\in\scr E(U_{\alpha_0\cdots\alpha_q})$. We define \index{sda@$sd\alpha_0d\alpha_1\cdots d\alpha_q\in C^q(\fk U,\scr E)$} 
+\begin{align*}
+s\cdot d\alpha_0d\alpha_1\cdots d\alpha_q\in C^q(\fk U,\scr E)
+\end{align*}
+to be
+\begin{gather}
+\begin{gathered}
+s\cdot d\alpha_0\cdots d\alpha_q|_{\alpha_{\sigma(0)}\cdots\alpha_{\sigma(q)}}=\sgn(\sigma)\cdot s\qquad\in \scr E(U_{\sigma(0)}\cdots\alpha_{\sigma(q)})\\
+s\cdot d\alpha_0\cdots d\alpha_q|_{\beta_0\cdots\beta_q}=0\qquad(\beta_0,\dots,\beta_q\text{ is not a permutation of }\alpha_0,\dots,\alpha_q)
+\end{gathered}
+\end{gather}
+It is helpful to view $\psi_{\alpha_j}s\cdot d\alpha_0\cdots \wht{d\alpha_j}\cdots d\alpha_q$ as the multiplication of $s\in\scr E(U_{\alpha_0\cdots\alpha_q})$ and $d\alpha_0\cdots d\alpha_q\in C^q(\fk U,\scr O_X)$.
+
+Clearly, for each permutation $\sigma\in\Aut\{0,1,\dots,q\}$,
+\begin{align*}
+s\cdot d\alpha_0\cdots d\alpha_q=\sgn(\sigma)s\cdot d\alpha_{\sigma(0)}\cdots d\alpha_{\sigma(q)}.
+\end{align*}
+And $\delta^q:C^q(\fk U,\scr E)\rightarrow C^{q+1}(\fk U,\scr E)$ can be defined to be the $\scr O(X)$-module morphism determined by
+\begin{align}
+\delta(s\cdot d\alpha_0\cdots d\alpha_q)=\sum_{\beta\in I}s\cdot d\beta d\alpha_0\cdots d\alpha_q.  \label{eq141}
+\end{align}
+It is well defined, namely, it is compatible with the expression of $\delta(s\cdot d\alpha_{\sigma(0)}\cdots d\alpha_{\sigma(q)})$ for any permutation $\sigma$ of $\{0,1,\dots,q\}$. \hfill\qedsymbol
+\end{rem}
+
+\subsection{Partition of unity and vanishing of $\wch H^{>0}(\fk U,\scr E)$}
+
+
+Fix an open cover $\fk U=(U_\alpha)_{\alpha\in I}$ of $X$. An important feature of \v Cech cohomology is that $\wch H^{>0}(\fk U,-)$ vanishes when one can construct partition of unity. More precisely:
+
+\begin{df}
+A \textbf{partition of unity in $\scr O_X$ subordinated to $\fk U$} \index{00@Partition of unity in $\scr O_X$ subordinated to $\fk U$} is a collection $(\psi_\alpha)_{\alpha\in I}$ where each $\psi_\alpha\in\scr O(X)$, satisfying the following conditions:
+\begin{itemize}
+\item $\Supp(\psi_\alpha)\subset U_\alpha$ for each $\alpha\in I$.
+\item The family of subset $(\Supp(\psi_\alpha))_{\alpha\in I}$ is \textbf{locally finite}, \index{00@Locally finite family of subsets} namely, each $x\in X$ is contained in a neighborhood which intersects only finitely many members of $(\Supp(\psi_\alpha))_{\alpha\in I}$.
+\item $\sum_{\alpha\in I}\psi_\alpha(x)=1$ for each $x\in X$.
+\end{itemize}
+\end{df}
+
+
+
+\begin{pp}\label{lb317}
+Suppose that $\scr E\in\Mod(\scr O_X)$ is also an $\scr R_X$-module where $\scr R_X$ is a sheaf of rings on $X$ (possibly different from $\scr O_X$). Suppose that there is a partition of unity in $\scr R_X$ subordinate to $\fk U$. Then $\wch H^{>0}(\fk U,\scr E)=0$.
+\end{pp}
+
+\begin{proof}
+Let $(\psi_\alpha)_{\alpha\in I}$ be a partition in $\scr R_X$ subordinate to $\fk U$. For each $q\in\Zbb_+$, define an $\scr R_X(X)$-module morphism
+\begin{gather}
+w^q:C^q(\fk U,\scr E)\rightarrow C^{q-1}(\fk U,\scr E)  \nonumber\\
+w^q(s\cdot d\alpha_0\cdots d\alpha_q)=\sum_{j=0}^q (-1)^j\psi_{\alpha_j}s\cdot d\alpha_0\cdots \wht{d\alpha_j}\cdots d\alpha_q \label{eq137}
+\end{gather} 
+where each $\psi_{\alpha_j}s$, a priori an element of $\scr E(U_{\alpha_0\cdots\alpha_q})$, is extended by zero to an element of $\scr E(U_{\alpha_0\cdots\wht{\alpha_j}\cdots\alpha_q})$. (Also, \eqref{eq137} is well-defined, i.e. is invariant under a permutation of $\{0,1,\dots,q\}$.)
+
+For each $q>0$, it is a routine check that
+\begin{align*}
+\delta^{q-1}w^q+w^{q+1}\delta^q=\id.
+\end{align*}
+Therefore, the identity map on $C^q(\fk U,\scr E)$ is homotopic to $0$. Thus $\mc H^q(C^\blt(\fk U,\scr E))$ vanishes when $q>0$.
+\end{proof}
+
+
+The analog of Prop. \ref{lb317} for sheaf cohomology (namely, the degree$>0$ sheaf cohomology groups of fine sheaves are zero) is also true. See \cite[Prop. 4.36]{Voi}.
+
+
+
+
+
+Using a similar idea, we prove:
+
+\begin{lm}\label{lb320}
+For each $x\in X$, choose an $\scr O_{X,x}$-module $\mc F_x$, and view it as an $\scr O_X$-module. Let
+\begin{align*}
+\scr F=\prod_{x\in X}\mc F_x
+\end{align*}
+Then $\wch H^{>0}(\fk U,\scr F)$.
+
+In particular, for each $\scr E\in\Mod(\scr O_X)$, if we let $\scr E^0\in\Mod(\scr O_X)$ be the Godement sheaf $\Gode(\scr E)$, then $\wch H^{>0}(\fk U,\scr E^0)=0$.
+\end{lm}
+
+\begin{proof}
+$\scr F$ is clearly an $\scr R_X$-module, where
+\begin{align*}
+\scr R_X:=\Gode(\scr O_X)=\prod_{x\in X}\scr O_{X,x}.
+\end{align*}
+An easy application of Zorn's lemma shows that we have a disjoint union $X=\coprod_{\alpha\in I}E_\alpha$ (over the same index set $I$ as that of $\fk U$) such that $E_\alpha\subset U_\alpha$ for each $\alpha\in I$.
+
+For each $\alpha\in I$, define $\psi_\alpha\in\scr R_X(X)$ to be the characteristic function of $U_\alpha$, namely, $\psi_\alpha=(\psi_\alpha(x))_{x\in X}$ where $\psi_\alpha(x)=1$ if $x\in U_\alpha$ and $\psi_\alpha(x)=0$ if $x\in X\setminus U_\alpha$. Though the support of $\psi_\alpha$ (which is $U_\alpha^\cl$) is not contained in $U_\alpha$, we still have that for each open $V\subset X$ and $s\in\scr E(V\cap U_\alpha)$, $\psi_\alpha s$ extends by zero to an element of $V$. Thus, for each $q>0$ we can define an $\scr R_X(X)$-module morphism $w^q:C^q(\fk U,\scr F)\rightarrow C^{q-1}(\fk U,\scr F)$ by \eqref{eq137} and show again that $\delta^{q-1}w^q+w^{q+1}\delta^q=\id$.
+\end{proof}
+
+
+\begin{df}
+We say that $\scr E\in\Mod(\scr O_X)$ is a \textbf{fine sheaf} \index{00@Fine sheaves} if $\scr E$ is over a sheaf $\scr R_X$ of rings on $X$, where $\scr R_X$ satisfies that for every open cover $\fk U$ of $X$ there is a partition of unity in $\scr R_X$ subordinate to $\fk U$.
+\end{df}
+
+
+For instance, if $X$ is a smooth manifold and $\scr E$ is over the sheaf $\scr C^\infty_{X,\Rbb}$ of real valued smooth functions, then $\scr E$ is fine.
+
+
+
+
+By Prop. \ref{lb317}, if $\scr E$ is a fine sheaf, then for every open cover $\fk U$ of $X$, $\wch H^{>0}(\fk U,\scr E)=0$.
 
 
 
@@ -9307,8 +9652,1603 @@ By Cor. \ref{lb159} and Thm. \ref{lb308}.
 
 
 
+\subsection{Long exact sequences for \v Cech cohomology}\label{lb324}
+
+
+
+A short exact sequence $0\rightarrow \scr E\rightarrow\scr F\rightarrow\scr G\rightarrow 0$ in $\Mod(\scr O_X)$ gives an exact sequence of complexes
+\begin{align*}
+0\rightarrow C^\blt(\fk U,\scr E)\rightarrow C^\blt(\fk U,\scr F)\rightarrow  C^\blt_{\scr F}(\fk U,\scr G)\rightarrow 0
+\end{align*}
+where \index{CF@$C^q_{\scr f}(\fk U,\scr G)$}
+\begin{gather}
+C^q_{\scr F}(\fk U,\scr G)=\Imag \big(C^q(\fk U,\scr F)\rightarrow C^q(\fk U,\scr G) \big)  \label{eq142}
+\end{gather}
+This gives a long exact sequence of their cohomologies
+\begin{align}
+\cdots\rightarrow \wch H^{q-1}_{\scr F}(\fk U,\scr G)\xrightarrow{\delta} \wch H^q(\fk U,\scr E)\rightarrow \wch H^q(\fk U,\scr F)\rightarrow \wch H^q_{\scr F}(\fk U,\scr G)\xrightarrow{\delta} \wch H^{q+1}(\fk U,\scr E)\rightarrow\cdots  \label{eq139}
+\end{align}
+where we set
+\begin{align*}
+\wch H^q_{\scr F}(\fk U,\scr G)=\mc H^q(C^\blt_{\scr F}(\fk U,\scr G))
+\end{align*}
+and recall that $\wch H^q(\fk U,-)=\mc H^q(C^\blt(\fk U,-))$. Clearly, a morphism a short exact sequence \eqref{eq140} gives a morphism of long exact sequences from \eqref{eq139} to a similar one for $\scr E',\scr F',\scr G'$.
+
+
+
+
+
+
+\begin{rem}\label{lb319}
+According to the definition \eqref{eq142}, an element of $C_{\scr F}^q(\fk U,\scr G)$ is precisely an element $g=(g_{\alpha_0\cdots\alpha_q})$ of $C^q(\fk U,\scr G)$ such that each $g_{\alpha_0\cdots\alpha_q}\in \scr G(U_{\alpha_0\cdots\alpha_q})$ can be lifted to an element $f_{\alpha_0\cdots\alpha_q}\in \scr F(U_{\alpha_0\cdots\alpha_q})$, and that the lifting can be chosen in such a way that the skew-symmetry condition
+\begin{align}
+f_{\alpha_0\cdots\alpha_q}=\sgn(\sigma)f_{\alpha_{\sigma(0)}\cdots\alpha_{\sigma(q)}}
+\end{align}
+is satisfied for each $(\alpha_0,\dots,\alpha_q)\in I^{q+1}$ and each permutation $\sigma$ of $\{0,1,\dots,q\}$.
+
+The skew-symmetry condition is redundant. For if a lift $f_{\alpha_0\cdots\alpha_q}$ is chosen for each ordered tuple $(\alpha_0,\dots,\alpha_q)\in I^{q+1}$, then the alternating sum
+\begin{align*}
+\wtd f_{\alpha_0\cdots\alpha_q}=\frac 1{(q+1)!}\sum_{\sigma\in \Aut\{0,\dots,q\}}\sgn(\sigma)f_{\alpha_{\sigma(0)}\cdots\alpha_{\sigma(q)}}
+\end{align*}
+is also a lift of $g_{\alpha_0\cdots\alpha_q}$, and the skew-symmetry condition is satisfied: $\wtd f_{\alpha_0\cdots\alpha_q}=\sgn(\sigma)\wtd f_{\alpha_{\sigma(0)}\cdots\alpha_{\sigma(q)}}$.   \hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+
+\begin{rem}
+The connecting morphism $\delta^q:\wch H^q_{\scr F}(\fk U,\scr G)\rightarrow \wch H^{q+1}(\fk U,\scr E)$ is described as follows. 
+\begin{enumerate}
+\item Choose any element $[g]$ of $\wch H^q_{\scr F}(\fk U,\scr G)$, represented by some $g=(g_{\alpha_0\cdots\alpha_q})\in C_{\scr F}^q(\fk U,\scr G)$ which is a cocycle, i.e. satisfies $\delta g=0$. (Here $\delta$ is defined by \eqref{eq141}.) According to the definition \eqref{eq142} of $C_{\scr F}^q(\fk U,\scr G)$, we can lift $g$ to an element $f=(f_{\alpha_0\cdots\alpha_q})$ of $C^q(\fk U,\scr F)$. 
+\item That $\delta g=0$ implies that $\delta^qf\in C^{q+1}(\fk U,\scr F)$ is sent to zero by $C^{q+1}(\fk U,\scr F)\rightarrow C^{q+1}(\fk U,\scr G)$. So $\delta^qf\in C^{q+1}(\fk U,\scr F)$ belongs to the image of $C^{q+1}(\fk U,\scr E)\rightarrow C^{q+1}(\fk U,\scr F)$. 
+\item Choose an arbitrary $e\in C^{q+1}(\fk U,\scr E)$ which is sent to $\delta f$. Then $\delta\circ\delta f=0$ implies $\delta e=0$. Then $[e]\in\wch H^{q+1}(\fk U,\scr E)$ is $\delta[g]$.
+\end{enumerate}
+\hfill\qedsymbol
+\end{rem}
+
+Unfortunately, $\wch H^\blt(\fk U,\scr G)$ and $\wch H^\blt_{\scr F}(\fk U,\scr G)$ are not equal in general. So \eqref{eq139} does not give a $\delta$-functor. There are two ways to overcome this difficulty: 
+\begin{enumerate}[label=(\alph*)]
+\item Take direct limit of $\wch H(\fk U,-)$ and $\wch H_{\scr F}(\fk U,-)$ over all open covers $\fk U$. Then these two spaces agree when $X$ is paracompact.
+\item For many important examples of sheaves, one can choose a nice cover $\fk U$ such that $\wch H(\fk U,-)$ and $\wch H_{\scr F}(\fk U,-)$ are equal. Then there is a chance that $\wch H(\fk U,-)$ equals the sheaf cohomology.
+\end{enumerate}
+
+
+
+
+
+We first explain approach (a) in the next section.
+
+
+
+
+
+\section{\v Cech cohomology on paracompact spaces}
+
+
+Let $X$ be a ringed space.
+
+
+\subsection{\v Cech cohomology $\wch H^q(X,\scr E)$}
+
+
+
+Suppose that $\fk V=(V_\beta)_{\beta\in J}$ is another open cover of $X$ which is a \textbf{refinement} of $\fk U=(U_\alpha)_{\alpha\in I}$. \index{00@Refinements of open covers} This means that there is a map $\rho:J\rightarrow I$ satisfying $V_\beta\subset U_{\rho(\beta)}$ for all $\beta\in J$. Then we obtain an $\scr O(X)$-module morphism
+\begin{gather}
+\rho^q:C^q(\fk U,\scr E)\rightarrow C^q(\fk V,\scr E) \nonumber\\
+(\rho^q c)_{\beta_0\cdots\beta_q}=c_{\rho(\beta_0)\cdots\rho(\beta_q)}|_{V_{\beta_0\cdots\beta_q}}  \label{eq147}
+\end{gather}
+%Equivalently,
+%\begin{align*}
+%\rho^q(s\cdot d\alpha_0\cdots d\alpha_q)=\sum_{\beta_0,\dots,\beta_q\in J} \delta_{\rho(\beta_0),\alpha_0}\cdots \delta_{\rho(\beta_q),\alpha_q}\cdot s\cdot d\beta_0\cdots d\beta_q
+%\end{align*}
+%This is reminiscent of the formula
+%\begin{align*}
+%f^*(dx^1\wedge dx^k)=\sum_{i_1,\dots,i_k}\partial_{i_1}f^1\cdots\partial_{i_k}f^k dx^{i_1}\wedge\cdots \wedge dx^{i_k}
+%\end{align*}
+%if $f$ is a smooth map from a neighborhood of $\Rbb^m$ to $\Rbb^n$.
+
+\begin{pp}\label{lb318}
+Assume that $\wtd\rho:J\rightarrow I$ satisfies $V_\beta\subset U_{\wtd \rho_i(\beta)}$ for all $\beta\in J$. Then $\rho^\blt$ and $\wtd\rho^\blt$ induce the same $\scr O(X)$-module morphism (called restriction map)
+\begin{align}
+\mc H^q(\rho^\blt)=\mc H^q(\wtd\rho^\blt):\wch H^q(\fk U,\scr E)\rightarrow\wch H^q(\fk V,\scr E). \label{eq144}
+\end{align}
+\end{pp}
+
+
+
+\begin{proof}
+\eqref{eq144} is obvious when $q=0$. Let $q>0$. For each $c\in C^q(\fk U,\scr E)$, define $w^qc\in \prod_{(\beta_0,\dots,\beta_{q-1})}\scr E(V_{\beta_0\cdots\beta_{q-1}})$ by
+\begin{align*}
+(w^qc)_{\beta_0\cdots\beta_{q-1}}=\sum_{0\leq j\leq q-1}(-1)^j c_{\rho(\beta_0)\cdots\rho(\beta_j)\wtd\rho(\beta_j)\cdots\wtd\rho(\beta_{q-1})}|_{V_{\beta_0\cdots\beta_{q-1}}}
+\end{align*}
+Using the definition of $\delta$ in \eqref{eq143}, one checks that $\delta^{q-1}w^q+w^{q+1}\delta^q$ equals $\wtd\rho^q-\rho^q$ on $C^q(\fk U,\scr E)$. (See \cite{Kod} Sec. 3.3 Lemma 3.2 for the details of computation.)
+
+Thus, if $\delta^qc=0$, then $\wtd\rho^qc-\rho^qc$ equals $\delta^{q-1}w^qc$. Let $b$ be the alternating sum of $w^qc$, namely
+\begin{align*}
+b_{\beta_0\cdots\beta_q}=\frac 1{q!}\sum_{\sigma\in\Aut\{0,\dots,q-1\}}\sgn(\sigma)b_{\beta_{\sigma(0)}\cdots\beta_{\sigma(q-1)}}.
+\end{align*}
+Then $b\in C^{q-1}(\fk V,\scr E)$, and $\wtd\rho^qc-\rho^qc=\delta^{q-1}b$. This finishes the proof.
+\end{proof}
+
+
+
+Thanks to Prop. \ref{lb318}, we can make the following
+
+
+
+\begin{df}
+For each $\scr E\in\Mod(\scr O_X)$ and $q\in\Nbb$,
+\begin{align*}
+\wch H^q(X,\scr E)=\varinjlim_{\fk U\text{ is an open cover of }X}\wch H^q(\fk U,\scr E)
+\end{align*}
+is called the \textbf{$q$-th \v Cech cohomology group of $X$ with coefficients in $\scr E$}. \index{Hq@$\wch H^q(\fk U,\scr E),\wch H^q(X,\scr E)$, \v Cech cohomology} Clearly
+\begin{align*}
+\wch H^0(X,\scr E)=\wch H^0(\fk U,\scr E)=\scr E(X).
+\end{align*}
+Any morphism of $\scr O_X$-modules $\scr E\rightarrow\scr F$ gives a canonical morphism $\wch H^q(X,\scr E)\rightarrow \wch H^q(X,\scr F)$.
+\end{df}
+
+
+
+
+Let $0\rightarrow\scr E\rightarrow\scr F\rightarrow\scr G\rightarrow0$ be a short exact sequence in $\Mod(\scr O_X)$. The proof of Prop. \ref{lb318} (together with Rem. \ref{lb319}) implies that
+\begin{align}
+\mc H^q_{\scr F}(\rho^\blt)=\mc H^q_{\scr F}(\wtd\rho^\blt):\wch H^q_{\scr F}(\fk U,\scr G)\rightarrow\wch H^q_{\scr F}(\fk V,\scr G).
+\end{align}
+Thus, we can also define
+\begin{align*}
+\wch H^q_{\scr F}(X,\scr G)=\varinjlim_{\fk U\text{ is an open cover of }X}\wch H^q_{\scr F}(\fk U,\scr G)
+\end{align*}
+Then the direct limit of \eqref{eq139} over all $\fk U$ gives an exact sequence (note that direct limit is an exact functor)
+\begin{align}
+\cdots\rightarrow \wch H^{q-1}_{\scr F}(X,\scr G)\xrightarrow{\delta} \wch H^q(X,\scr E)\rightarrow \wch H^q(X,\scr F)\rightarrow \wch H^q_{\scr F}(X,\scr G)\xrightarrow{\delta} \wch H^{q+1}(X,\scr E)\rightarrow\cdots  \label{eq145}
+\end{align}
+which is functorial in the sense that a morphism a short exact sequence \eqref{eq140} gives a morphism of long exact sequences from \eqref{eq145} to a similar one for $\scr E',\scr F',\scr G'$.
+
+
+The monomorphism of complexes $C^\blt_{\scr F}(\fk U,\scr G)\rightarrow C^\blt(\fk U,\scr G)$ gives a natural morphism of their cohomology groups
+\begin{align*}
+\wch H^q_{\scr F}(\fk U,\scr G)\rightarrow\wch H^q(\fk U,\scr G)
+\end{align*}
+which is compatible with restricting to a finer open cover $\fk V$. Thus, passing to the direct limit over all open cover $\fk U$, we obtain a natural morphism
+\begin{align}
+\wch H^q_{\scr F}(X,\scr G)\rightarrow\wch H^q(X,\scr G)  \label{eq146}
+\end{align}
+
+
+\begin{thm}\label{lb321}
+Assume that $X$ is paracompact. Then \eqref{eq146} is an isomorphism. Therefore, by \eqref{eq145}, $(\wch H^\blt(X,-),\delta)$ is a $\delta$-functor, which is indeed universal, and hence is isomorphic to the sheaf cohomology $(H^\blt(X,-),\delta)$
+\end{thm}
+
+
+
+
+Recall that a paracompact space \index{00@Paracompact spaces} is a Hausdorff space satisfying that any open cover has a refinement which is locally finite. For instance, every second-countable locally compact Hausdorff space is paracompact. Therefore, every second-countable complex space is paracompact.
+
+
+\begin{proof}
+Step 1. Once we have proved that \eqref{eq146} is an isomorphism, then by Thm. \ref{lb252}, the $\delta$-functor $(\wch H^\blt(X,-),\delta)$ is universal because that each $\scr E\in\Mod(\scr O_X)$ has a monomorphism into its Godement sheaf $\scr E^0=\Gode(\scr E)$, and that $\wch H^{>0}(X,\scr E^0)=0$ by Lemma \ref{lb320}.
+
+
+
+
+
+To show that \eqref{eq146} is an isomorphism, it suffices to show that for each open cover $\fk U$ of $X$ and each $c=(c_{\alpha_0\cdots\alpha_q})\in C^q(\fk U,\scr G)$, there is a refinement $\fk V=(V_\beta)_{\beta\in J}$ together with a map $\rho:J\rightarrow I$ satisfying $V_\beta\subset U_{\rho(\beta)}$ for all $\beta\in J$, such that  $\rho^qc\in C^q(\fk V,\scr G)$ (as defined in \eqref{eq147}) belongs to $C^q_{\scr F}(\fk V,\scr G)$. By Rem. \ref{lb319}, the last sentence is equivalent to that $\rho^qc$ is liftable in $\scr F$, namely, for each $\beta_0,\dots,\beta_q\in J$, 
+\begin{align*}
+(\rho^qc)_{\beta_0\cdots\beta_q}=c_{\rho(\beta_0)\cdots\rho(\beta_q)}|_{V_{\beta_0\cdots\beta_q}}
+\end{align*}
+lifts to an element of $\scr F(V_{\beta_0\cdots\beta_q})$.\\
+
+
+Step 2. Since $X$ is paracompact, by replacing $\fk U$ with a refinement, we may assume that $\fk U=(U_\alpha)_{\alpha\in I}$ itself is locally finite. For each $x\in X$, we choose a neighborhood $V_x$ such that
+\begin{enumerate}[label=(\alph*)]
+\item If $x\in X$ and $\alpha\in I$ is such that $x\in U_\alpha$, then $V_x\subset U_\alpha$.
+\item If $x\in U_{\alpha_0\cdots\alpha_q}$, (note that $V_x\subset U_{\alpha_0\cdots\alpha_q}$) then $c_{\alpha_0\cdots\alpha_q}|_{V_x}$ (which belongs to $\scr G(V_x)$) lifts to an element of $\scr F(V_x)$.
+\end{enumerate}
+
+
+Let $\fk V=(V_x)_{x\in X}$. For each $x\in X$, choose $\rho(x)\in I$ such that $V_x\subset U_{\rho(x)}$. By the end of Step 1, it suffices to show that for each $x_0,\dots,x_q\in X$, $c_{\rho(x_0)\cdots\rho(x_q)}|_{V_{x_0\cdots x_q}}$ lifts to an element of $\scr F(V_{x_0\cdots x_q})$, and hence is enough to show that $c_{\rho(x_0)\cdots\rho(x_q)}|_{V_{x_0}}$ lifts to an element of $\scr F(V_{x_0})$. By (b), it suffices to prove that
+\begin{align*}
+x_0\in U_{\rho(x_0)\cdots\rho(x_q)}\qquad (\forall x_0,\dots,x_q\in X\text{ such that }V_{x_0\cdots x_q}\neq\emptyset)
+\end{align*}
+Therefore, it suffices to prove that for each $x,y\in X$,
+\begin{align}
+V_x\cap V_y\neq\emptyset\qquad\Longrightarrow \qquad x\in U_{\rho(y)} \label{eq148}
+\end{align}
+
+To show \eqref{eq148}, we need to shrink each $V_x$ further. Since $X$ is paracompact, we may choose an open subcover $\fk W=(W_\alpha)_{\alpha\in I}$ of $\fk U$ with the same index set $I$ such that $W_\alpha^\cl$ belongs to $U_\alpha$ for each $\alpha\in I$. Clearly $\fk W$ is also locally finite. Therefore, we may shrink each $V_y$ further so that
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{2}
+\item For each $y\in X$ there exists $\alpha\in I$ such that $V_y\in W_\alpha$.
+\end{enumerate}
+Thus for each $x,y\in X$, choose $\alpha\in I$ such that $V_y\in W_\alpha$. If $V_x\cap V_y\neq\emptyset$, then $V_x\cap W_\alpha\neq\emptyset$. Then \eqref{eq148} follows if we can show $x\in V_\alpha$. To summarize, it remains to prove that for each $x\in X,\alpha\in I$,
+\begin{align}
+V_x\cap W_\alpha\neq\emptyset\qquad\Longrightarrow \qquad x\in U_\alpha \label{eq149}
+\end{align}
+This is certainly true if for each $x\in X$ we shrink $V_x$ further: We first shrink $V_x$ so that $V_x$ intersects finitely many members of $\fk U$, say $U_{\alpha_1},\dots,U_{\alpha_k}$. If $1\leq j\leq k$ is such that $x\neq U_{\alpha_j}$, since $W_{\alpha_j}^\cl\subset U_{\alpha_j}$, we may shrink $V_x$ so that $V_x\cap W_{\alpha_j}=\emptyset$. Then \eqref{eq149} is clearly fulfilled.
+\end{proof}
+
+
+
+\begin{df}
+Let $\scr E\in\Mod(\scr O_X)$. A resolution $0\rightarrow\scr E\rightarrow\scr E^\blt$ is called a \textbf{fine resolution} \index{00@Fine resolutions}  of $\scr E$ if each $\scr E^q$ is a fine sheaf.
+\end{df}
+
+
+\begin{eg}\label{lb325}
+Let $X$ be a paracompact (e.g. second countable)  topological manifold. For every open cover $\fk U$ of $X$ there is a continuous partition of unity of $X$ subordinated to $\fk U$. Therefore, every $X$-sheaf over the sheaf of germs of continuous functions on $X$ is a fine sheaf.
+\end{eg}
+
+
+\begin{co}\label{lb322}
+Assume that $X$ is paracompact. Let $\scr E\in\Mod(\scr O_X)$, and let $0\rightarrow\scr E\rightarrow\scr E^\blt$ be a fine resolution of $\scr E$. Set $\scr E^q=0$ if $q<0$. Then there are $\scr O(X)$-module isomorphisms
+\begin{align*}
+\wch H^q(X,\scr E)\simeq H^q(X,\scr E)\simeq \mc H^q(\scr E^\blt(X))
+\end{align*}
+\end{co}
+
+
+\begin{proof}
+The first equivalence is due to Thm. \ref{lb321}. Since $H^{>0}(X,\scr E^\blt)=0$ by Prop. \ref{lb317}, the second equivalence holds (cf. Subsec. \ref{lb310} and especially \eqref{eq150}).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\begin{eg}
+Let $X$ be a paracompact smooth manifold. Let $\Fbb$ be $\Rbb$ or $\Cbb$. Then we have a resolution of constant $\Fbb$ called \textbf{de Rham resolution}:  \index{00@De Rham resolution}
+\begin{align}
+0\rightarrow\Fbb\xrightarrow{d} \bigwedge\nolimits^0_\Fbb X\xrightarrow{d} \bigwedge\nolimits^1_\Fbb X \xrightarrow{d} \bigwedge\nolimits^2_\Fbb X\xrightarrow{d}\cdots  \label{eq151}
+\end{align}
+where $\bigwedge^q_\Fbb X$ is the sheaf of germs of $\Fbb$-valued differential $q$-forms, and $d$ is the differential operator. Let $\bigwedge^q_\Fbb X=0$ if $q<0$. The exactness of \eqref{eq151} is due to Poincar\'e's lemma. Then by Exp. \ref{lb325}, $\bigwedge^q_\Fbb X$ is a fine sheaf since it is over the sheaf of $\Fbb$-valued smooth functions $\scr C^\infty_{X,\Fbb}$. Define the \textbf{de Rham cohomology group} \index{00@De Rham cohomology $H^q_{\mathrm{dR}}(X,\Fbb)$}
+\begin{align}
+H^q_{\mathrm{dR}}(X,\Fbb):=\mc H^q\Big(\bigwedge\nolimits^\blt_\Fbb X\Big).
+\end{align}
+Then by Cor. \ref{lb322}, we have isomorphisms of $\Fbb$-vector spaces
+\begin{align*}
+\wch H^q(X,\Fbb)\simeq H^q(X,\Fbb)\simeq H^q_{\mathrm{dR}}(X,\Fbb).
+\end{align*}
+\end{eg}
+
+
+
+
+\begin{eg}
+Let $X$ be a paracompact complex manifold. Let $\scr C^\infty_{X,\Cbb}$ be the sheaf of germs of complex smooth functions on $X$. Let $\bigwedge^{p,q}X$ be the sheaf of germs of complex differential forms on $X$ of degree $(p,q)$. Locally, by choosing a set of coordinates $(z_1,\dots,z_n)$ of $X$, a section of $\Omega_X^{p,q}$ is a sum of those of the form $fdz_{i_1}\wedge\cdots \wedge dz_{i_p}\wedge d\ovl z_{j_1}\wedge \cdots\wedge d\ovl z_{j_q}$ where $f\in\scr C^\infty_{X,\Cbb}$. Then we have a resolution
+\begin{align}
+0\rightarrow \Omega_X^p\rightarrow \bigwedge\nolimits^{p,0}X\xrightarrow{\ovl\partial^0}\bigwedge\nolimits^{p,1}X\xrightarrow{\ovl\partial^1}\bigwedge\nolimits^{p,2}X\xrightarrow{\ovl\partial^2}\cdots \label{eq152}
+\end{align}
+called the \textbf{Dolbeault resolution} \index{00@Dolbeault resolution} of $\Omega_X^p$, where $\Omega_X^p$ is the sheaf of germs of holomorphic $p$-forms (which are locally a sum of those of the form $fdz_{i_1}\wedge\cdots\wedge dz_{i_p}$ where $f\in\scr O_X$), and $\ovl\partial^q$ is a $\Cbb$-linear sheaf map determined by
+\begin{align*}
+&\ovl\partial(fdz_{i_1}\wedge\cdots \wedge dz_{i_p}\wedge d\ovl z_{j_1}\wedge \cdots\wedge d\ovl z_{j_q})\\
+=&\sum_k \frac{\partial f}{\partial\ovl z_k} d\ovl z_k \wedge dz_{i_1}\wedge\cdots \wedge dz_{i_p}\wedge d\ovl z_{j_1}\wedge \cdots\wedge d\ovl z_{j_q}
+\end{align*}
+The exactness of \eqref{eq152} is due to Dolbeault lemma.
+
+In \eqref{eq152}, set $p=0$. Then $\Omega_X^0=\scr O_X$. Choose any locally free $\scr O_X$-module (i.e. holomorphic vector bundle) $\scr E$ and tensor it with \eqref{eq152}. Since $\scr E$ is $\scr O_X$-flat, we obtain an exact sequence
+\begin{align}
+0\rightarrow \scr E\rightarrow \scr E\otimes_{\scr O_X}\bigwedge\nolimits^{0,0}X\xrightarrow{\id\otimes\ovl\partial}\scr E\otimes_{\scr O_X}\bigwedge\nolimits^{0,1}X\xrightarrow{\id\otimes\ovl\partial}\scr E\otimes_{\scr O_X}\bigwedge\nolimits^{0,2}X\xrightarrow{\id\otimes\ovl\partial}\cdots \label{eq153}
+\end{align}
+called the \textbf{Dolbeault resolution} \index{00@Dolbeault resolution} of $\scr E$. This is a fine resolution since each $\scr E\otimes_{\scr O_X}\bigwedge^{0,1}X$ is over $\scr C^\infty_{X,\Cbb}$ (cf. Exp. \ref{lb325}). Define the \textbf{Dolbeault cohomology group} \index{00@Dolbeauly cohomology $H^q_{\ovl\partial}(X,\scr E)$}
+\begin{align*}
+H^q_{\ovl\partial}(X,\scr E):=\mc H^q\Big(\scr E\otimes_{\scr O_X}\bigwedge\nolimits^{0,\blt}X \Big)
+\end{align*}
+Then by Cor. \ref{lb322}, we have isomorphisms of $\Cbb$-vector spaces
+\begin{align}
+\wch H^q(X,\scr E)\simeq H^q(X,\scr E)\simeq H^q_{\ovl\partial}(X,\scr E)
+\end{align}
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+\section{Leray's theorem; Stein spaces}
+
+
+
+In this section, we explain approach (b) at the end of Subsec. \ref{lb324}. Again, we assume $X$ is a ringed space. Let $\fk U=(U_\alpha)_{\alpha\in I}$ be an open cover of $X$.
+
+
+
+\subsection{Leray's theorem}
+
+
+\begin{thm}[Leray's theorem]\label{lb326}   \index{00@Leray's theorem}
+Assume that $X$ is paracompact. Let $\scr E\in\Mod(\scr O_X)$ and assume that
+\begin{align}
+\wch H^{>0}(U_{\alpha_0\cdots\alpha_n},\scr E)=0  \label{eq155}
+\end{align}
+for all $n\in\Nbb$ and $\alpha_0,\dots,\alpha_n\in I$. Then for each $q\in\Nbb$, the natural $\scr O(X)$-module morphism
+\begin{align}
+\wch H^q(\fk U,\scr E)\rightarrow \wch H^q(X,\scr E)   \label{eq154}
+\end{align}
+(defined by passing to direct limit over all open covers)  is an isomorphism.
+\end{thm}
+
+
+
+\begin{proof}
+\eqref{eq154} is clearly an isomorphism when $q=0$, since they are both identified with $\scr E(X)$. We now prove Leray's theorem by induction on $q$. We know it holds when $q=0$. Assume it holds for case $q$ where $q\in\Nbb$. Let us prove it for case $q+1$. Let $\scr F=\Gode(\scr E)$ so that we have a monomorphism $\scr E\hookrightarrow\scr F$ where $\scr F$ is killed by $\wch H^{>0}(\fk U,-)$ and by $\wch H^{>0}(X,-)$ (cf. Lemma \ref{lb320}). Let $\scr G=\scr F/\scr E$. Then we have a short exact sequence $0\rightarrow\scr E\rightarrow\scr F\rightarrow\scr G\rightarrow0$.
+
+Since $\wch H^1(U_{\alpha_0\cdots\alpha_n},\scr E)=0$, we have an exact sequence
+\begin{align*}
+0\rightarrow \scr E(U_{\alpha_0\cdots\alpha_n})\rightarrow\scr F(U_{\alpha_0\cdots\alpha_n})\rightarrow \scr G(U_{\alpha_0\cdots\alpha_n})\rightarrow0
+\end{align*}
+showing that $C^\blt_{\scr F}(\fk U,\scr G)=C^\blt(\fk U,\scr G)$ and hence $\wch H_{\scr F}^\blt(X,\scr G)=\wch H^\blt(X,\scr G)$. Therefore, by \eqref{eq145} and its functoriality, we have a morphism of exact sequences
+\begin{equation}\label{eq156}
+\begin{tikzcd}
+\wch H^q(\fk U,\scr F) \arrow[d,"\simeq"'] \arrow[r] & \wch H^q(\fk U,\scr G) \arrow[d] \arrow[r] & \wch H^{q+1}(\fk U,\scr E) \arrow[d] \arrow[r] & 0 \\
+\wch H^q(X,\scr F) \arrow[r]           & \wch H^q(X,\scr G) \arrow[r]           & \wch H^{q+1}(X,\scr E) \arrow[r]           & 0
+\end{tikzcd}
+\end{equation}
+The first vertical arrow is an isomorphism: It is clearly so if $q=0$, and it is so when $q>0$ because the domain and the codomain are both $0$. Clearly, for each $p\in\Nbb$, we have an exact sequence
+\begin{align*}
+\wch H^p(U_{\alpha_0\cdots\alpha_n},\scr F)\rightarrow\wch H^p(U_{\alpha_0\cdots\alpha_n},\scr G)\rightarrow\wch H^{p+1}(U_{\alpha_0\cdots\alpha_n},\scr E)
+\end{align*}
+where the third term is zero by assumption \eqref{eq155} and the first term is zero when $p>0$ by Lemma \ref{lb320}. Therefore $\wch H^{>0}(U_{\alpha_0\cdots\alpha_n},\scr G)=0$. So by case $q$ of Leray's theorem, the middle vertical arrow of \eqref{eq156} is an isomorphism. So the third vertical arrow is also an isomorphism due to Five lemma. This proves case $q+1$ for $\scr E$.
+\end{proof}
+
+
+
+
+Without assuming that $X$ is paracompact, Thm. \ref{lb326} still holds if we replace $\wch H^{>0}(U_{\alpha_0\cdots\alpha_n},\scr E)$ with $H^{>0}(U_{\alpha_0\cdots\alpha_n},\scr E)$, replace $\wch H^q(X,\scr E)$ with $H^q(X,\scr E)$, and define the map \eqref{eq154} in an appropriate way. (Cf. \cite{Dem} Chapter IV Thm. 5.17.) Indeed, this sheaf cohomology version is the common one that people refer to when talking about Leray's theorem. This version is especially useful in algebraic geometry, since schemes are not even Hausdorff. It also allows us to  compute the sheaf cohomology of coherent sheaves over a complex space $X$ which is non-necessarily paracompact by computing the \v Cech cohomology of a Stein open cover of $X$. We present this version in the following subsection.
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Sheaves of \v Cech cochains $\fk C^q(\fk U,\scr E)$ and \v Cech resolution}
+
+
+
+Let us consider the \textbf{sheaf of \v Cech $q$-cochains} $\fk C^q(\fk U,\scr E)$   \index{CUE@$\fk C^q(\fk U,\scr E)$, sheaf of \v Cech cochains}  \index{00@Sheaf of \v Cech cochains $\fk C^q(\fk U,\scr E)$}, which is an $\scr O_X$-module associating to each open $W\subset X$ the $\scr O_X(W)$-module
+\begin{gather}
+\fk C^q(\fk U,\scr E)(W)=C^q(W\cap\fk U,\scr E)\\[0.5ex]
+(\text{where }W\cap\fk U=\{W\cap U_\alpha\}_{\alpha\in I})   \nonumber
+\end{gather}
+Then $(\fk C^q(\fk U,\scr E),d)$ is a cochain complex of $\scr O_X$-modules.
+
+Note that we have an obvious inclusion $H^0(W,\scr E)\hookrightarrow \fk C^0(\fk U,\scr E)(W)$, which gives rise to a monomorphism $\scr E\hookrightarrow\fk C^0(\fk U,\scr E)$. Moreover, we have:
+
+
+\begin{pp}
+The following is an exact sequence
+\begin{align}
+0\rightarrow \scr E\rightarrow \fk C^0(\fk U,\scr E)\xrightarrow{\delta^0}\fk C^1(\fk U,\scr E)\xrightarrow{\delta^1} \fk C^2(\fk U,\scr E)\xrightarrow{\delta^2}\cdots   \label{eq138}
+\end{align}
+In other words, $0\rightarrow\scr E\rightarrow\fk C^{\geq 0}(\fk U,\scr E)$ is a right resolution of $\scr E$. 
+
+Moreover, if $\scr F\in\Mod(\scr O_X)$, then a morphism $\varphi\in\Hom_{\scr O_X}(\scr E,\scr F)$ gives rise to a natural morphism of cochain complexes $C^\blt(\fk U,\scr E)\rightarrow C^\blt(\fk U,\scr F)$. Therefore, $\fk C^\blt(\fk U,-)$ is an (additive) functor from $\Mod(\scr O_X)$ to the category of complex of $\scr O_X$-modules.
+\end{pp}
+
+To summarize, we have a right resolution $\scr E\hookrightarrow\fk C^{\geq 0}(\fk U,\scr E)$ for all $\scr E\in\Mod(\scr O_X)$ which is functorial. This is called the \textbf{\v Cech resolution} \index{00@\v Cech resolution} of $\scr E$ with respect to $\fk U$.
+
+\begin{proof}
+We only prove \eqref{eq138}. The remaining part of the proposition is obvious. Choose any $x\in X$, and choose $\beta\in I$ such that $x\in U_\beta$. Then for each neighborhood $W$ of $x$ contained inside $U_\beta$, there is a partition of unity in $\scr O_W$ subordinate to $W\cap\fk U=(W\cap U_\alpha)_{\alpha\in I}$: since $W\cap U_\beta=W$, one can take $\psi_\beta=1$, and take $\psi_\alpha=0$ if $\alpha\neq\beta$. Therefore, by Prop. \ref{lb317}, $\wch H^q(W\cap\fk U,\scr E)$ is zero, namely, the sequence
+\begin{align*}
+C^{q-1}(W\cap \fk U,\scr E)\xrightarrow{\delta^{q-1}}C^q(W\cap \fk U,\scr E)\xrightarrow{\delta^q}C^{q+1}(W\cap \fk U,\scr E)
+\end{align*}
+is exact. By taking direct limit over all such $W$, we see that the stalk of \eqref{eq138} at $x$ is exact.
+\end{proof}
+
+
+
+
+
+
+\begin{thm}[Leray's theorem]\label{lb327}\index{00@Leray's theorem}
+Let $\scr E\in\Mod(\scr O_X)$ and assume that
+\begin{align}
+H^{>0}(U_{\alpha_0\cdots\alpha_n},\scr E)=0  \label{eq157}
+\end{align}
+for all $n\in\Nbb$ and $\alpha_0,\dots,\alpha_n\in I$. Then for each $q\in\Nbb$, there is a natural $\scr O(X)$-module isomorphism
+\begin{align}
+\wch H^q(\fk U,\scr E)\simeq H^q(X,\scr E)    \label{eq158}
+\end{align}
+\end{thm}
+
+
+
+\begin{proof}
+\eqref{eq157} implies that \eqref{eq138} is an \textbf{acyclic resolution}  \index{00@Acyclic resolution} of $\scr E$, namely, 
+\begin{align}
+H^{>0}(X,\fk C^p(\fk U,\scr E))=0
+\end{align}
+for all $p\geq 0$. Therefore, by \eqref{eq150}, we have an isomorphism \eqref{eq158} which is natural by Exe. \ref{lb328}.
+\end{proof}
+
+
+
+
+\subsection{Stein spaces and Cartan's theorems}
+
+In this subsection, we assume $X$ is a complex space.
+
+An important situation to which Leray's theorem can be applied is when $\scr E$ is $\scr O_X$-coherent and each $U_\alpha$ is a \textbf{Stein space}. \index{00@Stein spaces} The definition of Stein spaces is quite technical and will not be used in our notes. Instead, we use the following important fact about Stein spaces. Indeed, every complex space satisfying Cartan's theorem B is a Stein space.
+
+
+\begin{thm}[Cartan's theorem B]\label{lb346} \index{00@Cartan's theorems}
+Suppose that $X$ is a Stein space. Then for each $\scr E\in\Coh(\scr O_X)$ we have $H^{>0}(X,\scr E)=0$.
+\end{thm}
+
+
+
+
+An immediate consequence of Thm. B is:
+
+
+\begin{thm}[Cartan's theorem A] \index{00@Cartan's theorems}
+Suppose that $X$ is a Stein space. Then for each $\scr E\in\Coh(\scr O_X)$ and each $x\in X$, the stalks of $\scr E(X)$ at $x$ generate the $\scr O_{X,x}$-module $\scr E_x$.
+\end{thm}
+
+
+\begin{proof}
+By Nakayama's lemma, it suffices to show that $\scr E(X)$ spans the fiber $\scr E|x=\scr E_x/\fk m_{X,x}\scr E_x$. We view  $\fk m_{X,x}$ is the ideal sheaf of all sections of $\scr O_X$ vanishing at $x$. Then $\scr E|x$ as a coherent $\scr O_X$-module. We have a short exact sequence
+\begin{align*}
+0\rightarrow \fk m_{X,x}\scr E\rightarrow\scr E\rightarrow \scr E|x\rightarrow0
+\end{align*}
+showing that $\fk m_{X,x}\scr E$ is coherent and hence $H^1(X,\fk m_{X,x}\scr E)=0$ by Cartan's theorem B. Therefore, $H^0(X,\scr E)\rightarrow H^0(X,\scr E|x)$ is surjective.
+\end{proof}
+
+
+
+We refer the readers to \cite[Chapter 10, 11]{Tay} for a proof of Cartan's theorem B. See also \cite{GR-a} for a comprehensive account of the theory of Stein spaces. 
+
+
+
+\begin{eg}\label{lb329}
+The following are some important examples of Stein spaces. We let $X,Y,S$ denote complex spaces. Cf. \cite[Sec. V.1]{GR-a}.
+\begin{enumerate}[label=(\alph*)]
+\item Every connected non-compact Riemann surface is Stein.
+\item If $X,Y$ are Stein, then $X\times Y$ is Stein.
+\item If $Y$ is Stein and $\varphi:X\rightarrow Y$ is a \emph{finite} holomorphic map (in particular, if $X$ is a closed complex subspace of $Y$), then $X$ is Stein.
+\end{enumerate}
+From (a) and (b) we see that every polydisc is Stein. Therefore, for every complex space $X$, the set of Stein open subsets of $X$ form a base of topology of $X$. 
+
+We also have:
+\begin{enumerate}[label=(\alph*)]\setcounter{enumi}{3}
+\item If $\varphi:X\rightarrow S$ and $\psi:Y\rightarrow S$ are holomorphic maps, and if $X,Y$ are Stein, then $X\times_SY$ is Stein. 
+\item If $U_1,\dots,U_n$ are Stein open subsets of $X$, then $U_1\cap\cdots\cap U_n$ is Stein.
+\item If $\varphi:X\rightarrow Y$ is a holomorphic map, $U\subset X$ and $W\subset Y$ are open subsets which are Stein, then $U\cap\varphi^{-1}(W)$ is Stein. 
+\end{enumerate}
+Indeed, (d) is due to that $X\times Y$ is Stein and that $X\times_SY$ is a closed subspace of $X\times Y$ (by Prop. \ref{lb90}). To show (e), it suffices to assume $n=2$. Then (e) follows from (d) and Exp. \ref{lb36}. (f) follows from (d) because $U\cap\varphi^{-1}(W)$ is the fiber product of $\varphi\circ\iota_{U,Y}:U\rightarrow Y$ and $\iota_{W,Y}:W\rightarrow Y$. Furthermore, we have (cf. \cite[Sec. V.4.3]{GR-a})
+\begin{enumerate}[label=(\alph*)]\setcounter{enumi}{6}
+\item $X$ is Stein if and only if its reduction $\red(X)$ is Stein.
+\end{enumerate}
+\hfill\qedsymbol
+\end{eg}
+
+
+
+
+\begin{df}
+An open cover $\fk U=(U_\alpha)_{\alpha\in I}$ of a complex space $X$ is called a \textbf{Stein cover} if each $U_\alpha$ is Stein.  
+\end{df}
+
+
+If $\fk U$ is a Stein cover, then by Exp. \ref{lb329}-(e), each intersection $U_{\alpha_0\cdots\alpha_n}$ is a Stein open subset of $X$. Therefore, by Cartan's theorem B and Leray's Thm. \ref{lb327}, we have:
+
+\begin{co}
+Suppose that $X$ is a complex space and $\fk U$ is a Stein open cover of $X$. Then there is a natural equivalence of $\scr O(X)$-modules for each $\scr E\in\Coh(\scr O_X)$:
+\begin{align*}
+\wch H^q(\fk U,\scr E)\simeq H^q(X,\scr E).
+\end{align*}
+\end{co}
+
+
+
+
+
+\section{Higher direct images and formal completion}
+
+
+Beginning with this section, \textbf{all complex spaces are assumed to be paracompact}. Thus, for complex spaces, we identify sheaf cohomology and \v Cech cohomology. 
+
+Let $X$ and $Y$ be complex spaces. Let $\varphi:X\rightarrow S$ be a holomorphic map. The following deep result is due to Grauert. See \cite[Chapter 10]{GR-b}, \cite[Sec. 3.2]{BS}, or \cite[Sec. IX.5]{Dem} for proofs. This theorem will be implicitly used in the remaining part of our notes. Especially, all major results of this chapter relies in an essential way on this theorem.
+
+
+\begin{thm}[\textbf{Grauert direct image theorem}]\label{lb334} \index{00@Grauert direct image theorem}
+Let $\varphi:X\rightarrow S$ be a proper holomorphic map. For every $\scr E\in\Coh(\scr O_X)$ and every $q\in\Zbb_+$, $R^q\varphi_*(\scr E)$ is a coherent $\scr O_S$-module.
+\end{thm}
+
+In the special case that $S$ is a reduced point, the direct image theorem says:
+
+\begin{co}[\textbf{Cartan-Serre theorem}]\index{00@Cartan-Serre theorem}
+Suppose that $X$ is compact and $\scr E\in\Coh(\scr O_X)$, then $\dim_\Cbb H^q(\scr E)<+\infty$.
+\end{co}
+
+\subsection{Higher direct images and tensor product}\label{lb335}
+
+
+
+Let $\scr E\in\Coh(\scr O_X)$ and $\scr M\in\Coh(\scr O_S)$. Then there is a natural morphism of $\scr O_S$-modules
+\begin{align}
+\tcboxmath{R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr M\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr M)}   \label{eq159}
+\end{align}
+defined as follows. If $V$ is an open subset of $S$ and $U\subset\varphi^{-1}(V)$ is open, we have a natural $\scr O_S(V)$-module morphism
+\begin{align*}
+\scr E(U)\otimes_{\scr O_S(V)}\scr M(V)\rightarrow(\scr E\otimes_{\scr O_S}\scr M)(U).
+\end{align*}
+Thus, if $\fk U=(U_\alpha)_{\alpha\in I}$ is an open cover of $\varphi^{-1}(V)$, we have a canonical $\scr O_S(V)$-module morphism
+\begin{align*}
+C^q(\fk U,\scr E)\otimes_{\scr O_S(V)}\scr M(V)\rightarrow C^q(\fk U,\scr E\otimes_{\scr O_S}\scr M)
+\end{align*}
+which gives a canonical
+\begin{align*}
+&\mc H^q(C^\blt(\fk U,\scr E))\otimes_{\scr O_S(V)}\scr M(V)\rightarrow \mc H^q(C^\blt(\fk U,\scr E)\otimes_{\scr O_S(V)}\scr M(V))\\
+\rightarrow &\mc H^q(C^\blt(\fk U,\scr E\otimes_{\scr O_S}\scr M)).
+\end{align*}
+Passing to the direct limit over all open covers $\fk U$, we get a canonical $\scr O_S(V)$-module morphism
+\begin{align*}
+H^q(\varphi^{-1}(V),\scr E)\otimes_{\scr O_S(V)}\scr M(V)\rightarrow H^q(\varphi^{-1}(V),\scr E\otimes_{\scr O_S}\scr M)
+\end{align*}
+Sheafifying this map gives \eqref{eq159}.
+
+
+
+A fundamental question about higher direct images is when the map \eqref{eq159} is an isomorphism. It is a main goal of this chapter to give a satisfying answer to this question. This question has important geometric implications. Choose $t\in S$ and take $\scr M=\scr O_S/\mk_{S,t}$ where, as usual, $\mk_{S,t}$ is understood as the $\scr O_S$-ideal of all sections vanishing at $t$. Then \eqref{eq159} reads
+\begin{align}
+R^q\varphi_*(\scr E)|_t\rightarrow H^q(X_t\scr,\scr E|_{X_t} )  \label{eq160}
+\end{align}
+where we set \index{Xt@$X_t=\varphi^{-1}(t)$, the fiber of $\varphi:X\rightarrow S$ at $t\in S$}
+\begin{align*}
+X_t=\varphi^{-1}(t)
+\end{align*}
+as usual. That \eqref{eq160} is surjective means, in the case $q=0$, that any global sections of $\scr E|_{X_t}$ on $X_t$ can be extended holomorphically to sections on the nearby fibers of $X_t$.
+
+In the next section, we will prove a deep result saying that if $\scr E$ is $\varphi$-flat and \eqref{eq160} is surjective, then \eqref{eq160} must be an isomorphism, and more generally, the stalk map of \eqref{eq159} at $t$ is an isomorphism for every $\scr M\in\Coh(\scr O_S)$.  To prove this fact, we need to show that a formal version of \eqref{eq159} is an isomorphism. This is the task of this section.
+
+
+
+\subsection{Higher direct images and formal completion}
+
+Fix $t\in S$ and write $\mk_{S,t}$ as $\mk_t$ for simplicity. Let the $\scr M$ in \eqref{eq159} be $\scr O_{S,t}/\mk_{S,t}^k$ and $\scr O_{S,t}/\mk_{S,t}^l$ where $l\geq k$. Then we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}\displaystyle
+R^q\varphi_*(\scr E)_t/\mk_t^l R^q\varphi_*(\scr E)_t \arrow[r] \arrow[d] & R^q\varphi_*(\scr E/\mk_t^l\scr E)_t \arrow[d] \\
+R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t \arrow[r]           & R^q\varphi_*(\scr E/\mk_t^k\scr E)_t         
+\end{tikzcd}
+\end{equation*}
+where the horizontal maps are defined by \eqref{eq159}. In other words, we get a morphism of inverse system $R^q\varphi_*(\scr E)_t/\mk_t^\blt R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t^\blt\scr E)_t$. Passing to the inverse limit gives an $\scr O_{S,t}$-module morphism
+\begin{align}
+\tcboxmath{\varprojlim_{k\in\Nbb}R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t\longrightarrow\varprojlim_{k\in\Nbb}R^q\varphi_*(\scr E/\mk_t^k\scr E)_t  }  \label{eq161}
+\end{align}
+It is a deep result that this morphism is indeed an isomorphism. To show this fact, we need to show:
+
+\begin{lm}\label{lb330}
+Assume that $\varphi:X\rightarrow S$ is a proper holomorphic map and $\scr E\in\Coh(\scr O_X)$.  Then for each $k\in\Nbb$ there exists $l\in\Nbb$ such that 
+\begin{align}
+\Ker\big(R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t^l\scr E)_t \big)~\subset~\mk_t^k \cdot R^q\varphi_*(\scr E)_t  \label{eq162}
+\end{align}
+\end{lm}
+
+Note that if \eqref{eq162} holds, then it holds if $l$ is replaced by any $\wtd l\geq l$. This is because $\mk_t^{\wtd l}\subset\mk_t^l$ and hence we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=-0.5cm]
+R^q\varphi_*(\scr E)_t \arrow[rr] \arrow[rd] &              & R^q\varphi_*(\scr E/\mk_t^l\scr E)_t \\
+                        & R^q\varphi_*(\scr E/\mk_t^{\wtd l}\scr E)_t \arrow[ru] &  
+\end{tikzcd}
+\end{equation*}
+
+
+
+\begin{thm}[\textbf{Grauert comparison theorem}]\label{lb341} \index{00@Grauert comparison theorem}
+Assume that $\varphi:X\rightarrow S$ is a proper holomorphic map and $\scr E\in\Coh(\scr O_X)$. Then \eqref{eq161} is an $\scr O_{S,t}$-module isomorphism.
+\end{thm}
+
+
+
+Indeed, we will only use the injectivity of \eqref{eq161} in our notes. So we postpone the proof of surjectivity to the end of this section.
+
+
+\begin{proof}[\textbf{Proof that \eqref{eq161} is injective}]
+
+Choose $(\sigma_k)_{k\in\Nbb}$ in $\varprojlim_{k\in\Nbb}R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t$. Namely, each $\sigma_k$ belongs to $R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t$, and $\sigma_l$ is sent to $\sigma_k$ if $l\geq k$.
+
+Suppose that $(\sigma_k)_{k\in\Nbb}$ is sent to $0$ by the map \eqref{eq161}. Fix any $k\in\Nbb$, and let $l$ be as in Lemma \ref{lb330}. Since we can safely make $l$ larger, we assume $l\geq k$. Then $\sigma_l$ (which is in $R^q\varphi_*(\scr E)_t/\mk_t^l R^q\varphi_*(\scr E)_t$) is sent to $0$ in $R^q\varphi_*(\scr E/\mk_t^l\scr E)_t$. Lift $\sigma_l$ to an element $\sgm_l\in R^q\varphi_*(\scr E)_t$. Then $\sgm_l$ is sent to $0$ by the map
+\begin{align*}
+R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t^l\scr E)_t
+\end{align*}
+By Lemma \ref{lb330}, $\sgm_l$ belongs to $\mk_t^k R^q\varphi_*(\scr E)_t$. But $\sgm_l$ is clearly sent to $\sigma_k$ by the map $R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t$. So $\sigma_k=0$.
+\end{proof}
+
+It is also clear that the following two statements are equivalent: (a) \eqref{eq159} is injective where $\scr M=\scr O_{S,t}/\mk_t^k$. (b) \eqref{eq162} holds where $l=k$.
+
+
+
+\subsection{Proof of Lemma \ref{lb330}}
+
+
+To prove Lemma \ref{lb330} we first need a lemma.
+
+\begin{lm}\label{lb332}
+Let $X$ be a complex space and $\scr E\in\Coh(\scr O_X)$. Let $f\in\scr O(X)$. Then for each precompact open subset $U\subset X$ there exists $d\in\Zbb_+$ such that the multiplication of $f$ is injective on $f^d\scr E|_U$, namely, the map
+\begin{align*}
+f^d\scr E|_U\xrightarrow{\times f}f^{d+1}\scr E|_U
+\end{align*}
+is injective.
+\end{lm} 
+
+
+\begin{proof}
+$\scr F_n=\Ker(\scr E\xrightarrow{\times f^n}\scr E)$ is an ascending chain of coherent $\scr O_X$-submodules of $\scr E$ (as $n$ increases). Therefore, by the Noether property of coherent sheaves (Thm. \ref{lb331}), this chain is stationary at some $n=d$ when restricted to $U$. So $\scr F_d|_U=\scr F_{d+1}|_U$. If $s\in\scr E|_U$ and $f^ds$ is such that $f\times f^ds=0$, then $s\in\scr F_{d+1}|_U=\scr F_d|_U$, and hence $f^ds=0$. So $\times f$ is injective on $f^d\scr E|_U$.
+\end{proof}
+
+
+
+
+\begin{proof}[\textbf{Proof of Lemma \ref{lb330}}]
+Step 1. Shrink $S$ to a neighborhood of $t\in S$ and choose $g_1,\dots,g_n\in\scr O(S)$ generating the ideal $\mk_t$. 
+
+Claim: It suffices to show that for each $k\in\Nbb$ there exists $\lambda_1,\dots,\lambda_n\in\Nbb$ such that
+\begin{align*}
+\Ker\Big(R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*\big(\scr E/\sum_{i=1}^ng_i^{\lambda_i}\scr E\big)_t \Big)~\subset~\sum_{i=1}^n g_i^k\cdot R^q\varphi_*(\scr E)_t
+\end{align*}
+Suppose the claim is proved. For each $k\in\Nbb$, choose the corresponding $\lambda_1,\dots,\lambda_n$, and let $l=n\cdot\max\{\lambda_1,\dots,\lambda_n\}$. Then
+\begin{align*}
+\mk_t^l\scr E\subset \sum_{i=1}^ng_i^{\lambda_i}\scr E
+\end{align*}
+and hence we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=-0.5cm]
+R^q\varphi_*(\scr E)_t \arrow[rr] \arrow[rd] &              & R^q\varphi_*(\scr E/\sum_{i=1}^ng_i^{\lambda_i}\scr E)_t \\
+                        & R^q\varphi_*(\scr E/\mk_t^l\scr E)_t \arrow[ru] &  
+\end{tikzcd}
+\end{equation*}
+Thus \eqref{eq162} follows from the claim.\\
+
+
+
+Step 2. Fix $k\in\Nbb$. For $\nu=1,\dots,n$, we construct inductively $\lambda_\nu$ such that
+\begin{align}
+\Ker\Big(R^q\varphi_*(\scr E)\rightarrow R^q\varphi_*\big(\scr E/\sum_{i=1}^\nu g_i^{\lambda_i}\scr E\big) \Big)_t~\subset~\sum_{i=1}^\nu g_i^k\cdot R^q\varphi_*(\scr E)_t   \label{eq164}
+\end{align}
+In this step, we do this for $\nu=1$. Namely, after shrinking $S$ to a precompact neighborhood of $t$ (and shrinking $X$ correspondingly to $\varphi^{-1}(S)$), we  find $\lambda_1\in\Nbb$ such that
+\begin{align}
+\Ker\Big(R^q\varphi_*(\scr E)\rightarrow R^q\varphi_*\big(\scr E/ g_1^{\lambda_1}\scr E\big) \Big)~\subset~g_1^k\cdot R^q\varphi_*(\scr E)  \label{eq163}
+\end{align}
+
+By Lemma \ref{lb332}, we can shrink $S$ and find $b_1\in\Nbb$ so that $\times g_1$ is injective on $g_1^{b_1}\scr E$. So $\times g_1^k$ is also injective on $g_1^{b_1}\scr E$. Therefore, we have a short exact sequence
+\begin{align}
+0\rightarrow g_1^{b_1}\scr E\xrightarrow{\times g_1^k} \scr E\rightarrow \scr E/ g_1^{b_1+k}\scr E\rightarrow0   \label{eq165}
+\end{align}
+and hence an exact sequence
+\begin{align*}
+R^q\varphi_*(g_1^{b_1}\scr E)\xrightarrow{R^q\varphi_*(\times g_1^k)} R^q\varphi_*(\scr E)\rightarrow R^q\varphi_*(\scr E/g_1^{b_1+k}\scr E)
+\end{align*}
+Set $\lambda_1=b_1+k$. Then the LHS of \eqref{eq163} equals the image of $R^q\varphi_*(g_1^{b_1}\scr E)\rightarrow R^q\varphi_*(\scr E)$, and hence is a subsheaf of $g_1^k\cdot R^q\varphi_*(\scr E)$ since the following diagram commutes
+\begin{equation*}
+\begin{tikzcd}
+R^q\varphi_*(g_1^{b_1}\scr E) \arrow[rr,"R^q\varphi_*(\times g_1^k)"] \arrow[rd,"R^q\varphi_*(\iota)"'] &              & R^q\varphi_*(\scr E) \\
+                        & R^q\varphi_*(\scr E) \arrow[ru, "\times g_1^k"'] &  
+\end{tikzcd}
+\end{equation*}
+where $\iota:g_1^{b_1}\scr E\hookrightarrow\scr E$ is the inclusion.\\
+
+
+Step 3. Let $\nu\in\{2,\dots,n\}$, and assume that $\lambda_1,\dots,\lambda_{\nu-1}$ are chosen such that
+\begin{align}
+\Ker\Big(R^q\varphi_*(\scr E)\xrightarrow{\pi} R^q\varphi_*\big(\scr E/\scr G\big) \Big)~\subset~\sum_{i=1}^{\nu-1} g_i^k\cdot R^q\varphi_*(\scr E)  \label{eq166}
+\end{align}
+where we write
+\begin{align*}
+\scr G=\sum_{i=1}^{\nu-1}g_i^{\lambda_i}\scr E.
+\end{align*}
+(Namely, we assume \eqref{eq164} holds for $\nu-1$ instead of $\nu$.) By Lemma \ref{lb332}, after shrinking $S$, there is $b_\nu$ such that $\times g_\nu$ is injective on $g_\nu^{b_\nu}\cdot(\scr E/\scr G)$. Similar to \eqref{eq165}, for each $d_\nu\in\Nbb$ (to be determined later) we have a short exact sequence
+\begin{align*}
+0\rightarrow g_\nu^{b_\nu}(\scr E/\scr G)\xrightarrow{\times g_\nu^{d_\nu+k}}\scr E/\scr G\rightarrow \scr E/(\scr G+g_\nu^{b_\nu+d_\nu+k}\scr E)\rightarrow 0
+\end{align*}
+Since we also have short exact sequences $0\rightarrow\scr G\rightarrow\scr E\rightarrow\scr E/\scr G\rightarrow0$, we obtain a diagram where the row and the column are exact:
+\begin{equation*}
+\begin{tikzcd}
+& R^q\varphi_*(\scr E)  \arrow[d, "\pi"'] &  \\
+R^q\varphi_*\big( g_\nu^{b_\nu}(\scr E/\scr G)\big) \arrow[r] & R^q\varphi_*(\scr E/\scr G) \arrow[r,"\rho"] \arrow[d,"\delta"']          & R^q\varphi_*\big(\scr E/(\scr G+g_\nu^{b_\nu+d_\nu+k}\scr E)\big)                \\
+            & R^{q+1}\varphi_*(\scr G)                             &                  
+\end{tikzcd}
+\end{equation*}
+
+Set $\lambda_\nu=b_\nu+d_\nu+k$. Then $\Ker(\rho\circ\pi)_t$ is the LHS of \eqref{eq164}. We want to show that it is a subset of the RHS of \eqref{eq164}. Choose any
+\begin{align*}
+\sgm\in\Ker(\rho\circ\pi)_t
+\end{align*}
+Then $\pi(\sgm)\in R^q\varphi_*(\scr E/\scr G)_t$ belongs to $\Ker(\rho)_t$. Thus, as argued in Step 2, we have
+\begin{align*}
+\pi(\sgm)\in  g_\nu^{d_\nu+k}R^q\varphi_*(\scr E/\scr G)_t
+\end{align*}
+Choose $\sigma\in R^q\varphi_*(\scr E/\scr G)_t$ such that
+\begin{align*}
+\pi(\sgm)=g_\nu^{d_\nu+k}\sigma
+\end{align*}
+Then $g_\nu^{d_\nu+k}\cdot \delta(\sigma)=\delta(g_\nu^{d_\nu+k}\sigma)=\delta\circ\pi(\sgm)=0$.
+
+By Lemma \ref{lb332}, we can find $d_\nu$ such that $\times g_\nu$ is injective on $g_\nu^{d_\nu}R^{q+1}\varphi_*(\scr G)$. (Note that the coherence of $R^{q+1}\varphi_*(\scr G)$ is due to Grauert direct image Thm. \ref{lb334}.) Therefore, from $g_\nu^{d_\nu+k}\cdot \delta(\sigma)=0$ we conclude
+\begin{align*}
+\delta(g_\nu^{d_\nu}\sigma)=g_\nu^{d_\nu}\cdot \delta(\sigma)=0.
+\end{align*}
+Thus, there exists $\sgm'\in R^q\varphi_*(\scr E)_t$ such that $\pi(\sgm')=g_\nu^{d_\nu}\sigma$, and hence
+\begin{align*}
+\pi(g_\nu^k\sgm')=g_\nu^{d_\nu+k}\sigma=\pi(\sgm)
+\end{align*}
+So $\sgm-g_\nu^k\sgm'\in\Ker(\pi)_t$. Thus, by \eqref{eq166},
+\begin{align*}
+\sgm\in\Ker(\pi)_t+g_\nu^k\sgm'\subset\sum_{i=1}^{\nu-1} g_i^k\cdot R^q\varphi_*(\scr E)_t+g_\nu^k\sgm'\subset \sum_{i=1}^\nu g_i^k\cdot R^q\varphi_*(\scr E)_t
+\end{align*}
+This proves \eqref{eq164}.
+\end{proof}
+
+
+
+\subsection{Inverse limit and exactness}
+
+
+
+In general, the inverse limit functor is only left exact. It preserves exactness when certain ``Mittag-Leffler condition" is satisfied. We do not need this general version of exactness result. We are satisfied with the following version which will be used, together with Grauert comparison theorem, to prove the base change theorem in the next section.
+
+
+\begin{pp}\label{lb333}
+Let $\mc A$ be a ring and let
+\begin{align*}
+0\rightarrow (\mc M_n')_{n\in\Nbb}\rightarrow (\mc M_n)_{n\in\Nbb}\rightarrow(\mc M_n'')_{n\in\Nbb}\rightarrow 0
+\end{align*}
+be an exact sequence of inverse systems of $\mc A$-modules, indexed by $\Nbb$. Assume that each $\mc M_n'$ is Artinian. Then the following sequence is exact:
+\begin{align*}
+0\rightarrow\varprojlim_{n\in\Nbb} \mc M_n'\rightarrow \varprojlim_{n\in\Nbb} \mc M_n\rightarrow \varprojlim_{n\in\Nbb} \mc M_n''\rightarrow 0
+\end{align*}
+\end{pp} 
+
+We are mainly interested in the case that $\mc A=\scr O_{X,x}$ where $\dim_xX=0$ (so that $\dim_\Cbb \scr O_{X,x}<+\infty$) and each $\mc M_n'$ is a finitely-generated $\scr O_{X,x}$-module. Then $\mc M_n'$ is Artinian because it is a finite-dimensional $\Cbb$-vector space.
+
+\begin{proof}
+The only non-trivial part is the surjectivity of $\varprojlim \mc M_n\rightarrow \varprojlim \mc M_n''$. Since each $\mc M_n$ is Artinian, there is $k\geq n$ such that for all $l\geq k$ the image of $\mc M'_l\rightarrow\mc M'_n$ agrees with that of $\mc M'_k\rightarrow\mc M'_n$. Thus, we may find a subsequence $(\mc M_{n_k}')_{k\in\Nbb}$ of $(\mc M_n)_{n\in\Nbb}$ such that for each $k$ and each $l,\wtd l>k$, the images of $\mc M_{n_l}'\rightarrow\mc M_{n_k}'$ and $\mc M_{n_{\wtd l}}'\rightarrow\mc M_{n_k}'$ are equal. It suffices to show that $\varprojlim_k\mc M_{n_k}\rightarrow \varprojlim_k\mc M_{n_k}''$ is surjective. Thus, by replacing the original sequence by the subsequence, we assume that for each $n\in\Nbb$ and each $m>n$,
+\begin{align*}
+\Imag(\mc M_m'\rightarrow\mc M_n')=\Imag(\mc M_{n+1}'\rightarrow\mc M_n')
+\end{align*}
+
+We assume for simplicity that $\mc M_n'$ is a submodule of $\mc M_n$ and $\mc M_n''=\mc M_n/\mc M_n'$. If $m\in\mc M_n''$, we denote its residue class in $\mc M_n/\mc M_n'$ by $[m]$. 
+
+Choose $(m_k'')_{k\in\Nbb}\in\varprojlim\mc M_k''$. It suffices to prove, by induction on $n\in\Nbb$, that if  $m_{n+1}\in\mc M_{n+1}$ is chosen such that $[m_{n+1}]=m_{n+1}''$ and if $m_n$ is the image of $m_{n+1}$ under $\mc M_{n+1}\rightarrow\mc M_n$, then there exists $m_{n+2}\in\mc M_{n+2}$ such that $[m_{n+2}]=m_{n+2}''$, and that $m_{n+2}$ is sent to $m_n$ by the map $\mc M_{n+2}\rightarrow\mc M_n$. We prove this for the case $n=0$, since the general case can be proved in the same way.
+
+So we are given $m_\blt\in\varprojlim_k\mc M_k''$ and $m_1\in \mc M_1$ such that $[m_1]=m_1''$. And we let $m_0$ be the image of $m_1$ under $\mc M_1\rightarrow\mc M_0$. Choose $\alpha_2\in\mc M_2$ such that $[\alpha_2]=m_2''$, and let $\alpha_1\in\mc M_1$ be the image of $\alpha_2$ under $\mc M_2\rightarrow\mc M_1$. Then $[\alpha_1]=m_1''$. So $[m_1-\alpha_1]=0$, namely $m_1-\alpha_1\in\mc M_1'$.
+
+Let $\alpha_0$ be the image of $\alpha_1$ under $\mc M_1'\rightarrow\mc M_0'$. Since $\Imag(\mc M_1'\rightarrow\mc M_0')=\Imag(\mc M_2'\rightarrow \mc M_0')$, $m_0-\alpha_0$ (which is the image of $m_1-\alpha_1$ under $\mc M_1'\rightarrow\mc M_0'$) can be lifted to an element $\beta_2\in\mc M_2'$. Then $m_2=\alpha_2+\beta_2$ satisfies that $[m_2]=m_2''$ and that its image under $\mc M_2\rightarrow\mc M_0$ is $m_0$. See the following diagrams.
+\begin{equation*}
+\begin{tikzcd}[column sep=0.4cm]
+\alpha_2 \arrow[rrrrr] \arrow[d]            &            &     &         &  & m_2'' \arrow[d] \\
+\alpha_1 \arrow[d] \arrow[rrrrr, bend left=25] & m_1 \arrow[rrrr] \arrow[d] & && & m_1'' \arrow[d] \\
+\alpha_0                                  & m_0 \arrow[rrrr]           & && & m_0''          
+\end{tikzcd}
+\qquad\qquad
+\begin{tikzcd}[column sep=0.4cm]
+\beta_2 \arrow[rdd, bend right=20] &                        \\
+                                & m_1-\alpha_1 \arrow[d] \\
+                                & m_0-\alpha_0          
+\end{tikzcd}
+\end{equation*}
+\end{proof}
+
+
+We are now ready to prove the second half of Grauert comparison theorem.
+
+
+\begin{proof}[\textbf{Proof that \eqref{eq161} is surjective}]
+Let $\alpha_k$ denote the map
+\begin{align*}
+\alpha_k: R^q\varphi_*(\scr E)_t/\mk_t^kR^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t^k\scr E)_t
+\end{align*}
+Then we have a short exact sequence of inverse systems of $\scr O_{S,t}$-modules
+\begin{align*}
+0\rightarrow \Ker(\alpha_\blt)\rightarrow R^q\varphi_*(\scr E)_t/\mk_t^\blt R^q\varphi_*(\scr E)_t\rightarrow\Imag(\alpha_\blt)\rightarrow 0
+\end{align*}
+Since each $R^q\varphi_*(\scr E)_t/\mk_t^kR^q\varphi_*(\scr E)_t$ is a coherent $\scr O_{S,t}/\mk_t^k$-module, by Cor. \ref{lb173}, it is $\Cbb$-finite dimensional. So $\Ker(\alpha_k)$ is a finite-dimensional $\Cbb$-vector space, and hence Artinian. Therefore, by Prop. \ref{lb333}, we obtain a short exact sequence
+\begin{align*}
+0\rightarrow \varprojlim_k\Ker(\alpha_k)\rightarrow \varprojlim_k R^q\varphi_*(\scr E)_t/\mk_t^k R^q\varphi_*(\scr E)_t\rightarrow\varprojlim_k\Imag(\alpha_k)\rightarrow 0
+\end{align*}
+
+Since each $\Imag(\alpha_k)$ is a submodule of $R^q\varphi_*(\scr E/\mk_t^k\scr E)_t$, $\varprojlim_k\Imag(\alpha_k)$ is a submodule of $\varprojlim_kR^q\varphi_*(\scr E/\mk_t^k\scr E)_t$. Therefore, to prove that \eqref{eq161} is surjective, it suffices to prove that for each element
+\begin{align*}
+(\sigma_k)_{k\in\Nbb}\in  \varprojlim_kR^q\varphi_*(\scr E/\mk_t^k\scr E)_t
+\end{align*}
+we have $\sigma_k\in\Imag(\alpha_k)$ for all $k$.
+
+Choose any $k$. Note that $\Imag(\alpha_k)$ equals the image of the map $R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t^k\scr E)_t$. So $\Imag(\alpha_k)=\Ker(\delta_k)$ where $\delta_k$ is the connecting map in the following commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+R^q\varphi_*(\scr E)_t \arrow[r,"="] \arrow[d]  & R^q\varphi_*(\scr E)_t \arrow[d]  &   \\
+R^q\varphi_*(\scr E/\mk_t^l\scr E)_t \arrow[r] \arrow[d,"\delta_l"'] & R^q\varphi_*(\scr E/\mk_t^k\scr E)_t \arrow[d,"\delta_k"'] &   \\
+R^{q+1}\varphi_*(\mk_t^l\scr E)_t \arrow[r,"\mu"]           & R^{q+1}\varphi_*(\mk_t^k\scr E)_t \arrow[r,"\eta"] & R^{q+1}\varphi_*(\mk_t^k\scr E/\mk_t^l\scr E)_t
+\end{tikzcd}
+\end{equation*}
+where $l\geq k$. Apply Lemma \ref{lb330} to the sheaf $\mk_t^k\scr E$. We see that for each $r\in\Nbb$, there exists $l\geq k$  such that $\Imag(\mu)=\Ker(\eta)$ is a subset of $\mk_t^r R^{q+1}\varphi_*(\mk_t^k\scr E)_t$. For the element $\sigma_\blt$ chosen above, we have $\mu\delta_l(\sigma_l)=\delta_k(\sigma_k)$. So $\eta\delta_k(\sigma_k)=\eta\mu\delta_l(\sigma_l)=0$. Therefore $\delta_k(\sigma_k)$ belongs to $\Ker(\eta)$, and hence belongs to $\mk_t^r R^{q+1}\varphi_*(\mk_t^k\scr E)_t$. Since this is true for all $r\in\Nbb$, by Krull's intersection Thm. \ref{lb162}, we obtain $\delta_k(\sigma_k)=0$ and hence $\sigma_k\in\Ker(\delta_k)=\Imag(\alpha_k)$, finishing the proof.
+\end{proof}
+
+
+
+\section{Base change theorem}
+
+
+Let $X,S$ be complex spaces and $\varphi:X\rightarrow S$ be a holomorphic map. The main reference of this section is \cite[Sec. III.3]{BS}.
+
+Notice that if $\scr M\in\Mod(\scr O_X)$, we have a \textbf{pullback map} 
+\begin{align}
+\varphi^*:H^q(S,\scr M)\rightarrow H^q(X,\varphi^*\scr M)   \label{eq168}
+\end{align}
+which is a natural $\scr O(S)$-module morphism described as follows. If $W\subset S$ is open, then we have a pullback morphism (cf. Def. \ref{lb336})
+\begin{align*}
+\varphi^*=\scr M(W)\rightarrow(\varphi^*\scr M)(\varphi^{-1}(W))
+\end{align*}
+Thus, if $\fk W=(W_\alpha)_{\alpha\in I}$ is an open cover of $S$, then $\varphi^*\fk W=(\varphi^{-1}(W_\alpha))_{\alpha\in I}$ is an open cover of $X$, and the above map yields a morphism of complexes $\fk C^\blt(\fk W,\scr M)\rightarrow \fk C^\blt(\varphi^*\fk W,\varphi^*\scr M)$. Taking cohomology and passing to the direct limit over all open covers $\fk W$, we obtain \eqref{eq168}.
+
+
+
+
+\subsection{Base change maps}
+
+Recall that for each $\scr E\in\Coh(\scr O_X)$ and $\scr M\in\Coh(\scr O_S)$ we have an $\scr O_S$-module morphism 
+\begin{align}
+\tcboxmath{R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr M\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr M)}   \label{eq167}
+\end{align}
+defined in Subsec. \ref{lb335}. Let us call it the (algebraic) \textbf{base change map}. \index{00@Base change maps} The goal of this section and next one is to give useful criteria about whether this map is an isomorphism. 
+
+There is a geometric version of base change map. Let $\psi:Y\rightarrow S$ be a holomorphic map of complex spaces. Let $Z=X\times_SY$ be the fiber product with Cartesian square
+\begin{equation}\label{eq171}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] \\
+S                       & Y \arrow[l, "\psi"']                             
+\end{tikzcd}
+\end{equation}
+Then we have the (geometric) \textbf{base change map} \index{00@Base change maps}
+\begin{align}
+\tcboxmath{\psi^*(R^q\varphi_*\scr E)\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E)} \label{eq169}
+\end{align}
+equivalently
+\begin{align*}
+R^q\varphi_*\scr E\otimes_{\scr O_S}\scr O_Y\rightarrow R^q\wtd\varphi_*(\scr E\otimes_{\scr O_X}\scr O_Z)
+\end{align*}
+which is a natural $\scr O_Y$-module morphism defined as follows. Choose any open $W\subset S$. Then by \eqref{eq168}, we have pullback map 
+\begin{align*}
+\wtd\psi^*: H^q(\varphi^{-1}(W),\scr E)\rightarrow H^q(\wtd\varphi^{-1}\psi^{-1}(W),\scr E\otimes_{\scr O_X}\scr O_Z)
+\end{align*}
+Sheafifying this map gives an $\scr O_S$-module morphism
+\begin{align*}
+R^q\varphi_*(\scr E)\rightarrow \psi_* (R^q\wtd\varphi_*(\scr E\otimes_{\scr O_X}\scr O_Z))
+\end{align*}
+which is equivalent to \eqref{eq169} because $\psi^*$ is the left adjoint of $\psi_*$ (Prop. \ref{lb337}).
+
+
+\begin{rem}\label{lb340}
+Suppose that the following two cells are Cartesian squares of complex spaces
+\begin{equation}\label{eq174}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] &Z' \arrow[l,"\alpha"'] \arrow[d,"\beta"]\\
+S                       & Y \arrow[l, "\psi"']                             &Y' \arrow[l,"\gamma"']
+\end{tikzcd}
+\end{equation}
+Again we choose $\scr E\in\Mod(\scr O_X)$. Consider the base change maps
+\begin{gather*}
+\Phi:\psi^*(R^q\varphi_*\scr E)\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E)\\
+\Psi: \gamma^*(R^q\wtd\varphi_*(\wtd\psi^*\scr E))\rightarrow R^q\beta_*(\alpha^*\wtd\psi^*\scr E)
+\end{gather*}
+The second one is the base change map for $\wtd\psi^*\scr E$ and the second Cartesian square. It is not hard to check that the pullback of $\Phi$
+\begin{align*}
+\gamma^*\Phi:\gamma^*\psi^*(R^q\varphi_*\scr E)\rightarrow \gamma^*R^q\wtd\varphi_*(\wtd\psi^*\scr E)
+\end{align*}
+composed with $\Phi$ gives the base change map for $\scr E$ and the largest Cartesian square
+\begin{align*}
+\Psi\circ \gamma^*\Phi:\gamma^*\psi^*(R^q\varphi_*\scr E)\rightarrow R^q\beta_*(\alpha^*\wtd\psi^*\scr E)
+\end{align*}
+\end{rem}
+
+\subsection{Base change theorem}
+
+
+The main result of this section is the following theorem. For any Noetherian ring $\mc A$, we let $\Modf(\mc A)$ be the abelian category of finitely-generated $\mc A$-modules. \index{Modf@$\Modf(\mc A)$, the category of finitely-generated $\mc A$-modules} We write $\mk_{S,t}$ as $\mk_t$.
+
+\begin{thm}[\textbf{Base change theorem}]\label{lb338}
+Let $\varphi:X\rightarrow S$ be a proper holomorphic map. Let $\scr E\in\Coh(\scr O_X)$, and assume that $\scr E$ is $\varphi$-flat. Let $q\in\Zbb$. Choose $t\in S$. Then the following are equivalent. 
+\begin{enumerate}[label=(\alph*)]
+\item The functor $\mc M\mapsto R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M)$  on $\Modf(\scr O_{S,t})$ is right exact.
+\item The functor $\mc M\mapsto R^{q+1}\varphi_*(\scr E\otimes_{\scr O_S}\mc M)$   on $\Modf(\scr O_{S,t})$  is left exact.
+\item For each $\mc M$, the base change map
+\begin{align}
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc M\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M)  \label{eq170}
+\end{align}
+is an isomorphism.
+\item For each $\mc M$, the base change map \eqref{eq170} is an epimorphism.
+\item The canonical map $R^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t\scr E)_t$ is surjective.
+\item For any holomorphic map of complex spaces $\psi:Y\rightarrow S$, if we let \eqref{eq171} denote the Cartesian square, then for each $y\in\psi^{-1}(t)$, the base change map 
+\begin{align}
+\psi^*(R^q\varphi_*\scr E)_y\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y \label{eq175}
+\end{align}
+is an isomorphism. 
+\end{enumerate}
+\end{thm}
+
+
+The notations in \eqref{eq170} are understood as follows. Recall that finitely-generated $\scr O_{S,t}$-modules are equivalently germs at $t$ of coherent $\scr O_S$-modules (cf. Thm. \ref{lb49}). After shrinking $S$ to a neighborhood of $t$, there is $\scr M\in\Coh(\scr O_S)$ such that $\scr M_t=\mc M$, Then we set
+\begin{gather*}
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc M:=\big(R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr M\big)_t\simeq R^q\varphi_*(\scr E)_t\otimes_{\scr O_{S,t}}\mc M\\
+R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M):=R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr M)_t
+\end{gather*} 
+
+
+\begin{df}
+If any of the equivalent statements in Thm. \ref{lb338} holds, we say that $\scr E$ \textbf{satisfies base change property} \index{00@Base change property} in order $q$ at $t$. 
+\end{df}
+
+
+\begin{rem}
+Suppose that $\scr E\in\Coh(\scr O_X)$ satisfies base change property in order $q$ at $t$. Notice that $\wtd\psi^*\scr E$ is $\scr O_Z$-coherent, and that $\wtd\psi^*\scr E$ is $\wtd\varphi$-flat by Thm. \ref{lb271}. Then $\wtd\psi^*\scr E$ satisfies base change property in order $q$ at any $y\in\psi^{-1}(t)$.
+
+Indeed, consider \eqref{eq174} where the two cells are Cartesian squares. We use the notations of Rem. \ref{lb340}. Then by the equivalence condition (f) of Thm. \ref{lb338}, $\Phi$ and $\Psi\circ\gamma^*\Phi$ (both are base change maps) are isomorphisms. Therefore $\Psi$ is an isomorphism.  \hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+
+
+
+\subsection{Preliminary discussions}
+
+We recall the following basic fact which can be proved by diagram chasing:
+
+\begin{lm}[\textbf{Four lemma}]\label{lb349} \index{00@Four lemma}
+Suppose we have a commutative diagram in an Abelian category
+\begin{equation*}
+\begin{tikzcd}
+A \arrow[r] \arrow[d, "\alpha"] & B \arrow[r] \arrow[d, "\beta"] & C \arrow[r] \arrow[d, "\gamma"] & D \arrow[d, "\delta"] \\
+A' \arrow[r]                    & B' \arrow[r]                   & C' \arrow[r]                    & D'                   
+\end{tikzcd}
+\end{equation*}
+Suppose that the rows are exact. 
+\begin{enumerate}[label=(\arabic*)]
+\item If $\alpha,\gamma$ are epimorphisms and $\delta$ is a monomorphism, then $\beta$ is an epimorphism.
+\item If $\beta,\delta$ are monomorphisms and $\alpha$ is an epimorphism, then $\gamma$ is a monomorphism.
+\end{enumerate}
+\end{lm}
+
+Assume the setting of Thm. \ref{lb338}. Since $\mc M\in\Modf(\scr O_{S,t})$, we have a short exact sequence in $\Modf(\scr O_{S,t})$:
+\begin{align}
+0\rightarrow \mc N\rightarrow \scr O_{S,t}^n\rightarrow \mc M\rightarrow0   \label{eq172}
+\end{align} 
+Since $\scr E$ is $\varphi$-flat, we have a short exact sequence
+\begin{align*}
+0\rightarrow \scr E\otimes_{\scr O_S}\mc N\rightarrow \scr E\otimes_{\scr O_S}\scr O_{S,t}^n\rightarrow \scr E\otimes_{\scr O_S}\mc M\rightarrow0
+\end{align*} 
+in $\Coh(\varphi^{-1}(W))$ for some neighborhood $W\subset S$ of $t$. Thus we have a commutative diagram in $\Coh(\varphi^{-1}(W))$:
+\begin{equation}\label{eq173}
+\begin{tikzcd}
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc N\arrow[r] \arrow[d]           & R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc N) \arrow[d]           \\
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr O^n_{S,t} \arrow[d] \arrow[r, "\simeq"] & R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_{S,t}^n) \arrow[d, "\Gamma"] \\
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc M \arrow[r, "\Phi"] \arrow[d]   & R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M)                     \\
+0                               &                      
+\end{tikzcd}
+\end{equation}
+where the first column is exact.
+
+\begin{obs}\label{lb339}
+By Four lemma (or by easy diagram chasing), $\Phi$ is surjective if and only if $\Gamma$ is surjective.
+\end{obs}
+
+
+\subsection{Proof of Thm. \ref{lb338}}
+
+\begin{proof}[\textbf{Proof of (a)$\Leftrightarrow$(b)}]
+Let $0\rightarrow\mc M'\rightarrow\mc M\rightarrow\mc M''\rightarrow0$ be a short exact sequence in $\Modf(\scr O_{S,t})$.  Then since $\scr E$ is $\varphi$-flat, we have a short exact sequence $0\rightarrow\scr E\otimes_{\scr O_S}\mc M'\rightarrow\scr E\otimes_{\scr O_S}\mc M\rightarrow\scr E\otimes_{\scr O_S}\mc M''\rightarrow0$ and hence an exact sequence
+\begin{align*}
+&R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M')\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M)\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M'')\\
+\xrightarrow{\delta^q}&R^{q+1}\varphi_*(\scr E\otimes_{\scr O_S}\mc M')\rightarrow R^{q+1}\varphi_*(\scr E\otimes_{\scr O_S}\mc M)\rightarrow R^{q+1}\varphi_*(\scr E\otimes_{\scr O_S}\mc M'')
+\end{align*}
+So the second map is surjective iff $\delta^p$ is zero iff the fourth map is injective. This proves that (a) and (b) are equivalent. 
+\end{proof}
+
+\begin{proof}[\textbf{Proof of (a)$\Rightarrow$(d)}]
+Choose a short exact sequence \eqref{eq172}. By (a), the map $\Gamma$ in \eqref{eq173} is surjective. So $\Phi$ is surjective.
+\end{proof}
+
+
+
+
+\begin{proof}[\textbf{Proof of (d)$\Rightarrow$(c)}]
+Again, we choose a short exact sequence \eqref{eq172}. By (d), we know that in the diagram \eqref{eq173}, the map $\Phi$ is surjective. Since, similarly, the first row is also surjective, by Four lemma, $\Phi$ is injective. This proves (c).
+\end{proof}
+
+\begin{proof}[\textbf{Proof of (c)$\Rightarrow$(a)}]
+The functor $\mc M\mapsto R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc M$ is right exact.
+\end{proof}
+
+
+We have finished proving the equivalence of (a,b,c,d).
+
+\begin{proof}[\textbf{Proof of (d)$\Rightarrow$(e)}]
+Set $\mc M=\scr O_{S,t}/\mk_t$. Then (d) says that $R^q\varphi_*(\scr E)_t/\mk_tR^q\varphi_*(\scr E)_t\rightarrow R^q\varphi_*(\scr E/\mk_t\scr E)_t$ is surjective. This proves (e).
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of (e)$\Rightarrow$(d)}]
+Step 1. We first prove that the base change map \eqref{eq170} is surjective when $\mk_t^k\mc M=0$ for some $k\in\Zbb_+$. We prove it by induction on $k$. First consider the case $k=1$. Then $\mk_t\mc M=0$. So $\mc M$ as an $\scr O_{S,t}$-module  is equivalently a module over $\scr O_{S,t}/\mk_t=\Cbb$, which is finite direct sum of $\scr O_{S,t}/\mk_t$.  So we may assume without loss of generality that $\mc M=\scr O_{S,t}/\mk_t$. Then (e) clearly implies that \eqref{eq170} is surjective.
+
+Assume that \eqref{eq170} is surjective whenever $\mk^k_t\mc M=0$. Now consider case $k+1$, namely, assume $\mc M$ is such that $\mk_t^{k+1}\mc M=0$. Since $\scr E$ is $\varphi$-flat, we have a short exact sequence
+\begin{align*}
+0\rightarrow \scr E\otimes_{\scr O_S}\mk_t\mc M\rightarrow \scr E\otimes_{\scr O_S}\mc M\rightarrow \scr E\otimes_{\scr O_S}(\mc M/\mk_t\mc M)\rightarrow0
+\end{align*}
+Therefore, similar to \eqref{eq173}, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[sep=small]
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mk_t\mc M\arrow[r] \arrow[d]           & R^q\varphi_*(\scr E\otimes_{\scr O_S}\mk_t\mc M) \arrow[d]           \\
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\mc M \arrow[d] \arrow[r] & R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M) \arrow[d] \\
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}(\mc M/\mk_t\mc M) \arrow[r] \arrow[d]   & R^q\varphi_*(\scr E\otimes_{\scr O_S}(\mc M/\mk_t\mc M))                    \\
+0                               &                      
+\end{tikzcd}
+\end{equation*}
+where the columns are exact. By case $k$, the first and the third rows are surjective. Therefore, by Four lemma, the second row is surjective.\\
+
+Step 2. We consider the general case. By Step 1, for each $k$, the map
+\begin{align*}
+R^q\varphi_*(\scr E)\otimes\mc M \otimes\scr O_{S,t}/\mk_t^k\rightarrow R^q\varphi_*(\scr E\otimes\mc M \otimes\scr O_{S,t}/\mk_t^k)
+\end{align*}
+is surjective. Since its kernel is a finitely-generated $\scr O_{S,t}/\mk_t^k$-module and hence has finite $\Cbb$-dimension (Cor. \ref{lb173}), by Prop. \ref{lb333}, the inverse limit over $k\in\Nbb$ of the above map is still surjective. Therefore, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=-1.8cm]
+\displaystyle\varprojlim_{k\in\Nbb} R^q\varphi_*(\scr E)\otimes\mc M\otimes\scr O_{S,t}/\mk_t^k \arrow[rr] \arrow[rd, two heads] &              & \displaystyle\varprojlim_{k\in\Nbb} R^q\varphi_*(\scr E\otimes\mc M)\otimes\scr O_{S,t}/\mk_t^k \\
+                        & \displaystyle\varprojlim_{k\in\Nbb} R^q\varphi_*(\scr E\otimes\mc M\otimes\scr O_{S,t}/\mk_t^k) \arrow[from=ru] &  
+\end{tikzcd}
+\end{equation*}
+where the lower left arrow is surjective. By Grauert comparison Thm. \ref{lb341}, the lower right arrow is injective. Therefore the horizontal arrow is surjective. Thus, the base change map $R^q\varphi_*(\scr E)\otimes\mc M\rightarrow R^q\varphi_*(\scr E\otimes\mc M)$ is surjective by Lemma \ref{lb342}.
+\end{proof}
+
+
+
+\begin{lm}\label{lb342}
+Let $(\mc A,\mk)$ be a Noetherian local ring. Let $\varphi:\mc M\rightarrow\mc N$ be a morphism of finitely-generated $\mc A$-modules. If the induced map
+\begin{align*}
+\wht\varphi:\varprojlim_{k\in\Nbb} \mc M/\mk^k\mc M \rightarrow \varprojlim_{k\in\Nbb} \mc N/\mk^k\mc N
+\end{align*}
+is surjective, then $\varphi$ is surjective. If $\wht\varphi$ is injective, then $\varphi$ is injective.
+\end{lm}
+
+\begin{proof}
+Suppose that $\wht\varphi$ is surjective. Since we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}
+\displaystyle\varprojlim_{k\in\Nbb} \mc M/\mk^k\mc M\arrow[r,"\wht\varphi"] \arrow[d] & \displaystyle\varprojlim_{k\in\Nbb} \mc N/\mk^k\mc N \arrow[d, two heads] \\
+\mc M/\mk\mc M \arrow[r]           &  \mc N/\mk\mc N         
+\end{tikzcd}
+\end{equation*}
+where the vertical arrows are surjective, $\mc M/\mk\mc M\rightarrow\mc N/\mk\mc N$ is surjective. So $\varphi$ is surjective by Nakayama's lemma.
+
+Suppose that $\wht\varphi$ is injective. Choose $\xi\in\Ker(\varphi)$. Then $\xi$ corresponds to the zero element of $\varprojlim_k \mc M/\mk^k\mc M$. So $\xi=0$ by Krull's intersection Thm. \ref{lb162}.
+\end{proof}
+
+
+
+
+\begin{proof}[\textbf{Proof of (f)$\Rightarrow$(e)}]
+Let $Y=\Specan(\scr O_S/\mk_t)$ and let $\psi:Y\rightarrow S$ be the inclusion map. Let $y=t$. Then the geometric base change map \eqref{eq175} becomes
+\begin{align*}
+R^q\varphi_*\scr E\otimes_{\scr O_S}\scr O_{S,t}/\mk_t\rightarrow (R^q\varphi_*\scr E\otimes_{\scr O_S}\scr O_{S,t}/\mk_t)
+\end{align*}
+whose surjectivity clearly implies (e).
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of (c)$\Rightarrow$(f)}]
+Step 1. Consider the Cartesian square
+\begin{equation}\label{eq177}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] \\
+S                       & Y \arrow[l, "\psi"']                             
+\end{tikzcd}
+\end{equation}
+We consider the case that $Y$ and $S$ are (non-necessarily reduced) single points. Then by Cor. \ref{lb95}, we have a natural equivalence of $\scr O_X$-algebras
+\begin{align}
+\wtd\varphi^*\psi_*\scr O_Y\simeq\wtd\psi_*\scr O_Z. \label{eq176}
+\end{align}
+We identify $Y$ and $S$ as topological spaces through the map $\psi$. Then $Z$ can be identified with $X$ as topological spaces through $\wtd\psi$. Now there are two different sheaves of local $\Cbb$-algebras on $X=Z$, namely $\scr O_X$ and $\scr O_Z$. And we have a morphism $\scr O_X\rightarrow\scr O_Z$ so that $\scr O_Z$ is an $\scr O_X$-algebra. Similar things can be said about $S$ and $Y$.
+
+Now \eqref{eq176} reads $\varphi^*\scr O_Y\simeq\scr O_Z$ (as an equivalence of $\scr O_X$-algebras). By replacing $\scr O_Z$ with $\varphi^*\scr O_Y$ (namely, defining $\varphi^*\scr O_Y$ to be the new structure sheaf of $Z$), we may assume $\scr O_Z=\varphi^*\scr O_Y$.
+
+Thus, for $\scr E\in\Coh(\scr O_X)$, 
+\begin{align*}
+R^q\wtd\varphi_*(\wtd\psi^*\scr E)=R^q\varphi_*(\scr E\otimes_{\scr O_X}\scr O_Z)=R^q\varphi_*(\scr E\otimes_{\scr O_X}\varphi^*\scr O_Y)=R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_Y)
+\end{align*}
+Thus the geometric base change map $\psi^*(R^q\varphi_*\scr E)_y\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y$ is equal to the algebraic one
+\begin{align*}
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_Y\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_Y)
+\end{align*}
+which is an isomorphism by (c). This proves (f) in this special case.\\
+
+Step 2. We consider the case that $Y$ is a single point but $S$ is not necessarily so. Write $Y=\{y\}$. Let $T=\Supp(\psi)$ (recall Def. \ref{lb186}). So $T$ equals $\{t\}$ (where $t=\psi(y)$) as a set, and $\scr O_T=\scr O_S/\mc J$ where $\mc J=\sann_{\scr O_S}(\psi_*\scr O_Y)$. So $T$ is a closed complex subspace of $S$, and $\psi:Y\rightarrow S$ equals $\iota\alpha$ where $\alpha:Y\rightarrow T$ is the restriction of $\psi$ (cf. Thm. \ref{lb13}) and $\iota:T\rightarrow S$ is the inclusion map.
+
+Thus, we have commutative diagrams
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & \varphi^{-1}(T) \arrow[l,hook'] \arrow[d] &Z \arrow[l] \arrow[d]\\
+S                       & T \arrow[l,hook', "\iota"']                             &Y \arrow[l,"\alpha"']
+\end{tikzcd}
+\end{equation*}
+where the two cells are Cartesian squares, and the largest rectangle is equal to \eqref{eq177}. The (geometric) base change map for $\scr E$ and the first cell is
+\begin{align*}
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_T\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_T)
+\end{align*}
+which is an isomorphism by (c). We claim that the base change map for $\scr E|_{\varphi^{-1}(T)}=\scr E\otimes_{\scr O_S}\scr O_T$ and the second cell is an isomorphism. Then the base change map for $\scr E$ and the largest rectangle (namely \eqref{eq177}) is an isomorphism by Rem. \ref{lb340}, which finishes the proof of (f).
+
+To prove the claim, notice the commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=-2cm]
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_T\otimes_{\scr O_S} \scr O_T/\mk_{T,t} \arrow[rr,"\simeq"] \arrow[rd,"\simeq"] &              & R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_T)\otimes_{\scr O_S} \scr O_T/\mk_{T,t} \\
+                        & R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_T\otimes_{\scr O_S} \scr O_T/\mk_{T,t}) \arrow[from=ru] &  
+\end{tikzcd}
+\end{equation*}
+where the horizontal and the lower left arrows are isomorphisms by (c). Thus the lower right arrow is an isomorphism. Thus $\scr E\otimes_{\scr O_S}\scr O_T$ satisfies base change property-condition (e) in order $q$ at $t$. Therefore, by Step 1, it satisfies base change property-condition (f). This proves the claim.\\
+
+Step 3. Choose any $k\in\Zbb_+$, let $Y'=\Specan(\scr O_Y/\mk_{Y,y}^k)$, and let $\gamma:Y'\rightarrow Y$ be the inclusion map. We consider the Cartesian squares
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] &Z' \arrow[l,"\alpha"'] \arrow[d,"\beta"]\\
+S                       & Y \arrow[l, "\psi"']                             &Y' \arrow[l,"\gamma"']
+\end{tikzcd}
+\end{equation*}
+and let $\Phi$ and $\Psi$ be as in Rem. \ref{lb340}. By Step 2, $\Psi\circ\gamma^*\Phi$, the base change map for $\scr E$ and the largest Cartesian square, is an isomorphism. We have
+\begin{gather*}
+\gamma^*\Phi=\Phi\otimes\id: \psi^*(R^q\varphi_*\scr E)_y\otimes \scr O_{Y,y}/{\mk_{Y,y}^k}\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y\otimes \scr O_{Y,y}/{\mk_{Y,y}^k}\\
+\Psi:R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y\otimes \scr O_{Y,y}/{\mk_{Y,y}^k}\rightarrow R^q\wtd\varphi_*(\wtd\psi^*\scr E/\mk_{Y,y}^k\wtd\psi^*\scr E)_y
+\end{gather*}
+
+Taking inverse limit over all $k$, we have a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=-2cm]
+\displaystyle\varprojlim_k \psi^*(R^q\varphi_*\scr E)_y\otimes \scr O_{Y,y}/{\mk_{Y,y}^k} \arrow[rr] \arrow[rd,"\simeq"] &              &  \displaystyle\varprojlim_k R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y\otimes \scr O_{Y,y}/{\mk_{Y,y}^k} \\
+                        & \displaystyle\varprojlim_k R^q\wtd\varphi_*(\wtd\psi^*\scr E/\mk_{Y,y}^k\wtd\psi^*\scr E)_y \arrow[from=ru] &  
+\end{tikzcd}
+\end{equation*}
+where the lower left arrow is an isomorphism.  By Grauert comparison Thm. \ref{lb341},  the lower right arrow is injective. Therefore the horizontal arrow is an isomorphism. Therefore, by Lemma \ref{lb342}, the stalk map
+\begin{align*}
+\Phi_y:\psi^*(R^q\varphi_*\scr E)_y\rightarrow  R^q\wtd\varphi_*(\wtd\psi^*\scr E)_y
+\end{align*}
+is an isomorphism. This finishes the proof of (f).
+\end{proof}
+
+
+
+
+\subsection{Applications}
+
+Let $\varphi:X\rightarrow S$ be a proper holomorphic map. Let $\scr E\in\Coh(\scr O_X)$, and assume that $\scr E$ is $\varphi$-flat. Let $q\in\Zbb$ and $t\in S$. 
+
+
+\begin{df}
+We say that $\scr E$ is \textbf{cohomologically flat} \index{00@Cohomologically flat} in order $q$ at $t$, if $\scr E$ satisfies base change property in orders $q$ and $q-1$ at $t$.
+\end{df}
+
+
+\begin{pp}\label{lb344}
+The following are equivalent.
+\begin{enumerate}[label=(\alph*)]
+\item $\scr E$ is cohomologically flat in order $q$ at $t$.
+\item The functor $\mc M\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\mc M)$ on $\Modf(\scr O_{S,t})$ is exact.
+\item $\scr E$ satisfies base change property in order $q$ at $t$, and $R^q\varphi_*(\scr E)_t$ is a (finite-rank) free $\scr O_{S,t}$-module.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+(a)$\Leftrightarrow$(b) is obvious.
+
+(c)$\Rightarrow$(b): Since $R^q\varphi_*(\scr E)_t$ is a free, the functor $\mc M\rightarrow R^q\varphi_*(\scr E)_t\otimes\mc M$ is exact. Since $\scr E$ satisfies base change property in order $q$, $R^q\varphi_*(\scr E\otimes\mc M)$ is naturally equivalent to $R^q\varphi_*(\scr E)_t\otimes \mc M$, and hence is exact over $\mc M$. This proves (b).
+
+(a,b)$\Rightarrow$(c): $R^q\varphi_*(\scr E)_t\otimes \mc M$ is naturally equivalent to $R^q\varphi_*(\scr E\otimes\mc M)$, and the latter is exact over $\mc M$. So $R^q\varphi_*(\scr E)\otimes-$ is exact on $\Modf(\scr O_{S,t})$. By Exp. \ref{lb265}, we have $\Tor_1^{\scr O_{S,t}}(R^q\varphi_*(\scr E)_t,\scr O_{S,t}/I)=0$ for each ideal $I\subset\scr O_{S,t}$. Therefore, by Prop. \ref{lb343}, $R^q\varphi_*(\scr E)_t$ is a flat $\scr O_{S,t}$-module. So it is free by Thm. \ref{lb280}.
+\end{proof}
+
+
+Recall that $X_t=\varphi^{-1}(t)=\Specan(\scr O_X/\mk_{S,t}\scr O_X)$. We now give an extremely useful criterion on cohomological flatness.
+
+\begin{thm}\label{lb345}
+Suppose that $H^q(X_t,\scr E|_{X_t})=0$. Then $R^q\varphi_*(\scr E)_t=0$, and $\scr E$ is cohomologically flat in order $q$ at $t$.
+\end{thm}
+
+The semicontinuity theorem \ref{lb347}, to be proved in the next section, implies that if $H^q(X_t,\scr E|_{X_t})=0$, then $H^q(X_s,\scr E|_{X_s})=0$ for each $s$ in a neighborhood of $t$. Then this theorem implies that $\scr E$ satisfies base change property in order $q-1$ on that neighborhood.
+
+\begin{proof}
+The canonical map from $R^q\varphi_*(\scr E)_t$ to $R^q\varphi_*(\scr E/\mk_t\scr E)_t=H^q(X_t,\scr E|_{X_t})$ is surjective since the latter is $0$. So $\scr E$ satisfies condition (e) of Base change Thm. \ref{lb338}. Thus $\scr E$ satisfies base change property in order $q$ at $t$. By (c) of Thm. \ref{lb338}, the map
+\begin{align*}
+R^q\varphi_*(\scr E)_t\otimes_{\scr O_{S,t}}\scr O_{S,t}/\mk_t\rightarrow R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/\mk_t)_t=0
+\end{align*}
+is bijective. Hence $R^q\varphi_*(\scr E)_t/\mk_t R^q\varphi_*(\scr E)_t=0$. So $R^q\varphi_*(\scr E)_t=0$ by Nakayama's lemma. Therefore $\scr E$ is cohomologically flat in order $q$ at $t$ by Prop. \ref{lb344}-(c).
+\end{proof}
+
+\begin{co}
+Assume that $H^{q+1}(X_t,\scr E|_t)=H^{q-1}(X_t,\scr E|_{X_t})=0$. Then $R^q\varphi_*(\scr E)$ is a finite-rank free $\scr O_{S,t}$-module, and the canonical map
+\begin{align*}
+R^q\varphi_*(\scr E)|_{X_t}\rightarrow H^q(X_t,\scr E|_{X_t})
+\end{align*}
+is an isomorphism of $\Cbb$-vector spaces.
+\end{co}
+\begin{proof}
+By Thm. \ref{lb345}, $\scr E$ satisfies base change property in orders $q-1,q,q+1$ at $t$. So it is cohomologically flat in order $q$ at $t$.
+\end{proof}
+
+
+
+\section{Semicontinuity and base change theorem}
+
+
+In this section, we let $\varphi:X\rightarrow S$ be a proper holomorphic map of complex spaces, and let $\scr E\in\Coh(\scr O_X)$ be a $\varphi$-flat.
+
+The material of this section is adapted from \cite[Sec. 10.5]{GR-b}.
+
+
+
+
+
+\begin{rem}\label{lb348}
+Choose any precompact open subset $W\subset S$. Then there exists $q_0\in\Nbb$ such that for every $q> q_0$, $H^q(\varphi^{-1}(V),\scr E)=0$ and $H^q(X_t,\scr E|_{X_t})=0$ whenever $V$ is a Stein open subset of $W$ and $t\in W$. In particular, for each $t\in W$, $R^q\varphi_*(\scr E)_t=0$.
+\end{rem}
+
+
+\begin{proof}
+Since $\varphi$ is proper, we can cover the compact set $\varphi^{-1}(\ovl W)$ by finitely many Stein open subsets of $X$, denoted by $\fk U=(U_\alpha)_{\alpha\in I}$. Let $q_0+1$ be the cardinality of $I$. Then for each Stein open subset $V\subset S$, $\varphi^{-1}(V)\cap\fk U=(\varphi^{-1}(V)\cap U_\alpha)_{\alpha\in I}$ is a Stein cover of $\varphi^{-1}(V)$. (Recall Exp. \ref{lb329}). Therefore, by Leray's Thm. \ref{lb326} and Cartan's Thm. B  (Thm. \ref{lb346}), we have $H^\blt(\varphi^{-1}(V),\scr E)=H^\blt(\varphi^{-1}(V)\cap\fk U,\scr E)$. By the alternate condition of \v Cech cochains, if $q> q_0$ then $C^q(\varphi^{-1}(V)\cap\fk U,\scr E)=0$. Hence $H^q(X,\scr E)=0$. Likewise, for $q> q_0$ and $t\in W$ we have $H^q(X_t,\scr E|_{X_t})=0$.
+\end{proof}
+
+
+
+Thanks to the above observation, for each $t\in S$ we can define the \textbf{character of the sheaf $\scr E\vert_{X_t}$} \index{zz@$\chi(X,\scr E)=\sum_q (-1)^q\dim_\Cbb H^q(X,\scr E)$} to be
+\begin{align*}
+\chi(X_t,\scr E|_{X_t})=\sum_{q\in\Nbb}(-1)^q\dim_\Cbb H^q(X_t,\scr E|_{X_t})
+\end{align*}
+which is a finite sum on each precompact Stein open subset of $S$.
+
+
+\begin{thm}[\textbf{Invariance of characters}]
+The character function
+\begin{align*}
+t\in S\mapsto \chi(X_t,\scr E|_{X_t})
+\end{align*}
+is locally constant.
+\end{thm}
+
+
+We will not use this theorem in this chapter, and we refer the readers to \cite[Sec. III.4]{BS} for the proof. In the next chapter, we will prove this result under the assumption that $\varphi$ is projective. 
+
+
+
+\begin{df}
+We say that $\scr E$ satisfies \textbf{base change property} (resp. is \textbf{cohomologically flat} ) in order $q$, if it does so at every $t\in S$. \index{00@Base change property} \index{00@Cohomologically flat}
+\end{df}
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Semicontinuity theorem}
+
+\index{00@Semicontinuity theorem}
+\begin{thm}[Semicontinuity theorem] \label{lb347}
+For each $q\in\Zbb$, the dimension function
+\begin{align}
+\mbf d:t\in S\mapsto \dim_\Cbb H^q(X_t,\scr E|_{X_t}) \label{eq181}
+\end{align}
+is upper-semicontinuous.
+\end{thm}
+
+We divide the proof into several steps.
+
+
+
+\begin{lm}\label{lb350}
+Let $p\in\Zbb$, and assume that $R^q\varphi_*(\scr E)$ is locally free for every $q\geq p$. Then for every $q\geq p$, $\scr E$ is cohomologically flat in order $q$, and the dimension function $t\in S\mapsto \dim H^q(X_t,\scr E|_{X_t})$ is locally constant.
+\end{lm}
+
+
+
+\begin{proof}
+Shrink $S$ to any precompact Stein open subset. Then by Rem. \ref{lb348}, this lemma is clearly true for sufficiently large $q$. Now choose $q\geq p$ and assume that $\scr E$ is cohomologically flat in order $q+1$. Then $\scr E$ satisfies base change property in order $q$ and, as $R^q\varphi_*(\scr E)$ is locally free, $\scr E$ is cohomologically flat in order $q$ by Prop. \ref{lb344}.
+
+Since $R^q\varphi_*(\scr E)$ is locally free, its fibers have locally constant dimensions. By base change property, $H^q(X_t,\scr E|_{X_t})\simeq R^q\varphi_*(\scr E)_t$. So $H^q(X_t,\scr E|_{X_t})$ is locally constant with respect to $t$.
+\end{proof}
+
+
+
+
+\begin{lm}\label{lb353}
+Suppose that $\psi:Y\rightarrow S$ is a surjective finite holomorphic map of (non-necessarily reduced) complex spaces. Let
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] \\
+S                       & Y \arrow[l, "\psi"']                             
+\end{tikzcd}
+\end{equation*}
+be the Cartesian square. Suppose that the semicontinuity theorem holds for $\wtd\psi^*\scr E$, namely, $y\in Y\mapsto \dim H^q(Z_y,\wtd\psi^*\scr E|_{Z_y})$ is upper-semicontinuous. Then the semicontinuity theorem holds for $\scr E$.
+\end{lm}
+
+
+\begin{proof}
+For each $y\in Y$, since we have Cartesian squares
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & Z \arrow[l, "\wtd\psi"'] \arrow[d, "\wtd\varphi"] & Z_y \arrow[d] \arrow[l,hook'] \\
+S                       & Y \arrow[l, "\psi"']   &y \arrow[l,hook']                          
+\end{tikzcd}
+\end{equation*}
+where the largest Cartesian square is also equivalent to
+\begin{equation*}
+\begin{tikzcd}
+X \arrow[d, "\varphi"'] & X_{\psi(y)} \arrow[l, hook'] \arrow[d] \\
+S                       & \psi(y) \arrow[l, hook']          
+\end{tikzcd}
+\end{equation*}
+we have equivalences of vector spaces
+\begin{align}
+H^q(Z_y,\wtd\psi^*\scr E|_{Z_y})\simeq H^q(X_{\psi(y)},\scr E|_{X_{\psi(y)}})\label{eq178}
+\end{align}
+
+Choose any $t\in S$, and let $r=\dim H^q(X_t,\scr E|_{X_t})$. Then $\psi^{-1}(t)$ is a non-empty finite set. By \eqref{eq178}, for each $y\in\psi^{-1}(t)$, we have $\dim H^q(Z_y,\wtd\psi^*\scr E|_{Z_y})=r$. Since $\wtd\psi^*\scr E$ satisfies the semicontinuity theorem, there is a neighborhood $V\subset Y$ of $\psi^{-1}(t)$ such that for each $y'\in V$ we have $\dim H^q(Z_{y'},\wtd\psi^*\scr E|_{Z_{y'}})\leq r$. By Prop. \ref{lb54}, there is a neighborhood $W\subset S$ of $t$ such that $\psi^{-1}(W)\subset V$. Then by \eqref{eq178}, for each $t'\in W$ we have $\dim H^q(X_{t'},\scr E|_{X_{t'}})\leq r$. This proves that $\scr E$ satisfies the semicontinuity theorem.
+\end{proof}
+
+
+
+The starting point of the proof of Semicontinuity theorem is the following special case:
+
+
+\begin{lm}\label{lb352}
+The Semicontinuity Thm. \ref{lb347} holds whenever $S$ is a smooth $1$-dimensional complex manifold, i.e. a Riemann surface.
+\end{lm}
+
+
+
+\begin{proof}
+We may well assume that $S$ is an open subset of $\Cbb$. Let $z\in\scr O(\Cbb)$ be the standard coordinate function of $\Cbb$. We note that for each $t\in S$, the map
+\begin{align}
+\Phi_t^q: R^q\varphi_*(\scr E)|_t\rightarrow H^q(X_t,\scr E|_{X_t})  \label{eq179}
+\end{align}
+is injective. Indeed, consider the short exact sequence
+\begin{align*}
+0\rightarrow \scr O_S\xrightarrow{\times (z-t)}\scr O_S\rightarrow \scr O_S/\mk_{S,t}\rightarrow 0
+\end{align*}
+as a special case of \eqref{eq172}. Then \eqref{eq173} becomes the commutative diagram
+\begin{equation}\label{eq180}
+\begin{tikzcd}
+R^q\varphi_*(\scr E)\arrow[r,"="] \arrow[d,"\times (z-t)"]           & R^q\varphi_*(\scr E) \arrow[d,"\times (z-t)"]           \\
+R^q\varphi_*(\scr E) \arrow[d] \arrow[r, "="] & R^q\varphi_*(\scr E) \arrow[d, "\Gamma_t^q"] \\
+R^q\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_S/\mk_{S,t} \arrow[r, "\Phi_t^q"] \arrow[d]   & R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/\mk_{S,t})                     \\
+0                               &                      
+\end{tikzcd}
+\end{equation}
+where the columns are exact. The map $\Phi_t^q$ in the above diagram is precisely the map $\Phi_t^q$ in \eqref{eq179}. And $\Phi_t^q$ is injective by Four Lemma \ref{lb349}. 
+
+
+By Rem. \ref{lb348}, for sufficiently large $q$ we have $R^q\varphi_*(\scr E)=0$ and $H^q(X_t,\scr E|_{X_t})=0$ for all $t\in S$. Thus, by Thm. \ref{lb168}, there is a nowhere dense analytic subset $A$ of $S$ such that $R^q\varphi_*(\scr E)$ is locally free outside $A$ for all $q$. By Ritt's Lemma \ref{lb147}, $\dim A=0$. So $A$ is an isolated Hausdorff space, and hence is a discrete subset of $S$.
+
+By Lemma \ref{lb350}, the dimension function
+\begin{align*}
+\mbf d:t\in S\mapsto \dim H^q(X_t,\scr E|_{X_t})
+\end{align*}
+is locally constant on $S\setminus A$. It is clear that the function
+\begin{align*}
+\mbf r:t\in S\mapsto \dim R^q\varphi_*(\scr E)_t
+\end{align*}
+is upper-semicontinuous (cf. Cor. \ref{lb351}). For each $t\in A$, choose a neighborhood $W\subset S$ of $t$ such that $W\cap A=\{t\}$ and that $\mbf r|_W\leq \mbf r(t)$. Since the map $\Phi_t^q$ in \eqref{eq179} is injective, we have $\mbf r(t)\leq \mbf d(t)$. By Lemma \ref{lb350}, $\scr E$ satisfies base change property in all orders outside $S\setminus A$. So $\mbf d=\mbf r$ outside $A$. Therefore $\mbf d|_W\leq\mbf d(t)$. This proves that $d$ is upper-seminicontinuous at every point of $A$, and hence everywhere on $S$.
+\end{proof}
+
+
+
+Let us make some comments on the above proof, which will be helpful for the following proof of base change theorem.
+
+
+
+\begin{rem}
+As noticed in Obs. \ref{lb339}, by Four Lemma, the map $\Phi_t^q$ in \eqref{eq179} is surjective iff the map $\Gamma_t^q$ in \eqref{eq180} is surjective. Since we have a long exact sequence
+\begin{align*}
+R^q\varphi_*(\scr E)_t\xrightarrow{\Gamma_t^q}R^q\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/\mk_{S,t})_t \rightarrow R^{q+1}\varphi_*(\scr E)_t\xrightarrow {\times (z-t)}R^{q+1}\varphi_*(\scr E)_t
+\end{align*}
+induced by $0\rightarrow \scr E\otimes \scr O_S\xrightarrow{\times (z-t)}\scr E\otimes \scr O_S\rightarrow \scr E\otimes \scr O_S/\mk_{S,t}\rightarrow 0$, we see that $\Gamma_t^q$ is surjective iff $(z-t)$ is a non zero-divisor of $R^{q+1}\varphi_*(\scr E)_t$. And the latter is equivalent to that $R^{q+1}\varphi_*(\scr E)_t$ is $\scr O_{S,t}$-flat (by Cor. \ref{lb276} or by Slicing Criterion \ref{lb264}), and is equivalent to that $R^{q+1}\varphi_*(\scr E)_t$ is free of finite-rank (Thm. \ref{lb280}). We conclude that
+\begin{align}
+\Phi_t^q\text{ is surjective (and hence bijective)}\quad\Longleftrightarrow\quad R^{q+1}\varphi_*(\scr E)_t\text{ is $\scr O_{S,t}$-free}  \label{eq183}
+\end{align}
+\end{rem}
+
+
+
+\begin{rem}
+Suppose that the dimension function $\mbf d:t\in S\mapsto \dim H^q(X_t,\scr E|_{X_t})$ is locally constant. Using the notations in the last paragraph of the proof of Lemma \ref{lb352}, for each $t\in A$, the neighborhood $W$ can be chosen such that $\mbf d$ is constant on $W$. So for each $s\in W\setminus\{t\}$ we have $\mbf d(t)=\mbf d(s)=\mbf r (s)\leq\mbf r(t)$. Since $\mbf r\leq\mbf d$, we conclude $\mbf d(t)=\mbf r(t)$. So $\mbf d=\mbf r$ on $A$, and hence on $S$. So $\Phi^q_t$ is bijective for all $t\in S$. It follows that $\scr E$ satisfies base change in order $q$. We conclude that
+\begin{align}
+\mbf d \text{ is locally constant}\quad\Longrightarrow\quad \Phi_t^q\text{ is bijective for all $t\in S$}   \label{eq184}
+\end{align}
+\end{rem}
+
+
+
+\begin{proof}[\textbf{Proof of Semicontinuity Thm. \ref{lb347}}]
+It suffices to assume $\dim S<+\infty$. We prove the theorem by induction on $n=\dim S$. Since $\red(S)\rightarrow S$ is finite and surjective, by Lemma \ref{lb353}, it suffices to assume that $S$ is reduced. Similarly, since the normalization $\wht S\rightarrow S$ is finite and surjective, by Lemma \ref{lb353} again, it suffices to assume that $S$ is (reduced and) normal. By Prop. \ref{lb237}, $S$ is then a disjoint union of connected (equivalently, irreducible) normal open subspaces. So we may well assume that $S$ is normal and connected.
+
+Assume $\dim S\leq 1$. If we assume that $S$ is normal and connected, then by Thm. \ref{lb232}, $S$ is either a single reduced point or a connected Riemann surface. Then Thm. \ref{lb347} follows from Lemma \ref{lb352}.
+
+Choose $n\in\Zbb_+$ and assume that Thm. \ref{lb347} holds whenever $\dim S\leq n$. Now assume that $\dim S=n+1$ and $S$ is normal and connected. Note that by Prop. \ref{lb245}, $S$ has pure dimension $n+1$. By Thm. \ref{lb168} and Lemma \ref{lb350}, there is a nowhere dense analytic subset $A$ of $S$ such that $R^q\varphi_*(\scr E)$ is locally free outside $A$ for all $q$. By Lemma \ref{lb350}, the dimension function $\mbf d$ in \eqref{eq181} is locally constant on $S\setminus A$. By Prop. \ref{lb234}, $S\setminus A$ is connected. So 
+\begin{align*}
+\mbf d\text{ is a constant on }S\setminus A.
+\end{align*}
+
+
+Choose any $t\in A$. It remains to show that $\mbf d|_W\leq d(t)$ for some neighborhood $W$ of $t$. By Ritt's Lemma \ref{lb147}, $\dim A\leq n$. Thus, by induction on case $n$, we can find a neighborhood $W$ such that
+\begin{align*}
+\mbf d|_{W\cap A}\leq \mbf d(t).
+\end{align*}
+
+We claim that we can shrink $W$ to a smaller neighborhood of $t$ such that there exists $f\in\scr O_S(W)$ satisfying that the germ $(N(f),t)$ is not inside the germ $(A,t)$, and that the germ $f_t$ is a non-zero element of $\scr O_{S,t}$. (Recall that $N(f)$ is the zero set of $f$.) 
+
+Suppose this claim is true. Then $f_t$ is a non zero-divisor of $\scr O_{S,t}$ because $\scr O_{S,t}$ is normal and hence an integral domain (Prop. \ref{lb245}). Then by Active Lemma \ref{lb302}, we have $\dim_t N(f)=\dim_t S-1=n$.  By Cor. \ref{lb153}, we may shrink $W$ further so that $\dim N(f)=n$.  By assumption on case $n$, we may shrink $W$ so that $\mbf d|_{W\cap N(f)}\leq \mbf d(t)$. Since $W\cap N(f)\nsubset A\cap N(f)$, there exists $p\in (W\cap N(f))\setminus A$. Then since $\mbf d|_{S\setminus A}$ is constant, we have $\mbf d|_{S\setminus A}=\mbf d(p)\leq \mbf d(t)$. This, together with $\mbf d|_{W\cap A}\leq \mbf d(t)$, shows $\mbf d|_W\leq\mbf d(t)$. The proof is then finished.
+
+
+
+Let us prove the claim. Suppose that $\dim_t A>0$. Then by Rem. \ref{lb148}, $\scr O_{A,t}=\scr O_{S,t}/\scr I_{A,t}$ contains a non zero-divisor $g$. We lift it to an element $f\in\scr O_{S,t}$.  So $N(g)=N(f)\cap A$. By Active Lemma, we have $\dim_t N(f)\cap A=\dim_t A-1\leq n-1$. So $(N(f),t)$ is not inside $(A,t)$, otherwise we have
+\begin{align*}
+\dim_t N(f)=\dim_t N(f)\cap A\leq n-1=\dim_t S-2
+\end{align*}
+which is impossible since, according to the definition of dimensions (Def. \ref{lb140}), we must have $\dim_t N(f)\geq\dim_t S-1$. 
+
+
+Suppose $\dim_t A=0$. We shrink $W$ and choose $f\in\scr O_S(W)$ such that $f_t\neq 0$. Then since $\dim_t N(f)\geq n>0=\dim_t A$, $(N(f),t)$ cannot be inside $(A,t)$. Thus, in both cases we have proved the claim.
+\end{proof}
+
+
+
+
+\subsection{Base change theorem}
+
+
+
+\begin{thm}[\textbf{Grauert base change theorem}]   \label{lb355}
+Let $q\in\Zbb$. Consider the following statements:
+\begin{enumerate}[label=(\alph*)]
+\item $\scr E$ is cohomologically flat in order $q$.
+\item The dimension function
+\begin{align}
+\mbf d:t\in S\mapsto \dim_\Cbb H^q(X_t,\scr E|_{X_t})  \label{eq182}
+\end{align}
+is locally constant.
+\end{enumerate}
+Then (a)$\Rightarrow$(b). If $S$ is reduced, then (b)$\Rightarrow$(a).
+\end{thm}
+
+
+\begin{proof}[\textbf{Proof of (a)$\Rightarrow$(b)}]
+By Prop. \ref{lb344}, $R^q\varphi_*(\scr E)$ is locally free, and its fiber at $t$ is isomorphic to $H^q(X_t,\scr E|_{X_t})$ since $\scr E$ satisfies base change property in order $q$. So (b) follows.
+\end{proof}
+
+We shall only prove (b)$\Rightarrow$(a) in the case that $S$ is smooth. See \cite[Sec. III.4]{BS} for the proof of the general case.
+
+
+
+
+
+\begin{lm}\label{lb356}
+Assume that $S$ is smooth and $\mbf d$ is locally constant. Then $R^{q+1}\varphi_*(\scr E)$ is a torsion free $\scr O_S$-module. 
+\end{lm}
+
+
+\begin{proof}
+Recall that the torsion sheaf of any coherent sheaf is coherent by Cor. \ref{lb166}. Assume that the complex manifold $S$ has pure dimension. We prove the lemma by induction on $\dim S$. If $\dim S=0$, then the lemma is trivial. If $\dim S=1$ then $R^{q+1}\varphi_*(\scr E)$ is locally free by \eqref{eq183} and \eqref{eq184}. So it is torsion free.
+
+Now assume that the lemma holds whenever $\dim S\leq n$ ($n\in\Zbb_+$). Assume that $\dim S=n+1$. Let $\scr T$ be the torsion sheaf of $\scr M:=R^{q+1}\varphi_*(\scr E)$. Suppose that $\scr T$ is non-zero.  We assume for simplicity that $S$ is an open subset of $\Cbb^{n+1}$ and $\scr T_0\neq 0$, and we shall find a contradiction.\\
+
+Step 1. Since $\scr M$ is locally free outside a nowhere dense analytic subset of $S$ (Thm. \ref{lb168}), the support $A=\Supp(\scr T)$ must be a nowhere dense analytic subset of $S$. By our assumption, $0\in A$. By shrinking $S$, we assume that $S$ is an open ball centered at $0$. Then there must be a hyperplane $H$ of $S$ passing through $0$ whose intersection with $A$ is nowhere dense: otherwise, by Prop. \ref{lb239}, for each $H$ we have $A\cap H=H$, and hence $A=S$ (here we use the fact $n+1>1$), impossible. By an invertible linear transform, we assume that $H=N(z_1)=\{t\in S:z_1(t)=0\}$ where $(z_1,\dots,z_{n+1})$ are the standard coordinates of $\Cbb^{n+1}$.
+
+So $A\cap N(z_1)$ is a nowhere dense analytic subset of $N(z_1)$. Note that
+\begin{align*}
+\Supp(\scr T/z_1\scr M\cap\scr T)\subset\Supp(\scr T)\cap N(z_1)=A\cap N(z_1)
+\end{align*}
+We consider $\scr T/z_1\scr M\cap\scr T$ as a coherent sheaf on $H=N(z_1)$. Then by Prop. \ref{lb354}, $\scr T/z_1\scr M\cap\scr T$ is the $\scr O_H$-torsion sheaf of itself. In other words, every element of $\scr T/z_1\scr M\cap\scr T$ is a torsion element of $\scr O_H$.
+
+
+$\scr T_0/z_1\scr M_0\cap\scr T_0$, the stalk of $\scr T/z_1\scr M\cap\scr T$ at $0$, is non-zero. Otherwise, we have $\scr T_0\subset z_1\scr M_0$. Every $s\in\scr T_0$ can be written as $z_1\gamma$ for some $\gamma\in\scr M_0$, and since $s$ kills a non-zero element of $\scr O_{S,0}$, so does $\gamma$. This implies $\scr T_0\subset z_1\scr T_0$, and hence $\scr T_0=0$ by Nakayama's lemma, which is impossible.\\
+
+Step 2. To summarize, we have shown that $\scr T_0/z_1\scr M_0\cap\scr T_0$ is a non-zero torsion $\scr O_{H,0}$-module. It is clearly a submodule of $\scr M_0/z_1\scr M_0$, the stalk at $0$ of
+\begin{align*}
+\scr M\otimes_{\scr O_S}\scr O_S/z_1\scr O_S=R^{q+1}\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_S/z_1\scr O_S 
+\end{align*}
+We claim that the canonical map
+\begin{align*}
+\Phi:R^{q+1}\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_S/z_1\scr O_S \rightarrow R^{q+1}\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/z_1\scr O_S)=R^{q+1}\varphi_*(\scr E|_{\varphi^{-1}(H)})
+\end{align*}
+is a monomorphism. Then the stalk at $0$ of $R^{q+1}\varphi_*(\scr E|_{\varphi^{-1}(H)})$ has non-zero $\scr O_{H,0}$-torsion elements. So the $\scr O_H$-module $R^{q+1}\varphi_*(\scr E|_{\varphi^{-1}(H)})$ is not torsion free. But the function $t\in H\mapsto \dim H^q(X_t,\scr E|_{X_t})$ is locally constant. So by assumption on case $n$, $R^{q+1}\varphi_*(\scr E|_{\varphi^{-1}(H)})$ is $\scr O_H$-torsion free. This gives a contradiction.\\
+
+Step 3. The argument that $\Phi$ is injective is similar to that in the proof of Lemma \ref{lb352}: the short exact sequence
+\begin{align}\label{eq185}
+0\rightarrow \scr O_S\xrightarrow{\times z_1}\scr O_S\rightarrow\scr O_S/z_1\scr O_S\rightarrow 0   
+\end{align}
+gives, by \eqref{eq173}, a commutative diagram where the columns are exact
+\begin{equation}\label{eq186}
+\begin{tikzcd}
+R^p\varphi_*(\scr E)\arrow[r,"="] \arrow[d,"\times z_1"]           & R^p\varphi_*(\scr E) \arrow[d,"\times z_1"]           \\
+R^p\varphi_*(\scr E) \arrow[d] \arrow[r, "="] & R^p\varphi_*(\scr E) \arrow[d, "\Gamma"] \\
+R^p\varphi_*(\scr E)\otimes_{\scr O_S}\scr O_S/z_1\scr O_S \arrow[r, "\Phi"] \arrow[d]   & R^p\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/z_1\scr O_S)                     \\
+0                               &                      
+\end{tikzcd}
+\end{equation}
+where $p=q+1$. So by Four lemma, $\Phi$ is injective.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb355} (b)$\Rightarrow$(a) when $S$ is smooth}]
+We assume that $S$ is a pure-dimensional complex manifold. We assume for simplicity that $S$ is an open subset of $\Cbb^n$. Assume that (b) holds. The short exact sequence \eqref{eq185} gives a commutative diagram \eqref{eq186} with exact columns, where we choose $p=q$. We also have a long exact sequence
+\begin{align*}
+R^q\varphi_*(\scr E)\xrightarrow{\Gamma} R^p\varphi_*(\scr E\otimes_{\scr O_S}\scr O_S/z_1\scr O_S)\rightarrow R^{q+1}\varphi_*(\scr E)\xrightarrow{\times z_1} R^{q+1}\varphi_*(\scr E)
+\end{align*}
+where the endomorphism $\times z_1$ on $R^{q+1}\varphi_*(\scr E)$ is injective because $R^{q+1}\varphi_*(\scr E)$ is torsion free by Lemma \ref{lb356}. Therefore, $\Gamma$ is surjective. So by Five lemma, the map $\Phi$ in \eqref{eq186} is an isomorphism. Thus, noting that $N(z_1)=0\times\Cbb^{n-1}$, we have a canonical isomorphism
+\begin{align*}
+R^q\varphi_*(\scr E)|_{0\times\Cbb^{n-1}}\simeq R^q\varphi_*(\scr E|_{\varphi^{-1}(0\times\Cbb^{n-1})})
+\end{align*}
+Thus, an easy induction on $n$ shows that the canonical map $R^q\varphi_*(\scr E)|_0\rightarrow R^q\varphi_*(\scr E|_{X_0})=H^q(X_0,\scr E|_{X_0})$ is an isomorphism. The same argument shows that for each $t\in S$, the canonical map 
+\begin{align}
+R^q\varphi_*(\scr E)|_t\rightarrow H^q(X_t,\scr E|_{X_t})  \label{eq187}
+\end{align}
+is an isomorphism. This shows that $\scr E$ satisfies base change property in order $q$ and that, since $\mbf d$ is locally constant, the function $t\in S\mapsto \dim R^q\varphi_*(\scr E)|_t$ is locally constant. Thus $R^q\varphi_*(\scr E)$ is locally free by Prop. \ref{lb65}. Therefore, by Prop. \ref{lb344}, $\scr E$ is cohomologically flat in order $q$.
+\end{proof}
+
+
+
+Thm. \ref{lb355} is often used in the following form:
+
+\begin{co}
+Let $q\in\Zbb$. Assume that $S$ is smooth and the dimension function $\mbf d:t\in S\mapsto \dim H^q(X_t,\scr E|_{X_t})$ is locally constant. Then $R^q\varphi_*(\scr E)$ is locally free, and the canonical map \eqref{eq187} is an isomorphism of $\Cbb$-vector spaces for all $t\in S$.
+\end{co}
+
+
+In other words, the conclusion of the above corollary is that all $H^q(X_t,\scr E|_{X_t})$ (where $t\in S$) form a holomorphic vector bundle over $S$, namely $R^q\varphi_*(\scr E)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 
 \printindex	
+
+
+
+
+
+
 	\begin{thebibliography}{999999}
 		\footnotesize	
 
@@ -9316,16 +11256,30 @@ By Cor. \ref{lb159} and Thm. \ref{lb308}.
 \bibitem[AM]{AM}
 M. Atiyah and I. Macdonald, Introduction to Commutative Algebra, Addison-Wesley Publ. Co., Reading, MA, 1969
 
+\bibitem[BS]{BS}
+Bănică, C., \& Stănăşilă, O. (1976). Algebraic methods in the global theory of complex spaces.
+
+\bibitem[Dem]{Dem}
+Demailly, Jean-Pierre. Complex analytic and differential geometry, Version of Thursday June 21, 2012
+
+
 
 \bibitem[GPR]{GPR}
 Grauert, H., Peternell, T., and Remmert, R. eds., 1994. Several complex variables VII: sheaf-theoretical methods in complex analysis. Springer-Verlag.
 
 
-\bibitem[GR]{GR}
+\bibitem[GR-a]{GR-a}
+Grauert, Hans, and Reinhold Remmert. Theory of Stein spaces. Vol. 236. Springer Science \& Business Media, 2013.
+
+
+\bibitem[GR-b]{GR-b}
 Grauert, H., \& Remmert, R. (1984). Coherent analytic sheaves (Vol. 265). Springer Science \& Business Media.
 
 \bibitem[Hat]{Hat}
 Hatcher, A., Algebraic Topology.
+
+\bibitem[Kod]{Kod}
+Kodaira, K.  Complex manifolds and deformation of complex structures. Springer.
 
 \bibitem[Lang]{Lang}
 Lang, Serge. Algebra, revised 3rd edition. Vol. 211. Springer Science \& Business Media, 2012.
@@ -9338,9 +11292,25 @@ Lang, Serge. Algebra, revised 3rd edition. Vol. 211. Springer Science \& Busines
 %\bibitem[Gui22]{Gui22}
 %B. Gui, Lectures on Vertex Operator Algebras and Conformal Blocks, 2022
 
+
+
+
+
+\bibitem[Tay]{Tay}
+Taylor, Joseph L. Several complex variables with connections to algebraic geometry and Lie groups. Vol. 46. Providence: American Mathematical Society, 2002.
+
+
+
+
 \bibitem[Vak17]{Vak17}
 Vakil, R. (2017). The rising sea: Foundations of algebraic geometry. preprint. November 18, 2017 draft
 		
+
+
+\bibitem[Voi]{Voi}
+Voisin, Claire. Hodge Theory and Complex Algebraic Geometry I
+
+
 		
 \end{thebibliography}
 
