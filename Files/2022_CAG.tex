@@ -7653,11 +7653,13 @@ Let $A=N(\mc I)$. If $\mc I\neq 0_X$, then $A\neq X$. So by Prop. \ref{lb239}, $
 
 \index{00@Open mapping theorem}
 \begin{thm}[\textbf{Open mapping theorem}] \label{lb242} 
-Assume that $X$ is irreducible and $f\in\scr O(X)$ is not a constant function. Then the map $f:X\rightarrow\Cbb$ is open. In particular, the absolute value function $|f|:X\rightarrow[0,+\infty)$ does not achieve maximum when restricted to any open subset of $X$.
+Assume that $X$ is irreducible, $Y$ is a Riemann surface, and $f:X\rightarrow Y$ is non-constant holomorphic map. Then $f$ is open. 
 \end{thm}
 
+In particular, when $Y=\Cbb$ and $f$ is considered as a holomorphic function,  the openness of $f$ implies that the absolute value function $|f|:X\rightarrow[0,+\infty)$ does not achieve maximum when restricted to any open subset of $X$.
+
 \begin{proof}
-Since $f$ is not constant, by Cor. \ref{lb240}, for each $x\in X$, $f_x$ is not constant in $\scr O_{X,x}$. Thus $f$ is open at $x$ by Cor. \ref{lb241}. 
+Choose any $x\in X$ and let $y=\varphi(x)$. To show that $f$ is open at $x$, we may shrink $Y$ to a neighborhood of $y$ biholomorphic to an open subset of $\Cbb$ and shrink $X$ to $f^{-1}(Y)$. So we may assume that $Y$ is open in $\Cbb$. Since $f$ is not constant, by Cor. \ref{lb240}, $f_x$ is not constant in $\scr O_{X,x}$. Thus $f$ is open at $x$ by Cor. \ref{lb241}. 
 \end{proof}
 
 
@@ -8569,7 +8571,7 @@ which shows that $\Tor_1^{\mc A}(\mc E,\mc A/I)=0$ iff $\mc E\otimes_{\mc A}I\ri
 
 
 
-\section{Flatness is preserved by base change}
+\section{Flatness}
 
 In this section,  $\mc A,\mc B$ denote commutative rings, and $X,Y,S$ denote complex spaces. Recall that by saying that $\mc A$ is a $\mc B$-algebra, we mean that a morphism of rings $\mc B\rightarrow\mc A$ is fixed so that any $\mc A$-module is also a $\mc B$-module. We write $(\mc A,\fk m)$ when we mean that $\mc A$ is a local ring with maximal ideal $\fk m$. Recall that by definition, a morphism of local rings $(\mc B,\fk n)\rightarrow(\mc A,\fk m)$ is a ring homomorphism sending $\fk n$ into $\fk m$.
 
@@ -8671,6 +8673,50 @@ Therefore $\mc I_x^2=\mc I_x$, and hence $\mk _{X,x}\mc I_x=\mc I_x$. So $\mc I_
 
 
 
+\begin{pp}\label{lb368}
+Let $\varphi:X\rightarrow Y$ be a finite holomorphic map. Consider the following statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $\varphi$ is flat.
+\item $\varphi_*\scr O_X$ is a locally free $\scr O_Y$-module (of finite rank).
+\item The map
+\begin{align}
+y\in Y\mapsto\sum_{x\in X_y}\dim_\Cbb \scr O_{X_y,x} \label{eq190}
+\end{align}
+(where $X_y=\varphi^{-1}(y)$) is locally constant.
+\end{enumerate}
+Then (1)$\Leftrightarrow$(2) and (2)$\Rightarrow$(3). If $Y$ is reduced, then (1)$\Leftrightarrow$(2)$\Leftrightarrow$(3).
+\end{pp}
+
+\begin{proof}
+Since $\varphi_*\scr O_X$ is $\scr O_Y$-coherent (Thm. \ref{lb74}), the local freeness of $\varphi_*\scr O_X$ is equivalent to that $(\varphi_*\scr O_X)_y$ is $\scr O_{Y,y}$-free for all $y\in Y$. Choose any $y\in Y$. By Prop. \ref{lb56}, we have $(\varphi_*\scr O_X)_y\simeq\bigoplus_{x\in X_y}\scr O_{X,x}$, which is $\scr O_{Y,y}$-free iff $\scr O_{X,x}$ is $\scr O_{Y,y}$-free for all $x\in X_y$. So (2) means that for all $x\in X$ and $y=\varphi(x)$, $\scr O_{X,x}$ is $\scr O_{Y,y}$-free, which is equivalent to that $\scr O_{X,x}$ is $\scr O_{Y,y}$-flat by Thm. \ref{lb280}. This proves (1)$\Leftrightarrow$(2).
+
+The RHS of \eqref{eq190} is the dimension of
+\begin{align*}
+&\bigoplus_{x\in X_y}\scr O_{X_y,x}\simeq\bigoplus_{x\in X_y}\scr O_{X,x}\otimes_{\scr O_{Y,y}}(\scr O_{Y,y}/\mk_{Y,y})\\
+\simeq& (\varphi_*\scr O_X)_y\otimes_{\scr O_{Y,y}}(\scr O_{Y,y}/\mk_{Y,y})=\varphi_*\scr O_X|_y
+\end{align*}
+If $\varphi_*\scr O_X$ is locally free then  $y\mapsto \dim_\Cbb\varphi_*\scr O_X|_y$ is locally constant, and vice versa if $Y$ is reduced (due to Prop. \ref{lb65}). This proves that (2)$\Rightarrow$(3), and that (3)$\Rightarrow$(2) if $Y$ is reduced. 
+\end{proof}
+
+
+\begin{eg}
+Let $X$ be a connected compact Riemann surface and $f$ a non-constant meromorphic function on $X$. So $f$ can be viewed as a holomorphic map $f:X\rightarrow \Pbb^1$. Then $f$ is open by Thm. \ref{lb242}. By basic complex analysis, for each $x\in X$ and $y=f(x)$, the map $f$ on a neighborhood of $x$ is biholomorphic to $z\mapsto z^k$ (for some $k\in\Zbb_+$) on a neighborhood of $0$, which is a Weierstrass map and hence is flat by Thm. \ref{lb60}. (We remark that ``openness $\Rightarrow$ flatness" also follows in general from Cor. \ref{lb360}.) This local picture also shows that  $f^{-1}(y)$ is a discrete set, and hence a finite set because $X$ is compact. Therefore $f$ is finite.
+
+Now, by Prop. \ref{lb368}, $\sum_{x\in X_y}\dim_\Cbb \scr O_{X_y,x}$ is independent of $y$. So we have
+\begin{align*}
+\sum_{f(x)=0}\dim_\Cbb \scr O_{X_0,x}=\sum_{f(x)=\infty}\dim_\Cbb \scr O_{X_\infty,x}
+\end{align*}
+This relation simply states the well known fact that the number of zeros of $f$ is equal to the number of poles of $f$, counting multiplicities. (To see this, note that if $f$ near $x$ is biholomorphic to $z\mapsto z^k$ near $0$, then $\scr O_{X_y,x}=\scr O_{X,x}/\mk_{Y,y}\scr O_{X,x}\simeq\scr O_{\Cbb,0}/z^k\scr O_{\Cbb,0}$ has $\Cbb$-dimension $k$.)
+\end{eg}
+
+
+
+
+
+\section{Flatness is preserved by base change}
+
+
+Let $X,Y$ be complex spaces.
 
 The goal of this section is to show that flatness is preserved by base change (Thm. \ref{lb271}). Its proof relies on the following crucial theorem, which allows us to reduce the study of arbitrary base changes to finite ones.
 
@@ -11066,11 +11112,7 @@ By Thm. \ref{lb345}, $\scr E$ satisfies base change property in orders $q-1,q,q+
 \end{proof}
 
 
-\begin{eg}
-Assume that $\varphi:X\rightarrow S$ is a finite and flat holomorphic map of complex spaces and $S$ is connected. (For instance, if $X$ and $S$ are complex manifolds of dimension $n$, and if $\varphi$ is finite, then the fibers have dimension $0$, and hence $\varphi$ is flat by Cor. \ref{lb360}.) Then for each $t\in S$ we have $H^{>0}(X_t,\scr O_{X_t})=0$. Therefore, by Cor. \ref{lb359}, the dimension $\dim_\Cbb H^0(X_t,\scr O_{X_t})$ (which is the number of points of $X_t$ ``counting multiplicities") is independent of $t$. 
 
-Consider the special case that $S=\Pbb^1$ and $X$ is a connected compact Riemann surface. Then we have $\dim H^0(X_0,\scr O_{X_0})=\dim H^0(X_\infty,\scr O_{X_\infty})$. This means that the number of zeros equals the number of poles of $\varphi$.  \hfill\qedsymbol
-\end{eg}
 
 
 
