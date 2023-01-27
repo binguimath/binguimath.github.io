@@ -21,7 +21,7 @@ bingui(at)tsinghua(dot)edu(dot)cn
 
 ##  Research Interests 🧐
 
-I am a mathematical analyst working on [vertex operator algebras](https://en.wikipedia.org/wiki/Vertex_operator_algebra) (VOAs), a mathematical model of [2d conformal field theory](https://en.wikipedia.org/wiki/Two-dimensional_conformal_field_theory). This means that I am interested in the analysis problems in VOAs and their representation categories, and that I like to solve VOA problems using analytic methods. These methods can be divided into two parts: 
+I am a mathematical analyst working on [vertex operator algebras](https://en.wikipedia.org/wiki/Vertex_operator_algebra) (VOAs), a mathematical model of [2d conformal field theory](https://en.wikipedia.org/wiki/Two-dimensional_conformal_field_theory). This means that I am interested in analysis problems in VOAs and their representation categories, and that I like to solve VOA problems using analytic methods. These methods can be divided into two parts: 
 
 - Real analysis in unitary VOAs: Using functional analysis and especially [von Neumann algebras](https://en.wikipedia.org/wiki/Von_Neumann_algebra), I study the unitarity of VOAs, the unitarity of VOA modules and their fusion products, the relation between VOAs and von Neumann algebras (more precisely: conformal nets).
 
