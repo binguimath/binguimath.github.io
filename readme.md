@@ -77,7 +77,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - On a Connes Fusion Approach to Finite Index Extensions of Conformal Nets. `arXiv:2112.15396`  [Preprint](Files/2021_Extensions.pdf)
 
-- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products.   [Preprint](Files/2023_Conformal_Block_1.pdf)
+- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products. `arXiv:2305.10180`  [Preprint](Files/2023_Conformal_Block_1.pdf)
 
 
 ## Notes 🥱
