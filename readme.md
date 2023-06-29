@@ -82,6 +82,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules. `arXiv:2306.11856` [Preprint](Files/2023_Geometric_Positivity.pdf)
 
 
+
 ## Notes 🥱
 
 - [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
