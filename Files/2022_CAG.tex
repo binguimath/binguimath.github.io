@@ -4242,7 +4242,13 @@ Suppose $a\in \mc A$ and $af=0$. Then $af$ restricts to $0$ on the integral doma
 \end{proof}
 
 
-Note that $f$ is a non zero-divisor iff $\Ann_{\mc A}(f)=\{0\}$. Therefore:
+
+
+
+
+
+
+Note that when $\mc A$ is reduced, $f$ is a non zero-divisor iff $\Ann_{\mc A}(f)=\{0\}$. Thus:
 \begin{co}\label{lb120}
 In Thm. \ref{lb102}, $f\in \mc A$ is a non zero-divisor if and only if $f\notin\pk_i$ for all $1\leq i\leq N$.
 \end{co}
@@ -4264,6 +4270,39 @@ We first note that an intersection of more than one members of $\pk_1,\dots,\pk_
 
 For each $i$, by Rem. \ref{lb106} we can choose $f\in \mc A$ non-zero on $\mc A/\pk_i$ but zero on $\mc A/\pk_j$ whenever $j\neq i$. Then $\pk_i=\Ann_{\mc A}(f)$ by Lemma \ref{lb107}, which shows that $\pk_i$ must be an associated prime.
 \end{proof}
+
+
+We now give another characterization of the prime components of a reduced Noetherian ring.
+
+\begin{lm}\label{lb376}
+Let $\mc A$ be Noetherian and reduced with prime decomposition $\{0\}=\pk_1\cap\cdots\cap\pk_N$. Let $\pk\subset\mc A$ be a prime ideal. Then $\pk_i\subset\pk$ for some $1\leq i\leq N$.
+\end{lm}
+
+\begin{proof}
+Suppose that for each $i$ we have $\pk_i\nsubset\pk$. Then there exists $f_i\in\pk_i\setminus\pk$. The primeness of $\pk$ implies that  $f=f_1\cdots f_N$ is not in $\pk$. But $f$ is in $\pk_1\cap\cdots\cap \pk_N=\{0\}$. So $0\notin\pk$, impossible.
+\end{proof}
+
+
+\begin{pp}\label{lb374}
+Let $\mc A$ be Noetherian and reduced with prime decomposition $\{0\}=\pk_1\cap\cdots\cap\pk_N$. Let $\pk\subset\mc A$ be a prime ideal. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\pk=\pk_i$ for some $1\leq i\leq N$.
+\item $\pk$ is a minimal prime ideal of $\mc A$. Namely, if $\fk q$ is a prime ideal of $\mc A$ and if $\fk q\subset\pk$, then $\fk q=\pk$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+(1)$\Rightarrow$(2): Let us prove for instance that $\pk_1$ is minimal. Suppose $\fk q\subset\pk_1$ is a prime ideal of $\mc A$, then $\{0\}=\fk q\cap\pk_2\cap\cdots\cap\pk_N$. Then some members of $\fk q,\pk_2,\dots,\pk_N$ give the prime decomposition of $\{0\}\subset\mc A$. By the uniqueness of prime decomposition, the number of these members must be $N$, and $\fk q=\pk_1$.
+
+(2)$\Rightarrow$(1): By Lem. \ref{lb376}.
+\end{proof}
+
+
+
+
+
+
+
 
 
 
@@ -6211,7 +6250,7 @@ where $U\subset X$ is open and $f_x$ denotes the stalk of $f$ at $x$.
 \end{df}
 
 
-If $\mc A$ a commutative ring, we let \index{Nzd@$\Nzd(\mc A)$, the set of non zero-divisors of $\mc A$}
+If $\mc A$ a commutative ring, we let \index{Nzd@$\Nzd(\mc A)=\Nzd_{\mc A}(\mc A)$, the set of non zero-divisors of $\mc A$}
 \begin{align}
 \Nzd(\mc A)=\{\text{Non zero-divisors of }\mc A\}.
 \end{align}
@@ -9156,16 +9195,26 @@ The assumption on the reducedness of fibers is sometimes too strong for applicat
 
 We fix a Noetherian ring $\mc A$.
 
+\subsection{General facts}
+
+
+
 \begin{df}
-Let $\mc E\in\Mod(\mc A)$. An \textbf{associated prime} \index{00@Associated primes} of $\mc E$ is a prime ideal $\pk$ of the form $\Ann_{\mc A}(\xi)$ where $\xi\in\mc E$. The set of associated primes is denoted by $\Ass(\mc E)$. \index{Ass@$\Ass(\mc E)$, the set of associated primes}
+Let $\mc E\in\Mod(\mc A)$. An \textbf{associated prime} \index{00@Associated primes} of $\mc E$ is a prime ideal $\pk$ of the form $\Ann_{\mc A}(\xi)$ where $\xi\in\mc E$. The set of associated primes is denoted by $\Ass_{\mc A}(\mc E)$ or simply $\Ass(\mc E)$ (if no confusion arises). \index{Ass@$\Ass_{\mc A}(\mc E)=\Ass(\mc E)$, the set of associated primes}
 \end{df}
 
 
 For instance, if $X$ is a complex space and $\scr E$ is a coherent $\scr O_X$-module, then by Def. \ref{lb186}, for each $\sigma\in\scr E$ we have $\Supp(\scr O_X\sigma)=\Specan(\scr O_X/\sann_{\scr O_X}(\sigma))$. So the complex subspace $\Supp(\scr O_X\sigma)$ is irreducible at $x$ iff $\Ann_{\scr O_{X,x}}(\sigma_x)$ is prime.
 
 
+
+
+
 \begin{eg}\label{lb292}
-By Prop. \ref{lb291}, we know that if $\mc A$ is reduced, then the prime ideals in the prime decomposition of $0\subset\mc A$ form the set $\Ass(\mc A)$. More generally, if $I$ is an ideal of $\mc A$ such that $I=\sqrt I$, and if we let $I=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition of $I\subset\mc A$, then $\pk_1,\dots,\pk_N$ are precisely the associated primes of the $\mc A$-module $\mc A/I$.
+Note that the nilradical $\sqrt{0}$ of $\mc A$ is inside every prime of $\mc A$. By Prop. \ref{lb291}, we know that if $\sqrt{0}=\pk_1\cap\cdots\cap\pk_N$ is the prime decomposition of $\sqrt{0}\subset\mc A$, then
+\begin{align}
+\Ass_{\mc A}(\mc A/\sqrt{0})=\Ass_{\mc A/\sqrt{0}}(\mc A/\sqrt{0})=\{\pk_1,\dots,\pk_N\}
+\end{align}
 \end{eg}
 
 
@@ -9199,28 +9248,40 @@ The Noether property of $\mc A$ implies that any chain inside the partially orde
 \end{proof}
 
 
+
+Note that set of non zero-divisors of $\mc E$ is \index{NzdE@$\Nzd_{\mc A}(\mc E)$, the set of non zero-divisors of $\mc E$ in $\mc A$}
+\begin{align}
+\Nzd_{\mc A}(\mc E)=\mc A\Big\backslash\bigcup_{\xi\in\mc E\setminus\{0\}}\Ann_{\mc A}(\xi)
+\end{align}
+We now have a better description of $\Nzd_{\mc A}(\mc E)$ which also generalizes Cor. \ref{lb120}:
+
 \begin{co}\label{lb294}
-Let $\mc E\in\Mod(\mc A)$. Let $x\in\mc A$. Then the following are equivalent.
-\begin{enumerate}[label=(\arabic*)]
-\item $x$ is a non zero-divisor of $\mc E$.
-\item $x$ does not belong to any associated prime of $\mc E$.
-\end{enumerate}
+Let $\mc E\in\Mod(\mc A)$. Then
+\begin{align}
+\Nzd_{\mc A}(\mc E)=\mc A\Big\backslash\bigcup_{\pk\in\Ass_{\mc A}(\mc E)}\pk  \label{eq191}
+\end{align}
 \end{co}
 
-Note that this property generalizes Cor. \ref{lb120}.
+
+
 
 \begin{proof}
-If $x$ belongs to an associated prime $\Ann_{\mc A}(\xi)$ then $\xi\neq0$ and $x\xi=0$. So $x$ is a zero-divisor of $\mc E$. Conversely, if $x$ is a zero-divisor of $\mc E$, then $x\xi=0$ for some non-zero $\xi\in\mc E$. By Prop. \ref{lb290}, we may find $a\in\mc A$ so that $\Ass_{\mc A}(a\xi)$ is prime, which clearly contains $x$.
+``$\subset$" is obvious. If $x\in\mc A$ is a zero-divisor of $\mc E$, then $x\xi=0$ for some non-zero $\xi\in\mc E$. By Prop. \ref{lb290}, we may find $a\in\mc A$ so that $\Ass_{\mc A}(a\xi)$ is prime, which clearly contains $x$. This proves ``$\supset$".
 \end{proof}
 
 
-According to the above corollary, associated primes are useful for studying the zero-divisors of modules. But why are we interested in those $\Ann_{\mc A}(\xi)$ that are prime? A main reason is that any finitely generated $\mc A$-module has finitely many associated primes. To prove this important fact,  we first need a lemma.
+An advantage of \eqref{eq191} is that $\Ass(\mc E)$ has finitely many associated primes if $\mc E$ is finitely-generated, as we now show.
 
-\begin{lm}\label{lb293}
-Let $0\rightarrow\mc E'\rightarrow\mc E\rightarrow\mc E''\rightarrow0$ be an exact sequence in $\Mod(\mc A)$. Then $\Ass(\mc E)\subset\Ass(\mc E')\cup\Ass(\mc E'')$.
-\end{lm}
+\begin{pp}\label{lb293}
+Let $0\rightarrow\mc E'\rightarrow\mc E\rightarrow\mc E''\rightarrow0$ be an exact sequence in $\Mod(\mc A)$. Then
+\begin{align*}
+\Ass (\mc E')\subset\Ass(\mc E)\subset\Ass(\mc E')\cup\Ass(\mc E'')
+\end{align*}
+\end{pp}
 
 \begin{proof}
+Clearly $\Ass (\mc E')\subset\Ass(\mc E)$. Let us prove the second inclusion.
+
 Choose $\xi\in\mc E$ such that $\Ann_{\mc A}(\xi)$ is an associated prime of $\mc E$. We view $\mc E''$ as $\mc E/\mc E'$, and let $[\xi]$ be the residue class of $\xi$ in $\mc E/\mc E''$. Then $\Ann_{\mc A}([\xi])=\{a\in\mc A:a\xi\in\mc E'\}$. Clearly $\Ann_{\mc A}(\xi)\subset\Ann_{\mc A}([\xi])$. Assume that $\Ann_{\mc A}(\xi)$ does not belong to $\Ass(\mc E'')$. Then $\Ann_{\mc A}(\xi)\neq\Ann_{\mc A}([\xi])$, otherwise $\Ann_{\mc A}([\xi])$ would be an associated prime of $\mc E''$. 
 
 Pick $a\in\mc A$ belonging to $\Ann_{\mc A}([\xi])$ but not $\Ann_{\mc A}(\xi)$. So $a\xi$ is a non-zero element of $\mc E'$. Since $\Ann_{\mc A}(\xi)$ is prime, by Lemma \ref{lb289}, $\Ann_{\mc A}(\xi)$ equals $\Ann_{\mc A}(a\xi)$, and hence is an associated prime of $\mc E'$.
@@ -9232,14 +9293,108 @@ Let $\mc E$ be a finitely-generated $\mc A$-module. Then $\mc E$ has finitely ma
 \end{thm}
 
 \begin{proof}
-If $\mc N$ is a submodule of $\mc E$ and $\mc N\neq\mc E$, then by the fact that $\mc E/\mc N$ has at least one associated prime, we can find $\xi\in\mc E\setminus\mc N$ such that $\Ann_{\mc A}([\xi])$ is prime. Here $[\xi]$ denotes the residue class of $\xi$ in $\mc E/\mc N$. Let $\mc N_1$ be generated by $\mc N$ and $\xi$. Then $\mc N_1/\mc N\simeq \mc A/\Ann_{\mc A}([\xi])$ has $\Ann_{\mc A}([\xi])$ as its only associated prime (cf. Exp. \ref{lb292}).
+If $\mc N$ is a submodule of $\mc E$ and $\mc N\neq\mc E$, then by the fact that $\mc E/\mc N$ has at least one associated prime, we can find $\xi\in\mc E\setminus\mc N$ such that $\Ann_{\mc A}([\xi])$ is prime. Here $[\xi]$ denotes the residue class of $\xi$ in $\mc E/\mc N$. Let $\mc N_1$ be generated by $\mc N$ and $\xi$. Then $\mc N_1/\mc N\simeq \mc A/\Ann_{\mc A}([\xi])$.
 
-The above discussion shows that we can find a chain of submodules $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subsetneq\cdots$ of $\mc E$ such that each $\mc E_i/\mc E_{i-1}$ is equivalent to $\mc A/\pk_i$ for some prime ideal $\pk_i$. Since $\mc E$ is finitely-generated and $\mc A$ is Noetherian, this chain must have finite length. So it is of the form $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subset\cdots\subsetneq\mc E_n=\mc E$. By Exp. \ref{lb292}, $\pk_i$ is the only associated prime of $\mc E_i/\mc E_{i-1}\simeq\mc A/\pk_i$. Thus, by Lemma \ref{lb293} we have
+The above discussion shows that we can find a chain of submodules $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subsetneq\cdots$ of $\mc E$ such that each $\mc E_i/\mc E_{i-1}$ is equivalent to $\mc A/\pk_i$ for some prime ideal $\pk_i$. Since $\mc E$ is finitely-generated and $\mc A$ is Noetherian, this chain must have finite length. So it is of the form $0=\mc E_0\subsetneq\mc E_1\subsetneq\mc E_2\subset\cdots\subsetneq\mc E_n=\mc E$. By Exp. \ref{lb292}, $\pk_i$ is the only associated prime of $\mc E_i/\mc E_{i-1}\simeq\mc A/\pk_i$. Thus, by Prop. \ref{lb293} we have
 \begin{align}
 \Ass(\mc E)\subset \{\pk_1,\pk_2,\dots,\pk_n\}
 \end{align}
 So $\mc E$ has finitely many associated primes.
 \end{proof}
+
+
+\subsection{A characterization of $\Ass_{\mc A}(\mc A)$}
+
+
+\begin{rem}\label{lb371}
+Let $\mc E\in\Mod(\mc A)$. Then clearly
+\begin{align*}
+\Ass_{\mc A}(\mc E)=\bigcup_{\xi\in\mc E\setminus\{0\}} \Ass_{\mc A}(\mc A\xi) 
+\end{align*}
+Thus, to determine $\Ass_{\mc A}(\mc E)$, one should know first of all how to find $\Ass_{\mc A}(\mc A\xi)$ where $\xi\in\mc E\setminus\{0\}$. Note that the $\mc A$-module $\mc A\xi$ is isomorphic to $\mc A/I$ where $I=\Ann_{\mc A}(\mc A\xi)$. Thus, it suffices to determine
+\begin{align*}
+\Ass_{\mc A}(\mc A/I)=\Ass_{\mc A/I}(\mc A/I)
+\end{align*}
+for every ideal $I\subsetneq\mc A$. Replacing $\mc A/I$ by $\mc A$, it suffices to know how to find $\Ass_{\mc A}(\mc A)$. This is the goal of this subsection.
+\end{rem}
+
+The following lemma is useful.
+\begin{lm}\label{lb375}
+Let $\pk$ be a prime ideal of $\mc A$. Let $\mc E\in\Mod(\mc A)$ and $\xi\in\mc E$. Choose $x\in\mc A\setminus\pk$. Then $\Ann_{\mc A}(\xi)\subset\pk$ if and only if $\Ann_{\mc A}(x\xi)\subset\pk$.
+\end{lm}
+\begin{proof}
+``$\Leftarrow$" is obvious since $\Ass(\xi)\subset\Ass(x\xi)$. Assume that $\Ass(\xi)\subset\pk$. Choose $y\in\Ass(x\xi)$. Then $xy\xi=0$. So $xy\in\Ass(\xi)\subset\pk$. Since $x\notin\pk$, we have $y\in\pk$. This proves ``$\Rightarrow$".
+\end{proof}
+
+
+
+Note that if $\mc E\in\Mod(\mc A)$ and $\xi\in\mc E\setminus\{0\}$, then we can find a prime $\pk\subset\mc A$ containing $\Ann(\xi)$: Take prime decomposition $\sqrt{\Ann(\xi)}=\pk_1\cap\cdots\cap \pk_N$ (cf. Thm. \ref{lb102}) and take $\pk$ to be one of $\pk_1,\dots,\pk_N$. Thus, the following lemma generalizes Lem. \ref{lb289}.
+
+\begin{lm}\label{lb370}
+Let $\mc E\in\Mod(\mc A)$, let $\xi\in\mc E\setminus\{0\}$, and choose a prime ideal $\pk\subset\mc A$ satisfying $\Ann_{\mc A}(\xi)\subset\pk$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\Ann_{\mc A}(\xi)$ is prime.
+\item For each $a\in\mc A$, if $\Ann_{\mc A}(a\xi)\subset\pk$, then $\Ann_{\mc A}(a\xi)=\Ann_{\mc A}(\xi)$.
+\end{enumerate}
+\end{lm}
+
+
+
+
+\begin{proof}
+Assume (1). If $\Ann(a\xi)\subset\pk$ and if $b\in\Ann(a\xi)$, then since $ab$ belongs to the prime ideal $\Ann(\xi)$, and since $a\notin\Ann(\xi)$ (otherwise $\Ann(a\xi)=\mc A\nsubset\pk$), we have $b\in\Ann(\xi)$. This proves (2).
+
+Assume (2). To prove that $\Ann(\xi)$ is prime, by Lem. \ref{lb289}, it suffices to prove that every $a\in\mc A\setminus\Ann(\xi)$ satisfies that $\Ann(a\xi)=\Ann(\xi)$, equivalently (by (2)), that $\Ann(a\xi)\subset\pk$.
+
+Fix $a\notin\Ann(\xi)$. Let us prove $\Ann(a\xi)\subset\pk$. Choose any $b\in\Ann(a\xi)$. Then $a\in\Ann(b\xi)$. But $a\notin\Ann(\xi)$ (otherwise, $\Ann(a\xi)=\mc A$ is not in $\pk$). So $\Ann(\xi)\neq\Ann(b\xi)$. So by (2) we have $\Ann(b\xi)\nsubset\pk$. Since $\Ann(\xi)\subset\pk$, by Lem. \ref{lb375}, $b\in\pk$.
+\end{proof}
+
+
+
+\begin{thm}\label{lb372}
+Let $\sqrt{0}=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition of the nilradical $\sqrt{0}\subset\mc A$ (cf. Thm. \ref{lb102}). Then
+\begin{align}
+\Ass_{\mc A}(\mc A)=\Ass_{\mc A}(\sqrt{0})\cup\{\pk_1,\dots,\pk_N\} \label{eq192}
+\end{align}
+\end{thm}
+
+\begin{proof}
+By Exp. \ref{lb292}, \eqref{eq192} is equivalent to
+\begin{align}
+\Ass_{\mc A}(\mc A)=\Ass_{\mc A}(\sqrt{0})\cup\Ass_{\mc A}(\mc A/\sqrt{I})
+\end{align}
+By Prop. \ref{lb293}, it suffices to prove that $\Ass_{\mc A}(\mc A/\sqrt{I})\subset\Ass_{\mc A}(\mc A)$, namely, that $\pk_i\in\Ass(\mc A)$ for each $1\leq i\leq N$. Clearly $\Ann_{\mc A}(1)=\{0\}\subset\pk_i$. As in the proof of Prop. \ref{lb290}, we can use Zorn's lemma (thanks to the fact that $\mc A$ is Noetherian) to find a maximal $\Ann_{\mc A}(f)$ inside $\pk_i$ where $f\in\mc A$. Then $\Ann_{\mc A}(f)$ is prime by Lem. \ref{lb370}. So $\Ann_{\mc A}(f)=\pk_i$ by Prop. \ref{lb374}.
+\end{proof}
+
+
+We thus obtain a refinement of Prop. \ref{lb290}:
+
+
+\begin{co}\label{lb373}
+Let $\mc E\in\Mod(\mc A)$, let $\xi\in\mc E\setminus\{0\}$, and let $\sqrt{\Ann(\xi)}=\pk_1\cap\cdots\cap\pk_N$ be the prime decomposition. Then $\pk_1,\dots,\pk_N$ are inside $\Ass_{\mc A}(\mc A\xi)$.
+\end{co}
+
+
+\begin{proof}
+By Rem. \ref{lb371}, to determine $\Ann_{\mc A}(\mc A\xi)$, it suffices to assume $\mc E=\mc A$ and $\xi=1$. Then $\Ann_{\mc A}(\mc A\xi)=0$. The proof is thus completed by Thm. \ref{lb372}.
+\end{proof}
+
+
+\begin{eg}
+Let $X$ be a complex space. Let $\scr E$ be a coherent $\scr O_X$-module, and choose $\sigma\in\scr E(X)$. Let $A$ be the reduction of $\Supp(\scr O_X\sigma)$ (cf. Def. \ref{lb186}), i.e., $A$ is the analytic subset
+\begin{align*}
+A=\{p\in X:\sigma_p\neq 0\}
+\end{align*}
+Choose $x\in A$, and shrink $X$ to a neighborhood of $x$ so that we have local decomposition $A=A_1\cup\cdots\cup A_N$ of $A$ at $x$ (cf. Thm. \ref{lb124}). Then by Cor. \ref{lb373},
+\begin{align}
+\scr I_{A_1,x},\dots\scr I_{A_N,x}\in\Ass_{\scr O_{X,x}}(\scr O_{X,x}\sigma_x)
+\end{align}
+\end{eg}
+
+
+
+
+
 
 
 
@@ -9280,11 +9435,9 @@ We first observe that $\Hom_{\mc A}(\mc A/\mk,\mc E)$ is equivalent to $\Ker(\Ho
 \begin{align*}
 \Hom_{\mc A}(\mc A/\mk,\mc E)\simeq\{\xi\in\mc E:\mk\xi=0\}
 \end{align*}
-It follows that $\Hom_{\mc A}(\mc A/\mk,\mc E)$ is non-zero iff $\mk$ is an associated prime of $\mc E$.
+It follows that (2) is equivalent to $\mk\notin\Ass(\mc E)$.
 
-Assume that (2) does not hold. Then $\mk$ is an associated prime. Write $\mk=\Ann_{\mc A}(\xi)$ where $\xi\neq 0$. Then every element of $\mk$ annihilates $\xi$. So every element of $\mk$ is a zero-divisor of $\mc E$. So (1) does hot hold.
-
-Assume that (2) holds. Then $\mk$ is not an associated prime. By Thm. \ref{lb295}, $\mc E$ has finitely may associated primes $\pk_1,\dots,\pk_N$, which are all proper subspaces of $\mk$. In the special case that $\mc A$ is a local $\Cbb$-algebra (which is indeed the only situation we will encounter in out notes), $\mk$ does not equal any finite union of proper subspaces. So we can find $a\in\mk$ not inside $\pk_1\cup\cdots\cup\pk_N$. Then by Cor. \ref{lb294}, $a$ is a non zero-divisor of $\mc E$. Therefore (1) holds. In the general case, that $\mk\neq\pk_1\cup\cdots\cup\pk_N$ follows from the prime avoidance property. We refer the readers to \cite[Sec. 11.2]{Vak17} or \cite[Sec. 3.2]{Eis} for details.  
+By Cor. \ref{lb294}, (1) holds iff $\mk\big\backslash\bigcup_{\pk\in\Ass(\mc E)}\pk\neq 0$, iff $\mk\setminus\pk\neq 0$ for each $\pk\in\Ass(\mc E)$ (due to Lem. \ref{lb145}). Since for each prime $\pk\subset\mc A$ we have $\pk\subset\mk$, (1) is equivalent to that $\mk\neq \pk$ for all $\pk\in\Ass(\mc E)$, i.e. $\mk\notin\Ass(\mc E)$. 
 \end{proof}
 
 
