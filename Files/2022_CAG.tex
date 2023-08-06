@@ -2415,6 +2415,11 @@ namely, $e_j=\sum_{i=1}^ns_iG_{i,j}$. Then $e_1,\dots,e_n$ are killed by $\varph
 Choose any $y\in U$ and an element of $\Rel(s_\blt)_y$, written as an $n\times 1$ matrix $A\in\scr O_{X,x}^{n\times 1}$. So $(s_1,\dots,s_n)A=0$. Hence $(t_1,\dots,t_n)A=0$. So $A\in\Rel(t_\blt)_y$. Since $G_{\blt,1},\dots,G_{\blt,k}$ generate $\Rel(t_\blt)_y$, we may write $A=GB$ for some $B\in\scr O_{X,y}^{k\times 1}$. So $(e_1,\dots,e_k)B=0$. Thus, as $E_{\blt,1},\dots,E_{\blt,m}$ generate $\Rel(e_\blt)_y$, we may write $B=EC$ for some $C\in\scr O_{X,y}^{m\times 1}$. Thus $A=FC$. So $A$ is an $\scr O_{X,y}$-linear combination of columns of $F$.
 \end{proof}
 
+\begin{rem}\label{eq193}
+The above proof shows that if $\scr E$ and $\scr G$ are of finite type, then so is $\scr F$.
+\end{rem}
+
+
 \begin{co}\label{lb45}
 $\scr E_1,\scr E_2$ are coherent $\scr O_X$-modules if and only if $\scr E_1\oplus\scr E_2$ is coherent.
 \end{co}
@@ -3282,45 +3287,54 @@ Assume that $X$ is an open subset of $\Cbb^n$. Assume that for each open connect
 More precisely, our assumption is that the structure sheaf of $\Specan(\scr O_U/h\scr O_U)$ is coherent.
 
 \begin{proof}
-Choose any open connected $U\subset X$ and $h_1,\dots,h_N\in\scr O(U)$. We want to show that $\Rel(h_1,\dots,h_N)$ is a finite-type $\scr O_U$-submodule of $\scr O_U^N$. We assume one of $h_1,\dots,h_N$ is non-zero, say $h_1\neq 0$; otherwise the proof is obvious. For each $f\in\scr O_U$, we let $[f]$ denotes its residue class in $\scr O_Y=(\scr O_U/h_1\scr O_U)\uph_{N(h_1\scr O_U)}$ where $Y=\Specan(\scr O_U/h_1\scr O_U)$.
+Step 1. By shrinking $X$ to a connected open subset if possible, it suffices to show that for each $\scr O_X$-module morphism $\varphi:\scr O_X^N\rightarrow\scr O_X$, its kernel $\scr E$ is of finite type. Let $h_1=\varphi(1,0,\dots,0),\dots,h_N=\varphi(0,0,\dots,1)$, which are in $\scr O(X)$. So
+\begin{align*}
+\varphi(s_1,s_2,\dots,s_N)=s_1h_1+s_2h_2+\cdots+s_Nh_N
+\end{align*}
+If $\varphi=0$, then $\scr E=\scr O_X^N$ is clearly of finite-type. So we assume $\varphi\neq 0$, i.e., one of $h_1,\dots,h_N$, say $h_1$, is nonzero. %Note that the non-zeroness of $h_1$ is preserved by shrinking $X$ to any connected open subset, thanks to Identit\"atssatz \ref{lb68}.
 
-Choose any $x\in U$. By assumption, $\scr O_Y$ is coherent. So $\Rel([h_2],\dots,[h_N])$ is a finite type $\scr O_Y$-submodule of $\scr O_Y^{N-1}$. Thus, after shrinking $U$ to a smaller neighborhood of $x$, we may find $(s_2^i,\dots,s_N^i)\in\scr O(U)$ (for finitely many $i$) such that $([s_2^i],\dots,[s_N^i])$ generate $\Rel([h_2],\dots [h_N])$. This means:
-\begin{enumerate}[label=(\alph*)]
-\item For each $i$, $s_2^ih_2+\cdots+s_N^ih_N\in h_1\scr O_U$. (This can be checked at the level of stalks.)
-\item For each $y\in U$ and $(\sigma_2,\dots,\sigma_N)\in\scr O_{U,y}^{N-1}$ such that
+Let $Y=\Specan(\scr O_X/h_1\scr O_X)$. For each $f\in\scr O_X$, let $[f]$ denote its residue class in $\scr O_Y$. Define an $\scr O_X$-module morphism $\pi:\scr O_X^N\rightarrow\scr O_Y^{N-1}$ by
 \begin{align*}
-\sigma_2h_2+\cdots+\sigma_N h_N\in h_1\scr O_{U,y},
+\pi(s_1,s_2\dots,s_N)=([s_2],\dots,[s_N])
+\end{align*} 
+Then $\varphi$ descends to $\psi:\scr O_Y^{N-1}\rightarrow\scr O_Y$ satisfying
+\begin{align*}
+\psi([s_2],\dots,[s_N])=[s_2h_2+\cdots+s_Nh_N]
 \end{align*}
-there exist $f_i\in\scr O_{U,y}$ for all $i$ and $g_2,\dots,g_N\in\scr O_{U,y}$ such that
-\begin{align}
-(\sigma_2,\dots,\sigma_N)=\sum_i f_i(s_2^i,\dots,s_N^i)+h_1(g_2,\dots,g_N).
-\end{align}
-\end{enumerate}
+Let $\scr F=\Ker(\psi)$ and let $\wtd\pi$ be the restriction of $\pi$ to $\scr E$. Then we have a commutative diagram of $\scr O_X$-module morphisms
+\begin{equation*}
+\begin{tikzcd}
+0 \arrow[r] & \scr E \arrow[d, "\wtd\pi"'] \arrow[r] & \scr O_X^N \arrow[r, "\varphi"] \arrow[d, "\pi"'] & \scr O_X \arrow[d] \\
+0 \arrow[r] & \scr F \arrow[r]                   & \scr O_Y^{N-1} \arrow[r, "\psi"]                      & \scr O_Y          
+\end{tikzcd}
+\end{equation*}
 
-By (a), we may shrink $U$ further so that for each $i$, we may find $s_1^i\in\scr O(U)$ such that $s_1^ih_1+s_2^ih_2+\cdots+s_N^ih_N=0$. We claim that
-\begin{align*}
-(s_1^i,\dots,s_N^i)
-\end{align*}
-for all $i$ and 
-\begin{align*}
-(-h_2,h_1,0,\dots,0),\quad(-h_3,0,h_1,\dots,0),\quad\dots,\quad(-h_N,0,0,\dots,h_1)
-\end{align*}
-(which are clearly in $\Rel(h_1,h_2,\dots,h_N)$) generate $\Rel(h_1,h_2,\dots,h_N)$. 
 
-Choose any $y\in U$ and $(\sigma_1,\dots,\sigma_N)\in\scr O_{U,y}^N$ in $\Rel(h_1,\dots,h_N)_y$, namely $\sigma_1h_1+\cdots+\sigma_Nh_N=0$. Then by (b), we can find $f_i,g_2,\dots,g_N\in\scr O_{U,y}$ such that the relation
-\begin{align}
-(\sigma_1,\sigma_2,\dots,\sigma_N)=&\sum_i f_i(s_1^i,s_2^i,\dots,s_N^i)\nonumber\\
-&+\sum_{j=2}^N g_j(-h_j,0,\dots,\underset{
-\begin{subarray}{c}
-\uparrow\\
-i\text{-th component}
-\end{subarray}}{h_1},\dots,0)\label{eq34}
-\end{align}
-holds for the last $N-1$ components. To show that it holds also for the first component, we write the RHS of \eqref{eq34} as $(\wtd\sigma_1,\sigma_2,\dots,\sigma_N)$, which is an element of $\Rel(h_1,\dots,h_N)_y$. So
+Step 2. Let us prove that $\wtd\pi$ is an epimorphism by proving the surjectivity of each stalk map $\wtd\pi:\scr E_x\rightarrow\scr F_x$. An element of $\scr F_x$ is precisely $([s_2],\dots,[s_N])$ (where $s_2,\dots,s_N\in\scr O_{X,x}$) satisfying that $s_2h_2+\cdots+s_Nh_N$ belongs to $h_1\scr O_{X,x}$, i.e. of the form $-s_1h_1$ for some $s_1\in\scr O_{X,x}$. Then $(s_1,\dots,s_N)$ belongs to $\scr E_x$ and is sent to $([s_2],\dots,[s_N])$ by $\wtd\pi$.\\[-1ex]
+
+Step 3. Let $\scr N=\Ker(\wtd\pi)$. By Step 2, we have an exact sequence
 \begin{align*}
-\sigma_1h_1+\sigma_2h_2\cdots+\sigma_Nh_N=\wtd\sigma_1h_1+\sigma_2h_2\cdots+\sigma_Nh_N=0,
+0\rightarrow\scr N\xrightarrow{\wtd\pi}\scr E\rightarrow\scr F\rightarrow0
 \end{align*}
-which shows $(\sigma_1-\wtd\sigma_1)h_1=0$. Since $h_1$ is a non-zero element of $\scr O(U)$, by the Identit\"atssatz \ref{lb68}, the germ of $h_1$ at $\scr O_{U,y}$ is non-zero. So $\sigma_1=\wtd\sigma_1$ since $\scr O_{U,y}$ is an integral domain. This proves \eqref{eq34}.
+By assumption, $\scr O_Y$ is $\scr O_Y$-coherent. So $\scr F$ is $\scr O_Y$-finite-type (by Cor. \ref{lb45} and Cor. \ref{lb46}), and hence $\scr O_X$-finite-type. To prove that $\scr E$ is of finite-type, by Rem. \ref{lb193}, it remains to prove that $\scr N$ is a finite type $\scr O_X$-module. Let us prove that
+\begin{align*}
+\xi_2=(-h_2,h_1,0,\dots,0),\quad\xi_3=(-h_3,0,h_1,\dots,0),\quad\dots,\quad\xi_N=(-h_N,0,0,\dots,h_1)
+\end{align*}
+(which are clearly inside $\scr N$) generate $\scr N$.
+
+Choose any $x\in X$ and $(s_\blt)=(s_1,s_2,\dots,s_N)\in\scr N_x$. So $s_2,\dots,s_N\in h_1\scr O_{X,x}$ because $(s_\blt)$ is killed by $\wtd\pi$. Choose $g_2,\dots,g_N\in\scr O_{X,x}$ such that
+\begin{align*}
+s_2=g_2h_1,\quad\dots,\quad s_N=g_Nh_1
+\end{align*}
+Since $s_1h_1+s_2h_2+\cdots+s_Ns_N=0$ because $(s_\blt)$ is killed by $\varphi$, we have
+\begin{align*}
+(s_1+g_2h_2+\cdots+g_Nh_N)h_1=0
+\end{align*}  
+By Identit\"atssatz \ref{lb68}, the germ of $h_1$ at $x$ is non-zero. Thus, since $\scr O_{X,x}$ is an integral domain, we have $s_1+g_2h_2+\cdots+g_Nh_N=0$. So
+\begin{align*}
+(s_1,s_2,\dots,s_N)=g_2\xi_2+\cdots+g_N\xi_N
+\end{align*}
+The proof is completed.
 \end{proof}
 
 
