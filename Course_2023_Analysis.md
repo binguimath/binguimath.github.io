@@ -3,7 +3,9 @@
 
 ## Course description
 
-This is a year-long course for students in the Qiuzhen college of Tsinghua University.
+This is a year-long course for first year students in the Qiuzhen College of Tsinghua University. This is also my second time teaching this course. I plan to teach most of the same topics as last year, with some minor adaptions, rearragements, and (hopefully) improvements. So you can check the following lecture notes (in Chinese) to get a general idea about what might be taught in this class. 
+
+I will also type English lecture notes this year. See the link below.
 
 
 ## Chinese lecture notes taken in the former semesters
@@ -12,3 +14,8 @@ This is a year-long course for students in the Qiuzhen college of Tsinghua Unive
 
 
 [Analysis II](Files/2023_Analysis_II_CH.pdf) taken by Zhangteng Ouyang (欧阳张腾) in 2023 Spring.
+
+
+## English lecture notes
+
+[Analysis](Files/2023_Analysis.pdf)
