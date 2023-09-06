@@ -8,6 +8,13 @@ This is a year-long course for first year students in the Qiuzhen College of Tsi
 I will also type English lecture notes this year. See the link below.
 
 
+## English lecture notes
+
+[Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf)
+- Please let me know if you find any typos or mistakes. This will help me improve the notes.
+
+
+
 ## Chinese lecture notes taken in the former semesters
 
 [Analysis I](Files/2022_Analysis_I_CH.pdf) taken by Yi Li (李颐) in 2022 Fall.
@@ -16,7 +23,4 @@ I will also type English lecture notes this year. See the link below.
 [Analysis II](Files/2023_Analysis_II_CH.pdf) taken by Zhangteng Ouyang (欧阳张腾) in 2023 Spring.
 
 
-## English lecture notes
 
-[Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf)
-- Please let me know if you find any typos or mistakes. This will help me improve the notes.
