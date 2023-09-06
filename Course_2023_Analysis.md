@@ -13,7 +13,7 @@ This is a year-long course for first year undergraduate students in the Qiuzhen 
 I will type the English lecture notes this time. They will be the main reference for this course. 
 
 - [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
-> Please let me know if you find any typos or mistakes. This will help me improve the notes.
+> Please let me know if you find any typos or mistakes. This will help me improve the notes!
 
 
 
