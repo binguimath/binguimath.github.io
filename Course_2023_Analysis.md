@@ -10,7 +10,7 @@ I will also type English lecture notes this year. See the link below.
 
 ## English lecture notes
 
-- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf)
+- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
 > Please let me know if you find any typos or mistakes. This will help me improve the notes.
 
 
