@@ -5,10 +5,12 @@
 
 This is a year-long course for first year students in the Qiuzhen College of Tsinghua University. This is also my second time teaching this course. I plan to teach most of the same topics as last year, with some minor adaptions, rearragements, and (hopefully) improvements. So you can check the Chinese lecture notes on this page to get a general idea about what might be taught in this class. 
 
-I will also type English lecture notes this year. See the link below.
+
 
 
 ## English lecture notes
+
+I will type the English lecture notes this time. They will be the main reference for this course. 
 
 - [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
 > Please let me know if you find any typos or mistakes. This will help me improve the notes.
