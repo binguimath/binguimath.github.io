@@ -3,7 +3,7 @@
 
 ## Course description
 
-This is a year-long course for first year students in the Qiuzhen College of Tsinghua University. This is also my second time teaching this course. I plan to teach most of the same topics as last year, with some minor adaptions, rearragements, and (hopefully) improvements. So you can check the following lecture notes (in Chinese) to get a general idea about what might be taught in this class. 
+This is a year-long course for first year students in the Qiuzhen College of Tsinghua University. This is also my second time teaching this course. I plan to teach most of the same topics as last year, with some minor adaptions, rearragements, and (hopefully) improvements. So you can check the Chinese lecture notes on this page to get a general idea about what might be taught in this class. 
 
 I will also type English lecture notes this year. See the link below.
 
@@ -16,6 +16,8 @@ I will also type English lecture notes this year. See the link below.
 
 
 ## Chinese lecture notes taken in the former semesters
+
+These notes are written by students taking my class in 2022 Fall and 2023 Spring.
 
 - [Analysis I](Files/2022_Analysis_I_CH.pdf) taken by Yi Li (李颐) in 2022 Fall.
 
