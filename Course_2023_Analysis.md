@@ -1,4 +1,4 @@
-# 2023 Fall & 2024 Spring, Analysis I II
+# 2023 Fall & 2024 Spring, Analysis I & II
 
 
 ## Course description
