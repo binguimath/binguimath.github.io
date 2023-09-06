@@ -37,6 +37,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 ## Courses 😪
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
+- (2023 Fall & 2024 Spring) [Analysis I, II](Course_2023_Analysis.md)
 
 
 ## Publications and Preprints 😵‍💫
