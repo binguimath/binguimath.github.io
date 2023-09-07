@@ -1,0 +1,1200 @@
+% !TeX spellcheck = en_US
+% !TEX program = pdflatex
+\documentclass[12pt,b5paper,notitlepage]{article}
+\usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
+%\usepackage{fullpage}
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \wtidecheck
+%\usepackage{ulem} %wave underline
+\usepackage[dvipsnames]{xcolor}
+\usepackage{palatino}  %template
+\usepackage{slashed} % Dirac operator
+\usepackage{mathrsfs} % Enable using \mathscr
+%\usepackage{eufrak}  another template/font
+\usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
+\usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
+
+\usepackage{fancyhdr} % date in footer
+
+\usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
+
+\usepackage{verbatim}  % comment environment
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+% box around equations   \tcboxmath
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% circled colon and thick colon \hcolondel and \colondel
+
+\usepackage{pdfrender}
+
+\newcommand*{\hollowcolon}{%
+	\textpdfrender{
+		TextRenderingMode=Stroke,
+		LineWidth=.1bp,
+	}{:}%
+}
+
+\newcommand{\hcolondel}[1]{%
+	\mathopen{\hollowcolon}#1\mathclose{\hollowcolon}%
+}
+\newcommand{\colondel}[1]{%
+	\mathopen{:}#1\mathclose{:}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+\usepackage{tikz-cd}
+\usepackage[nottoc]{tocbibind}   % Add  reference to ToC
+
+
+\makeindex
+
+
+% The following set up the line spaces between items in \thebibliography
+\usepackage{lipsum}  
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+	\OLDthebibliography{#1}
+	\setlength{\parskip}{0pt}
+	\setlength{\itemsep}{2pt} 
+}
+
+
+\allowdisplaybreaks  %allow aligns to break between pages
+\usepackage{latexsym}
+\usepackage{chngcntr}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue, linktocpage,
+%pagebackref
+]{hyperref}
+\hypersetup{ urlcolor=cyan,
+	citecolor=[rgb]{0,0.5,0}}
+
+
+\setcounter{tocdepth}{2}	 %hide subsections in the content
+
+
+\counterwithin{figure}{section}
+
+\pagestyle{plain}
+
+\captionsetup[figure]
+{
+	labelsep=none	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{df}{Definition}[section]
+\newtheorem{eg}[df]{Example}
+\newtheorem{exe}[df]{Exercise}
+\newtheorem{rem}[df]{Remark}
+\newtheorem{obs}[df]{Observation}
+\newtheorem{ass}[df]{Assumption}
+\newtheorem{cv}[df]{Convention}
+\newtheorem{prin}[df]{Principle}
+\newtheorem{nota}[df]{Notation}
+\newtheorem{st}{Step}
+\newtheorem*{axiom}{Axiom}
+\newtheorem{coa}[df]{Theorem}
+\theoremstyle{plain}
+\newtheorem{thm}[df]{Theorem}
+\newtheorem{ccl}[df]{Conclusion}
+\newtheorem{thd}[df]{Theorem-Definition}
+\newtheorem{pp}[df]{Proposition}
+\newtheorem{co}[df]{Corollary}
+\newtheorem{lm}[df]{Lemma}
+
+
+
+\newtheorem{cond}{Condition}
+\newtheorem{Mthm}{Main Theorem}
+\renewcommand{\thecond}{\Alph{cond}} % "letter-numbered" theorems
+\renewcommand{\theMthm}{\Alph{Mthm}} % "letter-numbered" theorems
+
+
+%\substack   multiple lines under sum
+%\underset{b}{a}   b is under a
+
+
+% Remind: \overline{L_0}
+
+
+
+\usepackage{calligra}
+\DeclareMathOperator{\shom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\DeclareMathOperator{\sext}{\mathscr{E}\text{\kern -3pt {\calligra\large xt}}\,}
+\DeclareMathOperator{\Rel}{\mathscr{R}\text{\kern -3pt {\calligra\large el}~}\,}
+\DeclareMathOperator{\sann}{\mathscr{A}\text{\kern -3pt {\calligra\large nn}}\,}
+\DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
+\DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
+
+\usepackage{aurical}
+\DeclareMathOperator{\VVir}{\text{\Fontlukas V}\text{\kern -0pt {\Fontlukas\large ir}}\,}
+
+
+
+
+
+
+\newcommand{\fk}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\wtd}{\widetilde}
+\newcommand{\wht}{\widehat}
+\newcommand{\wch}{\widecheck}
+\newcommand{\ovl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\tr}{\mathrm{t}} %transpose
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\idt}{\mathbf{1}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\res}{\mathrm{res}}
+\newcommand{\KZ}{\mathrm{KZ}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\coev}{\mathrm{coev}}
+\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Dom}{\scr D}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\con}{\mathrm{c}}
+\newcommand{\uni}{\mathrm{u}}
+\newcommand{\ssp}{\mathrm{ss}}
+\newcommand{\di}{\slashed d}
+\newcommand{\Diffp}{\mathrm{Diff}^+}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\PSU}{\mathrm{PSU}(1,1)}
+\newcommand{\Vir}{\mathrm{Vir}}
+\newcommand{\Witt}{\mathscr W}
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\pri}{\mathrm{p}}
+\newcommand{\ER}{E^1(V)_{\mathbb R}}
+\newcommand{\prth}[1]{( {#1})}
+\newcommand{\bk}[1]{\langle {#1}\rangle}
+\newcommand{\bigbk}[1]{\big\langle {#1}\big\rangle}
+\newcommand{\Bigbk}[1]{\Big\langle {#1}\Big\rangle}
+\newcommand{\biggbk}[1]{\bigg\langle {#1}\bigg\rangle}
+\newcommand{\Biggbk}[1]{\Bigg\langle {#1}\Bigg\rangle}
+\newcommand{\GA}{\mathscr G_{\mathcal A}}
+\newcommand{\vs}{\varsigma}
+\newcommand{\Vect}{\mathrm{Vec}}
+\newcommand{\Vectc}{\mathrm{Vec}^{\mathbb C}}
+\newcommand{\scr}{\mathscr}
+\newcommand{\sjs}{\subset\joinrel\subset}
+\newcommand{\Jtd}{\widetilde{\mathcal J}}
+\newcommand{\gk}{\mathfrak g}
+\newcommand{\hk}{\mathfrak h}
+\newcommand{\xk}{\mathfrak x}
+\newcommand{\yk}{\mathfrak y}
+\newcommand{\zk}{\mathfrak z}
+\newcommand{\pk}{\mathfrak p}
+\newcommand{\hr}{\mathfrak h_{\mathbb R}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\DHR}{\mathrm{DHR}_{I_0}}
+\newcommand{\Repi}{\mathrm{Rep}_{\wtd I_0}}
+\newcommand{\im}{\mathbf{i}}
+\newcommand{\Co}{\complement}
+%\newcommand{\Cu}{\mathcal C^{\mathrm u}}
+\newcommand{\RepV}{\mathrm{Rep}^\uni(V)}
+\newcommand{\RepA}{\mathrm{Rep}(\mathcal A)}
+\newcommand{\RepN}{\mathrm{Rep}(\mathcal N)}
+\newcommand{\RepfA}{\mathrm{Rep}^{\mathrm f}(\mathcal A)}
+\newcommand{\RepAU}{\mathrm{Rep}^\uni(A_U)}
+\newcommand{\RepU}{\mathrm{Rep}^\uni(U)}
+\newcommand{\RepL}{\mathrm{Rep}^{\mathrm{L}}}
+\newcommand{\HomL}{\mathrm{Hom}^{\mathrm{L}}}
+\newcommand{\EndL}{\mathrm{End}^{\mathrm{L}}}
+\newcommand{\Bim}{\mathrm{Bim}}
+\newcommand{\BimA}{\mathrm{Bim}^\uni(A)}
+%\newcommand{\shom}{\scr Hom}
+\newcommand{\divi}{\mathrm{div}}
+\newcommand{\sgm}{\varsigma}
+\newcommand{\SX}{{S_{\fk X}}}
+\newcommand{\DX}{D_{\fk X}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bsb}{\boldsymbol}
+\newcommand{\blt}{\bullet}
+\newcommand{\Vbb}{\mathbb V}
+\newcommand{\Ubb}{\mathbb U}
+\newcommand{\Xbb}{\mathbb X}
+\newcommand{\Kbb}{\mathbb K}
+\newcommand{\Abb}{\mathbb A}
+\newcommand{\Wbb}{\mathbb W}
+\newcommand{\Mbb}{\mathbb M}
+\newcommand{\Gbb}{\mathbb G}
+\newcommand{\Cbb}{\mathbb C}
+\newcommand{\Nbb}{\mathbb N}
+\newcommand{\Zbb}{\mathbb Z}
+\newcommand{\Qbb}{\mathbb Q}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\Rbb}{\mathbb R}
+\newcommand{\Ebb}{\mathbb E}
+\newcommand{\Dbb}{\mathbb D}
+\newcommand{\Hbb}{\mathbb H}
+\newcommand{\cbf}{\mathbf c}
+\newcommand{\Rbf}{\mathbf R}
+\newcommand{\wt}{\mathrm{wt}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\btl}{\blacktriangleleft}
+\newcommand{\btr}{\blacktriangleright}
+\newcommand{\svir}{\mathcal V\!\mathit{ir}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Cok}{\mathrm{Coker}}
+\newcommand{\Sbf}{\mathbf{S}}
+\newcommand{\low}{\mathrm{low}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Rng}{\mathrm{Rng}}
+\newcommand{\vN}{\mathrm{vN}}
+\newcommand{\Ebf}{\mathbf E}
+\newcommand{\Nbf}{\mathbf N}
+\newcommand{\Stb}{\mathrm {Stb}}
+\newcommand{\SXb}{{S_{\fk X_b}}}
+\newcommand{\pr}{\mathrm {pr}}
+\newcommand{\SXtd}{S_{\wtd{\fk X}}}
+\newcommand{\univ}{\mathrm {univ}}
+\newcommand{\vbf}{\mathbf v}
+\newcommand{\ubf}{\mathbf u}
+\newcommand{\wbf}{\mathbf w}
+\newcommand{\CB}{\mathrm{CB}}
+\newcommand{\Perm}{\mathrm{Perm}}
+\newcommand{\Orb}{\mathrm{Orb}}
+\newcommand{\Lss}{{L_{0,\mathrm{s}}}}
+\newcommand{\Lni}{{L_{0,\mathrm{n}}}}
+\newcommand{\UPSU}{\widetilde{\mathrm{PSU}}(1,1)}
+\newcommand{\Sbb}{{\mathbb S}}
+\newcommand{\Gc}{\mathscr G_c}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\bpr}{{}^\backprime}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Real}{\mathrm{Re}}
+\newcommand{\Imag}{\mathrm{Im}}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Supp}{\mathrm{Supp}}
+\newcommand{\Specan}{\mathrm{Specan}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\uph}{\upharpoonright}
+\newcommand{\Mor}{\mathrm{Mor}}
+\newcommand{\pre}{\mathrm{pre}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\emb}{\mathrm{emb}}
+\newcommand{\Sg}{\mathrm{Sg}}
+\newcommand{\Nzd}{\mathrm{Nzd}}
+\newcommand{\Owht}{\widehat{\scr O}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\Com}{\mathrm{Com}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\nk}{\mathfrak n}
+\newcommand{\mk}{\mathfrak m}
+\newcommand{\Ass}{\mathrm{Ass}}
+\newcommand{\depth}{\mathrm{depth}}
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\Gode}{\mathrm{Gode}}
+\newcommand{\Fbb}{\mathbb F}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Modf}{\mathrm{Mod}^{\mathrm f}}
+\newcommand{\codim}{\mathrm{codim}}
+\newcommand{\card}{\mathrm{card}}
+
+
+
+
+\usepackage{tipa} % wierd symboles e.g. \textturnh
+\newcommand{\tipar}{\text{\textrtailr}}
+\newcommand{\tipaz}{\text{\textctyogh}}
+\newcommand{\tipaomega}{\text{\textcloseomega}}
+\newcommand{\tipae}{\text{\textrhookschwa}}
+\newcommand{\tipaee}{\text{\textreve}}
+\newcommand{\tipak}{\text{\texthtk}}
+\newcommand{\eps}{\varepsilon}
+
+
+
+
+\usepackage{tipx}
+\newcommand{\tipxgamma}{\text{\textfrtailgamma}}
+\newcommand{\tipxcc}{\text{\textctstretchc}}
+\newcommand{\tipxphi}{\text{\textqplig}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\numberwithin{equation}{section}
+
+
+
+
+\title{Qiuzhen Lectures on Analysis}
+\author{{\sc Bin Gui}
+	%\\
+	%{\small Department of Mathematics, Rutgers university}\\
+	%{\small bin.gui@rutgers.edu}
+}
+%\date{}
+\begin{document}\sloppy % avoid stretch into margins
+	\pagenumbering{arabic}
+	%\pagenumbering{gobble}
+	\setcounter{page}{1}
+%	\setcounter{section}{-1}
+	%\setcounter{equation}{6}
+	
+
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+	
+	\maketitle
+%\thispagestyle{empty}	 %remove page number of this page
+
+
+%Contents hyperlinks: \hyperlink{page.2}{Page 2}, \hyperlink{page.3}{Page 3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace{-0.5cm}
+\makeatletter
+\newcommand*{\toccontents}{\@starttoc{toc}}
+\makeatother
+\toccontents
+
+
+
+	
+% title and table of contents same page, no content title
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\section{Basic set theory and numbers}
+
+
+In this chapter, we discuss informally some of the basic notions in set theory and basic properties about numbers. A more thorough treatment can be found in \cite[Ch. 1]{Mun} (for set theory) and \cite[Ch. 1]{Rud-P} (for numbers). 
+
+Let me first list the notations and conventions that will be used throughout the notes. We use frequently the abbreviations:
+\begin{gather*}
+\text{iff=if and only if}\\
+\text{LHS=left hand side}\qquad
+\text{RHS=reft hand side}\\
+\text{$\exists$=there exists}\qquad \text{$\forall$=for all}\\
+\text{i.e.=id est=that is=namely}\qquad\text{e.g.=for example}\\
+\text{cf.=compare/check/see/you are referred to}\\
+\text{resp.=respectively}\qquad 
+\text{WLOG=without loss of generality}
+\end{gather*}
+The topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. The topics marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
+
+
+
+\subsection{Basic operations and axioms}
+Intuitively, a set denotes a collection of elements. For instance:\index{N@$\Nbb=\{0,1,2,\dots\}$} \index{Z@$\Zbb_+=\{1,2,\dots\}$}
+\begin{gather*}
+\Zbb=\{\text{all integers}\}\qquad \Nbb=\{n\in\Zbb:n\geq0\}\qquad \Zbb_+=\{n\in\Zbb:n>0\}
+\end{gather*}
+have infinitely many elements. (In this course, we will not be concerned with the rigorous construction of natural numbers and integers from Peano axioms.) We also let
+\begin{align*}
+\Qbb=\{\text{all rational numbers}\}\qquad\Rbb=\{\text{all real numbers}\}
+\end{align*}
+assuming that rational and real numbers exist and satisfy the properties we are familiar with in high school mathematics.
+
+
+Set theory is the foundation of modern mathematics. It consists of several Axioms telling us what we can do about the sets. For example, the following way of describing sets
+\begin{align}
+\{x: x\text{ satisfies property...}\}  \label{eq1}
+\end{align}
+is illegal, since it gives \textbf{Russell's paradox}: Consider
+\begin{align}
+S=\{A: A\text{ is a set and }A\notin A\}\label{eq12}
+\end{align}
+If $S$ were a set, then $S\in S\Rightarrow S\notin S$ and $S\notin S\Rightarrow S\in S$. This is something every mathematician doesn't want to happen.
+
+Instead, the following way of defining sets is legitimate:
+\begin{align}
+\{x\in X:x\text{ satisfies property}\dots\}  \label{eq2}
+\end{align}
+where \emph{$X$ is a given set}.  For instance, we can define the \textbf{difference} of two sets:\index{AB@$A\backslash B$}
+\begin{align*}
+A\setminus B=A-B=\{x\in A:x\notin B\}
+\end{align*}
+
+
+
+
+So let us figure out the legal way of defining unions and intersections of sets. The crucial point is that we assume the following axiom:
+\begin{axiom}
+If $\scr A$ is a set of sets, then there exists a set $X$ such that $A\subset X$ for all $A\in\scr A$.
+\end{axiom}
+
+Thus, if $\scr A$ is a set of sets, let $X$ satisfy $A\subset X$ for all $A\in\scr A$, then we can define the \textbf{union} and the \textbf{intersection} 
+\begin{subequations}\label{eq3}
+\begin{gather}
+\bigcup_{A\in\scr A}A=\{x\in X:\text{there exists $A\in\scr A$ such that $x\in A$}\}\\
+\bigcap_{A\in\scr A}A=\{x\in X:\text{for all $A\in\scr A$ we have $x\in A$}\}
+\end{gather}
+\end{subequations}
+It is clear that this definition does not rely on the particular choice of $X$.
+
+\begin{rem}
+In many textbooks, it is not uncommon that sets are defined as in \eqref{eq1}. You should interpret such definition as \eqref{eq2}, where the set $X$ is omitted because it is clear from the context. For instance, if the context is clear, the set $\{x\in\Rbb:x\geq 0\}$ could be simply written as $\{x:x\geq0\}$ or even $\{x\geq0\}$. By the same token, the phrase ``$\in X$" in \eqref{eq3} could be omitted. So we can also write
+\begin{gather*}
+A\cup B=\{x: x\in A\text{ or }x\in B\} \qquad  A\cap B=\{x: x\in A\text{ and }x\in B\}
+\end{gather*}
+which are special cases of \eqref{eq3}.
+\end{rem}
+
+
+\begin{rem}
+In the same spirit, when discussing subsets of a given ``large" set $X$, and if $X$ is clear from the context, we shall write $X\setminus A$ (where $A\subset X$) as $A^c$ \index{Ax@$A^c$, the complement of $A$} and call it the \textbf{complement} of $A$.
+\end{rem}
+
+
+\begin{eg}
+We have
+\begin{gather*}
+\bigcup_{x\in(1,+\infty)}[0,x)=[0,+\infty)\qquad\bigcap_{n\in\Zbb_+}(0,1+1/n)=(0,1]\qquad \bigcup_{n\in\Nbb}(0,1-1/n]=(0,1)
+\end{gather*}
+The readers may notice that these examples are not exactly in the form \eqref{eq3}. They are actually unions and intersections of indexed families of sets. (See Def. \ref{lb1}.) We need some preparation before discussing this notion.
+\end{eg}
+
+
+
+
+\begin{axiom}
+If $A_1,\dots,A_n$ are sets, their \textbf{Cartesian product} exists:
+\begin{align*}
+A_1\times\cdots\times A_n=\{(a_1,\dots,a_n): a_i\in A_i\text{ for all }1\leq i\leq n\}
+\end{align*}
+where two elements $(a_1,\dots,a_n)$ and $(b_1,\dots,b_n)$ of the Cartesian product are viewed as equal iff $a_1=b_1,\dots,a_n=b_n$. We also write
+\begin{align*}
+(a_1,\dots,a_n)=a_1\times\cdots\times a_n
+\end{align*}
+especially when $a,b$ are real numbers and $(a,b)$ can mean an open interval.
+
+If $A_1=\cdots=A_n=A$, we write the Cartesian product as $A^n$. \hfill\qedsymbol
+\end{axiom}
+
+\begin{eg}
+Assume that the set of real numbers $\Rbb$ exists. Then the set of complex numbers $\Cbb$ \index{C@$\Cbb$, the set of complex numbers} is defined to be $\Rbb^2=\Rbb\times\Rbb$ as a set. We write $(a,b)\in\Cbb$ as $a+b\im$ where $a,b\in\Rbb$. Define
+\begin{gather*}
+(a+b\im)+(c+d\im)=(a+c)+(b+d)\im\\
+(a+b\im)\cdot (c+d\im)=(ac-bd)+(ad+bc)\im
+\end{gather*}
+Define the zero element $0$ of $\Cbb$ to be $0+0\im$. More generally, we consider $\Rbb$ as a subset of $\Cbb$ by viewing $a\in\Rbb$ as $a+0\im\in\Cbb$. This defines the usual arithmetic of complex numbers. 
+
+If $z=a+b\im$, we define its \textbf{absolute value} $|z|=\sqrt{a^2+b^2}$. Then $z=0$ iff $|z|=0$. We define the \textbf{(complex) conjugate} of $z$ to be $\ovl z=a-b\im$. Then $|z|^2=z\ovl z$.
+
+If $z\neq 0$, then there clearly exists a unique $z^{-1}\in\Cbb$ such that $zz^{-1}=z^{-1}z=1$:  $z^{-1}=|z|^{-2}\cdot \ovl z$. Thus, using the language of modern algebra, $\Cbb$ is a \index{00@Field} \textbf{field}.\footnote{The readers can easily find the definition of fields online or through textbooks (e.g. \cite[Def. 1.12]{Rud-P}). We will not present the full definition of fields in the notes. Just keep in mind some typical (counter)examples: $\Qbb,\Rbb,\Cbb$ are fields. $\Zbb$ is not a field, because not every non-zero element of $\Zbb$ has an inverse. The set of quaternions $\{a+b\im+c\mathbf{j}+d\mathbf{k}: a,b,c,d\in\Rbb\}$ is not a field because it is not commutative ($\im\mathbf{j}=-\mathbf{j}\im=\mathbf{k}$). The set of rational functions $P(x)/Q(x)$, where $P,Q$ are polynomials with coefficients in $\Rbb$ and $Q\neq 0$, is a field.}  \hfill\qedsymbol
+\end{eg}
+
+
+The axiom of Cartesian product allows us to define relations and functions:
+
+\begin{df}
+If $A,B$ are sets, a subset $R$ of $A\times B$ is called a \textbf{relation}. For $(a,b)\in A\times B$, we write $aRb$ iff $(x,y)\in R$. We understand ``$aRb$" as ``$a$ is related to $b$ through the relation $R$".
+\end{df}
+
+
+\begin{df}
+A relation $f$ of $A,B$ is called a \textbf{function} or a \textbf{map} (or a \textbf{mapping}), if for every $a\in A$ there is a unique $b\in B$ such that $afb$. In this case, we write $b=f(a)$.
+
+When we write $f:A\rightarrow B$, we always mean that $A,B$ are sets and $f$ is a function from $A$ to $B$. $A$ and $B$ are called respectively the \textbf{domain} and the \textbf{codomain} of $f$. (Sometimes people also use the words ``source" and ``target" to denote $A$ and $B$.) 
+
+If $E\subset A$ and $F\subset B$, we define the \textbf{image under $f$} of $E$  and the \textbf{preimage under $f$} of $F$ to be
+\begin{gather*}
+f(E)=\{b\in B:\exists a\in E\text{ such that }b=f(a)\}\\
+f^{-1}(F)=\{a\in A: f(a)\in F\}.
+\end{gather*}
+$f(A)$ is simply called the \textbf{image} of $f$, or the \textbf{range} of $f$. If $b\in B$, $f^{-1}(\{b\})$ is often abbreviated to $f^{-1}(b)$. The function \index{f@$f\lvert_E$, the restriction of $f$ to $E$}
+\begin{align*}
+f|_E:E\rightarrow B\qquad x\mapsto f(x)
+\end{align*}
+is called the \textbf{restriction}  of $f$ to $E$. \hfill\qedsymbol
+\end{df}
+
+The intuition behind the definition of functions is clear: we understand functions as the same as their graphs. So a subset $f$ of the ``coordinate plane" $A\times B$ is the graph of a function iff it ``intersects every vertical line precisely once".
+
+
+\begin{df}\label{lb13}
+A function $x:\Zbb_+\rightarrow A$ is called a \textbf{sequence in $A$}. We write $x(n)$ as $x_n$, and write this sequence as $(x_n)_{n\in\Zbb_+}$.
+\end{df}
+
+Many people write such a sequence as $\{x_n\}_{n\in\Zbb_+}$. We do not use this notation, since it can be confused with $\{x_n: n\in\Zbb_+\}$ (the range of the function $x$).
+
+
+
+\begin{axiom}
+If $X$ is a set, then the \textbf{power set} \index{00@Power set $2^X$} $2^X$ exists, where
+\begin{align*}
+2^X=\{\text{Subsets of }X\}
+\end{align*}
+\end{axiom}
+
+\begin{eg}
+The set $2^{\{1,2,3\}}$ has $8$ elements: $\emptyset$, $\{1\}$, $\{2\}$, $\{3\}$, $\{1,2\}$, $\{1,3\}$, $\{2,3\}$, $\{1,2,3\}$. Surprisingly, $8=2^3$. As we shall see in Exp. \ref{lb11} and Cor. \ref{lb12}, this relationship holds more generally, which explains the terminology $2^X$.  
+\end{eg}
+
+Now we are ready to define indexed families of sets.
+\begin{df}\label{lb1}
+An \textbf{indexed family of sets} \index{00@Indexed family of sets}  $(S_i)_{i\in I}$ is defined to be a function $S:I\rightarrow 2^X$ for some sets $I,X$. We write $S(i)$ as $S_i$. (So $S_i$ is a subset of $X$.) $I$ is called the \textbf{index set}. Define
+\begin{align*}
+\bigcup_{i\in I}S_i= \bigcup_{T\in S(I)}T\qquad \bigcap_{i\in I}S_i= \bigcap_{T\in S(I)}T
+\end{align*}
+Note that $S(I)$ is the image of the function $S$.
+\end{df}
+
+
+\begin{eg}
+In the union $\bigcup_{x\in(1,+\infty)}[0,x)$, the index set is $I=(1,+\infty)$, and $X$ can be the set of real numbers $\Rbb$. Then $S:I\rightarrow 2^X$ is defined to be $S_i=S(i)=[0,i)$.
+\end{eg}
+
+
+
+
+\begin{exe}\label{lb5}
+Let $f:A\rightarrow B$ be a function. We say that $f$ is \textbf{injective} if for all $a_1,a_2\in A$ satisfying $a_1\neq a_2$ we have $f(a_1)\neq f(a_2)$. We say that $f$ is \textbf{surjective} if for each $b\in B$ we have $f^{-1}(b)\neq\emptyset$. $f$ is called \textbf{bijective} if it is both surjective and bijective. Define the \textbf{identity maps} $\id_A:A\rightarrow A,a\mapsto a$ \index{id@$\id_A$} and $\id_B$ in a similar way. Prove that
+\begin{subequations}
+\begin{gather}
+\text{$f$ is injective $\Longleftrightarrow$ there is $g:B\rightarrow A$ such that $g\circ f=\id_A$}\label{eq4}\\
+\text{$f$ is surjective $\Longleftrightarrow$ there is $g:B\rightarrow A$ such that $f\circ g=\id_B$}\label{eq5}\\
+\text{$f$ is bijective $\Longleftrightarrow$ there is $g:B\rightarrow A$ such that $g\circ f=\id_A$ and $f\circ g=\id_B$}\label{eq6}
+\end{gather}
+\end{subequations}
+Show that the $g$ in \eqref{eq4} (resp. \eqref{eq5}, \eqref{eq6}) is surjective (resp. injective, bijective).
+\end{exe}
+
+
+The equivalence \eqref{eq5} is subtler, since its proof requires Axiom of Choice.
+
+
+\begin{axiom}
+Let $(S_i)_{i\in I}$ be an indexed family of sets. The \textbf{Axiom of Choice} asserts that if $S_i\neq\emptyset$ for all $i\in I$, then there exists a function (the \textbf{choice function})
+\begin{align*}
+f:I\rightarrow \bigcup_{i\in I}S_i
+\end{align*}
+such that $f(i)\in S_i$ for each $i\in I$.
+\end{axiom}
+
+
+Intuitively, the axiom of choice says that for each $i\in I$ we can choose an element $f(i)$ of $S_i$. And such choice gives a function $f$.
+
+
+\begin{eg}
+Let $f:A\rightarrow B$ be surjective. Then each member of the family $(f^{-1}(b))_{b\in B}$ is nonempty. Thus, by axiom of choice, there is a choice function $g$ defined on the index set $B$ such that $g(b)\in f^{-1}(b)$ for each $b$. Clearly $f\circ g=\id_B$.
+\end{eg}
+
+
+
+\begin{rem}
+Suppose that each member $S_i$ of the family $(S_i)_{i\in I}$ has exactly one element. Then the existence of a choice function does not require Axiom of Choice: Let $X=\bigcup_{i\in I}S_i$ and define relation
+\begin{align*}
+f=\{(i,x)\in I\times X: x\in S_i\}
+\end{align*}
+Then one checks easily that this relation between $I$ and $X$ is a function, and that it is the (necessarily unique) choice function of $(S_i)_{i\in I}$.
+\end{rem}
+
+According to the above remark, one does not need Axiom of Choice to prove \eqref{eq4} and \eqref{eq6}. Can you see why?
+
+
+\subsection{Partial and total orders, equivalence relations}
+
+\begin{df}
+Let $A$ be a set. A \textbf{partial order} (or simply an \textbf{order}) $\leq$ on $A$ is a relation on $A\times A$ satisfying for all $a,b,c\in A$ that:
+\begin{itemize}
+\item (Reflexivity) $a\leq a$.
+\item (Antisymmetry) If $a\leq b$ and $b\leq a$ then $a=b$.
+\item (Transitivity) If $a\leq b$ and $b\leq c$ then $a\leq c$.
+\end{itemize}
+We write $b\geq a$ iff $a\leq b$. Write $a>b$ iff $a\geq b$ and $a\neq b$. Write $a<b$ iff $b>a$. So $\geq$ is also an order on $A$. The pair $(A,\leq)$ is called a \textbf{partially ordered set}. A partial order $\leq$ on $A$ is called a \textbf{total order}, if for every $a,b\in A$ we have either $a\leq b$ or $b\leq a$.
+\end{df}
+
+
+\begin{eg}
+The following are examples of orders.
+\begin{itemize}
+\item Assume that $\Rbb$ exists. Then $\Rbb$ has the canonical total order, which restricts to the total order of $\Zbb$. This is the total order that everyone is familiar with.
+\item Let $X$ be a set. Then $(2^X,\subset)$ is a partially ordered set.
+\item $\Rbb^2$ is a partially ordered set, if we define $(a,b)\leq (c,d)$ to be $a\leq c$ and $b\leq d$. 
+\end{itemize}
+\end{eg}
+
+
+\begin{df}
+A relation $\sim$ on a set $A$ is called an \textbf{equivalence relation}, if for all $a,b,c\in A$ we have
+\begin{itemize}
+\item (Reflexivity) $a\sim a$.
+\item (Symmetry) $a\sim b$ iff $b\sim a$.
+\item (Transitivity) If $a\sim b$ and $b\sim c$ then $a\sim c$.
+\end{itemize}
+\end{df}
+
+Later, we will use the notions of partial orders and equivalence relation not just for a set, but for a collection of objects ``larger" than a set. See Sec. \ref{lb4}.
+
+\begin{df}
+Let $A$ be a set, together with an equivalence relation $\sim$. Define a new set
+\begin{align*}
+{A/\sim}=\{[a]: a\in A\}
+\end{align*}
+where the notion $[a]$ can be understood in the following two equivalent ways (we leave it to the readers to check the equivalence):
+\begin{itemize}
+\item[(1)] $[a]$ is a new symbol. We understand $[a]$ and $[b]$ as equal iff $a\sim b$.
+\item[(2)] $[a]=\{x\in A: x\sim a \}$
+\end{itemize}
+We call $[a]$ the \textbf{equivalence class} (or the \textbf{residue class}) of $a$, and call $A/\sim$ the \textbf{quotient set} \index{00@Quotient sets} of $A$ under $\sim$. The surjective map $\pi:a\in A\mapsto [a]\in {A/\sim}$ is called the \textbf{quotient map}.
+\end{df}
+
+
+\begin{exe}
+Prove that every surjective map  is equivalent to a quotient map. More precisely, prove that for every surjection $f:A\rightarrow B$, there is an equivalence relation $\sim$ on $A$ and a bijective map $\Phi:{A/\sim}\rightarrow B$ such that the following diagram commutes:
+\begin{equation}\label{eq7}
+\begin{tikzcd}[column sep=small]
+                          & A \arrow[rd, "f"] \arrow[ld, "\pi"'] &   \\
+{A/\sim} \arrow[rr, "\Phi"] &                                      & B
+\end{tikzcd}
+\end{equation}
+\end{exe}
+
+
+This is the first time we see commutative diagrams. Commutative diagrams are very useful for indicating that certain maps between sets are ``equivalent" or are satisfying some more general relations. For example, \eqref{eq7} shows that the maps $f$ and $\pi$ are equivalent, and that this equivalence is implemented by the bijection $\Phi$. The formal definition of commutative diagrams is the following:
+
+
+\begin{df}
+A diagram (i.e. some sets denoted by symbols, and some maps denoted by arrows) is called a \textbf{commutative diagram}, \index{00@Commutative diagram} if all directed paths in the diagram with the same start and endpoints lead to the same result.
+\end{df}
+
+
+Here is an example of commutative diagram in linear algebra. This example assumes some familiarity with the basic properties of vector spaces \index{00@Vector spaces} and linear maps.\footnote{Again, we refer the readers to Internet or any Linear Algebra textbook (e.g. \cite{Axl}) for the definition of vector spaces and linear maps.}
+
+
+\begin{eg}
+Let $V,W$ be vector spaces over a field $\Fbb$ with finite dimensions $m,n$ respectively. Let $e_1,\dots,e_m$ be a basis of $V$, and let $\eps_1,\dots,\eps_n$ be a basis of $W$. We know that there are unique linear isomorphisms $\Phi:\Fbb^m\xrightarrow{\simeq} V$ and $\Psi:\Fbb^n\xrightarrow{\simeq} W$ such that
+\begin{align*}
+\Phi(a_1,\dots,a_m)=a_1e_1+\cdots+a_me_m\qquad \Psi(b_1,\dots,b_n)=b_1\eps_1+\cdots+b_n\eps_n
+\end{align*}
+Let $T:V\rightarrow W$ be a \index{00@Linear maps} \textbf{linear map}, i.e., a map satisfying $T(a\xi+b\eta)=aT\xi+bT\eta$ for all $a,b\in\Fbb,\xi,\eta\in V$. Then there is a unique $n\times m$ matrix $A\in\Fbb^{n\times m}$ \index{Fnm@$\Fbb^{n\times m}$, the set of $n\times m$ matrices} such that the following diagram commutes:
+\begin{equation}
+\begin{tikzcd}
+\Fbb^m \arrow[r,"\Phi","\simeq"'] \arrow[d,"A"'] & V \arrow[d,"T"] \\
+\Fbb^n \arrow[r,"\Psi","\simeq"']           & W          
+\end{tikzcd}
+\end{equation} 
+namely, $T\Phi=\Psi A$. This commutative diagram tells us that $T$ is equivalent to its \textbf{matrix representation} \index{00@Matrix representation} $A$ under the bases $e_\blt,\eps_\star$, and that this equivalence is implemented by the linear isomorphisms $\Phi$ (on the sources) and $\Psi$ (on the targets). 
+\end{eg}
+
+Commutative diagrams are ubiquitous in mathematics. You should learn how to read commutative diagrams and understand their intuitive meanings. We will see more examples in the future of this course.
+
+
+
+\subsection{$\Qbb$, $\Rbb$, and $\overline{\mathbb R}=[-\infty,+\infty]$}
+
+
+
+Using equivalence classes, one can construct rational numbers from integers, and real numbers from rationals. We leave the latter construction to the future, and discuss the construction of rationals here.
+
+\begin{eg}[Construction of $\Qbb$ from $\Zbb$]\label{lb17}
+Define a relation on $\Zbb\times\Zbb^\times$ (where $\Zbb^\times=\Zbb\setminus\{0\}$) as follows. If $(a,b),(a',b')\in\Zbb\times\Zbb^\times$, we say $(a,b)\sim(a',b')$ iff $ab'=a'b$. It is a routine check that $\sim$ is an equivalence relation. Let \index{Q@$\Qbb$, the field of rational numbers}  $\Qbb=(\Zbb\times\Zbb^\times)/\sim$, and write the equivalence class of $(a,b)$ as $a/b$ or $\frac ab$. Define additions and multiplications in $\Qbb$ to be
+\begin{align*}
+\frac ab+\frac cd=\frac{ad+bc}{bd}\qquad \frac ab\cdot\frac cd=\frac{ac}{bd}
+\end{align*}
+We leave it to the readers to check that this definition is \index{00@Well defined} \textbf{well-defined}: If $(a,b)\sim(a',b')$ and $(c,d)\sim(c',d')$ then $(ad+bc,bd)\sim(a'd'+b'c',b'd')$ and $(ac,bd)\sim(a'c',b'd')$.
+
+We regard $\Zbb$ as a subset of $\Qbb$ by identifying $n\in\Zbb$ with $\frac n1$. (This is possible since the map $n\in\Zbb\mapsto \frac n1\in\Qbb$ is injective.) Each $a/b\in\Qbb$ has additive inverse $\frac{-a}b$. If $a/b\in\Qbb$ is not zero (i.e. $(a,b)\nsim (0,1)$), then $a/b$ has multiplicative inverse $b/a$. This makes $\Qbb$ a field: the field of \textbf{rational numbers}.
+
+If $a/b\in\Qbb$, we say $a/b\geq 0$ if $ab\geq0$. Check that this is well-defined (i.e., if $(a,b)\sim(a',b')$, then $ab\geq0$ iff $a'b'\geq0$). More generally, if $a/b,c/d\in\Qbb$, we say $\frac ab\geq \frac cd$ if $\frac ab-\frac cd\geq0$. Check that $\geq$ is a total order on $\Qbb$.  Check that $\Qbb$ is an Archimedean ordered field, defined below.\hfill\qedsymbol
+\end{eg}
+
+
+\begin{df}
+A field $\Fbb$, together with a total order $\leq$, is called an \index{00@Ordered field} \textbf{ordered field}, if for every $a,b,c\in\Fbb$ we have
+\begin{itemize}
+\item (Addition preserves $\leq$) If $a\leq b$ then $a+c\leq b+c$.
+\item (Multiplication by $\Fbb_{\geq0}$ preserves $\leq$) If $a,b\geq 0$ then $ab\geq0$.
+\end{itemize}
+These two properties relate $\leq$ to $+$ and $\cdot$ respectively.
+\end{df}
+
+\begin{rem}
+Many familiar properties about inequalities in $\Qbb$ hold for an ordered field. For instance: 
+\begin{gather*}
+a\geq b~\wedge~ c\geq d \qquad\Longrightarrow\qquad a+c\geq b+d\\
+a\geq0\qquad\Longleftrightarrow\qquad -a\leq0\\
+a\geq0~\wedge~b\geq c\qquad\Longleftrightarrow\qquad ab\geq ac\\
+a\leq0~\wedge~b\geq c\qquad\Longleftrightarrow\qquad ab\leq a\\
+a^2\geq0\\
+0<a\leq b\qquad\Longrightarrow\qquad 0< b^{-1}\leq a^{-1}
+\end{gather*}
+Check them yourself, or see \cite[Prop. 1.18]{Rud-P}.
+\end{rem}
+
+
+\begin{df}
+We say that an ordered field $\Fbb$ satisfies \index{00@Archimedean property} \textbf{Archimedean property} if for each $a,b\in\Fbb$ we have
+\begin{align*}
+a> 0\qquad\Longrightarrow \qquad\exists n\in\Nbb\text{ such that }na>b
+\end{align*}
+where $na$ means $\underbrace{a+\cdots+a}_{n}$.
+\end{df}
+
+Prop. \ref{lb2} gives an important application of Archimedian property. We will use this in the construction of $\Rbb$ from $\Qbb$, and in the proof that $\Qbb$ is dense in $\Rbb$. 
+
+\begin{df}
+Let $\Fbb$ be a field. A subset $\Ebb\subset\Fbb$ is called a  \textbf{subfield} \index{00@Subfield} of $\Fbb$, if $\Ebb$ contains the $1$ of $\Fbb$, and if $\Ebb$ is closed under the operations of addition, multiplication, taking negative, and taking inverse in $\Fbb$ (i.e. if $a,b\in\Ebb$ then $a+b,ab,-a\in\Ebb$, and $a^{-1}\in\Ebb$ whenever $a\neq 0$). We also call $\Fbb$ a \index{00@Field extension} \textbf{field extension} of $\Ebb$, since $\Ebb$ is clearly a field.
+\end{df}
+
+Note that if $\Ebb$ is a subfield of $\Fbb$, the $0$ of $\Fbb$ is in $\Ebb$ since $0=1+(-1)\in\Ebb$.
+
+\begin{df}
+Let $\Ebb$ be an ordered field. A field extension $\Fbb$ of $\Ebb$ is called an \index{00@Ordered field extension=ordered subfield} \textbf{ordered field extension}, if $\Fbb$ is equipped with a total order $\leq$ such that $\Fbb$ is an ordered field, and if the order $\leq$ of $\Fbb$ restricts to that of $\Ebb$. We also call $\Ebb$ an \textbf{ordered subfield} of $\Fbb$.
+\end{df}
+
+Our typical example of ordered field extension will be $\Qbb\subset\Rbb$.
+
+\begin{pp}\label{lb2}
+Let $\Fbb$ be an ordered field extension  of $\Qbb$. Assume that $\Fbb$ is Archimedean. Then for every $x,y\in\Fbb$ satisfying $x<y$, there exists $p\in\Qbb$ such that $x<p<y$.
+\end{pp}
+
+\begin{proof}
+Assume $x,y\in\Fbb$ and $x<y$. Then $y-x>0$ (since $y-x\neq 0$ and $-x+x\leq -x+y$). By Archimedean property, there exists $n\in\Zbb_+$ such that $n(y-x)>1$. So $\displaystyle y-x>\frac 1n$ and hence $\displaystyle x+\frac 1n<y$.
+
+Let us prove that the subset
+\begin{equation*}
+A=\big\{k\in\Zbb: \frac {~k~}{n}\leq x\big\}
+\end{equation*}
+is nonempty and bounded from above in $\Zbb$. By Archimedean property, there is $m\in\Zbb_+$ such that $m>nx$, i.e. $\displaystyle \frac mn>x$. So for each $k\in\Zbb_+$ satisfying $k\geq m$, we have $\displaystyle \frac kn=\frac mn+\frac{k-m}n>x$. Therefore, for each $k\in A$ we have $k<m$. So $A$ is bounded above. By Archimedean property again, there is $l\in\Zbb_+$ such that $\displaystyle \frac ln>-x$. So $\displaystyle -\frac ln<x$, and hence $A$ is nonempty.
+
+We now use the fact that \emph{every nonempty subset of $\Zbb$ bounded above has a maximal element}. Let $k=\max A$. Since $k+1\notin A$, we have $\displaystyle x<\frac{k+1}n$. Since $\displaystyle \frac kn\leq x$, we have
+\begin{align*}
+\frac{k+1}n=\frac kn+\frac 1n\leq x+\frac 1n<y
+\end{align*}
+This proves $x<p<y$ with $\displaystyle p=\frac{k+1}n$.
+\end{proof}
+
+To introduce $\Rbb$ formally, we need more definitions:
+
+\begin{df}
+Let $(X,\leq)$ be a partially ordered set and $E\subset X$. An \textbf{upper bound of $E$ in $X$} \index{00@Upper bound} is an element $x\in X$ satisfying $e\leq x$ for all $e\in E$. An upper bound $x\in X$ of $E$ is called a \textbf{least upper bound} or a \textbf{supremum}  if $x\leq y$ for every upper bound $y\in Y$ of $E$. In this case, we write the supremum as \index{sup@$\sup E$} $\sup E$. It is not hard to check that supremums are unique if they exist.
+
+We leave it to the readers to define \textbf{lower bounds} and the \textbf{greatest lower bound} (if exists) of $E$, also called the \textbf{infinimum} and is denoted by \index{inf@$\inf E$} $\inf E$. \hfill\qedsymbol
+\end{df}
+
+
+\begin{df}
+Let $(X,\leq)$ be a partially ordered set. We say that $X$ satisfies the \textbf{least-upper-bound property}, if every every nonempty subset $E\subset X$ which is bounded above (i.e. $E$ has an upper bound) has a supremum in $X$. The \textbf{greatest-lower-bound property} is defined in the opposite way.
+\end{df}
+
+\begin{eg}
+$\Zbb$ satisfies the least-upper-bound and the greatest-lower-bound property: Let $A\subset \Zbb$. If $A$ is bounded above (resp. below), then the maximum $\max A$ (resp. minimum $\min A$) exists and is the supremum (resp. infinimum) of $A$.
+\end{eg}
+
+\begin{eg}
+Let $X$ be a set. Then $(2^X,\subset)$ satisfies the least-upper-bound and the greatest-lower-bound property: Let $\scr A\subset 2^X$, i.e., $\scr A$ is a set of subsets of $X$. Then $\scr A$ is bounded from above by $X$, and is bounded from below by $\emptyset$. Moreover,
+\begin{align*}
+\sup\scr A=\bigcup_{A\in\scr A}A\qquad \inf\scr A=\bigcap_{A\in\scr A}A
+\end{align*}
+\end{eg}
+
+
+
+\begin{thm}\label{lb3}
+There is an ordered field extension of $\Qbb$ which is Archimedian and satisfies the least-upper-bound property. This field is denoted by  $\Rbb$. Its elements are called \index{00@Real number} \textbf{real numbers}.
+\end{thm}
+
+By taking negative, we see that $\Rbb$ also satisfies the greatest-lower-bound property.
+
+
+\begin{rem}
+The ordered field extensions satisfying the conditions in Thm. \ref{lb3} are unique ``up to isomorphisms". (The words ``\textbf{isomorphism}"\index{00@Isomorphism}  and ``equivalence" are often interchangeable, though ``isomorphism" is more often used in the algebraic setting, whereas ``equivalence" can be used in almost every context. For example, in point-set topology, ``equivalence" means ``homeomorphism".) We leave it to the readers to give the precise statement. We will not use this uniqueness in this course. 
+
+Note that to compare two extensions $\Fbb,\Rbb$ of $\Qbb$, it is very confusing to regard $\Qbb$ as a subset of both $\Fbb$ and $\Rbb$. You'd better consider two different injective maps $\tau:\Qbb\rightarrow \Fbb$ and $\iota:\Qbb\rightarrow\Rbb$ preserving the algebraic operations and the order of $\Qbb$, and use a commutative diagram to indicate that $\tau$ and $\iota$ are equivalent. (Thus, what's happening here is that we have an equivalence of maps, not just an equivalence of the fields $\Fbb$ and $\Rbb$.) \hfill\qedsymbol
+\end{rem}
+
+
+\begin{df}
+Let $-\infty,+\infty$ be two different symbols, and extend the total order $\leq$ of $\Rbb$ to the \textbf{extended real line}\index{R@$\ovl\Rbb=[-\infty,+\infty]=\Rbb\cup\{-\infty,+\infty\}$}
+\begin{align*}
+\ovl\Rbb=\Rbb\cup\{-\infty,+\infty\}
+\end{align*}
+by letting $-\infty<x<+\infty$ for all $x\in\Rbb$. Define for each $x\in\Rbb$ that
+\begin{gather*}
+x\pm\infty=\pm\infty+x=\pm\infty\qquad +\infty-(-\infty)=+\infty\\
+x\cdot(\pm\infty)=\pm\infty\cdot x=\left\{
+\begin{array}{cc}
+\pm\infty&\text{if }x>0\\
+\mp\infty&\text{if }x<0
+\end{array}
+\right.\\
+\frac x{\pm\infty}=0\\
+\frac{\pm\infty}{x}=x^{-1}\cdot(\pm\infty)\qquad \text{if }x\neq0
+\end{gather*}
+If $a,b\in\ovl\Rbb$ and $a\leq b$, we define \textbf{intervals} \index{00@Interval} with endpoints \index{00@Endpoints of an interval} $a,b$:
+\begin{gather}\label{eq8}
+\begin{gathered}
+[a,b]=\{x\in\ovl\Rbb:a\leq x\leq b\}\qquad (a,b)=\{x\in\ovl\Rbb:a< x< b\}\\
+(a,b]=\{x\in\ovl\Rbb:a< x\leq b\}\qquad [a,b)=\{x\in\ovl\Rbb:a\leq x< b\}
+\end{gathered}
+\end{gather}
+So $\Rbb=(-\infty,+\infty)$ and $\ovl\Rbb=[-\infty,+\infty]$.
+\end{df}
+
+In this course, unless otherwise stated, an interval always means one of the four sets in \eqref{eq8}. The first two intervals are called respectively a \textbf{closed interval} and an \textbf{open interval}.
+
+\begin{rem}
+Clearly, every subset $E$ of $\ovl\Rbb$ is bounded and has a supremum and an infinimum. We have that $\sup E=+\infty$ iff $E$ is not bounded above in $\Rbb$, and that $\inf E=-\infty$ iff $E$ is not bounded below in $\Rbb$. 
+\end{rem}
+
+
+\subsection{Cardinalities, countable sets, and product spaces $Y^X$}\label{lb4}
+
+
+\begin{df}
+Let $A$ and $B$ be sets. We say that $A$ and $B$ have the same \textbf{cardinality} \index{00@Cardinality $\card(A)$} and write $\card(A)=\card(B)$ (or simply $A\approx B$), if there is a bijection $f:A\rightarrow B$. We write $\card(A)\leq\card(B)$ (or simply $A\precsim B$) if $A$ and a subset of $B$ have the same cardinality. 
+\end{df}
+
+
+
+\begin{exe}\label{lb9}
+Show that $\card(A)\leq\card(B)$ iff there is an injection $f:A\rightarrow B$, iff there is a surjection $g:B\rightarrow A$. (You need either Axiom of Choice or its consequence \eqref{eq5} to prove the last equivalence.)
+\end{exe}
+
+It is clear that $\approx$ is an equivalence relation on the collection of sets. It is also true that $\precsim$ is a partial order: Reflexivity and transitivity are easy to show. The proof of antisymmetry is more involved:
+
+
+
+\begin{thm}[Schr\"oder-Bernstein]\label{lb8}\index{00@Schr\"oder-Bernstein Theorem}
+Let $A,B$ be two sets. If $A\precsim B$ and $B\precsim A$, then $A\approx B$.
+\end{thm}
+
+\begin{proof}[Proof $\star\star$]
+Assume WLOG that $A\subset B$. Let $f:B\rightarrow A$ be an injection. Let $A_n=f^n(A)$ defined inductively by $f^0(A)=A$, $f^n(A)=f(f^{n-1}(A))$. Let $B_n=f^n(B)$. Then
+\begin{align*}
+B_0\supset A_0\supset \cdots\supset B_n\supset A_n\supset B_{n+1}\supset\cdots
+\end{align*}
+In particular, $C=\bigcap_{n\in\Nbb}A_n$ equals $\bigcap_{n\in\Nbb}B_n$. Note that $f$ gives a bijection $B_n\setminus A_n\rightarrow B_{n+1}\setminus A_{n+1}$ (since $f$ gives bijections $B_n\rightarrow B_{n+1}$ and $A_n\rightarrow A_{n+1}$). Therefore, we have a bijection $g:B\rightarrow A$ defined by
+\begin{gather*}
+g(x)=\left\{
+{\begin{array}{ll}
+f(x)&\text{if $x\in B_n\setminus A_n$ for some $n\in\Nbb$}\\[0.5ex]
+x&\text{otherwise}
+\end{array}}
+\right.
+\end{gather*}
+where ``otherwise" means either $x\in C$ or $x\in A_n\setminus B_{n+1}$ for some $n$.
+\end{proof}
+
+Intuition about the above proof: View $B$ as an onion. The layers of $B$ are $B_n\setminus A_n$ (the odd layers) and $A_n\setminus B_{n+1}$ (the even layers). The bijection $g$ maps each odder layer to the subsequent odd one, and fixes the even layers and the core $C$.
+
+
+\begin{eg}\label{lb6}
+If $-\infty<a<b<+\infty$, then $(0,1)\approx (a,b)$.
+\end{eg}
+\begin{proof}
+$f:(0,1)\rightarrow (a,b)$ sending $x$ to $(b-a)x+a$ is a bijection.
+\end{proof}
+
+\begin{eg}\label{lb7}
+If $-\infty<a<b<+\infty$, then $\Rbb\approx (a,b)$
+\end{eg}
+
+\begin{proof}
+By the previous example, it suffices to prove $\Rbb\approx(-2,2)$. Define $f:\Rbb\rightarrow\Rbb$ as follows. We let $f(0)=0$. Let $n\in\Nbb$ and suppose that $f(n)$ has been defined. Then $f|_{(n,n+1]}$ is $f(x)=2^{-n}\cdot(x-n)+f(n)$. This defines $f$ on $[0,+\infty)$. On $(-\infty,0)$, $f$ is defined by $f(x)=-f(-x)$. Then $f$ gives a bijection $\Rbb\rightarrow(-2,2)$, finishing the proof. (Checking the surjectivity of $f$ is tedious. But it suffices to check that $f$ is injective, and conclude the proof using Schr\"oder-Bernstein.)
+\end{proof}
+
+
+Alternatively, one may use the tangent function to give a bijection between $(-\pi/2,\pi/2)$ and $\Rbb$. I have avoided this method, since piecewisely linear functions are more elementary than trigonometric functions. The mathematically rigorous definition of trigonometric functions and the verification of their well-known properties are far from easy tasks. 
+
+
+
+\begin{pp}
+Let $I$ be an interval with endpoints $a<b$ in $\ovl\Rbb$. Then $I\approx\Rbb$.
+\end{pp}
+
+\begin{proof}
+Let $A=(0,1)\cup\{-\infty,+\infty\}$. By Exp.  \ref{lb7}, we have
+\begin{align*}
+(a,b)\subset I\precsim \ovl\Rbb\approx A\approx[0,1]\subset (-2,2)\approx (a,b)
+\end{align*}
+So $I\approx\ovl\Rbb$ by Schr\"oder-Bernstein Thm. \ref{lb8}. In particular, $\Rbb=(-\infty,+\infty)\approx\ovl\Rbb$.
+\end{proof}
+
+
+\begin{df}
+A set $A$ is called \textbf{finite} if $A\precsim\{1,\dots,n\}$ for some $n\in\Zbb_+$. $A$ is called  \textbf{countable} if $A\precsim\Nbb$. \index{00@Countable}
+\end{df}
+
+Clearly, a set $A$ is finite iff either $A\approx\emptyset$ or $A\approx\{1,\dots,n\}$ for some $n\in\Zbb_+$.
+
+\begin{rem}
+Let $A\subset\Nbb$. If $A$ is bounded above, then $A\subset\{0,\dots,n\}$ and hence $A$ is finite. If $A$ is not bounded above, then we can construct a strictly increasing sequence $(x_n)_{n\in\Nbb}$ in $A$. (Pick any $x_0\in A$. Suppose we have $x_n\in A$. Since $x_n$ is not an upper bounded of $A$, there is $x_{n+1}\in A$ larger than $x_n$. So $(x_n)_{n\in\Nbb}$ can be constructed inductively.) This gives an injection $\Nbb\rightarrow A$. Therefore $A\succsim \Nbb$, and hence $A\approx \Nbb$ by Schr\"oder-Bernstein.
+
+It follows that if $B\precsim\Nbb$, then either $B$ is a finite set, or $B\approx\Nbb$. Therefore, ``a set $B$ is \textbf{countably infinite}" \index{00@Countably infinite} means the same as ``$B\approx\Nbb$".  \hfill\qedsymbol 
+\end{rem}
+
+
+\begin{thm}\label{lb15}
+A countable union of countable sets is countable. In particular, $\Nbb\times\Nbb\approx\Nbb$.
+\end{thm}
+
+\begin{proof}
+Recall Exe. \ref{lb9}. Let $A_1,A_2,\dots$ be countable sets. Since each $A_i$ is countable, there is a surjection $f_i:\Nbb\rightarrow A_i$. Thus, the map $f:\Nbb\times\Nbb\rightarrow \bigcup_i A_i$ defined by $f(i,j)=f_i(j)$ is surjective. Therefore, it suffices to show that there is a surjection $\Nbb\rightarrow\Nbb\times\Nbb$. This is true, since we have a bijection $g:\Nbb\rightarrow\Nbb\times\Nbb$ where $g(0),g(1),g(2),\dots$ are $(0,0)$, $(1,0)$, $(0,1)$, $(2,0)$, $(1,1)$, $(0,2)$, $(3,0)$, $(2,1)$, $(1,2)$, $(0,3)$, etc., as shown by the figure
+\begin{align*}
+\vcenter{\hbox{{
+			\includegraphics[width=3.5cm]{fig1.png}}}}
+\end{align*}
+\end{proof}
+
+As an application, we prove the extremely important fact that $\Qbb$ is countable.
+\begin{co}
+We have $\Nbb\approx\Zbb_+\approx\Zbb\approx \Qbb$.
+\end{co}
+
+
+
+\begin{proof}
+Clearly $\Zbb_{<0}\approx\Nbb\approx \Zbb_+$. By Thm. \ref{lb15}, $\Zbb=\Zbb_{<0}\cup\Nbb$ is countably infinite, and hence $\Zbb\approx\Nbb$. It remains to prove $\Zbb\approx\Qbb$. By Schr\"oder-Bernstein, it suffices to prove $\Qbb\precsim\Zbb$.  By Thm. \ref{lb15} again, $\Zbb\times\Zbb\approx\Zbb$. By Exp. \ref{lb17}, there is a surjection from a subset of $\Zbb\times\Zbb$ to $\Qbb$. So $\Qbb\precsim\Zbb\times\Zbb\approx\Zbb$.
+\end{proof}
+
+
+
+Later, when we have learned Zorn's Lemma (an equivalent form of Axiom of Choice), we will be able to prove the following generalization of $\Nbb\times\Nbb\approx\Nbb$. So we defer the proof of the following theorem to a later section.
+
+\begin{thm}\label{lb16}
+Let $X$ be a infinite set. Then $X\times\Nbb\approx X$.
+\end{thm}
+
+
+
+
+
+Our next goal is to prove an exponential law $a^{b+c}=a^b\cdot a^c$ for cardinalities. For that purpose, we first need to define the set-theoretic operations that correspond to the summation $b+c$ and the exponential $a^b$.
+
+
+\begin{df}
+We write $X=\bigsqcup_{\alpha\in\scr A}A_\alpha$ \index{A@$\bigsqcup_{\alpha\in\scr A}A_\alpha$, the disjoint union} and call $X$ the \textbf{disjoint union} \index{00@Disjoint union} of $(A_\alpha)_{\alpha\in\scr A}$,  if $X=\bigcup_{\alpha\in\scr A}A_\alpha$ and $(A_\alpha)_{\alpha\in\scr A}$ is a family of pairwise disjoint sets (i.e. $A_\alpha\cap A_\beta=\emptyset$ if $\alpha\neq\beta$). If moreover $\scr A=\{1,\dots,n\}$, we write $X=A_1\sqcup\cdots\sqcup A_n$.
+\end{df}
+
+\begin{df}
+Let $X,Y$ be sets. Then \index{YX@$Y^X$, the set of functions $X\rightarrow Y$}
+\begin{align}
+Y^X=\{\text{functions }f:X\rightarrow Y\}
+\end{align}
+A more precise definition of $Y^X$ (in the spirit of \eqref{eq2}) is $\{f\in X\times Y \mid f:X\rightarrow Y\text{ is a function}\}$. In the special case that $X=\emptyset$, we set
+\begin{align}
+Y^\emptyset=\{\emptyset\}  \label{eq10}
+\end{align}
+Namely, there is precisely one function $\emptyset\rightarrow Y$, which is $\emptyset$  as a subset of $\emptyset\times Y$.
+\end{df}
+
+This new notation is compatible with the old one $Y^n=Y\times\cdots\times Y$:
+\begin{eg}
+Let $n\in\Zbb_+$. We have $Y^{\{1,\dots,n\}}\approx Y^n$ due to the bijection
+\begin{align*}
+Y^{\{1,\dots,n\}}\rightarrow Y^n\qquad f\mapsto (f(1),\dots,f(n))
+\end{align*}
+\end{eg}
+
+\begin{rem}
+The above example suggests that in the general case that $X$ is not necessarily finite, we can view each function $f:X\rightarrow Y$ as $(f(x))_{x\in X}$, an \textbf{indexed family of elements} of $Y$ with index set $X$. Thus, intuitively and hence not quite rigorously, 
+\begin{align}
+Y^X=\underbrace{Y\times Y\times\cdots}_{\card(X)\text{ pieces}} \label{eq11}
+\end{align}
+This generalizes the intuition in Def. \ref{lb13} that a function $f:\Zbb_+\rightarrow Y$ is equivalently a sequence $(f(1),f(2),f(3),\dots)$.
+
+The viewpoint that $Y^X$ is a \textbf{product space} with index set $X$ is very important and will be adopted frequently in this course. \hfill\qedsymbol
+\end{rem}
+
+
+
+\begin{eg}\label{lb11}
+Let $X$ be a set. For each $A\subset X$, define the \textbf{characteristic function} \index{00@Characteristic function} \index{zz@$\chi_A$, the characteristic function of $A$} $\chi_A:X\rightarrow\{0,1\}$ to be
+\begin{align*}
+\chi_A(x)=\left\{
+\begin{array}{ll}
+1&\text{if }x\in A\\
+0&\text{if }x\notin A
+\end{array}
+\right.
+\end{align*}
+Then we have
+\begin{align*}
+2^X\approx \{0,1\}^X
+\end{align*}
+since the following map is bijective:
+\begin{gather*}
+2^X\rightarrow\{0,1\}^X\qquad A\mapsto\chi_A
+\end{gather*}
+Its inverse is $f\in\{0,1\}^X\mapsto f^{-1}(1)\in 2^X$.
+\end{eg}
+
+\begin{pp}[Exponential Law]\label{lb10}
+Suppose that $X=A_1\sqcup\cdots\sqcup A_n$. Then
+\begin{align*}
+Y^X\approx Y^{A_1}\times \cdots\times Y^{A_n}
+\end{align*}
+\end{pp}
+
+\begin{proof}
+We have a bijection
+\begin{gather}\label{eq9}
+\begin{gathered}
+\Phi:Y^X\rightarrow Y^{A_1}\times \cdots\times Y^{A_n}\\
+f\mapsto (f|_{A_1},\dots,f|_{A_n})
+\end{gathered}
+\end{gather}
+where we recall that $f|_{A_i}$ is the restriction of $f$ to $A_i$. 
+\end{proof}
+
+\begin{exe}
+Assume that $A_1,\dots,A_n$ are subsets of $X$. Define $\Phi$ by \eqref{eq9}. Prove that $\Phi$ is injective iff $X=A_1\cup\cdots\cup A_n$. Prove that $\Phi$ is surjective iff $A_1,\dots, A_n$ are pairwise disjoint. 
+\end{exe}
+
+\begin{co}\label{lb12}
+Let $X,Y$ be finite sets with cardinalities $m,n\in\Nbb$ respectively. Assume that $Y\neq\emptyset$. Then $Y^X$ is a finite set with cardinality $n^m$.
+\end{co}
+
+\begin{proof}
+The special case that $m=0$ (i.e. $X=\emptyset$, cf. \eqref{eq10}) and $m=1$ is clear. When $m>1$, assume WLOG that $X=\{1,\dots,m\}$. Then $X=\{1\}\sqcup\cdots\sqcup\{m\}$. Apply Prop. \ref{lb10} to this disjoint union. We see that $Y^X\simeq Y\times \cdots\times Y\simeq\{1,\dots,n\}^m$ has $n^m$ elements.
+\end{proof}
+
+
+
+We end this section with some (in)equalities about the cardinalities of product spaces. To begin with, we write $X\precnsim Y$ (or $\card(X)<\card(Y)$) if $X\precsim Y$ and $X\napprox Y$.
+
+\begin{pp}\label{lb14}
+Let $X,Y$ be sets with $\card(Y)\geq 2$ (i.e. $Y$ has at least two elements). Then $X\precnsim Y^X$. In particular, $X\precnsim 2^X$.
+\end{pp}
+
+\begin{proof}
+The case $X=\emptyset$ is obvious since $0<1$. So we assume $Y\neq\emptyset$. Clearly $2^X\simeq\{0,1\}^X$ is $\precsim Y^X$. So it suffices to prove $X\precnsim 2^X$. Since the map $X\rightarrow 2^X$ sending $x$ to $\{x\}$ is injective, $X\precsim 2^X$. Let us prove $X\napprox 2^X$.
+
+Assume that $X\approx 2^X$. So there is a bijection $\Phi:X\rightarrow 2^X$ sending each $x\in X$ to a subset $\Phi(x)$ of $X$. Motivated by Russell's Paradox \eqref{eq12}, we define
+\begin{align*}
+S=\{x\in X:x\notin \Phi(x)\}
+\end{align*}
+Since $\Phi$ is surjective, there exists $y\in X$ such that $S=\Phi(y)$. If $y\in\Phi(y)$, then $y\in S$, and hence $y\notin \Phi(y)$ by the definition of $S$. If $y\notin\Phi(y)$, then $y\notin S$, and hence $y\in\Phi(y)$ by the definition of $S$. This gives a contradiction.
+\end{proof}
+
+
+\begin{rem}
+Write $\{1,\dots,n\}^X$ as $n^X$ for short. \index{nX@$n^X=\{1,\dots,n\}^X$} Assuming that real numbers have decimal, binary, or (more generally) base-$n$ presentations where $n\in\Zbb_{\geq 2}$, then  $\Rbb\approx n^{\Nbb}$. So by Prop. \ref{lb14}, $\Nbb\precnsim\Rbb$, i.e. \emph{$\Rbb$ is uncountable}. The base-$n$ presentations of real numbers suggest that $\card(n^\Nbb)$ is independent of $n$. This fact can be proved by elementary methods without  resorting to the analysis of real numbers:
+\end{rem}
+
+\begin{thm}
+Let $X$ be an infinite set. Then
+\begin{align*}
+2^X\approx 3^X\approx 4^X\approx\cdots\approx \Nbb^X
+\end{align*}
+\end{thm}
+
+\begin{proof}
+First, we assume that $X=\Nbb$. Clearly, for each $n\in\Zbb_{\geq 2}$ we have $2^X\precsim n^X\precsim \Nbb^X$. Since elements of $\Nbb^X$ are subsets of $X\times\Nbb$ (i.e. elements of $2^{X\times\Nbb}$), we have
+\begin{align*}
+\Nbb^X\subset 2^{X\times\Nbb}\simeq 2^X
+\end{align*}
+since $X\times\Nbb\approx X$ by Thm. \ref{lb15}. So $2^X\approx n^X\approx \Nbb^X$ by Schr\"oder-Bernstein.
+
+As pointed out earlier (cf. Thm. \ref{lb16}), it can be proved by Zorn's Lemma that $X\times\Nbb\approx X$ for every infinite set $X$. So the same conclusion holds for such $X$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\printindex	
+
+
+
+
+
+
+	\begin{thebibliography}{999999}
+		\footnotesize	
+
+\bibitem[Axl]{Axl}
+Axler, S. (2015). Linear algebra done right. 3rd ed.
+
+\bibitem[Mun]{Mun}
+Munkres, J. (2000). Topology. Second Edition.
+
+
+
+\bibitem[Rud-P]{Rud-P}
+Rudin, W. (1976). Principles of Mathematical Analysis. 3rd ed.
+
+
+		
+\end{thebibliography}
+
+\noindent {\small \sc Yau Mathematical Sciences Center, Tsinghua University, Beijing, China.}
+
+\noindent {\textit{E-mail}}: binguimath@gmail.com\qquad bingui@tsinghua.edu.cn
+\end{document}
+
+
+
+
+
+
+
+
+
