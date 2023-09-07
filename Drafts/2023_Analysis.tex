@@ -1175,18 +1175,18 @@ This is the general setting of classical mechanics. In the theory of integral eq
 \begin{align}
 S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy
 \end{align}
-where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx=1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear map $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
+where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx=1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear operator $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
 
 
 As we shall learn, (sequential) compactness is closely related to the problem of finding (or proving the existence of) maximal/minimal values and points of a continuous function. So, in 19th century, when people were already familiar with sequential compactness in $\Rbb^n$ (e.g. Bolzano-Weierstrass theorem), they applied compactness to function spaces and functionals. The idea is simple: Suppose we are given $X$, a set of functions (say continuous and differentiable) from $[a,b]$ to $\Rbb$. We want to find $f\in X$ maximizing $S(f)$. Here is an explicit process:
-\begin{enumerate}[label=(\arabic*)]
-\item Find a sequence $(f_n)_{n\in\Zbb_+}$ in $X$ such that $S(f_n)$ increases to $M=\sup S(X)$. 
-\item Define convergence in $X$ in a suitable way, and verify that $S:X\rightarrow\Rbb$ is continuous (i.e. if $f_n$ converges to $f$ in the way we define the convergence, then $S(f_n)\rightarrow S(f)$). 
-\item Suppose we can find a convergent subsequence $(f_{n_k})_{k\in\Zbb_+}$ converging to $f$, then $S$ attains maximum at $f$. In particular, $S(f)=M$ and hence $M<+\infty$. 
-\end{enumerate}
+\begin{itemize}
+\item[(A)] Find a sequence $(f_n)_{n\in\Zbb_+}$ in $X$ such that $S(f_n)$ increases to $M=\sup S(X)$. 
+\item[(B)] Define convergence in $X$ in a suitable way, and verify that $S:X\rightarrow\Rbb$ is continuous (i.e. if $f_n$ converges to $f$ in the way we define, then $S(f_n)\rightarrow S(f)$). 
+\item[(C)] Suppose we can find a subsequence $(f_{n_k})_{k\in\Zbb_+}$ converging to some $f\in X$, then $S$ attains maximum at $f$. In particular, $S(f)=M$ and hence $M<+\infty$. 
+\end{itemize}
 
 
-To carry out step (2), we need to \ul{define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$}. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (3) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Bolzano-Weierstrass theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
+To carry out step (B), we need to \ul{define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$}. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (C) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for sequential compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Bolzano-Weierstrass theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
 
 
 To summarize: Metric spaces are defined not just for fun. We introduce such geometric objects because we want to study the convergence of sequences and the continuity of functions. And moreover, the examples we are interested in are not just subsets of $\Rbb^n$, but also subsets of function spaces. With this in mind, we now begin our journey into point-set topology.
@@ -1199,9 +1199,9 @@ To summarize: Metric spaces are defined not just for fun. We introduce such geom
 \begin{df}
 Let $X$ be a set. A function $d:X\times X\rightarrow\Rbb_{\geq0}$ is called a \textbf{metric} if for all $x,y,z\in X$ we have
 \begin{enumerate}[label=(\arabic*)]
-\item $d(x,y)=d(y,x)$
-\item $d(x,y)=0$ iff $x=y$
-\item (Triangle inequality) \index{00@Triangle inequality} $d(x,z)\leq d(x,y)+d(y,z)$
+\item $d(x,y)=d(y,x)$.
+\item $d(x,y)=0$ iff $x=y$.
+\item (Triangle inequality) \index{00@Triangle inequality} $d(x,z)\leq d(x,y)+d(y,z)$.
 \end{enumerate}
 The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in[0,+\infty]$, the set \index{Br@$B_X(x,r)=B(x,r)$}
 \begin{align*}
@@ -1211,6 +1211,71 @@ often abbreviated to $B(x,r)$, is called the \textbf{open ball} with center $x$ 
 \end{df}
 
 
+We make some comments on this definition.
+
+
+\begin{rem}
+That ``$d(x,y)=0$ iff $x=y$" is very useful. Think about $X$ as a set of functions $[0,1]\rightarrow\Rbb$ and $d$ is a metric on $X$. To show that $f,g\in X$ are equal, instead of checking that infinitely many values are equal (i.e. $f(t)=g(t)$ for all $t\in\Rbb$), it suffices to check that one value (i.e. $d(f,g)$) is zero.
+\end{rem}
+
+\begin{rem}
+Triangle inequality clearly implies ``polygon inequality":
+\begin{align}
+d(x_0,x_n)\leq\sum_{j=1}^n d(x_{j-1},x_j)
+\end{align}
+\end{rem}
+
+\begin{rem}
+Choose distinct points $x,y\in X$. Then $x,y$ are separated by two open balls centered at them: there exists $r,\rho>0$ such that $B(x,r)\cap B(y,\rho)=\emptyset$. This is called the \textbf{Hausdorff property}. 
+
+To see this fact, note that $d(x,y)>0$. Choose $r,\rho$ such that $r+\rho\leq d(x,y)$. If $z\in B(x,r)\cap B(y,\rho)$, then $d(x,z)+d(y,z)<r+\rho\leq d(x,y)$, contradicting triangle inequality.
+
+We will see later that Hausdorff property guarantees that any sequence in a metric space cannot converge to two different points. Intuition: one cannot find a point which is very close to $x$ and $y$ at the same time.  \hfill\qedsymbol
+\end{rem}
+
+
+
+We give some examples, and leave it to the readers to check that they satisfy the definition of metric spaces. We assume that square roots of positive real numbers can be defined.
+
+
+\begin{eg}
+$\Rbb$ is a metric space if we define $d(x,y)=|x-y|$
+\end{eg}
+
+
+\begin{eg}
+On $\Rbb^n$, we can define \textbf{Euclidean metric} \index{00@Euclidean metric}
+\begin{align*}
+d(x,y)=\sqrt{(x_1-y_1)^2+\cdots+(x_n-y_n)^2}
+\end{align*}
+if $x_\blt,y_\blt$ are the components of $x,y$. The following are also metrics:
+\begin{gather*}
+d_1(x,y)=|x_1-y_1|+\cdot+|x_n-y_n|\\
+d_\infty(x,y)=\max\{|x_1-y_1|,\dots,|x_n-y_n|\}
+\end{gather*}
+\end{eg}
+
+\begin{eg}
+The \textbf{Euclidean metric} on $\Cbb^n$ is
+\begin{align*}
+d(z,w)=\sqrt{|z_1-w_1|^2+\cdots+|x_n-y_n|^2}
+\end{align*}
+which agrees with the Euclidean metric on $\Rbb^{2n}$. The following are also metrics:
+\begin{gather*}
+d_1(z,w)=|z_1-w_1|+\cdot+|z_n-w_n|\\
+d_\infty(z,w)=\max\{|z_1-w_1|,\dots,|z_n-w_n|\}
+\end{gather*}
+\end{eg}
+
+Unless otherwise stated, the metrics on $\Rbb^n$ and $\Cbb^n$ are assumed to be Euclidean metrics.
+
+\begin{rem}
+One may wonder what the subscripts $1,\infty$ mean. This notation is actually due to the general fact that
+\begin{equation*}
+d_p(z,w)=\sqrt[p]{|z_1-w_1|^p+\cdots+|z_n-w_n|^p}
+\end{equation*}
+is a metric where $1\leq p< +\infty$, and $d_\infty=\lim_{q\rightarrow +\infty}d_q$. It is not easy to prove that $d_p$ satisfies triangle inequality: one needs Minkowski inequality. For now, we will not use such general $d_p$. And we will discuss Minkowski inequality in later sections.
+\end{rem}
 
 
 
