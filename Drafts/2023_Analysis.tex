@@ -15,6 +15,8 @@
 
 \usepackage{fancyhdr} % date in footer
 
+\usepackage{soul}  %\ul underline break line automatically
+
 \usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
 
 \usepackage{verbatim}  % comment environment
@@ -122,7 +124,6 @@
 \newtheorem{cv}[df]{Convention}
 \newtheorem{prin}[df]{Principle}
 \newtheorem{nota}[df]{Notation}
-\newtheorem{st}{Step}
 \newtheorem*{axiom}{Axiom}
 \newtheorem{coa}[df]{Theorem}
 \theoremstyle{plain}
@@ -439,7 +440,7 @@ The topics marked with $\star\star$ are technical and/or their methods are rarel
 \subsection{Basic operations and axioms}
 Intuitively, a set denotes a collection of elements. For instance:\index{N@$\Nbb=\{0,1,2,\dots\}$} \index{Z@$\Zbb_+=\{1,2,\dots\}$}
 \begin{gather*}
-\Zbb=\{\text{all integers}\}\qquad \Nbb=\{n\in\Zbb:n\geq0\}\qquad \Zbb_+=\{n\in\Zbb:n>0\}
+\Zbb=\{\text{all integers}\}\qquad \Nbb=\Zbb_{\geq0}=\{n\in\Zbb:n\geq0\}\qquad \Zbb_+=\{n\in\Zbb:n>0\}
 \end{gather*}
 have infinitely many elements. (In this course, we will not be concerned with the rigorous construction of natural numbers and integers from Peano axioms.) We also let
 \begin{align*}
@@ -1041,7 +1042,7 @@ Y^{\{1,\dots,n\}}\rightarrow Y^n\qquad f\mapsto (f(1),\dots,f(n))
 \end{align*}
 \end{eg}
 
-\begin{rem}
+\begin{rem}\label{lb18}
 The above example suggests that in the general case that $X$ is not necessarily finite, we can view each function $f:X\rightarrow Y$ as $(f(x))_{x\in X}$, an \textbf{indexed family of elements} of $Y$ with index set $X$. Thus, intuitively and hence not quite rigorously, 
 \begin{align}
 Y^X=\underbrace{Y\times Y\times\cdots}_{\card(X)\text{ pieces}} \label{eq11}
@@ -1143,6 +1144,86 @@ since $X\times\Nbb\approx X$ by Thm. \ref{lb15}. So $2^X\approx n^X\approx \Nbb^
 
 As pointed out earlier (cf. Thm. \ref{lb16}), it can be proved by Zorn's Lemma that $X\times\Nbb\approx X$ for every infinite set $X$. So the same conclusion holds for such $X$.
 \end{proof}
+
+\newpage
+
+\section{Metric spaces and convergence of sequences}
+
+
+Throughout this chapter, we let $\Fbb$ be $\Rbb$ or $\Cbb$. We first give an informal introduction to metric spaces, hoping to motivate the readers from a (relatively) historical perspective. It is okay if you do not understand all of the concepts mentioned in the introduction on the first read. Simply return to this section when you feel unmotivated while formally studying these concepts in later sections. (The same suggestion applies to all the introductory sections and historical comments in our notes.)
+
+
+
+
+
+
+
+
+
+\subsection{Introduction}
+
+In this chapter, we begin the study of point-set topology by learning one of its most important notions: metric spaces. Similar to \cite{Rud-P}, we prefer to introduce metric spaces and basic point-set topology at the early stage of our study. An obvious reason for doing so is that metric spaces provide a uniform language for the study of basic analysis problems in $\Rbb,\Rbb^n,\Cbb^n$, and more generally in function spaces such as the space of continuous functions $C([a,b])$ on the interval $[a,b]\subset\Rbb$. With the help of such a language, for example, many useful criteria for the convergence of series in $\Rbb$ and $\Cbb$ (e.g. root test, ratio test) are generalized straightforwardly to criteria for the \emph{uniform} convergence of series of functions in $C([a,b])$.
+
+Point-set topology was born in 1906 when Fr\'echet defined metric spaces, motivated mainly by the study of function spaces in analysis (i.e. \emph{functional analysis}). Indeed, point-set topology and functional analysis are the two faces of the same coin, because they share a common theme: one regards the set of functions as a space $X$, and views each function as a point of that space. This viewpoint allows one to \ul{study the analytic properties of function spaces by using the intuitions from $\Rbb$ and $\Rbb^n$}. (Sequential) compactness, completeness, and separability are prominent examples of such properties. Their importance was already recognized by Fr\'echet by the time he defined metric spaces. 
+
+
+Consider sequential compactness for example. The application of compactness to function spaces originated from the problems in calculus of variations. For instance, let $L(x,y,z)$ be a polynomial or (more generally) a continuous function in $3$ variables. We want to find a ``good" (e.g. differentiable) function $f:[0,1]\rightarrow \Rbb$ minimizing or maximizing the expression
+\begin{align}
+S(f)=\int_0^1 L(t,f(t),f'(t))dt
+\end{align}
+This is the general setting of classical mechanics. In the theory of integral equations, one considers the extreme values and points of the \textbf{functional} (i.e. function of functions)
+\begin{align}
+S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy
+\end{align}
+where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx=1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear map $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
+
+
+As we shall learn, (sequential) compactness is closely related to the problem of finding (or proving the existence of) maximal/minimal values and points of a continuous function. So, in 19th century, when people were already familiar with sequential compactness in $\Rbb^n$ (e.g. Bolzano-Weierstrass theorem), they applied compactness to function spaces and functionals. The idea is simple: Suppose we are given $X$, a set of functions (say continuous and differentiable) from $[a,b]$ to $\Rbb$. We want to find $f\in X$ maximizing $S(f)$. Here is an explicit process:
+\begin{enumerate}[label=(\arabic*)]
+\item Find a sequence $(f_n)_{n\in\Zbb_+}$ in $X$ such that $S(f_n)$ increases to $M=\sup S(X)$. 
+\item Define convergence in $X$ in a suitable way, and verify that $S:X\rightarrow\Rbb$ is continuous (i.e. if $f_n$ converges to $f$ in the way we define the convergence, then $S(f_n)\rightarrow S(f)$). 
+\item Suppose we can find a convergent subsequence $(f_{n_k})_{k\in\Zbb_+}$ converging to $f$, then $S$ attains maximum at $f$. In particular, $S(f)=M$ and hence $M<+\infty$. 
+\end{enumerate}
+
+
+To carry out step (2), we need to \ul{define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$}. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (3) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Bolzano-Weierstrass theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
+
+
+To summarize: Metric spaces are defined not just for fun. We introduce such geometric objects because we want to study the convergence of sequences and the continuity of functions. And moreover, the examples we are interested in are not just subsets of $\Rbb^n$, but also subsets of function spaces. With this in mind, we now begin our journey into point-set topology.
+
+
+\subsection{Basic definitions and examples}
+
+
+
+\begin{df}
+Let $X$ be a set. A function $d:X\times X\rightarrow\Rbb_{\geq0}$ is called a \textbf{metric} if for all $x,y,z\in X$ we have
+\begin{enumerate}[label=(\arabic*)]
+\item $d(x,y)=d(y,x)$
+\item $d(x,y)=0$ iff $x=y$
+\item (Triangle inequality) \index{00@Triangle inequality} $d(x,z)\leq d(x,y)+d(y,z)$
+\end{enumerate}
+The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in[0,+\infty]$, the set \index{Br@$B_X(x,r)=B(x,r)$}
+\begin{align*}
+B_X(x,r)=\{y\in X:d(x,y)<r\}
+\end{align*}
+often abbreviated to $B(x,r)$, is called the \textbf{open ball} with center $x$ and radius $r$.
+\end{df}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
