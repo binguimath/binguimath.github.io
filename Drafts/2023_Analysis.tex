@@ -1049,8 +1049,18 @@ Y^X=\underbrace{Y\times Y\times\cdots}_{\card(X)\text{ pieces}} \label{eq11}
 \end{align}
 This generalizes the intuition in Def. \ref{lb13} that a function $f:\Zbb_+\rightarrow Y$ is equivalently a sequence $(f(1),f(2),f(3),\dots)$.
 
-The viewpoint that $Y^X$ is a \textbf{product space} with index set $X$ is very important and will be adopted frequently in this course. \hfill\qedsymbol
+The viewpoint that $Y^X$ is a \textbf{product space} with index set $X$ is very important and will be adopted frequently in this course. More generally, we can define:\hfill\qedsymbol
 \end{rem}
+
+\begin{df}
+Let $(X_i)_{i\in I}$ be a family of sets with index set $I$. Their \textbf{product space} \index{00@Product space} \index{X@$\prod_{i\in I}X_i$} is defined by
+\begin{align*}
+\prod_{i\in I}X_i =\{f\in \fk X^I:f(i)\in X_i\text{ for all }i\in I \}
+\end{align*}
+where $\fk X=\bigcup_{i\in I}X_i$. If each $X_i$ is nonempty, then $\prod_{i\in I}X_i$ is nonempty by Axiom of Choice.
+\end{df}
+
+In particular, if all $X_i$ are equal to $X$, then $X^I=\prod_{i\in I}X$.
 
 
 
@@ -1235,7 +1245,7 @@ We will see later that Hausdorff property guarantees that any sequence in a metr
 
 
 
-We give some examples, and leave it to the readers to check that they satisfy the definition of metric spaces. We assume that square roots of positive real numbers can be defined.
+We give some examples, and leave it to the readers to check that they satisfy the definition of metric spaces. We assume that square roots of positive real numbers can be defined. (We will rigorously define square roots after we define $e^x$ using the series $\sum_{n\in\Nbb}x^n/n!$.)
 
 
 \begin{eg}
@@ -1267,7 +1277,7 @@ d_\infty(z,w)=\max\{|z_1-w_1|,\dots,|z_n-w_n|\}
 \end{gather*}
 \end{eg}
 
-Unless otherwise stated, the metrics on $\Rbb^n$ and $\Cbb^n$ are assumed to be Euclidean metrics.
+Unless otherwise stated, the metrics on $\Rbb^n$ and $\Cbb^n$ are assumed to be the Euclidean metrics.
 
 \begin{rem}
 One may wonder what the subscripts $1,\infty$ mean. This notation is actually due to the general fact that
@@ -1278,11 +1288,47 @@ is a metric where $1\leq p< +\infty$, and $d_\infty=\lim_{q\rightarrow +\infty}d
 \end{rem}
 
 
+\begin{eg}\label{lb19}
+Let $X=X_1\times\cdots\times X_n$ where each $X_i$ is a metric space with metric $d_i$. Write $x=(x_1,\dots,x_n)\in X$ and $y=(y_1,\dots,y_n)\in Y$. Then the following are metrics on $X$:
+\begin{gather*}
+d(x,y)=d_1(x_1,y_1)+\cdots+d_n(x_n,y_n)\\
+\delta(x,y)=\max\{d_1(x_1,y_1),\dots,d_n(x_n,y_n)\}\\
+\rho(x,y)=\sqrt{d_1(x_1,y_1)^2+\cdots+d_n(x_n,y_n)^2}
+\end{gather*}
+With respect to the metric $\delta$, the open balls of $X$ are ``polydisks"
+\begin{align*}
+B_X(x,r)=B_{X_1}(x_1,r)\times\cdots\times B_{X_n}(x_n,r)
+\end{align*}
+\end{eg}
+
+
+There is no standard choice of metric on the product of metric spaces. $d,\delta,\rho$ are all good, and they are equivalent in the following sense:
+
+\begin{df}
+We say that two metrics $d_1,d_2$ on a set $X$ are \index{00@Equivalent metrics} \textbf{equivalent} and write $d_1\approx d_2$, if there exist $\alpha,\beta>0$ such that  for any $x,y\in X$ we have
+\begin{gather*}
+d_1(x,y)\leq\alpha d_2(x,y)\qquad d_2(x,y)\leq\beta d_1(x,y)
+\end{gather*}  
+This is an equivalence relation. More generally, we may write $d_1\precsim d_2$ if $d_1\leq \alpha d_2$ for some $\alpha>0$. Then $d_1\approx d_2$ iff $d_1\precsim d_2$ and $d_2\precsim d_1$.
+\end{df}
 
 
 
+\begin{eg}
+In Exp. \ref{lb19}, we have $\delta\leq \rho\leq d\leq 2\delta$. So $\delta\approx\rho\approx d$.
+\end{eg}
 
 
+\begin{df}
+Let $(X,d)$ be a metric space. Then a \textbf{metric subspace} \index{00@Metric subspace} is denotes an object $(Y,d|_Y)$ where $Y\subset X$ and $d|_Y$ is the restriction of $d$ to $Y$, namely, for all $y_1,y_2\in Y$ we set
+\begin{align*}
+d|_Y(y_1,y_2)=d(y_1,y_2)
+\end{align*}
+\end{df}
+
+\begin{cv}
+Suppose $Y$ is a subset of a given metric space $(X,d)$. Unless otherwise stated, the metric of $Y$ is chosen to be $d|_Y$ whenever $Y$ is viewed as a metric space. For example, the metric of any subset of $\Rbb^n$ is assumed to be the Euclidean metric, unless otherwise stated.
+\end{cv}
 
 
 
