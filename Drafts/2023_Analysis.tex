@@ -333,6 +333,9 @@
 \newcommand{\Modf}{\mathrm{Mod}^{\mathrm f}}
 \newcommand{\codim}{\mathrm{codim}}
 \newcommand{\card}{\mathrm{card}}
+\newcommand{\dps}{\displaystyle}
+
+
 
 
 
@@ -433,7 +436,11 @@ Let me first list the notations and conventions that will be used throughout the
 \text{resp.=respectively}\qquad 
 \text{WLOG=without loss of generality}
 \end{gather*}
-The topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. The topics marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
+If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminus\{0\}$. \index{F@$\Fbb^\times=\Fbb\setminus\{0\}$}
+
+Topics (except those in the problem sets) marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics (except those in the problem sets) marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
+
+Topics in the problem sets marked with $\heartsuit$ are important problems that will be used later in this course.
 
 
 
@@ -519,7 +526,7 @@ where two elements $(a_1,\dots,a_n)$ and $(b_1,\dots,b_n)$ of the Cartesian prod
 \begin{align*}
 (a_1,\dots,a_n)=a_1\times\cdots\times a_n
 \end{align*}
-especially when $a,b$ are real numbers and $(a,b)$ can mean an open interval.
+especially when $a,b$ are real numbers and $(a,b)$ can mean an open interval. We understand $A_1\times\cdots\times A_n$ as $\emptyset$ if some $A_i$ is $\emptyset$.
 
 If $A_1=\cdots=A_n=A$, we write the Cartesian product as $A^n$. \hfill\qedsymbol
 \end{axiom}
@@ -545,8 +552,8 @@ If $A,B$ are sets, a subset $R$ of $A\times B$ is called a \textbf{relation}. Fo
 \end{df}
 
 
-\begin{df}
-A relation $f$ of $A,B$ is called a \textbf{function} or a \textbf{map} (or a \textbf{mapping}), if for every $a\in A$ there is a unique $b\in B$ such that $afb$. In this case, we write $b=f(a)$.
+\begin{df}\label{lb39}
+A relation $f$ of $A,B$  is called a \textbf{function} or a \textbf{map} (or a \textbf{mapping}), if for every $a\in A$ there is a unique $b\in B$ such that $afb$. In this case, we write $b=f(a)$. 
 
 When we write $f:A\rightarrow B$, we always mean that $A,B$ are sets and $f$ is a function from $A$ to $B$. $A$ and $B$ are called respectively the \textbf{domain} and the \textbf{codomain} of $f$. (Sometimes people also use the words ``source" and ``target" to denote $A$ and $B$.) 
 
@@ -562,11 +569,17 @@ f|_E:E\rightarrow B\qquad x\mapsto f(x)
 is called the \textbf{restriction}  of $f$ to $E$. \hfill\qedsymbol
 \end{df}
 
+
 The intuition behind the definition of functions is clear: we understand functions as the same as their graphs. So a subset $f$ of the ``coordinate plane" $A\times B$ is the graph of a function iff it ``intersects every vertical line precisely once".
 
 
+\begin{rem}\label{lb40}
+According to our definition, $\emptyset$ (as a subset of $\emptyset\times B$) is the only function from $\emptyset$ to $B$. (A false assumption implies any statement.) If $A\neq\emptyset$, there are no functions $A\rightarrow\emptyset$.
+\end{rem}
+
+
 \begin{df}\label{lb13}
-A function $x:\Zbb_+\rightarrow A$ is called a \textbf{sequence in $A$}. We write $x(n)$ as $x_n$, and write this sequence as $(x_n)_{n\in\Zbb_+}$.
+A function $x:\Zbb_+\rightarrow A$ is called a \textbf{sequence in $A$}. We write $x(n)$ as $x_n$, and write this sequence as $(x_n)_{n\in\Zbb_+}$ (or simply $(x_n)_n$ or $(x_n)$).
 \end{df}
 
 Many people write such a sequence as $\{x_n\}_{n\in\Zbb_+}$. We do not use this notation, since it can be confused with $\{x_n: n\in\Zbb_+\}$ (the range of the function $x$).
@@ -785,6 +798,12 @@ a> 0\qquad\Longrightarrow \qquad\exists n\in\Nbb\text{ such that }na>b
 where $na$ means $\underbrace{a+\cdots+a}_{n}$.
 \end{df}
 
+\begin{eg}
+$\Qbb$ satisfies Archimedean property. Indeed, let $a,b\in\Qbb$ and $a>0$. Then $a=p/q$ and $b=r/s$ where $p,q,s\in\Zbb_+$ and $r\in\Zbb$. So $na>b$ where $n=q|r|+q$.
+\end{eg}
+
+
+
 Prop. \ref{lb2} gives an important application of Archimedian property. We will use this in the construction of $\Rbb$ from $\Qbb$, and in the proof that $\Qbb$ is dense in $\Rbb$. 
 
 \begin{df}
@@ -887,6 +906,7 @@ So $\Rbb=(-\infty,+\infty)$ and $\ovl\Rbb=[-\infty,+\infty]$.
 \end{df}
 
 In this course, unless otherwise stated, an interval always means one of the four sets in \eqref{eq8}. The first two intervals are called respectively a \textbf{closed interval} and an \textbf{open interval}.
+
 
 \begin{rem}
 Clearly, every subset $E$ of $\ovl\Rbb$ is bounded and has a supremum and an infinimum. We have that $\sup E=+\infty$ iff $E$ is not bounded above in $\Rbb$, and that $\inf E=-\infty$ iff $E$ is not bounded below in $\Rbb$. 
@@ -1027,11 +1047,10 @@ Let $X,Y$ be sets. Then \index{YX@$Y^X$, the set of functions $X\rightarrow Y$}
 \begin{align}
 Y^X=\{\text{functions }f:X\rightarrow Y\}
 \end{align}
-A more precise definition of $Y^X$ (in the spirit of \eqref{eq2}) is $\{f\in X\times Y \mid f:X\rightarrow Y\text{ is a function}\}$. In the special case that $X=\emptyset$, we set
+A more precise definition of $Y^X$ (in the spirit of \eqref{eq2}) is $\{f\in X\times Y \mid f:X\rightarrow Y\text{ is a function}\}$. Note that by Rem. \ref{lb40},
 \begin{align}
 Y^\emptyset=\{\emptyset\}  \label{eq10}
 \end{align}
-Namely, there is precisely one function $\emptyset\rightarrow Y$, which is $\emptyset$  as a subset of $\emptyset\times Y$.
 \end{df}
 
 This new notation is compatible with the old one $Y^n=Y\times\cdots\times Y$:
@@ -1057,7 +1076,7 @@ Let $(X_i)_{i\in I}$ be a family of sets with index set $I$. Their \textbf{produ
 \begin{align*}
 \prod_{i\in I}X_i =\{f\in \fk X^I:f(i)\in X_i\text{ for all }i\in I \}
 \end{align*}
-where $\fk X=\bigcup_{i\in I}X_i$. If each $X_i$ is nonempty, then $\prod_{i\in I}X_i$ is nonempty by Axiom of Choice.
+where $\fk X=\bigcup_{i\in I}X_i$. If each $X_i$ is nonempty, then $\prod_{i\in I}X_i$ is nonempty by Axiom of Choice. An element of $\prod_{i\in I}X_i$ is also written as $(f_i)_{i\in I}$ when the $i$-th component if it is $f_i\in X_i$.
 \end{df}
 
 In particular, if all $X_i$ are equal to $X$, then $X^I=\prod_{i\in I}X$.
@@ -1157,10 +1176,10 @@ As pointed out earlier (cf. Thm. \ref{lb16}), it can be proved by Zorn's Lemma t
 
 \newpage
 
-\section{Metric spaces and convergence of sequences}
+\section{Metric spaces, convergence of sequences, and continuous functions}
 
 
-Throughout this chapter, we let $\Fbb$ be $\Rbb$ or $\Cbb$. We first give an informal introduction to metric spaces, hoping to motivate the readers from a (relatively) historical perspective. It is okay if you do not understand all of the concepts mentioned in the introduction on the first read. Simply return to this section when you feel unmotivated while formally studying these concepts in later sections. (The same suggestion applies to all the introductory sections and historical comments in our notes.)
+We first give an informal introduction to metric spaces, hoping to motivate the readers from a (relatively) historical perspective. It is okay if you do not understand all of the concepts mentioned in the introduction on the first read. Simply return to this section when you feel unmotivated while formally studying these concepts in later sections. (The same suggestion applies to all the introductory sections and historical comments in our notes.)
 
 
 
@@ -1213,11 +1232,15 @@ Let $X$ be a set. A function $d:X\times X\rightarrow\Rbb_{\geq0}$ is called a \t
 \item $d(x,y)=0$ iff $x=y$.
 \item (Triangle inequality) \index{00@Triangle inequality} $d(x,z)\leq d(x,y)+d(y,z)$.
 \end{enumerate}
-The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in[0,+\infty]$, the set \index{Br@$B_X(x,r)=B(x,r)$}
+The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in(0,+\infty]$, the set \index{Br@$B_X(x,r)=B(x,r)$ and $\ovl B_X(x,r)=\ovl B(x,r)$}
 \begin{align*}
 B_X(x,r)=\{y\in X:d(x,y)<r\}
 \end{align*}
-often abbreviated to $B(x,r)$, is called the \textbf{open ball} with center $x$ and radius $r$.
+often abbreviated to $B(x,r)$, is called the \textbf{open ball} with center $x$ and radius $r$. If $r\in[0,+\infty)$,
+\begin{align*}
+\ovl B_X(x,r)=\{y\in X:d(x,y)\leq r\}
+\end{align*}
+also abbreviated to $\ovl B(x,r)$, is called the \textbf{closed ball} with center $x$ and radius $r$.
 \end{df}
 
 
@@ -1235,12 +1258,12 @@ d(x_0,x_n)\leq\sum_{j=1}^n d(x_{j-1},x_j)
 \end{align}
 \end{rem}
 
-\begin{rem}
+\begin{rem}\label{lb20}
 Choose distinct points $x,y\in X$. Then $x,y$ are separated by two open balls centered at them: there exists $r,\rho>0$ such that $B(x,r)\cap B(y,\rho)=\emptyset$. This is called the \textbf{Hausdorff property}. 
 
 To see this fact, note that $d(x,y)>0$. Choose $r,\rho$ such that $r+\rho\leq d(x,y)$. If $z\in B(x,r)\cap B(y,\rho)$, then $d(x,z)+d(y,z)<r+\rho\leq d(x,y)$, contradicting triangle inequality.
 
-We will see later that Hausdorff property guarantees that any sequence in a metric space cannot converge to two different points. Intuition: one cannot find a point which is very close to $x$ and $y$ at the same time.  \hfill\qedsymbol
+We will see (cf. Prop. \ref{lb21}) that Hausdorff property guarantees that any sequence in a metric space cannot converge to two different points. Intuition: one cannot find a point which is very close to $x$ and $y$ at the same time.  \hfill\qedsymbol
 \end{rem}
 
 
@@ -1277,7 +1300,10 @@ d_\infty(z,w)=\max\{|z_1-w_1|,\dots,|z_n-w_n|\}
 \end{gather*}
 \end{eg}
 
-Unless otherwise stated, the metrics on $\Rbb^n$ and $\Cbb^n$ are assumed to be the Euclidean metrics.
+\begin{cv}\label{lb33}
+Unless otherwise stated, the metrics on $\Rbb^n$ and $\Cbb^n$ (and their subsets) are assumed to be the Euclidean metrics.
+\end{cv}
+
 
 \begin{rem}
 One may wonder what the subscripts $1,\infty$ mean. This notation is actually due to the general fact that
@@ -1289,15 +1315,15 @@ is a metric where $1\leq p< +\infty$, and $d_\infty=\lim_{q\rightarrow +\infty}d
 
 
 \begin{eg}\label{lb19}
-Let $X=X_1\times\cdots\times X_n$ where each $X_i$ is a metric space with metric $d_i$. Write $x=(x_1,\dots,x_n)\in X$ and $y=(y_1,\dots,y_n)\in Y$. Then the following are metrics on $X$:
+Let $X=X_1\times\cdots\times X_N$ where each $X_i$ is a metric space with metric $d_i$. Write $x=(x_1,\dots,x_N)\in X$ and $y=(y_1,\dots,y_N)\in Y$. Then the following are metrics on $X$:
 \begin{gather*}
-d(x,y)=d_1(x_1,y_1)+\cdots+d_n(x_n,y_n)\\
-\delta(x,y)=\max\{d_1(x_1,y_1),\dots,d_n(x_n,y_n)\}\\
-\rho(x,y)=\sqrt{d_1(x_1,y_1)^2+\cdots+d_n(x_n,y_n)^2}
+d(x,y)=d_1(x_1,y_1)+\cdots+d_N(x_N,y_N)\\
+\delta(x,y)=\max\{d_1(x_1,y_1),\dots,d_N(x_N,y_N)\}\\
+\rho(x,y)=\sqrt{d_1(x_1,y_1)^2+\cdots+d_N(x_N,y_N)^2}
 \end{gather*}
 With respect to the metric $\delta$, the open balls of $X$ are ``polydisks"
 \begin{align*}
-B_X(x,r)=B_{X_1}(x_1,r)\times\cdots\times B_{X_n}(x_n,r)
+B_X(x,r)=B_{X_1}(x_1,r)\times\cdots\times B_{X_N}(x_N,r)
 \end{align*}
 \end{eg}
 
@@ -1318,8 +1344,12 @@ This is an equivalence relation. More generally, we may write $d_1\precsim d_2$ 
 In Exp. \ref{lb19}, we have $\delta\leq \rho\leq d\leq 2\delta$. So $\delta\approx\rho\approx d$.
 \end{eg}
 
+\begin{cv}\label{lb32}
+Given finitely many metric spaces $X_1,\dots,X_N$, the metric on their product space $X=X_1\times\cdots\times X_N$ is chosen to be any one that is equivalent to the ones defined in Exp. \ref{lb19}. In the case that each $X_i$ is a subset of $\Rbb$ or $\Cbb$, this convention is compatible with Convention \ref{lb33}, and we choose the metric on $X$ to be the Euclidean metric (unless otherwise stated).
+\end{cv}
 
-\begin{df}
+
+\begin{df}\label{lb43}
 Let $(X,d)$ be a metric space. Then a \textbf{metric subspace} \index{00@Metric subspace} is denotes an object $(Y,d|_Y)$ where $Y\subset X$ and $d|_Y$ is the restriction of $d$ to $Y$, namely, for all $y_1,y_2\in Y$ we set
 \begin{align*}
 d|_Y(y_1,y_2)=d(y_1,y_2)
@@ -1332,11 +1362,441 @@ Suppose $Y$ is a subset of a given metric space $(X,d)$. Unless otherwise stated
 
 
 
+\subsection{Convergence of sequences}
+
+\begin{df}
+Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a metric space $X$. Let $x\in X$. We say that $x$ is the \textbf{limit} of $x_n$ and write $\displaystyle\lim_{n\rightarrow\infty}x_n=x$ (or $x_n\rightarrow x$), if:
+\begin{itemize}
+\item For every real number $\varepsilon>0$ there exists $N\in\Zbb_+$ such that for every $n\geq N$ we have $d(x_n,x)<\varepsilon$. 
+\end{itemize}
+Equivalently, this means that every (nonempty) open ball centered at $x$ contains all but finitely many $x_n$. 
+\end{df}
+
+\begin{exe}
+Show that in the above definition of limits,  it suffices to consider rational numbers $\varepsilon>0$. (Note: You need to use Prop. \ref{lb2}.) 
+\end{exe}
+This exercise implies that the definition of limits does not require the existence of real numbers, i.e., does not assume Thm. \ref{lb3}. Indeed, we will use limits of sequences (and ``double sequences") to prove Thm. \ref{lb3}.
+
+
+In many textbooks and research papers, you will see phrases such as \index{00@Sufficiently large}
+\begin{gather}
+\text{Property $P$ holds for } \textbf{sufficiently large} \text{ $n$}
+\end{gather}
+This means that ``there exists $N\in\Zbb_+$ such that $P$ holds for all $n\geq N$". Then $\lim_{n\rightarrow\infty} x_n=x$ means that ``for every $\varepsilon>0$, we have $d(x_n,x)<\varepsilon$ for sufficiently large $n$".
+
+\begin{pp}\label{lb21}
+Any sequence $(x_n)_{n\in\Zbb_+}$ in a metric space $X$ has at most one limit.
+\end{pp}
+
+\begin{proof}
+Suppose $(x_n)_{n\in\Zbb_+}$ converges to $x,y\in X$ where $x\neq y$. By Hausdorff property (Rem. \ref{lb20}), there exist $r,\rho>0$ such that $B(x,r)\cap B(y,\rho)=\emptyset$. By the definition of $x_n\rightarrow x$, there exists $N_1\in\Zbb_+$ such that $x_n\in B(x,r)$ for all $n\geq N_1$. Similarly, $x_n\rightarrow y$ means that there is $N_2\in\Zbb_+$ such that $x_n\in B(y,\rho)$ for all $n\geq N_2$. Choose any $n\geq N_1,N_2$ (e.g. $n=\max\{N_1,N_2\}$). Then $x_n\in B(x,r)\cap B(y,\rho)=\emptyset$, impossible.
+\end{proof}
+
+
+The following are some elementary examples and properties of convergent sequences.
+
+\begin{eg}
+$\dps \lim_{n\rightarrow\infty}\frac 1n=0$.
+\end{eg}
+
+
+\begin{proof}
+Choose any $\varepsilon\in\Qbb_{>0}$. By Archimedean property, there exists $N\in\Zbb_+$ such that $N\varepsilon>1$, i.e. $1/N<\varepsilon$. Thus, for all $n\geq N$ we have $1/n<\varepsilon$.
+\end{proof}
+
+\begin{pp}
+Let $\Fbb\in\{\Qbb,\Rbb\}$ and $(x_n),(y_n)$ be sequences in $\Rbb$ converging to $x,y\in\Rbb$. If $x_n\leq y_n$ for all $n$, then $x\leq y$.
+\end{pp}
+
+\begin{proof}
+If $y<x$, let $\varepsilon=x-y$. Then infinitely members of $(x_n)$ are in $(x-\varepsilon/2,x+\varepsilon/2)$, and infinitely members of $(y_n)$ are in $(y-\varepsilon/2,y+\varepsilon/2)$. Since $y+\eps/2<x-\eps/2$, there must exist infinitely many $n$ satisfying $y_n<x_n$.
+\end{proof}
+
+
+
+\begin{eg}\label{lb27}
+Let $(x_n)_{n\in\Zbb_+}$ be a sequence in $X$, and let $x\in X$. It is easy to see that
+\begin{align*}
+\lim_{n\rightarrow\infty} x_n=x\qquad\Longleftrightarrow \qquad \lim_{n\rightarrow\infty} d(x_n,x)=0
+\end{align*}
+\end{eg}
+
+\begin{eg}\label{lb28}
+Suppose that $(a_n)$ and $(b_n)$ are sequences in $\Rbb_{\geq 0}$, that $a_n\leq b_n$ for all $n$, and that $b_n\rightarrow 0$. Then  $a_n\rightarrow 0$. 
+\end{eg}
+\begin{proof}
+For each $\varepsilon>0$, $[0,\varepsilon)$ contains all but finitely many $b_n$, and hence all but finitely many $a_n$.
+\end{proof}
+
+
+More generally, we have:
+
+\begin{pp}[\textbf{Squeeze Theorem}]\label{lb29}\index{00@Squeeze Theorem}
+Suppose that $(x_n)$ is a sequence in a metric space $X$. Let $x\in X$. Suppose that there is a sequence $(a_n)$ in $\Rbb_{\geq 0}$ such that $\dps\lim_{n\rightarrow\infty}a_n=0$ and that $d(x_n,x)\leq a_n$ for all $n$. Then $\dps\lim_{n\rightarrow\infty} x_n=x$.
+\end{pp}
+
+\begin{proof}
+This follows immediately from Exp. \ref{lb27} and \ref{lb28}.
+\end{proof}
+
+The above proposition explains why many people say that ``analysis is the art of inequalities": It transforms the problem of convergence to the problem of finding a sequence $(a_n)\in\Rbb_{\geq 0}$ converging to $0$ such that the inequality $d(x_n,x)\leq a_n$ holds. And very often, a good (hard) analyst is one who knows how to find such good sequences!
 
 
 
 
 
+
+\begin{pp}\label{lb38}
+Let $X=X_1\times\cdots\times X_N$ be a product of metric spaces $(X_i,d_i)$. Let $d$ be any of the three metrics of $X$ in Exp. \ref{lb19}. Let $\mbf x_n=(x_{1,n},\dots,x_{N,n})$ be a sequence in $X$. Let $\mbf y=(y_1,\dots,y_N)$. Then 
+\begin{align*}
+\lim_{n\rightarrow\infty} \mbf x_n=\mbf y\qquad\Longleftrightarrow \qquad \lim_{n\rightarrow\infty} x_{i,n}=y_i~~(\forall 1\leq i\leq N)
+\end{align*}
+\end{pp}
+
+\begin{proof}
+We let $d$ be the metric $\delta$ in Exp. \ref{lb19}, i.e. defined by $\max_j d_j(x_j,y_j)$. Now choose a sequence $(\mbf x_n)$ and an element $\mbf y$ in $X$. Then
+\begin{align}
+\mbf x_n\rightarrow \mbf y~~\Longleftrightarrow~~ d_X(\mbf x_n,\mbf y)\rightarrow 0 ~~\Longleftrightarrow~~ \max_{1\leq j\leq N} d_j(x_j,y_j)\rightarrow 0  \label{eq13}
+\end{align}
+
+
+Suppose that the RHS of \eqref{eq13} is true. Fix any $1\leq i\leq N$. Then for every $\varepsilon>0$, there is $K\in\Zbb_+$ such that for all $n\geq K$ we have $\max_j d_j(x_{j,n},y_j)<\varepsilon$, and hence $d_i(x_{i,n},y_i)<\varepsilon$. This proves $x_{i,n}\rightarrow y_i$ (for all $i$).
+
+Conversely, assume that for every $i$ we have $x_{i,n}\rightarrow y_i$. Then for every $\eps>0$ there is $K_i\in\Zbb_+$ such that $d_i(x_{i,n},y_i)<\varepsilon$ for every $n\geq K_i$. Let $K=\max\{K_1,\dots,K_N\}$. Then for all $n\geq K$ we have $\max_j d_j(x_{j,n},y_j)<\eps$. This proves the RHS of \eqref{eq13}.
+
+If $d$ is one of the other two metrics in Exp. \ref{lb19}, one can either use a similar argument, or use the following important (but easy) fact.
+\end{proof}
+
+
+
+
+
+\begin{pp}
+Let $d,\delta$ be two equivalent metrics on a set $X$. Let $(x_n)_{n\in\Zbb_+}$ and $x$ be in $X$. Then $(x_n)_n$ converges to $x$ under the metric $d$ iff  $(x_n)_n$ converges to $x$ under $\delta$. Namely, $d(x_n,x)\rightarrow 0$ iff $\delta(x_n,x)\rightarrow 0$.
+\end{pp}
+
+\begin{proof}
+Prove it yourself.
+\end{proof}
+
+
+
+
+
+
+
+
+We now give some criteria for the divergence of a sequence.
+
+\begin{df}
+A subset $E$ of a metric space $X$ is called \index{00@Bounded subset} \textbf{bounded} if there exists $p\in X$ and $R\in\Rbb_{>0}$ such that $E\subset B_X(p,R)$.
+\end{df}
+
+\begin{rem}
+Note that if $E$ is bounded, then  for \emph{any} $q\in X$ there exists $\wtd R\in\Rbb_{>0}$ such that $E\subset B_X(q,\wtd R)$. (Indeed, choose $\wtd R=R+d(p,q)$, then by triangle inequality, $B(p,R)\subset B(q,\wtd R)$.)
+\end{rem}
+
+From this Remark, we immediately see:
+\begin{eg}
+In a metric space $X$, if $x\in X$ and $0<r<+\infty$, then $B(x,r)$ is bounded. Hence $\ovl B(x,r)$ is bounded (since it is inside $B(x,2r)$).
+\end{eg}
+
+Also, it is easy to see:
+\begin{eg}\label{lb22}
+A finite union of bounded subsets is bounded.
+\end{eg}
+
+\begin{pp}\label{lb24}
+Let $(x_n)_{n\in\Zbb_+}$ be a convergent sequence in a metric space $X$. Then $(x_n)_{n\in\Zbb_+}$ is bounded.
+\end{pp}
+
+By saying that a sequence \index{00@Bounded sequence} $(x_n)_{n\in\Zbb_+}$ in $X$ is \textbf{bounded}, we mean that its range in $X$ (namely $\{x_n:n\in\Zbb_+\}$) is bounded.
+
+\begin{proof}
+Suppose that $x_n\rightarrow x$. Then for each $\varepsilon>0$, say $\varepsilon=1$, all but finitely many elements of $x_n$ (say $x_1,\dots,x_N$) are in $B(x,1)$. So this whole sequence is in $A=\{x_1\}\cup\cdots\{x_N\}\cup B(x,1)$. Since each $\{x_i\}$ is bounded, and since $B(x,1)$ is bounded, $A$ is bounded by Exp. \ref{lb22}.
+\end{proof}
+
+
+\begin{rem}\label{lb26}
+Prop. \ref{lb24} gives our first criterion on divergence: If a sequence is unbounded (e.g. $x_n=n^2$), then it does not converge. But there are many bounded and divergent sequences. (See Exp. \ref{lb25}.) In this case, we need the second criterion: If a sequence has two subsequences converging to two different points, then this sequence diverge. (See Prop. \ref{lb23})
+\end{rem}
+
+
+
+
+\begin{df}
+Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a set $X$. If $(n_k)_{k\in\Zbb_+}$ is a strictly increasing sequence in $\Zbb_+$, we say that $(x_{n_k})_{k\in\Zbb_+}$ is a subsequence of $(x_n)_{n\in\Zbb_+}$. 
+\end{df}
+
+\begin{df}
+If $A$ and $B$ are partially ordered set, we say a function $f:A\rightarrow B$ is \textbf{increasing} \index{00@Increasing and decreasing} \index{00@Strictly increasing and strictly decreasing} (resp. \textbf{strictly increasing}), if for each $x,y\in A$ we have
+\begin{gather*}
+x\leq y\qquad\Longrightarrow\qquad f(x)\leq f(y)\\
+\text{resp.}\\
+x<y\qquad\Longrightarrow \qquad f(x)<f(y)
+\end{gather*}
+We leave the definitions of \textbf{decreasing} and \textbf{strictly decreasing} to the readers. We say that $f$ is \index{00@Monotonic} \index{00@Strictly monotonic} \textbf{monotonic} (resp. \textbf{strictly monotonic}), if $f$ is either increasing or decreasing (resp. either strictly increasing or strictly decreasing).
+\end{df}
+
+Thus, a subsequence of $(x_n)_{n\in\Zbb_+}$ is equivalently the restriction of the function $x:\Zbb_+\rightarrow X$ to an infinite subset of $\Zbb_+$.
+
+\begin{pp}\label{lb23}
+Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a metric space $X$ converging to $x\in X$. Then every subsequence $(x_{n_k})_{k\in\Zbb_+}$ converges to $x$.
+\end{pp}
+
+\begin{proof}
+For every $\varepsilon>0$, $B(x,\varepsilon)$ contains all but finitely many $\{x_n:n\in\Zbb_+\}$, and hence all but finitely many $\{x_{n_k}:k\in\Zbb_+\}$.
+\end{proof}
+
+\begin{eg}\label{lb25}
+The sequence $x_n=(-1)^n$ in $\Rbb$ is divergent, because the subsequence $(x_{2k})_{k\in\Zbb_+}$ converges to $1$, whereas $(x_{2k-1})_{k\in\Zbb_+}$ converges to $-1$. 
+\end{eg}
+
+
+
+
+One may wonder if the two criteria in Rem. \ref{lb26} are complete in order to determine whether a sequence diverges. This is true for sequences in $\Rbb^n$. We will discuss this topic later. 
+
+
+
+\subsection{Continuous maps of metric spaces}
+
+Continuous maps are a powerful tool for showing that a sequence converges.
+
+
+\begin{df}\label{lb31}
+Let $f:X\rightarrow Y$ be a map of metric spaces. Let $x\in X$. We say that $f$ is \textbf{continuous at $x$} if one of the following equivalent conditions hold:
+\begin{itemize}[align=left]
+\item [(1)] For every sequence $(x_n)_{n\in\Zbb_+}$ in $X$, we have
+\begin{align*}
+\lim_{n\rightarrow\infty} x_n=x\qquad\Longrightarrow\qquad \lim_{n\rightarrow\infty} f(x_n)=f(x)
+\end{align*}
+\item[(2)] For every $\varepsilon>0$, there exists $\delta>0$ such that for every $p\in X$ satisfying $d(p,x)<\delta$, we have $d(f(p),f(x))<\varepsilon$.
+\item[(2')] For every $\varepsilon>0$, there exists $\delta>0$ such that $B_X(x,\delta)\subset f^{-1}(B_Y(f(x),\varepsilon)))$.
+\end{itemize}
+We say that $f$ is a \textbf{continuous map/function}, if $f$ is continuous at every point of $X$.
+\end{df}
+
+\begin{proof}[Proof of the equivalence]
+(2)$\Leftrightarrow$(2'): Obvious.
+
+(2)$\Rightarrow$(1): Assume (2). Assume $x_n\rightarrow x$. For every $\varepsilon>0$, let $\delta>0$ be as in (2). Then since $x_n\rightarrow x$, there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $d(x_n,x)<\delta$. By (2), we have $d(f(x_n),f(x))<\varepsilon$ for all $n\geq N$. This proves $f(x_n)\rightarrow f(x)$.
+
+$\neg$(2)$\Rightarrow$ $\neg$(1): Assume that (2) is not true. Then there exists $\varepsilon>0$ such that for every $\delta>0$, there exists $p\in X$ such that $d(p,x)<\delta$ and $d(f(p),f(x))\geq\varepsilon$. Thus, for every $n\in\Zbb_+$, by taking $\delta=1/n$, we see that there exists $x_n\in X$ such that $d(x_n,x)<1/n$ and $d(f(x_n),f(x))\geq\varepsilon$. By Squeeze Theorem (Prop. \ref{lb29}), $x_n\rightarrow x$. But $f(x_n)\nrightarrow f(x)$. So (1) is not true.
+\end{proof}
+
+\begin{rem}
+One can compare the definition of continuous maps to that of linear maps. A map is continuous if it \emph{preserves the convergence of sequences}, i.e., if it maps convergent sequences to convergent ones. A map (between vector spaces) is linear if it perserves the addition and the scalar multiplication of vectors. In general, a good map between two sets with ``structures" is a map which preserves the structures. (Thus, linear combinations encode the linear structures of vector spaces. Similarly, the convergence of sequences remembers the ``topological" structures of metric spaces.)
+\end{rem}
+
+
+\begin{lm}\label{lb30}
+Let $f:X\rightarrow Y$ be a map of metric spaces.  Let $(B_i)_{i\in I}$ be a collection of open balls in $X$ such that $X=\bigcup_{i\in I}B_i$. Suppose that for each $i$, the restriction $f|_{B_i}:B_i\rightarrow Y$ is continuous. Then $f$ is continuous. 
+\end{lm}
+
+This lemma shows that if we can prove that $f$ is ``locally" continuous, then $f$ is globally continuous. 
+
+\begin{proof}
+Choose $(x_n)$ in $X$ converging to $x\in X$. We shall show $f(x_n)\rightarrow f(x)$. Choose $i$ such that $x\in B_i$. Then one can find $\delta>0$ such that $B(x,\delta)\subset B_i$. (In the language of point-set topology: $x$ is an interior point of $B_i$.) To see this, write $B_i=B(y,r)$. Since $x\in B(y,r)$, we have $r-d(x,y)>0$. Choose $0<\delta<r-d(x,y)$. Then triangle inequality implies $B(x,\delta)\subset B(y,r)$. 
+
+Since $x_n\rightarrow x$, there is $N\in\Zbb_+$ such that $x_n\in B(x,\delta)$ for all $n\geq N$. Thus, $(x_{k+N})_{k\in\Zbb_+}$ converges in $B_i$ to $x$. Since $f|_{B_i}$ is continuous, $\lim_{k\rightarrow\infty} f(x_{k+N})=f(x)$. So $f(x_n)\rightarrow f(x)$.
+\end{proof}
+
+
+
+
+
+
+
+\begin{df}
+A map of metric spaces $f:X\rightarrow Y$ is called \index{00@Lipschitz continuous} \textbf{Lipschitz continuous} if there exists $L\in\Rbb_{>0}$ (called \textbf{Lipschitz constant}) \index{00@Lipschitz constant} such that for all $x_1,x_2\in X$,
+\begin{align}
+d_Y\big(f(x_1),f(x_2) \big)\leq L\cdot d_X(x_1,x_2) \label{eq14}
+\end{align}
+\end{df}
+
+\begin{lm}\label{lb34}
+Lipschitz continuous maps are continuous. 
+\end{lm}
+
+\begin{proof}
+Suppose that $f:X\rightarrow Y$ is Lipschitz continuous with Lipschitz constant $L$. Suppose $x_n\rightarrow x$ in $X$. Then $L\cdot d(x_n,x)\rightarrow 0$. By \eqref{eq14} and Squeeze Theorem (Prop. \ref{lb29}), $f(x_n)\rightarrow f(x)$. (You can also use Def. \ref{lb31}-(2) to prove this lemma.)
+\end{proof}
+
+\begin{eg}\label{lb35}
+Let $\Fbb\in\{\Qbb,\Rbb,\Cbb\}$. The map $z\in\Fbb\setminus \{0\}\mapsto z^{-1}\in\Fbb$ is continuous.
+\end{eg}
+
+
+
+\begin{proof}
+Let this map be $f$. Since $\Fbb$ is covered by open balls $B(z,\delta)$ where $z\in\Fbb\setminus\{0\}$ and $0<\delta<|z|$, by Lem. \ref{lb30}, it suffices to prove that $f$ is continuous when restricted to every such $B(z,\delta)$. Let $\eps=|z|-\delta>0$. Choose $x,y\in B(z,\delta)$. Then $|x|=|x-z+z|\geq |z|-|z-x|>\eps$ by triangle inequality. Similarly, $|y|>\eps$. So
+\begin{align*}
+|f(x)-f(y)|=|x^{-1}-y^{-1}|=|x-y|/|xy|\leq \eps^{-2}|x-y|
+\end{align*}
+So $f|_{B(z,\delta)}$ has Lipschitz constant $\eps^{-2}$, and hence is continuous.
+\end{proof}
+
+(Question: in the above proof, is the map $f:\Fbb\setminus\{0\}\rightarrow\Fbb$ Lipschitz continuous?)
+
+We have given a fancy way of proving that  if $(z_n)$ is a sequence in $\Fbb\setminus\{0\}$ converging to $z\in\Fbb\setminus\{0\}$, then $z_n^{-1}\rightarrow z^{-1}$. You should think about how to prove this fact directly using $\eps-N$ language, and compare your proof with the above proof to find the similarities!
+
+
+
+
+\begin{pp}\label{lb41}
+Let $\Fbb\in\{\Qbb,\Rbb,\Cbb\}$. Then the following maps are continuous:
+\begin{gather*}
++:\Fbb\times\Fbb\rightarrow\Fbb\qquad (x,y)\mapsto x+y\\
+-:\Fbb\times\Fbb\rightarrow\Fbb\qquad  (x,y)\mapsto x-y\\
+\times: \Fbb\times\Fbb\rightarrow\Fbb\qquad  (x,y)\mapsto xy\\
+\div:\Fbb\times\Fbb^\times\rightarrow\Fbb\qquad  (x,y)\mapsto x/y
+\end{gather*}
+\end{pp}
+
+
+Recall our Convention \ref{lb32} on the metrics of finite product spaces. 
+
+
+\begin{proof}
+We only prove that the last two are continuous: the first two can be treated in a similar (and easier) way.
+
+Denote the multiplication map by $\mu$. We choose the metric on $\Fbb^2$ to be $d(\mbf x,\mbf x')=\max\{|x_1-x_1'|,|x_2-x_2'|\}$. Since $\Fbb\times\Fbb$ is covered by open balls of the form $B(0,r)=\{(x,y)\in\Fbb^2:|x|<r,|y|<r\}$ where $0<r<+\infty$, by Lem. \ref{lb30} and \ref{lb34}, it suffices to show that $\mu|_{B(0,r)}$ is Lipschitz continuous. This is true, since for each $(x,y),(x',y')\in B(0,r)$, we have
+\begin{align*}
+&|\mu(x,y)-\mu(x',y')|=|xy-x'y'|\leq |(x-x')y|+|x'(y-y')|\\
+<&2r\cdot \max\{|x-x'|,|y-y'|\}=2r \cdot d((x,y),(x',y'))
+\end{align*}
+
+By Exp. \ref{lb35} and Prop. \ref{lb37}, the map $(x,y)\in\Fbb\times\Fbb^\times\mapsto (x,y^{-1})\in\Fbb\times\Fbb$ is continuous. So its composition with the continuous map $\mu$ is continuous, thanks to Prop. \ref{lb36}. So $\div$ is continuous. 
+\end{proof}
+
+\begin{pp}\label{lb36}
+Suppose that $f:X\rightarrow Y$ and $g:Y\rightarrow Z$ are continuous maps of metric spaces. Then $g\circ f:X\rightarrow Z$ is continuous.
+\end{pp}
+
+\begin{pp}\label{lb37}
+Suppose that $f_i:X_i\rightarrow Y_i$ is a map of metric spaces, where $1\leq i\leq N$. Then the product map \index{00@Product map}
+\begin{gather*}
+f_1\times\cdots\times f_N:X_1\times\cdots\times X_N\rightarrow Y_1\times\cdots\times Y_N\\
+(x_1,\dots,x_N)\mapsto (f_1(x_1),\dots,f_N(x_N))
+\end{gather*}
+is continuous if and only if $f_1,\dots,f_N$ are continuous.
+\end{pp}
+
+\begin{proof}[Proof of Prop. \ref{lb36} and \ref{lb37}]
+Immediate from Def. \ref{lb31}-(1) and Prop. \ref{lb38}.
+\end{proof}
+
+
+\begin{co}[\textbf{Squeeze Theorem}]\index{00@Squeeze Theorem}
+Let $\Fbb\in\{\Qbb,\Rbb\}$ and $(x_n),(y_n),(z_n)$ be sequences in $\Rbb$. Assume that $x_n\leq y_n\leq z_n$ for all $n$. Assume that $x_n$ and $z_n$ both converge to $A\in\Rbb$. Then $\lim_{n\rightarrow\infty}y_n=A$. 
+\end{co}
+
+\begin{proof}
+Let $a_n=y_n-x_n$ and $b_n=z_n-x_n$. Then $0\leq a_n\leq b_n$, and $\lim_n b_n=\lim_n z_n-\lim_n x_n= 0$ because the subtraction map is continuous (Prop. \ref{lb40}). By Exp. \ref{lb28}, $a_n\rightarrow 0$. Since $x_n\rightarrow A$, $y_n=x_n+a_n$ converges to $A$, since the addition map is continuous by Prop. \ref{lb40}.
+\end{proof}
+
+Again, this is a fancy way of proving Squeeze Theorem. The readers should know how to prove it directly from the definition of limits of sequences.
+
+We give some more examples of continuous maps.
+
+\begin{eg}\label{lb44}
+Let $f,g:X\rightarrow \Fbb$ be continuous functions where $\Fbb\in\{\Qbb,\Rbb,\Cbb\}$. Then by Prop. \ref{lb41} and \ref{lb36}, $f\pm g$ and $fg$ are continuous, and $f/g$ is continuous when $0\notin g(X)$. Here
+\begin{align}
+(f\pm g)(x)=f(x)\pm g(x)\qquad (fg)(x)=f(x)g(x)\qquad (f/g)(x)=f(x)/g(x)
+\end{align} 
+\end{eg}
+
+
+\begin{eg}
+Let $f:X\rightarrow Y$ be a map of metric spaces. Let $E,F$ be subsets of $X,Y$ respectively. (Recall that the metrics subspaces are chosen as in Def. \ref{lb43}.) 
+\begin{itemize}
+\item The inclusion map $\iota_E:E\rightarrow X,x\mapsto x$ is clearly continuous. Thus, if $f$ is continuous, then $f|_E:E\rightarrow Y$ is continuous, since $f|_E=f\circ\iota_E$.
+\item If $f(X)\subset F$, then we can restrict the codomain of $f$ from $Y$ to $F$: let $\wtd f:X\rightarrow F$ be $\wtd f(x)=f(x)$. Then it is clear that $f$ is continuous iff $\wtd f$ is continuous.
+\end{itemize}
+\end{eg}
+
+
+
+
+\begin{pp}
+Let $X_1,\dots,X_N$ be metric spaces. The following  projection is clearly continuous:
+\begin{gather*}
+\pi_{X_i}:X_1\times\cdots\times X_N\rightarrow X_i\qquad(x_1,\dots,x_N)\mapsto x_i
+\end{gather*}
+\end{pp}
+
+\begin{pp}
+Let $f_i:X\rightarrow Y_i$ be maps where $X,Y_1,\dots,Y_N$ are continuous. Then 
+\begin{gather*}
+f_1\vee \cdots\vee f_N:X\rightarrow Y_1\times\cdots\times Y_N\qquad x\mapsto (f_1(x),\dots,f_N(x))
+\end{gather*}
+is continuous iff $f_1,\dots,f_N$ are continuous.
+\end{pp}
+
+
+\begin{eg}
+Let $X$ be a metric space. Then $d:X\times X\rightarrow\Rbb,(x,y)\mapsto d(x,y)$ is Lipschiz continuous with Lipschitz constant $1$ (by triangle inequality). So $d$ is continuous.
+\end{eg}
+
+\begin{pp}\label{lb42}
+Let $X$ be a metric space and $E\subset X$. Define \textbf{distance function} \index{00@Distance function $d_E=d(\cdot,E)$} \index{dE@$d_E(x)=d(x,E)$} 
+\begin{gather*}
+d_E:X\rightarrow\Rbb_{\geq0}\\
+d_E(x)\equiv d(x,E)=\inf_{e\in E}d(x,e)
+\end{gather*}
+Then $d_E$ is has Lipschitz constant $1$. So $d_E$ is continuous.
+\end{pp}
+
+
+\begin{proof}
+Choose any $x,y\in X$. By triangle inequality, for each $e\in E$ we have $d(x,e)\leq d(x,y)+d(y,e)$. Since $d(x,E)\leq d(x,e)$, we get  $d(x,E)\leq d(x,y)+d(y,e)$. Applying $\inf_{e\in E}$ to the RHS gives $d(x,E)\leq d(x,y)+d(y,E)$. Hence $d(x,E)-d(y,E)\leq d(x,y)$. Exchanging $x$ and $y$ gives
+\begin{align}
+\big|d(x,E)-d(y,E)\big|\leq d(x,y)
+\end{align}
+This proves that $d_E$ has Lipschitz constant $1$.
+\end{proof}
+
+\begin{df}
+More generally, if $E,F$ are subsets of a metric space $E$, we can define \index{DEF@$d(E,F)$}
+\begin{align}
+d(E,F)=\inf_{e\in E,f\in F}d(e,f)
+\end{align}
+to be the \textbf{distance between $E$ and $F$}.
+\end{df}
+
+\begin{exe}
+Let $E,F\subset X$. Prove that
+\begin{align}
+d(E,F)=\inf_{f\in F}d_E(E,f)
+\end{align}
+\end{exe}
+
+\begin{eg}\label{lb45}
+If $X$ is a metric space and $p\in X$, then by Prop. \ref{lb42} (or simply by triangle inequality), the function $d_p:x\in X\mapsto d(x,p)\in\Rbb$ has Lipschitz constant $1$ and hence is continuous. In particular, if $\Fbb\in\{\Rbb,\Cbb\}$,  the function $z\in\Fbb\mapsto |z|$ is continuous (since $|z|=d_\Fbb(z,0)$). Thus, if $f:X\rightarrow\Fbb$ is continuous, then $|f|:X\rightarrow\Rbb_{\geq0}$ is continuous where
+\begin{align}
+|f|(x)=|f(x)|
+\end{align}
+\end{eg}
+
+
+\begin{eg}
+Let $N\in\Zbb_+$. Then then the following function is continuous:
+\begin{align*}
+\max:\Rbb^N\rightarrow \Rbb\qquad (x_1,\dots,x_N)\mapsto\max\{x_1,\dots,x_N\}\in\Rbb
+\end{align*}
+Similarly, the minimum function is continuous.
+\end{eg}
+
+\begin{proof}
+To avoid confusion, we write $\max$ as $\max_N$. The case $N=1$ is obvious. When $N=2$, we have
+\begin{align}
+\max(x_1,x_2)=\frac{x_1+x_2+|x_1-x_2|}2
+\end{align}
+So $\max_2$ is continuous by Exp. \ref{lb44} and \ref{lb45}.
+
+We use induction. Suppose we have proved that $\max_N$ is continuous. Then $\max_N\times\id_\Rbb:\Rbb^N\times \Rbb\rightarrow\Rbb\times\Rbb$ is continuous. So $\max_{N+1}=\max_2\circ(\max_N\times\id_\Rbb)$ is continuous.
+\end{proof}
 
 
 
