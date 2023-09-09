@@ -438,9 +438,9 @@ Let me first list the notations and conventions that will be used throughout the
 \end{gather*}
 If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminus\{0\}$. \index{F@$\Fbb^\times=\Fbb\setminus\{0\}$}
 
-Topics (except those in the problem sets) marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics (except those in the problem sets) marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
+Topics (except those in the ``Problems" sections) marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics (except those in the ``Problems" section) marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
 
-Topics in the problem sets marked with $\heartsuit$ are important problems that will be used later in this course.
+Topics in the ``Problems" section (or the whole ``Problems" sections) marked with $\heartsuit$ are important problems that will be used later in this course.
 
 
 
@@ -1476,7 +1476,7 @@ Let $d,\delta$ be two equivalent metrics on a set $X$. Let $(x_n)_{n\in\Zbb_+}$ 
 \end{pp}
 
 \begin{proof}
-Prove it yourself.
+Prove it yourself. (Or see Prop. \ref{lb48}.)
 \end{proof}
 
 
@@ -1586,8 +1586,27 @@ $\neg$(2)$\Rightarrow$ $\neg$(1): Assume that (2) is not true. Then there exists
 \end{proof}
 
 \begin{rem}
-One can compare the definition of continuous maps to that of linear maps. A map is continuous if it \emph{preserves the convergence of sequences}, i.e., if it maps convergent sequences to convergent ones. A map (between vector spaces) is linear if it perserves the addition and the scalar multiplication of vectors. In general, a good map between two sets with ``structures" is a map which preserves the structures. (Thus, linear combinations encode the linear structures of vector spaces. Similarly, the convergence of sequences remembers the ``topological" structures of metric spaces.)
+One can compare Def. \ref{lb31}-(1) to the definition of linear maps. A map is continuous iff it \emph{preserves the convergence of sequences}, i.e., iff it maps convergent sequences to convergent ones. A map (between vector spaces) is linear iff it perserves the addition and the scalar multiplication of vectors. In general, a good map between two sets with ``structures" is a map which preserves the structures. (Thus, linear combinations encode the linear structures of vector spaces. Similarly, the convergence of sequences remembers the ``topological" structures of metric spaces.) As another example, we will define an isometry of metric spaces to be one that preserves the metrics (the structures of metric spaces), see Exe. \ref{lb46}.
 \end{rem}
+
+\begin{rem}
+In this section, we mainly use Def. \ref{lb31}-(1) to study continuity. But in later sections we will also use Def. \ref{lb31}-(2'). An advantage of (2') is that it is more geometric. Indeed, if $X$ is a metric space and $E\subset X$, we say that $x\in E$ is an \textbf{interior point of $E$ in $X$} \index{00@Interior point} if there exists $\delta>0$ such that $B_X(x,\delta)\subset E$. For example, a point  $z\in\Cbb$ is an interior point of the closed unit disk $\ovl B_\Cbb(0,1)=\{w\in\Cbb:|w|\leq 1\}$ iff $|z|<1$. 
+
+Thus, Def. \ref{lb31}-(2') says that for any map of metric spaces $f:X\rightarrow Y$ and $x\in X$, the following are equivalent:
+\begin{itemize}
+\item[(a)] $f$ is continuous at $x$.
+\item[(b)] For each $\eps>0$, every $x\in X$ is an interior point of $f^{-1}\big(B_Y(f(x),\varepsilon)\big)$.
+\end{itemize}
+We say that a subset $U\subset X$ is \textbf{open} \index{00@Open set} if each point of $U$ is an interior point. For example, by triangle inequality, every open ball in a metric space is an open set. Thus, we have:
+\begin{itemize}
+\item A map of metric spaces $f:X\rightarrow Y$ is continuous iff the preimage under $f$ of every open ball of $Y$ is an open subset of $X$.
+\end{itemize}
+
+In the study of point-set topology, we will see that many properties can be studied in two approaches: using sequences (or using nets, the natural generalizations of sequences) and their convergence, and using open sets. The first example of such property is continuity, as we have seen in Def. \ref{lb31}. Another prominent example is sequential compactness vs. compactness. These two approaches represent two (very) different intuitions. (So it is surprising that these two things, which seem so different, are actually equivalent!) Sometimes both approaches work for a problem, but sometimes only one of them works, or one of them is much simpler. If you are a beginner in analysis and point-set topology, I suggest that whenever you see one approach applied to a problem, try to think about whether the other approach also works and which one is better.   \hfill\qedsymbol
+\end{rem}
+
+
+\subsubsection{Methods for proving continuity}
 
 
 \begin{lm}\label{lb30}
@@ -1693,7 +1712,7 @@ Let $\Fbb\in\{\Qbb,\Rbb\}$ and $(x_n),(y_n),(z_n)$ be sequences in $\Rbb$. Assum
 \end{co}
 
 \begin{proof}
-Let $a_n=y_n-x_n$ and $b_n=z_n-x_n$. Then $0\leq a_n\leq b_n$, and $\lim_n b_n=\lim_n z_n-\lim_n x_n= 0$ because the subtraction map is continuous (Prop. \ref{lb40}). By Exp. \ref{lb28}, $a_n\rightarrow 0$. Since $x_n\rightarrow A$, $y_n=x_n+a_n$ converges to $A$, since the addition map is continuous by Prop. \ref{lb40}.
+Let $a_n=y_n-x_n$ and $b_n=z_n-x_n$. Then $0\leq a_n\leq b_n$, and $\lim_n b_n=\lim_n z_n-\lim_n x_n= 0$ because the subtraction map is continuous (Prop. \ref{lb41}). By Exp. \ref{lb28}, $a_n\rightarrow 0$. Since $x_n\rightarrow A$, $y_n=x_n+a_n$ converges to $A$, since the addition map is continuous by Prop. \ref{lb41}.
 \end{proof}
 
 Again, this is a fancy way of proving Squeeze Theorem. The readers should know how to prove it directly from the definition of limits of sequences.
@@ -1701,7 +1720,7 @@ Again, this is a fancy way of proving Squeeze Theorem. The readers should know h
 We give some more examples of continuous maps.
 
 \begin{eg}
-By Prop. \ref{lb41}, $f(x,y,z)=x^2y+5y^4z^7-3xyz^2$ is a continuous function on $\Cbb^3$. Clearly $z\in\Cbb\mapsto \ovl z\in\Cbb$ is continuous. So $g(x,y,z)=f(\ovl x,\ovl y,z)-5xy^{-2}\ovl{z^{-3}}$ is a continuous function on $\Cbb\times\Cbb^\times\times\Cbb^\times$.
+By Prop. \ref{lb41}, $f(x,y,z)=x^2y+5y^4z^7-3xyz^2$ is a continuous function on $\Cbb^3$. Clearly $z\in\Cbb\mapsto \ovl z\in\Cbb$ is continuous. So $g(x,y,z)=f(\ovl x,\ovl y,z)+2\ovl{f(z,x^2,xy^{-9})}-5xy^{-2}\ovl{z^{-3}}$ is a continuous function on $\Cbb\times\Cbb^\times\times\Cbb^\times$.
 \end{eg}
 
 
@@ -1745,12 +1764,12 @@ Let $X$ be a metric space. Then $d:X\times X\rightarrow\Rbb,(x,y)\mapsto d(x,y)$
 \end{eg}
 
 \begin{pp}\label{lb42}
-Let $X$ be a metric space and $E\subset X$. Define \textbf{distance function} \index{00@Distance function $d_E=d(\cdot,E)$} \index{dE@$d_E(x)=d(x,E)$} 
+Let $X$ be a metric space and $E\subset X$. Define \textbf{distance function} \index{00@Distance function $d(\cdot,E)$} \index{dE@$d(x,E)$} 
 \begin{gather*}
-d_E:X\rightarrow\Rbb_{\geq0}\\
-d_E(x)\equiv d(x,E)=\inf_{e\in E}d(x,e)
+d(\cdot,E):X\rightarrow\Rbb_{\geq0}\qquad
+d(x,E)=\inf_{e\in E}d(x,e)
 \end{gather*}
-Then $d_E$ is has Lipschitz constant $1$. So $d_E$ is continuous.
+Then $d(\cdot,E)$ is has Lipschitz constant $1$. So $d(\cdot,E)$ is continuous.
 \end{pp}
 
 
@@ -1759,7 +1778,7 @@ Choose any $x,y\in X$. By triangle inequality, for each $e\in E$ we have $d(x,e)
 \begin{align}
 \big|d(x,E)-d(y,E)\big|\leq d(x,y)
 \end{align}
-This proves that $d_E$ has Lipschitz constant $1$.
+This proves that $d(\cdot,E)$ has Lipschitz constant $1$.
 \end{proof}
 
 \begin{df}
@@ -1773,7 +1792,7 @@ to be the \textbf{distance between $E$ and $F$}.
 \begin{exe}
 Let $E,F\subset X$. Prove that
 \begin{align}
-d(E,F)=\inf_{f\in F}d_E(E,f)
+d(E,F)=\inf_{f\in F}d(E,f)
 \end{align}
 \end{exe}
 
@@ -1802,6 +1821,95 @@ So $\max_2$ is continuous by Exp. \ref{lb44} and \ref{lb45}.
 
 We use induction. Suppose we have proved that $\max_N$ is continuous. Then $\max_N\times\id_\Rbb:\Rbb^N\times \Rbb\rightarrow\Rbb\times\Rbb$ is continuous. So $\max_{N+1}=\max_2\circ(\max_N\times\id_\Rbb)$ is continuous.
 \end{proof}
+
+
+\subsection{Isometries, isometric isomorphisms, and homeomorphisms}
+
+
+\begin{df}
+A bijection of metric spaces $f:X\rightarrow Y$ is called a \textbf{homeomorphism} if one of the following equivalent (cf. Def. \ref{lb31}) statements holds:
+\begin{itemize}
+\item[(1)] $f:X\rightarrow Y$ and its inverse map $f^{-1}:Y\rightarrow X$ are continuous.
+\item[(2)] For each sequence $(x_n)$ in $X$ and each $x\in X$, we have $\dps \lim_{n\rightarrow\infty}x_n=x$ iff $\dps\lim_{n\rightarrow\infty}f(x_n)=f(x)$.
+\end{itemize}
+If such $f$ exists, we say that $X,Y$ are \textbf{homeomorphic}.
+\end{df}
+
+A special case of the above definition is:
+\begin{df}
+Let $X$ be a set with metrics $d,\delta$. We say that $d$ and $\delta$ induce the \textbf{same topology} on $X$ if one of the following clearly equivalent statements holds:
+\begin{itemize}
+\item[(1)] The map $(X,d)\rightarrow (X,\delta),x\mapsto x$ is a homeomorphism.\footnote{We prefer not to call this map the identity map, because the metrics on the source and on the target are different.}
+\item[(2)] For each sequence $(x_n)$ in $X$ and each $x\in X$, $(x_n)$ converges to $x$ under the metric $d$ iff $(x_n)$ converges to $x$ under $\delta$.
+\end{itemize}
+\end{df}
+
+
+\begin{pp}\label{lb48}
+Suppose that $d,\delta$ are equivalent metrics on a set $X$. Then $d,\delta$ induce the same topology on $X$.
+\end{pp}
+
+\begin{proof}
+Suppose $\delta\leq\alpha d$ and $d\leq\beta\delta$ for some $\alpha,\beta>0$. Then the map $f:(X,d)\rightarrow (X,\delta),x\mapsto x$ and its inverse $f^{-1}$ have Lipschitz constants $\alpha$ and $\beta$ respectively. So $f,f^{-1}$ are continuous.
+\end{proof}
+
+
+
+
+
+
+\begin{exe}\label{lb46}
+Let $f:X\rightarrow Y$ be a map of metric spaces. We say that $f:X\rightarrow Y$ is an \textbf{isometry} (or is \textbf{isometric}) \index{00@Isometry and isometric isomorphism} if for all $x_1,x_2\in X$ we have
+\begin{align}
+d_Y(f(x_1),f(x_2))=d_X(x_1,x_2) \label{eq15}
+\end{align}
+Show that an isometry is injective and continuous.
+
+We say that $f$ is an \textbf{isometric isomorphism} if $f$ is a surjective isometry. If an isometric isomorphism between two metric spaces $X,Y$ exists, we say that $X$ and $Y$ are \textbf{isometric metric spaces}.\index{00@Isometric metric spaces} Show that an isometric isomorphisms is a homeomorphism.   \hfill\qedsymbol
+\end{exe}
+
+\begin{rem}
+Isometric isomorphisms are important examples of homeomorphisms. That $f:X\rightarrow Y$ is an isometric isomorphism means that $X$ and $Y$ are equivalent as metric spaces, and that this equivalence can be implemented by the bijection $f$. 
+
+We now look at isometric isomorphisms in a different direction. Suppose that $f:X\rightarrow Y$ is a bijection of sets. Suppose that $Y$ is a metric space. Then there is unique metric $d_X$ on $X$ such that $f$ is an isometric isomorphism: one defines $d_X$ using \eqref{eq15}. We write such $d_X$ as $f^*d_Y$, \index{fdY@$f^*d_Y$: pullback metric}  i.e.,
+\begin{align*}
+f^*d_Y(x_1,x_2)=d_Y(f(x_1),f(x_2))
+\end{align*}
+and call $f^*d_Y$ the \textbf{bullback metric} \index{00@Pullback metrics} of $d_Y$ through $f$. 
+
+Pullback metrics are a very efficient way of constructing metrics on a set. We consider some examples below. \hfill\qedsymbol
+\end{rem}
+
+\begin{exe}\label{lb49}
+Two metrics inducing the same topology are not necessarily equivalent metrics. For example, let $f:[0,1]\rightarrow [0,1]$ be $f(x)=x^2$. Let $X=[0,1]$, and let $d_X$ be the  Euclidean metric: $d_X(x,y)=|x-y|$. So
+\begin{align*}
+f^*d_X(x,y)=|x^2-y^2|
+\end{align*}
+is a metric on $X$. It is not hard to check that $f:(X,d_X)\rightarrow (X,d_X)$ is a homeomorphism.  So $d_X$ and $f^*d_X$ give the same topology on $[0,1]$ (cf. Exe. \ref{lb50}). Show that $f^*d_X$ and $d_X$ are not equivalent metrics.
+\end{exe}
+
+\begin{exe}\label{lb50}
+Let $f:X\rightarrow Y$ be a bijection of sets with metrics $d_X,d_Y$. Show that $d_X$ and $f^*d_X$ give the same topology on $X$ iff $f:(X,d_X)\rightarrow(Y,d_Y)$ is a homeomorphism. 
+
+In particular, if $f:X\rightarrow X$ is a bijection, and $d_X$ is a metric on $X$. Then $d_X$ and $f^*d_X$ give the same topology on $X$ iff $f:(X,d_X)\rightarrow (X,d_X)$ is a homeomorphism. (How is this example related to the one in Exe. \ref{lb49}?)
+\end{exe}
+
+
+
+
+
+\begin{df}\label{lb47}
+We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} \index{00@Convergence in $\ovl{\Rbb}$} $+\infty$ (resp. $-\infty$), if for every $A\in\Rbb_{>0}$ there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $x_n>A$ (resp. $x_n<-A$). 
+
+Suppose $x\in\Rbb$. We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} $x$, if there is $N\in\Zbb_+$ such that $x_n\in\Rbb$ for all $n\geq N$ (i.e. $x_n\in\Rbb$ for sufficiently large $n$), and that the subsequence $(x_{k+N})_{k\in\Zbb_+}$ converges in $\Rbb$ to $x$.  \hfill\qedsymbol
+\end{df}
+
+
+
+This notion of convergence is weird: it is not defined by a metric. So one wonders if there is a metric $d$ on $\ovl\Rbb$ such that convergence of sequences under $d$ agrees with that in Def. \ref{lb47}.
+
+
+
 
 
 
