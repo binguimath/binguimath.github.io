@@ -7,6 +7,11 @@ This is a year-long course for first year undergraduate students in the Qiuzhen 
 
 Both Chinese and English can be used for writing homework.
 
+- Office hour: Monday 15:00-16:00 or by appointment.
+- Office location: Shuangqing Complex Building (Block A) C648  (双清综合楼A座C648 双清食堂对面)
+- Grades: 25% Homework + 30% Midterm + 45% Final
+- Homework should be submitted online to Web Learning-Work (网络学堂-课程作业). If your solutions have several pages, combine them into a single pdf file. **Do not upload more than one file**, because this will make it more difficult for the TA to grade the assignment. You can easily find online tools for combining pdf files such as https://www.ilovepdf.com/zh-cn/merge_pdf  
+
 
 ## English lecture notes
 
