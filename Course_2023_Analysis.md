@@ -12,7 +12,7 @@ This is a year-long course for first year undergraduate students in the Qiuzhen 
   
 - Grades: 25% Homework + 30% Midterm + 45% Final
   
-- Homework: Both Chinese and English can be used for writing homework.  Your homework solutions should be combined into a single (pdf) file and submitted online to Web Learning-Work (网络学堂-课程作业). **Do not upload more than one file**, because this will make it more difficult for the TA to grade the assignment. You can easily find online tools for combining pdf files such as [this one](https://www.ilovepdf.com/zh-cn/merge_pdf).
+- Homework: Both Chinese and English can be used for writing homework.  Your homework solutions should be combined into a single (pdf) file and submitted online to Web Learning-Work (网络学堂-课程作业). **Do not upload more than one file**, because this will make it more difficult for the TA to grade the assignment. You can easily find online tools for combining pdf files such as [this one](https://www.ilovepdf.com/merge_pdf).
 
 
 ## English lecture notes
