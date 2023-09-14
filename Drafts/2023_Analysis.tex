@@ -14,6 +14,8 @@
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
 
 
+\usepackage{epigraph} 
+
 %\pmb  mandatory math bold 
 
 \usepackage{fancyhdr} % date in footer
@@ -130,6 +132,7 @@
 \newtheorem*{axiom}{Axiom}
 \newtheorem{coa}[df]{Theorem}
 \newtheorem{prob}{Problem}[section]
+%\renewcommand*{\theprob}{\arabic{section}.\Roman{prob}}
 \newtheorem{sprob}[prob]{$\star$ Problem}
 \newtheorem{ssprob}[prob]{$\star\star$ Problem}
 
@@ -1204,21 +1207,35 @@ We first give an informal introduction to metric spaces, hoping to motivate the 
 
 
 
-\subsection{Introduction}\label{lb55}
+\subsection{Introduction: what is point-set topology?}\label{lb55}
+
+
+
 
 In this chapter, we begin the study of point-set topology by learning one of its most important notions: metric spaces. Similar to \cite{Rud-P}, we prefer to introduce metric spaces and basic point-set topology at the early stage of our study. An obvious reason for doing so is that metric spaces provide a uniform language for the study of basic analysis problems in $\Rbb,\Rbb^n,\Cbb^n$, and more generally in function spaces such as the space of continuous functions $C([a,b])$ on the interval $[a,b]\subset\Rbb$. With the help of such a language, for example, many useful criteria for the convergence of series in $\Rbb$ and $\Cbb$ (e.g. root test, ratio test) are generalized straightforwardly to criteria for the \emph{uniform} convergence of series of functions in $C([a,b])$.
 
-Point-set topology was born in 1906 when Fr\'echet defined metric spaces, motivated mainly by the study of function spaces in analysis (i.e. \emph{functional analysis}). Indeed, point-set topology and functional analysis are the two faces of the same coin, because they share a common theme: one regards the set of functions as a space $X$, and views each function as a point of that space. This viewpoint allows one to \ul{study the analytic properties of function spaces by using the intuitions from $\Rbb$ and $\Rbb^n$}. (Sequential) compactness, completeness, and separability are prominent examples of such properties. Their importance was already recognized by Fr\'echet by the time he defined metric spaces. 
+Point-set topology was born in 1906 when Fr\'echet defined metric spaces, motivated mainly by the study of function spaces in analysis (i.e. \emph{functional analysis}). Indeed, point-set topology and functional analysis are the two faces of the same coin: they both originated from the study of \textbf{functionals}, i.e., functions of functions. See for example \eqref{eq24}. The core ideas of point-set topology are as follows:
+\begin{enumerate}[label=(\arabic*)]
+\item Take $X$ to be a set of functions defined on a ``classical space" (e.g. the set of all continuous functions $f:[a,b]\rightarrow\Cbb$). Then a functional is a function  $S:X\rightarrow \Cbb$. This is a generalization of functions on $\Rbb,\Cbb,\Rbb^n,\Cbb^n$ or on their subsets.
+\item Unlike $\Rbb^n$, a function space $X$ is usually ``infinite dimensional". Thus, one may think that a functional $S$ is a function with infinite variables. In point-set topology, this viewpoint is abandoned; the philosophy of point-set topology is diametrically opposed to that of multivariable calculus.\footnote{Very often, the formula of $S(f)$ involves an integral. See e.g. \eqref{eq24}. Mathematicians (e.g. Volterra, L\'evy, Fredholm, and early Hilbert) used to study $S(f)$ by discretizing $S(f)$, i.e., by approximating integrals by finite sums. Thus, $S$ is approximated by a sequence of functions with $n$ variables where $n\rightarrow\infty$. This viewpoint is abandoned in point-set topology.} Instead, \ul{one should view a functional $S$ as a function with one variable $x$}, where $x$ denotes a general point of the function space $X$.
+\item Rather than looking at each variable/component and doing explicit muti-variable calculations, one uses geometric intuitions to study the analytic properties of $S:X\rightarrow\Cbb$.\footnote{This is similar to linear algebra where one prefers vectors, linear subspaces, and linear operators to $n$-tuples, sets of solutions, and matrices.} \ul{These geometric intuitions (e.g. distances, open balls, convergence) are borrowed from  $\Rbb$ and $\Rbb^n$}  and are mostly irrelevant to dimensions or numbers of variables.
+\end{enumerate}
+
+
+
+(Sequential) \textbf{compactness}, \textbf{completeness}, and \textbf{separability} are prominent examples of the analytic properties mentioned in (3). The importance of these three notions  was  already recognized by Fr\'echet by the time he defined metric spaces. The study of these three properties will be a main theme of our course.
 
 
 Consider sequential compactness for example. The application of compactness to function spaces originated from the problems in calculus of variations. For instance, let $L(x,y,z)$ be a polynomial or (more generally) a continuous function in $3$ variables. We want to find a ``good" (e.g. differentiable) function $f:[0,1]\rightarrow \Rbb$ minimizing or maximizing the expression
+\begin{subequations}\label{eq24}
 \begin{align}
 S(f)=\int_0^1 L(t,f(t),f'(t))dt
 \end{align}
-This is the general setting of Lagrangian mechanics. In the theory of integral equations, one considers the extreme values and points of the \textbf{functional} (i.e. function of functions)
+This is the general setting of Lagrangian mechanics. In the theory of integral equations, one considers the extreme values and points of the \textbf{functional}
 \begin{align}
 S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy
 \end{align}
+\end{subequations}
 where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx=1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear operator $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
 
 
@@ -1230,10 +1247,10 @@ As we shall learn, (sequential) compactness is closely related to the problem of
 \end{itemize}
 
 
-To carry out step (B), we need to \ul{define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$}. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (C) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for sequential compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Heine-Borel theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
+To carry out step (B), we need to define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (C) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for sequential compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Heine-Borel theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
 
 
-To summarize: Metric spaces are defined not just for fun. We introduce such geometric objects because we want to study the convergence of sequences and the continuity of functions. And moreover, the examples we are interested in are not just subsets of $\Rbb^n$, but also subsets of function spaces. With this in mind, we now begin our journey into point-set topology.
+To summarize: Metric spaces are defined not just for fun. We introduce such geometric objects because we want to study the convergence of sequences and the continuity of functions using geometric intuitions. And moreover, the examples we are interested in are not just subsets of $\Rbb^n$, but also subsets of function spaces. With this in mind, we now begin our journey into point-set topology.
 
 
 \subsection{Basic definitions and examples}
@@ -2098,7 +2115,6 @@ Think about the question: Let $X$ be a set. For each $x,y\in X$ define $d(x,y)=0
 
 
 
-
 \newpage
 
 
@@ -2323,7 +2339,7 @@ The following are true.
 \subsection{Outlook: sequentially compact function spaces}
 
 
-In Sec. \ref{lb55}, we mentioned that metric spaces and (more generally) point-set topology were introduced by mathematicians in order to study (typically infinite dimensional) function spaces using the intuition from $\Rbb^N$.  Now we have learned a couple of important results about sequentially compact spaces. But we have not met any example arising from function spaces. So let me show one example to the curious readers: The product space $[0,1]^{\Zbb_+}$, equipped with the metric defined in Pb. \ref{lb78}, is sequentially compact. We will prove this result at the end of this chapter. (Indeed, we will prove a slightly more general version. See  Thm. \ref{lb89}.) This is a famous result, not only because it has many important applications (some of which will be hinted at in this section), but also because its proof uses the clever  ``diagonal method".  
+In Sec. \ref{lb55}, we mentioned that metric spaces and (more generally) point-set topology were introduced by mathematicians in order to study (typically infinite dimensional) function spaces with the help of the geometric intuition of $\Rbb^N$.  Now we have learned a couple of important results about sequentially compact spaces. But we have not met any example arising from function spaces. So let me show one example to the curious readers: The product space $[0,1]^{\Zbb_+}$, equipped with the metric defined in Pb. \ref{lb78}, is sequentially compact. We will prove this result at the end of this chapter. (Indeed, we will prove a slightly more general version. See  Thm. \ref{lb89}.) This is a famous result, not only because it has many important applications (some of which will be hinted at in this section), but also because its proof uses the clever  ``diagonal method".  
 
 Moreover, we will later prove an even more surprising fact: every sequentially compact metric space is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$. Thus, all sequentially compact metric spaces can be constructed explicitly, in some sense.
 
