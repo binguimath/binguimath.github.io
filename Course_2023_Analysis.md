@@ -26,7 +26,7 @@ I will cover Chapter 1 very quickly (or even skip this chapter) in class. Theref
 
 ## Chinese lecture notes taken in the former semesters
 
-These notes are taken by students attending my class in 2022 Fall and 2023 Spring.
+These notes were taken by students attending my class in 2022 Fall and 2023 Spring.
 
 - [Analysis I](Files/2022_Analysis_I_CH.pdf) taken by Yi Li (李颐) in 2022 Fall.
 
