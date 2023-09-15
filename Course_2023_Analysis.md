@@ -5,6 +5,7 @@
 
 This is a year-long course for first year undergraduate students in the Qiuzhen College of Tsinghua University. This is also my second time teaching this course. I plan to teach most of the same topics as last year, but with some minor adjustments, rearragements, and (hopefully) improvements. So you can check the Chinese lecture notes on this page to get a general idea about what might be taught in this class. 
 
+- TA: Kai Qin (秦楷)   Zibo Zhao (赵梓博)
 
 - Office hour: Monday 15:00-16:00 or by appointment.
   
