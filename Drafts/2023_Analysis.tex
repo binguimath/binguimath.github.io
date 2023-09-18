@@ -445,7 +445,16 @@ Let me first list the notations and conventions that will be used throughout the
 \text{resp.=respectively}\qquad 
 \text{WLOG=without loss of generality}
 \end{gather*}
-If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminus\{0\}$. \index{F@$\Fbb^\times=\Fbb\setminus\{0\}$}
+If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminus\{0\}$. \index{F@$\Fbb^\times=\Fbb\setminus\{0\}$} If $\alpha$ is a complex number and $n\in\Nbb$, we define the \textbf{binomial coefficient}\index{zz@$\alpha\choose n$}
+\begin{align}
+{\alpha\choose n}=\left\{
+\begin{array}{ll}
+\dps\frac{\alpha\cdot(\alpha-1)\cdots (\alpha-n+1)}{n!} &\text{ if }n\geq 1\\[1ex]
+1&\text{ if }n=0
+\end{array}
+\right.
+\end{align}
+where $n!=n(n-1)(n-2)\cdots 2\cdot 1$ and $0!=1$.
 
 Topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
 
@@ -462,7 +471,7 @@ have infinitely many elements. (In this course, we will not be concerned with th
 \begin{align*}
 \Qbb=\{\text{all rational numbers}\}\qquad\Rbb=\{\text{all real numbers}\}
 \end{align*}
-assuming that rational and real numbers exist and satisfy the properties we are familiar with in high school mathematics.
+if we that rational and real numbers exist and satisfy the properties we are familiar with in high school mathematics. (We will construct $\Qbb$ and $\Rbb$ rigorously, by the way.)
 
 
 Set theory is the foundation of modern mathematics. It consists of several Axioms telling us what we can do about the sets. For example, the following way of describing sets
@@ -531,7 +540,7 @@ If $A_1,\dots,A_n$ are sets, their \textbf{Cartesian product} exists:
 \begin{align*}
 A_1\times\cdots\times A_n=\{(a_1,\dots,a_n): a_i\in A_i\text{ for all }1\leq i\leq n\}
 \end{align*}
-where two elements $(a_1,\dots,a_n)$ and $(b_1,\dots,b_n)$ of the Cartesian product are viewed as equal iff $a_1=b_1,\dots,a_n=b_n$. We also write
+where two elements $(a_1,\dots,a_n)$ and $(b_1,\dots,b_n)$ of the Cartesian product are regarded equal iff $a_1=b_1,\dots,a_n=b_n$. We also write
 \begin{align*}
 (a_1,\dots,a_n)=a_1\times\cdots\times a_n
 \end{align*}
@@ -743,7 +752,7 @@ Let $V,W$ be vector spaces over a field $\Fbb$ with finite dimensions $m,n$ resp
 \begin{align*}
 \Phi(a_1,\dots,a_m)=a_1e_1+\cdots+a_me_m\qquad \Psi(b_1,\dots,b_n)=b_1\eps_1+\cdots+b_n\eps_n
 \end{align*}
-Let $T:V\rightarrow W$ be a \index{00@Linear maps} \textbf{linear map}, i.e., a map satisfying $T(a\xi+b\eta)=aT\xi+bT\eta$ for all $a,b\in\Fbb,\xi,\eta\in V$. Then there is a unique $n\times m$ matrix $A\in\Fbb^{n\times m}$ \index{Fnm@$\Fbb^{n\times m}$, the set of $n\times m$ matrices} such that the following diagram commutes:
+Let $T:V\rightarrow W$ be a \index{00@Linear maps} \textbf{linear map}, i.e., a map satisfying $T(a\xi+b\eta)=aT\xi+bT\eta$ for all $a,b\in\Fbb,\xi,\eta\in V$. Then there is a unique $n\times m$ matrix $A\in\Fbb^{n\times m}$ \index{Fnm@$\Fbb^{n\times m}$, the set of $n\times m$ matrices} (viewed as a linear map $\Fbb^m\rightarrow\Fbb^n$ defined by matrix multiplication) such that the following diagram commutes:
 \begin{equation}
 \begin{tikzcd}
 \Fbb^m \arrow[r,"\Phi","\simeq"'] \arrow[d,"A"'] & V \arrow[d,"T"] \\
@@ -780,7 +789,7 @@ If $a/b\in\Qbb$, we say $a/b\geq 0$ if $ab\geq0$. Check that this is well-define
 A field $\Fbb$, together with a total order $\leq$, is called an \index{00@Ordered field} \textbf{ordered field}, if for every $a,b,c\in\Fbb$ we have
 \begin{itemize}
 \item (Addition preserves $\leq$) If $a\leq b$ then $a+c\leq b+c$.
-\item (Multiplication by $\Fbb_{\geq0}$ preserves $\leq$) If $a,b\geq 0$ then $ab\geq0$.
+\item (Multiplication by $\Fbb_{\geq0}$ preserves $\geq0$) If $a,b\geq 0$ then $ab\geq0$.
 \end{itemize}
 These two properties relate $\leq$ to $+$ and $\cdot$ respectively.
 \end{df}
@@ -1094,7 +1103,7 @@ Let $(X_i)_{i\in I}$ be a family of sets with index set $I$. Their \textbf{produ
 \begin{align*}
 \prod_{i\in I}X_i =\{f\in \fk X^I:f(i)\in X_i\text{ for all }i\in I \}
 \end{align*}
-where $\fk X=\bigcup_{i\in I}X_i$. If each $X_i$ is nonempty, then $\prod_{i\in I}X_i$ is nonempty by Axiom of Choice. An element of $\prod_{i\in I}X_i$ is also written as $(f_i)_{i\in I}$ when the $i$-th component if it is $f_i\in X_i$.
+where $\fk X=\bigcup_{i\in I}X_i$. If each $X_i$ is nonempty, then $\prod_{i\in I}X_i$ is nonempty by Axiom of Choice. An element of $\prod_{i\in I}X_i$ is also written as $(f_i)_{i\in I}$ when the $i$-th component of it is $f_i\in X_i$.
 \end{df}
 
 In particular, if all $X_i$ are equal to $X$, then $X^I=\prod_{i\in I}X$.
@@ -1172,7 +1181,7 @@ Since $\Phi$ is surjective, there exists $y\in X$ such that $S=\Phi(y)$. If $y\i
 
 
 \begin{rem}
-Write $\{1,\dots,n\}^X$ as $n^X$ for short. \index{nX@$n^X=\{1,\dots,n\}^X$} Assuming that real numbers have decimal, binary, or (more generally) base-$n$ presentations where $n\in\Zbb_{\geq 2}$, then  $\Rbb\approx n^{\Nbb}$. So by Prop. \ref{lb14}, $\Nbb\precnsim\Rbb$, i.e. \emph{$\Rbb$ is uncountable}. The base-$n$ presentations of real numbers suggest that $\card(n^\Nbb)$ is independent of $n$. This fact can be proved by elementary methods without  resorting to the analysis of real numbers:
+Write $\{1,\dots,n\}^X$ as $n^X$ for short. \index{nX@$n^X=\{1,\dots,n\}^X$} Assuming that real numbers have decimal, binary, or (more generally) base-$n$ representations where $n\in\Zbb_{\geq 2}$, then  $\Rbb\approx n^{\Nbb}$. So by Prop. \ref{lb14}, $\Nbb\precnsim\Rbb$, i.e. \emph{$\Rbb$ is uncountable}. The base-$n$ representations of real numbers suggest that $\card(n^\Nbb)$ is independent of $n$. This fact can be proved by elementary methods without  resorting to the analysis of real numbers:
 \end{rem}
 
 \begin{thm}
@@ -1246,7 +1255,7 @@ S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy
 where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx\leq 1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear operator $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
 
 
-As we shall learn, (sequential) compactness is closely related to the problem of finding (or proving the existence of) maximal/minimal values and points of a continuous function. So, in 19th century, when people were already familiar with sequential compactness in $\Rbb^n$ (e.g. Bolzano-Weierstrass theorem, Heine-Borel theorem), they applied compactness to function spaces and functionals. The idea is simple: Suppose we are given $X$, a set of functions (say continuous and differentiable) from $[a,b]$ to $\Rbb$. We want to find $f\in X$ maximizing $S(f)$. Here is an explicit process (see also the proof of Lem. \ref{lb56}):
+As we shall learn, (sequential) compactness is closely related to the problem of finding (or proving the existence of) maximal/minimal values of a continuous function and the points at which the function attains its maximum/minimum. So, in 19th century, when people were already familiar with sequential compactness in $\Rbb^n$ (e.g. Bolzano-Weierstrass theorem, Heine-Borel theorem), they applied compactness to function spaces and functionals. The idea is simple: Suppose we are given $X$, a set of functions (say continuous and differentiable) from $[a,b]$ to $\Rbb$. We want to find $f\in X$ maximizing $S(f)$. Here is an explicit process (see also the proof of Lem. \ref{lb56}):
 \begin{itemize}
 \item[(A)] Find a sequence $(f_n)_{n\in\Zbb_+}$ in $X$ such that $S(f_n)$ increases to $M=\sup S(X)$. 
 \item[(B)] Define convergence in $X$ in a suitable way, and verify that $S:X\rightarrow\Rbb$ is continuous (i.e. if $f_n$ converges to $f$ in the way we define, then $S(f_n)\rightarrow S(f)$). 
@@ -1254,7 +1263,9 @@ As we shall learn, (sequential) compactness is closely related to the problem of
 \end{itemize}
 
 
-To carry out step (B), we need to define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. Step (C) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for sequential compactness of subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Heine-Borel theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
+To carry out step (B), we need to define suitable geometric structures for a function space $X$ so that the convergence of sequences in $X$ and the continuity of functions $S:X\rightarrow\Rbb$ can be defined and studied in a similar pattern as that for $\Rbb^n$. \textbf{Metric} (of a metric space) and \textbf{topology} (of a topological space) are such geometric structures. As we shall learn, the topology of a metric space is uniquely determined by the convergence of sequences in this space. 
+
+Step (C) can be carried out if every sequence in $X$ has a convergent subsequent, i.e., if $X$ is sequentially compact. Thus, we need a good criterion for sequential compactness for subsets of a function space.  Arzel\`a-Ascoli theorem, the  $C([a,b])$-version of Heine-Borel theorem, is such a criterion. This famous theorem was proved in late 19th century (and hence before the birth of point-set topology), and it gave an important motivation for Fr\'echet to consider  metric spaces in general. We will learn this theorem at the end of the first semester.
 
 
 To summarize: Metric spaces are defined not just for fun. We introduce such geometric objects because we want to study the convergence of sequences and the analytic properties of continuous functions using geometric intuitions. And moreover, the examples we are interested in are not just subsets of $\Rbb^n$, but also subsets of function spaces. With this in mind, we now begin our journey into point-set topology.
@@ -1271,7 +1282,7 @@ Let $X$ be a set. A function $d:X\times X\rightarrow\Rbb_{\geq0}$ is called a \t
 \item $d(x,y)=0$ iff $x=y$.
 \item (Triangle inequality) \index{00@Triangle inequality} $d(x,z)\leq d(x,y)+d(y,z)$.
 \end{enumerate}
-The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in(0,+\infty]$, the set \index{Br@$B_X(x,r)=B(x,r)$ and $\ovl B_X(x,r)=\ovl B(x,r)$}
+The pair $(X,d)$, or simply $X$, is called \index{00@Metric space} a \textbf{metric space}. If $x\in X$ and $r\in(0,+\infty]$,\footnote{We want open and closed balls to be nonempty. So we assume $r\neq0$ only for open balls.} the set \index{Br@$B_X(x,r)=B(x,r)$ and $\ovl B_X(x,r)=\ovl B(x,r)$}
 \begin{align*}
 B_X(x,r)=\{y\in X:d(x,y)<r\}
 \end{align*}
@@ -1330,7 +1341,7 @@ d_\infty(x,y)=\max\{|x_1-y_1|,\dots,|x_n-y_n|\}
 \begin{eg}
 The \textbf{Euclidean metric} on $\Cbb^n$ is
 \begin{align*}
-d(z,w)=\sqrt{|z_1-w_1|^2+\cdots+|x_n-y_n|^2}
+d(z,w)=\sqrt{|z_1-w_1|^2+\cdots+|z_n-w_n|^2}
 \end{align*}
 which agrees with the Euclidean metric on $\Rbb^{2n}$. The following are also metrics:
 \begin{gather*}
@@ -1380,11 +1391,11 @@ This is an equivalence relation. More generally, we may write $d_1\precsim d_2$ 
 
 
 \begin{eg}
-In Exp. \ref{lb19}, we have $\delta\leq \rho\leq d\leq 2\delta$. So $\delta\approx\rho\approx d$.
+In Exp. \ref{lb19}, we have $\delta\leq \rho\leq d\leq N\delta$. So $\delta\approx\rho\approx d$.
 \end{eg}
 
 \begin{cv}\label{lb32}
-Given finitely many metric spaces $X_1,\dots,X_N$, the metric on their product space $X=X_1\times\cdots\times X_N$ is chosen to be any one that is equivalent to the ones defined in Exp. \ref{lb19}. In the case that each $X_i$ is a subset of $\Rbb$ or $\Cbb$, this convention is compatible with Convention \ref{lb33}, and we choose the metric on $X$ to be the Euclidean metric (unless otherwise stated).
+Given finitely many metric spaces $X_1,\dots,X_N$, the metric on their product space $X=X_1\times\cdots\times X_N$ is chosen to be any one that is equivalent to the ones defined in Exp. \ref{lb19}. In the case that each $X_i$ is a subset of $\Rbb$ or $\Cbb$, we follow Convention \ref{lb33} and choose the metric on $X$ to be the Euclidean metric (unless otherwise stated).
 \end{cv}
 
 
@@ -1448,8 +1459,20 @@ Let $\Fbb\in\{\Qbb,\Rbb\}$ and $(x_n),(y_n)$ be sequences in $\Fbb$ converging t
 \end{pp}
 
 \begin{proof}
-If $y<x$, let $\varepsilon=x-y$. Then infinitely members of $(x_n)$ are in $(x-\varepsilon/2,x+\varepsilon/2)$, and infinitely members of $(y_n)$ are in $(y-\varepsilon/2,y+\varepsilon/2)$. Since $y+\eps/2<x-\eps/2$, there must exist infinitely many $n$ satisfying $y_n<x_n$.
+If $y<x$, let $\varepsilon=x-y$. Then all but finitely many members of $(x_n)$ are in $(x-\varepsilon/2,x+\varepsilon/2)$, and all but finitely many members of $(y_n)$ are in $(y-\varepsilon/2,y+\varepsilon/2)$. Since $y+\eps/2<x-\eps/2$, there must exist $n$ such that $y_n<x_n$.
 \end{proof}
+
+
+\begin{df}
+If $A$ and $B$ are partially ordered set, we say a function $f:A\rightarrow B$ is \textbf{increasing} \index{00@Increasing and decreasing} \index{00@Strictly increasing and strictly decreasing} (resp. \textbf{strictly increasing}), if for each $x,y\in A$ we have
+\begin{gather*}
+x\leq y\qquad\Longrightarrow\qquad f(x)\leq f(y)\\
+\text{resp.}\\
+x<y\qquad\Longrightarrow \qquad f(x)<f(y)
+\end{gather*}
+We leave the definitions of \textbf{decreasing} and \textbf{strictly decreasing} to the readers. We say that $f$ is \index{00@Monotonic} \index{00@Strictly monotonic} \textbf{monotonic} (resp. \textbf{strictly monotonic}), if $f$ is either increasing or decreasing (resp. either strictly increasing or strictly decreasing).
+\end{df}
+
 
 \begin{pp}\label{lb57}
 Let $(x_n)_{n\in\Zbb}$ be a sequence in $[a,b]\subset\Rbb$. If $(x_n)$ is increasing (resp. decreasing), then $\dps\lim_{n\rightarrow \infty}x_n$ equals $\dps\sup\{x_n:n\in\Zbb_+\}$ (resp. $\dps\inf\{x_n:n\in\Zbb_+\}$).
@@ -1503,11 +1526,11 @@ Let $X=X_1\times\cdots\times X_N$ be a product of metric spaces $(X_i,d_i)$. Let
 \begin{proof}
 We let $d$ be the metric $\delta$ in Exp. \ref{lb19}, i.e. defined by $\max_j d_j(x_j,y_j)$. Now choose a sequence $(\mbf x_n)$ and an element $\mbf y$ in $X$. Then
 \begin{align}
-\mbf x_n\rightarrow \mbf y~~\Longleftrightarrow~~ d_X(\mbf x_n,\mbf y)\rightarrow 0 ~~\Longleftrightarrow~~ \max_{1\leq j\leq N} d_j(x_j,y_j)\rightarrow 0  \label{eq13}
+\mbf x_n\rightarrow \mbf y~~\Longleftrightarrow~~ d_X(\mbf x_n,\mbf y)\rightarrow 0 ~~\Longleftrightarrow~~ \max_{1\leq j\leq N} d_j(x_{j,n},y_j)\rightarrow 0  \label{eq13}
 \end{align}
 
 
-Suppose that the RHS of \eqref{eq13} is true. Fix any $1\leq i\leq N$. Then for every $\varepsilon>0$, there is $K\in\Zbb_+$ such that for all $n\geq K$ we have $\max_j d_j(x_{j,n},y_j)<\varepsilon$, and hence $d_i(x_{i,n},y_i)<\varepsilon$. This proves $x_{i,n}\rightarrow y_i$ (for all $i$).
+Suppose that the RHS of \eqref{eq13} is true. Fix any $1\leq i\leq N$. Then $d_i(x_{i,n},y_i)\leq \max_j d_j(x_{j,n},y_j)$. So $x_{i,n}\rightarrow y_i$ by Prop. \ref{lb29}.
 
 Conversely, assume that for every $i$ we have $x_{i,n}\rightarrow y_i$. Then for every $\eps>0$ there is $K_i\in\Zbb_+$ such that $d_i(x_{i,n},y_i)<\varepsilon$ for every $n\geq K_i$. Let $K=\max\{K_1,\dots,K_N\}$. Then for all $n\geq K$ we have $\max_j d_j(x_{j,n},y_j)<\eps$. This proves the RHS of \eqref{eq13}.
 
@@ -1519,7 +1542,7 @@ If $d$ is one of the other two metrics in Exp. \ref{lb19}, one can either use a 
 
 
 \begin{pp}
-Let $d,\delta$ be two equivalent metrics on a set $X$. Let $(x_n)_{n\in\Zbb_+}$ and $x$ be in $X$. Then $(x_n)_n$ converges to $x$ under the metric $d$ iff  $(x_n)_n$ converges to $x$ under $\delta$. Namely, $d(x_n,x)\rightarrow 0$ iff $\delta(x_n,x)\rightarrow 0$.
+Let $d,\delta$ be two equivalent metrics on a set $X$. Let $(x_n)_{n\in\Zbb_+}$ and $x$ be in $X$. Then $(x_n)$ converges to $x$ under the metric $d$ iff  $(x_n)$ converges to $x$ under $\delta$. Namely, $d(x_n,x)\rightarrow 0$ iff $\delta(x_n,x)\rightarrow 0$.
 \end{pp}
 
 \begin{proof}
@@ -1536,17 +1559,20 @@ Prove it yourself. (Or see Prop. \ref{lb48}.)
 \subsubsection{Criteria for divergence}
 
 \begin{df}
-A subset $E$ of a metric space $X$ is called \index{00@Bounded subset} \textbf{bounded} if there exists $p\in X$ and $R\in\Rbb_{>0}$ such that $E\subset B_X(p,R)$.
+A subset $E$ of a metric space $(X,d)$ is called \index{00@Bounded subset} \textbf{bounded} if either $E=\emptyset$ or there exist $p\in X$ and $R\in\Rbb_{>0}$ such that $E\subset B_X(p,R)$. If $X$ is bounded, we also say that $d$ is a \textbf{bounded metric}. \index{00@Bounded metric}
 \end{df}
 
 \begin{rem}
 Note that if $E$ is bounded, then  for \emph{any} $q\in X$ there exists $\wtd R\in\Rbb_{>0}$ such that $E\subset B_X(q,\wtd R)$. (Indeed, choose $\wtd R=R+d(p,q)$, then by triangle inequality, $B(p,R)\subset B(q,\wtd R)$.)
 \end{rem}
 
-From this Remark, we immediately see:
+Some easy examples are as follows.
 \begin{eg}
 In a metric space $X$, if $x\in X$ and $0<r<+\infty$, then $B(x,r)$ is bounded. Hence $\ovl B(x,r)$ is bounded (since it is inside $B(x,2r)$).
 \end{eg}
+
+
+%%Record #1 09/18
 
 Also, it is easy to see:
 \begin{eg}\label{lb22}
@@ -1572,18 +1598,10 @@ Prop. \ref{lb24} gives our first criterion on divergence: If a sequence is unbou
 
 
 \begin{df}
-Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a set $X$. If $(n_k)_{k\in\Zbb_+}$ is a strictly increasing sequence in $\Zbb_+$, we say that $(x_{n_k})_{k\in\Zbb_+}$ is a subsequence of $(x_n)_{n\in\Zbb_+}$. 
+Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a set $X$. If $(n_k)_{k\in\Zbb_+}$ is a strictly increasing sequence in $\Zbb_+$, we say that $(x_{n_k})_{k\in\Zbb_+}$ is a \textbf{subsequence} of $(x_n)_{n\in\Zbb_+}$. \index{00@Subsequence}
 \end{df}
 
-\begin{df}
-If $A$ and $B$ are partially ordered set, we say a function $f:A\rightarrow B$ is \textbf{increasing} \index{00@Increasing and decreasing} \index{00@Strictly increasing and strictly decreasing} (resp. \textbf{strictly increasing}), if for each $x,y\in A$ we have
-\begin{gather*}
-x\leq y\qquad\Longrightarrow\qquad f(x)\leq f(y)\\
-\text{resp.}\\
-x<y\qquad\Longrightarrow \qquad f(x)<f(y)
-\end{gather*}
-We leave the definitions of \textbf{decreasing} and \textbf{strictly decreasing} to the readers. We say that $f$ is \index{00@Monotonic} \index{00@Strictly monotonic} \textbf{monotonic} (resp. \textbf{strictly monotonic}), if $f$ is either increasing or decreasing (resp. either strictly increasing or strictly decreasing).
-\end{df}
+
 
 Thus, a subsequence of $(x_n)_{n\in\Zbb_+}$ is equivalently the restriction of the function $x:\Zbb_+\rightarrow X$ to an infinite subset of $\Zbb_+$.
 
@@ -1629,7 +1647,7 @@ We say that $f$ is a \textbf{continuous map/function}, if $f$ is continuous at e
 
 (2)$\Rightarrow$(1): Assume (2). Assume $x_n\rightarrow x$. For every $\varepsilon>0$, let $\delta>0$ be as in (2). Then since $x_n\rightarrow x$, there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $d(x_n,x)<\delta$. By (2), we have $d(f(x_n),f(x))<\varepsilon$ for all $n\geq N$. This proves $f(x_n)\rightarrow f(x)$.
 
-$\neg$(2)$\Rightarrow$ $\neg$(1): Assume that (2) is not true. Then there exists $\varepsilon>0$ such that for every $\delta>0$, there exists $p\in X$ such that $d(p,x)<\delta$ and $d(f(p),f(x))\geq\varepsilon$. Thus, for every $n\in\Zbb_+$, by taking $\delta=1/n$, we see that there exists $x_n\in X$ such that $d(x_n,x)<1/n$ and $d(f(x_n),f(x))\geq\varepsilon$. By Squeeze theorem (Prop. \ref{lb29}), $x_n\rightarrow x$. But $f(x_n)\nrightarrow f(x)$. So (1) is not true.
+$\neg$(2)$\Rightarrow$ $\neg$(1): Assume that (2) is not true. Then there exists $\varepsilon>0$ such that for every $\delta>0$, there exists $p\in X$ such that $d(p,x)<\delta$ and $d(f(p),f(x))\geq\varepsilon$. Thus, for every $n\in\Zbb_+$, by taking $\delta=1/n$, we see that there exists $x_n\in X$ such that $d(x_n,x)<1/n$ and $d(f(x_n),f(x))\geq\varepsilon$. By Squeeze theorem (Prop. \ref{lb29}), $x_n\rightarrow x$. But $f(x_n)\nrightarrow f(x)$ (i.e. $d(f(x_n),f(x))\nrightarrow 0$). So (1) is not true.
 \end{proof}
 
 \begin{rem}
@@ -1663,7 +1681,7 @@ Let $f:X\rightarrow Y$ be a map of metric spaces.  Let $(B_i)_{i\in I}$ be a col
 This lemma shows that if we can prove that $f$ is ``locally" continuous, then $f$ is globally continuous. 
 
 \begin{proof}
-Choose $(x_n)$ in $X$ converging to $x\in X$. We shall show $f(x_n)\rightarrow f(x)$. Choose $i$ such that $x\in B_i$. Then one can find $\delta>0$ such that $B(x,\delta)\subset B_i$. (In the language of point-set topology: $x$ is an interior point of $B_i$.) To see this, write $B_i=B(y,r)$. Since $x\in B(y,r)$, we have $r-d(x,y)>0$. Choose $0<\delta<r-d(x,y)$. Then triangle inequality implies $B(x,\delta)\subset B(y,r)$. 
+Choose $(x_n)$ in $X$ converging to $x\in X$. We shall show $f(x_n)\rightarrow f(x)$. Choose $i$ such that $x\in B_i$. Then one can find $\delta>0$ such that $B(x,\delta)\subset B_i$. (In the language of point-set topology: $x$ is an interior point of $B_i$.) To see this, write $B_i=B(y,r)$. Since $x\in B(y,r)$, we have $r-d(x,y)>0$. Choose $0<\delta\leq r-d(x,y)$. Then triangle inequality implies $B(x,\delta)\subset B(y,r)$. 
 
 Since $x_n\rightarrow x$, there is $N\in\Zbb_+$ such that $x_n\in B(x,\delta)$ for all $n\geq N$. Thus, $(x_{k+N})_{k\in\Zbb_+}$ converges in $B_i$ to $x$. Since $f|_{B_i}$ is continuous, $\lim_{k\rightarrow\infty} f(x_{k+N})=f(x)$. So $f(x_n)\rightarrow f(x)$.
 \end{proof}
@@ -1782,7 +1800,7 @@ Let $f,g:X\rightarrow \Fbb$ be continuous functions where $\Fbb\in\{\Qbb,\Rbb,\C
 
 
 \begin{eg}\label{lb54}
-Let $f:X\rightarrow Y$ be a map of metric spaces. Let $E,F$ be subsets of $X,Y$ respectively. (Recall that the metrics subspaces are chosen as in Def. \ref{lb43}.) 
+Let $f:X\rightarrow Y$ be a map of metric spaces. Let $E,F$ be subsets of $X,Y$ respectively. (Recall that the metrics of subsets are chosen as in Def. \ref{lb43}.) 
 \begin{itemize}
 \item The inclusion map $\iota_E:E\rightarrow X,x\mapsto x$ is clearly continuous. Thus, if $f$ is continuous, then $f|_E:E\rightarrow Y$ is continuous, since $f|_E=f\circ\iota_E$.
 \item If $f(X)\subset F$, then we can restrict the codomain of $f$ from $Y$ to $F$: let $\wtd f:X\rightarrow F$ be $\wtd f(x)=f(x)$. Then it is clear that $f$ is continuous iff $\wtd f$ is continuous.
@@ -1917,7 +1935,7 @@ d_Y(f(x_1),f(x_2))=d_X(x_1,x_2) \label{eq15}
 \end{align}
 Show that an isometry is injective and continuous.
 
-We say that $f$ is an \textbf{isometric isomorphism} if $f$ is a surjective isometry. If an isometric isomorphism between two metric spaces $X,Y$ exists, we say that $X$ and $Y$ are \textbf{isometric metric spaces}.\index{00@Isometric metric spaces} Show that an isometric isomorphisms is a homeomorphism.   \hfill\qedsymbol
+We say that $f$ is an \textbf{isometric isomorphism} if $f$ is a surjective isometry. If an isometric isomorphism between two metric spaces $X,Y$ exists, we say that $X$ and $Y$ are \textbf{isometric metric spaces}.\index{00@Isometric metric spaces} Show that an isometric isomorphism is a homeomorphism.   \hfill\qedsymbol
 \end{exe}
 
 \begin{rem}
@@ -1957,9 +1975,9 @@ Our second application of pullback metrics is the convergence in $\ovl\Rbb$.
 
 
 \begin{df}\label{lb47}
-We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} \index{00@Convergence in $\ovl{\Rbb}$} $+\infty$ (resp. $-\infty$), if for every $A\in\Rbb_{>0}$ there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $x_n>A$ (resp. $x_n<-A$). 
+We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} \index{00@Convergence in $\ovl{\Rbb}$} $+\infty$ (resp. $-\infty$), if for every $A\in\Rbb$ there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $x_n>A$ (resp. $x_n<A$). 
 
-Suppose $x\in\Rbb$. We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} $x$, if there is $N\in\Zbb_+$ such that $x_n\in\Rbb$ for all $n\geq N$ (i.e. $x_n\in\Rbb$ for sufficiently large $n$), and that the subsequence $(x_{k+N})_{k\in\Zbb_+}$ converges in $\Rbb$ to $x$.  \hfill\qedsymbol
+Suppose $x\in\Rbb$. We say that a sequence $(x_n)$ in $\ovl\Rbb$ \textbf{converges to} $x$, if there is $N\in\Zbb_+$ such that $x_n\in\Rbb$ for all $n\geq N$, and that the subsequence $(x_{k+N})_{k\in\Zbb_+}$ converges in $\Rbb$ to $x$.  \hfill\qedsymbol
 \end{df}
 
 
@@ -1985,7 +2003,7 @@ Let $y=\varphi(x)$ and $y_n=\varphi(x_n)$. We need to prove that $x_n\rightarrow
 
 Case 1: $x\in\Rbb$. By discarding the first several terms, we may assume that $(x_n)$ is always in $\Rbb$. If $x_n\rightarrow x$, then for every $\eps>0$, all but finitely many $x_n$ are inside the open interval $(\psi(y-\varepsilon),\psi(y+\varepsilon))$. So all but finitely many $y_n$ are inside $(y-\varepsilon,y+\varepsilon)$. So $y_n\rightarrow y$. That $y_n\rightarrow y$ implies $x_n\rightarrow x$ is proved in a similar way.
 
-Case 2: $x=\pm\infty$. We consider $x=+\infty$ only; the other case is similar. Note that if $0<\eps<b-a$, then $B_{[a,b]}(b,\varepsilon)=(b-\varepsilon,b]$.  If $x_n\rightarrow+\infty$, then for each  $0<\eps<b-a$, all but finitely many $x_n$ are $>\psi(b-\eps)$. So all but finitely many $y_n$ are inside $(b-\eps,b]$. This proves $y_n\rightarrow b$. Conversely, if $y_n\rightarrow b$, then for each $A>0$, all but finitely many $y_n$ are inside $(\varphi(A),b]$ and hence $>\varphi(A)$. So all but finitely many $x_n$ are $>A$.
+Case 2: $x=\pm\infty$. We consider $x=+\infty$ only; the other case is similar. Note that if $0<\eps<b-a$, then $B_{[a,b]}(b,\varepsilon)=(b-\varepsilon,b]$.  If $x_n\rightarrow+\infty$, then for each  $0<\eps<b-a$, all but finitely many $x_n$ are $>\psi(b-\eps)$. So all but finitely many $y_n$ are inside $(b-\eps,b]$. This proves $y_n\rightarrow b$. Conversely, if $y_n\rightarrow b$, then for each $A\in\Rbb$, all but finitely many $y_n$ are inside $(\varphi(A),b]$ and hence $>\varphi(A)$. So all but finitely many $x_n$ are $>A$.
 \end{proof}
 
 
@@ -2004,13 +2022,13 @@ By Thm. \ref{lb51}, the properties of $[a,b]$ about convergence of sequences and
 \begin{enumerate}
 \item If $(x_n),(y_n)$ are sequences in $\ovl\Rbb$ converging to $A,B\in\ovl\Rbb$, and if $x_n\leq y_n$ for all $n$, then $A\leq B$.
 \item \textbf{Squeeze theorem}: \index{00@Squeeze theorem} Suppose that $(x_n),(y_n),(z_n)$ are sequences in $\ovl\Rbb$, $x_n\leq y_n\leq z_n$ for all $n$, and $x_n$ and $z_n$ both converge to $A\in\ovl\Rbb$. Then $y_n\rightarrow A$.
-\item Prop. \ref{lb57} also holds for $[a,b]$ in $\ovl\Rbb$: if $(x_n)$ is an increasing resp. decreasing sequence in $[a,b]$, then $\lim_n x_n$ equals $\sup_n x_n$ resp. $\inf_n x_n$.
+\item Prop. \ref{lb57} also holds for $[-\infty,+\infty]=\ovl\Rbb$: if $(x_n)$ is an increasing resp. decreasing sequence in $\ovl\Rbb$, then $\lim_n x_n$ exists in $\ovl\Rbb$ and equals $\sup_n x_n$ resp. $\inf_n x_n$.
 \end{enumerate}
 We will see more examples when studying $\limsup$ and $\liminf$ in the future.
 \end{rem}
 
 
-We have shown that there is a metric on $\ovl\Rbb$ which defines the convergence in Def. \ref{lb47}. However, there is no standard choice of such a metric on $\ovl\Rbb$. Even worse, two possible choices of metrics might not be equivalent: Let $\varphi,\psi:\ovl\Rbb\rightarrow[0,1]$ be a strictly increasing bijections where $\psi\circ\varphi^{-1}:[0,1]\rightarrow[0,1]$ is $x\mapsto x^2$. Then by Exe. \ref{lb49}, $\varphi^*d_{[0,1]}$ and $\psi^*d_{[0,1]}$ are non-equivalent metrics giving the same topology on $\ovl\Rbb$. This is the first example that metrics are not convenient for the description of convergence. When studying the convergence in $\ovl\Rbb$, thinking about metrics is distracting. In the future, we will see a better notion for the study of convergence: the notion of topological spaces.
+We have shown that there is a metric on $\ovl\Rbb$ which defines the convergence in Def. \ref{lb47}. However, there is no standard choice of such a metric on $\ovl\Rbb$. Even worse, two possible choices of metrics might not be equivalent: Let $\varphi,\psi:\ovl\Rbb\rightarrow[0,1]$ be a strictly increasing bijections where $\psi\circ\varphi^{-1}:[0,1]\rightarrow[0,1]$ is $x\mapsto x^2$. Then by Exe. \ref{lb49}, $\varphi^*d_{[0,1]}$ and $\psi^*d_{[0,1]}$ are non-equivalent but topologically equivalent metrics on $\ovl\Rbb$. This is the first example that metrics are not convenient for the description of convergence. When studying the convergence in $\ovl\Rbb$, thinking about metrics is distracting. In the future, we will see a better notion for the study of convergence: the notion of topological spaces.
 
 We end this section with a generalization of Thm. \ref{lb51}.
 
@@ -2024,7 +2042,7 @@ where $-\infty\leq a\leq b\leq +\infty$ and $-\infty\leq c\leq d\leq +\infty$. T
 \end{thm}
 
 \begin{proof}
-The case $a=b$ is obvious. So we consider $a<b$, and hence $c<d$. We consider the left-open-right-closed case for example. The other cases are treated in a similar way. If the theorem can be proved for $(-\infty,+\infty]\rightarrow(c,d]$, then it can also be proved $(-\infty,+\infty]\rightarrow(a,b]$. By composing the inverse of the second map with the first map, we see that the theorem holds for $[a,b]\rightarrow[c,d]$. 
+The case $a=b$ is obvious. So we consider $a<b$, and hence $c<d$. We consider the left-open-right-closed case for example. The other cases are treated in a similar way. If the theorem can be proved for $(-\infty,+\infty]\rightarrow(c,d]$, then it can also be proved $(-\infty,+\infty]\rightarrow(a,b]$. By composing the inverse of the second map with the first map, we see that the theorem holds for $(a,b]\rightarrow (c,d]$. 
 
 Let us consider $\varphi:(-\infty,+\infty]\rightarrow(c,d]$. $\varphi$ can be extended to a strictly increasing bijection $\varphi:\ovl\Rbb\rightarrow[c,d]$ by letting $\varphi(-\infty)=c$. It suffices to prove that this $\varphi$ is a homeomorphism. When $-\infty<c<d<+\infty$, then the theorem holds by Thm. \ref{lb51}. If one of $c,d$ is $\pm\infty$, the same argument as in the proof of Thm. \ref{lb51} proves that $\varphi$ is a homeomorphism. We leave it to the readers to fill in the details.
 \end{proof}
@@ -2061,7 +2079,7 @@ Prove that $\delta$ is a metric, and that $\delta$ and $d$ are topologically equ
 
 
 \begin{pp}
-Let $(X,d)$ be a metric space. Then there is a \textbf{bounded metric} \index{00@Bounded metric} $\delta$ on $X$, where ``bounded" means $\sup d(X\times X)<+\infty$, such that $d$ and $\delta$ induce the same topology.
+Let $(X,d)$ be a metric space. Then there is a bounded metric $\delta$ on $X$ such that $d$ and $\delta$ are topologically equivalent.
 \end{pp}
 \begin{proof}
 Let $f$ be either $f_1$ or $f_2$ defined in Pb. \ref{lb52}. Then $f$ satisfies the assumptions in Pb. \ref{lb53}. So $\delta=f\circ d$ is a desired metric due to Pb. \ref{lb53}. We write down the formulas explicitly:
@@ -2071,7 +2089,7 @@ Let $f$ be either $f_1$ or $f_2$ defined in Pb. \ref{lb52}. Then $f$ satisfies t
 \end{proof}
 
 \begin{prob}\label{lb78}
-Let $(X_i,d_i)_{i\in\Zbb_+}$ be an sequence of metric spaces. Assume that $d_i\leq 1$ for each $i$. Let $\dps S=\prod_{i\in\Zbb_+} X_i$. For each elements $f=(f(i))_{i\in\Zbb_+}$ and $g=(g(i))_{i\in\Zbb_+}$ of $S$, define
+Let $(X_i,d_i)_{i\in\Zbb_+}$ be a sequence of metric spaces. Assume that $d_i\leq 1$ for each $i$. Let $\dps S=\prod_{i\in\Zbb_+} X_i$. For each elements $f=(f(i))_{i\in\Zbb_+}$ and $g=(g(i))_{i\in\Zbb_+}$ of $S$, define
 \begin{align}
 d(f,g)=\sup_{i\in\Zbb_+} \frac {d_i(f(i),g(i))}{i}  \label{eq16}
 \end{align} 
@@ -2087,7 +2105,7 @@ The above problem gives our first non-trivial example of function spaces  as met
 \begin{align*}
 \delta(f,g)=\sum_{i\in\Zbb_+}2^{-i} d_i(f(i),g(i))
 \end{align*}
-also defines a metric, and that (a) (with $d$ replaced by $\delta$) and (b) equivalent. So $\delta$ and $d$ (defined by \eqref{eq16}) induce the same topology on $X$, called the \textbf{pointwise convergence topology} or simply \textbf{product topology}. Unfortunately, if the index set $\Zbb_+$ is replaced by an uncountable set, there is in general no metric inducing the product topology. We will prove this in a later problem.
+also defines a metric, and that (a) (with $d$ replaced by $\delta$) and (b) are equivalent. So $\delta$ and $d$ (defined by \eqref{eq16}) induce the same topology on $X$, called the \textbf{pointwise convergence topology} or simply \textbf{product topology}. Unfortunately, if the index set $\Zbb_+$ is replaced by an uncountable set, there is in general no metric inducing the product topology. We will prove this in a later problem.
 \end{rem}
 
 
@@ -2191,11 +2209,11 @@ Prove that if $Y$ is a sequentially compact subset of $\Rbb$, then $\sup Y\in Y$
 \end{exe}
 
 \begin{pp}\label{lb71}
-Let $X$ be a sequentially compact metric space. Then $X$ is bounded under its metric $d$, equivalently, $\sup d(X\times X)<+\infty$.
+Let $X$ be a sequentially compact metric space. Then $X$ is bounded under its metric $d$.
 \end{pp}
 
 \begin{proof}
-Fix $p\in X$. The function $d_p:x\in X\mapsto d(x,p)\in\Rbb_{\geq 0}$ is continuous by Exp. \ref{lb45}. So, by Lem. \ref{lb56}, $d_p$ is bounded by some $0<R<+\infty$. So $X=\ovl B_X(p,R)$.
+Choose any $p\in X$. The function $d_p:x\in X\mapsto d(x,p)\in\Rbb_{\geq 0}$ is continuous by Exp. \ref{lb45}. So, by Lem. \ref{lb56}, $d_p$ is bounded by some $0<R<+\infty$. So $X=\ovl B_X(p,R)\subset B_X(p,2R)$.
 \end{proof} 
 
 
@@ -2242,7 +2260,7 @@ In particular, every sequence in $\ovl\Rbb$ has at least one cluster point.
 \begin{proof}
 We use the notations in Def. \ref{lb60}. Let $A=\eqref{eq18}$ and $B=\eqref{eq19}$. If $x\in S$, pick a subsequence $(x_{n_k})$ converging to $x$. Since $\alpha_{n_k}\leq x_{n_k}\leq \beta_{n_k}$, we have $A\leq x\leq B$ by Rem. \ref{lb58}. It remains to show that $A,B\in S$. We prove $B\in S$ by constructing a subsequence $(x_{n_k})$ converging to $B$; the proof of $A\in S$ is similar. 
 
-Consider first of all the special case that $(x_n)$ is bounded, i.e., is inside $[a,b]\subset\Rbb$. Choose an arbitrary $n_1\in\Zbb_+$. Suppose $n_1<\dots<n_k$ has be constructed. By the definition of $\beta_{1+n_k}$, there is $n_{k+1}\geq 1+n_k$ such that $x_{n_{k+1}}$ is close to $\beta_{1+n_k}$, say
+Consider first of all the special case that $(x_n)$ is bounded, i.e., is inside $[a,b]\subset\Rbb$. Choose an arbitrary $n_1\in\Zbb_+$. Suppose $n_1<\dots<n_k$ has been constructed. By the definition of $\beta_{1+n_k}$, there is $n_{k+1}\geq 1+n_k$ such that $x_{n_{k+1}}$ is close to $\beta_{1+n_k}$, say
 \begin{align}
 \beta_{1+n_k}-\frac 1k<x_{n_{k+1}}\leq \beta_{1+n_k}  \label{eq17}
 \end{align}
@@ -2324,7 +2342,7 @@ Let $(x_n)$ be a sequence in $\Rbb^N$. The following are equivalent.
 \begin{proof}
 (1)$\Rightarrow$(2): By Prop. \ref{lb24} and \ref{lb23}. 
 
-(2)$\Rightarrow$(1): Assume (2). Since $(x_n)$ is bounded, it can be contained in $X=I_1\times\cdots\times I_N$ where each $I_i$ is a closed interval in $\Rbb$. By Bolzano-Weierstrass, $X$ is sequentially compact. Thus, by Thm. \ref{lb74}, $(x_n)$ has a subsequence converging in $X$ and hence in $\Rbb^N$.
+(2)$\Rightarrow$(1): Assume (2). Since $(x_n)$ is bounded, it can be contained in $X=I_1\times\cdots\times I_N$ where each $I_i$ is a closed interval in $\Rbb$. Clearly, any two cluster points of $(x_n)$ are inside $X$, and are equal by (2). By Bolzano-Weierstrass, $X$ is sequentially compact. Thus, by Thm. \ref{lb74}, $(x_n)$ converges in $X$ and hence in $\Rbb^N$.
 \end{proof}
 
 \begin{co}
@@ -2453,6 +2471,7 @@ First, assume that $A$ is closed. Let $(x_n)$ be a Cauchy sequence in $A$. Then 
 Next, we assume that $A$ is complete. Choose a sequence $(x_n)$ in $A$ converging to a point $x\in X$. By Prop. \ref{lb83}, $(x_n)$ is a Cauchy sequence in $X$, and hence a Cauchy sequence in $A$. Since $A$ is complete, there is $a\in A$ such that $x_n\rightarrow a$. So we must have $x=a$ because any sequence has at most one limit in a metric space. This proves $x\in A$. So $A$ is closed.
 \end{proof}
 
+A similar result holds for sequential compactness. See Pb. \ref{lb90}.
 
 \begin{eg}
 Let $-\infty<a<b<+\infty$. Then $(a,b)$ is not complete (under the Euclidean metric), because $(a,b)$ is not closed in the complete metric space $\Rbb$. (For sufficiently large $n$, $b-1/n$ is in $(a,b)$, but $\lim_{n\rightarrow\infty} (b-1/n)=b$ is not in $b$.) 
@@ -2485,7 +2504,7 @@ A major application of complete metric spaces is to show that many series conver
 
 
 
-\begin{df}
+\begin{df}\label{lb91}
 Let $V$ be a vector space over $\Fbb$ with zero vector $0_V$. A function $\lVert\cdot\lVert:V\rightarrow\Rbb_{\geq 0}$ is called a \textbf{norm} \index{00@Norm} if for every $u,v\in V$ and $\lambda\in\Fbb$, the following hold:
 \begin{itemize}
 \item (Subadditivity) $\lVert u+v\lVert\leq \lVert u\lVert+\lVert v\lVert$. \index{00@Subadditivity}
@@ -2634,7 +2653,7 @@ In fact, it is true that the uniform convergence of sequences in $V^X$ is induce
 
 
 \begin{thm}\label{lb85}
-Let $X$ be a set, and let $V$ be an $\Fbb$-Banach space. Then $l^\infty(X,V)$ is an $\Fbb$-Banach space.
+Let $X$ be a set, and let $V$ be a Banach space (over $\Fbb$). Then $l^\infty(X,V)$ is a Banach space (over $\Fbb$).
 \end{thm}
 
 
@@ -2691,6 +2710,124 @@ This follows immediately from Prop. \ref{lb86}, Thm. \ref{lb87}, and the fact th
 \end{proof}
 
 
+\subsection{Series}
+
+We assume that vector spaces are over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+\subsubsection{Definitions and basic properties}
+
+
+\begin{df}
+Let $V$ be a Banach space (over $\Fbb$). A \textbf{series} \index{00@Series in a Banach space} in $V$ is an expression of the form
+\begin{align}
+\sum_{i=1}^\infty v_i  \label{eq25}
+\end{align}
+where $(v_i)_{i\in\Zbb_+}$ is a sequence in $V$. If $s\in V$, we say that the series \eqref{eq25} \textbf{converges to $s$} if
+\begin{align*}
+s=\lim_{n\rightarrow\infty} \sum_{i=1}^n v_i
+\end{align*}
+namely, $s_n\rightarrow s$ where $s_n$ is the \textbf{partial sum} \index{00@Partial sum} $s_n=\sum_{i=1}^n v_i$. In this case, we write
+\begin{align*}
+s=\sum_{i=1}^\infty v_i
+\end{align*}
+\end{df}
+
+
+\begin{rem}
+Since $V$ is complete, the series \eqref{eq25} converges iff the sequence of partial sum $(s_n)$ is a Cauchy sequence: for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have $\lVert s_n-s_m\lVert<\eps$, i.e.,
+\begin{align}
+\Big\lVert \sum_{i=m+1}^N v_i\Big\lVert<\eps  \label{eq28}
+\end{align}
+\end{rem}
+
+
+\begin{pp}
+Suppose that $\sum_{i=1}^\infty v_i$ is a convergent series in a Banach space $V$. Then $\dps\lim_{n\rightarrow\infty} v_n=0$.
+\end{pp}
+
+\begin{proof}
+Let $s_n=v_1+\cdots+v_n$, which converges to $s\in V$. Then $\lim_{n\rightarrow\infty} s_{n+1}=s$. So $v_n=s_{n+1}-s_n\rightarrow s-s=0$ since subtraction in continuous (Prop. \ref{lb82}).
+\end{proof}
+
+Thus, for example, $\sum_{n=1}^\infty (-1)^n$ diverges in the Banach space $\Rbb$ since $\lim_{n\rightarrow\infty} (-1)^n$ does not converge to $0$.
+
+
+
+
+
+\begin{df}
+Consider a \textbf{series} in $\ovl\Rbb_{\geq0}$: \index{00@Series in $\ovl\Rbb_{\geq0}$}
+\begin{align}
+\sum_{i=1}^\infty a_i \label{eq26}
+\end{align}
+namely, each $a_i$ is in $\ovl\Rbb_{\geq 0}$. Note that the partial sum $s_n=\sum_{i=1}^n a_i$ is increasing. We say that $\lim_{n\rightarrow\infty} s_n$ (which exists in $\ovl\Rbb_{\geq0}$ and equals $\sup\{s_n:n\in\Zbb_+\}$, cf. Rem. \ref{lb58}) is the value of the series \eqref{eq26} and write
+\begin{align*}
+\sum_{i=1}^\infty a_i=\lim_{n\rightarrow\infty} s_n
+\end{align*}
+\end{df}
+
+
+\begin{df}
+We say that a series $\sum_{i=1}^\infty a_i$ in $\Rbb_{\geq 0}$ \textbf{converges} if it converges in $\Rbb$ (but not just converges in $\ovl\Rbb_{\geq 0}$, which is always true). Clearly, $\sum_{i=1}^\infty a_i$ converges iff
+\begin{align*}
+\sum_{i=1}^\infty a_i<+\infty
+\end{align*}
+More generally, we say that a series $\sum_{i=1}^\infty v_i$ in a Banach space $V$ \textbf{converges absolutely}, \index{00@Absolute convergence} if
+\begin{align*}
+\sum_{i=1}^\infty~ \lVert v_i\lVert <+\infty
+\end{align*}
+\end{df}
+
+\begin{rem}
+By the Cauchy condition of convergence, $\sum_{i=1}^\infty v_i$ converges absolutely iff for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have 
+\begin{align}
+\sum_{i=m+1}^N~\lVert v_i\lVert<\eps \label{eq27}
+\end{align}
+By comparing \eqref{eq27} with \eqref{eq28} and using the subadditivity of the norm (recall Def. \ref{lb91}), we immediately see:
+\end{rem}
+
+\begin{pp}
+Let $\sum_{i=1}^\infty v_i$ be a series in a Banach space. The following are true.
+\begin{enumerate}
+\item If $\sum_{i=1}^\infty v_i$ converges absolutely, then it converges.
+\item For each $i$ we choose $a_i\in\Rbb_{\geq0}$ satisfying $\lVert v_i\lVert\leq a_i$. Suppose that $\sum_{i=1}^\infty a_i<+\infty$. Then $\sum_{i=1}^\infty v_i$ converges absolutely.
+\end{enumerate}
+\end{pp}
+
+
+\begin{exe}
+Suppose that $\sum_{i=1}^\infty u_i$ and $\sum_{i=1}^\infty v_i$ are convergent (resp. absolutely convergent) series in a Banach space $V$. Let $\lambda\in\Fbb$. Show that the LHS of the following equations converges (resp. converges absolutely) in $V$, and that the following equations hold:
+\begin{gather*}
+\sum_{i=1}^\infty (u_i+v_i)=\sum_{i=1}^\infty u_i+\sum_{i=1}^\infty v_i\\
+\sum_{i=1}^\infty \lambda v_i=\lambda\cdot\sum_{i=1}^\infty v_i
+\end{gather*}
+\end{exe}
+
+
+\begin{rem}
+We have seen that absolute convergence implies convergence. In fact, at least when $V=\Fbb^N$, absolute convergence is in many ways more natural than convergence. For example, we will learn that if a series $\sum_i v_i$ in $\Fbb^N$ converges absolutely, then the value of $\sum_i v_i$ is invariant under rearrangement of the series: for every bijection $\varphi:\Zbb_+\rightarrow\Zbb_+$ we have $\sum_i v_i=\sum_i v_{\varphi(i)}$. In the next semester, we shall learn Lebesgue integral theory and, more generally, measure theory. When applying measure theory to infinite sums over the countable set $\Zbb_+$, many good results (e.g. dominated convergence theorem, Fubini theorem)  hold only for absolute convergence series, but not for arbitrary convergent series in general. In fact, there is no analog of convergent (but not absolutely convergent) series in measure theory at all!
+
+When $V$ is not necessarily finite-dimensional, the situation is subtler: there is a version of convergence which lies between the usual convergence and absolute convergence, and which coincides with absolute convergence when $V=\Fbb^N$. This version of convergence is defined using nets instead of sequences. Moreover, many good properties (as mentioned above) hold for this convergence, and these properties can be proved in a very conceptual way (rather than using brute-force computation). We will learn this convergence in the next chapter.   \hfill\qedsymbol
+\end{rem}
+
+
+
+\subsubsection{Examples}
+
+
+Let us study the \textbf{geometric series} $\sum_{n=0}^\infty z^n$ where $z\in\Cbb$. First, we compute the limit:
+\begin{eg}
+Assume $z\in\Cbb$ and $|z|<1$. Then $\lim_{n\rightarrow\infty}z^n=0$. 
+\end{eg}
+
+\begin{proof}
+If $z=0$ then it is obvious. Assume that $0<|z|<1$. Choose $\delta>0$ such that $|z|=1/(1+\delta)$. Since $(1+\delta)^n=1+n\delta$
+\end{proof}
+
+
+
+
+
 
 
 
@@ -2715,7 +2852,7 @@ Thus ``$(x_n)$ eventually satisfies P" means the same as ``all but finitely many
 \end{rem}
 
 \begin{rem}
-Condition (2) of Pb. \ref{lb64} is sometimes easier to use than (1). For example: compared to the original definition of cluster points, it is much easier to find an explicit negation of (2).
+Condition (2) of Pb. \ref{lb64} is sometimes easier to use than (1). For example, compared to the original definition of cluster points, it is much easier to find an explicit negation of (2): There exist $\eps>0$ and $N\in\Zbb_+$ such that $d(x_n,x)\geq\eps$ for all $n\geq N$. (Or simply: there exists $\eps>0$ such that $x_n$ is eventually not in $B(x,\eps)$.) 
 \end{rem}
 
 
@@ -2729,7 +2866,7 @@ You will notice that your proof of Pb. \ref{lb70} is slightly simpler than the p
 \end{rem}
 
 \begin{thm}[\textbf{Tychonoff theorem, countable version}]\index{00@Tychonoff theorem, countable version}  \label{lb89}
-Let $(X_n)_{n\in\Zbb_+}$ be a sequence of metric spaces where each $X_n$ is sequentially compact. Then the product space $\dps S=\prod_{n\in\Zbb_+} X_n$ is sequentially compact under the metric defined  as in Pb. \ref{lb78}.
+Let $(X_n)_{n\in\Zbb_+}$ be a sequence of sequentially compact metric spaces. Then the product space $\dps S=\prod_{n\in\Zbb_+} X_n$ is sequentially compact under the metric defined  as in Pb. \ref{lb78}.
 \end{thm}
 
 The method of choosing subsequence in the following proof is the reknowned \textbf{diagonal method}. \index{00@Diagonal method}
@@ -2754,6 +2891,12 @@ such that the following hold:
 \end{itemize}
 Then the diagonal line $(x_{i,i})_{i\in\Zbb_+}$ is a subsequence of the original sequence $(x_m)_{m\in\Zbb_+}$. Moreover, for each $n$, $(x_{i,i})_{i\geq n}$ is a subsequence of the $n$-th line, whose value at $n$ therefore converges in $X_n$. Thus $\lim_{i\rightarrow\infty} x_{i,i}(n)$ converges in $X_n$. Thus, by Pb. \ref{lb78}, $(x_{i,i})_{i\in\Zbb_+}$ converges under any metric inducing the product topology.
 \end{proof}
+
+
+
+\begin{prob}\label{lb90}
+Let $X$ be a sequentially compact metric space. Let $A\subset X$ be a metric subspace. Prove that $A$ is a closed subset of $Y$ iff $A$ is sequentially compact. 
+\end{prob}
 
 
 
