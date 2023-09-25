@@ -131,10 +131,18 @@
 \newtheorem{nota}[df]{Notation}
 \newtheorem*{axiom}{Axiom}
 \newtheorem{coa}[df]{Theorem}
-\newtheorem{prob}{Problem}[section]
-%\renewcommand*{\theprob}{\arabic{section}.\Roman{prob}}
-\newtheorem{sprob}[prob]{$\star$ Problem}
-\newtheorem{ssprob}[prob]{$\star\star$ Problem}
+\newtheorem{srem}[df]{$\star$ Remark}
+\newtheorem{seg}[df]{$\star$ Example}
+
+
+
+\newtheorem{prob}{\color{red}Problem}[section]
+%\renewcommand*{\theprob}{{\color{red}\arabic{section}.\arabic{prob}}}
+\newtheorem{sprob}[prob]{\color{red}$\star$ Problem}
+%\renewcommand*{\thesprob}{{\color{red}\arabic{section}.\arabic{sprob}}}
+% \newtheorem{ssprob}[prob]{$\star\star$ Problem}
+
+
 
 \theoremstyle{plain}
 \newtheorem{thm}[df]{Theorem}
@@ -443,8 +451,13 @@ Let me first list the notations and conventions that will be used throughout the
 \text{i.e.=id est=that is=namely}\qquad\text{e.g.=for example}\\
 \text{cf.=compare/check/see/you are referred to}\\
 \text{resp.=respectively}\qquad 
-\text{WLOG=without loss of generality}
+\text{WLOG=without loss of generality}\\
 \end{gather*}
+If $P,Q$ are properties, then
+\begin{align*}
+P\land Q=P\text{ and }Q\qquad P\lor Q=P\text{ or }Q\qquad \neg P=\text{ Not }P
+\end{align*}
+
 If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminus\{0\}$. \index{F@$\Fbb^\times=\Fbb\setminus\{0\}$} If $\alpha$ is a complex number and $n\in\Nbb$, we define the \textbf{binomial coefficient}\index{zz@$\alpha\choose n$}
 \begin{align}
 {\alpha\choose n}=\left\{
@@ -456,7 +469,9 @@ If $\Fbb$ is any field (e.g. $\Qbb,\Rbb,\Cbb$), we let $\Fbb^\times=\Fbb\setminu
 \end{align}
 where $n!=n(n-1)(n-2)\cdots 2\cdot 1$ and $0!=1$.
 
-Topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics marked with $\star$ are interesting, but not necessarily technical. They are not essential for understanding the later part of the notes.
+
+
+Topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. You can skim or skip them on first reading. Topics marked with $\star$ are interesting, but not necessarily technical or difficult. They are not essential for understanding the later part of the notes.
 
 %Topics in the ``Problems" section (or the whole ``Problems" sections) marked with $\heartsuit$ are important problems that will be used later in this course.
 
@@ -686,7 +701,7 @@ Let $A$ be a set. A \textbf{partial order} (or simply an \textbf{order}) $\leq$ 
 \item (Antisymmetry) If $a\leq b$ and $b\leq a$ then $a=b$.
 \item (Transitivity) If $a\leq b$ and $b\leq c$ then $a\leq c$.
 \end{itemize}
-We write $b\geq a$ iff $a\leq b$. Write $a>b$ iff $a\geq b$ and $a\neq b$. Write $a<b$ iff $b>a$. So $\geq$ is also an order on $A$. The pair $(A,\leq)$ is called a \textbf{partially ordered set}. A partial order $\leq$ on $A$ is called a \textbf{total order}, if for every $a,b\in A$ we have either $a\leq b$ or $b\leq a$.
+We write $b\geq a$ iff $a\leq b$. Write $a>b$ iff $a\geq b$ and $a\neq b$. Write $a<b$ iff $b>a$. So $\geq$ is also an order on $A$. The pair $(A,\leq)$ is called a \textbf{partially ordered set}, or simply a \textbf{poset}. \index{00@Poset=partially ordered set} A partial order $\leq$ on $A$ is called a \textbf{total order}, if for every $a,b\in A$ we have either $a\leq b$ or $b\leq a$.
 \end{df}
 
 
@@ -694,8 +709,8 @@ We write $b\geq a$ iff $a\leq b$. Write $a>b$ iff $a\geq b$ and $a\neq b$. Write
 The following are examples of orders.
 \begin{itemize}
 \item Assume that $\Rbb$ exists. Then $\Rbb$ has the canonical total order, which restricts to the total order of $\Zbb$. This is the total order that everyone is familiar with.
-\item Let $X$ be a set. Then $(2^X,\subset)$ is a partially ordered set.
-\item $\Rbb^2$ is a partially ordered set, if we define $(a,b)\leq (c,d)$ to be $a\leq c$ and $b\leq d$. 
+\item Let $X$ be a set. Then $(2^X,\subset)$ is a poset.
+\item $\Rbb^2$ is a poset, if we define $(a,b)\leq (c,d)$ to be $a\leq c$ and $b\leq d$. 
 \end{itemize}
 \end{eg}
 
@@ -859,14 +874,14 @@ This proves $x<p<y$ with $\displaystyle p=\frac{k+1}n$.
 To introduce $\Rbb$ formally, we need more definitions:
 
 \begin{df}
-Let $(X,\leq)$ be a partially ordered set and $E\subset X$. An \textbf{upper bound of $E$ in $X$} \index{00@Upper bound} is an element $x\in X$ satisfying $e\leq x$ for all $e\in E$. An upper bound $x\in X$ of $E$ is called a \textbf{least upper bound} or a \textbf{supremum} \index{00@Supremum}  if $x\leq y$ for every upper bound $y\in Y$ of $E$. In this case, we write the supremum as \index{sup@$\sup E$} $\sup E$. It is not hard to check that supremums are unique if they exist.
+Let $(X,\leq)$ be a poset and $E\subset X$. An \textbf{upper bound of $E$ in $X$} \index{00@Upper bound} is an element $x\in X$ satisfying $e\leq x$ for all $e\in E$. An upper bound $x\in X$ of $E$ is called a \textbf{least upper bound} or a \textbf{supremum} \index{00@Supremum}  if $x\leq y$ for every upper bound $y\in Y$ of $E$. In this case, we write the supremum as \index{sup@$\sup E$} $\sup E$. It is not hard to check that supremums are unique if they exist.
 
 We leave it to the readers to define \textbf{lower bounds} and the \textbf{greatest lower bound} (if exists) of $E$, also called the \textbf{infinimum} \index{00@Infinimum} and is denoted by \index{inf@$\inf E$} $\inf E$. \hfill\qedsymbol
 \end{df}
 
 
 \begin{df}
-Let $(X,\leq)$ be a partially ordered set. We say that $X$ satisfies the \textbf{least-upper-bound property}, if every every nonempty subset $E\subset X$ which is bounded above (i.e. $E$ has an upper bound) has a supremum in $X$. The \textbf{greatest-lower-bound property} is defined in the opposite way.
+Let $(X,\leq)$ be a poset. We say that $X$ satisfies the \textbf{least-upper-bound property}, if every every nonempty subset $E\subset X$ which is bounded above (i.e. $E$ has an upper bound) has a supremum in $X$. The \textbf{greatest-lower-bound property} is defined in the opposite way.
 \end{df}
 
 \begin{eg}
@@ -896,7 +911,7 @@ Note that to compare two extensions $\Fbb,\Rbb$ of $\Qbb$, it is very confusing 
 \end{rem}
 
 
-\begin{df}
+\begin{df}\label{lb114}
 Let $-\infty,+\infty$ be two different symbols, and extend the total order $\leq$ of $\Rbb$ to the \textbf{extended real line}\index{R@$\ovl\Rbb=[-\infty,+\infty]=\Rbb\cup\{-\infty,+\infty\}$}
 \begin{align*}
 \ovl\Rbb=\Rbb\cup\{-\infty,+\infty\}
@@ -920,7 +935,7 @@ If $a,b\in\ovl\Rbb$ and $a\leq b$, we define \textbf{intervals} \index{00@Interv
 (a,b]=\{x\in\ovl\Rbb:a< x\leq b\}\qquad [a,b)=\{x\in\ovl\Rbb:a\leq x< b\}
 \end{gathered}
 \end{gather}
-So $\Rbb=(-\infty,+\infty)$ and $\ovl\Rbb=[-\infty,+\infty]$.
+So $\Rbb=(-\infty,+\infty)$ and $\ovl\Rbb=[-\infty,+\infty]$. If $a,b$ are in $\Rbb$, we say that the corresponding interval is \textbf{bounded}. \index{00@Bounded interval}
 \end{df}
 
 In this course, unless otherwise stated, an interval always means one of the four sets in \eqref{eq8}. The first two intervals are called respectively a \textbf{closed interval} and an \textbf{open interval}.
@@ -1422,6 +1437,15 @@ Let $(x_n)_{n\in\Zbb_+}$ be a sequence in a metric space $X$. Let $x\in X$. We s
 Equivalently, this means that every (nonempty) open ball centered at $x$ contains \textbf{all but finitely many} \index{00@All but finitely many $x_n$} $x_n$.\footnote{``All but finitely many $x_n$ satisfies..." means ``for all but finitely many $n$, $x_n$ satisfies...". It does NOT mean that ``all but finitely many elements of the set $\{x_n:n\in\Zbb_+\}$ satisfies...".} 
 \end{df}
 
+\begin{rem}\label{lb100}
+The negation of $x_n\rightarrow x$ is clear: 
+\begin{itemize}
+\item There exists $\eps>0$ such that for all $N\in\Zbb_+$ there exists $n\geq N$ such that $d(x_n,x)\geq\eps$.
+\end{itemize}
+Namely, one changes each ``for all" to ``there exists", changes each ``there exists" to ``for all", and negate the last sentence.
+\end{rem}
+
+
 \begin{exe}
 Show that in the above definition of limits,  it suffices to consider rational numbers $\varepsilon>0$. (Note: You need to use Prop. \ref{lb2}.) 
 \end{exe}
@@ -1445,6 +1469,8 @@ Suppose $(x_n)_{n\in\Zbb_+}$ converges to $x,y\in X$ where $x\neq y$. By Hausdor
 
 \subsubsection{Methods for proving convergence and computing limits}
 
+
+
 \begin{eg}
 $\dps \lim_{n\rightarrow\infty}\frac 1n=0$.
 \end{eg}
@@ -1464,7 +1490,7 @@ If $y<x$, let $\varepsilon=x-y$. Then all but finitely many members of $(x_n)$ a
 
 
 \begin{df}
-If $A$ and $B$ are partially ordered set, we say a function $f:A\rightarrow B$ is \textbf{increasing} \index{00@Increasing and decreasing} \index{00@Strictly increasing and strictly decreasing} (resp. \textbf{strictly increasing}), if for each $x,y\in A$ we have
+If $A$ and $B$ are posets (or more generally, preordered sets, see Def. \ref{lb116}), we say a function $f:A\rightarrow B$ is \textbf{increasing} \index{00@Increasing and decreasing} \index{00@Strictly increasing and strictly decreasing} (resp. \textbf{strictly increasing}), if for each $x,y\in A$ we have
 \begin{gather*}
 x\leq y\qquad\Longrightarrow\qquad f(x)\leq f(y)\\
 \text{resp.}\\
@@ -1549,6 +1575,7 @@ Let $d,\delta$ be two equivalent metrics on a set $X$. Let $(x_n)_{n\in\Zbb_+}$ 
 Prove it yourself. (Or see Prop. \ref{lb48}.)
 \end{proof}
 
+More useful formulas about limit will be given in Exp. \ref{lb111}.
 
 
 
@@ -1556,7 +1583,7 @@ Prove it yourself. (Or see Prop. \ref{lb48}.)
 
 
 
-\subsubsection{Criteria for divergence}
+\subsubsection{Criteria for divergence}\label{lb119}
 
 \begin{df}
 A subset $E$ of a metric space $(X,d)$ is called \index{00@Bounded subset} \textbf{bounded} if either $E=\emptyset$ or there exist $p\in X$ and $R\in\Rbb_{>0}$ such that $E\subset B_X(p,R)$. If $X$ is bounded, we also say that $d$ is a \textbf{bounded metric}. \index{00@Bounded metric}
@@ -1572,7 +1599,7 @@ In a metric space $X$, if $x\in X$ and $0<r<+\infty$, then $B(x,r)$ is bounded. 
 \end{eg}
 
 
-%%Record #1 09/18
+%% Record #1 2023/09/18
 
 Also, it is easy to see:
 \begin{eg}\label{lb22}
@@ -1654,7 +1681,7 @@ $\neg$(2)$\Rightarrow$ $\neg$(1): Assume that (2) is not true. Then there exists
 One can compare Def. \ref{lb31}-(1) to the definition of linear maps. A map is continuous iff it \emph{preserves the convergence of sequences}, i.e., iff it maps convergent sequences to convergent ones. A map (between vector spaces) is linear iff it perserves the addition and the scalar multiplication of vectors. In general, a good map between two sets with ``structures" is a map which preserves the structures. (Thus, linear combinations encode the linear structures of vector spaces. Similarly, the convergence of sequences remembers the ``topological" structures of metric spaces.) As another example, we will define an isometry of metric spaces to be one that preserves the metrics (the structures of metric spaces), see Exe. \ref{lb46}.
 \end{rem}
 
-\begin{rem}
+\begin{rem}\label{lb115}
 In this section, we mainly use Def. \ref{lb31}-(1) to study continuity. But in later sections we will also use Def. \ref{lb31}-(2'). An advantage of (2') is that it is more geometric. Indeed, if $X$ is a metric space and $E\subset X$, we say that $x\in E$ is an \textbf{interior point of $E$ in $X$} \index{00@Interior point} if there exists $\delta>0$ such that $B_X(x,\delta)\subset E$. For example, a point  $z\in\Cbb$ is an interior point of the closed unit disk $\ovl B_\Cbb(0,1)=\{w\in\Cbb:|w|\leq 1\}$ iff $|z|<1$. 
 
 Thus, Def. \ref{lb31}-(2') says that for any map of metric spaces $f:X\rightarrow Y$ and $x\in X$, the following are equivalent:
@@ -1667,7 +1694,7 @@ We say that a subset $U\subset X$ is \textbf{open} \index{00@Open set} if each p
 \item A map of metric spaces $f:X\rightarrow Y$ is continuous iff the preimage under $f$ of every open ball of $Y$ is an open subset of $X$.
 \end{itemize}
 
-In the study of point-set topology, we will see that many properties can be studied in two approaches: using sequences (or using nets, the natural generalizations of sequences) and their convergence, and using open sets. The first example of such property is continuity, as we have seen in Def. \ref{lb31}. Another prominent example is sequential compactness vs. compactness. These two approaches represent two (very) different intuitions. (So it is surprising that these two things, which seem so different, are actually equivalent!) Sometimes both approaches work for a problem, but sometimes only one of them works, or one of them is much simpler. If you are a beginner in analysis and point-set topology, I suggest that whenever you see one approach applied to a problem, try to think about whether the other approach also works and which one is better.   \hfill\qedsymbol
+In the study of point-set topology, we will see that many properties can be studied in two approaches: using sequences (or using nets, the natural generalizations of sequences) and their convergence, and using open sets. The first example of such property is continuity, as we have seen in Def. \ref{lb31}. Another prominent example is sequential compactness vs. compactness. These two approaches represent two (very) different intuitions: one is dynamic, while the other is static and more geometric. (So it is surprising that these two very things are actually equivalent!) Sometimes both approaches work for a problem, but sometimes only one of them works, or one of them is much simpler. If you are a beginner in analysis and point-set topology, I suggest that whenever you see one approach applied to a problem, try to think about whether the other approach also works and which one is better.   \hfill\qedsymbol
 \end{rem}
 
 
@@ -1906,7 +1933,7 @@ If such $f$ exists, we say that $X,Y$ are \textbf{homeomorphic}.
 \end{df}
 
 A special case of the above definition is:
-\begin{df}
+\begin{df}\label{lb144}
 Let $X$ be a set with metrics $d,\delta$. We say that $d$ and $\delta$ induce the \textbf{same topology} on $X$ (or that $d,\delta$ are \index{00@Topologically equivalent metrics} \textbf{topologically equivalent}) if one of the following clearly equivalent statements holds:
 \begin{itemize}
 \item[(1)] The map $(X,d)\rightarrow (X,\delta),x\mapsto x$ is a homeomorphism.\footnote{We prefer not to call this map the identity map, because the metrics on the source and on the target are different.}
@@ -1945,7 +1972,7 @@ We now look at isometric isomorphisms in a different direction. Suppose that $f:
 \begin{align*}
 f^*d_Y(x_1,x_2)=d_Y(f(x_1),f(x_2))
 \end{align*}
-and call $f^*d_Y$ the \textbf{bullback metric} \index{00@Pullback metrics} of $d_Y$ by $f$. \hfill\qedsymbol
+and call $f^*d_Y$ the \textbf{pullback metric} \index{00@Pullback metrics} of $d_Y$ by $f$. \hfill\qedsymbol
 \end{rem}
 
 Pullback metrics are a very useful way of constructing metrics on a set. We consider some examples below. 
@@ -1990,7 +2017,7 @@ Let $-\infty\leq a<b\leq +\infty$ and $-\infty\leq c<d\leq +\infty$. Then there 
 Note that this map clearly sends $a$ to $c$ and $b$ to $d$. So it restricts to strictly increasing bijections $(a,b)\rightarrow(c,d)$, $(a,b]\rightarrow(c,d]$, $[a,b)\rightarrow[c,d)$.
 
 \begin{proof}
-We have a strictly increasing bijection $f:\Rbb\rightarrow(-1,1)$ defined by \eqref{eq20}.  $f$ can be extended to a strictly increasing bijective map $\ovl\Rbb\rightarrow[-1,1]$ if we set $f(\pm\infty)=\pm1$. Thus, $f$ restricts to a strictly increasing bijection $[a,b]\rightarrow [c',d']$ where $c'=f(a),d'=f(b)$. Choose a linear function $g(x)=\alpha x+\beta$ (where $\alpha>0$) giving an increasing bijection $[c',d']\rightarrow[c,d]$. Then $g\circ f$ is the desired map.
+We have a strictly increasing bijection $f:\Rbb\rightarrow(-1,1)$ defined by \eqref{eq20}.  $f$ can be extended to a strictly increasing bijective map $\ovl\Rbb\rightarrow[-1,1]$ if we set $f(\pm\infty)=\pm1$. Thus, $f$ restricts to a strictly increasing bijection $[a,b]\rightarrow [f(a),f(b)]$. Choose a linear function $g(x)=\alpha x+\beta$ (where $\alpha>0$) giving an increasing bijection $[f(a),f(b)]\rightarrow[0,1]$. Then $h=g\circ f:[a,b]\rightarrow[0,1]$ is a strictly increasing bijection. Similarly, we have a strictly increasing bijection $k:[c,d]\rightarrow[0,1]$. Then $k^{-1}\circ h:[a,b]\rightarrow[c,d]$ is a strictly increasing bijection.
 \end{proof}
 
 
@@ -2013,7 +2040,7 @@ Unless otherwise stated, a metric on $\ovl\Rbb$ is one that makes Def. \ref{lb47
 
 
 
-The main reason for not following Convention \ref{lb76} here is that metrics on $\ovl\Rbb$ are all bounded (by Prop. \ref{lb71}). Thus, every subset of $\Rbb$ is bounded if we view $\Rbb$ as a metric subspace of $\ovl\Rbb$. However, we want a subset of $\Rbb$ to be bounded precisely when it is contained in $[a,b]$ for some $-\infty<a<b<+\infty$.
+The main reason for not following Convention \ref{lb76} here is that metrics on $\ovl\Rbb$ are all bounded (by Prop. \ref{lb71}). Thus, every subset of $\Rbb$ is bounded if we view $\Rbb$ as a metric subspace of $\ovl\Rbb$. However, we want a subset of $\Rbb$ to be bounded precisely when it is contained in $[a,b]$ for some $-\infty<a<b<+\infty$. (Recall also Def. \ref{lb114}.)
 
 
 
@@ -2047,6 +2074,9 @@ The case $a=b$ is obvious. So we consider $a<b$, and hence $c<d$. We consider th
 Let us consider $\varphi:(-\infty,+\infty]\rightarrow(c,d]$. $\varphi$ can be extended to a strictly increasing bijection $\varphi:\ovl\Rbb\rightarrow[c,d]$ by letting $\varphi(-\infty)=c$. It suffices to prove that this $\varphi$ is a homeomorphism. When $-\infty<c<d<+\infty$, then the theorem holds by Thm. \ref{lb51}. If one of $c,d$ is $\pm\infty$, the same argument as in the proof of Thm. \ref{lb51} proves that $\varphi$ is a homeomorphism. We leave it to the readers to fill in the details.
 \end{proof}
 
+
+
+%% Record  #2  2023/9/20
 
 
 \subsection{Problems and supplementary material}
@@ -2196,7 +2226,7 @@ Since $X=(X_1\times\cdots\times X_{N-1})\times X_n$, by induction, it suffices t
 
 
 \begin{pp}\label{lb62}
-Let $f:X\rightarrow Y$ be a continuous surjective map of metric spaces. Assume that $X$ is sequentially compact. Then $f(X)$, as a metric subspace of $Y$, is sequentially compact.
+Let $f:X\rightarrow Y$ be a continuous  map of metric spaces. Assume that $X$ is sequentially compact. Then $f(X)$, as a metric subspace of $Y$, is sequentially compact.
 \end{pp}
 
 \begin{proof}
@@ -2251,6 +2281,14 @@ It is clear that $\alpha_n\leq x_n\leq \beta_n$, that $(\alpha_n)$ is increasing
 (cf. Rem. \ref{lb58}), called respectively the \textbf{limit inferior} and the \textbf{limit superior} \index{00@Limit inferior and superior} of $(x_n)$.
 \end{df}
 
+\begin{rem}
+Let $(x_n),(y_n)$ be sequences in $\ovl\Rbb$. Suppose that $x_n\leq y_n$ for every $n$. It is clear that
+\begin{gather*}
+\liminf_{n\rightarrow\infty}x_n\leq\limsup_{n\rightarrow\infty} x_n\qquad \liminf_{n\rightarrow\infty}x_n\leq \liminf_{n\rightarrow\infty}y_n\qquad \limsup_{n\rightarrow\infty} x_n\leq \limsup_{n\rightarrow\infty} y_n
+\end{gather*}
+\end{rem}
+
+
 \begin{thm}\label{lb68}
 Let $(x_n)$ be a sequence in $\ovl\Rbb$, and let $S$ be the set of cluster points of $(x_n)$. Then $\dps\liminf_{n\rightarrow\infty}x_n$ and $\dps\limsup_{n\rightarrow\infty}x_n$ belong to $S$. They are respectively the minimum and the maximum of $S$.
 \end{thm}
@@ -2279,7 +2317,7 @@ For example, to solve a linear algebra problem about linear maps between finite-
 
 
 \begin{exe}\label{lb66}
-Let $X,Y$ be partially ordered sets. Let $\varphi:X\rightarrow Y$ be an increasing bijection whose inverse is also increasing. (Namely, $\varphi$ induces an equivalence of partially ordered sets). Suppose $E\subset X$ has supremum $\sup E$. Explain why $\varphi(E)$ has supremum $\varphi(\sup E)$.
+Let $X,Y$ be posets. Let $\varphi:X\rightarrow Y$ be an increasing bijection whose inverse is also increasing. (Namely, $\varphi$ induces an equivalence of posets). Suppose $E\subset X$ has supremum $\sup E$. Explain why $\varphi(E)$ has supremum $\varphi(\sup E)$.
 \end{exe}
 
 
@@ -2296,7 +2334,7 @@ By Prop. \ref{lb72}, it suffices to assume $N=1$. Write $a_1=a,b_1=b$. Let $(x_n
 Bolzano-Weierstrass theorem illustrates why we sometimes prefer to work with $\ovl\Rbb$ instead of $\Rbb$: $\ovl\Rbb$ is sequentially compact, while $\Rbb$ is not. That every sequence has limits superior and inferior in $\ovl\Rbb$ but not necessarily in $\Rbb$ is closely related to this fact. In the language of point-set topology, $\ovl\Rbb$ is a \textbf{compactification} of $\Rbb$.
 
 
-
+Bolzano-Weierstrass theorem (restricted to $\Rbb^N$) will be generalized to \textbf{Heine-Borel theorem}, which says that a subset of $\Rbb^N$ is sequentially compact iff it is bounded and closed (cf. Def. \ref{lb99} for the definition of closed subsets). See Thm. \ref{lb98}.
 
 
 
@@ -2345,13 +2383,15 @@ Let $(x_n)$ be a sequence in $\Rbb^N$. The following are equivalent.
 (2)$\Rightarrow$(1): Assume (2). Since $(x_n)$ is bounded, it can be contained in $X=I_1\times\cdots\times I_N$ where each $I_i$ is a closed interval in $\Rbb$. Clearly, any two cluster points of $(x_n)$ are inside $X$, and are equal by (2). By Bolzano-Weierstrass, $X$ is sequentially compact. Thus, by Thm. \ref{lb74}, $(x_n)$ converges in $X$ and hence in $\Rbb^N$.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb113}
 The following are true.
 \begin{itemize}
 \item[1.] Let $(x_n)$ be a sequence in $\ovl\Rbb$. Then $(x_n)$ converges in $\ovl\Rbb$ iff $\dps\limsup_{n\rightarrow\infty} x_n$ equals $\dps\liminf_{n\rightarrow\infty} x_n$. 
 \item[2.] Let $(x_n)$ be a sequence in $\Rbb$. Then $(x_n)$ converges in $\Rbb$ iff $\dps\limsup_{n\rightarrow\infty} x_n$ equals $\dps\liminf_{n\rightarrow\infty} x_n$ and $(x_n)$ is bounded.
 \end{itemize}
 \end{co}
+
+Note that if $(x_n)$ converges in $\ovl\Rbb$, we must have $\lim x_n=\limsup x_n=\liminf x_n$ by Thm. \ref{lb68}.
 
 \begin{proof}
 1. Let $A=\liminf x_n$ and $B=\limsup x_n$. Let $S$ be the set of cluster points of $(x_n)$.  By Thm. \ref{lb68}, $A=\min S,B=\max S $. So $A=B$ iff $S$ has only one element. This is equivalent to the convergence of $(x_n)$ in $\ovl\Rbb$ due to Thm. \ref{lb74} (since $\ovl\Rbb$ is sequentially compact by Bolzano-Weierstrass.)
@@ -2374,7 +2414,7 @@ The readers may still complain that functions on $\Zbb_+$ are very different fro
 \begin{align*}
 \Phi:\mc X\rightarrow [-1,1]^A\qquad f\mapsto f|_A
 \end{align*}
-If $\mc X$ satisfies a condition called ``\textbf{equicontinuous}", then  a sequence $f_n$ in $\mc X$ converges \emph{uniformly} to $f\in\mc X$ iff $f_n|_A$ converges \emph{pointwisely} to $f|_A$. Thus, the sequential compactness of $[-1,1]^A$ under pointwise convergence topology implies the sequential compactness of $\mc X$ under uniform convergence topology. This remarkable sequential compactness result on $\mc X$ is called \textbf{Arzel\`a-Ascoli theorem}, and will be used to prove the fundamental Peano existence theorem in ordinary differential equations. We also see that the fact that $[a,b]$ has a countable dense subset $A$ plays a crucial role. This property of metric spaces is called ``\textbf{separable}" and will be studied later.
+If $\mc X$ satisfies a condition called ``\textbf{equicontinuous}", then  a sequence $f_n$ in $\mc X$ converges \emph{uniformly} to $f\in C([a,b])$ iff $f_n|_A$ converges \emph{pointwisely} to $f|_A$. (See Rem. \ref{lb145}.) Thus, from the sequential compactness of $[-1,1]^A$ under pointwise convergence topology, one concludes that every sequence in $\mc X$ has a subsequence converging uniformly in $C([a,b])$. This remarkable sequential compactness result on (the closure of) $\mc X$ is called \textbf{Arzel\`a-Ascoli theorem}, and will be used to prove the fundamental Peano existence theorem in ordinary differential equations. We also see that the fact that $[a,b]$ has a countable dense subset $A$ plays a crucial role. This property of metric spaces is called ``\textbf{separable}" and will be studied later.
 
 \item \textbf{Fourier series} are powerful for the study of partial differential equations. A continuous function $f:[-\pi,\pi]\rightarrow\Cbb$ satisfying $f(-\pi)=f(\pi)$ has Fourier series expansion $f(x)=\sum_{n\in\Zbb}a_n e^{\im nx}$ where $a_n\in\Cbb$. However, for the sake of studying differential equations, one needs to consider series $\sum_{n\in\Zbb}a_n e^{\im nx}$ converging to a function much worse than a continuous function. For example, in the study of integral equations (which are closely related to certain partial differential equations), Hilbert and Schmidt discovered that one has to consider all $f(x)=\sum_{n\in\Zbb}a_n e^{\im nx}$ satisfying $\sum_n |a_n|^2\leq 1$. Therefore, one lets $\ovl B=\{z\in\Cbb:|z|\leq 1\}$ and considers $\wht f:n\in\Zbb\mapsto a_n\in\Cbb$ as an element of $\ovl B^\Zbb$. The sequential compactness of $\ovl B^\Zbb$ helps one find the $\wht f$ such that the corresponding $f(x)=\sum_n \wht f(n)\cdot e^{\im nx}$ is a desired solution of the integral equation. 
 \end{enumerate}
@@ -2432,7 +2472,7 @@ If $(x_n)$ is a Cauchy sequence in a metric space $X$ with at least one cluster 
 \begin{proof}
 Let $(x_n)$ be a Cauchy sequence in $X$ with subsequence $(x_{n_k})$ converging to $x\in X$. Let us show that $x_n\rightarrow x$. 
 
-Since $(x_n)$ is Cauchy, for every $\eps>0$ there is $N\in\Zbb_+$ such that $d(x_n,x_m)<\eps/2$ for all $m,n\geq \Zbb_+$. Since $x_{n_k}\rightarrow x$, there is $k\geq N$ such that $d(x_{n_k},x)<\eps/2$. Since $n_k$ is strictly increasing over $k$, we have $n_k\geq k$. So $n_k\geq N$. So we can let $m=n_k$. This gives $d(x_n,x_{n_k})<\eps/2$. Therefore $d(x_n,x)\leq d(x_n,x_{n_k})+d(x_{n_k},x)<\eps$ for all $n\geq N$.
+Since $(x_n)$ is Cauchy, for every $\eps>0$ there is $N\in\Zbb_+$ such that $d(x_n,x_m)<\eps/2$ for all $m,n\geq N$. Since $x_{n_k}\rightarrow x$, there is $k\geq N$ such that $d(x_{n_k},x)<\eps/2$. Since $n_k$ is strictly increasing over $k$, we have $n_k\geq k$. So $n_k\geq N$. So we can let $m=n_k$. This gives $d(x_n,x_{n_k})<\eps/2$. Therefore $d(x_n,x)\leq d(x_n,x_{n_k})+d(x_{n_k},x)<\eps$ for all $n\geq N$.
 \end{proof}
 
 \begin{eg}\label{lb84}
@@ -2452,7 +2492,7 @@ Since $\Cbb^N$ is isometrically isomorphic to $\Rbb^{2N}$, it suffices to prove 
 
 
 
-\begin{df}
+\begin{df}\label{lb99}
 We say that a subset $A$ of a metric space $X$ is \textbf{closed} \index{00@Closed subset} if the following condition is true: For every sequence $(x_n)$ in $A$ converging to a point $x\in X$, we have $x\in A$.
 \end{df}
 
@@ -2461,25 +2501,40 @@ Thus, the word ``closed" here means ``closed under taking limits".
 
 
 \begin{pp}\label{lb86}
-Let $A$ be a metric subspace of a complete metric space $Y$. Recall  that the metric of $A$ inherits from that of $Y$ (cf. Def. \ref{lb43}). Then $A$ is a closed subset of $Y$ iff $A$ is complete.
+Let $A$ be a metric subspace of a metric space $X$. Recall  that the metric of $A$ inherits from that of $X$ (cf. Def. \ref{lb43}). Consider the statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $A$ is complete.
+\item $A$ is a closed subset of $X$.
+\end{enumerate}
+Then (1)$\Rightarrow$(2). If $X$ is complete, then (2)$\Rightarrow$(1).
 \end{pp}
 
 
 \begin{proof}
-First, assume that $A$ is closed. Let $(x_n)$ be a Cauchy sequence in $A$. Then it is a Cauchy sequence in $Y$. So $x_n\rightarrow x\in X$ because $Y$ is complete. So $x\in A$ by the definition of closedness.
+First, assume that $X$ is complete and (2) is true. Let $(x_n)$ be a Cauchy sequence in $A$. Then it is a Cauchy sequence in $X$. So $x_n\rightarrow x\in X$ because $X$ is complete. So $x\in A$ by the definition of closedness. This proves (1).
 
-Next, we assume that $A$ is complete. Choose a sequence $(x_n)$ in $A$ converging to a point $x\in X$. By Prop. \ref{lb83}, $(x_n)$ is a Cauchy sequence in $X$, and hence a Cauchy sequence in $A$. Since $A$ is complete, there is $a\in A$ such that $x_n\rightarrow a$. So we must have $x=a$ because any sequence has at most one limit in a metric space. This proves $x\in A$. So $A$ is closed.
+Next, we assume (1). Choose a sequence $(x_n)$ in $A$ converging to a point $x\in X$. By Prop. \ref{lb83}, $(x_n)$ is a Cauchy sequence in $X$, and hence a Cauchy sequence in $A$. Since $A$ is complete, there is $a\in A$ such that $x_n\rightarrow a$. So we must have $x=a$ because any sequence has at most one limit in a metric space. This proves $x\in A$. So (2) is proved.
 \end{proof}
 
 A similar result holds for sequential compactness. See Pb. \ref{lb90}.
 
 \begin{eg}
-Let $-\infty<a<b<+\infty$. Then $(a,b)$ is not complete (under the Euclidean metric), because $(a,b)$ is not closed in the complete metric space $\Rbb$. (For sufficiently large $n$, $b-1/n$ is in $(a,b)$, but $\lim_{n\rightarrow\infty} (b-1/n)=b$ is not in $b$.) 
+Let $-\infty<a<b<+\infty$. Then $(a,b)$ is not complete (under the Euclidean metric), because $(a,b)$ is not closed in the metric space $\Rbb$. (For sufficiently large $n$, $b-1/n$ is in $(a,b)$, but $\lim_{n\rightarrow\infty} (b-1/n)=b$ is not in $b$.) 
 \end{eg}
 
 \begin{eg}
 By Prop. \ref{lb2}, for each $x\in\Rbb\setminus\Qbb$, we can choose an increasing sequence in $\Qbb$ converging to $x$. So $\Qbb$ is not closed in $\Rbb$. So $\Qbb$ is not complete under the Euclidean topology.
 \end{eg}
+
+
+\begin{eg}\label{lb97}
+Let $X$ be a metric space. Let $p\in X$ and $0\leq R<+\infty$. Then $\ovl B_X(x,R)$ is a closed subset of $X$. Therefore, if $X$ is complete, then $\ovl B_X(p,R)$ is complete by Prop. \ref{lb86}.
+\end{eg}
+
+\begin{proof}[Proof of closedness]
+Let $(x_n)$ be a sequence in $\ovl B(p,R)$ converging to $x\in X$. Then $d(p,x_n)\leq R$. Since the function $y\in X\mapsto d(p,y)\in\Rbb$ is continuous (Exp. \ref{lb45}),  we have $d(p,x)=\lim_{n\rightarrow\infty}d(p,x_n)\leq R$. So $x\in\ovl B(p,R)$.
+\end{proof}
+
 
 
 \begin{exe}
@@ -2495,12 +2550,17 @@ Find a non-complete metric $\delta$ on $\Rbb$ topologically equivalent to the Eu
 
 
 
+%% Record  #3  2023/9/25
+
+
+
+
 
 \subsubsection{Normed vector spaces and Banach spaces}
 
 
 
-A major application of complete metric spaces is to show that many series converge without knowing to what exact values these series converge. A typical example is the convergence of $\sum_{n\in\Zbb_+}\sin(\sqrt 2n)/n^2$ in $\Rbb$. We are also interested in the convergence of series in functions spaces, for instance: the uniform convergence of $f(x)=\sum_{n\in\Zbb_+}\sin(\sqrt 2nx^3)/n^2$ on $\Rbb$; a suitable convergence of the Fourier series $\sum_{n\in\Zbb}a_ne^{\im n x}$. But we cannot take sum in a general metric space since it has no vector space structures. Therefore, we need a notion which combines complete metric spaces with vector spaces. Banach spaces are such a notion. 
+A major application of complete metric spaces is to show that many series converge without knowing to what exact values these series converge. A typical example is the convergence of $\sum_{n\in\Zbb_+}\sin(\sqrt 2n)/n^2$ in $\Rbb$. We are also interested in the convergence of series in function spaces, for instance: the uniform convergence of $f(x)=\sum_{n\in\Zbb_+}\sin(\sqrt 2nx^3)/n^2$ on $\Rbb$; a suitable convergence of the Fourier series $\sum_{n\in\Zbb}a_ne^{\im n x}$. But we cannot take sum in a general metric space since it has no vector space structures. Therefore, we need a notion which combines complete metric spaces with vector spaces. Banach spaces are such a notion. 
 
 
 
@@ -2526,7 +2586,7 @@ clearly defines a metric. (Note that triangle inequality follows from subadditiv
 
 
 \begin{df}
-Let $V$ be a normed vector space. We say that $V$ is a \textbf{Banach space} \index{00@Banach space} if $V$ is a complete metric space where the metric is the canonical one \eqref{eq21}.
+Let $V$ be a normed vector space. We say that $V$ is a \textbf{Banach space} \index{00@Banach space} if $V$ is a complete metric space where the metric is the canonical one \eqref{eq21}. If $V$ is over the field $\Cbb$ (resp. $\Rbb$), we call $V$ a \textbf{complex} (resp. \textbf{real}) \textbf{Banach space}.
 \end{df}
 
 
@@ -2559,8 +2619,12 @@ We didn't mention the continuity of the division map $(\lambda,v)\in\Fbb^\times\
 \begin{proof}
 One can check that the addition map, the subtraction map, and the last map $\lVert\cdot\lVert$ are Lipschitz continuous. 
 
-Define metric $d((\lambda,v),(\lambda',v'))=\max\{|\lambda-\lambda'|,\lVert v-v'\lVert \}$ on $\Fbb\times V$. Then $\Fbb\times V$ is covered by open balls of the form $B(0,r)=\{(\lambda,v)\in\Fbb\times V:|\lambda|<r,\lVert v\lVert<r\}$. Similar to the argument in \eqref{eq22}, one uses subadditivity (i.e. triangle inequality) and absolute homogeneity to show that $\times_\Fbb$ has Lipschitz constant $2r$ on $B(0,r)$. So $\times_\Fbb$ is continuous by Lem. \ref{lb30} and Lem. \ref{lb34}.
+Define metric $d((\lambda,v),(\lambda',v'))=\max\{|\lambda-\lambda'|,\lVert v-v'\lVert \}$ on $\Fbb\times V$. Then $\Fbb\times V$ is covered by open balls of the form $B(0,r)=\{(\lambda,v)\in\Fbb\times V:|\lambda|<r,\lVert v\lVert<r\}$. Similar to the argument in \eqref{eq22}, one uses subadditivity (i.e. triangle inequality) and absolute homogeneity to show that $\times_\Fbb$ has Lipschitz constant $2r$ on $B(0,r)$. So $\times_\Fbb$ is continuous by Lem. \ref{lb30} and \ref{lb34}.
 \end{proof}
+
+
+
+%% Proofread
 
 
 
@@ -2570,10 +2634,10 @@ Define metric $d((\lambda,v),(\lambda',v'))=\max\{|\lambda-\lambda'|,\lVert v-v'
 
 In this section, we let $\Fbb\in\{\Rbb,\Cbb\}$ and assume that the vector spaces $V$ are over $\Fbb$. As the title suggests, in this section we shall introduce two important examples of Banach spaces: the space of uniformly bounded functions $l^\infty(X,V)$ and its  subspace of continuous functions $C(X,V)$ (when $X$ is a sequentially compact metric space).  In order for these two spaces to be Banach spaces, we must assume that $V$ is also Banach. 
 
-In application, the main examples are $V=\Rbb,\Cbb,\Rbb^N,\Cbb^N$. Indeed, $C([a,b],\Rbb^N)$ is one the main examples of function spaces considered by Fr\'echet when he defined metric spaces. Therefore, the readers can assume that $V$ is one of such spaces if they want to make life easier. Just keep in mind that we sometimes also consider the case where $V$ itself is a function space.
+In application, the main examples are $V=\Rbb,\Cbb,\Rbb^N,\Cbb^N$. Indeed, $C([a,b],\Rbb^N)$ is one of the main examples of function spaces considered by Fr\'echet when he defined metric spaces. Therefore, the readers can assume that $V$ is one of such spaces if they want to make life easier. Just keep in mind that we sometimes also consider the case where $V$ itself is a function space.
 
 \begin{df}
-Let $X$ be a vector space and let $V$ be a vector space. The set $V^X$ \index{VX@$V^X$ as a vector space} is a vector space if we define for each $f,g\in V^X$ and $\lambda\in\Fbb$:
+Let $X$ be a set and let $V$ be a vector space. The set $V^X$ \index{VX@$V^X$ as a vector space} is a vector space if we define for each $f,g\in V^X$ and $\lambda\in\Fbb$:
 \begin{gather*}
 f+g:X\rightarrow V\qquad (f+g)(x)=f(x)+g(x)\\
 \lambda f:X\rightarrow V\qquad (\lambda f)(x)=\lambda f(x)
@@ -2582,27 +2646,28 @@ We also define the \textbf{absolute value function}\index{00@Absolute function $
 \begin{align}
 |f|:X\rightarrow\Rbb_{\geq 0}\qquad x\in X\mapsto \lVert f(x)\lVert
 \end{align}
+sometimes also written as $\lVert f\lVert$.
 \end{df}
 
 
 
 \begin{df}
-Let $X$ be a set and let $V$ be a normed vector space. For each $f\in V^X$, define the \index{l@$\lVert\cdot\lVert_{l^\infty}=\lVert\cdot\lVert_\infty$} \pmb{$l^\infty$}\textbf{-norm}
+Let $X$ be a set and let $V$ be a normed vector space. For each $f\in V^X$, define the \index{l@$\lVert\cdot\lVert_{l^\infty}=\lVert f\lVert_{l^\infty(X,V)}=\lVert\cdot\lVert_\infty$} \pmb{$l^\infty$}\textbf{-norm}
 \begin{align}
-\lVert f\lVert_{l^\infty}\equiv \lVert f\lVert_\infty=\sup_{x\in X}\lVert f(x)\lVert
+\lVert f\lVert_{l^\infty(X,V)}\equiv\lVert f\lVert_{l^\infty}\equiv \lVert f\lVert_\infty=\sup_{x\in X}\lVert f(x)\lVert
 \end{align}
 where $\lVert f(x)\lVert$ is defined by the norm of $V$. Define the \pmb{$l^\infty$}\textbf{-space} \index{l@$l^\infty(X,V)$} 
 \begin{align}
 l^\infty(X,V)=\{f\in V^X:\lVert f\lVert_\infty<+\infty\}
 \end{align}
-which is a vector subspace of $V^X$. Then $l^\infty(X,V)$ is a normed vector space under the $l^\infty$-norm.
+which is a vector subspace of $V^X$. Then $l^\infty(X,V)$ is a normed vector space under the $l^\infty$-norm. A function $f:X\rightarrow V$ is called \textbf{uniformly bounded} \index{00@Uniformly bounded function} if $f\in l^\infty(X,V)$.
 \end{df}
 
 
 
 
 
-\begin{exe}
+\begin{exe}\label{lb143}
 Prove that for every $f,g\in V^X$ and $\lambda\in\Fbb$ we have
 \begin{gather}\label{eq23}
 \begin{gathered}
@@ -2620,10 +2685,10 @@ We say that $(f_n)$ \textbf{converges pointwisely} \index{00@Pointwise convergen
 \end{df}
 
 
-In more detail, the uniform convergence of $f_n$ to $f$ means that ``for every $\eps>0$ there is $N\in\Zbb_+$ such that for all $n\geq N$ and  \emph{for all $x\in X$}, we have $\lVert f_n(x)-f(x)\lVert<\eps$". If we place the words ``for all $x\in X$" at the very beginning of the sentence, we get pointwise convergence.
+In more details, the uniform convergence of $f_n$ to $f$ means that ``for every $\eps>0$ there is $N\in\Zbb_+$ such that for all $n\geq N$ and  \emph{for all $x\in X$}, we have $\lVert f_n(x)-f(x)\lVert<\eps$". If we place the words ``for all $x\in X$" at the very beginning of the sentence, we get pointwise convergence.
 
 
-Uniform convergence implies pointwise convergence, because if $\lVert f-f_n\lVert_\infty\rightarrow 0$, then clearly $\lVert f_n(x)-f(x)\lVert\rightarrow 0$ for each $x\in X$. 
+Uniform convergence implies pointwise convergence: If $\lVert f-f_n\lVert_\infty\rightarrow 0$, then for each $x\in X$ we have $\lVert f_n(x)-f(x)\lVert\rightarrow 0$ since $\lVert f(x)-f_n(x)\lVert\leq\lVert f-f_n\lVert_\infty$. 
 
 
 
@@ -2668,22 +2733,30 @@ for every $m\geq N$. Let $m\rightarrow\infty$. Then by the continuity of subtrac
 \end{proof}
 
 
-Mathematicians used to believe that ``if a sequence of continuous functions $f_n:[0,1]\rightarrow\Rbb$ converges pointwisely to a function $f:[0,1]\rightarrow\Rbb$, then $f$ is continuous". Cauchy, one of the main figures in 19th century working on putting analysis on a rigorous ground, has given a problematic proof of this wrong statement. Counterexamples were later found in the study of Fourier series: Let $f:\Rbb\rightarrow\Rbb$ be a function with period $2\pi$ such that $f(x)=x$ when $-\pi<x<\pi$, and $f(x)=0$ when $x=\pm \pi$. Then the Fourier series  of this noncontinuous function $f$ converges pointwisely to $f$, yet the partial sums of this series are clearly continuous functions. Later, it was realized that uniform convergence is needed to show the continuity of the limit function. This was the first time the importance of uniform convergence was realized.
+Mathematicians used to believe that ``if a sequence of continuous functions $f_n:[0,1]\rightarrow\Rbb$ converges pointwisely to a function $f:[0,1]\rightarrow\Rbb$, then $f$ is continuous". Cauchy, one of the main figures in 19th century working on putting analysis on a rigorous ground, has given a problematic proof of this wrong statement. Counterexamples were later found in the study of Fourier series: Let $f:\Rbb\rightarrow\Rbb$ be a function with period $2\pi$ such that $f(x)=x$ when $-\pi<x<\pi$, and $f(x)=0$ when $x=\pm \pi$. Then the Fourier series  of this noncontinuous function $f$ converges pointwisely to $f$, yet the partial sums of this series are clearly continuous functions. Later, it was realized that uniform convergence is needed to show the continuity of the limit function. (See Thm. \ref{lb87}.) This was the first time the importance of uniform convergence was realized.
 
 \begin{df}
 Let $X,Y$ be  metric spaces (or more generally, topological spaces to be defined later). Then $C(X,Y)$ \index{CXY@$C(X,Y)$, the set of continuous functions $X\rightarrow Y$. See Conv. \ref{lb85} also} denotes the set of continuous functions from $X$ to $Y$. 
 \end{df}
 
+\begin{lm}
+Let $X$ be a metric space, and let $V$ be a normed vector space. Then $C(X,V)$ is a linear subspace of $V^X$. If $X$ is sequentially compact, then $C(X,V)$ is a linear subspace of $l^\infty(X,V)$.
+\end{lm}
+
+\begin{proof}
+Using Prop. \ref{lb82}, one checks easily that $C(X,V)$ is a linear subspace of $V^X$.  For any $f\in C(X,V)$, the absolute value function $|f|:x\in X\mapsto\lVert f(x)\lVert$ is continuous. Thus, assuming that $X$ is sequentially compact, then by Lem. \ref{lb56}, $|f|$ is bounded on $X$. This proves that $\lVert f\lVert_\infty<+\infty$. Thus $C(X,V)$ is a subset (and hence a linear subspace) of $l^\infty(X,V)$. 
+\end{proof}
+
+
+
 \begin{thm}\label{lb87}
-Let $X$ be a sequentially compact metric space. Let $V$ be a Banach space. Then $C(X,V)$ is a closed linear subspace of $l^\infty(X,V)$.
+Let $X$ be a metric space, and let $V$ be a normed vector space. Then $C(X,V)\cap l^\infty(X,V)$ is a closed linear subspace of $l^\infty(X,V)$. In particular, if $X$ is sequentially compact, then $C(X,V)$ is a closed linear subspace of $l^\infty(X,V)$.
 \end{thm}
 
 
 
 \begin{proof}
-For any $f\in C(X,V)$, the absolute value function $|f|:x\in X\mapsto\lVert f(x)\lVert$ is continuous. Thus by the sequential compactness of $X$ and Lem. \ref{lb56}, $|f|$ is bounded on $X$. This proves that $\lVert f\lVert_\infty<+\infty$. Thus $C(X,V)$ is a subset of $l^\infty(X,V)$. Using Prop. \ref{lb82}, one checks easily that $C(X,V)$ is a linear subspace of $l^\infty(X,V)$.
-
-It remains to prove that $C(X,V)$ is closed in $l^\infty(X,V)$. Choose a sequence $(f_n)$ in $C(X,V)$ converging in $l^\infty(X,V)$ to $f$. Namely, $f_n\rightrightarrows f$. We want to prove that $f$ is continuous. We check that $f$ satisfies Def. \ref{lb31}-(2'). (One can also use Def. \ref{lb31}-(1). The proofs using these two definitions are not substantially different.)
+Choose a sequence $(f_n)$ in $C(X,V)\cap l^\infty(X,V)$ converging in $l^\infty(X,V)$ to $f$. Namely, $f_n\rightrightarrows f$. We want to prove that $f$ is continuous. We check that $f$ satisfies Def. \ref{lb31}-(2'). (One can also use Def. \ref{lb31}-(1). The proofs using these two definitions are not substantially different.)
 
 Fix $p\in X$. Choose any $\eps>0$. Since $f_n\rightrightarrows f$, there exists $N\in\Zbb_+$ such that for all $n\geq N$ and we have $\lVert f-f_n\lVert_\infty<\eps$. Since $f_N$ is continuous, there exists $r>0$ such that for each $x\in B_X(p,r)$ we have $\lVert f_N(x)-f_N(p)\Vert<\eps$. Thus, for each $x\in B_X(p,r)$ we have
 \begin{align*}
@@ -2692,137 +2765,23 @@ Fix $p\in X$. Choose any $\eps>0$. Since $f_n\rightrightarrows f$, there exists 
 This finishes the proof.
 \end{proof}
 
-We emphasize that in the above proof, the sequential compactness of $X$ is used only to show that $C(X,V)$ is a subset of $l^\infty(X,V)$.
+
 
 
 
 \begin{cv}\label{lb88}
-Unless otherwise stated, if $X$ is sequentially compact metric space (or more generally, a compact Hausdorff space to be defined latter), and if $V$ is a normed vector space, the norm on $C(X,V)$ is chosen to be the $l^\infty$-norm.
+Unless otherwise stated, if $X$ is sequentially compact metric space (or more generally, a compact topological space to be defined latter), and if $V$ is a normed vector space, the norm on $C(X,V)$ is chosen to be the $l^\infty$-norm.
 \end{cv}
 
 
-\begin{co}
-Let $X$ be a sequentially compact metric space. Let $V$ be a Banach space. Then  $C(X,V)$ is a Banach space (under the $l^\infty$-norm).
+\begin{co}\label{lb101}
+Let $X$ be a metric space, and let $V$ be a Banach space. Then  $C(X,V)\cap l^\infty(X,V)$ is a Banach space (under the $l^\infty$-norm). In particular, if $X$ is sequentially compact, then $C(X,V)$ is a Banach space.
 \end{co}
 
 \begin{proof}
 This follows immediately from Prop. \ref{lb86}, Thm. \ref{lb87}, and the fact that $l^\infty(X,V)$ is complete (Thm. \ref{lb85}).
 \end{proof}
 
-
-\subsection{Series}
-
-We assume that vector spaces are over $\Fbb\in\{\Rbb,\Cbb\}$.
-
-\subsubsection{Definitions and basic properties}
-
-
-\begin{df}
-Let $V$ be a Banach space (over $\Fbb$). A \textbf{series} \index{00@Series in a Banach space} in $V$ is an expression of the form
-\begin{align}
-\sum_{i=1}^\infty v_i  \label{eq25}
-\end{align}
-where $(v_i)_{i\in\Zbb_+}$ is a sequence in $V$. If $s\in V$, we say that the series \eqref{eq25} \textbf{converges to $s$} if
-\begin{align*}
-s=\lim_{n\rightarrow\infty} \sum_{i=1}^n v_i
-\end{align*}
-namely, $s_n\rightarrow s$ where $s_n$ is the \textbf{partial sum} \index{00@Partial sum} $s_n=\sum_{i=1}^n v_i$. In this case, we write
-\begin{align*}
-s=\sum_{i=1}^\infty v_i
-\end{align*}
-\end{df}
-
-
-\begin{rem}
-Since $V$ is complete, the series \eqref{eq25} converges iff the sequence of partial sum $(s_n)$ is a Cauchy sequence: for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have $\lVert s_n-s_m\lVert<\eps$, i.e.,
-\begin{align}
-\Big\lVert \sum_{i=m+1}^N v_i\Big\lVert<\eps  \label{eq28}
-\end{align}
-\end{rem}
-
-
-\begin{pp}
-Suppose that $\sum_{i=1}^\infty v_i$ is a convergent series in a Banach space $V$. Then $\dps\lim_{n\rightarrow\infty} v_n=0$.
-\end{pp}
-
-\begin{proof}
-Let $s_n=v_1+\cdots+v_n$, which converges to $s\in V$. Then $\lim_{n\rightarrow\infty} s_{n+1}=s$. So $v_n=s_{n+1}-s_n\rightarrow s-s=0$ since subtraction in continuous (Prop. \ref{lb82}).
-\end{proof}
-
-Thus, for example, $\sum_{n=1}^\infty (-1)^n$ diverges in the Banach space $\Rbb$ since $\lim_{n\rightarrow\infty} (-1)^n$ does not converge to $0$.
-
-
-
-
-
-\begin{df}
-Consider a \textbf{series} in $\ovl\Rbb_{\geq0}$: \index{00@Series in $\ovl\Rbb_{\geq0}$}
-\begin{align}
-\sum_{i=1}^\infty a_i \label{eq26}
-\end{align}
-namely, each $a_i$ is in $\ovl\Rbb_{\geq 0}$. Note that the partial sum $s_n=\sum_{i=1}^n a_i$ is increasing. We say that $\lim_{n\rightarrow\infty} s_n$ (which exists in $\ovl\Rbb_{\geq0}$ and equals $\sup\{s_n:n\in\Zbb_+\}$, cf. Rem. \ref{lb58}) is the value of the series \eqref{eq26} and write
-\begin{align*}
-\sum_{i=1}^\infty a_i=\lim_{n\rightarrow\infty} s_n
-\end{align*}
-\end{df}
-
-
-\begin{df}
-We say that a series $\sum_{i=1}^\infty a_i$ in $\Rbb_{\geq 0}$ \textbf{converges} if it converges in $\Rbb$ (but not just converges in $\ovl\Rbb_{\geq 0}$, which is always true). Clearly, $\sum_{i=1}^\infty a_i$ converges iff
-\begin{align*}
-\sum_{i=1}^\infty a_i<+\infty
-\end{align*}
-More generally, we say that a series $\sum_{i=1}^\infty v_i$ in a Banach space $V$ \textbf{converges absolutely}, \index{00@Absolute convergence} if
-\begin{align*}
-\sum_{i=1}^\infty~ \lVert v_i\lVert <+\infty
-\end{align*}
-\end{df}
-
-\begin{rem}
-By the Cauchy condition of convergence, $\sum_{i=1}^\infty v_i$ converges absolutely iff for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have 
-\begin{align}
-\sum_{i=m+1}^N~\lVert v_i\lVert<\eps \label{eq27}
-\end{align}
-By comparing \eqref{eq27} with \eqref{eq28} and using the subadditivity of the norm (recall Def. \ref{lb91}), we immediately see:
-\end{rem}
-
-\begin{pp}
-Let $\sum_{i=1}^\infty v_i$ be a series in a Banach space. The following are true.
-\begin{enumerate}
-\item If $\sum_{i=1}^\infty v_i$ converges absolutely, then it converges.
-\item For each $i$ we choose $a_i\in\Rbb_{\geq0}$ satisfying $\lVert v_i\lVert\leq a_i$. Suppose that $\sum_{i=1}^\infty a_i<+\infty$. Then $\sum_{i=1}^\infty v_i$ converges absolutely.
-\end{enumerate}
-\end{pp}
-
-
-\begin{exe}
-Suppose that $\sum_{i=1}^\infty u_i$ and $\sum_{i=1}^\infty v_i$ are convergent (resp. absolutely convergent) series in a Banach space $V$. Let $\lambda\in\Fbb$. Show that the LHS of the following equations converges (resp. converges absolutely) in $V$, and that the following equations hold:
-\begin{gather*}
-\sum_{i=1}^\infty (u_i+v_i)=\sum_{i=1}^\infty u_i+\sum_{i=1}^\infty v_i\\
-\sum_{i=1}^\infty \lambda v_i=\lambda\cdot\sum_{i=1}^\infty v_i
-\end{gather*}
-\end{exe}
-
-
-\begin{rem}
-We have seen that absolute convergence implies convergence. In fact, at least when $V=\Fbb^N$, absolute convergence is in many ways more natural than convergence. For example, we will learn that if a series $\sum_i v_i$ in $\Fbb^N$ converges absolutely, then the value of $\sum_i v_i$ is invariant under rearrangement of the series: for every bijection $\varphi:\Zbb_+\rightarrow\Zbb_+$ we have $\sum_i v_i=\sum_i v_{\varphi(i)}$. In the next semester, we shall learn Lebesgue integral theory and, more generally, measure theory. When applying measure theory to infinite sums over the countable set $\Zbb_+$, many good results (e.g. dominated convergence theorem, Fubini theorem)  hold only for absolute convergence series, but not for arbitrary convergent series in general. In fact, there is no analog of convergent (but not absolutely convergent) series in measure theory at all!
-
-When $V$ is not necessarily finite-dimensional, the situation is subtler: there is a version of convergence which lies between the usual convergence and absolute convergence, and which coincides with absolute convergence when $V=\Fbb^N$. This version of convergence is defined using nets instead of sequences. Moreover, many good properties (as mentioned above) hold for this convergence, and these properties can be proved in a very conceptual way (rather than using brute-force computation). We will learn this convergence in the next chapter.   \hfill\qedsymbol
-\end{rem}
-
-
-
-\subsubsection{Examples}
-
-
-Let us study the \textbf{geometric series} $\sum_{n=0}^\infty z^n$ where $z\in\Cbb$. First, we compute the limit:
-\begin{eg}
-Assume $z\in\Cbb$ and $|z|<1$. Then $\lim_{n\rightarrow\infty}z^n=0$. 
-\end{eg}
-
-\begin{proof}
-If $z=0$ then it is obvious. Assume that $0<|z|<1$. Choose $\delta>0$ such that $|z|=1/(1+\delta)$. Since $(1+\delta)^n=1+n\delta$
-\end{proof}
 
 
 
@@ -2846,13 +2805,13 @@ Let $(x_n)$ be a sequence in a metric space $X$. Let $x\in X$. Prove that the fo
 
 
 \begin{rem}
-Condition (2) is often abbreviated to ``for each $\eps>0$, the sequence $(x_n)$ is frequently in $B(x,\eps)$". In general, we say ``$(x_n)$ \textbf{frequently} satisfies P" if for each $N\in\Zbb_+$ there is $n\geq N$ such that $x_n$ satisfies P. We say that ``$(x_n)$ \textbf{eventually} satisfies P" if there exists $N\in\Zbb_+$ such that for every $n\geq N$, $x_n$ satisfies P. \index{00@Eventially} \index{00@Frequently}  
+Condition (2) is often abbreviated to ``for each $\eps>0$, the sequence $(x_n)$ is frequently in $B(x,\eps)$". In general, we say ``$(x_n)$ \textbf{frequently} satisfies P" if for each $N\in\Zbb_+$ there is $n\geq N$ such that $x_n$ satisfies P. We say that ``$(x_n)$ \textbf{eventually} satisfies P" if there exists $N\in\Zbb_+$ such that for every $n\geq N$, $x_n$ satisfies P. \index{00@Eventually} \index{00@Frequently}  
 
 Thus ``$(x_n)$ eventually satisfies P" means the same as ``all but finitely many $x_n$ satisfies P". Its negation is ``$(x_n)$ frequently satisfies $\neg$P".   \hfill\qedsymbol
 \end{rem}
 
 \begin{rem}
-Condition (2) of Pb. \ref{lb64} is sometimes easier to use than (1). For example, compared to the original definition of cluster points, it is much easier to find an explicit negation of (2): There exist $\eps>0$ and $N\in\Zbb_+$ such that $d(x_n,x)\geq\eps$ for all $n\geq N$. (Or simply: there exists $\eps>0$ such that $x_n$ is eventually not in $B(x,\eps)$.) 
+Condition (2) of Pb. \ref{lb64} is sometimes easier to use than (1). For example, compared to the original definition of cluster points, it is much easier to find an explicit negation of (2) by using the rule suggested in Rem. \ref{lb100}: There exist $\eps>0$ and $N\in\Zbb_+$ such that $d(x_n,x)\geq\eps$ for all $n\geq N$. (Or simply: there exists $\eps>0$ such that $x_n$ is eventually not in $B(x,\eps)$.) 
 \end{rem}
 
 
@@ -2864,6 +2823,17 @@ Use Pb. \ref{lb64}-(2) to prove that if $(x_n)$ is a sequence in $\ovl\Rbb$, the
 \begin{rem}
 You will notice that your proof of Pb. \ref{lb70} is slightly simpler than the proof we gave for Thm. \ref{lb68}. This is because our construction of subsequence as in \eqref{eq17} has been incorporated into your proof of (2)$\Rightarrow$(1) in Pb. \ref{lb64}.
 \end{rem}
+
+\begin{prob}
+Let $f:X\rightarrow Y$ be a continuous map of metric spaces. Assume that $f$ is bijective and $X$ is sequentially compact.  Prove that $f$ is a homeomorphism using the following hint.
+\end{prob}
+
+\begin{proof}[Hint]
+You need to prove that if $(y_n)$ is a sequence in $Y$ converging to $y\in Y$, then $x_n=f^{-1}(y_n)$ converges to $x=f^{-1}(y)$. Prove that $(x_n)$ has only one cluster point, and hence converges to some point $x'\in X$ (why?). Then prove $x'=x$. (In the future, we will use the language of open sets and closed sets to prove this result again. Do not use this language in your solution.)
+\end{proof}
+
+
+
 
 \begin{thm}[\textbf{Tychonoff theorem, countable version}]\index{00@Tychonoff theorem, countable version}  \label{lb89}
 Let $(X_n)_{n\in\Zbb_+}$ be a sequence of sequentially compact metric spaces. Then the product space $\dps S=\prod_{n\in\Zbb_+} X_n$ is sequentially compact under the metric defined  as in Pb. \ref{lb78}.
@@ -2894,8 +2864,48 @@ Then the diagonal line $(x_{i,i})_{i\in\Zbb_+}$ is a subsequence of the original
 
 
 
+
 \begin{prob}\label{lb90}
-Let $X$ be a sequentially compact metric space. Let $A\subset X$ be a metric subspace. Prove that $A$ is a closed subset of $Y$ iff $A$ is sequentially compact. 
+Let $X$ be a sequentially compact metric space. Let $A\subset X$ be a metric subspace.  Consider the statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $A$ is sequentially compact.
+\item $A$ is a closed subset of $Y$.
+\end{enumerate}
+Prove that (1)$\Rightarrow$(2). Prove that if $Y$ is sequentially compact, then (2)$\Rightarrow$(1).
+\end{prob}
+
+
+The above problem implies immediately:
+
+\begin{thm}[\textbf{Heine-Borel theorem}]\label{lb98}  \index{00@Heine-Borel theorem} 
+Let $A$ be a subset of $\Rbb^N$. Then $A$ is sequentially compact iff $A$ is a bounded closed subset of $\Rbb^N$.
+\end{thm}
+
+\begin{proof}
+Suppose that $A$ is sequentially compact. Then $A$ is bounded under the Euclidean metric by Prop. \ref{lb71}. By Pb. \ref{lb90}, $A$ is a closed subset of $\Rbb^N$.
+
+Conversely, assume that $A$ is a bounded and closed subset of $\Rbb^N$. Then $A\subset B$ where $B$ is the product of $N$ pieces of closed intervals in $\Rbb$. Then $B$ is sequentially compact by Bolzano-Weierstrass. Since $A$ is closed in $\Rbb^N$, it is not hard to check that $A$ is closed in $B$.\footnote{If $Z$ is a metric space, if $X\subset Y\subset Z$, and if $X$ is closed in $Z$, then it is easy to check that $X$ is closed in $Y$.} Thus $A$ is sequentially compact by Pb. \ref{lb90}.
+\end{proof}
+
+
+
+
+\begin{eg}
+Choose any $p\in \Rbb^N$ and $0\leq R<+\infty$. Then $\ovl B_{\Rbb^N}(p,R)$ is a bounded closed subset of $\Rbb^N$ (Exp. \ref{lb97}), and hence is sequentially compact by Heine-Borel.
+\end{eg}
+
+\begin{rem}
+Think about the question: Equip $\Rbb^{\Zbb_+}$ with metric
+\begin{align*}
+d(x,y)=\sup_{n\in\Zbb_+}\frac {\min\{|x(n),y(n)|,1\}}{n}
+\end{align*} 
+What are the sequentially compact subsets of $\Rbb^{\Zbb_+}$? (Namely, think about how to generalize Heine-Borel theorem to $\Rbb^{\Zbb_+}$.)
+\end{rem}
+
+
+
+\begin{prob}
+Do Exercise \ref{lb143}.
 \end{prob}
 
 
@@ -2904,10 +2914,1434 @@ Let $X$ be a sequentially compact metric space. Let $A\subset X$ be a metric sub
 \begin{prob}\label{lb81}
 Let $V$ be a normed vector space. For every $f,g\in V^X$ define
 \begin{align}
-d(f,g)=\min\{1,\lVert f-g\lVert_\infty \}
+d(f,g)=\min\{1,\lVert f-g\lVert_\infty \}\label{eq55}
 \end{align}
-Show that $d$ defines a metric on $V^X$. Show that for every sequence $(f_n)$ in $V^X$ and every $V^X$, we have $f_n\rightarrow g$ under the metric $d$ iff $f_n\rightrightarrows g$.
+\begin{enumerate}
+\item Show that $d$ defines a metric on $V^X$. 
+\item Show for every sequence $(f_n)$ in $V^X$ and every $g\in V^X$, we have $f_n\rightarrow g$ under the metric $d$ iff $f_n\rightrightarrows g$.
+\end{enumerate}
 \end{prob}
+
+\begin{df}
+Let $X$ be a set, and let $V$ be a normed vector space. A metric on $V^X$ is called a \textbf{uniform convergence metric} \index{00@Uniform convergence metric} if it is topologically equivalent to \eqref{eq55}. Thus, by Def. \ref{lb144}, a uniform convergence metric is one such that a sequence $(f_n)$ in $V^X$ converges to $f$ under this metric iff $f_n\rightrightarrows f$.
+\end{df}
+
+
+
+
+\begin{prob}\label{lb103}
+Let $X,Y$ be metric spaces, and assume that $Y$ is sequentially compact. Let $V$ be a normed vector space. Choose $f\in C(X\times Y,V)$, i.e., $f:X\times Y\rightarrow V$ is continuous. For each $x\in X$, let
+\begin{align*}
+f_x:Y\rightarrow V\qquad y\mapsto f(x,y)
+\end{align*}
+Namely $f_x(y)=f(x,y)$. It is easy to check that $f_x\in C(Y,V)$. Define a new function
+\begin{gather}
+\begin{gathered}
+\Phi(f):X\rightarrow C(Y,V)\qquad x\mapsto f_x
+\end{gathered}
+\end{gather}
+Recall that $C(Y,V)$ is equipped with the $l^\infty$-norm. 
+\begin{enumerate}
+\item Prove that $\Phi(f)$ is continuous. In other words, prove that if $(x_n)$ is a sequence in $X$ converging to  $x\in X$, then $f_{x_n}\rightrightarrows f_x$ on $Y$, i.e.
+\begin{align*}
+\lim_{n\rightarrow\infty}\lVert f_{x_n}-f_x\lVert_{l^\infty(Y,V)}=0
+\end{align*}
+\item[$\star$ 2.]  Give an example of $f\in C(X\times Y,\Rbb)$ where $Y$ is not sequentially compact, $(x_n)$ converges to $x$ in $X$, and $f_{x_n}$ does not converge uniformly to $f_x$. (Note: you may consider $X=Y=\Rbb$.)
+\end{enumerate}
+
+\end{prob}
+
+\begin{proof}[Hint]
+In part 1, to prove that $\Phi(f)$ is continuous,   one can  prove the equivalent fact that for every fixed $x\in X$ the following is true:
+\begin{itemize}
+\item For every $\eps>0$ there exists $\delta>0$ such that for all $p\in B_X(x,\delta)$, we have $\sup_{y\in Y}\lVert f(p,y)-f(x,y)\lVert<\eps$. 
+\end{itemize}
+(Cf. Def. \ref{lb31}.) Prove this by contradiction and by using the sequential compactness of $Y$ appropriately.
+\end{proof}
+
+
+\begin{rem}\label{lb102}
+Let $X=\Zbb_+\cup\{\infty\}$, equipped with the metric
+\begin{align*}
+d(m,n)=|m^{-1}-n^{-1}|
+\end{align*} 
+In other words, the metric on $X$ is $\tau^*d_\Rbb$ where $d_\Rbb$ is the Euclidean metric on $\Rbb$, and $\tau:X\rightarrow \Rbb,n\mapsto n^{-1}$. It is not hard to show that $X$ is sequentially compact: either prove it directly, or apply Heine-Borel to $\tau(X)$.
+
+Let $Y$ be a metric space. Let $(y_n)_{n\in\Zbb_+}$ be a sequence in $Y$, and let $y_\infty\in Y$. It is not hard to see that the following two statements are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item The function $F:X\rightarrow Y,n\mapsto y_n$ is continuous.
+\item The sequence $(y_n)_{n\in\Zbb_+}$ converges to $y_\infty$.
+\end{enumerate}
+The following problem is a generalization of this equivalence.  \hfill\qedsymbol
+\end{rem}
+
+
+
+\begin{sprob}\label{lb104}
+Let $V$ be a normed vector space. Let $Y$ be a metric space. Let $X=\Zbb_+\cup\{\infty\}$ with metric defined as in Rem. \ref{lb102}. Let $(f_n)_{n\in\Zbb_+}$ be a sequence in $C(Y,V)$. Let $f_\infty\in V^Y$. Prove that the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item The following function is continuous:
+\begin{align}
+F:X\times Y\rightarrow V\qquad (n,y)\mapsto f_n(y)
+\end{align}
+In particular, by restricting $F$ to $\infty\times Y$, we see that $f_\infty\in C(Y,V)$.
+\item $(f_n)_{n\in\Zbb_+}$ converges pointwisely to $f_\infty$. Moreover, $(f_n)_{n\in\Zbb_+}$ is \textbf{pointwisely equicontinuous}, \index{00@Pointwisely equicontinuous} which means the following:
+\begin{itemize}
+\item For every $y\in Y$ and every $\eps>0$, there exists $\delta>0$ such that for all $p\in B_Y(y,\delta)$ we have
+\begin{align*}
+\sup_{n\in\Zbb_+}\lVert f_n(p)-f_n(y)\lVert<\eps
+\end{align*}
+\end{itemize}
+\end{enumerate}
+\end{sprob}
+
+\begin{proof}[Note]\renewcommand{\qedsymbol}{}
+In part (1), the only nontrivial thing to prove  is that $F$ is continuous at $(\infty,y)$ for every $y\in Y$.
+\end{proof}
+
+
+
+
+
+\begin{rem}
+There is a concise way to define pointwise equicontinuity: a sequence $(f_n)_{n\in\Zbb_+}$ in $V^Y$ is pointwisely equicontinuous iff the function
+\begin{gather}
+Y\mapsto V^{\Zbb_+}\qquad y\mapsto (f_1(y),f_2(y),\dots)
+\end{gather}
+is continuous, where $V^{\Zbb_+}$ is equipped with any uniform convergence metric (cf. Pb. \ref{lb81}). 
+\end{rem}
+
+\begin{srem}
+In Pb. \ref{lb104}, there is a quick and tricky way to conclude (1)$\Rightarrow$(2): Use Pb. \ref{lb103} and the sequential compactness of $X$. (Do not use this method in your solution. Prove (1)$\Rightarrow$(2) directly; it is a good exercise and is not difficult.)
+\end{srem}
+
+
+
+\begin{srem}\label{lb145}
+Pb. \ref{lb103} and \ref{lb104}, together with Thm. \ref{lb87}, imply the following fact (can you see why?): 
+\begin{itemize}
+\item Let $Y$ be a sequentially compact metric space. Let $V$ be a normed vector space. Let $(f_n)_{n\in\Zbb_+}$ be a pointwisely equicontinuous sequence of functions $Y\rightarrow V$ converging pointwisely to some $f:Y\rightarrow V$. Then $f_n\rightrightarrows f$ on $Y$. 
+\end{itemize}
+You can also try to give a straightforward proof of this fact without using Pb. \ref{lb103} and \ref{lb104}.
+\end{srem}
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+\section{Series}
+
+In this chapter, we assume that vector spaces are over $\Fbb\in\{\Rbb,\Cbb\}$ unless otherwise stated.
+
+
+
+
+
+\subsection{Definitions and basic properties}
+
+
+\begin{df}
+Let $V$ be a Banach space (over $\Fbb$). A \textbf{series} \index{00@Series in a Banach space} in $V$ is an expression of the form
+\begin{align}
+\sum_{i=1}^\infty v_i  \label{eq25}
+\end{align}
+where $(v_i)_{i\in\Zbb_+}$ is a sequence in $V$. If $s\in V$, we say that the series \eqref{eq25} \textbf{converges to $s$} if
+\begin{align*}
+s=\lim_{n\rightarrow\infty} \sum_{i=1}^n v_i
+\end{align*}
+namely, $s_n\rightarrow s$ where $s_n$ is the \textbf{partial sum} \index{00@Partial sum} $s_n=\sum_{i=1}^n v_i$. In this case, we write
+\begin{align*}
+s=\sum_{i=1}^\infty v_i
+\end{align*}
+\end{df}
+
+
+\begin{rem}\label{lb93}
+Since $V$ is complete, the series \eqref{eq25} converges iff the sequence of partial sum $(s_n)$ is a Cauchy sequence: for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have $\lVert s_n-s_m\lVert<\eps$, i.e.,
+\begin{align}
+\Big\lVert \sum_{i=m+1}^N v_i\Big\lVert<\eps  \label{eq28}
+\end{align}
+\end{rem}
+
+
+\begin{pp}\label{lb92}
+Suppose that $\sum_{i=1}^\infty v_i$ is a convergent series in a Banach space $V$. Then $\dps\lim_{n\rightarrow\infty} v_n=0$.
+\end{pp}
+
+\begin{proof}
+Let $s_n=v_1+\cdots+v_n$, which converges to $s\in V$. Then $\lim_{n\rightarrow\infty} s_{n+1}=s$. So $v_n=s_{n+1}-s_n\rightarrow s-s=0$ since subtraction in continuous (Prop. \ref{lb82}).
+\end{proof}
+
+Thus, for example, $\sum_{n=1}^\infty (-1)^n$ diverges in the Banach space $\Rbb$ since $\lim_{n\rightarrow\infty} (-1)^n$ does not converge to $0$.
+
+
+
+
+
+\begin{df}
+Consider a \textbf{series} in $\ovl\Rbb_{\geq0}$: \index{00@Series in $\ovl\Rbb_{\geq0}$}
+\begin{align}
+\sum_{i=1}^\infty a_i \label{eq26}
+\end{align}
+namely, each $a_i$ is in $\ovl\Rbb_{\geq 0}$. Note that the partial sum $s_n=\sum_{i=1}^n a_i$ is increasing. We say that $\lim_{n\rightarrow\infty} s_n$ (which exists in $\ovl\Rbb_{\geq0}$ and equals $\sup\{s_n:n\in\Zbb_+\}$, cf. Rem. \ref{lb58}) is the value of the series \eqref{eq26} and write
+\begin{align*}
+\sum_{i=1}^\infty a_i=\lim_{n\rightarrow\infty} s_n
+\end{align*}
+\end{df}
+
+
+\begin{df}
+We say that a series $\sum_{i=1}^\infty a_i$ in $\Rbb_{\geq 0}$ \textbf{converges} if it converges in $\Rbb$ (but not just converges in $\ovl\Rbb_{\geq 0}$, which is always true). Clearly, $\sum_{i=1}^\infty a_i$ converges iff
+\begin{align*}
+\sum_{i=1}^\infty a_i<+\infty
+\end{align*}
+More generally, we say that a series $\sum_{i=1}^\infty v_i$ in a Banach space $V$ \textbf{converges absolutely}, \index{00@Absolute convergent series} if
+\begin{align*}
+\sum_{i=1}^\infty~ \lVert v_i\lVert <+\infty
+\end{align*}
+\end{df}
+
+\begin{rem}
+By the Cauchy condition of convergence, $\sum_{i=1}^\infty v_i$ converges absolutely iff for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n> m\geq N$ we have 
+\begin{align}
+\sum_{i=m+1}^N~\lVert v_i\lVert<\eps \label{eq27}
+\end{align}
+By comparing \eqref{eq27} with \eqref{eq28} and using the subadditivity of the norm (recall Def. \ref{lb91}), we immediately see:
+\end{rem}
+
+\begin{pp}\label{lb94}
+Let $\sum_{i=1}^\infty v_i$ be a series in a Banach space. The following are true.
+\begin{enumerate}
+\item If $\sum_{i=1}^\infty v_i$ converges absolutely, then it converges.
+\item For each $i$ we choose $a_i\in\Rbb_{\geq0}$ satisfying $\lVert v_i\lVert\leq a_i$. Suppose that $\sum_{i=1}^\infty a_i<+\infty$. Then $\sum_{i=1}^\infty v_i$ converges absolutely.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+Part 1 has been explained above. In part 2, we have $\sum\lVert v_i\lVert \leq \sum a_i<+\infty$. So $\sum v_i$ converges absolutely.
+\end{proof}
+
+
+\begin{exe}
+Suppose that $\sum_{i=1}^\infty u_i$ and $\sum_{i=1}^\infty v_i$ are convergent (resp. absolutely convergent) series in a Banach space $V$. Let $\lambda\in\Fbb$. Show that the LHS of the following equations converges (resp. converges absolutely) in $V$, and that the following equations hold:
+\begin{gather*}
+\sum_{i=1}^\infty (u_i+v_i)=\sum_{i=1}^\infty u_i+\sum_{i=1}^\infty v_i\\
+\sum_{i=1}^\infty \lambda v_i=\lambda\cdot\sum_{i=1}^\infty v_i
+\end{gather*}
+\end{exe}
+
+
+\begin{rem}
+We have seen that absolute convergence implies convergence. In fact, at least when $V=\Fbb^N$, absolute convergence is in many ways more natural than convergence. For example, we will learn that if a series $\sum_i v_i$ in $\Fbb^N$ converges absolutely, then the value of $\sum_i v_i$ is invariant under rearrangement of the series: for every bijection $\varphi:\Zbb_+\rightarrow\Zbb_+$ we have $\sum_i v_i=\sum_i v_{\varphi(i)}$. In the next semester, we shall learn Lebesgue integral theory and, more generally, measure theory. When applying measure theory to infinite sums over the countable set $\Zbb_+$, many good results (e.g. dominated convergence theorem, Fubini theorem)  hold only for absolute convergence series, but not for arbitrary convergent series in general. In fact, there is no analog of convergent (but not absolutely convergent) series in measure theory at all!
+
+When $V$ is not necessarily finite-dimensional, the situation is subtler: there is a version of convergence which lies between the usual convergence and absolute convergence, and which coincides with absolute convergence when $V=\Fbb^N$. This version of convergence is defined using nets instead of sequences. Moreover, many good properties (as mentioned above) hold for this convergence, and these properties can be proved in a very conceptual way (rather than using brute-force computation). We will learn this convergence in the next chapter.   \hfill\qedsymbol
+\end{rem}
+
+
+
+\subsection{Basic examples}
+
+
+Let us study the \textbf{geometric series} $\sum_{n=0}^\infty z^n$ where $z\in\Cbb$. We first note the useful formula: for each $z,w\in\Cbb$ and $n\in\Nbb$,
+\begin{align}
+(z+w)^n=\sum_{k\in\Nbb}{n\choose k}z^kw^{n-k}  
+\end{align}
+In particular,
+\begin{align}
+(1+z)^n=1+nz+\frac{n(n-1)}{2}z^2+\frac{n(n-1)(n-2)}6 z^3+\cdots+nz^{n-1}+z^n \label{eq29}
+\end{align}
+
+
+\begin{eg}\label{lb110}
+Assume $z\in\Cbb$ and $|z|<1$. Then $\lim_{n\rightarrow\infty}z^n=0$. 
+\end{eg}
+
+\begin{proof}
+If $z=0$ then it is obvious. Assume that $0<|z|<1$. Choose $\delta>0$ such that $|z|=1/(1+\delta)$. By \eqref{eq29}, $(1+\delta)^n\geq 1+n\delta$. So
+\begin{align*}
+0\leq |z^n|\leq (1+n\delta)^{-1}
+\end{align*}
+Since $\dps\lim_{n\rightarrow\infty} (1+n\delta)^{-1}=0$, we have $|z^n|\rightarrow0$ by squeeze theorem. Hence $z^n\rightarrow0$.
+\end{proof}
+
+\begin{eg}\label{lb106}
+Let $z\in\Cbb$. If $|z|<1$, then $\dps\sum_{n=0}^\infty z_n$ converges absolutely, and
+\begin{align}
+\sum_{n=0}^\infty z^n=\frac 1{1-z}
+\end{align}
+where $0^0$ is understood as $1$. If $|z|\geq 1$, then $\dps\sum_{n=0}^\infty z_n$ diverges in $\Cbb$.
+\end{eg}
+
+
+\begin{proof}
+The partial sum $s_n=1+z+z^2+\cdots +z^n$ equals $(1-z^{n+1})/(1-z)$. Therefore, when $|z|<1$, $s_n\rightarrow 1/(1-z)$. When $|z|\geq 1$, we have $|z^n|\geq 1$ and hence $z^n\nrightarrow 0$. So $\sum_{n=0}^\infty z^n$ diverges by Prop. \ref{lb92}.
+\end{proof}
+
+
+\begin{eg}\label{lb95}
+The \textbf{harmonic series} $\dps\sum_{n=1}^\infty \frac 1n$ diverges (in $\Rbb$).
+\end{eg}
+
+
+\begin{proof}
+We want to show that the Cauchy condition (cf. Rem. \ref{lb93}) does not hold. Thus, we want to prove that there exists $\eps>0$ such that for every $N\in\Zbb_+$ there exist $n>m\geq N$ such that $|m^{-1}+(m+1)^{-1}+\cdots+n^{-1}|\geq\eps$.
+
+To see this, for each $N$ we choose  $m=2^N$ and $n=2^{N+1}$. Then $n>m>N$, and
+\begin{align*}
+&\Big|\sum_{i=m}^n i^{-1}\Big|=\Big|\frac 1{2^N+1}+\frac 1{2^N+2}+\cdots +\frac 1{2^N+2^N}  \Big|\\
+\geq&\underbrace{\Big|\frac 1{2^{N+1}}+\frac 1{2^{N+1}}+\cdots +\frac 1{2^{N+1}}  \Big|}_{2^N\text{ terms}}=\eps
+\end{align*}
+where $\eps=\frac 12$.
+\end{proof}
+
+\begin{comment}
+\begin{rem}
+For every $p\in\Rbb$, assume that $n^p$ (where $n\in\Zbb_+$) is defined and that the properties we learned in high school mathematics are satisfied. If $p\leq 1$, then clearly $\sum_{n=1}^\infty n^{-p}=+\infty$ since $1/n^p\geq 1/n$. It is in fact true that for every $p>1$ we have $\sum_{n=1}^\infty n^{-p}<+\infty$. The easiest (but not the most elementary) way to see this is by using integrals: This series equals $1+\int_{x=1}^{+\infty}f(x)dx$ where $f:[1,+\infty)\rightarrow\Rbb_{\geq0}$ equals $(n+1)^{-p}$ when restricted to $[n,n+1)$. So $f(x)\leq x^{-p}$ on $[1,+\infty)$. Hence $\int_{x=1}^{+\infty}f(x)dx\leq \int_{x=1}^{+\infty}x^{-p}dx=(1-p)^{-1}x^{1-p}|_{x=1}^{+\infty}=(p-1)^{-1}<+\infty$.
+\end{rem}
+\end{comment}
+
+
+\begin{exe}\label{lb96}
+Choose any $p\in\Zbb$. Prove that $\dps\sum_{n=1}^\infty n^{-p}$ converges iff $p\geq 2$.
+\end{exe}
+
+\begin{proof}[Hint]
+Use Prop. \ref{lb94} and Exp. \ref{lb95} to reduce the problem to the case $p=2$. Prove this case by proving $\sum_{n=1}^\infty 1/n(n+1)=1<+\infty$.
+\end{proof}
+
+
+
+\begin{df}
+Let $V$ be a Banach space, let $X$ be a set, and let $(f_n)$ be a sequence in $l^\infty(X,V)$, and let $g\in l^\infty(X,V)$. We say that the series of functions $\dps\sum_{i=1}^\infty f_i$ \textbf{converges uniformly to $g$} \index{00@Uniform convergence of series of functions} (on $X$) if it converges to $g$ as a series in the Banach space $l^\infty(X,V)$ and under the $l^\infty$-norm. Equivalently, this means that the partial sum function $s_n=f_1+\cdots+f_n$ converges uniformly to $g$ as $n\rightarrow\infty$.
+\end{df}
+
+
+\begin{eg}
+The series of functions $\dps\sum_{n=1}^\infty \frac{\sin|nz^3|}{n^2}$ converges uniformly on $\Cbb$ to a continuous function $g:\Cbb\rightarrow\Rbb$ which is uniformly bounded (i.e. $\dps\sup_{z\in\Cbb}|g(z)|<+\infty$).
+\end{eg}
+
+\begin{proof}
+Let $f_n(z)=\sin|nz^3|/n^2$. Then each $f_n$ is in $\fk X=C(\Cbb,\Rbb)\cap l^\infty(\Cbb,\Rbb)$ where $\fk X$ is a real Banach space under the $l^\infty$-norm by Cor. \ref{lb101}. Note that $\lVert f_n\lVert_\infty\leq n^{-2}$. By Exe. \ref{lb96}, $\sum_{n=1}^\infty n^{-2}<+\infty$. Therefore, by Prop. \ref{lb94}, the series $\sum_n f_n$ converges in $\fk X$, i.e., it converges uniformly to an element $g\in \fk X$. (In particular, $\sum_n f_n(z)=g(z)$ for all $z\in\Cbb$.)
+\end{proof}
+
+
+\subsection{Root test and ratio test; power series}
+
+
+Root test and ratio test are useful criteria for proving the convergence or divergence of series, especially  power series. In addition, the method of power series provides a unified and elegant proof for many useful formulas about limit (see Prop. \ref{lb109} and Exp. \ref{lb111}). We begin our discussion with the following easy observation:
+
+\begin{rem}\label{lb105}
+Let $(x_n)$ be a sequence in $\ovl\Rbb$, and let $A\in\ovl\Rbb$. The following are true.
+\begin{enumerate}
+\item If $\dps\limsup_{n\rightarrow\infty} x_n<A$, then $x_n<A$ is eventually true.
+\item If $\dps\limsup_{n\rightarrow\infty} x_n>A$, then $x_n>A$ is frequently true.
+\end{enumerate}
+By taking negative, we obtain similar statements for $\liminf$.
+\end{rem}
+
+
+\begin{proof}
+Recall that $\limsup x_n=\inf_{n\in\Zbb_+}\alpha_n$ where where $\alpha_n=\sup\{x_n,x_{n+1},\dots\}$. 
+
+
+
+Assume that  $\inf_{n\in\Zbb_+}\alpha_n<A$. Then $A$ is not a lower bound of $\{\alpha_n:n\in\Zbb_+\}$. Thus, there exists $N\in\Zbb_+$ such that $\alpha_N<A$. Then $x_n<A$ for all $n\geq N$.
+
+Assume that $\inf_{n\in\Zbb_+}\alpha_n>A$. Then for each $N\in\Zbb_+$ we have $\alpha_N>A$. So $A$ is not an upper bound of $\{x_n,x_{n+1},\dots\}$.  So there is $n\geq N$ such that $x_n>A$.
+\end{proof}
+
+
+
+\begin{pp}[\textbf{Root test}]\index{00@Root test} 
+Let $\dps\sum_{n=1}^\infty v_n$ be a series in a Banach space $V$. Let $\dps\beta=\limsup_{n\rightarrow\infty}\sqrt[n]{\lVert v_n\lVert}$. Then:
+\begin{enumerate}
+\item If $\beta<1$, then $\sum v_n$ converges absolutely, and hence converges in $V$.
+\item If $\beta>1$, then $\sum v_n$ diverges in $V$.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+Suppose $\beta<1$. Then we can choose $\gamma$ such that $\beta<\gamma<1$. So $\limsup \sqrt[n]{\lVert v_n\lVert}<\gamma$. By Rem. \ref{lb104}, there exists $N\in\Zbb_+$ such that for all $n\geq N$, we have $\sqrt[n]{\lVert v_n\lVert}<\gamma$, and hence $\lVert v_n\lVert <\gamma^n$. Since $\sum_{n=0}^\infty \gamma^n=(1-\gamma)^{-1}<+\infty$ (Exp. \ref{lb106}), the series $\sum_{n=N}^\infty v_n$ converges absolutely by Prop. \ref{lb94}. So the original series converges absolutely.
+
+Assume that $\beta>1$. Then by Rem. \ref{lb105}, for each $N$ there is $n\geq N$ such that $\sqrt[n]{\lVert v_n\lVert}>1$ and hence $\lVert v_n-0\lVert>1$. So $v_n\nrightarrow 0$. So $\sum v_n$ diverges by Prop. \ref{lb92}.
+\end{proof}
+
+\begin{eg}
+Let $V=\Rbb$ and $v_n=1/n$ resp. $v_n=1/n^2$. Then $\beta=1$, and $\sum v_n$ diverges resp. converges absolutely due to Exe. \ref{lb96}. So Root test gives no information on the convergence of series when $\beta=1$. The same can be said about ratio test.
+\end{eg}
+
+
+
+
+\begin{pp}[\textbf{Ratio test}]\index{00@Ratio test}  
+Let $\dps\sum_{n=1}^\infty v_n$ be a series in a Banach space $V$ such that $v_n\neq 0$ for all $n$. Let $\dps\alpha=\liminf_{n\rightarrow\infty}\frac{\lVert v_{n+1}\lVert}{\lVert v_n\lVert}$ and $\dps\beta=\limsup_{n\rightarrow\infty}\frac{\lVert v_{n+1}\lVert}{\lVert v_n\lVert}$. Then:
+\begin{enumerate}
+\item If $\beta<1$, then $\sum v_n$ converges absolutely, and hence converges in $V$.
+\item If $\alpha>1$, then $\sum v_n$ diverges in $V$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+Suppose $\beta<1$. Choose $\gamma$ such that $\beta<\gamma<1$. Then by Rem. \ref{lb105}, there is $N$ such that for all $n\geq N$ we have $\lVert v_{n+1}\lVert/\lVert v_n\lVert<\gamma$. So $\lVert v_n\lVert <\gamma^{n-N}\lVert v_N\lVert$. So $\sum_{n\geq N}\lVert v_n\lVert \leq \lVert v_N\lVert \cdot\sum_{n\geq N}\gamma^{n-N}=\lVert v_N\lVert\cdot (1-\gamma)^{-1}<+\infty$. So $\sum v_n$ converges absolutely.
+
+Suppose $\alpha>1$. Then by Rem. \ref{lb105}, there is $N$ such that for all $n\geq N$ we have $\lVert v_{n+1}\lVert/\lVert v_n\lVert>1$. So $\lVert v_n\lVert\geq\lVert v_N\lVert>0$ for all $n\geq N$. So $v_n\nrightarrow 0$ and hence $\sum v_n$ diverges, as in the proof of root test.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{df}
+A \textbf{power series} \index{00@Power series} is an expression of the form $\dps\sum_{n=0}^\infty v_nz^n$ where the \textbf{coefficients} $v_0,v_1,v_2,\dots$ are elements of a complex Banach space $V$, and $z$ is a \textbf{complex variable},\index{00@Complex variable} i.e., a symbol which can take arbitrary values in $\Cbb$. If the power series $\sum v_nz^n$ converges at $z_0\in\Cbb$, we often let $\sum v_n z_0^n$ denote this limit.
+\end{df}
+
+
+\begin{pp}\label{lb108}
+Let $\sum v_n z^n$ be a power series with coefficients in a complex Banach space $V$. Then there is a unique $0\leq R\leq+\infty$ satisfying the following properties:
+\begin{enumerate}[label=(\alph*)]
+\item If $z\in\Cbb$ and $|z|<R$, then $\sum v_n z^n$ converges absolutely in $V$.
+\item If $z\in\Cbb$ and $|z|>R$, then $\sum v_n z^n$ diverges in $V$.
+\end{enumerate}
+Such $R$ is called the \textbf{radius of convergence} \index{00@Radius of convergence} of $\sum v_nz^n$. Moreover, we have
+\begin{align}
+R=\frac 1{\dps\limsup_{n\rightarrow\infty}\sqrt[n]{\lVert v_n\lVert}}=\liminf_{n\rightarrow\infty}\frac 1{\sqrt[n]{\lVert v_n\lVert}}  \label{eq30}
+\end{align}
+\end{pp}
+
+
+
+\begin{proof}
+Clearly, there are at most one $R$ satisfying (a) and (b). Let us define $R$ using \eqref{eq30} (note that the second and the third terms of \eqref{eq30} are clearly equal), and prove that $R$ satisfies (a) and (b). Let
+\begin{gather*}
+\beta(z)=\limsup_{n\rightarrow\infty} \sqrt[n]{\lVert v_n z^n\lVert}
+\end{gather*}
+Then $\beta(z)=|z|/R$. So (a) and (b) follow immediately from root test.
+\end{proof}
+
+
+\begin{rem}
+Note that if one can find $0\leq r\leq R$ such that $\sum v_nz^n$ converges whenever $|z|<r$, then $r\leq R$ where $R$ is the convergence of radius: otherwise, the series diverges for any positive $z$ satisfying $R<z<r$, impossible.
+
+It follows that if  $\sum v_nz^n$ converges for all $|z|<r$, then $\sum v_nz^n$ converges \emph{absolutely} for all $|z|<r$.  \hfill\qedsymbol
+\end{rem}
+
+
+Prop. \ref{lb108} provides a useful method for computing limits of a positive sequence:
+
+\begin{pp}\label{lb109}
+Let $(\lambda_n)$ be a sequence in $\Rbb_{>0}$. Then
+\begin{align}
+\liminf_{n\rightarrow\infty}\frac{\lambda_{n+1}}{\lambda_n}\leq \liminf_{n\rightarrow\infty}\sqrt[n]{\lambda_n}\leq \limsup_{n\rightarrow\infty}\sqrt[n]{\lambda_n}\leq \limsup_{n\rightarrow\infty} \frac{\lambda_{n+1}}{\lambda_n}  \label{eq35}
+\end{align}
+In particular, (by Cor. \ref{lb113}) we have
+\begin{align}
+\lim_{n\rightarrow\infty}\sqrt[n]{\lambda_n}=\lim_{n\rightarrow\infty} \frac{\lambda_{n+1}}{\lambda_n}\label{eq31}
+\end{align}
+provided that the limit on the RHS of \eqref{eq31} exists in $\ovl\Rbb$.
+\end{pp}
+
+The four numbers in \eqref{eq35} can be completely different. See \cite[Exp. 3.35]{Rud-P}.
+
+\begin{proof}
+Let $R$ be the radius of convergence of $\sum \lambda_n z^n$. Then $R=1/\limsup\sqrt[n]{\lambda_n}$ by \eqref{eq31}. Thus, by Prop. \ref{lb108}, if $|z|>R$ then $\sum \lambda_n z^n$ diverges, and hence $\limsup|\lambda_{n+1}z^{n+1}|/|\lambda_n z^n|\geq 1$ by ratio test. Therefore, 
+\begin{align*}
+|z|>\frac 1{\dps\limsup\sqrt[n]{\lambda_n}}\qquad\Longrightarrow \qquad |z|\cdot\limsup\frac{\lambda_{n+1}}{\lambda_n}\geq 1
+\end{align*}
+This proves
+\begin{align*}
+\limsup\sqrt[n]{\lambda_n}\leq \limsup \frac{\lambda_{n+1}}{\lambda_n}
+\end{align*}
+Replacing $\lambda_n$ by $\lambda_n^{-1}$, we get
+\begin{align*}
+\frac 1{\dps\liminf \sqrt[n]{\lambda_n}}=\limsup\sqrt[n]{\lambda_n^{-1}}\leq \limsup \frac{\lambda_n}{\lambda_{n+1}}=\frac 1{\dps \liminf\frac{\lambda_{n+1}}{\lambda_n}}
+\end{align*}
+This proves \eqref{eq35}.
+\end{proof}
+
+\begin{eg}\label{lb111}
+Let $a\in\Rbb_{>0}$ and $p\in\Zbb$. The following formulas follow immediately from Prop. \ref{lb109} (especially, from \eqref{eq31}):
+\begin{subequations}
+\begin{gather}
+\lim_{n\rightarrow\infty} \sqrt[n]{a}=1 \label{eq32}\\
+\lim_{n\rightarrow\infty}\sqrt[n]{n!}=+\infty  \label{eq33}\\
+\lim_{n\rightarrow\infty}\sqrt[n]{n^p}=1  \label{eq34}
+\end{gather}
+Note that \eqref{eq34} follows from 
+\begin{align}
+\lim_{n\rightarrow\infty}\Big(\frac n{n+1}\Big)^p=1 
+\end{align}
+(This is clearly true when $p=\pm1$, and hence is true for any $p$ by induction.) By \eqref{eq34}, the radius of convergence of $\sum_n n^p z^n$ is $1$. Therefore, by Prop. \ref{lb108},  $\sum n^pR^{-n}$ converges absolutely when $R>1$. Thus, by Prop. \ref{lb92},
+\begin{align}
+\lim_{n\rightarrow\infty} \frac{n^p}{R^n}=0 \qquad(\text{if }R>1)
+\end{align}
+This means that ``polynomials grow slower than exponentials".
+\end{subequations}
+
+The same conclusions hold for arbitrary $p\in\Rbb$ once we know how to define $x^p$ and prove the continuity of $x\in\Rbb_{>0}\mapsto x^p$. \hfill\qedsymbol
+\end{eg}
+
+
+
+
+
+
+
+\begin{df}\label{lb107}
+By \eqref{eq33}, the power series \index{exp@$e^z=\exp(z)$}
+\begin{align*}
+\exp(z)\equiv e^z=\sum_{n=0}^\infty \frac{z^n}{n!}
+\end{align*}
+has radius of convergence $+\infty$, and hence converges absolutely on $\Cbb$. (In particular, $\lim_{n\rightarrow\infty} z^n/n!=0$ for all $z\in\Cbb$.) This gives a function $\exp:\Cbb\rightarrow\Cbb$, called the \textbf{exponential function}. \index{00@Exponential function} 
+\end{df}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Part (a) of Prop. \ref{lb108} can be strengthened in the following way.
+
+\begin{thm}\label{lb112}
+Let $\sum v_n z^n$ be a power series with coefficients in a complex Banach space $V$. Let $R$ be its radius of convergence, and assume that $0<R\leq+\infty$. For each $z\in B_\Cbb(0,R)$, let $f(z)$  denote the value of this series at $z$ (which is an element of $V$). Then $f:B_\Cbb(0,R)\rightarrow V$ is continuous. Moreover,  for each $0<\rho<R$, the series of functions $\sum v_n z^n$ converges uniformly on $\ovl B_\Cbb(0,\rho)$ to $f$. 
+\end{thm}
+
+Note that by calling $\sum v_n z^n$ a series of functions, we understand each term $v_nz^n$ as a function $\Cbb\rightarrow V$.
+
+\begin{proof}
+For each $0<\rho<R$, let $X_\rho=\ovl B_\Cbb(0,\rho)$. Then $X_\rho$ is clearly a bounded closed subset of $\Cbb$, and hence is sequentially compact by Heine-Borel Thm. \ref{lb98}. Let $g_n=v_nz^n$, which is a continuous function $X_\rho\rightarrow V$. We view $g_n$ as an element of the Banach space (cf. Cor. \ref{lb101}) $C(X_\rho,V)$. Then $\lVert g_n\lVert_\infty=\rho^n\lVert v_n\lVert$. Thus
+\begin{align*}
+\limsup_{n\rightarrow\infty}\sqrt[n]{\lVert g_n\lVert_\infty}=\limsup_{n\rightarrow\infty}\rho\sqrt[n]{\lVert v_n\lVert}=\rho/R<1
+\end{align*}
+Therefore, by root test, the series $\sum g_n$ converges in the Banach space $C(X_\rho,V)$ to some $f_\rho\in C(X_\rho,V)$.
+
+We have proved that for each $0<\rho<R$, the series of functions $\sum v_nz^n$ converges uniformly on $X_\rho$ to a continuous function $f_\rho$. Let $f:B_\Cbb(0,R)\rightarrow V$ whose value at each $z$ is the value of the original series at $z$. Thus, if $|z|\leq\rho$, then $f_\rho(z)=f(z)$. Namely, $f|_{X_\rho}=f_\rho$. This shows that $\sum v_nz^n$ converges uniformly on $X_\rho$ to $f$. It also shows that $f|_{B_\Cbb(0,\rho)}$ is continuous (because $f_\rho$ is continuous). Therefore, since $B_\Cbb(0,R)$ is covered by all open disks $B_\Cbb(0,\rho)$ (where $0<\rho<R$), we conclude from Lem. \ref{lb30} that $f$ is continuous on $B_\Cbb(0,R)$.
+\end{proof}
+
+\begin{eg}
+By Thm. \ref{lb112}, the exponential function $\exp:\Cbb\rightarrow\Cbb$ is continuous; moreover, $\sum_{n=0}^\infty z^n/n!$ converges uniformly to $e^z$ on $\ovl B_{\Cbb}(0,R)$ for every $0<R<+\infty$, and hence on every bounded subset of $\Cbb$.
+\end{eg}
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+\begin{sprob}
+Prove \eqref{eq32} directly. Then use \eqref{eq32} to give a direct proof of Prop. \ref{lb109}. Do not use root test, ratio test, or any results about power series.
+\end{sprob}
+
+
+
+\begin{comment}
+
+
+\begin{sprob}
+Consider a power series $\sum a_nz^n$ where $a_n\in\Rbb_{\geq 0}$ for each $n$. Let $R$ be its radius of convergence. Prove that the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\sum a_n<+\infty$.
+\item $\sum a_nz^n$ converges uniformly on $\ovl B_\Cbb(0,R)$ to a continuous function.
+\item $\sum a_nz^n$ converges uniformly on $B_\Cbb(0,R)$.
+\end{enumerate}
+\end{sprob}
+\end{comment}
+
+
+\newpage
+
+
+\section{Nets and discrete integrals}
+
+
+\subsection{Introduction: why do we need nets?}
+
+
+
+Nets were introduced by Moore and Smith in 1922 as a generalization of sequences. The most well-known motivation for introducing nets is that sequences are not enough for the study of non-metrizable topological spaces (i.e. topological spaces whose topologies are not induced by metrics). Here are two examples:
+\begin{itemize}
+\item In a general topological space, the definition of continuous maps using sequential convergence (as in Def. \ref{lb31}-(1)) is weaker than the definition using interior points and open sets (as in Def. \ref{lb31}-(2'), see also Rem. \ref{lb109}). Therefore, the dynamic intuition of sequences is not equivalent to the static intuition of open sets. 
+\item Some important  topological spaces are compact (i.e. every open cover has a finite subcover) is not sequentially compact. $[0,1]^I$ (where $I$ is uncountable), equipped with the ``product topology" (i.e. ``pointwise convergence topology"), is such an example. 
+\end{itemize}
+As we shall see, nets provide a remedy for these issues: For a general topological space, the definition of continuity using net convergence is equivalent to that using open sets; compactness is equivalent to ``net compactness", where the latter means that every net has a convergent subset. Thus, by generalizing sequences to nets, the dynamic intuition and the static and geometric intuition are unified again.
+
+
+Nevertheless, the most common topological spaces appeared in analysis are metrizable. This raises the question: Why should we care about nets, given that our primary interest is in metrizable topological spaces? Here is my answer: Even though we are mainly interested in metrizable spaces, we can still find nets helpful in the following aspects. 
+
+First of all, many convergence processes cannot be described by sequential convergence, but can be described by net convergence. For example, the following limits can be formulated and understood in the language of net convergence:
+\begin{enumerate}[label=(\arabic*)]
+\item The limit of a function $\lim_{x\rightarrow x_0}f(x)$ where $f:X\rightarrow Y$ is a map of metric spaces and $x_0\in X$.
+\item The limit $\dps\lim_{m,n\rightarrow\infty}a_{m,n}$ where $(a_{m,n})_{m,n\in\Zbb_+}$ is a \textbf{double sequence} in a metric space $X$. Note that this is not the same as (but is more natural than) the \textbf{iterated limit} $\dps\lim_{n\rightarrow\infty}\lim_{m\rightarrow\infty} a_{m,n}$. Moreover, the limit $\dps\lim_{m,n\rightarrow\infty}a_{m,n}$ is the key to understanding the problem of commutativity of iterated integrals:
+\begin{align*}
+\lim_{n\rightarrow\infty}\lim_{m\rightarrow\infty} a_{m,n}\xlongequal{?}\lim_{m\rightarrow\infty}\lim_{n\rightarrow\infty} a_{m,n}
+\end{align*}
+\item The Riemann integral $\int_a^b f(x)dx$. This is the limit of the Riemann sum $\lim\sum f(\xi_i)(a_i-a_{i-1})$  as the partition of the interval $[a,b]$ is getting finer and finer.
+\end{enumerate} 
+Moreover, as for (3), we shall see that the net version of Cor. \ref{lb113} provides a quick and conceptual proof of the following fact: If the upper and lower Darboux integrals are equal, then the Riemann integral exists and are equal to the two Darboux integrals. Indeed, the upper and lower Darboux integrals are respectively the $\limsup$ and $\liminf$ of a net in $\Rbb$.
+
+Second, nets provide a conceptual solution to many problems about \textbf{double series}. Let $(a_{m,n})_{m,n\in\Zbb_+}$ be a double sequence in $\Rbb$. Think about the following questions, which arise naturally when one is trying to prove $e^ze^w=e^{z+w}$.
+\begin{enumerate}[label=(\alph*)]
+\item When is it true that $\dps \sum_{n=1}^\infty\sum_{m=1}^\infty a_{m,n}=\sum_{m=1}^\infty\sum_{n=1}^\infty a_{m,n}$ ?
+\item Since $\card(\Zbb_+\times\Zbb_+)=\card(\Zbb_+)$, why not use an ordinary series to study a double series? So let us \textbf{parametrize} $\Zbb_+\times\Zbb_+$ by $\Zbb_+$: choose a bijection $\varphi:\Zbb_+\rightarrow \Zbb_+\times\Zbb_+$. When is it true that $\dps  \sum_{k=1}^\infty a_{\varphi(k)}=\sum_{n=1}^\infty\sum_{m=1}^\infty a_{m,n}$ ?
+\item Choose another parametrization (i.e. bijection) $\psi:\Zbb_+\rightarrow\Zbb_+\times\Zbb_+$. When is it true that $\dps  \sum_{k=1}^\infty a_{\varphi(k)}=\sum_{k=1}^\infty a_{\psi(k)}$ ?
+\item More generally, let $X$ be a countably infinite set, and let $f:X\rightarrow\Rbb$. Intuitively, we can take an infinite sum $\dps\sum_{x\in X}f(x)$. How to define it rigorously? One may think about choosing a parametrization, i.e., a bijection $\varpi:\Zbb_+\rightarrow X$. Then one defines the infinite sum by $\sum_{k=1}^\infty f(\varphi(k))$. Is this definition independent of the choice of parametrization?
+\item As a special case of (d), when is a series invariant under \textbf{rearrangement}? Namely, choose a bijection $\varphi:\Zbb_+\rightarrow\Zbb_+$, and choose a sequence $(a_n)$ in $\Rbb$, then when is it true that $\dps\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty a_{\varphi(n)}$ ?
+\end{enumerate}
+
+Modern differential geometry (whose ``intrinsic" spirit stems from Gauss's Theorema Egregium) teaches us that in order to answer these questions, one should first define the infinite sum $\sum_{x\in X}f(x)$ in a parametrization-independent way. (The reason we call a bijection $\varphi:\Zbb_+\rightarrow X$ a parametrization is that we want the readers to compare it with the parametrizations of curves, surfaces, and more generally manifolds.)  We will call this sum a \textbf{discrete integral}. Then, one tries to answer when this definition agrees with those that depend on parametrizations (such as the sums in (a)-(e) above). These goals can be achieved with the help of nets.
+
+
+
+\subsection{Nets}
+
+
+\subsubsection{Directed sets and nets}
+
+\begin{df}\label{lb116}
+A relation $\leq$ on a set $I$ is called a \textbf{preorder} \index{00@Preorder, and preordered set} if for all $\alpha,\beta,\beta\in I$, the following are satisfied:
+\begin{itemize}
+\item (Reflexivity) $\alpha\leq \alpha$.
+\item (Transitivity) If $\alpha\leq \beta$ and $\beta\leq \gamma$ then $a\leq \gamma$.
+\end{itemize}
+The pair $(I,\leq)$ (or simply $I$) is called a \textbf{preordered set}.
+\end{df}
+
+Therefore, a partial order is a preorder satisfying antisymmetry: $(\alpha\leq \beta)\land(\beta\leq\alpha)\Rightarrow (\alpha=\beta)$.
+
+\begin{df}
+A preordered set $(I,\leq)$ is called a \textbf{directed set} \index{00@Direct set} if 
+\begin{align}
+\forall\alpha,\beta\in I~~~\exists\gamma\in I~~\text{ such that }\alpha\leq \gamma,\beta\leq\gamma  \label{eq37}
+\end{align}
+If $I$ is a directed set and $X$ is a set, then a function $x:I\rightarrow X$ is called a \textbf{net} \index{00@Net $(x_\alpha)_{\alpha\in I}$} with directed set/index set $I$. We often write $x(\alpha)$ as $x_\alpha$ if $\alpha\in I$, and write $x$ as $(x_\alpha)_{\alpha\in I}$.
+\end{df}
+
+
+\begin{eg}
+$(\Zbb_+,\leq)$ is a directed set. A net with index set $\Zbb_+$ in a set $X$ is precisely a sequence in $X$.
+\end{eg}
+
+\begin{df}\label{lb117}
+Suppose that $(I,\leq_I )$ and $(J,\leq_J)$ are preordered set (resp. directed set), then the \textbf{product} \index{00@Product preordered/directed set} $(I\times J,\leq)$ is a preordered set (resp. directed set) if for every $\alpha,\alpha'\in I,\beta,\beta'\in J$ we define
+\begin{align}\label{eq36}
+(\alpha,\beta)\leq (\alpha',\beta')\qquad\Longleftrightarrow\qquad \alpha\leq_I \alpha'~~\text{and}~~\beta\leq_J\beta'
+\end{align}
+Unless otherwise stated, the preorder on $I\times J$ is assumed to be defined by \eqref{eq36}.
+\end{df}
+
+
+\begin{eg}
+$\Zbb_+\times\Zbb_+$ (or similarly, $\Nbb\times\Nbb$) is naturally a directed set whose preorder is defined by \eqref{eq36}. A net $(x_{m,n})_{(m,n)\in\Zbb_+\times\Zbb_+}$ with index set $\Zbb_+\times\Zbb_+$ is called a \textbf{double sequence} \index{00@Double sequence} and is written as $(x_{m,n})_{m,n\in\Zbb_+}$ or simply $(x_{m,n})$. (We will even write it as $(x_{mn})$ when no confusion arises.)
+
+More generally, we call $(x_{\alpha,\beta})_{(\alpha,\beta)\in I\times J}=(x_{\alpha,\beta})_{\alpha\in I,\beta\in J}$ a \textbf{double net} \index{00@Double net} if its index set is $I\times J$ for some directed sets $I,J$. \hfill\qedsymbol
+\end{eg}
+
+
+
+
+\begin{eg}\label{lb130}
+If $X$ is a set, then $(2^X,\subset)$ and $(\fin(2^X),\subset)$ \index{fin@$\fin(2^X)$} are directed sets where
+\begin{align}
+\fin(2^X)=\{A\subset X:A\text{ is a finite set}\}
+\end{align}
+We will use nets with index set $\fin(2^X)$ to study infinite sums.
+\end{eg}
+
+
+\begin{eg}
+Let $X$ be a metric space and $x\in X$. Then $X_x=(X,\leq)$ is a directed set if for each $p_1,p_2\in X$ we define
+\begin{align}
+p_1\leq p_2~~\text{in }X_x\qquad\Longleftrightarrow\qquad d(p_1,x)\geq d(p_2,x)
+\end{align}
+(Namely, a larger element of $X_x$ is one closer to $x$.) Nets with this directed set will be used to study the continuity (and the limits) of functions. Note that $X_x$ is our first example of directed set which is not a poset! ($d(p_1,x)=d(p_2,x)$ does not imply $p_1=p_2$.)
+\end{eg}
+
+
+\subsubsection{Limits of nets}
+
+If $I$ is an preordered set and $\beta\in I$, we write \index{I@$I_{\geq\beta}$}
+\begin{gather}
+I_{\geq\beta}=\{\alpha\in I:\alpha\geq\beta\}
+\end{gather}
+\begin{df}
+Let $P$ be a property about elements of a set $X$, i.e., $P$ is a function $X\rightarrow\{\text{true, false}\}$. Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$. 
+
+We say that $x_\alpha$ \textbf{eventually} \index{00@Eventually} satisfies $P$ (equivalently, we say that $x_\alpha$ satisfies $P$ for \textbf{sufficiently large} \index{00@Sufficiently large} $\alpha$) if:
+\begin{itemize}
+\item There exists $\beta\in I$ such that for every $\alpha\in I_{\geq\beta}$, the element $x_\alpha$ satisfies $P$.
+\end{itemize}
+``Sufficiently large" is also called ``\textbf{large enough}". \index{00@Large enough=sufficiently large}
+
+We say that $x_\alpha$ \textbf{frequently} \index{00@Frequently} satisfies $P$ if:
+\begin{itemize}
+\item For every $\beta\in I$ there exists $\alpha\in I_{\geq\beta}$ such that $x_\alpha$ satisfies $P$.
+\end{itemize}
+\hfill\qedsymbol
+\end{df}
+
+
+\begin{rem}
+Note that unlike sequences, for a general net, ``$x_\alpha$ eventually satisfies $P$" does not imply ``all but finitely many $x_\alpha$ satisfy $P$" because the complement of $I_{\geq\beta}$ is not necessarily a finite set.  
+\end{rem}
+
+
+\begin{rem}
+Let $P$ and $Q$ be two properties about elements of $X$. Then
+\begin{subequations}
+\begin{gather}
+\neg(\text{$x_\alpha$ eventually satisfies $P$})~~=~~(\text{$x_\alpha$ frequently satisfies $\neg P$})
+\end{gather}
+By the crucial condition \eqref{eq37} for directed sets, we have
+\begin{gather}\label{eq38}
+\begin{gathered}
+(x_\alpha\text{ eventually satisfies }P)\land(x_\alpha\text{ eventually satisfies }Q)\\
+\Downarrow \\
+x_\alpha\text{ eventually satisfies }P\land Q
+\end{gathered}
+\end{gather}
+By taking contraposition and replacing $P,Q$ by $\neg P,\neg Q$, we have
+\begin{gather}
+\begin{gathered}
+x_\alpha\text{ frequently satisfies }P\lor Q\\
+\Downarrow\\
+(x_\alpha\text{ frequently satisfies }P)\lor(x_\alpha\text{ frequently satisfies }Q)
+\end{gathered}
+\end{gather}
+\end{subequations}
+\end{rem}
+
+\begin{df}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in a metric space $X$. Let $x\in X$. We say that $(x_\alpha)$ \textbf{converges to} $x$ and write \index{lim@$\lim_{\alpha\in I}x_\alpha\equiv \lim_\alpha x_\alpha$}
+\begin{align*}
+\lim_{\alpha\in I}x_\alpha\equiv \lim_\alpha x_\alpha=x
+\end{align*}
+or simply $x_\alpha\rightarrow 0$ if the following statement holds:
+\begin{itemize}
+\item For every $\eps>0$, $x_\alpha$ is eventually in $B_X(x,\eps)$.
+\end{itemize}
+Clearly, $x_\alpha\rightarrow x$ iff $d(x_\alpha,x)\rightarrow 0$.
+\end{df}
+
+\begin{df}
+Let $(x_{m,n})_{m,n\in\Zbb_+}$ be a double sequence in a metric space. Then we write
+\begin{align}
+\lim_{(m,n)\in\Zbb_+\times\Zbb_+} x_{m,n}\equiv \lim_{m,n\rightarrow\infty} x_{m,n}
+\end{align}
+and call it the \textbf{(double) limit} \index{00@Double limit} of $(x_{m,n})$.
+\end{df}
+
+\begin{rem}
+Let us spell out the meaning of $\lim_{m,n\rightarrow\infty} x_{m,n}=x$: For each $\eps>0$ there exists $M,N\in\Zbb_+$ such that $d(x_{m,n},x)<\eps$ for all $m\geq M$ and $n\geq N$. Clearly, this is equivalent to the statement:
+\begin{itemize}
+\item For each $\eps>0$ there exists $N\in\Zbb_+$ such that $d(x_{m,n},x)<\eps$ for all $m,n\geq N$.
+\end{itemize}
+Therefore, if $(x_n)$ is a sequence in $X$, then
+\begin{align}
+\text{$(x_n)$ is a Cauchy sequence}\qquad\Longleftrightarrow\qquad \lim_{m,n\rightarrow\infty} d(x_m,x_n)=0
+\end{align}
+Thus, the Cauchyness of sequences can be studied in terms of double limits, and hence in terms of nets.
+\end{rem}
+
+
+
+
+\begin{pp}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in a metric space $X$ converging to $x,y$. Then $x=y$.
+\end{pp}
+
+\begin{proof}
+Suppose that $x\neq y$. Then there are $r,\rho>0$ such that $B(x,r)\cap B(y,\rho)=\emptyset$, say $r=\rho=d(x,y)/2$. Since $x_\alpha\rightarrow x$, $x_\alpha$ is eventually in $B(x,r)$. Since $x_\alpha\rightarrow y$, $x_\alpha$ is eventually in $B(y,\rho)$. Therefore, by the logic \eqref{eq38}, $x_\alpha$ is eventually in $B(x,r)\cap B(y,\rho)$, impossible.
+\end{proof}
+
+\begin{thm}\label{lb121}
+Let $f:X\rightarrow Y$ be map of metric spaces continuous at $x\in X$. Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$ converging to $x$. Then  $\dps\lim_\alpha f(x_\alpha)=f(x)$.
+\end{thm}
+
+\begin{proof}
+Choose any $\eps>0$. By Def. \ref{lb31}-(2) and the continuity of $f$ at $x$, there exists $\delta>0$ such that for all $p\in B(x,\delta)$ we have $f(p)\in B(f(x),\eps)$. Since $x_\alpha\rightarrow x$, $x_\alpha$ is eventually in $B(x,\delta)$. Therefore $f(x_\alpha)$ is eventually in $B(f(x),\eps)$.
+\end{proof}
+
+
+This theorem implies, for example, that if $(v_\alpha)$ is a net in a complex normed vector space converging to $v$, and if $(\lambda_\alpha)$ is a net in $\Cbb$ converging to $\lambda$, then $\lambda_\alpha v_\alpha$ converges to $\lambda v$ because the scalar multiplication map is continuous (Prop. \ref{lb82}).
+
+
+
+\begin{exe}\label{lb123}
+Prove the generalization of Rem. \ref{lb58}:
+\begin{enumerate}
+\item If $(x_\alpha)_{\alpha\in I},(y_\alpha)_{\alpha\in I}$ are nets in $\ovl\Rbb$ converging to $A,B\in\ovl\Rbb$, and if $x_\alpha\leq y_\alpha$ for all $\alpha$, then $A\leq B$.
+\item \textbf{Squeeze theorem}: \index{00@Squeeze theorem} Suppose that $(x_\alpha)_{\alpha\in I},(y_\alpha)_{\alpha\in I},(z_\alpha)_{\alpha\in I}$ are nets in $\ovl\Rbb$, $x_\alpha\leq y_\alpha\leq z_\alpha$ for all $\alpha$, and $x_\alpha$ and $z_\alpha$ both converge to $A\in\ovl\Rbb$. Then $y_\alpha\rightarrow A$.
+\item If $(x_\alpha)$ is an increasing resp. decreasing net in $\ovl\Rbb$, then $\lim_\alpha x_\alpha$ exists in $\ovl\Rbb$ and equals $\sup_\alpha x_\alpha$ resp. $\inf_\alpha x_\alpha$.
+\end{enumerate}
+\end{exe}
+
+
+
+
+
+
+
+
+\subsubsection{Subnets}
+
+
+
+
+\begin{df}
+A subset $E$ of a directed set $I$ is called \textbf{cofinal} \index{00@Cofinal subset} if:
+\begin{align*}
+\forall\alpha\in I~~~\exists\beta\in E~~~\text{such that }\alpha\leq\beta
+\end{align*}
+By the transitivity in Def. \ref{lb116} and property \eqref{eq37}, we clearly have
+\begin{align*}
+\forall\alpha_1,\dots,\alpha_n\in I~~~\exists\beta\in E~~~\text{such that }\alpha_1\leq\beta,\dots,\alpha_n\leq\beta
+\end{align*}
+\end{df}
+
+
+
+\begin{df}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in a set $X$. A \textbf{subnet} \index{00@Subnet} of $(x_\alpha)_{\alpha\in I}$ is, by definition, of the form $(x_{\alpha_s})_{s\in S}$ where $S$ is a directed set, and
+\begin{align*}
+(\alpha_s)_{s\in S}:S\rightarrow I\qquad s\mapsto \alpha_s
+\end{align*}
+is an increasing function whose range $\{\alpha_s:s\in S\}$ is cofinal in $I$.
+\end{df}
+
+\begin{eg}
+A subsequence is a subnet.
+\end{eg}
+
+\begin{eg}\label{lb118}
+Let $(x_{m,n})_{m,n\in\Zbb_+}$ be a net with index set $\Zbb_+\times\Zbb_+$. Then $(x_{k,k})_{k\in\Zbb_+}$ and $(x_{2k,k})_{k\in\Zbb_+}$ are subnets. $(x_{k,1})_{k\in\Zbb_+}$ is not a subnet, because the cofinal condition is not satisfied. More generally, it is not hard to show that for every function $\varphi,\psi:\Zbb_+\rightarrow\Zbb_+$, $(x_{\varphi(k),\psi(k)})_{k\in\Zbb_+}$ is a subnet iff $\varphi,\psi$ are increasing and $\lim_{k\rightarrow\infty}\varphi(k)=\lim_{k\rightarrow\infty}\psi(k)=+\infty$.
+\end{eg}
+
+\begin{exe}
+Prove the following facts:
+\begin{itemize}
+\item The cofinal subset of a cofinal subset of a directed set $I$ is a cofinal subset of $I$.
+\item  The subnet of a subnet of a net $(x_\alpha)$ is a subnet of $(x_\alpha)$. 
+\end{itemize}
+Note that in your proof you need to use the transitivity in Def. \ref{lb116}.
+\end{exe}
+
+
+It is important that the index set of a subnet is not necessarily a subset of the index set of the original net. Here is an example whose importance can be seen in the proofs of Exp. \ref{lb125} and Prop. \ref{lb126}.
+
+
+\begin{eg}\label{lb124}
+Let $J$ be a directed set. Then every net $(x_\alpha)_{\alpha\in I}$ has subnet $(x_\alpha)_{(\alpha,\beta)\in I\times J}$. The corresponding increasing map of directed sets is the projection $I\times J\rightarrow I$ onto the first component. 
+\end{eg}
+
+
+
+To appreciate the importance of cofinalness (as well as transitivity), we prove the following generalization of Prop. \ref{lb23}. This result has a wide range of surprising applications that are unavailable when one only considers sequences. (We will see them soon in this chapter. For instance, this result explains why the values of absolute convergent series and invariant under rearrangement.) So I call this result a theorem.
+
+
+\begin{thm}\label{lb120}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in a metric space (or more generally, a topological space) $X$ converging to $x\in X$. Then every subnet $(x_{\alpha_s})_{s\in S}$ converges to $x$.
+\end{thm}
+
+The following proof for metric spaces can be generalized straightforwardly to topological spaces. The readers can come back and check the details after learning topological spaces.
+
+\begin{proof}
+Choose any $\eps>0$. Since $x_\alpha\rightarrow x$, there exists $\beta\in I$ such that for all $\alpha\geq\beta$ we have $d(x_\alpha,x)<\eps$. By the cofinalness, there exists $t\in S$ such that $\alpha_t\geq\beta$. Thus, since $s\in S\mapsto \alpha_s\in I$ is increasing, for every $s\geq t$, we have $\alpha_s\geq\alpha_t\geq\beta$ and hence $\alpha_s\geq\beta$ by the transitivity in Def. \ref{lb116}. So $d(x_{\alpha_s},x)<\eps$ for all $s\geq t$. This finishes the proof.
+\end{proof}
+
+This proposition does not hold if one does not assume cofinalness in the definition of subnets:
+
+\begin{eg}
+Let $(x_n)$ be a sequence in $\Rbb$ converging to $x\in\Rbb$. Since $(x_n)$ is a Cauchy sequence, we know that $\lim_{m,n\rightarrow\infty}x_m-x_n=0$. We have seen in Exp. \ref{lb118} that $(x_{2k}-x_k)_{k\in\Zbb_+}$ is a subnet of $(x_{m,n})$. Therefore, $\lim_{k\rightarrow\infty} x_{2k}-x_k=0$. But $(x_k-x_1)_{k\in\Zbb_+}$ is not a subnet since the cofinal condition is not satisfied. And if $x\neq x_1$, then $\lim_k (x_k-x_1)=x-x_1\neq 0$, i.e.,
+\begin{align*}
+\lim_{k\rightarrow\infty}(x_k-x_1)\neq \lim_{m,n\rightarrow\infty} (x_m-x_n)
+\end{align*}
+\end{eg}
+
+
+In Subsec. \ref{lb119}, we have seen two criteria for the divergence of sequence: a sequence diverges if it is unbounded, or if it has two subsequences converging to different points. By Thm. \ref{lb120}, the second criterion can be generalized to nets. However, the following example shows that the first criterion does not has its net version:
+
+
+\begin{eg}
+A convergent net $(x_\alpha)_{\alpha\in I}$ in a metric space $X$ is not necessarily \textbf{bounded}. Namely, it is not necessarily true that $\{x_\alpha:\alpha\in I\}$ is a bounded subset of $X$. Let $f:\Rbb_{>0}\rightarrow\Rbb$ be a net with directed set $(\Rbb_{> 0},\leq)$. Then this net is not bounded, although $\lim f(x)=0$.
+\end{eg}
+
+
+\begin{eg}
+The double sequence $x_{m,n}=n/(m+n)$ in $\Rbb$ has subnets $x_{n,n}=n/(n+n)=1/2$ and $x_{2n,n}=1/3$. Since these two subnets converge to different values, Thm. \ref{lb120} implies that $\lim_{m,n}x_{m,n}$ does not exist. However, the \textbf{iterated limits}\index{00@Iterated limit} exist and take different values:
+\begin{gather*}
+\lim_{m\rightarrow\infty}\lim_{n\rightarrow\infty}\frac{n}{m+n}=1\qquad \lim_{n\rightarrow\infty}\lim_{m\rightarrow\infty}\frac{n}{m+n}=0
+\end{gather*}
+As we shall see, this gives another criterion for the divergence of double series: If the two iterated limits exist and are different, then the double series diverge.
+\end{eg}
+
+
+Finally, we do an example of convergent double sequence:
+
+\begin{eg}\label{lb125}
+Let $\dps x_{m,n}=(m^{-2}-n^{-1})\sin\frac{\pi(m+\sqrt n)}{4}$. Then $\dps\lim_{m,n\rightarrow\infty}x_{m,n}=0$.
+\end{eg}
+
+\begin{proof}
+The sequence $(m^{-2})_{m\in\Zbb_+}$ converges to $0$. By Exp. \ref{lb124}, the double sequence $(m^{-2})_{m,n\in\Zbb_+}$ is its subnet, and hence converges to $0$ by Thm. \ref{lb120}. Similarly, the double sequence $(n^{-1})_{m,n\in\Zbb_+}$ converges to $0$. Therefore, $m^{-2}+n^{-1}$ converges to $0$ due to Thm. \ref{lb121} and the continuity of the addition map $(x,y)\in\Rbb^\mapsto x+y\in\Rbb$ (Prop. \ref{lb41}). Since $0\leq |x_{m,n}|\leq m^{-2}+n^{-1}$, we conclude $|x_{m,n}|\rightarrow 0$ (and hence $x_{m,n}\rightarrow0$) by squeeze theorem (Exe. \ref{lb123}).
+\end{proof}
+
+
+
+
+
+
+
+\subsubsection{Double limits and iterated limits}
+
+\begin{thm}\label{lb122}
+Let $(x_{\alpha,\beta})_{\alpha\in I,\beta\in J}$ be a double net in a metric space $X$. Assume that the following are true:
+\begin{enumerate}[label=(\arabic*)]
+\item The limit $\dps\lim_{(\alpha,\beta)\in I\times J}x_{\alpha,\beta}$ exists in $X$.
+\item For each $\alpha\in I$, the limit $\dps\lim_{\beta\in J}x_{\alpha,\beta}$ exists in $X$.
+\end{enumerate}
+Then LHS limit in the following equation exists and equals the RHS:
+\begin{align}
+\lim_{\alpha\in I}\lim_{\beta\in J}x_{\alpha,\beta}=\lim_{(\alpha,\beta)\in I\times J}x_{\alpha,\beta}
+\end{align}
+In particular, suppose that the following is also true:
+\begin{itemize}
+\item[(3)] For each $\beta\in J$, the limit $\dps\lim_{\alpha\in J}x_{\alpha,\beta}$ exists in $X$. 
+\end{itemize}
+Then the following limits exist and are equal:
+\begin{align}
+\lim_{\alpha\in I}\lim_{\beta\in J}x_{\alpha,\beta}=\lim_{\beta\in J}\lim_{\alpha\in I}x_{\alpha,\beta}
+\end{align}
+\end{thm}
+
+
+\begin{proof}
+Let $\dps x_\alpha=\lim_\beta x_{\alpha,\beta}$ and $\dps x=\lim_{\alpha,\beta}x_{\alpha,\beta}$. We want to show that $\dps\lim_\alpha x_\alpha=x$. Choose any $\eps>0$. Then there exist $A\in I,B\in J$ such that for every $\alpha\geq A$ and $\beta\geq B$ we have $d(x_{\alpha,\beta},x)<\eps/3$. In particular,  $d(x_{\alpha,\beta},x)\leq \eps/2$. Using Thm. \ref{lb121} and the fact that $p\in X\mapsto d(p,x)\in\Rbb$ is continuous (Exp. \ref{lb45}), we see that for every $\alpha\geq A$ we have $\dps d(x_\alpha,x)=\lim_{\beta\in J_{\geq B}} d(x_{\alpha,\beta},x)\leq \eps/2<\eps$.
+\end{proof}
+
+The readers may skip the next remark and proof and come back to them when they have learned about topological spaces.
+
+\begin{srem}
+Thm. \ref{lb122} can be generalized to the case that $X$ is a regular topological space. By saying that the topological space $X$ is \textbf{regular}, \index{00@Regular topological space} we mean that for every $x\in X$ and every open set $U$ containing $x$, there is a smaller open set $V$ containing $x$ such that the closure $\ovl V$ is contained in $U$.
+\end{srem}
+
+\begin{proof}[$\star$ Proof]
+Let $\dps x_\alpha=\lim_\beta x_{\alpha,\beta}$ and $\dps x=\lim_{\alpha,\beta}x_{\alpha,\beta}$. Choose any open set $U$ containing $x$. We want to prove that $x_\alpha$ is eventually in $U$. Choose an open set $V$ containing $x$ such that $\ovl V\subset U$. Then there are $A\in I,B\in J$ such that for all $\alpha\geq A$ and $\beta\geq B$ we have $x_{\alpha,\beta}\in V$. Thus, for each $\alpha\geq A$, since $x_{\alpha,\beta}$ approaches $x_\alpha$, we have $x_\alpha\in \ovl V$ and hence $x_\alpha\in U$.
+\end{proof}
+
+
+\begin{co}
+Let  $(x_{\alpha,\beta})_{\alpha\in I,\beta\in J}$ be a double net in $\ovl\Rbb$. Assume that $x_{\blt,\blt}$ is increasing, i.e., $x_{\alpha,\beta}\leq x_{\alpha',\beta'}$ if $\alpha\leq\alpha'$ and $\beta\leq \beta'$. Then the following equation \eqref{eq39} hold, where all the limits \eqref{eq39} exist in $\ovl\Rbb$:
+\begin{align}
+\lim_{\alpha\in I}\lim_{\beta\in J}x_{\alpha,\beta}=\lim_{\beta\in J}\lim_{\alpha\in I}x_{\alpha,\beta}=\lim_{(\alpha,\beta)\in I\times J}x_{\alpha,\beta}=\sup\{x_{\alpha,\beta}:\alpha\in I,\beta\in J\}  \label{eq39}
+\end{align}
+\end{co}
+
+Clearly, a similar result holds for decreasing double nets in $\ovl\Rbb$.
+
+\begin{proof}
+By Exe. \ref{lb123}, the three limits $\dps\lim_\alpha x_{\alpha,\beta}$, $\dps\lim_\beta x_{\alpha,\beta}$, and $\dps\lim_{\alpha,\beta}x_{\alpha,\beta}$ exist in $\ovl\Rbb$. Therefore, by Thm. \ref{lb122}, the three limits in \eqref{eq39} exist and are equal. The last equality in \eqref{eq39} is also due to Exe. \ref{lb123}.
+\end{proof}
+
+
+\subsubsection{Cauchy nets}
+
+\begin{df}
+A net $(x_\alpha)_{\alpha\in I}$ in a metric space $X$ is called a Cauchy net \index{00@Cauchy net} if
+\begin{align*}
+\lim_{\alpha,\beta\in I}d(x_\alpha,x_\beta)=0
+\end{align*}
+Equivalently, this means that 
+\begin{align}
+\forall\eps>0~~~\exists \gamma\in I~~~\text{such that }\forall\alpha,\beta\geq\gamma~~~\text{we have }d(x_\alpha,x_\beta)<\eps
+\end{align}
+\end{df}
+
+\begin{exe}
+Show that the subnet of a Cauchy net is Cauchy.
+\end{exe}
+
+
+\begin{pp}\label{lb126}
+A convergent net in a metric space is a Cauchy net.
+\end{pp}
+
+\begin{proof}
+Let $(x_\alpha)_{\alpha\in I}$ converge to $x$ in a metric space $X$. Then $\lim_\alpha d(x_\alpha,x)=0$. Since $(d(x_\alpha,x))_{\alpha,\beta\in I}$ is a subnet (cf. Exp. \ref{lb124}), we have $\lim_{\alpha,\beta} d(x_\alpha,x)=0$ by Thm. \ref{lb120}. Similarly, we have $\lim_{\alpha,\beta}d(x,x_\beta)=0$. Since $0\leq d(x_\alpha,x_\beta)\leq d(x_\alpha,x)+d(x,x_\beta)$, by Squeeze theorem (Exe. \ref{lb123}) we have $\lim_{\alpha,\beta}d(x_\alpha,x_\beta)=0$.
+\end{proof}
+
+
+\begin{exe}
+Prove Prop. \ref{lb126} directly using the definitions of convergent nets and Cauchy nets.
+\end{exe}
+
+\begin{pp}\label{lb127}
+Let $(x_\alpha)_{\alpha\in I}$ be a Cauchy net in a metric space $X$. Suppose that $(x_\alpha)_{\alpha\in I}$ has a convergent subnet $(x_{\alpha_s})_{s\in S}$ converging to $x\in X$. Then $(x_\alpha)_{\alpha\in I}$ converges to $x$.
+\end{pp}
+
+\begin{proof}
+Choose any $\eps>0$. Since $(x_\alpha)$ is a Cauchy net, there exists $\gamma\in I$ such that $d(x_\alpha,x_\beta)\leq \eps$ for all $\alpha,\beta\geq \gamma$. Since $(\alpha_s)_{s\in S}$ has cofinal range, $\alpha_{s_0}\geq \gamma$ for some $s_0\in S$. Thus $\alpha_s\geq \gamma$ for all $s\geq s_0$ because $(\alpha_s)_{s\in S}$ is increasing and because of the transitivity in Def. \ref{lb116}. Thus, for every $\beta\geq\gamma$, $d(x_{\alpha_s},x_{\beta})\leq\eps$ for sufficiently large $s$. By taking limit over $s$ and using the continuity of $y\in X\mapsto d(y,x_\beta)$ as well as Thm. \ref{lb121}, we get $d(x,x_\beta)\leq \eps$ for all $\beta\geq\gamma$.
+\end{proof}
+
+\begin{df}
+Two nets $(x_\alpha)_{\alpha\in I}$ and $(y_\alpha)_{\alpha\in I}$ in a metric space $X$ are called \textbf{Cauchy-equivalent} \index{00@Cauchy-equivalent} if
+\begin{align*}
+\lim_{\alpha\in I}d(x_\alpha,y_\alpha)=0
+\end{align*}
+Two Cauchy nets are simply called \textbf{equivalent} if they are Cauchy-equivalent.
+\end{df}
+
+
+\begin{exe}\label{lb128}
+Let $(x_\alpha)_{\alpha\in I}$ and $(y_\alpha)_{\alpha\in I}$ be Cauchy-equivalent nets in a metric space $X$. Prove that $(x_\alpha)$ is Cauchy iff $(y_\alpha)$ is Cauchy. Let $x\in X$. Prove that $(x_\alpha)$ converges to $x$ iff $(y_\alpha)$ converges to $x$. 
+\end{exe}
+
+
+
+\begin{thm}\label{lb129}
+Every Cauchy net $(x_\alpha)_{\alpha\in I}$ in a complete metric space $X$ is convergent.
+\end{thm}
+
+We give a hint of the proof and leave the details to the readers as an exercise.
+
+\begin{proof}[Hint]
+Construct an increasing sequence $(\alpha_n)_{n\in\Zbb_+}$ in $I$ such that for every $\beta,\gamma\geq\alpha_n$ we have $d(x_\beta,x_\gamma)<1/n$. Prove that $(x_{\alpha_n})_{n\in\Zbb_+}$ is a Cauchy sequence, and hence converges to some $x\in X$. Prove that $(x_\alpha)_{\alpha\in I}$ converges to $x$. (Warning: $(x_{\alpha_n})_{n\in\Zbb_+}$ is not necessarily a subnet of $(x_\alpha)_{\alpha\in I}$.)
+\end{proof}
+
+\begin{comment}
+\begin{proof}
+Let $(x_\alpha)_{\alpha\in I}$ be a Cauchy net in a complete metric space $X$. Then $I\times \Nbb$ is a directed set. Define
+\begin{align*}
+S=\{(\alpha,n)\in I\times\Nbb:\forall \beta,\gamma\geq\alpha\text{ we have }d(x_\beta,x_\gamma)<1/n\}
+\end{align*}
+Then $(x_\alpha)_{(\alpha,n)\in S}$ is a subnet of $X$. Recall that every subnet of a Cauchy net is Cauchy. By Prop. \ref{lb127}, it suffices to show that the Cauchy net $(x_\alpha)_{(\alpha,n)\in S}$ converges.
+
+For each $n\in\Zbb_+$, choose $\beta_n$ such that $(\beta_n,n)\in S$: the existence of $\beta_n$ is due to the Cauchyness of $(x_\alpha)_{\alpha\in I}$. Thus, if $(\alpha,n)\in S$, we have $d(x_\alpha,x_{\beta_n})<1/n$, and hence
+\begin{align*}
+\lim_{(\alpha,n)\in S}d(x_\alpha,x_{\beta_n})=0
+\end{align*}
+Therefore, by Exe. \ref{lb128}, it suffices to prove that the equivalent Cauchy net $(x_{\beta_n})_{(\alpha,n)\in S}$ is convergent. But this is a subnet of the sequence $(x_{\beta_n})_{n\in\Nbb}$. And clearly, the Cauchyness of $(x_{\beta_n})_{(\alpha,n)\in S}$ implies that of $(x_{\beta_n})_{n\in\Nbb}$. So the Cauchy sequence $(x_{\beta_n})_{n\in\Nbb}$ converges because $X$ is complete. So its subnet $(x_{\beta_n})_{(\alpha,n)\in S}$ converges.
+\end{proof}
+\end{comment}
+
+
+
+\subsection{Discrete integrals $\sum_{x\in X}f(x)$}
+
+In this section, we fix $V$ to be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. We fix a (non-necessarily countable) sets $X$. Note that if $f:X\rightarrow V$ is a function and $X$ is finite, then $\sum_{x\in X}f(x)$ can be understood in its most obvious way.
+
+
+
+\begin{df}\label{lb131}
+Let $f:X\rightarrow V$ be a map. The expression
+\begin{align*}
+\sum_{x\in X}f(x)
+\end{align*}
+(or simply $\sum_X f$) is called a \textbf{discrete integral}.\index{00@Discrete integral} If $v\in V$, we say that $\sum_{x\in X}f(x)$ equals (or \text{converges} to) $v$, if
+\begin{align}
+\lim_{A\in\fin(2^X)}\sum_{x\in A}f(x)=v
+\end{align}
+In this case, we write
+\begin{align}
+\sum_{x\in X}f(x)=v \label{eq40}
+\end{align}
+\end{df}
+
+\begin{rem}
+Recall Exp. \ref{lb130} that $\fin(2^X)$ the directed set of finite subsets of $2^X$. Its preorder is ``$\subset$". So \eqref{eq40} means more precisely that:
+\begin{itemize}
+\item For every $\eps>0$, there exists a finite set $B\subset X$ such that for every finite set $A$ satisfying $B\subset A\subset X$, we have $\lVert v-\sum_{x\in A}f(x)\lVert<\eps$.
+\end{itemize}
+\end{rem}
+
+
+\begin{rem}\label{lb141}
+One of the advantages of discrete integrals over series is that  discrete integrals are clearly invariant under rearrangement: For every bijection $\varphi:X\rightarrow X$, if one side of the following equation converges in $V$, then the other side converges, and the equation holds true:
+\begin{align}
+\sum_{x\in X}f(x)=\sum_{x\in X}f(\varphi(x))
+\end{align} 
+or simply $\sum_Xf=\sum_Xf\circ\varphi$.
+\end{rem}
+
+
+\begin{rem}\label{lb133}
+We spell out the meaning of Cauchy net for the net $(\sum_A f)_{A\in\fin(2^X)}$:
+\begin{itemize}
+\item[(1)] For every $\eps>0$, there exists a finite set $B\subset X$ such that for any finite sets $A_1,A_2$ satisfying $B\subset A_1\subset X,B\subset A_2\subset X$, we have
+\begin{align*}
+\Big\lVert \sum_{A_1\setminus A_2}f-\sum_{A_2\setminus A_1}f \Big\lVert<\eps
+\end{align*} 
+\end{itemize}
+Note that the term inside the norm is $\sum_{A_1}f-\sum_{A_2}f$. This is also equivalent to:
+\begin{itemize}
+\item[(2)] For every $\eps>0$, there exists a finite set $B\subset X$ such that for any finite set $E\subset X\setminus B$, we have 
+\begin{align*}
+\Big\lVert \sum_Ef\Big\lVert<\eps
+\end{align*}
+\end{itemize}
+We shall mainly use (2) as the Cauchy criterion for the convergence of $\sum_Xf$.
+\end{rem}
+
+\begin{proof}[Proof of the equivalence]
+(2) follows from (1) by taking $A_1=B$ and $A_2=B\cup E$. (1) follows from (2) by taking $E_1=A_1\setminus A_2$ and $E_2=A_2\backslash A_1$ and then concluding $\lVert \sum_{E_1}f-\sum_{E_2}f\lVert<2\eps$.
+\end{proof}
+
+
+\begin{df}\label{lb132}
+Let $g:X\rightarrow\ovl\Rbb_{\geq0}$ be a map. Note that the net $(\sum_A g)_{A\in\fin(2^X)}$ is increasing. Hence, its limit exists in $\ovl\Rbb$ and equals $\sup_{A\in\fin(2^X)}\sum_Ag$ (by Exe. \ref{lb123}). We write this as $\sum_Xg$, or more precisely:
+\begin{align}
+\sum_Xg\equiv\sum_{x\in X}g(x)\xlongequal{\mathrm{def}} \lim_{A\in \fin(2^X)}\sum_A g=\sup_{A\in \fin(2^X)}\sum_A g
+\end{align}
+We say that $\sum_Xg$ \textbf{converges} or \textbf{converges absolutely}, if $\sum_Xg<+\infty$. 
+\end{df}
+
+\begin{rem}
+Note that when $g:X\rightarrow\Rbb_{>0}$, the convergence in Def. \ref{lb132} agrees with that in Def. \ref{lb131}. Therefore, Rem. \ref{lb133} still gives a Cauchy criterion for convergence.
+\end{rem}
+
+
+
+\begin{df}
+Let $f:X\rightarrow V$. We say that $\sum_Xf$ \textbf{converges absolutely} \index{00@Absolutely convergent discrete integral} if 
+\begin{align*}
+\sum_{x\in X}\lVert f(x)\lVert<+\infty
+\end{align*}
+\end{df}
+
+
+
+\begin{pp}\label{lb142}
+Let $f:X\rightarrow V$. If $\sum_Xf$ converges absolutely, then it converges, and
+\begin{align}
+\Big\lVert \sum_X f \Big\lVert\leq\sum_X \lVert f\lVert \label{eq41}
+\end{align}
+\end{pp}
+
+\begin{proof}
+\eqref{eq41} clearly holds when $X$ is finite. In the general case, assume that $\sum_Xf $ converges absolutely. Then by Cauchy criterion (Rem. \ref{lb133}-(2)), for every $\eps>0$ there is $A\in \fin(2^X)$ such that for each finite $E\subset X\setminus A$ we have $\sum_E\lVert f\lVert<\eps$, and hence $\lVert \sum_E f\lVert<\eps$. Therefore $\sum_Xf$ converges by Cauchy criterion again.
+
+By the continuity of the norm function $v\in V\mapsto \lVert v\lVert\in\Rbb_{\geq0}$, and by Thm. \ref{lb121}, we have
+\begin{align*}
+\Big\lVert \sum_X f \Big\lVert=\Big\lVert \lim_A \sum_Af \Big\lVert=\lim_A \Big\lVert \sum_Af \Big\lVert
+\end{align*}
+Since $\lVert \sum_A f\lVert\leq\sum_A\lVert f\lVert$, by Exe. \ref{lb123}, the above expression is no less than
+\begin{align*}
+\lim_A\sum_A\lVert f\lVert=\sum_X\lVert f\lVert
+\end{align*}
+\end{proof}
+
+The following proposition gives another demonstration that discrete integrals are more natural than series. We leave the proof to the readers.
+
+\begin{pp}\label{lb134}
+Let $f:X\rightarrow\Rbb^N$ where $N\in\Zbb_+$. Then
+\begin{align*}
+\sum_{x\in X}f(x)~~\textrm{converges}\qquad\Longleftrightarrow\qquad \sum_{x\in X}f(x)~~\text{converges absolutely}
+\end{align*}
+
+\end{pp}
+
+\begin{proof}[Hint]
+Reduce to the case $N=1$. Consider $A=\{x\in X:f(x)\geq 0\}$ and $B=X\setminus A$. 
+\end{proof}
+
+
+
+
+
+\subsection{Fubini theorem for discrete integrals}\index{00@Fubini theorem (for discrete integrals)}\label{lb138}
+
+Fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$. Let $X,Y$ be sets.
+
+\begin{thm}[\textbf{Fubini theorem-A}]\label{lb135} 
+Let $f:X\times Y\rightarrow V$. Assume that $\sum_{X\times Y}f$ converges. Then $\sum_Y f(x,\cdot)$ converges for each $x\in X$, and $\sum_X f(\cdot,y)$ converges for each $y\in Y$, and 
+\begin{align}\label{eq45}
+\sum_{x\in X}\sum_{y\in Y}f(x,y)=\sum_{y\in Y}\sum_{x\in X}f(x,y)=\sum_{(x,y)\in X\times Y}f(x,y)
+\end{align}
+where all discrete integrals converge in $V$.
+\end{thm}
+
+We abbreviate \eqref{eq45} to $\sum_X\sum_Yf=\sum_Y\sum_Xf=\sum_{X\times Y}f$.
+
+\begin{proof}
+For each $x\in X$, let $f_x(y)=f(x,y)$. Let us prove that $\sum_Y f_x$ converges.
+Choose any $\eps>0$. Since $\sum_{X\times Y}f$ converges, by Cauchy criterion (Rem. \ref{lb133}-(2)), there exists a finite $S\subset X\times Y$ such that the sum of $f$ over any finite subset outside $S$ has norm $<\eps$. The projection $X\times Y\rightarrow Y$ maps $S$ to a finite set $B\subset Y$. Thus, for each finite $E\subset Y\setminus B$, we have $\lVert\sum_E f_x\lVert<\eps$ since $x\times E$ is outside $S$. Therefore $\sum_Y f_x$ converges. By the same reasoning, $\sum_Xf(\cdot,y)$ converges for all $y$.
+
+Recall that $\sum_{X\times Y}f$ is the limit of the net $(\sum_S f)_{S\in\fin(2^{X\times Y})}$. This net has subnet
+\begin{align*}
+\Big(\sum_{(x,y)\in A\times B} f(x,y)\Big)_{A\in \mc I,B\in \mc J}\qquad \text{ where }\mc I=\fin(2^X)~~\mc J=\fin(2^Y)
+\end{align*}
+(Its index set is $\mc I\times\mc J$.) Thus, by Thm. \ref{lb120},
+\begin{align}
+\sum_{(x,y)\in X\times Y}f(x,y)=\lim_{A\in\mc I,B\in\mc J} \sum_{(x,y)\in A\times B} f(x,y) \label{eq43}
+\end{align}
+We are now going to use Thm. \ref{lb122} to show that
+\begin{align}
+\lim_{A\in\mc I,B\in\mc J} \sum_{(x,y)\in A\times B} f(x,y)=\lim_{A\in\mc I}\lim_{B\in\mc J} \sum_{(x,y)\in A\times B} f(x,y) \label{eq42}
+\end{align}
+where the RHS limit exists. For that purpose, we need to check for each $A\in\mc I$ the convergence of $\lim_B\sum_{(x,y)\in A\times B}f(x,y)$. Since $\sum_Yf_x$ converges, we have
+\begin{align}
+&\lim_{B\in\mc J}\sum_{(x,y)\in A\times B}f(x,y)=\lim_{B\in\mc J}\sum_{x\in A}\sum_{y\in B}f(x,y)\nonumber\\
+=&\sum_{x\in A}\lim_{B\in\mc J}\sum_{y\in B}f(x,y)=\sum_{x\in A}\sum_{y\in Y}f(x,y)\label{eq44}
+\end{align}
+(Note that $\sum_A$ is a finite sum and hence commutes with $\lim_B$.) Thus, the assumption in Thm. \ref{lb122} ensuring \eqref{eq42} has now been proved true. So \eqref{eq42} is true. Moreover, combining \eqref{eq43}, \eqref{eq42}, \eqref{eq44}  together, we get
+\begin{align*}
+\sum_{(x,y)\in X\times Y}f(x,y)=\lim_{A\in\mc I}\sum_{x\in A}\sum_{y\in Y}f(x,y)=\sum_{x\in X}\sum_{y\in Y}f(x,y)
+\end{align*}
+where the second and the third limits exist. This proves a half of \eqref{eq45}. The other half can be proved in the same way.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{thm}[\textbf{Fubini theorem-B}]\label{lb137}
+Let $g:X\times Y\rightarrow\ovl\Rbb_{\geq0}$. Then the five discrete integrals in \eqref{eq46} exist in $\ovl\Rbb_{\geq0}$, and \eqref{eq46} holds in $\ovl\Rbb_{\geq0}$:
+\begin{align}\label{eq46}
+\sum_{x\in X}\sum_{y\in Y}f(x,y)=\sum_{y\in Y}\sum_{x\in X}f(x,y)=\sum_{(x,y)\in X\times Y}f(x,y)
+\end{align}
+\end{thm}
+
+\begin{proof}
+The existence in $\ovl\Rbb_{\geq0}$ of the five discrete integrals is clear. (Recall Def. \ref{lb32}.) Formula \eqref{eq46} can be proved in the same way as \eqref{eq45}. Note that when applying Thm. \ref{lb122} to prove \eqref{eq46}, the assumption in Thm. \ref{lb122} on the existence of limits is satisfied because all nets involved are increasing in $\ovl\Rbb$. (Recall Exe. \ref{lb123}.)
+\end{proof}
+
+\begin{co}[\textbf{Fubini theorem-C}]
+Let $f:X\times Y\rightarrow V$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\sum_{X\times Y}f$ converges absolutely.
+\item $\sum_{x\in X}\sum_{y\in Y}\lVert f(x,y)\lVert<+\infty$.
+\item $\sum_{y\in Y}\sum_{x\in X} \lVert f(x,y)\lVert<+\infty$.
+\end{enumerate}
+\end{co}
+
+\begin{proof}
+Immediate from Thm. \ref{lb137}. It is also not hard to prove it directly.
+\end{proof}
+
+
+
+
+
+\subsection{Parametrization theorem for discrete integrals}
+
+We fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$. In the following sections, we shall apply the results about discrete integrals to the study of series and double series. For the convenience of applications (e.g. the proof of  $e^ze^w=e^{z+w}$), we enlarge the concept of series a little:
+
+\subsubsection{Series over $\Zbb$}
+
+
+\begin{df}
+A \textbf{series over $\Zbb$} \index{00@Series over $\Zbb$} is an expression
+\begin{align*}
+\sum_{n=-\infty}^{+\infty} f(n)
+\end{align*}
+where $f$ is a function from $\Zbb$ to either $V$ or $\ovl\Rbb_{\geq0}$. We say that this series \textbf{converges to}  (or equals) $\mu\in V$ resp.  equals $\mu\in\ovl\Rbb_{\geq0}$, if
+\begin{align}
+\lim_{m,n\rightarrow+\infty} \sum_{i=-m}^n f(i)=\mu \label{eq47}
+\end{align}
+In this case, we write
+\begin{align*}
+\sum_{n=-\infty}^{+\infty} f(n)=\mu
+\end{align*}
+We say that $\sum_{n=-\infty}^{+\infty}f(n)$ \textbf{converges absolutely} \index{00@Absolute convergent series over $\Zbb$} if $\sum_{n=-\infty}^{+\infty}\lVert f(n)\lVert<+\infty$.
+\end{df}
+
+\begin{rem}
+Note that in the case of $\ovl\Rbb_{\geq0}$, the limit on the LHS of \eqref{eq47} must exist in $\ovl\Rbb_{\geq0}$. Again, this is due to the fact that the involved net is increasing, and so one can use Exe. \ref{lb123}.
+\end{rem}
+
+
+
+\begin{exe}
+Let $\sum_{n=-\infty}^{+\infty} f(n)$ be a series in either $V$ or $\ovl\Rbb_{\geq0}$.
+\begin{enumerate}
+\item Fix $k\in\Zbb$. Prove that $\sum_{n=-\infty}^{+\infty} f(n)$ exists iff the following limits both exist
+\begin{subequations}
+\begin{gather}
+\sum_{n=k}^{+\infty} f(n)=\lim_{n\rightarrow+\infty} \sum_{i=k}^nf(i)\\
+\sum_{n=-\infty}^{k-1} f(n)=\lim_{n\rightarrow-\infty} \sum_{i=n}^{k-1}f(i)
+\end{gather}
+\end{subequations}
+Moreover, if these limits exist, then
+\begin{align}
+\sum_{n=-\infty}^{+\infty}f(n)=\sum_{n=k}^{+\infty} f(n)+\sum_{n=-\infty}^{k-1} f(n)
+\end{align}
+\item In the case that $f$ has codomain $V$, prove that $\sum_{n=-\infty}^{+\infty} f(n)$ converges if it converges absolutely.
+\item Prove that if $f$ is zero outside $\Zbb_+$, then
+\begin{align}
+\sum_{n=-\infty}^{+\infty}f(n)=\sum_{n=1}^{+\infty}f(n)  \label{eq48}
+\end{align}
+\end{enumerate}
+\end{exe}
+
+Thus, by \eqref{eq48}, our following results about series over $\Zbb$ can be directly applied to series over $\Zbb_+$ (or over $\Zbb_{\geq k}$ where $k\in\Zbb$).
+
+
+
+\subsubsection{Parametrization theorem}
+
+The following theorem relates series and discrete integrals. The structure of this theorem is similar to that of Fubini theorem-A,B,C in Sec. \ref{lb138}.
+
+\begin{thm}[\textbf{Parametrization theorem}]\label{lb136}
+Let $X$ be an infinite countable set. Let $\varphi:\Zbb\rightarrow X$ be a bijection (called a \textbf{parametrization} of $X$). \index{00@Parametrization (in discrete integrals)} The following are true.
+\begin{enumerate}
+\item Let $f:X\rightarrow V$. If the RHS of \eqref{eq49} converges in $V$, then the LHS converges, and \eqref{eq49} holds:
+\begin{align}
+\sum_{n=-\infty}^{+\infty}f\circ\varphi(n)=\sum_{x\in X}f(x)\label{eq49}
+\end{align}
+\item Let $f:X\rightarrow\ovl\Rbb_{\geq0}$. Then \eqref{eq49} holds in $\ovl\Rbb_{\geq0}$.
+\item Let $f:X\rightarrow V$. Then the discrete integral $\dps\sum_{x\in X} f(x)$ converges absolutely iff the series $\dps\sum_{n=-\infty}^{+\infty} f\circ\varphi(n)$ converges absolutely.
+\end{enumerate}
+The same conclusions hold if we assume that $\varphi:\Zbb_+\rightarrow X$ is a bijection.
+\end{thm}
+
+
+
+\begin{proof}
+We prove the case $\varphi:\Zbb\rightarrow X$; the other case is similar. 
+
+Assume that $\sum_Xf$ converges, which means that the limit of the net $(\sum_Af)_{A\in\fin(2^X)}$ converges to some $v\in V$. Therefore, by Thm. \ref{lb120}, the subnet
+\begin{align*}
+\Big(\sum_{x\in A_{m,n}}f(x)\Big)_{m,n\in\Zbb_+}=\Big(\sum_{i=-m}^n f\circ\varphi(i)\Big)_{m,n\in\Zbb_+}
+\end{align*}
+converges to $v$, where $A_{m,n}=\{\varphi(i):i\in\Zbb,-m\leq i\leq n\}$. This proves part 1. The same method proves part 2. Part 3 follows directly from part 2.
+\end{proof}
+
+\subsection{Application to series, double series, and power series}
+
+Fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+
+
+\begin{co}\label{lb140}
+Let $f:\Zbb\rightarrow V$, and let $\psi:\Zbb\rightarrow\Zbb$ be a bijection. Suppose that
+\begin{align}
+\sum_{n=-\infty}^{+\infty}\lVert f(n)\lVert<+\infty \label{eq54}
+\end{align}
+Then \eqref{eq50} holds true, where the RHS of \eqref{eq50} converges absolutely:
+\begin{align}
+\sum_{n=-\infty}^{+\infty} f(n)=\sum_{n=-\infty}^{+\infty}f\circ\psi(n) \label{eq50}
+\end{align}
+\end{co}
+The same conclusion clearly holds if $\Zbb$ is replaced by $\Zbb_+$.
+
+\begin{proof}
+By \eqref{eq54} and Thm. \ref{lb136}-3, the discrete integral $\sum_\Zbb f$ converges absolutely, and hence converges. By Thm. \ref{lb136}-1, the LHS resp. RHS of \eqref{eq50} converges to the value of $\sum_\Zbb f$ if we choose the parametrization to be $\id_\Zbb$ resp. $\psi$ again. This proves \eqref{eq50} and the convergence of the RHS of \eqref{eq50}. Applying the same conclusion to $\lVert f(\cdot)\lVert$ proves the absolute convergence of the RHS of \eqref{eq50}.
+\end{proof}
+
+
+\begin{co}\label{lb139}
+Let $f:\Zbb^2\rightarrow V$. Let $\Phi:\Zbb^2\rightarrow\Zbb^2$ be a bijection. Suppose that
+\begin{align}\label{eq51}
+\sum_{m=-\infty}^{+\infty}\sum_{n=-\infty}^{+\infty}\lVert f(m,n)\lVert<+\infty
+\end{align}
+Then \eqref{eq52} holds true, where the six series involved in \eqref{eq52} converge absolutely.
+\begin{align}\label{eq52}
+\sum_{m=-\infty}^{+\infty}\sum_{n=-\infty}^{+\infty} f(m,n)=\sum_{n=-\infty}^{+\infty}\sum_{m=-\infty}^{+\infty}f(m,n)=\sum_{k=-\infty}^{+\infty}\sum_{l=-\infty}^{+\infty} f\circ\Phi(k,l)
+\end{align}
+\end{co}
+
+Similar results clearly hold if $\Zbb^2$ is replaced by $\Zbb_+^2$: One extends the domain of $f$ and the domain and codomain of $\Phi$ from $\Zbb_+^2$ to $\Zbb^2$. Then one apply Cor. \ref{lb139}. 
+
+Also, note that the second term of \eqref{eq52} is redundant: it follows from the equality of the first and the third terms of \eqref{eq52} if we choose $\Phi(k,l)=(l,k)$.
+
+
+\begin{proof}
+By Cor. \ref{lb140} and Thm. \ref{lb137}, we have
+\begin{align}
+\sum_{m=-\infty}^{+\infty}\sum_{n=-\infty}^{+\infty}\lVert f(m,n)\lVert=\sum_{x\in\Zbb}\sum_{y\in \Zbb}\lVert f(x,y)\lVert=\sum_{(x,y)\in\Zbb^2}\lVert f(x,y)\lVert\label{eq53}
+\end{align}
+where all the limits exist in $\ovl\Rbb_{\geq0}$. Therefore, by \eqref{eq51}, the discrete integral $\sum_{\Zbb^2}f$ is absolute convergent and hence convergent. 
+
+Similar to the argument in \eqref{eq53}, Cor. \ref{lb140} and Thm. \ref{lb135} imply that the first two terms of \eqref{eq52}  exist and are both equal to the discrete integral $\sum_{\Zbb^2}f$. Since $\sum_{\Zbb^2}f=\sum_{\Zbb^2}f\circ\Phi$ (recall Rem. \ref{lb141}), by Cor. \ref{lb140} and Thm. \ref{lb135} again, the last term of \eqref{eq52} converges to $\sum_{\Zbb^2}f\circ\Phi$.
+
+We have proved that the six series in \eqref{eq52} converge, and \eqref{eq52} holds. Replacing $f(\cdot,\cdot)$ with $\lVert f(\cdot,\cdot)\lVert$ and applying a similar argument, we see that the six series in \eqref{eq52} converge absolutely. %(Note that one needs Prop. \ref{lb142} to show that $\sum\lVert \sum(\cdots)\lVert\leq\sum\sum\lVert(\cdots)\lVert<+\infty$.)
+\end{proof}
+
+In the special case that $\Phi(k,l)=(k-l,l)$, Cor. \ref{lb139} immediately implies:
+
+%We remark that \eqref{eq52} is the most important reason we introduced series over $\Zbb$: If we restrict to series over $\Zbb_+$, the proof of \eqref{eq52} will involve more technical discussions.
+
+
+\subsection{Summary}
+
+
+The following are some fundamental questions about series and double series:
+\begin{itemize}
+\item[(a)] Are they invariant under rearrangement? (Cf. \eqref{eq50}.) 
+\item[(b)] Does the order of iterate series affect the value of double series? (Cf. the first equality in \eqref{eq52}.)
+\item[(c)] A mixture of the above two questions. (Cf. the last term of \eqref{eq52}.)
+\end{itemize}
+We address these questions by relating them to discrete integral, a version of infinite sums which is parametrization-independent. The following are some key features of this theory.
+\begin{enumerate}
+\item (General principle)  A discrete integral is to a series (defined by parametrization) as a net to a subnet.
+\item (Net $\Rightarrow$ Subnet) All subnets of a convergent net converge to the same value: the limit of the original net.
+\item (Discrete integral $\Rightarrow$ Series) Therefore, different series converge to the same value if they are different parametrizations of the same convergent discrete integral.
+\item (Discrete integrals $\Rightarrow$ Series) Fubini-type theorems (any theorems about exchanging the orders of iterate sums/integrals) hold for double discrete integrals. Therefore, they hold when passing to subnets, in particular, when passing to double series.
+\item (Subnet $\Rightarrow$ Net) Every increasing net in $\ovl\Rbb_{\geq0}$  has a limit in $\ovl\Rbb_{\geq0}$. Therefore, if an increasing net in $\Rbb_{\geq0}$ has a subnet converging to a number $<+\infty$, then the original net converges in $\Rbb_{\geq 0}$ (to a finite number).
+\item (General principle) The discrete integral $\sum_{x\in X}\lVert f(x)\lVert$ is defined by the limit of an increasing net in $\ovl\Rbb_{\geq0}$.
+\item (Series $\Rightarrow$ Discrete integral) Therefore, if any series or double series corresponds in a reasonable way to a discrete integral, then the absolute convergent of this (double) series (more specifically: \eqref{eq54} or \eqref{eq51}) implies the absolute convergence (and hence convergence) of the original discrete integral. This implies the absolute convergence of any other (double) series arising from that discrete integral.
+\item (Conclusion) Thus, when a (double) series converges absolutely (in the form of \eqref{eq54} or \eqref{eq51}), the three problems (a), (b), (c) have satisfying answers. The reason absolutely convergent (double) series are so good is because increasing nets in $\ovl\Rbb_{\geq0}$ are very good!
+\item (Counterexamples) Non-absolutely convergent series in $\Rbb$ have rearrangements converging to different values. This is because non-convergent nets may have two subnets converging to different values. (Recall from Prop. \ref{lb134} that absolute convergence is equivalent to convergence for discrete integrals in $\Rbb$.)
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+
+\begin{prob}
+Prove Thm. \ref{lb129}, namely, prove that every Cauchy net $(x_\alpha)_{\alpha\in I}$ in a complete metric space $X$ is convergent.
+\end{prob}
+
+\begin{prob}
+Let $f:X\rightarrow V$ where $X$ is a set and $V$ is a Banach space. Define the \textbf{support} \index{00@Support $\Supp(f)$} \index{Supp@$\Supp(f)$} of $f$ to be
+\begin{align}
+\Supp(f)=\{x\in X:f(x)\neq 0\}
+\end{align}
+Prove that if $\sum_Xf$ converges absolutely, then $\Supp(f)$ is a countable set.
+\end{prob}
+
+\begin{proof}[Hint]
+Consider $\{x\in X:|f(x)|\geq\eps\}$ where $\eps>0$.
+\end{proof}
+
+
+
+\begin{prob}
+Prove Prob. \ref{lb134}. 
+\end{prob}
+
 
 
 
