@@ -14,8 +14,8 @@
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
 
 
-\usepackage{csquotes} % \begin{displayquote}   \begin{displaycquote}
-
+\usepackage{csquotes} % \begin{displayquote}   \begin{displaycquote}  for quotation
+\usepackage{epigraph}   %\epigraph{}{}  for quotation
 %\pmb  mandatory math bold 
 
 \usepackage{fancyhdr} % date in footer
@@ -25,6 +25,9 @@
 \usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
 
 \usepackage{verbatim}  % comment environment
+
+
+\usepackage{halloweenmath} % Interesting halloween math symbols
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tcolorbox}
@@ -2206,7 +2209,7 @@ Let $X$ be a metric space. We say that $X$ is \textbf{sequentially compact} \ind
 
 The notion of sequential compactness is extremely useful for finding solutions in an analysis problem. In general, suppose we want to find a point $x\in X$ which makes a property $P(x)$ to be true. Suppose that we can find an ``approximate solution", i.e. an $y\in X$ such that $P(y)$ is close to being true. Thus, we can find a sequence $(x_n)$ in $X$ such that $P(x_n)$ is closer and closer to being true when $n\rightarrow\infty$. Now, if $X$ is sequentially compact, then $(x_n)$ has a subsequence $(x_{n_k})$ converging to $x\in X$. Then $P(x)$ is true, and hence $x$ is a solution for the problem. (See also Sec. \ref{lb55}.) Let us see an explicit example:
 
-\begin{lm}[Extreme value theorem]\label{lb56}
+\begin{lm}[\textbf{Extreme value theorem}]\label{lb56} \index{00@EVT=Extreme value theorem}
 Let $X$ be a sequentially compact metric space. Let $f:X\rightarrow\Rbb$ be a continuous function. Then $f$ attains its maximum and minimum at points of $X$. In particular, $f(X)$ is a bounded subset of $\Rbb$.
 \end{lm}
 
@@ -2269,11 +2272,11 @@ Choose any $p\in X$. The function $d_p:x\in X\mapsto d(x,p)\in\Rbb_{\geq 0}$ is 
 The goal of this subsection is to prove that closed intervals are sequentially compact. 
 
 
-\begin{df}
+\begin{df}\label{lb266}
 Let $(x_n)$ be a sequence in a metric space $X$. We say that $x\in X$ is a \textbf{cluster point} \index{00@Cluster point of a sequence} of $(x_n)$, if $(x_n)$ has a subsequence $(x_{n_k})$ converging to $x$.
 \end{df}
 
-
+Warning: In a general topological space, the cluster points of a sequence will be defined in a different way. (See Pb. \ref{lb223} and Rem. \ref{lb267}.)
 
 
 
@@ -2419,7 +2422,7 @@ Note that if $(x_n)$ converges in $\ovl\Rbb$, we must have $\lim x_n=\limsup x_n
 
 In Sec. \ref{lb55}, we mentioned that metric spaces and (more generally) point-set topology were introduced by mathematicians in order to study (typically infinite dimensional) function spaces with the help of the geometric intuition of $\Rbb^N$.  Now we have learned a couple of important results about sequentially compact spaces. But we have not met any example arising from function spaces. So let me show one example to the curious readers: The product space $[0,1]^{\Zbb_+}$, equipped with the metric defined in Pb. \ref{lb78}, is sequentially compact. We will prove this result at the end of this chapter. (Indeed, we will prove a slightly more general version. See  Thm. \ref{lb89}.) This is a famous result, not only because it has many important applications (some of which will be hinted at in this section), but also because its proof uses the clever  ``diagonal method".  
 
-Moreover, we will later prove an even more surprising fact: every sequentially compact metric space is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$. Thus, all sequentially compact metric spaces can be constructed explicitly, in some sense.
+Moreover, we will later prove an even more surprising fact: every sequentially compact metric space is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$. (See Thm. \ref{lb261}.) Thus, all sequentially compact metric spaces can be constructed explicitly, in some sense.
 
 The readers may still complain that functions on $\Zbb_+$ are very different from those we often see and use in analysis and (especially) in differential equations: We are ultimately interested in functions on $\Rbb$ or on $[a,b]$, but not on countable sets. This is correct. But $[0,1]^{\Zbb_+}$ (and its closed subsets) are in fact very helpful for the study of spaces of functions on $\Rbb$ and on $[a,b]$. In this course, we shall learn two major examples that the sequential compactness of $[0,1]^{\Zbb_+}$ helps with:
 \begin{enumerate}
@@ -2750,12 +2753,17 @@ for every $m\geq N$. Let $m\rightarrow\infty$. Then by the continuity of subtrac
 
 Mathematicians used to believe that ``if a sequence of continuous functions $f_n:[0,1]\rightarrow\Rbb$ converges pointwisely to a function $f:[0,1]\rightarrow\Rbb$, then $f$ is continuous". Cauchy, one of the main figures in 19th century working on putting analysis on a rigorous ground, has given a problematic proof of this wrong statement. Counterexamples were later found in the study of Fourier series: Let $f:\Rbb\rightarrow\Rbb$ be a function with period $2\pi$ such that $f(x)=x$ when $-\pi<x<\pi$, and $f(x)=0$ when $x=\pm \pi$. Then the Fourier series  of this noncontinuous function $f$ converges pointwisely to $f$, yet the partial sums of this series are clearly continuous functions. Later, it was realized that uniform convergence is needed to show the continuity of the limit function. (See Thm. \ref{lb87}.) This was the first time the importance of uniform convergence was realized.
 
+
+
+The following discussions about (resp. sequentially compact) metric spaces also apply to general (resp. compact) topological spaces. The reader can come back and check the proofs for these more general spaces after studying them in the future.
+
 \begin{df}
-Let $X,Y$ be  metric spaces (or more generally, topological spaces to be defined later). Then $C(X,Y)$ \index{CXY@$C(X,Y)$, the set of continuous functions $X\rightarrow Y$. See Conv. \ref{lb85} also} denotes the set of continuous functions from $X$ to $Y$. 
+Let $X,Y$ be  metric spaces (resp. topological spaces). Then $C(X,Y)$ \index{CXY@$C(X,Y)$, the set of continuous functions $X\rightarrow Y$. See Conv. \ref{lb85} also} denotes the set of continuous functions from $X$ to $Y$. 
 \end{df}
 
+
 \begin{lm}
-Let $X$ be a metric space, and let $V$ be a normed vector space. Then $C(X,V)$ is a linear subspace of $V^X$. If $X$ is sequentially compact, then $C(X,V)$ is a linear subspace of $l^\infty(X,V)$.
+Let $X$ be a metric space (resp. a topological space), and let $V$ be a normed vector space. Then $C(X,V)$ is a linear subspace of $V^X$. If $X$ is sequentially compact (resp. compact), then $C(X,V)$ is a linear subspace of $l^\infty(X,V)$.
 \end{lm}
 
 \begin{proof}
@@ -2765,7 +2773,7 @@ Using Prop. \ref{lb82}, one checks easily that $C(X,V)$ is a linear subspace of 
 
 
 \begin{thm}\label{lb87}
-Let $X$ be a metric space, and let $V$ be a normed vector space. Then $C(X,V)\cap l^\infty(X,V)$ is a closed linear subspace of $l^\infty(X,V)$. In particular, if $X$ is sequentially compact, then $C(X,V)$ is a closed linear subspace of $l^\infty(X,V)$.
+Let $X$ be a metric space (resp. a topological space), and let $V$ be a normed vector space. Then $C(X,V)\cap l^\infty(X,V)$ is a closed linear subspace of $l^\infty(X,V)$. In particular, if $X$ is sequentially compact (resp. compact), then $C(X,V)$ is a closed linear subspace of $l^\infty(X,V)$.
 \end{thm}
 
 
@@ -2790,7 +2798,7 @@ Unless otherwise stated, if $X$ is sequentially compact metric space (or more ge
 
 
 \begin{co}\label{lb101}
-Let $X$ be a metric space, and let $V$ be a Banach space. Then  $C(X,V)\cap l^\infty(X,V)$ is a Banach space (under the $l^\infty$-norm). In particular, if $X$ is sequentially compact, then $C(X,V)$ is a Banach space.
+Let $X$ be a metric space  (resp. a topological space), and let $V$ be a Banach space. Then  $C(X,V)\cap l^\infty(X,V)$ is a Banach space under the $l^\infty$-norm. In particular, if $X$ is sequentially compact (resp. compact), then $C(X,V)$ is a Banach space.
 \end{co}
 
 \begin{proof}
@@ -2816,6 +2824,7 @@ Let $(x_n)$ be a sequence in a metric space $X$. Let $x\in X$. Prove that the fo
 \item[(1)] $x$ is a cluster point of $(x_n)$, i.e., the limit of a convergent subsequence of $(x_n)$.
 \item[(2)] For each $\eps>0$ and each $N\in\Zbb_+$, there exists $n\geq N$ such that $d(x_n,x)<\eps$.
 \end{itemize}
+(Note: in a general topological space, these two statements are not equivalent.)
 \end{prob}
 
 
@@ -2839,7 +2848,7 @@ Use Pb. \ref{lb64}-(2) to prove that if $(x_n)$ is a sequence in $\ovl\Rbb$, the
 You will notice that your proof of Pb. \ref{lb70} is slightly simpler than the proof we gave for Thm. \ref{lb68}. This is because our construction of subsequence as in \eqref{eq17} has been incorporated into your proof of (2)$\Rightarrow$(1) in Pb. \ref{lb64}.
 \end{rem}
 
-\begin{prob}
+\begin{prob}\label{lb235}
 Let $f:X\rightarrow Y$ be a continuous map of metric spaces. Assume that $f$ is bijective and $X$ is sequentially compact.  Prove that $f$ is a homeomorphism using the following hint.
 \end{prob}
 
@@ -2884,9 +2893,9 @@ Then the diagonal line $(x_{i,i})_{i\in\Zbb_+}$ is a subsequence of the original
 Let $X$ be a sequentially compact metric space. Let $A\subset X$ be a metric subspace.  Consider the statements:
 \begin{enumerate}[label=(\arabic*)]
 \item $A$ is sequentially compact.
-\item $A$ is a closed subset of $Y$.
+\item $A$ is a closed subset of $X$.
 \end{enumerate}
-Prove that (1)$\Rightarrow$(2). Prove that if $Y$ is sequentially compact, then (2)$\Rightarrow$(1).
+Prove that (1)$\Rightarrow$(2). Prove that if $X$ is sequentially compact, then (2)$\Rightarrow$(1).
 \end{prob}
 
 
@@ -3248,7 +3257,7 @@ Let $f_n(z)=\sin|nz^3|/n^2$. Then each $f_n$ is in $\fk X=C(\Cbb,\Rbb)\cap l^\in
 \end{proof}
 
 
-\subsection{Root test and ratio test; power series}
+\subsection{Root test and ratio test; power series; construction of $e^z$}\label{lb218}
 
 
 Root test and ratio test are useful criteria for proving the convergence or divergence of series, especially  power series. In addition, the method of power series provides a unified and elegant proof for many useful formulas about limit (see Prop. \ref{lb109} and Exp. \ref{lb111}). We begin our discussion with the following easy observation:
@@ -3273,6 +3282,8 @@ Assume that  $\inf_{n\in\Zbb_+}\alpha_n<A$. Then $A$ is not a lower bound of $\{
 Assume that $\inf_{n\in\Zbb_+}\alpha_n>A$. Then for each $N\in\Zbb_+$ we have $\alpha_N>A$. So $A$ is not an upper bound of $\{x_n,x_{n+1},\dots\}$.  So there is $n\geq N$ such that $x_n>A$.
 \end{proof}
 
+
+We will heavily use $\sqrt[n]{x}$ (where $x\geq0$ and $n\in\Zbb_+$) in the following discussions. $\sqrt[n]{x}$ will be rigorously constructed in Exp. \ref{lb216}, whose proof does not rely on the results of this section.
 
 
 \begin{pp}[\textbf{Root test}]\index{00@Root test} 
@@ -3405,7 +3416,7 @@ Note that \eqref{eq34} follows from
 This means that ``polynomials grow slower than exponentials".
 \end{subequations}
 
-The same conclusions hold for arbitrary $p\in\Rbb$ once we know how to define $x^p$ and prove the continuity of $x\in\Rbb_{>0}\mapsto x^p$. \hfill\qedsymbol
+The same conclusions hold for arbitrary $p\in\Rbb$ once we know how to define $x^p$ and prove the continuity of $x\in\Rbb_{>0}\mapsto x^p$. (See Sec. \ref{lb219}.) \hfill\qedsymbol
 \end{eg}
 
 
@@ -3460,7 +3471,7 @@ Therefore, by root test, the series $\sum g_n$ converges in the Banach space $C(
 We have proved that for each $0<\rho<R$, the series of functions $\sum v_nz^n$ converges uniformly on $X_\rho$ to a continuous function $f_\rho$. Let $f:B_\Cbb(0,R)\rightarrow V$ whose value at each $z$ is the value of the original series at $z$. Thus, if $|z|\leq\rho$, then $f_\rho(z)=f(z)$. Namely, $f|_{X_\rho}=f_\rho$. This shows that $\sum v_nz^n$ converges uniformly on $X_\rho$ to $f$. It also shows that $f|_{B_\Cbb(0,\rho)}$ is continuous (because $f_\rho$ is continuous). Therefore, since $B_\Cbb(0,R)$ is covered by all open disks $B_\Cbb(0,\rho)$ (where $0<\rho<R$), we conclude from Lem. \ref{lb30} that $f$ is continuous on $B_\Cbb(0,R)$.
 \end{proof}
 
-\begin{eg}
+\begin{eg}\label{lb214}
 By Thm. \ref{lb112}, the exponential function $\exp:\Cbb\rightarrow\Cbb$ is continuous; moreover, $\sum_{n=0}^\infty z^n/n!$ converges uniformly to $e^z$ on $\ovl B_{\Cbb}(0,R)$ for every $0<R<+\infty$, and hence on every bounded subset of $\Cbb$.
 \end{eg}
 
@@ -3725,7 +3736,7 @@ Prove the generalization of Rem. \ref{lb58}:
 
 
 
-\subsubsection{Subnets}
+\subsubsection{Subnets (in the sense of Willard)}
 
 
 
@@ -3751,6 +3762,15 @@ Let $(x_\alpha)_{\alpha\in I}$ be a net in a set $X$. A \textbf{subnet} \index{0
 is an increasing function whose range $\{\alpha_s:s\in S\}$ is cofinal in $I$.
 \end{df}
 
+
+
+\begin{rem}
+There are several different definitions of subnets that are equivalent for proving the main results in point-set topology. Unfortunately, there is no common agreement on the standard definition of subnets. The definition we gave is due to Willard \cite{Wil}, and is also the one given in the famous textbook of Munkres \cite{Mun}. Some famous analysis and topology textbooks (e.g. \cite{Fol,Kel,RS}) use a weaker definition, which does not assume that the map $S\rightarrow I$ is increasing.
+\end{rem}
+
+
+
+
 \begin{eg}
 A subsequence is a subnet.
 \end{eg}
@@ -3769,12 +3789,15 @@ Note that in your proof you need to use the transitivity in Def. \ref{lb116}.
 \end{exe}
 
 
-It is important that the index set of a subnet is not necessarily a subset of the index set of the original net. Here is an example whose importance can be seen in the proofs of Exp. \ref{lb125} and Prop. \ref{lb126}.
+The biggest difference between subnets and subsequences is that the index set of a subnet is not necessarily a subset of the index set of the original net. Indeed, subnets are defined in this way mainly because we want to have a net version of Pb. \ref{lb64} in any topological space. (See Pb. \ref{lb223}.) Let us see an elementary example of subnet whose index set is larger than that of the original net. Its importance is justified by the proofs of Exp. \ref{lb125} and Prop. \ref{lb126}.
 
 
 \begin{eg}\label{lb124}
 Let $J$ be a directed set. Then every net $(x_\alpha)_{\alpha\in I}$ has subnet $(x_\alpha)_{(\alpha,\beta)\in I\times J}$. The corresponding increasing map of directed sets is the projection $I\times J\rightarrow I$ onto the first component. 
 \end{eg}
+
+
+
 
 
 
@@ -3997,6 +4020,11 @@ Recall Exp. \ref{lb130} that $\fin(2^X)$ the directed set of finite subsets of $
 \end{rem}
 
 
+\begin{rem}
+Discrete integrals are one of the most important and representative examples in Moore and Smith's original paper on nets (cf. \cite{MS22}), explaining why nets are called nets: Imagine an infinitely large \emph{fishing net} whose vertices form the set $X=\Zbb^2$. You grab the net with your hands and pull it up. As you pull it up, the lifted part $A\in\fin(2^X)$ becomes larger and larger.
+\end{rem}
+
+
 \begin{rem}\label{lb141}
 One of the advantages of discrete integrals over series is that  discrete integrals are clearly invariant under rearrangement: For every bijection $\varphi:X\rightarrow X$, if one side of the following equation converges in $V$, then the other side converges, and the equation holds true:
 \begin{align}
@@ -4027,6 +4055,9 @@ We shall mainly use (2) as the Cauchy criterion for the convergence of $\sum_Xf$
 \begin{proof}[Proof of the equivalence]
 (2) follows from (1) by taking $A_1=B$ and $A_2=B\cup E$. (1) follows from (2) by taking $E_1=A_1\setminus A_2$ and $E_2=A_2\backslash A_1$ and then concluding $\lVert \sum_{E_1}f-\sum_{E_2}f\lVert<2\eps$.
 \end{proof}
+
+
+
 
 
 \begin{df}\label{lb132}
@@ -4357,7 +4388,7 @@ For each $0\leq |z|<R$, apply Cor. \ref{lb153} by replacing the $a_n,b_n,c_k$ of
 
 The above result also holds more generally for Laurent series. See Exe. \ref{lb154}.
 
-\begin{co}
+\begin{co}\label{lb215}
 For each $z,w\in\Cbb$ we have 
 \begin{align*}
 e^ze^w=e^{z+w}
@@ -4412,9 +4443,40 @@ We address these questions by relating them to discrete integral, a version of i
 
 Let $X$ be a set, and let $V$ be a Banach space over $\Rbb\in\{\Rbb,\Cbb\}$.
 
+
+
+
+
+\begin{comment}
 \begin{prob}
 Prove Thm. \ref{lb129}, namely, prove that every Cauchy net $(x_\alpha)_{\alpha\in I}$ in a complete metric space $X$ is convergent.
 \end{prob}
+
+
+\begin{sprob}\label{lb266}
+Let $f:X\rightarrow\Rbb$ be a function. Recall that $\fin(2^X)$ is the set of finite subsets of $X$. For each $A\in\fin(2^X)$, define
+\begin{align*}
+s_A=\sum_{x\in A}f(x)
+\end{align*}
+We say that $s\in\Rbb$ is a cluster point of the net $(s_A)_{A\in\fin(2^X)}$ if the following condition holds: 
+\begin{itemize}
+\item[($\varstar$)] For every $\eps>0$, $s_A$ is frequently in $B_\Rbb(s,\eps)$. (Namely, for every $\eps>0$ and $A\in\fin(2^X)$ there exists $B\in\fin(2^X)$ such that $A\subset B$ and $|s-s_B|<\eps$.) 
+\end{itemize}
+Answer the following questions.
+\begin{enumerate}
+\item Prove that if there is a bijection $\varphi:\Zbb_+\rightarrow X$ such that the series $\sum_{n=1}^\infty f\circ\varphi(n)$ converges to $s$, then $s$ is a cluster point of the net $(s_A)_{A\in\fin(2^X)}$.
+\item Suppose that $s$ is a cluster point of $(s_A)_{A\in\fin(2^X)}$. Define $(I,\leq)$ to be
+\begin{gather*}
+I=\big\{(A,\eps)\in\fin(2^X)\times\Rbb_{>0}:|s-s_A|<\eps \big\}\\[0.5ex]
+(A,\eps)\leq (A',\eps')\qquad\Longleftrightarrow\qquad A\subset A'\text{ and }\eps\geq\eps'
+\end{gather*}
+For each $\alpha=(A,\eps)\in I$, let $s_\alpha=s_A$. Prove that $I$ is a directed set. Prove that $(s_\alpha)_{\alpha\in I}$ is a subnet of $(s_A)_{A\in\fin(2^X)}$ if the increasing map $I\rightarrow \fin(2^X)$ is defined to be $(A,\eps)\mapsto A$. Prove that $(s_\alpha)_{\alpha\in I}$ converges to $s$.
+\end{enumerate}
+\end{sprob}
+\end{comment}
+
+
+
 
 \begin{prob}
 Let $f:X\rightarrow V$. Define the \textbf{support} \index{00@Support $\Supp(f)$} \index{Supp@$\Supp(f)$} of $f$ to be
@@ -4773,14 +4835,14 @@ Choose $x\in W$. Then $x\in U_\alpha$ for some $\alpha$. So $B_X(x,r)\subset U_\
 
 Thus, people very often choose a class $\mc B$ of smaller open sets (such as the set of open balls) to study the analytic properties of a topological space. 
 \begin{df}\label{lb170}
-Let $\mc B$ be a set of open sets of a metric space (or more generally, a topological space) $X$. We say that $\mc B$ is a \textbf{base of the topology} \index{00@Base of topology} $\mc T$ of $X$ if one of the following (clearly) equivalent statements holds:
+Let $\mc B$ be a set of open sets of a metric space (or more generally, a topological space) $X$. We say that $\mc B$ is a \textbf{base for the topology} \index{00@Base for topology} $\mc T$ of $X$ if one of the following (clearly) equivalent statements holds:
 \begin{itemize}
 \item For every point $x\in X$ and every neighborhood $W$ of $x$ there exists $U\in\mc B$ such that $x\in U$ and $U\subset W$.
 \item Every open subset of $X$ is a union of some members of $\mc B$.
 \end{itemize}
 \end{df}
 
-Thus, according to Def. \ref{lb168}, the set of open balls of a metric space $X$ form a base of the topology of $X$. Nevertheless, even in the case of metric spaces, we sometimes consider more convenient bases than the set of open balls. We will see this when we study the topologies of infinite product spaces.
+Thus, according to Def. \ref{lb168}, the set of open balls of a metric space $X$ form a base for the topology of $X$. Nevertheless, even in the case of metric spaces, we sometimes consider more convenient bases than the set of open balls. We will see this when we study the topologies of infinite product spaces.
 
 
 \subsection{Topological spaces}
@@ -4840,7 +4902,7 @@ The following are equivalent.
 \end{enumerate}
 \end{pp}
 
-When (1) or (2) holds, we call $\mc T$ the \textbf{topology generated by $\mc B$}. \index{00@Topology generated by the base} Clearly, $\mc B$ is a base of $\mc T$ (cf. Def. \ref{lb170}).
+When (1) or (2) holds, we call $\mc T$ the \textbf{topology generated by $\mc B$}. \index{00@Topology generated by the base} Clearly, $\mc B$ is a base for $\mc T$ (cf. Def. \ref{lb170}).
 
 
 
@@ -4856,11 +4918,11 @@ Let $X$ be a set. Let $\mc B,\mc B'$ be subsets of $2^X$ generating topologies $
 \end{exe}
 
 \begin{eg}
-If $(X,\mc T)$ is a topological space, then $\mc T$ is a base of $\mc T$.
+If $(X,\mc T)$ is a topological space, then $\mc T$ is a base for $\mc T$.
 \end{eg}
 
 \begin{eg}
-Let $(X,d)$ be a metric space with topology $\mc T$. Let $\mc B=\{B_X(x,r):x\in X,0<r<+\infty\}$. Then $\mc B$ is a base of $\mc T$. For each $\eps>0$, the set $\mc B'=\{B_X(x,r):x\in X,0<r<\eps\}$ is also a base of $\mc T$.
+Let $(X,d)$ be a metric space with topology $\mc T$. Let $\mc B=\{B_X(x,r):x\in X,0<r<+\infty\}$. Then $\mc B$ is a base for $\mc T$. For each $\eps>0$, the set $\mc B'=\{B_X(x,r):x\in X,0<r<\eps\}$ is also a base for $\mc T$.
 \end{eg}
 
 \begin{eg}
@@ -4868,7 +4930,7 @@ Let $\mc B\subset 2^{\ovl\Rbb}$ be defined by
 \begin{gather}
 \mc B=\{(a,b),(c,+\infty],[-\infty,d):a,b,c,d\in\Rbb \}  \label{eq62}
 \end{gather}
-Using Prop. \ref{lb171}, one easily checks that $\mc B$ is a base of a topology $\mc T$. We call this the \textbf{standard topology} of $\ovl\Rbb$. \index{00@Topology of $\ovl\Rbb$}
+Using Prop. \ref{lb171}, one easily checks that $\mc B$ is a base for a topology $\mc T$. We call this the \textbf{standard topology} of $\ovl\Rbb$. \index{00@Topology of $\ovl\Rbb$}
 
 Let $\varphi:\ovl\Rbb\rightarrow[u,v]$ be a strictly increasing bijection where $-\infty<u<v<+\infty$. Let $d_{[u,v]}$ be the Euclidean metric, and let $\mc T'$ be the topology on $\ovl\Rbb$ defined by $d_{\ovl\Rbb}=\varphi^*d_{[u,v]}$. Then the set of open balls under $\mc T'$ is
 \begin{align*}
@@ -4904,6 +4966,11 @@ Let $(X,d_X)$ be a metric space, inducing a topology $\mc T_X$. Let $A$ be a met
 
 According to the above exercise, if $X$ is a metric space, then viewing a subset $A$ as a topological subspace is compatible with viewing $A$ as a metric subspace.
 
+\begin{exe}\label{lb209}
+Let $A$ be a subset of a topological space $X$. Let $\mc B$ be a base for the topology of $X$. Show that $\{U\cap A:U\in\mc B\}$ is a base for the subspace topology of $A$.
+\end{exe}
+
+
 
 
 \subsubsection{Convergence of nets}
@@ -4919,7 +4986,7 @@ or simply $x_\alpha\rightarrow x$ if the following statement holds:
 \begin{itemize}
 \item For every $U\in\Nbh_X(x)$, we have that $x_\alpha$ is eventually in $U$.
 \end{itemize}
-Clearly, if $\mc B$ is a base of topology, then $x_\alpha\rightarrow x$ iff:
+Clearly, if $\mc B$ is a base for the topology, then $x_\alpha\rightarrow x$ iff:
 \begin{itemize}
 \item For every $U\in\mc B$ containing $x$, we have that $x_\alpha$ is eventually in $U$.
 \end{itemize}
@@ -4939,7 +5006,7 @@ Let $X$ be a set. Let $\mc T=\{\emptyset,X\}$. Then every net in $X$ converge to
 
 
 \begin{df}
-Let $X$ be a topological space with a base of topology $\mc B$. We say that $X$ is a \textbf{Hausdorff space} if the following equivalent conditions are satisfied:
+Let $X$ be a topological space with a base for the topology $\mc B$. We say that $X$ is a \textbf{Hausdorff space} if the following equivalent conditions are satisfied:
 \begin{itemize}
 \item[(1)] (Hausdorff condition) If $x,y\in X$ and $x\neq y$, then there exist neighborhoods $U$ of $x$ and $V$ of $y$ such that $U\cap V=\emptyset$.
 \item[(1')] If $x,y\in X$ and $x\neq y$, then there exist $U\in\mc B$ containing $x$ and $V\in\mc B$ containing $y$ such that $U\cap V=\emptyset$.
@@ -5000,7 +5067,7 @@ Unless otherwise stated, if several subsets are involved, we always understand $
 \end{proof}
 
 \begin{exe}
-Let $\mc B$ be a base of the topology of $X$. Show that $x\in X$ is a closure point of $A$ iff every $U\in\mc B$ containing $x$ must intersect $A$.
+Let $\mc B$ be a base for the topology of $X$. Show that $x\in X$ is a closure point of $A$ iff every $U\in\mc B$ containing $x$ must intersect $A$.
 \end{exe}
 
 \begin{exe}
@@ -5041,6 +5108,10 @@ One should think of $\ovl{\ovl A}=\ovl A$ not only as a ``geometric" fact about 
 \begin{df}
 A subset $A$ of $X$ is called \textbf{dense} (in $X$) \index{00@Dense subset} if $\ovl A= X$.
 \end{df}
+
+\begin{exe}
+Show that $A$ is dense in $X$ iff every nonempty open subset of $X$ intersects $A$.
+\end{exe}
 
 
 
@@ -5089,7 +5160,7 @@ according to (2). In particular, $\Int(A)\subset A$.
 $A$ contains no neighborhoods of $x$ with respect to $X$ iff $A^c$ intersects every neighborhood of $x$ iff $x$ is a closure point of $A^c$.
 \end{proof}
 
-It is clear that if $\mc B$ is a base of topology, then $x\in\Int(A)$ iff there exists $U\in\mc B$ such that $x\in U\subset A$.
+It is clear that if $\mc B$ is a base for the topology, then $x\in\Int(A)$ iff there exists $U\in\mc B$ such that $x\in U\subset A$.
 
 In analysis, interior points are not as commonly used as closure points. The following property is an important situation where interior points are used:
 
@@ -5110,7 +5181,7 @@ Note that this is the first time we seriously use the fact that a union of open 
 
 
 
-\subsubsection{Closed sets and open sets}
+\subsubsection{Closed sets and open sets}\label{lb228}
 
 
 \begin{df}
@@ -5126,7 +5197,7 @@ Show that a finite subset of a Hausdorff space is closed. Give an example of non
 \end{exe}
 
 
-\begin{rem}
+\begin{rem}\label{lb242}
 The closure $\ovl A$ is the smallest closed set containing $A$. (Proof: By Prop. \ref{lb177},  $\ovl A$ is closed. If $B$ is closed and contains $A$, then $\ovl A\subset\ovl B=B$.)
 \end{rem}
 
@@ -5141,13 +5212,23 @@ Let $B=X\setminus A$. Then $A$ is closed iff every closure point of $A$ is in $A
 \end{proof}
 
 \begin{co}\label{lb186}
-$\emptyset$ and $X$ are closed subsets of $X$. An intersection of closed subsets is closed. A finite union of closed subsets is closed.
+$\emptyset$ and $X$ are closed subsets of $X$. An intersection of closed subsets is closed. A finite union of closed subsets is closed. 
 \end{co}
 
 \begin{proof}
-Take the complement of Def. \ref{lb178}, and apply Thm. \ref{lb181}.
+Take the complement of Def. \ref{lb178}, and apply Thm. \ref{lb181}. (Of course, they can also be proved directly using the condition $A=\ovl A$ for closedness.)
 \end{proof}
 
+
+\begin{co}\label{lb243}
+$X$ is Hausdorff iff for every distinct $x,y\in X$ there exists $U\in\Nbh_X(x)$ such that $y\notin \ovl U$.
+\end{co}
+
+\begin{proof}
+``$\Leftarrow$": Let $x\neq y$. Choose $U\in\Nbh(x)$ such that $y\notin\ovl U$. Then $X\setminus \ovl U\in\Nbh(y)$ by Thm. \ref{lb181}. So $x$ and $y$ are separated by neighborhoods $U,X\setminus\ovl U$.
+
+``$\Rightarrow$": Let $x\neq y$. Choose disjoint $U\in\Nbh(x)$ and $V\in\Nbh(y)$. Then $X\setminus V$ is closed by Thm. \ref{lb181}. So $\ovl U\subset X\setminus V$ by Rem. \ref{lb242}. So $y\notin\ovl U$.
+\end{proof}
 
 \begin{co}\label{lb190}
 Let $Y$ be a subset of $X$, and let $A\subset Y$. Then the following are equivalent.
@@ -5168,7 +5249,7 @@ Recall by \eqref{eq64} that $\ovl A\cap Y$ is the closure of $A$ in $Y$. Then $A
 \end{proof}
 
 
-As an immediate consequence of Def. \ref{lb178} and Cor. \ref{lb189}, we have:
+As an immediate consequence of Def. \ref{lb178} and Cor. \ref{lb190}, we have:
 
 \begin{exe}
 Let $A\subset B\subset X$. 
@@ -5181,11 +5262,14 @@ Let $A\subset B\subset X$.
 
 
 
+
+
+
 \begin{rem}
 Many people define a closed set to be the complement of an open set, and then proves that a set $A$ is closed iff $A=\ovl A$. I went the other way because I believe that $A=\ovl A$ is more essential for understanding of closedness from the viewpoint of analysis. In Thm. \ref{lb87}, we have already seen a classical example of closed set in analysis: $C([0,1],\Rbb)$ is a closed subset of $l^\infty([0,1],\Rbb)$, which has the clear analytic meaning that the uniform limit of a sequence/net of continuous functions $[0,1]\rightarrow\Rbb$ is continuous. And we will see many more examples of this type in the future.
 \end{rem}
 
-\begin{rem}
+\begin{rem}\label{lb229}
 I defined closedness using $A=\ovl A$, and hence using the limits of nets. This is because the intuition of closed sets is very closely related to the intuition of limits of nets/sequences. On the other hand, the intuition of open sets is very different. Let me say a few words about this.
 
 Without a doubt, the keyword I give for the intuition of limits of nets is ``\ul{approximation}": Limit is not only a dynamic process, but also gives an impression of "getting smaller and smaller". When dealing with closed sets, we often do the same thing! We take an intersection of possibly infinitely many closed subsets, and the result we get is still a closed set (cf. Cor. \ref{lb185}). 
@@ -5219,7 +5303,7 @@ Let $f:X\rightarrow Y$ be a map. Let $x\in X$. We say that $f$ is \textbf{contin
 We say that $f$ is a \textbf{continuous} function/map, if $f$ is continuous at every point of $X$. 
 \end{df}
 
-It is clear that ``for every $V\in\Nbh_{Y}(y)$" in (2) and (2') can be replaced by ``for every $V\in\mc B$ containing $y$" if $\mc B$ is a base of the topology of $Y$. 
+It is clear that ``for every $V\in\Nbh_{Y}(y)$" in (2) and (2') can be replaced by ``for every $V\in\mc B$ containing $y$" if $\mc B$ is a base for the topology of $Y$. 
 
 
 \begin{proof}[Proof of equivalence]
@@ -5236,9 +5320,9 @@ Show that when $X,Y$ are metric spaces, Def. \ref{lb188} agrees with Def. \ref{l
 Let $f:X\rightarrow Y$ and $g:Y\rightarrow Z$ be maps of topological spaces. Assume that $f$ is continuous at $x\in X$, and $g$ is continuous at $f(x)$. Prove that $g\circ f:X\rightarrow Z$ is continuous at $x$.
 \end{exe}
 
-\begin{exe}\label{lb196}
-Let $f,g:X\rightarrow Y$ be continuous. Let $A$ be a dense subset of $X$. Prove that $f=g$ iff $f|_A=g|_A$. Thus, continuous functions are determined by their values on a dense subset. 
-\end{exe}
+
+
+
 
 
 
@@ -5290,7 +5374,20 @@ Prove that if $X$ is Hausdorff, then $X_x$ is Hausdorff. Prove that the followin
 \end{enumerate}
 \end{sexe}
 
+Continuous functions are determined by their values on a dense subset: 
 
+\begin{pp}\label{lb196}
+Let $A$ be a subset of $X$, and let $f,g:\ovl A\rightarrow Y$ be continuous. Then
+\begin{gather}
+f(\ovl A)\subset\ovl{f(A)}\\
+f=g\qquad\Longleftrightarrow\qquad f|_A=g|_A
+\end{gather}
+\end{pp}
+\begin{proof}
+If $y\in f(\ovl A)$, then $y=f(x)$ for some $x\in\ovl A$. Choose a net $(x_\alpha)$ in $A$ converging to $x$. Then $\lim_\alpha f(x_\alpha)=f(x)$, and hence $f(x)\in\ovl {f(A)}$.
+
+If $f=g$ then clearly $f|_A=g|_A$. Assume that $f|_A=g|_A$. For each $x\in\ovl A$, choose a net $(x_\alpha)$ in $A$ converging to $x$. Then $f(x)=\lim f(x_\alpha)=\lim g(x_\alpha)=g(x)$. So $f=g$.
+\end{proof}
 
 
 
@@ -5390,7 +5487,7 @@ are denoted by $x=(x(\alpha))_{\alpha\in\scr A}$. One checks easily that
 & \text{$U_\alpha=X_\alpha$ for all but finitely many $\alpha$}\Big\}
 \end{aligned}
 \end{align}
-is a base of a topology $\mc T$, called the \textbf{product topology} \index{00@Product topology} or \textbf{pointwise convergence topology} \index{00@Pointwise convergence topology} of $S$. We call $(S,\mc T)$ the \textbf{product topological space}. \index{00@Product topological space} 
+is a base for a topology $\mc T$, called the \textbf{product topology} \index{00@Product topology} or \textbf{pointwise convergence topology} \index{00@Pointwise convergence topology} of $S$. We call $(S,\mc T)$ the \textbf{product topological space}. \index{00@Product topological space} 
 
 Equivalently, let
 \begin{gather}
@@ -5405,7 +5502,7 @@ Unless otherwise stated, a product of topological spaces is equipped with the pr
 
 
 
-\begin{eg}
+\begin{eg}\label{lb226}
 Let $S=X_1\times\cdots\times X_N$ be a finite product of topological spaces. Then the product topology has a base
 \begin{align}
 \mc B=\{ U_1\times\cdots \times U_N:\text{ each $U_i$ is open in $X_i$}\}
@@ -5438,10 +5535,10 @@ If each $X_\alpha$ is a Hausdorff space, then $S=\prod_{\alpha\in\scr A}X_\alpha
 \end{co}
 
 \begin{proof}
-Either prove this directly using the base of topology, or prove that any net cannot converge to two different values using Thm. \ref{lb192}.
+Either prove this directly using the base for the topology, or prove that any net cannot converge to two different values using Thm. \ref{lb192}.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb260}
 Let $(X_i)_{i\in\Zbb_+,i\leq N}$ (where $N\in\Zbb_+\cup\{\infty\}$) be a possibly finite sequence of metric spaces. Then $S=\prod_i X_i$ is metrizable. More precisely, for each $i$, choose a metric $d_i$ on $X_i$ topologically equivalent to the original one such that $d_i\leq 1$ (cf. Prop. \ref{lb194}). Then the metric $d$ on $S$ defined by
 \begin{align}
 d(f,g)=\sup_{i\in\Zbb_+,i\leq N} \frac {d_i(f(i),g(i))}{i} 
@@ -5478,10 +5575,210 @@ Note that the uniform convergence topology depends on the equivalence class (not
 \end{rem}
 
 
+\subsection{Connected spaces}
+
+Let $X$ be a topological space. In this section, we shall define a notion of connected space. Based on our usual geometric intuition, one might attempt to define a connected space as one satisfying that any two points can be linked by a path. Such spaces are actually called \textbf{path-connected spaces} and is stronger than connected spaces. In fact, connected spaces arise from the study of intermediate value problem.
+
+\subsubsection{Connected $\Leftrightarrow$ IVP}
+
+\begin{df}\label{lb212}
+We say that the topological space $X$ is \textbf{connected} \index{00@Connected topological space} if $X$ can not be written as the disjoint of two nonempty open sets. Namely, if $X=U\sqcup V$ where $U,V$ are open subsets of $X$, then either $U=\emptyset$ (and hence $V=X$) or $V=\emptyset$ (and hence $U=X$).
+\end{df}
+
+Equivalently (by Thm. \ref{lb181}), $X$ is connected iff every $U\subset X$ which is both closed and open must be $\emptyset$ or $X$.
+
+
+\begin{df}
+We say that $X$ satisfied the \textbf{intermediate value property} (abbreviated to \textbf{IVP}) \index{00@IVP=Intermediate value property} if for every continuous function $f:X\rightarrow\Rbb$ and every $x,y\in X$ we have
+\begin{align}
+f(x)<f(y)\qquad\Longrightarrow\qquad [f(x),f(y)]\subset f(X)  \label{eq67}
+\end{align}
+\end{df}
+
+
+\begin{thm}\label{lb206}
+$X$ is connected iff $X$ satisfies IVP. Moreover, if $X$ is not connected, then there is a continuous $f:X\rightarrow\Rbb$ such that $f(X)=\{0,1\}$.
+\end{thm}
+
+\begin{proof}
+First, assume that $X$ does not satisfy IVP. Choose a continuous $f:X\rightarrow\Rbb$ with real numbers $a<b<c$ such that $a,c\in f(X)$ but $b\notin f(X)$. So $U=f^{(-\infty,b)}$ and $V=f^{-1}(b,+\infty)$ are disjoint non-empty open subsets of $X$. They are open, because $f$ is continuous (cf. Prop. \ref{lb191}). So $X$ is not connected.
+
+Next, assume that $X$ is not connected. Then $X=U\sqcup V$ where $U,V$ are open subsets of $X$. Define $f:X\rightarrow\Rbb$ to be constantly $0$ on $U$ and constantly $1$ on $V$. It is easy to check that $f$ is continuous. (See also Rem. \ref{lb205}.) That $f(X)=\{0,1\}$ means that $X$ does not satisfy IVP.
+\end{proof}
+
+
+
+We now give a couple of elementary examples.
+
+
+\subsubsection{Connected subsets of $\ovl\Rbb$ are precisely intervals}
+
+
+\begin{pp}\label{lb207}
+Let $A$ be a dense subset of $X$. Assume that $A$ is connected. Then $X$ is connected.
+\end{pp}
+
+\begin{proof}
+If $X=\ovl A$ is not connected, then by Thm. \ref{lb206}, there exists a continuous surjection $f:\ovl A\rightarrow\{0,1\}$. By Prop. \ref{lb196}, $\ovl{f(A)}$ contains $f(\ovl A)$. So $f(A)$ has closure $\{0,1\}$. So $f(A)=\{0,1\}$. $A$ does not satisfy IVP, and hence is not connected.
+\end{proof}
 
 
 
 
+
+
+
+
+
+\begin{thm}\label{lb211}
+Let $A$ be a subset of $\ovl\Rbb$. Then $A$ is connected iff $A$ is an interval.
+\end{thm}
+
+\begin{proof}
+Step 1. Suppose that $A$ is connected. Let $a=\inf A$ and $b=\sup B$. To show that $A$ is one of $(a,b)$, $(a,b]$, $[a,b)$, $[a,b]$, it suffices to show that every $c\in (a,b)$ belongs to $A$. Suppose that some $c\in (a,b)$ does not belong to $A$. Then $A$ is the disjoint union of two nonempty open subsets $A\cap[-\infty,c)$ and $A\cap (c,+\infty]$, impossible.\\[-1ex]
+
+
+Step 2. Every single point is clearly connected. Since every interval containing at least two points is homeomorphic to one of $[0,1]$, $(0,1]$, $[0,1)$, $(0,1)$, it suffices to prove that these four intervals are connected. Since $(0,1)$ is dense in the other three intervals, by Prop. \ref{lb207}, it suffices to prove that $(0,1)$ is connected.
+
+Suppose that $(0,1)$ is not connected. Then $(0,1)=U\sqcup V$ where $U,V$ are disjoint open nonempty subsets. Choose $x_1\in U$ and $y_1\in V$, and assume WLOG that $x_1<y_1$. In the following, we construct an increasing sequence $(x_n)$ in $U$ and a decreasing one $(y_n)$ in $V$ satisfying $x_n<y_n$ for all $n$ by induction.  Suppose $x_n,y_n$ has been constructed. Let $z_n=(x_n+y_n)/2$. 
+\begin{itemize}
+\item If $z_n\in U$, then let $x_{n+1}=z_n$ and $y_{n+1}=y_n$.
+\item If $z_n\in V$, then let $x_{n+1}=x_n$ and $y_{n+1}=z_n$.
+\end{itemize}
+Then $y_n-x_n$ converges to $0$. So $x_n$ and $y_n$ converge to the same point $\xi$. Since $V$ is open, $U=X\setminus V$ is closed. So $\xi\in\ovl U=U$. Similarly, $\xi\in\ovl V=V$. This is impossible.
+\end{proof}
+
+
+
+
+
+
+
+\subsubsection{More examples of connected spaces}
+
+
+\begin{df}
+Let $x,y\in X$. A \textbf{path} \index{00@Path in a topological space} in $X$ from $x$ to $y$ is defined to be a continuous map $\gamma:[a,b]\rightarrow X$ where $-\infty<a<b<+\infty$, such that $\gamma(a)=x$ and $\gamma(b)=y$. Unless otherwise stated, we take $[a,b]$ to be $[0,1]$. We call $x$ and $y$ respectively the \textbf{initial point} and the \textbf{terminal point} of $\gamma$. 
+\end{df}
+
+\begin{df}
+We say that $X$ is \textbf{path-connected} \index{00@Path-connected space} if for every $x,y\in X$ there is a path in $X$ from $x$ to $y$.
+\end{df}
+
+
+\begin{eg}
+$\Rbb^N$ is path-connected. $B_{\Rbb^N}(0,R)$ and $\ovl B_{\Rbb^N}(0,R)$ (where $R<+\infty$) are path connected. $\{x\in \Rbb^N:r<x<R\}$ (where $0\leq r<R<+\infty$) are path connected. The region enclosed by a triangle is a connected subset of $\Rbb^2$. $[0,1]^N$ is connected.
+\end{eg}
+
+\begin{thm}\label{lb220}
+Assume that $X$ is path-connected. Then $X$ is connected.
+\end{thm}
+
+\begin{proof}
+If $X$ is not connected, then $X=U\sqcup V$ where $U,V$ are nonempty open subsets of $X$. Since $X$ is path-connected, there is a path $\gamma$ from a point of $U$ to a point of $V$. So $[0,1]=\gamma^{-1}(U)\sqcup\gamma^{-1}(V)$ where $\gamma^{-1}(U),\gamma^{-1}(V)$ are open (by Prop. \ref{lb191}) and nonempty. This contradicts the fact that $[0,1]$ is connected (cf. Thm. \ref{lb211}).
+\end{proof}
+
+
+
+\begin{pp}\label{lb210}
+Let $f:X\rightarrow Y$ be a continuous map of topological spaces. Suppose that $X$ is connected. Then $f(X)$ is connected.
+\end{pp}
+
+\begin{proof}
+By replacing $f:X\rightarrow Y$ by the restricted continuous map $f:X\rightarrow f(X)$, it suffices to assume $Y=f(X)$. If $Y$ is not connected, then $Y=U\sqcup V$ where $U,V$ are open and nonempty. Then $X=f^{-1}(U)\sqcup f^{-1}(V)$ are open (by Prop. \ref{lb191}) and nonempty subsets of $X$. So $X$ is not connected, impossible. (One can also use Thm. \ref{lb206} to prove that $f(X)$ is connected.)
+\end{proof}
+
+\begin{rem}
+When $Y=\Rbb$, Prop. \ref{lb210} and Thm. \ref{lb211} imply that $f(X)$ is an interval. So $f$ satisfies \eqref{eq67}. Therefore, Prop. \ref{lb210} can be viewed as a generalization of IVP for connected spaces.
+\end{rem}
+
+\begin{co}\label{lb213}
+Let $I$ be an interval, and let $f:I\rightarrow\ovl\Rbb$ be a strictly increasing continuous map. Then $J=f(I)$ is an interval, and the restriction $f:I\rightarrow J$ is a homeomorphism.
+\end{co}
+
+
+\begin{proof}
+By Thm. \ref{lb211} and Prop. \ref{lb210}, $J$ is connected and hence is an interval. Therefore, by Thm. \ref{lb65}, $f$ is a homeomorphism.
+\end{proof}
+
+
+
+The following proposition can be used to decompose an open subset of $\Rbb^N$ into open connected subsets. (See Pb. \ref{lb221}.)
+
+
+\begin{pp}\label{lb208}
+Assume that $X=\bigcup_{\alpha\in\scr A}X_\alpha$ such that each $X_\alpha$ is connected, and that $\bigcap_{\alpha\in\scr A}X_\alpha\neq\emptyset$. Then $X$ is connected.
+\end{pp}
+
+\begin{proof}
+Suppose that $X$ is not connected. By Thm. \ref{lb206}, there is a continuous surjection $f:X\rightarrow\{0,1\}$. Let $p\in\bigcap_\alpha X_\alpha$. Then $f(p)$ is $0$ or $1$. Assume WLOG that $f(p)=0$. Choose $x\in X$ such that $f(x)=1$. Choose $\alpha$ such that $x\in X_\alpha$. Then $f|_{X_\alpha}:X_\alpha\rightarrow\{0,1\}$ is a continuous surjection. So $X_\alpha$ does not satisfy IVP, and hence is not connected.
+\end{proof}
+
+\begin{exe}
+Prove a path-connected version of Prop. \ref{lb208}.
+\end{exe}
+
+\begin{exe}
+Prove Exe. \ref{lb207} and Exe. \ref{lb208} directly using Def. \ref{lb212} (but not using IVP).
+\end{exe}
+
+
+
+\subsection{Rigorous constructions of $\sqrt[n]{x}$, $\log x$, and $a^x$}\label{lb219}
+
+
+With the help of Cor. \ref{lb213}, one can construct a lot of well-known functions rigorously. 
+
+%Our first construction is $\sqrt[n]{x}$. This expression was used in Sec. \ref{lb218} to prove root test and hence to construct $e^x$. Therefore, $\sqrt[n]{x}$ will also be needed in the construction of its generalization $a^x=e^{x\log a}$. Thus, we shall construct $\sqrt[n]{x}$ before we construct $a^x$.
+
+
+\begin{eg}\label{lb216}
+Let $f:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0}$ be $f(x)=x^n$ where $n\in\Zbb_+$. Then by Cor. \ref{lb213}, $J=f(\Rbb_{\geq 0})$ is an interval. Clearly $J\subset[0,+\infty)$. Since $0\in J$ and $\sup J=+\infty$, we have $J=[0,+\infty)$. Therefore $f$ is a homeomorphism. Its inverse function is a homeomorphism: the \textbf{$n$-th root} function
+\begin{gather*}
+\sqrt[n]{~}:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0} \qquad x\mapsto\sqrt[n]x
+\end{gather*}
+This gives the rigorous construction of $\sqrt[n]{x}$.
+\end{eg}
+
+A similar method gives the rigorous construction of $\log$. 
+\begin{eg}\label{lb217}
+By Exp. \ref{lb214}, the exponential function $\exp:\Rbb\rightarrow\Rbb$ is continuous. We claim that $\exp$ is a strictly increasing homeomorphism from $\Rbb$ to $\Rbb_{>0}$. Its inverse function is the \textbf{logarithmic function} \index{log@$\log$} 
+\begin{align*}
+\log:\Rbb_{>0}\rightarrow\Rbb \qquad x\mapsto \log x
+\end{align*}
+\end{eg}
+
+\begin{proof}
+From $e^x=\sum_{n=0}^\infty x^n/n!$ we clearly have $e^0=1$ and $e^x>1$ if $x>0$. From $e^{x+y}=e^xe^y$ proved in Cor. \ref{lb215}, we know that $\exp$ is strictly increasing. Thus, by Cor. \ref{lb213}, $\exp$ is a homeomorphism from $\Rbb$ to $J=\exp(\Rbb)$, and $J$ is an interval. When $x\geq 0$, we have $e^x\geq x$. So $\sup_{x\geq 0}e^x=+\infty$. When $x\leq 0$, since $e^xe^{-x}=e^0=1$, we have $\inf_{x\leq 0}e^x=1/\sup_{x\geq 0}e^x=0$. So $\sup J=+\infty$ and $\inf J=0$. Since $0\notin\exp(\Rbb)$ (if $e^x=0$, then $1=e^xe^{-x}=0$, impossible), we have $J=\Rbb_{>0}$.
+\end{proof}
+
+\begin{eg}
+Let $a\in\Rbb_{>0}$. For each $z\in\Cbb$, define
+\begin{align}
+a^z=e^{z\log a}
+\end{align}
+By Exp. \ref{lb217},  the map
+\begin{align}
+\Rbb\rightarrow\Rbb_{>0}\qquad x\mapsto a^x
+\end{align}
+is a strictly increasing homeomorphism. By the proof of Exp. \ref{lb217}, we have 
+\begin{align}
+a^0=1\qquad a^xa^{-x}=1\qquad a^xa^y=a^{x+y}
+\end{align}
+And clearly
+\begin{align}
+a^1=a.
+\end{align}
+It follows that for every $n\in\Zbb_+$, $a^n=a^{1+\cdots+1}=a\cdots a$. Namely, $a^n=e^{n\log a}$ agrees with the usual understanding of $a^n$. Thus, since $(a^{1/n})^n$ equals $a^{1/n}\cdots a^{1/n}=a^{1/n+\cdots+1/n}=a^1=a$, we conclude
+\begin{align*}
+a^{\frac 1n}=\sqrt[n]{a}
+\end{align*}
+Also, by Exp. \ref{lb217}, for each $p\in\Rbb\setminus\{0\}$,
+\begin{align}
+\Rbb_{>0}\rightarrow\Rbb_{> 0} \qquad x\mapsto x^p=e^{p\log x}
+\end{align}
+is a homeomorphism (since it is the composition of the homeorphisms $x\in\Rbb_{>0}\rightarrow p\log x\in\Rbb$ and $\exp:\Rbb\rightarrow\Rbb_{>0}$).
+\end{eg}
 
 
 
@@ -5502,44 +5799,82 @@ Let $X$ and $Y$ be topological spaces.
 Let $A,B\in X$. Let $(A_\alpha)_{\alpha\in \scr A}$ be a family of subsets of $X$. Prove that
 \begin{subequations}
 \begin{gather}
-\ovl{A\cup B}=\ovl A\cup \ovl B\\
-\ovl{\bigcap_{\alpha\in \scr A}A_\alpha}\subset\bigcap_{\alpha\in\scr A}\ovl{A_\alpha}
+\ovl{A\cup B}=\ovl A\cup \ovl B\label{eq73}\\
+\ovl{\bigcap_{\alpha\in \scr A}A_\alpha}\subset\bigcap_{\alpha\in\scr A}\ovl{A_\alpha}\label{eq74}
 \end{gather}
 \end{subequations}
 \end{prob}
 
-\begin{prob}
-Let $(x_\alpha)_{\alpha\in I}$ be a net in a $X$. Let $x\in X$. Prove that the following statements are equivalent:
+\begin{prob}\label{lb223}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$. Let $x\in X$. Prove that the following statements are equivalent:
 \begin{enumerate}[label=(\arabic*)]
 \item $(x_\alpha)_{\alpha\in I}$ has a subnet converging to $x$.
 \item For every neighborhood $U$ of $x$, we have that $x_\alpha$ is frequently in $U$.
 \item $x$ belongs to $\dps\bigcap_{\alpha\in I}\ovl{\{x_\beta:\beta\geq\alpha\}}$.
 \end{enumerate}
-Any $x\in X$ satisfying one of these two requirements is called a \textbf{cluster point} \index{00@Cluster point of a net} of $(x_\alpha)_{\alpha\in I}$.
+Any $x\in X$ satisfying one of these two requirements is called a \textbf{cluster point} \index{00@Cluster point of a net} of $(x_\alpha)_{\alpha\in I}$. (Compare Pb. \ref{lb64}.)
 \end{prob}
 
 \begin{proof}[Hint]
-(2)$\Leftrightarrow$(3) is a direct translation. Assume (2). To prove (1), construct a subnet with index set
-\begin{align*}
-I=\{(\alpha,U):U \text{ is a neighborhood of }x,\text{ and }x_\alpha\in U \}
-\end{align*}
-You should verify that what you have constructed is indeed a subnet (and in particular, $I$ is indeed a directed set), and that it converges to $x$. Especially, you should point out where (2) is used in your verification.
+(2)$\Leftrightarrow$(3) is a direct translation. Assume (2). To prove (1), show that $(J,\leq)$ is a directed set, where
+\begin{subequations}
+\begin{gather}
+\begin{gathered}
+J=\{(\alpha,U)\in I\times\Nbh_X(x):x_\alpha\in U \}\\[0.5ex]
+(\alpha,U)\leq (\alpha',U')\qquad\Longleftrightarrow\qquad \alpha\leq \alpha'\text{ and }U\supset U'
+\end{gathered}
+\end{gather}
+Prove that $(x_\mu)_{\mu\in J}$ is a subnet of $(x_\alpha)_{\alpha\in I}$ if for each $(\alpha,U)\in J$ we set
+\begin{align}
+x_{(\alpha,U)}=x_\alpha
+\end{align}
+\end{subequations}
+(Namely, the increasing map $J\rightarrow I$ is defined to be $(\alpha,U)\mapsto \alpha$.) Prove that $(x_\mu)_{\mu\in J}$ converges to $x$. You should point out where (2) is used in your proofs.
 \end{proof}
 
 
 
 
 
-\begin{rem}
-We mainly use (1) and (2) when studying cluster points of nets. Occasionally we also use (3). (For example, in the study of compact topological spaces, where intersections of closed subsets are often of interest, we will use (3).)
+\begin{rem}\label{lb238}
+By Pb. \ref{lb223}-(3), the set of cluster points of $(x_\alpha)$ is a closed subset, since intersections of closed subsets are closed (Cor. \ref{lb186}).
 \end{rem}
 
+For the reader's convenience, we also present below the sequential version of Pb. \ref{lb223}. ``(1)$\Leftrightarrow$(2)" is due to Pb. \ref{lb64}. ``(2)$\Leftrightarrow$(3)" is due to Pb. \ref{lb223}.
+
+\begin{pp}\label{lb256}
+Assume that $X$ is a metric space. Let $(x_n)_{n\in\Zbb_+}$ be a sequence in $X$. Let $x\in X$. The following statements are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $(x_n)_{n\in\Zbb_+}$ has a subsequence converging to $x$.
+\item For every neighborhood $U$ of $x$, we have that $x_n$ is frequently in $U$.
+\item $x$ belongs to $\dps\bigcap_{n\in\Zbb_+}\ovl{\{x_k:k\geq n\}}$.
+\end{enumerate}
+Any $x\in X$ satisfying one of these two requirements is called a \textbf{cluster point} of  $(x_n)_{n\in\Zbb_+}$.
+\end{pp} 
+
+Prop. \ref{lb256}-(3) should remind you of the definitions of $\limsup$ and $\liminf$.
+
+
+
+\begin{srem}\label{lb263}
+It is not hard to show that \emph{Prop. \ref{lb256} holds more generally when $X$ is first countable} (cf. Def. \ref{lb262}). The proof is similar to that for metric spaces.
+\end{srem}
+
+
+\begin{rem}\label{lb267}
+By Pb. \ref{lb223}-(2) and Pb. \ref{lb256}-(2), if $(x_n)$ is a sequence in a metric space $X$, then $(x_n)$ has a subsequence converging to $x\in X$ iff $(x_n)$ has a subnet converging to $x$. This is not necessarily true when $X$ is a general topological space. Note that in the general case, cluster points of a sequence $(x_n)$ mean cluster points of $(x_n)$ as a net. Thus, they are not the limits of convergent \emph{subsequences} of $(x_n)$. 
+\end{rem}
+
+
+\begin{comment}
 \begin{rem}
 Although the word ``cluster point" is also used for a subset $A$ of $X$ (cf. Rem. \ref{lb176}), it is not parallel to the notion of cluster points of net. The true analogous concept of ``cluster points of a net" is ``closure points of a subset".
 \end{rem}
+\end{comment}
 
 
-\begin{prob}
+
+\begin{prob}\label{lb251}
 Assume that $X$ is a metric space. Let $E\subset X$. Recall that $d(x,E)=d(E,x)=\inf_{e\in E}d(e,x)$. Prove that
 \begin{align}
 \{x\in X:d(x,E)=0\}=\ovl E
@@ -5547,7 +5882,10 @@ Assume that $X$ is a metric space. Let $E\subset X$. Recall that $d(x,E)=d(E,x)=
 \end{prob}
 
 
-\begin{rem}
+
+
+
+\begin{rem}\label{lb257}
 If $E,F$ are disjoint subsets of a metric space $X$, a continuous function $f:X\rightarrow[0,1]$ is called an \textbf{Urysohn function} \index{00@Urysohn function of a metric space} with respect to $E,F$, if
 \begin{align*}
 f^{-1}(1)=E\qquad f^{-1}(0)=F
@@ -5579,7 +5917,7 @@ Let $f:X\rightarrow Y$ be a map of topological spaces.
 \end{enumerate}
 \end{exe}
 
-\begin{rem}
+\begin{rem}\label{lb205}
 The above local-to-global principle for continuous functions can be rephrased in the following way. Suppose that $X=\bigcup_{\alpha\in I}U_\alpha$ where each $U_\alpha$ is an open subset of $X$. Suppose that for each $\alpha$ we have a continuous map $f_\alpha:U_\alpha\rightarrow Y$. Assume that for each $\alpha,\beta\in I$ we have
 \begin{align*}
 f_\alpha|_{U_\alpha\cap U_\beta}=f_\beta|_{U_\alpha\cap U_\beta}
@@ -5613,7 +5951,7 @@ The \textbf{standard topology} \index{00@Topology of $\mc I^*=I\cup\{\infty_I\}$
 \begin{prob}
 Let $(I,\leq)$ be a directed set. Let $I^*$ be as in Def. \ref{lb175}.
 \begin{enumerate}
-\item Check that $\mc B$ (defined by \eqref{eq63}) is a base of a topology. (Therefore, $\mc B$ generates a topology $\mc T$ on $I^*$.) Moreover, show that $(I^*,\mc T)$ is Hausdorff.
+\item Check that $\mc B$ (defined by \eqref{eq63}) is a base for a topology. (Therefore, $\mc B$ generates a topology $\mc T$ on $I^*$.) Moreover, show that $(I^*,\mc T)$ is Hausdorff.
 \item Let $(x_\alpha)_{\alpha\in I}$ be a net in a topological space $X$. Let $x_\infty\in X$. (So we have a function $x:I^*\rightarrow X$.) Prove that 
 \begin{align}
 x\text{ is a continuous function}\qquad\Longleftrightarrow\qquad \lim_{\alpha\in I} x_\alpha=x_\infty
@@ -5627,7 +5965,7 @@ x\text{ is a continuous function}\qquad\Longleftrightarrow\qquad \lim_{\alpha\in
 
 
 \begin{rem}
-By Exe. \ref{lb196}, if $A\subset X$ and $f:\ovl A\rightarrow Y$ is continuous, then the value of $f$ is uniquely determined by $f|_A$. We now consider the opposite question of \ul{extension of continuous functions}: Suppose that $f:A\rightarrow Y$ is continuous. Can we extend $f$ to a continuous function $f:\ovl A\rightarrow Y$? (We know that such extension must be unique if it exists.) The classical concept of the limits of functions can be understood in this light.
+By Prop. \ref{lb196}, if $A\subset X$ and $f:\ovl A\rightarrow Y$ is continuous, then the value of $f$ is uniquely determined by $f|_A$. We now consider the opposite question of \ul{extension of continuous functions}: Suppose that $f:A\rightarrow Y$ is continuous. Can we extend $f$ to a continuous function $f:\ovl A\rightarrow Y$? (We know that such extension must be unique if it exists.) The classical concept of the limits of functions can be understood in this light.
 \end{rem}
 
 
@@ -5645,13 +5983,18 @@ if the following equivalent conditions hold:
 \begin{enumerate}[label=(\arabic*)]
 \item If we extend $f$ to a function $A\cup\{x\}\rightarrow Y$ satisfying $f(x)=y$, then $f:A\cup\{x\}\rightarrow Y$ is continuous at $x$.
 \item For every $V\in\Nbh_Y(y)$, there exists $U\in\Nbh_X(x)$ such that for every $p\in U\cap A$, we have $f(p)\in V$.
-\item For every net $(x_\alpha)_{\alpha\in I}$ in $A$ converging to $x$, we have $\lim_\alpha f(x_\alpha)=y$.
+\item For every net $(x_\alpha)_{\alpha\in I}$ in $A$ converging to $x$, we have $\lim_{\alpha\in I} f(x_\alpha)=y$.
 \end{enumerate}
+When $X$ is a metric space, the above three conditions and the following two are equivalent:
+\begin{itemize}
+\item[(2m)] For every $\eps>0$, there exists $\delta>0$ such that for every $p\in A$, if $d(p,x)<\delta$ then $d(f(p),y)<\eps$.
+\item[(3m)] For every sequence $(x_n)_{n\in\Zbb_+}$ in $A$ converging to $x$, we have $\lim_{n\rightarrow\infty}f(x_n)=y$.
+\end{itemize}
 \end{df}
 
 
 \begin{exe}
-Prove the equivalence of the three statements in Def. \ref{lb197}. Note that when applying Def. \ref{lb188} to the extended function $f:A\cup\{x\}\rightarrow Y$, the two equivalent statements you get are not completely the same as (2) and (3) of Def. \ref{lb197}. (For example, you will get a statement about nets in $A\cup\{x\}$ rather than nets in $A$.) But the proof for Def. \ref{lb197} is similar to that for Def. \ref{lb188}.
+Prove the equivalence in Def. \ref{lb197}. Note that when applying Def. \ref{lb188} to the extended function $f:A\cup\{x\}\rightarrow Y$, the two equivalent statements you get are not completely the same as (2) and (3) of Def. \ref{lb197}. (For example, you will get a statement about nets in $A\cup\{x\}$ rather than nets in $A$.) But the proof for Def. \ref{lb197} is similar to that for Def. \ref{lb188}.
 \end{exe}
 
 \begin{rem}
@@ -5766,7 +6109,7 @@ Prove Thm. \ref{lb192}.
 \end{prob}
 
 
-\begin{exe}
+\begin{exe}\label{lb258}
 Let $(X_\alpha)_{\alpha\in\scr A}$ and $(Y_\alpha)_{\alpha\in\scr A}$ be families of nonempty topological spaces. Let $Z$ be a nonempty topological space. For each $\alpha\in\scr A$, choose maps $f_\alpha:X_\alpha\rightarrow Y_\alpha$ and $g_\alpha:Z\rightarrow X_\alpha$. 
 \begin{enumerate}
 \item Prove that 
@@ -5783,8 +6126,8 @@ is continuous iff each $g_\alpha$ is continuous.
 \end{exe}
 
 
-\begin{df}
-Let $X$ be a topological space. A set $\mc U_x$ of neighborhoods of $x$ is called a \textbf{neighborhood base} of $x$, if for every $V\in\Nbh_X(x)$ there exists $U\in\mc U_x$ such that $U\subset V$. We call $X$ \textbf{first countable} if every point $x$ has a neighborhood base which is a countable set.  
+\begin{df}\label{lb262}
+Let $X$ be a topological space. A set $\mc U_x$ of neighborhoods of $x$ is called a \textbf{neighborhood base} of $x$, if for every $V\in\Nbh_X(x)$ there exists $U\in\mc U_x$ such that $U\subset V$. We call $X$ \textbf{first countable} \index{00@First countable} if every point $x$ has a neighborhood base which is a countable set.  
 \end{df}
 
 
@@ -5798,30 +6141,408 @@ Let $(X_\alpha)_{\alpha\in\scr A}$ be an uncountable family of metric spaces, wh
 \end{prob}
 
 
+\subsubsection{Connectedness}
+
+\begin{df}
+A topological space $X$ is called \textbf{locally connected} \index{00@Locally connected} if for every $x\in X$ there exists $U\in\Nbh_X(x)$ which is connected.
+\end{df}
+
+\begin{eg}
+Every open subset of a locally connected space is clearly locally connected.
+\end{eg}
+
+\begin{eg}
+$\Rbb^N$ is locally connected, since every point is contained in an open ball which is path-connected and hence connected (by Thm. \ref{lb220}). Therefore, every open subset of $\Rbb^N$ is locally connected.
+\end{eg}
+
+
+\begin{prob}\label{lb221}
+Suppose that $X$ is locally connected. Prove that $X$ has a unique (disjoint) decomposition $X=\bigsqcup_{\alpha\in\scr A}X_\alpha$ where each $X_\alpha$ is a nonempty connected open subset of $X$. (Each $X_\alpha$ is called a \textbf{connected component} of $X$.)
+\end{prob}
+
+\begin{proof}[Hint]
+For each $x\in X$, consider the union of all connected neighborhoods containing $x$.
+\end{proof}
 
 
 
 
+\newpage
+
+\section{Compactness}
+
+
+\subsection{Overture: two flavors of compactness}
+
+Let $X$ be a topological space.
+
+
+
+\begin{df}
+An \textbf{open cover} \index{00@Open cover} of $X$ means a family $\fk U=(U_\alpha)_{\alpha\in\scr A}$ of open subsets of $X$ such that $X=\bigcup_{\alpha\in\scr A} U_\alpha$. $\fk U$ is called \textbf{finite} resp. \textbf{countable} if $\scr A$ is finite resp. countable. A \textbf{subcover} \index{00@Subcover} of $\fk U$ means an open cover $\fk V=(V_\beta)_{\beta\in\scr B}$ of $X$ such that each $V_\beta$ equals $U_\alpha$ for some $\alpha\in\scr A$.
+\end{df}
+
+\begin{df}
+We say that $X$ is a \textbf{compact space} \index{00@Compact space} if every open cover of $X$ has a finite subcover.  We say that $X$ is a \textbf{Lindel\"of space} \index{00@Lindel\"of space} if every open cover of $X$ has a countable subcover.
+\end{df}
+
+\begin{rem}
+For the purpose of this chapter, it suffices to consider open covers $\fk U=(U_\alpha)_{\alpha\in\scr A}$ such that $\alpha\in\scr A\mapsto U_\alpha\in 2^X$ is injective. (Namely, one can throw away repeated open sets.) In this case, we write
+\begin{align*}
+\fk U\subset 2^X
+\end{align*}
+and view $\fk U$ as a subset of $2^X$. A \textbf{subcover} of such $\fk U$ is an open cover $\fk V$ such that $\fk V\subset\fk U$. The readers can check that this assumption does not affect the definition of compact spaces and Lindel\"of spaces.
+\end{rem}
+
+\begin{rem}\label{lb244}
+Compactness can also be formulated in a relevant version: If $A$ is a compact subset of $X$, and if $\fk U$ is a set of open subsets of $X$ such that $A\subset\bigcup_{U\in\fk U}U$, then since $\{U\cap A:U\in\fk U\}$ gives an open cover of $A$, we know that
+\begin{align*}
+A\subset U_1\cup\cdots\cup U_n
+\end{align*}
+some $U_1,\dots,U_n\in\fk U$. Conversely, any $A$ satisfying such property is a compact subspace of $X$.
+\end{rem}
+
+
+\begin{exe}
+Show that a finite union of compact spaces is compact. Show that a finite set is compact.
+\end{exe}
+
+\begin{exe}
+Show that $X$ is compact iff $X$ satisfies the \textbf{finite intersection property}: \index{00@Finite intersection property} The intersection of a family of non-empty closed subsets is nonempty.
+\end{exe}
+
+
+
+A main goal of this chapter is to prove the following theorem. Its proof will be finished at the end of Sec. \ref{lb253}. In fact, the formal proof will only be in Sec. \ref{lb254} and Sec. \ref{lb253}. 
+
+\begin{thm}\label{lb222}
+Let $X$ be a metric space. Then $X$ is sequentially compact iff $X$ is compact.
+\end{thm}
+This is the first fundamental theorem we prove in this course. Its significance lies in the fact that it connects two seemingly very different notions and compactness, and hence two strikingly different intuitions. We hope that the reader can not only follow the logical chains of the proofs, but also understand the pictures behind the proof. More precisely, we hope that the readers can have an intuitive understanding of the following questions:
+\begin{itemize}
+\item Why are these two compactness both powerful in solving certain problems? What roles do they play in the proof? How are the roles played by these two compactness related? (This is more important than just knowing why these notions are \emph{logically} equivalent.)
+\item Why is one version of compactness more powerful than the other one in solving certain problems?
+\end{itemize}
 
 
 
 
+Thus, I feel that it is better to look at some applications of compactness before we prove Thm. \ref{lb222} rigorously. For pedagogical purpose, we also introduce two related notions of compactness:
 
+\begin{df}
+We say that $X$ is \textbf{net-compact}, \index{00@Net-compact} if every net $(x_\alpha)_{\alpha\in I}$ in $X$ has at least one cluster point (recall Pb. \ref{lb223}), equivalently, at least one convergent subsequence. We say that $X$ is \textbf{countably compact}, \index{00@Countably compact} if every countable open cover of $X$ has a finite subcover.
+\end{df}
+
+
+
+Sequential compactness and net-compactness clearly share the same intuition. Countable compactness is intuitively similar to compactness. Also, compactness clearly implies countable compactness. But net-compactness does not imply sequential compactness in general: In a net-compact space, every sequence has a convergent subnet, but not necessarily a convergent subsequence. 
+
+The relationship between these four versions of compactness is as follows. (We will prove this in the course of proving Thm. \ref{lb222}.)
+\begin{subequations}\label{eq68}
+\begin{align}
+&\text{Metric spaces:} & \text{all the four versions}&\text{ of compactness are equivalent}\\
+&\text{Topological spaces:} & \text{net-compact}&\Longleftrightarrow\text{compact}
+\end{align}
+\end{subequations}
+After proving \eqref{eq68}, we will not use the notions of countable compactness and net-compactness. This is because net-compactness is equivalent to compactness, and countable compactness is more difficult to use than compactness. (Nevertheless, proving/using compactness by proving/using the existence of cluster points is often helpful.)
+
+
+
+
+\subsection{Act 1: case studies}
+
+
+
+\subsubsection{Extreme value theorem (EVT)}
+
+\begin{lm}[\textbf{Extreme value theorem}]\label{lb224} \index{00@EVT=Extreme value theorem}
+Let $X$ be a compact topological space. Let $f:X\rightarrow\Rbb$ be a continuous function. Then $f$ attains its maximum and minimum at points of $X$. In particular, $f(X)$ is a bounded subset of $\Rbb$.
+\end{lm}
+
+
+
+We have seen the sequential compactness version of \textbf{EVT} (extreme value theorem) in Lem. \ref{lb56}. There, we find the point $x\in X$ at which $f$ attains its maximum by first finding a sequence $(x_n)$ such that $f(x_n)$ converges to $\sup f(X)$. Then we choose any convergent subsequence $(x_{n_k})$, which converges to the desired point $x$. The same method can be used to prove EVT for net-compact spaces if we replace sequences by nets.
+
+
+For compact spaces, EVT is proved in a completely different way. In fact, without the tools of sequences and nets, one can not easily find $x$ at which $f$ attains it maximum. The argument is rather indirect:
+
+\begin{proof}[Proof of Lem. \ref{lb224}]
+It suffices to prove that $f(X)$ is bounded. Then $a=\sup f(X)$ is in $\Rbb$. If $a\notin f(X)$, we choose a homeomorphism $\varphi:(-\infty,a)\rightarrow\Rbb$. So $\varphi\circ f:X\rightarrow\Rbb$ is  continuous but has no upper bound. This is impossible.
+\end{proof}
+
+Thus, to prove EVT, it remains to prove:
+\begin{eg}\label{lb227}
+Assume that $X$ is compact and $f:X\rightarrow\Rbb$ is continuous. Then $f(X)$ is a bounded subset of $\Rbb$.
+\end{eg}
+
+\begin{proof}
+For each $x\in X$, since $f$ is continuous at $x$, there exists $U_x\in\Nbh(x)$ such that $|f(p)-f(x)|<1$ for all $p\in U_x$. In particular, $f(U_x)$ is bounded. Since $X=\bigcup_{x\in X}U_x$ is an open cover of $X$, by compactness, $X=U_{x_1}\cup\cdots\cup U_{x_n}$ for some $x_1,\dots,x_n\in X$. Thus $X= f(U_{x_1})\cup\cdots\cup f(U_{x_n})$ is bounded.
+\end{proof}
+
+
+
+The above proof is typical. It suggests that compactness is powerful for \ul{proving finiteness properties} rather than finding solutions of functions satisfying certain requirements. Thus, if you want to prove a finiteness property using sequential or net-compactness, you have to prove it indirectly. For example, you need to prove by contradiction:
+
+\begin{eg}
+Assume that $X$ is net-compact or sequentially compact. Assume that $f:X\rightarrow\Rbb$ is continuous. Then $f(X)$ is a bounded subset of $\Rbb$.
+\end{eg}
+
+
+\begin{proof}
+Assume that $X$ is net-compact. If $f(X)$ is not bounded above, then there is a sequence $(x_\alpha)$ in $X$ (viewed as a net)  such that $\lim_\alpha f(x_\alpha)=+\infty$. By net-compactness, $(x_\alpha)$ has a subnet $(x'_\beta)$ converging to $x\in X$. So $f(x)=\lim_\beta f(x'_\beta)=+\infty$, impossible. So $f$ is bounded above, and hence bounded below by a similar argument. The case where $X$ is sequentially compact can be proved by a similar method.
+\end{proof}
+
+
+
+
+Let us look at a more complicated example.
+
+\subsubsection{Uniform convergence in multivariable functions}
+
+
+\begin{eg}\label{lb225}
+Let $X,Y$ be topological spaces. Assume that $Y$ is compact. Let $V$ be a normed vector space. Choose $f\in C(X\times Y,V)$. For each $x\in X$, let
+\begin{align*}
+f_x:Y\rightarrow Y\qquad y\mapsto f(x,y)
+\end{align*}
+Equip $C(Y,V)$ with the $l^\infty$-norm. Then the following map is continuous:
+\begin{align}
+\Phi(f):X\rightarrow C(Y,V)\qquad x\mapsto f_x
+\end{align}
+\end{eg}
+
+
+
+\begin{rem}
+Note that since $Y$ is compact, each $g\in C(Y,V)$ is uniformly bounded by EVT (applied to $|g|$). So $C(Y,V)\subset l^\infty(Y,V)$.
+\end{rem}
+
+
+The continuity of $\Phi(f)$ means that for each $x\in X$, the following statement holds:
+\begin{itemize}
+\item[\textleaf] For every $\eps>0$ there exists $U\in\Nbh_X(x)$ such that for all $p\in U$ and all $y\in Y$ we have $\lVert f(p,y)-f(x,y)\lVert<\eps$.
+\end{itemize}
+This is clearly a finiteness property. Thus, its sequentially compact version or net-compact version should be proved indirectly. Indeed, when $X,Y$ are metric spaces and $Y$ is sequentially compact, we have proved this in Pb. \ref{lb103} by contradiction. The same method (with sequences replaced by nets) also works for the net-compact case:
+
+\begin{eg}
+Example \ref{lb225} is true, assuming that $Y$ is net-compact rather than compact.
+\end{eg}
+
+
+\begin{proof}
+Suppose ``\textleaf" is not true. Then there is $\eps>0$ such that for every $U\in\Nbh_X(x)$ there is $x_U\in U$ and $y_U\in Y$ such that $\lVert f(x_U,y_U)-f(x,y_U)\lVert\geq\eps$. Then $(x_\alpha)_{\alpha\in\Nbh_X(x)}$ is a net converging to $x$, where $x_\alpha=x_U$ if $\alpha=U$. Since $Y$ is net-compact, $(y_\alpha)$ has a subnet $(y_\beta)$ converging to  some $y\in Y$. Since the subnet $(x_\beta)$ also converges to $x$, we have $\lim_\beta f(x_\beta,y_\beta)=f(x,y)$ and $\lim_\beta f(x,y_\beta)=f(x,y)$ by the continuity of $f$. This contradicts the fact that $\lVert f(x_\beta,y_\beta)-f(x,y_\beta)\lVert\geq\eps$ for all $\beta$.
+\end{proof}
+
+
+
+On the other hand, the solution of Exp. \ref{lb225} using open covers is a direct proof:
+
+\begin{proof}[\textbf{Proof of Exp. \ref{lb225}}]
+``\textleaf" is a finiteness property global over $Y$. We prove ``\textleaf" by first proving it locally, and then passing to the global space $Y$ using the compactness of $Y$.
+
+Fix $x\in X$. Choose any $\eps>0$. For each $y\in Y$, since $f$ is continuous at $(x,y)$, there is a neighborhood $W$ of $(x,y)$ such that for every $(p,q)\in W$ we have $\lVert f(p,q)-f(x,y)\lVert<\eps/2$. By Exp. \ref{lb226}, we can shrink $W$ to a smaller neighborhood of the form $U_y\times V_y$ where $U_y\in\Nbh_X(x)$ and $V_y\in\Nbh_Y(y)$. Then for each $p\in U_y$ and $q\in U_y$ we have $\lVert f(p,q)-f(x,y)\lVert<\eps/2$, and hence $\lVert f(p,q)-f(x,q)\lVert<\eps$. This proves the special case of ``\textleaf" where $Y$ is replaced by $U_y$.
+
+Now we pass from local to global in the same way as in the proof of Exp. \ref{lb227}. Since $Y=\bigcup_{y\in Y}V_y$ is an open cover of $Y$, by the compactness of $Y$, there is a finite subset $F\subset Y$ such that $Y=\bigcup_{y\in F}V_y$. Then ``\textleaf" is true if we let $U=\bigcap_{y\in F}U_y$.
+\end{proof}
+
+
+\subsubsection{Conclusions}
+
+\begin{enumerate}%[label=(\arabic*)]
+\item Sequential compactness and net-compactness are useful for finding solutions of a function satisfying some given conditions. 
+\item Compactness is useful for proving finiteness properties. The proof is usually a  local-to-global argument. It is usually a direct argument (rather than proof by contradiction).
+\item If one uses sequential/net-compactness to prove a finiteness property, one usually proves it by contradiction: Assume that this finiteness is not true. Find a sequence/net $(x_\alpha)$ that violates this finiteness property, and pass to a convergent subsequence/subnet to find a contradiction.
+\item Therefore, for sequential/net-compact spaces, the argument is in the direction of ``getting smaller and smaller", opposite to the argument for compact spaces.
+\end{enumerate}
+
+Let me emphasize that the proof for sequentially/net-compact spaces is opposite to the one for compact spaces in two aspects: (1) If one argument is direct, the other is a proof by contradiction for the same problem. (2) The former has the intuition of ``getting smaller", while the latter local-to-global argument has the intuition of ``getting larger". 
+
+I have already touched on this phenomenon in Rem. \ref{lb229}: \emph{The reason that sequences and nets run in the opposite direction to that of open sets is because closed sets are opposite to open sets}, as proved in Thm. \ref{lb181}. Now, we have a more vivid sense of the following sentence: 
+\begin{itemize}
+\item[$\Sun/\Moon$] The seemingly simple fact that ``closed sets are the complements of open sets" is the golden key that allows you to walk between the worlds of dark and light.
+\end{itemize}
+Thus, you can expect that the transition between closed and open sets plays a crucial role in the following proof of Thm. \ref{lb222}. 
 
 
 \begin{comment}
-We list the properties proved before which do not rely on the existence of $\Qbb$:
-\begin{enumerate}[label=(\roman*)]
-\item A metric space $X$ is called a \textbf{$\Qbb$-metric space} if the distance function $d:X\times X\rightarrow\Qbb_{\geq0}$ takes value in $\Qbb_{\geq0}$.
-\item If $X,Y$ are $\Qbb$-metric spaces, then $X\times Y$ is a $\Qbb$-metric space if we define $d((x,y),(x',y'))=\max\{d(x,x'),d(y,y')\}$.
-\item The definition of continuous maps between $\Qbb$-metric spaces as in Def. \ref{lb31}.
-\item The continuity of $+,-,\cdot,/$ in $\Qbb$, namely, Prop. \ref{lb41} for $\Qbb$.
-\item If $f:X\rightarrow Y$ is a continuous map of $\Qbb$-metric spaces, $(x_\alpha)$ is a net in $X$ converging to $x$, then $f(x_\alpha)$ converges to $f(x)$. ($\Qbb$-version of Thm. \ref{lb121}.)
-\item If $(x_\alpha),(y_\alpha)$ are nets in $\Qbb$ converging to $A,B\in\Qbb$, if $x_\alpha\leq y_\alpha$ for all $\alpha$, then $A\leq B$. 
-\end{enumerate}
+Let me close this section with a final remark.
+
+\begin{rem}
+Logically equivalent concepts are usually not intuitively equivalent. Proving directly is sometimes more transparent and intuitive than proving by contradiction, and sometime vice versa. For example: You will never prove a property by contradiction unless you already know what should be proved, and what statement is expected true. However, a direct argument can be more helpful in finding an unknown property and setting the goal.
+\end{rem}
 \end{comment}
 
 
+\subsection{Act 2: ``sequentially compact $\Leftrightarrow$ countably compact'' for metric spaces, just as ``net-compact $\Leftrightarrow$ compact''}\label{lb254}
+
+\epigraph{The road up and the road down is one and the same.}{Heraclitus}
+
+
+As mentioned before, our goal of this chapter is to prove ``sequentially compact $\Leftrightarrow$ compact" for metric spaces. Our strategy is as follows: We reformulate the sequential compactness condition in terms of decreasing chains of closed sets, and reformulate the compactness condition in terms of increasing chains of open sets. Then we relate these two pictures easily using Thm. \ref{lb181}.
+
+The following difficulty arises when carrying out this strategy. Sequences are countable by nature, whereas open covers can have arbitrarily large cardinality. Thus, sequences are related to countable decreasing chains, and hence countable open covers. Therefore, the above idea only implies the equivalence
+\begin{subequations}\label{eq69}
+\begin{align}\label{eq70}
+\text{sequentially compact}\quad\Longleftrightarrow\quad \text{countably compact}\qquad(\text{for metric spaces})
+\end{align}
+Accordingly, it will only imply
+\begin{align}\label{eq71}
+\text{net-compact}\qquad\Longleftrightarrow\qquad \text{compact}
+\end{align}
+\end{subequations}
+since there are no constraints on the cardinalities of indexed sets of nets. We will prove \eqref{eq69} in this section, and leave the proof of ``countably compact $\Leftrightarrow$ compact" for metric spaces to Sec. \ref{lb253}.
+
+
+Since the proofs of \eqref{eq70} and \eqref{eq71} are similar, we first discuss \eqref{eq71}.
+
+
+\begin{pp}\label{lb230}
+Let $X$ be a topological space. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is compact.
+\item (\textbf{Increasing chain property}) If $(U_\mu)_{\mu\in I}$ is an increasing net of open subsets of $X$ satisfying $\bigcup_{\mu\in I}U_\mu=X$, then $U_\mu=X$ for some $\mu$.
+\item (\textbf{Decreasing chain property}) If $(E_\mu)_{\mu\in I}$ is a decreasing net of nonempty closed subsets of $X$, then $\bigcap_{\mu\in I}E_\mu\neq\emptyset$.
+\end{enumerate}
+\end{pp}
+
+Here, ``increasing net" means $U_\mu\subset U_\nu$ if $\mu\leq \nu$, and ``decreasing net" means the opposite.
+
+\begin{proof}
+(1)$\Rightarrow$(2): Assume (1). Then $X=\bigcup_\mu U_\mu$ is an open cover of $X$. So, by the compactness of $X$, we have $X=U_{\mu_1}\cup\cdots\cup U_{\mu_n}$ for some $\mu_1,\dots,\mu_n\in I$. Choose $\mu\in I$ which is $\geq \mu_1,\dots,\mu_n$. Then $X=U_\mu$.
+
+(2)$\Rightarrow$(1): Assume (2). Let $X=\bigcup_{\alpha\in\scr A} W_\alpha$ be an open cover of $X$. Let $I=\fin(2^{\scr A})$. For each $\mu=\{\alpha_1,\dots,\alpha_n\}\in I$, let $U_\mu=W_{\alpha_1}\cup\cdots\cup W_{\alpha_n}$. Then $(U_\mu)_{\mu\in I}$ is an increasing net of open sets covering $X$. Thus, by (2), we have $U_\mu=X$ for some $\mu$. This proves (1).
+
+(2)$\Leftrightarrow$(3): If we let $E_\mu=X\setminus U_\mu$, then (2) says that if $(E_\mu)$ is a decreasing net of closed sets whose intersection is $\emptyset$, then $E_\mu=\emptyset$ for some $\mu$. This is the contraposition of (3).
+\end{proof}
+
+
+We now relate decreasing chain property and cluster points of nets using \eqref{eq76}.
+
+\begin{thm}\label{lb232}
+Let $X$ be a topological space. Then $X$ is net-compact iff $X$ is compact. 
+\end{thm}
+
+
+\begin{proof}
+Assume that $X$ is net-compact. By Prop. \ref{lb230}, it suffices to prove that $X$ satisfies the decreasing chain property. Let $(E_\mu)_{\mu\in I}$ be a decreasing net of nonempty closed subsets of $X$. For each $\mu$ we choose $x_\mu\in E_\mu$, which gives a net $(x_\mu)_{\mu\in I}$ in $X$. The fact that $(E_\mu)$ is decreasing implies that $F_\mu\subset E_\mu$ if we set
+\begin{subequations}\label{eq76}
+\begin{align}
+F_\mu=\{x_\nu:\nu\in I,\nu\geq\mu \}\label{eq72}
+\end{align}
+Thus, the closure $\ovl F_\mu$ is a subset of $E_\mu$ since $E_\mu$ is closed. It suffices to prove that $\bigcap_{\mu\in I}\ovl F_\mu\neq\emptyset$. By Pb. \ref{lb223}, 
+\begin{align}
+\bigcap_\mu \ovl F_\mu=\big\{\text{the cluster points of the net $(x_\mu)_{\mu\in I}$}\big\}
+\end{align}
+\end{subequations}
+which is nonempty because $X$ is net-compact. This finishes the proof that $X$ is compact.
+
+Now we assume that $X$ is compact. Let $(x_\mu)_{\mu\in I}$ be a net in $X$. Define $F_\mu$ by \eqref{eq72}. Then $(\ovl F_\mu)_{\mu\in I}$ is a decreasing net of nonempty closed subsets. So $\bigcap_\mu\ovl F_\mu$, the set of cluster points of $(x_\mu)_{\mu\in I}$, is nonempty by the decreasing chain property (cf. Prop. \ref{lb230}). So $X$ is net-compact.
+\end{proof}
+
+
+
+\begin{pp}\label{lb231}
+Let $X$ be a topological space. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is countably compact.
+\item (\textbf{Increasing chain property}) If $(U_n)_{n\in\Zbb_+}$ is an increasing sequence of open subsets of $X$ satisfying $\bigcup_{n\in\Zbb_+}U_n=X$, then $U_n=X$ for some $n$.
+\item (\textbf{Decreasing chain property}) If $(E_n)_{n\in\Zbb_+}$ is a decreasing sequence of nonempty closed subsets of $X$, then $\bigcap_{n\in\Zbb_+}E_n\neq\emptyset$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+Similar to the proof of Prop. \ref{lb230}.
+\end{proof}
+
+\begin{exe}
+Fill in the details of the proof of Prop. \ref{lb231}.
+\end{exe}
+
+
+
+\begin{lm}\label{lb247}
+Let $X$ be a metric space. Then $X$ is sequentially compact iff $X$ is countably compact. 
+\end{lm}
+
+\begin{proof}
+This lemma can be proved in a similar way as Thm. \ref{lb231}. The only difference is that one should use the sequential version of Pb. \ref{lb223}, namely, Prop. \ref{lb256}. Note that the ``(1)$\Leftrightarrow$(2)" of Prop. \ref{lb256} does not hold for general topological spaces. Thus, sequential compactness is not equivalent to countable compactness for general topological spaces. 
+\end{proof}
+
+\begin{srem}\label{lb264}
+As pointed out in Rem. \ref{lb263}, Prop. \ref{lb256} holds more generally for first countable topological spaces (Def. \ref{lb262}). Therefore, Lem. \ref{lb247} also holds for such spaces:
+\begin{align}
+\text{sequentially compact}\quad\Longleftrightarrow\quad \text{countably compact}\qquad(\text{first countable spaces})
+\end{align}
+\end{srem}
+
+
+
+\subsection{Intermezzo: elementary properties about compactness}
+
+
+
+
+
+
+\begin{pp}\label{lb233}
+Suppose that $X\subset Y$ where $Y$ is a topological space. The following are true.
+\begin{enumerate}
+\item Assume that $Y$ is compact and $X$ is closed in $Y$. Then $X$ is compact.
+\item Assume that $Y$ is Hausdorff and $X$ is compact, then $X$ is a closed subset of $Y$. 
+\end{enumerate} 
+\end{pp}
+
+\begin{proof}
+Part 1. Let $(x_\alpha)$ be a net in $X$. Since $Y$ is compact, $(x_\alpha)$ has a subnet $(x'_\beta)$ converging to some $p\in Y$. Since $(x'_\beta)$ is in $X$, we have $p\in \ovl X=X$. So $X$ is compact.
+
+Part 2. To prove $\ovl X=X$, we choose any net $(x_\alpha)$ in $X$ converging to $p\in Y$ and show that $p\in X$. Indeed, since $X$ is compact, $(x_\alpha)$ has a subnet $(x_\beta')$ converging to some $x\in X$. Since $(x_\beta')$ also converges to $x$, we have $p=x$ because $Y$ is Hausdorff. So $p\in X$.
+\end{proof}
+
+I have mentioned that non-Hausdorff spaces are not of interest in analysis. Thus, we mainly use the following special case of Prop. \ref{lb233}:
+
+
+\begin{co}\label{lb234}
+Let $Y$ be a Hausdorff space and $X\subset Y$. If $X$ is compact, then $X$ is closed in $Y$. If $X$ is closed in $Y$ and if $Y$ is compact, then $X$ is compact.
+\end{co}
+
+Recall that a similar property holds for complex metric spaces, cf. Prop. \ref{lb86}.
+
+
+
+
+
+
+
+\begin{thm}\label{lb236}
+Suppose that $f:X\rightarrow Y$ is a continuous map of topological spaces where $X$ is compact. Then $f(X)$ is compact. Moreover, if $f$ is injective and $X,Y$ are Hausdorff, then $f$ restricts to a homeomorphism $f:X\rightarrow f(X)$.
+\end{thm}
+
+\begin{proof}
+Choose any net $(f(x_\alpha))$ in $f(X)$ where $x_\alpha\in X$. Since $X$ is compact, $(x_\alpha)$ has a subnet $(x'_\beta)$ converging to some $x\in X$. Then $f(x'_\beta)$ converges to $f(x)$. So $f(X)$ is compact.
+
+Now assume that $f$ is injective and $Y$ is Hausdorff. Then $f(Y)$ is also Hausdorff. By replacing $Y$ by $f(X)$, we assume that $f$ is bijective. To show that $f^{-1}$ is continuous, by Prop. \ref{lb191}, it suffices to prove that $f$ is a closed map, i.e., $f$ sends every closed $E\subset X$ to a closed subset $f(E)$. Indeed, since $X$ is compact, $E$ is also compact by Cor. \ref{lb234}. So $f(E)$ is compact by the first paragraph. So $f(E)$ is closed in $X$ by Cor. \ref{lb234}.
+\end{proof}
+
+The second part of Thm. \ref{lb236} can also be proved in a similar way as Pb. \ref{lb235} by replacing sequences with nets. But that argument relies on the fact that every net in a compact Hausdorff space with only one cluster point is convergent. We leave the proof of this fact to the readers (cf. Pb. \ref{lb237}).
+
+
+\begin{exe}
+The first part of Thm. \ref{lb236} can be viewed as a generalization of extreme value theorem. Why?
+\end{exe}
+
+
+
+\begin{pp}\label{lb239}
+Suppose that $X,Y$ are compact topological spaces. Then $X\times Y$ is compact.
+\end{pp}
+
+\begin{proof}
+Take a net $(x_\alpha,y_\alpha)$ in $X\times Y$. Since $X$ is compact, $(x_\alpha)$ has a convergent subnet $(x_{\alpha_\beta})$. Since $Y$ is compact,  $(y_{\alpha_\beta})$ has a convergent subnet $(y_{\alpha_{\beta_\gamma}})$. So $(x_{\alpha_{\beta_\gamma}},y_{\alpha_{\beta_\gamma}})$ is a convergent subnet of $(x_\alpha,y_\alpha)$.
+\end{proof}
+
+\begin{rem}
+Note that if $X\times Y$ is compact, then $X$, as the image of $X\times Y$ under the projection map, is compact by Thm. \ref{lb236}. Therefore, we conclude that $X\times Y$ is compact iff $X$ and $Y$ are compact.
+\end{rem}
 
 
 
@@ -5831,6 +6552,332 @@ We list the properties proved before which do not rely on the existence of $\Qbb
 
 
 
+
+\subsection{Act 3: ``countably compact $\Leftrightarrow$ compact" for Lindel\"of spaces}\label{lb253}
+
+
+Assume in this section that $X$ is a topological space. Recall that $X$ is Lindel\"of iff every open cover has a countable subcover. Thus, it is obvious that
+\begin{align}
+\text{countably compact}\quad\Longleftrightarrow\quad \text{compact}\qquad(\text{for Lindel\"of spaces})
+\end{align}
+Thus, by Lem. \ref{lb247}, to prove that sequentially/countably compact metric spaces are compact, it suffices to prove that they are Lindel\"of.
+
+We introduce two related concepts that are more useful than Lindel\"of spaces:
+\begin{df}
+We say that a topological space $X$ is \textbf{separable} \index{00@Separable} if $X$ has a countable dense subset. We say that $X$ is \textbf{second countable} \index{00@Second countable} if the topology of $X$ has a countable base (i.e., a base $\mc B$ with countably many elements).
+\end{df}
+
+\begin{eg}\label{lb248}
+$\Rbb^N$ is separable, since $\Qbb^N$ is a dense subset. 
+\end{eg}
+
+
+As we shall immediately see, these two notions are equivalent for metric spaces. It is often easier to visualize and prove separability for concrete examples (such as Exp. \ref{lb248}). Indeed, Exp. \ref{lb248} is the typical example that helps us imagine more general separable spaces. However, for general topological spaces, second countability behaves better than separability.  The following property gives one reason.
+\begin{pp}
+If $Y$ is an open subset of a second countable space $X$, then $Y$ is second countable.
+\end{pp}
+
+\begin{proof}
+Let $\mc B$ be a countable base for the topology of $X$. Then $\{Y\cap U:U\in\mc B\}$ is a countable base for the topology of $Y$.
+\end{proof}
+Another reason that second countability is better is because it implies Lindel\"of property. This is mainly due to the following fact:
+
+\begin{pp}\label{lb249}
+Let $\mc B$ be a base for the topology of $X$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is Lindel\"of (resp. compact).
+\item If $X$ has open cover $\fk U$ where each member of $\fk U$ is an element of $\mc B$, then $\fk U$ has a countable (resp. finite) subcover.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+``(1)$\Rightarrow$(2)" is obvious.  Assume (2). Let $\fk W$ be an open cover of $X$. Let
+\begin{align*}
+\fk U=\{U\in \mc B:U\subset W\text{ for some }W\in\fk W\}
+\end{align*} 
+For each $x\in X$, since there is $W\in\fk W$ containing $x$, and since $\mc B$ is a base, there is $U\in\mc B$ such that $x\in U\subset W$. This proves that $\fk U$ is an open cover of $X$. So $\fk U$ has a countable (resp. finite) subcover $\fk U_0$. For each $U\in\fk U_0$, choose $W_U\in\fk W$ containing $U$. Then $\{W_U:U\in\fk U_0\}$ is a countable (resp. finite) subcover of $\fk W$.
+\end{proof}
+
+\begin{co}\label{lb265}
+Every second countable topological space $X$ is Lindel\"of.
+\end{co}
+
+\begin{proof}
+Let $\mc B$ be a countable base for the topology of $X$. Let $\fk U$ be an open cover of $X$ such that each member of $\fk U$ is in $\mc B$. Then by discarding duplicated terms, $\fk U$ becomes countable. This verifies (2) of Prop. \ref{lb249}.
+\end{proof}
+
+
+\begin{thm}\label{lb250}
+Consider the following statements:
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is second countable.
+\item $X$ is separable.
+\end{enumerate}
+Then (1)$\Rightarrow$(2). If $X$ is metrizable, then (2)$\Rightarrow$(1).
+\end{thm}
+
+
+
+\begin{proof}
+Assume that $X$ is second countable with countable base $\mc B$. For each $U\in\mc B$, choose $x_U\in U$. Then one checks easily that $\{x_U:U\in\mc B\}$ is dense by checking that it intersects every nonempty open subset of $X$.
+
+Assume that $X$ is a metric space with countable dense subset $E$. Let us prove that the countable set
+\begin{align*}
+\mc B=\{B_X(e,1/n):e\in E,n\in\Zbb_+\}
+\end{align*}
+is a base for the topology of $X$. Choose any open $W\subset X$ with $x\in W$. We want to show that some member of $\mc B$ contains $x$ and is in $W$. By shrinking $W$, we may assume that $W=B_X(x,1/n)$ for some $n\in\Zbb_+$. Since $E$ is dense, $B(x,1/2n)$ contains some $e\in E$. So $d(x,e)<1/2n$. Therefore,  $B(e,1/2n)$ contains $x$  and is inside $W$ by triangle inequality.
+\end{proof}
+
+
+It can be proved that Lindel\"of metric spaces are separable. (Therefore, the three notions agree for metric spaces.) We will not use this fact. So we leave its proof to the readers as an exercise (cf. Pb. \ref{lb255}). The following chart is a summary of the relationships between the various topological properties about countability.
+
+
+
+
+
+\begin{align}
+\begin{aligned}
+&\text{Topological spaces:} &  \text{second countable }&\Longrightarrow \left\{
+{\begin{array}{l}
+\text{subset is second countable}\\
+\text{separable}\\
+\text{Lindel\"of}
+\end{array}}
+\right.\\[0.5ex]
+&\text{Metric spaces:}  & \text{second countabl}&\text{e }\Longleftrightarrow\text{ separable}\Longleftrightarrow \text{ Lindel\"of} 
+\end{aligned}
+\end{align}
+
+\begin{eg}
+Since $\Rbb^N$ is separable and hence second countable, every subset of $\Rbb^N$ is second countable, and hence is separable.
+\end{eg}
+
+
+
+\begin{thm}\label{lb252}
+Let $X$ be a sequentially compact metric space. Then $X$ is separable, and hence second countable and Lindel\"of.
+\end{thm}
+
+\begin{proof}
+We claim that for every $\delta>0$, there is a finite set $E\subset X$ such that for every $x\in E$, the distance $d(x,E)<\delta$. Suppose that there is no such finite set for a given $\delta$. Pick any $x_1\in X$. Suppose $x_1,\dots,x_k\in X$ have been constructed. Then there is a point $x_{k+1}\in X$ whose distance to $\{x_1,\dots,x_k\}$ is $\geq \delta$. This defines inductively a sequence $(x_k)$ in $X$ such that any two elements have distance $\geq \delta$. So $(x_k)$ has no convergent subsequence, contradicting the sequential compactness of $X$.
+
+Thus, for each $n\in\Zbb_+$, we can choose a finite  $E_n\subset X$ satisfying  $d(x,E_n)<1/n$ for all $x\in X$. Let $E=\bigcup_{n\in\Zbb_+}E_n$, which is countable. Then for each $x\in X$, $d(x,E)\leq d(x,E_n)<1/n$ for every $n$, which implies $d(x,E)=0$ and hence $x\in\ovl E$ by Pb. \ref{lb251}. So $E$ is dense in $X$.
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb222}}]
+Let $X$ be a metric space. Assume that $X$ is compact. Then $X$ is clearly countably compact, and hence sequentially compact by Lem. \ref{lb247}. Conversely, assume that $X$ is sequentially compact. Then by Lem. \ref{lb247} and Thm. \ref{lb252}, $X$ is countably compact and Lindel\"of, and hence compact.
+\end{proof}
+
+
+
+
+\begin{srem}
+Since second countable spaces are first countable, by Rem. \ref{lb264} and Cor. \ref{lb265}, we have
+\begin{gather}\label{eq75}
+\begin{gathered}
+\text{sequentially compact}\quad\Longleftrightarrow\quad \text{countably compact}\quad\Longleftrightarrow\quad \text{compact}\\[0.5ex]
+(\text{for second countable topological spaces})
+\end{gathered}
+\end{gather}
+Relation \eqref{eq75} not only generalizes Thm. \ref{lb222}, but also tells us what are the crucial properties that ensure the equivalence of compactness and sequential compactness for metric spaces. 
+\end{srem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Finale: uniform convergence and equicontinuity -- two faces of $C(X\times Y,V)\simeq C(X,C(Y,V))$}
+
+
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+
+Let $X,Y$ be topological spaces.
+
+\begin{prob}\label{lb237}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in a compact Hausdorff space $X$. Prove that $(x_\alpha)$ is convergent iff $(x_\alpha)$ has exactly one cluster point.
+\end{prob}
+
+
+\begin{prob}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in the compact space $\ovl\Rbb$. Let $S$ be the (automatically nonempty) set of cluster points of $\ovl\Rbb$. Recall that $S$ is a closed subset by Rem. \ref{lb238}. For each $\alpha\in I$, define
+\begin{gather}
+A_\alpha=\inf\{x_\beta:\beta\geq \alpha \}\qquad  B_\alpha=\sup\{x_\beta:\beta\geq  \alpha \}
+\end{gather}
+Then $(A_\alpha)$ is increasing and $(B_\alpha)$ is decreasing. So they converge in $\ovl\Rbb$. Define \index{liminfsup@$\liminf,\limsup$}
+\begin{subequations}
+\begin{gather}
+\liminf_{\alpha\in I}x_\alpha=\sup\{A_\alpha:\alpha\in I\}=\lim_{\alpha\in I} A_\alpha \\
+\limsup_{\alpha\in I}x_\alpha=\inf\{B_\alpha:\alpha\in I\}=\lim_{\alpha\in I} B_\alpha
+\end{gather}
+\end{subequations}
+Prove that
+\begin{align}
+\liminf_{\alpha\in I}x_\alpha=\inf S\qquad \limsup_{\alpha\in I}x_\alpha=\sup S
+\end{align}
+\end{prob}
+
+\begin{proof}[Note]
+You will get a quick proof by choosing the right one of the three equivalent definitions of cluster points in Pb. \ref{lb223}. A wrong choice will take you much more effort.
+\end{proof}
+
+
+\begin{sprob}
+Given a general topological space $X$, which one implies the other between the conditions of ``sequential compactness" and ``countable compactness"? Prove your conclusion with details.
+\end{sprob}
+
+\begin{proof}[Hint]
+Check the proof of Thm. \ref{lb232}, and think about the question: If $(x_n)$ is a sequence in $X$, what is the inclusion relation between $\bigcap_n\ovl{\{x_k:k\geq n\}}$ and the set of limits of the convergent subsequences (rather than subnets) of $(x_n)$?
+\end{proof}
+
+
+
+
+
+
+
+\begin{prob}\label{lb246}
+Prove Prop. \ref{lb233} using the original definition of compact spaces (i.e. every open cover has a finite subcover) instead of using nets.
+\end{prob}
+
+\begin{sprob}
+Prove Prop. \ref{lb239} using the original definition of compact spaces instead of using nets.
+\end{sprob}
+
+\begin{prob}\label{lb240}
+Assume that $Y$ is compact. Let $(x_\alpha,y_\alpha)_{\alpha\in I}$ be a net in $X$. Assume that $x\in X$ is a cluster point ot $(x_\alpha)$. Prove that there exists $y\in Y$ such that $(x,y)$ is a cluster point of $(x_\alpha,y_\alpha)$.
+\end{prob}
+
+\begin{prob}\index{00@Tychonoff theorem, countable version} \label{lb241}
+(\textbf{Tychonoff theorem, countable version}) Let $(X_n)_{n\in\in\Zbb_+}$ be a sequence of compact topological spaces. Prove that the product space $S=\prod_{n\in\Zbb_+}X_n$ (equipped with the product topology) is compact using the following hint.
+\end{prob}
+
+\begin{proof}[Hint]
+Let $(f_\alpha)_{\alpha\in I}$ be a net in $S$ where $f_\alpha=(f_\alpha(1),f_\alpha(2),\dots)$. Use Pb. \ref{lb240} to construct inductively an element $x=(x(1),x(2),\dots)\in S$ such that for every $n\in\Zbb_+$, the element $x(n)$ is a cluster point of $(f_\alpha(n))_{\alpha\in I}$ in $X_n$. Prove that $x$ is a cluster point of $(f_\alpha)_{\alpha\in I}$ in $S$.
+\end{proof}
+
+
+\begin{rem}
+The same idea as above can be used to prove the general Tychonoff theorem (the version where the index set $\Zbb_+$ in Pb. \ref{lb241} is replaced by an arbitrary set) by replacing mathematical induction by Zorn's lemma. 
+\end{rem}
+
+
+\begin{df}
+A subset $A$ of a Hausdorff space $X$ is called \textbf{precompact} \index{00@Precompact subset} if its closure $\ovl A$ is compact. By Cor. \ref{lb234}, this is equivalent to saying that $A$ is contained in a compact subset of $X$.   
+\end{df}
+
+It is clear that a subset of a precompact set is precompact.
+
+\begin{prob}
+Suppose that $X$ is metric space. Let $A\subset X$. Prove that the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $A$ is precompact, i.e., $\ovl A$ is compact.
+\item Every sequence in $A$ has a subsequence converging to some point of $X$.
+\end{enumerate}
+\end{prob}
+
+
+
+\begin{df}
+A Hausdorff space $X$ is called a \textbf{locally compact Hausdorff (LCH) space} \index{00@LCH=Locally compact Hausdorff} if every point has a precompact neighborhood.
+\end{df}
+
+
+
+\begin{pp}\label{lb245}
+Let $X$ be an LCH space. Let $W$ be an open subset of $X$. Let $A$ be a compact subset of $W$. Then there is a precompact open set $U\subset X$ such that $A\subset U\subset \Cl_X(U)\subset W$.
+\end{pp}
+
+\begin{proof}
+Case 1: $A=\{x\}$ and $X$ is compact Hausdorff.  Then $B=X\setminus W$ is compact by Cor. \ref{lb234}. Since $X$ is Hausdorff, for each $y\in B$ there exists $V_y\in\Nbh_X(y)$ such that $x\notin \ovl V_y$. (Recall Cor. \ref{lb243}.) Since $B$ is compact, there are $y_1,\dots,y_n\in B$ such that $B\subset V$ where $V=V_{y_1}\cup\cdots\cup V_{y_n}$. By \eqref{eq74}, $\ovl V=\ovl V_{y_1}\cup\cdots\cup \ovl V_{y_n}$. So $x\notin\ovl V$. Let $U=X\setminus \ovl V$. Then $x\in U$. Since $U\subset X\setminus V$ and $X\setminus V$ is closed, $\ovl U\subset X\setminus V$, and hence $\ovl U\subset W$. Since $X$ is compact, $U$ is precompact.\\[-1ex]
+
+Case 2: $A=\{x\}$ and $X$ is LCH. Choose a precompact $\Omega\in\Nbh_X(x)$. By case 1 (applied to $\ovl\Omega$), and by the definition of subspace topology, there exists $V\in\Nbh_X(x)$ such that $x\in V\cap \ovl\Omega\subset\Cl_{\ovl\Omega}(V\cap \ovl\Omega)\subset W\cap\ovl\Omega$. By Rem. \ref{lb182}, we have $\Cl_{\ovl\Omega}(V\cap \ovl\Omega)= \ovl{V\cap\ovl\Omega}\cap\ovl\Omega$, which contains $\ovl{V\cap\Omega}$ since both $\ovl{V\cap\ovl\Omega}$ and $\ovl\Omega$ do. So $x\in U\subset\ovl U\subset W$ where $U=V\cap\Omega$. Since $\Omega$ is precompact, $U$ is precompact. \\[-1ex]
+
+Case 3: General case. For each $x\in A$, Case 2 shows that there exists a precompact $U_x\in\Nbh_X(x)$ such that $x\in U_x\subset\ovl U_x\subset W$. Since $W$ is compact, there exist some $x_1,\dots,x_m\in A$ such that $A\subset U$ where $U= U_{x_1}\cup\cdots\cup U_{x_m}$. (Recall Rem. \ref{lb244}.) By \eqref{eq74}, we have $\ovl U=\ovl U_{x_m}\cup\cdots\cup\ovl U_{x_m}$. So $\ovl U$ is compact and $\ovl U\subset W$.
+\end{proof}
+
+
+\begin{exe}
+Let $X$ be LCH. Let $\mc V$ be a normed vector space. Let $(f_\alpha)_{\alpha\in I}$ be a net in $C(X,\mc V)$ converging pointwisely to $f:X\rightarrow 
+\mc V$. Assume that  net $(f_\alpha)$ converges uniformly on every precompact open subset $U$ of $X$. (Note that the limit function must be $f|_U$.) Prove that $f$ is continuous. We say that $(f_\alpha)$ converges \textbf{locally uniformly} \index{00@Locally uniform convergence} to $f$.
+\end{exe}
+
+An example of locally uniform convergence was given in Thm. \ref{lb112}.
+
+
+\begin{prob}
+Let $(X,\mc T)$ be a second countable LCH space. Prove that the topology $\mc T$ has a base $\mc B$ whose members are all precompact.
+\end{prob}
+
+\begin{proof}[Hint]
+Choose a countable base $\{U_1,U_2,\dots\}$ of $\mc T$. Write each $U_m$ as a countable union of open sets with compact closures in $X$.
+\end{proof}
+
+\begin{sprob}\label{lb255}
+Let $X$ be a Lindel\"of metric space. Prove that $X$ is separable.
+\end{sprob}
+
+
+\begin{df}
+Let $\scr F$ be a set of functions $X\rightarrow Y$. We say that $\scr F$ \textbf{separates points} \index{00@Separates points} of $X$, if for every distinct $x_1,x_2\in X$ there exists $f\in\scr F$ such that $f(x_1)\neq f(x_2)$. 
+\end{df}
+
+\begin{prob}\label{lb259}
+Let $X$ be a nonempty compact metric space.
+\begin{enumerate}
+\item Prove that there is a sequence of continuous functions $(f_n)_{n\in\Zbb_+}$ from $X$ to $[0,1]$ separating points of $X$. 
+\item Prove that 
+\begin{gather*}
+\Phi:X\rightarrow [0,1]^{\Zbb_+} \qquad x\mapsto (f_1(x),f_2(x),\dots)
+\end{gather*}
+gives a homeomorphism $\Phi:X\rightarrow\Phi(X)$ where $\Phi(X)$ is a closed subspace of $[0,1]^{\Zbb_+}$ (equipped with the subspace topology).
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Hint]
+Part 1: Choose an infinite countable base $\mc B=(U_1,U_2,\dots)$ for the topology of $X$ where each $U_n$ is nonempty. (Why can you do so?) Use Urysohn functions (Rem. \ref{lb257}) to construct $f_n:X\rightarrow [0,1]$ such that $f^{-1}(0)=X\setminus U_n$.
+
+Part 2: Notice Exe. \ref{lb258}.
+\end{proof}
+
+
+\begin{thm}\label{lb261}
+Let $X$ be a topological space. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is a compact metrizable space.
+\item $X$ is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+(1)$\Rightarrow$(2): By Pb. \ref{lb259}. (2)$\Rightarrow$(1): By Cor. \ref{lb260}, $[0,1]^{\Zbb_+}$ is metrizable. By countable Tychonoff theorem (Thm. \ref{lb89} or Pb. \ref{lb241}), $[0,1]^{\Zbb_+}$ is compact. So its closed subsets are compact by Cor. \ref{lb234}.
+\end{proof}
+
+
+
+\begin{sexe}
+Let $N\in\Zbb_+$. Prove that the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is a compact Hausdorff space. Moreover, there exist $f_1,\dots,f_N\in C(X,\Rbb)$ separating points of $X$.
+\item $X$ is homeomorphic to a bounded closed subset of $\Rbb^N$.
+\end{enumerate}
+\end{sexe}
 
 
 
@@ -5854,12 +6901,25 @@ We list the properties proved before which do not rely on the existence of $\Qbb
 \bibitem[Axl]{Axl}
 Axler, S. (2015). Linear algebra done right. 3rd ed.
 
+\bibitem[Fol]{Fol}
+Folland, G. B. (1999). Real analysis: modern techniques and their applications (Vol. 40). John Wiley \& Sons.
+
 \bibitem[Jah]{Jah}
 Jahnke, H. N. (2003). A history of analysis (No. 24). American Mathematical Soc..
+
+
+\bibitem[Kel]{Kel}
+Kelley, J. L., General topology. 
+
+\bibitem[MS22]{MS22}
+Moore, E. H., \& Smith, H. L. (1922). A general theory of limits. American journal of Mathematics, 44(2), 102-121.
 
 \bibitem[Mun]{Mun}
 Munkres, J. (2000). Topology. Second Edition.
 
+
+\bibitem[RS]{RS}
+Reed, M., \& Simon, B. (1972). Methods of Modern Mathematical Physics I: Functional analysis, Academic Press, New York.
 
 
 \bibitem[Rud-P]{Rud-P}
@@ -5868,6 +6928,9 @@ Rudin, W. (1976). Principles of Mathematical Analysis. 3rd ed.
 \bibitem[Rud-R]{Rud-R}
 Rudin, W. (1987). Real and complex analysis. 3rd ed. 
 
+
+\bibitem[Wil]{Wil}
+Willard, S. (1970). General topology. 
 
 		
 \end{thebibliography}
