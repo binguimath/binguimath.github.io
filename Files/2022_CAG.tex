@@ -333,7 +333,7 @@
 \newcommand{\codim}{\mathrm{codim}}
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\dps}{\displaystyle}
-
+\newcommand{\Qbb}{\mathbb Q}
 
 
 
@@ -11748,7 +11748,7 @@ is locally constant.
 \end{thm}
 
 
-We will not use this theorem in this chapter, and we refer the readers to \cite[Sec. III.4]{BS} for the proof. In the next chapter, we will prove this result under the assumption that $\varphi$ is projective. 
+We will not use this theorem in this chapter, and we refer the readers to \cite[Sec. III.4]{BS} for the proof. In the next chapter, we will prove this result under the assumption that $\varphi$ is projective. (See Thm. \ref{lb418}.)
 
 
 
@@ -12593,7 +12593,7 @@ In particular, $\scr O_X(0D)=\scr O_X$. So have have an obvious isomorphism
 \end{align*}
 Also, by checking stalkwise, we see that the multiplication gives an isomorphism
 \begin{align*}
-\mc I^{\otimes n}\simeq\mc I^n\qquad (\text{if }n\in\Nbb)
+\mc I^{\otimes n}\simeq\mc I^n=\underbrace{\mc I\cdots\mc I}_{n}\qquad (\text{if }n\in\Nbb)
 \end{align*}
 If $\scr E$ is an $\scr O_X$-module, we define \index{En@$\scr E(nD)$}
 \begin{align}
@@ -12641,7 +12641,7 @@ Let $\xi_0,\dots,\xi_N\in\scr L(X)$ satisfy condition (2) of Thm. \ref{lb402}. I
 
 
 
-
+\subsection{Serre's vanishing theorem}
 
 
 \begin{thm}[\textbf{Serre's vanishing theorem}] \index{00@Serre's vanishing theorem}  \label{lb409}
@@ -12714,14 +12714,14 @@ gives an exact sequence
 where $\scr K=\Ker\big(\scr E(-1)\rightarrow\scr E\big)$. 
 
 
-We claim that $\Supp(\scr K)=\Specan(\scr O_X/\sann(\scr K))$ is a (closed) complex subspace of $H_S$. This means that for each $x\in X=\Pbb^N_S$, we need to show $\scr I_{H_S,x}\subset\sann_{\scr O_{X,x}}(\scr K_x)$. Indeed, since $\scr K_x=\Tor_1^{\scr O_{X,x}}(\scr K_x,\scr O_{H_S,x})$, and since the action of $\scr O_{X,x}$ on $\scr K_x$ is given by that on $\scr O_{H_S,x}$ (because $\Tor$ preserves multiplications, cf. Rem. \ref{lb297}), $\scr K_x$ is killed by elements of $\scr I_{H_S,x}$ since $\scr O_{H_S,x}$ is so. This proves the claim.
+We claim that $\Supp(\scr K)=\Specan(\scr O_X/\sann(\scr K))$ is a (closed) complex subspace of $H_S$. This means that for each $x\in X=\Pbb^N_S$, we need to show $\scr I_{H_S,x}\subset\sann_{\scr O_{X,x}}(\scr K_x)$. Indeed, since $\scr K_x=\Tor_1^{\scr O_{X,x}}(\scr E_x,\scr O_{H_S,x})$, and since the action of $\scr O_{X,x}$ on $\scr K_x$ is given by that on $\scr O_{H_S,x}$ (because $\Tor$ preserves multiplications, cf. Rem. \ref{lb297}), $\scr K_x$ is killed by elements of $\scr I_{H_S,x}$ since $\scr O_{H_S,x}$ is so. This proves the claim.
 
 
 
 Tensoring \eqref{eq213} with $\scr O_{\Pbb^N_S}(n)$ gives an exact sequence
-\begin{align*}
-0\rightarrow\scr K(n)\rightarrow\scr E(n-1)\rightarrow\scr E(n)\rightarrow \scr E|_{H_S}(n)\rightarrow0
-\end{align*}
+\begin{align}
+0\rightarrow\scr K(n)\rightarrow\scr E(n-1)\rightarrow\scr E(n)\rightarrow \scr E|_{H_S}(n)\rightarrow0 \label{eq222}
+\end{align}
 which breaks into two exact sequences
 \begin{subequations}
 \begin{gather}
@@ -12808,6 +12808,76 @@ Let $\scr K$ be the kernel of $\scr E\rightarrow\scr F$. Then we have an exact s
 \end{align*}
 By Thm. \ref{lb409}-(B), there is $n_0$ such that  $R^1\varphi_*(\scr E(n))|_W=0$ for all $n\geq n_0$.  
 \end{proof}
+
+
+
+
+\subsection{Hilbert polynomials}
+
+
+
+As a byproduct of the proof of Thm. \ref{lb409} we are able to prove:
+
+
+
+\begin{thm}\label{lb417}
+Let $X$ be a projective complex space. Let $\scr E\in\Coh(X)$. Then there is a (necessarily unique) $p\in\Qbb[n]$ such that
+\begin{align}
+\chi(X,\scr E(n))=p(n)
+\end{align}
+for all $n\in\Zbb$. $p$ is called the \textbf{Hilbert polynomial} \index{00@Hilbert polynomial} of $\scr E$.
+\end{thm}
+
+
+\begin{proof}
+Since $X$ can be embedded into $\Pbb^N$, we assume for simplicity that $X=\Pbb^N$. We prove by induction on $N$ that $\chi(X,\scr E(n))$ is a polynomial of $n$ of degree at most $N$. Then case $N=0$ is obvious: in this case $p(n)=\dim_\Cbb\scr E$. Now assume case $N-1$ has been proved. Consider case $N$. Let $H$ be any hyperplane in $\Pbb^N$. Then by the proof of Thm. \ref{lb409} we have an exact sequence \eqref{eq222} where $\scr K$ has support in $H$. Thus, we have
+\begin{align*}
+\chi(H,\scr K(n))-\chi(X,\scr E(n-1))+\chi(X,\scr E(n))-\chi(H,\scr E|_H(n))=0
+\end{align*}
+where $\chi(H,\scr K(n))$ and $\chi(H,\scr E|_H(n))$ are polynomials of $n$ of degree $\leq N-1$. The proof is finished by the next lemma.
+\end{proof}
+
+
+
+
+\begin{lm}
+Let $f:\Zbb\rightarrow\Zbb$ be a function such that $f(n)-f(n-1)=q(n)$ for some $q\in\Qbb[n]$ of degree $d\geq0$. Then $f\in\Qbb[n]$ and $f$ has degree $d+1$. 
+\end{lm}
+
+\begin{proof}
+Choose any $k\in\Zbb$. Then for any $n> k$ we have $f(n)=q(k)+q(k+1)+\cdots+q(n)$. It follows that there is a polynomial $p_k$ of degree $d+1$ such that $f(n)=p_k(n)$ for all $n>k$. Since polynomials of degree $d+1$ are determined by their values at $d+2$ distinct points, and since $p_k(n)=p_{k+1}(n)$ whenever $n>k+1$, we see that $p_k$ is independent of $k$.
+\end{proof}
+
+
+
+\begin{thm}\label{lb418}
+Let $\varphi:X\rightarrow S$ be a proper holomorphic map. Let $\scr L\in\Coh(X)$ be $\varphi$-very ample. Let $\scr E\in\Coh(X)$. Assume that $\scr E$ is $\varphi$-flat. Then for each $n$, the function
+\begin{align}
+S\rightarrow \Zbb\qquad t\mapsto\chi(X_t,\scr E|_{X_t}(n))  \label{eq223}
+\end{align}
+is locally constant.
+\end{thm}
+
+
+
+\begin{proof}
+Choose $t_0\in S$. Since $\scr E$ is $\varphi$-flat, by Thm. \ref{lb409}-(C), we can shrink $S$ to a neighborhood of $t_0$ and find $n_0\in\Nbb$ such that for any $n\geq n_0$, $\scr E(n)$ satisfies base change in order orders on $S$, and $H^0(X_t,\scr E(n)|_{X_t})=\chi(X_t,\scr E|_{X_t}(n))$ for all $t\in S$. By (a)$\Rightarrow$(b) of Thm. \ref{lb355}, $H^0(X_t,\scr E(n)|_{X_t})$ is locally constant with respect to $t$. Thus, for all $n\geq n_0$, \eqref{eq223} is locally constant.
+
+Shrink $S$ further so that $X$ can be embedded into $\Pbb^N_S$ and $\scr L\simeq\scr O_{\Pbb^N_S}(1)$. Shrink $S$ further so that \eqref{eq223} is constant for $n\in E=\{n_0,n_0+1,\dots,n_0+N\}$. By Thm. \ref{lb417}, for each $t\in S$ there exists a polynomial $p_t$ of degree at most $N$ such that $p_t(n)=\chi(X_t,\scr E|_{X_t}(n))$ for all $n\in\Zbb_+$. Since $t\mapsto p_t(n)$ is constant for all $n\in E$, all the coefficients of $p_t(n)$ are constant with respect to $t$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -12960,7 +13030,7 @@ For each $n\in\Zbb$, we have a commutative diagram
             &             & \varphi_*(\scr E(n))\otimes_{\scr O_S}\mc J \arrow[r, "\beta"] \arrow[u,"\alpha"] & \varphi_*(\scr E(n))\otimes_{\scr O_S}\scr O_S \arrow[u,"\simeq"']
 \end{tikzcd}
 \end{equation*}
-After shrinking $S$ to a precompact neighborhood of $t$ we have the following: for sufficiently large $n$, the first row is exact (by Cor. \ref{lb411}), the base change map $\alpha$ is an isomorphism (by Thm. \ref{lb412}), and the map $\beta$ is injective by assumption (2). Therefore, for sufficiently large $n$, $\varphi_*(\scr K(n))$ is trivial, and hence $\scr K(n)$ is trivial due to Thm. \ref{lb409}-(a). So $\scr K=0$.
+After shrinking $S$ to a precompact neighborhood of $t$ we have the following: for sufficiently large $n$, the first row is exact (by Cor. \ref{lb411}), the base change map $\alpha$ is an isomorphism (by Thm. \ref{lb412}), and the map $\beta$ is injective by assumption (2). Therefore, for sufficiently large $n$, $\varphi_*(\scr K(n))$ is trivial, and hence $\scr K(n)$ is trivial due to Thm. \ref{lb409}-(A). So $\scr K=0$.
 \end{proof}
 
 
