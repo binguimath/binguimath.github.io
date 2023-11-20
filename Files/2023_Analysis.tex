@@ -444,7 +444,8 @@
 
 	
 	\maketitle
-\small  \hyperlink{beforeindex}{Last page before index}~~~~~~   \hyperlink{page.3}{Last page of TOC}
+\small  \hyperlink{beforeindex}{Last page before index}~~~~~~   \hyperlink{page.4}{Last page of TOC}
+%\hyperlink{endoftoc}{Last page of TOC}
 \normalsize
 %\thispagestyle{empty}	 %remove page number of this page
 
@@ -458,7 +459,7 @@
 \makeatother
 \toccontents
 
-
+\hypertarget{endoftoc}{}
 
 	
 % title and table of contents same page, no content title
@@ -1464,7 +1465,7 @@ Given finitely many metric spaces $X_1,\dots,X_N$, the metric on their product s
 
 
 \begin{df}\label{lb43}
-Let $(X,d)$ be a metric space. Then a \textbf{metric subspace} \index{00@Metric subspace} is denotes an object $(Y,d|_Y)$ where $Y\subset X$ and $d|_Y$ is the restriction of $d$ to $Y$, namely, for all $y_1,y_2\in Y$ we set
+Let $(X,d)$ be a metric space. Then a \textbf{metric subspace} \index{00@Metric subspace} denotes an object $(Y,d|_Y)$ where $Y\subset X$ and $d|_Y$ is the restriction of $d$ to $Y$, namely, for all $y_1,y_2\in Y$ we set
 \begin{align*}
 d|_Y(y_1,y_2)=d(y_1,y_2)
 \end{align*}
@@ -5662,7 +5663,7 @@ In Exp. \ref{lb193}, assume that each $(X_\alpha,\mc T_\alpha)$ is metrizable. P
 \end{sexe}
 
 
-\begin{df}
+\begin{df}\label{lb454}
 Let $(X_\alpha)_{\alpha\in\mc A}$ be a family of topological spaces. Elements of the product space
 \begin{align*}
 S=\prod_{\alpha\in\scr A}X_\alpha
@@ -7063,7 +7064,6 @@ We shall see in Thm. \ref{lb261} that every sequentially compact metric space is
 \end{rem}
 
 
-%%  ad
 
 
 
@@ -7210,9 +7210,15 @@ Use binary representations in $[0,1]$.
 \subsubsection{LCH spaces}
 
 
-\begin{df}
-A subset $A$ of a Hausdorff space $X$ is called \textbf{precompact} \index{00@Precompact subset} if its closure $\ovl A$ is compact. By Cor. \ref{lb234}, this is equivalent to saying that $A$ is contained in a compact subset of $X$.   
+\begin{df}\label{lb458}
+A subset $A$ of a Hausdorff space $X$ is called \textbf{precompact} \index{00@Precompact subset} if its closure $\ovl A$ is compact. This is equivalent to saying that $A$ is contained in a compact subset of $X$.   
 \end{df}
+
+\begin{proof}[Proof of equivalence]
+If $\ovl A$ is compact, then $\ovl A$ is a compact subset of $X$ (cf. Cor. \ref{lb234}) containing $A$. Conversely, if $A\subset K$ where $K$ is a compact subset of $X$, then $K$ is closed by Cor. \ref{lb234}. Since $\ovl A$ is the smallest closed subset of $X$ containing $A$, we have $\ovl A\subset K$. By Exe. \ref{lb341}, $\ovl A$ is closed in $K$. By Cor. \ref{lb234}, $\ovl A$ is compact.
+\end{proof}
+
+
 
 It is clear that a subset of a precompact set is precompact.
 
@@ -7676,7 +7682,7 @@ From the above proof, we see that the equivalence (1)$\Leftrightarrow$(3) holds 
 
 
 \begin{eg}
-Define $f_n:(0,1)\rightarrow\Rbb$ by $f_n(x)=x^n$. Then $(f_n)_{n\in\Zbb_+}$ is equicontinuous and pointwise convergent, but not uniformly convergent. Accordingly, $(0,1)$ is not compact. 
+Define $f_n:(0,1)\rightarrow\Rbb$ by $f_n(x)=x^n$. Then $(f_n)_{n\in\Zbb_+}$ is equicontinuous (by Exp. \ref{lb309}) and pointwise convergent, but not uniformly convergent. Accordingly, $(0,1)$ is not compact. 
 \end{eg}
 
 \begin{eg}
@@ -8052,7 +8058,7 @@ Give a direct proof of Cor. \ref{lb303} without using Thm. \ref{lb274} (and its 
 Give a direct proof of Cor. \ref{lb284} without using Thm. \ref{lb274} (and its consequences) or using Thm. \ref{lb289}.
 \end{prob}
 
-\begin{prob}\label{lb285}
+\begin{sprob}\label{lb285}
 Let $(f_\alpha)_{\alpha\in I}$ be a net in $C(X,\Rbb)$. Assume that $(f_\alpha)_{\alpha\in I}$ is increasing, i.e., $f_\alpha\leq f_\beta$ whenever $\alpha\leq\beta$. Assume that $(f_\alpha)_{\alpha\in I}$ converges pointwise to $f\in C(X,\Rbb)$. Prove that for every $x\in X$,
 \begin{align}
 \lim_{
@@ -8064,19 +8070,19 @@ p\rightarrow x
 f_\alpha(p)=f(x)
 \end{align}
 in the sense of Prop. \ref{lb281}. Namely, prove that for every $x\in X$ and $\eps>0$ there exist $\beta\in I$ and $U\in\Nbh_X(x)$ such that $|f_\alpha(p)-f(x)|<\eps$ for all $\alpha\geq\beta$ and all $p\in U$.
-\end{prob}
+\end{sprob}
 
 \begin{proof}[Note]
 Let $g_\alpha=f-f_\alpha$. Then $(g_\alpha)_{\alpha\in I}$ is a decreasing net of continuous functions converging pointwise to $0$. It suffices to prove the easier statement that $\dps\lim_{\alpha\in I,p\rightarrow x}g_\alpha(p)=0$ for every $x\in X$. (Why is this sufficient?)
 \end{proof}
 
-\begin{thm}\label{lb286}
+\begin{sthm}\label{lb286}
 Let $(f_\alpha)_{\alpha\in I}$ be a net in $C(X,\Rbb)$. Assume that $(f_\alpha)_{\alpha\in I}$ is increasing and converges pointwise to $f\in C(X,\Rbb)$. The following statements are true.
 \begin{enumerate}
 \item If $(f_\alpha)_{\alpha\in I}$ is a sequence $(f_n)_{n\in\Zbb_+}$, then $(f_n)_{n\in\Zbb_+}$ is equicontinuous.
 \item (\textbf{Dini's theorem}) \index{00@Dini's theorem} If $X$ is compact, then $(f_\alpha)_{\alpha\in I}$ converges uniformly to $f$.
 \end{enumerate}
-\end{thm}
+\end{sthm}
 
 
 \begin{proof}
@@ -8095,6 +8101,31 @@ for all $x\in (0,1)$. (So it satisfies condition (1) of Thm. \ref{lb277}.) Howev
 However, if we replace $\Zbb$ by $\Zbb_+$, then $(f_n)_{n\in\Zbb_+}$ is equicontinuous by Exp. \ref{lb309} (applied to any compact subinterval of $(0,1)$), or by Thm. \ref{lb286}. But $(f_n)_{n\in\Zbb_+}$ is still not uniformly convergent. 
  \hfill\qedsymbol
 \end{eg}
+
+
+\begin{prob}\label{lb453}
+Let $X_1,X_2,\dots$ be a sequence of nonempty topological spaces. Let $S=\prod_{n\in\Nbb_+}X_n$, equipped with the product topology. Let $f: S \rightarrow \mathbb{R}$ be continuous. Fix $\left(p_n\right)_{n \in \mathbb{Z}_{+}} \in S$. For each $n \in \mathbb{Z}_{+}$, define
+\begin{gather*}
+\varphi_n : S \rightarrow S \\
+\left(x_1, x_2, \ldots, x_{n-1}, x_n, x_{n+1}, \ldots\right)  \mapsto\left(x_1, x_2, \ldots, x_{n-1}, p_n, p_{n+1}, \ldots\right)
+\end{gather*}
+Prove for every $x_\blt=(x_n)_{n\in\Zbb_+}$ that
+\begin{align*}
+\lim_{
+\begin{subarray}{c}
+(n,y_\blt)\in \Zbb_+\times S\\
+(n,y_\blt)\rightarrow(\infty,x_\blt)
+\end{subarray}
+}f\circ\varphi_n(y_\blt)=f(x_\blt)
+\end{align*}
+in the sense of Prop. \ref{lb281}. Conclude that $(f\circ\varphi_n)_{n\in\Zbb_+}$ is equicontinuous, and that if each $X_n$ is compact then $(f\circ\varphi_n)$ converges uniformly to $f$. (Recall that in this case $S$ is compact by the countable Tychonoff theorem, cf. Pb. \ref{lb241}.)
+\end{prob}
+
+
+
+
+
+
 
 
 
@@ -9233,7 +9264,7 @@ If $f'(x)<0$ for some $x\in (a,b)$, then Prop. \ref{lb324} implies that $x$ has 
 Suppose that $f'>0$ on $(a,b)$. Then by Prop. \ref{lb324}, $f$ is strictly increasing on $(a,b)$. If $a<x<b$, then there is $\eps>0$ such that $f(a+1/n)\leq f(x)-\eps$ for sufficiently large $n$. Since $f$ is continuous at $a$, by taking $\lim_{n\rightarrow\infty}$ we get $f(a)\leq f(x)-\eps$ and hence $f(a)<f(x)$. A similar argument proves $f(b)>f(x)$. So $f$ is strictly increasing on $[a,b]$.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb424}
 Suppose that $f\in C([a,b],\Rbb)$ is differentiable on $(a,b)$, and $f'(x)\neq 0$ for all $x\in(a,b)$. Then $f$ is strictly monotonic (i.e. strictly increasing or strictly decreasing). In particular, by Cor. \ref{lb330}, either $f'\geq0$ on $(a,b)$ or $f'\leq 0$ on $(a,b)$.
 \end{co}
 
@@ -9301,7 +9332,7 @@ In the future, we will prove that $V^*$ separates points of $V$. (Recall Def. \r
 \begin{align}\label{eq115}
 v=0\qquad\Longleftrightarrow\qquad\bk{\varphi,v}=0\text{ for all }\varphi\in V^*
 \end{align}
-In fact, we shall prove the famous \textbf{Hahn-Banach extension theorem}, which implies that if $v\in V$ then
+In fact, in the future we will prove the famous \textbf{Hahn-Banach extension theorem}, which implies that if $v\in V$ then
 \begin{align}
 \exists \varphi\in V^*\setminus\{0\}\qquad\text{such that}\qquad\bk{\varphi,v}=\Vert\varphi\Vert\cdot\Vert v\Vert \label{eq116}
 \end{align}
@@ -9555,7 +9586,7 @@ Let $X$ be $\Omega$ or an interval in $\Rbb$. Define \index{l1@$l^{1,\infty}$}
 \begin{align*}
 l^{1,\infty}(X,V)=\{f\in V^X: f\text{ is differentiable on }X\text{ and }\Vert f\Vert_{l^{1,\infty}}<+\infty\}
 \end{align*}
-Where $\Vert \cdot\Vert_{l^{1,\infty}}=\Vert\cdot\Vert_{1,\infty}$ is defined by 
+where $\Vert \cdot\Vert_{l^{1,\infty}}=\Vert\cdot\Vert_{1,\infty}$ is defined by 
 \begin{align*}
 \Vert f\Vert_{1,\infty}=\Vert f\Vert_{l^\infty}+\Vert f'\Vert_{l^\infty}=\sup_{x\in X}\Vert f(x)\Vert+\sup_{x\in X}\Vert f'(x)\Vert
 \end{align*}
@@ -9700,7 +9731,7 @@ By Prop. \ref{lb337}, the function $\log:\Rbb_{>0}\rightarrow\Rbb$ is differenti
 \begin{eg}
 We have 
 \begin{align*}
-\lim_{t\rightarrow 0}\frac{\log(1+t)}t=(\log x)'|_{x=0}=1
+\lim_{t\rightarrow 0}\frac{\log(1+t)}t=(\log x)'|_{x=1}=1
 \end{align*}
 and hence $\lim_{x\rightarrow +\infty}x\log(1+1/x)=1$ by Def. \ref{lb197}-(3) (since $\lim_{x\rightarrow+\infty}1/x=0$ as a net limit). Taking exponential, and using the continuity of $\exp$ at $1$, we get 
 \begin{align*}
@@ -9901,7 +9932,7 @@ Let $-\infty<a<b<+\infty$. Let $f,g\in C([a,b],\Rbb)$ be differentiable on $(a,b
 \end{align*}
 \end{thm}
 
-In particular, if $g$ is injective, we can write the above formula as
+In particular, if $g'\neq0$ on $(a,b)$, then $g$ is injective (Cor. \ref{lb424}), and we can write the above formula as
 \begin{align*}
 \frac{f'(x)}{g'(x)}=\frac{f(b)-f(a)}{g(b)-g(a)}
 \end{align*}
@@ -10009,7 +10040,7 @@ Thus, by Thm. \ref{lb122}, when $n\rightarrow\infty$, the RHS of the above equat
 
 
 \begin{proof}[\textbf{Step 3}]
-Finally, we address the (more difficult) case $\frac *\infty$. Assume $\lim_{x\rightarrow a}|g(x)|=+\infty$. Again, we choose a sequence $(x_n)$ in $(a,b)$ converging to $a$. To prove $f(x_n)/g(x_n)\rightarrow A$, one may want to pick any sequence $(y_k)$ in $(a,b)$, and compute the limit on the LHS of \eqref{eq135}. Unfortunately, in this case, we do not know whether this limit converges or not: As one can compute, it is equal to $\lim_{k\rightarrow\infty}f(y_k)/g(y_k)$, whose convergence is part of the result we need to prove!
+Finally, we address the (more difficult) case $\frac *\infty$. Assume $\lim_{x\rightarrow a}|g(x)|=+\infty$. Again, we choose a sequence $(x_n)$ in $(a,b)$ converging to $a$. To prove $f(x_n)/g(x_n)\rightarrow A$, one may want to pick any sequence $(y_k)$ in $(a,b)$, and compute the limit on the LHS of \eqref{eq134}. Unfortunately, in this case, we do not know whether this limit converges or not: As one can compute, it is equal to $\lim_{k\rightarrow\infty}f(y_k)/g(y_k)$, whose convergence is part of the result we need to prove!
 
 It is not hard to address this issue: Since $\ovl\Rbb$ is (sequentially) compact, by Thm. \ref{lb74}, it suffices to prove that any cluster point $B\in\ovl\Rbb$ of $(f(x_n)/g(x_n))_{n\in\Zbb_+}$ is equal to $A$. Thus, we let $(y_k)$ be any subsequence of $(x_n)$ such that $(f(y_k)/g(y_k))_{k\in\Zbb_+}$ converges to $B$. Let us prove $A=B$ using the same method as in Step 2. We compute that
 \begin{align}
@@ -10039,7 +10070,7 @@ The proof of L`H\^opital's rule is now complete.
 \begin{rem}
 The above proof can be easily translated into a language without double limits. We consider the case of $\frac *\infty$ and assume for example that $-\infty<A<+\infty$ and $a\in\Rbb$, and sketch the proof as follows. 
 
-By \eqref{eq129} and Cauchy' MVT, there is $\eps>0$ such that for all $a<x,y<a+\eps$ (where $x\neq y$) we have
+By \eqref{eq129} and Cauchy' MVT, for every $\eps>0$ there is $\delta>0$ such that for all $a<x,y<a+\delta$ (where $x\neq y$) we have
 \begin{align*}
 A-\eps\leq\frac{f(x)-f(y)}{g(x)-g(y)}\leq A+\eps
 \end{align*}
@@ -10247,7 +10278,7 @@ We prove this by induction. The case $n=1$ is obvious from the definition of der
 \end{align}
 and hence $g(x)=(x-a)o(1)=o(x-a)$. 
 
-Now assume $n\geq 2$. Assume that Peano form has been proved for case $n-1$. Applying this result to $g'$. We then get $g'(x)=o((x-a)^{n-1})$. Since $g''(a)$ exists,  $g'$ exists on $[a,c]$ where $a<c<b$. Therefore, by finite-increment Thm. \ref{lb333}, if $x\in(a,c)$, then
+Now assume $n\geq 2$. Assume that Peano form has been proved for case $n-1$. Applying this result to $g'$. We then get $g'(x)=o((x-a)^{n-1})$. Since $g''(a)$ exists,  $g'$ exists on $[a,c]$ where $a<c<b$. In particular, $g$ is continuous on $[a,c]$. Therefore, by finite-increment Thm. \ref{lb333}, if $x\in(a,c)$, then
 \begin{align*}
 \Vert g(x)\Vert\leq (x-a)\cdot\sup_{a<t<x}\Vert g'(t)\Vert
 \end{align*}
@@ -10271,7 +10302,7 @@ Choose any $\eps>0$. Since $f(x)=o((x-a)^r)$, we know that there is $c\in (a,b)$
 \end{proof}
 
 
-Among all the versions of Taylor's theorem discussed in this section, the following one is most useful. Note that if we assume $f\in C^{(n+1)}([a,b],V)$ in Thm. \ref{lb360}, then Thm. \ref{lb359} immediately implies Thm. \ref{lb360}.  
+Among all the versions of Taylor's theorem discussed in this section, the following one is most useful. (Another useful version, the integral form of Taylor's theorem, will be proved in Thm. \ref{lb425}.) Note that if we assume $f\in C^{(n+1)}([a,b],V)$ in Thm. \ref{lb360}, then Thm. \ref{lb359} immediately implies Thm. \ref{lb360}.  
 
 
 
@@ -10280,7 +10311,7 @@ Let $n\in\Nbb$ and $f\in C^n([a,b],V)$. Assume that $f^{(n+1)}$ exists everywher
 \begin{subequations}
 \begin{gather}
 \Big\Vert f(x)-\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k \Big\Vert \leq \frac{(x-a)^{n+1}}{(n+1)!}\cdot \sup_{a<t<x}\Vert f^{(n+1)}(t)\Vert  \label{eq139}\\
-\Big\Vert f(x)-\sum_{k=0}^n\frac{f^{(k)}(b)}{k!}(x-b)^k \Big\Vert \leq \frac{(b-x)^{n+1}}{(n+1)!}\cdot \sup_{a<t<x}\Vert f^{(n+1)}(t)\Vert
+\Big\Vert f(x)-\sum_{k=0}^n\frac{f^{(k)}(b)}{k!}(x-b)^k \Big\Vert \leq \frac{(b-x)^{n+1}}{(n+1)!}\cdot \sup_{x<t<b}\Vert f^{(n+1)}(t)\Vert
 \end{gather}
 \end{subequations} 
 \end{thm}
@@ -10290,7 +10321,7 @@ Let $n\in\Nbb$ and $f\in C^n([a,b],V)$. Assume that $f^{(n+1)}$ exists everywher
 
 
 \begin{proof}
-We only prove the first formula: applying the first formula to $\wtd f(x)=f(-x)$ implies the second one. We prove \eqref{eq139} by induction on $n$. Moreover, we shall prove \eqref{eq139} for the case $x=b$. The general case follows by restricting $f$ to $[a,x]$.  When $n=0$, \eqref{eq139} is the content of (classical) finite-increment Thm. \ref{lb333}. Assume case $n-1$ has been proved ($n\in\Nbb$). In case $n$, take $g(x)=f(x)-S_n(x)$. Then \eqref{eq140} is true. Let
+We only prove the first formula: applying the first formula to $\wtd f(x)=f(-x)$ implies the second one. We prove \eqref{eq139} by induction on $n$. Moreover, we shall prove \eqref{eq139} for the case $x=b$. The general case follows by restricting $f$ to $[a,x]$.  When $n=0$, \eqref{eq139} is the content of (classical) finite-increment Thm. \ref{lb333}. Assume case $n-1$ has been proved ($n\in\Zbb_+$). In case $n$, take $g(x)=f(x)-S_n(x)$. Then \eqref{eq140} is true. Let
 \begin{align*}
 M=\sup_{a<t<b}\Vert f^{(n+1)}(t)\Vert =\sup_{a<t<b}\Vert g^{(n+1)}(t)\Vert
 \end{align*}
@@ -10338,6 +10369,42 @@ This can be proved by applying Cauchy's MVT repeatedly:
 
 
 
+We will mainly use Thm. \ref{lb359} instead of the Lagrange form, since the latter does not apply directly to vector valued functions. However, Thm. \ref{lb359} can be derived from the Lagrange form and Hahn-Banach theorem. We have used the fact that $V^*$ separates points of $V$ to prove that a function $[a,b]\rightarrow V$ is constant if its derivative exists and is constantly zero. (See Cor. \ref{lb326}.) However, to prove Thm. \ref{lb359}, we need the stronger fact that for every $v\in V$ there exists a nonzero $\varphi\in V^*$ such that $\bk{\varphi,v}=\Vert\varphi\Vert\cdot\Vert v\Vert$. (See Rem. \ref{lb393}.) By scaling $\varphi$, we can assume that $\Vert\varphi\Vert=1$ and $\bk{\varphi,v}=\Vert v\Vert$.
+
+We now give the second proof of Thm. \ref{lb359}:
+
+
+%% Record #16 2023/11/15 three lectures  40
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb359} using Lagrange form and Hahn-Banach}]
+The Lagrange form clearly implies Thm. \ref{lb359} in the special case that $V=\Rbb$. Now consider the general case, and view $V$ as a real Banach space if it was originally over $\Cbb$. Take $g(x)=f(x)-S_n(x)$. We need to prove $\Vert g(x)\Vert\leq \frac{(x-a)^{n+1}}{(n+1)!}M$ where $M=\sup_{a<t<x}\Vert g^{(n+1)}(t)\Vert$.
+
+By Hahn-Banach (Rem. \ref{lb393}), there exists $\varphi\in V^*$ with $\Vert\varphi\Vert=1$ such that $\varphi\circ g(x)=\Vert g(x)\Vert$. Applying the one dimensional special case to $\varphi\circ g$, we have
+\begin{align}
+\Vert g(x)\Vert=\varphi\circ g(x)\leq \frac{(x-a)^{n+1}}{(n+1)!}\cdot\sup_{a<t<x}\big|(\varphi\circ g)^{(n+1)}(t)\big|  \label{eq179}
+\end{align}
+provided that $\varphi\circ g\in C^n([a,b],V)$ and that $(\varphi\circ g)^{(n+1)}$ exists on $(a,b)$.
+
+By the continuity of $\varphi$, we have
+\begin{align}\label{eq180}
+(\varphi\circ g)'(t)=\lim_{s\rightarrow t}\frac{\varphi\circ g(s)-\varphi\circ g(t)}{s-t}=\varphi\Big(\lim_{s\rightarrow t}\frac{g(s)-g(t)}{s-t}\Big)=\varphi(g'(t))
+\end{align}
+Applying this formula repeatedly, we see that $\varphi\circ g\in C^n([a,b],V)$, that $(\varphi\circ g)^{(n+1)}$ exists on $(a,b)$, and that $(\varphi\circ g)^{(n+1)}=\varphi\circ g^{(n+1)}$. By Rem. \ref{lb372}, we have
+\begin{align*}
+\sup_{a<t<x}\big|(\varphi\circ g)^{(n+1)}(t)\big|= \sup_{a<t<x}\big|\bk{\varphi,g^{(n+1)}(t)}\big|\leq \sup_{a<t<x}\Vert g^{(n+1)}(t)\Vert=M
+\end{align*}
+Combining this result with \eqref{eq179} finishes the proof.
+\end{proof}
+
+
+When $V$ is $\Rbb^N$ equipped with the Euclidean norm, the Hahn-Banach theorem (in the form of Rem. \ref{lb393}) is very easy: Define the linear map $\varphi:\Rbb^N\rightarrow \Rbb$ sending each $v\in \Rbb^N$ to its dot product with $g(x)/\Vert g(x)\Vert$. Then $\varphi$ satisfies $\Vert\varphi\Vert=1$ and $\varphi\circ g(x)=\Vert g(x)\Vert$.  So there is nothing mysterious in the above proof. (You are encouraged to compare this proof with the one of \cite[Thm. 5.19]{Rud-P}.)
+
+
+
+
+
+
 \subsection{Functions approximated by their Taylor series}
 
 
@@ -10361,9 +10428,9 @@ Then $f^{(n)}(0)=0$ for all $n\in\Nbb$. So the Taylor series of $f$ at $0$ is $0
 \end{eg}
 
 
-On the contrary, if $f$ is defined on an open subset of $\Cbb$, and if $f'$ exists everywhere on its domain, then $f^{(n)}$ exists for all $n$, and $f$ can be approximated locally uniformly by its Taylor series. This is a deep result in complex analysis. In fact, a thorough understanding of power series is impossible without the help of complex analysis techniques. 
+On the contrary, if $f$ is defined on an open subset of $\Cbb$, and if $f'$ exists everywhere on its domain, then $f^{(n)}$ exists for all $n$, and $f$ can be approximated locally uniformly by its Taylor series. This is a deep result in complex analysis. In fact, a thorough understanding of power series is impossible without the help of complex analysis.
 
-In the following, we will use Taylor's theorems (especially Thm. \ref{lb359}) to prove that some important real-valued functions can be approximated by their Taylor series. Actually, our proof can be simplified by complex analysis, since these examples are the restriction of some differentiable complex variable functions (aka \textbf{holomorphic functions}) to the real line. Since we haven't leaned complex analysis, we will stick to elementary methods. 
+In the following, we show that some important real variable functions can be approximated by their Taylor series. Actually, the proof can be simplified by complex analysis, since these examples are the restriction of some differentiable complex variable functions (aka \textbf{holomorphic functions}) to the real line.
 
 
 \begin{eg}
@@ -10381,11 +10448,11 @@ We would like to prove that for every $0<r<1$ we have $R_{n+1}\rightrightarrows 
 \begin{align}
 \log(x)=\sum_{k=1}^n \frac{(-1)^{k-1}}{k} (x-1)^k
 \end{align}
-However, using the Taylor's theorems proved in the previous section, one can prove the uniform convergence only if $0<r\leq1/2$. The general case of $0<r<1$ should be proved by another method.   \hfill\qedsymbol
+However, using the Taylor's theorems proved in the previous section, one can prove the uniform convergence only when $0<r\leq1/2$. The general case of $0<r<1$ should be proved by another method.   \hfill\qedsymbol
 \end{eg}
 
 
-\begin{proof}[\textbf{Proof for the case $0<r\leq \frac 12$}]
+\begin{proof}[\textbf{Proof for the case $0<r\leq \frac 12$}] In fact, we shall prove the uniform convergence on $[1-r,2]$. 
 By Thm. \ref{lb359}, for all $x\in[1-r,1+r]$ we have
 \begin{align*}
 |R_{n+1}(x)|\leq \frac{|x-1|^{n+1}}{(n+1)!}\cdot\sup_{
@@ -10407,7 +10474,10 @@ If $1\leq x\leq 1+r$, then $1\leq t\leq x$ implies $1/t^{n+1}\leq 1$. So
 \begin{align*}
 |R_{n+1}(x)|\leq\frac{(x-1)^{n+1}}{n+1}\leq\frac{r^{n+1}}{n+1} 
 \end{align*}
-where the RHS converges to $0$ as $n\rightarrow\infty$ whenever $0<r\leq 1$. 
+where the RHS converges to $0$ as $n\rightarrow\infty$ whenever $0<r\leq 1$. In particular, we get the renowned formula
+\begin{align}
+\log 2=\sum_{n=1}^\infty \frac{(-1)^{n-1}}n
+\end{align}
 
 If $1-r\leq x\leq 1$, then $x\leq t\leq 1$ implies $1/t^{n+1}\leq 1/x^{n+1}$. Thus
 \begin{align*}
@@ -10447,8 +10517,9 @@ the Taylor series of $(1+x)^\alpha=\exp(\alpha\log(1+x))$ at $x=0$, converges lo
 \end{eg}
 
 
+
 \begin{proof}
-Using Prop. \ref{lb109}, one easily checks that the radius of convergence of \eqref{eq146} is $1$. So Thm. \ref{lb112} implies that \eqref{eq146} converges locally on $(-1,1)$ to some $f:(-1,1)\rightarrow\Cbb$. Let
+Using Prop. \ref{lb109}, one easily checks that the radius of convergence of \eqref{eq146} is $1$. So Thm. \ref{lb112} implies that \eqref{eq146} converges locally uniformly on $(-1,1)$ to some $f:(-1,1)\rightarrow\Cbb$. Let
 \begin{align*}
 g(x)=(1+x)^\alpha
 \end{align*}
@@ -10498,10 +10569,15 @@ For each $x\in[p-\delta,p+\delta]$, by Rem. \ref{lb372} for operator norms, we h
 \end{align*}
 Thus, by finite-increment theorem, we have for all $x\in[p-\delta,p+\delta]$ that
 \begin{align*}
-\Vert f(x)\Vert=\Vert f(x)-f(p)\Vert\leq CM|x-p|\leq CM\cdot\frac{\delta}2\leq \frac M2
+\Vert f(x)\Vert=\Vert f(x)-f(p)\Vert\leq CM|x-p|\leq CM\delta\leq \frac M2
 \end{align*}
 Applying $\sup_{x\in[p-\delta,p+\delta]}$ to $\Vert f(x)\Vert$, we get $M\leq M/2$. So $M=0$.
 \end{proof}
+
+\begin{rem}
+The above Lemma can also be proved in a similar way as Thm. \ref{lb329}: Let $x\in I$. Assume WLOG that $x>0$. Let $E=f^{-1}(0)\cap[0,x]$, which is a closed subset of $[0,x]$. So $t=\sup E$ is in $[0,x]$. To show $f(x)=0$, one just need to prove $t=x$. If not, then $t<x$. Then, as in the above proof, one can find $\delta>0$ such that $\varphi(s)=0$ whenever $s\in[t,t+\delta]$, impossible.
+\end{rem}
+
 
 
 
@@ -10518,7 +10594,7 @@ In this section, we fix an interval $I\subset\Rbb$ containing at least two point
 
 
 \begin{df}
-Let $\mbf x=(x_1,x_2)$, $\mbf y=(y_1,y_2)$, $\mbf z=(z_1,z_2)$ be three points of $\Rbb^2$ satisfying $x_1<x_2<x_3$. We say that the ordered triple $(\mbf x,\mbf y,\mbf z)$ is a \textbf{convex triple} \index{00@Convex triple} if  the following equivalent conditions are satisfied:
+Let $\mbf x=(x_1,x_2)$, $\mbf y=(y_1,y_2)$, $\mbf z=(z_1,z_2)$ be three points of $\Rbb^2$ satisfying $x_1<y_1<z_1$. We say that the ordered triple $(\mbf x,\mbf y,\mbf z)$ is a \textbf{convex triple} \index{00@Convex triple} if  the following equivalent conditions are satisfied:
 \begin{enumerate}[label=(\arabic*)]
 \item $\mbf y$ is below or on the interval $[\mbf x,\mbf z]$. In other words, we have $y_2\leq tx_2+(1-t)z_2$ if $t\in[0,1]$ is such that $y_1= tx_1+(1-t)z_1$.
 \item We have $\dps \frac{y_2-x_2}{y_1-x_1}\leq \frac{z_2-y_2}{z_1-y_1}$.
@@ -10612,7 +10688,7 @@ Since $E$ is convex, the point $(t_1+\cdots+t_{n-1})q+t_np_n$ (which equals $t_1
 
 
 \begin{eg}
-Since $(-\log x)''=x^{-n}$ is positive on $\Rbb_{>0}$, by Thm. \ref{lb366}, $-\log$ is a convex function on $\Rbb_{>0}$. Therefore, if $0<\lambda_1,\dots,\lambda_n\leq 1$ and $\lambda_1+\cdots+\lambda_n=1$, then by Jensen's inequality, for each $x_1,\dots,x_n>0$ we have $-\log(\sum_i\lambda_ix_i)\leq -\lambda_i\log x_i$. Taking exponentials, we get
+Since $(-\log x)''=x^{-2}$ is positive on $\Rbb_{>0}$, by Thm. \ref{lb366}, $-\log$ is a convex function on $\Rbb_{>0}$. Therefore, if $0<\lambda_1,\dots,\lambda_n\leq 1$ and $\lambda_1+\cdots+\lambda_n=1$, then by Jensen's inequality, for each $x_1,\dots,x_n>0$ we have $-\log(\sum_i\lambda_ix_i)\leq -\lambda_i\log x_i$. Taking exponentials, we get
 \begin{align*}
 x_1^{\lambda_1}\cdots x_n^{\lambda_n}\leq \lambda_1x_1+\cdots+\lambda_n x_n
 \end{align*}
@@ -10631,6 +10707,10 @@ if $p,q>1$ and $\frac 1p+\frac 1q=1$.
 \begin{df}
 Let $p\in[1,+\infty]$. We say that $q\in[1,+\infty]$ is the \textbf{H\"older conjugate} \index{00@H\"older conjugate} of $p$ if $\frac 1p+\frac 1q=1$.
 \end{df}
+
+
+
+%% Record #17 2023/11/20 two lectures  42
 
 
 
@@ -10664,7 +10744,7 @@ Assume WLOG that $x_i>0$ and $y_j>0$ for some $i,j$. Young's inequality implies 
 \end{align*}
 Taking sum over $i$ gives
 \begin{align*}
-\frac{x_i}{\sqrt[p]{\sum_k x_k^p}}\cdot \frac{y_i}{\sqrt[q]{\sum_k y_k^q}}\leq\frac 1p+\frac 1q=1
+\sum_i\frac{x_i}{\sqrt[p]{\sum_k x_k^p}}\cdot \frac{y_i}{\sqrt[q]{\sum_k y_k^q}}\leq\frac 1p+\frac 1q=1
 \end{align*}
 This proves H\"older's inequality.
 
@@ -10816,9 +10896,9 @@ Let $f$ be the function in Exp. \ref{lb358}. Prove that $f^{(n)}(0)=0$ for all $
 
 \begin{prob}\label{lb361}
 Let $n\in\Nbb$. Let $f:[a,b]\rightarrow V$ such that $f,f',\dots,f^{(n)}$ exist everywhere on $[a,b]$. Use the higher order finite-increment theorem to prove that
-\begin{align*}
-\Big\Vert f(x)-\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k\Big\Vert\leq \frac{(x-a)^{n}}{n!}\cdot \sup_{a<t<x}\Vert f^{(n)}(t)-f^{(n)}(a)\Vert 
-\end{align*}
+\begin{align}
+\Big\Vert f(x)-\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k\Big\Vert\leq \frac{(x-a)^{n}}{n!}\cdot \sup_{a<t<x}\Vert f^{(n)}(t)-f^{(n)}(a)\Vert  \label{eq174}
+\end{align}
 \end{prob}
 
 \begin{rem}\label{lb404}
@@ -10860,7 +10940,7 @@ Prove the following higher order finite-increment theorem for complex variables.
 \end{prob}
 
 \begin{thm}[\textbf{Higher order finite-increment theorem}]\index{00@Higher order finite-increment theorem}  \label{lb356}
-Let $R>0$ and $z_0\in\Cbb$. Let $f:\Omega\rightarrow V$ where
+Let $V$ be a Banach space over $\Cbb$. Let $R>0$ and $z_0\in\Cbb$. Let $f:\Omega\rightarrow V$ where
 \begin{align*}
 \Omega=B_\Cbb(z_0,R)=\{z\in\Cbb:|z-z_0|<R\}
 \end{align*}
@@ -10874,7 +10954,7 @@ where $[z_0,z]=\{tz+(1-t)z_0:0\leq t\leq 1\}$.
 
 
 \begin{prob}
-Let $V$ be a Banach space over $\Cbb$. Assume that the power series $f(z)=\sum_{k=0}^\infty v_kz^k$ (where $v_k\in V$) has radius of convergence $R>0$. Choose any $z_0\in B_\Cbb(0,R)$. Prove that there exists a neighborhood $\Omega\in\Nbh_\Cbb(z_0)$ contained inside $B_\Cbb(0,R)$, such that the Taylor series of $f$ at $z_0$ converges uniformly on $\Omega$ to $f$. Namely, prove that the series $g(z)$ converges uniformly to $f$ on $\Omega$ where
+Let $V$ be a Banach space over $\Cbb$. Assume that the power series $f(z)=\sum_{k=0}^\infty v_kz^k$ (where $v_k\in V$) has radius of convergence $R>0$. Choose any $z_0\in B_\Cbb(0,R)$. Prove that there exists a neighborhood $\Omega\in\Nbh_\Cbb(z_0)$ contained inside $B_\Cbb(0,R)$, such that the Taylor series of $f$ at $z_0$ converges uniformly on $\Omega$ to $f$. Namely, prove that the series $g(z)$ converges locally uniformly to $f$ on $\Omega$ where
 \begin{align}
 g(z)=\sum_{k=0}^\infty\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k
 \end{align}
@@ -10992,6 +11072,8 @@ In order to use \eqref{eq153} to determine the solution $f(x,t)$ when the initia
 \end{align}
 since this formula is true when $g(x)=e^{\im kx}$.
 
+%% Proofread
+
 \subsubsection{From Riemann integrals to Lebesgue integrals}
 
 Here comes the question that is closely related to integral theory: What is the meaning of the integral \eqref{eq155} if $g$ is no longer a real analytic function? 
@@ -11007,11 +11089,11 @@ In order to understand which functions have Fourier series expansions (in whatev
 
 
 
-The goal of this chapter is to learn Riemann integrals. The construction of Riemann integrals is much easier than Lebesgue theory. But compared to the latter, Riemann integrals have some serious drawbacks. For example, if a sequence of Riemann integrable functions $(f_n)$ on $[a,b]$ converge uniformly to $f$, then $f$ is Riemann integrable, and $\int f=\lim \int f_n$. (See Cor. \ref{lb380}.) However, if $(f_n)$ only converges pointwise to $f$, then $f$ is not necessarily Riemann integrable. Even if $f$ is Riemann integrable, one does not have a useful criterion for $\int f=\lim \int f_n$ in the framework of Riemann integrals. 
+The goal of this chapter is to learn Riemann integrals. The construction of Riemann integrals is much easier than Lebesgue theory. But compared to the latter, Riemann integrals have some serious drawbacks. For example, if a sequence of Riemann integrable functions $(f_n)$ on $[a,b]$ converges uniformly to $f$, then $f$ is Riemann integrable, and $\int f=\lim \int f_n$. (See Cor. \ref{lb380}.) However, if $(f_n)$ only converges pointwise to $f$, then $f$ is not necessarily Riemann integrable. Even if $f$ is Riemann integrable, one does not have a useful criterion for $\int f=\lim \int f_n$ in the framework of Riemann integrals. 
 
 But uniform convergence often does not hold in application, and especially in Fourier theory and PDEs. For example, let $f$ be the function on $\Rbb$ with period $2\pi$ defined by $f(x)=x$ if $-\pi<x<\pi$ and $f(\pi)=0$. Then the Fourier series
 \begin{align}
-\sum_{n=1}^\infty (-1)^{n-1}\frac 2n\sin(nx)
+\sum_{n=1}^\infty (-1)^{n-1}\frac 2n\sin(nx) \label{eq194}
 \end{align}
 converges pointwise to $f$. (See also Pb. \ref{lb394}.) It does not converge uniformly to $f$, because the uniform limit of a sequence of continuous functions is continuous, but $f$ is not continuous.
 
@@ -11082,7 +11164,7 @@ The \textbf{Riemann integral} \index{00@Riemann integral} is defined to be
 \begin{align*}
 \int_a^b f\equiv\int_a^b f(x)dx=\lim_{(\sigma,\xi_\blt)\in\mc Q(I)}S(f,\sigma,\xi_\blt)
 \end{align*}
-When the RHS exists, we way that $f$ is \textbf{Riemann integrable} \index{00@Riemann integrable} on $I$. We let \index{R@$R([a,b],V)$}
+When the RHS exists, we way that $f$ is \textbf{Riemann integrable} \index{00@Riemann integrable} on $I$. We let \index{R@$\scr R([a,b],V)$}
 \begin{align*}
 \scr R(I,V)=\{\text{Riemann integrable }f\in V^I\}
 \end{align*}
@@ -11355,7 +11437,7 @@ Apply $\lim_{(\sigma,\xi_\blt)\in\mc Q(I)}$ to the obvious inequality $\Vert S(f
 \end{proof}
 
 
-\begin{co}
+\begin{co}\label{lb417}
 Assume that $f:I\rightarrow V$ is strongly Riemann integrable. Then $|f|:I\rightarrow\Rbb$ is (strongly) Riemann integrable, and $\dps\dps \Big\Vert \int_a^b f \Big\Vert\leq\int_a^b |f|$
 \end{co}
 
@@ -11526,11 +11608,7 @@ F(a_i)-F(a_{i-1})=f(\xi_i)(a_i-a_{i-1})
 \end{align*}
 Thus, we have a tag $\xi_\blt$ such that $S(f,\sigma,\xi_\blt)=F(b)-F(a)$. Hence $|A-F(b)+F(a)|<\eps$. Since $\eps$ is arbitrary, we get $A=F(b)-F(a)$.
 
-The case $V=\Rbb^N$ can be reduced to the above special case easily. We now consider the general case that $V$ is a Banach space over $\Rbb$. Then for every $\varphi\in V^*=\fk L(V,\Rbb)$, since $\varphi$ is continuous, we have
-\begin{align*}
-\lim_{y\rightarrow x}\frac{\varphi\circ F(y)-\varphi\circ F(x)}{y-x}=\varphi\Big(\lim_{y\rightarrow x}\frac{F(y)-F(x)}{y-x}\Big)=\varphi(F'(x))
-\end{align*}
-Therefore $\varphi\circ F$ is differentiable, and $(\varphi\circ F)'=\varphi\circ f$. Note that $\varphi\circ f\in\scr R(I,\Rbb)$ by Thm. \ref{lb392}. Applying the one-dimensional special case to $\varphi\circ f$, and by Thm. \ref{lb392}, we have
+The case $V=\Rbb^N$ can be reduced to the above special case easily. We now consider the general case that $V$ is a Banach space over $\Rbb$. Similar to \eqref{eq180}, for every $\varphi\in V^*=\fk L(V,\Rbb)$,  we have that $\varphi\circ F$ is differentiable, and that $(\varphi\circ F)'=\varphi\circ f$. Note that $\varphi\circ f\in\scr R(I,\Rbb)$ by Thm. \ref{lb392}. Applying the one-dimensional special case to $\varphi\circ f$, and by Thm. \ref{lb392}, we have
 \begin{align*}
 \varphi\Big(\int_a^b f\Big)=\int_a^b \varphi\circ f=\varphi\circ F\big|_a^b=\varphi(F(b)-F(a))
 \end{align*}
@@ -11557,7 +11635,7 @@ Let $f\in C^1(I,V)$ and $g\in C^1(I,\Fbb)$. Then
 $(fg)\big|_a^b=\int_a^b(fg)'=\int_a^bf'g+\int_a^b fg'$.
 \end{proof}
 
-\begin{thm}[\textbf{Taylor's theorem, integral form}] \index{00@Taylor's theorem, integral form}
+\begin{thm}[\textbf{Taylor's theorem, integral form}] \index{00@Taylor's theorem, integral form}  \label{lb425}
 Let $n\in\Nbb$ and $f\in C^{n+1}([a,b],V)$. Then for every $x\in[a,b]$ we have
 \begin{align}\label{eq165}
 f(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k+\int_a^x\frac{f^{(n+1)}(t)}{n!}(x-t)^ndt
@@ -11573,6 +11651,11 @@ When $n=0$, \eqref{eq165} is just FTC. We now prove \eqref{eq165} by induction. 
 =&\frac {f^{(n)}(a)}{n!}(x-a)^n+\int_a^x\frac{f^{(n+1)}(t)}{n!}(x-t)^ndt
 \end{align*}
 \end{proof}
+
+
+\begin{exe}
+Use the integral form of Taylor's theorem to give a quick proof higher order finite-increment Thm. \ref{lb359} and formula \eqref{eq174} under the assumption that $f\in C^{n+1}([a,b],V)$. (This assumption is slightly stronger than that in Thm. \ref{lb359}, is enough for applications.)
+\end{exe}
 
 
 
@@ -11696,7 +11779,7 @@ Choose any tag $\xi_\blt$ on $\sigma$. Prove that
 
 
 Pb. \ref{lb386} immediately implies:
-\begin{thm}
+\begin{thm}\label{lb444}
 Let $f\in l^\infty(I,\Rbb)$. Define the \textbf{upper Darboux integral} and the \textbf{lower Darboux integral} \index{00@Upper and lower Darboux integrals} \index{00@Darboux integrals} to be
 \begin{align*}
 \ovl\int_a^b f=\inf_{\sigma\in\mc P(I)}\ovl S(f,\sigma)\qquad~~~\underline\int_a^b f=\sup_{\sigma\in\mc P(I)}\underline S(f,\sigma)
@@ -11786,7 +11869,7 @@ Use the fundamental theorem of calculus to give another proof that $C^1(I,V)$ is
 
 
 
-\begin{thm}[\textbf{Gronwall's inequality}] \index{00@Gronwall's inequality}
+\begin{sthm}[\textbf{Gronwall's inequality}] \index{00@Gronwall's inequality}
 Let $f\in C([a,b],\Rbb_{\geq0})$. Let $\alpha\in\Rbb_{\geq0}$, and $\beta\in C([a,b],\Rbb_{\geq0})$. Assume that for each $x\in[a,b]$ we have
 \begin{align}
 f(x)\leq  \alpha+\int_a^x\beta(t)f(t) dt  \label{eq160}
@@ -11795,17 +11878,17 @@ Then for each $x\in[a,b]$ we have
 \begin{align}
 f(x)\leq \alpha\cdot  \exp\Big(\int_a^x \beta(t)dt \Big)
 \end{align}
-\end{thm}
+\end{sthm}
 In particular, if $\beta$ is a constant, then Gronwall's inequality reads
 \begin{align*}
 f(x)\leq\alpha\cdot e^{\beta (t-a)}
 \end{align*}
 
-\begin{prob}
+\begin{sprob}
 Prove Gronwall's inequality. Hint: Let $g(x)$ be the RHS of \eqref{eq160}. Show that $\exp(-\int_a^x\beta)\cdot g(x)$ is a decreasing function.
-\end{prob}
+\end{sprob}
 
-\begin{rem}
+\begin{srem}
 Gronwall's inequality is often used in the following form. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. Let $f\in C(I,V)$, $v\in V$, and $g\in C(I,\Rbb_{\geq0})$. Suppose that for all $x\in[a,b]$ we have
 \begin{align}
 \Vert f(x)-v\Vert\leq\int_a^x\beta(t)\Vert f(t)\Vert
@@ -11814,13 +11897,13 @@ Applying Gronwall's inequality to $|f|$, we see that for every $x\in[a,b]$,
 \begin{align}
 \Vert f(x)\Vert\leq \Vert v\Vert\cdot  \exp\Big(\int_a^x \beta(t)dt \Big)
 \end{align}
-\end{rem}
+\end{srem}
 
 
 
 
 
-\begin{prob}
+\begin{sprob}
 Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. Assume that $\varphi\in C(I\times V,V)$ has Lipschitz constant $L\in\Rbb_{\geq0}$ over the second variable, i.e., for each $t\in[a,b]$ and $u,v\in V$ we have
 \begin{align}
 \Vert\varphi(t,u)-\varphi(t,v)\Vert\leq L\Vert u-v\Vert
@@ -11838,7 +11921,7 @@ with the same initial condition $f_1(a)=f_2(a)$. Prove that $f_1=f_2$ on $I$.
 \end{align*}
 Assume that the function $f(a,\cdot):X\rightarrow V$ (sending $x$ to $f(a,x)$) is continuous. Prove that $f\in C(I\times X,V)$.
 \end{enumerate} 
-\end{prob}
+\end{sprob}
 
 
 \begin{rem}
@@ -11868,7 +11951,7 @@ In practice, $V$ is often $\Rbb^N$, and $\varphi$ is a ``smooth function", i.e. 
 \section{More on Riemann integrals}
 
 
-\subsection{Commutativity of integrals and other limit processes}
+\subsection{Commutativity of integrals and other limit processes}\label{lb419}
 
 
 Let $I=[a,b]$ and $J=[c,d]$ where $-\infty<a<b<+\infty$ and $-\infty<c<d<+\infty$. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$.
@@ -11908,8 +11991,11 @@ In other words, for every $y\in Y$ we have
 \begin{align}
 \Big(\int_I\Phi(f)\Big)(y)=\int_I f(x,y)dx
 \end{align}
-Consequently, the function $\int_If(x,\cdot)$ is continuous.
+Consequently, the function $\int_If(x,\cdot)dx$ is continuous.
 \end{lm}
+
+
+It is easy to show that $\int_If(x,\cdot)dx$ is continuous without assuming that $Y$ is compact. See Exe. \ref{lb408}.
 
 
 \begin{proof}
@@ -11956,7 +12042,7 @@ Recall from Cor. \ref{lb344} that $l^{1,\infty}(J,V)$ is a Banach space. So its 
 
 Let $f:I\times J\rightarrow V$. Consider $f$ as a map $\Psi(f):I\rightarrow V^J$ sending $x$ to
 \begin{align}
-\Psi(f)(x)=f(x,\cdot):J\rightarrow V\qquad  y\mapsto f(x,y)
+\Psi(f)(x)=f(x,\cdot):J\rightarrow V\qquad  y\mapsto f(x,y)  \label{eq173}
 \end{align}
 Let $\partial_J$ be the (partial) derivative with respect the variable $y\in J$. Clearly
 \begin{align}
@@ -11969,14 +12055,14 @@ The linear map of derivative
 is clearly bounded (with operator norm $\leq 1$).
 
 \begin{pp}\label{lb402}
-The following are equivalent.
+Let $X$ be a topological space. Let $f:X\times J\rightarrow V$, and define $\Psi(f):X\rightarrow V^J$ by \eqref{eq173}. Then the following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
-\item $\Psi(f)$ is an element of $C(I,C^1(J,V))$. In other words:
+\item $\Psi(f)$ is an element of $C(X,C^1(J,V))$. Xn other words:
 \begin{itemize}
-\item[(1a)] For each $x\in I$ we have $\Psi(f)(x)\in C^1(J,V)$.
-\item[(1b)] The function $x\in I\mapsto \Psi(f)(x)\in C^1(J,V)$ is continuous.
+\item[(1a)] For each $x\in X$ we have $\Psi(f)(x)\in C^1(J,V)$.
+\item[(1b)] The function $x\in X\mapsto \Psi(f)(x)\in C^1(J,V)$ is continuous.
 \end{itemize}
-\item $\partial_Jf$ exists everywhere on $I\times J$. Moreover, we have $f,\partial_Jf\in C(I\times J,V)$. 
+\item $\partial_Jf$ exists everywhere on $X\times J$. Moreover, we have $f,\partial_Jf\in C(X\times J,V)$. 
 \end{enumerate}
 \end{pp}
 
@@ -11985,13 +12071,13 @@ The following are equivalent.
 \begin{proof}
 (1a) means that the functions $y\mapsto f(x,y)$ and $y\mapsto \partial_Jf(x,y)$ exist and are continuous. (1b) is equivalent to that the maps
 \begin{gather*}
-x\in I\mapsto\Psi(f)(x)=f(x,\cdot)\in C(J,V)\\
-x\in I\mapsto \partial_J\Psi(f)(x)=\partial_Jf(x,\cdot)\in C(J,V)
+x\in X\mapsto\Psi(f)(x)=f(x,\cdot)\in C(J,V)\\
+x\in X\mapsto \partial_J\Psi(f)(x)=\partial_Jf(x,\cdot)\in C(J,V)
 \end{gather*}
-are continuous (under the $l^\infty$-norm). By Thm. \ref{lb274}, this is equivalent to that $f$ and $\partial_Jf$ are continuous maps $I\times J\rightarrow V$. So (1)$\Leftrightarrow$(2).
+are continuous (under the $l^\infty$-norm). By Thm. \ref{lb274}, this is equivalent to that $f$ and $\partial_Jf$ are continuous maps $X\times J\rightarrow V$. So (1)$\Leftrightarrow$(2).
 \end{proof}
 
-
+We return to the setting of $f:I\times J\rightarrow V$.
 
 \begin{lm}\label{lb403}
 The integral  $\int_I\Psi(f)$, which is an element of $C^1(J,V)$, is the function
@@ -12175,9 +12261,9 @@ This is immediate from Lebesgue's criterion.
 \subsubsection{Proof of Lebesgue's criterion}
 
 
-The first step of proving Lebesgue's criterion is express the set of discontinuities by the oscillation.
+The first step of proving Lebesgue's criterion is to express the set of discontinuities by the oscillation.
 
-\begin{df}
+\begin{df}\label{lb462}
 Let $X$ be a topological space. Let $Y$ be a metric space. The \textbf{oscillation} \index{00@Oscillation at a point} \index{zz@$\omega(f,x)$} of a function $f:X\rightarrow Y$ at $x\in X$ is defined to be
 \begin{align*}
 \omega(f,x)=\inf_{U\in\Nbh_X(x)}\diam(f(U))
@@ -12185,7 +12271,7 @@ Let $X$ be a topological space. Let $Y$ be a metric space. The \textbf{oscillati
 \end{df}
 
 
-\begin{pp}
+\begin{pp}\label{lb461}
 Let $X$ be a topological space, let $Y$ be a metric space, and let $f:X\rightarrow Y$. Then  $f$ is continuous at $x\in X$ iff $\omega(f,x)=0$.
 \end{pp}
 
@@ -12259,7 +12345,1223 @@ Since $b-a$ and $M$ are fixed numbers and $\eps,\delta$ are arbitrary, we see th
 
 
 
+\subsection{Improper integrals}
 
+
+In this section, all intervals in $\Rbb$ are assumed to contain at least two points. Let $I$ be an interval in $\Rbb$ with $a=\inf I$ and $b=\sup I$. So $-\infty\leq a<b\leq+\infty$. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+
+
+\begin{df}
+We define \index{R@$\scr R([a,b],V)$}
+\begin{align*}
+\scr R(I,V)=\{f\in V^I:f|_J\in\scr R(J,V)\text{ for every compact interval }J\subset I\}
+\end{align*}
+Define the \textbf{improper integral} \index{00@Improper integral}
+\begin{align}\label{eq171}
+\int_If\equiv\int_a^bf\xlongequal{\mathrm{def}}\lim_{
+\begin{subarray}{c}
+u\rightarrow a\\
+v\rightarrow b
+\end{subarray}}
+\int_u^vf=\lim_{J}\int_Jf
+\end{align}
+Here, the last limit is over the directed set $\{\text{compact intervals in $I$}\}$ with preorder ``$\subset$". If the above limit exists, we say that $\int_If$ \textbf{exists} or \textbf{converges}. 
+
+When $f\in\scr R(I,\Rbb)$ and  takes values in $\Rbb_{\geq 0}$, we write $f\in\scr R(I,\Rbb_{\geq0})$. Then $\int_If$ clearly exists in $\ovl\Rbb_{\geq0}$. We write $\dps\int_If<+\infty$ if $\int_If$ converges in $\Rbb$.   \hfill\qedsymbol
+\end{df}
+
+
+
+\begin{rem}
+Suppose that $f:I\rightarrow V$ is strongly Riemann integrable on each compact subinterval of $I$. (This is true when $f\in C(I,V)$, or when $f\in\scr R(I,V)$ and $V=\Fbb^N$.) Then $|f|\in \scr R(I,\Rbb)$ by Cor. \ref{lb417}. So $\int_If$ converges absolutely iff $\int_I|f|<+\infty$.
+\end{rem}
+
+In the case that $a$ or $b$ is in $I$, when taking the limit over $u\rightarrow a$ and $v\rightarrow b$ in \eqref{eq171}, it is immaterial whether $u,v$ can take values $a,b$ or not, due to the following easy observation:
+\begin{lm}
+Let $f\in\scr R(I,V)$. If $I=[a,b]$, then the meanings of $\scr R(I,V)$ and $\int_If$ are the same as before. If $I=[a,b)$ resp. $I=(a,b]$, then 
+\begin{gather*}
+\int_If=\lim_{v\rightarrow b}\int_a^vf\qquad\text{resp.}\qquad \int_If=\lim_{v\rightarrow b}\int_u^bf
+\end{gather*}
+where the convergence of the LHS is equivalent to that of the RHS. 
+\end{lm}
+
+
+\begin{proof}
+Assume $I=[a,b]$. Then $I$ is a compact interval. The new and old meanings of $\scr R(I,V)$ are the same by Prop. \ref{lb376}. Let $f\in\scr R(I,V)$. Then by Thm. \ref{lb375}, we have $\Vert f\Vert_\infty<+\infty$. If $a\leq u<v\leq b$, then Thm. \ref{lb375} and Prop. \ref{lb376} show that
+\begin{align*}
+\Big\Vert \int_a^bf-\int_u^vf \Big\Vert=\Big\Vert \int_a^uf+\int_v^bf \Big\Vert\leq \Vert f\Vert_\infty\cdot((u-a)+(b-v))
+\end{align*}
+which converges to $0$ as $u\rightarrow a$ and $v\rightarrow b$, whether $u,v$ take values $a,b$ or not. 
+
+Similarly, if $I=[a,b)$, then since $f$ is Riemann integrabe on the compact subinterval $J=[a,(a+b)/2]$, we have $M=\Vert f|_J\Vert<+\infty$. This implies that for all $u,v$ such that $a\leq u<v<b$ and $u\leq (a+b)/2$,
+\begin{align*}
+\Big\Vert \int_a^vf-\int_u^vf \Big\Vert=\Big\Vert \int_a^uf \Big\Vert\leq M(u-a)
+\end{align*}
+which converges to $0$ as $u\rightarrow a$ and $v\rightarrow b$. So $(\int_a^v f)_{u,v}$ and $(\int_u^vf)_{u,v}$ are Cauchy-equivalent nets. So their convergences and values are equivalent. The case $I=(a,b]$ is similar.
+\end{proof}
+
+
+
+\begin{rem}\label{lb418}
+Let $f\in\scr R(I,V)$. The Cauchy condition for the convergence of $\int_a^bf$ is easy to describe. In view of $\int_u^v-\int-{u'}^{v'}=\int_u^{u'}+\int_v^{v'}$ (Prop. \ref{lb376}), we have:
+\begin{itemize}
+\item For every $\eps>0$, there exist $u_0<v_0$ in $I$ such that for all $u,u',v,v'\in I$ satisfying $a\leq u,u'<u_0$ and $v_0<v,v'\leq b$ we have
+\begin{align*}
+\Big\Vert\int_u^{u'}f\Big\Vert<\eps\qquad \Big\Vert \int_v^{v'}f\Big\Vert<\eps
+\end{align*} 
+\end{itemize}
+\end{rem}
+
+
+\begin{df}\label{lb421}
+Let $f\in\scr R(I,V)$. We say that $\int_If$ \textbf{converges absolutely} \index{00@Absolute convergence of improper integral} (or that $f$ is \textbf{absolutely integrable on $I$}) \index{00@Absolutely (Riemann) integrable} if there exists $g\in\scr R(I,\Rbb)$ such that $|f|\leq g$ (i.e., $\Vert f(x)\Vert\leq g(x)$ for all $x\in I$, in particular $g(x)\geq0$) and that $\int_I g<+\infty$. We let \index{R1@$\scr R^1(I,V)$}
+\begin{align}
+\textstyle\scr R^1(I,V)=\big\{f\in\scr R(I,V):\int_If\text{ converges absolutely}\big\}
+\end{align}
+which is clearly a linear subspace of $V^I$. By the Cauchy condition in Rem. \ref{lb418}, it is clear that $\int_If$ converges if $\int_If$ converges absolutely. Though $\Rbb_{\geq0}$ is not a Banach space, we still write
+\begin{align*}
+\textstyle\scr R^1(I,\Rbb_{\geq0})=\big\{f\in\scr R(I,\Rbb_{\geq0}):\int_If\text{ converges absolutely}\big\}
+\end{align*}
+which is clearly the set of all $f\in\scr R(I,\Rbb_{\geq0})$ satisfying $\int_If<+\infty$.
+\end{df}
+
+
+
+
+The superscript $1$ of $\scr R^1$ has a similar meaning as that of $l^1$, but is different from that of $C^1$.
+
+
+
+\begin{rem}
+Assume that $f:I\rightarrow V$ is strongly integrable on each compact subinterval of $I$. (This is the case, for example, when $f\in C(I,V)$, or when $f\in\scr R(I,V)$ and $V=\Fbb^N$.) Then $|f|:x\in I\mapsto \Vert f(x)\Vert\in\Rbb_{\geq0}$ is an element of $\scr R(I,\Rbb_{\geq0})$ by Cor. \ref{lb417}. Thus, in this case,
+\begin{align*}
+f\in\scr R^1(I,V)\qquad\Longleftrightarrow\qquad \int_I |f|<+\infty
+\end{align*}
+\end{rem}
+
+
+\begin{eg}
+We have
+\begin{align*}
+\int_1^{+\infty}x^{-2}dx=\lim_{v\rightarrow+\infty}\int_1^v x^{-2}dx=\lim_{v\rightarrow+\infty}(-x^{-1})\big|_1^v=1<+\infty
+\end{align*}
+Therefore $\dps\int_1^{+\infty} \frac{e^{\im x}}{x^2}dx$ converges absolutely, and hence converges.
+\end{eg}
+
+
+The following proposition generalizes Prop. \ref{lb379}.
+\begin{pp}\label{lb427}
+Let $f\in\scr R^1(I,V)$ and $g\in\scr R^1(I,\Rbb)$ such that $|f|\leq g$. Then $\dps\Big\Vert\int_If\Big\Vert\leq\int_Ig$.
+\end{pp}
+
+\begin{proof}
+Apply the limit over $u\rightarrow a,v\rightarrow b$ to $\Vert\int_u^vf\Vert\leq\int_u^vg$.
+\end{proof}
+
+
+
+The next proposition shows that improper integrals are helpful for studying series:
+
+\begin{pp}
+Let $f\in\scr R([1,+\infty),\Rbb_{\geq0})$ be decreasing. Then we have
+\begin{align}
+\int_1^{+\infty} f<+\infty\qquad\Longleftrightarrow\qquad\sum_{n=1}^{+\infty}f(n)<+\infty
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+
+Since $f$ is decreasing, we clearly have $g\leq f\leq h$ where $g,h$ are defined by the series in $l^\infty([0,+\infty),\Rbb)$:
+\begin{align*}
+g=\sum_{n=1}^{+\infty} f(n+1)\cdot \chi_{[n,n+1)}\qquad h=\sum_{n=1}^{+\infty} f(n)\cdot \chi_{[n,n+1)}
+\end{align*}
+One computes easily that $\int_1^{+\infty}g=\sum_{n=2}^{+\infty}f(n)$ and $\int_1^{+\infty}h=\sum_{n=1}^{+\infty}f(n)$ in $\ovl\Rbb_{\geq0}$. Thus
+\begin{align*}
+\sum_{n=2}^{+\infty}f(n)\leq\int_1^{+\infty} f\leq \sum_{n=1}^{+\infty}f(n)
+\end{align*}
+The proposition follows easily.
+\end{proof}
+
+
+\begin{eg}
+Let $s>0$. The function $f:[2,+\infty)\rightarrow+\infty$ defined by $\dps f(x)=\frac 1{x(\log x)^s}$ is decreasing, and
+\begin{align*}
+\int_2^xf=\left\{
+\begin{array}{ll}
+(1-x)^{-1}\big((\log x)^{1-s}-(\log 2)^{1-s} \big) &\text{ if }s\neq 1\\[1ex]
+\log(\log x)-\log(\log 2)&\text{ if }s= 1
+\end{array}
+\right.
+\end{align*}
+So $\sum_{n=2}^\infty f(n)<+\infty$ iff $\int_2^{+\infty}f<+\infty$  iff $s>1$.
+\end{eg}
+
+
+
+\subsection{Commutativity of improper integrals and other limit processes}
+
+
+
+In this section, all intervals in $\Rbb$ are assumed to contain at least two points. Let $I$ be an interval in $\Rbb$ with $a=\inf I$ and $b=\sup I$. Let $J=[c,d]$ be a compact interval. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+The goal of this section is to generalize the main results of Sec. \ref{lb419} to improper integrals. Namely, we shall prove the commutativity of $\int_I$ with $\int_J$ and with $\partial_J$ under reasonable assumptions. There are three ways to achieve this goal: 
+\begin{itemize}
+\item We know that $\int_I$ is the limit of integrals over compact integrals. Therefore, the problem is reduced to that of proving the commutativity of $\lim_{u\rightarrow a,v\rightarrow b}$ with $\int_J\int_u^v$ and with $\partial_J\int_u^v$.
+\item We generalize Thm. \ref{lb392} to improper integrals, and use this generalized version to prove the commutativity in a similar way as in Sec. \ref{lb419}.
+\item The commutativity of $\int_I$ with $\partial_J$ can also be studied by generalizing Cor. \ref{lb380} to improper integrals, similar to the second proof of Thm. \ref{lb405}.
+\end{itemize}
+
+
+
+We will use the second approach because its proof is more conceptual and involves fewer technical calculations, thus making it easier for us to remember the conditions of the theorems to be proved. Nevertheless, we will also give the appropriate generalization of Cor. \ref{lb380}, which is helpful for future application. Recall Def. \ref{lb421} for the meaning of $\scr R^1$. 
+
+
+\subsubsection{Commutativity of improper integrals and bounded linear maps}
+
+
+
+\begin{thm}\label{lb420}
+Let $W$ be also a Banach space over $\Fbb$. Let $T\in\fk L(V,W)$. Then for every $f\in\scr R^1(I,V)$ we have $T\circ f\in\scr R^1(I,W)$ and
+\begin{align}
+T\Big(\int_a^b f \Big)=\int_a^b T\circ f
+\end{align}
+\end{thm}
+
+In other words, we have a commutative diagram
+\begin{equation}\label{eq175}
+\begin{tikzcd}[column sep=large]
+\scr R^1(I,V) \arrow[r,"T\circ"] \arrow[d,"\int_I"'] & \scr R^1(I,W) \arrow[d,"\int_I"] \\
+V \arrow[r,"T"]           & W        
+\end{tikzcd} 
+\end{equation}
+
+
+\begin{proof}
+Since $f\in\scr R^1$, there exists $g\in\scr R(I,\Rbb_{\geq0})$ such that $|f|\leq g$ and $\int_Ig<+\infty$. Let $M=\Vert T\Vert$ be the operator norm, which is a finite number. By Rem. \ref{lb372}, for each $x\in I$ we have $\Vert T\circ f(x)\Vert\leq M\Vert f(x)\Vert\leq Mg(x)$, and hence $|T\circ f|\leq Mg$. This proves $T\circ f\in\scr R^1(I,W)$. In particular, the integrals of $f,T\circ f$ over $I$ converge. Thus, by the continuity of $T$ and the commutativity of $T$ with $\int_u^v$ (when  $a<u<v<b$) due to Thm. \ref{lb392}, we have
+\begin{align*}
+T\Big(\int_If\Big)=T\Big(\lim_{
+\begin{subarray}{c}
+u\rightarrow a\\
+v\rightarrow b
+\end{subarray}}\int_u^v f\Big)=\lim_{
+\begin{subarray}{c}
+u\rightarrow a\\
+v\rightarrow b
+\end{subarray}}T\Big(\int_u^v f\Big)=\lim_{
+\begin{subarray}{c}
+u\rightarrow a\\
+v\rightarrow b
+\end{subarray}}\int_u^v T\circ f=\int_IT\circ f
+\end{align*}
+\end{proof}
+
+
+
+\subsubsection{Fubini's theorem}
+
+Recall that $J=[c,d]$ is a compact interval but $I$ is not necessarily compact.
+
+\begin{lm}\label{lb423}
+Lem. \ref{lb400} holds verbatim to the current case that $I$ is not necessarily compact.
+\end{lm}
+
+
+\begin{proof}
+We prove this general case in the same way as Lem. \ref{lb400}, using the commutativity of $\int_I$ and the bounded map $g\in C(Y,V)\mapsto g(y)\in V$, which is available thanks to Thm. \ref{lb420}.
+\end{proof}
+
+
+\begin{thm}[\textbf{Fubini's theorem for improper integrals}] \label{lb422} \index{00@Fubini's theorem for improper integrals}
+Let $f\in C(I\times J,V)$. Assume that there exists $g\in\scr R^1(I,\Rbb_{\geq0})$ satisfying
+\begin{align}
+\Vert f(x,y)\Vert\leq h(x)\qquad(\forall x\in I,y\in J)  \label{eq177}
+\end{align}
+Then the functions $\int_J f(\cdot,y)dy:I\rightarrow V$ and $\int_If(x,\cdot)dx:J\rightarrow V$ are continuous, and the equation
+\begin{align}
+\int_I\Big(\int_Jf(x,y)dy\Big)dx=\int_J\Big(\int_I f(x,y)dx\Big)dy \label{eq176}
+\end{align}
+holds where the integral over $I$ on the LHS converges absolutely.
+\end{thm}
+
+
+
+\begin{proof}
+Let $T:C(J,V)\rightarrow V$ be the bounded linear map $\int_J$. By Thm. \ref{lb420}, we have a commutative diagram
+\begin{equation}\label{eq178}
+\begin{tikzcd}[column sep=large]
+\scr R^1(I,C(J,V)) \arrow[r,"T\circ"] \arrow[d,"\int_I"'] & \scr R^1(I,V) \arrow[d,"\int_I"] \\
+C(J,V) \arrow[r,"T"]           & V        
+\end{tikzcd} 
+\end{equation}
+Since $J$ is compact, by Thm. \ref{lb274}, we can view $f$ as a continuous function $\Phi(f):I\rightarrow C(J,V)$ sending $x$ to $f(x,\cdot)$. Then \eqref{eq177} says that $\Phi(f)\leq g$. Since $g\in\scr R^1$, we conclude $\Phi(f)\in\scr R^1(I,C(J,V))$. 
+
+By Lem. \ref{lb423}, $\int_I\Phi(f)$ equals the function $\int_I f(x,\cdot)dx$. In particular, $\int_I f(x,\cdot)dx$ is continuous since $\int_I\Phi(f)\in C(J,V)$ by \eqref{eq178}. The continuity of $\int_J f(\cdot,y)dy$ is similar, or is even easier because $J$ is compact.
+
+
+Clearly $T(\int_I\Phi(f))$ is $\int_J\int_I f$. By the top arrow of \eqref{eq178}, $T\circ\Phi(f)$ belongs to $\scr R^1(I,V)$. Since $T\circ\Phi(f)$ is the function sending $x$ to $\int_J f(x,\cdot)dy$, the  integral of this function over $I$ is absolutely convergent, and $\int_I T\circ\Phi(f)=\int_I\int_Jf$. Thus, the commutativity of \eqref{eq178} proves \eqref{eq176}. 
+\end{proof}
+
+
+
+The continuity of $\int_If(x,\cdot)dx$ can be generalized: see Cor. \ref{lb429}.
+
+
+
+\subsubsection{Commutativity of improper integrals and partial derivatives}
+
+
+\begin{lm}\label{lb426}
+Lemma \ref{lb403} holds verbatim to the current case that $I$ is not necessarily compact.
+\end{lm}
+
+\begin{proof}
+Again, this is proved in the same way as Thm. \ref{lb400} by applying Thm. \ref{lb420} to the bounded linear functional $g\in C^1(J,V)\rightarrow g(y)$ (where $y\in J$).
+\end{proof}
+
+
+\begin{thm}\label{lb434}
+Let $f:I\times J\rightarrow V$. Assume that $\partial_J$ exists everywhere on $I\times J$. Assume that $f,\partial_J f\in C(I\times J,V)$. Assume moreover that there exists $g\in\scr R^1(I,\Rbb_{\geq0})$ satisfying
+\begin{align}\label{eq183}
+\Vert f(x,y)\Vert\leq h(x)~~\text{ and }~~\Vert\partial_Jf(x,y)\Vert\leq h(x)\qquad(\forall x\in I,y\in J)
+\end{align}
+Then for each $y\in J$, the LHS of \eqref{eq181} exists and equals the RHS of \eqref{eq181}, where
+\begin{align}
+\partial_J\int_I f(x,y)dx=\int_I\partial_J f(x,y)dx  \label{eq181}
+\end{align}
+\end{thm}
+
+
+\begin{proof}
+Let $T:C^1(J,V)\rightarrow C(J,V)$ be the bounded linear map $\partial_J$. By Thm. \ref{lb420}, we have a commutative diagram
+\begin{equation}\label{eq182}
+\begin{tikzcd}[column sep=large]
+\scr R^1(I,C^1(J,V)) \arrow[r,"T\circ"] \arrow[d,"\int_I"'] & \scr R^1(I,C(J,V)) \arrow[d,"\int_I"] \\
+C^1(J,V) \arrow[r,"T"]           & C(J,V)      
+\end{tikzcd} 
+\end{equation}
+Define $\Psi(f):X\rightarrow V^J$ sending $x$ to $f(x,\cdot)$. By Prop. \ref{lb402}, $\Psi(f)$ belongs to $C(I,C^1(J,V))$. By \eqref{eq183}, $\Psi(f)$ belongs to $\scr R^1(I,C^1(J,V))$. As in the first proof of Thm. \ref{lb405}, one can use Lem. \ref{lb423} and  \ref{lb426} (the improper version of Lem. \ref{lb400} and \ref{lb403}) to show that  $\int_I T\circ\Psi(f)=T\int_I\Psi(f)$ (which is a consequence of the commutativity of \eqref{eq182}) implies \eqref{eq181}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Commutativity of improper integrals and net limits}
+
+
+
+\begin{thm}\label{lb428}
+Let $(f_\alpha)_{\alpha\in\scr I}$ be a net in $C(I,V)$. Let $f\in C(I,V)$. Assume that the following conditions are true:
+\begin{enumerate}[label=(\arabic*)]
+\item On every compact subinterval of $I$, the net $(f_\alpha)$ converges uniformly to $f$.
+\item There exists $g\in\scr R^1(I,\Rbb_{\geq0})$ such that $|f_\alpha|\leq g$ for all $\alpha\in\scr I$.
+\end{enumerate}
+Then $f\in\scr R^1(I,V)$, and $\dps\int_If=\lim_{\alpha\in\scr I}\int_If_\alpha$.
+\end{thm}
+
+
+\begin{proof}
+Since $(f_\alpha)$ converges pointwise to $f$, we clearly have $|f|\leq g$. So $\int_If$ is absolutely convergent. Choose any $\eps>0$. Since $\lim_{u\rightarrow a,v\rightarrow b}\int_Ig$ converges, there exists $u,v$ such that $a<u<v<b$ and
+\begin{align*}
+\int_a^ug+\int_v^bg=\int_Ig-\int_u^v g<\eps
+\end{align*}
+Thus, by Prop. \ref{lb427}, for each $\alpha$ we have $\Vert\int_a^uf_\alpha\Vert+\Vert\int_v^bf_\alpha\Vert<\eps$ and $\Vert\int_a^uf\Vert+\Vert\int_v^bf\Vert<\eps$. Since $f_\alpha$ converges uniformly to $f$ on $[u,v]$, by Cor. \ref{lb380}, we get $\lim_\alpha\Vert \int_u^vf_\alpha-\int_u^vf\Vert=0$. Thus
+\begin{align*}
+&\Big\Vert \int_If-\int_If_\alpha\Big\Vert=\Big\Vert \int_a^uf+\int_v^b f-\int_a^u f_\alpha+\int_v^b f_\alpha+\int_u^v(f-f_\alpha)\Big\Vert\\
+\leq&2\eps+\Big\Vert\int_u^v(f-f_\alpha)\Big\Vert
+\end{align*}
+where the $\limsup_\alpha$ of the RHS is $2\eps$. Thus $\Vert\int_If-\int_If_\alpha\Vert$ converges to $0$ under $\limsup_\alpha$, and hence under $\lim_\alpha$.
+\end{proof}
+
+It is a good practice to prove Thm. \ref{lb434} using Thm. \ref{lb428}. (See Pb. \ref{lb430}.)
+
+
+
+\begin{co}\label{lb429}
+Let $Y$ be a topological space. Let $f\in C(I\times Y,V)$. Assume that there exists $g\in\scr R^1(I,\Rbb_{\geq0})$ such that
+\begin{align}
+\Vert f(x,y)\Vert\leq h(x)\qquad (\forall x\in I,y\in Y)
+\end{align}
+Then the map $\int_If(x,\cdot)dx$ (sending $y\in Y$ to $\int_If(x,y)dx$) is continuous.
+\end{co}
+
+\begin{proof}
+By Def. \ref{lb188}-(1), we need to prove that for every net $(y_\alpha)$ in $Y$ converging to $y$, we have $\int_If(x,y)dx=\lim_\alpha\int_If(x,y_\alpha)dx$. By Thm. \ref{lb428}, it suffices to prove that $\lim_\alpha f(\cdot,y_\alpha)$ converges uniformly  on any compact subinterval $[u,v]\subset I$ to $f(\cdot,y)$. This is true because, by Thm. \ref{lb274}, the restriction of $f$ to $[u,v]\times Y$ can be viewed as an element of $C(Y,C([u,v],V))$.
+\end{proof}
+
+
+\begin{eg}
+Compute $\dps F(t)=\int_0^{+\infty}e^{-tx}\cdot \frac{\sin x}xdx$ for all $t>0$.
+\end{eg}
+
+\begin{proof}[Solution]
+We first compute $F'(t)$. Choose any $\delta>0$. Then for any $t\geq\delta$, the norms of $e^{-tx}\frac{\sin x}x$ and $\partial_t(e^{-tx}\frac{\sin x}x)=-e^{-tx}\sin x$ are both bounded by $e^{-\delta x}$, where the latter is absolutely integrable since $\int_0^{+\infty}e^{-\delta x}dx=\delta^{-1}<+\infty$. Thus, by Thm. \ref{lb434}, we have
+\begin{align*}
+&F'(t)=\int_0^{+\infty}-e^{-tx}\sin xdx=\int_0^{+\infty}\frac{e^{(-t+\im)x}-e^{(-t-\im)x}}{2\im}dx\\
+=&\frac{t\sin x+\cos x}{1+t^2}e^{-tx}\Big|_{x=0}^{+\infty}=-\frac 1{1+t^2}
+\end{align*} 
+for all $t\geq\delta$ and $\delta>0$, and hence for all $t>0$. Therefore $F(t)=C-\arctan t$ for some $C\in\Rbb$. Let us determine $C$ using $C=\lim_{t\rightarrow+\infty}F(t)+\frac\pi2$. 
+
+To compute $\lim_{t\rightarrow+\infty}F(t)$, it suffices to assume $t\geq1$. Then $|e^{-tx}\frac{\sin x}x|\leq e^{-x}$ where $\int_0^{+\infty} e^{-x}<+\infty$. Moreover, on every compact interval $[a,b]$ in $(0,+\infty)$ (where $0<a<b<+\infty$), $\lim_{t\rightarrow+\infty}e^{-tx}\frac{\sin x}x$ converges uniformly to $0$ since $|e^{-tx}\frac{\sin x}x|\leq e^{-ta}$. Thus, the assumptions in Thm. \ref{lb428} are satisfied, and hence
+\begin{align*}
+\lim_{t\rightarrow+\infty}F(t)=\int_0^{+\infty} \lim_{n\rightarrow 0}e^{-tx}\cdot \frac{\sin x}xdx=0
+\end{align*}
+This proves $C=\frac\pi 2$, and hence $F(t)=\frac\pi 2-\arctan t$.
+\end{proof}
+
+
+
+
+
+
+\subsection{Convolutions and smooth/polynomial approximation}
+
+
+Fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+
+\begin{df}
+Let $X$ be a topological space. The \textbf{support} of a function $f\in V^X$ \index{00@@Support} \index{Supp@$\Supp(f)$} is defined to be the closure
+\begin{align*}
+\Supp(f)=\ovl{\{x\in X:f(x)\neq 0\}}
+\end{align*}
+Define $C_c(X,V)$ \index{Cc@$C_c(X,V)$} to be the set of continuous functions with \textbf{compact support}
+\begin{align*}
+C_c(X,V)=\{f\in C(X,V):\Supp(f)\text{ is compact} \}
+\end{align*}
+Unless otherwise stated, $C_c(X,V)$ is equipped with the $l^\infty$-norm.
+\end{df}
+
+
+\subsubsection{Convolutions and approximation of identity}
+
+
+The goal of this section is to show that elements of $C_c(\Rbb,V)$ can be approximated by smooth functions with compact supports, i.e., elements in \index{Cc@$C_c^\infty$}
+\begin{align*}
+C_c^\infty(\Rbb,V)=C^\infty(\Rbb,V)\cap C_c(\Rbb,V) 
+\end{align*}
+Indeed, we will do more. We shall prove the celebrated \textbf{Weierstrass approximation theorem}, which implies that elements in $C_c(\Rbb,V)$ can be approximated uniformly by polynomials on compact intervals. The proof we will give is also due to Weierstrass, which relies on an important construction called convolution: If $f:\Rbb\rightarrow V$ and $g:\Rbb\rightarrow\Fbb$, then their \textbf{convolution} \index{00@Convolution} is a functions $f*g:\Rbb\rightarrow V$ defined by
+\begin{subequations}\label{eq188}
+\begin{align}
+(f*g)(x)\equiv (g*f)(x)=\int_\Rbb f(x-y)g(y)dy  \label{eq186}
+\end{align}
+whenever the above integral converges for every $x\in\Rbb$. Taking $y=x-t$, we get $\int_u^v f(x-y)g(y)dy=-\int_{x-u}^{x-v}f(t)g(x-t)dt=\int_{x-v}^{x-u}f(t)g(x-t)dt$. Letting $u\rightarrow-\infty,v\rightarrow+\infty$, we get
+\begin{align}
+(f*g)(x)=\int_\Rbb f(y)g(x-y)dy  \label{eq187}
+\end{align}
+\end{subequations}
+
+
+The main idea of doing approximation via convolutions is as follows. Suppose that $g$ is smooth, then by \eqref{eq187}, one should expect that $(f*g)^{(n)}(x)=\int_\Rbb f(y)(\partial_y)^ng(x-y)dy=(-1)^n\int_\Rbb f(y)g^{(n)}(x-y)dy$ to be true. Thus $f*g$ is expected to be smooth. Moreover, if $g$ can be approximated by polynomials, for example, if $g(x)=\sum a_nx^n$ on $\Rbb$, then it is expected that $f*g$ can be approximated by $f*g_n$ where $g_n(x)=a_nx^n$, and hence $f*g_n=a_n\int_\Rbb f(y)(x-y)^ndy$ is a polynomial of $x$.
+
+To summarize, one advantage of convolution is that, whenever $g$ has a good property (e.g. smooth, or real analytic), the same is in general true for $f*g$. Another key property of convolution is that $f$ can be approximated by $f*g$ in some sense. The meaning of ``approximation" will depend on the analytic property of $f$, e.g. whether $f$ is continuous, continuous with compact support, or only integrable. In this section, we will only be interested in the case that $f\in C_c(\Rbb,V)$. In this case, the integrals in \eqref{eq188} are actually over compact intervals, which makes our lives easier. 
+
+We shall show that $f\in C_c(\Rbb,V)$ can be approximated uniformly by $f*g$. More precisely, we shall show that, for every absolutely convergent $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$, if we define $g_\eps\in C(\Rbb,\Rbb)$ (where $\eps\in\Rbb_{>0}$) by
+\begin{align}
+g_\eps(x)=\frac 1\eps g\big(\frac x\eps\big)  \label{eq189}
+\end{align}
+then $(f*g_\eps)$ converges uniformly to $f$ as $\eps\rightarrow 0$. This method is extremely useful and is used widely in analysis. (The assumption that $g\geq0$ is not necessary. We assume $g\geq0$ only for simplifying discussions.)
+
+
+\begin{comment}
+\begin{ass}\label{lb434}
+$g:\Rbb\rightarrow\Rbb_{\geq0}$ satisfies one of the following two conditions:
+\begin{enumerate}[label=(\alph*)]
+\item $g\in C_c(\Rbb,\Rbb_{\geq0})$ and $\int_\Rbb g=1$.
+\item $g\in C(\Rbb,\Rbb_{\geq0})$, and $g(x)\geq g(y)$ whenever $0\leq x\leq y$, and $\int_\Rbb g=1$.
+\end{enumerate}
+\end{ass}
+
+Condition (a) is convenient. 
+
+\end{comment}
+
+
+
+
+
+
+
+\begin{lm}\label{lb436}
+Choose $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$, and define $g_\eps$ by \eqref{eq189}. Then $\int_\Rbb g_\eps=1$ for each $\eps>0$. Moreover, for every $\delta>0$ we have
+\begin{align}
+\lim_{\eps\rightarrow0}\int_\delta^{+\infty} g_\eps=\lim_{\eps\rightarrow0}\int_{-\infty}^{-\delta}g_\eps=0 \label{eq190}
+\end{align}
+\end{lm}
+
+
+\begin{proof}
+By the change of variable formula we have $\int_u^v \eps^{-1}g(\eps^{-1}x)dx=\int_{u/\eps}^{v/\eps}g(y)dy$. This gives $\int_\Rbb g_\eps=1$. Another change of variable shows $\int_\delta^{+\infty}g_\eps=\int_{\delta/\eps}^{+\infty}g=\int_0^{+\infty}g-\int_0^{\delta/\eps}g$, which clearly converges to $0$ as $\eps\rightarrow0$. This proves the first half of \eqref{eq190}. The second half is similar.
+\end{proof}
+
+
+\begin{pp}\label{lb437}
+Let $f\in C_c(\Rbb,V)$. Choose $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$ and $\Vert g\Vert_\infty<+\infty$, and define $g_\eps$ by \eqref{eq189} for each $\eps>0$. Then $(f*g_\eps)$ converges uniformly on $\Rbb$ to $f$ as $\eps\rightarrow0$.
+\end{pp}
+
+In other words, the convolution operator $f\mapsto f*g_\eps$ converges pointwise to the identity map when $\eps\rightarrow 0$.
+
+\begin{proof}
+Let $M=\max\{\Vert f\Vert_\infty,\Vert g\Vert_\infty\}$, which is $<+\infty$ by assumption. Since $\int_\Rbb g_\eps=1$, for each $x\in\Rbb$ we have $\int_\Rbb f(x)g_\eps(y)dy=1$. Thus
+\begin{align}
+&\Vert (f*g_\eps)(x)-f(x)\Vert=\Big\Vert \int_\Rbb(f(x-y)-f(x))g_\eps(y)dy \Big\Vert\nonumber\\
+\leq &\int_\Rbb  \Vert f(x-y)-f(x)\Vert \cdot g_\eps(y)dy \label{eq191}
+\end{align}
+By Thm. \ref{lb294} and the compactness of $\Supp(f)$, $f$ is uniformly continuous on $\Rbb$. Therefore, for every $e>0$, there exists $0<\delta<1$ such that $\Vert f(x-y)-f(x)\Vert\leq e$ for all $x\in\Rbb$ and $y\in(-\delta,\delta)$. Thus, if we let $J_\delta=\Rbb\setminus(-\delta,\delta)$, then
+\begin{align*}
+&\eqref{eq191}\leq \int_{J_\delta}\Vert f(x-y)-f(x)\Vert \cdot g_\eps(y)dy+e\cdot \int_{-\delta}^\delta g_\eps(y)\\
+\leq& 2M\cdot \int_{J_\delta} g_\eps(y)dy+2eM 
+\end{align*}
+which converges to $2eM$ under $\limsup_{\eps\rightarrow0}$ by Lem. \ref{lb436}. Since $e$ is arbitrary, we conclude that $\lim_{\eps\rightarrow0}\eqref{eq191}=0$.
+\end{proof}
+
+\begin{rem}
+The uniform continuity of a function $f:\Rbb\rightarrow V$ is equivalent to the continuity of $F:\Rbb\rightarrow C(\Rbb,V)$ defined by $F(t)(x)=f(x-t)$. Note that the continuity of $F$ follows from Thm. \ref{lb274}. This means that Prop. \ref{lb437} can also be proved by Thm. \ref{lb274}.
+\end{rem}
+
+
+
+
+\begin{rem}
+In analysis, there are two especially important classes of  $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$ and $\Vert g\Vert_\infty<+\infty$. The first class consists of $g\in C_c(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$. Although functions with compact supports are often easy to use, they cannot be approximated by their Taylor series. (See Exp. \ref{lb358} for a related example. See also the proof of Prop. \ref{lb440}.) Instead, we should consider another type of function:
+\end{rem}
+
+
+\subsubsection{Polynomial approximation}
+
+
+
+\begin{eg}
+Define the \textbf{Gauss function} $\dps g(x)=\frac 1{\sqrt\pi}e^{-x^2}$. \index{00@Gauss function} Then $g\in C(\Rbb,\Rbb_{\geq0})$, $\Vert g\Vert_\infty=1$, and $\int_\Rbb g=1$. Thus, $g$ satisfies the assumptions in Prop. \ref{lb437}. 
+\end{eg}
+
+Although $g$ does not have compact support, it is a real analytic function. So we can use $f*g_\eps$ to prove Weierstrass approximation theorem.
+
+\begin{proof}
+Clearly $\Vert g\Vert_\infty=1$. It is easy to see that $\int_1^{+\infty}1/x^2dx<+\infty$. Thus, since $e^{x^2}\geq x^2$, we get $\int_\Rbb e^{-x^2}dx<+\infty$.
+
+It is not so easy to show that 
+\begin{align} \label{eq172}
+\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt\pi
+\end{align}
+This integral is called  \textbf{Gauss integral}. \index{00@Gauss integral} In the next semester, we will use the change of variable formula for double integrals to prove \eqref{eq172}.
+A more elementary (but also more complicated) proof is given in Pb. \ref{lb435}. For the purpose of this section, knowing $\int_\Rbb e^{-x^2}dx<+\infty$ is enough, since we can define $g$ to be $e^{-x^2}$ divided by its integral on $\Rbb$.
+\end{proof}
+
+
+
+We now show that if $g$ is the Gauss function, then $f*g_\eps$ can be approximated uniformly by polynomials on every compact interval. 
+
+\begin{lm}\label{lb438}
+Let $h(x)=\sum_{n=0}^\infty a_nx^n$ have radius of convergence $+\infty$, where $a_n\in\Fbb$ for each $a_n$. Let $h_n(x)=\sum_{j=0}^n a_jx^j$ be the partial sum. Let $f\in C_c(\Rbb,V)$. Then $\lim_{n\rightarrow\infty}f*h_n$ converges uniformly on compact intervals to $f*h$, and each $f*h_n$ is in \index{Vx@$V[x]$}
+\begin{align}
+V[x]=\{v_0+v_1x+\cdots+v_kx^k:k\in\Nbb,v_0,v_1,\dots,v_k\in V\}
+\end{align}
+\end{lm}
+
+Note that we do not need the assumption $\int_\Rbb |h|<+\infty$ in this Lemma. So letting $h(x)=e^x$ is also OK. Clearly, if $g$ is the Gauss functions, then $g_\eps$ satisfies the assumptions on $h$. This implies that if $f\in C_c(\Rbb,V)$, then $f*g_\eps$ can be approximated uniformly on compact intervals by  polynomials with coefficients in $V$. Combining this fact with Prop. \ref{lb437}, we see that $f$ can be approximated uniformly by polynomials on compact intervals.
+
+\begin{proof}
+Note that $(f*h)(x)=\int_\Rbb h(x-y)f(y)dy$ is well-defined since it is equals $\int_{-a}^a h(x-y)f(y)dy$ if $a>0$ and if $[-a,a]$ contains $\Supp(f)$. (So this is a usual Riemann integral.) Similarly, $(f*h_n)(x)=\int_{-a}^a h_n(x-y)f(y)dy$. Since $h_n$ is a polynomial, it is obvious that $f*h_n$ is also a polynomial.
+
+We now show that $f*h_n$ converges uniformly to $f*h$ on $[-b,b]$ for any $b>0$. Let $c=a+b$. Then 
+\begin{align*}
+&\sup_{x\in[-b,b]}\Vert (f*h)(x)-(f*h_n)(x)\Vert\leq\sup_{x\in[-b,b]}\int_{-a}^a |h(x-y)-h_n(x-y)|\cdot\Vert f(y)\Vert dy\\
+\leq&A_n\int_{-a}^a\Vert f(y)\Vert dy
+\end{align*}
+where $A_n=\sup_{t\in[-c,c]}\Vert h(t)-h_n(t)\Vert$. By Thm. \ref{lb112}, $h_n$ converges uniformly on $[-c,c]$ to $h$. So $\lim_{n\rightarrow\infty}A_n=0$.
+\end{proof}
+
+
+\begin{thm}[\textbf{Weierstrass approximation theorem}]\index{00@Weierstrass approximation theorem}  \label{lb441}
+Let $I=[a,b]$ where $-\infty<a<b<+\infty$. Then $V[x]$ is dense in $C(I,V)$ under the $l^\infty$-norm.
+\end{thm}
+
+\begin{proof}
+Choose any $f\in C(I,V)$. Then $f$ can be extended to a continuous function $\Rbb\rightarrow V$ with compact support: For example, we let $f(x)=(x-a+1)f(a)$ if $x\in[a-1,a]$, let $f(x)=(b+1-x)f(b)$ if $b\in[b,b+1]$, and let $f(x)=0$ if $x<a-1$ or $x>b+1$. Let $g$ be the Gauss function. For every $e>0$, by Prop. \ref{lb438}, there exists $\eps>0$ such that $\Vert f-f*g_\eps\Vert_{l^\infty(\Rbb,V)}<e/2$. By Lem. \ref{lb438}, there exists a polynomial $p\in V[x]$ such that $\Vert f*g_\eps-p\Vert_{l^\infty(I,V)}<e/2$. So $\Vert f-p\Vert_{l^\infty(I,V)}<e$.
+\end{proof}
+
+
+
+\subsubsection{Smooth approximation}
+
+By the Weierstrass approximation theorem, we know that any $f\in C_c(\Rbb,V)$ can be approximated uniformly by polynomials on compact intervals. However, unless $f=0$, $f$ cannot be approximated by polynomials uniformly on $\Rbb$. (If $p,q\in V[x]$ are different, then $\Vert p-q\Vert_{l^\infty(X,V)}=+\infty$. So any Cauchy sequence in $V[x]$ under the ${l^\infty(X,V)}$-norm is eventually constant. So its limit is a polynomial, which does not have compact support unless when it is zero.) Nevertheless, we shall show that $f$ can be approximated by smooth compactly supported functions uniformly on $\Rbb$. This task is not difficult: one simply pick a nonzero $g\in C_c^\infty(\Rbb,\Rbb)$ satisfying $g\geq0$. Dividing $g$ by $g/\int_\Rbb g$, we may assume that $\int_\Rbb g=1$. Then it can be shown that $f*g_\eps\in C_c^\infty(\Rbb,V)$. By Prop. \ref{lb437}, $\lim_{\eps\rightarrow0}f*g_\eps$ converges uniformly on $\Rbb$ to $f$. This finishes the proof. However, we must first prove the existence of such $g$:
+
+\begin{pp}\label{lb440}
+Let $0<a<b$. Then there exists $g\in C_c^\infty(\Rbb,\Rbb)$ such that $g(\Rbb)=[0,1]$, that $g^{-1}(1)=[-a,a]$, and that $g^{-1}(0)=(-\infty,-b]\cup[b,+\infty)$.
+\end{pp}
+
+
+
+\begin{proof}
+Let $\alpha:\Rbb\rightarrow\Rbb_{\geq0}$ be the smooth function in Exp. \ref{lb358}. Then $\alpha$ is increasing and $\alpha^{-1}(0)=(-\infty,0]$.  Define $\beta:\Rbb\rightarrow\Rbb_{\geq0}$ by $\beta(x)=\alpha(x+b)\alpha(-x+b)$. Then $\beta^{-1}(0)=(-\infty,-b]\cup[b,+\infty)$. In particular, $\beta\in C_c^\infty(\Rbb,\Rbb)$. Define $\gamma:\Rbb\rightarrow\Rbb_{\geq0}$ by $\gamma(x)=\alpha(x-a)+\alpha(-x-a)$. Then $\gamma^{-1}(0)=[-a,a]$. Note that $\beta(x)+\gamma(x)>0$ for all $x\in\Rbb$, since $\beta^{-1}(0)\cap\gamma^{-1}(0)=\emptyset$. 
+\begin{align*}
+\vcenter{\hbox{{
+			\includegraphics[height=1.3cm]{fig3.png}}}}
+\end{align*}
+Then $g=\beta/(\beta+\gamma)$ is a desired function.
+\end{proof}
+
+
+\begin{co}\label{lb446}
+Let $I$ be an interval in $\Rbb$ with $a=\inf I$ and $b=\sup I$ satisfying where $-\infty\leq a<b\leq+\infty$. Then $C_c^\infty(I,V)$ is dense in $C_c(I,V)$ under the $l^\infty$-norm.
+\end{co}
+
+In the following, we only prove the case that $I=(a,b)$. The other cases can be reduced to this case: For example, the case $[a,b)$ is implied by the case $(a-1,b)$.
+
+\begin{proof}[First proof]
+Let $f\in C_c(\Rbb,V)$ supported in $[u,v]$ where $a<u<v<b$. By Prop. \ref{lb440}, there exists a nonzero smooth $g\in C_c(\Rbb,\Rbb_{\geq0})$ supported in $[-1,1]$ such that $\int_\Rbb g=1$. Since $g_\eps$ is supported in $[-\eps,\eps]$, it is easy to see that $f*g_\eps$ is supported in $[u-\eps,v+\eps]$. By Lem. \ref{lb400}, $f*g_\eps$ is continuous . Moreover, one can check that $f*g_\eps$ is smooth (cf. Pb. \ref{lb439}). So $f*g_\eps\in C_c^\infty(\Rbb,V)$, and $f*g$ is supported in $I$ when $\eps<\min\{u-a,b-v\}$. By Prop. \ref{lb437}, $\lim_{\eps\rightarrow 0}f*g_\eps$ converges uniformly on $\Rbb$ to $f$.
+\end{proof}
+
+
+
+\begin{proof}[Second proof]
+Let $f\in C_c(\Rbb,V)$ supported in $[u,v]$ where $a<u<v<b$. Choose any $e>0$. Choose any positive $\eps<\min\{u-a,b-v\}$. By Weierstrass approximation Thm. \ref{lb441}, there exists $p\in V[x]$ such that $\Vert f(x)- p(x)\Vert\leq e$ for all $x\in[u-\eps,v+\eps]$. In particular, since $f=0$ on $J=[u-\eps,u]\cup[v,v+\eps]$, we have $\Vert p(x)\Vert\leq e$ for all $x\in J$. 
+
+By Prop. \ref{lb440}, there exists $h\in C_c^\infty(\Rbb,\Rbb)$ such that $h(\Rbb)=[0,1]$, that $h^{-1}(1)=[u,v]$, and that $h^{-1}(0)=(-\infty,u-\eps]\cup[v+\eps,+\infty)$. Then $hp\in C_c^\infty(\Rbb,V)$ is supported in $[u-\eps,v+\eps]$ and hence in $(-a,a)$. One checks easily that $\Vert f(x)-h(x)p(x)\Vert\leq e$ for all $x\in(a,b)$.
+\end{proof}
+
+
+\begin{rem}
+It should be noted that if $I$ is an open interval, then $C_c^\infty(I,V)$ and $C_c(I,V)$ are naturally subspaces of $C_c(\Rbb,V)$. This is not true when $I$ is a closed or an half-open-half-closed interval. Therefore, Cor. \ref{lb446} implies that any $f\in C(\Rbb,V)$ supported in an open interval $I$ can be uniformly approximated by smooth functions $\Rbb\rightarrow V$ supported in $I$.
+\end{rem}
+
+
+\begin{rem}
+The above observation can be generalized: Let $X$ be an LCH space. Let $\Omega$ be a nonempty \textit{open} subset of $X$. Recall that $\Omega$ is LCH by Prop. \ref{lb245}. Then an element of $C_c(\Omega,V)$ is equivalently an element of $C_c(X,V)$ supported in $U$. The former gives the latter by ``extension by zero"; the latter gives the former by restriction to $\Omega$.
+\end{rem}
+
+
+
+
+
+\subsection{$L^1$-approximation; Riemann-Lebesgue lemma}
+
+
+A non-continuous integrable function cannot be approximated uniformly by smooth functions. However, it can be approximated by the latter under the $L^1$-norm. To avoid distraction, in this section we consider $\Cbb$-valued functions. Fix $I\subset\Rbb$ to be an interval containing at least two points. Then on $\scr R^1(I,\Cbb)$ one can define the \textbf{$L^1$-seminorm} \index{L1@$L^1$-seminorm} to be
+\begin{align}
+\Vert f\Vert_{L^1}\equiv\Vert f\Vert_{L^1(I,\Cbb)}=\int_I |f|
+\end{align}
+It is easy to check that this is a \textbf{seminorm}, i.e., it satisfies the definition of a norm, except the assumption that $\Vert f\Vert_{L^1}=0$ implies $f=0$.
+
+\begin{pp}\label{lb445}
+Let $f\in\scr R^1(I,\Cbb)$. Choose any $\eps>0$. Then there exists $g\in C_c^\infty(\Rbb,\Cbb)$ supported in $I$ such that $\Vert f-g\Vert_{L^1}<\eps$. And there exists a \textbf{step function} $h$ supported in $I$ (i.e., a linear combination of functions of the form $\chi_E$ where $E$ is a compact interval in $I$) such that $\Vert f-h\Vert_{L^1}<\eps$.
+\end{pp}
+
+Note that if $E$ is a bounded interval, then $\chi_E$ is clearly a linear combination of characteristic functions over compact intervals (including the single point sets). Thus, in the above definition of step functions, one can just assume that $E$ is a bounded interval whose closure is in $I$.
+
+\begin{proof}
+Let $a=\inf I,b=\sup I$. By treating $\Real f$ and $\Imag f$ separately, it suffices to assume that $f\in\scr R^1(\Rbb,\Rbb)$. 
+
+Since $\int_I|f|=\lim_{u\rightarrow a,v\rightarrow b} \int_a^b|f|$, there exist $u,v$ such that $a<u<v<b$ and that $\int_a^u|f|+\int_v^b|f|<\eps/2$. We claim that there exists a step function $h$ supported in $J=[u,v]$ such that $\int_J |f-h|<\eps/2$. Then $\int_I|f-h|<\eps$, finishing the proof that $f$ can be $L^1$-approximated by step functions supported in $I$.
+
+Since $f|_J$ is strongly Riemann integrable, there exists $\sigma=\{a_0<\cdots<a_n\}\in\mc P(J)$ such that $\omega(f,\sigma)<\eps$. Let $J_i=[a_{i-1},a_i]$. Pick any $\lambda_i\in f(J_i)$. Then $|f-\lambda_i\cdot\chi_{J_i}|\leq\diam(J_i)$ on $J_i$, and hence $\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq \diam(J_i)\cdot|J_i|$. Let $h=\sum_{i=1}^n\lambda_i\cdot\chi_{J_i}$. It follows that
+\begin{align*}
+\Big|\int_J f-\int_Jh  \Big|\leq\sum_{i=1}^n\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq\sum_{i=1}^n\diam(J_i)\cdot|J_i|=\omega(f,\sigma)<\eps
+\end{align*}
+finishing the proof.
+
+Finally, we show that $f$ can be $L^1$-approximated by smooth functions supported in $I$. It suffices to prove that any step function supported in $I$ is so. By linearity and triangle inequality, it suffices to prove that $\chi_E$ is so, if $E$ is a nonempty compact interval in $I$. For each $\eps>0$, it is easy to construct a piecewise linear (and hence continuous) function $g_0:\Rbb\rightarrow\Rbb$ supported in $(a,b)=\Int(I)$ such that $\int_I|\chi_E-g_0|<\eps$. Choose a bounded open interval $(c,d)\subset (a,b)$ containing $\Supp(g_0)$. By Cor. \ref{lb446}, there exists $g\in C_c^\infty(\Rbb,\Rbb)$ supported in $(c,d)$ such that $|g(x)-g_0(x)|<\eps/(d-c)$ for all $x\in(c,d)$. It follows that
+\begin{align*}
+\int_I|g-g_0|=\int_c^d |g-g_0|\leq\eps
+\end{align*}
+Thus $\int_I|\chi_e-g|<2\eps$, finishing the proof.
+\end{proof}
+
+
+
+
+We give an application of Prop. \ref{lb445} by proving Riemann-Lebesgue lemma. The RL lemma plays a fundamental role in Fourier analysis, see for instance Pb. \ref{lb447} and Cor. \ref{lb448}. 
+
+
+\begin{thm}[\textbf{Riemann-Lebesgue lemma}] \index{00@Riemann-Lebesgue lemma}
+Let $f\in\scr R^1(\Rbb,\Cbb)$. Then
+\begin{align*}
+\lim_{t\rightarrow+\infty}\int_\Rbb f(x)e^{\im tx}dx=\lim_{t\rightarrow-\infty}\int_\Rbb f(x)e^{\im tx}dx=0
+\end{align*}
+\end{thm}
+
+The idea of the proof is the following: We $L^1$-approximate $f$ by some compactly supported step function $g\in C_c(\Rbb,\Cbb)$. Then it suffices to prove the RL lemma for $g$. By linearity, it suffices to assume that $g=\chi_{[a,b]}$. This special case can be proved easily. 
+
+\begin{proof}
+By Prop. \ref{lb445}, for every $\eps>0$ there exists a compactly supported step function $g:\Rbb\rightarrow\Cbb$ such that  $\int_\Rbb|f-g|<\eps$. So $|\int_\Rbb f(x)e^{\im tx}-g(x)e^{\im tx}dx|<\eps$ by Prop. \ref{lb427}. Thus
+\begin{align*}
+\limsup_{t\rightarrow\pm\infty} \Big| \int_\Rbb f(x)e^{\im tx}dx\Big|\leq \limsup_{t\rightarrow\pm\infty} \Big|\int_\Rbb g(x)e^{\im tx}dx\Big|+\eps
+\end{align*}
+Since $\eps$ is arbitrary, it suffices to prove that $\lim_{t\rightarrow\pm\infty}\int_\Rbb g(x)e^{\im tx}dx=0$. Since $g$ is a linear combination of functions of the form $\chi_{[a,b]}$ where $-\infty<a<b<+\infty$, it suffices to prove the RL lemma for this function:
+\begin{align*}
+\int_\Rbb\chi_{[a,b]}\cdot e^{\im tx}dx=\int_a^b e^{\im tx}dx=\frac{e^{\im nb}-e^{\im na}}{\im t}
+\end{align*}
+converges to $0$ as $t\rightarrow\pm\infty$.
+\end{proof}
+
+\begin{comment}
+\begin{rem}
+The proof of Prop. \ref{lb445} also shows that $f\in\scr R^1(\Rbb,\Cbb)$ can be approximated by linear combinations of functions of the form $\chi_J$ (where $J$ is an interval) under the $L^1$-norm. Thus, the Riemann-Lebesgue lemma can also be proved by showing that $\lim_{t\rightarrow\pm\infty}\int_\Rbb \chi_J(x)e^{\im tx}dx=0$. For such a proof one does not need SW theorem. However, in the general measure theory, it is often more convenient to approximate an integrable function by continuous compactly supported ones. For example, if a function is defined on a manifold (e.g., a sphere, or a more complicated geometric object), it is not easy to approximate such a function by a linear combination of $\chi_E$ where $E$ is a set as simple as an interval. 
+\end{rem}
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+
+
+Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+\begin{prob}
+Solve Exe. \ref{lb408}.
+\end{prob}
+
+\begin{prob}\label{lb430}
+Prove Thm. \ref{lb434} using Thm. \ref{lb428}.
+\end{prob}
+
+
+\begin{sprob}\label{lb435}
+Define $\dps f(x)=\Big(\int_0^x e^{-t^2}dt\Big)^2$ and $\dps g(x)=\int_0^1\frac{e^{-x^2(t^2+1)}}{t^2+1}dt$
+\begin{enumerate}
+\item Show that $f'+g'=0$, and conclude that $f+g=\frac\pi 4$.
+\item Use part 1 to prove
+\begin{align}
+\int_{-\infty}^{+\infty}e^{-t^2}dt=\sqrt\pi 
+\end{align}
+\end{enumerate}
+\end{sprob}
+
+
+\begin{prob}\label{lb439}
+Let $f:\Rbb\rightarrow V$ be strongly integrable and absolutely integrable (i.e. $\int_\Rbb |f|<+\infty$). Let $g\in C^1(\Rbb,\Rbb)$. Assume that $\Vert g\Vert_\infty,\Vert g'\Vert_\infty<+\infty$. (This is automatic when $g$ has compact support.) Prove that $f*g$ is well-defined, that $f*g\in C^1(\Rbb,\Rbb)$, and that $(f*g)'=f*g'$.
+\end{prob}
+
+\begin{rem}
+In particular, if $g\in C_c^\infty(\Rbb,\Rbb)$, then the above problem shows that $f*g\in C^\infty(\Rbb,\Rbb)$ and $(f*g)^{(n)}=f*g^{(n)}$ for all $n\in\Nbb$.
+\end{rem}
+
+
+
+\begin{prob}
+The translation of each $f\in\scr R^1(\Rbb,\Cbb)$ by $t\in\Rbb$ is defined to be
+\begin{align*}
+f_t:\scr R^1(\Rbb,\Cbb)\rightarrow\scr R^1(\Rbb,\Cbb)\qquad f_t(x)=f(x-t)
+\end{align*}
+Prove that the translation map is continuous under the $L^1$-seminorm, in the sense that $\lim_{t\rightarrow0}\Vert f-f_t\lVert_{L^1}=0$. Namely, prove that
+\begin{align*}
+\lim_{t\rightarrow 0}\int_\Rbb |f-f_t|=0
+\end{align*}
+\end{prob}
+
+\begin{proof}[Hint]
+Use Prop. \ref{lb445} to $L^1$-approximate $f$ by compactly supported continuous functions or step functions. (Both types of functions will work.)
+\end{proof}
+
+
+\begin{df}
+Let $f\in\scr R([-\pi,\pi],\Cbb)$. For each $n\in\Zbb$, define the $n$-th \textbf{Fourier coefficient} \index{fn@$\wht f(n)$} to be
+\begin{align*}
+\wht f(n)=\frac 1{2\pi}\int_{-\pi}^\pi f(x)e^{-\im nx}dx
+\end{align*}
+We call $\dps \sum_{n=-\infty}^{+\infty}\wht f(n)e^{\im nx}$ the \textbf{Fourier series} \index{00@Fourier series} of $f$.
+\end{df}
+
+
+
+\begin{df}
+For each $N\in\Nbb$, define the \textbf{Dirichlet kernel} \index{00@Dirichlet kernel}
+\begin{align*}
+D_N(x)=\sum_{n=-N}^Ne^{\im nx}=\frac{\sin(N+\frac 12)x}{\sin(x/2)}
+\end{align*}
+(When $x\in2\pi\Zbb$, the RHS above should be $2N+1$.) From $\frac 1{2\pi}\int_{-\pi}^\pi e^{\im nx}dx=\delta_{n,0}$ we easily see $\dps\frac 1{2\pi}\int_{-\pi}^\pi D_N(x)dx=1$. 
+\end{df}
+
+
+\begin{prob}\label{lb447}
+Let $f\in\scr R(\Rbb,\Cbb)$ have period $2\pi$. Define $\dps s_N(f;x)=\sum_{n=-N}^N\wht f(n)e^{\im nx}$.
+\begin{enumerate}
+\item Prove that $s_N(f;x)=(f*D_N)(x)$ where the convolution is defined with respect to the integral $\frac 1{2\pi}\int_I$ where $I$ is any interval of length $2\pi$. (Note that both $f$ and $D_N$ have period $2\pi$. So translating $I$ does not affect the result.) In other words, prove that
+\begin{align}
+s_N(f;x)=\frac 1{2\pi}\int_{-\pi}^{\pi} f(t)D_N(x-t)dt=\frac 1{2\pi}\int_{-\pi}^{\pi} f(x-t)D_N(t)dt
+\end{align}
+\item Fix $x\in\Rbb$. Assume that there exist $A,B\in\Cbb$ such that 
+\begin{align}
+\limsup_{t\rightarrow 0^+}\Big|\frac{f(x-t)-A}{t}\Big|<+\infty\qquad \limsup_{t\rightarrow 0^+}\Big|\frac{f(x+t)-B}{t}\Big|<+\infty
+\end{align}
+(In other words, assume that there exist $\delta,M>0$ such that $|(f(x-t)-A)/t|\leq M$ and $|(f(x+t)-B)/t|\leq M$ for all $0<t<\delta$.) Prove that
+\begin{align}
+\lim_{N\rightarrow+\infty} s_N(f;x)=\frac{A+B}2
+\end{align}
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Hint for part 2]
+Choose $g:[-\pi,\pi]\rightarrow\Cbb$ such that $g(t)=B$ if $t<0$, and $g(t)=A$ if $t>0$. Prove that
+\begin{align}
+\frac 1{2\pi}\int_{-\pi}^\pi g(t)D_N(t)dt=\frac{A+B}2  \label{eq193}
+\end{align}
+Let $\varphi:[-\pi,\pi]\rightarrow \Rbb$ such that $\dps\varphi(t)=\frac{f(x-t)-g(t)}{\sin(t/2)}$ if $t\neq 0$. Use Lebesgue's criterion to show that $\varphi\in\scr R([-\pi,\pi],\Cbb)$. Use Riemann-Lebesgue lemma to prove $\dps\lim_{N\rightarrow+\infty}\int_{-\pi}^\pi \varphi(t)\sin\big(N+\frac 12\big)t\cdot dt=0$. %Combine this with \eqref{eq193} to finish the proof.
+\end{proof}
+
+
+\begin{co}\label{lb448}
+Let $g\in C^1([a-\pi,a+\pi],\Cbb)$. Let $f:\Rbb\rightarrow\Cbb$ be a $2\pi$-periodic function such that $f(x)=g(x)$ if $a-\pi<x<a+\pi$, and that $\dps f(a+\pi)=\frac{g(a-\pi)+g(a+\pi)}2$. Clearly $f\in\scr R(\Rbb,\Cbb)$. Then the Fourier series of $f$ converges pointwise to $f$.
+\end{co}
+
+\begin{proof}
+Immediate from part 2 of Pb. \ref{lb447}.
+\end{proof}
+
+\begin{eg}
+If we let $a=0$ and $g(x)=x$, then one can compute that the Fourier series of $f$ is \eqref{eq194}. It converges pointwise but not uniformly to $f$.
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+\section{A topological proof of Stone-Weierstrass theorem}
+
+
+
+\subsection{*-algebras and subalgebras}
+
+Fix $\Fbb\in\{\Rbb,\Cbb\}$.
+
+
+\begin{df}
+An \textbf{$\Fbb$-algebra} \index{00@Algebra}  is defined to be a ring $\scr A$ (not necessarily having $1$) which is at the same time also an $\Fbb$-vector space (where the vector addition is equal to the ring addition) such that the ring multiplication and the scalar multiplication satisfies the associativity: For every $\lambda\in\Fbb$ and $x,y\in\scr A$, we have
+\begin{align}
+\lambda(xy)=(\lambda x)y=x(\lambda y)
+\end{align}
+
+An $\Fbb$-algebra is called \textbf{unital} \index{00@Unital algebra} if $\scr A$, as a ring, has the identity $1$. In this case, we write $\lambda\cdot 1$ as $\lambda$ if $\lambda\in\Fbb$. 
+
+An $\Fbb$-algebra is called \textbf{commutative} or \textbf{abelian} \index{00@Commutative algebra} \index{00@Abelian algebra} if $xy=yx$ for all $x,y\in\scr A$.
+
+If $\scr A$ is an $\Fbb$-algebra, then an \textbf{($\Fbb$-)subalgebra} \index{00@Subalgebra} is a subset $\scr B$ which is invariant under the ring addition, ring multiplication, and scalar multiplication. (Namely, $\scr B$ is a subring and also a subspace of $\scr A$.) If $\scr A$ is unital, then a \textbf{unital ($\Fbb$-)subalgebra} of $\scr A$ is an $\Fbb$-subalgebra containing the identity of $\scr A$.  \hfill\qedsymbol
+\end{df}
+
+
+\begin{rem}
+A unital $\Fbb$-algebra $\scr A$ is equivalently a ring with unit $1$, together with a ring homomorphism $\Cbb\rightarrow Z(\scr A)$ where $Z(\scr A)$ is the \textbf{center} of $\scr A$, i.e.
+\begin{align*}
+Z(\scr A)=\{x\in\scr A:xy=yx\text{ for every }y\in\scr A\}
+\end{align*}
+We leave it to the readers to check the equivalence.
+\end{rem}
+
+
+\begin{eg}
+If $V$ is a $\Fbb$-vector space, then $\End(V)$, the set of $\Fbb$ linear maps $V\rightarrow C$, is naturally an $\Fbb$-algebra. If $V$ is a normed vector space, then $\fk L(V)$ is an $\Fbb$-algebra.
+\end{eg}
+
+\begin{df}
+A \textbf{(complex) *-algebra} \index{00@*-algebra} is defined to be a $\Cbb$-algebra together with an \textbf{antilinear map} \index{00@Antilinear map} $*:\scr A\rightarrow\scr A$ sending $x$ to $x^*$ (where ``antilinear" means that for every $a,b\in\Cbb$ and $x,y\in\scr A$ we have $(ax+by)^*=\ovl ax^*+\ovl by^*$) such that for every $x,y\in\scr A$, we have
+\begin{align*}
+(x^*)^*=x\qquad (xy)^*=y^*x^*
+\end{align*}
+Note that $*$ must be bijective. We call $*$ an \textbf{involution}. 
+\index{00@Involution} A \textbf{*-subalgebra} \index{00@*-subalgebra} $\scr B$ is defined to be a subalgebra satisfying $x\in\scr B$ iff $x^*\in\scr B$.
+\end{df}
+
+
+\begin{eg}
+The set of complex $n\times n$ matrices $\Cbb^{n\times n}$ is naturally a unital $*$-algebra if for every $A\in\Cbb^{n\times n}$ we define $A^*=\ovl A^\tr$, the complex conjugate of the transpose of $A$.
+\end{eg}
+
+In this chapter, we are mainly interested in abelian algebras.
+
+\begin{eg}
+Let $X$ be a set. Then $\Fbb^X$ is naturally a unital $\Fbb$-algebra, and $l^\infty(X,\Cbb)$ is its unital $\Fbb$-subalgebra. If $X$ is a topological space, then $C(X,\Fbb)$ is an $\Fbb$-subalgebra of $\Fbb^X$. If $X$ is compact, then $C(X,\Fbb)$ is an $\Fbb$-subalgebra of $l^\infty(X,\Fbb)$.
+\end{eg}
+
+
+
+The following is our main example of this chapter.
+\begin{eg}
+Let $X$ be a set. Then $\Cbb^X$ is a unital *-algebra if for every $f\in\Cbb^X$ we define \index{f@$f^*(x)=\ovl{f(x)}$}
+\begin{align}
+f^*:X\rightarrow\Cbb\qquad f^*(x)=\ovl{f(x)}
+\end{align}
+Then $l^\infty(X,\Cbb)$ is a unital *-subalgebra of $\Cbb^X$. Assume that $X$ is compact topological space. Then $C(X,\Cbb)$ is a unital *-subalgebra of $l^\infty(X,\Cbb)$. If $f_1,\dots,f_n\in C(X,\Cbb)$, then $\Cbb[f_1,\dots,f_n]$, the set of polynomials of $f_1,\dots,f_n$ with coefficients in $\Cbb$, is a unital subalgebra of $C(X,\Cbb)$. And $\Cbb[f_1,f_1^*,\dots,f_n,f_n^*]$ is a unital *-subalgebra of $C(X,\Cbb)$.
+\end{eg}
+
+
+More generally, we have:
+
+\begin{eg}
+Let $\scr A$ be an abelian unital $\Fbb$-algebra. Let $\fk S\subset\scr A$. Then \index{FS@$\Fbb[\fk S]$}
+\begin{align}
+\Fbb[\fk S]=\Span_\Fbb\{x_1^{n_1}\cdots x_k^{n_k}:k\in\Zbb_+,x_i\in\fk S,n_i\in\Nbb\}
+\end{align}
+the set of polynomials of elements in $\fk S$, is the smallest unital $\Fbb$-subalgebra containing $\fk S$, called the \textbf{unital $\Fbb$-subalgebra generated by $\fk S$}. \index{00@Subalgebra generated by...} (Here, we understand $x^0=1$ if $x\in\scr A$.) Thus, if $\scr A$ is an abelian unital *-algebra, then $\Cbb[\fk S\cup\fk S^*]$ (where $\fk S^*=\{x^*:x\in\fk S\}$) is the smallest unital *-algebra containing $\fk S$, called the \textbf{unital *-subalgebra generated by $\fk S$}.
+\end{eg}
+
+
+
+\subsection{Stone-Weierstrass (SW) theorems} \index{00@SW=Stone-Weierstrass}
+
+
+
+
+The main goal of this chapter is to prove the following theorem.
+
+\begin{thm}[\textbf{SW theorem, compact real version}]\index{00@SW theorem, compact real version}\label{lb442}
+Let $X$ be a compact Hausdorff space. Let $\scr A$ be unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Then $\scr A$ is dense in $C(X,\Rbb)$ (under the $l^\infty$-norm).
+\end{thm}
+
+\begin{eg}
+Let $X=[a,b]$ be a compact interval in $\Rbb$. Then $\Rbb[x]$ is a unital subalgebra of $C(X,\Rbb)$. It separates points of $[a,b]$ because it contains $\id$. Thus, by SW theorem, $\Rbb[a,b]$ is dense in $C([a,b],\Rbb)$. This special case was proved in Thm. \ref{lb441}.
+
+More generally, let $X=I_1\times\cdots\times I_N$ where each $I_i\subset\Rbb$ is a compact interval. Let $\pi_i:X\rightarrow I_i$ be the projection onto the $i$-th component, i.e., the $i$-th coordinate function. Then $\pi_1,\dots,\pi_N$ separate points of $X$, since $\pi_1\times\cdots\times\pi_N$ is the identity map of $X$. Thus, by SW theorem, $\Rbb[\pi_1,\dots,\pi_N]$ is dense in $C(X,\Rbb)$. In fact, we will first prove this special case before we prove the general SW theorem.
+\end{eg}
+
+From the above version of SW theorem it is easy to prove:
+
+\begin{thm}[\textbf{SW theorem, compact complex version}]\index{00@SW theorem, compact complex version}\label{lb450}
+Let $X$ be a compact Hausdorff space. Let $\scr A$ be a unital *-subalgebra of $C(X,\Cbb)$ separating points of $X$. Then $\scr A$ is dense in $C(X,\Rbb)$ (under the $l^\infty$-norm).
+\end{thm}
+
+\begin{proof}
+Let $\Real\scr A=\{\Real f=(f+f^*)/2:f\in\scr A\}$. Since for each $f\in\scr A$ we have $f^*\in\scr A$, we know that $\Real f\in\scr A$. This proves that $\Real\scr A\subset\scr A$. Since $f=\Real( f)-\im\Real(\im f)$, we conclude
+\begin{align}
+\scr A=\Real\scr A+\im\Real\scr A  \label{eq192}
+\end{align}
+In other words, elements of $\scr A$ are precisely of the form $\alpha+\im\beta$ where $\alpha,\beta\in\Real\scr A$. From this, it is clear that $\Real\scr A$ is a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Thus, by Thm. \ref{lb442}, $\Real\scr A$ is dense in $C(X,\Rbb)$. It is clear from \eqref{eq192} that $\scr A$ is dense in $C(X,\Cbb)$.
+\end{proof}
+
+
+\begin{eg}\label{lb443}
+Let $S^1=\{z\in\Cbb:|z|=1\}$. For each $n\in\Zbb$, let $e_n:S^1\rightarrow \Cbb$ be defined by $e_n(e^{\im x})=e^{\im nx}$. In other words, $e_n(z)=z^n$. Then $\Cbb[e_1,e_{-1}]=\Span_\Cbb\{e_n:n\in\Zbb\}$ is a unital *-subalgebra of $C(S^1,\Cbb)$. It separates points of $S^1$ since $e_1$ does. Therefore, by SW theorem, $\Cbb[e_1,e_{-1}]$ is dense in $\Cbb(S^1,\Cbb)$. 
+
+One often views
+\begin{align}
+C(S^1,\Cbb)=\{g\in C([-\pi,\pi],\Cbb):g(-\pi)=g(\pi)\}
+\end{align}
+since any $g$ in the RHS corrsponds bijectively to $f$ in the LHS by setting $f(e^{\im t})=g(t)$. Therefore, the above conclusion is that \textit{any $g\in C([-\pi,\pi],\Cbb)$ satisfying $g(-\pi)=g(\pi)$ can be approximated uniformly by functions of the form $\sum_{n=-N}^N a_n\cdot e^{\im nx}$ where $a_n\in\Cbb$}. This property is fundamental  to the theory of Fourier series. \hfill\qedsymbol
+\end{eg}
+
+
+\begin{eg}
+We continue the above discussion. $\Cbb[e_1]=\Span_\Cbb\{e_n:n\in\Nbb\}$ is a unital subalgebra (though not a *-subalgebra) of $C(S^1,\Cbb)$ separating points of $S^1$. Let us prove that it is not dense in $C(S^1,\Cbb)$. 
+\end{eg}
+
+\begin{proof}
+We view functions on $S^1$ as those on $[-\pi,\pi]$ having the same values at $\pi$ and at $-\pi$. We claim that $e_{-1}$ is not in the closure of $\Cbb[e_1]$. Indeed, it can be checked that $\int_{-\pi}^{\pi}e_{-1}e_1=2\pi$, and that $\int_{-\pi}^{\pi} p\cdot e_1=0$ for every $p\in\Cbb[e_1]$ (since this is true when $p=e_n$ and $n\geq0$). If $e_{-1}$ is in the closure of $\Cbb[e_1]$, then there is a sequence $(p_k)_{k\in\Zbb_+}$ in $\Cbb[e_1]$ converging uniformly on $[-\pi,\pi]$ to $e_{-1}$. By Cor. \ref{lb380}, $0=\int_{-\pi}^\pi p_ke_1$ converges  to $\int_{-\pi}^\pi e_{-1}e_1=2\pi$ as $k\rightarrow\infty$, impossible.  
+\end{proof}
+
+\begin{eg}
+Let $X,Y$ be compact metric spaces spaces. Let $\scr A$ be the subspace of $C(X\times Y,\Rbb)$ spanned by elements of the form $fg$ where $f\in C(X,\Rbb)$ and $g\in C(Y,\Rbb)$. (More precisely, one should understand $fg$ as $(f\circ\pi_X)\cdot(g\circ\pi_Y)$ where $\pi_X,\pi_Y$ are the projections of $X\times Y$ onto $X$ and $Y$ respectively.) By the Urysohn functions (cf. Rem. \ref{lb257}), we see that $C(X,\Rbb)$ resp. $C(Y,\Rbb)$ separates points of $X$ resp. $Y$. (This is in fact also true when $X,Y$ are compact Hausdorff spaces.) Thus $\scr A$ is a unital subalgebra of $C(X\times Y,\Rbb)$ separating points of $X\times Y$. By SW theorem, $\scr A$ is dense in $C(X\times Y,\Rbb)$. Nevertheless, we will prove SW theorem by first proving this special case.
+\end{eg}
+
+
+
+
+\subsection{Proof of SW, I: polynomial approximation on $[0,1]^{\scr I}$}
+
+
+
+Starting from this section, we begin our proof of SW Thm. \ref{lb442}. We first explain our strategy of the proof. Let $X$ be a compact Hausdorff space. 
+
+We first consider the special case that $X$ is metrizable. Then by Thm. \ref{lb261}, $X$ is homeomorphic to a closed (and hence compact) subset of $[0,1]^{\Zbb_+}$. Therefore, we may assume that $X$ is a closed subset of $[0,1]^{\Zbb_+}$. As we will see, any continuous real-valued function on $X$ can be extended to a continuous function on  $[0,1]^{\Zbb_+}$. (This is due to \textbf{Tietze extension theorem}, which will be proved in the next section.) Thus, it suffices to prove SW theorem for $[0,1]^{\Zbb_+}$. In fact, as we will see, it suffices to prove that any element of $C([0,1]^{\Zbb_+},\Rbb)$ can approximated uniformly by polynomials, i.e., by elements of $\Rbb[\pi_1,\pi_2,\dots]$ where $\pi_n:[0,1]^{\Zbb_+}\rightarrow[0,1]$ is the projection onto the $n$-th component. This task will be achieved in this section.
+
+The above method can be easily genearlized to the case that $X$ is not necessarily metrizable. In fact, since $\scr A\subset C(X,\Rbb)$ separates points of $X$, as in the proof of  Thm. \ref{lb261}, $\scr A$ enables us to embed $X$ onto a compact subset of $[0,1]^{\scr I}$ where $\scr I$ is an index set. Therefore, we need to show that $[0,1]^{\scr I}$ is compact. This is indeed due to:
+
+
+\begin{thm}[\textbf{Tychonoff theorem}]\index{00@Tychonoff theorem}\label{lb452}
+Let $(X_\alpha)_{\alpha\in\scr I}$ be a family of nonempty compact topological spaces. Then the product space $S=\prod_{\alpha\in\scr I}X_\alpha$ (equipped with the product topology) is compact.
+\end{thm}
+We will prove Tychonoff theorem in the next chapter. Assuming Tychonoff theorem, we will show that elements of $C([0,1]^{\scr I},\Rbb)$ can be approximated uniformly by polynomials. This is the goal of this section:
+
+
+\begin{pp}\label{lb451}
+Let $(I_\alpha)_{\alpha\in\scr I}$ be a family of nonempty compact  intervals in $\Rbb$. Let $S=\prod_{\alpha\in\scr I}I_\alpha$. For each $\alpha$, define the \textbf{coordinate function}
+\begin{align*}
+\pi_\alpha:S\rightarrow I_\alpha\qquad x_\blt=(x_\mu)_{\mu\in\scr I}\mapsto x_\alpha
+\end{align*}
+Then $\Rbb[\{\pi_\alpha:\alpha\in\scr I\}]$, the unital subalgebra of $C(S,\Rbb)$ generated by all coordinate functions, is dense in $C(S,\Rbb)$.
+\end{pp}
+
+
+Since the coordinate functions separate points of $S$, Prop. \ref{lb451} is clearly a special case of SW theorem.
+
+
+\begin{lm}\label{lb456}
+Prop. \ref{lb451} holds when $\scr I$ is a finite set.
+\end{lm}
+
+\begin{proof}
+We prove by induction on $N$ that elements of $C(S,\Rbb)$, where $S=I_1\times\cdots\times I_N$, can be approximated uniformly by polynomials (i.e. by elements of $\Rbb[\pi_1,\dots,\pi_N]$). The case $N=1$ follows from Weierstrass approximation Thm. \ref{lb441}. Assume that case $N-1$ has been proved. Let use prove case $N$ where $N>1$. 
+
+Write $S=I_1\times Y$ where $Y=I_2\times\cdots\times I_N$. Then by Thm. \ref{lb274}, we have a canonical equivalence of normed vector spaces
+\begin{align*}
+C(S,\Rbb)\simeq C(I_1,\mc V)\qquad\text{where}\qquad\mc V=C(Y,\Rbb)
+\end{align*}
+Choose any $f\in C(S,\Rbb)$, viewed as an element of $C(I_1,\mc V)$. Then by Thm. \ref{lb441}, $f$ can be approximated uniformly on $I_1$ by elements of $\mc V[\pi_1]$. Thus, for any $\eps>0$, there exist $n\in\Zbb_+$ and $g_0,\dots,g_n\in C(Y,\Rbb)$ such that $\Vert f-\sum_{i=0}^n g_i\cdot\pi_1^i\Vert_{l^\infty(I_1,\mc V)}<\eps$. Equivalently,
+\begin{align*}
+\Big\Vert f-\sum_{i=0}^n g_i\cdot \pi_1^i\Big\Vert_{l^\infty(S,\Rbb)}<\eps
+\end{align*}
+where $g_i$ actually means the composition of $g_i$ with the projection $S\rightarrow Y$. By case $N-1$, each $g_i$ can be approximated uniformly on $Y$ by elements of $\Rbb[\pi_2,\dots,\pi_N]$. So by triangle inequality, $f$ can be uniformly approximated by elements of the form $\sum_{i=1}^n h_i\cdot\pi_i^i$ where each $h_i$ is a polynomial of $\pi_2,\dots,\pi_N$. This finishes the proof of case $N$.
+\end{proof}
+
+
+
+The key to the transition from finite to general index sets is the following lemma.
+
+
+\begin{lm}\label{lb455}
+Let $(X_\alpha)_{\alpha\in\scr I}$ be a family of nonempty topological spaces. Let $S=\prod_{\alpha\in\scr I} X_\alpha$. Let $f\in C(S,\Rbb)$. Let $p_\blt=(p_\alpha)_{\alpha\in\scr I}\in S$. For each $A\in\fin(2^{\scr I})$, define a map $\varphi_A:S\rightarrow S$ such that for each $x_\blt=(x_\alpha)_{\alpha\in\scr I}$,
+\begin{gather*}
+\varphi_A(x_\blt)_\alpha=\left\{
+\begin{array}{ll}
+x_\alpha&\text{ if }\alpha\in A\\
+p_\alpha&\text{ if }\alpha\notin A
+\end{array}
+\right.
+\end{gather*}
+Then $\varphi_A$ is continuous, and hence $f\circ\varphi_A$ is continuous. Moreover, for every $x_\blt\in S$ we have
+\begin{align}\label{eq195}
+\lim_{
+\begin{subarray}{c}
+(A,y_\blt)\in\fin(2^{\scr I})\times S\\
+(A,y_\blt)\rightarrow (\infty,x_\blt)
+\end{subarray}
+}f\circ\varphi_A(y_\blt)=f(x_\blt)
+\end{align}
+in the sense of Prop. \ref{lb281}. Thus, if each $X_\alpha$ is compact, then $S$ is compact by Tychonoff Thm. \ref{lb452}, and hence $\dps\lim_{A\in\fin(2^{\scr I})}f\circ\varphi_A$ converges uniformly to $f$ by Thm. \ref{lb277}.
+\end{lm}
+
+In other words, $\varphi_A$ fixes the $\alpha$-th component if $\alpha\in A$, and changes the $\alpha$-th component to $p_\alpha$ if $\alpha\notin A$. \eqref{eq195} means that for every $\eps>0$ there exist $U\in\Nbh(x_\blt)$ and a finite $A\subset \scr I$ such that for every $y_\blt\in U$ and for every finite set $B$ satisfying $A\subset B\subset\scr I$, we have $|f(x_\blt)-f\circ\varphi_B(y_\blt)|<\eps$.
+
+
+\begin{proof}
+The proof is similar to that of Pb. \ref{lb453}. The continuity of $\varphi_A$ follows easily from the net-convergence description of product topology in Thm. \ref{lb192}. Choose any $x_\blt\in S$ and $\eps>0$. Since $f$ is continuous, there exists $U\in\Nbh(x_\blt)$ such that $|f(x_\blt)-f(y_\blt)|<\eps$ for all $y_\blt\in U$. By the definition of product topology by means of basis (Def. \ref{lb454}), we can shrink $U$ to a smaller neighborhood of $x_\blt$ of the form
+\begin{align*}
+U=\prod_{\alpha\in \scr I}V_\alpha
+\end{align*}
+where $V_\alpha\in\Nbh_{X_\alpha}(x_\alpha)$ for each $\alpha\in\scr I$, and $V_\alpha=X_\alpha$ for all $\alpha$ outside some $A\in\fin(2^{\scr I})$. Thus, $y_\blt\in S$ belongs to $U$ iff $y_\alpha\in V_\alpha$ for each $\alpha\in A$. Therefore, if $y_\blt\in U$, then for each finite $B$ satisfying $A\subset B\subset\scr I$, we have that
+\begin{align*}
+\varphi_B(y_\blt)_\alpha=y_\alpha\in V_\alpha\qquad(\forall\alpha\in A)
+\end{align*}
+and hence that $\varphi_B(y_\blt)\in U$. It follows that $|f(x_\blt)-f\circ\varphi_B(y_\blt)|<\eps$.
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of Prop. \ref{lb451}}]
+Choose any continuous $f:S=\prod_{\alpha\in\scr I}I_\alpha\rightarrow\Rbb$. By Lem. \ref{lb455}, $f$ can be approximated uniformly by functions depending on finitely many variables. In other words, for any $\eps>0$, there exist $A\in\fin(2^{\scr I})$ and a continuous $g:S_A=\prod_{\alpha\in A}I_\alpha\rightarrow\Rbb$ such that $\Vert f-g\circ\pi_A\Vert_{l^\infty(S,\Rbb)}<\eps$, where $\pi_A:S\rightarrow S_A$ is the natural projection. By Lem. \ref{lb456}, $g$ can be approximated uniformly by polynomials of $\{\pi_\alpha:\alpha\in A\}$. This finishes the proof.
+\end{proof}
+
+
+
+
+\subsection{Proof of SW, II: partition of unity and Tietze extension}
+
+
+In this section, we fix a Banach space $\mc V$ over $\Fbb\in\{\Rbb,\Cbb\}$, and fix a nonempty LCH space $X$.
+
+
+\begin{rem}\label{lb457}
+Let $U$ be an open subset of $X$. Recall that $U$ is LCH by Prop. \ref{lb245}. Let $f\in C_c(U,\mc V)$ supported in $U$. Then by zero-extension, $f$ can be viewed as an element of $C_c(X,\mc V)$ supported in $U$. 
+\end{rem}
+
+
+\begin{proof}
+Let $f$ take value $0$ outside $U$. Let  $A=\{x\in U:f(x)\neq 0\}$ and $K=\Cl_U(A)$, which is compact by assumption. In particular, $K$ is closed in $X$ by Cor. \ref{lb234}. Then $X=U\cup K^c$ is an open cover on $X$. By assumption, $f|_U$ is continuous. Also $f|_{K^c}=0$ is continuous. So $f$ is continuous by Exe. \ref{lb184}. To show that $f\in C_c(X,\mc V)$, it remains to prove that $\ovl A=\Cl_X(A)$ is compact. This fact follows from Rem. \ref{lb459}.
+\end{proof}
+
+
+
+\begin{rem}\label{lb459}
+Let $W$ be a subset of $X$, which is LCH under the subspace topology. (We are mainly interested in the case that $W$ is open. In this case, $W$ is LCH by Prop. \ref{lb245}.)  Let $A\subset W$, and recall $\ovl X=\Cl_X(A)$. Then
+\begin{align}\label{eq196}
+A\text{ is precompact in }W\quad\Longleftrightarrow\quad \ovl A\text{ is compact, and }\ovl A\subset W
+\end{align}
+Moreover, if $A$ is precompact in $W$, then $\ovl X$ equals $\Cl_W(A)$.
+\end{rem}
+
+Note that if $W$ is open, but if $A$ is not precompact in $W$, then $\Cl_X(A)$ and $\Cl_W(A)$ are not necessarily equal: take $X=\Rbb$ and $A=W=\Rbb_{>0}$.
+
+\begin{proof}
+``$\Leftarrow$" is obvious from the definition of precompactness (recall Def. \ref{lb458}).
+
+``$\Rightarrow$": Clearly $\Cl_W(A)\subset\ovl X$ in general. Assume that $A$ is a precompact subset of $W$. By Def. \ref{lb458}, we have $A\subset\Cl_W(A)\subset W$ where $\Cl_W(A)$ is compact. In particular, $\Cl_W(A)$ is closed in $X$ (by Cor. \ref{lb234}). So $\ovl X\subset\Cl_W(A)$. So $\ovl X=\Cl_W(A)$. Thus $\ovl X$ is a compact subset of $W$ since $\Cl_W(A)$ is so.
+\end{proof}
+
+
+\begin{df}
+Let $W$ be a subset of $X$. Suppose that $W$ is an LCH subspace of $X$. We write \index{AW@$A\Subset W$}
+\begin{align}
+A\Subset W
+\end{align}
+whenever $A$ is a precompact subset of $W$, or equivalently, whenever $A\subset X$ satisfies that $\Cl_X(A)$ is a compact subset of $W$.
+\end{df}
+
+
+
+
+
+
+The goal of this section is to prove the celebrated
+
+\begin{thm}[\textbf{Tietze extension theorem}]\index{00@Tietze extension theorem}
+Let $K$ be a compact subset of $X$. Let $f\in C(K,\mc V)$. Then there exists $\wtd f\in C_c(X,\mc V)$ such that $\wtd f|_K=f|_K$, and that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$.
+\end{thm}
+
+
+\begin{rem}
+Tietze extension theorem is often used in the following form: If $U$ is an open subset of $X$ containing $K$, then by Rem. \ref{lb457}, every $f\in C(K,\mc V)$ can be extended to some $\wtd f\in C_c(X,\mc V)$ supported in $U$ such that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$. In other words, in Tietze extension theorem, we can assume that the extended function is supported in a given open subset.
+\end{rem}
+
+There is another version of Tietze extension theorem: If $A$ is a closed subset of a normal topological space $Y$, then any $f\in C(A,\Rbb)$ can be extended to some $\wtd f\in C(Y,\Rbb)$ without increasing the  $l^\infty$-norm. Its proof is not quite the same as the LCH version. See \cite[Sec. 35]{Mun}. We will not use this version in our course. 
+
+
+
+\subsubsection{Urysohn lemma}
+
+
+
+The proof of Tietze extension theorem involves several steps. The first step is to prove a special case: If $K\subset X$ is compact, then the characteristic function $\chi_K:X\rightarrow\Rbb$ can be extended to a continuous $f\in C_c(X,\Rbb)$. Then $f|_K=1$. Replacing $f$ by $\max\{f,0\}$, we may assume that $f\geq0$. Replacing $f$ by $\min\{f,1\}$, we may assume $0\leq f\leq 1$. This special case is called
+
+
+\begin{thm}[\textbf{Urysohn lemma}]\index{00@Urysohn lemma for LCH spaces}
+Let $K$ be a compact subset of $X$. Then there exists $f$ such that \index{Kf@@$K\prec f$}  \index{fX@$f\prec X$}
+\begin{align}
+K\prec f\prec X
+\end{align}
+\end{thm}
+
+The meaning of the notations is explained below.
+
+\begin{df}
+Let $U$ be an open subset of $X$. Let $K$ be a compact subset of $X$.
+\begin{itemize}
+\item $f\prec U$ means that $f\in C_c(X,[0,1])$ \index{Cc@$C_c(X,[0,1])$} (i.e. $f\in C_c(X,\Rbb)$ and $f(X)\subset[0,1]$) and that $\Supp(f)\subset U$.
+\item $K\prec f$ means that $f\in C_c(X,[0,1])$ and that $f|_K=1$.
+\end{itemize} 
+\end{df}
+ 
+
+The symbol ``$\prec$" is chosen for the following reason. Assume $f\in C_c(X,[0,1])$. Then $K\prec f$ means that $\chi_K\leq f$. However, the meaning of $f\prec U$ is slightly stronger than that of $f\leq \chi_U$: the latter means that $U$ contains $\{x:f(x)\neq0\}$, but not that $U$ contains its closure $\Supp(f)$.
+
+
+To prove Urysohn lemma we need some elementary observations:
+
+
+
+
+
+
+
+\begin{lm}\label{lb460}
+Let $W$ be an open subset of $X$. Let $K$ be a compact subset of $W$. Then there exists an open set $U$ of $X$ such that $K\subset U\Subset W$. 
+\end{lm}
+
+
+By Rem. \ref{lb459}, this lemma simply means that every compact $K\subset W$ is contained in a precompact open subset of $W$. To prove it, it suffices to assume $X=W$.
+
+
+\begin{proof}
+We assume $X=W$. Since $X$ is LCH, every $x\in K$ is contained in a precompact open subset $U_x$. Since $K$ is compact, $K$ is contained in $U=U_{x_1}\cup\cdots\cup U_{x_n}$ for some $x_1,\dots,x_n\in K$. Clearly $U$ is open and precompact.
+\end{proof}
+
+
+Recall Def. \ref{lb462} for the meaning of $\omega(f,x)$, the oscillation of a function $f$ at $x$.
+
+\begin{lm}\label{lb463}
+Let $Y$ be a topological space and $Z$ a metric space. Let $(f_n)$ be a sequence in $Z^Y$ converging uniformly to $f\in Z^Y$. Assume that for each $x\in Y$, $\lim_{n\rightarrow\infty}\omega(f_n,x)=0$. Then $f$ is continuous.
+\end{lm}
+
+
+Note that Thm. \ref{lb279} can be viewed as a special case of this lemma. However, this lemma is not used as often as Thm. \ref{lb279}. This is why we call this result only a lemma.
+
+\begin{proof}
+Choose any $\eps>0$. Then there is $N\in\Zbb_+$ such that for all $n\geq N$ we have $\Vert f-f_n\Vert_\infty<\eps$. Since $\lim_{n\rightarrow\infty}\omega(f_n,x)=0$, there is $n\geq N$ such that $\omega(f_n,x)<\eps$. Thus there exist $n\geq N$ and $U\in\Nbh_X(x)$ such that $\diam(f_n(U))<\eps$. Then by triangle inequality, we have $\diam(f(U))\leq 3\eps$. So $\omega(f,x)\leq3\eps$. Since $\eps$ is arbitrary, we conclude $\omega(f,x)=0$. So $f$ is continuous at $x$ by Prop. \ref{lb461}.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Proof of Urysohn lemma}]
+By Lem. \ref{lb460}, we can choose $U_1\Subset X$ containing $K$. We shall construct inductively a sequence of functions $f_n:X\rightarrow[0,1]$ such that the following conditions are satisfied:
+\begin{enumerate}[label=(\alph*)]
+\item $f_n|_K=1$ and $f_n|_{X\setminus U_1}=0$.
+\item $\omega(f_n,x)\leq \frac 1{2^n}$ for all $x\in X$.
+\item $\Vert f_{n+1}-f_n\Vert_{l^\infty}\leq \frac 1{2^{n+1}}$ if $n>0$.
+\end{enumerate}
+Then $\Vert f_{n+k}-f_n\Vert_\infty\leq 1/2^n$ for all $n,k>0$. Thus $(f_n)_{n\in\Zbb_+}$ is a Cauchy sequence in $l^\infty(X,\Rbb)$, converging uniformly to some $f\in l^\infty(X,\Rbb)$. Clearly $f(X)\subset[0,1]$, $f|_K=1$, and $f|_{X\setminus U_1}=0$. So $f$ is compactly supported since $\ovl U_1$ is compact. By Lem. \ref{lb463}, $f\in C_c(X,[0,1])$, finishing the proof.
+
+In fact, our construction of $f_n$ relies on
+\begin{align*}
+K~\subset~ U_0~\Subset~ U_{\frac 1{2^n}}~\Subset~ U_{\frac 2{2^n}}~\Subset~\cdots~\Subset ~U_{\frac{2^{n}-1}{2^n}}~\Subset ~U_1
+\end{align*}
+$f_0$ is simply defined to be $\chi_{U_0}$ where $U_0$ is a precompact open subset of $U_1$ containing $K$ (which exists due to Lem. \ref{lb460}). 
+
+Suppose that $f_n$ and $U_{\frac j{2^n}}$ (where $0\leq j<2^n$) have been constructed. Clearly $U_{\frac j{2^{n+1}}}$ already exists when $j$ is even. Suppose that $j$ is odd, let $U_{\frac j{2^{n+1}}}$ be a precompact open subset $U_{\frac {j+1}{2^{n+1}}}$ containing the closure of  $U_{\frac {j-1}{2^{n+1}}}$. Then $K\subset U_0\Subset U_{\frac 1{2^{n+1}}}\Subset U_{\frac 2{2^{n+1}}}\Subset\cdots\Subset U_1$. Let
+\begin{align*}
+h_{n+1}=\sum_{
+\begin{subarray}{c}
+0<j<2^{n+1}\\
+j\text{ is odd}
+\end{subarray}
+}2^{-n-1}\cdot\chi_{\Delta_j}\qquad\text{where}\qquad \Delta_j=U_{\frac j{2^{n+1}}}\setminus U_{\frac{j-1}{2^{n+1}}}
+\end{align*}
+and let $f_{n+1}=f_n+h_{n+1}$. The best way to understand this construction is to look at the pictures:
+\begin{gather*}
+\vcenter{\hbox{{
+			\includegraphics[height=2.5cm]{fig4.png}}}}
+\qquad
+\vcenter{\hbox{{
+			\includegraphics[height=2.5cm]{fig5.png}}}}
+\qquad
+\vcenter{\hbox{{
+			\includegraphics[height=3cm]{fig6.png}}}}
+\end{gather*}
+
+
+Clearly (a) and (c) are satisfied. Choose any $x\in X$. For each $n$, let $U_{\frac {2^n+1}{2^n}}=X$ and $U_{-\frac 1{2^n}}=\emptyset$. Then $X$ is a disjoint  union of $\Delta_j=U_{\frac j{2^{n+1}}}\setminus U_{\frac{j-1}{2^{n+1}}}$ over $0\leq j\leq 2^n+1$, and $f_n$ can be described by $f_n|_{\Delta_j}=\max\{1-\frac j{2^n},0\}$. For each $x\in \Delta_j$, let
+\begin{align*}
+W=U_{\frac{j}{2^n}}\setminus\ovl{U_{\frac{j-2}{2^n}} }
+\end{align*}
+Then $W\in\Nbh_X(x)$, and $\diam(W)\leq \frac 1{2^n}$ since $W\subset \Delta_j\cup\Delta_{j-1}$. This proves (b).
+\end{proof}
 
 
 
@@ -12296,20 +13598,151 @@ Since $b-a$ and $M$ are fixed numbers and $\eps,\delta$ are arbitrary, we see th
 
 
 
+\subsection{Proof of SW, III: embedding into $[0,1]^{\scr I}$}
+
+
+
 \subsection{Problems and supplementary material}
 
 
+We always let $\mc V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+\subsubsection{SW theorems for LCH spaces}
+
+\begin{prob}\label{lb431}
+Let $X$ be an LCH space with topology $\mc T$. Define a set $X^*=X\cup\{\infty\}$ where $\infty$ is a new symbol not in $X$. 
+\begin{enumerate}
+\item Prove that the set
+\begin{align*}
+\mc U=\mc T\cup\{X^*\setminus K:K\subset X\text{ is compact}\}
+\end{align*}
+is a basis for a topology on $X^*$. Let $\mc T^*$ be the topology on $X^*$ generated by $\mc U$. Prove that $\mc T$ is the subspace topology of $\mc T^*$. (Namely, prove that $U\subset X$ is open iff $U=X\cap V$ for some open $V\subset X^*$.)
+\item Prove that $(X^*,\mc T^*)$ is a compact Hausdorff space. We call $(X^*,\mc T^*)$ (or simply call $X^*$) the \textbf{one-point compactification} \index{00@One-point compactification} of $X$.
+\item Prove that if $X$ is not compact, then $X$ is dense in $X^*$.
+\end{enumerate}
+\end{prob}
+
+
+More generally, we define:
+\begin{df}
+Let $X$ be LCH. A \textbf{one-point compactification (OPC)} of  $X$ is a compact Hausdorff space $\wht X$, together with an injective map $\varphi:X\rightarrow \wht X$ such that $\wht X\setminus \varphi(X)$ has exactly one element,  and that $\varphi$ restricts to a homeomorphism $\varphi:X\rightarrow\varphi(X)$. In particular, the $X^*$ constructed in Prob. \ref{lb431} is a one-point compactification of $X$.
+\end{df}
+
+
+
 \begin{prob}
-Solve Exe. \ref{lb408}.
+Prove the uniqueness of one-point compactifications in the following sense. Let $X$ be LCH with one-point compactifications $(\wht X,\varphi)$ and $(\wtd X,\psi)$. Then there is a unique homeomorphism $\Phi:\wht X\rightarrow\wtd X$ such that the following diagram commutes:
+\begin{equation}
+\begin{tikzcd}[column sep=small]
+                     & X \arrow[ld,"\varphi"'] \arrow[rd,"\psi"] &   \\
+\wht X \arrow[rr, "\Phi","\simeq"'] &                         & \wtd X
+\end{tikzcd}
+\end{equation}
+\end{prob}
+
+\begin{eg}\label{lb433}
+If $X$ is compact Hausdorff and contains at least two points, then for every $p\in X$, the subset $X\setminus\{p\}$ has OPC $X$ (together with the inclusion map). Thus $[0,1]$ has OPC $[0,1]\cup\{2\}$. $(0,1]$ has OPC $[0,1]$. $(0,1)$ has OPC $S^1$ (the unit circle in $\Cbb$) together with the map $\varphi:x\in(0,1)\mapsto e^{2\im\pi x}\in S^1$.
+\end{eg}
+
+
+
+\begin{cv}
+Let $X$ be LCH and $f:X\rightarrow \mc V$. According to part 3 of Pb. \ref{lb431}, when $X$ is not compact, the limit of functions $\lim_{x\rightarrow\infty}f$ makes sense. In the case that $X$ is compact, we understand  $\lim_{x\rightarrow\infty}f$ as $0$.
+\end{cv}
+
+
+
+
+\begin{df}
+Let $X$ be LCH with one-point compactification $X^*$. Define \index{C0@$C_0(X,\mc V)$}
+\begin{align}
+C_0(X,\mc V)=\big\{f\in C(X,\mc V):\lim_{x\rightarrow\infty}f(x)=0  \big\}
+\end{align}
+Since $\{X^*\setminus K:K\subset X\text{ is compact}\}$ is a neighborhood basis of $\infty\in X^*$, by Def. \ref{lb197}-(2) it is clear that $f\in C(X,\mc V)$ belongs to $C_0(X,\mc V)$ iff
+\begin{align*}
+\tcboxmath{
+\begin{array}{c}
+\text{for every $\eps>0$ there exists a compact $K\subset X$ such that}\\
+\text{for each $x\in X\setminus K$ we have $\Vert f(x)\Vert<\eps$}
+\end{array}}
+\end{align*}
+For each $f:X\rightarrow \mc V$ define $\wtd f:X^*\rightarrow \mc V$ where
+\begin{align}\label{eq184}
+\wtd f(x)=\left\{
+\begin{array}{ll}
+f(x)& \text{ if }x\in X\\[1ex]
+0& \text{ if }x=\infty
+\end{array}
+\right.
+\end{align}
+Then by Def. \ref{lb197}-(1),  $\wtd f$ is continuous at $\infty$ iff $\lim_{x\rightarrow\infty}f(x)=0$. Thus, we have
+\begin{align}
+C_0(X,\mc V)=\big\{\wtd f|_X:\wtd f\in C(X^*,\mc V)\text{ and }\wtd f(\infty)=0 \}
+\end{align}
+\end{df}
+
+\begin{pp}\label{lb432}
+Let $X$ be LCH with one-point compactification $X^*$. Then we have an linear isometry of Banach spaces (under the $l^\infty$-norms)
+\begin{align}\label{eq185}
+C_0(X,\mc V)\rightarrow C(X^*,\mc V)\qquad f\mapsto \wtd f=\eqref{eq184}
+\end{align}
+\end{pp}
+
+\begin{proof}
+Clearly $\Vert f\Vert_{l^\infty(X,\mc V)}=\Vert \wtd f\Vert_{l^\infty(X^*,\mc V)}$. So \eqref{eq185} is a linear isometry. The range of \eqref{eq185} is $\{g\in C(X^*,\mc V):g(\infty)=0\}$, which is clearly a closed subset of the Banach space $C(X,\mc V)$ and hence is complete by Prop. \ref{lb86}.
+\end{proof}
+
+
+\begin{cv}\label{lb449}
+According to Prop. \ref{lb432}, people often identify $C_0(X,\mc V)$ with its image under \eqref{eq185}, i.e., identify $f\in C_0(X,\mc V)$ with $\wtd f$ defined by \eqref{eq184}.
+\end{cv}
+
+
+
+
+
+
+
+
+\begin{prob}
+Let $Y$ be a compact Hausdorff space. Let $E$ be a closed subspace of $Y$. Prove that 
+\begin{align*}
+C_0(Y\setminus E,\mc V)=\{g|_{Y\setminus E}:g\in C(Y,\mc V),g|_E=0\}
+\end{align*}
 \end{prob}
 
 
 
+\begin{thm}[\textbf{SW theorem, LCH real version}]\index{00@SW theorem, LCH real version}
+Let $X$ be an LCH space. Let $\scr A$ be a subalgebra of $C(X,\Rbb)$. Assume that $\scr A$ separates points of $X$. Assume that $\scr A$ \textbf{vanishes nowhere on $X$} \index{00@Vanish nowhere} (i.e. for every $x\in X$ there is $f\in\scr A$ such that $f(x)\neq0$). Then $\scr A$ is dense in $C_0(X,\Rbb)$ (under the $l^\infty$-norm).
+\end{thm}
+
+\begin{prob}
+Prove the above SW theorem by following the steps below. Let $X^*=X\cup\{\infty\}$ be the one-point compactification of $X$. By Conv. \ref{lb449}, $\scr A$ is naturally a subalgebra of $C(X^*,\Rbb)$. Define
+\begin{align*}
+\scr B=\{f+\lambda:f\in\scr A,\lambda\in\Rbb\}
+\end{align*}
+which is a unital subalgebra of $C(X^*,\Rbb)$. Use SW Thm. \ref{lb442} to prove that $\scr B$ is dense in $C(X^*,\Rbb)$. Use this fact to prove that $\scr A$ is dense in $C_0(X,\Rbb)$.
+\end{prob}
+
+
+
+\begin{thm}[\textbf{SW theorem, LCH complex version}]\index{00@SW theorem, LCH complex version}
+Let $X$ be an LCH space. Let $\scr A$ be a *-subalgebra of $C(X,\Cbb)$. Assume that $\scr A$ separates points of $X$. Assume that $\scr A$ vanishes nowhere on $X$. Then $\scr A$ is dense in $C_0(X,\Cbb)$ (under the $l^\infty$-norm).
+\end{thm}
+
+
+\begin{proof}
+This follows from the LCH real version, just as the compact complex version of SW theorem (Thm. \ref{lb450}) follows from the compact real version (Thm. \ref{lb442}).
+\end{proof}
 
 
 
 
 
+\begin{prob}
+Let $X$ be LCH. Use Tietze extension theorem to prove that $C_c(X,\mc V)$ dense in $C_0(X,\mc V)$. This proves that $C_0(X,\mc V)$ is the Banach space completion of $C_c(X,\mc V)$.
+\end{prob}
 
 
 
