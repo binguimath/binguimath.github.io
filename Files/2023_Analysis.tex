@@ -3548,8 +3548,8 @@ Use the following discrete version of ``integration by part"
 \end{prob}
 
 
-\begin{thm}[\textbf{Dirichlet's test}]\index{00@Dirichlet's test}
-Let $X$ be a set. Assume that $(f_n)$ is a sequence in $l^\infty(X,V)$ such that $\sup_{n\in\Zbb_+}\Vert F_n\Vert_{l^\infty}<+\infty$ (where $F_n=\sum_{j=1}^n f_j$). Assume that $(g_n)$ is a decreasing sequence in $l^\infty(X,\Rbb_{\geq0})$ converging uniformly to $0$. Then $\sum_{n=1}^\infty f_ng_n$ converges uniformly on $X$.
+\begin{thm}[\textbf{Dirichlet's test}]\index{00@Dirichlet's test}\label{lb481}
+Let $X$ be a set. Assume that $(f_n)$ is a sequence in $l^\infty(X,V)$ such that $\sup_{n\in\Zbb_+}\Vert F_n\Vert_{l^\infty}<+\infty$ (where $F_n=\sum_{j=1}^n f_j$). Assume that $(g_n)$ is a decreasing sequence (i.e. $g_1\geq g_2\geq g_3\geq\cdots$) in $l^\infty(X,\Rbb_{\geq0})$ converging uniformly to $0$. Then $\sum_{n=1}^\infty f_ng_n$ converges uniformly on $X$.
 \end{thm}
 
 
@@ -6960,7 +6960,8 @@ $\Rbb^N$ is separable, since $\Qbb^N$ is a dense subset.
 
 
 As we shall immediately see, these two notions are equivalent for metric spaces. It is often easier to visualize and prove separability for concrete examples (such as Exp. \ref{lb248}). Indeed, Exp. \ref{lb248} is the typical example that helps us imagine more general separable spaces. However, for general topological spaces, second countability behaves better than separability.  The following property gives one reason.
-\begin{pp}
+
+\begin{pp}\label{lb475}
 If $Y$ is a subset of a second countable space $X$, then $Y$ is second countable.
 \end{pp}
 
@@ -7000,13 +7001,13 @@ Consider the following statements:
 \item $X$ is second countable.
 \item $X$ is separable.
 \end{enumerate}
-Then (1)$\Rightarrow$(2). If $X$ is metrizable, then (2)$\Rightarrow$(1).
+Then (1)$\Rightarrow$(2). If $X$ is metrizable, then (1)$\Leftrightarrow$(2).
 \end{thm}
 
 
 
 \begin{proof}
-Assume that $X$ is second countable with countable basis $\mc B$. For each $U\in\mc B$, choose $x_U\in U$. Then one checks easily that $\{x_U:U\in\mc B\}$ is dense by checking that it intersects every nonempty open subset of $X$.
+Assume that $X$ is second countable with countable basis $\mc B$. For each $U\in\mc B$, choose $x_U\in U$. Then one checks easily that $\{x_U:U\in\mc B\}$ is dense by checking that it intersects every nonempty open subset of $X$. This proves (1)$\Rightarrow$(2).
 
 Assume that $X$ is a metric space with countable dense subset $E$. Let us prove that the countable set
 \begin{align*}
@@ -8167,7 +8168,7 @@ These examples indicate why condition (1) of Thm. \ref{lb277} or (1') of Prop. \
 
 Let $\wtd X,Y$ be topological spaces, let $X\subset \wtd X$, and let $f:X\rightarrow Y$ be a continuous map. The \textbf{extension problem} asks whether $f$ can be extended to a continuous map $\wtd f:\wtd X\rightarrow Y$. ``Extended" means that $\wtd f|_X=f$.  Since we can try to first extend $f$ from $X$ to its closure $\Cl_{\wtd X}(X)$, and then from $\Cl_{\wtd X}(X)$ to $\wtd X$, the extension problem can naturally be divided into two cases: (1) $X$ is dense in $\wtd X$. (2) $X$ is closed in $\wtd X$.
 
-In this chapter, we study the first case. Assume that $X$ is dense in $\wtd X$. Then by Prop. \ref{lb196}, we know that $f$ can have at most one extension if $Y$ is Hausdorff. So there is essentially no uniqueness issue. 
+In this chapter, we study the first case. (The second case will be discussed in Sec. \ref{lb464}.) Assume that $X$ is dense in $\wtd X$. Then by Prop. \ref{lb196}, we know that $f$ can have at most one extension if $Y$ is Hausdorff. So there is essentially no uniqueness issue. 
 
 
 The study of extension problem in this case has a long history. As we have seen in Subsec. \ref{lb290}, the limits of functions can be understood in this light: If $x\in\wtd X\setminus X$, then $f$ can be extended to a continuous function on $X\cup\{x\}$ iff $\lim_{p\rightarrow x}f(p)$ exists. Of course, this is simply a rephrasing of the definition of $\lim_{p\rightarrow x}f(p)$. But the idea of ``extending $f$ to $\wtd X$ by first extending $f$ to a slightly larger set with one extra point $\{x\}$" is helpful and can sometimes simplify proofs.
@@ -10433,7 +10434,7 @@ On the contrary, if $f$ is defined on an open subset of $\Cbb$, and if $f'$ exis
 In the following, we show that some important real variable functions can be approximated by their Taylor series. Actually, the proof can be simplified by complex analysis, since these examples are the restriction of some differentiable complex variable functions (aka \textbf{holomorphic functions}) to the real line.
 
 
-\begin{eg}
+\begin{eg}\label{lb480}
 Consider the Taylor expansion of $\log:\Rbb_{>0}\rightarrow\Rbb$ at $x=1$. By induction on $n\in\Zbb_+$, one computes that
 \begin{align*}
 \log^{(n)}(x)=(-1)^{n-1}\frac{(n-1)!}{x^n}
@@ -10923,15 +10924,35 @@ Let $I=[a,b]$ and $J=[c,d]$ be intervals in $\Rbb$ with at least two points. Let
 
 
 
+\begin{sprob}
+Prove that, for $x \in(-1,1]$,
+\begin{align}\label{eq198}
+\arctan x=\sum_{k=0}^{\infty}(-1)^k \frac{x^{2 k+1}}{2 k+1}=x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+-\cdots,
+\end{align}
+and hence (\textbf{Leibniz formula})
+\begin{align*}
+\frac{\pi}{4}=\sum_{k=0}^{\infty} \frac{(-1)^k}{2 k+1}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+-\cdots
+\end{align*}
+\end{sprob}
 
 
-\begin{prob}\label{lb357}
+\begin{proof}[Hint]
+Use the method in the second proof of Exp. \ref{lb480} to prove \eqref{eq198} for $x\in(-1,1)$. To prove \eqref{eq198} for $x=1$, show that the series on the RHS of \eqref{eq198} converges uniformly on $[0,1]$ to a continuous function using Dirichlet's test for uniform convergence (Thm. \ref{lb481}).
+\end{proof}
+
+
+
+
+
+
+
+\begin{sprob}\label{lb357}
 Let $n\in\Nbb$. Find the radius of convergence of
 \begin{align}
 f(z)=\sum_{k=n}^\infty {k\choose n}z^n
 \end{align}
 Find the explicit formula of $f(z)$.
-\end{prob}
+\end{sprob}
 
 
 
@@ -10953,12 +10974,12 @@ where $[z_0,z]=\{tz+(1-t)z_0:0\leq t\leq 1\}$.
 
 
 
-\begin{prob}
+\begin{sprob}
 Let $V$ be a Banach space over $\Cbb$. Assume that the power series $f(z)=\sum_{k=0}^\infty v_kz^k$ (where $v_k\in V$) has radius of convergence $R>0$. Choose any $z_0\in B_\Cbb(0,R)$. Prove that there exists a neighborhood $\Omega\in\Nbh_\Cbb(z_0)$ contained inside $B_\Cbb(0,R)$, such that the Taylor series of $f$ at $z_0$ converges uniformly on $\Omega$ to $f$. Namely, prove that the series $g(z)$ converges locally uniformly to $f$ on $\Omega$ where
 \begin{align}
 g(z)=\sum_{k=0}^\infty\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k
 \end{align}
-\end{prob}
+\end{sprob}
 
 \begin{proof}[Hint]
 Use Thm. \ref{lb356}.  Pb.  \ref{lb357} might also be helpful.
@@ -10967,13 +10988,13 @@ Use Thm. \ref{lb356}.  Pb.  \ref{lb357} might also be helpful.
 
 
 
-\begin{prob}
+\begin{sprob}
 Let $W$ be a real vector space. Let $A$ be a nonempty subset of $W$. Define the \textbf{convex hull} \index{00@Convec hull} of $A$ to be the set of all convex combinations (recall Lem. \ref{lb365}) of elements of $A$, i.e.
 \begin{align}
 \mathrm{Cvh}(A)=\big\{\text{convex combinations of }v_1,\dots,v_n:n\in\Zbb_+\text{ and } v_1,\dots,v_n\in A\big\}
 \end{align}
 Prove that $\mathrm{Cvh}(A)$ is the smallest convex set containing $A$. In other words, prove that $\mathrm{Cvh}(A)$ is a convex set containing $A$, and that $\mathrm{Cvh}(A)\subset B$ if $B$ is a convex subset of $W$ containing $A$.
-\end{prob}
+\end{sprob}
 
 
 
@@ -11072,7 +11093,7 @@ In order to use \eqref{eq153} to determine the solution $f(x,t)$ when the initia
 \end{align}
 since this formula is true when $g(x)=e^{\im kx}$.
 
-%% Proofread
+
 
 \subsubsection{From Riemann integrals to Lebesgue integrals}
 
@@ -11089,7 +11110,9 @@ In order to understand which functions have Fourier series expansions (in whatev
 
 
 
-The goal of this chapter is to learn Riemann integrals. The construction of Riemann integrals is much easier than Lebesgue theory. But compared to the latter, Riemann integrals have some serious drawbacks. For example, if a sequence of Riemann integrable functions $(f_n)$ on $[a,b]$ converges uniformly to $f$, then $f$ is Riemann integrable, and $\int f=\lim \int f_n$. (See Cor. \ref{lb380}.) However, if $(f_n)$ only converges pointwise to $f$, then $f$ is not necessarily Riemann integrable. Even if $f$ is Riemann integrable, one does not have a useful criterion for $\int f=\lim \int f_n$ in the framework of Riemann integrals. 
+The goal of this chapter is to learn Riemann integrals. The construction of Riemann integrals is much easier than Lebesgue theory. But compared to the latter, Riemann integrals have some serious drawbacks. 
+
+For example, suppose that a sequence of functions $(f_n)$ on $[-\pi,\pi]$ converges to $f$ in some sense. It is natural to ask whether the Fourier coefficients of $(f_n)$ converge to those of $f$. (A typical example is $f_n(x)=\sum_{k=-n}^na_k e^{\im kx}$. Then this question asks whether the $n$-th Fourier coefficient of the series $\sum_{k=-\infty}^{+\infty}a_k e^{\im kx}$ is $a_n$.) In view of \eqref{eq155}, this problem is reduced to the problem of showing $\int f=\lim_n\int f_n$. If $(f_n)$ is a sequence of Riemann integrable functions converging uniformly to $f$, then $f$ is Riemann integrable, and $\int f=\lim \int f_n$. (See Cor. \ref{lb380}.) However, if $(f_n)$ only converges pointwise to $f$, then $f$ is not necessarily Riemann integrable. Even if $f$ is Riemann integrable, one does not have a useful criterion for $\int f=\lim \int f_n$ in the framework of Riemann integrals. 
 
 But uniform convergence often does not hold in application, and especially in Fourier theory and PDEs. For example, let $f$ be the function on $\Rbb$ with period $2\pi$ defined by $f(x)=x$ if $-\pi<x<\pi$ and $f(\pi)=0$. Then the Fourier series
 \begin{align}
@@ -11121,7 +11144,7 @@ Equivalently, this partition can be written as
 \begin{align}
 I=I_1\cup I_2\cup\cdots\cup I_n\qquad I_j=[a_{j-1},a_j]
 \end{align}
-If $\sigma,\sigma'\in \fin(2^I)$ are partitions of $I$, we say that $\sigma'$ is a \textbf{refinement} \index{00@Refinement of a partition} of $\sigma$, if $\sigma\subset\sigma'$. In this case, we also write  \index{zz@$\sigma\prec\sigma'$} 
+If $\sigma,\sigma'\in \fin(2^I)$ are partitions of $I$, we say that $\sigma'$ is a \textbf{refinement} \index{00@Refinement of a partition} \index{00@Finer partition} of $\sigma$ (or that $\sigma'$ is \textbf{finer than} $\sigma$), if $\sigma\subset\sigma'$. In this case, we also write  \index{zz@$\sigma\prec\sigma'$} 
 \begin{align*}
 \sigma\prec\sigma'
 \end{align*}
@@ -11134,7 +11157,7 @@ We define $\mc P(I)$ or simply $\mc P$ to be\index{PI@$\mc P(I)$, the set of par
 
 
 \begin{rem}
-If $\sigma,\sigma'\in\mc P(I)$, then clearly $\sigma\cup\sigma'\in\mc P(I)$ and $\sigma,\sigma'\sim \sigma\cup\sigma$. Therefore, $\prec$ is a partial order on $\mc P(I)$. We call $\sigma\cup\sigma'$ the \textbf{common refinement} \index{00@Common refinement} of $\sigma$ and $\sigma'$.
+If $\sigma,\sigma'\in\mc P(I)$, then clearly $\sigma\cup\sigma'\in\mc P(I)$ and $\sigma,\sigma'\prec \sigma\cup\sigma$. Therefore, $\prec$ is a partial order on $\mc P(I)$. We call $\sigma\cup\sigma'$ the \textbf{common refinement} \index{00@Common refinement} of $\sigma$ and $\sigma'$.
 \end{rem}
 
 
@@ -11205,12 +11228,12 @@ If $f:X\rightarrow Y$ is a map where $X$ is a set, and if $E\subset X$, the \tex
 \end{df}
 
 
-The following lemma allows us to control the difference of Riemann sums by the oscillation.
+The following lemma allows us to control the difference of Riemann sums by means of the oscillation.
 
 \begin{lm}\label{lb371}
 Let $f:I=[a,b]\rightarrow V$ and $M=\diam(f(I))$. Then for each $(\sigma,\xi_\blt),(\sigma',\xi_\blt')\in\mc Q(I)$ we have
 \begin{align}
-\Vert S(f,\sigma,\xi_\blt)-S(f,\sigma',\xi_\blt)\Vert\leq M(b-a)
+\Vert S(f,\sigma,\xi_\blt)-S(f,\sigma',\xi_\blt')\Vert\leq M(b-a)
 \end{align}
 \end{lm}
 
@@ -11348,9 +11371,7 @@ The \textbf{Dirichlet function} $\chi_\Qbb$ is not (strongly) Riemann integrable
 \subsection{Basic properties of Riemann integrals}
 
 
-Let $I=[a,b]$ be an interval in $\Rbb$. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. 
-
-We begin this section with the following fundamental fact. We will use this fact to prove Fubini's theorem, the second fundamental theorem calculus, and much more.
+Let $I=[a,b]$ be a compact interval in $\Rbb$. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. We begin this section with the following fundamental fact, which will be used to prove Fubini's theorem, the second fundamental theorem calculus, and much more.
 
 
 \begin{thm}\label{lb392}
@@ -11378,6 +11399,7 @@ Since $T$ is continuous, the limit over $(\sigma,\xi_\blt) \in \mc Q(I)$ of \eqr
 \begin{align*}
 T\Big(\lim_{(\sigma,\xi_\blt)\in\mc Q(I)}S(f,\sigma,\xi_\blt)\Big)=T\Big(\int_a^b f \Big)
 \end{align*}
+This proves that $\lim S(T\circ f,\sigma,\xi_\blt)$ converges to $T(\int_a^bf)$, i.e., $\int_a^b T\circ f$ exists and equals $T(\int_a^bf)$.
 \end{proof}
 
 
@@ -11386,7 +11408,7 @@ T\Big(\lim_{(\sigma,\xi_\blt)\in\mc Q(I)}S(f,\sigma,\xi_\blt)\Big)=T\Big(\int_a^
 \begin{rem}\label{lb374}
 Let $f:I\rightarrow V$ and $\eps>0$. To simplify the following discussion, we say that $f$ is \textbf{$\eps$-dominated} \index{zz@$\eps$-dominated} by $\sigma\in\mc P(I)$, if for all $(\sigma',\xi_\blt'),(\sigma'',\xi_\blt'')\in\mc Q([a,b])$ satisfying $\sigma\subset\sigma',\sigma''$, we have $\Vert S(f,\sigma',\xi_\blt')-S(f,\sigma'',\xi_\blt'')\Vert<\eps$. 
 
-Thus, by Cauchy condition, if $f$ is $\eps$-dominated by some partition for every $\eps>0$, then $f\in\scr R(I,V)$, and clearly
+Thus, by Cauchy condition, if $f$ is $\eps$-dominated by some partition for every $\eps>0$, then $f\in\scr R(I,V)$. Moreover,
 \begin{align}
 \Big\Vert \int_a^b f-S(f,\sigma,\xi_\blt) \Big\Vert\leq\eps
 \end{align}
@@ -11398,33 +11420,6 @@ for every $(\sigma,\xi_\blt)\in\mc Q(I)$ such that $f$ is $\eps$-dominated by $\
 
 
 \subsubsection{The bounded linear map of integral operator}
-
-
-\begin{thm}\label{lb375}
-$\scr R(I,V)$ is a linear subspace of $l^\infty(I,V)$. Moreover,  the map
-\begin{align}
-\int: \scr R(I,V)\rightarrow V\qquad f\mapsto\int_a^b f \label{eq159}
-\end{align}
-is a bounded linear map with operator norm $b-a$ if we equip $\scr R(I,V)$ with the $l^\infty$-norm.
-\end{thm}
-
-
-
-\begin{proof}
-By the basic properties of limits of nets, we know that if $f,g\in\scr R(I,V)$ and $\alpha,\beta\in\Fbb$, then $\alpha f+\beta g\in\scr R(I,V)$, and
-\begin{align}
-\int_a^b (\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g
-\end{align}
-This proves that $\scr R(I,V)$ is a linear subspace of $l^\infty(I,V)$, and that \eqref{eq159} is linear. 
-
-Let us prove $\scr R(I,V)\subset l^\infty(I,V)$. Choose $f\in\scr R(I,V)$. Then $f$ is $1$-dominated by some $\sigma=\{a_0<\cdots<a_n\}\in\mc P(I)$. Choose any tag $\xi_\blt$ on $\sigma$. Choose any $x\in X$. Let $[a_{i-1},a_i]$ be the subinterval containing $x$. Let $\eta_\blt=(\xi_1,\dots,\xi_{i-1},x,\xi_{i+1},\dots,\xi_n)$. Then $\Vert S(f,\sigma,\eta_\blt)-S(f,\sigma,\xi_\blt)\Vert<1$ implies that $\Vert f(x)-f(\xi_i)\Vert\leq 1/(a_i-a_{i-1})$. So
-\begin{align*}
-\Vert f\Vert_{l^\infty}\leq \max\big\{\Vert f(\xi_i)\Vert+(a_i-a_{i-1})^{-1}:1\leq i\leq n  \big\}<+\infty
-\end{align*}
-
-Let us prove the claim about the operator norm. Choose any $f\in\scr R(I,V)$. Let $M=\Vert f\Vert_\infty<+\infty$. Then $|f|\leq M$. It is easy to see that $\int_a^b M=M(b-a)$. Thus, by \ref{lb379}, we have $\Vert\int_a^b f\Vert\leq M(b-a)=\Vert f\Vert_\infty\cdot(b-a)$, where ``$\leq$" becomes ``$=$" if we let $f$ be a nonzero constant function. This proves that \eqref{eq159} has operator norm $b-a$ thanks to Rem. \ref{lb372}.
-\end{proof}
-
 
 
 \begin{pp}\label{lb379}
@@ -11445,6 +11440,38 @@ Assume that $f:I\rightarrow V$ is strongly Riemann integrable. Then $|f|:I\right
 \begin{proof}
 By triangle inequality, for every $\sigma\in\mc P(I)$ we have $\omega(|f|,\sigma)\leq \omega(f,\sigma)$. So $|f|$ is strongly integrable. The rest of the corollary follows from Prop. \ref{lb379}.
 \end{proof}
+
+
+
+
+\begin{thm}\label{lb375}
+$\scr R(I,V)$ is a linear subspace of $l^\infty(I,V)$. Moreover,  the map
+\begin{align}
+\int: \scr R(I,V)\rightarrow V\qquad f\mapsto\int_a^b f \label{eq159}
+\end{align}
+is a bounded linear map with operator norm $b-a$ if we equip $\scr R(I,V)$ with the $l^\infty$-norm.
+\end{thm}
+
+%% Record #18 2023/11/22 three lectures  45
+
+
+\begin{proof}
+By the basic properties of limits of nets, we know that if $f,g\in\scr R(I,V)$ and $\alpha,\beta\in\Fbb$, then $\alpha f+\beta g\in\scr R(I,V)$, and
+\begin{align}
+\int_a^b (\alpha f+\beta g)=\alpha\int_a^b f+\beta\int_a^b g
+\end{align}
+This proves that $\scr R(I,V)$ is a linear subspace of $V^I$, and that \eqref{eq159} is linear. 
+
+Let us prove $\scr R(I,V)\subset l^\infty(I,V)$. Choose $f\in\scr R(I,V)$. Then $f$ is $1$-dominated by some $\sigma=\{a_0<\cdots<a_n\}\in\mc P(I)$. Fix any tag $\xi_\blt$ on $\sigma$. Choose any $x\in X$. Let $[a_{i-1},a_i]$ be the subinterval containing $x$. Let $\eta_\blt=(\xi_1,\dots,\xi_{i-1},x,\xi_{i+1},\dots,\xi_n)$. Then $\Vert S(f,\sigma,\eta_\blt)-S(f,\sigma,\xi_\blt)\Vert<1$ implies that $\Vert f(x)-f(\xi_i)\Vert\leq 1/(a_i-a_{i-1})$. So
+\begin{align*}
+\Vert f\Vert_{l^\infty}\leq \max\big\{\Vert f(\xi_i)\Vert+(a_i-a_{i-1})^{-1}:1\leq i\leq n  \big\}<+\infty
+\end{align*}
+
+Let us prove the claim about the operator norm. Choose any $f\in\scr R(I,V)$. Let $M=\Vert f\Vert_\infty<+\infty$. Then $|f|\leq M$. It is easy to see that $\int_a^b M=M(b-a)$. Thus, by Prop. \ref{lb379}, we have $\Vert\int_a^b f\Vert\leq M(b-a)=\Vert f\Vert_\infty\cdot(b-a)$, where ``$\leq$" becomes ``$=$" if we let $f$ be a nonzero constant function. This proves that \eqref{eq159} has operator norm $b-a$ thanks to Rem. \ref{lb372}.
+\end{proof}
+
+
+
 
 
 
@@ -11476,7 +11503,7 @@ By Thm. \ref{lb375}, it suffices to prove that $g-f$ is Riemann integrable and $
 
 
 \begin{pp}\label{lb376}
-Let $f:[a,b]\rightarrow V$. Let $c\in(a,b)$. Then $f\in\scr R([a,b],V)$ iff $f|_{[a,c]}\in\scr R([a,c],V)$ and $f|_{[c,b]}\in\scr R([c,b],V)$. Moreover, if $f\in\scr R([a,b],V)$, then
+Let $f:[a,b]\rightarrow V$. Let $c\in[a,b]$. Then $f\in\scr R([a,b],V)$ iff $f|_{[a,c]}\in\scr R([a,c],V)$ and $f|_{[c,b]}\in\scr R([c,b],V)$. Moreover, if $f\in\scr R([a,b],V)$, then
 \begin{align}
 \int_a^b f=\int_a^cf+\int_c^bf\label{eq158}
 \end{align}
@@ -11488,6 +11515,8 @@ Let $f:[a,b]\rightarrow V$. Let $c\in(a,b)$. Then $f\in\scr R([a,b],V)$ iff $f|_
 
 
 \begin{proof}
+This is obvious when $c=a$ or $c=b$ (recall Conv. \ref{lb381}). So we assume $a<c<b$. 
+
 First, we assume $f\in\scr R([a,b],V)$. By Cauchy condition, for each $\eps>0$, $f$ is $\eps$-dominated by some $\sigma\in\mc P(I)$.  By enlarging $\sigma$, we assume that $c\in\sigma$. Then it is easy to see that $f|_{[a,c]}$ is $\eps$-dominated by $\sigma\cap[a,c]$, and $f|_{[c,b]}$ is $\eps$-dominated by $\sigma\cap[c,b]$. So $f|_{[a,c]}$ and $f|_{[c,b]}$ are Riemann integrable.
 
 Now assume that $f|_{[a,c]}$ and $f|_{[c,b]}$ are Riemann integrable. Choose any $\eps>0$. Then $f|_{[a,c]}$ is $\eps$-dominated by some $\tau\in \mc P([a,c])$, and $f|_{[c,b]}$ is $\eps$-dominated by some $\varrho\in\mc P([c,b])$. Then $f$ is $2\eps$-dominated by $\sigma=\tau\cup\varrho$. This proves that $f\in\scr R(I,V)$. Let  $\alpha_\blt$ be a tag on $[a,c]$, and let $\beta_\blt$ be  a tag on $[c,b]$. Then $\xi_\blt=(\alpha_\blt,\beta_\blt)=(\alpha_1,\alpha_2,\dots,\beta_1,\beta_2,\dots)$ is a tag on $[a,b]$, and
@@ -11518,13 +11547,18 @@ The function $f:[0,1]\rightarrow\Rbb$ defined by $f(x)=\sin(1/x)$ if $0<x\leq 1$
 \end{eg}
 
 \begin{eg}\label{lb388}
-Let $I_1,\dots,I_n$ be mutually disjoint intervals inside $I$. Choose $v_1,\dots,v_n\in V$. Then by Exp. \ref{lb378}, $f=\sum_{j=1}^n v_j\chi_{I_j}$ is Riemann integrable. In fact, it is not hard to check that $f$ is strongly integrable.
+Let $I_1,\dots,I_n$ be intervals inside $I$. Choose $v_1,\dots,v_n\in V$ and set $f=\sum_{j=1}^n v_j\chi_{I_j}$. Then $f\in\scr R(I,V)$. 
 \end{eg}
+
+\begin{proof}
+The case of arbitrary $n$ follows from the case $n=1$ by linearity and Thm. \ref{lb375}. Assume $n=1$, and let $c=\inf I_1$ and $d=\sup I_1$. Then the restriction of $f$ to $[a,c]$ (resp. $[c,d]$ and $[d,b]$) equals a constant function except possibly at the end points of the interval. So $f|_{[a,c]},f|_{[c,d]},f|_{[d,b]}$ are Riemann integrable by Prop. \ref{lb382}. So $f$ is Riemann integrable by Prop. \ref{lb376}.
+\end{proof}
+
 
 
 
 \begin{eg}\label{lb383}
-Let $f\in C(I,V)$. For each $n\in\Zbb_+$, choose a tag $\xi_{\blt,n}$ for the partition $\sigma=(a,a+|I|/n,a+2|I|/n,\dots,a+(n-1)|I|/n,b)$ of $I$. Then
+Let $f\in C(I,V)$. For each $n\in\Zbb_+$, choose a tag $\xi_{\blt,n}$ for the partition $\sigma=\{a,a+|I|/n,a+2|I|/n,\dots,a+(n-1)|I|/n,b\}$ of $I$. Then
 \begin{align}
 \lim_{n\rightarrow\infty} \frac {b-a}n\sum_{i=1}^n f(\xi_{i,n})=\int_a^bf  \label{eq161}
 \end{align}
@@ -11533,9 +11567,9 @@ Let $f\in C(I,V)$. For each $n\in\Zbb_+$, choose a tag $\xi_{\blt,n}$ for the pa
 
 
 \begin{proof}
-Let $f_n=\sum_{i=1}^n f(\xi_{i,n})\cdot\chi_{J_{i,n}}$ where $J_i=\big(a+\frac{i-1}n|I|,a+\frac in|I|\big]$ if $i>1$, and $J_{1,n}=[a,a+|I|/n]$. Then $f_n\in\scr R(I,V)$ by Exp. \ref{lb388}. Moreover, by Prop. \ref{lb382} and \ref{lb376}, the LHS of \eqref{eq161} equals $\int_a^b f_n$.
+Let $f_n=\sum_{i=1}^n f(\xi_{i,n})\cdot\chi_{J_{i,n}}$ where $J_{i,n}=\big(a+\frac{i-1}n|I|,a+\frac in|I|\big]$ if $i>1$, and $J_{1,n}=[a,a+|I|/n]$. Then $f_n\in\scr R(I,V)$ by Exp. \ref{lb388}. Moreover, by Prop. \ref{lb376}, the LHS of \eqref{eq161} equals $\lim_n\int_a^b f_n$.
 
-By Thm. \ref{lb194}, $f$ is uniformly continuous. So for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n\geq N$ and all $x,y\in \Cl_\Rbb(J_{i,n})$ we have $\Vert f(x)-f(y)\Vert<\eps$. Thus, for all $n\geq N$ we have $\Vert f-f_n\Vert_{l^\infty}<\eps$. Therefore $f_n\rightrightarrows f$. Thus, by Thm. \ref{lb375} we have $\int_a^b f_n\rightarrow\int_a^b f$. This proves \eqref{eq161}.
+By Thm. \ref{lb294}, $f$ is uniformly continuous. So for every $\eps>0$ there exists $N\in\Zbb_+$ such that for all $n\geq N$ and all $x,y\in \Cl_\Rbb(J_{i,n})$ we have $\Vert f(x)-f(y)\Vert<\eps$. Thus, for all $n\geq N$ we have $\Vert f-f_n\Vert_{l^\infty}<\eps$. Therefore $f_n\rightrightarrows f$. Thus, by Cor. \ref{lb380} we have $\int_a^b f_n\rightarrow\int_a^b f$. This proves \eqref{eq161}.
 \end{proof}
 
 
@@ -11546,6 +11580,9 @@ By Thm. \ref{lb391}, we have $\int_1^2x^{-1}dx=\log 2$. Thus, by Exp. \ref{lb383
 \lim_{n\rightarrow\infty}\big((n+1)^{-1}+(n+2)^{-1}+\cdots+(2n)^{-1} \big)=\log 2
 \end{align*}
 \end{eg}
+
+
+
 
 
 
@@ -11608,7 +11645,7 @@ F(a_i)-F(a_{i-1})=f(\xi_i)(a_i-a_{i-1})
 \end{align*}
 Thus, we have a tag $\xi_\blt$ such that $S(f,\sigma,\xi_\blt)=F(b)-F(a)$. Hence $|A-F(b)+F(a)|<\eps$. Since $\eps$ is arbitrary, we get $A=F(b)-F(a)$.
 
-The case $V=\Rbb^N$ can be reduced to the above special case easily. We now consider the general case that $V$ is a Banach space over $\Rbb$. Similar to \eqref{eq180}, for every $\varphi\in V^*=\fk L(V,\Rbb)$,  we have that $\varphi\circ F$ is differentiable, and that $(\varphi\circ F)'=\varphi\circ f$. Note that $\varphi\circ f\in\scr R(I,\Rbb)$ by Thm. \ref{lb392}. Applying the one-dimensional special case to $\varphi\circ f$, and by Thm. \ref{lb392}, we have
+The case $V=\Rbb^N$ can be reduced to the above special case easily. We now consider the general case that $V$ is a Banach space over $\Rbb$. Similar to \eqref{eq180}, for every $\varphi\in V^*=\fk L(V,\Rbb)$,  we have that $\varphi\circ F$ is differentiable, and that $(\varphi\circ F)'=\varphi\circ f$. Note that $\varphi\circ f\in\scr R(I,\Rbb)$ by Thm. \ref{lb392}. Apply the one-dimensional special case to $\varphi\circ f$. Then by Thm. \ref{lb392}, we have
 \begin{align*}
 \varphi\Big(\int_a^b f\Big)=\int_a^b \varphi\circ f=\varphi\circ F\big|_a^b=\varphi(F(b)-F(a))
 \end{align*}
@@ -11654,7 +11691,7 @@ When $n=0$, \eqref{eq165} is just FTC. We now prove \eqref{eq165} by induction. 
 
 
 \begin{exe}
-Use the integral form of Taylor's theorem to give a quick proof higher order finite-increment Thm. \ref{lb359} and formula \eqref{eq174} under the assumption that $f\in C^{n+1}([a,b],V)$. (This assumption is slightly stronger than that in Thm. \ref{lb359}, is enough for applications.)
+Use the integral form of Taylor's theorem to give a quick proof higher order finite-increment Thm. \ref{lb359} under the assumption that $f\in C^{n+1}([a,b],V)$. (This assumption is slightly stronger than that in Thm. \ref{lb359}, but is enough for applications.)
 \end{exe}
 
 
@@ -11700,7 +11737,7 @@ Let $\Phi\in C^1(I,\Rbb)$ such that $\Phi(I)\subset J=[c,d]$. Let $f\in C(J,V)$.
 \end{pp}
 
 \begin{proof}
-Define $F:J\rightarrow V$ and $G:I\rightarrow V$ by $\dps F(y)=\int_{\Phi(a)}^y f$ and $\dps G(x)=F\circ\Phi(x)=\int_{\Phi(a)}^{\Phi(x)}f$. Then, by chain rule, $G'=(F'\circ\Phi)\cdot\Phi'=(f\circ\Phi)\cdot\Phi'$. By FTC, we have $G'=H'$ where $H:I\rightarrow V$ is defined by
+Define $F:J\rightarrow V$ and $G:I\rightarrow V$ by $\dps F(y)=\int_{\Phi(a)}^y f$ and $\dps G(x)=F\circ\Phi(x)=\int_{\Phi(a)}^{\Phi(x)}f$. Then, by chain rule and FTC, $G'=(F'\circ\Phi)\cdot\Phi'=(f\circ\Phi)\cdot\Phi'$. By FTC, we have $G'=H'$ where $H:I\rightarrow V$ is defined by
 \begin{align*}
 H(x)=\int_a^x (f\circ\Phi)\cdot\Phi'
 \end{align*}
@@ -11713,22 +11750,22 @@ The change of variable formula allows us to define the length of a curve:
 
 
 \begin{df}
-Let $\gamma$ be a \textbf{$C^1$-curve} in $V$, i.e. $\gamma\in C^1([a,b])$. Its length \index{00@Length of a curve} is defined to be
+Let $\gamma$ be a \textbf{$C^1$-curve} in $V$, i.e. $\gamma\in C^1([a,b],V)$. Its \textbf{length} \index{00@Length of a curve} is defined to be
 \begin{align*}
 l(\gamma)=\int_a^b\Vert \gamma'(t)\Vert dt
 \end{align*}
 \end{df}
 
-\begin{pp}
-The length of $\gamma$ is invariant under a reparametrization. Namely, if $f:[c,d]\rightarrow[a,b]$ is a bijection and is in $C^1([c,d],\Rbb)$, then $l(\lambda)=l(\lambda\circ f)$.
+\begin{pp}\label{lb477}
+The length of $\gamma$ is invariant under a reparametrization. Namely, if $f:[c,d]\rightarrow[a,b]$ is a bijection and is in $C^1([c,d],\Rbb)$, then $l(\gamma)=l(\gamma\circ f)$.
 \end{pp}
 
 \begin{proof}
 By Prop. \ref{lb347}, $f$ is either increasing or decreasing. We prove the case that $f$ is decreasing; the other case is similar. Then $f(c)=b$ and $f(d)=a$. By chain rule, we have
 \begin{align*}
-l(\lambda\circ f)=\int_c^d |(\gamma\circ f)'|=\int_c^d |(\gamma'\circ f)\cdot f'|=\int_{\Phi(b)}^{\Phi(a)} (|\gamma'|\circ f)\cdot |f'|
+l(\gamma\circ f)=\int_c^d |(\gamma\circ f)'|=\int_c^d |(\gamma'\circ f)\cdot f'|=\int_c^d (|\gamma'|\circ f)\cdot |f'|
 \end{align*}
-which equals $-\int_{\Phi(b)}^{\Phi(a)} (|\gamma'|\circ f)\cdot f=\int_{\Phi(a)}^{\Phi(b)}(|\gamma'|\circ f)\cdot f$ because $f'\leq 0$ by Cor. \ref{lb330}. This expression equals $\int_a^b |\gamma'|=l(\gamma)$ by Prop. \ref{lb396}.
+which equals $-\int_c^d (|\gamma'|\circ f)\cdot f'=\int_d^c(|\gamma'|\circ f)\cdot f'$ because $f'\leq 0$ by Cor. \ref{lb330}. This expression equals $\int_a^b |\gamma'|=l(\gamma)$ by Prop. \ref{lb396}.
 \end{proof}
 
 
@@ -11743,7 +11780,11 @@ We have $l(\gamma)=\int_0^\pi |\gamma'|=\int_0^\pi 1=\pi$. So it remains to prov
 We have also proved in Sec. \ref{lb397} that $\cos:[0,\pi/2]\rightarrow\Rbb$ is a decreasing (continuous) function such that $\cos(0)=1$ and $\cos(\pi/2)=0$, and that $\cos(x)=\cos(\pi-x)$. The last relation shows that $\cos:[0,\pi]\rightarrow\Rbb$ is decreasing, and $\cos(0)=1,\cos(\pi)=-1$. Therefore, by the intermediate value theorem, we see that $\cos$ sends $[0,\pi]$ bijectively to $[-1,1]$. Since the projection map onto the $x$-axis sends $S^1_+$ bijectively to $[-1,1]$, we conclude that $\gamma$ sends $[0,\pi]$ bijectively to $S^1_+$.
 \end{proof}
 
+\begin{rem}
+You may wonder if the above argument really proves that $\pi$ is the length of $S^1_+$: Suppose that $\lambda:[a,b]\rightarrow \Cbb$ is another $C^\infty$ map restricting to a bijection $[a,b]\rightarrow S^1_+$, how can we show that $\int_0^\pi |\gamma'|=\int_a^b|\lambda'|$ ? Clearly, there is a bijection $f:[a,b]\rightarrow[0,\pi]$ such that $\lambda=\gamma\circ f$. Thus, by Prop. \ref{lb477}, the two integrals are equal if $f\in C^\infty$, or at least if $f\in C^1$. However, it seems that there is no general argument ensuring that $f\in C^1$.
 
+In the next semester, we will learn that $f\in C^\infty$ if the two $C^\infty$-parametrizations $\lambda,\gamma$ satisfy that $\lambda'$ and $\gamma'$ are nowhere zero. (Clearly $\gamma'$ is nowhere zero if $\gamma(t)=e^{\im t}$.) Such parametrizations are called \textbf{(smooth) immersions}.  \hfill\qedsymbol
+\end{rem}
 
 
 
@@ -11762,10 +11803,10 @@ Let $I=[a,b]$ where $-\infty<a<b<+\infty$.
 
 
 \begin{prob}\label{lb386}
-Let $f\in l^\infty(I,\Rbb)$. Recall from Subsec. \ref{lb384} that the refinements of partitions define preoders on $\mc P(I)$ and $\mc Q(I)$. For each $\sigma=(a_0<a_1<\cdots<a_n)\in\mc P(I)$, define the \textbf{upper Darboux sum} and the \textbf{lower Darboux sum} \index{00@Upper and lower Darboux sums}
+Let $f\in l^\infty(I,\Rbb)$. Recall from Subsec. \ref{lb384} that the refinements of partitions define preoders on $\mc P(I)$ and $\mc Q(I)$ so that they are directed sets. For each $\sigma=\{a_0<a_1<\cdots<a_n\}\in\mc P(I)$, define the \textbf{upper Darboux sum} and the \textbf{lower Darboux sum} \index{00@Upper and lower Darboux sums}
 \begin{gather*}
 \ovl S(f,\sigma)=\sum_{i=1}M_i(a_i-a_{i-1})\qquad~~~ \underline S(f,\sigma)=\sum_{i=1}m_i(a_i-a_{i-1})\\
-\text{where}\qquad M_i=\sup_{\xi\in[a_{i-1},a_i]}f(\xi_i)\qquad m_i=\inf_{\xi\in[a_{i-1},a_i]}f(\xi_i)
+\text{where}\qquad M_i=\sup_{\xi\in[a_{i-1},a_i]}f(\xi)\qquad m_i=\inf_{\xi\in[a_{i-1},a_i]}f(\xi)
 \end{gather*}
 Prove that 
 \begin{align*}
@@ -11829,7 +11870,7 @@ gives a $\Cbb$-linear map
 \int_a^b:\scr R(I,\Cbb)\rightarrow\Cbb\\
 \int_a^b f=\int_a^b\Real f+\im\int_a^b\Imag f
 \end{gather*}
-since $\Real(\im f)=-\Imag f$. Moreover, this linear map has operator norm $(b-a)$. This defines the complex integral operator by means of real Darboux integrals. In the next semester, we will use the same method to extend real-valued Lebesgue integrals to complex-valued ones.
+since $\Real(\im f)=-\Imag f$. Moreover, this linear map has operator norm $(b-a)$. This defines the complex integral operator by means of real Darboux integrals. In the next semester, we will use the same method to extend real-valued Lebesgue integrals to complex-valued ones. Pb. \ref{lb387} will also be used to prove the Hahn-Banach extension theorem.
 \end{rem}
 
 
@@ -11862,7 +11903,7 @@ To find $\int_0^1f$, for each $y\in\Rbb$, define $\varphi_y:V\rightarrow\Rbb$ by
 
 
 \begin{prob}
-Use the fundamental theorem of calculus to give another proof that $C^1(I,V)$ is complete under the $l^{1,\infty}$-norm.
+Let $V$ be a Banach space. Use the fundamental theorem of calculus to give another proof that $C^1(I,V)$ is complete under the $l^{1,\infty}$-norm. (Do not use Thm. \ref{lb336}.)
 \end{prob}
 
 
@@ -11889,11 +11930,11 @@ Prove Gronwall's inequality. Hint: Let $g(x)$ be the RHS of \eqref{eq160}. Show 
 \end{sprob}
 
 \begin{srem}
-Gronwall's inequality is often used in the following form. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. Let $f\in C(I,V)$, $v\in V$, and $g\in C(I,\Rbb_{\geq0})$. Suppose that for all $x\in[a,b]$ we have
+Gronwall's inequality is often used in the following way. Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. Let $f\in C(I,V)$, $v\in V$, and $\beta\in C(I,\Rbb_{\geq0})$. Suppose that for all $x\in[a,b]$ we have
 \begin{align}
-\Vert f(x)-v\Vert\leq\int_a^x\beta(t)\Vert f(t)\Vert
+\Vert f(x)-v\Vert\leq\int_a^x\beta(t)\Vert f(t)\Vert dt
 \end{align}
-Applying Gronwall's inequality to $|f|$, we see that for every $x\in[a,b]$,
+Applying Gronwall's inequality to $|f|$ and $\alpha=\Vert v\Vert$, we see that for every $x\in[a,b]$,
 \begin{align}
 \Vert f(x)\Vert\leq \Vert v\Vert\cdot  \exp\Big(\int_a^x \beta(t)dt \Big)
 \end{align}
@@ -11924,8 +11965,10 @@ Assume that the function $f(a,\cdot):X\rightarrow V$ (sending $x$ to $f(a,x)$) i
 \end{sprob}
 
 
-\begin{rem}
-In practice, $V$ is often $\Rbb^N$, and $\varphi$ is a ``smooth function", i.e. a function whose (mixed) partial derivatives of all orders exist and are continuous. It is also common that $\varphi$ is independent of $t\in I$. (Indeed, a $t$-dependent differential equation $f'=\varphi(t,f)$ can be transformed into a $t$-independent one $(t,f)'=(1,\varphi(t,f))$.) However, sometimes $f$ is not defined on $\Rbb^N$, but on a closed subset of $\Rbb^N$, for example, on a closed ball. In this case, the uniqueness and the continuity of the solutions of differential equations can be treated by extending $\varphi$ to a smooth function on $\Rbb^N$ that is zero outside a compact set. (Then the Lipschitz continuity of this extended function will follow automatically.) In fact, by the \textbf{smooth Tietze extension theorem} (cf. \cite[Lem. 2.26]{Lee}), every smooth function $A\rightarrow\Rbb^k$ (where $A$ is a compact subset of a smooth real manifold $M$ (such as a Euclidean space, an $n$-dimensional sphere, etc.)) can be extended to a smooth function $M\rightarrow\Rbb^k$ vanishing outside a compact set. 
+\begin{rem}\label{lb479}
+In practice, $V$ is often $\Rbb^N$, and $\varphi$ is a ``smooth function", i.e. a function whose (mixed) partial derivatives of all orders exist and are continuous. It is also common that $\varphi$ is independent of $t\in I$. (Indeed, a $t$-dependent differential equation $f'=\varphi(t,f)$ can be transformed into a $t$-independent one $(t,f)'=(1,\varphi(t,f))$.) However, sometimes $f$ is not defined on $\Rbb^N$, but on a closed subset of $\Rbb^N$, for example, on a closed ball. In this case, the uniqueness and the continuity of the solutions of differential equations can be treated by extending $\varphi$ to a smooth function on $\Rbb^N$ that is zero outside a compact set. (Then the Lipschitz continuity of this extended function will follow automatically.) 
+
+In fact, by the \textbf{smooth Tietze extension theorem} (cf. \cite[Lem. 2.26]{Lee}), every smooth function $A\rightarrow\Rbb^k$ (where $A$ is a compact subset of a smooth real manifold $M$ (such as a Euclidean space, an $n$-dimensional sphere, etc.)) can be extended to a smooth function $M\rightarrow\Rbb^k$ vanishing outside a compact set. We will study this theorem in the second semester. (The case $A\subset\Rbb$ will be proved in Exp. \ref{lb478}.) \hfill\qedsymbol
 \end{rem}
 
 
@@ -11967,7 +12010,7 @@ Let $f\in C(I\times J,V)$. Then $\int_I\int_Jf=\int_J\int_If$. More precisely,
 \end{align}
 \end{thm}
 
-Our strategy is to view $\int_I f(x,y)dx$ as the integral of the function $I\rightarrow C(J,V)$ sending $x$ to $f(x,\cdot)$. Then Fubini's theorem follows from the commutativity of integrals and the bounded linear map $\int_J:C(J,V)\rightarrow V$ (cf. Thm. \ref{lb392}). We first make some general discussion before carrying out the rigorous proof.
+Our strategy is to view $\int_I f(x,y)dx$ as the integral of the function $I\rightarrow C(J,V)$ sending $x$ to $f(x,\cdot)$. Then Fubini's theorem follows from the commutativity of integrals and the bounded linear map $\int_J:C(J,V)\rightarrow V$ (cf. Thm. \ref{lb392}). We first make some general discussion before giving the rigorous proof.
 
 
 Let $Y$ be a compact topological space. By Thm. \ref{lb274}, we have a canonical equivalence $C(I\times Y,V)\simeq C(I,C(Y,V))$ by viewing $f\in C(I\times Y,V)$ as a map
@@ -12012,7 +12055,7 @@ Then this linear map is clear bounded (with operator norm $1$). Thus, by Thm. \r
 
 
 \begin{proof}[\textbf{Proof of Thm. \ref{lb399}}]
-By Thm. \ref{lb373}, the integral operator $\int_J:C(J,V)\rightarrow V$ is a bounded linear map. Therefore, by Thm. \ref{lb392} (and in particular \eqref{eq166}), we have a commutative diagram
+By Thm. \ref{lb375}, the integral operator $\int_J:C(J,V)\rightarrow V$ is a bounded linear map. Therefore, by Thm. \ref{lb392} (and in particular \eqref{eq166}), we have a commutative diagram
 \begin{equation*}
 \begin{tikzcd}[column sep=huge]
 C(I,C(J,V)) \arrow[r,"\int_J\circ"] \arrow[d,"\int_I"'] & C(I,V) \arrow[d,"\int_I"] \\
@@ -12024,7 +12067,7 @@ where the top arrow is the map sending $\Phi(f)$ to $\int_J\circ\Phi(f)$, i.e., 
 
 
 \begin{df}
-Let $I_1,\dots,I_N$ be compact integrals in $\Rbb$. Let $B=I_1\times\cdots\times I_N$ and $f\in C(B,V)$. We define the \textbf{Riemann integral} of $f$ to be
+Let $I_1,\dots,I_N$ be compact intervals in $\Rbb$. Let $B=I_1\times\cdots\times I_N$ and $f\in C(B,V)$. We define the \textbf{Riemann integral} of $f$ to be
 \begin{align*}
 \int_Bf=\int_{I_1}\cdots\int_{I_N}f(x_1,\dots,x_N)dx_N\cdots dx_1
 \end{align*}
@@ -12046,7 +12089,7 @@ Let $f:I\times J\rightarrow V$. Consider $f$ as a map $\Psi(f):I\rightarrow V^J$
 \end{align}
 Let $\partial_J$ be the (partial) derivative with respect the variable $y\in J$. Clearly
 \begin{align}
-\partial_J\big(\Psi(f)(x)\big)=\partial_Jf(x,y)
+\partial_J\big(\Psi(f)(x)\big)=\partial_Jf(x,\cdot)
 \end{align}
 The linear map of derivative
 \begin{align}
@@ -12057,7 +12100,7 @@ is clearly bounded (with operator norm $\leq 1$).
 \begin{pp}\label{lb402}
 Let $X$ be a topological space. Let $f:X\times J\rightarrow V$, and define $\Psi(f):X\rightarrow V^J$ by \eqref{eq173}. Then the following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
-\item $\Psi(f)$ is an element of $C(X,C^1(J,V))$. Xn other words:
+\item $\Psi(f)$ is an element of $C(X,C^1(J,V))$. In other words:
 \begin{itemize}
 \item[(1a)] For each $x\in X$ we have $\Psi(f)(x)\in C^1(J,V)$.
 \item[(1b)] The function $x\in X\mapsto \Psi(f)(x)\in C^1(J,V)$ is continuous.
@@ -12120,10 +12163,13 @@ C(I,C^1(J,V)) \arrow[r,"\partial_J\circ"] \arrow[d,"\int_I"'] & C(I,C(J,V)) \arr
 C^1(J,V) \arrow[r,"\partial_J"]           & C(J,V)         
 \end{tikzcd} 
 \end{equation*}
-By Prop. \ref{lb402}, $\Psi(f)$ is an element of $C(I,C^1(J,V))$. The map $\Psi(f):I\rightarrow C^1(J,V)$, composed with $\partial_J$, gives $x\in I\mapsto\partial_Jf(x,\cdot)$. So $\partial_J\circ\Psi(f)=\Phi(\partial_Jf)$ where $\Phi(\partial_Jf)$ is defined as in \eqref{eq167}. By Lem. \ref{lb400}, the direction ${}^\rightarrow\!\downarrow$ sends $\Psi(f)$ to $\int_I\partial_J f(x,\cdot)dx$. By Lem. \ref{lb403}, $\int_I\Psi(f)$ equals $\int_I f(x,\cdot)$. So $\downarrow_\rightarrow$ sends $\Psi(f)$ to $\partial_J\int_I f(x,\cdot)dx$. This finishes the proof.
+By Prop. \ref{lb402}, $\Psi(f)$ is an element of $C(I,C^1(J,V))$. The map $\Psi(f):I\rightarrow C^1(J,V)$, composed with $\partial_J$, gives $x\in I\mapsto\partial_Jf(x,\cdot)$. 
+%So $\partial_J\circ\Psi(f)=\Phi(\partial_Jf)$ where $\Phi(\partial_Jf)$ is defined as in \eqref{eq167}. 
+By Lem. \ref{lb400}, the direction ${}^\rightarrow\!\downarrow$ sends $\Psi(f)$ to $\int_I\partial_J f(x,\cdot)dx$. By Lem. \ref{lb403}, $\int_I\Psi(f)$ equals $\int_I f(x,\cdot)$. In particular, $\int_I f(x,\cdot)$ is a $C^1$-function. So $\downarrow_\rightarrow$ sends $\Psi(f)$ to $\partial_J\int_I f(x,\cdot)dx$. This finishes the proof.
 \end{proof}
 
 
+%% Proofread
 
 \begin{proof}[Second proof]
 Fix any $y\in J$. In view of Cor. \ref{lb380}, it suffices to prove that the limit of the net of functions $(\varphi_p)_{p\in J\setminus\{y\}}$ from $I$ to $V$ converges uniformly to $\partial_Jf(\cdot,y)$ under $\lim_{p\rightarrow y}$, where
@@ -12508,7 +12554,7 @@ In this section, all intervals in $\Rbb$ are assumed to contain at least two poi
 
 The goal of this section is to generalize the main results of Sec. \ref{lb419} to improper integrals. Namely, we shall prove the commutativity of $\int_I$ with $\int_J$ and with $\partial_J$ under reasonable assumptions. There are three ways to achieve this goal: 
 \begin{itemize}
-\item We know that $\int_I$ is the limit of integrals over compact integrals. Therefore, the problem is reduced to that of proving the commutativity of $\lim_{u\rightarrow a,v\rightarrow b}$ with $\int_J\int_u^v$ and with $\partial_J\int_u^v$.
+\item We know that $\int_I$ is the limit of integrals over compact intervals. Therefore, the problem is reduced to that of proving the commutativity of $\lim_{u\rightarrow a,v\rightarrow b}$ with $\int_J\int_u^v$ and with $\partial_J\int_u^v$.
 \item We generalize Thm. \ref{lb392} to improper integrals, and use this generalized version to prove the commutativity in a similar way as in Sec. \ref{lb419}.
 \item The commutativity of $\int_I$ with $\partial_J$ can also be studied by generalizing Cor. \ref{lb380} to improper integrals, similar to the second proof of Thm. \ref{lb405}.
 \end{itemize}
@@ -12937,7 +12983,7 @@ It should be noted that if $I$ is an open interval, then $C_c^\infty(I,V)$ and $
 
 
 \begin{rem}
-The above observation can be generalized: Let $X$ be an LCH space. Let $\Omega$ be a nonempty \textit{open} subset of $X$. Recall that $\Omega$ is LCH by Prop. \ref{lb245}. Then an element of $C_c(\Omega,V)$ is equivalently an element of $C_c(X,V)$ supported in $U$. The former gives the latter by ``extension by zero"; the latter gives the former by restriction to $\Omega$.
+The above observation can be generalized: Let $X$ be an LCH space. Let $\Omega$ be a nonempty \textit{open} subset of $X$. Recall that $\Omega$ is LCH by Prop. \ref{lb245}. Then an element of $C_c(\Omega,V)$ is equivalently an element of $C_c(X,V)$ supported in $U$. The former gives the latter by ``extension by zero"; the latter gives the former by restriction to $\Omega$. We will say more about this in Sec. \ref{lb464}.
 \end{rem}
 
 
@@ -13290,7 +13336,7 @@ We view functions on $S^1$ as those on $[-\pi,\pi]$ having the same values at $\
 \end{proof}
 
 \begin{eg}
-Let $X,Y$ be compact metric spaces spaces. Let $\scr A$ be the subspace of $C(X\times Y,\Rbb)$ spanned by elements of the form $fg$ where $f\in C(X,\Rbb)$ and $g\in C(Y,\Rbb)$. (More precisely, one should understand $fg$ as $(f\circ\pi_X)\cdot(g\circ\pi_Y)$ where $\pi_X,\pi_Y$ are the projections of $X\times Y$ onto $X$ and $Y$ respectively.) By the Urysohn functions (cf. Rem. \ref{lb257}), we see that $C(X,\Rbb)$ resp. $C(Y,\Rbb)$ separates points of $X$ resp. $Y$. (This is in fact also true when $X,Y$ are compact Hausdorff spaces.) Thus $\scr A$ is a unital subalgebra of $C(X\times Y,\Rbb)$ separating points of $X\times Y$. By SW theorem, $\scr A$ is dense in $C(X\times Y,\Rbb)$. Nevertheless, we will prove SW theorem by first proving this special case.
+Let $X,Y$ be compact metric spaces spaces. Let $\scr A$ be the subspace of $C(X\times Y,\Rbb)$ spanned by elements of the form $fg$ where $f\in C(X,\Rbb)$ and $g\in C(Y,\Rbb)$. (More precisely, one should understand $fg$ as $(f\circ\pi_X)\cdot(g\circ\pi_Y)$ where $\pi_X,\pi_Y$ are the projections of $X\times Y$ onto $X$ and $Y$ respectively.) By the Urysohn functions (cf. Rem. \ref{lb257}), we see that $C(X,\Rbb)$ resp. $C(Y,\Rbb)$ separates points of $X$ resp. $Y$. (This is in fact also true when $X,Y$ are compact Hausdorff spaces.) Thus $\scr A$ is a unital subalgebra of $C(X\times Y,\Rbb)$ separating points of $X\times Y$. By SW theorem, $\scr A$ is dense in $C(X\times Y,\Rbb)$. Nevertheless, we will prove SW theorem by first proving this special case: see Cor. \ref{lb471}.
 \end{eg}
 
 
@@ -13310,7 +13356,7 @@ The above method can be easily genearlized to the case that $X$ is not necessari
 \begin{thm}[\textbf{Tychonoff theorem}]\index{00@Tychonoff theorem}\label{lb452}
 Let $(X_\alpha)_{\alpha\in\scr I}$ be a family of nonempty compact topological spaces. Then the product space $S=\prod_{\alpha\in\scr I}X_\alpha$ (equipped with the product topology) is compact.
 \end{thm}
-We will prove Tychonoff theorem in the next chapter. Assuming Tychonoff theorem, we will show that elements of $C([0,1]^{\scr I},\Rbb)$ can be approximated uniformly by polynomials. This is the goal of this section:
+Note that $S$ is obviously Hausdorff. We will prove Tychonoff theorem in the next chapter. Assuming Tychonoff theorem, we will show that elements of $C([0,1]^{\scr I},\Rbb)$ can be approximated uniformly by polynomials. This is the goal of this section:
 
 
 \begin{pp}\label{lb451}
@@ -13322,7 +13368,7 @@ Then $\Rbb[\{\pi_\alpha:\alpha\in\scr I\}]$, the unital subalgebra of $C(S,\Rbb)
 \end{pp}
 
 
-Since the coordinate functions separate points of $S$, Prop. \ref{lb451} is clearly a special case of SW theorem.
+Since the coordinate functions separate points of $S$, Prop. \ref{lb451} is clearly a special case of SW theorem. According to \cite{Sto48}, Prop. \ref{lb451} was due to Dieudonn\'e. Interestingly, M. Stone reproved this proposition \textit{as an application of SW theorem} (cf. Thm. 14 in \cite[p.342, Sec. 8]{Sto48}), since he didn't use Prop. \ref{lb451} to prove SW theorem.
 
 
 \begin{lm}\label{lb456}
@@ -13340,7 +13386,7 @@ Choose any $f\in C(S,\Rbb)$, viewed as an element of $C(I_1,\mc V)$. Then by Thm
 \begin{align*}
 \Big\Vert f-\sum_{i=0}^n g_i\cdot \pi_1^i\Big\Vert_{l^\infty(S,\Rbb)}<\eps
 \end{align*}
-where $g_i$ actually means the composition of $g_i$ with the projection $S\rightarrow Y$. By case $N-1$, each $g_i$ can be approximated uniformly on $Y$ by elements of $\Rbb[\pi_2,\dots,\pi_N]$. So by triangle inequality, $f$ can be uniformly approximated by elements of the form $\sum_{i=1}^n h_i\cdot\pi_i^i$ where each $h_i$ is a polynomial of $\pi_2,\dots,\pi_N$. This finishes the proof of case $N$.
+where $g_i$ actually means the composition of $g_i$ with the projection $S\rightarrow Y$. By case $N-1$, each $g_i$ can be approximated uniformly on $Y$ by elements of $\Rbb[\pi_2,\dots,\pi_N]$. So by triangle inequality, $f$ can be uniformly approximated by elements of the form $\sum_{i=1}^n h_i\cdot\pi_1^i$ where each $h_i$ is a polynomial of $\pi_2,\dots,\pi_N$. This finishes the proof of case $N$.
 \end{proof}
 
 
@@ -13393,7 +13439,7 @@ Choose any continuous $f:S=\prod_{\alpha\in\scr I}I_\alpha\rightarrow\Rbb$. By L
 
 
 
-\subsection{Proof of SW, II: partition of unity and Tietze extension}
+\subsection{Partition of unity and Tietze extension theorem}\label{lb464}
 
 
 In this section, we fix a Banach space $\mc V$ over $\Fbb\in\{\Rbb,\Cbb\}$, and fix a nonempty LCH space $X$.
@@ -13438,31 +13484,44 @@ whenever $A$ is a precompact subset of $W$, or equivalently, whenever $A\subset 
 
 
 
+\subsubsection{Tietze extension theorem}
+
 
 
 The goal of this section is to prove the celebrated
 
-\begin{thm}[\textbf{Tietze extension theorem}]\index{00@Tietze extension theorem}
-Let $K$ be a compact subset of $X$. Let $f\in C(K,\mc V)$. Then there exists $\wtd f\in C_c(X,\mc V)$ such that $\wtd f|_K=f|_K$, and that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$.
+\begin{thm}[\textbf{Tietze extension theorem}]\index{00@Tietze extension theorem}\label{lb468}
+Let $K$ be a compact subset of $X$. Let $f\in C(K,\mc V)$. Then there exists $\wtd f\in C_c(X,\mc V)$ such that $\wtd f|_K=f$, and that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$.
 \end{thm}
 
+The reader can first assume this theorem and read Sec. \ref{lb473} about the proof of SW theorem, and then return to this section to read the proof of Tietze extension theorem.
 
 \begin{rem}
-Tietze extension theorem is often used in the following form: If $U$ is an open subset of $X$ containing $K$, then by Rem. \ref{lb457}, every $f\in C(K,\mc V)$ can be extended to some $\wtd f\in C_c(X,\mc V)$ supported in $U$ such that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$. In other words, in Tietze extension theorem, we can assume that the extended function is supported in a given open subset.
+Tietze extension theorem is often used in the following form: If $U$ is an open subset of $X$ containing $K$, then by Rem. \ref{lb457}, every $f\in C(K,\mc V)$ can be extended to some $\wtd f\in C_c(X,\mc V)$ supported in $U$ such that $\Vert \wtd f\Vert_{l^\infty(X,\mc V)}=\Vert f\Vert_{l^\infty(K,\mc V)}$. In other words, in Tietze extension theorem, we can assume that the extended function is compactly supported in a given open subset.
 \end{rem}
+
+\begin{co}\label{lb474}
+$C_c(X,\Rbb)$ separates points of $X$.
+\end{co}
+
+\begin{proof}
+Choose distinct points $x,y\in X$. Let $K=\{x,y\}$. Let $f:K\rightarrow\Rbb$ such that $f(x)=1$ and $f(y)=0$. By Thm. \ref{lb468}, $f$ can be extended to some $\wtd f\in C_c(X,\Rbb)$ which clearly separates $x$ and $y$.
+\end{proof}
+
+
 
 There is another version of Tietze extension theorem: If $A$ is a closed subset of a normal topological space $Y$, then any $f\in C(A,\Rbb)$ can be extended to some $\wtd f\in C(Y,\Rbb)$ without increasing the  $l^\infty$-norm. Its proof is not quite the same as the LCH version. See \cite[Sec. 35]{Mun}. We will not use this version in our course. 
 
 
 
-\subsubsection{Urysohn lemma}
+\subsubsection{Urysohn's lemma}
 
 
 
 The proof of Tietze extension theorem involves several steps. The first step is to prove a special case: If $K\subset X$ is compact, then the characteristic function $\chi_K:X\rightarrow\Rbb$ can be extended to a continuous $f\in C_c(X,\Rbb)$. Then $f|_K=1$. Replacing $f$ by $\max\{f,0\}$, we may assume that $f\geq0$. Replacing $f$ by $\min\{f,1\}$, we may assume $0\leq f\leq 1$. This special case is called
 
 
-\begin{thm}[\textbf{Urysohn lemma}]\index{00@Urysohn lemma for LCH spaces}
+\begin{thm}[\textbf{Urysohn's lemma}]\index{00@Urysohn's lemma for LCH spaces}
 Let $K$ be a compact subset of $X$. Then there exists $f$ such that \index{Kf@@$K\prec f$}  \index{fX@$f\prec X$}
 \begin{align}
 K\prec f\prec X
@@ -13471,7 +13530,7 @@ K\prec f\prec X
 
 The meaning of the notations is explained below.
 
-\begin{df}
+\begin{df}\label{lb465}
 Let $U$ be an open subset of $X$. Let $K$ be a compact subset of $X$.
 \begin{itemize}
 \item $f\prec U$ means that $f\in C_c(X,[0,1])$ \index{Cc@$C_c(X,[0,1])$} (i.e. $f\in C_c(X,\Rbb)$ and $f(X)\subset[0,1]$) and that $\Supp(f)\subset U$.
@@ -13483,7 +13542,10 @@ Let $U$ be an open subset of $X$. Let $K$ be a compact subset of $X$.
 The symbol ``$\prec$" is chosen for the following reason. Assume $f\in C_c(X,[0,1])$. Then $K\prec f$ means that $\chi_K\leq f$. However, the meaning of $f\prec U$ is slightly stronger than that of $f\leq \chi_U$: the latter means that $U$ contains $\{x:f(x)\neq0\}$, but not that $U$ contains its closure $\Supp(f)$.
 
 
-To prove Urysohn lemma we need some elementary observations:
+
+
+
+To prove Urysohn's lemma we need some elementary observations:
 
 
 
@@ -13519,8 +13581,10 @@ Choose any $\eps>0$. Then there is $N\in\Zbb_+$ such that for all $n\geq N$ we h
 
 
 
-\begin{proof}[\textbf{Proof of Urysohn lemma}]
-By Lem. \ref{lb460}, we can choose $U_1\Subset X$ containing $K$. We shall construct inductively a sequence of functions $f_n:X\rightarrow[0,1]$ such that the following conditions are satisfied:
+\begin{proof}[$\star$ \textbf{Proof of Urysohn's lemma}]
+By Lem. \ref{lb460}, we can choose $U_1\Subset X$ containing $K$. In the case that $X$ is metrizable, $f(x)=d(x,U_1^c)/(d(x,K)+d(x,U_1^c))$ gives a desired function. However, in the general case, we need to construct $f$ in a different way. 
+
+We shall construct inductively a sequence of functions $f_n:X\rightarrow[0,1]$ such that the following conditions are satisfied:
 \begin{enumerate}[label=(\alph*)]
 \item $f_n|_K=1$ and $f_n|_{X\setminus U_1}=0$.
 \item $\omega(f_n,x)\leq \frac 1{2^n}$ for all $x\in X$.
@@ -13546,10 +13610,10 @@ j\text{ is odd}
 and let $f_{n+1}=f_n+h_{n+1}$. The best way to understand this construction is to look at the pictures:
 \begin{gather*}
 \vcenter{\hbox{{
-			\includegraphics[height=2.5cm]{fig4.png}}}}
+			\includegraphics[height=3cm]{fig4.png}}}}
 \qquad
 \vcenter{\hbox{{
-			\includegraphics[height=2.5cm]{fig5.png}}}}
+			\includegraphics[height=3cm]{fig5.png}}}}
 \qquad
 \vcenter{\hbox{{
 			\includegraphics[height=3cm]{fig6.png}}}}
@@ -13565,26 +13629,292 @@ Then $W\in\Nbh_X(x)$, and $\diam(W)\leq \frac 1{2^n}$ since $W\subset \Delta_j\c
 
 
 
+\subsubsection{Partition of unity}\label{lb467}
+
+
+In the second step of the proof of Tietze extension theorem, we prove the theorem on partition of unity.
+
+Recall that we defined Riemann integrals by partitioning a compact interval into small intervals. Thus, in order to define the integral of a function on $\Rbb^2$, one can partition a rectangle into smaller ones. However, it is more difficult to integrate a function defined on a more complicated space (a complicated compact surface $M$ in $\Rbb^3$, for example) by dividing $M$ into small pieces, since these small pieces may have complicated shapes.
+
+Instead of partitioning $M$, a better way to define $\int_Mf$ is by partitioning $f$. Let $f:M\rightarrow\Rbb$ be continuous. Suppose first of all that $\Supp(f)$ is contained in a small enough neighborhood $U$ which can be ``parametrized by a rectangle". (More precisely: we can find a bijection $\varphi:R\rightarrow U$, where $R=(a,b)\times(c,d)$ is an open rectangle in $\Rbb^2$, such that $\varphi$ and $\varphi^{-1}$ are both smooth. Such $\varphi$ is called a \textbf{diffeomorphism}.) Then we can use integrals on rectangles to define $\int_Mf$ by ``pulling back $f$ onto $R$. Now, in the general case, one can define $\int_Mf$ by writting $f$ as $f_1+\cdots+f_n$ where each $f_n\in C(M,\Rbb)$ has small enough support such that $\int_Mf_i$ can be defined. Then $\sum_i\int_Mf_i$ gives the formula of $\int_Mf$. 
+
+Notice that it suffices to write the constant function $1$ on $M$ as $h_1+\cdots+h_n$ where each $\Supp(h_i)$ is small enough. Then $f=fh_1+\cdots+fh_n$ gives a desired partition of $f$. Thus, $1=h_1+\cdots+h_n$ is called a \textbf{partition of unity} (where ``unity" means the constant function $1$).
+
+
+
+\begin{thm}\label{lb466}
+Let $K$ be a compact subset of $X$. Let $\fk U=(U_1,\dots,U_n)$ be a finite set of open subsets of $X$ covering $K$ (i.e. $K\subset U_1\cup\cdots\cup U_n$). Then there exist $h_1,\dots,h_n\in C_c(X,\Rbb)$ such that the following conditions hold:
+\begin{enumerate}[label=(\arabic*)]
+\item For each $1\leq i\leq n$, we have $h_i\geq 0$ and $\Supp (h_i)\subset U_i$.
+\item  $\dps\sum_{i=1}^nh_i\big|_K=1$.
+\item $\dps 0\leq\sum_{i=1}^nh_i\leq 1$. 
+\end{enumerate}
+Such $h_1,\dots,h_n$ are called a \textbf{partition of unity of $K$ subordinate to $\fk U$}. \index{00@Partition of unity in LCH spaces}
+\end{thm}
+
+In the language of Def. \ref{lb465}, the assumptions on $h_1,\dots,h_n$ are that $h_i\prec U_i$ for all $i$, and that $K\prec\sum_i h_i$. 
+
+Among the three conditions in Thm. \ref{lb466}, (1) and (2) are more important. In fact, many people only assume (1) and (2) in the definition of partition of unity. We assume (3) since it is also useful. (Note also that (3) is automatic when $X=K$.) Looking at the function $\sum_i h_i$, one easily sees that Urysohn's lemma is a special case of Thm. \ref{lb466}. However, we shall prove Thm. \ref{lb466} using Urysohn's lemma. 
+
+
+\begin{proof}
+Step 1. Let us construct $G_i\in C_c(U_i,\Rbb_{\geq0})$ for each $1\leq i\leq n$, and such that $G:=\sum_i G_i$ is $>0$ on $K$ (i.e., $G(K)\subset\Rbb_{>0}$).  
+
+By Urysohn's lemma, for each $x\in X$ there exists $g_x\in C_c(X,[0,1])$ supported in $U_i$ such that $g_x(x)\neq 0$. Since $K$ is compact and is contained in $\bigcup_{x\in E}g_x^{-1}(\Rbb_{>0})$, there exists a finite subset $E\subset K$ such that $K\subset \bigcup_{x\in E}g_x^{-1}(\Rbb_{>0})$. So $\sum_{x\in E}g_x\big|_K>0$. 
+
+Now, for each $1\leq i\leq n$, define
+\begin{align}\label{eq197}
+G_i=\sum_{
+\begin{subarray}{c}
+x\in E\\
+\Supp(g_x)\subset U_i
+\end{subarray}}
+g_x
+\end{align}
+Since for each $x\in E$ there is some $U_i$ containing $\Supp(g_x)$, when summing up \eqref{eq197} over all $i$, each $g_x$ must appear at least once in the summand. So $G:=\sum_i G_i$ is $\geq \sum_i g_i$, and hence $G|_K>0$. Clearly each $G_i$ is $\geq0$ and is compactly supported in $U_i$. \\[-1ex]
+
+
+Step 2. $G_1,\dots,G_n$ satisfy (1) but not necessarily (2) or (3). It is tempting to define $h_i=G_i/G$. Then $h_1,\dots,h_n$ satisfy all the desired conditions except the continuity. To remedy this issue, we define $h_i=G_i/\wtd G$, where $\wtd G\in C_c(X,\Rbb)$ satisfying that $\wtd G>0$ on $X$, that $\wtd G\geq G$ (so that $0\leq h_i\leq 1$), and that $\wtd G|_K=G|_K$ (so that $\sum_i h_i|_K=1$). Then $h_1,\dots,h_n$ are the desired functions.
+
+Let us prove the existence of such $\wtd G$. Let $W=\{x\in X:G(x)>0\}$. Let $F\in C(X,[0,1])$ such that $F|_K=0$ and that $F|_{X\setminus W}=1$. The existence of such $1-F$ is ensured by Urysohn's lemma. Then one can let $\wtd G=G+F$. 
+\begin{align*}
+\vcenter{\hbox{{
+			\includegraphics[height=1.5cm]{fig7.png}}}}
+\end{align*}
+\end{proof}
 
 
 
 
 
+\subsubsection{How to use partition of unity}
+
+
+In Sec. \ref{lb293}, we have discussed how to use the condition of compactness: Suppose that $K$ is compact and $f$ is a function on $K$, for instance, a continuous one. To prove that $f$ satisfies a global finiteness condition, we first prove that each $x\in K$ is contained in a neighborhood $U_x$ on which $f$ satisfies this finiteness condition. Then we pick finitely many $U_{x_1},U_{x_2},\dots$ covering $K$, and show that $f$ satisfies the finiteness condition globally. 
+
+To summarize, we can use compactness to prove many \uline{finiteness properties} by a local-to-global argument. As pointed out in Sec. \ref{lb293}, usually, these finiteness properties can also be proved by contradiction using net-compactness or sequential compactness.
+
+Now assume that $K$ is a compact subset of the LCH space $X$, and let $f$ be a function on $K$. \uline{With the help of partition of unity, one can construct new objects from $f$ using a local-to-global argument}. Moreover, these constructions are usually very difficult to obtain by using net-compactness or sequential compactness. The following are two typical examples:
+\begin{enumerate}
+\item (\textbf{Integral problems}) Construction of an integral $\int_Kf$. This was already mentioned in Subsec. \ref{lb467}.
+\item (\textbf{Extension problems}) Construct a ``good" function $\wtd f$ on $X$ extending (or ``approximately extending") $f$. The idea is simple: Suppose that the extension exists locally, i.e., suppose that for each $x\in K$ there exists $U_x\in\Nbh_X(x)$ such that $f|_{U_x\cap K}$ can be extended to a good function $g_x$ on $U_x$. By compactness, $K$ is covered by $\bigcup_{x\in E}U_x$ where $E$ is a finite subset of $K$. Let $(h_x)_{x\in E}$ be a partition of unity of $K$ subordinate to this open cover.  Then $\wtd f=\sum_{x\in E}h_x\cdot g_x$ gives a good extension.
+\end{enumerate}
+In the study of measure theory in the second semester, we will use partition of unity extensively. For the moment, let us first see a simple example of extension problem before we prove the Tietze extension theorem. This example is not used elsewhere in this chapter, but it is illustrative of how to use partition of unity.
+
+
+\begin{eg}\label{lb478}
+Let $I$ be an open interval in $\Rbb$, and let $K$ be a nonempty compact subset of $I$. Let $r\in\Zbb_+\cup\{\infty\}$. Assume that $f:K\rightarrow\Rbb$ is $C^r$, which means that for each $x\in K$ there exist an open interval $U_x\subset I$ containing $x$ and $g_x\in C^r(U_x,\Rbb)$ extending $f|_{U_x\cap K}$. Then there exists $\wtd f\in C^r(I,\Rbb)$ extending $f$ and is compactly supported in $I$. 
+\end{eg}
+
+This example is the \textbf{smooth Tietze extension theorem} in dimension $1$, as mentioned in Rem. \ref{lb479}.
+
+\begin{proof}
+Let $U_x$ and $g_x$ be as in the example. Since $K$ is compact, it can be covered by $U_{x_1},\dots,U_{x_n}$. Call this open cover $\fk U$. Similar to the proof of Thm. \ref{lb466}, one can find a set of $C^r$-partition of unities $h_1,\dots,h_n$ of $K$ subordinate to $\mc U$. In other words, $h_1,\dots,h_n$ are $C^r$ functions and form a partition of unity. (Similar to the proof of Thm. \ref{lb466}, in order to find such $h_1,\dots,h_n$, it suffices to prove the $C^r$-version of Urysohn's lemma. But this has been done in Prop. \ref{lb440}, noting that $K$ is contained in a compact subinterval of $I$.) Now each $h_ig_{x_i}$ is an $C^r$-function on $I$ compactly supported in $U_{x_i}$. Then $\wtd f=\sum_i h_ig_{x_i}$ is a desired extension.
+\end{proof}
+
+
+
+You will see many more examples in the future when you study differential manifolds, sheaf theory, and especially sheaf cohomology. It is no exaggeration to say that partition of unity is one of the most important techniques in modern mathematics.
+
+
+
+
+\subsubsection{Proof of Tietze extension theorem}
+
+
+
+
+Now you may wonder: Under the assumption of Tietze extension Thm. \ref{lb468}, we don't even know how to extend $f\in C(K,\mc V)$ locally. Then how can we use the local-to-global argument? Here is the answer: you can find an \textit{approximate} extension locally. Therefore, you can first find an approximate global extension of $f$. Then, passing to the limit, you get the desired extension. This will be our strategy of the proof of Thm. \ref{lb468}.
+
+
+
+
+\begin{lm}\label{lb469}
+Let $K$ be a compact subset of $X$, and let $f\in C(K,\mc V)$. Then for every $\eps$, there exists $\varphi\in \Span(C_c(X,\Rbb)\mc V)$ such that
+\begin{align*}
+\Vert f-\varphi\Vert_{l^\infty(K,\mc V)}\leq\eps\qquad \Vert \varphi\Vert_{l^\infty(X,\mc V)}\leq \Vert f\Vert_{l^\infty(K,\mc V)}
+\end{align*}
+\end{lm}
+
+The meaning of $\Span(C_c(X,\Rbb)\mc V)$ is clear: the smallest linear subspace of $C_c(X,\mc V)$ containing $C_c(X,\Rbb)\mc V$. Thus \index{SpanCX@$\Span(C_c(X,\Rbb)\mc V)$}
+\begin{align}
+\Span(C_c(X,\Rbb)\mc V)=\{g_1v_1+\cdots+g_nv_n:n\in\Zbb_+,g_i\in C_c(X,\Rbb),v_i\in\mc V\}
+\end{align}
+
+
+\begin{proof}
+Let $M=\Vert f\Vert_{l^\infty(K,\mc V)}$. For each $p\in K$, since $f$ is continuous at $p$, there exists $U_p\in\Nbh_X(p)$ such that $\diam(f(U_p\cap K))\leq\eps$ (cf. Prop. \ref{lb461}). Then the contant function $f(p)$ gives a local approximate extension of $f|_{U_p\cap K}$.
+
+Since $K$ is compact, there exists a finite subset $E\subset K$ such that $K$ is covered by $\fk U=\{U_p:p\in E\}$. By Thm. \ref{lb466}, there is a partition of unity $(h_p)_{p\in E}$ of $K$ subordinate to $\fk U$. Since $h_p\in C_c(U_p,\Rbb)$ can be viewed as a compactly supported continuous function on $X$ (Rem. \ref{lb457}), the function $\varphi=\sum_{p\in E}h_pf(p)$ is an element of $C_c(X,\mc V)$. 
+
+If $x\in K$, then since $h_p\geq0$, we have
+\begin{align*}
+\Vert f(x)-\varphi(x)\Vert=\Big\Vert \sum_{p\in E}h_p(x)\cdot \big(f(x)-f(p)\big)  \Big\Vert\leq\sum_{p\in E}h_p(x)\Vert f(x)-f(p)\Vert
+\end{align*}
+In the RHS, if $h_p(x)\neq 0$, then $x\in U_p$, and hence $\Vert f(x)-f(p)\Vert\leq\eps$. So the RHS is no greater than $\sum_{p\in E}h_p(x)\eps$, and hence no greater than $\eps$ since $\sum_{p\in E}h_p(x)=1$. Finally, for every $x\in X$, we have
+\begin{align*}
+\Vert \varphi(x)\Vert\leq\sum_{p\in E}h_p(x)\Vert f(p)\Vert\leq \sum_{p\in E}h_p(x)M=M
+\end{align*}
+finishing the proof.
+\end{proof}
+
+
+
+
+The following special case of Lem. \ref{lb469} is more useful for application.
+
+\begin{pp}\label{lb470}
+Assume that $X$ is a compact Hausdorff space, and let $f\in C(X,\mc V)$. Then for every $\eps>0$, there exists $\varphi\in\Span(C_c(X,\Fbb)\mc V)$ such that $\Vert f-\varphi\Vert_\infty<\eps$.
+\end{pp}
+
+
+
+\begin{co}\label{lb471}
+Let $X,Y$ be compact Hausdorff spaces. Then for every $f\in C(X\times Y,\Fbb)$ and $\eps>0$, there exist $g_1,\dots,g_n\in C(X,\Fbb)$ and $h_1,\dots,h_n\in C(Y,\Fbb)$ such that $\Vert f-g_1h_1-\cdots-g_nh_n\Vert_{l^\infty(X\times Y,\Fbb)}<\eps$.
+\end{co}
+
+
+\begin{proof}
+By Thm. \ref{lb274}, we view $f$ as an element of $C(X,\mc V)$ where $\mc V=C(Y,\Rbb)$. Then the corollary follows immediately from Prop. \ref{lb470}. From this proof, we see that it is not necessarily to assume that $Y$ is Hausdorff. (This is not an important fact anyway.)
+\end{proof}
+
+
+Now we are ready to finish the
+
+\begin{proof}[\textbf{Proof of Tietze extension Thm. \ref{lb468}}]
+Recall that $K$ is compact in $X$ and $f\in C(K,\mc V)$, and that our goal is to extend $f$ to $\wtd f\in C_c(X,\mc V)$. Moreover, we need that $\Vert\wtd f\Vert_{l^\infty(X,\mc V)}$ equals $M=\Vert f\Vert_{l^\infty(K,\mc V)}$. We first note that the last requirement is easy to meet. Assume WLOG that $M>0$. Let $\wtd f\in C_c(X,\mc V)$ extend $f$, and define $g:X\rightarrow\Rbb_{\geq0}$ by $g(x)=\max\{M,\Vert\wtd f(x)\Vert\}$. Then $g$ is continuous, $g\geq M$, and $g|_K=M$. Then $M\wtd f/g$ is an element of $C_c(X,\mc V)$ extending $f$ and is $l^\infty$-bounded by $M$, finishing the proof.
+
+Second, note that it suffices to extend $f$ to $\wtd f\in C(X,\mc V)$. By Urysohn lemma, there exists $h$ such that $K\prec h\prec X$. Then $\wtd fh\in C_c(X,\mc V)$ extends $f$.
+
+We now construct $\wtd f\in C(X,\mc V)$ extending $f$. By Lem. \ref{lb469}, there exist $\varphi_1,\varphi_2,\dots\in C_c(X,\mc V)$ such that
+\begin{gather*}
+\Vert f-\varphi_1\Vert_{l^\infty(K,\mc V)}\leq \frac M2\qquad \Vert \varphi_1\Vert_{l^\infty(X,\mc V)}\leq M\\
+\Vert f-\varphi_1-\varphi_2\Vert_{l^\infty(K,\mc V)}\leq \frac M4\qquad \Vert \varphi_2\Vert_{l^\infty(X,\mc V)}\leq \frac M2\\
+\Vert f-\varphi_1-\varphi_2-\varphi_3\Vert_{l^\infty(K,\mc V)}\leq \frac M8\qquad \Vert \varphi_3\Vert_{l^\infty(X,\mc V)}\leq \frac M4\\
+\vdots
+\end{gather*}
+Then $\sum_{n=1}^\infty\Vert \varphi_n\Vert_{l^\infty(X,\mc V)}\leq 2M$, and hence $\sum_{n=1}^\infty\varphi_n$ converges to some $\wtd f$ in the Banach space $C(X,\mc V)\cap l^\infty(X,\mc V)$ (Cor. \ref{lb101}). Clearly $\wtd f$ extends $f$.
+\end{proof}
+
+
+
+\subsection{Proof of SW, II: embedding into $[0,1]^{\scr I}$}\label{lb473}
+
+In this section, we shall finish the proof of SW Thm. \ref{lb442}.
+
+
+\begin{rem}\label{lb472}
+Suppose that $\Phi:X\rightarrow Y$ is a homeomorphism of topological spaces. Then $X$ and $Y$ can be ``viewed as the same space" via $\Phi$. This means that a point $x\in X$ can be identified with $\Phi(x)\in Y$, that an open or closed subset $A\subset X$ can be identified with $\Phi(A)$, which is open or closed in $Y$. It also means, for example, that if $A\subset X$, then the closure of $A$ can be identified with the closure of $\Phi(A)$ in $Y$. More precisely: $\Phi$ restricts to a homeomorphism $\Cl_X(A)\rightarrow\Cl_Y(\Phi(A))$.
+
+The continuous functions of $X$ and $Y$ can also be identified: If $g\in C(Y,Z)$ where $Z$ is a topological space (e.g. $Z=\Rbb$), then $g$ is equivalent to its \textbf{pullback under $\Phi$}, \index{00@Pullback of functions} which is an element of $C(X,Z)$ given by
+\begin{align}
+\Phi^*g:=g\circ\Phi\qquad\in C(X,Z)
+\end{align}
+This equivalence of functions can be illustrated by the commutative diagram
+\begin{equation}
+\begin{tikzcd}[column sep=tiny]
+X \arrow[rr, "\Phi","\simeq"'] \arrow[rd, "\Phi^*g"'] &   & Y \arrow[ld, "g"] \\
+                                            & Z &                  
+\end{tikzcd}
+\end{equation}
+\hfill\qedsymbol
+\end{rem}
+
+
+
+\begin{proof}[\textbf{Proof of SW Thm. \ref{lb442}}]
+Recall that $X$ is a compact Hausdorff space and $\scr A$ is a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. For each $f\in\scr A$, let $M_f=\Vert f\Vert_\infty$ and $I_f=[-M_f,M_f]$. Define
+\begin{gather*}
+\Phi:X\rightarrow S=\prod_{f\in\scr A}I_f\qquad x\mapsto (f(x))_{f\in\scr A}
+\end{gather*}
+In other words, $\Phi=\bigvee_{f\in\scr A}f$, using the notation in Pb. \ref{lb258}. Thus, by Pb. \ref{lb258} (or by Thm. \ref{lb192}), $\Phi$ is continuous. The fact that $\scr A$ separates points of $X$ is equivalent to that $\Phi$ is injective. Since $X$ is compact, by Thm. \ref{lb236}, $\Phi$ restricts to a homeomorphism $\Phi:S\rightarrow\Phi(S)$. 
+
+Recall that the coordinate function $\pi_f:S\rightarrow I_f$ is the projection onto the $f$-component. So $\Phi^*\pi_f=\pi_f\circ\Phi=f$. Therefore, by Rem. \ref{lb472}, $X$ is equivalent to $\Phi(X)$ under $\Phi$, and $\pi_f|_{\Phi(X)}\in C(\Phi(X),\Rbb)$ is equivalent to $f\in C(X,\Rbb)$ under $\Phi$. Therefore, we can identify $X$ with $\Phi(X)$ via $\Phi$ so that $f$ is identified with $\pi_f|_{\Phi(X)}$. Thus, in this case, $\scr A$ is the set of all $\pi_f|_X$, and clearly $\scr A$ contains all the polynomials of the coordinate functions $\{\pi_f|_X:f\in\scr A\}$ since $\scr A$ is a unital subalgebra. Thus, it suffices to prove that the polynomials of coordinate functions are dense in $C(S,\Rbb)$. 
+
+Choose any $g\in C(X,\Rbb)$. Since $X$ is compact, and since $S$ is a compact Hausdorff space (by Tychonoff Thm. \ref{lb452}), by Tietze extension Thm. \ref{lb468}, $g$ can be extended to $\wtd g\in C(S,\Rbb)$. By Prop. \ref{lb451}, $\wtd g$ can be approximated uniformly by the polynomials of coordinate functions of $S$.
+\end{proof}
+
+
+
+\begin{rem}
+If you feel that identifying $X$ and $\Phi(X)$ is cheating, it is easy to revise the proof without identifying them: Choose any $g\in C(X,\Rbb)$. One first concludes that $g\circ\Phi^{-1}\in C(\Phi(X),\Rbb)$ can be uniformly approximated by the polynomials of coordinate functions. Then, since the pullback of these polynomials under $\Phi$ are elements of $\scr A$, one concludes that $g$ can be approximated uniformly by elements of $\scr A$.
+\end{rem}
 
 
 
 
 
+\subsection{Summary and closing discussion}
+
+
+\subsubsection{Summary of the proof of SW Thm. \ref{lb442}}
+
+
+The key steps of the proof of Thm. \ref{lb442} are as follows.
+
+\begin{enumerate}
+\item We first prove the case that $X$ is a compact interval $I$ and $\scr A$ is the polynomial algebra: Let $f\in C(I,\Rbb)$, and extend $f$ to an element in $C_c(\Rbb,\Rbb)$. Let $g(x)=\pi^{-\frac 12}e^{-x^2}$ and $g_\eps(x)=\eps^{-1}g(x/\eps)$. On the one hand, $\lim_{\eps\rightarrow 0}f*g_\eps$ converges uniformly to $f$. On the other hand, for each $\eps$, since $g_\eps$ is approximated by polynomials uniformly on compact intervals (consider the Taylor series of $g_\eps$), one shows that $f*g_\eps$ is also approximated by polynomials uniformly on compact intervals.  
+\item When $\mc V$ is a Banach space, the same method shows that $\mc V[x]$, the set of polynomials with coefficients in $\mc V$, is $l^\infty$-dense in $C(I,\mc V)$.  
+\item Taking $\mc V=C(J,\Rbb)$ where $J$ is a compact interval, the above step shows that polynomials are dense in $C(I\times J,\Rbb)$.\footnote{Instead of using step 2, one can also use step 1 and the fact that elements in $C(I\times J,\Rbb)$ can be approximated by those of the form $f_1g_1+\cdots+f_ng_n$ where $f_i\in C(I,\Rbb)$ and $g_i\in C(J,\Rbb)$, cf. Cor. \ref{lb471}.} Similarly, by induction, one sees that polynomials are dense in $C(I_1\times\cdots\times I_n,\Rbb)$ if each $I_j$ is a compact interval.
+\item Let $S=\prod_{\alpha\in\scr I}I_\alpha$ where each $I_\alpha$ is a compact interval. Then $S$ is a compact Hausdorff space by Tychonoff theorem. One shows that any $f\in C(S,\Rbb)$ can be approximated by a function $g$ depending on finitely many variables (Lem. \ref{lb455}, or Pb. \ref{lb453} when $\scr I$ is countable). By the previous step, $g$ can be approximated by polynomials. So $f$ can be approximated by polynomials (of coordinate functions of $S$).
+\item Let $X$ be a compact subset of $S=\prod_{\alpha\in\scr I}I_\alpha$, and let $f\in C(X,\Rbb)$. Then by Tietze extension theorem, $f$ can be extended to $\wtd f\in C(S,\Rbb)$ where $\wtd f$ can be approximated by polynomials by the previous step. So $f$ can be approximated by polynomials.
+\item Now let $X$ be a compact Hausdorff space, and let $\scr A$ be a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Then the map $\Phi=\bigvee_{f\in\scr A}f$ embeds $X$ onto a compact subspace of $S=\prod_{\alpha\in\scr A}I_f$ where $I_f=[-\Vert f\Vert_\infty,\Vert f\Vert_\infty]$. By the previous step, continuous functions on $\Phi(X)$ can be approximated by polynomials of the coordinate functions of $S$. This is equivalent to the density of $\scr A$ in $C(X,\Rbb)$. The proof is complete.
+\end{enumerate}
+
+
+The proof we have given, which is different from the proofs in most textbooks, has several advantages. First, it clearly shows that \uline{``$\scr A$ separates points $X$" is an embedding condition, which ensures that the map $\Phi=\bigvee_{f\in\scr A}f$ is injective}. The embedding of spaces is a common theme in many branches of mathematics. In differential geometry, one can show that every (second countable) smooth manifold can be smoothly embedded into a Euclidean space. (This is the \textbf{Whitney embedding theorem}.) \textbf{Projective manifolds}, the
+compact complex manifolds that can be holomorphically embedded into complex projective spaces $\Cbb\Pbb^n$, are among the most important examples in complex (algebraic) geometry.
+
+Second, Urysohn's lemma and partition of unity are extremely important tools in differential manifolds and in measure theory, both of which will be studied next semester.  
+
+Thus, although our proof is longer than those in the other textbooks,\footnote{The proofs in most textbooks (e.g. \cite[Sec. 4.7]{Fol}, \cite[Ch. 7]{Rud-P}, \cite[Sec. 16.4]{Zor-2}) are similar and are due to M. Stone \cite{Sto48}, which used the idea of lattices. A lattice is a set $L$ together with operations $\wedge,\vee$ satisfying $a \vee(a \wedge b)=a$ and $a \wedge(a \vee b)=a$. In analysis, one considers $L\subset C(X,\Rbb)$ where $f\vee g=\max\{f,g\}$ and $f\wedge g=\min\{f,g\}$. In Stone's day, lattices were relatively popular in functional analysis. But today it seems that lattices are a bit cold. The shorter proof in \cite{Sto48} is actually not the original proof of SW theorem. The original proof was given in \cite{Sto37} and is much more complicated.} the methods we used in the proof (convolutions, embedding of spaces, partition of unity, etc.) will appear frequently in the future study. Through our proof, the SW theorem is closely and organically related to other mathematical concepts.  
+
+
+
+\subsubsection{The second countable case}
+
+
+Our proof of SW theorem relies on Tychonoff Thm. \ref{lb452}, which in turn relies on Zorn's lemma, an uncountable version of mathematical induction. Though Zorn's lemma is equivalent to the axiom of choice, it is much more difficult to grasp intuitively than the axiom of choice and mathematical induction. Thus, one would like to find a proof without using Zorn's lemma if possible. 
+
+In the following, we will show that when the compact Hausdorff space $X$ is second countable (equivalenty, metrizable+), in the proof of SW theorem, it suffices to embed $X$ into a countable product of compact intervals. The latter is compact by countable Tychonoff theorem, whose proof does not rely on Zorn's lemma (cf. Thm. \ref{lb89} or Pb. \ref{lb241}). We first discuss a general fact about countability in compact Hausdorff spaces, generalizing Thm. \ref{lb261}.
+
+
+
+\begin{thm}
+Let $X$ be a compact Hausdorff space. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$.
+\item $C(X,\Rbb)$ is separable (equivalently, second countable, cf. Prop. \ref{lb250}).
+\item $X$ is second countable.
+\item $X$ is metrizable.
+\end{enumerate}
+\end{thm}
+
+Here, as usual, $C(X,\Rbb)$ is equipped with the $l^\infty$-norm.
+
+\begin{proof}
+We have proved ``(1)$\Leftrightarrow$(4)" in Thm. \ref{lb261}. Let us prove the equivalence of the other three.
+
+(1)$\Rightarrow$(2): By Tietze extension theorem, it suffices to prove that $C(S,\Rbb)$ is separable where $S=[0,1]^{\Zbb_+}$. Let $\mc E=\Qbb[\{\pi_n:n\in\Zbb_+\}]$ be the set of polynomials of the coordinate functions of $S$ with coefficients in $\Qbb$. ($\pi_n:S\rightarrow[0,1]$ is the projection onto the $n$-th component.) Then $\mc E$ is countable (cf. Exe. \ref{lb476}), and is clearly dense in $\Rbb[\{\pi_n:n\in\Zbb_+\}]$. By Prop. \ref{lb451}, $\mc E$ is dense in $C(S,\Rbb)$. (Note that in special case where the product of intervals is countable, the proof of Prop. \ref{lb451} does not rely on Zorn's lemma. This is due to countable Tychonoff Thm. \ref{lb89}, cf. also Pb. \ref{lb241}.)
+
+
+
+(2)$\Rightarrow$(1): Let $\mc E=\{f_1,f_2,\dots\}$ be a countable dense subset of $C(X,\Rbb)$. By Cor. \ref{lb474}, $C(X,\Rbb)$ separates points of $X$. So $\mc E$ also separates points of $X$. We scale $f_n\in\mc E$ by a nonzero real number such that $\Vert f_n\Vert_\infty\leq 1$. Then \begin{gather*}
+\Phi:X\rightarrow [-1,1]^{\Zbb_+} \qquad x\mapsto (f_1(x),f_2(x),\dots)
+\end{gather*}
+is a continuous injective map, restricting to a homeomorphism $X\rightarrow\Phi(X)$ where $\Phi(X)$ is a compact (and hence closed) subset of $[-1,1]^{\Zbb_+}\simeq[0,1]^{\Zbb_+}$.
+
+(1)$\Rightarrow$(3): Since $[0,1]$ is separable and hence second countable, by Pb. \ref{lb305}, $[0,1]^{\Zbb_+}$ is second countable. So its subsets are second countable by Prop. \ref{lb475}. 
+
+(3)$\Rightarrow$(1):
+\end{proof}
 
 
 
 
-
-
-
-
-
-
+\begin{exe}\label{lb476}
+Let $\scr A$ be a unital $\Rbb$-algebra (resp. unital $\Cbb$-algebra). Let $\Kbb$ be $\Qbb$ (resp. $\Qbb+\im\Qbb$). Let $x_1,x_2,\dots$ be a possibly finite sequence of elements of $\scr A$. Let $\mc E=\Kbb[x_1,x_2,\dots]$ be the set of polynomials of $x_1,x_2,\dots$ with coefficients in $\Kbb$. Prove that $\mc E$ is a countable set.
+\end{exe}
 
 
 
@@ -13598,7 +13928,13 @@ Then $W\in\Nbh_X(x)$, and $\diam(W)\leq \frac 1{2^n}$ since $W\subset \Delta_j\c
 
 
 
-\subsection{Proof of SW, III: embedding into $[0,1]^{\scr I}$}
+
+
+
+
+
+
+
 
 
 
@@ -13614,9 +13950,9 @@ Let $X$ be an LCH space with topology $\mc T$. Define a set $X^*=X\cup\{\infty\}
 \begin{enumerate}
 \item Prove that the set
 \begin{align*}
-\mc U=\mc T\cup\{X^*\setminus K:K\subset X\text{ is compact}\}
+\fk U=\mc T\cup\{X^*\setminus K:K\subset X\text{ is compact}\}
 \end{align*}
-is a basis for a topology on $X^*$. Let $\mc T^*$ be the topology on $X^*$ generated by $\mc U$. Prove that $\mc T$ is the subspace topology of $\mc T^*$. (Namely, prove that $U\subset X$ is open iff $U=X\cap V$ for some open $V\subset X^*$.)
+is a basis for a topology on $X^*$. Let $\mc T^*$ be the topology on $X^*$ generated by $\fk U$. Prove that $\mc T$ is the subspace topology of $\mc T^*$. (Namely, prove that $U\subset X$ is open iff $U=X\cap V$ for some open $V\subset X^*$.)
 \item Prove that $(X^*,\mc T^*)$ is a compact Hausdorff space. We call $(X^*,\mc T^*)$ (or simply call $X^*$) the \textbf{one-point compactification} \index{00@One-point compactification} of $X$.
 \item Prove that if $X$ is not compact, then $X$ is dense in $X^*$.
 \end{enumerate}
@@ -13625,7 +13961,7 @@ is a basis for a topology on $X^*$. Let $\mc T^*$ be the topology on $X^*$ gener
 
 More generally, we define:
 \begin{df}
-Let $X$ be LCH. A \textbf{one-point compactification (OPC)} of  $X$ is a compact Hausdorff space $\wht X$, together with an injective map $\varphi:X\rightarrow \wht X$ such that $\wht X\setminus \varphi(X)$ has exactly one element,  and that $\varphi$ restricts to a homeomorphism $\varphi:X\rightarrow\varphi(X)$. In particular, the $X^*$ constructed in Prob. \ref{lb431} is a one-point compactification of $X$.
+Let $X$ be LCH. A \textbf{one-point compactification (OPC)} of  $X$ is a compact Hausdorff space $\wht X$, together with an injective map $\varphi:X\rightarrow \wht X$ such that $\wht X\setminus \varphi(X)$ has exactly one element,  and that $\varphi$ restricts to a homeomorphism $\varphi:X\rightarrow\varphi(X)$. In particular, the $X^*$ constructed in Pb. \ref{lb431} is a one-point compactification of $X$.
 \end{df}
 
 
@@ -13826,9 +14162,18 @@ Rudin, W. (1976). Principles of Mathematical Analysis. 3rd ed.
 \bibitem[Rud-R]{Rud-R}
 Rudin, W. (1987). Real and complex analysis. 3rd ed. 
 
+\bibitem[Sto37]{Sto37}
+Stone, M. H. (1937). Applications of the theory of Boolean rings to general topology. Transactions of the American Mathematical Society, 41(3), 375-481.
+
+\bibitem[Sto48]{Sto48}
+Stone, M. H. (1948). The generalized Weierstrass approximation theorem. Mathematics Magazine, 21(5), 167-184, 237-254.
+
 
 \bibitem[Wil]{Wil}
 Willard, S. (1970). General topology. 
+
+\bibitem[Zor-2]{Zor-2}
+Zorich, V. A.(2016). Mathematical analysis II, 2nd ed.
 
 		
 \end{thebibliography}
