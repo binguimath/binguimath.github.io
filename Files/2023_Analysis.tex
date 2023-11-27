@@ -164,6 +164,7 @@
 \newtheorem{co}[df]{Corollary}
 \newtheorem{lm}[df]{Lemma}
 \newtheorem{sthm}[df]{$\star$ Theorem}
+\newtheorem{claim}[df]{Claim}
 
 \newtheorem{cond}{Condition}
 \newtheorem{Mthm}{Main Theorem}
@@ -7053,7 +7054,7 @@ Thus, for each $n\in\Zbb_+$, we can choose a finite  $E_n\subset X$ satisfying  
 \end{proof}
 
 
-\begin{rem}
+\begin{rem}\label{lb483}
 The above proof is indirect because it proves the existence of $E_n$ by contradiction but not by explicit construction. However, if $X$ is a bounded closed subset of $\Rbb^N$, one can find an explicit countable basis for the topology of $X$:
 \begin{align*}
 \mc B=\{X\cap B(x,1/n):n\in\Zbb_+,x\in\Qbb^N\}
@@ -10949,7 +10950,7 @@ Use the method in the second proof of Exp. \ref{lb480} to prove \eqref{eq198} fo
 \begin{sprob}\label{lb357}
 Let $n\in\Nbb$. Find the radius of convergence of
 \begin{align}
-f(z)=\sum_{k=n}^\infty {k\choose n}z^n
+f(z)=\sum_{k=n}^\infty {k\choose n}z^k
 \end{align}
 Find the explicit formula of $f(z)$.
 \end{sprob}
@@ -11183,7 +11184,7 @@ Let $f:I\rightarrow V$. For each $(\sigma,\xi_\blt)\in\mc Q(I)$, define the \tex
 \begin{align*}
 S(f,\sigma,\xi_\blt)=\sum_{j\geq 1}f(\xi_j)(a_j-a_{j-1})
 \end{align*}
-The \textbf{Riemann integral} \index{00@Riemann integral} is defined to be
+The \textbf{Riemann integral} \index{00@Riemann integral} is defined to be the limit of the net $(S(f,\sigma,\xi_\blt))_{(\sigma,\xi_\blt)\in\mc Q(I)}$:
 \begin{align*}
 \int_a^b f\equiv\int_a^b f(x)dx=\lim_{(\sigma,\xi_\blt)\in\mc Q(I)}S(f,\sigma,\xi_\blt)
 \end{align*}
@@ -11267,7 +11268,7 @@ Let $f:I\rightarrow V$. For each $\sigma=\{a_0<\cdots<a_n\}\in\mc P(I)$, write $
 
 
 \begin{exe}
-Show that if $\sigma'\supset\sigma$, then $\omega(f,\sigma')\leq \omega(f,\sigma)$. Therefore, $(\omega(f,\sigma))_{\sigma\in\mc P(I)}$ is a decreasing net in $\ovl\Rbb_{>0}$.
+Show that if $\sigma'\supset\sigma$, then $\omega(f,\sigma')\leq \omega(f,\sigma)$. Therefore, $(\omega(f,\sigma))_{\sigma\in\mc P(I)}$ is a decreasing net in $\ovl\Rbb_{\geq0}$.
 \end{exe}
 
 
@@ -11445,7 +11446,7 @@ By triangle inequality, for every $\sigma\in\mc P(I)$ we have $\omega(|f|,\sigma
 
 
 \begin{thm}\label{lb375}
-$\scr R(I,V)$ is a linear subspace of $l^\infty(I,V)$. Moreover,  the map
+$\scr R(I,V)$ is a closed linear subspace of $l^\infty(I,V)$. So $\scr R(I,V)$ is a Banach space under the $l^\infty$-norm. Moreover,  the map
 \begin{align}
 \int: \scr R(I,V)\rightarrow V\qquad f\mapsto\int_a^b f \label{eq159}
 \end{align}
@@ -11467,6 +11468,8 @@ Let us prove $\scr R(I,V)\subset l^\infty(I,V)$. Choose $f\in\scr R(I,V)$. Then 
 \Vert f\Vert_{l^\infty}\leq \max\big\{\Vert f(\xi_i)\Vert+(a_i-a_{i-1})^{-1}:1\leq i\leq n  \big\}<+\infty
 \end{align*}
 
+Let $(f_n)$ be a sequence in $\scr R(I,V)$ converging to $f\in l^\infty(I,V)$. Choose any $\eps>0$. Then there is $n$ such that $\Vert f-f_n\Vert_\infty<\eps$. Since $f_n$ is Riemann integrable, $f_n$ is $\eps$-dominated by some $\sigma\in\mc P(I)$. By triangle inequality, $f$ is $(\eps+(b-a)\eps)$-dominated by $\sigma$. Since $\eps$ is arbitrary, we conclude that $f\in\scr R(I,V)$. This proves that $\scr R(I,V)$ is closed, and hence is Banach by Prop. \ref{lb86}.
+
 Let us prove the claim about the operator norm. Choose any $f\in\scr R(I,V)$. Let $M=\Vert f\Vert_\infty<+\infty$. Then $|f|\leq M$. It is easy to see that $\int_a^b M=M(b-a)$. Thus, by Prop. \ref{lb379}, we have $\Vert\int_a^b f\Vert\leq M(b-a)=\Vert f\Vert_\infty\cdot(b-a)$, where ``$\leq$" becomes ``$=$" if we let $f$ be a nonzero constant function. This proves that \eqref{eq159} has operator norm $b-a$ thanks to Rem. \ref{lb372}.
 \end{proof}
 
@@ -11476,12 +11479,12 @@ Let us prove the claim about the operator norm. Choose any $f\in\scr R(I,V)$. Le
 
 
 \begin{co}\label{lb380}
-Let $(f_\alpha)_{\alpha\in\scr I}$ be a net in $\scr R(I,V)$ converging uniformly to $f\in \scr R(I,V)$. Then $\dps\lim_{\alpha\in\scr I}\int_a^b f_\alpha=\int_a^b f$.
+Let $(f_\alpha)_{\alpha\in\scr I}$ be a net in $\scr R(I,V)$ converging uniformly to $f\in V^I$. Then $f\in\scr R(I,V)$ and $\dps\lim_{\alpha\in\scr I}\int_a^b f_\alpha=\int_a^b f$.
 \end{co}
 
 
 \begin{proof}
-This is immediate from the continuity of the map \eqref{eq159}.
+This is immediate from Thm. \ref{lb375}, which implies that $\scr R(I,V)$ is closed in $l^\infty(I,V)$ (and hence closed in $V^I$ since $l^\infty(I,V)$ is closed in $V^I$), and that the map \eqref{eq159} is continuous.
 \end{proof}
 
 
@@ -11701,7 +11704,7 @@ In the case that $V=\Rbb$, the integral form of Taylor's theorem actually implie
 
 
 \begin{pp}[\textbf{Mean value theorem}]
-Let $f,g\in C([a,b],\Rbb)$ such that $g\geq 0$ for all $x\in(a,b)$. Then there exists $\xi\in [a,b]$ such that
+Let $f,g\in C([a,b],\Rbb)$ such that $g(x)\geq 0$ for all $x\in(a,b)$. Then there exists $\xi\in [a,b]$ such that
 \begin{align}
 \int_a^bfg=f(\xi)\int_a^bg
 \end{align}
@@ -11786,7 +11789,7 @@ You may wonder if the above argument really proves that $\pi$ is the length of $
 In the next semester, we will learn that $f\in C^\infty$ if the two $C^\infty$-parametrizations $\lambda,\gamma$ satisfy that $\lambda'$ and $\gamma'$ are nowhere zero. (Clearly $\gamma'$ is nowhere zero if $\gamma(t)=e^{\im t}$.) Such parametrizations are called \textbf{(smooth) immersions}.  \hfill\qedsymbol
 \end{rem}
 
-
+%% Record #19 2023/11/27 two lectures  47
 
 
 
@@ -12066,7 +12069,7 @@ where the top arrow is the map sending $\Phi(f)$ to $\int_J\circ\Phi(f)$, i.e., 
 \end{proof}
 
 
-\begin{df}
+\begin{df}\label{lb487}
 Let $I_1,\dots,I_N$ be compact intervals in $\Rbb$. Let $B=I_1\times\cdots\times I_N$ and $f\in C(B,V)$. We define the \textbf{Riemann integral} of $f$ to be
 \begin{align*}
 \int_Bf=\int_{I_1}\cdots\int_{I_N}f(x_1,\dots,x_N)dx_N\cdots dx_1
@@ -12180,7 +12183,7 @@ By Rem. \ref{lb404}, we have
 \begin{align*}
 \Vert \varphi_p(x)-\partial_Jf(x,y)\Vert\leq A(x,p):=\sup_{q\in[p,y]\cup[y,p]}\Vert \partial_Jf(x,q)-\partial_Jf(x,y)\Vert
 \end{align*}
-Since $\partial_Jf$ is continuous, it can be viewed as a continuous map $J\rightarrow C(I,V)$ by Thm. \ref{lb274}. Thus, for every $\eps>0$ there exists $\delta>0$ such that for every $p\in I$ satisfying $|p-y|\leq\delta$, we have $\sup_{x\in I}\Vert \partial_Jf(x,q)-\partial_Jf(x,y)\Vert\leq\eps$ for all $q\in[p,y]\cup[y,p]$, and hence $\sup_{x\in I}A(x,p)\leq\eps$. This proves that $A(\cdot,p)$ converges uniformly to $0$ (as a net of functions $I\rightarrow\Rbb$) as $p\rightarrow y$, finishing the proof.
+Since $\partial_Jf$ is continuous, it can be viewed as a continuous map $J\rightarrow C(I,V)$ by Thm. \ref{lb274}. Thus, for every $\eps>0$ there exists $\delta>0$ such that for every $p\in J$ satisfying $|p-y|\leq\delta$, we have $\sup_{x\in I}\Vert \partial_Jf(x,q)-\partial_Jf(x,y)\Vert\leq\eps$ for all $q\in[p,y]\cup[y,p]$, and hence $\sup_{x\in I}A(x,p)\leq\eps$. This proves that $A(\cdot,p)$ converges uniformly to $0$ (as a net of functions $I\rightarrow\Rbb$) as $p\rightarrow y$, finishing the proof.
 \end{proof}
 
 
@@ -12189,13 +12192,13 @@ Since $\partial_Jf$ is continuous, it can be viewed as a continuous map $J\right
 \subsubsection{Commutativity of partial derivatives}
 
 
-We write $\partial_If(x,y)$ as $\partial_1f(x,y)$ and $\partial_Jf(x,y)$ as $\partial_2f(x,y)$. In the following, we use Thm. \ref{lb405} to give a new prove of Thm. \ref{lb406} on the commutativity of $\partial_1$ and $\partial_2$. The idea is as follows. Suppose we know that $A,B$ are linear operators on a vector space such that $A$ is invertible and $A^{-1}B=BA^{-1}$. Then one deduces $A^{-1}BA=BA^{-1}A=B$ and hence $BA=AA^{-1}BA=AB$. Now, Thm. \ref{lb405} says that $\partial_J$  commutes with $\int_I$, the inverse of $\partial_I$ (in a vague sense). So one can use a similar algebraic argument to prove that $\partial_J$ commutes with $\partial_I$.
+We write $\partial_If(x,y)$ as $\partial_1f(x,y)$ and $\partial_Jf(x,y)$ as $\partial_2f(x,y)$. In the following, we use Thm. \ref{lb405} to give a new proof of Thm. \ref{lb406} on the commutativity of $\partial_1$ and $\partial_2$. The idea is as follows. Suppose we know that $A,B$ are linear operators on a vector space such that $A$ is invertible and $A^{-1}B=BA^{-1}$. Then one deduces $A^{-1}BA=BA^{-1}A=B$ and hence $BA=AA^{-1}BA=AB$. Now, Thm. \ref{lb405} says that $\partial_J$  commutes with $\int_I$, the inverse of $\partial_I$ (in a vague sense). So one can use a similar algebraic argument to prove that $\partial_J$ commutes with $\partial_I$.
 
 For the reader's convenience, we reproduce the content of Thm. \ref{lb406} as follows, along with some additional conclusions (i.e. the continuity of $\partial_1f$ and $\partial_2f$).
 
 
 \begin{thm}\label{lb407}
-Let $f:I\times J\rightarrow V$ be a function such that $\partial_1f,\partial_2f,\partial_2\partial_1f$ exist on $I\times J$, and that $\partial_2\partial_1f$ is continuous. Then $\partial_1f$ and $\partial_2f$ are continuous on $I\times J$. Moreover $\partial_1\partial_2f$ exists on $I\times J$ and equals $\partial_2\partial_1f$. (So $\partial_1\partial_2f$ is also continuous.)
+Let $f:I\times J\rightarrow V$ be a function such that $\partial_1f,\partial_2f,\partial_2\partial_1f$ exist on $I\times J$, and that $\partial_2\partial_1f$ is continuous. Then $\partial_1f$ and $\partial_2f$ are continuous on $I\times J$. Moreover, $\partial_1\partial_2f$ exists on $I\times J$ and equals $\partial_2\partial_1f$. (So $\partial_1\partial_2f$ is also continuous.)
 \end{thm}
 
 
@@ -12277,7 +12280,7 @@ Every interval with at least two points is not a null set.
 \end{eg}
 
 \begin{proof}
-Since every such interval contains a closed invertal with at least two points, it suffices to prove that the latter is not null. Thus, let us prove that $I$ is not null. Suppose $I$ is covered by some open intervals. Then, since $I$ is compact, $I$ is covered by finitely many of these open intervals. It is easy to see that the latter has total length $\geq|I|= b-a$.
+Since every such interval contains a closed invertal with at least two points, it suffices to prove that the latter is not null. Thus, let us prove that $I$ is not null. Suppose $I$ is covered by some open intervals. Then, since $I$ is compact, $I$ is covered by finitely many of these open intervals, say $U_1,\dots,U_n$. It is easy to see that  $\sum_{i=1}^n |U_i|\geq|I|= b-a$. (For example, let $f=\sum_i \chi_{U_i}$. Then $f\geq \chi_I$. So $\sum_i |U_i|=\sum_i\int\chi_{U_i}=\int f\geq\int_a^b 1=b-a$.)
 \end{proof}
 
 
@@ -12296,7 +12299,7 @@ Clearly $g\circ f$ is bounded. The set of discontinuities of $g\circ f$ is null 
 
 
 \begin{co}
-Let $f\in\scr R(I,\Fbb)$ and $g\in\scr R(I,\Fbb^N)$. Then $fg\in\scr R(I,\Fbb^N)$.
+Let $f\in\scr R(I,\Fbb^{m\times n})$ and $g\in\scr R(I,\Fbb^{n\times k})$. Then $fg\in\scr R(I,\Fbb^{m\times k})$.
 \end{co}
 
 \begin{proof}
@@ -12333,7 +12336,7 @@ Conversely, suppose $\omega(f,x)=0$. Then for every $\eps>0$ there exists $U\in\
 \begin{proof}[\textbf{Proof of Thm. \ref{lb411}, part 1}]
 Let us prove (1)$\Rightarrow$(2). Assume that $f$ is strongly Riemann integrable. Choose any $\eps>0$. Let us prove that
 \begin{align}
-\Omega_\eps(f)=\{x\in I:\omega(f,x)\geq\eps\}
+\Omega_\eps(f)=\{x\in I:\omega(f,x)\geq\eps\}\label{eq200}
 \end{align}
 is a null set. Then the set of discontinuities, which is $\bigcup_{n\in\Zbb_+}\Omega_{1/n}(f)$, is a null set by Prop. \ref{lb412}.
 
@@ -12937,6 +12940,17 @@ Choose any $f\in C(I,V)$. Then $f$ can be extended to a continuous function $\Rb
 \end{proof}
 
 
+\begin{co}\label{lb486}
+Let $I=[a,b]$ where $-\infty<a<b<+\infty$. Then $C([0,1],\Rbb)$ is separable.
+\end{co}
+
+\begin{proof}
+$\Qbb[x]$, the set of polynomials with coefficients in $\Qbb$, is countable. By Thm. \ref{lb441}, $\Qbb[x]$ is dense in $C([0,1],\Rbb)$.
+\end{proof}
+
+The Weierstrass approximation theorem will be generalized to \textbf{Stone-Weierstrass theorem} (cf. Thm. \ref{lb442}). Accordingly, Cor. \ref{lb486}  will be substantially generalized as an application of (the proof of) Stone-Weierstrass theorem: we will show that $C(X,\Rbb)$ is separable if $X$ is a compact metric space. (See Thm. \ref{lb482}) 
+
+
 
 \subsubsection{Smooth approximation}
 
@@ -13368,7 +13382,7 @@ Then $\Rbb[\{\pi_\alpha:\alpha\in\scr I\}]$, the unital subalgebra of $C(S,\Rbb)
 \end{pp}
 
 
-Since the coordinate functions separate points of $S$, Prop. \ref{lb451} is clearly a special case of SW theorem. According to \cite{Sto48}, Prop. \ref{lb451} was due to Dieudonn\'e. Interestingly, M. Stone reproved this proposition \textit{as an application of SW theorem} (cf. Thm. 14 in \cite[p.342, Sec. 8]{Sto48}), since he didn't use Prop. \ref{lb451} to prove SW theorem.
+Since the coordinate functions separate points of $S$, Prop. \ref{lb451} is clearly a special case of SW theorem. %According to \cite{Sto48}, Prop. \ref{lb451} was due to Dieudonn\'e. Interestingly, M. Stone reproved this proposition \textit{as an application of SW theorem} (cf. Thm. 14 in \cite[p.342, Sec. 8]{Sto48}), since he didn't use Prop. \ref{lb451} to prove SW theorem.
 
 
 \begin{lm}\label{lb456}
@@ -13687,7 +13701,7 @@ Let us prove the existence of such $\wtd G$. Let $W=\{x\in X:G(x)>0\}$. Let $F\i
 
 
 
-\subsubsection{How to use partition of unity}
+\subsubsection{How to use partition of unity}\label{lb490}
 
 
 In Sec. \ref{lb293}, we have discussed how to use the condition of compactness: Suppose that $K$ is compact and $f$ is a function on $K$, for instance, a continuous one. To prove that $f$ satisfies a global finiteness condition, we first prove that each $x\in K$ is contained in a neighborhood $U_x$ on which $f$ satisfies this finiteness condition. Then we pick finitely many $U_{x_1},U_{x_2},\dots$ covering $K$, and show that $f$ satisfies the finiteness condition globally. 
@@ -13844,13 +13858,13 @@ If you feel that identifying $X$ and $\Phi(X)$ is cheating, it is easy to revise
 
 
 
-\subsection{Summary and closing discussion}
+\subsection{Summary of the proof of SW}
 
 
-\subsubsection{Summary of the proof of SW Thm. \ref{lb442}}
 
 
-The key steps of the proof of Thm. \ref{lb442} are as follows.
+
+The key steps of the proof of SW Thm. \ref{lb442} are as follows.
 
 \begin{enumerate}
 \item We first prove the case that $X$ is a compact interval $I$ and $\scr A$ is the polynomial algebra: Let $f\in C(I,\Rbb)$, and extend $f$ to an element in $C_c(\Rbb,\Rbb)$. Let $g(x)=\pi^{-\frac 12}e^{-x^2}$ and $g_\eps(x)=\eps^{-1}g(x/\eps)$. On the one hand, $\lim_{\eps\rightarrow 0}f*g_\eps$ converges uniformly to $f$. On the other hand, for each $\eps$, since $g_\eps$ is approximated by polynomials uniformly on compact intervals (consider the Taylor series of $g_\eps$), one shows that $f*g_\eps$ is also approximated by polynomials uniformly on compact intervals.  
@@ -13858,7 +13872,7 @@ The key steps of the proof of Thm. \ref{lb442} are as follows.
 \item Taking $\mc V=C(J,\Rbb)$ where $J$ is a compact interval, the above step shows that polynomials are dense in $C(I\times J,\Rbb)$.\footnote{Instead of using step 2, one can also use step 1 and the fact that elements in $C(I\times J,\Rbb)$ can be approximated by those of the form $f_1g_1+\cdots+f_ng_n$ where $f_i\in C(I,\Rbb)$ and $g_i\in C(J,\Rbb)$, cf. Cor. \ref{lb471}.} Similarly, by induction, one sees that polynomials are dense in $C(I_1\times\cdots\times I_n,\Rbb)$ if each $I_j$ is a compact interval.
 \item Let $S=\prod_{\alpha\in\scr I}I_\alpha$ where each $I_\alpha$ is a compact interval. Then $S$ is a compact Hausdorff space by Tychonoff theorem. One shows that any $f\in C(S,\Rbb)$ can be approximated by a function $g$ depending on finitely many variables (Lem. \ref{lb455}, or Pb. \ref{lb453} when $\scr I$ is countable). By the previous step, $g$ can be approximated by polynomials. So $f$ can be approximated by polynomials (of coordinate functions of $S$).
 \item Let $X$ be a compact subset of $S=\prod_{\alpha\in\scr I}I_\alpha$, and let $f\in C(X,\Rbb)$. Then by Tietze extension theorem, $f$ can be extended to $\wtd f\in C(S,\Rbb)$ where $\wtd f$ can be approximated by polynomials by the previous step. So $f$ can be approximated by polynomials.
-\item Now let $X$ be a compact Hausdorff space, and let $\scr A$ be a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Then the map $\Phi=\bigvee_{f\in\scr A}f$ embeds $X$ onto a compact subspace of $S=\prod_{\alpha\in\scr A}I_f$ where $I_f=[-\Vert f\Vert_\infty,\Vert f\Vert_\infty]$. By the previous step, continuous functions on $\Phi(X)$ can be approximated by polynomials of the coordinate functions of $S$. This is equivalent to the density of $\scr A$ in $C(X,\Rbb)$. The proof is complete.
+\item Now let $X$ be a compact Hausdorff space, and let $\scr A$ be a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Then the map $\Phi=\bigvee_{f\in\scr A}f$ maps $X$ homeomorphically to a compact subspace of $S=\prod_{\alpha\in\scr A}I_f$ where $I_f=[-\Vert f\Vert_\infty,\Vert f\Vert_\infty]$. By the previous step, continuous functions on $\Phi(X)$ can be approximated by polynomials of the coordinate functions of $S$. This is equivalent to the density of $\scr A$ in $C(X,\Rbb)$. The proof is complete.
 \end{enumerate}
 
 
@@ -13871,42 +13885,50 @@ Thus, although our proof is longer than those in the other textbooks,\footnote{T
 
 
 
-\subsubsection{The second countable case}
+\subsection{Application: separability of $C(X,\Rbb)$}
 
 
-Our proof of SW theorem relies on Tychonoff Thm. \ref{lb452}, which in turn relies on Zorn's lemma, an uncountable version of mathematical induction. Though Zorn's lemma is equivalent to the axiom of choice, it is much more difficult to grasp intuitively than the axiom of choice and mathematical induction. Thus, one would like to find a proof without using Zorn's lemma if possible. 
+Our proof of SW theorem relies on Tychonoff Thm. \ref{lb452}, which in turn relies on Zorn's lemma, an uncountable version of mathematical induction. Though Zorn's lemma is equivalent to the axiom of choice, it is much more difficult to grasp intuitively than mathematical induction. Thus, one would like to find a proof without using Zorn's lemma if possible. 
 
-In the following, we will show that when the compact Hausdorff space $X$ is second countable (equivalenty, metrizable+), in the proof of SW theorem, it suffices to embed $X$ into a countable product of compact intervals. The latter is compact by countable Tychonoff theorem, whose proof does not rely on Zorn's lemma (cf. Thm. \ref{lb89} or Pb. \ref{lb241}). We first discuss a general fact about countability in compact Hausdorff spaces, generalizing Thm. \ref{lb261}.
+In the following, we will show that when the compact Hausdorff space $X$ is second countable (equivalenty, metrizable), in the proof of SW theorem, it suffices to embed $X$ into a countable product of compact intervals. The latter is compact by countable Tychonoff theorem, whose proof does not rely on Zorn's lemma (cf. Thm. \ref{lb89} or Pb. \ref{lb241}). We first discuss a general fact about countability in compact Hausdorff spaces.
 
 
 
-\begin{thm}
+\begin{thm}\label{lb482}
 Let $X$ be a compact Hausdorff space. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
-\item $X$ is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$.
-\item $C(X,\Rbb)$ is separable (equivalently, second countable, cf. Prop. \ref{lb250}).
-\item $X$ is second countable.
 \item $X$ is metrizable.
+\item $X$ is second countable.
+\item $C(X,\Rbb)$ is separable (equivalently, second countable, cf. Prop. \ref{lb250}).
 \end{enumerate}
 \end{thm}
 
-Here, as usual, $C(X,\Rbb)$ is equipped with the $l^\infty$-norm.
+Here, as usual, $C(X,\Rbb)$ is equipped with the $l^\infty$-norm. See Pb. \ref{lb484} for a generalization of Thm. \ref{lb482} to LCH spaces.
 
 \begin{proof}
-We have proved ``(1)$\Leftrightarrow$(4)" in Thm. \ref{lb261}. Let us prove the equivalence of the other three.
+By Thm. \ref{lb261}, we have (1)$\Leftrightarrow$(1') where
+\begin{itemize}
+\item[(1')] $X$ is homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$. 
+\end{itemize}
+Let us prove that (2) and (3) are equivalent to (1').
 
-(1)$\Rightarrow$(2): By Tietze extension theorem, it suffices to prove that $C(S,\Rbb)$ is separable where $S=[0,1]^{\Zbb_+}$. Let $\mc E=\Qbb[\{\pi_n:n\in\Zbb_+\}]$ be the set of polynomials of the coordinate functions of $S$ with coefficients in $\Qbb$. ($\pi_n:S\rightarrow[0,1]$ is the projection onto the $n$-th component.) Then $\mc E$ is countable (cf. Exe. \ref{lb476}), and is clearly dense in $\Rbb[\{\pi_n:n\in\Zbb_+\}]$. By Prop. \ref{lb451}, $\mc E$ is dense in $C(S,\Rbb)$. (Note that in special case where the product of intervals is countable, the proof of Prop. \ref{lb451} does not rely on Zorn's lemma. This is due to countable Tychonoff Thm. \ref{lb89}, cf. also Pb. \ref{lb241}.)
+(1')$\Rightarrow$(3): By Tietze extension theorem, it suffices to prove that $C(S,\Rbb)$ is separable where $S=[0,1]^{\Zbb_+}$. Let $\mc E=\Qbb[\{\pi_n:n\in\Zbb_+\}]$ be the set of polynomials of the coordinate functions of $S$ with coefficients in $\Qbb$. ($\pi_n:S\rightarrow[0,1]$ is the projection onto the $n$-th component.) Then $\mc E$ is countable (cf. Exe. \ref{lb476}), and is clearly dense in $\Rbb[\{\pi_n:n\in\Zbb_+\}]$. By Prop. \ref{lb451}, $\mc E$ is dense in $C(S,\Rbb)$.
 
 
 
-(2)$\Rightarrow$(1): Let $\mc E=\{f_1,f_2,\dots\}$ be a countable dense subset of $C(X,\Rbb)$. By Cor. \ref{lb474}, $C(X,\Rbb)$ separates points of $X$. So $\mc E$ also separates points of $X$. We scale $f_n\in\mc E$ by a nonzero real number such that $\Vert f_n\Vert_\infty\leq 1$. Then \begin{gather*}
-\Phi:X\rightarrow [-1,1]^{\Zbb_+} \qquad x\mapsto (f_1(x),f_2(x),\dots)
-\end{gather*}
+(3)$\Rightarrow$(1'): Let $\mc E=\{f_1,f_2,\dots\}$ be a countable dense subset of $C(X,\Rbb)$. By enlarging $\mc E$, we assume WLOG that $\mc E$ is infinite. By Cor. \ref{lb474}, $C(X,\Rbb)$ separates points of $X$. So $\mc E$ also separates points of $X$. We scale $f_n\in\mc E$ by a nonzero real number such that $\Vert f_n\Vert_\infty\leq 1$. Then 
+\begin{gather}
+\Phi:X\rightarrow [-1,1]^{\Zbb_+} \qquad x\mapsto (f_1(x),f_2(x),\dots)  \label{eq199}
+\end{gather}
 is a continuous injective map, restricting to a homeomorphism $X\rightarrow\Phi(X)$ where $\Phi(X)$ is a compact (and hence closed) subset of $[-1,1]^{\Zbb_+}\simeq[0,1]^{\Zbb_+}$.
 
-(1)$\Rightarrow$(3): Since $[0,1]$ is separable and hence second countable, by Pb. \ref{lb305}, $[0,1]^{\Zbb_+}$ is second countable. So its subsets are second countable by Prop. \ref{lb475}. 
+(1')$\Rightarrow$(2): Since $[0,1]$ is separable and hence second countable, by Pb. \ref{lb305}, $[0,1]^{\Zbb_+}$ is second countable. So its subsets are second countable by Prop. \ref{lb475}.\footnote{Alternatively, one can also use Thm. \ref{lb252} to prove directly (1)$\Rightarrow$(3). However, as the reader can feel in Rem. \ref{lb483}, I personally don't like the proof of Thm. \ref{lb252}. I would rather \textit{define} a metrizable compact space to be a topological space homeomorphic to a closed subset of $[0,1]^{\Zbb_+}$: adopting this definition, the proof of second countability will be more intuitive and less tricky. And after all, the method in the proof of Thm. \ref{lb252} will never be used in the future.}
 
-(3)$\Rightarrow$(1):
+(2)$\Rightarrow$(1'): Let $(U_n)_{n\in\Zbb_+}$ be an infinite countable basis of the topology of $X$. For each $m,n\in\Zbb_+$, if $\ovl U_n\subset U_m$, we choose $f_{m,n}$ such that $\ovl U_n\prec f\prec U_m$ (which exists by Urysohn lemma); otherwise, we let $f_{m,n}=0$. Then $\{f_{m,n}:m,n\in\Zbb_+\}$ separates points of $X$. (Proof: Choose distinct $x,y\in X$. Since $X\setminus\{y\}\in\Nbh_X(x)$, there exists $U_m$ containing $x$ and is contained in $X\setminus\{y\}$. By Lem. \ref{lb460}, there is $n$ such that $\{x\}\subset U_n\Subset U_m$. Then $f_{m,n}(x)=1$ and $f_{m,n}(y)=0$.) Thus, as in \eqref{eq199}, the map
+\begin{align*}
+X\rightarrow[0,1]^{\Zbb_+\times\Zbb_+}\qquad x\mapsto (f_{m,n}(x))_{m,n\in\Zbb_+}
+\end{align*}
+restricts to a homeomorphism from $X$ to a compact subset of $[0,1]^{\Zbb_+\times\Zbb_+}$.
 \end{proof}
 
 
@@ -13919,22 +13941,23 @@ Let $\scr A$ be a unital $\Rbb$-algebra (resp. unital $\Cbb$-algebra). Let $\Kbb
 
 
 
+\begin{rem}
+Note that Prop. \ref{lb451} is used (and is only used) in the proof of (1')$\Rightarrow$(3) of Thm. \ref{lb482}. Our proof of Thm. \ref{lb482} relies on Tychonoff theorem, which in turn relies on Zorn's lemma. However, in the proof of (1')$\Rightarrow$(3) we only consider countable products of integrals. In this special case, the proof of Tychonoff theorem uses mathematical induction but not Zorn's lemma. (See the proof of Thm. \ref{lb89} or Pb. \ref{lb241}.) Therefore, our proof of Thm. \ref{lb482} does not rely on Zorn's lemma.
+\end{rem}
+
+\begin{rem}
+Since the proof of Prop. \ref{lb451} uses Weierstrass approximation Thm. \ref{lb441}, the proof of ``$\Rightarrow$(3)" in Thm. \ref{lb482} also relies on Thm. \ref{lb441}. This is as expected. In fact, even if one wants to prove that $C([0,1],\Rbb)$ is separable, one needs Thm. \ref{lb441}. (See Cor. \ref{lb486}.) Therefore, it is fair to say that the separability of $C(X,\Rbb)$ is one of the most important applications of Weierstrass approximation (or SW) theorem.
+\end{rem}
 
 
+\begin{claim}
+If $X$ is a compact Hausdorff space satisfying one of the equivalent conditions in Thm. \ref{lb482}, then the SW Thm. \ref{lb442} can be proved without using Zorn's lemma.
+\end{claim}
 
 
-
-\hypertarget{beforeindex}{}
-
-
-
-
-
-
-
-
-
-
+\begin{proof}
+Let $\scr A$ be a unital subalgebra of $C(X,\Rbb)$ separating points of $X$. Since $C(X,\Rbb)$ is separable (equivalently, second countable), so is $\scr A$ (by Prop. \ref{lb475}). Therefore, $\scr A$ has a countable dense subset $\mc E=\{f_1,f_2,\dots\}$ which clearly separates points of $X$. By enlarging $\mc E$ we assume that it is infinite. So \eqref{eq199} restricts to a homeomorphism from $X$ to a closed subset of $S=[0,1]^{\Zbb_+}$. As in the proof of (1')$\Rightarrow$(3) of Thm. \ref{lb482}, the polynomials of the coordinate functions of $S$, when restricted to $\Phi(X)$, form a dense subset of $C(\Phi(X),\Rbb)$. Pulling back this result to $X$, we conclude that polynomials of $f_1,f_2,\dots$ (which are in $\scr A$) form a dense subset of $C(X,\Rbb)$.
+\end{proof}
 
 
 
@@ -14076,11 +14099,192 @@ This follows from the LCH real version, just as the compact complex version of S
 
 
 
-\begin{prob}
-Let $X$ be LCH. Use Tietze extension theorem to prove that $C_c(X,\mc V)$ dense in $C_0(X,\mc V)$. This proves that $C_0(X,\mc V)$ is the Banach space completion of $C_c(X,\mc V)$.
+\begin{prob}\label{lb485}
+Let $X$ be LCH. Use Tietze extension theorem to prove that $C_c(X,\mc V)$ dense in $C_0(X,\mc V)$. (This proves that $C_0(X,\mc V)$ is the Banach space completion of $C_c(X,\mc V)$.) Conclude that $C_0(X,\mc V)$ is separable iff $C_c(X,\mc V)$ is separable.
 \end{prob}
 
 
+\subsubsection{Multiple Riemann integral}
+
+
+The theory of Riemann integrals on $\Rbb$ can be easily generalized to $\Rbb^N$ by partitioning boxes, i.e. $I_1\times\cdots\times I_N$ where each $I_j$ is a compact interval in $\Rbb$. In this subsection, we establish the basic theory of Riemann integrals on bounded subsets of $\Rbb^N$ using partition of unity. Compared to partitioning boxes, the methods in this subsection are close to those in measure theory.
+
+\begin{df}
+If $f\in C_c(\Rbb^N,\Rbb)$, define $\int f\equiv\dps\int_\Rbb f=\int_Bf$ where $B\subset\Rbb^N$ is any box containing $\Supp(f)$. (See Def. \ref{lb487}.)
+\end{df}
+
+
+\begin{prob}
+Let $U$ be an open subset of $\Rbb^N$. Define the \textbf{(Lebesgue) measure} of $U$ to be
+\begin{align}
+\mu(U)=\sup\Big\{\int_{\Rbb^N}f:f\in C_c(U,[0,1]) \Big\}
+\end{align}
+which is an element of $\ovl\Rbb_{\geq0}$. It is clear that if $V$ is an open subset of $U$ then $\mu(V)\leq\mu(U)$.
+\begin{enumerate}
+\item In the case that $N=1$ and $U=(a,b)$ (where $-\infty\leq a<b\leq+\infty$), prove that $\mu(U)=b-a$.
+\item Suppose that $U$ has compact closure. Prove that $\mu(U)<+\infty$. (Hint: use Urysohn's lemma.)
+\item Let $(U_\alpha)_{\alpha\in\scr A}$ be an increasing net of open subsets of $\Rbb^N$. Prove
+\begin{align*}
+\mu\Big(\bigcup_{\alpha\in\scr A}U_\alpha \Big)=\sup_{\alpha\in\scr A}\mu(U_\alpha)
+\end{align*}
+\item Let $(V_j)_{j\in\scr I}$ be a (non-necessarily increasing) net of open subsets of $\Rbb^N$. Prove that
+\begin{align*}
+\mu\Big(\bigcup_{j\in\scr I}V_j  \Big)\leq\sum_{j\in\scr I}\mu(V_j)
+\end{align*}
+(Hint: Use part 3 to reduce to the special case $\mu(U\cup V)\leq\mu(U)+\mu(V)$. Prove it using partition of unity.)
+\item Let $(V_j)_{j\in\scr I}$ be a net of \textit{mutually disjoint} open subsets of $\Rbb^N$. Prove
+\begin{align*}
+\mu\Big(\bigcup_{j\in\scr I}V_j  \Big)=\sum_{j\in\scr I}\mu(V_j)
+\end{align*}
+\end{enumerate}
+\end{prob}
+
+
+\begin{df}
+A subset $E\subset\Rbb^N$ is called a \textbf{(Lebesgue) null set} \index{00@Null set, Lebesgue} if for every $\eps$ there exists an open $U\subset\Rbb^N$ containing $E$ such that $\mu(E)<\eps$.
+\end{df}
+
+\begin{exe}
+Show that a countable union of null sets is null.
+\end{exe}
+
+\begin{exe}
+(This exercise is not need below.) Show that when $N=1$, the above definition of null sets agrees with Def. \ref{lb409}. More generally, for arbitrary $N$, show that $E\subset\Rbb^N$ is null iff for every $\eps>0$, $E$ can be covered by boxes whose total volumes are $<\eps$.
+\end{exe}
+
+
+\begin{prob}\label{lb488}
+Let $f\in C_c(\Rbb^N,\Rbb_{\geq0})$.
+\begin{enumerate}
+\item Let $M\geq0$. Assume that there is an open $U\subset\Rbb^N$ such that $f|_U\leq M$ and that $\Supp(f)\subset U$. Prove
+\begin{align*}
+\int_{\Rbb^N}f\leq\mu(U)\cdot M
+\end{align*}
+\item Let $\eps\geq0$. Assume that there is an open $U\subset\Rbb^N$ such that $f|_U\geq\eps$. Prove
+\begin{align*}
+\int_{\Rbb^N}f\geq\mu(U)\cdot \eps
+\end{align*}
+\end{enumerate}
+\end{prob}
+
+
+\begin{rem}
+Pb. \ref{lb488} is easy but useful. It tells us that the values of $\int f$ and $\mu(U)$ are controlled by each other. For example, part 2 implies tha if $\inf f$ is small, then the measure of $\{x\in\Rbb^N:f(x)>\eps\}$ cannot be very big, and is converging to $0$ as $\eps\rightarrow+\infty$. 
+\end{rem}
+
+
+\begin{df}
+Let $f\in l^\infty(\Rbb^N,\Rbb)$ have compact support. Define \textbf{upper integrals} and \textbf{lower integrals} to be
+\begin{gather*}
+\ovl\int f=\inf\Big\{\int g:g\in C_c(\Rbb^N,\Rbb),g\geq f  \Big\}\\
+\underline\int f=\sup\Big\{\int h:h\in C_c(\Rbb^N,\Rbb),h\leq f  \Big\}
+\end{gather*}
+Clearly $\udl\int f\leq\ovl\int f$. Moreover, it is clear that if $f\in C_c(\Rbb^N,\Rbb)$ then $\udl\int f=\ovl\int f=\int f$. In general, if $\udl\int f=\ovl\int f$, we say that $f$ is \textbf{Riemann integrable}, \index{00@Riemann integrable} and define its integral $\int f$ to be $\ovl\int f$. Let \index{Rc@$\scr R_c(\Rbb^N,\Rbb)$}
+\begin{align*}
+\scr R_c(\Rbb^N,\Rbb)=\{f\in l^\infty(\Rbb^N,\Rbb):f\text{ has compact support and is Riemann integrable}\}
+\end{align*}
+\end{df}
+
+\begin{rem}\label{lb489}
+Let $f\in l^\infty(\Rbb^N,\Rbb)$ be compactly supported. It is clear from the definition that the following statements are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $f\in\scr R_c(\Rbb^N,\Rbb)$.
+\item For every $\eps>0$ there exist $g,h\in C_c(\Rbb^N,\Rbb)$ satisfying $h\leq f\leq g$ and $\int(g-h)<\eps$.
+\end{enumerate}
+In fact, (2) is easier to use than the original definition of Riemann integrability.
+\end{rem}
+
+
+\begin{exe}
+(This exercise is not needed below.) Prove that when $N=1$, the above definition of upper and lower integrals agrees with that in Pb. \ref{lb386}. 
+\end{exe}
+
+
+\begin{prob}
+Let $f,g\in l^\infty(\Rbb^N,\Rbb)$ have compact supports. Prove
+\begin{align*}
+\ovl\int(f+g)\leq\ovl\int f+\ovl\int g\qquad \udl\int(f+g)\geq\udl\int f+\udl\int g
+\end{align*}
+Prove that $\scr R_c(\Rbb^N,\Rbb)$ is a linear subspace of $\Rbb^{\Rbb^N}$. Prove that  $\int:\scr R_c(\Rbb^N,\Rbb)\rightarrow\Rbb$ is linear. Prove that if $f,g\in\scr R_c(\Rbb^N,\Rbb)$ then
+\begin{align}
+f\leq g\qquad\Longrightarrow\qquad\int f\leq\int g  \label{eq201}
+\end{align}
+\end{prob}
+
+
+\begin{prob}\label{lb493}
+(\textbf{Fubini's theorem})\index{00@Fubini's theorem for Riemann integrals} Let $X=\Rbb^M,Y=\Rbb^N$. Let $f\in\scr R_c(X\times Y,\Rbb)$.  Prove that $x\in X\mapsto \udl\int_Y f(x,y)dy $ and $x\in X\mapsto\ovl\int_Y f(x,y)dy$ are Riemann integrable, and that $\dps\int_{X\times Y}f=\int_X\udl\int_Yf=\int_X{\ovl\int_Y}f$.
+\end{prob}
+
+\begin{proof}[Hint]
+Choose $g,h\in C_c(X\times Y,\Rbb)$ such that $g\leq f\leq h$ and $\int_{X\times Y}(h-g)<\eps$. Apply the Fubini's theorem for compactly supported continuous functions (available due to Thm. \ref{lb399}) to $g,h,h-g$. (\eqref{eq201} is also useful.)
+\end{proof}
+
+\begin{rem}
+In the next semester, we will prove Fubini's theorem for Lebesgue measurable functions using more complicated methods. The goal of Pb. \ref{lb493} is to show you how to prove Fubini's theorem for a large class of functions (sufficient for many applications) without using those methods. When studying mathematics, it is often important to know how to simplify a proof when the objects studied are simpler.
+\end{rem}
+
+
+
+\subsubsection{$\star$ Lebesgue's criterion for multiple Riemann integrals.} 
+
+\begin{df}
+As in \eqref{eq200}, for each $f:\Rbb^N\rightarrow\Rbb$ and $\eps>0$, define
+\begin{align}
+\Omega_\eps(f)=\{x\in\Rbb^N:\omega(f,x)\geq\eps\}
+\end{align}
+where $\omega(f,x)=\inf_{U\in\Nbh(x)}\diam f(U)$. Note that by Lem. \ref{lb414}, $\Omega_\eps(f)$ is a closed subset of $\Supp(f)$, and hence is compact when $f$ is compactly supported.
+\end{df}
+
+
+\begin{prob}
+Let $f\in \scr R_c(\Rbb^N,\Rbb)$.   Prove that $\Omega_\eps(f)$ is a null set. (Thus, $\bigcup_{n\in\Zbb_+}\Omega_{1/n}(f)$ is null. This proves that the set of discontinuities of $f$ is null.)
+\end{prob}
+
+\begin{proof}[Hint]
+For each $\delta>0$, choose $g,h\in C_c(\Rbb^N,\Rbb)$ such that $h\leq f\leq g$ and $\int(g-h)\leq\delta\eps$, which exist due to Rem. \ref{lb489}. Let $U=\{x\in\Rbb^N:g(x)-h(x)>\eps/2\}$. Use Pb. \ref{lb488} to give a small upper bound of $\mu(U)$. Prove that $\Omega_\eps(f)\subset U$.
+\end{proof}
+
+
+The following problem can be compared with Lem. \ref{lb415}.
+
+\begin{prob}\label{lb491}
+Let $f\in l^\infty(\Rbb^N,\Rbb)$ be supported in a compact set $K$. Let $W\subset\Rbb^N$ be an open set containing $K$. Let $\eps>0$, and assume that for every $x\in\Rbb^N$ we have $\omega(f,x)<\eps$. Prove that there exist $g,h\in C_c(W,\Rbb)$ such that
+\begin{gather*}
+h\leq g\leq h\qquad 0\leq g-h\leq\eps
+\end{gather*}
+\end{prob}
+
+\begin{proof}[Hint]
+First construct $g,h$ locally. Then pass from local to global functions using a partition of unity of $K$ subordinate to an open cover.
+\end{proof}
+
+
+\begin{prob}\label{lb492}
+Let $f\in l^\infty(\Rbb^N,\Rbb)$ be compactly supported. Assume that the set of discontinuities of $f$ is a null set. Prove that $f\in\scr R_c(\Rbb^N,\Rbb)$.
+\end{prob}
+
+
+\begin{proof}[Hint]
+Choose any $\eps,\delta>0$. Choose an open set $U$ containing the compact set $\Omega_\eps(f)$ such that $\mu(U)<\delta$. Use a partition of unity of $K=\Supp(f)$ under $U$ and $V=\Rbb^N\setminus\Omega_\eps(f)$ to write $f=f_V+f_U$ where $f_V,f_U\in C_c(\Rbb^N,\Rbb)$ are supported in $K\cap V$ and $U$ respectively. Apply Pb. \ref{lb491} to $f_V$ to get $g_V\leq f_V\leq h_V$ with small $\int(h_V-g_V)$.  Find $h_U\in C_c(\Rbb^N,\Rbb)$ such that $0\leq f_U\leq h_U\leq M$ where $M=\Vert f\Vert_\infty$. Show that $\int(h_U+h_V-g_V)$ is small.
+\end{proof}
+
+
+
+\begin{df}
+Let $\Omega$ be a bounded subset of $\Rbb^N$. We say that $f:\Omega\rightarrow\Rbb$ is \textbf{Riemann integrable} \index{00@Riemann integrable} if $\wtd f\in\scr R_c(\Rbb^N,\Rbb)$, where $\wtd f$ is the zero extension of $f$ (i.e. $\wtd f|_\Omega=f$ and $\wtd f|_{\Omega^c}=0$). If $f$ is Riemann integrable, we define
+\begin{align*}
+\int_\Omega f=\int_{\Rbb^N}\wtd f
+\end{align*}
+\end{df}
+
+
+\begin{eg}
+Let $D=\{(x,y)\in\Rbb^2:x^2+y^2\leq1\}$ and $f\in C(D,\Rbb)$. Then the set of discontinuities of the zero extension $\wtd f$ is a subset of $S^1=\{(x,y)\in\Rbb^2:x^2+y^2=1\}$. It is not hard to show that $S^1$ is a null subset of $\Rbb^2$. Since $\Vert f\Vert_\infty<+\infty$ by extreme value theorem, we conclude that $f$ is Riemann integrable thanks to Lebesgue criterion (Pb. \ref{lb492}). Clearly $\int_\Rbb f(\cdot,y)dy$ is Riemann integrable. By Fubini's theorem (Pb. \ref{lb493}), we have
+\begin{align*}
+\int_D f=\int_{\Rbb^2}\wtd f=\int_{-1}^1\int_{-1}^1 \chi_D\wtd f(x,y)dydx=\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}f(x,y)dydx
+\end{align*}
+\end{eg}
 
 
 
@@ -14091,6 +14295,36 @@ Let $X$ be LCH. Use Tietze extension theorem to prove that $C_c(X,\mc V)$ dense 
 
 
 
+\hypertarget{beforeindex}{}
+
+\subsubsection{Compactness and countability}
+
+
+The following problem shows that the equivalence (2)$\Leftrightarrow$(3) in Thm. \ref{lb482} can be generalized to LCH spaces.
+
+\begin{prob}\label{lb484}
+Let $X$ be an LCH space with one-point compactification $X^*$. Prove that the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $X^*$ is second countable.
+\item $X$ is second countable.
+\item $C_0(X,\Rbb)$ is separable (equivalently, second countable).
+\end{enumerate}
+Here, as usual, $C_0(X,\Rbb)$ is equipped with the $l^\infty$-norm. Note also that by Pb. \ref{lb485}, (4) is equivalent to that $C_c(X,\Rbb)$ is separable.
+\end{prob}
+
+
+\begin{srem}
+By Pb. \ref{lb484} and Thm. \ref{lb482}, if an LCH space $X$ is second countable, then $X^*$ is metrizable, and hence $X$ is metrizable. However, a metrizable LCH space is not necessarily second countable. For example, let $X$ be an uncountable set, equipped with the discrete topology $\mc T=2^X$. Then $\mc T$ is induced by a metric $d$ defined by $d(x,y)=1$ if $x\neq y$ and $d(x,x)=0$. $X$ is LCH, but not second countable.
+\end{srem}
+
+
+\begin{sprob}
+Let $X$ be a compact Hausdorff space. Suppose that $\{f_1,f_2,\dots\}$ is a countable dense subset of $C(X,\Rbb)$. Use these functions to define an explicit metric on $X$, and construct an explicit countable basis for the topology of $X$. 
+\end{sprob}
+
+\begin{proof}[Note]
+This problem tests whether you truly understand the method of embedding and the proof of Thm. \ref{lb482}. Hint: How do you construct a metric and a countable basis for $[0,1]^{\Zbb_+}$? What do their pullbacks look like under the embedding defined by $f_1,f_2,\dots$?
+\end{proof}
 
 
 
