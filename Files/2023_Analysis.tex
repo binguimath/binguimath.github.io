@@ -1322,7 +1322,7 @@ S(f)=\int_0^1 L(t,f(t),f'(t))dt
 \end{align}
 This is the general setting of Lagrangian mechanics. In the theory of integral equations, one considers the extreme values and points of the functional
 \begin{align}
-S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy
+S(f)=\int_0^1\int_0^1 f(x)K(x,y)\ovl{f(y)}dxdy  \label{eq206}
 \end{align}
 \end{subequations}
 where $K:[0,1]^2\rightarrow\Rbb$ is continuous and $f:[0,1]\rightarrow\Cbb$ is subject to the condition $\int_0^1 |f(x)|^2dx\leq 1$. Any $f$ maximizing (resp. minimizing) $S(f)$ is an eigenvector of the linear operator $g\mapsto \int_0^1 K(x,y)g(y)dy$ with maximal (resp. minimal) eigenvalue.
@@ -12851,23 +12851,23 @@ By the change of variable formula we have $\int_u^v \eps^{-1}g(\eps^{-1}x)dx=\in
 
 
 \begin{pp}\label{lb437}
-Let $f\in C_c(\Rbb,V)$. Choose $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$ and $\Vert g\Vert_\infty<+\infty$, and define $g_\eps$ by \eqref{eq189} for each $\eps>0$. Then $(f*g_\eps)$ converges uniformly on $\Rbb$ to $f$ as $\eps\rightarrow0$.
+Let $f\in C_c(\Rbb,V)$. Choose $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$, and define $g_\eps$ by \eqref{eq189} for each $\eps>0$. Then $(f*g_\eps)$ converges uniformly on $\Rbb$ to $f$ as $\eps\rightarrow0$.
 \end{pp}
 
 In other words, the convolution operator $f\mapsto f*g_\eps$ converges pointwise to the identity map when $\eps\rightarrow 0$.
 
 \begin{proof}
-Let $M=\max\{\Vert f\Vert_\infty,\Vert g\Vert_\infty\}$, which is $<+\infty$ by assumption. Since $\int_\Rbb g_\eps=1$, for each $x\in\Rbb$ we have $\int_\Rbb f(x)g_\eps(y)dy=1$. Thus
+Let $M=\Vert f\Vert_\infty$, which is $<+\infty$. Since $\int_\Rbb g_\eps=1$, for each $x\in\Rbb$ we have $\int_\Rbb f(x)g_\eps(y)dy=f(x)$. Thus
 \begin{align}
 &\Vert (f*g_\eps)(x)-f(x)\Vert=\Big\Vert \int_\Rbb(f(x-y)-f(x))g_\eps(y)dy \Big\Vert\nonumber\\
 \leq &\int_\Rbb  \Vert f(x-y)-f(x)\Vert \cdot g_\eps(y)dy \label{eq191}
 \end{align}
 By Thm. \ref{lb294} and the compactness of $\Supp(f)$, $f$ is uniformly continuous on $\Rbb$. Therefore, for every $e>0$, there exists $0<\delta<1$ such that $\Vert f(x-y)-f(x)\Vert\leq e$ for all $x\in\Rbb$ and $y\in(-\delta,\delta)$. Thus, if we let $J_\delta=\Rbb\setminus(-\delta,\delta)$, then
 \begin{align*}
-&\eqref{eq191}\leq \int_{J_\delta}\Vert f(x-y)-f(x)\Vert \cdot g_\eps(y)dy+e\cdot \int_{-\delta}^\delta g_\eps(y)\\
-\leq& 2M\cdot \int_{J_\delta} g_\eps(y)dy+2eM 
+&\eqref{eq191}\leq \int_{J_\delta}\Vert f(x-y)-f(x)\Vert \cdot g_\eps(y)dy+e\cdot \int_{-\delta}^\delta g_\eps(y)dy\\
+\leq& 2M\cdot \int_{J_\delta} g_\eps(y)dy+e 
 \end{align*}
-which converges to $2eM$ under $\limsup_{\eps\rightarrow0}$ by Lem. \ref{lb436}. Since $e$ is arbitrary, we conclude that $\lim_{\eps\rightarrow0}\eqref{eq191}=0$.
+which converges to $e$ under $\limsup_{\eps\rightarrow0}$ by Lem. \ref{lb436}. Since $e$ is arbitrary, we conclude that $\lim_{\eps\rightarrow0}\eqref{eq191}=0$.
 \end{proof}
 
 \begin{rem}
@@ -12878,7 +12878,7 @@ The uniform continuity of a function $f:\Rbb\rightarrow V$ is equivalent to the 
 
 
 \begin{rem}
-In analysis, there are two especially important classes of  $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$ and $\Vert g\Vert_\infty<+\infty$. The first class consists of $g\in C_c(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$. Although functions with compact supports are often easy to use, they cannot be approximated by their Taylor series on $\Rbb$. (See Exp. \ref{lb358} for a related example.) Instead, we should consider another type of function:
+In analysis, there are two especially important classes of  $g\in C(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$. The first class consists of $g\in C_c(\Rbb,\Rbb_{\geq0})$ satisfying $\int_\Rbb g=1$. Although functions with compact supports are often easy to use, they cannot be approximated by their Taylor series on $\Rbb$. (See Exp. \ref{lb358} for a related example.) Instead, we should consider another type of function:
 \end{rem}
 
 
@@ -12887,13 +12887,13 @@ In analysis, there are two especially important classes of  $g\in C(\Rbb,\Rbb_{\
 
 
 \begin{eg}
-Define the \textbf{Gauss function} $\dps g(x)=\frac 1{\sqrt\pi}e^{-x^2}$. \index{00@Gauss function} Then $g\in C(\Rbb,\Rbb_{\geq0})$, $\Vert g\Vert_\infty=1$, and $\int_\Rbb g=1$. Thus, $g$ satisfies the assumptions in Prop. \ref{lb437}. 
+Define the \textbf{Gauss function} $\dps g(x)=\frac 1{\sqrt\pi}e^{-x^2}$. \index{00@Gauss function} Then $g\in C(\Rbb,\Rbb_{\geq0})$ and $\int_\Rbb g=1$. Thus, $g$ satisfies the assumptions in Prop. \ref{lb437}. 
 \end{eg}
 
 Although $g$ does not have compact support, it is a real analytic function. So we can use $f*g_\eps$ to prove Weierstrass approximation theorem.
 
 \begin{proof}
-Clearly $\Vert g\Vert_\infty=1$. It is easy to see that $\int_1^{+\infty}1/x^2dx<+\infty$. Thus, since $e^{x^2}\geq x^2$, we get $\int_\Rbb e^{-x^2}dx<+\infty$.
+It is easy to see that $\int_1^{+\infty}1/x^2dx<+\infty$. Thus, since $e^{x^2}\geq x^2$, we get $\int_\Rbb e^{-x^2}dx<+\infty$.
 
 It is not so easy to show that 
 \begin{align} \label{eq172}
@@ -13021,13 +13021,11 @@ Note that if $E$ is a bounded interval, then $\chi_E$ is clearly a linear combin
 The following proof shows that Prop. \ref{lb445} can be easily generalized to the case that $f:I\rightarrow V$ is strongly integrable on compact subintervals of $I$ and $\int_I|f|<+\infty$. ($V$ is a Banach space.)
 
 \begin{proof}
-Let $a=\inf I,b=\sup I$. By treating $\Real f$ and $\Imag f$ separately, it suffices to assume that $f\in\scr R^1(\Rbb,\Rbb)$. 
+Let $a=\inf I,b=\sup I$. Since $\int_I|f|=\lim_{u\rightarrow a,v\rightarrow b} \int_a^b|f|$, there exist $u,v$ such that $a<u<v<b$ and that $\int_a^u|f|+\int_v^b|f|<\eps/2$. We claim that there exists a step function $h$ supported in $J=[u,v]$ such that $\int_J |f-h|<\eps/2$. Then $\int_I|f-h|<\eps$, finishing the proof that $f$ can be $L^1$-approximated by step functions supported in $I$.
 
-Since $\int_I|f|=\lim_{u\rightarrow a,v\rightarrow b} \int_a^b|f|$, there exist $u,v$ such that $a<u<v<b$ and that $\int_a^u|f|+\int_v^b|f|<\eps/2$. We claim that there exists a step function $h$ supported in $J=[u,v]$ such that $\int_J |f-h|<\eps/2$. Then $\int_I|f-h|<\eps$, finishing the proof that $f$ can be $L^1$-approximated by step functions supported in $I$.
-
-Since $f|_J$ is strongly Riemann integrable, there exists $\sigma=\{a_0<\cdots<a_n\}\in\mc P(J)$ such that $\omega(f,\sigma)<\frac\eps 2$. Let $J_i=[a_{i-1},a_i]$. Pick any $\lambda_i\in f(J_i)$. Then $|f-\lambda_i\cdot\chi_{J_i}|\leq\diam(J_i)$ on $J_i$, and hence $\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq \diam(J_i)\cdot|J_i|$. Let $h=\sum_{i=1}^n\lambda_i\cdot\chi_{J_i}$. It follows that
+Since $f|_J$ is strongly Riemann integrable, there exists $\sigma=\{a_0<\cdots<a_n\}\in\mc P(J)$ such that $\omega(f,\sigma)<\frac\eps 2$. Let $J_i=[a_{i-1},a_i]$. Pick any $\lambda_i\in f(J_i)$. Then $|f-\lambda_i\cdot\chi_{J_i}|\leq\diam(f(J_i))$ on $J_i$, and hence $\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq \diam(f(J_i))\cdot|J_i|$. Let $h=\sum_{i=1}^n\lambda_i\cdot\chi_{J_i}$. It follows that
 \begin{align*}
-\Big|\int_J f-\int_Jh  \Big|\leq\sum_{i=1}^n\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq\sum_{i=1}^n\diam(J_i)\cdot|J_i|=\omega(f,\sigma)<\frac\eps 2
+\Big|\int_J f-\int_Jh  \Big|\leq\sum_{i=1}^n\int_{J_i}|f-\lambda_i\cdot\chi_{J_i}|\leq\sum_{i=1}^n\diam(f(J_i))\cdot|J_i|=\omega(f,\sigma)<\frac\eps 2
 \end{align*}
 finishing the proof.
 
@@ -13266,7 +13264,11 @@ A \textbf{(complex) *-algebra} \index{00@*-algebra} is defined to be a $\Cbb$-al
 (x^*)^*=x\qquad (xy)^*=y^*x^*
 \end{align*}
 Note that $*$ must be bijective. We call $*$ an \textbf{involution}. 
-\index{00@Involution} A \textbf{*-subalgebra} \index{00@*-subalgebra} $\scr B$ is defined to be a subalgebra satisfying $x\in\scr B$ iff $x^*\in\scr B$.
+\index{00@Involution} A \textbf{*-subalgebra} \index{00@*-subalgebra} $\scr B$ is defined to be a subalgebra satisfying $x\in\scr B$ iff $x^*\in\scr B$. If $\scr A$ is a unital algebra with unit $\idt$, we say that $\scr A$ is a \textbf{unital *-algebra} if $\scr A$ is equipped with an involution $*:\scr A\rightarrow\scr A$ such that $\scr A$ is a *-algebra, and that
+\begin{align*}
+\idt^*=\idt
+\end{align*}
+A unital *-subalgebra is a unital subalegbra and also a *-subalgebra.
 \end{df}
 
 
@@ -13372,6 +13374,7 @@ We first consider the special case that $X$ is metrizable. Then by Thm. \ref{lb2
 
 The above method can be easily genearlized to the case that $X$ is not necessarily metrizable. In fact, since $\scr A\subset C(X,\Rbb)$ separates points of $X$, as in the proof of  Thm. \ref{lb261}, $\scr A$ enables us to embed $X$ onto a compact subset of $[0,1]^{\scr I}$ where $\scr I$ is an index set. Therefore, we need to show that $[0,1]^{\scr I}$ is compact. This is indeed due to:
 
+%% Record #22 2023/12/6 three lectures  55
 
 \begin{thm}[\textbf{Tychonoff theorem}]\index{00@Tychonoff theorem}\label{lb452}
 Let $(X_\alpha)_{\alpha\in\scr I}$ be a family of compact topological spaces. Then the product space $S=\prod_{\alpha\in\scr I}X_\alpha$ (equipped with the product topology) is compact.
@@ -15233,7 +15236,7 @@ After Hilbert's study of $l^2$ spaces (a.k.a. Hilbert spaces), F. Riesz generali
 
 
 
-\subsection{The birth of operator norms and dual Banach spaces}
+\subsection{The birth of operator norms, I: moment problems}\label{lb543}
 
 It can be said that F. Riesz made the first crucial contribution to the notion of dual spaces of Banach spaces. According to Riesz, bounded linear functional on $L^q(I)$ (when $q<+\infty$ and $I$ is an interval in $\Rbb$) are nothing abstract. They are simply elements of $L^p(I)$. But what is the advantage of viewing $f\in L^p(I)$ not only as a function on $I$, but also as a linear functional on $L^q(I)$? Why was Riesz interested in characterizing $L^q(I)^*$ at all?
 
@@ -15274,6 +15277,175 @@ We refer the readers to \cite[Ch. VI]{Die-H} and \cite{NB97} for more details ab
 
 
 \subsection{Operator norms and completeness: functional calculus}
+
+
+In this section, all normed vector spaces are over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+That one can do a lot of analysis on the \textit{linear maps} of function spaces is a remarkable fact. In fact, in the early history of functional analysis, people were more interested in \textit{nonlinear} functionals on function spaces, for example, the expression $S(f)$ in the calculus of variations (cf. \eqref{eq24}), for which one searched for the extreme values. The problem of finding extreme values is almost trivial if the functional $S$ is linear and defined on a vector space of functions. Even Hilbert studied the eigenvalue problem for the integral operator $(Tf)(x)=\int_0^1 K(x,y)f(x)dx$ (cf. Subsec. \ref{lb370}) by transforming it to the extreme value problem of the functional $S(f)=\eqref{eq206}$ defined for all $f$ on the closed unit ball of $L^2([0,1],\Cbb)$.
+
+
+
+F. Riesz first recognized the importance of \textbf{operator norms}, thus calling people's attention to bounded linear maps of function spaces. Thus, Riesz is undoubtedly one of the most prominent figures in the early history of \textit{linear} functional analysis. We have defined bounded linear maps between arbitrary Banach spaces $V\rightarrow W$. However, to understand the nature of operator norms, we have to look at the following two important special cases:
+\begin{enumerate}[label=(\arabic*)]
+\item Bounded linear maps $V\rightarrow\Fbb$. By Banach-Alaoglu, one can use the operator norm to get a weakly-* \uwave{compact} sets $\ovl B_{V^*}(0,1)$. This has been discussed in previous sections.
+\item Bounded linear maps $V\rightarrow V$. As we will see below, the operator norm makes $\fk L(V):=\fk L(V,V)$ a Banach space which is compatible with its $\Fbb$-algebra structure. Namely, $\fk L(V)$ is a \textbf{Banach algebra}. Here, the crucial analytic property is \uwave{completeness} rather than compactness. 
+\end{enumerate} 
+Thus, in these two cases, the operator norms are playing different roles: compactness in the first case, and completeness in the second one. For example, as I will argue in the future, Hilbert and Schmidt noticed the importance of $l^2(\Zbb,\Cbb)$ not so much because of its completeness, but because of the weak-* compactness of its closed unit ball.
+
+
+\subsubsection{The Banach algebra $\fk L(V)$}
+
+
+Let me explain the meaning of the statement ``$\fk L(V)$ is a Banach algebra". First, we observe:
+
+
+\begin{thm}\label{lb540}
+Assume that $V$ is a normed vector spaces and $W$ is a Banach space. Recall that $\fk L(V,W)$ is a linear subspace of $W^V$ (cf. Prop. \ref{lb314}). Then $\fk L(V,W)$, equipped with the operator norm, is a Banach space.
+\end{thm}
+
+
+\begin{proof}
+By Prop. \ref{lb314}, it remains to prove that $\fk L(V,W)$ is complete. Let $(T_n)$ be a Cauchy sequence in $\fk L(V,W)$. So $\lim_{m,n\rightarrow\infty}\Vert T_m-T_n\Vert=0$. For each $v\in V$, we have $\Vert T_mv-T_nv\Vert\leq \Vert T_m-T_n\Vert\cdot\Vert v\Vert$ which converges to $0$ under $\lim_{m,n}$. So $(T_nv)$ is a Cauchy sequence in $W$, converging to a vector $Tv\in W$. Thus, we have proved that $(T_n)$ converges pointwisely to $T$. Clearly $M:=\sup_{n\in\Zbb_+}\Vert T_n\Vert$ is a finite number. Therefore, by Prop. \ref{lb520}, we have $T\in\fk L(V,W)$ and $\Vert T\Vert\leq M$. 
+
+Note that $\lim_n\Vert T-T_n\Vert=0$ means precisely that $T_n\rightrightarrows T$ on $B_V(0,1)$. Since $(T_n)$ converges pointwise to $T$, to prove that $\lim_n\Vert T-T_n\Vert=0$, it suffices to prove that $(T_n)$ converges uniformly to some function on $B_V(0,1)$. This is due to the completeness of $l^\infty(B_V(0,1),W)$ and the Cauchyness of $(T_n|_{B_V(0,1)})_{n\in\Zbb_+}$. 
+\end{proof}
+
+
+\begin{df}
+Let $\scr A$ be an $\Fbb$-algebra. Suppose that $\scr A$, as a vector space, is equipped with a norm $\Vert\cdot\Vert$ so that $\scr A$ is a normed vector space, and that
+\begin{align}
+\Vert xy\Vert\leq\Vert x\Vert\cdot\Vert y\Vert \label{eq208}
+\end{align}
+for all $x,y\in\scr A$. Then we call $\scr A$ a \textbf{normed algebra} over $\Fbb$. \index{00@Normed algebra} If the norm is complete, we say that $\scr A$ is a \textbf{Banach algebra} \index{00@Banach algebra} over $\Fbb$. A \textbf{unital Banach algebra} \index{00@Unital Banach algebra} is a unital algebra (with unit $\idt$) which is also a Banach algebra and satisfies
+\begin{align*}
+\Vert\idt\Vert=1
+\end{align*}
+\end{df}
+
+
+
+
+As mentioned above, the most important reason for considering operator norms on $V^*$ is due to the Banach-Alaoglu theorem. The most important reason for considering operator norms on $\fk L(V)$ is due to the following elementary but important fact:
+
+
+\begin{thm}
+Let $V$ be a Banach space. Then $\fk L(V)$, equipped with the operator norm, is a unital Banach algebra.
+\end{thm}
+
+Recall that the multiplication in $\fk L(V)$ is defined by the composition of linear operators.
+
+\begin{proof}
+This is immediate from Thm. \ref{lb540} and Prop. \ref{lb541}.
+\end{proof}
+
+\begin{pp}\label{lb541}
+Let $S:U\rightarrow V$ and $T:V\rightarrow W$ be linear maps of normed vector spaces. Then
+\begin{align}
+\Vert TS\Vert\leq\Vert T\Vert \cdot\Vert S\Vert  \label{eq207}
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+For each $u\in U$ we have $\Vert TSu\Vert\leq \Vert T\Vert\cdot \Vert Su\Vert\leq \Vert T\Vert\cdot\Vert S\Vert\cdot\Vert u\Vert$. According to Rem. \ref{lb372}, we get \eqref{eq207}.
+\end{proof}
+
+
+\subsubsection{Power series functional calculus}
+
+
+
+The word ``functional calculus" refers in general to the procedure of replacing the variable $x$ or $z$ in the $\Fbb$-valued function $f(x)$ or $f(z)$ by $f(T)$, where $T$ is an element in a unital Banach algebra $T$. The notation $T$ suggests that the most important case is where $T\in\fk L(T)$. Depending on whether $f$ is a continuous/analytic/integrable/measurable function, $f(T)$ is defined in different ways. Let us consider the simplest case. In the following, we fix a complex unital Banach algebra $\scr A$. (For example, $\scr A=\fk L(V)$ where $V$ is a complex Banach space.)
+
+
+Let $f(z)=\sum_{n=0}^\infty a_nz^n$ be a power series in $\Cbb$ with radius of convergence $R$. If $T\in\scr A$ and $\Vert T\Vert < R$, we can define
+\begin{align}
+f(T)=\sum_{n=0}^\infty a_nT^n  \label{eq209}
+\end{align}
+By \eqref{eq208}, we have $\Vert T^n\Vert\leq \Vert T\Vert^n$. Therefore, by root test, we have $\sum_n |a_n|\cdot \Vert T^n\Vert<+\infty$. So the RHS of \eqref{eq209} converges absolutely, and hence converges in $\scr A$. So \eqref{eq209} makes sense. 
+
+
+The most important general fact about functional calculus is that $f\mapsto f(T)$ is a homomorhism of unital algebras:
+
+\begin{pp}\label{eq211}
+If $f(z)=\sum_n a_nz^n$ and $g(z)=\sum_n b_nz^n$ be power series in $\Cbb$ with radius of convergence $R_1,R_2$. Let $R=\min\{R_1,R_2\}$. If $\scr A$ is a complex unital Banach algebra with unit $\idt$, and if $T\in\scr A$ satisfies $\Vert T\Vert<R$, then for each $a,b\in\Cbb$ we have
+\begin{align*}
+1(T)=\idt\qquad (af+bg)(T)=af(T)+bg(T)\qquad   (fg)(T)=f(T)g(T)
+\end{align*}
+\end{pp}
+
+
+\begin{proof}
+The first two equations are obvious. We prove the last one. Let $c_n=\sum_{k=0}^n a_kb_{n-k}$. Then $h(z)=\sum_n c_nz^n$ equals $f(z)g(z)$ on $B_\Cbb(0,R)$. Cor. \ref{lb153} immediately implies $h(T)=f(T)g(T)$.
+\end{proof}
+
+Let me give a simple application of Prop. \ref{lb211}. Recall that one can use determinants to prove that the set of $n\times n$ complex matrices is open in $\Cbb^{n\times n}$. However, in the infinite dimensional case one clearly cannot use determinants. Functional calculus provides an easy method to treat this problem.
+
+\begin{eg}\label{lb542}
+Let $T\in\scr A$ such that $\Vert T\Vert<1$. Then $1+T$ is invertible.
+\end{eg}
+
+\begin{proof}
+Let $f(z)=1+z$. Let $g(z)=\sum_{n=0}^\infty z^n$, which has radius of convergence $1$ and equals $(1-z)^{-1}$ when $|z|<1$. Since $fg=gf=1$, by \eqref{eq211} we have $TS=ST=\idt$ if we let $S=g(T)=\sum_{n=0}^\infty T^n$.
+\end{proof}
+
+
+\begin{pp}
+The set $\scr A^\times$ of invertible elements is an open subset of $\scr A$.
+\end{pp}
+
+\begin{proof}
+Let $T\in\scr A$ be invertible. Let $\delta=\Vert T^{-1}\Vert^{-1}$. Then for each $S\in\scr A$ satisfying $\Vert T-S\Vert<\delta$ we have
+\begin{align*}
+\Vert T^{-1}(S-T)\Vert\leq \Vert T^{-1}\Vert^{-1}\cdot \Vert S-T\Vert <1
+\end{align*}
+Thus, by Exp. \ref{lb542}, $1+T^{-1}(S-T)$ is invertible. So its multiplication with $T$ (which is $S$) is invertible.
+\end{proof}
+
+
+Functional calculus is also useful in differential equations, even in the finite dimensional case:
+
+
+\begin{exe}
+Let $A,B\in\scr A$.  Suppose that $AB=BA$. Show that $e^{A+B}=e^A\cdot e^B$. Show that
+\begin{align*}
+\frac {d e^{At}}{dt}=Ae^{At}=e^{At}A
+\end{align*}
+\end{exe}
+
+\begin{exe}
+Let $V$ be a complex Banach space. Let $v\in V$. Let $T\in\fk L(V)$. Show that there is a unique differentiable $f:\Rbb\rightarrow V$ satisfying the differential equation
+\begin{align*}
+f'(t)=Tf(t)\qquad f(0)=v
+\end{align*}
+Show that $f(t)=e^{Tt}v$ satisfies this differential equation.
+\end{exe}
+
+
+\subsection{The birth of operator norms, II: diagonalization}
+
+
+
+
+The power series functional calculus is the easiest example of functional calculus. In history, F. Riesz realized that $\fk L(V)$ is useful because one can use the completeness of $\fk L(V)$ under the operator norm to establish the \textbf{continuous functional calculus}, a more difficult version of functional calculus. Riesz's realization of the usefulness of operator norms is probably motivated by his study of moment problems, in which he introduced operator norms to dual Banach spaces. (See Sec. \ref{lb543})
+
+Let $V$ be the Hilbert space $l^2(\Zbb,\Cbb)$. For each $T\in\fk L(V)$, if $m,n\in\Zbb$, note that $T\chi_{\{n\}}$ is a function $\Zbb\rightarrow\Cbb$. We let $T_{m,n}=(T\chi_{\{n\}})(m)$, which is a complex number. (You can view $T$ as an $\infty\times\infty$ matrix. Then $T_{m,n}$ is its $m\times n$ entry.) It can be shown that there is a unique $T^*\in\fk L(V)$ such that $(T^*)_{m,n}=\ovl{T_{n,m}}$. We say that $T$ is \textbf{self-adjoint} if $T=T^*$. Then Riesz's continuous functional calculus says that for each self-adjoint $T$ and each compact interval $I=[a,b]$, there is continuous unital $*$-homomorphism
+\begin{align*}
+C(I,\Cbb)\rightarrow \fk L(V)\qquad f\mapsto f(T)
+\end{align*}
+sending the function $\id_I:x\mapsto x$ to $\id_I(T)=T$. By saying that the above map is a unital $*$-homomorphism, we mean that for every $a,b\in\Cbb,f,g\in C(I,\Cbb)$ we have
+\begin{gather*}
+1(T)=\id_V\qquad (af+bg)(T)=af(T)+bg(T)\\
+(fg)(T)=f(T)g(T)\qquad f^*(T)=f(T)^*
+\end{gather*}
+Recall that $f^*(x)=\ovl {f(x)}$. 
+
+Riesz's continuous functional calculus, together with his characterization of the dual space of $C(I,\Cbb)$ (this is the celebrated \textbf{Riesz representation theorem}, one of the deepest results in measure theory), enabled him to derive the \textbf{spectral theorem} for bounded self-adjoint operators on $l^2(\Zbb,\Cbb)$. Roughly speaking, spectral theorem can be viewed as the continuous version of the diagonalization theorem for complex self-adjoint matrices: If $T\in \Cbb^{n\times n}$ is self-adjoint, then there exists $U\in\Cbb^{n\times n}$ satisfying $U^*U=1$ (i.e. $U$ is unitary), such that $UTU^*$ is a diagonal matrix. In the case of $l^2(\Zbb,\Cbb)$, the eigenvalues and the diagonalizability of $T$ should be understood in a continuous way. The spectral theorem generalizes Hilbert's and Schmidt's work on integral equations and paved the way for von Neumann's establishment of abstract Hilbert spaces and their (unbounded) self-adjoint operators as the mathematical foundation of quantum mechanics.
+
+
+
+
+
 
 
 
