@@ -71,7 +71,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - Polynomial Energy Bounds for Type F_4 WZW-models, ***Internat. J. Math.***, Vol. 31, No. 12 (2020). `arXiv:2004.02064` [Preprint](Files/2020_F4.pdf)
 
-- Convergence of Sewing Conformal Blocks, to appear in ***Communications in Contemporary Mathematics***. `arXiv:2011.07450`  [Preprint](Files/2020_Sewing.pdf)
+- Convergence of Sewing Conformal Blocks, to appear in ***Commun. Contemp. Math.***, `arXiv:2011.07450`  [Preprint](Files/2020_Sewing.pdf)
 
 - Sewing and Propagation of Conformal Blocks, submitted. `arXiv:2110.04774`  [Preprint](Files/2021_Propagation.pdf)
 
@@ -81,7 +81,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products, submitted. `arXiv:2305.10180`  [Preprint](Files/2023_Conformal_Block_1.pdf) [Slides](Files/2023_SJTU.pdf)
 
-- Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, submitted. `arXiv:2306.11856`, to appear in ***Comm. Math. Phys.***. [Preprint](Files/2023_Geometric_Positivity.pdf) [Slides](Files/2023_Tokyo.pdf)
+- Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, to appear in ***Comm. Math. Phys.***, `arXiv:2306.11856`, [Preprint](Files/2023_Geometric_Positivity.pdf) [Slides](Files/2023_Tokyo.pdf)
 > In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.
 
 
