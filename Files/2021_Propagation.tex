@@ -1,4 +1,5 @@
-\documentclass[12pt,a4paper,notitlepage]{article}
+\documentclass[11pt,b5paper,notitlepage]{article}
+\usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
 
 \usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
 %\usepackage{ulem} %wave underline
@@ -10,6 +11,8 @@
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
 
 \usepackage{fancyhdr} % date in footer
+
+\usepackage{ulem}  % \uline  underline break line   also    \uwave
 
 \usepackage{tikz-cd}
 \usepackage[nottoc]{tocbibind}   % Add  reference to ToC
@@ -40,7 +43,7 @@
 
 %\setcounter{tocdepth}{1}	 hide subsections in the content
 
-\usepackage{fullpage}
+%\usepackage{fullpage}
 \counterwithin{figure}{section}
 
 \pagestyle{plain}
@@ -267,11 +270,13 @@
 \newpage
 
 \begin{abstract}
-Propagation is a standard way of producing new conformal blocks from old ones that corresponds to the geometric procedure of adding new  distinct points to a pointed compact Riemann surface. On the other hand, sewing conformal blocks corresponds to sewing compact Riemann surfaces. 
+Propagation is a standard way of producing certain new conformal blocks from old ones that corresponds to the geometric procedure of adding new  distinct points to a pointed compact Riemann surface. On the other hand, sewing conformal blocks corresponds to sewing compact Riemann surfaces. 
 
-In this article, we clarify the relations between these two procedures. Most importantly, we show that "sewing and propagation are commuting procedures". More precisely: let $\upphi$ be a conformal block associated to a vertex operator algebra $\Vbb$ and a compact Riemann surface to be sewn, and let $\wr^n\upphi$ be its $n$-times propagation. If the  sewing $\wtd{\mc S}\upphi$  converges, then $\wtd{\mc S}\wr^n\upphi$ (the sewing of $\wr^n\upphi$)  converges to $\wr^n\wtd{\mc S}\upphi$ (the $n$-times propagation of the sewing $\wtd{\mc S}\upphi$). 
+In this article, we clarify the relationships between these two procedures. Most importantly, we show that "sewing and propagation are commuting procedures". More precisely: let $\upphi$ be a conformal block associated to a vertex operator algebra $\Vbb$ and a compact Riemann surface to be sewn, and let $\wr^n\upphi$ be its $n$-times propagation. If the  sewing $\wtd{\mc S}\upphi$  converges, then $\wtd{\mc S}\wr^n\upphi$ (the sewing of $\wr^n\upphi$) automatically converges, and it equals $\wr^n\wtd{\mc S}\upphi$ (the $n$-times propagation of the sewing $\wtd{\mc S}\upphi$). 
 
-As an application, we can prove the convergence of sewing conformal blocks in certain important cases without assuming $\Vbb$ to be CFT-type, $C_2$-cofinite, or rational. We also provide a new method of explicitly constructing the permutation-twisted modules associated to the  tensor product VOA $\Vbb^{\otimes k}$, originally due to \cite{BDM02}: the key point is that our results about propagation and sewing allows us to check that the permutation-twisted vertex operators in \cite{BDM02} satisfy Jacobi identity using geometric and complex-analytic methods (e.g. using contour integrals).  Similar methods will be used in \cite{Gui21}  to relate the (genus-$0$) permutation-twisted $\Vbb^{\otimes k}$-conformal blocks (i.e. intertwining operators) and the untwisted $\Vbb$-conformal blocks (of possibly higher genera).
+The proof of this result relies on establishing the propagation of conformal blocks associated to \textit{holomorphic} families of compact Riemann surfaces. We prove this in our paper using the idea that ``propagation is itself a sewing followed by an analytic continuation". This result generalizes previous ones on single Riemann surfaces \cite{Zhu94,FB04}, and supplements those on \textit{algebraic} families of complex algebraic curves \cite{Cod19,DGT19a}.
+
+The results in this paper will be used in \cite{Gui21} as the main technical tools to relate the (genus-$0$) permutation-twisted $\Vbb^{\otimes k}$-conformal blocks (i.e. intertwining operators) and the untwisted $\Vbb$-conformal blocks (of possibly higher genera).
 \end{abstract}
 
 
@@ -334,36 +339,69 @@ from $\wtd C$, and glue the remaining part by identifying all $y'\in W'$ with $y
 \begin{gather}
 	\wtd{\mc S}\uppsi(w)=\uppsi(w\otimes q^{\wtd L_0}\btr\otimes\btl).\label{eq56}
 \end{gather}
-It was shown in \cite[Thm. 8.5.1]{DGT19b} that the above linear map defines a ``formal conformal block" (i.e., a ``conformal block" when $q$ is infinitesimal). If this series converges absolutely on $|q|<r\rho$, then it defines an actual conformal block associated to $\fk X_q$ \cite[Thm. 11.2]{Gui20}, called the \textbf{sewing} of $\uppsi$.
+It was shown in \cite[Thm. 8.5.1]{DGT19b} that the above linear map defines a ``formal conformal block" (i.e., a ``conformal block" when $q$ is infinitesimal). If this series converges absolutely on $|q|<r\rho$, then it defines an actual conformal block associated to $\fk X_q$ \cite[Thm. 11.2]{Gui23}, called the \textbf{sewing} of $\uppsi$.
 
 In the above process, if $\wtd C$ is connected, then $\mc C_q$ is the self-sewing of $\wtd C$. For instance, if we sew the  $\fk X$ in the above example 3 along $0$ and $\infty$ to get a torus, we accordingly sew the conformal block \eqref{eq55} to obtain the (normalized) character of $\Wbb$-module $v\mapsto \Tr (Y(v,z)q^{\wtd L_0})$, which plays an important role in the early development of VOA theory. If $\wtd C$ has two connected component $\wtd C_1,\wtd C_2$, and if we sew $\wtd C$ along $x'\in\wtd C_1,x''\in\wtd C_2$, we obtain a connected sum of $\wtd C_1$ and $\wtd C_2$. If we choose $\wtd C=C\sqcup\Pbb^1$ and sew $\wtd C$ along $x_i\in C$ and $\infty\in\Pbb^1$, then at $q=1$, the corresponding sewing of the conformal blocks $\upphi$ and \eqref{eq55} is just \eqref{eq54}, and the new Riemann surface we get is naturally equivalent to $C$.
 
 
 
-\subsection*{Sewing and propagation}
+\subsection*{Propagation is a sewing followed by an analytic continuation}
 
-Now,  \eqref{eq54} indicates that propagation and sewing are related: when the inserted point $y$ is close to a marked point $x_i$, the propagation is defined by sewing. When $y$ is far from the marked points, the propagation is defined by analytic continuation (provided that it exists). 
+Now,  \eqref{eq54} indicates that propagation and sewing are related. Roughly speaking, propagation can be understood as follows: \uline{When the inserted point $y$ is close to a marked point $x_i$, the propagation is defined by sewing. When $y$ is far from the marked points, the propagation is defined by analytic continuation (provided that it exists).} (See Exp. \ref{lb9} and the proof of Thm. \ref{lb4} for details.)
 
-This observation actually gives us a new proof of the existence of propagation: when $y$ is close to a marked point $x_i$, we simply define the propagation by the series on the right hand side of \eqref{eq54}. The convergence of that series follows from \cite[10.1.1]{FB04}. Or, if we define conformal blocks to be those vanishing on the actions of certain global meromorphic $1$-forms of the sheaf of VOA $\scr V_C$ on $\Wbb_\blt$ (which is the definition we take in this article), namely, the ``dual definition" in \cite[10.1.2]{FB04}, then the convergence of the series, as well as the existence of the analytic continuation, follows from the Strong Residue Theorem (\cite[9.2.9]{FB04}, see also Thm. \ref{lb7}). That the right hand side of \eqref{eq54} defines a conformal block follows from the previously mentioned fact that the sewing of a conformal block is again a conformal block. See Sec. \ref{lb22} for details.
+The above important point is implicit in the literature (such as \cite{Zhu94,Zhu96}). However, it seems that no existing result relies completely on this idea (and especially on sewing) to establish the existence of propagation.  The first result for general VOAs over Riemann surfaces is due to Zhu \cite{Zhu94}. Zhu used analytic methods to establish the propagation of conformal blocks over a single compact Riemann surface. However, instead of using sewing in the proof, he constructed propagation using certain ``Verma modules". (See \cite[Thm. 6.1]{Zhu94})   A more algebraic approach was later given in \cite[Thm. 10.3.1]{FB04}. Propagation over \textit{algebraic} families of complex algebraic curves was given in \cite[Thm. 3.6]{Cod19} and \cite[Thm. 5.1]{DGT19a}. Instead of using sewing in their proofs, they used a PBW basis instead. (In fact, the analytic sewing is unavailable in algebraic geometry.)
+
+Unlike previous approaches to propagation, ours is based largely on the above understanding of propagation (i.e. it is sewing+analytic continuation). Let us explain it in more details below.
 
 
-In \cite{Gui20}, we have proved a very general result on the convergence of sewing conformal blocks, assuming that $\Vbb$ is CFT-type and $C_2$-cofinite, and the module $\Mbb$ is semi-simple. To prove the convergence, we have to establish a differential equation satisfied by the formal series  \eqref{eq56}, and the $C_2$-cofiniteness is crucial for finding that differential equation. Here, we see a different pattern for proving the convergence of sewing: \textit{if this sewing process is related to propagation, then its convergence follows from the Strong Residue Theorem}. In particular, $C_2$-cofinite (or CFT-type) is not needed for proving the convergence. (Note that in \cite{Gui20}, the main reason for assuming CFT-type when proving convergence is to use Buhl's result \cite{Buhl02}.)
+\subsection*{Main result: propagation of analytic families of conformal blocks}
+
+The first main result of this article is Thm. \ref{lb4}, which establishes the propagation of conformal blocks for a \textit{holomorphic} family of compact Riemann surfaces with marked points. Roughly speaking, Thm. \ref{lb4} says the following: Suppose that we have a (holomorphic) family $\fk X$ of compact Riemann surfaces with marked points. Let $\mc B$ be a base manifold with holomorphic parameters $\tau_\blt=(\tau_1,\dots,\tau_m)$. Suppose that a holomorphic section $\varphi=\varphi(\tau_\blt)$ of conformal blocks associated to $\fk X$ is given. Then its propagation $\wr\varphi=\wr\varphi(\tau_\blt,z)$ exists as a section which is simultaneously holomorphic with respect to $\tau_\blt$ and $z$. Here $z$ is (locally) a parameter on the fibers of Riemann surfaces.  
+
+I have mentioned that propagation over a single Riemann surface was already proved in the literature. However, one cannot use fiberwise propagation to construct $\wr\varphi$ for a family of surfaces: it implies only that $\wr\varphi(\tau_\blt,z)$ is holomorphic over $z$ for each fixed $\tau_\blt$, but not that $\wr\varphi(\tau_\blt,z)$ is holomorphic over $\tau_\blt$ for each fixed $z$ (even if we know that $\varphi(\tau_\blt)$ is holomorphic over $\tau_\blt$). 
+
+
+\subsection*{Ideas of the proof of Thm. \ref{lb4}}
+
+Compare to the results already existing in the literature, the most novel part in Thm. \ref{lb4} is that \uline{the holomorphicity of $\varphi(\tau_\blt)$ with respect to $\tau_\blt$ implies the (simultaneous) holomorphicity of $\wr\varphi(\tau_\blt,z)$ with respect to $\tau_\blt,z$}. Our main tool for proving this fact is the \textbf{strong residue theorem} for holomorphic families of compact Riemann surfaces, given in Thm. \ref{lb7}. Roughly speaking, the (classical) strong residue theorem says the following: Suppose that to each marked point of a compact Riemann surface a formal Laurent series is associated. Then these formal Laurent series are expansions of a meromorphic section with possible poles only at these marked points if and only if it satisfies the residue theorem when multiplied by any meromorphic $1$-forms with possible poles only at these points. The classical strong residue theorem is an easy application Serre's duality for holomorphic bundles on compact Riemann surfaces (cf. \cite[Sec. 1.2.3]{Ueno08}). Its generalization to holomorphic families (i.e. Thm. \ref{lb7}) is more involved: our proof combines Serre's duality with Grauert's base change theorem in an appropriate way.
+
+
+Another feature of our proof of Thm. \ref{lb4} is that \textit{we uses essentially the viewpoint that propagation is a sewing followed by an analytic continuation}. In fact, in the proof of Thm. \ref{lb4}, we first establish the existence of $\wr\varphi(\tau_\blt,z)$ when $z$ is neared a marked point. We prove this part by using the fact that $\wr\varphi(\tau_\blt,z)$ is a sewing of $\varphi(\tau_\blt)$ and a $3$-pointed genus $0$ conformal block. Then we perform the analytic continuation. The details of this sewing construction are given in Exp. \ref{lb9}. 
+
+In particular, this viewpoint allows us to prove that $\wr\varphi$ is a conformal block (but not just an arbitrary element) when $z$ is near the marked points by using the nontrivial fact that the sewing of a conformal block is again a conformal block as long as the sewing is convergent, cf. Thm. \ref{lb8}. (This theorem was originally proved in \cite[Thm. 11.3]{Gui23}.) It is precisely this part that plays the role of the construction of certain Verma modules in the proof of \cite{Zhu94}, and that of the PBW basis in the proofs of \cite{Cod19,DGT19a}. Similarly, in the proof of Thm. \ref{lb4} we also need the fact that the analytic continuation of a conformal block is a conformal block, as proved in \cite[Prop. 6.4]{Gui23} (cf. Prop. \ref{lb10}).
+
+%Incidentally, even in the case of a single compact Riemann surface, our propagation theorem applies to a slightly larger class of VOAs: unlike \cite{Zhu94} we do not assume that the VOA $\Vbb$ is generated by quasi-primary vectors; unlike \cite{Cod19,DGT19a} we do not assume that the weight zero subspace of $\Vbb$ is one-dimensional (the condition $\dim \Vbb(0)=1$ was assumed in these two papers in order to have a PBW basis for $\Vbb$).
+
+
+%This observation actually gives us a new proof of the existence of propagation: when $y$ is close to a marked point $x_i$, we simply define the propagation by the series on the right hand side of \eqref{eq54}. The convergence of that series follows from \cite[10.1.1]{FB04}. Or, if we define conformal blocks to be those vanishing on the actions of certain global meromorphic $1$-forms of the sheaf of VOA $\scr V_C$ on $\Wbb_\blt$ (which is the definition we take in this article), namely, the ``dual definition" in \cite[10.1.2]{FB04}, then the convergence of the series, as well as the existence of the analytic continuation, follows from the Strong Residue Theorem (\cite[9.2.9]{FB04}, see also Thm. \ref{lb7}). That the right hand side of \eqref{eq54} defines a conformal block follows from the previously mentioned fact that the sewing of a conformal block is again a conformal block. See Sec. \ref{lb22} for details.
+
+
+%In \cite{Gui23}, we have proved a very general result on the convergence of sewing conformal blocks, assuming that $\Vbb$ is CFT-type and $C_2$-cofinite, and the module $\Mbb$ is semi-simple. To prove the convergence, we have to establish a differential equation satisfied by the formal series  \eqref{eq56}, and the $C_2$-cofiniteness is crucial for finding that differential equation. Here, we see a different pattern for proving the convergence of sewing: \textit{if this sewing process is related to propagation, then its convergence follows from the Strong Residue Theorem}. In particular, $C_2$-cofinite (or CFT-type) is not needed for proving the convergence. (Note that in \cite{Gui23}, the main reason for assuming CFT-type when proving convergence is to use Buhl's result \cite{Buhl02}.)
 
 
 \subsection*{Main result: sewing and propagation are commuting}
 
-A main goal of this article (already mentioned in the abstract) is to take the above idea (i.e. proving the convergence using the Strong Residue Theorem) to the extreme: we prove that if (in the setting of \eqref{eq56}) $\wtd{\mc S}\uppsi$ converges absolutely on $|q|<r\rho$, then for distinct $y_1,\dots,y_n\in \wtd C$ away from $\{x_1,\dots,x_N\}$ and from $W',W''$ (therefor they are also  points on $\mc C_q$), $\wtd{\mc S}(\wr^n\uppsi_{y_1,\dots,y_n})$, the sewing of the $n$-propagation of $\uppsi$ at $y_1,\dots,y_n$, converges absolutely to $\wr^n{\wtd{\mc S}\uppsi}_{y_1,\dots,y_n}$. Moreover, the convergence should be uniform when $y_1,\dots,y_n$ vary on compact sets. More generally, we prove such result for the simultaneous sewing of $\wtd C$ along several pairs of points. See Thm. \ref{lb21} for details. Even more generally, we prove such result for families of compact Riemann surfaces (cf. Rem. \ref{lb23}).
+Using Thm. \ref{lb4} and induction, it is now easy to prove Thm. \ref{lb21}, another main result of this article, which says roughly that ``sewing commutes with propagation".
 
-The above main result of this article can be summarized by
+%: we prove that if (in the setting of \eqref{eq56}) $\wtd{\mc S}\uppsi$ converges absolutely on $|q|<r\rho$, then for distinct $y_1,\dots,y_n\in \wtd C$ away from $\{x_1,\dots,x_N\}$ and from $W',W''$ (therefor they are also  points on $\mc C_q$), $\wtd{\mc S}(\wr^n\uppsi_{y_1,\dots,y_n})$, the sewing of the $n$-propagation of $\uppsi$ at $y_1,\dots,y_n$, converges absolutely to $\wr^n{\wtd{\mc S}\uppsi}_{y_1,\dots,y_n}$. Moreover, the convergence should be uniform when $y_1,\dots,y_n$ vary on compact sets. More generally, we prove such result for the simultaneous sewing of $\wtd C$ along several pairs of points. See Thm. \ref{lb21} for details. Even more generally, we prove such result for families of compact Riemann surfaces (cf. Rem. \ref{lb23}).
+
+Roughly speaking, Thm. \ref{lb21} says the following: Suppose that $\uppsi$ is a conformal block associated to a compact Riemann surface with marked point. Suppose that the sewing $\wtd{\mc S}\uppsi=\eqref{eq56}$ along a pair of marked points is convergent. Then we have
 \begin{align}
 \wr^n\wtd{\mc S}\uppsi=\wtd{\mc S}\wr^n\uppsi,	\label{eq57}
 \end{align}
-i.e. ``the propagation of sewing equals the sewing of propagation". Note that the non-trivial part of this result is  that the convergence of $\wtd{\mc S}\uppsi$ guarantees the convergence of $\wtd{\mc S}\wr^n\uppsi$. For if we assume or already know the convergence, then the equality \eqref{eq57} follows directly from the fact that $\wr^n\wtd{\mc S}\uppsi$ is the unique conformal block sending $\id\otimes\cdots\otimes\id\otimes w\in\Vbb^{\otimes n}\otimes\Wbb_\blt$ to $\wtd{\mc S}\uppsi(w)$ (cf. \eqref{eq53}).
+where both sides are well-defined holomorphic sections.
+
+Note that Thm. \ref{lb21} shows, in particular, that the convergence of $\wtd{\mc S}\uppsi$ implies automatically the convergence/analyticity of the sewing $\wtd{\mc S}\wr^n\uppsi$. This nontrivial phenomenon first appeared in a prominent way in \cite{Zhu96}. In that paper, Zhu first used differential equations to establish the analyticity of $1$-pointed conformal blocks of genus-$1$ for $C_2$-cofinite VOAs. Then he used his recurrent formula to prove that the $n$-pointed conformal blocks of genus-$1$ are analytic when all the marked points are associated with the vacuum module $\Vbb$. His proof of ``$1$-pointed convergence/analyticity implies $n$-pointed analyticity" in genus $1$ by recurrent formula does not rely on $C_2$-cofiniteness or differential equations. However, this phenomenon in higher genus was not further investigated in \cite{Zhu94}.
+
+In the proof of Thm. \ref{lb21}, the analyticity of $\wtd{\mc S}\wr^n\uppsi$ follows from that of $\wr^n\wtd{\mc S}\uppsi$ (since they are locally equal as formal power series). The analyticity of $\wr^n\wtd{\mc S}\uppsi$ is an easy consequence of Thm. \ref{lb4} (applied inductively to the propagation of the holomorphic family of conformal blocks $\wr^{n-1}\wtd{\mc S}\uppsi$).
+
+
+%i.e. ``the propagation of sewing equals the sewing of propagation". Note that the non-trivial part of this result is  that the convergence of $\wtd{\mc S}\uppsi$ guarantees the convergence of $\wtd{\mc S}\wr^n\uppsi$. For if we assume or already know the convergence, then the equality \eqref{eq57} follows directly from the fact that $\wr^n\wtd{\mc S}\uppsi$ is the unique conformal block sending $\id\otimes\cdots\otimes\id\otimes w\in\Vbb^{\otimes n}\otimes\Wbb_\blt$ to $\wtd{\mc S}\uppsi(w)$ (cf. \eqref{eq53}).
 
 
 \subsection*{Applications}
 
-We give an application of this result. Let $\fk Y=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)$, associate $\Wbb_j$ to $x_j$ for each $j$, and choose a conformal block $\upphi:\Wbb_\blt\rightarrow\Cbb$ associated to $\fk Y$. Choose $1\leq i\leq N$. Let $\fk P=(\Pbb^1;0,\infty;\zeta,\zeta^{-1})$, and associate $\Wbb_i,\Wbb_i'$ to $0,\infty$. Then $\uppsi:=\upphi\otimes\uptau_{\Wbb_i}:\Wbb_\blt\otimes\Wbb_i\otimes\Wbb_i'\rightarrow\Cbb$ (recall \eqref{eq58}) is a conformal block associate to the disjoint union $\wtd{\fk X}=\fk Y\sqcup\fk P$. If we sew $\wtd{\fk X}$ along $x_i\in C$ and $\infty\in\Pbb^1$ at $q$, the new pointed Riemann surface with local coordinates $\fk X_q$ is
+We give an application of Thm. \ref{lb21}. Let $\fk Y=(C;x_1,\dots,x_N;\eta_1,\dots,\eta_N)$, associate $\Wbb_j$ to $x_j$ for each $j$, and choose a conformal block $\upphi:\Wbb_\blt\rightarrow\Cbb$ associated to $\fk Y$. Choose $1\leq i\leq N$. Let $\fk P=(\Pbb^1;0,\infty;\zeta,\zeta^{-1})$, and associate $\Wbb_i,\Wbb_i'$ to $0,\infty$. Then $\uppsi:=\upphi\otimes\uptau_{\Wbb_i}:\Wbb_\blt\otimes\Wbb_i\otimes\Wbb_i'\rightarrow\Cbb$ (recall \eqref{eq58}) is a conformal block associate to the disjoint union $\wtd{\fk X}=\fk Y\sqcup\fk P$. If we sew $\wtd{\fk X}$ along $x_i\in C$ and $\infty\in\Pbb^1$ at $q$, the new pointed Riemann surface with local coordinates $\fk X_q$ is
 \begin{align*}
 \fk X_q=(C;x_1,\dots,x_N;\eta_1,\dots,q^{-1}\eta_i,\dots,\eta_N),	
 \end{align*}
@@ -392,7 +430,7 @@ where the right hand side converges absolutely. Zhu proved relation \eqref{eq61}
 
 Take an automorphism $g$ of $\Vbb^{\otimes k}$ to be the permutation associated to the cycle $(12\cdots k)$. Starting from a $\Vbb$-module $\Wbb$, Barron-Dong-Mason constructed in \cite{BDM02} a (canonical) $g$-twisted $\Vbb^{\otimes k}$-module structure on the same vector space $\Wbb$. In particular, they explicitly described the twisted vertex operator $Y^g$ for vectors in $\Vbb^{\otimes k}$ of the form $\id\otimes\cdots\otimes v\otimes\cdots\otimes\id$. For an arbitrary vector of $\Vbb^{\otimes k}$, the $Y^g$  can then be described using normal ordering. Their proof that $Y^g$ satisfies the axioms of a $g$-twisted module is algebraic, and in particular relies on a previous algebraic result of \cite{Li96}. Recently, another algebraic proof was given by Dong-Xu-Yu in \cite{DXY21} using Zhu's algebras.
 
-Now, our observation in this article is that since $Y^g(v_1\otimes\cdots\otimes v_k,z)$ can be described by $\wr^k\uptau_{\Wbb_i}$ at $(z_1,\dots,z_k)$ (where $z_1,\dots,z_k$ are the distinct $k$-th roots of unity of $z$), using the consequences of our main result such as relation \eqref{eq60}, we can give a geometric and complex-analytic proof that $Y^g$ satisfies the axioms of a $g$-twisted module. Namely, we check that $Y^g$ satisfies the complex-analytic version of Jacobi identity (as in \cite{Hua10}). See Sec. \ref{lb24} for details. Our proof is in the same spirit as checking the Jacobi identity for VOA modules using contour integrals. Note that the geometric meaning of Barron-Dong-Mason's construction of twisted modules was given in \cite{BDM02,BHL07}, but the verification in \cite{BDM02} that these twisted modules satisfy Jacobi identity is purely algebraic. The merit of our approach, on the other hand, is that \emph{we use geometric methods to prove results about mathematical objects with geometric origins}.
+Now, our observation in this article is that since $Y^g(v_1\otimes\cdots\otimes v_k,z)$ can be described by $\wr^k\uptau_{\Wbb_i}$ at $(z_1,\dots,z_k)$ (where $z_1,\dots,z_k$ are the distinct $k$-th roots of unity of $z$), using the consequences of our main result such as relation \eqref{eq60}, we can give a geometric and complex-analytic proof that $Y^g$ satisfies the axioms of a $g$-twisted module. Namely, we check that $Y^g$ satisfies the complex-analytic version of Jacobi identity (as in \cite{Hua10}). See Sec. \ref{lb24} for details. Our proof is in the same spirit as checking the Jacobi identity for VOA modules using contour integrals. Note that the geometric meaning of Barron-Dong-Mason's construction of twisted modules was given in \cite{BDM02,BHL07}, but the verification in \cite{BDM02} that these twisted modules satisfy Jacobi identity is purely algebraic. The merit of our approach, on the other hand, is that \textit{we use geometric methods to prove results about mathematical objects with geometric origins}.
 
 Moreover,   our complex-analytic method will be generalized in \cite{Gui21} to construct permutation twisted conformal blocks from untwisted ones, and vice versa. As an important consequence, the fusion rules for permutation twisted modules of a strongly rational VOA will be completely determined in \cite{Gui21}.
 
@@ -406,7 +444,7 @@ This article is organized as follows. In Section 2, we fix the geometric notatio
 
 We recall the definitions and basic properties of sheaves of VOAs (i.e. VOA bundles) and conformal blocks in Sections 3 and 4. In Section 5, we recall some important facts about the sewing of conformal blocks associated to the sewing of a family of compact Riemann surfaces. In Section 6, we relate sheaves of VOAs and the $\scr W$-sheaves which were naturally introduced to define (sheaves of) conformal blocks.
 
-In Section 7, we give a new proof of conformal block propagation for (analytic) families of compact Riemann surfaces. In particular, we prove that propagation is compatible (in the complex analytic sense) with the deformation of pointed compact Riemann surfaces. Roughly speaking, this means that if the original conformal blocks are parametrized by $\tau\in\mc B$ where $\mc B$ is the base manifold of the family, and if the propagation on each fiber is parametrized by $z$, then the propagation is a multivariable analytic function of $(z,\tau)$. The precise statement is formulated using the language of sheaves; see Thm. \ref{lb4}. These results were proved in \cite[Thm. 3.6]{Cod19} for CFT type VOAs using a Lie-theoretic method, which relies on the fact that such VOAs have PBW bases. As explained earlier, our proof is based on the idea of sewing, and relies on the Strong Residue Theorem and the fact that the sewing of conformal blocks are conformal blocks \cite[Thm. 11.2]{Gui20}, whose  formal version was proved in \cite{DGT19b}. 
+In Section 7, we give a new proof of conformal block propagation for (analytic) families of compact Riemann surfaces. In particular, we prove that propagation is compatible (in the complex analytic sense) with the deformation of pointed compact Riemann surfaces. Roughly speaking, this means that if the original conformal blocks are parametrized by $\tau\in\mc B$ where $\mc B$ is the base manifold of the family, and if the propagation on each fiber is parametrized by $z$, then the propagation is a multivariable analytic function of $(z,\tau)$. The precise statement is formulated using the language of sheaves; see Thm. \ref{lb4}. These results were proved in \cite[Thm. 3.6]{Cod19} for CFT type VOAs using a Lie-theoretic method, which relies on the fact that such VOAs have PBW bases. As explained earlier, our proof is based on the idea of sewing, and relies on the Strong Residue Theorem and the fact that the sewing of conformal blocks are conformal blocks \cite[Thm. 11.2]{Gui23}, whose  formal version was proved in \cite{DGT19b}. 
 
 Note that here we should use the Strong Residue Theorem for analytic families of compact Riemann surfaces. This result is well-known, although we are not able to find a proof in the literature. So we include a proof in the Appendix Section A.
 
@@ -418,7 +456,7 @@ The main theorem of this article, summarized by the slogan ``sewing commutes wit
 
 \subsection*{Acknowledgment}
 
-I would like to thank Nicola Tarasca for helpful discussions.
+I would like to thank Nicola Tarasca for helpful discussions. The author was supported by BMSTC and ACZSP (Grant no. Z221100002722017).
 
 
 
@@ -612,7 +650,7 @@ Note that although the expression of $\mc U(\rho)$ involves infinite series, its
 If $X$ is a complex manifold,  a (holomorphic) \textbf{family of transformations} $\rho:X\rightarrow\Gbb$ is by definition an analytic function $\rho=\rho(x,z)=\rho_x(z)$ on a neighborhood of  $X\times\{0\}\subset X\times\Cbb$. Then $\mc U(\rho)$ (on each $\Wbb$) is defined pointwisely, which is an $\End(\Wbb)$-valued function on $X$ whose value at each $x\in X$ is $\mc U(\rho_x)$. $\mc U(\rho)$ can be regarded as an $\scr O_X$-module automorphism of $\Wbb\otimes_\Cbb\scr O_X$. 
 
 
-Let $\fk X=(\pi:\mc C\rightarrow\mc B)$ be a family of compact Riemann surfaces. Associated to $\fk X$ one can define a sheaf of $\scr O_X$-modules $\scr V_{\fk X}$ as follows. (Cf. \cite[Chapter 6, 17]{FB04}; our presentation follows \cite[Sec. 5]{Gui20}.) First, suppose $U,V\subset\mc C$ are open subsets, and we have two holomorphic functions $\eta\in\scr O(U),\mu\in\scr O(V)$ locally injective (i.e., \'etale) on  each fiber $U_b:=U\cap\pi^{-1}(b),V_b=V\cap\pi^{-1}(b)$ ($b\in\mc B$) of $U$ and $V$ respectively. We can define a family of transformations $\varrho(\eta|\mu):U\cap V\rightarrow\Gbb$  as follows: for each $p\in\mc C$, both $\eta-\eta(p)$ and $\mu-\mu(p)$ restricts to an injective holomorphic function on the fiber $(U\cap V)_{\pi(p)}=U\cap V\cap\pi^{-1}(\pi(p))$ vanishing at $p$. Then $\varrho(\eta|\mu)_p\in\Gbb$ is determined by \index{zz@$\varrho(\eta\vert\mu)$}
+Let $\fk X=(\pi:\mc C\rightarrow\mc B)$ be a family of compact Riemann surfaces. Associated to $\fk X$ one can define a sheaf of $\scr O_X$-modules $\scr V_{\fk X}$ as follows. (Cf. \cite[Chapter 6, 17]{FB04}; our presentation follows \cite[Sec. 5]{Gui23}.) First, suppose $U,V\subset\mc C$ are open subsets, and we have two holomorphic functions $\eta\in\scr O(U),\mu\in\scr O(V)$ locally injective (i.e., \'etale) on  each fiber $U_b:=U\cap\pi^{-1}(b),V_b=V\cap\pi^{-1}(b)$ ($b\in\mc B$) of $U$ and $V$ respectively. We can define a family of transformations $\varrho(\eta|\mu):U\cap V\rightarrow\Gbb$  as follows: for each $p\in\mc C$, both $\eta-\eta(p)$ and $\mu-\mu(p)$ restricts to an injective holomorphic function on the fiber $(U\cap V)_{\pi(p)}=U\cap V\cap\pi^{-1}(\pi(p))$ vanishing at $p$. Then $\varrho(\eta|\mu)_p\in\Gbb$ is determined by \index{zz@$\varrho(\eta\vert\mu)$}
 \begin{align}
 \boxed{~\eta-\eta(p)\big|_{(U\cap V)_{\pi(p)}}	=\varrho(\eta|\mu)_p\big(\mu-\mu(p)\big|_{(U\cap V)_{\pi(p)}}\big)~}\label{eq10}
 \end{align}
@@ -701,7 +739,7 @@ Then for each $v\in H^0(C,\scr V_C\otimes\omega_C(\star\SX))$, we have a section
 \mc U(\eta_\blt)\cdot v\cdot \mc U(\eta_\blt)^{-1}w_j=\Res_{z=0}~Y\big(\mc V_\varrho(\eta_j)v,z\big)w_j\label{eq63}
 \end{gather}
 \end{subequations}
-for each $w_\blt\in\Wbb_\blt$, where the residue is defined as in \eqref{eq5}. That this definition is independent of the choice of local coordinates $\eta_\blt$ follows from \cite[Thm. 6.5.4]{FB04} (see also \cite[Thm. 3.2]{Gui20}), which relies on a crucial change of variable formula (cf. \cite[Thm. 3.3]{Gui20}) proved by Huang \cite{Hua97}.
+for each $w_\blt\in\Wbb_\blt$, where the residue is defined as in \eqref{eq5}. That this definition is independent of the choice of local coordinates $\eta_\blt$ follows from \cite[Thm. 6.5.4]{FB04} (see also \cite[Thm. 3.2]{Gui23}), which relies on a crucial change of variable formula (cf. \cite[Thm. 3.3]{Gui23}) proved by Huang \cite{Hua97}.
 
 Now that we have a linear action of $H^0(C,\scr V_C\otimes\omega_C(\star\SX))$ on $\scr W_{\fk X}(\Wbb_\blt)$, we say that a linear functional $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\Cbb$ is a \textbf{conformal block} (associated to $\fk X$ and $\Wbb_\blt$) exactly when $\upphi$ vanishes on the vector space
 \begin{align*}
@@ -716,7 +754,7 @@ Now we come back to the general setting that $\fk X$ is a family of $N$-pointed 
 Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be an $\scr O_{\mc B}$-module morphism. For each $b\in\mc B$,  regard $\upphi|_b$ as the restriction of $\upphi$ to the fiber map $\scr W_{\fk X}(\Wbb_\blt)|_{b}\simeq\scr W_{\fk X_b}(\Wbb_\blt)\rightarrow\Cbb$. Then, we say $\upphi$  is  a \textbf{conformal block} (over $\mc B$ associated to $\fk X$ and $\Wbb_\blt$) if for each $b\in\mc B$, $\upphi|_b$ is a  conformal block associated to $\fk X_b$ (i.e., $\upphi(b)$ vanishes on $H^0(\mc C_b,\scr V_{\mc C_b}\otimes\omega_{\mc C_b}(\star\SX|_b))\cdot\scr W_{\fk X_b}(\Wbb_\blt)$).
 \end{df}
 
-The following proposition is \cite[Prop. 6.4]{Gui20}.
+The following proposition is \cite[Prop. 6.4]{Gui23}.
 
 \begin{pp}\label{lb10}
 Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be an $\scr O_{\mc B}$-module morphism. Suppose that  each connected component of $\mc B$ contains a non-empty open subset $V$ such that the restriction of $\upphi$ to $\scr W_{\fk X_V}(\Wbb_\blt)\rightarrow\scr O_V$ is a conformal block, then the original $\upphi$ is a conformal block associated to $\fk X$ and $\Wbb_\blt$.
@@ -765,7 +803,7 @@ For each $q_\blt\in\mc D_{r_\blt\rho_\blt}^\times$ and $b\in\wtd{\mc B}$, the fi
 \begin{align*}
 F_{j,b}'=\{y\in W_j'\cap\wtd{\mc C}_b:|\xi_j(y)|\leq |q_j|/\rho_j\},\qquad F_{j,b}''=\{y\in W_j''\cap\wtd{\mc C}_b:|\varpi_j(y)|\leq |q_j|/r_j\}	
 \end{align*}
-(for all $j$) from $\wtd{\mc C}_b$, and gluing the remaining part of the Riemann surface $\wtd {\mc C}_b$ by identifying (for all $j$) $y'\in W_j'\cap \wtd{\mc C}_b$ with $y''\in W_j''\cap\wtd{\mc C}_b$ if $\xi_j(y')\varpi_j(y'')=q_j$. This procedure can be performed in a consistent way over all $b\in\wtd{\mc B}$, which gives $\pi:\mc C\rightarrow\mc B$. See for instance \cite[Sec. 4]{Gui20} for details.\footnote{Indeed,  one can extend $\fk X$ to a slightly larger flat family of complex curves (with at worst nodal singularities) with base manifold $\mc D_{r_\blt\rho_\blt}\times\wtd{\mc B}$ (cf. for instance \cite[Sec. 4]{Gui20}).} 
+(for all $j$) from $\wtd{\mc C}_b$, and gluing the remaining part of the Riemann surface $\wtd {\mc C}_b$ by identifying (for all $j$) $y'\in W_j'\cap \wtd{\mc C}_b$ with $y''\in W_j''\cap\wtd{\mc C}_b$ if $\xi_j(y')\varpi_j(y'')=q_j$. This procedure can be performed in a consistent way over all $b\in\wtd{\mc B}$, which gives $\pi:\mc C\rightarrow\mc B$. See for instance \cite[Sec. 4]{Gui23} for details.\footnote{Indeed,  one can extend $\fk X$ to a slightly larger flat family of complex curves (with at worst nodal singularities) with base manifold $\mc D_{r_\blt\rho_\blt}\times\wtd{\mc B}$ (cf. for instance \cite[Sec. 4]{Gui23}).} 
 
 Since $\Omega=\wtd{\mc C}\setminus \bigcup_j(W_j'\cup W_j'')$ is not affected by gluing, $\mc D_{r_\blt\rho_\blt}^\times\times\Omega$ can be viewed as a subset of $\fk X$, and the restriction of $\pi$ to this set is $\mc D_{r_\blt\rho_\blt}^\times\times\Omega\xrightarrow{1\otimes\wtd\pi}\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}=\mc B$. Thus, for each $1\leq i\leq N$ the section $\sgm_i$ for $\wtd{\fk X}$  defines the corresponding section $1\times\sgm_i:\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}\rightarrow \mc D_{r_\blt\rho_\blt}^\times\times\Omega$, also denoted by $\sgm_i$. A local coordinate $\eta_i$ of $\wtd{\fk X}$ at $\sgm_i(\wtd{\mc B})$ extends constantly over $\mc D_{r_\blt\rho_\blt}^\times$ to a local coordinate of $\fk X$ at $\sgm_i(\mc B)$, also denoted by $\eta_i$.
 
@@ -858,7 +896,7 @@ Consider the following condition weaker than assumption \ref{lb26}:
 For every $b\in\mc B$, each connected component of the fiber $\mc C_b$ contains one of $\sgm_1(b),\dots,\sgm_N(b)$.
 \end{ass}
 
-\begin{thm}[\cite{Gui20}, Thm. 11.3]\label{lb8}
+\begin{thm}[\cite{Gui23}, Thm. 11.3]\label{lb8}
 Assume Assumption \ref{lb27} instead of Assumption \ref{lb26}. If $\wtd{\mc S}\uppsi$ converges a.l.u. on  $\mc B=\mc D_{r_\blt\rho_\blt}^\times\times\wtd{\mc B}$, then $\wtd{\mc S}\uppsi$ (resp. $\mc S\uppsi$), when extended $\scr O_{\mc B}$-linearly to an $\scr O_{\mc B}$-module homomorphism $\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ using the inclusion $\scr W_{\wtd{\fk X}}(\Wbb_\blt)\subset \scr W_{\fk X}(\Wbb_\blt)$ defined by \eqref{eq28},  is a conformal block associated to $\fk X$ and $\Wbb_\blt$. 
 \end{thm}
 
@@ -1049,9 +1087,9 @@ which equals \eqref{eq14}.
 \section{Propagation of conformal blocks}\label{lb22}
 
 The main result of this section, Thm. \ref{lb4}, says that any conformal block $\upphi$ associated to a family of pointed compact Riemann surfaces $\fk X$ has a propagation $\wr\upphi$, which is a conformal block associated to $\wr\fk X$. Recall that, intuitively, $\wr\fk X$ is the family describing the motion of a point on $\fk X$
-not meeting the marked points of $\fk X$. A crucial consequence of Thm. \ref{lb4} (reflected by the fact that $\wr\upphi$ is an $\scr O_{\mc C\setminus \SX}$-module) is that $\wr\upphi$ \emph{is simultaneously holomorphic with respect to the  parameter of the base manifold of $\fk X$ and the parameter describing the motion of a point on $\fk X$}. The strong residue theorem is crucial to the proof of this fact.
+not meeting the marked points of $\fk X$. A crucial consequence of Thm. \ref{lb4} (reflected by the fact that $\wr\upphi$ is an $\scr O_{\mc C\setminus \SX}$-module) is that $\wr\upphi$ \textit{is simultaneously holomorphic with respect to the  parameter of the base manifold of $\fk X$ and the parameter describing the motion of a point on $\fk X$}. The strong residue theorem is crucial to the proof of this fact.
 
-Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be a conformal block associated to $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$ and a family $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ of $N$-pointed compact Riemann surfaces. Recall $\wr\mc C=\mc C\times_{\mc B}(\mc C\setminus\SX)$, $\wr\mc B=\mc C\setminus\SX$. The goal of this section is to prove the following theorem. (Cf. \cite[Sec. 6]{Zhu94}, \cite[Thm. 10.3.1]{FB04}, \cite[Thm. 3.6]{Cod19}.) 
+Let $\upphi:\scr W_{\fk X}(\Wbb_\blt)\rightarrow\scr O_{\mc B}$ be a conformal block associated to $\Wbb_\blt=\Wbb_1\otimes\cdots\otimes\Wbb_N$ and a family $\fk X=(\pi:\mc C\rightarrow\mc B;\sgm_1,\dots,\sgm_N)$ of $N$-pointed compact Riemann surfaces. Recall $\wr\mc C=\mc C\times_{\mc B}(\mc C\setminus\SX)$, $\wr\mc B=\mc C\setminus\SX$. The goal of this section is to prove the following theorem. %(Cf. \cite[Sec. 6]{Zhu94}, \cite[Thm. 10.3.1]{FB04}, \cite[Thm. 3.6]{Cod19}.) 
 
 \begin{thm}\label{lb4}
 There is a unique $\scr O_{\mc C\setminus\SX}$-module morphism $\wr\upphi:\scr W_{\wr\fk X}(\Vbb\otimes\Wbb_\blt)\rightarrow\scr O_{\mc C\setminus\SX}$ satisfying the  following property: \index{zz@$\wr\upphi$}
@@ -1866,12 +1904,12 @@ Fischer, G., Complex analytic geometry. Lecture Notes in Mathematics, Vol. 538. 
 Grauert, H., Peternell, T.,  Remmert, R. eds., 1994. Several complex variables VII: sheaf-theoretical methods in complex analysis (Vol. 74, p. 369). Springer.
 
 
-\bibitem[Gui20]{Gui20}
-Gui, B., 2020. Convergence of Sewing Conformal Blocks. arXiv preprint arXiv:2011.07450.
+\bibitem[Gui23]{Gui23}
+Gui, B., 2023. Convergence of Sewing Conformal Blocks. Communications in Contemporary Mathematics.
 
 
 \bibitem[Gui21]{Gui21}
-Gui, B., 2021. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-separable Case. arXiv: 2111.04662.
+Gui, B., 2021. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case. arXiv: 2111.04662.
 
 
 
