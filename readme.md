@@ -50,7 +50,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
 
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](Files/2017_UU2.pdf) 
-
+> In this series of two papers, I initiated the systematic study of the unitarity of VOA representation tensor categories 
 
 
  
@@ -60,12 +60,14 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 
 - Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
+> This is the first paper studying the equivalence of the representation tensor categories associated to unitary completely rational VOAs and their conformal nets. 
 
 - Q-systems and extensions of completely unitary vertex operator algebras, ***Int. Math. Res. Not. IMRN***, Vol 2022, Issue 10, 7550–7614 `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
 
 - Bisognano-Wichmann Property for Rigid Categorical Extensions and Non-local Extensions of Conformal Nets, ***Ann. Henri Poincaré***, 22, 4017-4062 (2021). `arXiv:1912.10682` [Preprint](Files/2019_Bisognano-Wichmann.pdf)
 
 - Unbounded Field Operators in Categorical Extensions of Conformal Nets, submitted. `arXiv:2001.03095` [Preprint](Files/2020_Strong-Braiding.pdf)
+> This is the second paper studying the equivalence of the representation tensor categories associated to unitary completely rational VOAs and their conformal nets. In this paper, I solved the conjecture that every unitary affine VOA (i.e. simply-connected WZW model) and its associated loop group conformal net have unitarily equivalence representation tensor categories.
 
 - Regular Vertex Operator Subalgebras and Compressions of Intertwining Operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](Files/2020_Compressions.pdf)
 
@@ -82,7 +84,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products, submitted. `arXiv:2305.10180`  [Preprint](Files/2023_Conformal_Block_1.pdf) [Slides](Files/2023_SJTU.pdf)
 
 - Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, to appear in ***Comm. Math. Phys.***, `arXiv:2306.11856`, [Preprint](Files/2023_Geometric_Positivity.pdf) [Slides](Files/2023_Tokyo.pdf)
-> In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.
+<!--- In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.--->
 
 
 
