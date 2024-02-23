@@ -50,7 +50,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](Files/2017_UU1.pdf) [Typos](Files/2017_UU1_Typos.pdf)
 
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](Files/2017_UU2.pdf) 
-> In this series of two papers, I initiated the systematic study of the unitarity of VOA representation tensor categories 
+> In this series of two papers, I initiated the systematic study of the unitarity of VOA representation tensor categories.
 
 
  
