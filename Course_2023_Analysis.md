@@ -7,7 +7,7 @@ This is a year-long course for first year undergraduate students in the Qiuzhen 
 
 - TA: Kai Qin (秦楷)   Zibo Zhao (赵梓博)
 
-- Office hour: Monday 15:00-16:00 or by appointment.
+- Office hour: Thursday 15:00-17:00 or by appointment.
   
 - Office location: Shuangqing Complex Building (Block A) C648  (双清综合楼A座C648 双清食堂对面)
   
