@@ -7,6 +7,7 @@
 %\usepackage{ulem} %wave underline
 \usepackage[dvipsnames]{xcolor}
 \usepackage{palatino}  %template
+
 \usepackage{slashed} % Dirac operator
 \usepackage{mathrsfs} % Enable using \mathscr
 %\usepackage{eufrak}  another template/font
@@ -14,6 +15,16 @@
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{fontspec}
+%\setmainfont{Palatino Linotype}
+%\usepackage{emoji}
+
+
+% emoji, use lualatex  remove \usepackage{palatino}
+
+%%%%%%%%%%%%%
 
 
 \usepackage{CJK}   % Chinese package
@@ -12430,7 +12441,7 @@ For every $x\in I$, there exists $U_x\in\Nbh_I(x)$ such that $\diam(f(U_x))<\eps
 
 
 \begin{proof}[\textbf{Proof of Thm. \ref{lb411}, part 2}]
-Let us prove (2)$\Rightarrow$(1). Suppose that $M=\Vert f\Vert_\infty$ is $<+\infty$, and that the set of discontinuities is a null set. Then for each $\eps>0$, $\Omega_\eps(f)$ is a null set. By Lem. \ref{lb414} and Heine-Borel, $\Omega_\eps(f)$ is compact. Thus, for every $\delta>0$, $\Omega_\eps(f)$ can be covered by finitely many closed intervals with total length $<\delta$. Let $\Delta$ be the union of these closed intervals. Then $\Omega_\eps(f)\subset\Delta$. Clearly, both $\Delta$ and $J=I\setminus\Int(\Delta)$ can be written as disjoint unions of finitely many closed intervals, which are their connected components. And $\Delta$ has length $|\Delta|<\delta$.
+Let us prove (2)$\Rightarrow$(1). \hypertarget{Lebesgue-part2}{} Suppose that $M=\Vert f\Vert_\infty$ is $<+\infty$, and that the set of discontinuities is a null set. Then for each $\eps>0$, $\Omega_\eps(f)$ is a null set. By Lem. \ref{lb414} and Heine-Borel, $\Omega_\eps(f)$ is compact. Thus, for every $\delta>0$, $\Omega_\eps(f)$ can be covered by finitely many closed intervals with total length $<\delta$. Let $\Delta$ be the union of these closed intervals. Then $\Omega_\eps(f)\subset\Delta$. Clearly, both $\Delta$ and $J=I\setminus\Int(\Delta)$ can be written as disjoint unions of finitely many closed intervals, which are their connected components. And $\Delta$ has length $|\Delta|<\delta$.
 
 Since $J\cap\Omega_\eps(f)=\emptyset$, applying Lem. \ref{lb415} to each of the components $J_1,J_2,\dots$ of $J$, we see that $J_i$ has a partition $\varrho_i$ such that the oscillation of $f$ (recall Def. \ref{lb416}) on each subinterval cut out by $\varrho_i$  is $<\eps$. Let $\sigma=\varrho_1\cup\varrho_2\cup\cdots\cup\{a,b\}$, which is a partition of $I$. Then $\sigma$ divides $I$ into subintervals $I_1,I_2,\dots$ such that either $I_j\subset J$ or $I_j\subset\Delta$.
 \begin{itemize}
@@ -17231,7 +17242,20 @@ $\{e_n:n\in\Zbb\}$ is an orthonormal basis of $V$.
 \end{pp}
 
 \begin{proof}
-Clearly $\{e_n:n\in\Zbb\}$ is an orthonormal set of vectors. Choose any $f\in\scr R[-\pi,\pi]$. By Stone-Weierstrass, there is a sequence $(f_k)_{k\in\Zbb_+}$ of elements in $\Span\fk S$ converging uniformly on $[-\pi,\pi]$ to $f$ (cf. Exp. \ref{lb443}). Therefore $\lim_{k\rightarrow\infty}\int|f-f_k|^2=0$ by Cor. \ref{lb380}. This proves that $\Span\fk S$ is dense in $V$.
+Clearly $\{e_n:n\in\Zbb\}$ is an orthonormal set of vectors. By Stone-Weierstrass, $\Span\fk S$ is $l^\infty$-dense in $C[-\pi,\pi]$ (cf. Exp. \ref{lb443}). So $\Span\fk S$ is $L^2$-dense in $C[-\pi,\pi]$. Indeed, for any $f\in C[-\pi,\pi]$, pick a sequence $(f_k)_{k\in\Zbb_+}$ of elements in $\Span\fk S$ converging uniformly on $[-\pi,\pi]$ to $f$. Therefore $\lim_{k\rightarrow\infty}\int|f-f_k|^2=0$ by Cor. \ref{lb380}.
+
+To show that $\Span\fk S$ is dense in $V$, it remains to prove that $C[-\pi,\pi]$ is $L^2$-dense in $V$. Let $\mc S=\Span\{\chi_{I}:I\text{ is an interval in }[-\pi,\pi]\}$. It is easy to see that each $\chi_I$ can be $L^2$-approximated by continuous functions. Therefore, it suffices to prove that $\mc S$ is $L^2$-dense in $V$.
+
+Let $f\in\scr R[-\pi,\pi]$. We want to show that $f$ can be $L^2$-approximated by elements of $\mc S$. By considering the real part and the imaginary part separately, we assume that $f$ is real. Let $M=\Vert f\Vert_{l^\infty}$, which is finite. Choose any $\eps,\delta>0$. Then by \hyperlink{Lebesgue-part2}{Part 2} of the proof of Thm. \ref{lb411}, $[-\pi,\pi]$ can be partitioned into two groups of intervals $I_1,I_2,\dots$ and $J_1,J_2,\dots$ such that $\diam f(I_i)<\eps$ for each $i$, $\diam f(J_j)\leq 2M$ for each $j$, and $\sum_j |J_j|<\delta$. Let
+\begin{gather*}
+g=\sum_i \inf f(I_i)\cdot \chi_{I_i}+\sum_j \inf f(J_j)\cdot \chi_{J_j}\\
+h=\sum_i \sup f(I_i)\cdot \chi_{I_i}+\sum_j \sup f(J_j)\cdot \chi_{J_j}
+\end{gather*}
+which are in $\mc S$. Since $g\leq f\leq h$ (outside the end points of each $I_i$ and $J_j$), 
+\begin{align*}
+\int_{-\pi}^\pi |f-g|^2\leq\int_{-\pi}^\pi (h-g)\leq 2\pi\eps^2+4M^2\delta
+\end{align*}
+which is small enough when $\eps,\delta$ are small.
 \end{proof}
 
 
@@ -19883,6 +19907,8 @@ $m^*$ is a measure on $\fk B_{\Rbb^N}$. Its completion will be denoted by $(\fk 
 That $m^*$ is a measure on $\fk B_{\Rbb^N}$ is an easy consequence of Thm. \ref{lb724} (which can be applied to the current situation, cf. Exp. \ref{lb725}), to be proved in the next section. Suppose that $E\in\fk M$ is bounded. Then $K$ is contained in a bounded open rectangle $U=(a_1,b_1)\times\cdots\times(a_N,b_N)$. For each $f\in C_c(\Rbb^N,[0,1])$, we have $\int f\leq (b_1-a_1)\cdots(b_N-a_N)<+\infty$. This proves $m(U)<+\infty$, and hence $m(E)<+\infty$.
 \end{proof}
 
+There exist bounded subsets of $\Rbb^N$ that are not Lebesgue measurable. See \cite[Thm. 2.22]{Rud-R}.
+
 
 \subsection{A general method for constructing measures}\label{lb726}
 
@@ -20161,6 +20187,10 @@ Clearly $\mu^*(\emptyset)=0$. To show that $\mu^*$ is a measure on $\fk M_\mu$, 
 Finally, we need to prove that $\mu^*$ is complete on $\fk M_\mu$. Let $E\in\fk M_\mu$ such that $\mu^*(E)=0$. Let $F\subset E$. Then $\mu^*(F)\leq\mu^*(E)=0$ and hence $\mu^*(F)=0$. So $\mu_*(F)=\mu^*(F)=0$. Therefore $F$ is regular and has finite $\mu^*$-value. So $F\in\fk M_\mu$ by Prop. \ref{lb723}.
 \end{proof}
 
+\begin{exe}
+Why do we define $\mu$ on $\fk M_\mu$ to be the restriction of $\mu^*$ but not $\mu_*$?
+\end{exe}
+
 
 
 \subsubsection{A relationship between $\fk M_\mu$ and the completion of $\fk B_X$}
@@ -20199,6 +20229,8 @@ m_*(E)=b-a-m^*((a,b)\setminus E)
 \end{align}
 If we generalize \eqref{eq291} to the setting of Sec. \ref{lb726} where $E$ is a subset of an open $\Omega\subset X$ satisfying $\mu(\Omega)<+\infty$, the inner measure of $E$ should be defined by $\mu(\Omega)-\mu^*(\Omega\setminus E)$. We now show that this definition is equal to our definition of $\mu_*(E)$ (cf. \eqref{eq292b}): 
 
+
+
 \begin{pp}\label{lb720}
 Let $\Omega$ be an open subset of $X$ such that $\mu(\Omega)<+\infty$. Let $E\subset\Omega$. Then
 \begin{align}\label{eq295}
@@ -20221,6 +20253,9 @@ We clearly have ``$\leq$". Since $\mu(\Gamma)=\mu_*(\Gamma)$, for each $\eps>0$ 
 \end{proof}
 
 
+For a further generalization of this proposition, see Pb. \ref{lb734}.
+
+
 \subsubsection{Subadditivity and superadditivity}
 
 As mentioned in the slogan \eqref{eq290}, the countable additivity of $\mu$ on regular sets follows directly from the fact that the outer measure $\mu^*$ is countably subadditive, and the inner measure $\mu_*$ is countably superadditive. This simple and intuitive idea is not new. It already appeared in Darboux integrals: Given a bounded real-valued function $f$ defined on $R=[a_1,b_1]\times\cdots[a_N,b_N]$, the upper Darboux integral $\ovl\int f$ and the lower Darboux integral $\udl\int f$ are defined in a similar way as in Thm. \ref{lb444}, where the Darboux sums are defined by partitioning the box $R$ into smaller boxes. It is not hard to check that $\ovl\int$ and $\udl\int$ satisfy respectively the subadditivity and the superadditivity:
@@ -20231,7 +20266,7 @@ As mentioned in the slogan \eqref{eq290}, the countable additivity of $\mu$ on r
 
 
 
-In fact, before Lebesgue,  Jordan had utilized this idea (subadditivity $+$ superadditivity $\Rightarrow$ additivity) to study measurable sets in 1902 (cf. \cite[Sec. 9.4]{Jah} and \cite[4.1]{Haw}): For each bounded $E\subset\Rbb^N$, the \textbf{outer content}  $c^*(E)$ is defined to be the infinimum of the total sizes of \textit{finitely many boxes covering $E$}, and the \textbf{inner content}  $c_*(E)$ is the supremum of the total sizes of finitely many disjoint boxes contained in $E$.  Jordan defined $E$ to be measurable if $c^*(E)=c_*(E)$. Using our familiar language, 
+In fact, before Lebesgue,  Jordan had utilized this idea (subadditivity $+$ superadditivity $\Rightarrow$ additivity) to study measurable sets in 1902 (cf. \cite[Sec. 9.4]{Jah} and \cite[4.1]{Haw}): For each bounded $E\subset\Rbb^N$, the \textbf{outer content}  $c^*(E)$ is defined to be the infinimum of the total sizes of \textit{finitely many} boxes covering $E$, and the \textbf{inner content}  $c_*(E)$ is the supremum of the total sizes of finitely many disjoint boxes contained in $E$.  Jordan defined $E$ to be measurable if $c^*(E)=c_*(E)$. Using our familiar language, 
 \begin{align}
 c^*(E)=\ovl\int\chi_E\qquad c_*(E)=\udl\int\chi_E
 \end{align}
@@ -20257,6 +20292,72 @@ The alternatives we gave in Sec. \ref{lb726} are locally $\mu$-regular sets, i.e
 
 
 
+Another approach was introduced by Carath\'eodory in 1918 and is popular among many textbooks (cf. \cite[Sec. 1.4]{Fol}, \cite[Sec. 17.3]{RF}, \cite[Sec. 39]{Yu}). Since you may need to study this approach carefully in the future, I'll explain below how the approach of Carath\'eodory is related to those of Jordan and Lebesgue, which are based on regular sets. (At first glance, they look very different!)
+
+
+\subsubsection{Carath\'eodory measurable sets}
+
+The relationship between our approach (in Sec. \ref{lb726}) and Lebesgue's approach was already explained. Now, recall that a subset $E$ of $X$ is locally $\mu$-regular iff $\mu^*(\Omega\cap E)=\mu_*(\Omega\cap E)$ for all open $\Omega$ with finite $\mu(\Omega)$. By Prop. \ref{lb720}, we have $\mu_*(\Omega\cap E)=\mu(\Omega)-\mu^*(\Omega\setminus E)$. Therefore, 
+\begin{gather}\label{eq297}
+\begin{gathered}
+E\text{ is locally $\mu$-regular}\\
+\Updownarrow\\
+\mu^*(\Omega\cap E)+\mu^*(\Omega\setminus E)=\mu(\Omega)\quad\text{if $\Omega\subset X$ is open and $\mu(\Omega)<+\infty$}
+\end{gathered}
+\end{gather}
+Here comes the magic:
+
+\begin{pp}\label{lb741}
+Let $E\subset X$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $E$ is locally $\mu$-regular.
+\item $E$ is \textbf{Carath\'eodory $\mu^*$-measurable}, which means that for any  $A\subset X$ we have
+\begin{align}\label{eq298}
+\mu^*(A\cap E)+\mu^*(A\setminus E)=\mu^*(A)
+\end{align}
+\end{enumerate}
+\end{pp}
+
+\begin{proof}[$\star$ Proof]
+By \eqref{eq297}, clearly (2) implies (1). Conversely, assume (1). To prove \eqref{eq298}, by the subadditivity of $\mu^*$, it suffices to prove ``$\leq$". This is obvious when $\mu^*(A)=+\infty$. So we assume WLOG that $\mu^*(A)<+\infty$. Since $\mu^*(A)$ is the infinimum of $\mu(\Omega)$ where $\Omega\supset A$ is open and $\mu(\Omega)<+\infty$, it suffices to prove for such $\Omega$ that $\mu^*(A\cap E)+\mu^*(A\setminus E)\leq\mu(\Omega)$. By the monotinicity of $\mu^*$, it suffices to prove $\mu^*(\Omega\cap E)+\mu^*(\Omega\setminus E)=\mu(\Omega)$. But this follows from the fact that $\mu^*$ is a measure on the $\sigma$-algebra $\fk M_\mu$ (cf. Thm. \ref{lb724}). (Alternatively, it follows directly from Lem. \ref{lb730} and Cor. \ref{lb727}.)
+\end{proof}
+
+The surprising part of the Carath\'eodory measurability is that we do not assume $A$ to be either open or compact or Borel or $\mu$-regular. By contrast, $\mu_*(A\cap E)+\mu^*(A\setminus E)$ is not necessarily equal to $\mu^*(A)$ or $\mu_*(A)$ when $A$ is not $\mu$-regular. (It is equal to $\mu(A)$ when $A$ is $\mu$-regular and $\mu(A)<+\infty$. See Prop. \ref{lb739}.)
+
+\begin{eg}\label{lb742}
+Let $E,F$ be subsets of $X$ such that there exist disjoint open subsets $U,V$ of $X$ containing $E,F$ respectively. Let $A=E\cup F$. Then $\mu_*(A)=\mu_*(E)+\mu_*(F)$ and $\mu^*(A)=\mu^*(E)+\mu^*(F)$. (Cf. Pb. \ref{lb729}.) 
+Assume that $E,F$ have finite outer measures and are not $\mu$-regular, i.e.,  $\mu_*(E)<\mu^*(E)<+\infty$ and $\mu_*(F)<\mu^*(F)<+\infty$. Then
+\begin{align*}
+\mu_*(A)<\mu_*(A\cap E)+\mu^*(A\setminus E)<\mu^*(A)
+\end{align*}
+since the middle term is equal to $\mu_*(E)+\mu^*(F)$.
+\end{eg}
+
+We now briefly discuss Carath\'eodory's theory.
+
+\begin{df}\label{lb743}
+Let $Y$ be a set. A function $\nu^*:2^Y\rightarrow[0,+\infty]$ is called an \textbf{(abstract) outer measure} \index{00@Abstract outer measure} if it satisfies the three conditions in Prop. \ref{lb718}, namely, it satisfies $\nu^*(\emptyset)=0$, the monotonicity, and the countable additivity (on subsets of $Y$). A set $E\subset Y$ is called \textbf{Carath\'eodory $\nu^*$-measurable} (or simply \textbf{$\nu^*$-measurable}) \index{00@Carath\'eodory measurable} if for every $A\subset Y$ we have
+\begin{align}\label{eq299}
+\nu^*(A\cap E)+\nu^*(A\setminus E)=\nu^*(A)
+\end{align}
+\end{df}
+
+
+The construction of Lebesgue measures (and more generally, measures on Hausdorff spaces) using Carath\'eodory measurable sets is based on the following key theorem.
+
+\begin{thm}\label{lb740}
+Let $\nu^*$ be an (abstract) outer measure on a set $Y$. Then the set $\fk M$ of Carath\'eodory $\nu^*$-measurable sets form a $\sigma$-algebra, and the restriction of $\nu^*$ to $\fk M$ is a complete measure.
+\end{thm}
+
+\begin{proof}
+See \cite[Thm. 1.11]{Fol}.
+\end{proof}
+
+Our main Thm. \ref{lb724} follows easily from \ref{lb740}: Since $\mu$ satisfies (a,b,c) of Asmp. \ref{lb712}, $\mu^*$ is an abstract outer measure. By using (d,e) of Asmp. \ref{lb712}, one can show that open sets are $\mu^*$-measurable.\footnote{Sketch of the proof: Let $E$ be open. First prove \eqref{eq298} when $A$ is open. Then prove \eqref{eq298} for any $A$ by using a similar argument as in the proof of Prop. \ref{lb741}.} Therefore, the set $\fk M_\mu$ of Carath\'eodory $\mu^*$-measurable sets contains open subsets of $X$. Thus, by Thm. \ref{lb740}, $\fk M_\mu$ is a $\sigma$-algebra containing $\fk B_X$, and $\mu^*$ is a complete measure on $\fk M_\mu$.
+
+The reason we use locally regular sets in our course instead of Carath\'eodory's approach is that the latter is very unintuitive. The intuition ``subadditivity $+$ superadditivity $\Rightarrow$ additivity", which goes back to Lebesgue, Jordan, and even Darboux, is very obscure in the proof of Thm. \ref{lb740}. One cannot interpret \eqref{eq299} to mean that the outer measure $\nu^*(A\cap E)$ of $A\cap E$ equals the ``inner measure" $\nu^*(A)-\nu^*(A\setminus E)$, because Exp. \ref{lb742} tells us that $\mu^*(A)-\mu^*(A\setminus E)$ is often not equal to the actual inner measure $\mu_*(A\cap E)$.\footnote{Here, I am challenging the view expressed in the paragraph before Thm 1.11 of \cite{Fol}.} On the other hand, the advantage of Carath\'eodory's approach is that Thm. \ref{lb740} can be applied to more general situations than Thm. \ref{lb724}. 
+
+I believe that many people will have this confusion when they first see the condition \eqref{eq299}: Why consider an arbitrary set $A$ instead of just a ``good" set, for example, an open set, a compact set, or a Borel set? How can one believe that a definition as strong as Def. \ref{lb743} would have nontrivial examples? The way to understand the motivation behind a definition or a theorem is not to immerse oneself in the technical details of the proof, but to clarify the genealogy of concepts. I hope that the exposition in this section will help the reader to get a general idea of how the concept of measurable sets evolved from its basic and intuitive form to the abstract definition of Carath\'eodory.
 
 
 
@@ -20265,10 +20366,6 @@ The alternatives we gave in Sec. \ref{lb726} are locally $\mu$-regular sets, i.e
 
 
 
-
-
-
-\hypertarget{beforeindex}{}
 
 
 
@@ -20398,9 +20495,24 @@ Let $f:X\rightarrow l^2(\Zbb_+)$ be a map. For each $x\in X$, write $f(x)=(f_1(x
 \end{prob}
 
 
-\subsubsection{$\star$ Construction of measures}
+\subsubsection{$\star$ Outer and inner measures}
 
 Let $(X,\mc T_X)$ be a topological space. Let $\mu:\mc T_X\rightarrow[0,+\infty]$ and its associated $\mu^*,\mu_*:2^X\rightarrow[0,+\infty]$ be as in Asmp. \ref{lb712}. Recall from Thm. \ref{lb724} that $\mu_*$ is a measure on the Borel $\sigma$-algebra $\fk B_X$, and $\mu_*$ is denoted by $\mu$ when restricted to $\fk B_X$.
+
+
+\begin{prob}\label{lb729}
+Let $E$ and $F$ be subsets of $X$. Assume that there are mutually disjoint open subsets $U,V\subset X$ such that $E\subset U$ and $F\subset V$. Prove that $\mu_*(E\cup F)=\mu_*(E)+\mu_*(F)$ and $\mu^*(E\cup F)=\mu^*(E)+\mu^*(F)$.
+\end{prob}
+
+The following problem is parallel to Cor. \ref{lb721} and \ref{lb731}.
+
+\begin{prob}\label{lb738}
+Let $E\subset X$. Assume that $\mu^*(E)<+\infty$. Prove that $E$ is $\mu$-regular iff for every $\eps>0$ there is an open $U\subset X$ such that $\mu^*(U\setminus E)<\eps$.
+\end{prob}
+
+\begin{proof}[Hint for $\Leftarrow$]
+Show that $E=G\setminus \Delta$ where $G\in\fk B_X$ and $\mu^*(\Delta)=0$.
+\end{proof}
 
 \begin{prob}\label{lb734}
 Let $E\subset X$. Prove that 
@@ -20417,18 +20529,89 @@ Conclude that if $\Omega\in\fk B_X$ satisfies $\mu(\Omega)<+\infty$, then
 This formula generalizes Prop. \ref{lb720}.
 \end{prob}
 
-\begin{rem}
-In a similar way, it can be proved that the statements in Pb. \ref{lb734} would still be valid if $\fk B_X$ is replaced by $\fk M_\mu$.
-\end{rem}
 
-The following problem is parallel to Cor. \ref{lb721} and \ref{lb731}.
 
-\begin{prob}\label{lb738}
-Let $E\subset X$. Assume that $\mu^*(E)<+\infty$. Prove that $E$ is $\mu$-regular iff for every $\eps>0$ there is an open $U\subset X$ such that $\mu^*(U\setminus E)<\eps$.
-\end{prob}
+\begin{pp}\label{lb739}
+Let $A\subset X$ and $E\subset X$. Assume that $\mu^*(A)<+\infty$. Then
+\begin{align}\label{eq300}
+\mu_*(A)\leq\mu_*(A\cap E)+\mu^*(A\setminus E)\leq\mu^*(A)
+\end{align} 
+\end{pp}
 
-\begin{proof}[Hint for $\Leftarrow$]
-Show that $E=G\setminus \Delta$ where $G\in\fk B_X$ and $\mu^*(\Delta)=0$.
+\begin{proof}
+For each open $U$ containing $A$ and $\mu(U)<+\infty$, we have $\mu_*(A\cap E)+\mu^*(A\setminus E)\leq\mu_*(U\cap E)+\mu^*(U\setminus E)$ where the RHS equals $\mu(U)$ by Pb. \ref{lb720}. Taking $\inf_U$, we get the second ``$\leq$" of \eqref{eq300}. For each compact $K\subset A$, by Pb. \ref{lb734}, we have $\mu(K)=\mu_*(K\cap E)+\mu^*(K\setminus E)\leq\mu_*(A\cap E)+\mu^*(A\setminus E)$. Taking $\sup_K$, we get the first ``$\leq$" of \eqref{eq300}.
+\end{proof}
+
+
+
+
+\newpage
+
+
+
+\section{Integrals on measure spaces}
+
+The goal of this chapter is to define the integral $\int_X fd\mu$ where $(X,\mu)$ is a measure space, and $f:X\rightarrow\Cbb$ is measurable. By considering $\Real f$ and $\Imag g$ separately, it suffices to define $\int_X fd\mu$ when $f:X\rightarrow\Rbb$. We shall first define $\inf f$ when $f$ is positive, i.e., when $f:X\rightarrow[0,+\infty)$. Then we extend the integral to real functions.
+
+\subsection{Integrals of extended positive functions}
+
+Let $(X,\fk M,\mu)$ be a measure space. Recall Def. \ref{lb114} for the addition and multiplication in $\ovl\Rbb_{\geq0}=[0,+\infty]$,
+
+
+\begin{df}
+A function $f:X\rightarrow[0,+\infty]$ is called an \textbf{(extended) positive simple function} \index{00@Positive simple function}  on $X$ if $f$ is measurable and $f(X)$ is a finite set. This is equivalent to saying that $f$ is of the form
+\begin{align}\label{eq301}
+f=\sum_{i=1}^n a_i\chi_{E_i}
+\end{align}
+where $n\in\Zbb_+$, $a_i\in[0,+\infty]$, and $E_i\in\fk M$. Let \index{SX@$S_+(X)=\{\text{simple functions }X\rightarrow\ovl\Rbb_{\geq0}\}$}
+\begin{align}
+S_+(X)\equiv S(X,\ovl\Rbb_{\geq0})=\{\text{extended positive simple functions on }X\}
+\end{align}
+which is an $\ovl\Rbb_{\geq0}$-linear subspace of $[0,+\infty]^X$.
+\end{df}
+
+\begin{df}
+For each $f\in S_+(X)$, define
+\begin{align}
+\int_X f\equiv \int_X fd\mu=\sum_{n=1}^n a_i\mu(E_i)
+\end{align}
+if $f(X)=\{a_1,\dots,a_n\}$ (where $a_i\neq a_j$ if $i\neq j$) and $E_i=f^{-1}(a_i)$. 
+\end{df}
+
+To show the linearity of $\int_X$, we need a lemma:
+\begin{lm}\label{lb744}
+Suppose that $f=\sum_{i=1}^n a_i\chi_{E_i}$ where $a_i\in\ovl\Rbb_{\geq0}$, $E_i\in\fk M$, and $E_i\cap E_j=\emptyset$ if $i\neq j$. Then $\int_X f=\sum_i a_i\mu(E_i)$.
+\end{lm}
+
+\begin{proof}
+For each $c\in\ovl\Rbb_{\geq0}$, we let $I_c=\{i\in\Nbb:1\leq i\leq n,a_i=c\}$. Then $f^{-1}(c)=\bigsqcup_{i\in I_c}E_i$. Thus, by the additivity of $\mu$,
+\begin{align*}
+\int f=\sum_{c\in\ovl\Rbb_{\geq0}} c\cdot\mu\Big(\bigsqcup_{i\in I_c}E_i\Big)=\sum_c\sum_{i\in I_c}c\cdot\mu(E_i)=\sum_c\sum_{i\in I_c}a_i\cdot\mu(E_i)=\sum_i a_i\mu(E_i)
+\end{align*}
+\end{proof}
+
+
+\begin{pp}
+The map $\int_X:S_+(X)\rightarrow\ovl\Rbb_{\ge0}$ is  $\ovl\Rbb_{\ge0}$-linear.
+\end{pp}
+\begin{proof}
+Let $f,g\in S_+(X)$. Clearly $\int cf=c\int f$ if $c\in\ovl\Rbb_{\geq0}$. Write $f(X)=\{a_1<\cdots<a_m\}$ and $g(X)=\{b_1<\cdots<b_n\}$. Since $X=\bigsqcup_i E_i=\bigsqcup_j F_j$, we have $\chi_{E_i}=\sum_j\chi_{E_i\cap E_j}$ and $\chi_{F_j}=\sum_i\chi_{E_i\cap E_j}$, and hence $f+g=\sum_{i,j} (a_i+b_j)\chi_{E_i\cap F_j}$. Thus, by Lem. \ref{lb744}, we get
+\begin{align*}
+\int(f+g)=\sum_{i,j}(a_i+b_j)\mu(E_i\cap F_j)
+\end{align*}
+By the additivity of $\mu$, and by $E_i=\bigsqcup_j E_i\cap F_j$, we have $\mu(E_i)=\sum_j\mu(E_i\cap F_j)$. So
+\begin{align*}
+\int f=\sum_ia_i\mu(E_i)=\sum_{i,j}a_i\mu(E_i\cap F_j)
+\end{align*}
+Similarly, $\int g=\sum_{i,j}b_j\mu(E_i\cap F_j)$. So $\int f+\int g=\sum_{i,j}(a_i+b_j)\mu(E_i\cap F_j)$.
+\end{proof}
+
+
+\begin{co}
+If $f,g\in S_+(X)$ and $f\leq g$, then $\int_Xfd\mu\leq \int_X gd\mu$
+\end{co}
+\begin{proof}
+One easily finds $h\in S_+(X)$ such that $f+h=g$. So $\int g=\int f+\int h\geq\int f$.
 \end{proof}
 
 
@@ -20439,7 +20622,10 @@ Show that $E=G\setminus \Delta$ where $G\in\fk B_X$ and $\mu^*(\Delta)=0$.
 
 
 
-\newpage
+
+
+\hypertarget{beforeindex}{}
+
 
 \printindex	
 
@@ -20524,11 +20710,15 @@ von Neumann, J. (1930). Allgemeine eigenwerttheorie hermitescher funktionalopera
 \bibitem[Nie]{Nie}
 Nietzsche, F. W. (1887). The Gay Science: with a Prelude in Rhymes and an Appendix of Songs. Translated, with Commentary, by Walter Kaufmann (1974).
 
+\bibitem[RF]{RF}
+H. Royden and P. M. Fitzpatrick, Real analysis. 4th ed. New York, NY: Prentice Hall (2010)
+
 \bibitem[RN]{RN}
 F. Riesz and B. Sz.-Nagy, Functional analysis. Transl. from the 2nd French ed. by Leo F. Boron. (1956)
 
 \bibitem[RS]{RS}
 Reed, M., \& Simon, B. (1972). Methods of Modern Mathematical Physics I: Functional analysis, Academic Press, New York.
+
 
 
 
