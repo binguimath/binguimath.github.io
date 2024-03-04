@@ -2765,7 +2765,7 @@ The symbol $|f|$ is sometimes also written as $\Vert f\Vert$ when it will not be
 
 
 \begin{df}
-Let $X$ be a set and let $V$ be a normed vector space. For each $f\in V^X$, define the \index{l@$\Vert\cdot\Vert_{l^\infty}=\Vert f\Vert_{l^\infty(X,V)}=\Vert\cdot\Vert_\infty$} \pmb{$l^\infty$}\textbf{-norm}
+Let $X$ be a set and let $V$ be a normed vector space. For each $f\in V^X$, define the \index{l@$l^\infty$} \pmb{$l^\infty$}\textbf{-norm}
 \begin{align}
 \Vert f\Vert_{l^\infty(X,V)}\equiv\Vert f\Vert_{l^\infty}\equiv \Vert f\Vert_\infty=\sup_{x\in X}\Vert f(x)\Vert
 \end{align}
@@ -4733,7 +4733,7 @@ Prove that $l^1(X,V)$ is a Banach space. Namely, prove that the metric on $l^1(X
 \end{prob}
 
 
-\begin{prob}
+\begin{prob}\label{lb759}
 Prove the \textbf{dominated convergence theorem} for discrete integrals: Let $(f_\alpha)_{\alpha\in I}$ be a net in $V^X$ satisfying the following conditions:
 \begin{enumerate}[label=(\arabic*)]
 \item There exists $g\in l^1(X,\Rbb)$ satisfying $g\geq0$ (i.e. $g(x)\geq0$ for all $x\in X$) such that for every $\alpha\in I,x\in X$ we have
@@ -16922,7 +16922,7 @@ Let $-\infty<a<b<+\infty$ and $\scr V=\scr R[a,b]=\scr R([a,b],\Cbb)$ (the space
 Thus, $V=\scr V/\scr N$ is the set of all $f\in\scr R[a,b]$ such that $f,g\in\scr R[a,b]$ are viewed as the same element of $V$ iff $f=g$ almost everywhere (i.e. $\{x:f(x)\neq g(x)\}$ is null).
 \end{eg}
 
-Eq. \eqref{eq249} is almost obvious after we learn Lebesgue theory. Here, we give an elementary proof.
+%Eq. \eqref{eq249} is almost obvious after we learn Lebesgue theory. Here, we give an elementary proof.
 
 \begin{proof}
 Let $g=|f|^2$. We want to show that $\int g=0$ iff $\Delta=\{x\in[a,b]:g(x)> 0\}$ is null. Assume that $\int g>0$. Then $f$ has a strictly positive lower Darboux sum (recall Thm. \ref{lb444}). This implies that there exist $c,d$ satisfying $a\leq c<d\leq b$ such that $(d-c)\cdot \inf_{\xi\in[c,d]}g(\xi)>0$. So $g>0$ on $[c,d]$. So $\Delta$ contains $[c,d]$, and hence is not null.
@@ -17246,16 +17246,11 @@ Clearly $\{e_n:n\in\Zbb\}$ is an orthonormal set of vectors. By Stone-Weierstras
 
 To show that $\Span\fk S$ is dense in $V$, it remains to prove that $C(\Sbb^1)$ is $L^2$-dense in $V$. Let $\mc S=\Span\{\chi_{I}:I\text{ is an interval in }[-\pi,\pi]\}$. It is easy to see that each $\chi_I$ can be $L^2$-approximated by elements of $C(\Sbb^1)$. Therefore, it suffices to prove that $\mc S$ is $L^2$-dense in $V$.
 
-Let $f\in\scr R[-\pi,\pi]$. We want to show that $f$ can be $L^2$-approximated by elements of $\mc S$. By considering the real part and the imaginary part separately, we assume that $f$ is real. Let $M=\Vert f\Vert_{l^\infty}$, which is finite. Choose any $\eps,\delta>0$. Then by \hyperlink{Lebesgue-part2}{Part 2} of the proof of Thm. \ref{lb411}, $[-\pi,\pi]$ can be partitioned into two groups of intervals $I_1,I_2,\dots$ and $J_1,J_2,\dots$ such that $\diam f(I_i)<\eps$ for each $i$, $\diam f(J_j)\leq 2M$ for each $j$, and $\sum_j |J_j|<\delta$. Let
-\begin{gather*}
-g=\sum_i \inf f(I_i)\cdot \chi_{I_i}+\sum_j \inf f(J_j)\cdot \chi_{J_j}\\
-h=\sum_i \sup f(I_i)\cdot \chi_{I_i}+\sum_j \sup f(J_j)\cdot \chi_{J_j}
-\end{gather*}
-which are in $\mc S$. Since $g\leq f\leq h$ (outside the end points of each $I_i$ and $J_j$), 
+Let $f\in\scr R[-\pi,\pi]$. We want to show that $f$ can be $L^2$-approximated by elements of $\mc S$. By considering the real part and the imaginary part separately, we assume that $f$ is real. Let $M=\Vert f\Vert_{l^\infty}$, which is finite. By the proof of Prop. \ref{lb445} (or by approximating $\int f$ by upper Darboux sums, cf. Thm. \ref{lb444}), we can find a sequence $(f_n)$ in $\mc S$ such that $\lim_n\int_{-\pi}^\pi |f-f_n|=0$, and that $|f_n|\leq M$ for all $n$. Therefore
 \begin{align*}
-\int_{-\pi}^\pi |f-g|^2\leq\int_{-\pi}^\pi (h-g)\leq 2\pi\eps^2+4M^2\delta
+\int_{-\pi}^\pi |f-f_n|^2\leq 2M\int_{-\pi}^\pi |f-f_n|
 \end{align*}
-which is small enough when $\eps,\delta$ are small.
+where the RHS converges to $0$ as $n\rightarrow\infty$.
 \end{proof}
 
 
@@ -17607,7 +17602,7 @@ Suppose that $U,V$ are normed vector spaces and $U_0$ is a dense linear subspace
 
 %% Record #2 2024/02/29 three lectures  5
 
-%% Proofread
+
 
 
 \subsection{Key property 1: convergence of summing orthogonal vectors}\label{lb640}
@@ -17619,7 +17614,7 @@ Hilbert and Schmidt introduced $l^2(\Zbb)$ to the study of integral equations. A
 \item If $\sum_i|a_i|^2<+\infty$ and if $(e_i)_{i\in I}$ is orthormal, then $\sum a_ie_i$ converges.
 \item The weak(-*) compactness of the closed unit ball.
 \end{enumerate}
-(We will show the equivalence in Thm. \ref{lb612} and \ref{lb637}.) In this section, we study the first property. The second property will be studied in the next section. The first property is indeed a direct consequence of the second one; see Thm. \ref{lb630}. Thus, one may also say that the second property is the main analytic property used by Hilbert and Schmidt. In the next chapter, we will see how these two properties are used to study integral equations.
+(We will show the equivalence in Thm. \ref{lb612} and Cor. \ref{lb637}.) In this section, we study the first property. The second property will be studied in the next section. The first property is indeed a direct consequence of the second one; see Thm. \ref{lb630}. Thus, one may also say that the second property is the main analytic property used by Hilbert and Schmidt. In the next chapter, we will see how these two properties are used to study integral equations.
 
 \begin{thm}\label{lb612}
 Let $V$ be an inner product space. The following are equivalent.
@@ -17860,7 +17855,7 @@ f_\alpha\xlongrightarrow{\text{weak-*}}f\qquad\Longleftrightarrow\qquad \lim_\al
 This is the content Thm. \ref{lb530}. In view of \eqref{eq264}, the Banach-Alaoglu for $l^2(X)$ says that any net $(f_\alpha)$ in $\ovl B_{l^2(X)}(0,1)$ has a subnet converging pointwise on $X$ to some $f\in\ovl B_{l^2(X)}(0,1)$, which can be checked directly using  the Tychonoff theorem. (You were asked to give this direct proof in Pb. \ref{lb531}.)
 
 
-It should be kept in mind that whenever talking about the weak-* topology on a Banach space $V$, we should specify a Banach space $U$ and an isomorphism of Banach spaces $\Psi:V\rightarrow U^*$ so that $V$ can be viewed as a dual Banach space. The data $(\Psi,U)$ (or simply written as $U$) is called a \textbf{predual} of $V$. It is customary to write a predual $U$  of $V$ as $V_*$.
+It should be kept in mind that whenever talking about the weak-* topology on a Banach space $V$, we should specify a normed vector space $U$ and an isomorphism of Banach spaces $\Psi:V\rightarrow U^*$ so that $V$ can be viewed as a dual Banach space. The data $(\Psi,U)$ (or simply written as $U$) is called a \textbf{predual} of $V$. It is customary to write a predual $U$  of $V$ as $V_*$.
 
 Since we know that every Hilbert space $\mc H$ is isomorphic to $l^2(X)$ for some $X$, the isomorphism \eqref{eq265} suggests that we can talk about the weak-* topology of $\mc H$, which should be the unique topology whose convergence $\xi_\alpha\rightarrow\xi$ means that $\bk{\xi_\alpha|\eta}\rightarrow\bk{\xi|\eta}$ for all $\eta$. However, calling this topology a weak-* topology is confusing. In fact, there is no \uwave{standard choice} of isomorphism $\mc H\rightarrow\mc H^*$. The isomorphism  \eqref{eq265} relies on the antiunitary map $f\mapsto f^*$.
 \begin{df}
@@ -17966,12 +17961,14 @@ for each $f,g\in \ovl B_{l^2(X)}(0,1)$. This is because, by Cor. \ref{lb260}, bo
 
 
 \begin{srem}
-A normed vector space $V$ is called \textbf{reflexive} \index{00@Reflexive Banach space} if the canonical linear isometry $V\rightarrow V^{**}$ is surjective (and hence an isomorphism). A reflexive space must be complete since $V^{**}$ is complete by Thm. \ref{lb540}. By Thm. \ref{lb540}, if $1<p<+\infty$ then $l^p(X)$ is reflexive. In particular, every Hilbert space is reflexive.
+A normed vector space $V$ is called \textbf{reflexive} \index{00@Reflexive Banach space} if the canonical linear isometry $V\rightarrow V^{**}$ is surjective (and hence an isomorphism). A reflexive space must be complete since $V^{**}$ is complete by Thm. \ref{lb540}. By Thm. \ref{lb527}, if $1<p<+\infty$ then $l^p(X)$ is reflexive. In particular, every Hilbert space is reflexive.
 
 If $V$ is reflexive, the canonical isomorphism $V\simeq V^{**}$ allows us to view $V$ as a dual space of $V^*$, and talk about its weak-* topology. This is clearly equal to the weak topology. If $V$ is not reflexive, we do not view the weak topology of $V$ as the weak-* topology, since $V$ might have a meaningful predual such that the weak-* topology defined by this predual is different from the weak topology. 
 
 For example, consider $V=l^\infty(\Zbb)$ with predual $l^1(\Zbb)$. The weak-* topology defined by $l^1(\Zbb)$ is different from the weak topology (which is defined by elements of $l^\infty(\Zbb)^*$), cf. Pb. \ref{lb532}.  \hfill\qedsymbol
 \end{srem}
+
+%% Record #2 2024/02/29 three lectures  5
 
 \subsubsection{Strong and weak convergence}
 
@@ -18045,10 +18042,10 @@ Let $V$ be an inner product space. Let $(v_\alpha)$ be a net in $\ovl B_V(0,1)$ 
 \end{enumerate}
 \end{lm}
 
-Similar to Prop. \ref{lb520}, this lemma is not true if $\ovl B_V(0,1)$ is replaced by $V$.
+Similar to Thm. \ref{lb530}, this lemma is not true if $\ovl B_V(0,1)$ is replaced by $V$.
 
 \begin{proof}
-Let $\mc H$ be the Hilbert space completion of $V$. So $V^*\simeq\mc H^*$. By Riesz-Fr\'chet,  (1) means that $\lim\bk{v_\alpha|\xi}=\bk{v|\xi}$ for all $\xi\in\mc H$. Thus, one checks easily that (1)$\Longleftrightarrow$(2) using the density of $V$ in $\mc H$.
+Let $\mc H$ be the Hilbert space completion of $V$. So $V^*\simeq\mc H^*$. By Riesz-Fr\'echet,  (1) means that $\lim\bk{v_\alpha|\xi}=\bk{v|\xi}$ for all $\xi\in\mc H$. Thus, one checks easily that (1)$\Leftrightarrow$(2) using the density of $V$ in $\mc H$.
 \end{proof}
 
 
@@ -18139,7 +18136,15 @@ Let $P\in\fk L(\mc H)$ satisfying $P^2=P$ and $P=P^*$. Prove that $P(\mc H)$ is 
 
 
 
+Recall Pb. \ref{lb346} for the basic properties of $\limsup$ and $\liminf$.
+\begin{prob}
+(\textbf{Fatou's lemma for Hilbert spaces}.) \index{00@Fatou's lemma for Hilbert spaces} Prove that the norm function $\xi\in\mc H\mapsto\Vert\xi\Vert\in \Rbb_{\geq0}$ is lower semicontinuous if $\mc H$ is equipped with the weak topology. In other words, prove that if $(\xi_\alpha)$ is a net in $\mc H$ converging weakly to $\xi$, then $\liminf_\alpha\Vert\xi_\alpha\Vert\geq\Vert\xi\Vert$.
+\end{prob}
 
+
+\begin{rem}
+The reader may try to prove the following Fatou's lemma for dual Banach spaces (which is not difficult to prove): Let $V$ be a normed vector space. Then the map $\varphi\in V^*\mapsto\Vert\varphi\Vert\in\Rbb_{\geq0}$ is lower semicontinuous, where $V^*$ is equipped with the weak-* topology.
+\end{rem}
 
 
 
@@ -18333,7 +18338,7 @@ Let $(\mc H_i)_{i\in I}$ be a family of Hilbert spaces. For each $i\in I$, choos
 \begin{align}
 \sup_{i\in I}\Vert T_i\Vert<+\infty
 \end{align} 
-Prove that there is a unique bounded linear map $T$ on $\mc H:=\bigoplus_{i\in I}\mc H_i$ such that for each $\oplus_i\xi_i\in\mc H$,
+Prove that there is a unique bounded linear operator $T$ on $\mc H:=\bigoplus_{i\in I}\mc H_i$ such that for each $\oplus_i\xi_i\in\mc H$,
 \begin{align}
 T(\oplus_i\xi_i)=\oplus_i (T_i\xi_i)
 \end{align}
@@ -18344,7 +18349,7 @@ We write $T=\oplus_{i\in I}T_i$ and call it the \textbf{direct sum} \index{00@Di
 \end{prob}
 
 \begin{prob}\label{lb633}
-Let $(\mc H_i)_{i\in I}$ be a mutually orthogonal family of closed linear subspaces of $\mc H$. Assume that this family span a dense subspace of $\mc H$. Prove that there is a unitary map
+Let $(\mc H_i)_{i\in I}$ be a mutually orthogonal family of closed linear subspaces of $\mc H$. Assume that this family spans a dense subspace of $\mc H$. Prove that there is a unitary map
 \begin{gather}
 \begin{gathered}
 \Phi:\bigoplus_{i\in I}\mc H_i\xlongrightarrow{\simeq}\mc H\qquad \oplus_{i\in I}\xi_i\mapsto\sum_{i\in I}\xi_i
@@ -18433,7 +18438,7 @@ where $\Phi$, called the \textbf{fundamental solution}, is defined by
 \end{array}
 \right.
 \end{align}
-where $\sigma_{N-1}=2\pi^{\frac N2}\Gamma(N/2)^{-1}$ is the volume of $\Sbb^{N-1}=\{x\in\Rbb^N:\Vert x\Vert=1\}$. $\Delta\Phi$ is the delta function at $0$, in particular, it is zero outside $0$. Cf. \cite[Sec. 2.2.1]{Eva}.
+where $\sigma_{N-1}=2\pi^{\frac N2}\Gamma(N/2)^{-1}$ is the volume of $\Sbb^{N-1}=\{x\in\Rbb^N:\Vert x\Vert=1\}$. $\Delta\Phi$ is the delta function at $0$. In particular, it is zero outside $0$. Cf. \cite[Sec. 2.2.1]{Eva}.
 
 By replacing $u$ with $u-\Phi*\varphi$, \eqref{eq271} is transformed to the \textbf{harmonic equation} (with Dirichlet boundary condition)
 \begin{align}\label{eq274}
@@ -18510,11 +18515,11 @@ Fix $K\in L^2(\Sbb^1\times\Sbb^1)$. (The readers can assume for simplicity that 
 \end{align}
 $K$ is called the \textbf{kernel} of $T$. Our goal is to understand the eigenvalues and eigenvectors of $T$.
 
-Hilbert's idea is to use Fourier series. Functions on $\Sbb^1\times\Sbb^1$ have Fourier series of the form $\sum_{m,n}a_{m,n}e^{\im(nx+my)}$ in a similar way as functions on $\Sbb^1$. Therefore, for each $m,n\in\Zbb$, define the Fourier coefficient
+Hilbert's idea is to use Fourier series. Functions on $\Sbb^1\times\Sbb^1$ have Fourier series of the form $\sum_{m,n}a_{m,n}e^{\im(-nx+my)}$ in a similar way as functions on $\Sbb^1$. Therefore, for each $m,n\in\Zbb$, define the Fourier coefficient
 \begin{align}\label{eq283}
 \wht K(m,n)=\bk{Te_n|e_m}=\frac 1{(2\pi)^2}\int_{-\pi}^\pi\int_{-\pi}^\pi K(x,y)e^{\im (nx-my)}dxdy
 \end{align}
-Then, by Thm. \ref{lb595}, we get $f=\sum_n \wht f_ne_n$ and $g=\sum_mn \wht g_me_m$, and hence
+Then, by Thm. \ref{lb595}, we get $f=\sum_n \wht f_ne_n$ and $g=\sum_m \wht g_me_m$, and hence
 \begin{align*}
 \bk{Tf|g}=\sum_{m,n}\wht K(m,n)\wht f(n)\ovl{\wht g(m)}=\bk{\wht T\wht f|\wht g}
 \end{align*}
@@ -18522,7 +18527,7 @@ if we view $\wht f,\wht g$ as in $l^2(\Zbb)$ and define a linear map $\wht T:l^2
 \begin{align}\label{eq284}
 \tcboxmath{(\wht T\wht f)(m)=\sum_{n\in\Zbb} \wht K(m,n)\wht f(n)}
 \end{align}
-By applying Parseval's identity to $K$, we obtain $\sum_{m,n}|\wht K(m,n)|^2=(2\pi)^{-2}\int\int K(x,y)dxdy$, and hence, by $K\in L^2(\Sbb^1\times\Sbb^1)$, we have
+By applying Parseval's identity to $K$, we obtain $\sum_{m,n}|\wht K(m,n)|^2=(2\pi)^{-2}\int\int K(x,y)dxdy$ (which is a finite number), and hence
 \begin{align}
 \wht K\in l^2(\Zbb\times\Zbb)
 \end{align}
@@ -18543,7 +18548,7 @@ Parseval's identity $\frac 1{2\pi}\int_{-\pi}^\pi |f|^2=\sum_n |\wht f(n)|^2$ is
 
 In the remaining sections, we will forget the original function $K$ on $\Sbb^1\times\Sbb^1$, as Hilbert did, and focus on the matrix $\wht K\in l^2(\Zbb\times\Zbb)$. Thus, we will let $K$ denote $\wht K$, or denote a general function $X\times Y\rightarrow\Cbb$ where $X,Y$ are sets. 
 
-
+%% Proofread
 
 \subsection{Hilbert's complete continuity}
 
@@ -19303,14 +19308,14 @@ In the following, we sketch Lebesgue's main idea of the construction of integral
 
 
 
-Let $-\infty<a<b<+\infty$, and let $f:(a,b)\rightarrow\Rbb$ be bounded, say $-M\leq f\leq M$ for some $M>0$.\footnote{Lebesgue originally considered functions on $[a,b]$. For the simplicity of the following discussion, we consider functions on $(a,b)$ instead, which makes no essential difference to the development of the theory.} We know that Riemann integras are defined by partitioning the domain $(a,b)$. By contrast, the Lebesgue integra $\int_a^b fdm$ is defined by partitioning the codomain: Let $\{c_0<c_1<\dots<c_n\}$ be a partition of $[-M,M+1]$. Then it is expected that $\int_a^b fdm$ is approximated by
+Let $-\infty<a<b<+\infty$, and let $f:(a,b)\rightarrow\Rbb$ be bounded, say $-M+1\leq f\leq M-1$ for some $M>1$.\footnote{Lebesgue originally considered functions on $[a,b]$. For the simplicity of the following discussion, we consider functions on $(a,b)$ instead, which makes no essential difference to the development of the theory.} We know that Riemann integras are defined by partitioning the domain $(a,b)$. By contrast, the Lebesgue integra $\int_a^b fdm$ is defined by partitioning the codomain: Let $\{c_0<c_1<\dots<c_n\}$ be a partition of $[-M,M]$. Let $\xi_i\in(c_{i-1},c_i]$. Then it is expected that $\int_a^b fdm$ is approximated by the \textbf{Lebesgue sum} \index{00@Lebesgue sum}
 \begin{align}\label{eq287}
-\sum_{i=1}^n c_{i-1}\cdot m(E_i)
+\sum_{i=1}^n \xi_i\cdot m(E_i)
 \end{align}
-where $E_i=f^{-1}[c_{i-1},c_i)$, and $m(E_i)$ is the ``measure" of $E_i$. 
+where $E_i=f^{-1}(c_{i-1},c_i]$, and $m(E_i)$ is the ``measure" of $E_i$. 
 Thus, one can attempt to define $\int_a^b fdm$ to be the limit of the ``Lebesgue sum" \eqref{eq287}. In fact, since $\int f$ should be the area of the region below the graph of $f$, it is expect that if $\sup_i |c_i-c_{i-1}|<\eps$, then 
 \begin{align*}
-\Big| \int_a^b fdm- \sum_{i=1}^n c_{i-1}\cdot m(E_i)  \Big|\leq (b-a)\eps
+\Big| \int_a^b fdm- \sum_{i=1}^n \xi_i\cdot m(E_i)  \Big|\leq (b-a)\eps
 \end{align*}
 
 Therefore, in order to define the Lebesgue integral, one must first define the \textbf{Lebesgue measure} $m(E_i)$. Let me temporarily denote this value by $m^*(E_i)$ to reflect the fact (to be explained shortly) that not every subset of $(a,b)$ can be assigned a measure. The construction is as follows. Suppose that $E\subset(a,b)$. Then
@@ -19699,7 +19704,7 @@ Conversely, assume that $f_1,f_2$ are measurable. If $V_1$ and $V_2$ are open su
 \end{proof}
 
 
-\begin{co}
+\begin{co}\label{lb745}
 Let $(X,\fk M)$ be a measurable space. Let $f,g:X\rightarrow\Cbb$ or $f,g:X\rightarrow\ovl\Rbb_{\geq0}$ be measurable. Then $f+g$ and $fg$ are measurable functions from $X$ to $\Cbb$ or $\ovl\Rbb_{\geq0}$.
 \end{co}
 
@@ -19765,7 +19770,7 @@ Let $X$ be a set. For each $E\subset X$, let $\mu(E)=\sum_{x\in E}1$. Namely, $\
 \end{df}
 
 
-\begin{pp}
+\begin{pp}\label{lb748}
 Let $(X,\fk M,\mu)$ be a measure space. The following are true.
 \begin{enumerate}[label=(\alph*)]
 \item (\textbf{Monotonicity}) If $E,F\in\fk M$ and $E\subset F$, then $\mu(E)\leq \mu(F)$.
@@ -20269,10 +20274,14 @@ As mentioned in the slogan \eqref{eq290}, the countable additivity of $\mu$ on r
 
 
 In fact, before Lebesgue,  Jordan had utilized this idea (subadditivity $+$ superadditivity $\Rightarrow$ additivity) to study measurable sets in 1902 (cf. \cite[Sec. 9.4]{Jah} and \cite[4.1]{Haw}): For each bounded $E\subset\Rbb^N$, the \textbf{outer content}  $c^*(E)$ is defined to be the infinimum of the total sizes of \textit{finitely many} boxes covering $E$, and the \textbf{inner content}  $c_*(E)$ is the supremum of the total sizes of finitely many disjoint boxes contained in $E$.  Jordan defined $E$ to be measurable if $c^*(E)=c_*(E)$. Using our familiar language, 
-\begin{align}
+\begin{align}\label{eq308}
 c^*(E)=\ovl\int\chi_E\qquad c_*(E)=\udl\int\chi_E
 \end{align}
 and $E$ is Jordan-measurable iff $\chi_E$ is Riemann integrable. $c^*$ and $c_*$ satisfy subadditivity and superadditivity respectively, just as $\ovl\int$ and $\udl\int$ do. So $c^*$ satisfies additivity on Jordan-measurable sets. 
+
+\begin{eg}
+Let $E=\Qbb\cap[0,1]$. We know that $m(E)=0$. It is not hard to see that $c_*(E)=0$ and $c^*(E)=1$. So $E$ is not Jordan-measurable. 
+\end{eg}
 
 Compared to Jordan, an important improvement Lebesgue made is that he extended the finite subadditivity and superadditivity to countable ones. He achieved this goal by giving the better definition of outer measure. Recall that the outer content $c^*(E)$ is defined by the infinimum of the sizes of \textbf{simple regions} (i.e., finite unions of boxes) covering $E$. The outer Lebesgue measure $m^*(E)$ is defined in a similar way, except that one allows for \textit{countable} unions of boxes to cover $E$. From the modern viewpoint (i.e., the viewpoint in Sec. \ref{lb688} and \ref{lb726}), $m^*(E)$ is defined by covering $E$ by arbitrary open sets, not just by simple regions. The modern viewpoint is equivalent to the classical one due to the following observation:
 
@@ -20357,7 +20366,8 @@ See \cite[Thm. 1.11]{Fol}.
 
 Our main Thm. \ref{lb724} follows easily from \ref{lb740}: Since $\mu$ satisfies (a,b,c) of Asmp. \ref{lb712}, $\mu^*$ is an abstract outer measure. By using (d,e) of Asmp. \ref{lb712}, one can show that open sets are $\mu^*$-measurable.\footnote{Sketch of the proof: Let $E$ be open. First prove \eqref{eq298} when $A$ is open. Then prove \eqref{eq298} for any $A$ by using a similar argument as in the proof of Prop. \ref{lb741}.} Therefore, the set $\fk M_\mu$ of Carath\'eodory $\mu^*$-measurable sets contains open subsets of $X$. Thus, by Thm. \ref{lb740}, $\fk M_\mu$ is a $\sigma$-algebra containing $\fk B_X$, and $\mu^*$ is a complete measure on $\fk M_\mu$.
 
-The reason we use locally regular sets in our course instead of Carath\'eodory's approach is that the latter is very unintuitive. The intuition ``subadditivity $+$ superadditivity $\Rightarrow$ additivity", which goes back to Lebesgue, Jordan, and even Darboux, is very obscure in the proof of Thm. \ref{lb740}. One cannot interpret \eqref{eq299} to mean that the outer measure $\nu^*(A\cap E)$ of $A\cap E$ equals the ``inner measure" $\nu^*(A)-\nu^*(A\setminus E)$, because Exp. \ref{lb742} tells us that $\mu^*(A)-\mu^*(A\setminus E)$ is often not equal to the actual inner measure $\mu_*(A\cap E)$.\footnote{Here, I am challenging the view expressed in the paragraph before Thm 1.11 of \cite{Fol}.} On the other hand, the advantage of Carath\'eodory's approach is that Thm. \ref{lb740} can be applied to more general situations than Thm. \ref{lb724}. 
+The reason we use locally regular sets in our course instead of Carath\'eodory's approach is that the latter is very unintuitive. The intuition ``subadditivity $+$ superadditivity $\Rightarrow$ additivity", which goes back to Lebesgue, Jordan, and even Darboux, is very obscure in the proof of Thm. \ref{lb740}. One cannot interpret \eqref{eq299} to mean that the outer measure $\nu^*(A\cap E)$ of $A\cap E$ equals the ``inner measure" $\nu^*(A)-\nu^*(A\setminus E)$, because Exp. \ref{lb742} tells us that $\mu^*(A)-\mu^*(A\setminus E)$ is often not equal to the actual inner measure $\mu_*(A\cap E)$.%\footnote{Here, I am challenging the view expressed in the paragraph before Thm 1.11 of \cite{Fol}.} 
+On the other hand, the advantage of Carath\'eodory's approach is that Thm. \ref{lb740} can be applied to more general situations than Thm. \ref{lb724}. 
 
 I believe that many people will have this confusion when they first see the condition \eqref{eq299}: Why consider an arbitrary set $A$ instead of just a ``good" set, for example, an open set, a compact set, or a Borel set? How can one believe that a definition as strong as Def. \ref{lb743} would have nontrivial examples? The way to understand the motivation behind a definition or a theorem is not to immerse oneself in the technical details of the proof, but to clarify the genealogy of concepts. I hope that the exposition in this section will help the reader to get a general idea of how the concept of measurable sets evolved from its basic and intuitive form to the abstract definition of Carath\'eodory.
 
@@ -20560,20 +20570,22 @@ The goal of this chapter is to define the integral $\int_X fd\mu$ where $(X,\mu)
 Let $(X,\fk M,\mu)$ be a measure space. Recall Def. \ref{lb114} for the addition and multiplication in $\ovl\Rbb_{\geq0}=[0,+\infty]$,
 
 
+\subsubsection{Integrals of simple functions}
+
 \begin{df}
 A function $f:X\rightarrow[0,+\infty]$ is called an \textbf{(extended) positive simple function} \index{00@Positive simple function}  on $X$ if $f$ is measurable and $f(X)$ is a finite set. This is equivalent to saying that $f$ is of the form
 \begin{align}\label{eq301}
 f=\sum_{i=1}^n a_i\chi_{E_i}
 \end{align}
-where $n\in\Zbb_+$, $a_i\in[0,+\infty]$, and $E_i\in\fk M$. Let \index{SX@$S_+(X)=\{\text{simple functions }X\rightarrow\ovl\Rbb_{\geq0}\}$}
+where $n\in\Zbb_+$, $a_i\in[0,+\infty]$, and $E_i\in\fk M$. Let \index{SX@$\mc S_+(X)=\{\text{simple functions }X\rightarrow\ovl\Rbb_{\geq0}\}$}
 \begin{align}
-S_+(X)\equiv S(X,\ovl\Rbb_{\geq0})=\{\text{extended positive simple functions on }X\}
+\mc S_+(X,\fk M)\equiv \mc S_+(X)=\{\text{extended positive simple functions on }X\}
 \end{align}
 which is an $\ovl\Rbb_{\geq0}$-linear subspace of $[0,+\infty]^X$.
 \end{df}
 
 \begin{df}
-For each $f\in S_+(X)$, define
+For each $f\in \mc S_+(X)$, define
 \begin{align}
 \int_X f\equiv \int_X fd\mu=\sum_{n=1}^n a_i\mu(E_i)
 \end{align}
@@ -20593,11 +20605,11 @@ For each $c\in\ovl\Rbb_{\geq0}$, we let $I_c=\{i\in\Nbb:1\leq i\leq n,a_i=c\}$. 
 \end{proof}
 
 
-\begin{pp}
-The map $\int_X:S_+(X)\rightarrow\ovl\Rbb_{\ge0}$ is  $\ovl\Rbb_{\ge0}$-linear.
+\begin{pp}\label{lb750}
+The map $\int_X:\mc S_+(X)\rightarrow\ovl\Rbb_{\ge0}$ is  $\ovl\Rbb_{\ge0}$-linear.
 \end{pp}
 \begin{proof}
-Let $f,g\in S_+(X)$. Clearly $\int cf=c\int f$ if $c\in\ovl\Rbb_{\geq0}$. Write $f(X)=\{a_1<\cdots<a_m\}$ and $g(X)=\{b_1<\cdots<b_n\}$. Since $X=\bigsqcup_i E_i=\bigsqcup_j F_j$, we have $\chi_{E_i}=\sum_j\chi_{E_i\cap E_j}$ and $\chi_{F_j}=\sum_i\chi_{E_i\cap E_j}$, and hence $f+g=\sum_{i,j} (a_i+b_j)\chi_{E_i\cap F_j}$. Thus, by Lem. \ref{lb744}, we get
+Let $f,g\in \mc S_+(X)$. Clearly $\int cf=c\int f$ if $c\in\ovl\Rbb_{\geq0}$. Write $f(X)=\{a_1<\cdots<a_m\}$ and $g(X)=\{b_1<\cdots<b_n\}$. Since $X=\bigsqcup_i E_i=\bigsqcup_j F_j$, we have $\chi_{E_i}=\sum_j\chi_{E_i\cap E_j}$ and $\chi_{F_j}=\sum_i\chi_{E_i\cap E_j}$, and hence $f+g=\sum_{i,j} (a_i+b_j)\chi_{E_i\cap F_j}$. Thus, by Lem. \ref{lb744}, we get
 \begin{align*}
 \int(f+g)=\sum_{i,j}(a_i+b_j)\mu(E_i\cap F_j)
 \end{align*}
@@ -20610,11 +20622,427 @@ Similarly, $\int g=\sum_{i,j}b_j\mu(E_i\cap F_j)$. So $\int f+\int g=\sum_{i,j}(
 
 
 \begin{co}
-If $f,g\in S_+(X)$ and $f\leq g$, then $\int_Xfd\mu\leq \int_X gd\mu$
+If $f,g\in \mc S_+(X)$ and $f\leq g$, then $\int_Xfd\mu\leq \int_X gd\mu$
 \end{co}
 \begin{proof}
-One easily finds $h\in S_+(X)$ such that $f+h=g$. So $\int g=\int f+\int h\geq\int f$.
+One easily finds $h\in \mc S_+(X)$ such that $f+h=g$. So $\int g=\int f+\int h\geq\int f$.
 \end{proof}
+
+
+\subsubsection{Integrals of measurable functions}\label{lb762}
+
+
+\begin{df}\label{lb747}
+We let \index{LX@$\mc L_+(X)$}
+\begin{align}
+\mc L_+(X,\fk M)\equiv\mc L_+(X)=\{\text{measurable }f\in[0,+\infty]^X\}
+\end{align}
+For each $f\in\mc L_+(X)$, define the integral
+\begin{align}
+\int_Xfd\mu=\sup\Big\{\int_X sd\mu:s\in\mc S_+(X),s\leq f\Big\}
+\end{align}
+\end{df}
+
+\begin{rem}\label{lb746}
+It is easy to see that
+\begin{align}
+\int_Xfd\mu=\sup\Big\{\int_X sd\mu:s\in\mc S(X,\Rbb_{\geq0}),s\leq f\Big\}
+\end{align}
+where $\mc S(X,\Rbb_{\geq0})$ is the set of $s\in\mc S_+(X)$ such that $s(x)<+\infty$ for all $x\in X$. In other words, to define $\int_Xf$, it suffices to consider positive simple functions with finite values.
+\end{rem}
+
+
+\begin{rem}
+Let $A\subset \fk M$. Let $\fk M|_A$ be the restriction of $\fk M$ to $A$ (cf. Def. \ref{lb707}). Then $\fk M|_A\subset\fk M$. So we can restrict $\mu$ to $\fk M|_A$ so that $(A,\fk M|_A,\mu)$ is a measure space. If $f\in\mc L_+(X)$, noting that $f\chi_A$ is measurable (Cor. \ref{lb745}), we clearly have
+\begin{align}
+\int_A f=\int_X f\chi_A
+\end{align}
+\end{rem}
+
+
+We now discuss the linearity of $\int_X$. Clearly $\int_X cf=c\int_Xf$ if $c\in[0,+\infty]$. It is not hard to check that $\int_X$ is supperadditive: Suppose that $f,g\in\mc L_+(X)$.  For each simple functions $s\leq f$ and $t\leq g$ we have $s+t\leq f+g$, and hence $\int_X(f+g)\geq\int_X(s+t)=\int_Xs+\int_Xt$. Therefore $\int_X(f+g)\geq\int_Xf+\int_Xg$. 
+
+This is not surprising, because the definition clearly suggests that $\int_X$ is actually a lower integral. When $f$ is bounded and $\mu(X)<+\infty$ (which is case that Lebesgue considered in his 1902 paper), we can also define the upper integral
+\begin{align}
+\ovl\int_X fd\mu=\inf\Big\{\int_X td\mu:t\in\mc S_+(X),f\leq t \Big\}
+\end{align}
+which clearly satisfies the subadditivity $\ovl \int_X(f+g)\leq\ovl\int_Xf+\ovl\int_Xg$. Clearly $\int_Xf\leq\ovl\int_Xf$. To show the $\ovl\Rbb_{\geq0}$-linearity of $\int_X$, it suffices to prove that $\int_Xf=\ovl\int_Xf$. By scaling $f$, assume that $f(X)\subset[0,1]$. For each $k=1,\dots,n$, let $E_k=f^{-1}(\frac {k-1}n,\frac kn]$. Following Lebesgue's idea of ``partitioning the codomain" (cf. Sec. \ref{lb722}), define the \textbf{Lebesgue sums} \index{00@Lebesgue sum}
+\begin{align}\label{eq302}
+s_n=\sum_{k=1}^n \frac {k-1}n \chi_{E_k}\qquad t_n=\sum_{k=1}^n \frac {~k~}n \chi_{E_k}
+\end{align}
+Then $s_n,t_n\in\mc S_+(X)$, $s_n\leq f\leq t_n$, and $\int_X (t_n-s_n)=\mu(X)/n$. This proves that $\ovl\int_Xf\leq\int_Xf+\mu(X)/n$ for any $n$, and hence $\ovl\int_Xf=\int_Xf$. The linearity of $\int_X$ on bounded positive measurable functions is thus established. It also shows that $\int_Xf$ can be understood as the limit of Lebesgue sums, just as Riemann integrals are the limits of Riemann sums.
+
+It is a subtle task to extend the additivity of $\int_X$ to unbounded functions or to functions $f$ such that $\{x\in X:f(x)>0\}$ has infinite measures. (Consider for example the case that $f+g=\chi_A$ for some $A\in\fk M$ such that $\mu(A)=+\infty$. It is not so obvious why $\mu(A)\leq\int f+\int g$ is true.) In the following, we shall study the additivity in a more modern way.
+
+
+
+\subsubsection{The monotone convergence theorem}
+
+
+
+\begin{pp}\label{lb749}
+Let $f\in\mc L_+(X)$. Then there is a sequence $(s_n)_{n\in\Zbb_+}$ in $\mc S_+(X)$ such that $s_1\leq s_2\leq\cdots$, that $s_n(x)<+\infty$ for all $x\in X$, and that $\lim_n s_n$ converges pointwise to $f$. (In particular, $s_n\leq f$.)
+\end{pp}
+
+\begin{proof}
+Choose a strictly increasing homeomorphism $\varphi:[0,+\infty]\xrightarrow{\simeq}[0,1]$, and let $g=\varphi\circ f$. Similar to \eqref{eq302}, we let $\sigma_n=\sum_{k=1}^n \frac{k-1}n\chi_{E_k}$ where $E_k=g^{-1}(\frac {k-1}n,\frac kn]$. Then $0\leq \sigma_n<1$, and $\lim_n \sigma_n$ converges uniformly to $g$ (since $\Vert g-s_n\Vert_{l^\infty}\leq 1/n$). The subsequence $(\sigma_{2^n})_{n\in\Zbb_+}$ is increasing. Let $s_n=\varphi^{-1}\circ\sigma_{2^n}$. Then $(s_n)$ satisfies the requirement.
+\end{proof}
+
+
+\begin{rem}
+The above proof shows that if $\Vert f\Vert_{l^\infty}<+\infty$, one can choose an increasing sequence $(s_n)$ in $\mc S_+(X)$ converging uniformly to $f$.
+\end{rem}
+
+
+\begin{thm}[\textbf{Monotone convergence theorem}] \index{00@Monotone convergence theorem}\label{lb760}
+Let $(f_n)_{n\in\Zbb_+}$ be an increasing sequence in $\mc L_+(X)$. Let $f$ be the pointwise limit $f=\lim_n f_n$, which is in $\mc L_+(X)$ by Cor. \ref{lb701}. Then $\dps\int_X fd\mu=\lim_n\int_Xf_nd\mu$.
+\end{thm}
+
+
+
+
+\begin{proof}
+We clearly have ``$\geq$" since $f\geq f_n$. To prove the other direction, by Rem. \ref{lb746}, it suffices to choose any $s\in\mc S_+(X)$ satisfying $s\leq f$ and $s<+\infty$, and show that $\int_Xs\leq\lim_n\int_X f_n$. Since for any $0\leq\gamma<1$ we have $\gamma\int_Xs=\int_X\gamma s$, by replacing $s$ with $\gamma s$, we assume that $s(x)<f(x)$ for any $x\in X$ such that $s(x)>0$. 
+
+The idea is to show that for sufficiently large $n$, we have $f_n>s$ on a sufficiently large region. Write $s$ as a finite sum $s=\sum_i a_i\chi_{E_i}$ where $a_1,a_2,\dots\in\Rbb_{>0}$, and $E_1,E_2,\dots\in\fk M$ are mutually disjoint. For each $i$, let
+\begin{align*}
+E_{i,n}=\{x\in E_i:f_n(x)>s(x)\}=\{x\in E_i:f_n(x)>a_i\}
+\end{align*}
+which is in $\fk M$. Then $f_n\geq\sum_i a_i\chi_{E_{i,n}}$. Thus, by Def. \ref{lb747}, we have
+\begin{align*}
+\int_X f_n\geq\sum_i a_i\mu(E_{i,n})
+\end{align*}
+Clearly $(E_{i,n})_{n\in\Zbb_+}$ is increasing. Since $f>s$ on $E_i$, we have $\bigcup_n E_{i,n}=E_i$. Therefore, by Prop. \ref{lb748}-(b) (which is a consequence of the countable additivity of $\mu$), $\lim_n\mu(E_{i,n})=\mu(E_i)$. So $\lim_n\int_Xf_n\geq\sum_i a_i\mu(E_i)=\int_Xs$, because the map $t\in\ovl\Rbb_{\geq0}\mapsto a_it$ is continuous.\footnote{Here, we have used the convention $0\cdot(+\infty)=0$.}
+\end{proof}
+
+The countable additivity of $\mu$ plays a crucial role in the above proof. Indeed, Prop. \ref{lb748}-(b) can be viewed as a special case of the monotone convergence theorem: If $(E_n)$ is an increasing family in $\fk M$ and $E=\bigcup_n E_n$, set $f=\chi_E$ and $f_n=\chi_{E_n}$, then $\int f=\lim_n\int f_n$ means precisely $\mu(E)=\lim_n\mu(E_n)$.
+
+
+We are now ready to prove:
+\begin{pp}
+The map $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-linear.
+\end{pp}
+
+\begin{proof}
+Let $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there are increasing sequences $(s_n)$ and $(t_n)$ in $\mc S_+(X)$ converging pointwise to $f$ and $g$ respectively. Then $(s_n+t_n)_{n\in\Zbb_+}$ is increasing and converges pointwise to $f+g$. By the linearity of $\int_X$ on $\mc S_+(X)$ (Prop. \ref{lb750}), we have $\int(s_n+t_s)=\int s_n+\int t_n$. Taking $\lim_n$ and applying the monotone convergence theorem, we have $\int (f+g)=\int f+\int g$. That $\int cf=c\int f$ for all $c\in\ovl\Rbb_{\geq0}$ can be proved in a similar way (or by a direct argument).
+\end{proof}
+
+\begin{co}\label{lb761}
+Let $A,B\in\fk M$ be disjoint. Let $f\in\mc L_+(X)$. Then $\int_{A\cup B}f=\int_Af+\int_Bf$
+\end{co}
+
+\begin{proof}
+$\int_{A\cup B}f=\int_X f_{A\cup B}=\int_X(f\chi_A+f\chi_B)=\int_X f\chi_A+\int_Xf\chi_B=\int_Af+\int_Bf$.
+\end{proof}
+
+
+\subsubsection{Criteria for $f=0$ a.e. and $f<+\infty$ a.e.}
+
+
+\begin{pp}\label{lb752}
+Let $f\in\mc L_+(X)$. The following are true.
+\begin{enumerate}
+\item[(a)] We have $\int_X fd\mu=0$ iff $f=0$ a.e..
+\item[(b)] Suppose that $\int_Xfd\mu<+\infty$. Then  $f<+\infty$ a.e.. In other words, there is a null set $\Delta\subset X$ such that $f(x)<+\infty$ for all $x\in X\setminus\Delta$. 
+\end{enumerate}
+\end{pp}
+
+Note that part (a) generalizes Exp. \ref{lb599}.
+
+\begin{proof}
+Proof of (a). Assume that $\int_Xf>0$. By the definition of integrals, there is a simple function $\leq f$ whose integral is positive. Thus, there exists $E\in\fk M$ and $a\in\ovl\Rbb_{\geq0}$ such that $a\chi_E\leq f$, and that $a\mu(E)=\int_X a\chi_E>0$. So $\mu(E)>0$ and $a>0$. Thus $f$ is non-zero on the non-null measurable set $E$.
+
+Conversely, assume that $\int_Xf=0$. For each $n\in\Zbb_+$, let $E_n=f^{-1}[1/n,+\infty]$. Then $n^{-1}\chi_{E_n}\leq f$ and hence $\int_Xf\geq \int_X n^{-1}\chi_{E_n}=n^{-1}\mu(E_n)$. So $\mu(E_n)=0$. So $E=\bigcup_n E_n$ is null, and $f$ is zero outside $E$.
+
+Proof of (b). Let $I=\int_Xf<+\infty$ and assume $I<+\infty$. For each $n\in\Zbb_+$, let $\Delta_n=f^{-1}[n,+\infty]$. Then $n\chi_{\Delta_n}\leq f$, and hence $n\mu(\Delta_n)=\int_X n\mu(\Delta_n)\leq I$. So $\mu(\Delta_n)\leq I/n$. Then $f<+\infty$ outside $\Delta=\bigcap_n \Delta_n$ where $\mu(\Delta)\leq\mu(\Delta_n)\leq I/n$, and hence $\mu(\Delta)=0$. 
+\end{proof}
+
+
+
+
+
+
+
+\subsection{Integrals of complex functions}
+
+Let $(X,\fk M,\mu)$ be a measure space. For each measurable space $(Y,\fk N)$, we let \index{LXY@$\mc L(X,Y)$}
+\begin{align}
+\mc L(X,Y)=\{\text{measurable }f\in Y^X\}
+\end{align}
+Thus $\mc L_+(X)=\mc L(X,\ovl\Rbb_{\geq0})$. In the last section, we have defined the integral operator $\int_X$ on $\mc L_+(X)$. Restricting to $\mc L(X,\Rbb_{\geq0})$, we have an $\Rbb_{\geq0}$-linear map $\int_X \mc L(X,\Rbb_{\geq0})\rightarrow\ovl\Rbb_{\geq0}$. In this section, we extend this integral to $\mc L^1(X,\mu)\rightarrow\Cbb$ where \index{L1X@$\mc L^1(X,\mu)=\mc L^1(X,\Cbb)$}
+\begin{align}
+\mc L^1(X,\mu)\equiv\mc L^1(X,\mu,\Cbb)=\{f\in\mc L(X,\Cbb):\Vert f\Vert_{L^1}<+\infty\}
+\end{align}
+where \index{L1@$L^1$ norm $\Vert f\Vert_{L^1}=\Vert f\Vert_1$}
+\begin{align}
+\Vert f\Vert_{L^1}=\int_X |f|d\mu
+\end{align}
+is abbreviated to $\Vert f\Vert_1$ when no confusion arises. A function $f:X\rightarrow\Cbb$ is called \textbf{$\mu$-integrable} (or simply \textbf{integrable}) \index{00@Integrable, i.e., $\mu$-integrable} if it is in $\mc L^1(X,\mu)$.
+
+We shall first extend the integral from $\mc L^1(X,\mu,\Rbb_{\geq0})$ to $\mc L^1(X,\mu,\Rbb)$ using a purely algebraic method, where \index{L1X@$\mc L^1(X,\mu,\Rbb_{\geq0})$}
+\begin{gather*}
+\mc L^1(X,\mu,\Rbb)=\{f\in\mc L(X,\Rbb):\Vert f\Vert_{L^1}<+\infty\}\\
+\mc L^1(X,\mu,\Rbb_{\geq0})=\{f\in\mc L(X,\ovl\Rbb_{\geq0}):\Vert f\Vert_{L^1}<+\infty\}
+\end{gather*}
+Then we extend it to $\mc L^1(X,\mu)$ by using Pb. \ref{lb387}.
+
+\begin{rem}
+$\mc L^1(X,\mu)$ is an $\Cbb$-linear subspace of $\Cbb^X$. 
+\end{rem}
+
+\begin{proof}
+Let $f,g\in\mc L^1(X,\mu)$ and $a\in\Cbb$. Clearly $\int|af|=|a|\int|f|<+\infty$. Since $|f+g|\leq|f|+|g|$, we have $\int|f+g|\leq\int(|f|+|g|)=\int|f|+\int|g|<+\infty$.
+\end{proof}
+
+
+\begin{df}
+Let $V$ be an $\Rbb$-vector space. A subset $K\subset V$ is called a \textbf{convex cone} \index{00@Convex cone} if $K$ is an $\Rbb_{\geq0}$-linear subspace of $V$, i.e., for every $u,v\in K$ and $a,b\in\Rbb_{\geq0}$ we have $au+bv\in K$.
+\end{df}
+
+\begin{pp}\label{lb751}
+Let $K$ be a convex cone in an $\Rbb$-vector space $V$. Let $\Gamma:K\rightarrow\Rbb_{\geq0}$ be an $\Rbb_{\geq0}$-linear map. Suppose that $V=\Span_\Rbb K$. Then $\Gamma$ can be extended uniquely to an $\Rbb$-linear map $\Lambda:V\rightarrow\Rbb$. 
+\end{pp}
+
+
+\begin{proof}
+The uniqueness is obvious. To prove the existence, note that any $v\in V$ can be written as
+\begin{align*}
+v=v^+-v^-
+\end{align*}
+where $v^+,v^-\in K$. (Proof: Since $V=\Span_\Rbb K$, we have $v=a_1u_1+\cdots+a_mu_m-b_1w_1-\cdots-b_nw_n$ where each $u_i,w_j$ are in $K$, and each $a_i,b_j$ are in $\Rbb_{\geq0}$. One sets $v^+=\sum_i a_iu_i$ and $v^-=\sum_j b_jw_j$.) We then define $\Lambda(v)=\Gamma(v^+)-\Gamma(v^-)$. 
+
+Let us show that this gives a well-defined map $\Lambda:V\rightarrow\Rbb$. Assume that $v=w^+-w^-$ where $w^+,w^-\in K$. Then $\Gamma(v^+)-\Gamma(v^-)=\Gamma(w^+)-\Gamma(w^-)$ iff $\Gamma(v^+)+\Gamma(w^-)=\Gamma(v^-)+\Gamma(w^+)$, iff (by the additivity of $\Gamma$) $\Gamma(v^++w^-)=\Gamma(v^-+w^+)$. The last statement is true because $v^+-v^-=w^+-w^-$ implies $v^++w^-=v^-+w^+$.
+
+It is easy to see that $\Lambda$ is additive. If $c\geq0$, then $cv=cv^+-cv^-$ where $cv^+,cv^-\in K$. So $\Lambda(cv)=\Gamma(cv^+)-\Gamma(cv^-)$, which (by the $\Rbb_{\geq0}$-linearity of $\Gamma$) equals $c\Gamma(v^+)-c\Gamma(v^-)=c\Lambda(v)$. Since $-v=v^--v^+$, we have $\Lambda(-v)=\Gamma(v^-)-\Gamma(v^+)=-\Lambda(v)$. Hence $\Lambda(-cv)=c\Lambda(-v)=-c\Lambda(v)$. This proves that $\Lambda$ commutes with the $\Rbb$-multiplication.
+\end{proof}
+
+
+\begin{thm}
+The integral operator $\int_X:\mc L^1(X,\mu,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ can be extended uniquely to a $\Cbb$-linear map
+\begin{gather*}
+\int_X:\mc L^1(X,\mu)\rightarrow\Cbb\qquad f\mapsto\int_Xf d\mu
+\end{gather*}
+\end{thm}
+
+\begin{proof}
+$K=\mc L^1(X,\mu,\Rbb_{\geq0})$ is a convex cone in $V=\mc L^1(X,\mu,\Rbb)$. Note that any $f\in V$ can be written as $f=f^+-f^-$ where 
+\begin{align}\label{eq303}
+f^+(x)=\max\{f(x),0\}\qquad f^-(x)=\max\{-f(x),0\}
+\end{align}
+Then $f^\pm$ are measurable (by Thm. \ref{lb700}), and $f^\pm\in K$ since $0\leq f^\pm\leq f$. This proves that $V=\Span_\Rbb K$. Therefore, by Prop. \ref{lb751}, $\int_X$ can be extended uniquely to an $\Rbb$-linear functional on $\mc L^1(X,\mu,\Rbb)$, i.e., 
+\begin{align}\label{eq304}
+\int_X f=\int_X f^+-\int_Xf^-
+\end{align}
+
+Since $\mc L^1(X,\mu)$ is $\Cbb$-spanned by $\mc L^1(X,\mu,\Rbb)$ (and hence by $K$), the extension of $\int_X$ to $\mc L^1(X,\mu)$ must be unique. We now prove the existence. Let $\Lambda:\mc L^1(X,\mu)\rightarrow\Rbb$ be defined by $\Lambda(f)=\int_X\Real(f)$, noting that $\Real(f)\in\mc L^1(X,\mu,\Rbb)$. Then $\Lambda$ is $\Rbb$-linear. By Pb. \ref{lb387}, we have a $\Cbb$-linear map $\Phi:\mc L^1(X,\mu)\rightarrow\Cbb$ defined by
+\begin{align*}
+\Phi(f)=\Lambda(f)-\im\Lambda(\im f)=\int_X\Real(f)-\im\int_X\Real(\im f)=\int_X\Real(f)+\im\int_X\Imag(f)
+\end{align*}
+Then $\Phi$ clearly extends $\int_X:\mc L^1(X,\mu,\Rbb)\rightarrow\Rbb$. 
+\end{proof}
+
+To summarize, the integral $\int_X$ of $f\in\mc L^1(X,\mu)$ is defined by
+\begin{align}\label{eq305}
+\int_Xfd\mu=\int_X\Real(f)d\mu+\im\int_X\Imag(f)d\mu
+\end{align}
+
+\begin{rem}
+Let $f,g\in\mc L(X,\Cbb)$. Assume that there is a measurable $A\subset X$ such that $X\setminus A$ is null, and that $f|_A=g|_A$. Then by Prop. \ref{lb752}, we know that $f$ is $\mu$-integrable iff $g$ is $\mu$-integrable. If $f,g$ are integrable, then $\int_Xf=\int_Af=\int_Ag=\int_Xg$.
+\end{rem}
+
+\begin{pp}\label{lb753}
+For each $f\in\mc L^1(X,\mu)$ we have $\dps\Big|\int_Xfd\mu \Big|\leq\int_X|f|d\mu$.
+\end{pp}
+
+
+\begin{proof}
+We first assume that $f$ is real. Let $f^\pm$ be defined by \eqref{eq303}. Then $0\leq f^\pm\leq f$. So $0\leq\int f^\pm\leq\int f$. Hence, by \eqref{eq304}, we have $\int f\leq\int |f|$. Similarly, $\int(-f)\leq\int|f|$. So $|\int f|\leq\int|f|$. 
+
+Now we consider the general case. We first note that
+\begin{align}\label{eq306}
+\Big| \Real\int_X f \Big|\leq \int_X|f|
+\end{align}
+(Namely, $\Real\int_X$ has operator norm $\leq 1$ if $\mc L^1(X,\mu)$ is equipped with the semi-norm $\Vert\cdot\Vert_{L^1}$.) Indeed, by \eqref{eq305}, for each $f\in\mc L^1(X,\mu)$ we have $|\Real\int_Xf|=|\int_X\Real(f)|$, which, by the first paragraph, is $\leq\int_X|\Real(f)|\leq \int_X |f|$. 
+
+
+The following argument is similar to that in the solution of Pb. \ref{lb387}-3. Choose $\theta\in\Rbb$ such that $e^{\im\theta}\int f\in\Rbb$. So $\int e^{\im\theta} f\in\Rbb$. By \eqref{eq306}, we have
+\begin{align*}
+\Big|\int_Xf\Big|=\Big|\int_X e^{\im\theta}f\Big|=\Big|\Real\int_X e^{\im\theta}f\Big|\leq\int_X|e^{\im\theta}f|=\int_X|f|
+\end{align*}
+\end{proof}
+
+
+
+\subsection{The convergence theorems}\label{lb754}
+
+Let $(X,\fk M,\mu)$ be a measure space.
+
+
+\begin{thm}
+Assume that $\mu(X)<+\infty$. Let $(f_\alpha)$ be a net in $\mc L^1(X,\mu)$ converging uniformly to $f:X\rightarrow\Cbb$. Then $f\in\mc L^1(X,\mu)$, and $\dps\lim_\alpha\int_Xf_\alpha d\mu=\int_X fd\mu$.
+\end{thm}
+
+\begin{proof}
+Since $f_\alpha\rightrightarrows f$, there exists $\alpha$ such that $\Vert f-f_\alpha\Vert_{l^\infty}\leq 1$, and hence $|f|\leq |f_\alpha|+1$. So $\int|f|<+\infty$. 
+
+For each $\alpha$, let $\lambda_\alpha=\Vert f-f_\alpha\Vert_{l^\infty}$. Then $\int |f-f_\alpha|\leq \int \lambda_\alpha=\lambda_\alpha\cdot\mu(X)$. Since $\lim_\alpha M_\alpha=0$, and since $|\int f-\int f_\alpha|\leq \int|f-f_\alpha|$ (by Prop. \ref{lb753}), we have $\lim_\alpha |\int f-\int f_\alpha|=0$.
+\end{proof}
+
+\subsubsection{The dominated convergence theorem}
+
+
+The following celebrated theorem was proved by Lebesgue in 1904. In fact, in Lebesgue's original theorem, instead of assuming $|f_n|\leq g$, the stronger conditions that $\mu(X)<+\infty$ and $\sup_n\Vert f_n\Vert_{l^\infty}<+\infty$ were assumed. Moreover, unlike the following proof, Lebesgue's original proof did not use the monotone convergence theorem since the latter was proved by Beppo Levi in 1906. We will explain Lebesgue's original proof in Subsec. \ref{lb763}.
+
+\begin{thm}[\textbf{Dominated convergence theorem}] \index{00@Dominated convergence theorem}\label{lb755}
+Suppose that $(f_n)$ is a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f:X\rightarrow\Cbb$. Suppose that there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f_n|\leq g$ for all $n$. Then $f_n,f\in\mc L^1(X,\mu)$, and $\dps\lim_{n\rightarrow\infty}\int_X f_nd\mu=\int_Xfd\mu$.
+\end{thm}
+
+%In the following proof, and especially in Step 1 (which is the case that Lebesgue originally considered in his 1902 paper), the reader should pay particular attention to how the countable additivity is used
+
+\begin{proof}
+By Cor. \ref{lb701}, $f$ is measurable. Clearly $f_n,f\leq g$. So $\int|f_n|,\int|f|\leq\int g<+\infty$. Therefore $f_n,f\in\mc L^1(X,\mu)$. To show that $\lim_n\int f_n=\int f$, since  $|\int f_n-\int f|\leq\int |f-f_n|$ (by Prop. \ref{lb753}), it suffices to prove $\lim_n\int|f_n-f|=0$. Note that $|f_n-f|\leq 2g$. Therefore, by replacing $f_n$ with $|f_n-f|$, it suffices to assume
+\begin{itemize}
+\item $(f_n)$ is a sequence in $\mc L^1(X,\mu,\Rbb_{\geq0})$ converging pointwise to $0$, and there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f_n|\leq g$ for all $n$.
+\end{itemize}
+We shall prove $\lim_n \int_Xf_n=0$.
+
+If $(f_n)$ is decreasing (i.e. $f_1\geq f_2\geq\cdots$), then $g-f_n$ is increasing to $g$. Since $\int g<+\infty$, and since the monotone convergence theorem implies that $\int g-\int f_n$ converges to $\int g$, we conclude $\lim_n \int f_n=0$.
+
+In the general case, we let $h_n(x)=\sup_{k\geq n}\{f_n(x)\}$. Then $h_n$ is measurable by Thm. \ref{lb700}. Since $\lim_n h_n(x)=\limsup_n f_n(x)=0$, we conclude that $(h_n)$ is a decreasing sequence in $\mc L^1(X,\mu,\Rbb_{\geq0})$ bounded by $g$ and converging pointwise to $0$. Therefore, by the above paragraph, we get $\lim_n\int h_n=0$. Since $f_n\leq h_n$, we have $\lim_n\int f_n=0$.
+\end{proof}
+
+
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+Let $(X,\fk M,\mu)$ be a measure space.
+
+
+
+
+\begin{prob}
+Let $h\in\mc L_+(X)=\mc L(X,[0,+\infty])$. Prove that there is a unique measure $\nu$ on $\fk M$ such that
+\begin{align}\label{eq307}
+\int_X f d\nu=\int_Xfhd\mu
+\end{align}
+for all $f\in\mc L_+(X)$. We write
+\begin{align}
+d\nu=hd\mu
+\end{align}
+\end{prob}
+\begin{proof}[Hint]
+Define $\nu:\fk M\rightarrow[0,+\infty]$ to be $\nu(E)=\int_X \chi_Ehd\mu$. Prove that $\nu$ is a measure. First prove \eqref{eq307} when $f$ is a simple function. Then prove \eqref{eq307} for any $f\in\mc L_+(X)$.
+\end{proof}
+
+\begin{comment}
+\begin{df}
+We say that $\mu$ is \textbf{$\sigma$-finite} (or that $X$ is \textbf{$\mu$-sigma finite}) \index{00@$\sigma$-finite} if $X$ is a countable union of measurable subsets with finite $\mu$-measures.
+\end{df}
+
+\begin{prob}
+Assume that $\mu$ is $\sigma$-finite. Let $\nu$ be a measure on $\fk M$. Assume that $f_1,f_2\in\mc L_+(X)$ satisfies $d\nu=h_1d\mu=h_2d\mu$. Prove that $h_1=h_2$.
+\end{prob}
+\end{comment}
+
+
+
+\subsubsection{Lebesgue's proof of dominated convergence theorem}\label{lb763}
+
+The purpose of this subsection is to present a proof of the dominated convergence theorem that is similar to the original argument of Lebesgue.
+
+\begin{df}
+Let $(f_n)_{n\in\Zbb_+}$ be a sequence in $\mc L(X,\Cbb)$ (resp. in $\mc L_+(X)$). Let $f\in\mc L(X,\Cbb)$ (resp. $f=0$). We say that $(f_n)$ \textbf{converges in measure} \index{00@Converges in measure} to $f$ if for every $\eps>0$, we have
+\begin{align}
+\lim_{n\rightarrow\infty} \mu(\{x\in X:|f_n(x)-f(x)|\geq\eps\})=0
+\end{align}
+\end{df}
+
+Do not use the monotone convergence theorem in your solutions to Pb. \ref{lb756} and \ref{lb757}.
+
+\begin{prob}\label{lb756}
+Let $(f_n)$ be a sequence in $\mc L_+(X)$. Consider the following conditions:
+\begin{enumerate}
+\item[(1)] $\dps\lim_n\int_X f_nd\mu=0$.
+\item[(2)] $(f_n)$ converges in measure to $0$.
+\end{enumerate}
+Prove that (1)$\Rightarrow$(2). Prove that (2)$\Rightarrow$(1) if $\mu(X)<+\infty$ and $\sup_n \Vert f\Vert_{l^\infty}<+\infty$.
+\end{prob}
+
+
+\begin{prob}\label{lb757}
+Assume that $\mu(X)<+\infty$. Let $(f_n)$ be a sequence in $\mc L_+(X)$ converging pointwise to $0$. 
+\begin{enumerate}
+\item Prove that $(f_n)$ converges in measure to $0$ under the assumption that $(f_n)$ is decreasing (i.e. $f_1\geq f_2\geq\cdots$).
+\item Without assuming that $(f_n)$ is decreasing, prove that $(f_n)$ converges in measure to $0$ by applying part 1 to $h_n(x)=\sup_{k\geq n}f_n(x)$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Note]
+Can you find the similarity between your solution of Pb. \ref{lb757}-1 and the proof of $\lim_n\mu(E_{i,n})=\mu(E_i)$ in the proof of the monotone convergence Thm. \ref{lb760}?
+\end{proof}
+
+
+In Sec. \ref{lb754}, we proved the dominated convergence theorem using the monotone convergence theorem. In the following, we give an alternative proof using convergence in measure. First, we prove a special case:
+
+\begin{thm}[\textbf{Bounded convergence theorem}] \index{00@Bounded convergence theorem} \label{lb758}
+Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f:X\rightarrow\Cbb$. Assume that $\mu(X)<+\infty$ and $M:=\sup_{n\in\Zbb_+}\Vert f_n\Vert_{l^\infty}$ is finite. Then $f_n,f\in\mc L^1(X,\mu)$, and $\dps\lim_{n\rightarrow\infty}\int_X f_nd\mu=\int_Xfd\mu$.
+\end{thm}
+
+\begin{proof}
+Since $0\leq |f_n|,f\leq M$, we have $f_n,f\in\mc L^1(X,\mu)$. Similar to the first paragraph of the proof of Thm. \ref{lb755}, by replacing $f_n$ with $|f_n-f|$, it suffices to assume that $(f_n)$ converges pointwise to $0$. Then, by Pb. \ref{lb757}, $(f_n)$ converges in measure to $0$. By Pb. \ref{lb756}, we conclude $\lim_n\int_X f_nd\mu=0$.
+\end{proof}
+
+We now use Thm. \ref{lb758} to prove the dominated convergence theorem:
+
+\begin{proof}[\textbf{An alternative proof of Thm. \ref{lb755}}]
+We are given a sequence $(f_n)$ in $\mc L(X)$ bounded by $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ and converging pointwise to $f$.  Let $\nu$ be the measure such that $d\nu=gd\mu$. Then $\nu(X)=\int_X gd\mu<+\infty$. Let $h_n(x)=f_n(x)/g(x)$ and $h(x)=f(x)/g(x)$ if $g(x)\neq 0$, and let $h_n(x)=h(x)=0$ if $g(x)=0$. It is easy to see that $h_n,h$ are measurable. Clearly $|h_n|\leq 1$, and $(h_n)$ converges pointwise to $h$. Therefore, by the bounded convergence Thm. \ref{lb758}, we have $\lim_n \int_Xh_nd\nu=\int_Xhd\nu$. Since $h_ng=f_n$ and $hg=f$, we get $\lim_n\int_X f_nd\mu=\int_X fd\mu$.
+\end{proof}
+
+\begin{prob}
+Assume the setting of the dominated convergence Thm. \ref{lb755}, i.e., we are given a sequence $(f_n)$ in $\mc L(X,\Cbb)$ bounded by $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ and converging pointwise to $f$. For each $k\in\Zbb_+$, let
+\begin{align}
+E_k=g^{-1}[1/k,k]
+\end{align}
+Prove that $\mu(E_k)<+\infty$ and $\lim_k \int_X|g-g\chi_{E_k}|=0$. Give another proof of Thm. \ref{lb755} by applying the bounded convergence Thm. \ref{lb758} to the sequence $(f_n|_{E_k})_{n\in\Zbb_+}$ in $\mc L(E_k,\Cbb)$, where $k$ is ``large enough".
+\end{prob}
+
+\begin{proof}[Note]
+The idea of passing from the finite-measure set $E_k$ to the whole set $X$ would be similar to that of solving Pb. \ref{lb759}.
+\end{proof}
+
+
+
+\begin{rem}
+Although the dominated convergence theorem is nowadays credited to Lebesgue, the original theorem proved by Lebesgue (in 1904) is the bounded convergence theorem. More precisely, Lebesgue proved Thm. \ref{lb758} where $X$ is a bounded interval $(a,b)$ and $\mu=m$. 
+
+The idea of using convergence in measure to prove Thm. \ref{lb758},  presented in this subsection, is almost identical to Lebesgue's original idea: In the setting of Thm. \ref{lb758}, assume WLOG that $f_n\geq0$ and $f=0$. Then Lebesgue proved $\lim_n\int f_n=0$ by proving that for each $\eps>0$, the $\mu$-measure of
+\begin{align}\label{eq309}
+E_{n,\eps}=\Big\{x\in X:\sup_{k\geq n}f_k(x)>\eps\Big\}
+\end{align}
+converges to $0$. (In the language of this subsection, what Lebesgue proved is that $h_n=\sup_{k\geq n}f_k$ converges in measure to $0$ as $n\rightarrow\infty$.) See Sec. 5.1 (especially p. 128) of \cite{Haw}.
+
+In fact, Lebesgue's contribution to the convergence theorem is not primarily in the realization that $\lim_n\mu(E_{n,\eps})=0$ implies $\lim_n\int f_n=0$. In 1878, Kronecker already noticed that if $(f_n)$ is a uniformly bounded sequence of continuous functions $(a,b)\rightarrow\Rbb_{\geq0}$, then $\lim_n\int f_n=0$ iff $(f_n)$ ``\textbf{converges in content}", i.e., $\lim_nc^*(U_{n,\eps})=0$ where $c^*$ is the outer content (cf. \eqref{eq308}) of the open set
+\begin{align}
+U_{n,\eps}=\{x\in X:f_n(x)>\eps\}
+\end{align}
+In 1897, Osgood showed that if $(f_n)$ converges pointwise to $0$, then $\lim_n c^*(U_{n,\eps})=0$. (Thus, combined with Kronecker's result, one concludes $\lim_n\int f_n=0$.) The consideration of \eqref{eq309} is implicit in Osgood's argument.  See \cite[Sec. 4.4]{Haw} for details.
+
+Since each $f_n$ is continuous, we know that $U_{n,\eps}$ is open, and hence is a countable disjoint union of intervals whose total length is finite. From this, it is not hard to see $c^*(U_{n,\eps})=m(U_{n,\eps})$. Therefore, if we look back at history from the perspective of measure theory, it is easy to understand why $\lim_n c^*(U_{n,\eps})=0$ if $(f_n)$ converges pointwise to $0$. 
+
+The real novelty of Lebesgue's theory is that his convergence theorem applies to a broader class of functions whose associated $U_{n,\eps}$ are not necessarily Jordan-measurable, and therefore do not necessarily satisfy $\lim_n c^*(U_{n,\eps})=0$ when $(f_n)$ converges pointwise to $0$. (Consider for example $f_n=|g_n-g|$ where $(g_n)$ is a uniformly bounded sequence of continuous functions on $(a,b)$ converging pointwise to $g$. Then $g$ is not necessarily continuous or Riemann-integrable.) Lebesgue developed a theory of measure $m$ satisfying (most importantly) the countable additivity. Therefore, $E_{1,\eps}\supset E_{2,\eps}\supset\cdots$ and $\bigcap_n E_{n,\eps}=\emptyset$ imply $\lim_n m(E_{n,\eps})=0$. (One takes $E_{n,\eps}$ to be \eqref{eq309}.) Thus, since $U_{n,\eps}\subset E_{n,\eps}$, one obtains $\lim_n m(U_{n,\eps})=0$, generalizing the arguments of Kronecker and Osgood.  
+
+From this observation, it seems fair to say that Lebesgue was not the first to realize that the problem of proving $\lim_n\int f_n=\int\lim_n f_n$ can be transform into proving that the measure/content of $U_{n,\eps}$ converges to $0$ as $n\rightarrow\infty$ (i.e., proving the convergence in measure). However, Lebesgue was the first person to define the correct measure that allowed this idea to be realized under very loose requirements.  \hfill\qedsymbol
+\end{rem}
+
+
+\begin{rem}
+Our proof of the dominated convergence Thm. \ref{lb755} relies on the linearity of $\int_X$ (cf. Cor. \ref{lb761}), which in turn relies on the monotone convergence theorem proved by Beppo Levi in 1906. (See \cite[p. 161]{Haw}.) However, when $\mu(X)<+\infty$, the linearity of $\int_X$ on bounded measurable functions can be established without using the monotone convergence theorem. (See Subsec. \ref{lb762}.) Therefore, Lebesgue's proof of the bounded convergence Thm. \ref{lb758} in 1904 clearly does not rely on the theorem of Beppo Levi (in 1906).
+\end{rem}
+
 
 
 
