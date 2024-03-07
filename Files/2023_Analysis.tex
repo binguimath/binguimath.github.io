@@ -394,7 +394,7 @@
 \newcommand{\diam}{\mathrm{diam}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\Vol}{\mathrm{Vol}}
-
+\newcommand{\LSC}{\mathrm{LSC}}
 
 
 
@@ -544,11 +544,23 @@ If $x,y$ are two elements, we let \index{zz@$\delta_{x,y}$}
 \right.
 \end{align}
 
-Additions and multiplications in $[-\infty,+\infty]$ and $[0,+\infty]$ are described in Def. \ref{lb114}.
+We let $\ovl\Rbb=[-\infty,+\infty]$, $\ovl\Rbb_{\geq0}=[0,+\infty]$, \index{R@$\ovl\Rbb_{\geq0}=[0,+\infty]$} and $\Rbb_{\geq0}=[0,+\infty)$. \index{R@$\Rbb_{\geq0}=[0,+\infty)$} Additions and multiplications in $\ovl\Rbb$ and $\ovl\Rbb_{\geq0}$ are described in Def. \ref{lb114}.
 
+If $f,g:X\rightarrow Y$ where $X$ is a set and $Y$ is a preordered set, we write
+\begin{align*}
+f\leq g
+\end{align*}
+whenever $f(x)\leq g(x)$ for all $x\in X$. If $Y$ is a totally ordered set where $a<b$ in $Y$ means $a\leq b$ and $a\neq b$, we write
+\begin{align*}
+f<g
+\end{align*}
+whenever $f(x)<g(x)$ for all $x\in X$.
 
 %Topics in the ``Problems" section (or the whole ``Problems" sections) marked with $\heartsuit$ are important problems that will be used later in this course.
 
+
+
+\newpage
 
 \section{Basic set theory and numbers}
 
@@ -11372,7 +11384,7 @@ Thus, \eqref{eq157} follows immediately from triangle inequality and
 
 
 
-\begin{df}
+\begin{df}\label{lb774}
 We say that $f:I\rightarrow V$ is \textbf{strongly Riemann integrable} \index{00@Strong Riemann integrability} if 
 \begin{align*}
 \inf_{\sigma\in\mc P(I)} \omega(f,\sigma)=0
@@ -13534,7 +13546,7 @@ Let $U$ be an open subset of $X$. Recall that $U$ is LCH by Prop. \ref{lb245}. L
 
 
 \begin{proof}
-Let $f$ take value $0$ outside $U$. Let  $A=\{x\in U:f(x)\neq 0\}$ and $K=\Cl_U(A)$, which is compact by assumption. In particular, $K$ is closed in $X$ by Cor. \ref{lb234}. Then $X=U\cup K^c$ is an open cover on $X$. By assumption, $f|_U$ is continuous. Also $f|_{K^c}=0$ is continuous. So $f$ is continuous by Exe. \ref{lb184}. To show that $f\in C_c(X,\mc V)$, it remains to prove that $\ovl A=\Cl_X(A)$ is compact. This fact follows from Rem. \ref{lb459}.
+Let $f$ take value $0$ outside $U$. Let  $A=\{x\in U:f(x)\neq 0\}$ and $K=\Cl_U(A)$, which is compact by assumption. In particular, $K$ is closed in $X$ by Cor. \ref{lb234}. Then $X=U\cup K^c$ is an open cover on $X$. By assumption, $f|_U$ is continuous. Also $f|_{K^c}=0$ is continuous. So $f$ is continuous by Exe. \ref{lb184}. To show that $f\in C_c(X,\mc V)$ and $\Supp(f)\subset U$, it remains to prove that $\ovl A=\Cl_X(A)$ is compact and is contained in $U$. This fact follows from Rem. \ref{lb459}.
 \end{proof}
 
 
@@ -16742,10 +16754,10 @@ When referring to Hilbert spaces and inner product spaces, it is usually assumed
 
 
 
-Starting from this chapter, we adopt the notations \index{lp@$l^p(X)=l^p(X,\Cbb)$} \index{CX@$C(X)=C(X,\Cbb)$}
+Starting from this chapter, we adopt the notations \index{lp@$l^p(X)=l^p(X,\Cbb)$} \index{CX@$C(X)=C(X,\Cbb)$} \index{CcX@$C_c(X)=C_c(X,\Cbb)$}
 \begin{gather}
 \begin{gathered}
-l^p(X)=l^p(X,\Cbb)\qquad C(X)=C(X,\Cbb)
+l^p(X)=l^p(X,\Cbb)\qquad C(X)=C(X,\Cbb)\qquad C_c(X)=C_c(X,\Cbb)
 \end{gathered}
 \end{gather}
 
@@ -16955,7 +16967,7 @@ Suppose that $S,T:U\rightarrow V$ are linear maps of inner product spaces.
 Unless otherwise stated, we fix an inner product $\bk{\cdot|\cdot}$ on a complex vector space $V$ so that $V$ is an inner product space.
 
 \begin{df}
-A set $\fk S$ of vectors of $V$ are called \textbf{orthogonal} \index{00@orthogonal} if $\bk{u|v}=0$ for any distinct $u,v\in V$. An orthogonal set $\fk S$ is called \textbf{orthonormal} \index{00@orthonormal} if $\Vert v\Vert=1$ for all $v\in V$. 
+A set $\fk S$ of vectors of $V$ are called \textbf{orthogonal} \index{00@Orthogonal} if $\bk{u|v}=0$ for any distinct $u,v\in V$. An orthogonal set $\fk S$ is called \textbf{orthonormal} \index{00@Orthonormal} if $\Vert v\Vert=1$ for all $v\in V$. 
 \end{df}
 
 \begin{rem}
@@ -17692,7 +17704,7 @@ This is clear from the proof of Thm. \ref{lb612}.
 
 
 \begin{df}
-If $\mc K$ is a linear subspace of $\mc H$, we define its \textbf{orthogonal complement} \index{00@orthogonal complement}
+If $\mc K$ is a linear subspace of $\mc H$, we define its \textbf{orthogonal complement} \index{00@Orthogonal complement}
 \begin{align*}
 \mc K^\perp=\{\xi\in\mc H:\bk{\xi|\eta}=0\text{ for all }\eta\in\mc K\}
 \end{align*}
@@ -17968,7 +17980,7 @@ If $V$ is reflexive, the canonical isomorphism $V\simeq V^{**}$ allows us to vie
 For example, consider $V=l^\infty(\Zbb)$ with predual $l^1(\Zbb)$. The weak-* topology defined by $l^1(\Zbb)$ is different from the weak topology (which is defined by elements of $l^\infty(\Zbb)^*$), cf. Pb. \ref{lb532}.  \hfill\qedsymbol
 \end{srem}
 
-%% Record #2 2024/02/29 three lectures  5
+%% Record #3 2024/03/04 two lectures  7
 
 \subsubsection{Strong and weak convergence}
 
@@ -17994,6 +18006,7 @@ converges to $\bk{\xi|\xi}+\bk{\xi|\xi}-\bk{\xi|\xi}-\bk{\xi|\xi}=0$ by \eqref{e
 
 
 That \eqref{eq268} does not always hold means that the norm function $\Vert\cdot\Vert$ is not continuous under the weak topology:
+
 \begin{eg}\label{lb661}
 Suppose that $(e_n)_{n\in\Zbb_+}$ is an orthormal sequence in an inner product space $V$. Then $\lim_n e_n$ converges weakly to $0$, for instance, by the fact that $\sum_n |\bk{\xi|e_n}|^2<+\infty$ for all $\xi\in\mc H$ (which implies $\lim_n\bk{\xi|e_n}=0$). However, $\lim_n\Vert e_n\Vert=1\neq0$.
 \end{eg}
@@ -18137,12 +18150,15 @@ Let $P\in\fk L(\mc H)$ satisfying $P^2=P$ and $P=P^*$. Prove that $P(\mc H)$ is 
 
 
 Recall Pb. \ref{lb346} for the basic properties of $\limsup$ and $\liminf$.
-\begin{prob}
-(\textbf{Fatou's lemma for Hilbert spaces}.) \index{00@Fatou's lemma for Hilbert spaces} Prove that the norm function $\xi\in\mc H\mapsto\Vert\xi\Vert\in \Rbb_{\geq0}$ is lower semicontinuous if $\mc H$ is equipped with the weak topology. In other words, prove that if $(\xi_\alpha)$ is a net in $\mc H$ converging weakly to $\xi$, then $\liminf_\alpha\Vert\xi_\alpha\Vert\geq\Vert\xi\Vert$.
+\begin{prob}\label{lb764}
+(\textbf{Fatou's lemma for Hilbert spaces}) \index{00@Fatou's lemma for Hilbert spaces} Prove that the norm function $\xi\in\mc H\mapsto\Vert\xi\Vert\in \Rbb_{\geq0}$ is lower semicontinuous if $\mc H$ is equipped with the weak topology. In other words, prove that if $(\xi_\alpha)$ is a net in $\mc H$ converging weakly to $\xi$, then $\liminf_\alpha\Vert\xi_\alpha\Vert\geq\Vert\xi\Vert$.
 \end{prob}
 
+\begin{proof}[Note]
+Give a general argument using the Cauchy-Schwarz inequality. Do not identify $\mc H$ with $l^2(X)$.
+\end{proof}
 
-\begin{rem}
+\begin{rem}\label{lb770}
 The reader may try to prove the following Fatou's lemma for dual Banach spaces (which is not difficult to prove): Let $V$ be a normed vector space. Then the map $\varphi\in V^*\mapsto\Vert\varphi\Vert\in\Rbb_{\geq0}$ is lower semicontinuous, where $V^*$ is equipped with the weak-* topology.
 \end{rem}
 
@@ -18396,7 +18412,7 @@ Here, $\Delta$ is the Laplacian $\partial_1^2+\cdots+\partial_N^2$.
 \end{itemize}
 In the following, we abbreviate $-\Delta u|_\Omega$ to $-\Delta u$.
 
-The Tietze type extension gives a good $\wtd g$ on $\ovl\Omega$ with $\wtd g|_{\partial\Omega}=g$. Then \eqref{eq271} becomes $-\Delta(u-\wtd g)=\Delta\wtd g$ with $(u-\wtd g)|_{\partial\Omega}=0$. Therefore, \eqref{eq271} can be reduced to the special case
+The Tietze type extension gives a good $\wtd g$ on $\ovl\Omega$ with $\wtd g|_{\partial\Omega}=g$. Then \eqref{eq271} becomes $-\Delta(u-\wtd g)=\varphi+\Delta\wtd g$ with $(u-\wtd g)|_{\partial\Omega}=0$. Therefore, \eqref{eq271} can be reduced to the special case
 \begin{align}\label{eq272}
 -\Delta u=\varphi\qquad u|_{\partial\Omega}=0
 \end{align}
@@ -18548,7 +18564,7 @@ Parseval's identity $\frac 1{2\pi}\int_{-\pi}^\pi |f|^2=\sum_n |\wht f(n)|^2$ is
 
 In the remaining sections, we will forget the original function $K$ on $\Sbb^1\times\Sbb^1$, as Hilbert did, and focus on the matrix $\wht K\in l^2(\Zbb\times\Zbb)$. Thus, we will let $K$ denote $\wht K$, or denote a general function $X\times Y\rightarrow\Cbb$ where $X,Y$ are sets. 
 
-%% Proofread
+
 
 \subsection{Hilbert's complete continuity}
 
@@ -18579,7 +18595,7 @@ Completely continuous sesquilinear forms are clearly continuous (i.e., bounded, 
 A completely continuous linear map $T:\mc H\rightarrow\mc K$ is bounded. 
 \end{lm}
 \begin{proof}
-$\omega_T$ is weakly continuous and hence continuous on $\ovl B_{\mc H}(0,1)\times\ovl B_{\mc K}(0,1)$. In particular, $\omega_T$ is continuous on $(0,0)$. Thus, there exists $\eps>0$ such that $|\omega_T(\xi|\eta)|\leq 1$ whenever $\Vert\xi\Vert\leq\eps,\Vert\eta\Vert\leq \eps$. Thus, whenever $\Vert\xi\Vert\leq 1,\Vert\eta\Vert\leq 1$, we have
+$\omega_T$ is weakly continuous and hence continuous on $\ovl B_{\mc H}(0,1)\times\ovl B_{\mc K}(0,1)$. Since $\mc B_{\mc H}(0,1)\times\mc B_{\mc K}(0,1)$ is a neighborhood of $(0,0)$ in $\mc H\times\mc K$, the function $\omega_T:\mc H\times\mc K\rightarrow\Cbb$ is continuous at $(0,0)$. Thus, there exists $\eps>0$ such that $|\omega_T(\xi|\eta)|\leq 1$ whenever $\Vert\xi\Vert\leq\eps,\Vert\eta\Vert\leq \eps$. Thus, whenever $\Vert\xi\Vert\leq 1,\Vert\eta\Vert\leq 1$, we have
 \begin{align*}
 |\omega_T(\xi|\eta)|=\eps^{-2}|\omega_T(\eps\xi|\eps\eta)|\leq \eps^{-2}
 \end{align*}
@@ -18589,6 +18605,11 @@ By Prop. \ref{lb624}, we have $\Vert T\Vert\leq\eps^{-2}<+\infty$.
 %\begin{rem}
 %Though Lem. \ref{lb645} looks elementary, we will not need this lemma. In fact, all the completely continuous operators we will encounter are easily verified to be bounded. Thus, we do not lose much if we \textit{define} a completely continuous map $T$ to be a \textit{bounded} linear map $T$ such that $\omega_T$ is weakly continuous on $\ovl B_{\mc H}(0,1)\times\ovl B_{\mc K}(0,1)$.
 %\end{rem}
+
+
+\begin{eg}
+Assume that $\mc H$ is an infinite-dimensional Hilbert space. Then its identity operator $1$ is not completely continuous. This is because $\omega_1$ is the inner product function $(\xi,\eta)\in\mc H\times\mc H\mapsto\bk{\xi|\eta}\in\Cbb $, which is not weakly continuous by Exp. \ref{lb661}.
+\end{eg}
 
 
 \begin{exe}
@@ -18606,7 +18627,7 @@ A linear map of vector spaces is said to have \textbf{finite rank} if its range 
 Let $T\in\fk L(\mc H,\mc K)$. The following are equivalent:
 \begin{enumerate}
 \item[(1)] $T$ has finite rank.
-\item[(2)] There exist finitely many vectors $\mu_1,\dots,\mu_n\in\mc H$ and $\eta_1,\dots,\eta_n\in\mc K$ such that for all $\eta\in\mc H$,
+\item[(2)] There exist finitely many vectors $\mu_1,\dots,\mu_n\in\mc H$ and $\eta_1,\dots,\eta_n\in\mc K$ such that for all $\xi\in\mc H$,
 \begin{align}
 T\xi=\sum_{i=1}^n \bk{\xi|\mu_i}\eta_i
 \end{align} 
@@ -18616,10 +18637,12 @@ T\xi=\sum_{i=1}^n \bk{\xi|\mu_i}\eta_i
 Note that without assume that $T$ is bounded, (1) does not imply (2).
 
 \begin{proof}
-``(2)$\Rightarrow$(1)" is obvious. Assume (1). Restrict the inner product of $\mc K$ to the finite-dimensional $V=T(\mc H)$. By Gram-Schmidt, $V$ is spanned by an orthonormal set of vectors $\eta_1,\dots,\eta_n$. For each $1\leq i\leq n$, the linear map $\xi\in\mc H\mapsto \bk{T\xi|\eta_i}\in\Cbb$ is bounded. Thus, by Riesz-Fr\'echet, there exists $\mu_i\in\mc H$ such that $\bk{T\xi|\eta_i}=\bk{\xi|\mu_i}$ for all $\xi\in\mc H$. By Thm. \ref{lb595}, we have
+``(2)$\Rightarrow$(1)" is obvious. Assume (1). Restrict the inner product of $\mc K$ to the finite-dimensional $V=T(\mc H)$. 
+By Gram-Schmidt, $V$ is spanned by an orthonormal set of vectors $\eta_1,\dots,\eta_n$. Then, for each $\psi\in V$ we have (by Thm. \ref{lb595}) $\psi=\sum_{i=1}^n \bk{\psi|\eta_i}\eta_i$. Therefore
 \begin{align*}
-T\xi=\sum_i \bk{T\xi|\eta_i}\eta_i=\sum_i\bk{\xi|\mu_i}\eta_i
+T\xi=\sum_i\bk{T\xi|\eta_i}\eta_i=\sum_i\bk{\xi|\mu_i}\eta_i
 \end{align*}
+where $\mu_i=T^*\eta_i$.
 \end{proof}
 
 
@@ -18659,7 +18682,7 @@ Since finite-rank bounded linear operators are completely continuous, by Thm. \r
 \begin{align}\label{eq281}
 T_{A,B}:l^2(Y)\rightarrow l^2(X)\qquad T_{A,B}\xi=\chi_A\cdot T(\chi_B\xi)
 \end{align}
-We claim that $\lim_{A,B}\Vert T-T_{A,B}\Vert=0$.
+which is a bounded linear map of finite rank. We claim that $\lim_{A,B}\Vert T-T_{A,B}\Vert=0$.
 
 By Cor. \ref{lb646}, we need to show that $(\omega_{T_{A,B}})_{A\in\fin(2^X),B\in\fin(2^Y)}$ converges uniformly on $\Omega=\ovl B_{l^2(Y)}(0,1)\times\ovl B_{l^2(X)}(0,1)$ to $\omega_T$. We equip $\Omega$ with the product weak topology, which is compact by Cor. \ref{lb636}. Since each $\omega_{T_{A,B}}$ is (weakly) continuous, by Thm. \ref{lb277} and Prop. \ref{lb281}, it suffices to prove that
 \begin{align*}
@@ -18675,7 +18698,7 @@ By Thm. \ref{lb530}, we know for each $y\in Y$ that  $\lim_i\xi_i(y)=\xi(y)$ and
 \end{proof}
 
 \begin{rem}
-Since the proof of the direction ``$\Leftarrow$" in Thm. \ref{lb648} is slightly more complicated (although the main idea is clear), we will not use this direction in the future. Note that the direction ``$\Leftarrow$" relies on the weak compactness of the unit balls, whereas the easy direction ``$\Rightarrow$" does not.
+Since the proof of the direction ``$\Leftarrow$" in Thm. \ref{lb648} is slightly more complicated (although the main idea is clear), we will not use this direction in the future. Note that the direction ``$\Leftarrow$" relies on the weak compactness of the closed unit balls, whereas the easy direction ``$\Rightarrow$" does not.
 \end{rem}
 
 
@@ -18731,9 +18754,9 @@ we have $|\bk{Tf|g}|\leq\Vert K\Vert_2$.
 \begin{proof}[\textbf{Proof of Thm. \ref{lb651}}]
 For each $\Omega\in\fin(2^{X\times Y})$, let $K_\Omega:X\times Y\rightarrow\Cbb$ be $K_\Omega=K\chi_\Omega$. Let $T_\Omega:l^2(Y)\rightarrow l^2(X)$ be the finite rank operator whose matrix representation is $K_\Omega$, namely, 
 \begin{align}
-T_\Omega\xi=\sum_{(x,y)\in\Omega} K(x,y)\xi(y)\cdot\chi_{\{y\}}
+T_\Omega\xi=\sum_{(x,y)\in\Omega} K(x,y)\xi(y)\cdot\chi_{\{x\}}
 \end{align}
-Since $K\in L^2(X\times Y)$, we know that $\lim_\Omega \Vert K-K_\Omega\Vert_2=0$, and hence $(K_\Omega)_{\Omega\in\fin(2^{X\times Y})}$ is a Cauchy net in $l^2(X\times Y)$. For each $\Omega,\Gamma\in\fin(2^{X\times Y})$, since $T_\Omega-T_\Gamma$ has matrix representation $K_\Omega-K_\Gamma$,  by Lem. \ref{lb652} we have
+Since $K\in l^2(X\times Y)$, we know that $\lim_\Omega \Vert K-K_\Omega\Vert_2=0$, and hence $(K_\Omega)_{\Omega\in\fin(2^{X\times Y})}$ is a Cauchy net in $l^2(X\times Y)$. For each $\Omega,\Gamma\in\fin(2^{X\times Y})$, since $T_\Omega-T_\Gamma$ has matrix representation $K_\Omega-K_\Gamma$,  by Lem. \ref{lb652} we have
 \begin{align*}
 \Vert T_\Omega-T_\Gamma\Vert\leq \Vert K_\Omega-K_\Gamma\Vert_{l^2}
 \end{align*}
@@ -18769,8 +18792,10 @@ Let $T\in\fk L(\mc H)$. We say that $T$ is \textbf{self-adjoint} \index{00@Self-
 \end{enumerate}
 \end{df}
 
+%% Record #4 2024/03/07 three lectures  10
+
 \begin{proof}[Proof of equivalence]
-Since we always have $\bk{T\xi|\eta}=\bk{\xi|T^*\eta}$, the equivalence (1)$\Leftrightarrow$(2) is obvious. Recall that $\omega_T$ is Hermitian iff $\omega_T(\xi|\eta)=\ovl{\omega_T(\eta|\xi)}$. But $\ovl{\omega_T(\eta|\xi)}=\ovl{\bk{T\eta|\xi}}=\bk{\xi|T\eta}$, which equals $\bk{T\xi|\eta}$ for all $\xi,\eta$ iff (2) is true. This proves (2)$\Rightarrow$(3). By Prop. \ref{lb588}, we have (3)$\Leftrightarrow$(4).
+Since we always have $\bk{T\xi|\eta}=\bk{\xi|T^*\eta}$, the equivalence (1)$\Leftrightarrow$(2) is obvious. Recall that $\omega_T$ is Hermitian iff $\omega_T(\xi|\eta)=\ovl{\omega_T(\eta|\xi)}$. But $\ovl{\omega_T(\eta|\xi)}=\ovl{\bk{T\eta|\xi}}=\bk{\xi|T\eta}$, which equals $\bk{T\xi|\eta}$ for all $\xi,\eta$ iff (2) is true. This proves (2)$\Leftrightarrow$(3). By Prop. \ref{lb588}, we have (3)$\Leftrightarrow$(4).
 \end{proof}
 
 
@@ -18779,7 +18804,7 @@ Let $T\in\fk L(\mc H)$. Assume that $E\subset\mc H$ spans a dense subspace of $\
 \end{rem}
 
 \begin{eg}\label{lb678}
-Let $X$ be a set. Let $T\in\fk(\mc H)$. Let $K:X\times X\rightarrow\Cbb$ be the matrix representation of $T$, i.e., $K(x,y)=\bk{T\chi_{\{y\}}|\chi_{\{x\}}}$ for all $x,y\in Y$.  Then $T$ is self-ajoint iff $K(x,y)=\ovl{K(y,x)}$ for all $x,y\in Y$.
+Let $X$ be a set. Let $T\in\fk L(\mc H)$. Let $K:X\times X\rightarrow\Cbb$ be the matrix representation of $T$, i.e., $K(x,y)=\bk{T\chi_{\{y\}}|\chi_{\{x\}}}$ for all $x,y\in Y$.  Then $T$ is self-ajoint iff $K(x,y)=\ovl{K(y,x)}$ for all $x,y\in Y$.
 \end{eg}
 
 
@@ -18805,7 +18830,7 @@ Suppose that $T\in\fk L(\mc H)$ is self-adjoint, and $\lambda\geq\Vert T\Vert$. 
 \end{eg}
 
 \begin{proof}
-Since $\bk{T\xi|\xi}\leq\Vert T\Vert\cdot\bk{\xi|\xi}\leq\lambda\bk{\xi|\xi}$, we get $T\leq\lambda$. Similarly, $-T\leq\lambda$.
+Since $\bk{T\xi|\xi}\leq\Vert T\Vert\cdot\Vert\xi\Vert^2\leq\lambda\bk{\xi|\xi}$, we get $T\leq\lambda$. Similarly, $-T\leq\lambda$.
 \end{proof}
 
 
@@ -18835,7 +18860,7 @@ Apply Lem. \ref{lb655} to $\lambda-T$, which is positive by Exp. \ref{lb656}.
 
 
 \begin{df}
-Let $T\in\fk L(\mc H)$. We say that a linear subspace $\mc K\subset\mc H$ is \textbf{invariant under $T$} \index{00@Invariant subspace} (or simply $T$-invariant) if $T\mc H\subset\mc H$.
+Let $T\in\fk L(\mc H)$. We say that a linear subspace $\mc K\subset\mc H$ is \textbf{invariant under $T$} \index{00@Invariant subspace} (or simply \textbf{$T$-invariant}) if $T\mc H\subset\mc H$.
 \end{df}
 
 \begin{pp}\label{lb658}
@@ -18845,7 +18870,7 @@ Let $T\in\fk L(\mc H)$. Let $\mc K$ be a closed linear subspace of $\mc H$. Supp
 In particular, if $T$ is self-adjoint and $\mc K$ is $T$-invariant, then $\mc K^\perp$ is $T$-invariant.
 
 \begin{proof}
-Let $\eta\in\mc K^\perp$. Then $\bk{T\eta|\mc K}=\bk{\eta|T^*\mc K}\subset \bk{\eta|0}=0$ and $\bk{T^*\eta|\mc K}=\bk{\eta|T\mc K}\subset \bk{\eta|0}=0$. So $T\eta,T^*\eta\in\mc K^\perp$.
+Let $\eta\in\mc K^\perp$. Then $\bk{T\eta|\mc K}=\bk{\eta|T^*\mc K}\subset \bk{\eta|\mc K}=0$ and $\bk{T^*\eta|\mc K}=\bk{\eta|T\mc K}\subset \bk{\eta|\mc K}=0$. So $T\eta,T^*\eta\in\mc K^\perp$.
 \end{proof}
 
 
@@ -18900,7 +18925,7 @@ We make our first simplification by noting that (b) can be weakened to
 \end{enumerate}
 Then, by moving those of $e_1,e_2,\dots$ with $0$-eigenvalue to the list $(f_j)_{j,\in J}$, the theorem is proved. Moreover, we assume for simplicity that $\mc H$ is infinite dimensional; the finite dimensional case will follow from a similar but easier proof. \\[-1ex]
 
-Step 1. We first explain how to find $\lambda_1,e_1$. Let $\Omega=\ovl B_{\mc H}(0,1)$. Since $T$ is completely continuous, the function $g:\Omega\rightarrow\Rbb_{\geq0}$ defined by $g(\xi)=\omega_T(\xi|\xi)=\bk{T\xi|\xi}$ is weakly continuous. By Cor. \ref{lb636}, $\Omega$ is weakly compact. Therefore, $g$ attains its maximum $\lambda_1=g(e_1)\geq0$ at some $e_1\in\Omega$. It suffices to assume $e_1\neq0$. So $\Vert e_1\Vert=1$. (Otherwise, we have $0<\Vert e_1\Vert<1$ and hence $g$ has a larger value at $e_1/\Vert e_1\Vert$, impossible.)
+Step 1. We first explain how to find $\lambda_1,e_1$. Let $\Omega=\ovl B_{\mc H}(0,1)$. Since $T$ is completely continuous, the function $g:\Omega\rightarrow\Rbb_{\geq0}$ defined by $g(\xi)=\omega_T(\xi|\xi)=\bk{T\xi|\xi}$ is weakly continuous. By Cor. \ref{lb636}, $\Omega$ is weakly compact. Therefore, by the extreme value theorem (Lem. \ref{lb224}), $g$ attains its maximum $\lambda_1=g(e_1)\geq0$ at some $e_1\in\Omega$. Since $g$ attains its minimum at $0$, it suffices to assume $e_1\neq0$. Since $g(e_1/\Vert e_1\Vert)=\Vert e_1\Vert^{-2}g(e_1)\geq g(e_1)$, by replacing $e_1$ by $e_1/\Vert e_1\Vert$, we assume $\Vert e_1\Vert=1$. 
 
 Since $\bk{T\xi|\xi}\leq\lambda_1$ for any unit vector $\xi\in\mc H$, by (sesqui)linearity, we get
 \begin{align}
@@ -18910,22 +18935,22 @@ This proves $0\leq T\leq\lambda_1$.
 
 Since $\bk{(\lambda_1-T)e_1|e_1}=0$ and $\lambda_1-T\geq0$, by Lem. \ref{lb655}, we get $(\lambda_1-T)e_1=0$. This finishes the construction of $\lambda_1$ and $e_1$.\\[-1ex]
 
-Step 2. Suppose that we have found $\lambda_1\geq\cdots\geq\lambda_n>0$ and orthonormal $e_1,\dots,e_n$ such that $Te_i=\lambda_ie_i$ for all $1\leq i\leq n$, and that
+Step 2. Suppose that we have found $\lambda_1\geq\cdots\geq\lambda_n\geq0$ and orthonormal $e_1,\dots,e_n$ such that $Te_i=\lambda_ie_i$ for all $1\leq i\leq n$, and that
 \begin{align}\label{eq279}
 \bk{T\xi|\xi}\leq\lambda_n\bk{\xi|\xi}\qquad\text{ for all }\xi\in V_n^\perp
 \end{align}
 Here, $V_n=\Span\{e_1,\dots,e_n\}$, which is a finite-dimensional Hilbert subspace of $\mc H$. 
 
-Clearly $V_n$ is $T$-invariant. Therefore, by Prop. \ref{lb658}, $V_n^\perp$ is $T$-invariant. (Here we have used $T=T^*$.) Clearly $T|_{V_n^\perp}\geq0$. By the process in Step 1, there exists a unit vector $e_{n+1}\in V_n^\perp$ such $Te_{n+1}=\lambda_{n+1}e_{n+1}$ for some $\lambda_{n+1}\in [0,\lambda_n]$.\\[-1ex]
+Clearly $V_n$ is $T$-invariant. Therefore, by Prop. \ref{lb658}, $V_n^\perp$ is $T$-invariant. (Here we have used $T=T^*$.) Clearly $T|_{V_n^\perp}\geq0$. By the process in Step 1, there exists a unit vector $e_{n+1}\in V_n^\perp$ such that $Te_{n+1}=\lambda_{n+1}e_{n+1}$ for some $\lambda_{n+1}\in\ovl\Rbb_{\geq0}$, and $\bk{T\xi|\xi}\leq\lambda_{n+1}\bk{\xi|\xi}$ for all $\xi\in V_n^\perp$. Since \eqref{eq279} holds for $\xi=e_{n+1}$, we have $0\leq\lambda_{n+1}\leq\lambda_n$.\\[-1ex]
 
-Step 3. By the inductive process in Step 2, we obtain an (infinite) orthonormal sequence $(e_n)_{n\in\Zbb_+}$ satisfying that $Te_n=\lambda_ne_n$, that $\lambda_1\geq\lambda_2\geq\cdots\geq0$, and that \eqref{eq279} holds for each $n$. We claim that $\lim_n\lambda_n=0$. Suppose this is true. Let $\mc K=\ovl{\Span\{e_1,e_2,\dots\}}$. By \eqref{eq279}, for any vector $\xi\in\mc K^\perp$ we have $\bk{T\xi|\xi}=0$, and hence $T\xi=0$ by Lem. \ref{lb655}. \footnote{One can also use the polarization identity \eqref{eq238} instead of Lem. \ref{lb655} to conclude $T\xi=0$.} So $T|_{\mc K^\perp}=0$. Thus, the proof is finished by choosing $(f_j)$ to be an orthonormal basis of $\mc K^\perp$: By Thm. \ref{lb617}, an orthonormal basis of $\mc H$ can be obtained by taking the union of one of $\mc K$ and one of $\mc K^\perp$.
+Step 3. By the inductive process in Step 2, we obtain an (infinite) orthonormal sequence $(e_n)_{n\in\Zbb_+}$ satisfying that $Te_n=\lambda_ne_n$, that $\lambda_1\geq\lambda_2\geq\cdots\geq0$, and that \eqref{eq279} holds for each $n$. We claim that $\lim_n\lambda_n=0$. Suppose this is true. Let $\mc K=\ovl{\Span\{e_1,e_2,\dots\}}$. By \eqref{eq279}, for any vector $\xi\in\mc K^\perp$ we have $\bk{T\xi|\xi}=0$, and hence $T\xi=0$ by Lem. \ref{lb655}. \footnote{Since $\mc K^\perp$ is $T$-invariant, one can also use the polarization identity \eqref{eq238} (applied to $T|_{\mc K^\perp}:\mc K^\perp\rightarrow\mc K^\perp$) instead of Lem. \ref{lb655} to conclude $T\xi=0$.} So $T|_{\mc K^\perp}=0$. Thus, the proof is finished by choosing $(f_j)$ to be an orthonormal basis of $\mc K^\perp$: By Thm. \ref{lb617}, an orthonormal basis of $\mc H$ can be obtained by taking the union of one of $\mc K$ and one of $\mc K^\perp$.
 
-Suppose that $\lambda=\lim_n\lambda_n$ is $>0$. Then $\lim_n\bk{Te_n|e_n}=\lambda>0$. However, $\lim_n e_n$ converges weakly to $0$ (cf. Exp. \ref{lb661}). Since $T$ is completely continuous, we have $\lim_n\bk{Te_n|e_n}=0$, impossible.
+Let us prove the claim. Let $\lambda=\lim_n\lambda_n=\inf_n\lambda_n$. So $\lambda=\lim_n\bk{Te_n|e_n}$. Since $\lim_n e_n$ converges weakly to $0$ (cf. Exp. \ref{lb661}), and since $T$ is completely continuous, we have $\lim_n\bk{Te_n|e_n}=\bk{T0|0}=0$. So $\lambda=0$.
 \end{proof}
 
 
 
-Thm. \ref{lb657} can be easily generalized to self-adjoint competely continuous operators by slightly weakening condition (b):
+Thm. \ref{lb657} can be easily generalized to self-adjoint completely continuous operators by slightly weakening condition (b):
 
 
 
@@ -18973,7 +18998,7 @@ Not all Hilbert-Schmidt operators are completely continuous: According to Exe. \
 
 
 \begin{co}[\textbf{Fredholm alternative}]\index{00@Fredholm alternative}\label{lb670}
-Let $T\in\fk L(\mc H)$ be self-adjoint. Let $\lambda\in\Rbb\setminus\{0\}$. Then one of the following two, and only one of them, is true:
+Let $T\in\fk L(\mc H)$ be self-adjoint and completely continuous. Let $\lambda\in\Rbb\setminus\{0\}$. Then one of the following two, and only one of them, is true:
 \begin{enumerate}
 \item[(1)] $\lambda$ is an eigenvalue of $T$, i.e., $T\xi=\lambda\xi$ for some nonzero $\xi\in\mc H$.
 \item[(2)] $\lambda-T$ is surjective. 
@@ -19007,7 +19032,7 @@ The two key properties in Ch. \ref{lb665} are the only analytic properties\footn
 
 %(By the way, Hilbert also treated positive forms first.)
 
-The key property 1, the convergence of summing orthogonal vectors, is used to ensure the existence of the orthogonal decompositions (cf. the proof of Thm. \ref{lb617}). In the proof of Thm. \ref{lb657}, this property is used (and only used) to show that $e_1,e_2,\dots$ and an orthonormal basis $(f_j)_{j\in J}$ of $\mc K^\perp=\{e_1,e_2,\dots\}^\perp$ form an orthonormal basis of $\mc H$. (Let us quickly recall the key point: It is obvious that $e_1,e_2,\dots$ and $(f_j)$ form an orthonormal family. To show that they are densely-spanning, for each $\xi\in\mc H$, one sets $\eta=\sum_n \bk{\xi|e_n}e_n$, which converges by key property 1. Then $\xi-\eta\in\mc K^\perp$. Apply Thm. \ref{lb595} to $\xi-\eta$. (This does not rely on any analytic property). Then we have $\xi=\eta+\sum_j\bk{\xi-\eta|f_j}f_j$. So $\xi$ is approximated by linear combinations of $e_1,e_2,\dots$ and $(f_j)$.) 
+The key property 1, the convergence of summing orthogonal vectors, is used to ensure the existence of the orthogonal decompositions (cf. the proof of Thm. \ref{lb617}). In the proof of Thm. \ref{lb657}, this property is used (and only used) to show that $e_1,e_2,\dots$ and an orthonormal basis $(f_j)_{j\in J}$ of $\mc K^\perp=\{e_1,e_2,\dots\}^\perp$ form an orthonormal basis of $\mc H$. (Let us quickly recall the key point: It is obvious that $e_1,e_2,\dots$ and $(f_j)$ form an orthonormal family. To show that they are densely-spanning, for each $\xi\in\mc H$, one sets $\eta=\sum_n \bk{\xi|e_n}e_n$, which converges by key property 1. Then $\xi-\eta\in\mc K^\perp$. Apply Thm. \ref{lb595} to $\xi-\eta$. Then we have $\xi=\eta+\sum_j\bk{\xi-\eta|f_j}f_j$. So $\xi$ is approximated by linear combinations of $e_1,e_2,\dots$ and $(f_j)$.) 
 
 %By the way, when $\mc H$ is separable (which is the main interesting case), the existence of an orthonormal basis $(f_j)$ does not rely on any analytic property, but follows directly from Gram-Schmidt: see Exp. \ref{lb613}. Even if one does not assume that $\mc H$ is separable, the existence of $(f_j)$ also follows from key property 1 (cf. the proof of (2)$\Rightarrow$(3) of Thm. \ref{lb612}).
 
@@ -19023,13 +19048,13 @@ for all vectors $\xi$. That each $e_n$ is a $\lambda_n$-eigenvector of $T$ is a 
 
 The Hilbert-Schmidt theorem lies at the heart of modern partial differential equations. As mentioned in Subsec. \ref{lb667}, the inverse of $-\Delta$ (with boundary condition $u|_{\partial\Omega}=0$) is a completely continuous \textit{positive} operator on $L^2(\ovl\Omega)$. Therefore, by the Hilbert-Schmidt theorem, the unbounded operator $-\Delta$ have eigenvalues $0<\lambda_1\leq \lambda_2\leq\cdots$ converging to $+\infty$, and the eigenvectors (which can be proved to be ``good enough" such as $C^r$ or $C^\infty$) form an orthonormal basis of $L^2(\ovl\Omega)$. With the spectral analysis of $-\Delta$, the Dirichlet problem \eqref{eq271} can be understood very well.
 
-However, this modern theory was also developed with the help of many other theories that were not yet available at the time of Hilbert-Schmidt: distributions and Sobolev spaces, unbounded closed operators, etc..  As we have mentioned in Sec. \ref{lb668}, in the early days, the Dirichlet problem was studied in terms of their associated integral equations of functions on $\partial\Omega$. However, the Hilbert-Schmidt theorem has very limited application to these integral equations. Let me explain this in the following. 
+However, this modern theory was also developed with the help of some other theories that were not yet available at the time of Hilbert-Schmidt: distributions and Sobolev spaces, unbounded closed operators, etc..  As we have mentioned in Sec. \ref{lb668}, in the early days, the Dirichlet problem was studied in terms of their associated integral equations of functions on $\partial\Omega$. However, the Hilbert-Schmidt theorem has very limited application to these integral equations. Let me explain this in the following. 
 
 
-We have mentioned that the operator $T$ in the integral equation \eqref{eq282}, after discretization by taking Fourier series, gives a bounded linear operator $\wht T$ on $l^2(\Zbb)$ whose matrix representation $\wht K:\Zbb\times\Zbb\rightarrow\Cbb$ is $l^2$-finite, i.e. $\sum_{m,n}|\wht K(m,n)|^2<+\infty$. (See Subsec. \ref{lb669}.) Therefore, $\wht T$ is a Hilbert-Schmidt operator, and hence is completely continuous by Thm. \ref{lb651}. Moreover, some elementary calculations show that $-1$ is not an eigenvalue of $T$, cf. \cite[Thm. 3.3.9]{Sim-O} or \cite[Sec. 81]{RN}. Therefore, if $T$ is self-adjoint, the  Fredholm alternative (Cor. \ref{lb670}) shows that for each $g\in L^2(\partial\Omega)$ there exists a (necessarily unique) $f\in L^2(\partial\Omega)$ satisfying \eqref{eq282}. More precisely, one finds the Fourier series $\wht f\in l^2(\Zbb)$ solving $\wht f+\wht T\wht f=\wht g$.
+We have mentioned that the operator $T$ in the integral equation \eqref{eq282}, after discretization by taking Fourier series, gives a bounded linear operator $\wht T$ on $l^2(\Zbb)$ whose matrix representation $\wht K:\Zbb\times\Zbb\rightarrow\Cbb$ is $l^2$-finite, i.e. $\sum_{m,n}|\wht K(m,n)|^2<+\infty$. (See Sec. \ref{lb669}.) Therefore, $\wht T$ is a Hilbert-Schmidt operator, and hence is completely continuous by Thm. \ref{lb651}. Moreover, some elementary calculations show that $-1$ is not an eigenvalue of $T$, cf. \cite[Thm. 3.3.9]{Sim-O} or \cite[Sec. 81]{RN}. Therefore, if $T$ is self-adjoint, the  Fredholm alternative (Cor. \ref{lb670}) shows that for each $g\in L^2(\partial\Omega)$ there exists a (necessarily unique) $f\in L^2(\partial\Omega)$ satisfying \eqref{eq282}. More precisely, one finds the Fourier series $\wht f\in l^2(\Zbb)$ solving $\wht f+\wht T\wht f=\wht g$.
 
 
-Unfortunately, in many cases $T$ is not self-adjoint (since the real-valued function $G$ in \eqref{eq227} does not satisfy $G(x,y)=G(y,x)$). Therefore, although the Hilbert-Schmidt theorem would later be proved to be an effective tool for studying the Dirichlet problem, at the time of its inception, its relevance to the Dirichlet problem was not significant. Hilbert restricted his study to self-adjoint operators (more precisely, Hermitian forms), perhaps in view of the many other uses of integral equations, such as the Sturm-Liouville problem.
+Unfortunately, in many cases $T$ is not self-adjoint (since the real-valued function $G$ in \eqref{eq277} does not satisfy $G(x,y)=G(y,x)$). Therefore, although the Hilbert-Schmidt theorem would later be proved to be an effective tool for studying the Dirichlet problem, at the time of its inception, its relevance to the Dirichlet problem was not significant. Hilbert restricted his study to self-adjoint operators (more precisely, Hermitian forms), perhaps in view of the many other uses of integral equations, such as the Sturm-Liouville problem. (See e.g. \cite[Sec. 3.2]{Sim-O}, \cite[Ch. 5]{Tes}, or \cite[Ch. 7]{CL} for a detailed discussion of the application of the Hilbert-Schmidt theorem to the integral equations in Sturm-Liouville problem.)
 
 
 Assuming self-adjointness, the original problem about integral equation can be fully solved: Let $K\in C^r(\Sbb^1\times\Sbb^1)$ where $r\geq0$. Then we have a linear operator $T:C^r(\Sbb^1)\rightarrow C^r(\Sbb^1)$ defined by $(Tf)(x)=\frac 1{2\pi}\int_{-\pi}^\pi K(x,y)f(y)dy$. Assume that $K$ is \textbf{symmetric}, i.e. $K(x,y)=\ovl{K(y,x)}$. In the following, we prove the $C^r$-Fredholm alternative: If there is no non-zero $f\in C^r(\Sbb^1)$ satisfying $f+Tf=0$, then for each $g\in C^r(\Sbb^1)$ there exists $f\in C^r(\Sbb^1)$ such that $f+Tf=g$. 
@@ -19058,11 +19083,11 @@ It can be proved that
 \begin{align}
 \wht T\big(l^2(\Zbb)\big)\subset\Psi\big(C^r(\Sbb^1) \big)  \label{eq285}
 \end{align}
-To see this, choose $\varphi\in l^2(\Zbb)$, and let $f_n=\sum_{k=-n}^n \varphi(k)e_k$. Then it is easy to check that $\lim_n Tf_n$ converges uniformly on $\Sbb^1$ to some $g\in C(\Sbb^1)$. Moreover, one checks that $\lim_n (Tf_n)^{(k)}$ converges uniformly for all $k\leq r$. Thus, by Thm. \ref{lb336}, we see that $g\in C^r(\Sbb^1)$. Using Parseval's identity for continuous functions on $\Sbb^1\times\Sbb^1$, one checks that $\wht g=\wht T\varphi$, i.e., $\Psi(g)=\wht T\varphi$. This proves \eqref{eq285}.
+To see this, choose $\varphi\in l^2(\Zbb)$, and let $f_n=\sum_{k=-n}^n \varphi(k)e_k$. It is not hard to check (using H\"older's inequality) that the linear map $T:C^r(\Sbb^1)\rightarrow C(\Sbb^1)$ is bounded if the source and the target are equipped respectively with the $L^2$-norm and the $l^\infty$-norm. Thus $\lim_n Tf_n$ converges uniformly on $\Sbb^1$ to some $g\in C(\Sbb^1)$. By a similar argument, one checks that $\lim_n (Tf_n)^{(k)}$ converges uniformly for all $k\leq r$. Thus, by Thm. \ref{lb336}, we see that $g\in C^r(\Sbb^1)$. Using Parseval's identity for continuous functions on $\Sbb^1\times\Sbb^1$, one checks that $\wht g=\wht T\varphi$, i.e., $\Psi(g)=\wht T\varphi$. This proves \eqref{eq285}.
 
 We now show that if $\lambda\in\Cbb\setminus\{0\}$, a $\lambda$-eigenvector $\varphi$ of $\wht T$ corresponds to a $\lambda$-eigenvector $f\in C^r(\Sbb^1)$ of $T$ satisfying $\wht f=\varphi$. Proof: Let $\varphi\in l^2(\Zbb)$ and $\wht T\varphi=\lambda\varphi$. By \eqref{eq285}, there exists $f\in C^r(\Sbb^1)$ such that $\wht T\varphi=\lambda \wht f$. So $\wht f=\varphi$, and hence  $\wht {Tf}=\wht T\wht f=\wht T\varphi=\lambda\varphi=\lambda\wht f$, and hence $Tf=\lambda f$ (since $\Psi$ is injective). QED.
 
-We now finish the proof. Suppose that there is no non-zero $f\in C^r(\Sbb^1)$ satisfying $f+Tf=0$. By the above paragraph, there is no non-zero $\varphi\in l^2(\Zbb)$ satisfying $\varphi+\wht T\varphi=0$. Choose any $g\in C^r(\Sbb^1)$.  By Fredholm alternative (Cor, \ref{lb670}), there exists $\varphi\in l^2(\Zbb)$ such that $\varphi+\wht T\varphi=\wht g$. By \eqref{eq285}, there is $f\in C^r(\Sbb^1)$ such that $\wht T\varphi=\wht{g-f}=\wht g-\wht f$. Thus $\wht f=\varphi$, and hence $\wht f+\wht{Tf}=\wht f+\wht T\wht f=\wht f+\wht T\varphi=\wht g$. So $f+Tf=g$.
+We now finish the proof. Suppose that there is no non-zero $f\in C^r(\Sbb^1)$ satisfying $f+Tf=0$. By the above paragraph, there is no non-zero $\varphi\in l^2(\Zbb)$ satisfying $\varphi+\wht T\varphi=0$. Choose any $g\in C^r(\Sbb^1)$.  By Fredholm alternative (Cor. \ref{lb670}), there exists $\varphi\in l^2(\Zbb)$ such that $\varphi+\wht T\varphi=\wht g$. By \eqref{eq285}, there is $f\in C^r(\Sbb^1)$ such that $\wht T\varphi=\wht{g-f}=\wht g-\wht f$. Thus $\wht f=\varphi$, and hence $\wht f+\wht{Tf}=\wht f+\wht T\wht f=\wht f+\wht T\varphi=\wht g$. So $f+Tf=g$.
 
 
 
@@ -19080,7 +19105,7 @@ Lebesgue's integral theory was invented in 1902. And it was F. Riesz (and then F
 \begin{align*}
 \Psi:L^2(\Sbb^1)\rightarrow l^2(\Zbb)
 \end{align*}
-where $L^2(\Sbb^1)$ is the space of $2\pi$-periodic Lebesgue measurable functions $f$ satisfying $\int_{-\pi}^\pi |f|^2<+\infty$, and
+where $L^2(\Sbb^1)$ is the space of $2\pi$-periodic Lebesgue measurable complex functions $f$ satisfying $\int_{-\pi}^\pi |f|^2<+\infty$, and
 \begin{align*}
 (\Psi f)(n)=\wht f(n):=\frac 1{2\pi}\int_{-\pi}^\pi fe_{-n}
 \end{align*}
@@ -19112,7 +19137,7 @@ Luckily, soon after Hilbert's proof, in 1907, Riesz and Fischer proved a theorem
 \end{comment}
 
 
-
+%% Proofread
 
 
 
@@ -19763,11 +19788,22 @@ Let $(X,\fk M)$ be a measurable space. A function $\mu:\fk M\rightarrow[0,+\inft
 We call $(X,\fk M,\mu)$ (or simply call $(X,\mu)$) a \textbf{measure space}. \index{00@Measure space} If $X$ is a topological space and $\mu$ is defined on $\fk M=\fk B_X$, we call $\mu$ a \textbf{Borel measure}. \index{00@Borel measure}
 \end{df}
 
+\begin{eg}
+Let $X$ be a nonempty set. Fix $p\in X$. Define $\delta_p:2^X\rightarrow[0,+\infty]$ by $\delta_p(E)=1$ if $p\in E$, and $\delta_p(E)=0$ if $p\notin E$. Then $\delta_p$ is a measure on $\fk M$, called the \textbf{Dirac measure}. \index{00@Diract measure} 
+\end{eg}
+
+\begin{eg}
+Let $(X,\fk M)$ be a measurable space. Let $(\mu_i)_{i\in I}$ be a family of measures $\fk M\rightarrow[0,+\infty]$. Then the {sum} $\sum_i\mu_i$ \index{00@Summation of measures} (sending each $E\in\fk M$ to the discrete integral $\sum_{i\in I}\mu_i(E)$) is a measure on $\fk M$.
+\end{eg}
 
 
-\begin{df}
-Let $X$ be a set. For each $E\subset X$, let $\mu(E)=\sum_{x\in E}1$. Namely, $\mu(E)$ is the cardinality of $E$ when $E$ is a finite set, and $\mu(E)=+\infty$ when $E$ is not finite. Then $(X,2^X,\mu)$ is a measure space. $\mu$ is called the \textbf{counting measure}. \index{00@Counting measure}
-\end{df}
+\begin{proof}
+Clearly $\sum_i\mu_i$ sends $\emptyset$ to $0$. That $\sum_i\mu_i$ satisfies the countable additivity follows from Fubini's theorem for discrete integrals (Thm. \ref{lb137}).
+\end{proof}
+
+\begin{eg}\label{lb765}
+Let $X$ be a set. For each $E\subset X$, let $\mu(E)=\sum_{x\in E}1$. Namely, $\mu(E)$ is the cardinality of $E$ when $E$ is a finite set, and $\mu(E)=+\infty$ when $E$ is not finite. Then $(X,2^X,\mu)$ is a measure space. $\mu$ is called the \textbf{counting measure}. \index{00@Counting measure} It is easy to see that $\mu=\sum_{x\in X}\delta_x$.
+\end{eg}
 
 
 \begin{pp}\label{lb748}
@@ -19801,7 +19837,7 @@ for each $k$. Apply $\lim_k$ to the LHS. Then (b) implies $\mu(\bigcup E_n)\leq\
 
 
 \begin{df}
-Let $(X,\fk M,\mu)$ be a measure space. A subset $E\subset X$ is called a \textbf{$\mu$-null set} \index{00@Null set, $\mu$-null set} (or simply a null set) if $E\in\fk M$ and $\mu(E)=0$. If $P:X\rightarrow\{\text{true}, \text{false}\}$ is a property on $X$, we say that $P$ is true \textbf{$\mu$-almost everywhere} \index{00@almost everywhere=a.e.} (or simply that $P$ is true \textbf{$\mu$-a.e.}) if $P$ is true outside a $\mu$-null set.
+Let $(X,\fk M,\mu)$ be a measure space. A subset $E\subset X$ is called a \textbf{$\mu$-null set} \index{00@Null set, $\mu$-null set} (or simply a null set) if $E\in\fk M$ and $\mu(E)=0$. If $P:X\rightarrow\{\text{true}, \text{false}\}$ is a property on $X$, we say that $P$ is true \textbf{$\mu$-almost everywhere} \index{00@Almost everywhere=a.e.} (or simply that $P$ is true \textbf{$\mu$-a.e.}) if $P$ is true outside a $\mu$-null set.
 \end{df}
 
 \begin{rem}\label{lb709}
@@ -19833,18 +19869,18 @@ Let $(X,\fk M,\mu)$ be a measure space. If $\nu$ is a measure on a $\sigma$-alge
 \end{df}
 
 \begin{thm}\label{lb708}
-Let $(X,\fk M,\mu)$ be a measure space. Then there is a (necessarily unique) smallest complete extension $(\ovl{\fk M},\ovl\mu)$ of $(\fk M,\mu)$. Moreover, the elements of $\ovl{\fk M}$ are precisely of the form $E\cup F$ where $E\in\fk M$ and $F$ is a subset of a $\mu$-null set, and $\ovl\mu(E\cup F)=\mu(E)$. We call $(\ovl{\fk M},\ovl\mu)$ the \textbf{completion} of $(\fk M,\mu)$. \index{00@Completion of measure}
+Let $(X,\fk M,\mu)$ be a measure space. Then there is a (necessarily unique) smallest complete extension $(\ovl{\fk M},\ovl\mu)$ of $(\fk M,\mu)$. Moreover, the elements of $\ovl{\fk M}$ are precisely of the form $E\cup F$ where $E\in\fk M$ and $F$ is a subset of a $\mu$-null set in $\fk M$, and $\ovl\mu(E\cup F)=\mu(E)$. We call $(\ovl{\fk M},\ovl\mu)$ the \textbf{completion} of $(\fk M,\mu)$. \index{00@Completion of measure}
 \end{thm}
 The phrase ``smallest complete extension" means that $(\ovl{\fk M},\ovl\mu)$ is a complete measure on $X$ extending $(\fk M,\mu)$, and that every complete measure extending $(\fk M,\mu)$ also extends $(\ovl {\fk M},\ovl\mu)$. 
 
 
 
 \begin{proof}
-Define $\ovl{\fk M}$ to be the set of subsets of $X$ of the form $E\cup F$ where $E\in\fk M$ and $F$ is a subset of a $\mu$-null set, and let $\ovl\mu(E\cup F)=\mu(E)$. This is well-defined: Suppose that $E\cup F=E'\cup F'$ where $E,F\in\fk M$, and $F,F'$ are subsets of null sets $A,A'$ respectively. Then $\mu(E\cup F)\leq \mu(E'\cup A')$. Since $A'\setminus E'$ is null, we have $\mu(E'\cup A')=\mu(E')$. So $\mu(E)\leq\mu(E')$. Similarly, $\mu(E')\leq\mu(E)$.
+Define $\ovl{\fk M}$ to be the set of subsets of $X$ of the form $E\cup F$ where $E\in\fk M$ and $F$ is a subset of a $\mu$-null set (in $\fk M$), and let $\ovl\mu(E\cup F)=\mu(E)$. This is well-defined: Suppose that $E\cup F=E'\cup F'$ where $E,F\in\fk M$, and $F,F'$ are subsets of null sets $A,A'$ respectively. Then $\mu(E\cup F)\leq \mu(E'\cup A')$. Since $A'\setminus E'$ is null, we have $\mu(E'\cup A')=\mu(E')$. So $\mu(E)\leq\mu(E')$. Similarly, $\mu(E')\leq\mu(E)$.
 
 Given sets $E_1\cup F_1,E_2\cup F_2,\dots$ where $E_n\in \fk M$ and $F_n$ is inside a null set, then $\bigcup_n E_n\in\fk M$, and $\bigcup F_n$ is inside a null set (Rem. \ref{lb709}). So $\ovl{\fk M}$ is closed under countable unions. Let $E\in\fk M$ and $F$ be inside a null set $A$. Then $(E\cup F)^c=E^c\setminus F$ can be written as $E^c\setminus A$ union a subset of $A$. So $\ovl{\fk M}$ is closed under complements. This proves that $\ovl{\fk M}$ is a $\sigma$-algebra. Using the countable additivity of $\mu$, one checks easily that $\ovl\mu$ is a measure.
 
-If $(\fk N,\nu)$ is a complete measure on $X$ extending $(\fk M,\mu)$, then for each $E\in\fk M$ and $F$ inside a null set, we have $F\in\fk N$ by the completeness of $\nu$. So $E\cup F\in\fk N$. This proves $\ovl{\fk M}\subset\fk N$. Moreover, $\nu(E\cup F)=\nu(E)+\nu(F\setminus E)=\nu(E)$ since $F\setminus E$ is $\nu$-null. So $\nu(E\cup F)=\nu(E)=\mu(E)=\ovl\mu(E)$. This proves that $\nu$ extends $\ovl\mu$.
+If $(\fk N,\nu)$ is a complete measure on $X$ extending $(\fk M,\mu)$, then for each $E\in\fk M$ and $F$ inside a null set in $\fk M$, we have $F\in\fk N$ by the completeness of $\nu$. So $E\cup F\in\fk N$. This proves $\ovl{\fk M}\subset\fk N$. Moreover, $\nu(E\cup F)=\nu(E)+\nu(F\setminus E)=\nu(E)$ since $F\setminus E$ is $\nu$-null. So $\nu(E\cup F)=\nu(E)=\mu(E)=\ovl\mu(E)$. This proves that $\nu$ extends $\ovl\mu$.
 \end{proof}
 
 
@@ -20425,7 +20461,7 @@ Apply Cor. \ref{lb695} to the inclusion map $\iota:Z\rightarrow Y$.
 \end{proof}
 
 
-\begin{df}
+\begin{df}\label{lb781}
 Let $X$ be a topological space. A function $f:X\rightarrow\ovl\Rbb$ is called \textbf{lower semicontinuous} \index{00@Lower semicontinuous} if $f^{-1}(a,+\infty]$ is open for each $a\in\ovl\Rbb$. We say that $f$ is  \textbf{upper semicontinuous} \index{00@Upper semicontinuous} if $f^{-1}[-\infty,a)$ is open for each $a\in\ovl\Rbb$. By Exp. \ref{lb697}, semicontinuous functions are Borel functions.
 \end{df}
 
@@ -20434,7 +20470,7 @@ Recall Def. \ref{lb114} for the meaning of summations and multiplications in $\o
 \end{eg}
 
 
-\begin{prob}
+\begin{prob}\label{lb782}
 Let $X$ be a topological space.
 \begin{enumerate}
 \item Let $A\subset X$. Prove that $\chi_A$ is lower semicontinuous iff $A$ is open. 
@@ -20443,7 +20479,8 @@ Let $X$ be a topological space.
 \end{prob}
 
 Recall Pb. \ref{lb346} for the basic properties of $\limsup$ and $\liminf$.
-\begin{prob}
+
+\begin{prob}\label{lb767}
 Let $X$ be a topological space. Let $f:X\rightarrow\ovl\Rbb$. Prove that the following are equivalent.
 \begin{enumerate}
 \item[(1)] $f$ is lower semicontinuous.
@@ -20453,11 +20490,22 @@ Let $X$ be a topological space. Let $f:X\rightarrow\ovl\Rbb$. Prove that the fol
 \end{prob}
 
 
+\begin{rem}\label{lb783}
+From Pb. \ref{lb767}-(3), it is clearly that an $\ovl\Rbb_{\geq0}$-linear combination of lower semicotinuous functions $X\rightarrow\ovl\Rbb_{\geq0}$ is lower semicontinuous.
+\end{rem}
+
+\begin{prob}\label{lb778}
+Let $(X,\fk M,\mu)$ be a measure space with completion $(\ovl{\fk M},\ovl\mu)$. Let $\mc V$ be a separable normed vector space, and let $f:X\rightarrow \mc V$ be $\ovl{\fk M}$-measurable (i.e., for each $U\in\fk B_{\mc V}$ we have $f^{-1}(U)\in\ovl{\fk M}$). Prove that there exists $A\in\fk M$ with $\mu(X\setminus A)=0$ such that $f\chi_A$ is $\fk M$-measurable.
+\end{prob}
+
+
+
+
 \subsubsection{$\star$ Weakly measurable functions}
 
 Let $(X,\fk M)$ be a measurable space. 
 
-\begin{df}
+\begin{df}\label{lb710}
 Let $\mc V$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$, equipped with the norm topology and the corresponding Borel $\sigma$-algebra $\fk B_{\mc V}$. We say that a map $f:X\rightarrow\mc V$ is \textbf{weakly measurable} \index{00@Weakly measurable} if for every $\varphi\in\mc V^*=\fk L(\mc V,\Fbb)$ the function $\varphi\circ f:X\rightarrow\Fbb$ is measurable. 
 \end{df}
 
@@ -20676,7 +20724,7 @@ It is a subtle task to extend the additivity of $\int_X$ to unbounded functions 
 
 
 
-\subsubsection{The monotone convergence theorem}
+\subsubsection{The monotone convergence theorem}\label{lb785}
 
 
 
@@ -20693,9 +20741,26 @@ Choose a strictly increasing homeomorphism $\varphi:[0,+\infty]\xrightarrow{\sim
 The above proof shows that if $\Vert f\Vert_{l^\infty}<+\infty$, one can choose an increasing sequence $(s_n)$ in $\mc S_+(X)$ converging uniformly to $f$.
 \end{rem}
 
+Before proving the linearity of $\int_X$, we first use Prop. \ref{lb749} to give a fun proof of an (almost) special case of Pb. \ref{lb778}.
+
+\begin{pp}
+Let $\mu$ be a measure on $\fk M$. Let $(\ovl{\fk M},\ovl\mu)$ be the completion of $(\fk M,\mu)$. Let $f$ be an $\ovl{\fk M}$-measurable map from $X$ to $[0,+\infty]$ (resp. to $\Cbb$). There there exist $A\in\fk M$ with $\mu(X\setminus A)=0$ such that $f\chi_A$ is $\fk M$-measurable.
+\end{pp}
+
+\begin{proof}
+If $f$ is a complex function, by considering $\Real(f)$ and $\Imag(g)$ separately, we assume WLOG that $f$ is real. Since $f=f^+-f^-$ where $f^+=\max\{f,0\}$ and $f^-=\max\{-f,0\}$ are $\fk M$-measurable (by Thm. \ref{lb700}), by considering $f^+$ and $f^-$ separately, it suffices to prove the corollary when $f:X\rightarrow[0,+\infty]$.
+
+We first consider the case that $f\in\mc S_+(X)$. By linearity, it suffices to assume $f=\chi_E$ where $E\in\ovl {\fk M}$. By Thm. \ref{lb708}, we have $B\subset E\subset C$ where $B,C\in\fk M$ and $\mu(C\setminus B)=0$. Set $A=B\cup(X\setminus C)$ and $g=\chi_B$. Then $\mu(X\setminus A)=0$ and $f\chi_A=\chi_B$ is $\fk M$-measurable.
+
+Now consider the general case. By Prop. \ref{lb749}, there is a sequence $(s_n)$ of simple functions converging pointwise to $f$. By the above special case, for each $n$ there exists $A_n\in\fk M$ with $\mu(X\setminus A)=0$ such that $s_n\chi_{A_n}$ is $\fk M$-measurable. Let $A=\bigcap A_n$. Then $s_n\chi_A=s_n\chi_{A_n}\cdot\chi_A$ is $\fk M$-measurable. Since $(s_n\chi_A)$ converges pointwise to $f\chi_A$, by Thm. \ref{lb700}, $f\chi_A$ is $\fk M$-measurable. 
+\end{proof}
+
 
 \begin{thm}[\textbf{Monotone convergence theorem}] \index{00@Monotone convergence theorem}\label{lb760}
-Let $(f_n)_{n\in\Zbb_+}$ be an increasing sequence in $\mc L_+(X)$. Let $f$ be the pointwise limit $f=\lim_n f_n$, which is in $\mc L_+(X)$ by Cor. \ref{lb701}. Then $\dps\int_X fd\mu=\lim_n\int_Xf_nd\mu$.
+Let $(f_n)_{n\in\Zbb_+}$ be an increasing sequence in $\mc L_+(X)$. Let $f$ be the pointwise limit $f=\lim_n f_n$, which is in $\mc L_+(X)$ by Cor. \ref{lb701}. Then
+\begin{align*}
+\int_X fd\mu=\lim_n\int_Xf_nd\mu
+\end{align*}
 \end{thm}
 
 
@@ -20734,6 +20799,9 @@ Let $A,B\in\fk M$ be disjoint. Let $f\in\mc L_+(X)$. Then $\int_{A\cup B}f=\int_
 \begin{proof}
 $\int_{A\cup B}f=\int_X f_{A\cup B}=\int_X(f\chi_A+f\chi_B)=\int_X f\chi_A+\int_Xf\chi_B=\int_Af+\int_Bf$.
 \end{proof}
+
+
+
 
 
 \subsubsection{Criteria for $f=0$ a.e. and $f<+\infty$ a.e.}
@@ -20817,7 +20885,7 @@ It is easy to see that $\Lambda$ is additive. If $c\geq0$, then $cv=cv^+-cv^-$ w
 \end{proof}
 
 
-\begin{thm}
+\begin{thm}\label{lb779}
 The integral operator $\int_X:\mc L^1(X,\mu,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ can be extended uniquely to a $\Cbb$-linear map
 \begin{gather*}
 \int_X:\mc L^1(X,\mu)\rightarrow\Cbb\qquad f\mapsto\int_Xf d\mu
@@ -20872,6 +20940,42 @@ The following argument is similar to that in the solution of Pb. \ref{lb387}-3. 
 \end{proof}
 
 
+\begin{eg}\label{lb766}
+Let $X$ be a set, equipped with the counting measure $\mu$ on the $\sigma$-algebra $2^X$ (cf. Exp. \ref{lb765}). Then for each $f:X\rightarrow[0,+\infty]$, we have
+\begin{align}
+\sum_{x\in X}f(x)=\sup_{A\in\fin(2^X)}\sum_{x\in A}f(x)=\int_X fd\mu
+\end{align}
+Therefore, for each $f\in\Cbb^X$ we have $f\in\mc L^1(X,\mu)$ iff $\sum_{x\in X}|f(x)|<+\infty$. Namely, 
+\begin{align}
+\mc L^1(X,\mu)=l^1(X)
+\end{align}
+The linear maps $f\in l^1(X)\mapsto\sum_{x\in X}f(x)$ and $f\in \mc L^1(X,\mu)\rightarrow \int_X fd\mu$ are equal, since they are equal on the subset of all positive $l^1$-functions (which spans $l^1(X)$).
+\end{eg}
+
+
+\begin{pp}\label{lb780}
+Let $f\in\scr R[a,b]=\scr R([a,b],\Cbb)$ where $-\infty<a<b<+\infty$. Then the Riemann integral of $f$ equals the Lebesgue integral:
+\begin{align}\label{eq313}
+\int_a^b f(x)dx=\int_{[a,b]}fdm
+\end{align} 
+\end{pp}
+
+\begin{proof}
+By considering the real part and the imaginary part separately, it suffices to assume that $f$ is real. Let $S$ be the set of real step functions on $[a,b]$, i.e., $S=\Span_\Rbb\{\chi_{[c,d]}:a\leq c\leq d\leq b \}$. Then \eqref{eq313} clearly holds when $f\in S$. 
+
+Now pick any $f\in\scr R([a,b],\Rbb)$. Since $f$ is strongly Riemann integrable (Def. \ref{lb774}), for each $\eps>0$, there is a partition of $[a,b]$ into compact subintervals $I_1\cup I_2\cup\cdots$ such that $\sum_i \diam f(I_i)\cdot|I_i|<\eps$. Let 
+\begin{align*}
+g=\sum_i \inf f(I_i)\cdot\chi_{I_i}\qquad h=\sum_i\sup f(I_i)\cdot\chi_{I_i}
+\end{align*}
+Then $g\leq f\leq h$, and $\int_a^b (h(x)-g(x))dx=\sum_i \diam f(I_i)\cdot|I_i|<\eps$. Since $g,h,h-g\in S$, their Riemann integrals and Lebsgue integrals are equal. (In particular, $\int_{[a,b]}(h-g)dm<\eps$.) Since 
+\begin{align*}
+\int_a^bg(x)dx\leq \int_a^bf(x)dx\leq\int_a^b h(x)dx\qquad \int_{[a,b]}gdm\leq \int_{[a,b]}fdm\leq\int_{[a,b]}hdm
+\end{align*}
+we have $|\int_a^bf(x)dx-\int_{[a,b]}fdm|<2\eps$. 
+\end{proof}
+
+
+
 
 \subsection{The convergence theorems}\label{lb754}
 
@@ -20894,7 +20998,10 @@ For each $\alpha$, let $\lambda_\alpha=\Vert f-f_\alpha\Vert_{l^\infty}$. Then $
 The following celebrated theorem was proved by Lebesgue in 1904. In fact, in Lebesgue's original theorem, instead of assuming $|f_n|\leq g$, the stronger conditions that $\mu(X)<+\infty$ and $\sup_n\Vert f_n\Vert_{l^\infty}<+\infty$ were assumed. Moreover, unlike the following proof, Lebesgue's original proof did not use the monotone convergence theorem since the latter was proved by Beppo Levi in 1906. We will explain Lebesgue's original proof in Subsec. \ref{lb763}.
 
 \begin{thm}[\textbf{Dominated convergence theorem}] \index{00@Dominated convergence theorem}\label{lb755}
-Suppose that $(f_n)$ is a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f:X\rightarrow\Cbb$. Suppose that there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f_n|\leq g$ for all $n$. Then $f_n,f\in\mc L^1(X,\mu)$, and $\dps\lim_{n\rightarrow\infty}\int_X f_nd\mu=\int_Xfd\mu$.
+Suppose that $(f_n)$ is a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f:X\rightarrow\Cbb$. Suppose that there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f_n|\leq g$ for all $n$. Then $f_n,f\in\mc L^1(X,\mu)$, and 
+\begin{align*}
+\lim_{n\rightarrow\infty}\int_X f_nd\mu=\int_Xfd\mu
+\end{align*}
 \end{thm}
 
 %In the following proof, and especially in Step 1 (which is the case that Lebesgue originally considered in his 1902 paper), the reader should pay particular attention to how the countable additivity is used
@@ -20910,6 +21017,107 @@ If $(f_n)$ is decreasing (i.e. $f_1\geq f_2\geq\cdots$), then $g-f_n$ is increas
 
 In the general case, we let $h_n(x)=\sup_{k\geq n}\{f_n(x)\}$. Then $h_n$ is measurable by Thm. \ref{lb700}. Since $\lim_n h_n(x)=\limsup_n f_n(x)=0$, we conclude that $(h_n)$ is a decreasing sequence in $\mc L^1(X,\mu,\Rbb_{\geq0})$ bounded by $g$ and converging pointwise to $0$. Therefore, by the above paragraph, we get $\lim_n\int h_n=0$. Since $f_n\leq h_n$, we have $\lim_n\int f_n=0$.
 \end{proof}
+
+
+\subsubsection{Applications of the dominated convergence theorem}
+
+\begin{co}\label{lb775}
+Let $Y$ be a metric space. Let $f:X\times Y\rightarrow\Cbb$. Let $y_0\in Y$. Assume that the following conditions are satisfied:
+\begin{enumerate}[label=(\alph*)]
+\item For each $y\in Y$, the function $f(\cdot,y):X\rightarrow\Cbb$ is in $\mc L^1(X,\mu)$.
+\item For each $x\in X$, the function $f(x,\cdot):Y\rightarrow\Cbb$ is continuous at $y_0$.
+\item There exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f(x,y)|\leq g(x)$ for all $x\in X,y\in Y$.
+\end{enumerate}
+Then the map $y\in Y\mapsto\int_Xf(x,y)d\mu(x)$ is continuous at $y_0$.
+\end{co}
+
+
+\begin{proof}
+Choose any sequence $(y_n)$ in $Y$ converging to $y_0$. Since $|f(\cdot,y_n)|\leq g$, and since $\lim_n f(\cdot,y_n)$ converges pointwise to $f(\cdot,y_0)$, by the dominated convergence theorem, we have $\lim_n\int f(\cdot,y_n)d\mu=\int f(\cdot,y_0)d\mu$.
+\end{proof}
+
+The following corollary generalizes Thm. \ref{lb434}.
+
+\begin{co}\label{lb776}
+Let $I=[a,b]$ be a compact interval. Assume that $f:X\times I\rightarrow\Cbb$ satisfies the following conditions:
+\begin{enumerate}[label=(\alph*)]
+\item For each $t\in I$, the function $f(\cdot,y):X\rightarrow\Cbb$ is in $\mc L^1(X,\mu)$.
+\item For each $x\in X$, the function $f(x,\cdot):I\rightarrow\Cbb$ is differentiable. 
+\item There exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|\partial_If(x,t)|\leq g(x)$ for all $x\in X,t\in I$.
+\end{enumerate}
+Then $t\in I\rightarrow\int_X f(x,t)d\mu(x)$ is differentiable, and its derivative is $\int_X\partial_If(x,t)d\mu(x)$ where $\partial_If(\cdot,t):X\rightarrow\Cbb$ is in $\mc L^1(X,\mu)$.
+\end{co}
+
+\begin{proof}
+Fix $t_0\in I$. For any sequence in $I\setminus\{t_0\}$ converging to $t_0$, $\partial_If(\cdot,t_0)$ is the pointwise limit of the measurable function $h_n=(f(\cdot,t_n)-f(\cdot,t_0))/(t_n-t_0)$ on $X$, which is measurable by Thm. \ref{lb700}. By the finite increment theorem (Cor. \ref{lb333}), we have $|h_n|\leq g$. Thus $h_n\in\mc L^1(X,\mu,\Rbb_{\geq0})$. Since $h_n$ converges pointwise to $\partial_If(\cdot,t_0)$, the dominated convergence theorem shows that $\lim_n \int_Xh_nd\mu=\int_X\partial_If(\cdot,t_0)d\mu$.
+\end{proof}
+
+
+
+
+
+
+\subsubsection{Fatou's lemma}
+
+The dominated convergence theorem fails when $(f_n)$ is not bounded by a positive $\mc L^1$-function.
+
+
+\begin{eg}
+Let $f_n:(0,1)\rightarrow\Cbb$ be $f_n=n\cdot\chi_{(0,1/n)}$. Then $(f_n)$ converges pointwise to $0$, but $\lim_n \int_{(0,1)}f_ndm=1$.
+\end{eg}
+
+\begin{eg}
+Equip $\Zbb$ with the counting measure. (Recall Exp. \ref{lb766}.) Let $(f_n)_{n\in\Zbb_+}$ be a sequence in $\ovl B_{l^2(\Zbb)}(0,1)$ converging weakly to $f\in \ovl B_{l^2(\Zbb)}(0,1)$. In other words, $(f_n)$ converges pointwise to $f$ as a sequence of functions on $\Zbb$ (cf. Thm. \ref{lb530}). By Fatou's lemma for Hilbert spaces (cf. Pb. \ref{lb764}), we know that $\liminf_n \Vert f_n\Vert^2\geq \Vert f\Vert^2$, where the inequality can be strict (e.g. take $f_n=\chi_{\{n\}}$ and $f=0$). Thus, $g_n=|f_n|^2$ converges pointwise to $g=|f|^2$, but
+\begin{align*}
+\liminf_n\sum_\Zbb g_n\geq\sum_\Zbb g
+\end{align*}
+where the inequality could be strict.
+\end{eg}
+
+
+Motivated by the above two examples, we prove Fatou's lemma for integrals, which asserts that $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is ``lower semicontinuous" under \textit{sequential} pointwise convergence. (It is not true for nets of functions. See Rem. \ref{lb769}.)
+
+
+\begin{thm}[\textbf{Fatou's lemma}] \index{00@Fatou's lemma} \label{lb768}
+Let $(f_n)$ be a sequence in $\mc L_+(X)$ converging pointwise to $f:X\rightarrow\ovl\Rbb_{\geq0}$. Then $f\in\mc L_+(X)$, and
+\begin{align}\label{eq311}
+\liminf_{n\rightarrow\infty}\int_X f_nd\mu\geq\int_Xfd\mu
+\end{align}
+\end{thm}
+
+\begin{proof}
+By Thm. \ref{lb700} we have $f\in\mc L_+(X)$ and $g_n\in\mc L_+(X)$ where $g_n(x)=\min\{f_n(x),f(x)\}$. Note that $0\leq g_n\leq f$, and $(g_n)$ converges pointwise to $f$. So $\liminf_n\int f_n\geq\liminf\int g_n$. Thus, it suffices to prove
+\begin{align}\label{eq310}
+\liminf_{n\rightarrow\infty}\int_X g_nd\mu\geq\int_Xfd\mu
+\end{align}
+If $\int_Xf<+\infty$, the dominated convergence theorem implies $\lim_n\int_X g_n=\int_Xf$. So \eqref{eq310} is true. Since we do not assume $\int_Xf<+\infty$, we need to find another argument.
+
+Let $h_n=\inf_{k\geq n}g_k$. Then $h_n\in\mc L_+(X)$ by Thm. \ref{lb700}, and $(h_n)$ converges pointwise to $\liminf_n g_n=f$. Since $h_1\leq h_2\leq\cdots$, by the monotone convergence Thm. \ref{lb760}, we get $\lim_n\int_X h_n=\int_Xf$. Since $g_n\leq h_n$, we get $\liminf_n\int_Xg_n\geq\lim_n\int_Xh_n$. This proves \eqref{eq310}.
+\end{proof}
+
+\begin{exe}
+Although we proved the dominated convergence theorem and Fatou's lemma using the monotone convergence theorem, the latter theorem is an immediate consequence of the first two. Explain the reason.
+\end{exe}
+
+
+\begin{rem}\label{lb769}
+Equip $\mc L_+(X)$ with the pointwise convergence topology (i.e., the one inherited from $[0,+\infty]^X$). Then the map $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is not necessarily lower semicontinuous. For example, take $X=[0,1]$ and $\mu=m$. Then the net $\{\chi_A\}_{A\in\fin(2^X)}$ converges pointwise to $1$. So $\liminf_A\int_X \chi_A=0<1=\int_X\lim_A\chi_A$. (Recall Pb. \ref{lb767} for the equivalent definition of lower semicontinuity in terms of nets.)
+\end{rem}
+
+The following version of Fatou's Lemma appears in many textbooks and is a simple corollary of Thm. \ref{lb768}. We will not use this version in the future. (The result orginally proved by Fatou is in the form \eqref{eq311}, not in the form \eqref{eq312}. See \cite[Ch. 6, Thm. 6.6]{Haw}.)
+
+\begin{co}[\textbf{Fatou's lemma}]
+Let $(f_n)$ be a sequence in $\mc L_+(X)$. Then
+\begin{align}\label{eq312}
+\liminf_{n\rightarrow\infty}\int_X f_nd\mu\geq\int_X\liminf_{n\rightarrow\infty}f_nd\mu
+\end{align}
+\end{co}
+\begin{proof}
+Let $g_n=\inf_{k\geq n}f_n$. Then $g_n$ converges pointwise to $\liminf_n f_n$. By Thm. \ref{lb768}, we have $\int_X \lim_n g_n\leq\liminf_n\int_Xg_n$ where the RHS is $\leq\liminf_n\int_Xf_n$ since $g_n\leq f_n$.
+\end{proof}
+
+Thm. \ref{lb768} and Pb. \ref{lb764} (see also Rem. \ref{lb770}) suggest that sequential pointwise convergence is related to weak or weak-* convergence. We will discuss this relationship in the future.
+
 
 
 
@@ -21044,6 +21252,346 @@ Our proof of the dominated convergence Thm. \ref{lb755} relies on the linearity 
 \end{rem}
 
 
+We close this subsection by giving an application of convergence in measure.
+
+\begin{thm}[\textbf{Egorov's theorem}]\index{00@Egorov's theorem}
+Assume that $\mu(X)<+\infty$. Let $\mc V$ be a normed vector space. Assume that $(f_n)$ is a sequence in $\mc L(X,\mc V)$ converging pointwise to some $f\in\mc L(X,\mc V)$. Then $(f_n)$ converges \textbf{almost uniformly} \index{00@Almost uniform convergence} to $f$, which means that for every $\delta>0$ there exists $A\in\fk M$ such that $\mu(X\setminus A)<\delta$, and that $(f_n)$ converges uniformly on $A$ to $f$.
+\end{thm}
+
+
+\begin{prob}
+Prove Egorov's theorem. (Hint: Let $g_n(x)=\sup_{k\geq n}\Vert f(x)-f_k(x)\Vert$. Then $(g_n)$ converges in measure to $0$. For each $k\in\Zbb_+$, choose $n_k\in\Zbb_+$ such that $A_k=g_{n_k}^{-1}([0,1/k])$ is large enough. Let $A=\bigcap_n A_n$.)
+\end{prob}
+
+
+
+
+
+
+\subsubsection{$\star$ Bochner integrals}
+
+
+Let $\mc V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. Recall that $\mc V^*=\fk L(\mc V,\Fbb)$ is the dual space.
+
+\begin{df}\label{lb773}
+A function $f:X\rightarrow\mc V$ is called \textbf{weakly integrable} \index{00@Weakly integrable} if $f$ is weakly measurable (cf. Def. \ref{lb710}), and if there exists an element $\int_Xfd\mu$ in $\mc V$ (often abbreviated to $\int_Xf$ or $\int f$) such that for every $\varphi\in\mc V^*$ we have
+\begin{align}
+\Bigbk{\varphi,\int_Xfd\mu}=\int_X\varphi\circ fd\mu
+\end{align}
+Note that such vector $\int_Xfd\mu$ are unique because $\mc V^*$ separates points of $\mc V$ by the Hahn-Banach Cor. \ref{lb502}.
+\end{df}
+
+
+\begin{prob}\label{lb772}
+Assume that $f:X\rightarrow\mc V$ is weakly integrable, and its absolute value function $|f|:X\rightarrow\Rbb_{\geq0}$ is measurable. Prove
+\begin{align}
+\Big\Vert \int_Xfd\mu \Big\Vert\leq\int_X|f|d\mu
+\end{align}
+\end{prob}
+\begin{proof}[Hint]
+Use the Hahn-Banach Cor. \ref{lb502}.
+\end{proof}
+
+Pb. \ref{lb772} will be helpful in solving the following problems.
+
+\begin{prob}
+Let $\mc W$ be a Banach space. Let $T\in\fk L(\mc V,\mc W)$. Let $f:X\rightarrow\mc V$. Prove that if $f$ is weakly measurable, then $T\circ f$ is weakly measurable. Prove that if $f$ is weakly integrable, then $T\circ f$ is weakly integrable, and 
+\begin{align}
+T\int_Xfd\mu=\int_X T\circ fd\mu
+\end{align}
+\end{prob}
+
+
+Recall that $\mc V$, as a topological space, is equipped with the Borel $\sigma$-algebra $\mc B_{\mc V}$. In the following, we let
+\begin{align}
+\mc L_B(X,\mc V)=\{f\in\mc L(X,\mc V):f(X)\text{ is a separable subset of }\mc V\}
+\end{align}
+(Equivalently, $\mc L_B(X,\mc V)$ is the set of weakly measurable $f:X\rightarrow\mc V$ with separable $f(X)$. See Pb. \ref{lb702}.) A function $f:X\rightarrow\mc V$ is called \textbf{Bochner measurable} \index{00@Bochner integrable} if $f\in\mc L_B(X,\mc V)$.\footnote{In fact, in the usual definition, a function $f$ is called Bochner integrable if $f\in\mc L(X,\mc V)$, and if $f(X\setminus\Delta)$ is separable for some null set $\Delta$. Here, we do not bother with null sets.} 
+
+
+\begin{eg}
+Suppose that $X$ is a topological space and $\fk M=\mc B_X$. Let $f:X\rightarrow\mc V$ be continuous. Then $f$ is measurable. Since $f(X)$ is a compact metric subspace of $\mc V$, it is separable (Thm. \ref{lb252}). Therefore $f\in \mc L_B(X,\mc V)$.
+\end{eg}
+
+\begin{prob}
+Solve the following problems.
+\begin{enumerate}
+\item  Let $f\in\mc V^X$ have separable range $f(X)$. Prove that $f\in\mc L_B(X,\mc V)$ iff there is a separable closed linear subspace $\mc W\subset\mc V$ such that $f(X)\subset\mc W$ and that the restriction $f:X\rightarrow\mc W$ is measurable.
+\item Prove that $\mc L_B(X,\mc V)$ is an $\Fbb$-linear subspace of $\mc V^X$.
+\item Let $f\in\mc L_B(X,\mc V)$. Since $f$ is measurable, it is weakly measurable, and $|f|\in\mc L_+(X)$. Define
+\begin{gather}
+\Vert f\Vert_{L^1}\equiv \Vert f\Vert_1=\int_X|f|d\mu\\
+\mc L^1(X,\mu,\mc V)=\big\{f\in\mc L_B(X,\mc V):\Vert f\Vert_{L^1}<+\infty  \}
+\end{gather}
+Elements in $\mc L^1(X,\mu,\mc V)$ are called \textbf{strongly integrable} (or \textbf{Bochner integrable}). \index{00@Strongly integrable}Prove that $\mc L^1(X,\mu,\mc V)$ is a linear subspace of $\mc L_B(X,\mc V)$. Prove that $\Vert\cdot\Vert_{L^1}$ is a seminorm on  $\mc L^1(X,\mu,\mc V)$, i.e., it satisfies
+\begin{gather}
+\Vert cf\Vert_{L^1}=|c|\cdot\Vert f\Vert_{L^1}\qquad \Vert f+g\Vert_{L^1}\leq\Vert f\Vert_{L^1}+\Vert g\Vert_{L^1}
+\end{gather}
+for all $f,g\in\mc L^1(X,\mu,\mc V)$ and $c\in\Fbb$.
+\item Let $T\in\fk L(\mc V,\mc W)$ where $\mc W$ is a Banach space. Let $f\in\mc L_B(X,\mc V)$. Prove that $T\circ f\in\mc L_B(X,\mc W)$, and
+\begin{align}
+\Vert T\circ f\Vert_{L^1}\leq \Vert T\Vert\cdot\Vert f\Vert_{L^1}
+\end{align}
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Note]
+When you prove that $\mc L_B(X,\mc V)$ is closed under addition, pay special attention to the fact that Prop. \ref{lb699} (i.e., $f,g$ measurable $\Rightarrow$ $f\vee g$ measurable) is available only when the codomains of $f,g$ are second countable.
+\end{proof}
+
+
+\begin{thm}\label{lb771}
+Let $f\in\mc L^1(X,\mu,\mc V)$. Then $f$ is weakly integrable. The integral $\int_Xfd\mu$ (which is in $\mc V$) is called the \textbf{Bochner integral} of $f$. \index{00@Bochner integral}
+\end{thm}
+
+
+\begin{prob}
+The goal of this problem is to prove Thm. \ref{lb771}. Let
+\begin{align}
+\mc S^1(X,\mu,\mc V)=\Big\{\sum_{i=1}^n v_i\cdot\chi_{E_i}:n\in\Zbb_+,v_i\in \mc V,E_i\in\fk M,\mu(E_i)<+\infty\Big\}
+\end{align}
+In other words, $\mc S^1(X,\mu,\mc V)$ is the set of all $f\in\mc S(X,\mc V)$ such that $\int_X|f|d\mu<+\infty$.
+\begin{enumerate}
+\item Prove that any $f\in\mc S^1(X,\mu,\mc V)$ is weakly integrable. (What is the explicit expression of $\int_Xf$ ?)
+\item Let $f$ be defined by the pointwise limit $f=\sum_{n=1}^\infty v_n\cdot\chi_{E_n}$ where $v_1,v_2,\dots\in\mc V$, and $E_1,E_2,\dots\in\fk M$ are mutually disjoint. Prove that $f\in\mc L_B(X,\mc V)$, and that
+\begin{align}
+\Vert f\Vert_{L^1}=\sum_{n=1}^\infty \mu(E_n)\Vert v_n\Vert
+\end{align}
+\item Prove that $\mc S^1(X,\mu,\mc V)$ is dense in $\mc L^1(X,\mu,\mc V)$ under the $L^1$-seminorm.
+\item Use Part 1 and 3 to prove that every $f\in\mc L^1(X,\mu,\mc V)$ is weakly integrable.
+\end{enumerate}
+\end{prob}
+
+Note: The completeness of $\mc V$ is only used in part 4.
+
+\begin{proof}[Hint]
+Part 2. Use Pb. \ref{lb705} to show that $f$ is measurable.
+
+Part 3. For each $k\in\Zbb_+$, let $A_k=|f|^{-1}([1/k,k])$ and $f_k=f\cdot \chi_{A_k}$. Show that $\mu(A_k)<+\infty$ and $f_k\in\mc L^1(X,\mu,\mc V)$. Show that it suffices to approximate each $f_k$ by elements of $\mc S^1(X,\mu,\mc V)$. To achieve this approximation, for each $\eps>0$, write $\mc V$ as a disjoint union of Borel sets whose diameters are $\leq\eps$.
+
+Part 4. Pick a sequence $(s_n)$ in $\mc S^1(X,\mu,\mc V)$ converging to $f$ under the $L^1$-seminorm. Prove that $(\int_Xs_n)_{n\in\Zbb_+}$ is a Cauchy sequence in $\mc V$. Let $\int_Xfd\mu$ be the limit of this sequence, and show that it satisfies the requirement in Def. \ref{lb773}.
+\end{proof}
+
+
+
+\begin{thm}[\textbf{Dominated convergence theorem}] \index{00@Dominated convergence theorem for Bochner integrals}
+Let $(f_n)$ be a sequence in $\mc L^1(X,\mc V)$ converging pointwise to $f:X\rightarrow\mc V$. Suppose that there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that $|f_n|\leq g$ for all $n$. Then $f\in\mc L^1(X,\mu,\mc V)$, and
+\begin{align*}
+\lim_{n\rightarrow\infty}\int_X f_nd\mu=\int_Xfd\mu
+\end{align*}
+\end{thm}
+\begin{proof}
+The closure of a countable union of separable subsets of $\mc V$ is clearly separable. Thus, since $f(X)$ is contained in the closure of $\bigcup_n f(X)$, we conclude that $f(X)$ is separable. By Pb. \ref{lb705}, $f$ is measurable. Thus $f\in\mc L_B(X,\mc V)$. Clearly $|f|\leq g$. So $f\in\mc L^1(X,\mu,\mc V)$.
+
+Since $|f-f_n|$ is measurable, and since $|f-f_n|\leq 2g$, by the dominated convergence Thm. \ref{lb755}, we get $\lim_n \int_X|f-f_n|=0$. By Prop. \ref{lb772}, we have $\Vert\int_Xf-\int_Xf_n\Vert\leq \int_X|f-f_n|$. Therefore $\lim_n\Vert \int_Xf-\int_Xf_n\Vert=0$.
+\end{proof}
+
+
+\begin{exe}
+Extend Cor. \ref{lb775} and \ref{lb776} to Bochner measurable functions.
+\end{exe}
+
+
+
+\newpage
+
+
+\section{Positive linear functionals and Radon measures}
+
+The goal of this chapter is to study a class of Borel measures on LCH spaces generalizing the Lebesgue measure on $\Rbb^N$. Our starting point is an LCH space $(X,\mc T_X)$ and a linear functional $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ where \index{00@$C_c(X,\Rbb_{\geq0})$}
+\begin{align}
+C_c(X,\Rbb_{\geq0})=\{f\in C_c(X,\Rbb):f\geq0\}
+\end{align}
+We use $\Lambda$ to define a function $\mu:\mc T_X\rightarrow\ovl\Rbb_{\geq0}$ in the same way that we define the Lebesgue measures of open subsets of $\Rbb^N$. Namely, for each $U\in\mc T_X$ we let
+\begin{align*}
+\mu(U)=\sup\{\Lambda(f):f\in C_c(U,[0,1])  \}
+\end{align*}
+(Recall that a compactly supported continuous function on $U$ is equivalent to a continuous function on $X$ with compact support in $U$, cf. Rem. \ref{lb457}.) Then we use Thm. \ref{lb724} to extend $\mu$ to a measure on the Borel $\sigma$-algebra $\fk B_X$. Such measure will be called a \textbf{Radon measure}. 
+
+In fact, we shall first define Radon measure to be a Borel measure satisfying certain regular conditions, and then show that they correspond bijectively to linear functionals on $C_c(X,\Rbb_{\geq0})$.
+
+
+
+
+\subsection{Radon measures}
+
+Let $(X,\mc T_X)$ be an LCH space with topology $\mc T_X$. Recall Rem. \ref{lb459} for the two equivalent descriptions of precompact subsets (and their closures) of an open $U\subset X$. Recall that every open subset of an LCH space is LCH (cf. Prop. \ref{lb245}).
+
+\begin{df}
+Let $\fk M\subset 2^X$ be a $\sigma$-algebra containing $\fk B_X$. Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be a measure. Let $E\in\fk M$. We say that $\mu$ is \textbf{outer regular} \index{00@Outer regular} on $E$ (or that $E$ is \textbf{outer $\mu$-regular}) if
+\begin{align*}
+\mu(E)=\inf\{\mu(U):U\supset E,U\text{ is open}\}
+\end{align*}
+We say that $\mu$ is \textbf{inner regular} on $E$ (or that $E$ is \textbf{inner $\mu$-regular}) if
+\begin{align*}
+\mu(E)=\sup\{\mu(K):K\subset E,K\text{ is compact}\}
+\end{align*}
+We say that $\mu$ is \textbf{regular} on $E$ (or that $E$ is \textbf{$\mu$-regular}) \index{00@Regular (measure)} if $\mu$ is outer regular and inner regular on $E$.
+\end{df}
+
+\begin{eg}
+Let $(\fk M_\mu,\mu)$ be as in Thm. \ref{lb724}. Then $\mu$ is outer regular on any $E\in\fk M_\mu$ (since $\mu$ is the restriction of $\mu^*$ to $\fk M_\mu$). If $E\in\fk M_\mu$ and $\mu(E)<+\infty$, then $\mu$ is regular on $E$ by Prop. \ref{lb723}. Moreover, by Asmp. \ref{lb712}, $\mu$ is regular on open sets and compact sets.
+\end{eg}
+
+The inner regularity on open sets can also be described in the following way:
+
+\begin{lm}\label{lb777}
+Let $\mu$ be a measure on $\fk M\supset\fk B_X$. Let $U\in\mc T_X$. Then
+\begin{align}
+\sup\big\{\mu(K):K\subset U,K\text{ is compact}\big\}=\sup\Big\{\int_Xfd\mu:f\in C_c(U,[0,1])  \Big\}
+\end{align}
+\end{lm}
+
+\begin{proof}
+Let $A$ and $B$ denote the LHS and the RHS. If $f\in C_c(U,[0,1])$, then $K=\ovl{\Supp(f)}$ is compact in $U$. So $0\leq f\leq\chi_K$, and hence $\mu(K)=\int_X\chi_K\geq\int_Xfd\mu$. This proves $A\geq B$.
+
+Conversely, let $K\subset U$ be compact. By Urysohn's lemma (Thm. \ref{lb711}), there exists $f\in C_c(U,[0,1])$ such that $f|_K=1$. So $\chi_K\leq f$, and hence $\mu(K)\leq\int_Xfd\mu$. This proves $A\leq B$.
+\end{proof}
+
+
+
+\begin{df}
+A Borel measure $\mu:\fk B_X\rightarrow\ovl\Rbb_{\geq0}$ is called a \textbf{Radon measure} \index{00@Radon measure} if the following conditions are satisfied:
+\begin{enumerate}[label=(\alph*)]
+\item $\mu$ is outer regular on Borel sets. 
+\item $\mu$ is inner regular on open sets. Equivalently (by Lem. \ref{lb777}), for each open $U\subset X$, we have
+\begin{align}\label{eq314}
+\mu(U)=\sup\Big\{\int_Xfd\mu:f\in C_c(U,[0,1])  \Big\}
+\end{align}
+\item $\mu(K)<+\infty$ if $K$ is a compact subset of $X$.
+\end{enumerate}
+\end{df}
+
+The Lebesgue measure $m$ on $\Rbb^N$, when restricted to $\fk B_{\Rbb^N}$ is a Radon measure. In application, it is often more convenient to consider the completion of a Radon measure:
+
+\begin{rem}
+Assume that $(\fk M,\mu)$ is the completion of a Radon measure on $X$. Then $\mu$ is outer regular on any $E\in\fk M$.
+\end{rem}
+
+
+\begin{proof}
+By Thm. \ref{lb708}, we can write $E=A\cup B$ where $A\in\fk B_X$, and $B\subset C$ where $C\in\fk B_X$ and $\mu(C)=0$. Since $(\fk B_X,\mu)$ is Radon, for each $\eps>0$ there exist open $U\supset A$ and $V\supset B$ such that $\mu(U)\leq \mu(A)+\eps/2$, and $\mu(V)\leq\eps/2$. So $\mu(U\cup V)\leq \mu(A)+\eps\leq\mu(E)+\eps$. Since $U\cup V$ is an open set containing $E$, we conclude that $\mu$ is outer regular on $E$.
+\end{proof}
+
+
+One of the most important features of Radon measures is that they are determined by the integral of functions in $C_c(X,\Rbb_{\geq0})$.
+
+\begin{pp}
+Let $\mu_1,\mu_2$ be Radon measures on $\fk B_X$. Suppose that for each $f\in C_c(X,\Rbb_{\geq0})$ we have $\dps\int_Xfd\mu_1=\int_Xfd\mu_2$. Then $\mu_1=\mu_2$.
+\end{pp}
+
+\begin{proof}
+Let $\Lambda(f)=\int_Xfd\mu_1=\int_Xfd\mu_2$ for each $f\in C_c(X,\Rbb_{\geq0})$. Then, by \eqref{eq314}, we have $\mu_1(U)=\mu_2(U)$ when $U$ is open. By the outer regularity, for each $E\in\fk B_X$ we have $\mu_i(E)=\inf\{\mu_i(U):U\supset E\text{ is open}\}$. So $\mu_1(E)=\mu_2(E)$.
+\end{proof}
+
+
+
+\subsection{Extending positive linear functionals from $C_c(X,\Rbb_{\geq0})$ to $\LSC_+(X)$}
+
+
+Fix an LCH space $(X,\mc T_X)$.
+
+
+\begin{df}
+Let $\Fbb\in\{\Rbb,\Cbb\}$. A linear map $\Lambda:C_c(X,\Fbb)\rightarrow\Fbb$ is called a \textbf{positive linear functional} \index{00@Positive linear functional} if $\Lambda(C_c(X,\Rbb_{\geq0}))\subset\Rbb_{\geq0}$.
+\end{df}
+
+
+\begin{rem}
+There exist canonical bijections among:
+\begin{itemize}
+\item $\Rbb_{\geq0}$-linear maps $C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$
+\item Positive linear functionals on $C_c(X,\Rbb)$.
+\item Positive linear functionals on $C_c(X)=C_c(X,\Cbb)$.
+\end{itemize}
+\end{rem}
+\begin{proof}
+An $\Rbb_{\geq0}$ linear map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ can be extended uniquely to a linear map $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ due to Prop. \ref{lb751}. The latter can be extended to a linear functional on $C_c(X)$ by setting $\Lambda(f)=\Lambda(\Real f)+\im\Lambda(\Imag f)$ for all $C_c(X)$. (This is similar to the proof of Thm. \ref{lb779}.)
+\end{proof}
+
+\begin{rem}\label{lb784}
+Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be linear. Then $\Lambda$ is increasing, i.e., if $f,g\in C_c(X,\Rbb_{\geq0})$ and $f\leq g$, then $\Lambda(f)\leq\Lambda(g)$. This is because $g-f\in C_c(X,\Rbb_{\geq0})$ and $\Lambda(g)=\Lambda(f)+\Lambda(g-f)\geq\Lambda(f)$.
+\end{rem}
+
+\subsubsection{Toward the proof of the Riesz-Markov representation theorem}
+
+As mentioned at the beginning of this chapter, our goal is to construct a Radon measure $\mu$ associated to a linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ in the same way that we constructed the Lebesgue measure from the Riemann integral of continuous compactly supported functions on $\Rbb^N$. Thus, $\Lambda$ can be viewed as an ``abstract Riemann integral" on $X$. This correspondence between $\Lambda$ and $\mu$ is called the \textbf{Riesz-Markov representation theorem}. 
+
+There are two main difficulties in the proof of Riesz-Markov. The first one is the construction of $\mu$. But we have already studied this part in detail in Sec. \ref{lb726}. The second one is to show that the Radon measure $\mu$ constructed from $\Lambda$  satisfies
+\begin{align}\label{eq315}
+\Lambda(f)=\int_Xfd\mu
+\end{align}
+for all $f\in C_c(X,\Rbb_{\geq0})$. In my opinion, a direct proof of \eqref{eq315} is usually very technical. (The readers can make their own judgment by reading Step X of the proof of Thm. 2.14 in \cite[Ch. 2]{Rud-R}, or the last part of the proof of Thm. 7.2 in \cite[Ch. 7]{Fol}.) 
+
+The goal of this section is to prepare for a more conceptual proof of \eqref{eq315} for $f\in C_c(X,\Rbb_{\geq0})$. To motivate our proof, recall that in Prop. \ref{lb780}, we proved that the Riemann integral of $f$ equals the Lebesgue integral by sandwiching $f$ between step functions $g$ and $h$, and show that the Riemann integrals of $g$ and $h$ agree with their Lebesgue integrals. But step functions are usually not continuous functions. Therefore, to generalize the proof of Prop. \ref{lb780}, we must first extend $\Lambda$ to a suitable larger class of positive functions.
+
+Through laborious work, one can extend $\Lambda$ to the set of all positive Borel functions without resorting to measures. The value $\Lambda(f)$ of a positive Borel function $f$ is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found in \cite[Sec. 9]{HS} and \cite[Sec. 11]{HR-1}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.)
+
+We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. More precisely, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_{i=1}^n a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}.
+
+
+\subsubsection{Extending positive linear functionals to $\LSC_+(X)$}
+
+In this subsection, we fix an $\Rbb_{\geq0}$-linear map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$.
+
+Recall Def. \ref{lb781}, Pb. \ref{lb782}, and Pb.  \ref{lb767} for the basic facts about lower semicontinuous functions. By Rem. \ref{lb783}, \index{LSC@$LSC_+(X)$}
+\begin{align}
+\LSC_+(X)=\{\text{lower semicontinuous }f:X\rightarrow \ovl\Rbb_{\geq0}\}
+\end{align}
+is an $\ovl\Rbb_{\geq0}$-linear subspace of $[0,+\infty]^X$. It clearly contains $C_c(X,\Rbb_{\geq0})$ as an $\Rbb_{\geq0}$-linear subspace.
+
+
+\begin{df}
+For each $f\in\LSC_+(X)$, define
+\begin{subequations}\label{eq316}
+\begin{align}\label{eq316a}
+\Lambda(f)=\sup\{\Lambda(h):h\in C_c(X,\Rbb_{\geq0}),h\leq f \}
+\end{align}
+Equivalently, noting that $\Omega_f=f^{-1}(0,+\infty]$ is open (by the lower continuity of $f$), define
+\begin{align}\label{eq316b}
+\Lambda(f)=\sup\{\Lambda(h):h\in C_c(\Omega_f,\Rbb_{\geq0}),h\leq f\}
+\end{align}
+\end{subequations}
+This defines a map $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$ which (by Rem. \ref{lb784}) extends the original map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. We call this new $\Lambda$ the \textbf{canonical extension} of the original $\Lambda$. \index{00@Canonical extension of positive linear functionals on $C_c(X,\Rbb_{\geq0})$} The extension $\Lambda$ is clearly increasing, i.e., if $f,g\in\LSC_+(X)$ and $f\leq g$, then
+\begin{align*}
+\Lambda(f)\leq \Lambda(g)
+\end{align*}
+\end{df}
+
+
+\begin{proof}[Proof of the equivalence]
+Let $A$ and $B$ denote respectively the RHS of \eqref{eq316a} and \eqref{eq316b}. We need to prove $A=B$. Since $C_c(\Omega_f,\Rbb_{\geq0})$ is naturally a subspace of $C_c(X,\Rbb_{\geq0})$ (cf. Rem. \ref{lb457}), we have $A\geq B$. To prove $A\leq B$, we pick any $h\in C_c(X,\Rbb_{\geq0})$ satisfying $h\leq f$, and we shall prove that $\Lambda(h)\leq B$.
+
+For each $\eps>0$, let $h_\eps=(h-\eps)^+=\max\{h-\eps,0\}$. Then $\Supp(h_\eps)$ is the closure of $h^{-1}(\eps,+\infty]$, which is contained in the closed set $h^{-1}[\eps/2,+\infty]$ and hence in $\Omega_f$. Therefore $h_\eps\in C_c(\Omega_f,\Rbb_{\geq0})$. To prove $\Lambda(h)\leq B$, it suffices to prove
+\begin{align*}
+\dps\lim_{\eps\rightarrow 0}\Lambda(h-h_\eps)=0
+\end{align*}
+We shall prove this by using the fact that $0\leq h-h_\eps\leq\eps \chi_K$ where $K=\Supp(h)$. Note that by Urysohn's lemma, there exists $\varphi\in C_c(X,[0,1])$ such that $\varphi|_K=1$. So $h-h_\eps\leq \eps\varphi$, and hence
+\begin{align*}
+0\leq \Lambda(h-h_\eps)\leq \Lambda(\eps\varphi)= \eps\Lambda(\varphi)
+\end{align*}
+where the RHS converges to $0$ as $\eps\rightarrow0$.
+\end{proof}
+
+
+We shall prove that the canonical extension $\Lambda$ is $\ovl\Rbb_{\geq0}$-linear using the same strategy in Subsec. \ref{lb785}, where we proved that $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-linear. Therefore, we first need to prove:
+
+\begin{thm}[\textbf{Monotone convergence theorem}] \index{00@Monotone convergence theorem for nets}
+Let $(f_\alpha)_{\alpha\in I}$ be an increasing net of elements in $\LSC_+(X)$. (So $f_\alpha\leq f_\beta$ if $\alpha\leq\beta$.) Let $f$ be the pointwise limit $\lim_\alpha f_\alpha$. Then $f\in \LSC_+(X)$, and
+\begin{align*}
+\Lambda(f)=\lim_{\alpha\in I}\Lambda(f_\alpha)
+\end{align*}
+\end{thm}
+
+The following proof is close in spirit to the proof of Thm. \ref{lb760}.
+
+\begin{proof}
+Since $f$ is the pointwise supremum $\sup_\alpha f_\alpha$, by Pb. \ref{lb767}, we have $f\in\LSC_+(X)$. Since $f\geq f_\alpha$, we clearly have $\Lambda(f)\geq\lim_\alpha\Lambda(f_\alpha)$. To prove ``$\leq$", by \eqref{eq316b}, it suffices to choose any $h\in C_c(\Omega_f,\Rbb_{\geq0})$ (where $\Omega_f=f^{-1}(0,+\infty]$) satisfying $h\leq f$, and prove that $\Lambda(h)\leq\sup_\alpha\Lambda(f_\alpha)$.
+
+It suffices to prove that $\Lambda(\gamma h)\leq\sup_\alpha\Lambda(f_\alpha)$ for each $0<\gamma<1$. Thus, by replacing $h$ with $\gamma h$, it suffices to assume that $h(x)<f(x)$ whenever $h(x)>0$. Let $K=\Supp(h)$, which is a compact subset of $\Omega_f$. Thus, if $x\in K$ and $h(x)=0$, since $f|_{\Omega_f}>0$, we have $h(x)<f(x)$. To summarize, for every $x\in K$ we have $0\leq h(x)<f(x)$.
+
+The proof will be finished by finding some $\alpha\in I$ such that $h\leq f_\alpha$.  For each $x\in K$, since $h(x)<f(x)$, there exists $\alpha_x\in I$ such that $h(x)<f_\alpha(x)$. Since $h$ is continuous and $f_{\alpha_x}$ is lower semicontinuous, the function $f_{\alpha_x}-h$ is lower semicontinuous (e.g. by Pb. \ref{lb767}-(3)). Therefore $U_x=\{x\in X:f_{\alpha_x}(x)-h(x)>0\}$ is an open subset of $X$ containing $x$. Since $K$ is compact, there exist $x_1,\dots,x_n\in K$ such that $K\subset U_{x_1}\cup\cdots\cup U_{x_n}$. Since $I$ is directed, there exists $\alpha\in I$ that is $\geq \alpha_{x_1},\dots,\alpha_{x_n}$. Then $f_\alpha\geq f_{\alpha_{x_i}}>h$ on $U_{x_i}$. Therefore $f_\alpha>h$ on $K$, and hence $f_\alpha\geq h$ on $X$.
+\end{proof}
 
 
 
@@ -21055,6 +21603,8 @@ Our proof of the dominated convergence Thm. \ref{lb755} relies on the linearity 
 
 
 \hypertarget{beforeindex}{}
+
+
 
 
 \printindex	
@@ -21080,6 +21630,9 @@ Birkhoff, G., \& Kreyszig, E. (1984). The establishment of functional analysis. 
 %B\"uhler, T., \& Salamon, D. A. (2018). Functional analysis (Vol. 191). American Mathematical Soc..
 
 
+\bibitem[CL]{CL}
+Coddington, E. A., Levinson, N. (1955). Theory of ordinary differential equations.
+
 \bibitem[Che92]{Che92}
 Chernoff, P. R. (1992). A simple proof of Tychonoff's theorem via nets. The American mathematical monthly, 99(10), 932-934.
 
@@ -21095,6 +21648,13 @@ Folland, G. B. (1999). Real analysis: modern techniques and their applications (
 
 \bibitem[Gud74]{Gud74}
 Gudder, S. (1974). Inner product spaces. The American Mathematical Monthly, 81(1), 29-36.
+
+\bibitem[HR-1]{HR-1}
+Hewitt, E., \& Ross. K. A., Abstract harmonic analysis. Volume I: Structure of topological groups, integration theory, group representations. 2nd ed. Berlin: Springer-Verlag (1994)
+
+\bibitem[HS]{HS}
+Hewitt, E., \& Stromberg, K. (1969). Real and abstract analysis: A modern treatment of the theory of functions of a real variable. 2nd printing corrected.
+
 
 \bibitem[Hau14]{Hau14}
 Hausdorff, F. (1914) Grundz\"uge der Mengenlehre
@@ -21150,6 +21710,8 @@ F. Riesz and B. Sz.-Nagy, Functional analysis. Transl. from the 2nd French ed. b
 Reed, M., \& Simon, B. (1972). Methods of Modern Mathematical Physics I: Functional analysis, Academic Press, New York.
 
 
+\bibitem[Roy]{Roy}
+H. L. Royden, Real analysis. 3rd ed. (1988)
 
 
 \bibitem[Rud-P]{Rud-P}
@@ -21177,6 +21739,9 @@ Stone, M. H. (1948). The generalized Weierstrass approximation theorem. Mathemat
 
 \bibitem[Tay]{Tay}
 M. E. Taylor, Partial differential equations. I: Basic theory. 2nd ed. New York, NY: Springer (2011)
+
+\bibitem[Tes]{Tes}
+G. Teschl, Ordinary differential equations and dynamical systems. Providence, RI: American Mathematical Society (AMS) (2012)
 
 \bibitem[Wil]{Wil}
 Willard, S. (1970). General topology. 
