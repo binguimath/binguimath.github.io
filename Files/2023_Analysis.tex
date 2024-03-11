@@ -397,7 +397,7 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\Vol}{\mathrm{Vol}}
 \newcommand{\LSC}{\mathrm{LSC}}
-
+\newcommand{\USC}{\mathrm{USC}}
 
 
 
@@ -560,6 +560,9 @@ whenever $f(x)<g(x)$ for all $x\in X$.
 
 %Topics in the ``Problems" section (or the whole ``Problems" sections) marked with $\heartsuit$ are important problems that will be used later in this course.
 
+If $X$ is a topological space, then $\mc T_X$ denotes the topology of $X$, i.e., the set of open subsets of $X$. \index{TX@$\mc T_X=$ the topology of $X$}
+
+If $f:X\rightarrow V$ where $V$ is a normed vector space, $|f|:X\rightarrow\Rbb_{\geq0}$ denotes its \textbf{absolute value function}, i.e., the one sending each $x\in X$ to $\Vert f(x)\Vert$.
 
 
 \newpage
@@ -11924,7 +11927,7 @@ Moreover, if $f\in\scr R(I,\Rbb)$, then $\int_a^b f=\ovl\int_a^bf=\underline\int
 
 
 \begin{prob}\label{lb387}
-Let $\mc V$ be a vector space over $\Cbb$. Since $\Rbb$ is a subfield of $\Cbb$, $\mc V$ can be viewed as a real normed vector space. Let $\Lambda:\mc V\rightarrow\Rbb$ be a $\Rbb$-linear map. Recall $\im=\sqrt{-1}$. Define a map
+Let $\mc V$ be a vector space over $\Cbb$. Since $\Rbb$ is a subfield of $\Cbb$, $\mc V$ can be viewed as a real normed vector space. Let $\Lambda:\mc V\rightarrow\Rbb$ be a $\Rbb$-linear map. Recall $\im=\sqrt{-1}$. Define the \textbf{complexification} of $\Lambda$ \index{00@Complexification of real linear functionals} to be
 \begin{align}
 \Lambda_\Cbb:\mc V\rightarrow\Cbb\qquad \Lambda_\Cbb(v)=\Lambda(v)-\im\Lambda(\im v) \label{eq162}
 \end{align}
@@ -13539,11 +13542,11 @@ Choose any continuous $f:S=\prod_{\alpha\in\scr I}I_\alpha\rightarrow\Rbb$. By L
 \subsection{Partition of unity and the Tietze extension theorem}\label{lb464}
 
 
-In this section, we fix a Banach space $\mc V$ over $\Fbb\in\{\Rbb,\Cbb\}$, and fix a nonempty LCH space $X$.
+In this section, we fix a Banach space $\mc V$ over $\Fbb\in\{\Rbb,\Cbb\}$, and fix a nonempty LCH space $X$. Recall from Prop. \ref{lb245} that every open subset of $X$ is LCH.
 
 
 \begin{rem}\label{lb457}
-Let $U$ be an open subset of $X$. Recall that $U$ is LCH by Prop. \ref{lb245}. Let $f\in C_c(U,\mc V)$ supported in $U$. Then by zero-extension, $f$ can be viewed as an element of $C_c(X,\mc V)$ supported in $U$. 
+Let $U$ be an open subset of $X$. Let $f\in C_c(U,\mc V)$ supported in $U$. Then by zero-extension, $f$ can be viewed as an element of $C_c(X,\mc V)$ supported in $U$. 
 \end{rem}
 
 
@@ -13621,12 +13624,12 @@ The proof of Tietze extension theorem involves several steps. The first step is 
 
 \begin{thm}[\textbf{Urysohn's lemma}]\index{00@Urysohn's lemma for LCH spaces}\label{lb711}
 Let $K$ be a compact subset of $X$. Then there exists $f$ such that \index{Kf@@$K\prec f$}  \index{fX@$f\prec X$}
-\begin{align}
+\begin{align}\label{eq321}
 K\prec f\prec X
 \end{align}
 \end{thm}
 
-The meaning of the notations is explained below.
+The meaning of the notations in \eqref{eq321} is explained below. Note that since any open subset $U\subset X$ is LCH (Prop. \ref{lb245}), Urysohn's lemma can be applied to $U$ and any compact subset $K\subset U$, which shows that there exists $f\in C_c(X,[0,1])$ such that $K\prec f\prec U$.
 
 \begin{df}\label{lb465}
 Let $U$ be an open subset of $X$. Let $K$ be a compact subset of $X$.
@@ -13751,9 +13754,9 @@ Let $K$ be a compact subset of $X$. Let $\fk U=(U_1,\dots,U_n)$ be a finite set 
 Such $h_1,\dots,h_n$ are called a \textbf{partition of unity of $K$ subordinate to $\fk U$}. \index{00@Partition of unity in LCH spaces}
 \end{thm}
 
-In the language of Def. \ref{lb465}, the assumptions on $h_1,\dots,h_n$ are that $h_i\prec U_i$ for all $i$, and that $K\prec\sum_i h_i$. 
 
-Among the three conditions in Thm. \ref{lb466}, (1) and (2) are more important. In fact, many people only assume (1) and (2) in the definition of partition of unity. We assume (3) since it is also useful. (Note also that (3) is automatic when $X=K$.) Looking at the function $\sum_i h_i$, one easily sees that Urysohn's lemma is a special case of Thm. \ref{lb466}. However, we shall prove Thm. \ref{lb466} using Urysohn's lemma. In fact, $h_1,\dots,h_n$ should be viewed as a \textit{partition of the Urysohn function} $\sum_i h_i$.
+
+Many people do not assume (3) in the definition of partition of unity. We assume (3) since it is useful. In fact, conditions (1)-(3) imply that  $\sum_i h_i$ is an Urysohn function for $K$ and $\bigcup_i U_i$. Therefore, Urysohn's lemma is a special case of Thm. \ref{lb466}. However, we shall prove Thm. \ref{lb466} using Urysohn's lemma. In fact, $h_1,\dots,h_n$ should be viewed as a \textit{partition of the Urysohn function} $\sum_i h_i$.
 
 
 \begin{proof}
@@ -18043,7 +18046,7 @@ Consequently, if $(v_\alpha)$ is a net in an inner product space converging weak
 
 In this starred section, we shall give a direct proof that an inner product space $V$ satisfies Condition (2) of Thm. \ref{lb612} (the convergence of summing orthogonal vectors) if $\ovl B_V(0,1)$ is weakly compact. The word "direct" means that the proof will clearly show how weak compactness leads almost directly to the conclusion. Let us begin the discussion by an easy observation:
 
-\begin{rem}
+\begin{rem}\label{lb820}
 If $W$ is a normed vector space and $V$ is a linear subspace, then we have a canonical linear map $W^*\rightarrow V^*,\varphi\mapsto\varphi|_V$. It is easy to see (cf. Prop. \ref{lb500}) that this map is an isomorphism of Banach spaces if $V$ is dense in $W$. In particular, if $V$ is an inner product space with completion $\mc H$, there is a canonical isomorphism $V^*\simeq\mc H^*$.
 \end{rem}
 
@@ -18139,7 +18142,7 @@ The case $\dim\mc H<+\infty$ is obvious by linear algebra. In the case that eith
 
 
 
-\begin{prob}
+\begin{prob}\label{lb815}
 Assume that $\mc K$ is a closed linear subspace of $\mc H$. Define a map $P:\mc H\rightarrow\mc H$ such that for each $\xi\in\mc H$, $\xi=P\xi+(1-P)\xi$ is the orthogonal decomposition with respect to $\mc K$. (So $P\xi\in\mc K$ and $(1-P)\xi\in\mc K^\perp$.) Prove that $P$ is a bounded linear map, and $P^2=P$, $P^*=P$. We call $P$ the \textbf{projection operator} \index{00@Projection} of $\mc K$. 
 \end{prob}
 
@@ -18709,7 +18712,7 @@ By Thm. \ref{lb530}, we know for each $y\in Y$ that  $\lim_i\xi_i(y)=\xi(y)$ and
 \end{proof}
 
 \begin{rem}
-Since the proof of the direction ``$\Leftarrow$" in Thm. \ref{lb648} is slightly more complicated (although the main idea is clear), we will not use this direction in the future. Note that the direction ``$\Leftarrow$" relies on the weak compactness of the closed unit balls, whereas the easy direction ``$\Rightarrow$" does not.
+Since the proof of the direction ``$\Leftarrow$" in Thm. \ref{lb648} is slightly more complicated (although the main idea is clear), we will not use this direction in the future.  But see Rem. \ref{lb817} for an alternative proof.
 \end{rem}
 
 
@@ -18815,7 +18818,7 @@ Let $T\in\fk L(\mc H)$. Assume that $E\subset\mc H$ spans a dense subspace of $\
 \end{rem}
 
 \begin{eg}\label{lb678}
-Let $X$ be a set. Let $T\in\fk L(\mc H)$. Let $K:X\times X\rightarrow\Cbb$ be the matrix representation of $T$, i.e., $K(x,y)=\bk{T\chi_{\{y\}}|\chi_{\{x\}}}$ for all $x,y\in Y$.  Then $T$ is self-ajoint iff $K(x,y)=\ovl{K(y,x)}$ for all $x,y\in Y$.
+Let $X$ be a set. Let $T\in\fk L(l^2(X))$. Let $K:X\times X\rightarrow\Cbb$ be the matrix representation of $T$, i.e., $K(x,y)=\bk{T\chi_{\{y\}}|\chi_{\{x\}}}$ for all $x,y\in Y$.  Then $T$ is self-ajoint iff $K(x,y)=\ovl{K(y,x)}$ for all $x,y\in Y$.
 \end{eg}
 
 
@@ -19072,7 +19075,7 @@ Assuming self-adjointness, the original problem about integral equation can be f
 
 
 
-\subsubsection{$\star$ Regularity of the solutions of integral equations}
+\subsubsection{$\star\star$ Regularity of the solutions of integral equations}
 
 
 
@@ -19148,7 +19151,7 @@ Luckily, soon after Hilbert's proof, in 1907, Riesz and Fischer proved a theorem
 \end{comment}
 
 
-%% Proofread
+
 
 
 
@@ -19217,7 +19220,7 @@ The following proof shows that this theorem is also true when $\mc H,\mc K$ are 
 
 
 \begin{proof}
-Suppose that $T$ is completely continuous. Let $(\eta_\alpha)$ be a net in $T(\ovl B_{\mc H}(0,1))$, which is of the form $(T\xi_\alpha)$ where $(\xi_\alpha)$ is a net in $\ovl B_{\mc H}(0,1)$. Since $\ovl B_{\mc H}(0,1)$ is weakly compact, $(\xi_\alpha)$ has a subnet converging weakly to some $\xi\in\ovl B_{\mc H}(0,1)$. By the complete continuity of $T$, we have $\lim_\beta T\xi_\beta=T\xi$. Thus $(\eta_\alpha)$ has a convergent subnet $(T\xi_\beta)$. Therefore, by Prop. \ref{lb505}, $T(\ovl B_{\mc H}(0,1))$ is precompact.
+Suppose that $T$ is completely continuous. Since $\ovl B_{\mc H}(0,1)$ is weakly compact, and since the range of a compact set under a continuous map is compact, we conclude that $T(\ovl B_{\mc H}(0,1))$ is norm-compact, and hence norm-precompact.\footnote{Note that we have actually proved that $T(\ovl B_{\mc H}(0,1))$ is compact rather than just precompact. In fact, for Hilbert spaces, the precompactness of $T(\ovl B_{\mc H}(0,1))$ implies the compactness. However, for a general non-reflexive Banach space, it is too restrictive to assume compactness.}
 
 Conversely, assume that $T$ is compact. Let $(\xi_\alpha)$ be a net in $\ovl B_{\mc H}(0,1)$ converging weakly to $\xi\in\ovl B_{\mc H}(0,1)$. Since $T$ is compact, $\Gamma=\ovl{T(\ovl B_{\mc H}(0,1))}$ is (norm-)compact. Therefore, to show that $\lim_\alpha T\xi_\alpha=T\xi$, by Pb. \ref{lb237}, it suffices to prove that every cluster point of $(T\xi_\alpha)$ is $T\xi$. This is clear, since every cluster point of $(T\xi_\alpha)$ is a weak cluster point, which must be $T\xi$ by Pb. \ref{lb676}.
 \end{proof}
@@ -19229,7 +19232,7 @@ Def. \ref{lb675} is the correct definition which allowed Riesz to prove the Fred
 
 
 
-
+%% Record #5 2024/03/11 two lectures  12
 
 
 
@@ -19293,31 +19296,20 @@ Let $\varphi:\mc H\rightarrow\Cbb$ be a linear map. Prove that the following are
 \end{sprob}
 \end{comment}
 
-\begin{sprob}\label{lb786}
-Assume that $\mc H$ has an orthonormal basis $(e_n)_{n\in\Zbb_+}$. (So $\mc H$ is separable.) Let $T\in\fk L(\mc H,\mc K)$. Prove that the following are equivalent:
-\begin{enumerate}
-\item[(1)] $T$ is completely continuous.
-\item[(2)] $\dps\lim_{n\rightarrow\infty} Te_n=0$.
-\end{enumerate}
-\end{sprob}
-\begin{proof}[Hint]
-(1)$\Rightarrow$(2): By Pb. \ref{lb676}, $\lim_nTe_n$ converges weakly to $0$. (2)$\Rightarrow$(1): Define $P_n\in\fk L(\mc H)$ by $P_n\xi=\sum_{i=1}^n \bk{\xi|e_i}e_i$. Prove $\lim_{n\rightarrow\infty}\Vert T-TP_n\Vert=0$.
-\end{proof}
-
-
-\begin{exe}
-Generalize Pb. \ref{lb786} to the case that $\mc H$ is not necessarily separable. (Compare Pb. \ref{lb787}.)
-\end{exe}
 
 
 
-\begin{prob}\label{lb650}
+
+
+
+
+\begin{sprob}\label{lb650}
 Let $(e_i)$ and $(f_j)$ be orthonormal bases of $\mc H,\mc K$ respectively. Let $T\in\fk L(\mc H,\mc K)$. Define
 \begin{align}
 \Vert T\Vert_{\mathrm{HS}}=\Big(\sum_{i,j} |\bk{Te_i|f_j}|^2\Big)^{\frac 12}
 \end{align}
 which is in $[0,+\infty]$. Prove that $\Vert T\Vert_{\mathrm{HS}}$ is independent of the choice of bases. We say that $T$ is a \textbf{Hilbert-Schmidt operator} \index{00@Hilbert-Schmidt operator} if $\Vert T\Vert_{\mathrm{HS}}<+\infty$.
-\end{prob}
+\end{sprob}
 
 \begin{prob}\label{lb660}
 Let $T\in\fk L(\mc H)$ be positive. Prove that $\Vert T\Vert\leq 1$ iff $0\leq T\leq 1$.
@@ -19328,12 +19320,40 @@ To prove ``$\Leftarrow$", apply Cauchy-Schwarz to $\omega_T$.
 \end{proof}
 
 
+
 \begin{sprob}
 Let $T\in\fk L(\mc H)$ satisfy $0\leq T\leq 1$. Prove that $T^2\leq T$.
 \end{sprob}
 \begin{proof}[Hint]
 Use Cauchy-Schwarz to give an upper bound of $|\omega_T(\xi|T\xi)|$.
 \end{proof}
+
+
+\begin{sprob}\label{lb816}
+Let $(e_n)_{n\in\Zbb_+}$ be an orthonormal sequence in $\mc H$. Let $T:\mc H\rightarrow\mc K$ be completely continuous. Prove that $\lim_{n\rightarrow\infty}Te_n=0$.
+\end{sprob}
+
+\begin{proof}[Hint]
+By Pb. \ref{lb676}, $\lim_nTe_n$ converges weakly to $0$.
+\end{proof}
+
+
+\begin{sprob}\label{lb786}
+Assume that $\mc H$ is infinite dimensional. Let $T\in\fk L(\mc H,\mc K)$. Assume that for each orthonormal sequence $(e_n)_{n\in\Zbb_+}$ in $\mc H$ we have $\lim_{n\rightarrow\infty}Te_n=0$. 
+\begin{enumerate}
+\item By mimicking the proof of the Hilbert-Schmidt Thm. \ref{lb657}, find a sequence of orthonormal vectors $(e_n)$ in $\mc H$ such that, by setting $V_0=\{0\}$ and $V_n=\Span\{e_1,\dots,e_n\}$ (where $n>0$), we have
+\begin{gather*}
+\Vert Te_{n+1}\Vert\geq \frac 12\Vert T|_{V_n^\perp}\Vert
+\end{gather*}
+for each $n\in\Nbb$, where $\Vert T|_{V_n^\perp}\Vert$ is the operator norm of $T|_{V_n^\perp}:V_n^\perp\rightarrow\mc K$.
+\item Let $P_n\in\fk L(\mc H)$ be the projection operator onto $V_n$ (cf. Pb. \ref{lb815}). Prove that $\lim_n\Vert T-TP_n\Vert=0$. Conclude that $T$ is approximable.
+\end{enumerate}
+\end{sprob}
+
+\begin{rem}\label{lb817}
+Pb. \ref{lb816} and \ref{lb786} give an alternative proof that any completely continuous operator $T:\mc H\rightarrow\mc K$ is approximable.
+\end{rem}
+
 
 
 
@@ -19577,11 +19597,11 @@ In Def. \ref{lb689}-(3) it suffices to assume that $\fk M$ is closed under count
 \end{rem}
 
 \begin{exe}\label{lb690}
-If $(\fk M_i)_{i\in I}$ is a family of $\sigma$-algebra on $X$, then $\bigcap_{i\in I}\fk M_i$ is a $\sigma$-algebra on $X$.
+If $(\fk M_i)_{i\in I}$ is a family of $\sigma$-algebras on $X$, then $\bigcap_{i\in I}\fk M_i$ is a $\sigma$-algebra on $X$.
 \end{exe}
 
 \begin{df}
-Let $\fk E\subset 2^X$. By Exp. \ref{lb690},
+Let $\fk E\subset 2^X$. By Exe. \ref{lb690},
 \begin{align}
 \sigma(\fk E):=\bigcap_{\fk M\text{ is a $\sigma$-algebra containing $\fk E$}}\fk M 
 \end{align}
@@ -19608,7 +19628,7 @@ Let $(X,\fk M)$ and $(Y,\fk N)$ be measurable sets. Let $f:X\rightarrow Y$ be a 
 \begin{align}
 f^{-1}(\fk N)=\{f^{-1}(E):E\in\fk N\}
 \end{align}
-is clearly a $\sigma$-algebra on $X$. We say that $f$ is \textbf{measurable} \index{00@Measurable function/map} if $f^{-1}(\fk N)\subset\fk M$, i.e., if $f^{-1}(E)\in\fk M$ for each $F\in\fk N$.
+is clearly a $\sigma$-algebra on $X$. We say that $f$ is \textbf{measurable} \index{00@Measurable function/map} if $f^{-1}(\fk N)\subset\fk M$, i.e., if $f^{-1}(E)\in\fk M$ for each $E\in\fk N$.
 \end{df}
 
 \begin{rem}\label{lb696}
@@ -19621,7 +19641,7 @@ Let $(X,\fk M)$ be a measurable space, and let $(Y,\mc T_Y)$ be a topological sp
 \end{df}
 
 \begin{rem}
-The most important measurable functions $X\rightarrow Y$, where $Y$ is a topological space, are those such that $Y=\Rbb,\ovl\Rbb_{\geq 0},\Cbb$. Note that $\Rbb,\Cbb$ are equipped with the Euclidean topologies, and $\ovl\Rbb_{\geq0}=[0,+\infty]$ is equipped with its standard topology (cf. Exp. \ref{lb690}), i.e., the unit topology such that any increasing bijection $\ovl\Rbb_{\geq0}\rightarrow[0,1]$ is a homeomorphism.
+The most important measurable functions $X\rightarrow Y$, where $Y$ is a topological space, are those such that $Y=\Rbb,\ovl\Rbb_{\geq 0},\Cbb$. Note that $\Rbb,\Cbb$ are equipped with the Euclidean topologies, and $\ovl\Rbb_{\geq0}=[0,+\infty]$ is equipped with its standard topology (cf. Exp. \ref{lb691}), i.e., the unique topology such that any increasing bijection $\ovl\Rbb_{\geq0}\rightarrow[0,1]$ is a homeomorphism.
 \end{rem}
 
 
@@ -19664,7 +19684,7 @@ Let $f:X\rightarrow Y$ be a map of sets. Let $\fk E\subset 2^Y$. Then
 
 
 \begin{proof}
-$f^{-1}(\sigma(\fk E))$ is a $\sigma$-algebra on $X$, and it contains $f^{-1}(\fk E)$. Therefore $f^{-1}(\sigma(\fk E))$ contain the smallest $\sigma$-algebra containing $f^{-1}(\fk E)$. This prove ``$\subset$". Since $f^{-1}(\fk E)$ is contained in $\fk M:=f^{-1}(\sigma(\fk E))$, by Prop. \ref{lb692}, $f^{-1}(\sigma(\fk E))$ is contained in $\fk M$. This proves ``$\supset$".
+$f^{-1}(\sigma(\fk E))$ is a $\sigma$-algebra on $X$, and it contains $f^{-1}(\fk E)$. Therefore $f^{-1}(\sigma(\fk E))$ contain the smallest $\sigma$-algebra containing $f^{-1}(\fk E)$. This prove ``$\subset$". Since $f^{-1}(\fk E)$ is contained in $\fk M:=\sigma(f^{-1}(\fk E))$, by Prop. \ref{lb692}, $f^{-1}(\sigma(\fk E))$ is contained in $\fk M$. This proves ``$\supset$".
 \end{proof}
 
 \begin{co}\label{lb693}
@@ -19701,6 +19721,8 @@ Since $\mc U\subset\mc T_Y$, we clearly have $\sigma(\mc U)\subset\fk B_Y$. If w
 
 Choose any open set $O\subset Y$. Then for each $y\in O$ there is a neighborhood $U_y\in \mc U$ of $y$ contained inside $O$. Thus $O=\bigcup_{y\in O}U_y$. So $U$ is a union of elements of $\mc U$. Since $Y$ is second countable, the subset $O$ is also second countable and hence (by Cor. \ref{lb265}) Lindel\"of. Therefore, $O$ is a countable union of elements of $\mc U$. This proves $O\in\sigma(\mc U)$. 
 \end{proof}
+
+%% Proofread
 
 \begin{eg}\label{lb703}
 Let $(X,\fk M)$ be a measurable space. Let $Y$ be a separable (equivalently, second countable) metric space. Then a map $f:X\rightarrow Y$ is measurable iff $f^{-1}(B_Y(y,r))\in\fk M$ for each $y\in Y,r>0$. This is because the open balls of $Y$ form a basis for the topology of $Y$.
@@ -19807,7 +19829,7 @@ Let $(X,\fk M)$ be a measurable space. A function $\mu:\fk M\rightarrow[0,+\inft
 \item $\mu(\emptyset)=0$.
 \item (\textbf{Countable additivity}) \index{00@Countable additivity} If we have countably many $E_1,E_2,\dots\in\fk M$ that are pairwise disjoint, then $\mu\big(\bigcup_n E_n\big)=\sum_n\mu(E_n)$.
 \end{itemize}
-We call $(X,\fk M,\mu)$ (or simply call $(X,\mu)$) a \textbf{measure space}. \index{00@Measure space} If $X$ is a topological space and $\mu$ is defined on $\fk M=\fk B_X$, we call $\mu$ a \textbf{Borel measure}. \index{00@Borel measure}
+We call $(X,\fk M,\mu)$ (or simply call $(X,\mu)$) a \textbf{measure space}. \index{00@Measure space} If $X$ is a topological space and $\mu$ is defined on $\fk M=\fk B_X$, we call $\mu$ a \textbf{Borel measure}. \index{00@Borel measure} If $\mu(X)<+\infty$, we say that $\mu$ is a \textbf{finite measure}. \index{00@Finite measure}
 \end{df}
 
 \begin{eg}
@@ -19895,7 +19917,7 @@ Let $(X,\fk M,\mu)$ be a measure space. Then there is a (necessarily unique) sma
 \end{thm}
 The phrase ``smallest complete extension" means that $(\ovl{\fk M},\ovl\mu)$ is a complete measure on $X$ extending $(\fk M,\mu)$, and that every complete measure extending $(\fk M,\mu)$ also extends $(\ovl {\fk M},\ovl\mu)$. 
 
-
+We clearly have an equivalent description of $\ovl{\fk M}$: A subset $G\subset X$ belongs to $\ovl{\fk M}$ iff there exist $A,B\in\fk M$ such that $A\subset G\subset B$ and $\mu(B\setminus A)=0$.
 
 \begin{proof}
 Define $\ovl{\fk M}$ to be the set of subsets of $X$ of the form $E\cup F$ where $E\in\fk M$ and $F$ is a subset of a $\mu$-null set (in $\fk M$), and let $\ovl\mu(E\cup F)=\mu(E)$. This is well-defined: Suppose that $E\cup F=E'\cup F'$ where $E,F\in\fk M$, and $F,F'$ are subsets of null sets $A,A'$ respectively. Then $\mu(E\cup F)\leq \mu(E'\cup A')$. Since $A'\setminus E'$ is null, we have $\mu(E'\cup A')=\mu(E')$. So $\mu(E)\leq\mu(E')$. Similarly, $\mu(E')\leq\mu(E)$.
@@ -19964,7 +19986,7 @@ Note that the only property about $\int$ used in this proof is that $\int:C_c(\R
 \end{comment}
 
 
-\begin{thm}
+\begin{thm}\label{lb800}
 $m^*$ is a measure on $\fk B_{\Rbb^N}$. Its completion will be denoted by $(\fk M,m)$ and called the \textbf{Lebesgue measure} \index{00@Lebesgue measure} on $\Rbb^N$. Elements in $\fk M$ are called \textbf{Lebesgue measurable sets}. \index{00@Lebesgue measurable set} Moreover, for each bounded  set $E\in\fk M$ we have $m(E)<+\infty$.
 \end{thm}
 
@@ -19999,7 +20021,7 @@ For each $E\subset X$, define the \textbf{outer measure} \index{00@Outer measure
 \end{ass}
 
 
-\begin{df}
+\begin{df}\label{lb810}
 We say that $E$ is \textbf{$\mu$-regular} if $\mu_*(E)=\mu^*(E)$. Note that compact sets and open sets are clearly $\mu$-regular. If $E$ is $\mu$-regular, we write $\mu_*(E)$ and $\mu^*(E)$ as $\mu(E)$.
 \end{df}
 
@@ -20061,7 +20083,7 @@ Suppose that $K_1,K_2$ are disjoint compact subsets of $X$. Then $\mu(K_1\cup K_
 \begin{proof}
 By the (countable) subadditivity of $\mu^*$, it remains to prove $\mu^*(K_1\cup K_2)\geq\mu^*(K_1)+\mu^*(K_2)$. By the definition of $\mu^*$, it suffices to prove that for each open $U$ containing $K_1\cup K_2$ we have $\mu(U)\geq\mu^*(K_1)+\mu^*(K_2)$. We claim that there exist disjoint open $U_1,U_2\subset U$ containing $K_1,K_2$ respectively. Then by condition (d) of Asmp. \ref{lb712}, we get $\mu(U)\geq\mu(U_1\cup U_2)=\mu(U_1)+\mu(U_2)\geq\mu^*(K_1)+\mu^*(K_2)$.
 
-The proof of the claim is a routine argument in point-set topology. Choose any $x\in K_1,y\in K_2$. Since $U$ is Hausdorff, there exist disjoint $V_{xy}\in\Nbh_U(x)$ and $W_{xy}\in\Nbh_U(y)$. Since $K_2$ is compact, there exit $y_1,\dots,y_n\in K_2$ such that $K_2$ is contained in $W_x=W_{xy_1}\cup\cdots \cup W_{xy_n}$. Let $V_x=V_{xy_1}\cap\cdots\cap V_{xy_n}$. Then $V_x$ and $W_x$ are disjoint open subsets of $U$ containing respectively $x$ and $K_2$. By the compactness of $K_1$, there are $x_1,\dots,x_m\in K_1$ such that $K_1$ is covered by $U_1=V_{x_1}\cup\cdots\cup V_{x_m}$. Then $U_2=W_{x_1}\cap\cdots\cap W_{x_m}$ contains $K_2$ and is disjoint from $U_1$. 
+The proof of the claim is a routine argument in point-set topology. Choose any $x\in K_1,y\in K_2$. Since $U$ is Hausdorff, there exist disjoint $V_{xy}\in\Nbh_U(x)$ and $W_{xy}\in\Nbh_U(y)$. Since $K_2$ is compact, there exit $y_1,\dots,y_n\in K_2$ such that $K_2$ is contained in $W_x=W_{xy_1}\cup\cdots \cup W_{xy_n}$. Let $V_x=V_{xy_1}\cap\cdots\cap V_{xy_n}$. Then $V_x$ and $W_x$ are disjoint open subsets of $U$ containing respectively $x$ and $K_2$. By the compactness of $K_1$, there are $x_1,\dots,x_m\in K_1$ such that $K_1$ is covered by $U_1=V_{x_1}\cup\cdots\cup V_{x_m}$. Then $U_2=W_{x_1}\cap\cdots\cap W_{x_m}$ contains $K_2$ and is disjoint from $U_1$. \footnote{An alternative proof when $X$ is LCH: By Prop. \ref{lb245}, the open set $W=X\setminus K_2$ is LCH. Therefore, by Lem. \ref{lb460}, there is an open precompact subset $U_1\Subset W$ containing $K_1$. Take $U_2=W\setminus\ovl U_1$.}
 \end{proof}
 
 
@@ -20235,7 +20257,7 @@ Let $\mu:2^X\rightarrow[0,+\infty]$ satisfy Asmp. \ref{lb712}. Let $\fk M_\mu$ b
 
 %We divide the proof into two steps. In the first step, we prove that $\fk M_\mu$ is a $\sigma$-algebra. In the second step, we prove that $\fk M_\mu$ contains $\fk B_X$, and that $(\fk M_\mu,\mu)$ is complete.
 
-After proving this theorem, we will write $\mu^*(E)$ as $\mu(E)$ if $E\in\fk M_\mu$. The restriction $(\fk B_X,\mu)$ will be called a \textbf{Radon measure} if $X$ is LCH and $\mu$ is finite on compact sets. We will discuss Radon measures in detail in a future chapter.
+After proving this theorem, we will write $\mu^*(E)$ as $\mu(E)$ if $E\in\fk M_\mu$. The restriction $(\fk B_X,\mu)$ will be called a \textbf{Radon measure} if $X$ is LCH and $\mu$ is finite on compact sets. We will discuss Radon measures in detail in Ch. \ref{lb805}.
 
 \begin{proof}
 Step 1. We show that $\fk M_\mu$ is a $\sigma$-algebra. Clearly $\emptyset\in\fk M_\mu$.  Let $\Omega\in\mc T_X$ such that $\mu(\Omega)<+\infty$. We want to show that if $E\cap\Omega$ is regular then $E^c\cap\Omega$ is also regular. We want to show that if $E_1,E_2,\dots\subset 2^X$ are such that $E_1\cap\Omega,E_2\cap\Omega,\dots$ are regular, then $(\bigcup_n E_n)\cap\Omega$ is regular. By replacing $E$ with $E\cap\Omega$ and $E_n$ with $E_n\cap\Omega$, it suffices to prove:
@@ -20274,6 +20296,9 @@ Assume that $(\fk B_X,\mu)$ is \textbf{$\sigma$-finite}, i.e., $X$ is a countabl
 \begin{proof}[$\star$ Proof]
 $(\fk M_\mu,\mu)$ extends the completion $(\fk M,\mu)$. We want to show that $\fk M_\mu\subset\fk M$. Let $E\in\fk M_\mu$. Since $X$ is $\sigma$-finite, we have $X=\bigcup_n A_n$ where $A_n\in\fk B_X$ and $\mu(A_n)<+\infty$. It suffices to prove that $E_n:=E\cap A_n$ belongs to $\fk M$ for each $n$. Note that $E_n\in\fk M_\mu$ and $\mu(E_n)<+\infty$. Thus, by Cor. \ref{lb721}, for each $k\in\Zbb_+$ there exists a compact $K_k\subset E_n$ such that $\mu(U_k\setminus K_k)<1/k$. By replacing $K_k$ with $K_1\cup\cdots\cup K_k$, we assume $(K_k)$ is decreasing. Let $F=\bigcup_k K_k$, which is a Borel set. Then $F\subset E_n$ and $E_n\setminus F$ is $\mu$-null. Since $(\fk M,\mu)$ is complete, we see that $E_n\setminus F$ belongs to $\fk M$. So $E_n\in\fk M$.
 \end{proof}
+
+In general, $(\fk M_\mu,\mu)$ is larger than the completion $(\fk M,\mu)$ of $(\fk B_X,\mu)$. $(\fk M_\mu,\mu)$ is called the \textbf{saturation} of $(\fk M,\mu)$. In general, the measure $\nu$ of a measure space $(Y,\fk N,\nu)$ is called \textbf{saturated} provided that a set $E\subset Y$ belongs to $\fk N$ iff $E\cap A\in\fk N$ for every $A\in\fk N$ such that $\nu(A)<+\infty$. If a measure $(\fk N,\nu)$ is not necessarily saturated, the smallest saturated measure extending $(\fk N,\nu)$ is called the \textbf{saturation} of $(\fk N,\nu)$. \index{00@Saturated measure}  \index{00@Saturation of a measure}
+
 
 
 \subsection{A discussion of measurable sets: from Jordan to Lebesgue to Carath\'eodory}\label{lb733}
@@ -20424,8 +20449,8 @@ See \cite[Thm. 1.11]{Fol-R}.
 
 Our main Thm. \ref{lb724} follows easily from \ref{lb740}: Since $\mu$ satisfies (a,b,c) of Asmp. \ref{lb712}, $\mu^*$ is an abstract outer measure. By using (d,e) of Asmp. \ref{lb712}, one can show that open sets are $\mu^*$-measurable.\footnote{Sketch of the proof: Let $E$ be open. First prove \eqref{eq298} when $A$ is open. Then prove \eqref{eq298} for any $A$ by using a similar argument as in the proof of Prop. \ref{lb741}.} Therefore, the set $\fk M_\mu$ of Carath\'eodory $\mu^*$-measurable sets contains open subsets of $X$. Thus, by Thm. \ref{lb740}, $\fk M_\mu$ is a $\sigma$-algebra containing $\fk B_X$, and $\mu^*$ is a complete measure on $\fk M_\mu$.
 
-The reason we use locally regular sets in our course instead of Carath\'eodory's approach is that the latter is very unintuitive. The intuition ``subadditivity $+$ superadditivity $\Rightarrow$ additivity", which goes back to Lebesgue, Jordan, and even Darboux, is very obscure in the proof of Thm. \ref{lb740}. One cannot interpret \eqref{eq299} to mean that the outer measure $\nu^*(A\cap E)$ of $A\cap E$ equals the ``inner measure" $\nu^*(A)-\nu^*(A\setminus E)$, because Exp. \ref{lb742} tells us that $\mu^*(A)-\mu^*(A\setminus E)$ is often not equal to the actual inner measure $\mu_*(A\cap E)$.%\footnote{Here, I am challenging the view expressed in the paragraph before Thm 1.11 of \cite{Fol-R}.} 
-On the other hand, the advantage of Carath\'eodory's approach is that Thm. \ref{lb740} can be applied to more general situations than Thm. \ref{lb724}. 
+The reason we use locally regular sets in our course instead of Carath\'eodory's approach is that the latter is very unintuitive. The intuition ``subadditivity $+$ superadditivity $\Rightarrow$ additivity", which goes back to Lebesgue, Jordan, and even Darboux, is very obscure in the proof of Thm. \ref{lb740}. One cannot interpret \eqref{eq299} to mean that the outer measure $\nu^*(A\cap E)$ of $A\cap E$ equals the ``inner measure" $\nu^*(A)-\nu^*(A\setminus E)$, because Exp. \ref{lb742} tells us that $\mu^*(A)-\mu^*(A\setminus E)$ is often not equal to the actual inner measure $\mu_*(A\cap E)$. %\footnote{Here, I am challenging the view expressed in the paragraph before Thm 1.11 of \cite{Fol-R}.} 
+On the other hand, the advantage of Carath\'eodory's approach is that Thm. \ref{lb740} can be applied to more general situations than Thm. \ref{lb724}. For example, it can be used to construct measures on Hausdorff spaces not satisfying regularity (such as the Hausdorff measures, cf. \cite[Sec. 11.2]{Fol-R}).
 
 I believe that many people will have this confusion when they first see the condition \eqref{eq299}: Why consider an arbitrary set $A$ instead of just a ``good" set, for example, an open set, a compact set, or a Borel set? How can one believe that a definition as strong as Def. \ref{lb743} would have nontrivial examples? The way to understand the motivation behind a definition or a theorem is not to immerse oneself in the technical details of the proof, but to clarify the genealogy of concepts. I hope that the exposition in this section will help the reader to get a general idea of how the concept of measurable sets evolved from its basic and intuitive form to the abstract definition of Carath\'eodory.
 
@@ -20483,6 +20508,15 @@ Apply Cor. \ref{lb695} to the inclusion map $\iota:Z\rightarrow Y$.
 \end{proof}
 
 
+
+
+\begin{prob}\label{lb778}
+Let $(X,\fk M,\mu)$ be a measure space with completion $(\ovl{\fk M},\ovl\mu)$. Let $\mc V$ be a separable normed vector space, and let $f:X\rightarrow \mc V$ be $\ovl{\fk M}$-measurable (i.e., for each $U\in\fk B_{\mc V}$ we have $f^{-1}(U)\in\ovl{\fk M}$). Prove that there exists $A\in\fk M$ with $\mu(X\setminus A)=0$ such that $f\chi_A$ is $\fk M$-measurable.
+\end{prob}
+
+
+\subsubsection{Lower and upper semicontinuity}\label{lb803}
+
 \begin{df}\label{lb781}
 Let $X$ be a topological space. A function $f:X\rightarrow\ovl\Rbb$ is called \textbf{lower semicontinuous} \index{00@Lower semicontinuous} if $f^{-1}(a,+\infty]$ is open for each $a\in\ovl\Rbb$. We say that $f$ is  \textbf{upper semicontinuous} \index{00@Upper semicontinuous} if $f^{-1}[-\infty,a)$ is open for each $a\in\ovl\Rbb$. By Exp. \ref{lb697}, semicontinuous functions are Borel functions.
 \end{df}
@@ -20516,8 +20550,9 @@ Let $X$ be a topological space. Let $f:X\rightarrow\ovl\Rbb$. Prove that the fol
 From Pb. \ref{lb767}-(3), it is clearly that an $\ovl\Rbb_{\geq0}$-linear combination of lower semicotinuous functions $X\rightarrow\ovl\Rbb_{\geq0}$ is lower semicontinuous.
 \end{rem}
 
-\begin{prob}\label{lb778}
-Let $(X,\fk M,\mu)$ be a measure space with completion $(\ovl{\fk M},\ovl\mu)$. Let $\mc V$ be a separable normed vector space, and let $f:X\rightarrow \mc V$ be $\ovl{\fk M}$-measurable (i.e., for each $U\in\fk B_{\mc V}$ we have $f^{-1}(U)\in\ovl{\fk M}$). Prove that there exists $A\in\fk M$ with $\mu(X\setminus A)=0$ such that $f\chi_A$ is $\fk M$-measurable.
+
+\begin{prob}
+Let $X$ be a compact topological space, and let $f:X\rightarrow\ovl\Rbb$ be lower (resp. upper) semicontinuous. Show that $f$ attains its minimum (resp. maximum) at some point of $X$.
 \end{prob}
 
 
@@ -20703,7 +20738,7 @@ One easily finds $h\in \mc S_+(X)$ such that $f+h=g$. So $\int g=\int f+\int h\g
 
 
 \begin{df}\label{lb747}
-We let \index{LX@$\mc L_+(X)$}
+We let \index{LX@$\mc L_+(X)=\mc L(X,\ovl\Rbb_{\geq0})$}
 \begin{align}
 \mc L_+(X,\fk M)\equiv\mc L_+(X)=\{\text{measurable }f\in[0,+\infty]^X\}
 \end{align}
@@ -20755,12 +20790,12 @@ Let $f\in\mc L_+(X)$. Then there is a sequence $(s_n)_{n\in\Zbb_+}$ in $\mc S_+(
 \end{pp}
 
 \begin{proof}
-Choose a strictly increasing homeomorphism $\varphi:[0,+\infty]\xrightarrow{\simeq}[0,1]$, and let $g=\varphi\circ f$. Similar to \eqref{eq302}, we let $\sigma_n=\sum_{k=1}^n \frac{k-1}n\chi_{E_k}$ where $E_k=g^{-1}(\frac {k-1}n,\frac kn]$. Then $0\leq \sigma_n<1$, and $\lim_n \sigma_n$ converges uniformly to $g$ (since $\Vert g-s_n\Vert_{l^\infty}\leq 1/n$). The subsequence $(\sigma_{2^n})_{n\in\Zbb_+}$ is increasing. Let $s_n=\varphi^{-1}\circ\sigma_{2^n}$. Then $(s_n)$ satisfies the requirement.
+Choose a strictly increasing homeomorphism $\varphi:[0,+\infty]\xrightarrow{\simeq}[0,1]$, and let $g=\varphi\circ f$. Similar to \eqref{eq302}, we let $\sigma_n=\sum_{k=1}^n \frac{k-1}n\chi_{E_k}$ where $E_k=g^{-1}(\frac {k-1}n,\frac kn]$. Then $0\leq \sigma_n<1$, and $\lim_n \sigma_n$ converges uniformly to $g$ (since $\Vert g-\sigma_n\Vert_{l^\infty}\leq 1/n$). The subsequence $(\sigma_{2^n})_{n\in\Zbb_+}$ is increasing. Let $s_n=\varphi^{-1}\circ\sigma_{2^n}$. Then $(s_n)$ satisfies the requirement.
 \end{proof}
 
 
-\begin{rem}
-The above proof shows that if $\Vert f\Vert_{l^\infty}<+\infty$, one can choose an increasing sequence $(s_n)$ in $\mc S_+(X)$ converging uniformly to $f$.
+\begin{rem}\label{lb807}
+The above proof shows that if $\Vert f\Vert_{l^\infty}<+\infty$, one can choose an increasing sequence $(s_n)$ in of simple functions $X\rightarrow\Rbb_{\geq0}$ converging uniformly to $f$.
 \end{rem}
 
 Before proving the linearity of $\int_X$, we first use Prop. \ref{lb749} to give a fun proof of an (almost) special case of Pb. \ref{lb778}.
@@ -20799,7 +20834,15 @@ which is in $\fk M$. Then $f_n\geq\sum_i a_i\chi_{E_{i,n}}$. Thus, by Def. \ref{
 \begin{align*}
 \int_X f_n\geq\sum_i a_i\mu(E_{i,n})
 \end{align*}
-Clearly $(E_{i,n})_{n\in\Zbb_+}$ is increasing. Since $f>s$ on $E_i$, we have $\bigcup_n E_{i,n}=E_i$. Therefore, by Prop. \ref{lb748}-(b) (which is a consequence of the countable additivity of $\mu$), $\lim_n\mu(E_{i,n})=\mu(E_i)$. So $\lim_n\int_Xf_n\geq\sum_i a_i\mu(E_i)=\int_Xs$, because the map $t\in\ovl\Rbb_{\geq0}\mapsto a_it$ is continuous.\footnote{Here, we have used the convention $0\cdot(+\infty)=0$.}
+Clearly $(E_{i,n})_{n\in\Zbb_+}$ is increasing. Since $f>s$ on $E_i$, we have $\bigcup_n E_{i,n}=E_i$. Therefore, by Prop. \ref{lb748}-(b) (which is a consequence of the countable additivity of $\mu$), $\lim_n\mu(E_{i,n})=\mu(E_i)$. So $\lim_n\int_Xf_n\geq\sum_i a_i\mu(E_i)=\int_Xs$ because, by Lem. \ref{lb790}, the map $t\in\Rbb_{\geq0}\mapsto a_it$ is continuous.
+\end{proof}
+
+\begin{lm}\label{lb790}
+For each $c\in\ovl\Rbb_{\geq0}$, the map $\lambda\in\ovl\Rbb_{\geq0}\mapsto c\lambda\in\ovl\Rbb_{\geq0}$ is left continuous, i.e., if $(\lambda_\alpha)$ is an increasing net in $\ovl\Rbb_{\geq0}$ converging to $\lambda$, then $\lim_\alpha c\lambda_\alpha=c\lambda$. Moreover, if $c\in\Rbb_{\geq0}$, then this map is continuous.
+\end{lm}
+
+\begin{proof}
+This is easy to check. Pay special attention to the case that $c=+\infty$. In this case, the multiplication by $c$ is not continuous at $0$ because $(+\infty)\cdot 0=0$.
 \end{proof}
 
 The countable additivity of $\mu$ plays a crucial role in the above proof. Indeed, Prop. \ref{lb748}-(b) can be viewed as a special case of the monotone convergence theorem: If $(E_n)$ is an increasing family in $\fk M$ and $E=\bigcup_n E_n$, set $f=\chi_E$ and $f_n=\chi_{E_n}$, then $\int f=\lim_n\int f_n$ means precisely $\mu(E)=\lim_n\mu(E_n)$.
@@ -20811,8 +20854,11 @@ The map $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-lin
 \end{pp}
 
 \begin{proof}
-Let $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there are increasing sequences $(s_n)$ and $(t_n)$ in $\mc S_+(X)$ converging pointwise to $f$ and $g$ respectively. Then $(s_n+t_n)_{n\in\Zbb_+}$ is increasing and converges pointwise to $f+g$. By the linearity of $\int_X$ on $\mc S_+(X)$ (Prop. \ref{lb750}), we have $\int(s_n+t_s)=\int s_n+\int t_n$. Taking $\lim_n$ and applying the monotone convergence theorem, we have $\int (f+g)=\int f+\int g$. That $\int cf=c\int f$ for all $c\in\ovl\Rbb_{\geq0}$ can be proved in a similar way (or by a direct argument).
+Let $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there are increasing sequences $(s_n)$ and $(t_n)$ in $\mc S_+(X)$ converging pointwise to $f$ and $g$ respectively. Then $(s_n+t_n)_{n\in\Zbb_+}$ is increasing and converges pointwise to $f+g$. By the linearity of $\int_X$ on $\mc S_+(X)$ (Prop. \ref{lb750}), we have $\int(s_n+t_s)=\int s_n+\int t_n$. Taking $\lim_n$ and applying the monotone convergence theorem, we have $\int (f+g)=\int f+\int g$. That $\int cf=c\int f$ for all $c\in\ovl\Rbb_{\geq0}$ can be proved in a similar way using Lem. \ref{lb790} (or by a direct argument).
 \end{proof}
+
+
+
 
 \begin{co}\label{lb761}
 Let $A,B\in\fk M$ be disjoint. Let $f\in\mc L_+(X)$. Then $\int_{A\cup B}f=\int_Af+\int_Bf$
@@ -20890,7 +20936,7 @@ Let $V$ be an $\Rbb$-vector space. A subset $K\subset V$ is called a \textbf{con
 \end{df}
 
 \begin{pp}\label{lb751}
-Let $K$ be a convex cone in an $\Rbb$-vector space $V$. Let $\Gamma:K\rightarrow\Rbb_{\geq0}$ be an $\Rbb_{\geq0}$-linear map. Suppose that $V=\Span_\Rbb K$. Then $\Gamma$ can be extended uniquely to an $\Rbb$-linear map $\Lambda:V\rightarrow\Rbb$. 
+Let $K$ be a convex cone in an $\Rbb$-vector space $V$. Let $\Gamma:K\rightarrow\Rbb$ be an $\Rbb_{\geq0}$-linear map. Suppose that $V=\Span_\Rbb K$. Then $\Gamma$ can be extended uniquely to an $\Rbb$-linear map $\Lambda:V\rightarrow\Rbb$. 
 \end{pp}
 
 
@@ -21154,7 +21200,7 @@ Let $(X,\fk M,\mu)$ be a measure space.
 
 
 
-\begin{prob}
+\begin{prob}\label{lb328}
 Let $h\in\mc L_+(X)=\mc L(X,[0,+\infty])$. Prove that there is a unique measure $\nu$ on $\fk M$ such that
 \begin{align}\label{eq307}
 \int_X f d\nu=\int_Xfhd\mu
@@ -21300,7 +21346,7 @@ A function $f:X\rightarrow\mc V$ is called \textbf{weakly integrable} \index{00@
 \begin{align}
 \Bigbk{\varphi,\int_Xfd\mu}=\int_X\varphi\circ fd\mu
 \end{align}
-Note that such vector $\int_Xfd\mu$ are unique because $\mc V^*$ separates points of $\mc V$ by the Hahn-Banach Cor. \ref{lb502}.
+Note that such vectors $\int_Xfd\mu$ are unique because $\mc V^*$ separates points of $\mc V$ by the Hahn-Banach Cor. \ref{lb502}.
 \end{df}
 
 
@@ -21332,7 +21378,7 @@ Recall that $\mc V$, as a topological space, is equipped with the Borel $\sigma$
 
 
 \begin{eg}
-Suppose that $X$ is a topological space and $\fk M=\mc B_X$. Let $f:X\rightarrow\mc V$ be continuous. Then $f$ is measurable. Since $f(X)$ is a compact metric subspace of $\mc V$, it is separable (Thm. \ref{lb252}). Therefore $f\in \mc L_B(X,\mc V)$.
+Suppose that $X$ is a topological space and $\fk M=\fk B_X$. Let $f:X\rightarrow\mc V$ be continuous. Then $f$ is measurable. Since $f(X)$ is a compact metric subspace of $\mc V$, it is separable (Thm. \ref{lb252}). Therefore $f\in \mc L_B(X,\mc V)$.
 \end{eg}
 
 \begin{prob}
@@ -21418,7 +21464,7 @@ Extend Cor. \ref{lb775} and \ref{lb776} to Bochner measurable functions.
 \newpage
 
 
-\section{Positive linear functionals and Radon measures}
+\section{Positive linear functionals and Radon measures}\label{lb805}
 
 The goal of this chapter is to study a class of Borel measures on LCH spaces generalizing the Lebesgue measure on $\Rbb^N$. Our starting point is an LCH space $(X,\mc T_X)$ and a linear functional $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ where \index{00@$C_c(X,\Rbb_{\geq0})$}
 \begin{align}
@@ -21439,7 +21485,7 @@ In fact, we shall first define Radon measure to be a Borel measure satisfying ce
 
 Let $(X,\mc T_X)$ be an LCH space with topology $\mc T_X$. Recall Rem. \ref{lb459} for the two equivalent descriptions of precompact subsets (and their closures) of an open $U\subset X$. Recall that every open subset of an LCH space is LCH (cf. Prop. \ref{lb245}).
 
-\begin{df}
+\begin{df}\label{lb811}
 Let $\fk M\subset 2^X$ be a $\sigma$-algebra containing $\fk B_X$. Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be a measure. Let $E\in\fk M$. We say that $\mu$ is \textbf{outer regular} \index{00@Outer regular} on $E$ (or that $E$ is \textbf{outer $\mu$-regular}) if
 \begin{align*}
 \mu(E)=\inf\{\mu(U):U\supset E,U\text{ is open}\}
@@ -21451,14 +21497,16 @@ We say that $\mu$ is \textbf{inner regular} on $E$ (or that $E$ is \textbf{inner
 We say that $\mu$ is \textbf{regular} on $E$ (or that $E$ is \textbf{$\mu$-regular}) \index{00@Regular (measure)} if $\mu$ is outer regular and inner regular on $E$.
 \end{df}
 
-\begin{eg}
-Let $(\fk M_\mu,\mu)$ be as in Thm. \ref{lb724}. Then $\mu$ is outer regular on any $E\in\fk M_\mu$ (since $\mu$ is the restriction of $\mu^*$ to $\fk M_\mu$). If $E\in\fk M_\mu$ and $\mu(E)<+\infty$, then $\mu$ is regular on $E$ by Prop. \ref{lb723}. Moreover, by Asmp. \ref{lb712}, $\mu$ is regular on open sets and compact sets.
+\begin{eg}\label{lb799}
+Assume that $\mu:\mc T_X\rightarrow[0,+\infty]$ satisfies conditions (a)-(e) in Asmp. \ref{lb712}. Define $\mu^*:2^X\rightarrow[0,+\infty]$ by \eqref{eq292}. Then by Thm. \ref{lb724}, $\mu^*$ restricts to a complete measure on $\fk M_\mu$ containing $\fk B_X$, and $(\fk M_\mu,\mu^*)$ is denoted by $(\fk M_\mu,\mu)$. Then $\mu$ is clearly outer regular on any $E\in\fk M_\mu$, and is inner regular on open sets by condition (e) of Asmp. \ref{lb712}. 
+
+For each $E\in\fk M_\mu$, the meaning of $\mu$-regularity in Def. \ref{lb810} clearly agrees with the meaning in Def. \ref{lb811}: The former says $\mu^*(E)=\mu_*(E)$, and the latter says $\mu^*(E)=\mu(E)$ (which is a tautology) and $\mu_*(E)=\mu(E)$. \footnote{Note that the definition of $\mu_*$ makes use of the outer measure $\mu^*(K)$ of a compact set $K$. But since $K\in\fk M_\mu$, we know $\mu^*(K)=\mu(K)$.}  \hfill \qedsymbol
 \end{eg}
 
 The inner regularity on open sets can also be described in the following way:
 
 \begin{lm}\label{lb777}
-Let $\mu$ be a measure on $\fk M\supset\fk B_X$. Let $U\in\mc T_X$. Then
+Let $\mu$ be a measure on $\fk B_X$. Let $U\in\mc T_X$. Then
 \begin{align}
 \sup\big\{\mu(K):K\subset U,K\text{ is compact}\big\}=\sup\Big\{\int_Xfd\mu:f\in C_c(U,[0,1])  \Big\}
 \end{align}
@@ -21470,6 +21518,16 @@ Let $A$ and $B$ denote the LHS and the RHS. If $f\in C_c(U,[0,1])$, then $K=\ovl
 Conversely, let $K\subset U$ be compact. By Urysohn's lemma (Thm. \ref{lb711}), there exists $f\in C_c(U,[0,1])$ such that $f|_K=1$. So $\chi_K\leq f$, and hence $\mu(K)\leq\int_Xfd\mu$. This proves $A\leq B$.
 \end{proof}
 
+In the definition of Radon measures, compact sets are assumed to have finite measures. This property has an equivalent description:
+
+\begin{lm}\label{lb806}
+Let $\mu$ be a measure on $\fk B_X$. Then $\mu(K)<+\infty$ for all compact $K\subset X$ iff $\dps\int_Xfd\mu<+\infty$ for all $f\in C_c(X,\Rbb_{\geq0})$.
+\end{lm}
+
+
+\begin{proof}
+Suppose that $\mu(K)<+\infty$ for each compact $K\subset X$. Then for each $f\in C_c(X,\Rbb_{\geq0})$, letting $K=\Supp(f)$, we have $f\leq\chi_K$, and hence $\int f\leq\int\chi_K=\mu(K)<+\infty$. Conversely, assume that $\int f<+\infty$ for every $f\in C_c(X,\Rbb_{\geq0})$. Let $K\subset X$ be compact. By Urysohn's lemma, there exists $f\in C_c(X,[0,1])$ such that $f|_K=1$. So $\chi_K\leq f$, and hence $\mu(K)=\int\chi_K\leq\int f<+\infty$.
+\end{proof}
 
 
 \begin{df}
@@ -21480,25 +21538,52 @@ A Borel measure $\mu:\fk B_X\rightarrow\ovl\Rbb_{\geq0}$ is called a \textbf{Rad
 \begin{align}\label{eq314}
 \mu(U)=\sup\Big\{\int_Xfd\mu:f\in C_c(U,[0,1])  \Big\}
 \end{align}
-\item $\mu(K)<+\infty$ if $K$ is a compact subset of $X$.
+\item $\mu(K)<+\infty$ if $K$ is a compact subset of $X$. Equivalently (by Lem. \ref{lb806}), for each $f\in C_c(X,\Rbb_{\geq0})$ we have
+\begin{align}
+\dps\int_Xfd\mu<+\infty
+\end{align}
 \end{enumerate}
 \end{df}
 
-The Lebesgue measure $m$ on $\Rbb^N$, when restricted to $\fk B_{\Rbb^N}$ is a Radon measure. In application, it is often more convenient to consider the completion of a Radon measure:
-
-\begin{rem}
-Assume that $(\fk M,\mu)$ is the completion of a Radon measure on $X$. Then $\mu$ is outer regular on any $E\in\fk M$.
-\end{rem}
 
 
+\begin{eg}
+A (finite) $\Rbb_{\geq0}$-linear combination of Radon measures on $X$ is a Radon measure.
+\end{eg}
+
+
+\begin{eg}
+Let $x_0\in X$. The Dirac measure $\delta_{x_0}$ is Radon when restricted to $\fk B_X$. 
+\end{eg}
+
+\begin{eg}
+Assume that $\mc T_X$ is the discrete topology, i.e., $\mc T_X=2^X$. (So compact sets are exactly finite sets.) The counting measure is Radon.
+\end{eg}
+
+
+
+
+\begin{eg}
+The Lebesgue measure $m$ on $\Rbb^N$ is Radon when restricted to $\fk B_{\Rbb^N}$. In fact, the outer and inner regularities were explained in Exp. \ref{lb799}. Since $m$ is finite on bounded measurable subsets (cf. Thm. \ref{lb800}), it is finite on compact sets.
+\end{eg}
+
+In application, it is often more convenient to consider the completion of a Radon measure:
+
+\begin{exe}
+Assume that $(\fk M,\mu)$ is the completion of a Radon measure on $X$. Show that $\mu$ is outer regular on any $E\in\fk M$.
+\end{exe}
+
+\begin{comment}
 \begin{proof}
 By Thm. \ref{lb708}, we can write $E=A\cup B$ where $A\in\fk B_X$, and $B\subset C$ where $C\in\fk B_X$ and $\mu(C)=0$. Since $(\fk B_X,\mu)$ is Radon, for each $\eps>0$ there exist open $U\supset A$ and $V\supset B$ such that $\mu(U)\leq \mu(A)+\eps/2$, and $\mu(V)\leq\eps/2$. So $\mu(U\cup V)\leq \mu(A)+\eps\leq\mu(E)+\eps$. Since $U\cup V$ is an open set containing $E$, we conclude that $\mu$ is outer regular on $E$.
 \end{proof}
+\end{comment}
+
 
 
 One of the most important features of Radon measures is that they are determined by the integral of functions in $C_c(X,\Rbb_{\geq0})$.
 
-\begin{pp}
+\begin{pp}\label{lb791}
 Let $\mu_1,\mu_2$ be Radon measures on $\fk B_X$. Suppose that for each $f\in C_c(X,\Rbb_{\geq0})$ we have $\dps\int_Xfd\mu_1=\int_Xfd\mu_2$. Then $\mu_1=\mu_2$.
 \end{pp}
 
@@ -21519,7 +21604,7 @@ Let $\Fbb\in\{\Rbb,\Cbb\}$. A linear map $\Lambda:C_c(X,\Fbb)\rightarrow\Fbb$ is
 \end{df}
 
 
-\begin{rem}
+\begin{rem}\label{lb812}
 There exist canonical bijections among:
 \begin{itemize}
 \item $\Rbb_{\geq0}$-linear maps $C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$
@@ -21528,11 +21613,11 @@ There exist canonical bijections among:
 \end{itemize}
 \end{rem}
 \begin{proof}
-An $\Rbb_{\geq0}$ linear map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ can be extended uniquely to a linear map $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ due to Prop. \ref{lb751}. The latter can be extended to a linear functional on $C_c(X)$ by setting $\Lambda(f)=\Lambda(\Real f)+\im\Lambda(\Imag f)$ for all $C_c(X)$. (This is similar to the proof of Thm. \ref{lb779}.)
+An $\Rbb_{\geq0}$ linear map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ can be extended uniquely to a linear map $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ due to Prop. \ref{lb751}. The latter can be extended to a linear functional on $C_c(X)$ by setting $\Lambda(f)=\Lambda(\Real f)+\im\Lambda(\Imag f)$ for all $C_c(X)$. (This is similar to the proof of Thm. \ref{lb779}. It is also the complexification of the $\Rbb$-linear map $f\in C_c(X)\mapsto \Lambda(\Real f)\in\Rbb$, cf. Pb. \ref{lb387}.)
 \end{proof}
 
 \begin{rem}\label{lb784}
-Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be linear. Then $\Lambda$ is increasing, i.e., if $f,g\in C_c(X,\Rbb_{\geq0})$ and $f\leq g$, then $\Lambda(f)\leq\Lambda(g)$. This is because $g-f\in C_c(X,\Rbb_{\geq0})$ and $\Lambda(g)=\Lambda(f)+\Lambda(g-f)\geq\Lambda(f)$.
+Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be linear. Then $\Lambda$ is (monotonically) increasing, i.e., if $f,g\in C_c(X,\Rbb_{\geq0})$ and $f\leq g$, then $\Lambda(f)\leq\Lambda(g)$. This is because $g-f\in C_c(X,\Rbb_{\geq0})$ and $\Lambda(g)=\Lambda(f)+\Lambda(g-f)\geq\Lambda(f)$.
 \end{rem}
 
 \subsubsection{Toward the proof of the Riesz-Markov representation theorem}
@@ -21547,23 +21632,23 @@ for all $f\in C_c(X,\Rbb_{\geq0})$. In my opinion, a direct proof of \eqref{eq31
 
 The goal of this section is to prepare for a more conceptual proof of \eqref{eq315} for $f\in C_c(X,\Rbb_{\geq0})$. To motivate our proof, recall that in Prop. \ref{lb780}, we proved that the Riemann integral of $f$ equals the Lebesgue integral by sandwiching $f$ between step functions $g$ and $h$, and show that the Riemann integrals of $g$ and $h$ agree with their Lebesgue integrals. But step functions are usually not continuous functions. Therefore, to generalize the proof of Prop. \ref{lb780}, we must first extend $\Lambda$ to a suitable larger class of positive functions.
 
-Through laborious work, one can extend $\Lambda$ to the set of all positive Borel functions without resorting to measures. The value $\Lambda(f)$ of a positive Borel function $f$ is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found in \cite[Sec. 9]{HS} and \cite[Sec. 11]{HR-1}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.)
+Through laborious work, one can extend $\Lambda$ to a large class of Borel measurable functions  without resorting to measures. The value $\Lambda(f)$ of $f$ in this class is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found in \cite[Sec. 9]{HS} and \cite[Sec. 11]{HR-1}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.)
 
-We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. More precisely, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_{i=1}^n a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}.
+We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. In particular, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_{i=1}^n a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}.
 
 
 \subsubsection{Extending positive linear functionals to $\LSC_+(X)$}
 
 In this subsection, we fix an $\Rbb_{\geq0}$-linear map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$.
 
-Recall Def. \ref{lb781}, Pb. \ref{lb782}, and Pb.  \ref{lb767} for the basic facts about lower semicontinuous functions. By Rem. \ref{lb783}, \index{LSC@$LSC_+(X)$}
+Recall Subsec. \ref{lb803} for the basic facts about lower semicontinuous functions. By Rem. \ref{lb783}, \index{LSC@$\LSC_+(X)=\{\text{lower semicontinuous }X\rightarrow\ovl\Rbb_{\geq0}\}$}
 \begin{align}
 \LSC_+(X)=\{\text{lower semicontinuous }f:X\rightarrow \ovl\Rbb_{\geq0}\}
 \end{align}
 is an $\ovl\Rbb_{\geq0}$-linear subspace of $[0,+\infty]^X$. It clearly contains $C_c(X,\Rbb_{\geq0})$ as an $\Rbb_{\geq0}$-linear subspace.
 
 
-\begin{df}
+\begin{df}\label{lb793}
 For each $f\in\LSC_+(X)$, define
 \begin{subequations}\label{eq316}
 \begin{align}\label{eq316a}
@@ -21574,7 +21659,7 @@ Equivalently, noting that $\Omega_f=f^{-1}(0,+\infty]$ is open (by the lower con
 \Lambda(f)=\sup\{\Lambda(h):h\in C_c(\Omega_f,\Rbb_{\geq0}),h\leq f\}
 \end{align}
 \end{subequations}
-This defines a map $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$ which (by Rem. \ref{lb784}) extends the original map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. We call this new $\Lambda$ the \textbf{canonical extension} of the original $\Lambda$. \index{00@Canonical extension of positive linear functionals on $C_c(X,\Rbb_{\geq0})$} The extension $\Lambda$ is clearly increasing, i.e., if $f,g\in\LSC_+(X)$ and $f\leq g$, then
+This defines a map $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$ which (by Rem. \ref{lb784}) extends the original map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. We call this new $\Lambda$ the \textbf{canonical extension} of the original $\Lambda$. \index{00@Canonical extension of positive linear functionals on $C_c(X,\Rbb_{\geq0})$} The extension $\Lambda$ is clearly monotonically increasing, i.e., if $f,g\in\LSC_+(X)$ and $f\leq g$, then
 \begin{align*}
 \Lambda(f)\leq \Lambda(g)
 \end{align*}
@@ -21588,7 +21673,7 @@ For each $\eps>0$, let $h_\eps=(h-\eps)^+=\max\{h-\eps,0\}$. Then $\Supp(h_\eps)
 \begin{align*}
 \dps\lim_{\eps\rightarrow 0}\Lambda(h-h_\eps)=0
 \end{align*}
-We shall prove this by using the fact that $0\leq h-h_\eps\leq\eps \chi_K$ where $K=\Supp(h)$. Note that by Urysohn's lemma, there exists $\varphi\in C_c(X,[0,1])$ such that $\varphi|_K=1$. So $h-h_\eps\leq \eps\varphi$, and hence
+We shall prove this by using the fact that $0\leq h-h_\eps\leq\eps \chi_K$ where $K=\Supp(h)$. If $\Lambda$ were defined on $\chi_K$ and $0\leq\Lambda(\chi_K)<+\infty$, then one could argue that $\Lambda(h-h_\eps)\leq\eps\Lambda(\chi_K)$ where the RHS converges to $0$ as $\eps\rightarrow0$. Unfortunately, we do not know whether $\chi_K$ is in the domain of $\Lambda$. To fix this issue, note that by Urysohn's lemma, there exists $\varphi\in C_c(X,[0,1])$ such that $\varphi|_K=1$. So $h-h_\eps\leq \eps\varphi$, and hence
 \begin{align*}
 0\leq \Lambda(h-h_\eps)\leq \Lambda(\eps\varphi)= \eps\Lambda(\varphi)
 \end{align*}
@@ -21596,9 +21681,19 @@ where the RHS converges to $0$ as $\eps\rightarrow0$.
 \end{proof}
 
 
+\begin{eg}\label{lb794}
+Let $U\subset X$ be open. By \eqref{eq316b} we have
+\begin{align}
+\Lambda(\chi_U)=\sup\big\{\Lambda(f):f\in C_c(U,[0,1])  \big\}
+\end{align}
+where the RHS will be the definition of the measure $\mu(U)$.
+\end{eg}
+
+
+
 We shall prove that the canonical extension $\Lambda$ is $\ovl\Rbb_{\geq0}$-linear using the same strategy in Subsec. \ref{lb785}, where we proved that $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-linear. Therefore, we first need to prove:
 
-\begin{thm}[\textbf{Monotone convergence theorem}] \index{00@Monotone convergence theorem for nets}
+\begin{thm}[\textbf{Monotone convergence theorem}] \index{00@Monotone convergence theorem for positive linear functionals}\label{lb789}
 Let $(f_\alpha)_{\alpha\in I}$ be an increasing net of elements in $\LSC_+(X)$. (So $f_\alpha\leq f_\beta$ if $\alpha\leq\beta$.) Let $f$ be the pointwise limit $\lim_\alpha f_\alpha$. Then $f\in \LSC_+(X)$, and
 \begin{align*}
 \Lambda(f)=\lim_{\alpha\in I}\Lambda(f_\alpha)
@@ -21608,12 +21703,519 @@ Let $(f_\alpha)_{\alpha\in I}$ be an increasing net of elements in $\LSC_+(X)$. 
 The following proof is close in spirit to the proof of Thm. \ref{lb760}.
 
 \begin{proof}
-Since $f$ is the pointwise supremum $\sup_\alpha f_\alpha$, by Pb. \ref{lb767}, we have $f\in\LSC_+(X)$. Since $f\geq f_\alpha$, we clearly have $\Lambda(f)\geq\lim_\alpha\Lambda(f_\alpha)$. To prove ``$\leq$", by \eqref{eq316b}, it suffices to choose any $h\in C_c(\Omega_f,\Rbb_{\geq0})$ (where $\Omega_f=f^{-1}(0,+\infty]$) satisfying $h\leq f$, and prove that $\Lambda(h)\leq\sup_\alpha\Lambda(f_\alpha)$.
+Since $f$ is the pointwise supremum $\sup_\alpha f_\alpha$, by Pb. \ref{lb767}, we have $f\in\LSC_+(X)$. Since $f\geq f_\alpha$, we clearly have $\Lambda(f)\geq\lim_\alpha\Lambda(f_\alpha)$. To prove ``$\leq$", by \eqref{eq316b}, it suffices to choose any $g\in C_c(\Omega_f,\Rbb_{\geq0})$ (where $\Omega_f=f^{-1}(0,+\infty]$) satisfying $g\leq f$, and prove that $\Lambda(g)\leq\sup_\alpha\Lambda(f_\alpha)$.
 
-It suffices to prove that $\Lambda(\gamma h)\leq\sup_\alpha\Lambda(f_\alpha)$ for each $0<\gamma<1$. Thus, by replacing $h$ with $\gamma h$, it suffices to assume that $h(x)<f(x)$ whenever $h(x)>0$. Let $K=\Supp(h)$, which is a compact subset of $\Omega_f$. Thus, if $x\in K$ and $h(x)=0$, since $f|_{\Omega_f}>0$, we have $h(x)<f(x)$. To summarize, for every $x\in K$ we have $0\leq h(x)<f(x)$.
+Since $g\leq f$ and $f|_K>0$ where $K=\Supp(g)$, we have $\gamma g|_K<f|_K$ where $0<\gamma<1$. It suffices to prove that $\Lambda(\gamma g)\leq\sup_\alpha\Lambda(f_\alpha)$ for each $\gamma$. Thus, by replacing $g$ with $\gamma g$, it suffices to assume that $g|_K<f|_K$.
 
-The proof will be finished by finding some $\alpha\in I$ such that $h\leq f_\alpha$.  For each $x\in K$, since $h(x)<f(x)$, there exists $\alpha_x\in I$ such that $h(x)<f_\alpha(x)$. Since $h$ is continuous and $f_{\alpha_x}$ is lower semicontinuous, the function $f_{\alpha_x}-h$ is lower semicontinuous (e.g. by Pb. \ref{lb767}-(3)). Therefore $U_x=\{x\in X:f_{\alpha_x}(x)-h(x)>0\}$ is an open subset of $X$ containing $x$. Since $K$ is compact, there exist $x_1,\dots,x_n\in K$ such that $K\subset U_{x_1}\cup\cdots\cup U_{x_n}$. Since $I$ is directed, there exists $\alpha\in I$ that is $\geq \alpha_{x_1},\dots,\alpha_{x_n}$. Then $f_\alpha\geq f_{\alpha_{x_i}}>h$ on $U_{x_i}$. Therefore $f_\alpha>h$ on $K$, and hence $f_\alpha\geq h$ on $X$.
+The proof will be finished by finding some $\alpha\in I$ such that $g|_K<f_\alpha|_K$ (and hence $g\leq f_\alpha$). This follows from a standard compactness argument: For each $x\in K$, since $g(x)<f(x)$, there exists $\alpha_x\in I$ such that $g(x)<f_{\alpha_x}(x)$. Since $g$ is continuous and $f_{\alpha_x}$ is lower semicontinuous, the function $f_{\alpha_x}-g$ is lower semicontinuous (e.g. by Pb. \ref{lb767}-(3)). Therefore $U_x=\{x\in X:f_{\alpha_x}(x)-g(x)>0\}$ is an open subset of $X$ containing $x$. Since $K$ is compact, there exist $x_1,\dots,x_n\in K$ such that $K\subset U_{x_1}\cup\cdots\cup U_{x_n}$. Since $I$ is directed, there exists $\alpha\in I$ that is $\geq \alpha_{x_1},\dots,\alpha_{x_n}$. Then $f_\alpha\geq f_{\alpha_{x_i}}>g$ on $U_{x_i}$. Therefore $f_\alpha|_K>g|_K$.
 \end{proof}
+
+
+The following lemma is similar to Prop. \ref{lb749}.
+
+\begin{lm}\label{lb788}
+Let $f\in\LSC_+(X)$ and $\Omega_f=f^{-1}(0,+\infty]$. Then there is an increasing net $(f_\alpha)$ in $C_c(\Omega_f,\Rbb_{\geq0})$ converging pointwise to $f$.
+\end{lm}
+
+%In fact, the following proof shows that $(f_\alpha)$ can be chosen to be in $C_c(f^{-1}(0,+\infty],\Rbb_{\geq0})$. But we will not use this fact.
+
+
+\begin{proof}
+Let $\scr I$ be the set of all $g\in C_c(\Omega_f,\Rbb_{\geq0})$ such that $g\leq f$. Then $(\scr I,\leq)$ is a directed set, because if $g_1,g_2\in \scr I$ then $\max\{g_1,g_2\}\in \scr I$. Let us prove that the (clearly increasing) net $(g)_{g\in \scr I}$ converges pointwise to $f$. Equivalently, we shall prove for each $x\in X$ that $f(x)=\sup_{g\in\scr I}g(x)$.
+
+It suffices to prove that for every $\eps>0$ there exists $g\in\scr I$ such that $g(x)\geq f(x)-\eps$. Assume WLOG that $A:=f(x)-\eps$ is $>0$. (Otherwise, one can simply take $g=0$.) Since $f$ is lower semicontinuous, $U=f^{-1}(A,+\infty]$ is a neighborhood of $x$ in $X$. By Urysohn's lemma, there exists $g\in C_c(U,\Rbb_{\geq0})$ such that $0\leq g\leq A$ and $g(x)=A$. Then $g\in\scr I$.
+\end{proof}
+
+
+\begin{pp}\label{lb792}
+The canonical extension $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-linear.
+\end{pp}
+
+\begin{proof}
+Choose any $f,g\in\LSC_+(X)$. By Lem. \ref{lb788}, there exist increasing nets $(f_\alpha)_{\alpha\in I}$ and $(g_\beta)_{\beta\in J}$ in $C_c(X,\Rbb_{\geq0})$ converging pointwise to $f$ and $g$ respectively. Then $(f_\alpha+g_\beta)_{(\alpha,\beta)\in I\times J}$ is increasing and converges pointwise to $f+g$. By the monotone convergence Thm. \ref{lb789}, we have
+\begin{align*}
+\Lambda(f)+\Lambda(g)=\lim_{\alpha,\beta}\Lambda(f_\alpha)+\lim_{\alpha,\beta}\Lambda(g_\beta)=\lim_{\alpha,\beta}\Lambda(f_\alpha+g_\beta)=\Lambda(f+g)
+\end{align*}
+A similar argument shows that $\Lambda(cf)=c\Lambda(f)$ for any $c\in\ovl\Rbb_{\geq0}$ due to Lem. \ref{lb790}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{The Riesz-Markov representation theorem}
+
+
+
+Fix an LCH space $(X,\mc T_X)$.
+
+
+\begin{thm}[\textbf{Riesz-Markov representation theorem}] \index{00@Riesz-Markov representation theorem}\label{lb796}
+For every $\Rbb_{\geq0}$-linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ there exists a unique Radon measure $\mu:\fk B_X\rightarrow\ovl\Rbb_{\geq0}$ such that
+\begin{align}\label{eq317}
+\Lambda(f)=\int_Xfd\mu
+\end{align}
+for all $f\in C_c(X,\Rbb_{\geq0})$. Moreover, every Radon measure on $X$ arises from some $\Lambda$ in this way.
+\end{thm}
+
+We call $\mu$ the \textbf{Radon measure associated to $\Lambda$}. \index{00@Radon measure associated to $\Lambda$} Note that if \eqref{eq317} holds for all $f\in C_c(X,\Rbb_{\geq0})$, then for each $f\in C_c(X)$, since $\int_X|f|d\mu<+\infty$, the RHS of \eqref{eq317} can be defined, and \eqref{eq317} holds true by the $\Cbb$-linearity. 
+
+\begin{proof}
+The uniqueness follows from Prop. \ref{lb791}. Every Radon measure $\mu$ arises from the $\Lambda$ defined by $\Lambda(f)=\int_Xfd\mu$ for all $f\in C_c(X,\Rbb_{\geq0})$. Note that $\Lambda(f)<+\infty$ since, setting $K=\Supp(f)$, we have $0\leq f\leq\chi_K$ and hence $0\leq\int_Xfd\mu\leq\int_X\chi_Kd\mu=\mu(K)$ where $\mu(K)<+\infty$ by the definition of Radon measures.
+
+We now fix an $\Rbb_{\geq0}$-linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$, and construct the Radon measure $\mu$ satisfying \eqref{eq317}.\\[-1ex]
+
+Step 1. Extend $\Lambda$ canonically to  $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$ which is increasing (cf. Def. \ref{lb793}) and $\ovl\Rbb_{\geq0}$-linear (by Prop. \ref{lb792}). For each $U\in\mc T_X$, define
+\begin{align*}
+\mu(U)=\Lambda(\chi_U)
+\end{align*}
+So $\mu(U)=\sup\big\{\Lambda(f):f\in C_c(U,[0,1])  \big\}$ by Exp. \ref{lb794}. We need to check that $\mu$ satisfies conditions (a)-(e) in Asmp. \ref{lb712}. Clearly $\mu(\emptyset)=\mu(\chi_{\emptyset})=\mu(0)=0$. The monotonicity of $\mu$ follows from that of $\Lambda$. 
+
+Conditions (c) and (d) can be proved in the same way as in Pb. \ref{lb713}. But here we provide a different proof without using the partition of unity. Choose countably many open sets $U_1,U_2,\dots$, and let $U=\bigcup_n U_n$. So $\chi_U\leq\sum_n\chi_{U_n}$. By the monotone convergence Thm. \ref{lb789} and the linearity of $\Lambda$, we have $\Lambda(\sum_n\chi_{U_n})=\sum_n\Lambda(\chi_{U_n})$. Therefore
+\begin{align*}
+\mu(U)=\Lambda(\chi_U)\leq\Lambda\Big(\sum_n\chi_{U_n}\Big)=\sum_n\Lambda(\chi_{U_n})=\sum_n\mu(U_n)
+\end{align*}
+This proves the countable subadditivity. If $U_1,U_2\in\mc T_X$ are disjoint, then $\chi_U=\chi_{U_1}+\chi_{U_2}$ where $U=U_1\cup U_2$. So
+\begin{align*}
+\mu(U)=\Lambda(\chi_U)=\Lambda(\chi_{U_1}+\chi_{U_2})=\Lambda(\chi_{U_1})+\Lambda(\chi_{U_2})=\mu(U_1)+\mu(U_2)
+\end{align*}
+This proves the additivity. We have finished proving (c) and (d).
+
+Finally, the $\mu$-regularity on any open subset $U\subset X$ (i.e., condition (e)) can be proved in the same way as Lem. \ref{lb714}: Clearly $\mu_*(U)\leq\mu(U)$. To prove $\mu_*(U)\geq\mu(U)$, it suffices to prove $\mu_*(U)\geq \Lambda(f)$ for each $f\in C_c(U,[0,1])$. Let $K=\Supp(f)$, which is in $U$. So $\mu_*(U)\geq\mu^*(K)$. Clearly $\mu^*(K)\geq\Lambda(f)$ (since $\mu(V)=\Lambda(\chi_V)\geq\Lambda(f)$ for any open $V$ containing $K$). Therefore $\mu_*(U)\geq\Lambda(f)$.
+
+We have finished proving that $\mu$ satisfies Asmp. \ref{lb712}. Therefore, by Thm. \ref{lb724}, the outer measure $\mu^*:2^X\rightarrow\ovl\Rbb_{\geq0}$ (defined by $\mu^*(E)=\inf\{\mu(U):U\in\mc T_X,U\supset E\}$) restricts to a measure $\mu$ on $\fk B_X$. 
+
+From the definition of $\mu^*$, it is clear that $\mu$ is outer regular on Borel sets. We have proved that $\mu$ is inner regular on open sets (i.e. condition (e) of Asmp. \ref{lb712}). To prove that $\mu$ is Radon, it remains to prove that $\int_Xfd\mu<+\infty$ for each $f\in C_c(X,\Rbb_{\geq0})$. This follows from $\int_Xfd\mu=\Lambda(f)$, to be proved in the next step.\\[-1ex]
+
+Step 2. Let us prove \eqref{eq317} for every $f\in C_c(X,\Rbb_{\geq0})$. In fact, we shall prove the more general fact that \eqref{eq317} is true for all $f\in\LSC_+(X)$.
+
+First, note that if $U$ is open, then $\Lambda(\chi_U)=\mu(U)=\int_X\chi_Ud\mu$. Therefore \eqref{eq317} holds whenever $f=\chi_U$. By linearity, and by the two monotone convergence theorems (i.e., Thm. \ref{lb760} and \ref{lb789}), Eq. \eqref{eq317} holds if $f$ is the pointwise limit $f=\sum_{n=1}^\infty a_n\chi_{U_n}$ where $a_n\in\ovl\Rbb_{\geq0}$ and $U_n\in\mc T_X$. We let $\scr S$ be the set of all such $f$.
+
+Now we choose any $f\in\LSC_+(X)$. To prove \eqref{eq317}, by the two monotone convergence theorems, it suffices to find an increasing sequence $(f_n)_{n\in\Zbb_+}$ in $\scr S$ converging pointwise to $f$.
+
+Choose any $\eps>0$. For each $k\in\Nbb$, take $E_k=f^{-1}(k\eps,(k+1)\eps]$ and $E_\infty=f^{-1}(+\infty)$. Motivated by the proof of Prop. \ref{lb749}, we define $g_\eps:X\rightarrow\ovl\Rbb_{\geq0}$ to be the pointwise limit
+\begin{subequations}\label{eq318}
+\begin{align}\label{eq318a}
+g_\eps=\sum_{k\in\Nbb} k\eps\cdot\chi_{E_k}+\infty\cdot \chi_{E_\infty}
+\end{align}
+so that $\Lambda(g_\eps)$ can be viewed as an infinite Lebesgue sum. Then $\lim_{\eps\rightarrow0} g_\eps$ converges pointwise to $f$. Let $f_n=g_{1/2^n}$. Then $(f_n)$ is increasing and converges pointwise to $f$. To finish the proof, it remains to show that $g_\eps\in\scr S$ (and hence $f_n\in\scr S$). 
+
+For each $k\in\Nbb$, let $U_k=f^{-1}(k\eps,+\infty]$. Then $U_k$ is open because $f$ is lower semicontinuous. One checks easily that
+\begin{align}\label{eq318b}
+g_\eps=\sum_{k\in\Zbb_+} \eps\cdot\chi_{U_k}
+\end{align}
+\end{subequations}
+(See also Fig. \ref{lb795}.) This proves $g_\eps\in\scr S$.
+\end{proof}
+
+\begin{figure}[h]
+	\centering
+\begin{equation*}
+\vcenter{\hbox{{
+			\includegraphics[width=3cm]{fig8.png}}}}
+\end{equation*}
+	\caption{. $g_\eps$ is the sum of all horizontal bars}\label{lb795}
+\end{figure}
+
+\begin{thm}\label{lb797}
+Choose an $\ovl\Rbb_{\geq0}$-linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$, and let $\mu$ be the Radon measure associated to $\Lambda$.  Extend $\Lambda$ canonically to $\Lambda:\LSC_+(X)\rightarrow\ovl\Rbb_{\geq0}$. Then for each $f\in\LSC_+(X)$ we have $\dps \Lambda(f)=\int_Xfd\mu$.
+\end{thm}
+
+
+\begin{proof}
+This was proved in Step 2 of the proof of Thm. \ref{lb796}.
+\end{proof}
+
+\begin{co}[\textbf{Monotone convergence theorem}]\index{00@Monotone convergence theorem for Radon measures}\label{lb798}
+Let $\mu$ be a Radon measure on $\fk B_X$. Let $(f_\alpha)_{\alpha\in I}$ be an increasing net in $\LSC_+(X)$. Let $f$ be the pointwise limit $\lim_\alpha f_\alpha$. Then $f\in \LSC_+(X)$, and
+\begin{align*}
+\int_Xfd\mu=\lim_{\alpha\in I}\int_Xf_\alpha d\mu
+\end{align*}
+\end{co}
+
+
+\begin{proof}
+This follows immediately from Thm. \ref{lb797} and the monotone convergence Thm. \ref{lb789}.
+\end{proof}
+
+
+For more traditional proofs of the Riesz-Markov representation theorem without resorting to the canonical extension of $\Lambda$, see \cite[Thm. 2.14]{Rud-R} and \cite[Thm. 7.2]{Fol-R}. See also \cite[Prop. 7.12]{Fol-R} for a direct proof of Cor. \ref{lb798} without extending $\Lambda$.
+
+
+\subsection{Regularity and Lusin's theorem}
+
+
+In this section, we fix an LCH space $(X,\mc T_X)$.
+
+
+\subsubsection{Regularity}
+
+
+\begin{thm}\label{lb804}
+Let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. Let $E\in\fk M$. Then $\mu$ is outer regular on $E$. Moreover, if $\mu(E)<+\infty$, then $\mu$ is inner regular on $E$.
+\end{thm}
+
+
+\begin{proof}
+Let $\mu^*$ and $\mu_*$ be as in \eqref{eq292}. From the Riesz-Markov representation Thm. \ref{lb796}, we can assume that $(\fk B_X,\mu)$ arises from some linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. Now, recall that when we constructed the Radon measure $\mu$ from $\Lambda$ (cf. Step 1 of the proof of Thm. \ref{lb796}), we showed  that $\mu|_{\mc T_X}$ satisfies conditions (a)-(e) in Asmp. \ref{lb712} so that we can apply Thm. \ref{lb724} to show that $(\fk B_X,\mu^*)$ is a measure, and we defined $(\fk B_X,\mu)$ to be $(\fk B_X,\mu^*)$.
+
+Note that Thm. \ref{lb724} says that $(\fk M_\mu,\mu^*)$ is a complete measure where $\fk M_\mu$ contains $\fk B_X$. Therefore $(\fk M_\mu,\mu^*)$ extends the completion $(\fk M,\mu)$ of $(\mc B_X,\mu)$ (cf. Thm. \ref{lb708}). Thus, for each $E\in\fk M$, we have $\mu^*(E)=\mu(E)$. This proves that $E$ is outer $\mu$-regular. \footnote{An alternative proof: Write $E=A\cup B$ where $A\in\fk B_X$ and $B$ is a subset of a Borel null set $C$. Then use the fact that $A$ and $C$ are outer $\mu$-regular (according to the definition of Radon measures).}
+
+Assume that $E\in\fk M$ satisfies $\mu(E)<+\infty$. So $\mu^*(E)<+\infty$. Since $E\in\fk M_\mu$, by Prop. \ref{lb723}, we have $\mu^*(E)=\mu_*(E)$ and hence $\mu(E)=\mu_*(E)$. This means that $\mu(E)$ can be approximated from below by $\mu^*(K)$ where $K\subset E$ is compact. Note that $\mu^*(K)=\mu(K)$ by the last paragraph. So $\mu$ is inner regular on $E$.
+\end{proof}
+
+
+\begin{rem}
+Rudin included Thm. \ref{lb804} as part of the statement of the Riesz-Markov representation theorem, see (c) and (d) of \cite[Thm. 2.14]{Rud-R}. In other words, Rudin proved Thm. \ref{lb804} in the course of proving Thm. \ref{lb796}. This also explains the nature of our proof of Thm. \ref{lb804}, i.e., that Thm. \ref{lb804} is a (rather direct) consequence of \textit{the proof} of Thm. \ref{lb796}.
+\end{rem}
+
+
+
+\subsubsection{Approximation by continuous functions}
+
+As an important application of Thm. \ref{lb804}, we prove Lusin's theorem, which says that any Radon-measurable function is ``almost continuous" on any measurable subset with finite measure. This result will be used in the future to show that $C_c(X)$ is dense in $L^p(X,\mu)$ (where $1\leq p<+\infty$).
+
+\begin{thm}[\textbf{Lusin's theorem}] \index{00@Lusin's theorem}
+Let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. Let $f:X\rightarrow\Cbb$ be measurable. Let $A\in\fk M$ such that $\mu(A)<+\infty$. Then for every $\eps>0$ there is a compact $K\subset A$ such that $\mu(A\setminus K)<\eps$, and that $f|_K:K\rightarrow\Cbb$ is continuous.
+\end{thm}
+
+It follows from the Tietze extension Thm. \ref{lb468} that there exists $g\in C_c(X)$ such that $g|_K=f|_K$, and that $\Vert g\Vert_{l^\infty(X)}\leq \Vert f\Vert_{l^\infty(X)}$.
+
+
+
+\begin{proof}
+By replacing $f$ with $f\chi_A$, we assume that $f$ vanishes outside $A$.
+
+Case 1: $f=\chi_E$ where $E\in\fk M$ and $E\subset A$. Let $F=A\setminus E$. By Thm. \ref{lb804}, there exist compact $K_1\subset E$ and $K_2\subset F$ such that $\mu(E\setminus K_1)<\eps/2$ and $\mu(F\setminus K_2)<\eps$. Since $K_1\cap K_2=\emptyset$, $K_1$ and $K_2$ can be separated by open subsets of $X$ (cf. the proof of Lem. \ref{lb716}). Therefore, since $f|_{K_1}$ and $f|_{K_2}$ are constant functions, $f|_K$ is continuous where $K=K_1\cup K_2$. Clearly $\mu(A\setminus K)<\eps$.
+
+Case 2: $f$ is a simple function $X\rightarrow\Cbb$ vanishing outside $A$. Then $f=a_1f_1+\cdots+a_nf_n$ where $a_i\in\Cbb$ and $f_i$ is as in Case 1. Thus, by Case 1, there exists a compact $K_i\subset A$ with $\mu(A\setminus K_i)<\eps/n$ such that $f_i|_{K_i}$ is continuous. So $f$ is continuous on $K=K_1\cap\cdots\cap K_n$, and $\mu(A\setminus K)<\eps$.
+
+Case 3: $f\in\mc L(X,\Cbb)$ vanishes outside $A$, and $\Vert f\Vert_{l^\infty}<+\infty$. By considering $\Real(f)$ and $\Imag(f)$ separately, we assume that $f$ is real. By considering $f^+=\max\{f,0\}$ and $f^-=\min\{-f,0\}$ separately, we assume $f\geq0$. By Rem. \ref{lb807}, we can find an increasing sequence of simple functions $s_n:X\rightarrow\Rbb_{\geq0}$ converging uniformly to $f$. Since $s_n\leq f$, $s_n$ vanishes outside $A$. Therefore, by case 2, there is a compact $K_n\subset A$ such that $\mu(A\setminus K_n)<\eps/2^n$, and that $s_n|_{K_n}$ is continuous. Let $K=\bigcap_n K_n$, which is a compact subset of $A$ satisfying $\mu(A\setminus K)<\eps$. Since each $s_n$ is continuous on $K$, and since $(s_n)$ converges uniformly on $K$ to $f$, we conclude that $f$ is continuous on $K$.
+
+Case 4: the general case. For each $n\in\Zbb_+$, let $E_n=f^{-1}(n,+\infty)$. Since $\bigcap_n E_n=\emptyset$ and $\mu(E_1)\leq\mu(A)<+\infty$, we have $\lim_n\mu(E_n)=0$. Choose $n$ such that $\mu(E_n)<\eps/2$. Let $F_n=A\setminus E_n$. By Case 3, there exists a compact $K\subset F_n$ such that $\mu(F_n\setminus K)<\eps/2$, and that $f|_K$ is continuous. We have $\mu(A\setminus K)<\eps$.
+\end{proof}
+
+
+\subsubsection{Approximation by open sets and closed sets}
+
+
+We have said that regularity for sets of infinite measures is not as useful as regularity for sets of finite measures. (That's why we introduced local regularity in Subsec. \ref{lb736}.)  But why do we need outer regularity for any measurable set with possibly infinite measure (cf. Thm. \ref{lb804})? Because it shows that the measure $\mu$ is determined by its values on open sets. Similarly, why do we need inner regularity for open sets? Because it implies that $\mu$ on open sets is determined by the integrals of functions in $C_c(X,\Rbb_{\geq0})$, cf. Lem. \ref{lb777}. The regularity on sets with infinite measures is used to ensure certain uniqueness properties of the measures, rather than approximating these sets with open sets or compact sets.
+
+
+For example, if $E\in\fk M$ satisfies $\mu(E)=+\infty$, then $E$ cannot be approximated from below by compact sets, because for each compact $K\subset E$ we have $\mu(K)<+\infty$ and hence $\mu(E\setminus K)=+\infty$. To approximate such $E$ from below, one should use closed sets:
+
+
+
+\begin{thm}\label{lb808}
+Let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. Assume that $X$ is second countable. Then for each $E\in\fk M$ there exist an open $U\subset X$ and a closed $F\subset X$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\eps$.
+\end{thm}
+
+
+\begin{proof}
+It suffices to find an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps/2$. Then, a similar argument gives an open set $V$ containing $E^c$ such that $\mu(V\setminus E^c)<\eps/2$. Write $V=X\setminus F$ where $F$ is closed. Then $F\subset E\subset U$ and $\mu(E\setminus F)<\eps/2$. So $\mu(U\setminus F)<\eps$.
+
+Since $X$ is LCH, it is a union of precompact open sets. Since $X$ is second countable, it is Lindel\"of by Cor. \ref{lb265}. Therefore, there exist precompact open $O_1,O_2,\dots\subset X$ covering $X$. Since $\mu$ is Radon, we have $\mu(E_n)\leq\mu(\ovl{O_n})<+\infty$ where $E_n=E\cap O_n$. Note that $E=\bigcup_n E_n$. By Thm. \ref{lb804}, there exists an open $U_n$ containing $E_n$ such that $\mu(U_n)<\mu(E_n)+\eps/2^{n+1}$, and hence $\mu(U_n\setminus E_n)<\eps/2^{n+1}$. Let $U=\bigcup_nU_n$. Then $U\setminus E\subset\bigcup_n(U_n\setminus E_n)$, and hence $\mu(U\setminus E)<\eps/2$.
+\end{proof}
+
+
+
+Let us give an equivalent form of Thm. \ref{lb808}.
+
+\begin{df}
+Let $Y$ be a topological space. A subset $E\subset Y$ is called a \pmb{$G_\delta$}\textbf{-set} \index{00@$G_\delta$-set} if $E$ is a countable intersection of open subsets of $Y$. $E$ is called an \pmb{$F_\sigma$}\textbf{-set} \index{00@$F_\sigma$-set} if $E^c$ is a $G_\delta$-set, equivalently, if $E$ is a countable union of closed subsets of $Y$.
+\end{df}
+
+
+\begin{co}\label{lb809}
+Let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. Assume that $X$ is second countable. Then for each $E\in\fk M$ there exist an $F_\sigma$-set $A\subset X$ and a $G_\delta$-set $B\subset X$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$.
+\end{co}
+
+
+
+\begin{proof}
+By Thm. \ref{lb808}, for each $n\in\Zbb_+$, there exist open $U_n$ and closed $F_n$ such that $F_n\subset E\subset U_n$ and $\mu(U_n\setminus F_n)<1/n$. Let $A=\bigcup_n F_n$ and $B=\bigcap_n U_n$.
+\end{proof}
+
+\begin{exe}
+Use Cor. \ref{lb809} to prove Thm. \ref{lb808}.
+\end{exe}
+
+
+\begin{rem}
+It is not hard to see that the converse of Cor. \ref{lb809} is true. Therefore, if $(\fk M,\mu)$ is the completion of a Radon measure on a second countable LCH $X$, then a subset $E\subset X$ belongs to $\fk M$ iff there exist a $F_\sigma$ set $A$ and a $G_\delta$-set $B$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$. Similarly, $E$ belongs to $\fk M$ iff for every $\eps>0$ there exist an open $U$ and a compact $K$ such that $K\subset E\subset U$ and $\mu(U\setminus K)<\eps$. \footnote{In fact, some textbooks construct Lebesgue measurable sets using a condition similar to this one  instead of local regularity. They define a set $E$ to be measurable if for every $\eps>0$ there is an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps$. See e.g. \cite[Ch. 1 Sec. 3]{SS-R} and \cite[Sec. 1.2]{Tao}.} We leave the details the the readers. 
+
+What's remarkable here is that by the definition of measure completion (cf. Thm. \ref{lb708}) we only know that $E\in\fk M$ iff there exist Borel sets $A,B$ such that  $A\subset E\subset B$ and $\mu(B\setminus A)=0$. But now we know that $A$ and $B$ can be chosen to be  $G_\delta$-sets and $F_\sigma$-sets, which are much more explicit than general Borel sets.  \hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+\begin{rem}
+By using the same methods, one can prove that Thm. \ref{lb808} and  Cor. \ref{lb809} remain valid if the second countability of $X$ is weakened to the condition that $\mu$ is $\sigma$-finite on $X$. (For example, Thm. \ref{lb808} and  Cor. \ref{lb809} are true if $X$ is compact but not necessarily second countable.) We will not use this more general version in the future of this course. But it is a good opportunity to introduce the important notion of $\sigma$-finiteness.
+\end{rem}
+
+\begin{df}
+Let $(Y,\fk N,\nu)$ be a measure space. We say that $\nu$ is \pmb{$\sigma$-}\textbf{finite} \index{00@$\sigma$-finite} on $E$ if $E$ is a countable union of measurable subsets with finite $\nu$-measures. We say that $\nu$ is a \pmb{$\sigma$-}\textbf{finite measure} if $\nu$ is $\sigma$-finite on $Y$. 
+\end{df}
+
+Note that any measurable subset of a $\sigma$-finite set is $\sigma$-finite.
+
+
+\begin{exe}
+Let $(\fk M,\mu)$ be the completion of a Radon measure on the LCH space $X$. Use Thm. \ref{lb804} to prove that the following conditions are equivalent.
+\begin{enumerate}
+\item[(1)] $\mu$ is a $\sigma$-finite measure.
+\item[(2)] There exists an increasing sequence of open sets $U_1\subset U_2\subset\cdots$ such that $X=\bigcup_n U_n$ and that $\mu(U_n)<+\infty$ for each $n$.
+\end{enumerate}
+\end{exe}
+
+
+\subsection{A criterion for Radon measures}
+
+
+\begin{thm}\label{lb818}
+Let $X$ be a second countable LCH space. Let $\mu:\fk B_X\rightarrow[0,+\infty]$ be a measure such that $\mu(K)<+\infty$ for every compact subset $K\subset X$. Then $\mu$ is a Radon measure.
+\end{thm}
+
+
+\begin{proof}
+By Lem. \ref{lb806}, we have $\int_Xfd\mu<+\infty$ for every $f\in C_c(X,\Rbb_{\geq0})$. Therefore, we have an $\Rbb_{\geq0}$-linear map
+\begin{align*}
+\Lambda: C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}\qquad\Lambda(f)=\int_Xfd\mu
+\end{align*}
+By Riesz-Markov, there is a unique Radon measure $\lambda$ on $X$ satisfying
+\begin{align*}
+\Lambda(f)=\int_Xfd\lambda
+\end{align*}
+for all $f\in C_c(X,\Rbb_{\geq0})$. We shall prove $\mu=\lambda$.
+
+We first prove that $\mu(U)=\lambda(U)$ for any nonempty open $U\subset X$. Since $X$ is second countable and LCH, as in the proof of Thm. \ref{lb808}, we can find a sequence of precompact open subsets of $U$ whose union is $U$. Therefore, we have a sequence of compact subsets $(K_n)$ of $U$ whose union is $U$. By replacing each $K_n$ with $K_1\cup\cdots\cup K_n$ we assume that $(K_n)$ is increasing. By Urysohn's lemma, there exists $f_n\in C_c(U,[0,1])$ such that $f_n|_{K_n}=1$. By replacing $f_n$ with $\max\{f_1,\dots,f_n\}$, we assume moreover that $(f_n)$ is an increasing sequence. This sequence converges pointwise to $\chi_U$ (since $U=\bigcup_nK_n$). Therefore, by the monotone convergence Thm. \ref{lb760}, we have
+\begin{align*}
+\mu(U)=\int_X\chi_Ud\mu=\lim_n\int_Xf_nd\mu=\lim_n\Lambda(f_n)
+\end{align*}
+and similarly $\lambda(U)=\lim_n\Lambda(f_n)$. This proves $\mu(U)=\lambda(U)$.
+
+
+
+Now we choose any $E\in\fk B_X$. Since $X$ is second countable, by Thm. \ref{lb808}, for each $\eps>0$ there exist an open $U\subset X$ and a closed $F\subset X$ such that $F\subset E\subset U$ and $\lambda(U\setminus F)<\eps$. So $\lambda(U\setminus E)<\eps$, and hence
+\begin{align}\label{eq322}
+\lambda(U)-\eps\leq\lambda(E)\leq\lambda(U)
+\end{align}
+Since both $U$ and $U\setminus F$ are open, we have $\mu(U)=\lambda(U)$ and $\mu(U\setminus F)=\lambda(U\setminus F)<\eps$. Therefore $\mu(U\setminus E)<\eps$. Thus $\mu(U)-\eps\leq\mu(E)\leq\mu(U)$, and hence
+\begin{align}\label{eq323}
+\lambda(U)-\eps\leq\mu(E)\leq\lambda(U)
+\end{align}
+Since \eqref{eq322} and \eqref{eq323} hold for every $\eps>0$, we conclude $\lambda(E)=\mu(E)$.
+\end{proof}
+
+
+\begin{eg}\label{lb819}
+Let $X$ be a second countable LCH space. Let $\mu$ be a Radon measure on $X$. Let $\varphi:X\rightarrow\ovl\Rbb_{\geq0}$ be a Borel function such that $\int_K\varphi d\mu<+\infty$ for every compact $K\subset X$. Then the Borel measure $\nu$ defined by $d\nu=\varphi d\mu$ (cf. Pb. \ref{lb328}) is finite on compact sets. Therefore, by Thm. \ref{lb818}, $\nu$ is Radon.
+\end{eg}
+
+
+
+
+
+
+
+
+
+
+\subsection{Problems and supplementary material}
+
+
+
+\subsubsection{Upper and lower semicontinuous functions}
+
+Let $X$ be an LCH space, and let $(\fk M,\mu)$ be the completion of a Radon measure on $X$.
+
+
+
+\begin{df}
+For each topological space $X$ (not necessarily LCH), we let \index{USC@$\USC(X,\Rbb_{\geq0})$, $\USC_c(X,\Rbb_{\geq0})$}
+\begin{gather}
+\USC(X,\Rbb_{\geq0})=\{\text{upper semicontinuous }f\in[0,+\infty)^X\}\label{eq320}\\
+\USC_c(X,\Rbb_{\geq0})=\{f\in\USC(X,\Rbb_{\geq0}):\Supp(f)\text{ is compact}\}
+\end{gather}
+(We do not let $\USC_+(X)$ denote the RHS of \eqref{eq320} since, according to our usual conventions, $\USC_+(X)$ refers to the set of all upper semicontinuous $f:X\rightarrow[0,+\infty]$.)
+\end{df}
+
+
+
+\begin{prob}\label{lb802}
+Let $f:X\rightarrow[0,+\infty]$ be measurable. Prove that
+\begin{subequations}\label{eq319}
+\begin{align}\label{eq319a}
+\int_Xfd\mu=\inf\Big\{\int_X hd\mu:h\in\LSC_+(X),h\geq f  \Big\}
+\end{align}
+Prove that if $\int_Xfd\mu<+\infty$, then
+\begin{align}\label{eq319b}
+\int_Xfd\mu=\sup\Big\{\int_X gd\mu:g\in\USC_c(X,\Rbb_{\geq0}),g\leq f  \Big\}
+\end{align}
+\end{subequations}
+
+\end{prob}
+
+\begin{proof}[Hint]
+Assume WLOG that $\int f<+\infty$. (Why?) If $f=\chi_E$ for some finite measure $E\in\fk M$, use the $\mu$-regularity. In general, write $f=\sum_{n\in\Zbb_+}s_n$ where each $s_n:X\rightarrow\Rbb_{\geq0}$ is simple. Approximate each $s_n$ from above and from below by some $h_n\in\LSC_+(X)$ and $g_n\in\USC_c(X,\Rbb_{\geq0})$ respectively. Take $h=\sum_{n=1}^\infty h_n$ and $g=\sum_{n=1}^N g_n$ for some large enough $N$.
+\end{proof}
+
+\begin{rem}
+Lower semicontinuous functions are the function version of open sets. Upper semicontinuous functions with compact supports are the function version of compact sets. Therefore, Pb. \ref{lb802} can be viewed as the function version Thm. \ref{lb804}.
+\end{rem}
+\begin{prob}\label{lb801}
+Let $(f_\alpha)_{\alpha\in I}$ be a decreasing net in $\USC(X,\Rbb_{\geq0})$ converging pointwise to $f:X\rightarrow\Rbb_{\geq0}$.  Assume that there exists a measurable $g:X\rightarrow\ovl\Rbb_{\geq0}$ such that $\int_Xgd\mu<+\infty$, and that $f_\alpha\leq g$ for all $\alpha$. Prove $\dps \int_Xfd\mu=\lim_\alpha\int_X f_\alpha d\mu$.
+\end{prob}
+
+\begin{proof}[Note]
+By Pb. \ref{lb802}, assume WLOG that $g\in\LSC_+(X)$. Do not subtract arbitrarily, since $g(X)$ might contain $+\infty$. (It is dangerous to do subtraction when $+\infty$ is involved.) Use addition whenever possible.
+\end{proof}
+
+\begin{exe}
+Let $K$ be a compact subset of $X$. Use Pb. \ref{lb801} to show that
+\begin{align}\label{eq324}
+\mu(K)=\inf\Big\{\int_Xfd\mu:f\in C_c(X,[0,1]),f|_K=1  \Big\}
+\end{align}
+by constructing a decreasing net in $C_c(X,[0,1])$ (bounded by some $\chi_U$ where $U\supset K$ is open and $\mu(U)<+\infty$) converging pointwise to $\chi_K$. 
+\end{exe}
+
+\begin{proof}[Note]
+It is not necessary to prove \eqref{eq324} using Pb. \ref{lb801}. You can try to find a direct proof. However, the purpose of Pb. \ref{lb801} is to let you know how \eqref{eq324} can fit into a broader picture.
+\end{proof}
+
+
+\subsubsection{The dual space $C_c(X)^*$}
+
+
+Let $X$ be an LCH space.
+
+\begin{prob}\label{lb814}
+Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be $\Rbb_{\geq0}$-linear. By Rem. \ref{lb812}, $\Lambda$ can be extended uniquely to a $\Cbb$-linear map $\Lambda:C_c(X)\rightarrow\Rbb$. Let $\mu$ be the Radon measure associated to $\Lambda$. Prove that the following four numbers are equal:
+\begin{align*}
+&\sup\{\Lambda(f):f\in C_c(X,\Rbb_{\geq0}),f\leq 1\}=\sup\{\Lambda(f):f\in C_c(X,\Rbb),|f|\leq 1\}\\
+=&\sup\{\Lambda(f):f\in C_c(X),|f|\leq 1\}=\mu(X)
+\end{align*}
+These four identical numbers are called (unambiguously) the \textbf{operator norm} of $\Lambda$ and denoted by $\Vert\Lambda\Vert$.
+\end{prob}
+
+
+\begin{prob}\label{lb813}
+Equip $C_c(X,\Rbb)$ with the $l^\infty$-norm. Let $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ be bounded linear map with operator norm $M$. Define $\Lambda^\pm:C_c(X,\Rbb_{\geq0})\rightarrow\ovl\Rbb$ sending each $f\in C_c(X,\Rbb_{\geq0})$ to
+\begin{subequations}
+\begin{gather}
+\Lambda^+(f)=\sup\big\{\Lambda(h):h\in C_c(X,\Rbb_{\geq0}),h\leq f  \big\}\\
+\Lambda^-(f)=\sup\big\{-\Lambda(h):h\in C_c(X,\Rbb_{\geq0}),h\leq f  \big\}
+\end{gather}
+\end{subequations}
+Clearly $(-\Lambda)^\pm=\Lambda^\mp$. 
+\begin{enumerate}
+\item Prove that $\Lambda$ has range in $\Rbb_{\geq0}$, that $\Lambda^+:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ is $\Rbb_{\geq0}$-linear, and that $\Vert\Lambda^+\Vert\leq M$. (Replacing $\Lambda$ with $-\Lambda$, we see that $\Lambda^-$ satisfies the same property.)
+\item Prove that
+\begin{align}
+\Lambda(f)=\Lambda^+(f)-\Lambda^-(f)
+\end{align}
+for all $f\in C_c(X,\Rbb_{\geq0})$. This is called the \textbf{Hahn decomposition} \index{00@Hahn decomposition} of $\Lambda$.
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Hint]
+1. For $f,g\in C_c(X,\Rbb_{\geq0})$, to prove $\Lambda^+(f+g)\leq\Lambda^+(f)+\Lambda^+(g)$, let $h\in C_c(X,\Rbb_{\geq0})$ such that $h\leq f+g$. Let $h_1=\min\{h,f\}$, and $h_2=h-h_1$. Show that $h_2\leq g$.
+
+2. Prove $\Lambda+\Lambda^-\leq\Lambda^+$, and replace $\Lambda$ with $-\Lambda$.
+\end{proof}
+
+\begin{sprob}
+Let $\mu$ be a finite Borel measure on $X$. Let $A\in\fk B_X$ and $B=X\setminus A$. Define a linear map $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ by
+\begin{align*}
+\Lambda(f)=\int_Af d\mu-\int_B fd\mu
+\end{align*}
+which is clearly bounded (with operator norm $\leq \mu(X)$). Prove that for every $f\in C_c(X,\Rbb_{\geq0})$ we have
+\begin{align}
+\Lambda^+(f)=\int_Af d\mu\qquad \Lambda^-(f)=\int_B fd\mu
+\end{align}
+\end{sprob}
+
+\begin{proof}[Hint]
+To prove $\Lambda^+(f)\geq\int_Afd\mu$, find compact $K\subset A$ and $L\subset B$ such that $\mu(A\setminus K)$ and $\mu(B\setminus L)$ are small. Multiply $f$ by an Urysohn function associated to $K$ and $X\setminus L$.
+\end{proof}
+
+
+
+
+\begin{thm}[\textbf{Riesz-Markov representation theorem}] \index{00@Riesz-Markov representation theorem for $C_c(X)$} \label{lb821}
+Any linear functional on $C_c(X)$ defined by $\Lambda_\mu:f\mapsto \int_Xfd\mu$ for some finite Radon measure $\mu$ is in $C_c(X)^*$. Moreover, such linear functionals span $C_c(X)^*$.
+\end{thm}
+
+\begin{proof}
+If $\mu(X)<+\infty$, by Pb. \ref{lb814}, we know $\Vert\Lambda_\mu\Vert<+\infty$. So $\Lambda_\mu\in C_c(X)^*$.
+
+We now show that $\Lambda\in C_c(X)^*$ can be written as a finite sum $\sum_i a_i\Lambda_{\mu_i}$ where $a_i\in\Cbb$ and $\mu_i$ is a finite Radon measure. For each $f\in C_c(X,\Rbb)$, let $\Lambda_1(f)=\Real\Lambda(f)$ and $\Lambda_2(f)=\Imag\Lambda(f)$. So $\Lambda_i\in C_c(X,\Rbb)^*$, and $\Lambda=\Lambda_1+\Lambda_2$ on $C_c(X,\Rbb)$. By Pb. \ref{lb813}, there exist $\Rbb_{\geq0}$-linear $\Lambda_i^\pm:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ with finite operator norms such that $\Lambda_i=\Lambda_i^+-\Lambda_i^-$ on $C_c(X,\Rbb_{\geq0})$. So $\Lambda=\Lambda_1^+-\Lambda_1^-+\im\Lambda_2^+-\im\Lambda_2^-$ on $C_c(X,\Rbb_{\geq0})$ and hence on $C_c(X)$ by the $\Cbb$-linearity. By the Riesz-Markov representation Thm. \ref{lb796}, each of the four positive linear functionals is represented by the integral of a Radon measure. The finiteness of these Radon measures is due to Pb. \ref{lb814}.
+\end{proof}
+
+
+\begin{rem}
+Recall that if $\mc V$ is a normed vector space with dense subspace $\mc U$, there is a canonical isomorphism of Banach spaces $\mc V^*\simeq\mc U^*$ (cf. Rem. \ref{lb820}). Therefore, since $C_0(X)$ is the completion of $C_c(X)$ (cf. Pb. \ref{lb485}), the Riesz-Markov Thm. \ref{lb821} also characterizes the dual space of $C_0(X)$.
+\end{rem}
+
+
+
+\subsubsection{$\star$ An alternative proof of Thm. \ref{lb818}}
+
+
+Let $X$ be a (not necessarily LCH) Hausdorff space. Let $\mu:\fk M\rightarrow[0,+\infty]$ be a measure where $\fk M$ is a $\sigma$-algebra containing $\fk B_X$. Define $\mu^*,\mu_*:\fk M\rightarrow[0,+\infty]$ by
+\begin{subequations}\label{eq325}
+\begin{gather}
+\mu^*(E)=\inf\big\{\mu(U):U\text{ is an open subset of $X$ containing }E \big\}\\
+\mu_*(E)=\sup\big\{\mu(K):K\text{ is a compact subset of }E \big\}\label{eq325b}
+\end{gather}
+\end{subequations}
+Clearly $\mu_*(E)\leq\mu(E)\leq\mu^*(E)$. Clearly $\mu^*(U)=\mu(U)$ if $U$ is open, and $\mu_*(K)=\mu(K)$ if $K$ is compact.
+
+Note that the definition of $\mu_*(E)$ (using $\mu(K)$) is slightly different from that in \eqref{eq292b} (using $\mu^*(K)$), since we do not assume $\mu^*(K)=\mu(K)$. Therefore, you cannot directly use the results proved in Sec. \ref{lb726}. (But you can use the methods in that section.)
+
+Recall from Def. \ref{lb811} that a set $E\in\fk M$ is \textbf{$\mu$-regular} iff $\mu^*(E)=\mu_*(E)$.
+
+\begin{exe}
+Let $E\in\fk M$ such that $\mu^*(E)<+\infty$. Prove that $\mu$ is regular on $E$ iff for each $\eps>0$ there exist an open $U\supset E$ and a compact $K\subset E$ such that $\mu(U\setminus K)<\eps$.
+\end{exe}
+
+
+\begin{prob}
+Let $E_1,E_2,\dots\in\fk M$ be mutually disjoint. Suppose that $\mu$ is regular on each $E_n$. Prove that $\mu$ is regular on $E=\bigcup_n E_n$, and $\dps\mu(E)=\sum_n\mu(E_n)$.
+\end{prob}
+
+\begin{prob}
+Let $E,F\in\fk M$ be $\mu$-regular such that $\mu(E)<+\infty$ and $\mu(F)<+\infty$. Prove that $E\cup F,E\cap F,E\setminus F$ are $\mu$-regular.
+\end{prob}
+
+We say that $E\in\fk M$ is \textbf{locally $\mu$-regular} if for each \textit{$\mu$-regular} open $U\subset X$ satisfying $\mu(U)<+\infty$, the set $E\cap U$ is $\mu$-regular. Let 
+\begin{align*}
+\fk M^\mu=\{E\in\fk M:E\text{ is locally $\mu$-regular}\}
+\end{align*}
+
+
+\begin{prob}
+Prove that $\fk M^\mu$ is a $\sigma$-algebra.
+\end{prob}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21625,8 +22227,6 @@ The proof will be finished by finding some $\alpha\in I$ such that $h\leq f_\alp
 
 
 \hypertarget{beforeindex}{}
-
-
 
 
 \printindex	
@@ -21669,7 +22269,7 @@ Evans, L. C. (2022). Partial differential equations (Vol. 19). American Mathemat
 Folland, G. B. Introduction to partial differential equations. 2nd ed. Princeton, NJ: Princeton University Press (1995)
 
 \bibitem[Fol-R]{Fol-R}
-Folland, G. B. (1999). Real analysis: modern techniques and their applications (Vol. 40). John Wiley \& Sons.
+Folland, G. B. (1999). Real analysis: modern techniques and their applications. 2nd ed.
 
 \bibitem[Gud74]{Gud74}
 Gudder, S. (1974). Inner product spaces. The American Mathematical Monthly, 81(1), 29-36.
@@ -21749,6 +22349,10 @@ Rudin, W. (1987). Real and complex analysis. 3rd ed.
 \bibitem[Rud-F]{Rud-F}
 Rudin, W. (1991). Functional analysis. 2nd ed.
 
+
+\bibitem[SS-R]{SS-R}
+E. M. Stein and R. Shakarchi, Real analysis. Measure theory, integration, and Hilbert spaces. Princeton University Press (2005)
+
 \bibitem[Sim-R]{Sim-R}
 Simon, B. (2015). Real analysis. A comprehensive course in analysis, part 1. Providence, RI: American Mathematical Society (AMS)
 
@@ -21761,6 +22365,9 @@ Stone, M. H. (1937). Applications of the theory of Boolean rings to general topo
 \bibitem[Sto48]{Sto48}
 Stone, M. H. (1948). The generalized Weierstrass approximation theorem. Mathematics Magazine, 21(5), 167-184, 237-254.
 
+
+\bibitem[Tao]{Tao}
+T. Tao, An introduction to measure theory.  American Mathematical Society (AMS) (2011)
 
 \bibitem[Tay]{Tay}
 M. E. Taylor, Partial differential equations. I: Basic theory. 2nd ed. New York, NY: Springer (2011)
