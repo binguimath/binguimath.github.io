@@ -2691,7 +2691,7 @@ We call $(V,\Vert\cdot\Vert)$ (often abbreviated to $V$) a \textbf{normed vector
 
 
 \begin{rem}\label{lb367}
-To check the absolute homogeneity, it suffices to check
+Assuming $\Vert 0_V\Vert=0$, to check the absolute homogeneity, it suffices to check
 \begin{align*}
 \Vert\lambda v\Vert\leq |\lambda|\cdot\Vert v\Vert
 \end{align*}
@@ -3604,12 +3604,12 @@ Let $W$ be a normed vector space. Prove that $W$ is complete iff every absolutel
 ``$\Rightarrow$" was proved in Prop. \ref{lb94}. To prove ``$\Leftarrow$", for each Cauchy sequence $(w_n)$ in $W$, choose a subsequence $(w_{n_k})$ such that $\Vert w_{n_k}-w_{n_{k+1}}\Vert\leq 2^{-k}$. Apply Thm. \ref{lb79}.
 \end{proof}
 
-\begin{prob}
-Use the following discrete version of ``integration by part" 
+\begin{prob}\label{lb845}
+Use the formula of \textbf{summation by parts} \index{00@Summation by parts}
 \begin{align}
-\sum_{k=m+1}^n f_kg_k=F_ng_n-F_mg_m+\sum_{k=m}^{n-1}F_k (g_k-g_{k+1})
+\sum_{k=m+1}^n f_kg_k=F_ng_n-F_mg_m-\sum_{k=m}^{n-1}F_k (g_{k+1}-g_k)
 \end{align}
-(where $F_n=\sum_{j=1}^n f_j$) to prove the following Dirichlet's test.
+(where $F_n=\sum_{j=0}^n f_j$) to prove the following Dirichlet's test.
 \end{prob}
 
 
@@ -11220,7 +11220,7 @@ In this section, we fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$, and let 
 \subsubsection{Riemann integrals}\label{lb384}
 
 
-\begin{df}
+\begin{df}\label{lb843}
 A \textbf{partition} \index{00@Partition of an interval} of the interval $I=[a,b]$ is defined to be an element of the form
 \begin{align}
 \sigma=\{a_0,a_1,\dots,a_n\in I:a_0=a<a_1<a_2<\cdots<a_n=b,n\in\Zbb_+\}
@@ -11246,7 +11246,7 @@ If $\sigma,\sigma'\in\mc P(I)$, then clearly $\sigma\cup\sigma'\in\mc P(I)$ and 
 \end{rem}
 
 
-\begin{df}
+\begin{df}\label{lb844}
 A \textbf{tagged partition} \index{00@Tagged partition} of $I$ is an ordered pair
 \begin{align*}
 (\sigma,\xi_\blt)=\big(\{a_0=a<a_1<\cdots<a_n=b\},(\xi_1,\dots,\xi_n) \big)
@@ -13382,7 +13382,7 @@ the set of polynomials of elements in $\fk S$, is the smallest unital $\Fbb$-sub
 
 
 
-\subsection{Stone-Weierstrass (SW) theorems} \index{00@SW=Stone-Weierstrass}
+\subsection{The Stone-Weierstrass (SW) theorems} \index{00@SW=Stone-Weierstrass}
 
 
 
@@ -14928,7 +14928,7 @@ If the topology $\mc T$ on $C(X,Y)$ is the pointwise convergence topology, then 
 %Compared to the original definition, it is better to view (2) as the definition of precompactness in $C(X,Y)$. In fact, when studying nonmetrizable regular topologies (such as the pointwise convergence topology), we will rarely use the original definition of precompactness.
 
 
-\subsection{Equicontinuity and precompactness; Arzel\`a-Ascoli theorem}\label{lb517}
+\subsection{Equicontinuity and precompactness; the Arzel\`a-Ascoli theorem}\label{lb517}
 
 
 \subsubsection{Precompactness under pointwise convergence topology}
@@ -15123,7 +15123,7 @@ One may wonder if AA theorem still holds when $\Rbb^N$ is replaced by an arbitra
 
 %% Record #26 2023/12/20 three lectures  65
 
-\subsection{Operator norms and compactness: Banach-Alaoglu theorem}\label{lb571}
+\subsection{Operator norms and compactness: the Banach-Alaoglu theorem}\label{lb571}
 
 
 \begin{displayquote}
@@ -16113,7 +16113,7 @@ In the above proof, when the infinite dimensional $V$ is reflexive, one can choo
 
 
 
-\subsection{Picard-Lindel\"of theorem}
+\subsection{The Picard-Lindel\"of theorem}
 
 We fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$. Let $I$ be an interval in $\Rbb$ containing at least two points.
 
@@ -18785,7 +18785,7 @@ In the above proof, we have used the completeness of $\fk L(l^2(Y),l^2(X))$, whi
 
 
 
-\subsection{The triumph of weak(-*) compactness: Hilbert-Schmidt theorem}
+\subsection{Triumph of weak(-*) compactness: the Hilbert-Schmidt theorem}\label{lb849}
 
 
 Fix a Hilbert space $\mc H$. For each $T\in\fk L(\mc H)$, let $\omega_T:\mc H\times\mc H\rightarrow\Cbb$ be $\omega_T(\xi|\eta)=\bk{T\xi|\eta}$ as usual. 
@@ -20005,7 +20005,7 @@ For each $E\subset X$, define the \textbf{outer measure} \index{00@Outer measure
 \mu_*(E)=\sup\big\{\mu^*(K):K\text{ is a compact subset of }E \big\}\label{eq292b}
 \end{gather}
 \end{subequations}
-(Clearly $\mu(U)=\mu^*(U)$ if $U$ is open, and $\mu_*(K)=\mu^*(K)$ if $K$ is compact.) Then the following conditions are satisfied:
+Then the following conditions are satisfied:
 \begin{enumerate}[label=(\alph*)]
 \item $\mu(\emptyset)=0$.
 \item (Monotonicity) If $U\subset V\subset X$ and $U,V$ are open, then $\mu(U)\leq\mu(V)$.
@@ -20015,12 +20015,24 @@ For each $E\subset X$, define the \textbf{outer measure} \index{00@Outer measure
 \end{enumerate}
 \end{ass}
 
+If $\mu:\mc T_X\rightarrow[0,+\infty]$ only satisfies (a,b,c,d), then $\mu$ is called a \textbf{premeasure} \index{00@Premeasure} (cf. \cite[Sec. 17.5]{RF}). We will not use this definition.
+
+
 \begin{exe}
 The reason we assume only additivity but not countable additivity in (d) is because the latter is automatic. More precisely, assuming (a,b,c), then (d) is true iff for any countable pairwise disjoint open sets $U_1,U_2,\dots$ we have $\mu(\bigcup_n U_n)=\sum_n\mu(U_n)$. Prove this fact. (We will not need this fact in the future.)
 \end{exe}
 
+\begin{rem}
+From the monotonicity of $\mu$ on $\mc T_X$, it is clear that $\mu(U)=\mu^*(U)$ if $U$ is open, and $\mu^*:2^X\rightarrow[0,+\infty]$ is monotonic increasing. This shows $\mu_*(K)=\mu^*(K)$ if $K$ is compact, and $\mu_*:2^X\rightarrow[0,+\infty]$ is monotonic increasing.
+\end{rem}
+
+
+
 \begin{df}\label{lb810}
-We say that $E$ is \textbf{$\mu$-regular} if $\mu_*(E)=\mu^*(E)$. Note that compact sets and open sets are clearly $\mu$-regular. If $E$ is $\mu$-regular (e.g $E$ is open or compact), we write $\mu_*(E)$ and $\mu^*(E)$ as $\mu(E)$.
+We say that $E$ is \textbf{$\mu$-regular} if $\mu_*(E)=\mu^*(E)$. Note that compact sets and open sets are clearly $\mu$-regular. If $E$ is $\mu$-regular (e.g $E$ is open or compact), we write 
+\begin{align*}
+\mu(E)=\mu^*(E)=\mu_*(E)\qquad\text{if $E$ is $\mu$-regular}
+\end{align*}
 \end{df}
 
 We abbreviate ``$\mu$-regular" to ``regular" when no confusion arises. (It has nothing to do with regular topological spaces (defined in Def. \ref{lb504}).)
@@ -20030,7 +20042,9 @@ Let $X=\Rbb^N$ and $\mu=m$. Then $m$ satisfies Asmp. \ref{lb712}: (a) and (b) ar
 \end{eg}
 
 
-Our goal is to show that $\mu^*$ is countably additive on a large class of sets, including all Borel sets of $X$. We shall show that the countable additivity holds at least for regular sets based on the following simple idea:
+Our goal is to show that $\mu^*$ is countably additive on $\fk B_X$. In measure theory, there is a common strategy of proving that the elements inside a $\sigma$-algebra satisfy a property $P$. Let $P:2^X\rightarrow\{\text{true},\text{false}\}$ be a property. Suppose that we can find $\fk E\subset 2^X$ such that every element in $\fk E$ satisfies $P$. Suppose that the set of all $E\subset X$ satisfying $P$ is a $\sigma$-algebra. Then $P$ is clearly true for every element of $\sigma(\fk E)$.
+
+However, countable additivity is not a property about subsets of $X$, but a property about pairwise disjoint sequences of subsets of $X$. Nevertheless, one can show that $\mu$ is countably additive on a pairwise disjoint sequence of \textit{regular} subsets based on the following simple idea:
 \begin{align}\label{eq290}
 \tcboxmath{
 \begin{array}{c}
@@ -20040,7 +20054,9 @@ Our goal is to show that $\mu^*$ is countably additive on a large class of sets,
 \end{array}
 }
 \end{align} 
+Therefore, since open sets are regular, if we can show that the class of regular sets is a $\sigma$-algebra, then this class contains $\fk B_X$. Thus, our goal is accomplished. 
 
+As we will see, if $\mu(X)<+\infty$, the class of regular sets is indeed a $\sigma$-algebra. However, when $\mu(X)=+\infty$, this statement is not true, so we must find an alternative to regular sets. 
 
 
 
@@ -20251,7 +20267,7 @@ Why do we define $\mu$ on $\fk M_\mu$ to be the restriction of $\mu^*$ but not $
 \end{exe}
 
 
-
+%% Record #6 2024/03/14 three lectures  15
 
 \subsubsection{A relationship between $\fk M_\mu$ and the completion of $\fk B_X$}
 
@@ -20848,7 +20864,7 @@ The map $\int_X:\mc L_+(X)\rightarrow\ovl\Rbb_{\geq0}$ is $\ovl\Rbb_{\geq0}$-lin
 \end{pp}
 
 \begin{proof}
-Let $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there are increasing sequences $(s_n)$ and $(t_n)$ in $\mc S_+(X)$ converging pointwise to $f$ and $g$ respectively. Then $(s_n+t_n)_{n\in\Zbb_+}$ is increasing and converges pointwise to $f+g$. By the linearity of $\int_X$ on $\mc S_+(X)$ (Prop. \ref{lb750}), we have $\int(s_n+t_s)=\int s_n+\int t_n$. Taking $\lim_n$ and applying the monotone convergence theorem, we have $\int (f+g)=\int f+\int g$. That $\int cf=c\int f$ for all $c\in\ovl\Rbb_{\geq0}$ can be proved in a similar way using Lem. \ref{lb790}. \footnote{When $c<+\infty$, the formula $\int cf=c\int f$ can be checked directly. In fact, we must check it directly because we have used this relation in the proof of the monotone convergence Thm. \ref{lb760}. Then we can prove the tricky case $c=+\infty$ using Thm. \ref{lb760}.}
+Let $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there are increasing sequences $(s_n)$ and $(t_n)$ in $\mc S_+(X)$ converging pointwise to $f$ and $g$ respectively. Then $(s_n+t_n)_{n\in\Zbb_+}$ is increasing and converges pointwise to $f+g$. By the linearity of $\int_X$ on $\mc S_+(X)$ (Prop. \ref{lb750}), we have $\int(s_n+t_s)=\int s_n+\int t_n$. Taking $\lim_n$ and applying the monotone convergence theorem, we have $\int (f+g)=\int f+\int g$. That $\int cf=c\int f$ for all $c\in\ovl\Rbb_{\geq0}$ can be proved in a similar way using Lem. \ref{lb790}. %\footnote{When $c<+\infty$, the formula $\int cf=c\int f$ can be checked directly. In fact, we must check it directly because we have used this relation in the proof of the monotone convergence Thm. \ref{lb760}. Then we can prove the tricky case $c=+\infty$ using Thm. \ref{lb760}.}
 \end{proof}
 
 \begin{lm}\label{lb790}
@@ -21636,7 +21652,7 @@ for all $f\in C_c(X,\Rbb_{\geq0})$. In my opinion, a direct proof of \eqref{eq31
 
 The goal of this section is to prepare for a more conceptual proof of \eqref{eq315} for $f\in C_c(X,\Rbb_{\geq0})$. To motivate our proof, recall that in Prop. \ref{lb780}, we proved that the Riemann integral of $f$ equals the Lebesgue integral by sandwiching $f$ between step functions $g$ and $h$, and show that the Riemann integrals of $g$ and $h$ agree with their Lebesgue integrals. But step functions are usually not continuous functions. Therefore, to generalize the proof of Prop. \ref{lb780}, we must first extend $\Lambda$ to a suitable larger class of positive functions.
 
-Through laborious work, one can extend $\Lambda$ to a large class of Borel measurable functions  without resorting to measures. The value $\Lambda(f)$ of $f$ in this class is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found in \cite[Sec. 9]{HS} and \cite[Sec. 11]{HR-1}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.)
+Through laborious work, one can extend $\Lambda$ to a large class of Borel measurable functions  without resorting to measures. The value $\Lambda(f)$ of $f$ in this class is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found e.g. in \cite[Sec. 9]{HS}, \cite[Sec. 11]{HR-1}, and \cite[Sec. 6.1]{Ped}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.)
 
 We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. In particular, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_i a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}.
 
@@ -21709,7 +21725,7 @@ The following proof is close in spirit to the proof of Thm. \ref{lb760}.
 \begin{proof}
 Since $f$ is the pointwise supremum $\sup_\alpha f_\alpha$, by Pb. \ref{lb767}, we have $f\in\LSC_+(X)$. Since $f\geq f_\alpha$, we clearly have $\Lambda(f)\geq\lim_\alpha\Lambda(f_\alpha)$. To prove ``$\leq$", by \eqref{eq316b}, it suffices to choose any $g\in C_c(\Omega_f,\Rbb_{\geq0})$ (where $\Omega_f=f^{-1}(0,+\infty]$) satisfying $g\leq f$, and prove that $\Lambda(g)\leq\sup_\alpha\Lambda(f_\alpha)$.
 
-Since $g\leq f$ and $f|_K>0$ where $K=\Supp(g)$, we have $\gamma g|_K<f|_K$ where $0<\gamma<1$. It suffices to prove that $\Lambda(\gamma g)\leq\sup_\alpha\Lambda(f_\alpha)$ for each $\gamma$. Thus, by replacing $g$ with $\gamma g$, it suffices to assume that $g|_K<f|_K$.
+Since $g\leq f$ and $f|_K>0$ where $K=\Supp(g)$, we have $\gamma g|_K<f|_K$ where $0<\gamma<1$. By the linearity of $\Lambda$ on $C_c(X,\Rbb_{\geq0})$, we have $\gamma\Lambda(g)=\Lambda(\gamma g)$. Thus, it suffices to prove that $\Lambda(\gamma g)\leq\sup_\alpha\Lambda(f_\alpha)$ for each $\gamma$. Thus, by replacing $g$ with $\gamma g$, it suffices to assume that $g|_K<f|_K$.
 
 The proof will be finished by finding some $\alpha\in I$ such that $g|_K<f_\alpha|_K$ (and hence $g\leq f_\alpha$). This follows from a standard compactness argument: For each $x\in K$, since $g(x)<f(x)$, there exists $\alpha_x\in I$ such that $g(x)<f_{\alpha_x}(x)$. Since $g$ is continuous and $f_{\alpha_x}$ is lower semicontinuous, the function $f_{\alpha_x}-g$ is lower semicontinuous (e.g. by Pb. \ref{lb767}-(3)). Therefore $U_x=\{x\in X:f_{\alpha_x}(x)-g(x)>0\}$ is an open subset of $X$ containing $x$. Since $K$ is compact, there exist $x_1,\dots,x_n\in K$ such that $K\subset U_{x_1}\cup\cdots\cup U_{x_n}$. Since $I$ is directed, there exists $\alpha\in I$ that is $\geq \alpha_{x_1},\dots,\alpha_{x_n}$. Then $f_\alpha\geq f_{\alpha_{x_i}}>g$ on $U_{x_i}$. Therefore $f_\alpha|_K>g|_K$.
 \end{proof}
@@ -21858,6 +21874,11 @@ For more traditional proofs of the Riesz-Markov representation theorem without r
 In this section, we fix an LCH space $(X,\mc T_X)$, and let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. 
 
 
+\begin{eg}
+Let $p\in X$, and let $(\fk M,\mu)$ be the completion of the Dirac Radon measure $(\fk B_X,\delta_p)$. Choose any $E\subset X$. If $p\notin E$, then $E\subset X\setminus\{p\}$ and $X\setminus\{p\}$ is null. So $E\in\fk M$ and $E$ is null. If $p\in E$, then $E=\{p\}\sqcup (E\setminus\{p\})$ where $\{p\}$ is Borel and $E\setminus\{p\}\in\fk M$. So $E\in\fk M$ and $\mu(E)=\mu(\{p\})=1$. We conclude that $(\fk M,\mu)=(2^X,\delta_p)$.
+\end{eg}
+
+
 \subsubsection{Regularity=measurability for sets with finite (outer) measures}
 
 
@@ -21883,30 +21904,44 @@ Rudin included Thm. \ref{lb804} as part of the statement of the Riesz-Markov rep
 As an application of Thm. \ref{lb804}, we  give a corollary similar to Cor. \ref{lb731}. (In fact, it shows that if $\fk M_\mu$ is as in the proof of Thm. \ref{lb801}, then for any $E\in\fin(2^X)$ satisfying $\mu^*(E)<+\infty$, we have $E\in\fk M_\mu$ iff $E\in\fk M$.) We first need a definition.
 
 \begin{df}
-Let $Y$ be a topological space. A subset $E\subset Y$ is called a \pmb{$G_\delta$}\textbf{ set} \index{00@$G_\delta$ set} if $E$ is a countable intersection of open subsets of $Y$. $E$ is called an \pmb{$F_\sigma$}\textbf{ set} \index{00@$F_\sigma$ set} if $E^c$ is a $G_\delta$ set, equivalently, if $E$ is a countable union of closed subsets of $Y$. $E$ is called a \pmb{$\sigma$}\textbf{-compact} set \index{00@$\sigma$-compact} if $E$ is a countable union of compact sets.\footnote{I wonder why $\sigma$-compact sets are not called $K_\sigma$ sets, or why $G_\delta$ sets and $F_\sigma$ sets are not called $\delta$-open sets and $\sigma$-closed sets.} 
+Let $Y$ be a topological space. A subset $E\subset Y$ is called a \pmb{$G_\delta$}\textbf{ set} \index{00@$G_\delta$ set} (of $Y$) if $E$ is a countable intersection of open subsets of $Y$. $E$ is called an \pmb{$F_\sigma$}\textbf{ set} \index{00@$F_\sigma$ set} (of $Y$) if $E^c$ is a $G_\delta$ set, equivalently, if $E$ is a countable union of closed subsets of $Y$. $E$ is called a \pmb{$\sigma$}\textbf{-compact} set \index{00@$\sigma$-compact} if $E$ is a countable union of compact sets.\footnote{I wonder why $\sigma$-compact sets are not called $K_\sigma$ sets, or why $G_\delta$ sets and $F_\sigma$ sets are not called $\delta$-open sets and $\sigma$-closed sets.} If $Y$ is Hausdorff, a $\sigma$-compact set is clearly $F_\sigma$ in $Y$.
 \end{df}
 
+Note that the meanings of $G_\delta$ and $F_\sigma$ depend on the ambient space $Y$, but the meaning of $\sigma$-compactness does not.
+
+\begin{sexe}
+Assume that the LCH space $X$ is $\sigma$-compact (e.g. when $X$ is second countable, cf. Exp. \ref{lb831}). Prove that a subset $E$ of $X$ is $\sigma$-compact iff $E$ is an $F_\sigma$ subset of $X$. 
+\end{sexe}
+
+
 \begin{co}\label{lb830}
-Let $E\subset X$ such that $E$ is contained in an open set with finite $\mu$-measure. \footnote{In other words, we assume $\mu^*(E)<+\infty$.} Then the following are equivalent.
+Let $E\subset X$ such that $E$ is contained in an open set with finite $\mu$-measure. Then the following are equivalent.
 \begin{enumerate}
 \item[(1)] $E\in\fk M$.
 \item[(2)] For every $\eps>0$ there exist a compact set $K\subset X$ and an open set $U\subset X$ such that $K\subset E\subset U$ and $\mu(U\setminus K)<\eps$.
-\item[(3)] There exist a $\sigma$-compact set $A\subset X$ and a $G_\delta$ set $B\subset X$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$.  
+\item[(2')] There exist a $\sigma$-compact set $A\subset X$ and a $G_\delta$ set $B\subset X$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$.  
 \end{enumerate}
 \end{co}
 
+Note that the assumption that $E$ is contained in a finite-measure open set simply means that $\mu^*(E)<+\infty$.
 
 \begin{proof}
 (1)$\Rightarrow$(2): This is clear from Thm. \ref{lb804}. 
 
-(2)$\Rightarrow$(3): Assume (2). For each $n\in\Zbb_+$, one can choose an open $U_n\supset E$ and a compact $K_n\subset E$ such that $\mu(U_n\setminus K_n)<1/n$. Take $A=\bigcup_n K_n$ and $B=\bigcap_n U_n$. Since $B\setminus A\subset\bigcap_n (U_n\setminus K_n)$, we have $\mu(B\setminus A)\leq \mu(U_n\setminus K_n)<1/n$ for all $n$. Therefore $\mu(B\setminus A)=0$.
+(2)$\Rightarrow$(2'): Assume (2). For each $n\in\Zbb_+$, one can choose an open $U_n\supset E$ and a compact $K_n\subset E$ such that $\mu(U_n\setminus K_n)<1/n$. Take $A=\bigcup_n K_n$ and $B=\bigcap_n U_n$. Since $B\setminus A\subset\bigcap_n (U_n\setminus K_n)$, we have $\mu(B\setminus A)\leq \mu(U_n\setminus K_n)<1/n$ for all $n$. Therefore $\mu(B\setminus A)=0$.
 
-(3)$\Rightarrow$(1): This follows immediately from the fact that $A,B\in\fk B_X$ and $(\fk M,\mu)$ is the completion of $(\fk B_X,\mu)$.
+(2')$\Rightarrow$(1): This follows immediately from the fact that $A,B\in\fk B_X$ and $(\fk M,\mu)$ is the completion of $(\fk B_X,\mu)$.
 \end{proof}
+
+
+One can also prove (2')$\Rightarrow$(2) directly (by Prop. \ref{lb748}-(c)) without first proving (2')$\Rightarrow$(1). Therefore, the readers should regard (2) and (2') as two ways of expressing the same fact. (But note that we do not have (2')$\Rightarrow$(2) when $\mu^*(E)=+\infty$.)
 
 \begin{rem}
 Recall that from the definition of measure completion (cf. Thm. \ref{lb708}), we know that a set $E\subset X$ belongs to $\fk M$ iff one can find Borel sets $A,B$ such that $A\subset E\subset B$ and $\mu(B\setminus A)$. Now, Cor. \ref{lb830} tells us that if $E\in\fk M$ and $\mu(E)<+\infty$, then $A$ and $B$ can be chosen to be  $G_\delta$ sets and $\sigma$-compact sets, which are much more explicit than general Borel sets. 
 \end{rem}
+
+
+
 
 \begin{co}\label{lb834}
 Let $E\subset X$. Then the following are equivalent.
@@ -22002,26 +22037,34 @@ We are ready to prove a variant of Cor. \ref{lb830}.
 Assume that $\mu$ is $\sigma$-finite (on $X$). Let $E\subset X$. Then the following are equivalent.
 \begin{enumerate}
 \item[(1)] $E\in\fk M$.
-\item[(2)] For every $\eps>0$ there exist a closed set $F\subset X$ and an open set $U\subset X$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\eps$.
-\item[(3)] There exist a $F_\sigma$ set $A\subset X$ and a $G_\delta$ set $B\subset X$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$.  
+\item[(2)] For every $\eps>0$ there exist a closed set $F\subset X$ and an open set $U\subset X$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\eps$. 
 \end{enumerate}
 \end{thm}
 
 
 \begin{proof}
-Similar to the proof of Cor. \ref{lb830}, one easily shows (2)$\Rightarrow$(3) and (3)$\Rightarrow$(1). Let us assume (1) and prove (2).
+(2)$\Rightarrow$(1): Similar to the proof of Cor. \ref{lb830}, (2) implies that there is an $F_\sigma$ set $A$ and a $G_\delta$ set $B$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$. \footnote{We didn't single out this property and call it (2') because we will not use this property in the future of this course, and also because without assuming $\mu^*(E)<+\infty$ as in Cor. \ref{lb830}, one cannot prove (2')$\Rightarrow$(2) directly without first proving (2')$\Rightarrow$(1).} Since $A,B$ are Borel and $(\fk M,\mu)$ is complete, we conclude $E\in\fk M$.
 
-It suffices to find an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps/2$. Then, a similar argument gives an open set $V$ containing $E^c$ such that $\mu(V\setminus E^c)<\eps/2$. Write $V=X\setminus F$ where $F$ is closed. Then $F\subset E\subset U$ and $\mu(E\setminus F)<\eps/2$. So $\mu(U\setminus F)<\eps$.
+
+(1)$\Rightarrow$(2): Let $E\in\fk M$. To prove (2), it suffices to find an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps/2$. Then, a similar argument gives an open set $V$ containing $E^c$ such that $\mu(V\setminus E^c)<\eps/2$. Write $V=X\setminus F$ where $F$ is closed. Then $F\subset E\subset U$ and $\mu(E\setminus F)<\eps/2$. So $\mu(U\setminus F)<\eps$.
 
 By Rem. \ref{lb809}, there exist $\mu$-finite open sets $O_1,O_2,\dots\subset X$ covering $X$. Let $E_n=E\cap O_n$. Then $\mu(E_n)<+\infty$ and $E=\bigcup_n E_n$. By Thm. \ref{lb804}, there exists an open $U_n$ containing $E_n$ such that $\mu(U_n)<\mu(E_n)+\eps/2^{n+1}$, and hence $\mu(U_n\setminus E_n)<\eps/2^{n+1}$. Let $U=\bigcup_nU_n$. Then $U\setminus E\subset\bigcup_n(U_n\setminus E_n)$, and hence $\mu(U\setminus E)<\eps/2$.
 \end{proof}
 
-
+\begin{comment}
 A $\sigma$-compact set is clearly $F_\sigma$. In view of the similarity between Cor. \ref{lb830} and Thm. \ref{lb808}, one naturally wonders if the converse is true. The following is an answer:
 
 \begin{sexe}
 Assume that $X$ is $\sigma$-compact (which is automatic when $X$ is second countable). Let $A\subset X$. Prove that $A$ is $\sigma$-compact iff $A$ is $F_\sigma$.
 \end{sexe}
+
+
+\begin{srem}
+In (2') of Thm. \ref{lb808}, one can choose $A$ to be $\sigma$-compact. (Recall that $\sigma$-compact sets are $F_\sigma$.) To see this, take $E\in\fk M$. Since $\mu$ is $\sigma$-finite, we can write $E$ as a countable union $E=\bigcup_n E_n$ where each $E_n\in\fk M$ has finite measure. By Cor. \ref{lb830}, there is a $\sigma$-compact subset $A_n$ of $E_n$ such that $\mu(E_n\setminus A_n)=0$. Then $A=\bigcup_n A_n$ is $\sigma$-compact, and $\mu(E\setminus A)=0$. Thus, for any $B$ as in (2') of Thm. \ref{lb808}, since $\mu(B\setminus E)=0$, we have $\mu(B\setminus A)=0$.
+\end{srem}
+
+\end{comment}
+
 
 
 
@@ -22087,6 +22130,217 @@ Let $X$ be a second countable LCH space. Let $\mu$ be a Radon measure on $X$. Le
 
 \subsection{Stieltjes integrals and Radon measures on $[a,b]$}
 
+Let $-\infty<a<b<+\infty$. The original version of the Riesz-Markov representation was proved for $X=[a,b]$ by Riesz in 1909 without appeal to measure theory. This \textbf{Riesz representation theorem} says that the (positive) linear functionals on $C[a,b]$ can be realized by Stieltjes integrals. In this section, we will explain how this result follows from the Riesz-Markov representation theorem. 
+
+
+
+\subsubsection{Stieltjes integrals}
+
+
+Recall Subsec. \ref{lb384} for the meaning of partitions and their refinements. The set of partitions of $[a,b]$ is denoted by $\mc P[a,b]$. For simplicity, we define Stieltjes integrals using Darboux sums instead of Riemann sums.
+
+
+
+Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing (i.e. $\rho(x)\leq \rho(y)$ if $x\leq y$). Let $f:[a,b]\rightarrow\Rbb$ be bounded. For each partition 
+\begin{align*}
+\sigma=\big(\{a_0=a<a_1<\cdots<a_n=b\} \big)
+\end{align*}
+of $[a,b]$, define the \textbf{lower Darboux sum} and the \textbf{upper Darbox sum} to be
+\begin{subequations}
+\begin{gather}
+\udl S(f,\sigma,\rho)=\sum_{i=1}^n(\inf f(a_{i-1},a_i])\cdot(\rho(a_i)-\rho(a_{i-1}))\\
+\ovl S(f,\sigma,\rho)=\sum_{i=1}^n(\sup f(a_{i-1},a_i])\cdot(\rho(a_i)-\rho(a_{i-1}))
+\end{gather}
+\end{subequations}
+Clearly $\udl S(f,\sigma,\rho)\leq \ovl S(f,\sigma,\rho)$, and $\udl S(f,\sigma,\rho)$ increases as $\sigma$ is refined, and $\ovl S(f,\sigma,\rho)$ decreases as $\sigma$ is refined. Let
+\begin{align}\label{eq340}
+A(f,\sigma)=\sup_i \diam f(a_{i-1},a_i]
+\end{align}
+Then
+\begin{align}\label{eq336}
+\ovl S(f,\sigma,\rho)-\udl S(f,\sigma,\rho)\leq A(f,\sigma)\cdot(\rho(b)-\rho(a))
+\end{align}
+
+Define the \textbf{lower Darboux integral} and the \textbf{upper Darboux integral} to be
+\begin{align}
+\udl\int_a^b fd\rho=\sup_{\sigma\in\mc P[a,b]}\udl S(f,\sigma,\rho)\qquad \ovl\int_a^b fd\rho=\inf_{\sigma\in\mc P[a,b]}\ovl S(f,\sigma,\rho)
+\end{align}
+Clearly $\udl S(f,\sigma,\rho)\leq \udl\int_a^b fd\rho\leq\ovl\int_a^b fd\rho\leq \ovl S(f,\sigma,\rho)$. 
+
+
+\begin{df}
+We say that a bounded function $f:[a,b]\rightarrow\Rbb$ is \textbf{Stieltjes integrable} with respect to $\rho$  if the lower integral $\udl\int_a^b fd\rho$ is equal to the upper integral $\ovl\int_a^b fd\rho$. When these two values are equal, we denote them by $\dps \int_a^bfd\rho$ and call it the \textbf{Stieltjes integral} \index{00@Stieltjes integral} of $f$ with respect to $\rho$.
+\end{df}
+
+
+\begin{thm}
+Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing. Then each $f\in C([a,b],\Rbb)$ is Stieltjes integrable with respect to $\rho$, and
+\begin{align}
+\mc I_\rho:C([a,b],\Rbb)\rightarrow\Rbb\qquad\mc I_\rho(f)=f(a)\rho(a)+\int_a^bfd\rho
+\end{align}
+is a positive linear functional.
+\end{thm}
+
+The Stieltjes integral $\int_a^bfd\rho$ should be viewed as an integral on $(a,b]$ rather than on $[a,b]$. (This is compatible with the fact that $\int_a^bfd\rho+\int_b^cfd\rho=\int_a^cfd\rho$, because $(a,c]=(a,b]\sqcup(b,c]$ if $c>b$.) This is why we need the extra term $f(a)\rho(a)$ in the definition of $\mc I_\rho(f)$.
+
+\begin{proof}
+Define $\udl{\mc I}_\rho,\ovl{\mc I}_\rho:C([a,b],\Rbb)\rightarrow\Rbb$ by $\udl{\mc I}_\rho(f)=f(a)\rho(a)+\udl\int_a^b fd\rho$ and $\ovl{\mc I}_\rho(f)=f(a)\rho(a)+\ovl\int_a^b fd\rho$. It is easy to check that $\udl{\mc I}_\rho(cf)=c\udl{\mc I}_\rho(f)$, $\ovl{\mc I}_\rho(cf)=c\ovl{\mc I}_\rho(f)$, $\udl{\mc I}_\rho(f+g)\geq \udl{\mc I}_\rho(f)+\udl{\mc I}_\rho(g)$, $\ovl{\mc I}_\rho(f+g)\leq \ovl{\mc I}_\rho(f)+\ovl{\mc I}_\rho(g)$ if $f,g\in C([a,b],\Rbb)$ and $c\in\Rbb_{\geq0}$. Also $\udl{\mc I}_\rho(-f)=-\ovl{\mc I}_\rho(f)$. The linearity of $\mc I_\rho$ follows immediately if we can prove $\udl{\mc I}_\rho=\ovl{\mc I}_\rho$, and the positivity is obvious.
+
+Since $f\in C([a,b],\Rbb)$ is continuous and $[a,b]$ is compact, $f$ is uniformly continuous. Therefore, for each $\eps>0$ there exists a partition $\sigma$ such that $A(f,\rho)\leq\eps$, and hence $\ovl{\mc I}_\rho(f)-\udl{\mc I}_\rho(f)\leq \eps(\rho(b)-\rho(a))$ by \eqref{eq336}. This finishes the proof since $\eps$ can be arbitrary.
+\end{proof}
+
+
+\begin{eg}
+Let $\rho(x)=x$. For each $f\in C([a,b],\Rbb)$, $\int_a^bfd\rho$ is the Riemann integral of $f$.
+\end{eg}
+
+
+\begin{eg}
+Let $c\in[a,b]$ and $\rho=\chi_{[c,d]}$. Let $f:[a,b]\rightarrow\Rbb$ be bounded and left continuous at $c$. Then $f$ is Stieltjes integrable with respect to $\rho$, and $\mc I_\rho(f)=f(c)$.
+\end{eg}
+
+\begin{eg}
+If $f$ is Stieltjes integrable with respect to $\rho_1,\rho_2$, then $f$ is Stieltjes integrable with respect to $\rho=k_1\rho_1+k_2\rho_2$ (where $k_1,k_2\in\Rbb_{\geq0}$), and 
+\begin{align*}
+\mc I_\rho(f)=k_1\mc I_{\rho_1}(f)+k_2\mc I_{\rho_2}(f)
+\end{align*}
+\end{eg}
+
+
+\begin{eg}
+Let $\{c_1<\cdots<c_n\}\subset[a,b]$. Let $\rho=\id+\sum_{i=1}^n\chi_{[c_i,d]}$ where $\id:x\in[a,b]\mapsto x\in\Rbb$. Let $f:[a,b]\rightarrow\Rbb$ be continuous. Then by the above examples, we have
+\begin{align*}
+\mc I_\rho(f)=\int_a^bfdx+\sum_{i=1}^n f(c_i)
+\end{align*}
+\end{eg}
+
+
+
+
+
+\subsubsection{Riesz representation theorem}
+
+
+A function $\rho:[a,b]\rightarrow\Rbb$ is called \textbf{right continuous} \index{00@Right continuous} if for each $p\in[a,b]$ we have $\lim_{x\rightarrow p^+}f(x)=f(p)$. This is equivalent to saying that for each $p\in[a,b]$ and each sequence $(x_n)$ in $[p,b]$ converging to $p$ we have $\lim_nf(x_n)=f(p)$.
+
+
+The following lemma shows that $\rho$ can be recovered from $\mc I_\rho$ if $\rho$ is right continuous.
+
+\begin{lm}\label{lb850}
+Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing. Assume $a\leq c<d\leq b$. Let $f\in C([a,b],[0,1])$ such that $f|_{[a,c]}=1$ and $f|_{[d,b]}=0$. Then
+\begin{align}\label{eq337}
+\rho(c)\leq\mc I_\rho(f)\leq \rho(d)
+\end{align}
+Therefore, if $\rho$ is right continuous, and if $(f_n)$ is a sequence in $C([a,b],[0,1])$ such that $f|_{[a,c]}=1$ and $f|_{[c+1/n,b]}=0$, then
+\begin{align}\label{eq338}
+\lim_{n\rightarrow\infty}\mc I_\rho(f_n)=\rho(c)
+\end{align}
+\end{lm}
+
+
+\begin{proof}
+Let $\sigma_1=\{a,c,b\}$ and $\sigma_2=\{a,d,b\}$. Then $\udl S(f,\sigma_1,\rho)=\rho(c)-\rho(a)$ and $\ovl S(f,\sigma_2,\rho)=\rho(d)-\rho(a)$. This proves $\rho(c)-\rho(a)\leq\int_a^bfd\rho\leq\rho(d)-\rho(a)$, and hence proves \eqref{eq337}. 
+
+We now have $\rho(c)\leq\mc I_\rho(f_n)\leq\rho(c+1/n)$. Let $n\rightarrow\infty$. Then the right continuity of $\rho$ implies \eqref{eq338}.
+\end{proof}
+
+
+
+
+
+\begin{thm}[\textbf{Riesz representation theorem}]\index{00@Riesz representation theorem for $C([a,b],\Rbb_{\geq0})$}\label{lb847}
+We have a bijection from the set of increasing right continuous functions $[a,b]\rightarrow\Rbb_{\geq0}$ to the set of positive linear functionals on $C([a,b],\Rbb)$ defined by
+\begin{align}\label{eq339}
+\rho\mapsto\mc I_\rho 
+\end{align}
+\end{thm}
+
+
+\begin{proof}
+By Lem. \ref{lb850}, the map \eqref{eq339} is injective. Let us prove that \eqref{eq339} is surjective. Choose any positive linear functional $\Lambda:C([a,b],\Rbb)\rightarrow\Rbb$. By the Riesz-Markov representation Thm. \ref{lb796}, there is a Radon measure $\mu$ on $[a,b]$ such that $\int_{[a,b]}fd\mu=\Lambda(f)$ for all $f\in C([a,b],\Rbb)$. Since $[a,b]$ is compact, $\mu$ is a finite measure. Define
+\begin{align}\label{eq341}
+\rho_\mu:[a,b]\rightarrow\Rbb_{\geq0}\qquad \rho_\mu(x)=\mu([a,x])
+\end{align}
+Clearly $\rho_\mu$ is increasing. If $(x_n)$ is a decreasing sequence in $[x,b]$ converging to $x$, then $\bigcap_{n\in\Zbb_+}[a,x_n]=[a,x]$. Therefore $\mu([a,x])=\lim_n \mu([a,x_n])$. This proves that $\rho_\mu$ is right continuous. \footnote{If $(x_n)$ is an increasing sequence in $[a,x)$ converging to $x$, then $\bigcup_n[a,x_n]=[a,x)$. Thus, $\rho$ might not be left continuous because $\mu([a,x))$ and $\mu([a,x])$ are possibly different.} Let us prove for each $f\in C([a,b],\Rbb)$ that $\mc I_\rho(f)=\Lambda(f)$, i.e., that
+\begin{align}\label{eq344}
+\mc I_{\rho_\mu}(f)=\int_{[a,b]}fd\mu
+\end{align}
+In the following, we write $\rho_\mu$ as $\rho$ for simplicity.
+
+Since $f$ is uniformly continuous, for each $\eps>0$ there is a partition $\sigma=\{a_0<\cdots<a_n\}$ of $[a,b]$ such that $A(f,\sigma)$ (defined by \eqref{eq340}) satisfies $A(f,\sigma)\leq\eps$. In other words, if
+\begin{align*}
+m_i=\inf f(a_{i-1},a_i]\qquad M_i=\sup f(a_{i-1},a_i]
+\end{align*}
+then $M_i-m_i\leq\eps$ for all $i$. Thus, we have (cf. \eqref{eq336})
+\begin{align*}
+\ovl S(f,\sigma,\rho)-\udl S(f,\sigma,\rho)\leq \eps\rho(b)
+\end{align*}
+Since $\udl S(f,\sigma,\rho)\leq\mc I_\rho(f)-f(a)\rho(a)\leq \ovl S(f,\sigma,\rho)$, we conclude
+\begin{align}\label{eq342}
+0\leq\mc I_\rho(f)-f(a)\rho(a)-\udl S(f,\sigma,\rho)\leq\eps\rho(b)
+\end{align}
+
+Define
+\begin{gather*}
+g=f(a)\chi_{\{a\}}+\sum_{i=1}^n m_i\cdot\chi_{(a_{i-1},a_i]}\qquad h=f(a)\chi_{\{a\}}+\sum_{i=1}^n M_i\cdot\chi_{(a_{i-1},a_i]}
+\end{gather*}
+Then $g\leq f\leq h$ and $h-g\leq \eps$. Thus, since $\mu([a,b])=\rho(b)$ and $0\leq f-g\leq\eps$, we have
+\begin{align}\label{eq343}
+0\leq\int_{[a,b]}fd\mu-\int_{[a,b]}gd\mu\leq\eps\rho(b)
+\end{align}
+In view of \eqref{eq342} and \eqref{eq343}, the proof of \eqref{eq344} will be complete if we can show that $\int_{[a,b]}gd\mu=f(a)\rho(a)+\udl S(f,\sigma,\rho)$, i.e., that
+\begin{align*}
+\int_{[a,b]}gd\mu=f(a)\rho(a)+\sum_{i=1}^n m_i(\rho(a_i)-\rho(a_{i-1}))
+\end{align*}
+But this follows from the linearity of $\int_{[a,b]}d\mu$ and the fact that
+\begin{align*}
+\mu(\{a\})=\rho(a)\qquad \mu((a_{i-1},a_i])=\rho(a_i)-\rho(a_{i-1})
+\end{align*}
+which is due to \eqref{eq341}.
+\end{proof}
+
+
+\begin{rem}
+The Riesz representation Thm. \ref{lb847} was proved by Riesz in 1909 and also by Helly in 1912. Riesz and Helly's interest in this theorem is closely related to their interest in the moment problem in $C([a,b],\Rbb)$. We have mentioned in Sec. \ref{lb543} that the early solution of moment problems uses a compactness argument which was later abstracted into the Banach-Alaoglu theorem. Now, since positive linear functionals on $C([a,b],\Rbb)$ take the explicit form of Stieltjes integrals with respect to increasing functions, the readers may ask whether the Banach-Alaoglu theorem for $C([a,b],\Rbb)$ also takes an explicit form. The answer is yes: the explicit formulation of the Banach-Alaoglu theorem for $C([a,b],\Rbb)$ in terms of increasing functions is called \textbf{Helly's selection theorem}. We will explain this in detail in Subsec. \ref{lb850}.
+\end{rem}
+
+
+
+
+\subsubsection{Classification of Radon measures on $[a,b]$}
+
+In view of the bijection between positive linear functionals and Radon measures, the following corollary is more or less an equivalent formulation of the Riesz representation Thm. \ref{lb847}.
+
+\begin{co}
+There is a bijection $\mu\mapsto\rho_\mu$ from the set of Radon measures on $[a,b]$ to the set of increasing right continuous functions $[a,b]\rightarrow\Rbb_{\geq0}$ such that
+\begin{gather}
+\rho_\mu:[a,b]\rightarrow\Rbb_{\geq0}\qquad \rho_\mu(x)=\mu([a,x])
+\end{gather}
+The Radon measure $\mu$ is determined by $\rho_\mu$ by
+\begin{align}\label{eq346}
+\int_{[a,b]}fd\mu=f(a)\rho_\mu(a)+\int_a^bfd\rho_\mu
+\end{align}
+for each $f\in C([a,b],\Rbb)$.
+\end{co}
+
+\begin{proof}
+Let $\Phi:\rho\mapsto\mc I_\rho$ be the bijection in the Riesz representation Thm. \ref{lb847}. By Riesz-Markov, $\mc I_\rho$ can be identified with its associated Radon measure $\mu_\rho$. This gives a bijection $\rho\mapsto\mu_\rho$ determined by
+\begin{align}\label{eq345}
+\mc I_\rho (f)=\int_{[a,b]}fd\mu_\rho
+\end{align}
+for all $f\in C([a,b],\Rbb)$.
+
+Moreover, in the proof of Thm. \ref{lb847}, we have shown (cf. \eqref{eq344}) that $\mc I_{\rho_{\mu_\rho}}(f)=\int_{[a,b]}fd\mu_\rho$. This proves $\mc I_\rho=\mc I_{\rho_{\mu_\rho}}$ (by \eqref{eq345}), and hence $\rho=\rho_{\mu_\rho}$. Thus, $\mu\mapsto\rho_\mu$ is the inverse of the bijection $\rho\mapsto\mu_\rho$. So $\mu\mapsto\rho_\mu$ is bijective. Eq. \eqref{eq346} follows from \eqref{eq345}.
+\end{proof}
+
+
+\begin{rem}
+One can also prove $\rho=\rho_{\mu_\rho}$ without using \textit{the proof} of Thm. \ref{lb847} (i.e., without using the intermediate step \eqref{eq344}): Choose any $c\in[a,b]$. Let $(f_n)$ be a sequence as in Lem. \ref{lb850}. Then $\lim_n\mc I_\rho(f_n)=\rho(c)$ by Lem. \ref{lb850}, and
+\begin{align*}
+\lim_n\int_{[a,b]}f_nd\mu_\rho=\int_{[a,b]}\chi_{[a,c]}d\mu_\rho=\mu_\rho([a,c])=\rho_{\mu_\rho}(c)
+\end{align*}
+by the dominated convergence theorem. By \eqref{eq345}, we have $\rho(c)=\rho_{\mu_\rho}(c)$.
+\end{rem}
 
 
 
@@ -22094,14 +22348,12 @@ Let $X$ be a second countable LCH space. Let $\mu$ be a Radon measure on $X$. Le
 
 
 
-
-\hypertarget{beforeindex}{}
 
 \subsection{Problems and supplementary material}
 
 
 
-\subsubsection{Upper and lower semicontinuous functions}
+\subsubsection{$\star$ Approximation by upper and lower semicontinuous functions}
 
 Let $X$ be an LCH space, and let $(\fk M,\mu)$ be the completion of a Radon measure on $X$.
 
@@ -22166,7 +22418,7 @@ It is not necessary to prove \eqref{eq324} using Pb. \ref{lb801}. You can try to
 Let $X$ be an LCH space.
 
 \begin{prob}\label{lb814}
-Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be $\Rbb_{\geq0}$-linear. By Rem. \ref{lb812}, $\Lambda$ can be extended uniquely to a $\Cbb$-linear map $\Lambda:C_c(X)\rightarrow\Rbb$. Let $\mu$ be the Radon measure associated to $\Lambda$. Prove that the following four numbers are equal:
+Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be $\Rbb_{\geq0}$-linear. By Rem. \ref{lb812}, $\Lambda$ can be extended uniquely to a $\Cbb$-linear map $\Lambda:C_c(X)\rightarrow\Cbb$. Let $\mu$ be the Radon measure associated to $\Lambda$. Prove that the following four numbers are equal:
 \begin{align*}
 &\sup\{\Lambda(f):f\in C_c(X,\Rbb_{\geq0}),f\leq 1\}=\sup\{\Lambda(f):f\in C_c(X,\Rbb),|f|\leq 1\}\\
 =&\sup\{\Lambda(f):f\in C_c(X),|f|\leq 1\}=\mu(X)
@@ -22190,7 +22442,7 @@ Clearly $(-\Lambda)^\pm=\Lambda^\mp$.
 \begin{align}
 \Lambda(f)=\Lambda^+(f)-\Lambda^-(f)
 \end{align}
-for all $f\in C_c(X,\Rbb_{\geq0})$. This is called the \textbf{Hahn decomposition} \index{00@Hahn decomposition} of $\Lambda$.
+for all $f\in C_c(X,\Rbb_{\geq0})$. This is called the \textbf{Jordan decomposition} \index{00@Jordan decomposition} of $\Lambda$.
 \end{enumerate}
 \end{prob}
 
@@ -22222,6 +22474,8 @@ To prove $\Lambda^+(f)\geq\int_Afd\mu$, find compact $K\subset A$ and $L\subset 
 \begin{thm}[\textbf{Riesz-Markov representation theorem}] \index{00@Riesz-Markov representation theorem for $C_c(X)$} \label{lb821}
 Any linear functional on $C_c(X)$ defined by $\Lambda_\mu:f\mapsto \int_Xfd\mu$ for some finite Radon measure $\mu$ is in $C_c(X)^*$. Moreover, such linear functionals span $C_c(X)^*$.
 \end{thm}
+
+A similar classification of $C_c(X,\Rbb)^*$ is left to the readers.
 
 \begin{proof}
 If $\mu(X)<+\infty$, by Pb. \ref{lb814}, we know $\Vert\Lambda_\mu\Vert<+\infty$. So $\Lambda_\mu\in C_c(X)^*$.
@@ -22292,10 +22546,146 @@ Since $X$ is a countable union of open subsets, and since $\mu$ is finite on com
 \end{proof}
 
 
+\subsubsection{Stieltjes integrals and the Banach-Alaoglu theorem for $C([a,b],\Rbb)$}\label{lb851}
+
+
+Let $-\infty<a<b<+\infty$. If $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ is increasing, for each $f:[a,b]\rightarrow\Cbb$, the Stieltjes integral $\int_a^bfd\rho$ is understood as $\int_a^b\Real(f)d\rho+\im\int_a^b\Imag(f)d\rho$ whenever it can be defined. Recall that $\mc I_\rho(f)=f(a)\rho(a)+\int_a^bfd\rho$.
+
+
+\begin{prob}
+Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing. Prove that $\mc I_\rho:C[a,b]\rightarrow\Cbb$ has operator norm
+\begin{align*}
+\Vert\mc I_\rho\Vert=\rho(b)
+\end{align*}
+\end{prob}
+
+\begin{lm}
+Let $I\subset\Rbb$ be an interval. Suppose that $\rho:I\rightarrow\Rbb$ is increasing. Then $\rho$ is continuous outside countably many points. In particular, if $I=[a,b]$, then $\rho$ is Riemann integrable on $I$.
+\end{lm}
+
+
+\begin{proof}
+Since $I$ is a countable union of compact subintervals, by restricting $\rho$ to each compact subinterval, it suffices to assume $I=[a,b]$. 
+
+For each $x\in I$, let $\rho_-(x),\rho_+(x)$ be the left resp. right limit of $\rho$ at $x$, i.e., $\rho_\pm(x)=\lim_{t\rightarrow x^\pm}\rho(t)$. Then $\rho_-(x_1)\leq\rho_+(x_1)\leq\rho_-(x_2)\leq\rho_+(x_2)$ if $x_1<x_2$. Let $\Delta$ be the set of all $x\in I$ at which $\rho$ is not continuous. Then $x\in\Delta$ iff $\rho_-(x)<\rho_+(x)$. If $x_1<\cdots<x_n$ are in $\Delta$, then $\sum_{i=1}^n(\rho_+(x_i)-\rho_-(x_i))\leq \rho(b)-\rho(a)$. It follows that
+\begin{align*}
+\sum_{x\in\Delta}(\rho_+(x)-\rho_-(x))\leq\rho(b)-\rho(a)<+\infty
+\end{align*}
+Therefore, by Pb. \ref{lb413}, $\Delta$ is countable.
+\end{proof}
+
+\begin{co}
+Let $I$ be an interval, and let $\rho:I\rightarrow\Rbb$ be increasing. There there is an increasing $\wtd\rho:I\rightarrow\Rbb$ such that $\rho$ equals $\wtd\rho$ outside a countable subset of $I$.
+\end{co}
+
+\begin{proof}
+Let $\wtd\rho(x)=\lim_{t\rightarrow x^+}\rho(t)$. Then $\wtd\rho$ is right continuous, and $\wtd\rho(x)=\rho(x)$ if $\rho$ is continuous at $x$. 
+\end{proof}
+
+The following problem shows that the Stieltjes integral of a $C^1$ function can be calculated by a Riemann integral.
+
+\begin{prob}
+Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing. Let $g\in C^1[a,b]$. (Namely, $g:[a,b]\rightarrow\Cbb$ is continuous and has continuous differentials.) Prove the \textbf{integration by parts} \index{00@Integration by parts for Stieltjes integrals}
+\begin{align}
+\int_a^b gd\rho=g(b)\rho(b)-g(a)\rho(a)-\int_a^b g'\rho dx
+\end{align}
+\end{prob}
+
+
+\begin{proof}[Hint]
+Assume WLOG that $g\in C^1([a,b],\Rbb)$. Let $\sigma=\{a_0=a<a_1<\cdots<a_n=b\}$ be a partition of $[a,b]$. By the summation by parts (cf. Pb. \ref{lb845}, and set $g_k=g(a_k)$, $f_0=\rho(a)$, $f_i=\rho(a_i)-\rho(a_{i-1})$ when $i>0$), we have
+\begin{align*}
+\sum_{k=1}^n g(a_k)\big(\rho(a_k)-\rho(a_{k-1})\big)=\rho(b)g(b)-\rho(a)g(a)-\sum_{k=0}^{n-1}\rho(a_k)\big(g(a_{k+1})-g(a_k)\big)
+\end{align*}
+Apply the mean value theorem to $g(a_{k+1})-g(a_k)$.
+\end{proof}
+
+
+Recall that $m$ is the Lebesgue measure.
+\begin{prob}\label{lb848}
+Let $(\rho_n)_{n\in\Zbb_+}$ be a net of increasing functions $[a,b]\rightarrow\Rbb_{\geq0}$. Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$. Assume that the following are true:
+\begin{enumerate}
+\item[(1)] $\sup_n \rho_n(b)<+\infty$. 
+\item[(2)] $(\rho_n)$ converges $m$-a.e. to $\rho$, and $\lim_n\rho_n(b)=\rho(b)$.
+\end{enumerate}
+Prove that $(\mc I_{\rho_n})$ converges weak-* (in $(C[a,b])^*$) to $\mc I_\rho$. In other words, prove for each $f\in C[a,b]$ that
+\begin{align*}
+\lim_{n\rightarrow\infty}\mc I_{\rho_n}(f)=\mc I_\rho(f)
+\end{align*}
+\end{prob}
+
+\begin{proof}[Hint]
+Use a density argument to reduce to the case that $f$ is a polynomial. Then use integration by parts and the dominated convergence theorem.
+\end{proof}
+
+The following problem is Problem 13 from Chapter 7 of Rudin's \textit{Principles of Mathematical Analysis} \cite{Rud-P}. We shall see the background of this problem, which was not given in Rudin's book. 
+
+\begin{thm}[\textbf{Helly's selection theorem}]\label{lb846}
+Let $(\rho_n)$ be a sequence of increasing functions $[a,b]\rightarrow[0,1]$. Then $(\rho_n)$ has a subsequence converging pointwise to an increasing $\rho:[a,b]\rightarrow[0,1]$.
+\end{thm}
+
+
+
+\begin{sprob}
+Prove Helly's selection Thm. \ref{lb846}.
+\end{sprob}
+
+\begin{proof}[Hint]
+Choose a subsequence $(\rho_{n_k})$ converging pointwise on $[a,b]\cap\Qbb$ to an increasing $\tau:[a,b]\cap\Qbb\rightarrow[0,1]$. Extend $\tau$ to an increasing right continuous function $\tau:[a,b]\rightarrow[0,1]$ by $\dps\tau(x)=\lim_{t\rightarrow x^+,t\in\Qbb\cap[a,b]}\tau(t)$. Let $\Delta$ be the (countable) set of all $x\in[a,b]$ at which $\tau$ is not continuous. Prove that $(\rho_{n_k})$ converges pointwise on $[a,b]\setminus\Delta$ to $\tau$. Conclude that $(\rho_{n_k})$ has a subsequence converging everywhere on $[a,b]$.
+\end{proof}
+
+
+Helly's selection theorem is a prototype of the Banach-Alaoglu Thm. \ref{lb519}. In a 1912 paper \cite{Hel12}, Helly proved this theorem and used it to study the moment problem in $C([a,b],\Rbb)$: Given $c_1,c_2,\dots\in\Rbb$ and $f_1,f_2,\dots\in C([a,b],\Rbb)$ such that there exists $M\in\Rbb_{\geq0}$ satisfying
+\begin{align}
+\Big|\sum_{i=1}^n\lambda_ic_i\Big|\leq\Big\Vert \sum_{i=1}^n \lambda_if_n\Big\Vert_{l^\infty}\qquad(\forall n\in\Zbb_+,\lambda_1,\dots,\lambda_n\in\Rbb)
+\end{align}
+find a function of bounded variation $\rho:[a,b]\rightarrow\Rbb$ such that
+\begin{align}
+\int_a^b f_nd\rho=c_n
+\end{align}
+A \textbf{function of bounded variation} (simply called a \textbf{BV function}) \index{00@Function of bounded variation} \index{00@BV function} $\rho:[a,b]\rightarrow\Rbb$ is a function that can be written as $\rho^+-\rho^-$ where $\rho^+,\rho^-:[a,b]\rightarrow\Rbb_{\geq0}$ are increasing. See Sec. \ref{lb543} for the relationship between the moment problems and the Banach-Alaoglu theorem. (F. Riesz has also studied this problem in 1911. His interest in the study of dual space of $C[a,b]$ is clearly related to moment problems. See \cite[Sec. 6.3]{Die-H} for a detailed history.)
+
+\begin{co}[\textbf{Banach-Alaoglu theorem for $C([a,b],\Rbb)$}]
+The closed unit ball of $C([a,b],\Rbb)^*$ is weak-* sequential compact.
+\end{co}
+
+\begin{proof}
+Let $(\Lambda_n)$ be a sequence in $C([a,b],\Rbb)^*$ such that $\sup_n\Vert\Lambda_n\Vert\leq 1$. By Pb. \ref{lb813}, each $\Lambda_n$ has Jordan decomposition $\Lambda_n=\Lambda_n^+-\Lambda_n^-$ where $\Lambda_n^\pm$ is positive and $\Vert\Lambda_n^\pm\Vert\leq 1$. By considering $\Lambda_n^\pm$ separately, it suffices to assume that $\Lambda_n$ is positive. 
+
+By the Riesz representation Thm. \ref{lb847}, for each $n$ there is an increasing $\rho_n:[a,b]\rightarrow\Rbb_{\geq0}$ such that $\Lambda_n(f)=\mc I_{\rho_n}(f)$ for all $f\in C([a,b],\Rbb)$. By Helly's selection Thm. \ref{lb846}, $(\rho_n)$ has a subsequence $(\rho_{n_k})$ converging pointwise to an increasing $\rho:[a,b]\rightarrow\Rbb_{\geq0}$. By Pb. \ref{lb848}, $(\Lambda_{n_k})$ converges weak-* to $\mc I_\rho$. 
+\end{proof}
+
+
+Another prototype of the Banach-Alaoglu theorem is the compactness of the closed unit ball of $l^2(\Zbb_+)$ under the pointwise convergence topology, cf. Thm. \ref{lb530} and Pb. \ref{lb531}. We have seen in Sec. \ref{lb849} that it plays a crucial role in the Hilbert-Schmidt theorem. 
+
+Understanding how abstract theorems like the Banach-Alaoglu theorem evolved from early explicit versions is important because it helps us understand the nature of mathematical development. We have emphasized this point throughout this course.
+
+
+The following problem is not quite related to the above story. But it appears naturally when studying Stieltjes integrals.
+
+\begin{sprob}
+Let $\mu$ be the completion of a finite Borel measure (equivalently, a Radon measure, cf. Thm. \ref{lb818}) on $[a,b]$. Define $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ by $\rho(x)=\mu([a,x])$, which is right continuous. Let $f:[a,b]\rightarrow\Rbb$ be a bounded function. Assume that $f$ is Stieltjes integrable with respect to $\rho$. Prove that $f$ is $\mu$-measurable, and
+\begin{align*}
+\int_{[a,b]}fd\mu=\mc I_\rho(f)
+\end{align*}
+\end{sprob}
+
+\begin{proof}[Hint]
+To prove that $f$ is $\mu$-measurable, use the lower and upper Darboux sums to find bounded Borel functions $g,h:[a,b]\rightarrow\Rbb$ satisfying $g\leq f\leq h$ and $\int_{[a,b]}(h-g)d\mu=0$. Show that $f-g=0$ $\mu$-a.e.. (Where is the completeness of $\mu$ used?)
+\end{proof}
 
 
 
 
+
+
+
+
+
+
+
+
+\newpage
 
 \section{Theorems of Fubini and Tonelli for Radon measures}
 
@@ -22701,6 +23091,24 @@ The condition $\int_{X\times Y}fd(\mu\times\nu)<+\infty$ in Fubini's Thm. \ref{l
 
 
 
+\newpage
+
+
+\section{The marriage of Hilbert spaces and measure theory}
+
+
+\subsection{The definition of $L^p$ spaces}
+
+Let $(X,\fk M,\mu)$ be a measure space.
+
+
+\begin{df}
+Let $V$ be a vector space over $\Fbb\in\{\Rbb,\Cbb\}$. A \textbf{seminorm} \index{00@Seminorm} on $V$ is a function $\Vert\cdot\Vert:V\rightarrow\Rbb_{\geq0}$ satisfying:
+\begin{itemize}
+\item If $u,v\in V$, then $\Vert u+v\Vert\leq\Vert u\Vert+\Vert v\Vert$.
+\item If $v\in V$ and $\lambda\in\Fbb$ then $\Vert \lambda v\Vert=|\lambda|\cdot\Vert v\Vert$.
+\end{itemize}
+\end{df}
 
 
 
@@ -22711,6 +23119,28 @@ The condition $\int_{X\times Y}fd(\mu\times\nu)<+\infty$ in Fubini's Thm. \ref{l
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\hypertarget{beforeindex}{}
 
 \printindex	
 
@@ -22772,6 +23202,9 @@ Hausdorff, F. (1914) Grundz\"uge der Mengenlehre
 Hawkins, T. (1979) Lebesgue's theory of integration: Its origins and development. Corrected reprint of the 2nd edition. 
 
 
+\bibitem[Hel12]{Hel12}
+Helly, E. (1912) \"Uber lineare Funktionaloperationen. Wien. Ber. 121, 265-297
+
 \bibitem[Hil12]{Hil12}
 Hilbert, D. (1912) Grundz\"uge einer allgemeinen Theorie der linearen Integralgleichungen.
 
@@ -22808,8 +23241,12 @@ von Neumann, J. (1930). Allgemeine eigenwerttheorie hermitescher funktionalopera
 \bibitem[Nie]{Nie}
 Nietzsche, F. W. (1887). The Gay Science: with a Prelude in Rhymes and an Appendix of Songs. Translated, with Commentary, by Walter Kaufmann (1974).
 
+\bibitem[Ped]{Ped}
+Pedersen, G. K. Analysis now. Springer-Verlag (1989)
+
 \bibitem[RF]{RF}
-H. Royden and P. M. Fitzpatrick, Real analysis. 4th ed. New York, NY: Prentice Hall (2010)
+H. Royden, \& P. M. Fitzpatrick, Real analysis. 4th ed. Pearson Education (2010)
+
 
 \bibitem[RN]{RN}
 F. Riesz and B. Sz.-Nagy, Functional analysis. Transl. from the 2nd French ed. by Leo F. Boron. (1956)
@@ -22818,8 +23255,11 @@ F. Riesz and B. Sz.-Nagy, Functional analysis. Transl. from the 2nd French ed. b
 Reed, M., \& Simon, B. (1972). Methods of Modern Mathematical Physics I: Functional analysis, Academic Press, New York.
 
 
+
+
+
 \bibitem[Roy]{Roy}
-H. L. Royden, Real analysis. 3rd ed. (1988)
+H. Royden, Real analysis. 3rd ed. (1988)
 
 
 \bibitem[Rud-P]{Rud-P}
