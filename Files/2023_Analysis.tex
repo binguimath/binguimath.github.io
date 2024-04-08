@@ -399,7 +399,7 @@
 \newcommand{\LSC}{\mathrm{LSC}}
 \newcommand{\USC}{\mathrm{USC}}
 \newcommand{\Ess}{\mathrm{Rng}^{\mathrm{ess}}}
-
+\newcommand{\Jbf}{\mathbf{J}}
 
 
 
@@ -473,7 +473,7 @@
 	
 	\maketitle
 \small  \hyperlink{beforeindex}{Last page before index}~~~~~~   \hyperlink{page.6}{Last page of TOC}
-%\hyperlink{endoftoc}{Last page of TOC}
+
 
 \noindent Sections on history include but are not limited to: 
 \ref{lb55} (point-set topology), \ref{lb549} (Hilbert spaces, Riesz-Fischer theorem), \ref{lb550} (integral theory, Fourier series), \ref{lb543} (Banach-Alaoglu, Hahn-Banach),  \ref{lb548} (quotient Banach spaces, Hahn-Banach), \ref{lb671} and most part of Ch. \ref{lb672} (Hilbert spaces), \ref{lb733} (measurable sets), \ref{lb896} (functional calculus, spectral theory)
@@ -485,17 +485,26 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\vspace{-0.5cm}
-\makeatletter
-\newcommand*{\toccontents}{\@starttoc{toc}}
-\makeatother
-\toccontents
 
-\hypertarget{endoftoc}{}
+%\makeatletter
+%\newcommand*{\toccontents}{\@starttoc{toc}}
+%\makeatother
+%\toccontents
+
+
 
 	
 % title and table of contents same page, no content title
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tableofcontents
+
+
+
+
+
 
 \newpage
 
@@ -566,6 +575,10 @@ If $X$ is a topological space, then $\mc T_X$ denotes the topology of $X$, i.e.,
 
 If $f:X\rightarrow V$ where $V$ is a normed vector space, $|f|:X\rightarrow\Rbb_{\geq0}$ denotes its \textbf{absolute value function}, i.e., the one sending each $x\in X$ to $\Vert f(x)\Vert$.
 
+If $A$ is a precompact subset of $B$ (cf. Def. \ref{lb930}), we write
+\begin{align*}
+A\Subset B
+\end{align*}
 
 \newpage
 
@@ -13575,8 +13588,8 @@ Note that if $W$ is open, but if $A$ is not precompact in $W$, then $\Cl_Y(A)$ a
 \end{proof}
 
 
-\begin{df}
-Let $W$ be a subset of a Hausdorff space $Y$. We write \index{AW@$A\Subset W$}
+\begin{df}\label{lb930}
+Let $W$ be a subset of a Hausdorff space $Y$. We write \index{zz@$\Subset$}
 \begin{align}
 A\Subset W
 \end{align}
@@ -16378,7 +16391,7 @@ If $f$ is differentiable at $p$, then $f$ is continuous at $p$ since, by the con
 Whenever $f$ is differentiable at $p$, its differential can be computed explicitly:
 
 \begin{pp}\label{lb580}
-Let $\Omega\subset\Rbb^N$ be open. Let $f:\Omega\rightarrow V$ be differentiable at $p\in\Omega$. Then $\partial_1f,\dots,\partial_Nf$ exist at $p$. Define the \textbf{Jacobian (matrix)} \index{00@Jacobian matrix} \index{Jac@$\Jac f$, Jacobian matrix}
+Let $\Omega\subset\Rbb^N$ be open. Let $f:\Omega\rightarrow V$ be differentiable at $p\in\Omega$. Then $\partial_1f,\dots,\partial_Nf$ exist at $p$. Define the \textbf{Jacobian (matrix)} \index{00@Jacobian matrix} \index{Jac@$\Jac f$, the Jacobian matrix}
 \begin{align}
 \Jac f|_p=(\partial_1f(p),\dots,\partial_Nf(p))
 \end{align}
@@ -16402,7 +16415,11 @@ a_1 \\
 a_N
 \end{pmatrix}
 \end{align}
-
+We also define the \textbf{Jacobian (determinant)} \index{00@Jacobian determinant} \index{Jac@$\Jbf(f)$, the Jacobian determinant} $\Jbf(f):\Omega\rightarrow\Rbb$ whose value at each $p\in\Omega$ is
+\begin{align}\label{eq359}
+\Jbf(f)|_p=\det\big(\Jac(f)_p \big)
+\end{align}
+Thus, $\Jac(f)_p$ is invertible iff $\Jbf(f)|_p\neq 0$.
 \begin{proof}
 Let $e_1,\dots,e_N\in\Rbb^N$ be the standard basis of $\Rbb^N$. So $v=a_1e_1+\cdots+a_Ne_N$. Let $A=df|_p$. By \eqref{eq228}, we have
 \begin{align*}
@@ -16426,6 +16443,9 @@ $f$ has at most one differential at a point $p$.
 \begin{proof}
 Immediate from \eqref{eq229}.
 \end{proof}
+
+
+
 
 
 \begin{eg}
@@ -16550,7 +16570,7 @@ is not equal to $\Jac f|_{(0,0)}\cdot (a,b)^\tr=a$. Thus, by Exp. \ref{lb579}, $
 To have differentiability, we need the continuity of partial derivatives of first order.
 
 
-\begin{df}
+\begin{df}\label{lb925}
 Let $\Omega\subset\Rbb^N$ be open. For each $r\in\Nbb$, we let \index{Cr@$C^r$ on $\Rbb^N$}
 \begin{align*}
 C^r(\Omega,V)=\big\{& f\in C(\Omega,V):\partial_{i_1}\cdots\partial_{i_k}f\text{ exists and is in }C(\Omega,V)  \\
@@ -16574,8 +16594,21 @@ Suppose that $r\in\Zbb_+$ and $f\in C^r(\Omega,V)$. Let $1\leq k\leq r$, and let
 \end{rem}
 
 
+\begin{pp}\label{lb927}
+Let $\Gamma\subset\Rbb^M$ and $\Omega\subset\Rbb^N$ be open. Let $g:\Gamma\rightarrow\Omega$ and $f:\Omega\rightarrow V$ be $C^r$-functions (where $r\in\Nbb\cup\{\infty\}$). Then $f\circ g$ is $C^r$.
+\end{pp}
 
-\begin{thm}
+\begin{proof}
+This is obvious when $r=0$. Assume $r>0$. By induction on $k$ (where $1\leq k\leq r$), and by using the (one-variable) chain rule and the Leibniz product rule, for each $1\leq i_1,\dots,i_k\leq M$ one sees that $\partial_{i_1}\cdots\partial_{i_k}(f\circ g)$ is a linear combination of products of (possibly more than two) functions of the form
+\begin{align}\label{eq360}
+\big((\partial_{j_1}\cdots\partial_{j_{k'}}f)\circ g\big)\qquad \text{or}\qquad \partial_{l_1}\cdots\partial_{l_{k''}}g
+\end{align}
+where $0\leq k',k''\leq k$ and $0\leq j_1,\dots,j_{k'}\leq N$ and $0\leq l_1,\dots,l_{k''}\leq M$. So $f\circ g$ is $C^r$ since the functions in \eqref{eq360} are continuous.
+\end{proof}
+
+
+
+\begin{thm}\label{lb926}
 Let $\Omega$ be an open subset of $\Rbb^N$. Let $f\in C^1(\Omega,V)$. Then $f$ is differentiable on $\Omega$.
 \end{thm}
 
@@ -16710,6 +16743,8 @@ To see that $\Delta$ is open, we choose any $x\in\Delta$, and choose $r>0$ such 
 
 %% Record #1 2024/02/26 two lectures  2
 
+
+\newpage
 
 \section{Inner product spaces}
 
@@ -19096,7 +19131,7 @@ The lesson here is that even if we are ultimately interested in the Fourier seri
 This lesson naturally leads to the question: What is the function-theoretic meaning of an element $\varphi\in l^2(\Zbb)$ that is not necessarily the Fourier series of a continuous (or even Riemann-integrable) $2\pi$-periodic function? 
 
 
-Lebesgue's integral theory was invented in 1902. And it was F. Riesz (and then Fischer) who realized that Lebesgue integral gives a satisfying answer to the above question. They showed in 1907 (a year after Hilbert's seminal work \cite{Hil12} introducing the $l^2$-method to integral equations) that the linear isometry $\Psi:C(\Sbb^1)\rightarrow l^2(\Zbb)$ can be extended to a unitary map
+Lebesgue's integral theory was invented in 1902. And it was F. Riesz and Fischer who realized that Lebesgue integral gives a satisfying answer to the above question. They showed in 1907 (a year after Hilbert's seminal work \cite{Hil12} introducing the $l^2$-method to integral equations) that the linear isometry $\Psi:C(\Sbb^1)\rightarrow l^2(\Zbb)$ can be extended to a unitary map
 \begin{align*}
 \Psi:L^2(\Sbb^1)\rightarrow l^2(\Zbb)
 \end{align*}
@@ -19109,7 +19144,6 @@ where $e_n(x)=e^{\im nx}$, and the integral on the RHS is the Lebesgue integral.
 With this result, the proof of \eqref{eq285} becomes more straightforward: Let $\varphi\in l^2(\Zbb)$. By Riesz-Fischer, $\varphi=\wht f$ for some $f\in L^2(\Sbb^1)$. Using the commutativity of limits and integrals (under certain assumptions) one sees that $g\in C^r(\Sbb^1)$ if $g$ is defined by the Lebesgue integral $g(x)=\frac 1{2\pi}\int_{-\pi}^\pi K(x,y)f(y)$. Parseval's identity implies $\wht g=\wht T\wht f$. 
 
 It will be our task in the next few chapters to study Lebesgue integrals, the Riesz-Fischer theorem, and some of their generalizations.
-
 
 
 
@@ -19185,7 +19219,7 @@ Let $T\in\fk L(\mc H,\mc K)$. The following are equivalent.
 A linear map of normed vector spaces $T:V\rightarrow W$ is called \textbf{completely continuous} \index{00@Completely continuous} if $T$ is bounded, and if the restriction $T:\ovl B_V(0,1)\rightarrow W$ is continuous, where $\ovl B_V(0,1)$ is given the weak topology, and $W$ is given the norm topology.
 \end{df}
 
-Def. \ref{lb674} was introduced by F. Riesz in 1910 and were later applied by him to $l^p$ spaces. However, this is not a good definition for $C[0,1]$ because, unlike $l^p(X)$ (where $1<p<+\infty$), $C[0,1]$ is not reflexive and (hence) its closed unit ball is not weakly compact (cf. Thm. \ref{lb568}). In order to study integral equations on non-necessarily reflexive function spaces such as $C[0,1]$, in 1918, Riesz introduced the modern definition of compact operators (which he still called completely continuous operators). Let us recall the definition: 
+Def. \ref{lb674} was introduced by F. Riesz in 1910 and was later applied by him to $l^p$ spaces. However, this is not a good definition for $C[0,1]$ because, unlike $l^p(X)$ (where $1<p<+\infty$), $C[0,1]$ is not reflexive and (hence) its closed unit ball is not weakly compact (cf. Thm. \ref{lb568}). In order to study integral equations on non-necessarily reflexive function spaces such as $C[0,1]$, in 1918, Riesz introduced the modern definition of compact operators (which he still called completely continuous operators). Let us recall the definition: 
 
 \begin{df}\label{lb675}
 Let $T:V\rightarrow W$ be a linear map of normed vector spaces. We say that $T$ is a \textbf{compact operator} \index{00@Compact operator} if $T(\ovl B_V(0,1))$ is precompact in $W$ (under the norm topology).
@@ -20219,14 +20253,14 @@ Assume that $E$ is locally regular. Since $\mu^*(E)<+\infty$, there exists an op
 \subsubsection{The main theorem}
 
 \begin{thm}\label{lb724}
-Let $\mu:\mc T_X\rightarrow[0,+\infty]$ satisfy Asmp. \ref{lb712}. Let $\fk M_\mu$ be the set of locally $\mu$-regular subsets of $X$. Then $\fk M_\mu$ is a $\sigma$-algebra containing $\fk B_X$, and $\mu^*$ is a complete measure on $\fk M_\mu$. 
+Let $\mu:\mc T_X\rightarrow[0,+\infty]$ satisfy Asmp. \ref{lb712}. Let $\fk M_\mu$ be the set of locally $\mu$-regular subsets of $X$. Then $\fk M_\mu$ is a $\sigma$-algebra containing $\fk B_X$, and $\mu^*$ is a complete measure on $\fk M_\mu$. We denote the measure $(\fk M_\mu,\mu^*)$ by $(\fk M_\mu,\mu)$.
 \end{thm}
 
 
 
 %We divide the proof into two steps. In the first step, we prove that $\fk M_\mu$ is a $\sigma$-algebra. In the second step, we prove that $\fk M_\mu$ contains $\fk B_X$, and that $(\fk M_\mu,\mu)$ is complete.
 
-After proving this theorem, we will write $\mu^*(E)$ as $\mu(E)$ if $E\in\fk M_\mu$ (even though $\mu^*(E)$ and $\mu_*(E)$ are not necessarily equal when $\mu^*(E)=+\infty$). The restriction $(\fk B_X,\mu)$ will be called a \textbf{Radon measure} if $X$ is LCH and $\mu$ is finite on compact sets. We will discuss Radon measures in detail in Ch. \ref{lb805}.
+According to the definition of $(\fk M_\mu,\mu)$ in Thm. \ref{lb724}, if $E\in\fk M_\mu$ then $\mu^*(E)=\mu(E)$ (even though $\mu^*(E)$ and $\mu_*(E)$ are not necessarily equal when $\mu^*(E)=+\infty$). The restriction $(\fk B_X,\mu)$ will be called a \textbf{Radon measure} if $X$ is LCH and $\mu$ is finite on compact sets. We will discuss Radon measures in detail in Ch. \ref{lb805}.
 
 \begin{proof}
 Step 1. We show that $\fk M_\mu$ is a $\sigma$-algebra. Clearly $\emptyset\in\fk M_\mu$.  Let $\Omega\in\mc T_X$ such that $\mu(\Omega)<+\infty$. We want to show that if $E\cap\Omega$ is regular then $E^c\cap\Omega$ is also regular. We want to show that if $E_1,E_2,\dots\subset 2^X$ are such that $E_1\cap\Omega,E_2\cap\Omega,\dots$ are regular, then $(\bigcup_n E_n)\cap\Omega$ is regular. By replacing $E$ with $E\cap\Omega$ and $E_n$ with $E_n\cap\Omega$, it suffices to prove:
@@ -21513,7 +21547,7 @@ We say that $\mu$ is \textbf{regular} on $E$ (or that $E$ is \textbf{$\mu$-regul
 \end{df}
 
 \begin{eg}\label{lb799}
-Assume that $\mu:\mc T_X\rightarrow[0,+\infty]$ satisfies conditions (a)-(e) in Asmp. \ref{lb712}. Define $\mu^*:2^X\rightarrow[0,+\infty]$ by \eqref{eq292}. Then by Thm. \ref{lb724}, $\mu^*$ restricts to a complete measure on $\fk M_\mu$ containing $\fk B_X$, and $(\fk M_\mu,\mu^*)$ is denoted by $(\fk M_\mu,\mu)$. Then $\mu$ is clearly outer regular on any $E\in\fk M_\mu$, and is inner regular on open sets by condition (e) of Asmp. \ref{lb712}. 
+Assume that $\mu:\mc T_X\rightarrow[0,+\infty]$ satisfies conditions (a)-(e) in Asmp. \ref{lb712}. Define $\mu^*:2^X\rightarrow[0,+\infty]$ by \eqref{eq292}. Then by Thm. \ref{lb724}, $\mu^*$ restricts to a complete measure on $\fk M_\mu$ containing $\fk B_X$, and $(\fk M_\mu,\mu)$ is \textit{defined to be} $(\fk M_\mu,\mu^*)$. Then $\mu$ is clearly outer regular on any $E\in\fk M_\mu$, and is inner regular on open sets by condition (e) of Asmp. \ref{lb712}. 
 
 For each $E\in\fk M_\mu$, the meaning of $\mu$-regularity in Def. \ref{lb810} clearly agrees with the meaning in Def. \ref{lb811}: The former says $\mu^*(E)=\mu_*(E)$, and the latter says $\mu^*(E)=\mu(E)$ (which is a tautology) and $\mu_*(E)=\mu(E)$. \footnote{Note that $\mu_*$ is defined in terms of the outer measures $\mu^*(K)$ of compact sets $K$. But since $K\in\fk B_X\subset\fk M_\mu$, we know $\mu^*(K)=\mu(K)$.} However, Def. \ref{lb811} cannot be applied to non-measurable sets, but Def. \ref{lb810} can be applied to any subset of $X$. \hfill \qedsymbol
 \end{eg}
@@ -21654,9 +21688,11 @@ for all $f\in C_c(X,\Rbb_{\geq0})$. In my opinion, a direct proof of \eqref{eq31
 
 The goal of this section is to prepare for a more conceptual proof of \eqref{eq315} for $f\in C_c(X,\Rbb_{\geq0})$. To motivate our proof, recall that in Prop. \ref{lb780}, we proved that the Riemann integral of $f$ equals the Lebesgue integral by sandwiching $f$ between step functions $g$ and $h$, and show that the Riemann integrals of $g$ and $h$ agree with their Lebesgue integrals. But step functions are usually not continuous functions. Therefore, to generalize the proof of Prop. \ref{lb780}, we must first extend $\Lambda$ to a suitable larger class of positive functions.
 
-Through laborious work, one can extend $\Lambda$ to a large class of Borel measurable functions  without resorting to measures. The value $\Lambda(f)$ of $f$ in this class is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found e.g. in \cite[Sec. 9]{HS}, \cite[Sec. 11]{HR-1}, and \cite[Sec. 6.1]{Ped}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.) This method is also related to Riesz's treatment of Stieltjes integrals and the spectral theorem for bounded self-adjoint operators, cf. Subsec. \ref{lb906} and \ref{lb907}.
+Through laborious work, one can extend $\Lambda$ to a large class of Borel measurable functions  without resorting to measures. The value $\Lambda(f)$ of $f$ in this class is called the \textbf{Daniell integral} of $f$. \index{00@Daniell integral} Then one constructs the Radon measure satisfying \eqref{eq315}. This approach can be found e.g. in \cite[Sec. 9]{HS}, \cite[Sec. 11]{HR-1}, and \cite[Sec. 6.1]{Ped}. (A systematic treatment of Daniell integrals, not necessarily in the context of LCH spaces, can be found in \cite[Ch. 16]{Roy}.) 
 
-We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. In particular, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_i a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}.
+We will partially adopt the idea of Daniell integrals, but will exclude many irrelevant results so that the proofs are as concise and clear as possible. In particular, we will only extend $\Lambda$ to positive lower semicontinuous functions. This will be sufficient for the purpose of proving \eqref{eq315}, because functions of the form $\sum_i a_i\chi_{U_i}$ (where $a_i\in\ovl\Rbb_{\geq0}$ and $U_i$ is open) will play the same role as that of step functions in the proof of Prop. \ref{lb780}. 
+
+The method of extending $\Lambda$ to semicontinuous functions was already used by Riesz in \cite{Rie14} to simplify his original proof of the ``Riesz representation theorem for $C([a,b],\Rbb)$", see Subsec. \ref{lb923} for details. In \cite{Rie13}, a similar method was used by Riesz to prove the spectral theorem for bounded self-adjoint operators, cf. Sec. \ref{lb896}. Therefore, it is very valuable for us to study this method.
 
 
 \subsubsection{Extending positive linear functionals to $\LSC_+(X)$}
@@ -21811,9 +21847,9 @@ This proves the additivity. We have finished proving (c) and (d).
 
 Finally, the $\mu$-regularity on any open subset $U\subset X$ (i.e., condition (e)) can be proved in the same way as Lem. \ref{lb714}: Clearly $\mu_*(U)\leq\mu(U)$. To prove $\mu_*(U)\geq\mu(U)$, it suffices to prove $\mu_*(U)\geq \Lambda(f)$ for each $f\in C_c(U,[0,1])$. Let $K=\Supp(f)$, which is in $U$. So $\mu_*(U)\geq\mu^*(K)$. Clearly $\mu^*(K)\geq\Lambda(f)$ (since $\mu(V)=\Lambda(\chi_V)\geq\Lambda(f)$ for any open $V$ containing $K$). Therefore $\mu_*(U)\geq\Lambda(f)$.
 
-We have finished proving that $\mu$ satisfies Asmp. \ref{lb712}. Therefore, by Thm. \ref{lb724}, the outer measure $\mu^*:2^X\rightarrow\ovl\Rbb_{\geq0}$ (defined by $\mu^*(E)=\inf\{\mu(U):U\in\mc T_X,U\supset E\}$) restricts to a measure $\mu$ on $\fk B_X$. 
+We have finished proving that $\mu$ satisfies Asmp. \ref{lb712}. Therefore, by Thm. \ref{lb724}, the outer measure $\mu^*:2^X\rightarrow\ovl\Rbb_{\geq0}$ (defined by $\mu^*(E)=\inf\{\mu(U):U\in\mc T_X,U\supset E\}$) restricts to a measure on $\fk B_X$ and is denoted by $(\fk B_X,\mu)$. 
 
-From the definition of $\mu^*$, it is clear that $\mu$ is outer regular on Borel sets. We have proved that $\mu$ is inner regular on open sets (i.e. condition (e) of Asmp. \ref{lb712}). To prove that $\mu$ is Radon, it remains to prove that $\int_Xfd\mu<+\infty$ for each $f\in C_c(X,\Rbb_{\geq0})$. This follows from $\int_Xfd\mu=\Lambda(f)$, to be proved in the next step.\\[-1ex]
+Since $(\fk B_X,\mu)$ is \textit{defined to be} $(\fk B_X,\mu^*)$, it is clear that $\mu$ is outer regular on Borel sets. For each $U\in\mc T_X$, we have proved that $\mu(U)=\mu_*(U)$, i.e., that $\mu(U)$ can be approximated by $\mu^*(K)$ where $K\subset U$ is compact. Since $\mu^*(K)=\mu(K)$ (because $\mu$ is outer regular on Borel sets),  $\mu$ is inner regular on any open set $U$. To prove that $\mu$ is Radon, it remains to prove that $\int_Xfd\mu<+\infty$ for each $f\in C_c(X,\Rbb_{\geq0})$. This follows from $\int_Xfd\mu=\Lambda(f)$, to be proved in the next step.\\[-1ex]
 
 Step 2. Let us prove \eqref{eq317} for every $f\in C_c(X,\Rbb_{\geq0})$. In fact, we shall prove the more general fact that \eqref{eq317} is true for all $f\in\LSC_+(X)$.
 
@@ -21890,7 +21926,7 @@ Let $E\in\fk M$. Then $\mu$ is outer regular on $E$. Moreover, if $\mu(E)<+\inft
 
 
 \begin{proof}
-Let $\mu^*$ and $\mu_*$ be as in \eqref{eq292}. From the Riesz-Markov representation Thm. \ref{lb796}, we can assume that $(\fk B_X,\mu)$ arises from some linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. Now, recall that when we constructed the Radon measure $\mu$ from $\Lambda$ (cf. Step 1 of the proof of Thm. \ref{lb796}), we showed  that $\mu|_{\mc T_X}$ satisfies conditions (a)-(e) in Asmp. \ref{lb712} so that we can apply Thm. \ref{lb724} to show that $(\fk B_X,\mu^*)$ is a measure, and we defined $(\fk B_X,\mu)$ to be $(\fk B_X,\mu^*)$.
+Let $\mu^*$ and $\mu_*$ be as in \eqref{eq292}. From the Riesz-Markov representation Thm. \ref{lb796}, we can assume that $(\fk B_X,\mu)$ arises from some linear $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. Now, recall that when we constructed the Radon measure $\mu$ from $\Lambda$ (cf. Step 1 of the proof of Thm. \ref{lb796}), we showed  that $\mu|_{\mc T_X}$ satisfies conditions (a)-(e) in Asmp. \ref{lb712} so that we can apply Thm. \ref{lb724} to show that $(\fk B_X,\mu^*)$ is a measure, and we \textit{defined} $(\fk B_X,\mu)$ to be $(\fk B_X,\mu^*)$.
 
 Note that Thm. \ref{lb724} says that $(\fk M_\mu,\mu^*)$ is a complete measure where $\fk M_\mu$ contains $\fk B_X$. Therefore $(\fk M_\mu,\mu^*)$ extends the completion $(\fk M,\mu)$ of $(\mc B_X,\mu)$ (cf. Thm. \ref{lb708}). Thus, for each $E\in\fk M$, we have $\mu^*(E)=\mu(E)$. This proves that $E$ is outer $\mu$-regular. \footnote{An alternative proof: Write $E=A\cup B$ where $A\in\fk B_X$ and $B$ is a subset of a Borel null set $C$. Then use the fact that $A$ and $C$ are outer $\mu$-regular (according to the definition of Radon measures).}
 
@@ -21898,9 +21934,18 @@ Assume that $E\in\fk M$ satisfies $\mu(E)<+\infty$. So $\mu^*(E)<+\infty$. Since
 \end{proof}
 
 
+\begin{eg}
+From the proof of Thm. \ref{lb804}, if $(\fk B_X,\mu)$ is a Radon measure, and if we use Thm. \ref{lb724} to construct a new Borel measure, then this new Borel measure (which is the restriction of $\mu^*$ to $\fk B_X$) is equal to the original one $\mu$. We now show that if $\mu$ is not Radon, the new measure might be different from $\mu$.
+
+We know that the counting measure is a Radon measure if $X$ is equipped with the discrete topology. Now, consider $X=\Rbb$ equipped with the \textit{Euclidean} topology. Let $(\fk B_X,\mu)$ be the counting measure which is not Radon. Then the new Borel measure constructed from Thm. \ref{lb724} is $(\fk B_X,\mu^*)$ and satisfies $\mu^*(E)=+\infty$ iff $E\neq\emptyset$. So $\mu^*(E)\neq\mu(E)$ if $E$ is a finite set.  \hfill\qedsymbol
+\end{eg}
+
+\begin{comment}
 \begin{rem}
 Rudin included Thm. \ref{lb804} as part of the statement of the Riesz-Markov representation theorem, see (c) and (d) of \cite[Thm. 2.14]{Rud-R}. In other words, Rudin proved Thm. \ref{lb804} in the course of proving Thm. \ref{lb796}. This also explains the nature of our proof of Thm. \ref{lb804}, i.e., that Thm. \ref{lb804} is a (rather direct) consequence of \textit{the proof} of Thm. \ref{lb796}.
 \end{rem}
+\end{comment}
+
 
 
 As an application of Thm. \ref{lb804}, we  give a corollary similar to Cor. \ref{lb731}. (In fact, it shows that if $\fk M_\mu$ is as in the proof of Thm. \ref{lb804}, then for any $E\in\fin(2^X)$ satisfying $\mu^*(E)<+\infty$, we have $E\in\fk M_\mu$ iff $E\in\fk M$.) We first need a definition.
@@ -22035,7 +22080,7 @@ Assume that $X$ is second countable. Then $X$ is a countable union of precompact
 Since $X$ is LCH, $X$ is a union of precompact open sets. Since $X$ is second countable, $X$ is Lindel\"of (by Cor. \ref{lb265}). Therefore, $X$ is a countable union of precompact open sets (which have finite measures because $\mu$ is Radon).
 \end{proof}
 
-We are ready to prove a variant of Cor. \ref{lb830}.
+We are ready to prove a variant of Cor. \ref{lb830}. In this course, the following Thm. \ref{lb808} will only be used in the proof of Thm. \ref{lb818}.
 
 
 \begin{thm}\label{lb808}
@@ -22135,7 +22180,7 @@ Let $X$ be a second countable LCH space. Let $\mu$ be a Radon measure on $X$. Le
 \end{eg}
 
 \begin{eg}
-Let $X$ be a compact metric space. Then by Thm. \ref{lb818}, a Radon measure on $X$ is equivalently a finite Borel measure.
+Let $X$ be a compact metric space. Then, by Thm. \ref{lb252}, $X$ is second countable. Therefore, by Thm. \ref{lb818}, a Radon measure on $X$ is equivalently a finite Borel measure.
 \end{eg}
 
 
@@ -22230,7 +22275,7 @@ Let $\{c_1<\cdots<c_n\}\subset[a,b]$. Let $\rho=\id+\sum_{i=1}^n\chi_{[c_i,b]}$ 
 
 
 
-\subsubsection{Riesz representation theorem}
+\subsubsection{The Riesz representation theorem}
 
 
 A function $\rho:[a,b]\rightarrow\Rbb$ is called \textbf{right continuous} \index{00@Right continuous} if for each $p\in[a,b]$ we have $\lim_{x\rightarrow p^+}f(x)=f(p)$. This is equivalent to saying that for each $p\in[a,b]$ and each sequence $(x_n)$ in $[p,b]$ converging to $p$ we have $\lim_nf(x_n)=f(p)$.
@@ -22337,7 +22382,7 @@ Therefore, since $\ovl S(f,\sigma,\rho)-\udl S(f,\sigma,\rho)\leq \eps(\rho(b)-\
 \begin{rem}
 The Riesz representation Thm. \ref{lb847} was proved by Riesz in 1909 (cf. \cite{Rie09,Rie11}) and also by Helly in 1912. Riesz's originally proof is quite complicated. In 1914, Riesz gave a simplified proof in \cite{Rie14}. The second proof we presented above is similar to the one in \cite{Rie14}. Before that, in 1913, Riesz used the same idea to prove the spectral theorem for bounded self-adjoint operators on Hilbert spaces, cf. \cite{Rie13}. We will discuss this topic in Sec. \ref{lb896}.
 
-Riesz and Helly's interest in this theorem is closely related to their interest in the moment problem in $C([a,b],\Rbb)$. As mentioned in Sec. \ref{lb543}, the early solution of moment problems used a compactness argument which was later abstracted into the Banach-Alaoglu theorem. Now, since positive linear functionals on $C([a,b],\Rbb)$ take the explicit form of Stieltjes integrals with respect to increasing functions, the readers may ask whether the Banach-Alaoglu theorem for $C([a,b],\Rbb)$ also takes an explicit form. The answer is yes: the explicit formulation of the Banach-Alaoglu theorem for $C([a,b],\Rbb)$ in terms of increasing functions is called \textbf{Helly's selection theorem}. We will explain this in detail in Subsec. \ref{lb851}. \hfill\qedsymbol
+Riesz and Helly's interest in this theorem is closely related to their interest in the moment problem in $C([a,b],\Rbb)$. As mentioned in Sec. \ref{lb543}, the early solution of moment problems used a compactness argument which was later abstracted into the Banach-Alaoglu theorem. Now, since positive linear functionals on $C([a,b],\Rbb)$ take the explicit form of Stieltjes integrals with respect to increasing functions, the readers may ask whether the Banach-Alaoglu theorem for $C([a,b],\Rbb)^*$ also takes an explicit form. The answer is yes: the explicit formulation of the Banach-Alaoglu theorem for $C([a,b],\Rbb)^*$ in terms of increasing functions is called \textbf{Helly's selection theorem}. We will explain this in detail in Subsec. \ref{lb851}. \hfill\qedsymbol
 \end{rem}
 
 
@@ -22499,8 +22544,8 @@ Let $X$ be an LCH space.
 \begin{prob}\label{lb814}
 Let $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ be $\Rbb_{\geq0}$-linear. By Rem. \ref{lb812}, $\Lambda$ can be extended uniquely to a $\Cbb$-linear map $\Lambda:C_c(X)\rightarrow\Cbb$. Let $\mu$ be the Radon measure associated to $\Lambda$. Prove that the following four numbers are equal:
 \begin{align*}
-&\sup\{\Lambda(f):f\in C_c(X,\Rbb_{\geq0}),f\leq 1\}=\sup\{\Lambda(f):f\in C_c(X,\Rbb),|f|\leq 1\}\\
-=&\sup\{\Lambda(f):f\in C_c(X),|f|\leq 1\}=\mu(X)
+&\sup\{\Lambda(f):f\in C_c(X,\Rbb_{\geq0}),f\leq 1\}=\sup\{|\Lambda(f)|:f\in C_c(X,\Rbb),|f|\leq 1\}\\
+=&\sup\{|\Lambda(f)|:f\in C_c(X),|f|\leq 1\}=\mu(X)
 \end{align*}
 These four identical numbers are called (unambiguously) the \textbf{operator norm} of $\Lambda$ and denoted by $\Vert\Lambda\Vert$.
 \end{prob}
@@ -22516,7 +22561,7 @@ Equip $C_c(X,\Rbb)$ with the $l^\infty$-norm. Let $\Lambda:C_c(X,\Rbb)\rightarro
 \end{subequations}
 Clearly $(-\Lambda)^\pm=\Lambda^\mp$. 
 \begin{enumerate}
-\item Prove that $\Lambda$ has range in $\Rbb_{\geq0}$, that $\Lambda^+:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ is $\Rbb_{\geq0}$-linear, and that $\Vert\Lambda^+\Vert\leq M$. (Replacing $\Lambda$ with $-\Lambda$, we see that $\Lambda^-$ satisfies the same property.)
+\item Prove that $\Lambda^+$ has range in $\Rbb_{\geq0}$, that $\Lambda^+:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ is $\Rbb_{\geq0}$-linear, and that $\Vert\Lambda^+\Vert\leq M$. (Replacing $\Lambda$ with $-\Lambda$, we see that $\Lambda^-$ satisfies the same property.)
 \item Prove that
 \begin{align}
 \Lambda(f)=\Lambda^+(f)-\Lambda^-(f)
@@ -22946,7 +22991,7 @@ For example, take $X=Y=\Rbb$ and let $\Lambda_1,\Lambda_2$ be both the Riemann i
 Recall that in the last semester, we were only able to prove Fubini's theorems for the exchangeability of an improper integral and a definite integral. (See Thm. \ref{lb422}.) Now, we see that the exchangeability of two improper integrals for continuous positive functions can be easily proved without using the heavy machinery of measure theory and Lebesgue integrals. All we need is the method of extending positive linear functionals developed in Sec. \ref{lb833}.  \hfill\qedsymbol
 \end{rem}
 
-%% Proofread
+
 
 \subsubsection{Fubini-Tonelli with $\sigma$-finiteness}
 
@@ -22986,6 +23031,8 @@ Since $\mu(\Omega)<+\infty$ and $\nu(O)<+\infty$, we have $(\mu\times\nu)(\Omega
 
 Now we consider the general case that $E\subset\Omega\times O$ and $E$ is $\mu\times\nu$-measurable. By the regularity Cor. \ref{lb830}, we can find a $G_\delta$ set $B\subset\Omega\times O$ such that $E\subset B$ and $(\mu\times\nu)(B\setminus E)=0$. Since $\chi_B\in\scr F$, and since all the integrals involved for $\chi_B$ are finite (since this is true for $\chi_{\Omega\times O}$), if we can show that $\chi_{B\setminus E}\in\scr F$, then  $\chi_E=\chi_B-\chi_{B\setminus E}$ clearly belongs to $\scr F$.\\[-1ex]
 
+%% Record #12 2024/04/08 two lectures  29
+
 Step 3. Therefore, it suffices choose any $E\subset \Omega\times O$ such that $E$ is $(\mu\times\nu)$-measurable and $(\mu\times\nu)$-null, and prove $\chi_E\in\scr F$. By Cor. \ref{lb834}, there is a $G_\delta$ set $A\subset \Omega\times O$ such that $(\mu\times\nu)(A)=0$ and $E\subset A$. We have proved in Step 2 that $\chi_A\in\scr F$. In fact, the proof in Step 2 actually shows (a',b',c) where
 \begin{enumerate}
 \item[(a')] $\chi_A(x,\cdot)\in\mc L_+(Y)$ for all $x\in X$.
@@ -23010,7 +23057,7 @@ Apply Tonelli's Thm. \ref{lb835} to $|f|$.
 \end{proof}
 
 \begin{eg}
-Let $X=Y=[0,1]$ and $\mu=\nu=m$. Let $A\subset[0,1]$ be non-measurable. Let $E=\{0\}\times A$. Then $E$ is a $m^2$-null subset of $[0,1]^2$. So $\chi_E:[0,1]^2\rightarrow\Rbb_{\geq0}$ is Lebesgue measurable. However, $\chi_E(x,\cdot):[0,1]\rightarrow\Rbb_{\geq0}$ is not measurable when $x=0$. This shows that the phrase ``for almost every $x\in X$" in statement (a) of Tonelli's Thm. \ref{lb835} cannot be replaced by ``for every $x\in X$".
+Let $X=Y=[0,1]$ and $\mu=\nu=m$. Let $A\subset[0,1]$ be non-measurable. Let $E=\{0\}\times A$. Then $E$ is an $m^2$-null subset of $[0,1]^2$. So $\chi_E:[0,1]^2\rightarrow\Rbb_{\geq0}$ is Lebesgue measurable. However, $\chi_E(x,\cdot):[0,1]\rightarrow\Rbb_{\geq0}$ is not measurable when $x=0$. This shows that the phrase ``for almost every $x\in X$" in statement (a) of Tonelli's Thm. \ref{lb835} cannot be replaced by ``for every $x\in X$".
 \end{eg}
 
 
@@ -23028,7 +23075,7 @@ Assume that $\mu$ and $\nu$ are $\sigma$-finite. Let $f\in\mc L^1(X\times Y,\mu\
 \end{thm}
 
 \begin{proof}
-By considering $\Real(f)$ and $\Imag(f)$ separately, it suffices to assume that $f$ is real. Apply Tonelli's Thm. \ref{lb835} to $f^\pm=\max\{\pm f,0\}$, and notice Prop. \ref{lb752}-(b) (which is need to prove that $\int_Yf^\pm(x,\cdot)d\nu<+\infty$ for almost every $x\in X$). We leave the details to the readers.
+By considering $\Real(f)$ and $\Imag(f)$ separately, it suffices to assume that $f$ is real. Apply Tonelli's Thm. \ref{lb835} to $f^\pm=\max\{\pm f,0\}$, and notice Prop. \ref{lb752}-(b) (which is needed to prove that $\int_Yf^\pm(x,\cdot)d\nu<+\infty$ for almost every $x\in X$). We leave the details to the readers.
 \end{proof}
 
 
@@ -23072,7 +23119,7 @@ Moreover, when applying Cor. \ref{lb830}, we can choose $U,V$ such that $\mu(U)\
 
 
 \begin{eg}\label{lb839}
-The projection $\pi:X\times Y\rightarrow X$ is continuous, and hence is Borel. This does not imply that $\pi$ is $(\mu\times\nu)$-measurable (where $X$ is equipped with the $\sigma$ algebra $\fk M$). However, if $\mu$ and $\nu$ are $\sigma$-finite, then $\pi$ is $(\mu\times\nu)$-measurable because for each $A\in\fk M$, the set $\pi^{-1}(A)=A\times Y$ is measurable by Exp. \ref{lb837}.
+The projection $\pi:X\times Y\rightarrow X$ is continuous, and hence is Borel. This does not imply that $\pi$ is $(\mu\times\nu)$-measurable (where $X$ is equipped with the $\sigma$ algebra $\fk M$). However, if $\mu$ and $\nu$ are $\sigma$-finite, then $\pi$ is $(\mu\times\nu)$-measurable because for each $A\in\fk M$, the set $\pi^{-1}(A)=A\times Y$ is measurable by Prop. \ref{lb837}.
 \end{eg}
 
 
@@ -23105,7 +23152,7 @@ Extend $\mu,\nu,\mu\times\nu$ to $\sigma$-algebras $\fk M_\mu,\fk M_\nu,\fk M_{\
 
 We have mentioned in Rem. \ref{lb841} that there is a general notion of product measure space which (after completion) agrees with the Radon product when the LCH spaces are second countable. The general definition is as follows. Suppose that $(X,\fk M,\mu)$ and $(Y,\fk N,\nu)$ are measure spaces. Let $\fk M\otimes\fk N$ be the $\sigma$-algebra generated by all $E\times F$ where $E\in\fk M$ and $F\in\fk N$. Using Carath\'eodory's Thm. \ref{lb740}, one can naturally construct a measure $\mu\wht\times\nu:\fk M\otimes\fk N\rightarrow[0,+\infty]$ satisfying $(\mu\wht\times\nu)(E\times F)=\mu(E)\nu(F)$. 
 
-Assuming that $\mu$ and $\nu$ are $\sigma$-finite, Tonelli's Thm. \ref{lb835} and Fubini's Thm. \ref{lb836} can be proved for $(\fk M\otimes\fk N)$-measurable functions on $X\times Y$, with one improvement: the statement ``for almost every $x\in X$" in Thm. \ref{lb836}-(a) can be replaced by ``for every $x\in X$". However, $(\fk M\otimes\fk N,\mu\wht\times\nu)$ is in general not complete. If we consider its completion instead, then we still need ``for almost every $x\in X$" in Thm. \ref{lb836}-(a). The readers are referred to \cite[Sec. 2.5]{Fol-R} for details.
+Assuming that $\mu$ and $\nu$ are $\sigma$-finite, Tonelli's Thm. \ref{lb835} and Fubini's Thm. \ref{lb836} can be proved for $(\fk M\otimes\fk N)$-measurable functions on $X\times Y$ with one improvement: the statement ``for almost every $x\in X$" in Thm. \ref{lb836}-(a) can be replaced by ``for every $x\in X$". However, $(\fk M\otimes\fk N,\mu\wht\times\nu)$ is in general not complete. If we consider its completion instead, then we still need ``for almost every $x\in X$" in Thm. \ref{lb836}-(a). The readers are referred to \cite[Sec. 2.5]{Fol-R} for details.
 
 
 Alternatively, one can first prove $\int_X\int_Yf=\int_Y\int_Xf$ for $\sigma$-finite measures, and then define the measure on $\fk M\otimes\fk N$ by using $(\mu\wht\times\nu)(A)=\int_X\int_Y\chi_A$. This approach was adopted by Rudin. See \cite[Ch. 8]{Rud-R}. Of course, this approach does not define $\mu\wht\times\nu$ when $\mu$ or $\nu$ is not $\sigma$-finite. But you won't lose anything if you only care about $\sigma$-finite measures.
@@ -23187,7 +23234,7 @@ By the outer regularity (cf. Thm. \ref{lb804}), it suffices to prove that $(m\ti
 \end{eg}
 
 \begin{rem}\label{lb842}
-In Exp. \ref{lb840}, we proved that the closed set $\Delta$ satisfies $(m\times\nu)^*(\Delta)=(m\times\nu)(\Delta)=+\infty$. Note that every compact subset of $\Delta$ is a finite set, and hence is $(m\times\nu)$-null. Therefore $(m\times\nu)_*(\Delta)=0$. This gives an example of Borel subset with infinite Radon measure which is not inner regular.
+In Exp. \ref{lb840}, we proved that the closed set $\Delta$ satisfies $(m\times\nu)^*(\Delta)=(m\times\nu)(\Delta)=+\infty$. Note that every compact subset $K$ of $\Delta$ is a finite set (since its image under the projection $X\times Y\rightarrow Y$ is compact and hence finite). Hence $K$ is $(m\times\nu)$-null. Therefore $(m\times\nu)_*(\Delta)=0$. This gives an example of Borel subset with infinite Radon measure which is not inner regular.
 \end{rem}
 
 
@@ -23248,7 +23295,7 @@ In particular, we will not let $\Vert f\Vert_p$ denote $\Vert f\Vert_{l^p}$ unle
 \end{df}
 
 \begin{thm}
-Assume that $f,g\in\mc L(X,\Cbb)$ or $f,g\in\mc L_+(X)$. We have \textbf{Minkowski's inequality}  \index{Minkowski's inequality}
+Assume that $f,g\in\mc L(X,\Cbb)$ or $f,g\in\mc L_+(X)$. We have \textbf{Minkowski's inequality}  \index{00@Minkowski's inequality}
 \begin{align}
 \Vert f+g\Vert_p\leq\Vert f\Vert_p+\Vert g\Vert_p
 \end{align}
@@ -23259,13 +23306,13 @@ and, if $1<p,q<+\infty$ and $p^{-1}+q^{-1}=1$, \textbf{H\"older's inequality} \i
 \end{thm}
 
 \begin{proof}
-Since $\Vert f+g\Vert_p\leq \Vert (|f|+|g|)\Vert_p$ and $|\int fg|\leq\int|fg|$, by replacing $f,g$ with $|f|,|g|$, it suffices to assume $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there exist increasing sequences in $\mc S(X,\Rbb_{\geq0})$ converging to $f$ and $g$ respectively. By the monotone convergence theorem, it suffices to prove the two inequalities for elements in $mc S(X,\Rbb_{\geq0})$.
+Since $\Vert f+g\Vert_p\leq \Vert (|f|+|g|)\Vert_p$ and $|\int fg|\leq\int|fg|$, by replacing $f,g$ with $|f|,|g|$, it suffices to assume $f,g\in\mc L_+(X)$. By Prop. \ref{lb749}, there exist increasing sequences in $\mc S(X,\Rbb_{\geq0})$ converging to $f$ and $g$ respectively. By the monotone convergence theorem, it suffices to prove the two inequalities for elements in $\mc S(X,\Rbb_{\geq0})$.
 
 Let's prove H\"older's inequality for $f,g\in\mc S_+(X)$ assuming that $1<p,q<+\infty$. The proof of Minkowski's inequality is similar and is left to the readers. 
 
-We assume WLOG that $\Vert f\Vert_p\cdot\Vert g\Vert_q<+\infty$, otherwise, the inequality is obvious. If $\Vert f\Vert_p=+\infty$, then $\Vert g\Vert_q=0$. So $\int |g|^p=0$. By Prop. \ref{lb752}, we gave $g=0$ a.e., and hence $fg=0$ a.e.. So $\int fg=0$ by Prop. \ref{lb752}. Similarly, if $\Vert g\Vert_q=+\infty$, then $\int fg=0$. The inequality holds. 
+We assume WLOG that $\Vert f\Vert_p\cdot\Vert g\Vert_q<+\infty$, otherwise, the inequality is obvious. If $\Vert f\Vert_p=+\infty$, then $\Vert g\Vert_q=0$. So $\int |g|^p=0$. By Prop. \ref{lb752}, we have $g=0$ a.e., and hence $fg=0$ a.e.. So $\int fg=0$ by Prop. \ref{lb752}. Similarly, if $\Vert g\Vert_q=+\infty$, then $\int fg=0$. The inequality holds. 
 
-So we can assume that $\Vert f\Vert_p$ and $\Vert g\Vert_q$ are both finite. Write $f$ and $g$ as finite sums $f=\sum_i a_i\chi_{E_i}$ and $g=\sum_j b_j\chi_{F_j}$ where $a_i,b_j\in\Rbb_{>0}$, $E_1,E_2,\dots\in\fk M$ are pairwise disjoint, and $F_1,F_2,\dots$ are pairwise disjoint. Since $a_i\chi_{E_i}\leq f$, we have $a_i^p\mu(E_i)\leq\int |f|^p<+\infty$ and hence $\mu(E_i)<+\infty$. Similarly, we have $\mu(F_j)<+\infty$. Let $G_{i,j}=E_i\cap F_j$. So $f=\sum_{i,j}a_i\chi_{G_{i,j}}$ and $g=\sum_{i,j}b_j\chi_{G_{i,j}}$ and $fg=\sum_{i,j}a_ib_j\chi_{G_{i,j}}$. By H\"older's inequality for finite sums (Thm. \ref{lb853}) we have
+So we can assume that $\Vert f\Vert_p$ and $\Vert g\Vert_q$ are both finite. By Prop. \ref{lb752}, $f<+\infty$ and $g<+\infty$ outside a null set $\Delta$. Replacing $f,g$ with $f\chi_{\Delta^c},g\chi_{\Delta^c}$, it suffices to assume $f,g\in\mc S(X,\Rbb_{\geq0})$.  Write $f$ and $g$ as finite sums $f=\sum_i a_i\chi_{E_i}$ and $g=\sum_j b_j\chi_{F_j}$ where $a_i,b_j\in\Rbb_{>0}$, $E_1,E_2,\dots\in\fk M$ are pairwise disjoint, and $F_1,F_2,\dots\in\fk M$ are pairwise disjoint. Since $a_i\chi_{E_i}\leq f$, we have $a_i^p\mu(E_i)\leq\int |f|^p<+\infty$ and hence $\mu(E_i)<+\infty$. Similarly, we have $\mu(F_j)<+\infty$. Let $G_{i,j}=E_i\cap F_j$. So $f=\sum_{i,j}a_i\chi_{G_{i,j}}$ and $g=\sum_{i,j}b_j\chi_{G_{i,j}}$ and $fg=\sum_{i,j}a_ib_j\chi_{G_{i,j}}$. By H\"older's inequality for finite sums (Thm. \ref{lb853}) we have
 \begin{align*}
 &\int_Xfg=\sum_{i,j}a_ib_j\mu(G_{i,j})=\sum_{i,j}a_i\mu(G_{i,j})^{\frac 1p}\cdot b_j\mu(G_{i,j})^{\frac 1q}\\
 \leq& \Big(\sum_{i,j} a_i^p\mu(G_{i,j})\Big)^{\frac 1p}\cdot \Big(\sum_{i,j} b_j^q\mu(G_{i,j})\Big)^{\frac 1q}=\Vert f\Vert_p\cdot\Vert g\Vert_q
@@ -23320,32 +23367,6 @@ Unless otherwise stated, we will not let $\Vert f\Vert_\infty$ denote $\Vert f\V
 
 We give some elementary facts about $L^\infty$.
 
-\begin{pp}\label{lb860}
-Let $f\in\mc L(X,\Cbb)$ and $\lambda=\Vert f\Vert_{L^\infty}$. Then
-\begin{align}
-\big\{a\in\ovl\Rbb_{\geq0}:\mu\{|f|>a\}=0\big\}=[\lambda,+\infty]
-\end{align}
-In particular, $\lambda=\Vert f\Vert_{L^\infty}$ is the smallest number in $\ovl\Rbb_{\geq0}$ such that $\{x\in X:|f(x)|>\lambda\}$ is null. Moreover,
-If we let
-\begin{align*}
-A=\{|f|\leq\lambda\}
-\end{align*}
-then $X\setminus A$ is null, and
-\begin{align}
-\Vert f\chi_A\Vert_{l^\infty}=\Vert f\Vert_{L^\infty}
-\end{align}
-\end{pp}
-
-\begin{proof}
-Let $E=\big\{a\in\ovl\Rbb_{\geq0}:\mu\{|f|>a\}=0\big\}$. Clearly, if $a\in E$ and $b\geq a$ then $b\in E$. Therefore, $E$ equals $(\lambda,+\infty]$ or $[\lambda,+\infty]$. Pick a decreasing sequence $(a_n)$ in $E$ converging to $\lambda$. Then $\{|f|>\lambda\}$ is the union of $\{|f|>a_n\}$, which is null. This proves $\lambda\in E$, and hence $E=[\lambda,+\infty]$.
-
-That $\lambda\in E$ means that $X\setminus A$ is null. Let $\kappa=\Vert f\chi_A\Vert_{l^\infty}$. Since $|f|_A|\leq\lambda$, we have $\kappa\leq\lambda$. The set $\{|f|>\kappa\}$ is a measurable subset of $X\setminus A$, which is null. Therefore, by the definition of $\lambda$, we have $\kappa\geq\lambda$.
-\end{proof}
-
-
-
-Thanks to Prop. \ref{lb860}, we can prove many properties of $L^\infty$ with the help of $l^\infty$. Let us see some examples.
-
 \begin{pp}\label{lb861}
 Let $f,g\in\mc L(X,\Cbb)$. The following are true.
 \begin{enumerate}
@@ -23358,8 +23379,40 @@ Let $f,g\in\mc L(X,\Cbb)$. The following are true.
 \begin{proof}
 Suppose that $f=g$ a.e.. Then $\{|f|>a\}$ is null iff $\{|g|>a\}$ is null. So $\Vert f\Vert_{L^\infty}=\Vert g\Vert_{L^\infty}$.
 
-In particular, if  $f=0$ a.e., then $\Vert f\Vert_{L^\infty}=\Vert 0\Vert_{L^\infty}=0$. Conversely,  if $\Vert f\Vert_{L^\infty}=0$, then by Prop. \ref{lb860}, there exists $A\in\fk M$ with null complement such that $\Vert f\chi_A\Vert_{l^\infty}=\Vert f\Vert_{L^\infty}=0$. So $f|_A=0$, and hence $f=0$ a.e..
+In particular, if  $f=0$ a.e., then $\Vert f\Vert_{L^\infty}=\Vert 0\Vert_{L^\infty}=0$. Conversely,  if $\Vert f\Vert_{L^\infty}=0$, then $\{x\in X:|f(x)|>0\}$ is null. So $f=0$ a.e..
 \end{proof}
+
+
+
+\begin{pp}\label{lb860}
+Let $f\in\mc L(X,\Cbb)$ and $\lambda=\Vert f\Vert_{L^\infty}$. Then
+\begin{align}
+\big\{a\in\ovl\Rbb_{\geq0}:\mu\{|f|>a\}=0\big\}=[\lambda,+\infty]
+\end{align}
+In particular, $\lambda=\Vert f\Vert_{L^\infty}$ is the smallest number in $\ovl\Rbb_{\geq0}$ such that $\{x\in X:|f(x)|>\lambda\}$ is null. Therefore, if we let
+\begin{align*}
+A=\{|f|\leq\lambda\}
+\end{align*}
+then $X\setminus A$ is null, and
+\begin{align}
+\Vert f\chi_A\Vert_{l^\infty}=\Vert f\Vert_{L^\infty}
+\end{align}
+\end{pp}
+
+\begin{proof}
+Let $E=\big\{a\in\ovl\Rbb_{\geq0}:\mu\{|f|>a\}=0\big\}$. Clearly, if $a\in E$ and $b\geq a$ then $b\in E$. Therefore, $E$ equals $(\lambda,+\infty]$ or $[\lambda,+\infty]$. Pick a decreasing sequence $(a_n)$ in $E$ converging to $\lambda$. Then $\{|f|>\lambda\}$ is the union of $\{|f|>a_n\}$, which is null. This proves $\lambda\in E$, and hence $E=[\lambda,+\infty]$.
+
+That $\lambda\in E$ means that $X\setminus A$ is null. Let $\kappa=\Vert f\chi_A\Vert_{l^\infty}$. Since $|f|_A|\leq\lambda$, we have $\kappa\leq\lambda$. The set $\{|f|>\kappa\}$ is a measurable subset of $X\setminus A$, which is null. Therefore, $\kappa$ belongs to $E=[\lambda,+\infty]$, and hence $\kappa\geq\lambda$.
+\end{proof}
+
+
+
+
+
+
+Thanks to Prop. \ref{lb860}, we can prove many properties of $L^\infty$ with the help of $l^\infty$. Let us see some examples.
+
+
 
 
 \begin{pp}\label{lb877}
@@ -23373,7 +23426,7 @@ Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$. Then the following are equivalent.
 
 
 \begin{proof}
-Assume (1). By Prop. \ref{lb860}, there exists $A_n\in\fk M$ such that $X\setminus A_n$ is null and $\Vert f_n\Vert_{L^\infty}=\Vert f_n\chi_{A_n}\Vert_{l^\infty}$. Thus (2) holds since we can take $A=\bigcap_n A_n$. Assume (2). By Prop. \ref{lb861} we have $\Vert f_n\Vert_{L^\infty}=\Vert f_n\chi_A\Vert_{L^\infty}$. So (1) is true.
+Assume (1). By Prop. \ref{lb860}, there exists $A_n\in\fk M$ such that $X\setminus A_n$ is null and $\Vert f_n\Vert_{L^\infty}=\Vert f_n\chi_{A_n}\Vert_{l^\infty}$. Thus (2) holds since we can take $A=\bigcap_n A_n$. Assume (2). By Prop. \ref{lb861} we have $\Vert f_n\Vert_{L^\infty}=\Vert f_n\chi_A\Vert_{L^\infty}\leq \Vert f_n\chi_A\Vert_{l^\infty}$. So (1) is true.
 \end{proof}
 
 
@@ -23390,7 +23443,7 @@ By Prop. \ref{lb860}, there exists $A\in\fk M$ with null complement such that $\
 \end{align*}
 Similarly, let $B\in\fk M$ with null complement such that $\Vert af\Vert_{L^\infty}=\Vert af\chi_B\Vert_{l^\infty}$ and $\Vert f\Vert_{L^\infty}=\Vert f\chi_B\Vert_{l^\infty}$. Then
 \begin{align*}
-\Vert af\Vert_{L^\infty}=\Vert af\chi_A\Vert_{l^\infty}=a\Vert f\chi_A\Vert_{l^\infty}=a\Vert f\Vert_{L^\infty}
+\Vert af\Vert_{L^\infty}=\Vert af\chi_B\Vert_{l^\infty}=a\Vert f\chi_B\Vert_{l^\infty}=a\Vert f\Vert_{L^\infty}
 \end{align*}
 \end{proof}
 
@@ -23408,7 +23461,7 @@ We let
 \begin{gather*}
 \mc L^\infty(X)=\{f\in\mc L(X,\Cbb):\Vert f\Vert_{l^\infty}<+\infty\}
 \end{gather*}
-Then, by Prop. \ref{lb861} and \ref{lb862}, we can defined the normed vector space \index{L@$L^\infty(X,\mu)$}
+Then, by Prop. \ref{lb861} and \ref{lb862}, we can define the normed vector space \index{L@$L^\infty(X,\mu)$}
 \begin{align}
 L^\infty(X,\mu)=\mc L^\infty(X)/\{f\in\mc L^\infty(X):f=0\text{ a.e.}\}
 \end{align}
@@ -23426,7 +23479,7 @@ $L^\infty(X,\mu)$ is a Banach space.
 \begin{proof}
 Let $(f_n)$ be a Cauchy sequence in $L^\infty(X,\mu)$. Choose $f_n\in\mc L^\infty(X)$ representing the corresponding element in $L^\infty(X,\mu)$. Then $\lim_{m,n\rightarrow\infty}\Vert f_m-f_n\Vert_{L^\infty}=0$. By Prop. \ref{lb860} and the fact that a countable union of null sets is null, there is $A\in\fk M$ with null complement such that $\Vert (f_m-f_n)\chi_A\Vert_{l^\infty}$ equals $\Vert f_m-f_n\Vert_{L^\infty}$, and hence converges to $0$. By the completeness of $l^\infty(X)$, $(f_n\chi_A)_{n\in\Zbb_+}$ converges uniformly to some $f\in l^\infty(X)$. By Cor. \ref{lb701}, $f\in\mc L^\infty(X)$. Thus
 \begin{align*}
-\Vert f-f_n\Vert_{L^\infty}=\Vert f\chi_A-f_n\chi_A\Vert_{L^\infty}\leq \Vert f-f_n\Vert_{l^\infty(A)}\rightarrow0
+\Vert f-f_n\Vert_{L^\infty}=\Vert (f-f_n)\chi_A\Vert_{L^\infty}\leq \Vert (f-f_n)\chi_A\Vert_{l^\infty(X)}= \Vert f-f_n\Vert_{l^\infty(A)}\rightarrow0
 \end{align*}
 where Prop. \ref{lb861} is used in the first equality.
 \end{proof}
@@ -23467,11 +23520,11 @@ By Lusin's Thm. \ref{lb865}, there is a compact $K\subset A$ such that $\mu(A\se
 Therefore $\Vert f-g\Vert_p\leq 2M\cdot\eps^{\frac 1p}$. Since $\eps$ can be arbitrary, we conclude that $f$ can be approximated by elements of $C_c(X)$.
  
 
-Now we treat the general case. Let $E_n=\{x\in X:1/n\leq|f(x)|\leq n\}$. Then $(E_n)$ is increasing and $\bigcup_n E_n=X$. Moreover, since $n^{-1}\chi_{E_n}\leq |f|$, we have $n^{-p}\mu(E_n)\leq\Vert f\Vert_p^p$ and hence $\mu(E_n)<+\infty$. Since $|f-f\chi_{E_n}|\leq 2|f|$ and $\int|f|^p<+\infty$,  we have $\lim_n \int |f-f\chi_{E_n}|^p=0$ by the dominated convergence theorem. By the above special case, $f\chi_{E_n}$ can be approximated by elements of $C_c(X)$. This finishes the proof.
+Now we treat the general case. Let $E_n=\{x\in X:1/n\leq|f(x)|\leq n\}$. Then $(E_n)$ is increasing and $\bigcup_n E_n=X$. Moreover, since $n^{-1}\chi_{E_n}\leq |f|$, we have $n^{-p}\mu(E_n)\leq\Vert f\Vert_p^p$ and hence $\mu(E_n)<+\infty$. Since $|f-f\chi_{E_n}|\leq |f|$ and $\int|f|^p<+\infty$,  we have $\lim_n \int |f-f\chi_{E_n}|^p=0$ by the dominated convergence theorem. By the above special case, $f\chi_{E_n}$ can be approximated by elements of $C_c(X)$. This finishes the proof.
 \end{proof}
 
 
-Note that $C(X)$ is in general not dense in $L^\infty(X)$ becasue the uniform limit of a sequence of continuous functions is continuous.
+Note that $C_c(X)$ is in general not dense in $L^\infty(X)$ becasue the uniform limit of a sequence of continuous functions is continuous.
 
 
 \subsubsection{Applications of continuous function approximation}
@@ -23527,7 +23580,7 @@ In fact, we can prove this for every $g\in C[-\pi,\pi]$. By Stone-Weierstrass, i
 The following theorem is a further application of Thm. \ref{lb866}.
 
 \begin{thm}\label{lb872}
-Let $X$ be a second countable LCH space. Let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. Let $1\leq p<+\infty$. Then $L^p(X,\mu)$ is separable. 
+Let $X$ be a second countable LCH space. Let $(\fk M,\mu)$ be a Radon measure (or its completion) on $X$. Let $1\leq p<+\infty$. Then $L^p(X,\mu)$ is separable. 
 \end{thm}
 
 In the next section, we will see that $L^p(X,\mu)$ is complete. Therefore, if $X$ is second countable LCH, then the Hilbert space $L^2(X,\mu)$ has a countable orthonormal basis (Cor. \ref{lb616}) and hence is isomorphic to $l^2(\Zbb)$ or $l^2(\{1,\dots,n\})$ (Thm. \ref{lb873}).
@@ -23537,9 +23590,9 @@ Step 1. We consider the special case that $X$ is compact (and second countable).
 \begin{align*}
 \Vert f-f_n\Vert_p^p=\int_X |f-f_n|^pd\mu\leq\Vert f-f_n\Vert_{l^\infty}^p\cdot\mu(X)
 \end{align*}
-it suffices to find a countable $\mc E\subset C(X)$ which is $l^\infty$-dense in $C(X)$. But we have already proves this before: Thm. \ref{lb482} says that a compact Hausdorff space is second countable iff its space of continuous functions is ($l^\infty$-)separable.\\[-1ex]
+it suffices to find a countable $\mc E\subset C(X)$ which is $l^\infty$-dense in $C(X)$. But we have already proved this before: Thm. \ref{lb482} says that a compact Hausdorff space is second countable iff its space of continuous functions is ($l^\infty$-)separable.\\[-1ex]
 
-Step 2. We consider the general case. Since $X$ is second countable, $X$ is Lindel\"of. Therefore, $X$ is a countable union of precompact open subsets. So $X$ is $\sigma$-compact, i.e., we have compact $K_1,K_2,\dots\subset X$ such that $X=\bigcup_n K_n$. By replacing $K_n$ with $K_1\cup\cdots\cup K_n$ we assume $K_1\subset K_2\subset\cdots$. 
+Step 2. We consider the general case. Since $X$ is second countable, $X$ is Lindel\"of. Therefore, $X$ is a countable union of precompact open subsets. So $X$ is $\sigma$-compact, i.e., we have compact $K_1,K_2,\dots\subset X$ such that $X=\bigcup_n K_n$. By replacing $K_n$ with $K_1\cup\cdots\cup K_n$ we assume $K_1\subset K_2\subset\cdots\subset X$. 
 
 The restriction $\mu_n:=\mu|_{\fk B_{K_n}}$ is a finite Borel measure on the second countable compact Hausdorff space $K_n$. Therefore, $\mu_n$ is a Radon measure on $K_n$ by Thm. \ref{lb818}. Thus, by Step 1, $L^p(K_n,\mu_n)$ has a countable dense subset $\mc E_n$. Note that we can view $L^p(K_n,\mu_n)$ as a subset of $L^p(X,\mu)$. So $\mc E=\bigcup_n \mc E_n$ is a countable subset of $L^p(X,\mu)$. 
 
@@ -23552,12 +23605,12 @@ Let us prove that $\mc E$ is dense in $L^p(X,\mu)$. Choose any $f\in L^p(X,\mu)$
 \begin{rem}
 In the above proof, we have used the criterion Thm. \ref{lb818} to show that $\mu$ restricts to a Radon measure on the second countable compact set $K_n$. Since Thm. \ref{lb818} is a deep result, one may wonder if Thm. \ref{lb872} can be proved without using Thm. \ref{lb818}. The answer is yes. We sketch such a proof below.
 
-First, consider the special case that $\mu(X)<+\infty$. By Thm. \ref{lb866}, $C_c(X)$ is dense in $L^p(X,\mu)$. By Pb. \ref{lb484}, $C_c(X)$ is $l^\infty$-separable, and hence is $L^p$-separable (by the finiteness of $\mu(X)$). Therefore $L^p(X,\mu)$ is separable. Second, consider the general case. Since $X$ is second countable, we can write $X$ as a countable union $X=\bigcup_n U_n$ where $U_1\subset U_2\subset\cdots$ are open and precompact subsets of $X$. So $\mu(U_n)<+\infty$. The restriction $\mu_n=\mu|_{\fk B_{U_n}}$ is Radon. (This is easy to check, and does not rely on the second countability. So Thm. \ref{lb818} is not needed here.) Therefore, $L^p(U_n,\mu_n)$ is separable. Similar to Step 2 of the proof of Thm. \ref{lb872}, one concludes that $L^p(X,\mu)$ is separable. \hfill\qedsymbol
+First, consider the special case that $\mu(X)<+\infty$. By Thm. \ref{lb866}, $C_c(X)$ is dense in $L^p(X,\mu)$. By Pb. \ref{lb484}, $C_c(X)$ is $l^\infty$-separable, and hence is $L^p$-separable (by the finiteness of $\mu(X)$). Therefore $L^p(X,\mu)$ is separable. Second, consider the general case. Since $X$ is second countable, we can write $X$ as a countable union $X=\bigcup_n U_n$ where $U_1\subset U_2\subset\cdots$ are open and precompact subsets of $X$. So $\mu(U_n)<+\infty$. The restriction $\mu_n=\mu|_{\fk B_{U_n}}$ is Radon. (This is easy to check by using the openness of $U_n$, and does not rely on the second countability. So Thm. \ref{lb818} is not needed here.) Therefore, $L^p(U_n,\mu_n)$ is separable. Similar to Step 2 of the proof of Thm. \ref{lb872}, one concludes that $L^p(X,\mu)$ is separable. \hfill\qedsymbol
 \end{rem}
 
 
 \begin{rem}
-The importance of Thm. \ref{lb786} has been discussed in Rem. \ref{lb569}: Let $(X,\mu)$ be a measure space. Assume that $L^p(X,\mu)$ is separable (where $1\leq p<+\infty$). Then, equivalently, the closed unit ball of the dual space $L^p(X,\mu)^*$ is weak-* metrizable by Thm. \ref{lb523}. A deep theorem originally due to Riesz says that $L^p(X,\mu)^*$ is naturally isomorphic to $L^q(X,\mu)$ where $p^{-1}+q^{-1}=1$. (In the case that $p=1$, one should assume that $\mu$ is $\sigma$-finite.) Thus, when $L^p(X,\mu)$ is separable, we use sequences (rather than nets) to study the weak-* topology and the weak-* compactness of norm-bounded subsets of $L^q(X,\mu)$. 
+The importance of Thm. \ref{lb872} has been discussed in Rem. \ref{lb569}: Let $(X,\mu)$ be a measure space. Assume that $L^p(X,\mu)$ is separable (where $1\leq p<+\infty$). Then, equivalently, the closed unit ball of the dual space $L^p(X,\mu)^*$ is weak-* metrizable by Thm. \ref{lb523}. A deep theorem originally due to Riesz (cf. Thm. \ref{lb899}) says that $L^p(X,\mu)^*$ is naturally isomorphic to $L^q(X,\mu)$ where $p^{-1}+q^{-1}=1$. (In the case that $p=1$, one should assume that $\mu$ is $\sigma$-finite.) Thus, when $L^p(X,\mu)$ is separable, we can use sequences (rather than nets) to study the weak-* topology and the weak-* compactness of norm-bounded subsets of $L^q(X,\mu)$. 
 \end{rem}
 
 
@@ -23565,7 +23618,7 @@ The importance of Thm. \ref{lb786} has been discussed in Rem. \ref{lb569}: Let $
 \subsubsection{Approximation by simple functions}
 
 
-Thm. \ref{lb866} can only be applied to (completions of) Radon measures. For a genera measure space, we have the following approximation:
+Thm. \ref{lb866} can only be applied to (completions of) Radon measures. For a general measure space, we have the following approximation:
 
 \begin{thm}\label{lb874}
 Let $(X,\fk M,\mu)$ be a measure space. Let $1\leq p\leq+\infty$. Then 
@@ -23583,12 +23636,12 @@ The set \eqref{eq349} has an explicit description: If $1\leq p<+\infty$, a funct
 
 
 \begin{proof}[Proof of Thm. \ref{lb874}]
-By approximating $\Real( f)$ and $\Imag(f)$ separately, we can assume that $f$ is real. By considering $f^+$ and $f^-$ separately, we assume $f\geq0$. By Prop. \ref{lb749}, there is an increasing sequence $(s_n)$ in $\mc S(X,\Rbb_{\geq0})$ converging pointwise to $f$. Therefore, when $p<+\infty$, we have $\lim_n \Vert f-s_n\Vert_p^p=0$ by the dominated convergence theorem (since $|f-s_n|^p\leq |f|^p$). If $p=+\infty$, by Prop. \ref{lb860}, we can replace $f$ with an equivalence function whose $l^\infty$-norm is finite. Then, by Rem. \ref{lb807}, we can assume that $(s_n)$ converges uniformly to $f$. This proves $\lim_n\Vert f-s_n\Vert_{L^\infty}=0$.
+By approximating $\Real( f)$ and $\Imag(f)$ separately, we can assume that $f$ is real. By considering $f^+$ and $f^-$ separately, we assume $f\geq0$. By Prop. \ref{lb749}, there is an increasing sequence $(s_n)$ in $\mc S(X,\Rbb_{\geq0})$ converging pointwise to $f$. Therefore, when $p<+\infty$, we have $\lim_n \Vert f-s_n\Vert_p^p=0$ by the dominated convergence theorem (since $|f-s_n|^p\leq |f|^p$). If $p=+\infty$, by Prop. \ref{lb860}, we can replace $f$ with an equivalent function whose $l^\infty$-norm is finite. Then, by Rem. \ref{lb807}, we can assume that $(s_n)$ converges uniformly to $f$. This proves $\lim_n\Vert f-s_n\Vert_{L^\infty}=0$.
 \end{proof}
 
 In Pb. \ref{lb912} and \ref{lb910}, we will give applications of Thm. \ref{lb874} to the study of weak-* convergence in $L^p$ spaces.
 
-
+%% Proofread
 
 
 
@@ -23735,7 +23788,7 @@ Let $\Psi$ be the linear isometry in Prop. \ref{lb897}. Then $f=0$ a.e. iff $\Ve
 
 
 
-\begin{thm}[\textbf{Riesz representation for $L^p$ spaces}] \label{lb899}
+\begin{thm}[\textbf{Riesz representation theorem for $L^p$ spaces}] \label{lb899}
 Assume that $1<p\leq +\infty$ and $p^{-1}+q^{-1}=1$. (So $1\leq q<+\infty$.) Moreover, if $p=+\infty$ then assume that $\mu$ is $\sigma$-finite. Then the canonical linear isometry $\Psi:L^p(X,\mu)\rightarrow L^q(X,\mu)^*$ in Prop. \ref{lb897} is surjective, and hence is an isomorphism of Banach spaces.
 \end{thm}
 
@@ -24214,7 +24267,7 @@ What Riesz did next amounts to defining
 \begin{align}
 \scr C_2=\Span_\Rbb\scr C_1=\{f^+-f^-:f^\pm\in\scr C_1\}
 \end{align}
-so that $\scr C_1$ is a spanning convex cone in $\scr C_2$. It is clear that $\scr C_2$ is a unital $\Rbb$-algebra since $\scr C_1$ is a unital $\Rbb_{\geq0}$-algebra. Therefore, similar to Prop. \ref{lb751}, the lower semicontinuous functional calculus can be extended to a linear $f\in \scr C_2\mapsto f(T)\in\fk L(\mc H)$. Since $f\in\scr C_1\mapsto f(T)$ is increasing (i.e., if $f_1\leq f_2$ then $f_1(T)\leq f_2(T)$), we see that $f(T)$ is positive if $f\in\scr C_2$ and $f\geq0$. Finally, using the fact that $f\in\scr C_1\mapsto f(T)$ is multiplicative, an easy algebraic argument shows that $f\in\scr C_2\mapsto f(T)$ is also multiplicative. Therefore, Riesz essentially obtained the following theorem on $\scr C_2$-functional calculus. 
+so that $\scr C_1$ is a spanning convex cone in $\scr C_2$. It is clear that $\scr C_2$ is a unital $\Rbb$-algebra since $\scr C_1$ is a unital $\Rbb_{\geq0}$-algebra. Therefore, similar to Prop. \ref{lb751}, the lower semicontinuous functional calculus can be extended to a linear $f\in \scr C_2\mapsto f(T)\in\fk L(\mc H)$. Since $f\in\scr C_1\mapsto f(T)$ is increasing (i.e., if $f_1\leq f_2$ then $f_1(T)\leq f_2(T)$), we see that $f(T)$ is positive if $f\in\scr C_2$ and $f\geq0$. (This is very similar to our \hyperlink{SecondRiesz}{second proof} of the Riesz representation Thm. \ref{lb847}.) Finally, using the fact that $f\in\scr C_1\mapsto f(T)$ is multiplicative, an easy algebraic argument shows that $f\in\scr C_2\mapsto f(T)$ is also multiplicative. Therefore, Riesz essentially obtained the following theorem on $\scr C_2$-functional calculus. 
 \begin{thm}\label{lb921}
 The polynomial functional calculus $\pi_T:\Rbb[x]\rightarrow\fk L(\mc H)$ can be extended to a (linear) unital homomorphism $\pi_T:\scr C_2\rightarrow\fk L(\mc H)$ such that any element of $\pi_T(\scr C_2)$ is self-adjoint. Moreover, $\pi_T$ is positive in the sense that $f(T)\geq0$ if $f\in\scr C_2$ and $f\geq0$.
 \end{thm}
@@ -24266,11 +24319,10 @@ I believe that the best name for Riesz's spectral Thm. \ref{lb895} is the \textb
 \end{align}
 in the Riesz representation Thm. \ref{lb893}. This is also clear from the proofs: Recall that in our \hyperlink{SecondRiesz}{second proof} of the Riesz representation theorem in Subsec. \ref{lb923}, we first extended $\Lambda$ to the set $\scr C_1$ of bounded lower semicontinuous functions. (This part was done in Sec. \ref{lb833}.) Then, we extended $\Lambda$ to $\scr C_2$, and related $\Lambda$ to Stieltjes integrals. Similarly, to prove the spectral Thm. \ref{lb881}, Riesz first extended $\pi_T:f\mapsto f(T)$ to $\scr C_1$, \footnote{In fact, Riesz first extended $\pi_T$ to the set of \textit{upper} semicontinuous functions.} then to $\scr C_2$, and finally related $\pi_T$ to quadratic-form valued Stieltjes integrals.
 
-To summarize, unlike our proof of the modern spectral Thm. \ref{lb881} which uses the Riesz-Markov theorem as a black box, Riesz's proof of his spectral theorem uses ideas and perspectives from Thm. \ref{lb893} rather than just the conclusion: 
+To summarize, unlike our proof of the modern spectral Thm. \ref{lb881} which uses the Riesz-Markov theorem as a black box, Riesz's proof of his spectral theorem uses ideas and perspectives from Thm. \ref{lb893} rather than just the conclusion. 
 
 
 
-\hypertarget{beforeindex}{}
 
 
 
@@ -24322,6 +24374,28 @@ Therefore, when studying non-reflexive spaces such as $C[a,b]$, the viewpoint of
 
 
 Let $(X,\fk M,\mu)$ be a measure space.  
+
+
+\begin{sprob}\label{lb939}
+Let $1\leq p<+\infty$. Let $X,Y$ be LCH spaces. Let $\mu,\nu$ be the completions of $\sigma$-finite Radon measures on $X,Y$ respectively. Let $\mu\times\nu$ be the Radon product (cf. Def. \ref{lb827}). Let
+\begin{align*}
+\scr A=\Span_\Cbb\{fg:f\in\mc L^p(X,\mu),g\in\mc L^p(Y,\mu)\}
+\end{align*}
+Prove that $\scr A\subset \mc L^p(X\times Y,\mu\times\nu)$, and that $\scr A$ is a dense linear subspace of $L^p(X\times Y,\mu\times\nu)$.
+\end{sprob}
+
+\begin{proof}[Note]
+It is a non-trivial fact that a measurable function on $X$ can be viewed as a measurable function on $X\times Y$. This fact relies on the fact that the projection $X\times Y\rightarrow X$ is measurable, cf. Exp. \ref{lb839}.
+\end{proof}
+
+\begin{proof}[Hint]
+Use (e.g.) Stone-Weierstrass to show that $\Span\{fg:f\in C_c(X),g\in C_c(Y)\}$ is $l^\infty$-dense in $C_c(X\times Y)$. 
+\end{proof}
+
+
+\begin{sexe}
+Can you prove Pb. \ref{lb939} without assuming that $\mu$ and $\nu$ are $\sigma$-finite? Hint: Let $f\in\mc L^p(X,\mu)$ and $g\in\mc L^p(Y,\mu)$. Then $\Omega_f=\{x\in X:f(x)\neq 0 \}$ and $\Gamma_g=\{y\in Y:g(y)\neq 0\}$ must be $\sigma$-finite. (Why?) So they are contained in $\sigma$-finite open subsets of $X,Y$ respectively. Use this fact to prove $fg\in\mc L^p(X\times Y,\mu\times\nu)$.
+\end{sexe}
 
 
 \begin{comment}
@@ -24592,7 +24666,594 @@ From the above three cases, it is clear that for each $\lambda\in\Cbb$, the map 
 
 
 
+\newpage
 
+
+
+
+
+
+
+\section{From the implicit function theorem to differential manifolds}
+
+We let $x^i$ \index{xi@$x^i$, the coordinate function} denote the canonical coordinate function $x^i:\Rbb^n\rightarrow\Rbb$ sending $(a_1,\dots,a_n)$ to $a_i$. 
+
+\subsection{Introduction}
+
+The goal of this chapter is to study the implicit function theorem. Consider, for example, a $C^\infty$-function $f:\Rbb^3\rightarrow\Rbb$. Let
+\begin{align*}
+Z(f)=\{(x,y,z)\in\Rbb^3:f(x,y,z)=0\}
+\end{align*}
+be the set of zeros of $f$. Assume that $\partial_zf$ is nowhere zero on $Z(f)$. Then the implicit function theorem asserts that the equation $f(x,y,z)=0$ can be locally solved for $z$ in terms of $x,y$, i.e., $z=g(x,y)$ for some function $g$.
+
+\begin{eg}
+Let $f(x,y,z)=x^2+y^2+z^2-1$. Then $\partial_zf=2z$ is nowhere zero on $\{z\neq 0\}$. Then $f(x,y,z)=0$ can be locally solved for $z$ on this region: On $\{z>0\}$ we have $z=\sqrt{1-x^2-y^2}$, and on $\{z<0\}$ we have $z=-\sqrt{1-x^2-y^2}$. On the other hand, $\partial_zf$ is zero at $(1,0,0)$. Accordingly, on any neighborhood $U$ of $(1,0,0)$ we can not find a function $g$ satisfying $z=g(x,y)$. This is because any line orthogonal to the $xy$-plane and close to $(1,0,0)$ (but not containing $(1,0,0)$) has two intersection points with $Z(f)\cap U$. 
+\end{eg}
+
+\begin{rem}\label{lb924}
+Roughly speaking, the general form of the implicit function theorem says the following. Write 
+\begin{align}
+x=(x^1,\dots,x^d)\qquad y=(y^1,\dots,y^k)
+\end{align}
+for the standard coordinates of $\Rbb^d$ and $\Rbb^k$ respectively. Let $f=(f^1,\dots,f^k)$ be a real-valued $C^r$-map $\Omega\rightarrow \Rbb^n$ (where $r\geq1$) defined  on an open $\Omega\subset\Rbb^d\times\Rbb^k$. (So each component $f^i$ is a $C^r$-function $\Omega\rightarrow\Rbb$.) Suppose that the $k\times k$ Jacobian matrix
+\begin{align*}
+\Jac_y f=(\partial_{y^j}f^i)_{1\leq i,j\leq k}
+\end{align*}
+is invertible at $p\in\Rbb^d\times\Rbb^k$. (Equivalently, assume that the Jacobian $\Jbf_y(f)=\det\Jac_y f$ (cf. \eqref{eq359}) is nonzero at $p$.) Then, near $p$, the equations $f^1=\cdots=f^k=0$ can be \textbf{solved for $y$ in terms of $x$}, i.e., 
+\begin{align}\label{eq368}
+y^1=g^1(x),\dots,y^k=g^k(x)
+\end{align}
+for some $C^r$-functions $g^1,\dots,g^k$.
+\end{rem}
+
+We will see that the attempt to formulate the implicit function theorem rigorously leads naturally to the notion of differential manifolds.
+
+
+
+\subsection{The inverse function theorem}
+
+
+In this section, we prove a seemingly special but actually equivalent version of the implicit function theorem. Let $\Omega\subset\Rbb^n$ be open. Let $\varphi=(\varphi^1,\dots,\varphi^n)$ be an $C^r$ map from $\Omega$ to $\Rbb^n$ (where $r\geq1$). Here, $\varphi^i:\Omega\rightarrow\Rbb$ is the $i$-th component of $\varphi$. Assume that $\Jac\varphi$ is invertible at $p\in\Omega$, equivalently, that $\Jbf(\varphi)_p\neq0$. Define $f=(f^1,\dots,f^n):\Rbb^n\times\Rbb^n\rightarrow\Rbb^n$ by
+\begin{gather*}
+f^i(x,y)=\varphi^i(x)-y^i
+\end{gather*}
+Then $\Jac_xf$ equals $\Jac\varphi$, which is invertible at $p$. Thus, the implicit function theorem implies that the set of equations $y^1=\varphi^1(x),\dots,y^n=\varphi^n(x)$ have $C^r$ solutions
+\begin{align*}
+x^1=\psi^1(y),\dots,x^n=\psi^n(y)
+\end{align*}
+near $p$. Therefore, $\varphi$ has a local inverse map $\psi=(\psi^1,\dots,\psi^n)$.
+
+Let us make the above conclusions rigorous.
+
+
+
+
+\begin{df}
+Let $U\subset\Rbb^n$ and $V\subset\Rbb^m$ be open. A map $f:U\rightarrow V$ is called a \pmb{$C^r$}\textbf{-diffeomorphism} \index{00@$C^r$-diffeomorphism} (where $r\in\Nbb\cup\{\infty\}$) if $f$ is bijective, and if both $f$ and $f^{-1}$ are $C^r$-maps (cf. Def. \ref{lb925}).  Thus, $f$ is a $C^0$-diffemorphism iff $f$ is a homeorphism. A $C^\infty$-diffeomorphism is simply called a \textbf{diffeomorphism}. \index{00@Diffeomorphism}
+\end{df}
+
+\begin{rem}
+It is clear that if $f$ is a $C^{r+1}$-diffeomorphism, then both $f$ and $f^{-1}$ are $C^r$-diffeomorphisms. Moreover, if $g:\Gamma\rightarrow U$ is also a $C^r$-diffeomorphism, then by Prop. \ref{lb927}, $f\circ g:\Omega\rightarrow V$ is a $C^r$-diffeomorphism.
+\end{rem}
+
+
+\begin{rem}\label{lb928}
+If $U\subset\Rbb^n$ and $V\subset\Rbb^m$ are nonempty open and $f:U\rightarrow V$ is a $C^r$-diffeomorphism where $r\geq1$. Then $m=n$.
+\end{rem}
+
+\begin{proof}
+Let $g=f^{-1}$. By Thm. \ref{lb926}, $C^1$-functions are differentiable. Therefore, since $f\circ g=\id_V$ and $g\circ f=\id_U$, by the Chain rule (Thm. \ref{lb578}), for each $p\in U$ and $q=f(p)$ we have $d f|_p\cdot d g|_q=\idt|_{\Rbb^m}$ and $\Jac g|_q\cdot\Jac f|_p=\idt|_{\Rbb^n}$. So $d g|_q$ is the inverse linear map of $df|_p$. Therefore $m=n$.
+\end{proof}
+
+Rem. \ref{lb928} is also true when $r=0$ (i.e., when $f$ is a homeomorphism). However, in this case the proof is more difficult. One needs tools from algebraic topology, and the relevant theorem is called \textbf{invariance of domain}.
+
+
+
+\begin{thm}[\textbf{Inverse function theorem}]\index{00@Inverse function theorem}\label{lb929}
+Let $\Omega\subset\Rbb^n$ be open. Let $\varphi:\Omega\rightarrow\Rbb^n$ be $C^r$ (where $r\in\{1,2,\dots,\infty\}$). Let $p\in\Omega$. Assume that the linear map $d\varphi|_p:\Rbb^n\rightarrow\Rbb^n$ is invertible. Then there exist neighborhoods $U\subset\Omega$ of $p$ and $V\subset\Rbb^n$ of $\varphi(p)$ such that $\varphi$ restricts to a $C^r$-diffeomorphism $\varphi:U\xrightarrow{\simeq} V$.
+\end{thm}
+
+\begin{lm}\label{lb931}
+Let $\varphi$ be as in Thm. \ref{lb929}. Then there exist neighborhoods $U\subset\Omega$ of $p$ and $V\subset\Rbb^n$ of $\varphi(p)$ such that $\varphi$ restricts to a bijection $U\rightarrow V$.
+\end{lm}
+
+
+\begin{proof}
+Step 1. By replacing $\varphi$ with $\varphi(x+p)-\varphi(p)$, it suffices to assume that $p=0$ and $\varphi(p)=1$. Let $A=d\varphi|_p$, which is invertible. Then, by chain rule, we have $d(A^{-1}\varphi)|_p=\idt$. Therefore, by replacing $\varphi$ with $A^{-1}\circ\varphi$, it suffices to assume
+\begin{align*}
+p=0\qquad \varphi(p)=0\qquad d\varphi|_0=\idt
+\end{align*}
+Note that $\varphi$ is differentiable by Thm. \ref{lb926}. Write
+\begin{align*}
+\varphi(x)=x+R(x)
+\end{align*}
+Then $R(0)=0$ and $dR|_0=0$. Since $R$ is $C^1$, the map $x\in\Omega\mapsto \Vert dR|_x\Vert$ is continuous where $\Vert dR|_x\Vert$ is the operator norm of $dR|_x$.  Therefore, for each $0<\eps<1$ there exists $\delta$ such that
+\begin{align*}
+U:=B_{\Rbb^n}(0,\delta)
+\end{align*}
+satisfies $\ovl U\subset\Omega$, and that the operator norm $\Vert dR|_x\Vert$ satisfies
+\begin{align}\label{eq361}
+\Vert dR|_x\Vert\leq\eps\qquad(\forall x\in \ovl U)
+\end{align}
+
+
+For each $y\in\Rbb^n$, define
+\begin{align*}
+T_y:W\rightarrow\Rbb^n\qquad T_y(x)=y-R(x)
+\end{align*}
+Then $T_y(x)=x$ iff $y=\varphi(x)$. 
+\begin{itemize}
+\item Claim: There exists $\kappa>0$ such that for any $y\in B_{\Rbb^n}(0,\kappa)$, $T_y$ restricts to a contraction $\ovl U\rightarrow \ovl U$.
+\end{itemize}
+Suppose the claim is true. By the contraction Thm. \ref{lb555}, $T_y$ has a unique fixed point in the compact (and hence complete) set $\ovl U$. So there is a unique $x\in \ovl U$ such that $y=\varphi(x)$. This proves that $\varphi(\ovl U)$ contains $V=B_{\Rbb^n}(0,\kappa)$. Since $\varphi$ is continuous, $\varphi^{-1}(V)$ is an open subset of $U$ containing $0$. Therefore, by shrinking $U$ to $\varphi^{-1}(V)$, we get a surjective map $\varphi|_U:U\rightarrow V$ which is also injective by the uniqueness of the fixed points of $T_y$. This finishes the proof of the lemma.\\[-1ex]
+
+
+
+Step 2. Let us prove the claim. By the finite-increment Thm. \ref{lb584}, and by \eqref{eq361}, $\eps$ is a Lipschitz constant of $R$. Therefore, for each $x_1,x_2\in \ovl U$ we have
+\begin{align}\label{eq362}
+\Vert R(x_1)-R(x_2)\Vert\leq \eps\Vert x_1-x_2\Vert
+\end{align}
+Therefore, for every $y\in\Rbb^n$, we have $\Vert T_y(x_1)-T_y(x_2)\Vert \leq\eps\Vert x_1-x_2\Vert$. This shows that $T|_{\ovl U}$ has Lipschitz constant $\eps<1$. To show that $T_y|_{\ovl U}$ is a contraction of $\ovl U$ when $\Vert y\Vert$ is sufficiently small, it remains to prove $T_y(\ovl U)\subset \ovl U$.
+
+Since $R(0)=0$, by \eqref{eq362}, we have $\Vert R(x)\Vert\leq\eps\Vert x\Vert$. Therefore, if $\Vert x\Vert\leq\delta$, then
+\begin{align*}
+\Vert T_y(x)\Vert\leq\Vert y\Vert+\Vert R(x)\Vert\leq \Vert y\Vert+\eps\delta
+\end{align*}
+Let
+\begin{align*}
+\kappa=(1-\eps)\delta
+\end{align*}
+It follows that if $\Vert y\Vert<\kappa$, then for each $x\in \ovl U$ we have $\Vert T_y(x)\Vert<\delta$. This proves $T_y(\ovl U)\subset\ovl U$.
+\end{proof}
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb929}}]
+Step 1. By assumption, the Jacobian $\Jbf(\varphi)$ is non-zero at $p=0$. Therefore, after shrinking $\Omega$ to a neighborhood of $p$, we can assume that $\Jbf(f)$ is nowhere zero on $\Omega$, i.e., $\Jac\varphi$ is invertible everywhere on $\Omega$. By Lem. \ref{lb931}, for each $x\in\Omega$, $\varphi$ restricts to a bijection from a neighborhood of $x$ to a neighborhood of $\varphi(x)$. So $\varphi(x)$ is an interior point of $\varphi(\Omega)$. Therefore, $\varphi:\Omega\rightarrow \Rbb^n$ is an open map. By Lem. \ref{lb931} again, there exist $U\in\Nbh_\Omega(p)$ and $V\in\Nbh_{\Rbb^n}(\varphi(p))$ such that we have a continuous bijection $\varphi|_U:U\rightarrow V$. Since this map is open, it is a homeomorphism.
+
+In the following, we always understand $\varphi$ as defined on $U$. Let $\psi:V\rightarrow U$ be the inverse map of $\varphi$, which is a homeomorphism. We claim that $\psi$ is differentiable and
+\begin{align}\label{eq363}
+d\psi|_y=(d\varphi|_{\psi(y)})^{-1}\qquad\text{ for all }y\in V
+\end{align}
+Suppose this claim is true. Let us show that $\psi$ is $C^k$ by induction on $k\in\Nbb$ satisfying $k\leq r$. Clearly $\psi$ is $C^0$. Suppose that $\psi$ is $C^{k-1}$ where $1\leq k\leq r$. Proving that $\psi$ is $C^k$ means proving that $\Jac \psi: y\in V\mapsto\Jac\psi|_y\in\Rbb^{n\times n}$ is $C^{k-1}$. By \eqref{eq363}, this map is the composition of $(\Jac\varphi)^{-1}:U\rightarrow\Rbb^{n\times n}$ and the $C^{k-1}$-map $\psi$. Since a composition of $C^{k-1}$-maps is $C^{k-1}$ (cf. Prop. \ref{lb927}), it suffices to prove that $(\Jac\varphi)^{-1}:U\rightarrow\Rbb^{n\times n}$ is $C^{k-1}$. But this follows immediately from the fact that $\Jac\varphi$ is $C^r$, and from Cramer's rule (which expresses each entry of $(\Jac\varphi)^{-1}$ in terms of those of $\Jac\varphi$). So $\psi$ is $C^k$, finishing the proof.\\[-1ex]
+
+Step 2. Let us prove \eqref{eq363}. Similar to the proof of Lem. \ref{lb931}, by a suitable translation, we assume WLOG that $y=0$ and $\psi(y)=0$; by replacing $\psi$ with $A^{-1}\circ\psi$ where $A=d\varphi|_0$, we assume $d\varphi|_0=1$. We shall prove that $d\psi|_0=\idt$. 
+
+Write $\varphi(x)=x+R(x)$ for each $x\in U$. Then $R(0)=0$ and $dR|_0=0$. For each $y\in V$, we have $y=\varphi\circ\psi(y)=\psi(y)+R\circ\psi(y)$, and hence
+\begin{align*}
+\psi(y)=y-R\circ\psi(y)
+\end{align*}
+Therefore, proving $d\psi|_0=\idt$ amounts to proving $d(R\circ\psi)|_0=0$, i.e., proving
+\begin{align*}
+\lim_{y\rightarrow0}\frac{R\circ\psi(y)}{\Vert y\Vert}=0
+\end{align*}
+Since we know $dR|_0=\idt$, i.e., $\lim_{x\rightarrow0}R(x)/\Vert x\Vert=0$, and since $\psi$ is continuous and $\psi(0)=0$, we have $\dps\lim_{y\rightarrow0}\frac{R\circ\psi(y)}{\Vert\psi(y)\Vert}=0$. Therefore, to prove the above limit, it suffices to prove
+\begin{align*}
+\limsup_{y\rightarrow0}\frac{\Vert\psi(y)\Vert}{\Vert y\Vert}<+\infty
+\end{align*}
+Since $\psi:V\rightarrow U$ is a homeomorphism (with inverse $\varphi$) sending $0$ to $0$, the above inequality is equivalent to $\dps \limsup_{x\rightarrow0}\frac{\Vert x\Vert}{\Vert \varphi(x)\Vert}<+\infty$, and hence is equivalent to
+\begin{align*}
+\liminf_{x\rightarrow0}\frac{\Vert \varphi(x)\Vert}{\Vert x\Vert}>0
+\end{align*}
+But this follows from the fact that for sufficiently small $\Vert x\Vert$ we have $\Vert R(x)\Vert\leq \frac 12 \Vert x\Vert$, and hence
+\begin{align*}
+\Vert \varphi(x)\Vert=\Vert x+R(x)\Vert\geq \Vert x\Vert-\Vert R(x)\Vert\geq\frac 12\Vert x\Vert
+\end{align*}
+\end{proof}
+
+
+\subsection{Submanifolds of $\Rbb^n$ and the implicit function theorem}
+
+The following theorem is our first attempt to give a rigorous formulation of the property discussed in Rem. \ref{lb924}. 
+\begin{co}\label{lb932}
+Let $d,k\in\Nbb$. Let $\Omega$ be an open subset of $\Rbb^d\times\Rbb^k$. Let
+\begin{align*}
+x=(x^1,\dots,x^d)\qquad y=(y^1,\dots,y^k)
+\end{align*}
+be standard coordinates of $\Rbb^d,\Rbb^k$ respectively. Let $f=(f^1,\dots,f^k):\Omega\rightarrow\Rbb^k$ be a $C^r$-map where $r\in\Zbb_+\cup\{\infty\}$. Assume that
+\begin{align*}
+\Jac_yf\equiv(\partial_{y^j}f^i)_{1\leq i,j\leq k}\equiv 
+\begin{pmatrix}
+\partial_{y^1} f^1 & \cdots & \partial_{y^k} f^1\\
+ & \vdots & \\
+\partial_{y^1} f^k & \cdots & \partial_{y^k} f^k
+\end{pmatrix}
+\end{align*}
+is invertible at $p\in\Omega$. Then there exist a neighborhood $U\subset\Omega$ of $p$ and an open $V\subset\Rbb^n$ such that we have a $C^r$-diffeomorphism
+\begin{align}
+(x^1,\dots,x^d,f^1,\dots,f^k):U\xrightarrow{\simeq}V
+\end{align}
+\end{co}
+
+
+\begin{proof}
+By the inverse function Thm. \ref{lb929}, it suffices to prove that $\Jac (x,f)\equiv\Jac_{x,y}(x,f)$ is invertible at $p$. We calculate that
+\begin{align*}
+\Jac (x,f)=\begin{pmatrix}
+\Jac_xx & \Jac_y x\\
+\Jac_xf & \Jac_y f
+\end{pmatrix}
+=\begin{pmatrix}
+1_{d\times d} & 0_{d\times k}\\
+\Jac_xf & \Jac_yf
+\end{pmatrix}
+\end{align*}
+whose determinant is $\det\Jac_yf$ and is nonzero at $p$. So $\Jac(x,f)|_p$ is invertible.
+\end{proof}
+
+At this point, it is still not clear how to interpret the fact that $f(x,y)=0$ can be solved for $y$ in terms of $x$. We first need to introduce the notion of submanifolds. To motivate the definition, let us take a closer look at Cor. \ref{lb932}:
+
+
+\begin{rem}\label{lb935}
+Assume the setting of Cor. \ref{lb932}. Define the \textbf{zero set} \index{00@Zero set $Z(f)$} \index{Zf@$Z(f)$, the zero set of $f$}
+\begin{align}
+Z(f)=\{q\in\Omega:f^1(q)=\dots=f^k(q)=0\}
+\end{align}
+Recall $x=(x^1,\dots,x^d)$ and $f=(f^1,\dots,f^k)$. Then we clearly have a commutative diagram
+\begin{equation}\label{eq364}
+\begin{tikzcd}[column sep=large]
+Z(f)\cap U \arrow[r,"{(x,0)}","\simeq"'] \arrow[d, hook] & (\Rbb^d\times 0)\cap V \arrow[d, hook] \\
+U \arrow[r,"{(x,f)}","\simeq"']                 & (\Rbb^d\times\Rbb^k)\cap V=V            
+\end{tikzcd}
+\end{equation}
+where the two vertical arrows are the inclusion maps, and the bottom arrow is a $C^r$-diffeomorphism. It follows that $(x,0):Z(f)\cap U\rightarrow (\Rbb^d\times 0)\cap V$ is a homeomorphism. The commutative diagram \eqref{eq364} tells us that $(x,f)$ implements an equivalence of the inclusions $Z(f)\cap U\hookrightarrow U$ and $(\Rbb^d\times 0)\cap V\hookrightarrow V$.
+\end{rem}
+
+
+According to the following definition, $Z(f)$ is a $C^r$-submanifold of $\Rbb^d\times\Rbb^k$.
+
+
+\begin{df}\label{lb933}
+Let $M\subset\Rbb^n$ and $r\in\Zbb_+\cup\{\infty\}$. We say that $M$ is an \textbf{(embedded)} \pmb{$C^r$}\textbf{-submanifold} \index{00@Submanifold} of $\Rbb^n$ if for every $p\in M$ there exist $U\in\Nbh_{\Rbb^n}(p)$,  $0\leq d\leq n$, and $C^r$-functions $\varphi^1,\dots,\varphi^d,f^1,\dots,f^k:U\rightarrow\Rbb$ (where $k=n-d$) satisfying the following conditions:
+\begin{itemize}
+\item[(a)] Set $\varphi=(\varphi^1,\dots,\varphi^d)$ and $f=(f^1,\dots,f^k)$. Then $(\varphi,f)$ gives a $C^r$-diffeomorphism $U\xrightarrow{\simeq} V$ where $V$ is an open subset of $\Rbb^n=\Rbb^d\times\Rbb^k$.
+\item[(b)] The following diagram commutes (cf. also Fig. \ref{lb938}):
+\begin{equation}\label{eq365}
+\begin{tikzcd}[column sep=large]
+M\cap U \arrow[r,"{(\varphi,0)}"] \arrow[d, hook] & (\Rbb^d\times 0)\cap V \arrow[d, hook] \\
+U \arrow[r,"{(\varphi,f)}","\simeq"']                 & (\Rbb^d\times\Rbb^k)\cap V=V            
+\end{tikzcd}
+\end{equation}
+\end{itemize}
+In particular, $(\varphi,0)$ restricts to a homeomorphism $M\cap U\rightarrow (\Rbb^d\times 0)\cap V$.
+\end{df}
+
+\begin{figure}[h]
+	\centering
+\begin{equation*}
+\vcenter{\hbox{{
+			\includegraphics[height=2.2cm]{fig11.png}}}}
+\end{equation*}
+	\caption{. The figure for the commutative diagram \eqref{eq365}.}\label{lb938}
+\end{figure}
+
+\begin{pp}\label{lb934}
+Assume the setting of Def. \ref{lb933}. Then $\varphi(M\cap U)$ is an open subset of $\Rbb^d$. Moreover, for each $h\in C^r(U,\Rbb)$, there exists a unique $g:\varphi(M\cap U)\rightarrow\Rbb$ such that
+\begin{align}\label{eq366}
+h|_{M\cap U}=g\circ \varphi|_{M\cap U}
+\end{align}
+Moreover, any $g$ satisfying \eqref{eq366} is $C^r$. We say that $h$ \textbf{is a}  \pmb{$C^r$}\textbf{-function of}  $\varphi^1,\dots,\varphi^d$ when restricted to $M\cap U$.
+\end{pp}
+Note that by \eqref{eq365}, we clearly have
+\begin{align}\label{eq367}
+(\Rbb^d\times 0)\cap V=\varphi(M\cap U)\times 0
+\end{align}
+
+\begin{proof}
+By \eqref{eq367}, $\varphi(M\cap U)$ is open. The uniqueness of $g$ is obvious. 
+Let us prove the existence. Since  $h\circ (\varphi,f)^{-1}$ is a $C^r$-function on $V$, its restriction to $\varphi(M\cap U)\times 0$ is also $C^r$, and hence can be viewed as $g$ for some $g\in C^r(\varphi(M\cap U),\Rbb)$ (if we identify $\varphi(M\cap U)\times 0$ with $\varphi(M\cap U)$ in a canonical way). By the commutative diagram \eqref{eq365}, the pullback of $g$ under $(\varphi,0)$ equals $g\circ(\varphi,f)|_{M\cap U}=h|_{M\cap U}$. This proves \eqref{eq366}.
+\end{proof}
+
+
+
+With the help of Prop. \ref{lb934}, we now give a rigorous formulation of the implicit function theorem as described in Rem. \ref{lb924}:
+
+\begin{rem}
+Assume the setting of Cor. \ref{lb932}. Then by Rem. \ref{lb935}, for each $1\leq i\leq k$, $y^i$ is a $C^r$-function of $x=(x^1,\dots,x^d)$ when restricted to $Z(f)\cap U$. Namely, there exists $g^i\in C^r(x(Z(f)\cap U),\Rbb)$ such that
+\begin{align}
+y^i|_{Z(f)\cap U}=g^i\circ (x^1,\dots,x^d)|_{Z(f)\cap U}
+\end{align}
+Therefore, the fact that $f(x^1,\dots,x^d,y^1,\dots,y^k)=0$ can be solved (on $U$) for $y$ in terms of $x$ should be interpreted to mean that on $Z(f)\cap U$, the functions $y^1,\dots,y^k$ can be expressed as $C^r$-functions of $x^1,\dots,x^d$. In particular, the formula $y^i=g^i(x)$ in \eqref{eq368} should be interpreted as a relation of functions, not points.
+\end{rem}
+
+
+We return to the setting of Def. \ref{lb933}. We have seen that $\varphi=(\varphi^1,\dots,\varphi^d)$ enjoys the following properties:
+\begin{itemize}
+\item $\varphi$ is a homeomorphism from $M\cap U$ to an open subset of $\Rbb^d$.
+\item Every $C^r$-function on $U$, when restricted to $M\cap U$, is a $C^r$-function of $\varphi^1,\dots,\varphi^d$.
+\end{itemize}
+These properties, especially the second one, gives a rigorous formulation of the implicit function theorem. Therefore, such $\varphi$ should have a name: We call the pair $(M\cap U,\varphi)$ a \textbf{(coordinate) chart} on $M$.
+
+In the next section, we will see that a general $C^r$-manifold (not necessarily a subset of $\Rbb^n$) is defined in terms of its charts. To motivate the axiomatic definition of charts, we make the following observation:
+\begin{lm}\label{lb937}
+Let $\Omega\subset\Rbb^n$ be open. Let $\psi=(\psi^1,\dots,\psi^d):U\rightarrow\Rbb^d$. Assume that $\Omega,\psi$ and $(\psi,f)(\Omega)$ satisfy the same conditions that $U,\varphi$ and $V=(\varphi,f)(U)$ satisfy in Def. \ref{lb933}. Then $(U,\varphi)$ and $(\Omega,\psi)$ are \pmb{$C^r$}\textbf{-compatible}, which means that
+\begin{align}\label{eq369}
+\psi\circ\varphi^{-1}:\varphi(M\cap U\cap\Omega)\rightarrow\psi(M\cap U\cap\Omega)
+\end{align}
+is a $C^r$-diffeomorphism of open subsets of $\Rbb^d$.
+\end{lm}
+
+\begin{proof}
+$\varphi$ is a homeomorphism from $M\cap U$ to the open subset $\varphi(M\cap U)$ of $\Rbb^d$, where the openness is due to \eqref{eq367}. Therefore, $\varphi$ restricts to a homeomorphism $M\cap U\cap\Omega\rightarrow\varphi(M\cap U\cap\Omega)$ where $\varphi(M\cap U\cap\Omega)$ is open in $\varphi(M\cap U)$ and hence open in $\Rbb^d$. Similarly, $\psi$ restricts to a homeomorphism from $M\cap U\cap\Omega$ to an open subset of $\Rbb^d$. This proves that \eqref{eq369} is a homeomorphism of open sets.
+
+To simplify the following discussion, we shrink $U$ and $\Omega$ to $U\cap\Omega$ so that we can assume $U=\Omega$. Let $\vartheta=(\vartheta^1,\dots,\vartheta^d)$ be the map \eqref{eq369}. (So $\vartheta^i:\varphi(M\cap U)\rightarrow\Rbb$.) Then $\psi^i=\vartheta^i\circ \varphi$. By Prop. \ref{lb934}, there is a unique $g^i:\varphi(M\cap U)\rightarrow\Rbb$ satisfying $\psi^i=g^i\circ\varphi$, and such $g^i$ is $C^r$. This proves that $\vartheta^i=g^i$, and hence $\vartheta^i$ is $C^r$. Thus, we have proved that $\psi\circ\varphi^{-1}$ is $C^r$. Similarly, $\varphi\circ\psi^{-1}$ is also $C^r$. This proves that \eqref{eq369} is a $C^r$-diffeomorphism.
+\end{proof}
+
+
+\subsection{Differential manifolds}
+
+
+Let $r\in\Zbb_+\cup\{\infty\}$.
+
+\subsubsection{$C^r$-manifolds}
+
+
+\begin{df}\label{lb936}
+Let $M$ be a nonempty Hausdorff space. A set $\fk U=\big\{(U_\alpha,\varphi_\alpha)_{\alpha\in\scr A}\big\}$ is called   an \pmb{$C^r$-}\textbf{atlas} \index{00@Atlas} of if the following conditions hold:
+\begin{itemize}
+\item $M$ is equipped with an open cover $M=\bigcup_{\alpha\in\scr A}U_\alpha$.
+\item Each $U_\alpha$ is equipped with a homeomorphism $\varphi_\alpha:U_\alpha\rightarrow\varphi_\alpha(U_\alpha)$ where $\varphi_\alpha(U_\alpha)$ is an open subset of $\Rbb^{k_\alpha}$ for some $k_\alpha\in\Nbb$.
+\item For each $\alpha,\beta\in\scr A$, $\varphi_\alpha$ and $\varphi_\beta$ are  \pmb{$C^r$}\textbf{-compatible} \index{00@$C^r$-compatible} in the sense that the following map is a diffeomorphism of (clearly open) subsets of $\Rbb^{k_\alpha}$:
+\begin{align}
+\varphi_\beta\circ\varphi_\alpha^{-1}:\varphi_\alpha(U_\alpha\cap U_\beta)\xrightarrow{\simeq}\varphi_\beta(U_\alpha\cap U_\beta)
+\end{align}
+\end{itemize}
+The pair $(M,\fk U)$ (or simply $M$) is called \pmb{$C^r$}\textbf{-manifold}. \index{00@@$C^r$-manifold}  The $C^r$-atlas of a $C^r$-manifold is simply called an \textbf{atlas}.
+\end{df}
+
+\begin{cv}
+Unless otherwise stated, we assume that a $C^r$-manifold is second countable.
+\end{cv}
+
+\begin{df}
+A $C^\infty$-manifold is also called a \textbf{differential manifold} or a \textbf{smooth manifold}. \index{00@Differential manifold} \index{00@Smooth manifold}
+\end{df}
+
+\begin{df}
+In Def. \ref{lb936}, we say that $U_\alpha$ is \pmb{$d_\alpha$}\textbf{-dimensional}. \index{00@Dimension of a manifold} If $p\in U_\alpha$, we also say that $M$ has \textbf{dimension} \pmb{$d_\alpha$} at $p$  and write
+\begin{align*}
+\dim_p M=d_\alpha
+\end{align*}
+(By Rem. \ref{lb928}, $\dim_p M$ is well-defined and independent of the choice of $U_\alpha$ containing $p$.) If $\dim_pM=d$ for all $p\in M$, we say that $M$ has \textbf{dimension} $k$ and write
+\begin{align*}
+\dim M=d
+\end{align*}
+\end{df}
+
+
+\begin{rem}
+Let $M$ be a connected $C^r$-manifold. Then $M$ is $d$-dimensional for some $d\in\Nbb$.
+\end{rem}
+
+\begin{proof}
+For each $d\in\Nbb$, the set $U_d=\{x\in M:\dim_xM=d\}$ must be open. Since $\bigcup_d U_d=M$, there exists $d$ such that $U_d$ is nonempty. Since $X\setminus U_d=\bigcup_{k\neq d}U_k$ is also open, and since $M$ is connected, we have $X\setminus U_d=\emptyset$. So $\dim M=d$. 
+\end{proof}
+
+
+\begin{df}
+Let $M$ be a $C^r$-manifold with atlas $\fk U$. A \pmb{$C^r$}\textbf{-chart} (or simply a \textbf{chart}) \index{00@Chart} on $(M,\fk U)$ is defined to be a pair $(V,\psi)$ satisfying the following conditions:
+\begin{itemize}
+\item $V$ is an open subset of $M$.
+\item $\psi:V\rightarrow\psi(V)$ is a homeomorphism where $\psi(V)$ is an open subset of $\Rbb^d$ for some $k\in\Nbb$.
+\item Each $(U,\varphi)\in\fk U$ is $C^r$-compatible with $(V,\psi)$, i.e., the following map is a $C^r$-diffeomorphism:
+\begin{align*}
+\psi\circ\varphi^{-1}:\varphi(U\cap V)\xrightarrow{\simeq}\psi(U\cap V)
+\end{align*}
+\end{itemize}
+\end{df}
+
+
+\begin{rem}
+Let $\ovl{\fk U}$ be the set of all $C^r$-charts on a $C^r$-manifold $(M,\fk U)$. The following are easy to check:
+\begin{enumerate}[label=(\alph*)]
+\item $\ovl{\fk U}$ is also a $C^r$-atlas. Moreover, every $C^r$-atlas extending $\fk U$ must be contained in $\ovl{\fk U}$. We call $\ovl{\fk U}$ the \textbf{maximal atlas} \index{00@Maximal atlas} (or the \textbf{$C^r$-structure}) \index{00@$C^r$-structure} of $(M,\fk U)$. 
+\item Let $\fk V$ be another $C^r$-atlas on $M$. Then $\fk U$ is \textbf{$C^r$-compatible} \index{00@$C^r$-compatible} with $\fk V$ (i.e. each member of $\fk U$ is $C^r$-compatible with each member of $\fk V$) iff $\ovl {\fk U}=\ovl{\fk V}$.
+\end{enumerate}
+$C^\infty$-structures are also called \textbf{differential structures} or \textbf{smooth structures}. \index{00@Differential structure} \index{00@Smooth structure} Thus, we view $(M,\fk U)$ and $(M,\fk V)$ as the same $C^r$-manifold if $\fk U$ and $\fk V$ have the same $C^r$-structure.
+\end{rem}
+
+
+
+\begin{eg}
+Any open subset $\Omega\subset\Rbb^n$, together with the canonical atlas $\{(\Omega,x^1,\dots,x^n)\}$, is an $n$-dimensional $C^\infty$-manifold.
+\end{eg}
+
+
+\begin{eg}\label{lb941}
+Let $M$ be a $C^r$-submanifold of $\Rbb^n$. Then $M$ is has a canonical $C^r$-structure so that $M$ is a $C^r$-manifold. The $C^r$-structure is defined as follows. 
+
+Assume that $U\subset X$ is open, and $\varphi^1,\dots,\varphi^d,f^1,\dots,f^k:U\rightarrow\Rbb$ are $C^r$-functions satisfying the conditions (a) and (b) of Def. \ref{lb933}. Then all such $(U,\varphi)$ form a $C^r$-chart of $M$; the $C^r$-compatibility of these charts are due to Lem. \ref{lb937}. If $p\in U$ then $\dim_pM=d$. \hfill\qedsymbol
+\end{eg}
+
+
+\subsubsection{$C^r$-maps and the sheaf $\scr C_M^r$}
+
+\begin{df}
+Let $M,N$ be $C^r$-manifolds. We say that $F:M\rightarrow N$ is a \pmb{$C^r$}\textbf{-map/function} \index{00@$C^r$-map/function} if $F$ is continuous, and if for every charts $(U,\varphi)$ of $M$ and $(V,\psi)$ of $N$, the following map is $C^r$:
+\begin{align}
+\psi\circ F\circ\varphi^{-1}:\varphi(U\cap F^{-1}(V))\rightarrow \psi(V)
+\end{align} 
+If $F$ is bijective, and if both $F$ and $F^{-1}$ are $C^r$, we say that $F$ is a \pmb{$C^r$}\textbf{-diffeomorphism}. We let \index{Cr@$C^r(M,N)$} 
+\begin{gather}\label{eq370}
+C^r(M,N)=\{\text{smooth maps }M\rightarrow N\}
+\end{gather}
+A $C^\infty$-map is also called a \textbf{smooth map/function} \index{00@Smooth map/function}. A $C^\infty$-diffeomorphism is simply called a \textbf{diffeomorphism}.  \hfill\qedsymbol
+\end{df}
+
+\begin{rem}\label{lb946}
+Suppose that $M$ and $N$ are equipped with atlases $\fk U,\fk V$ respectively. It is easy to see that a continuous map $F:M\rightarrow N$ is $C^r$ iff for each $(U,\varphi)\in\fk U$ and $(V,\psi)\in\fk V$, the map \eqref{eq370} is $C^r$. In particular, if $N=\Rbb^n$, then $F$ is $C^r$ iff $F\circ\varphi^{-1}:\varphi(U)\rightarrow\Rbb^n$ is $C^r$ for all $(U,\varphi)\in\fk U$. 
+\end{rem}
+
+\begin{exe}\label{lb940}
+Let $F:M\rightarrow N$ and $G:N\rightarrow P$ be $C^r$-maps of $C^r$-manifolds. Prove that $G\circ F:M\rightarrow P$ is $C^r$.
+\end{exe}
+
+\begin{eg}
+Every open subset $\Omega$ of a $C^r$-manifold is a $C^r$-submanifold in a canonical way: Its charts are $(U\cap\Omega,\varphi|_{U\cap\Omega})$ where $(U,\varphi)$ is a chart of $M$. We call $\Omega$ an \textbf{open ($C^r$-)submanifold} of $M$. \index{00@Open submanifold}
+\end{eg}
+
+The following proposition is close in spirit to Rem. \ref{lb946}. 
+
+\begin{pp}\label{lb944}
+Let $F:M\rightarrow N$ be a continuous map of $C^r$-manifolds. Let $\fk U$ and $\fk V$ be open covers of $M$ and $N$ respectively. Then $F$ is $C^r$ iff for each $U\in \fk U$ and $V\in\fk V$, the map
+\begin{align}\label{eq374}
+F|_{U\cap F^{-1}(V)}:U\cap F^{-1}(V)\rightarrow V
+\end{align}
+is $C^r$, where $U$ and $V$ are viewed as open $C^r$-submanifolds of $M$ and $N$ respectively.
+\end{pp}
+
+\begin{proof}
+``$\Rightarrow$" is obvious by Exe. \ref{lb940}. Assume that the RHS of ``$\Leftarrow$" is true. In the special case that each $U\in\fk U$ and $V\in\fk V$ are charts $(U,\varphi),(V,\psi)$, we know that $F$ is $C^r$ by Rem. \ref{lb943}. In the general case, choose atlases $\fk U',\fk V'$ of $M,N$ respectively. Then for each $U\in \fk U,\Omega\in\fk U',V\in\fk V,\Gamma\in\fk V'$, since \eqref{eq374} is $C^r$, by ``$\Rightarrow$", the restriction
+\begin{align*}
+F:U\cap \Omega\cap F^{-1}(V\cap\Gamma)\rightarrow V\cap\Gamma
+\end{align*}
+is $C^r$. Therefore, by the proved special case, the original map $F:M\rightarrow N$ is $C^r$.
+\end{proof}
+
+The following proposition generalizes Prop. \ref{lb934} and points out the role played by coordinate charts in the implicit function theorem:
+
+\begin{pp}
+Let $M$ be a $C^r$-manifold. Let $(U,\varphi)$ be a chart of $M$ where $\varphi=(\varphi^1,\dots,\varphi^d):U\rightarrow\Rbb^d$. Let $h\in C^r(U,\Rbb)$. Then there exists a unique $g:\varphi(M\cap U)\rightarrow\Rbb$ such that 
+\begin{align}\label{eq371}
+h|_{M\cap U}=g\circ \varphi|_{M\cap U}
+\end{align}
+Moreover, any $g$ satisfying \eqref{eq371} is $C^r$. We say that $h$ \textbf{is a}  \pmb{$C^r$}\textbf{-function of}  $\varphi^1,\dots,\varphi^d$ when restricted to $M\cap U$.
+\end{pp}
+
+\begin{proof}
+The uniqueness is obvious. To prove the existence, noting that $\varphi^{-1}:\varphi(M\cap U)\rightarrow M\cap U$ is $C^r$, we let $g=h\circ \varphi^{-1}:\varphi(M\cap U)\rightarrow\Rbb$. So $g$ is $C^r$ by Exe. \ref{lb940}.
+\end{proof}
+
+
+\subsubsection{The sheaves of real $C^r$-functions}
+
+Recall that a map $F:X\rightarrow Y$ of topological spaces is continuous iff $F^*\mc T_Y\subset T_X$, or more precisely, $F^{-1}(V)\in\mc T_X$ for every $V\in\mc T_Y$.  Similarly, if $(X,\fk M)$ are $(Y,\fk N)$ are measurable spaces, then $F$ is measurable iff $F^*(\fk N)\subset \fk M$. We shall show that $C^r$ maps can be defined in a similar way. The maximal atlas $\fk N$ of $N$ is useless for this purpose since we can not define $F^*(\fk N)$ in a meaningful way. We should consider sheaves of real $C^r$-functions instead.
+
+\begin{df}
+Let $M$ be a $C^r$-manifold. For each open $U\subset M$, write
+\begin{subequations}
+\begin{align}
+\scr C^r_M(U):=C^r(U,\Rbb)
+\end{align}
+The union \index{00@$\scr C_M^r$, $\scr C_M^r(U)$}
+\begin{align}
+\scr C^r_M=\bigcup_{U\in\mc T_X}\scr C^r_M(U)
+\end{align}
+\end{subequations}
+is called the \textbf{sheaf of real $C^r$-functions} \index{00@Sheaf of real $C^r$-functions $\scr C_M^r$} of $M$, also called the \pmb{$C^r$}\textbf{-structure} \index{00@$C^r$-structure} of $M$. 
+\end{df}
+
+
+\begin{df}
+Let $M$ be a topological space. Let $N$ be a $C^r$-manifold. Let $F:M\rightarrow N$ be a continuous map. Define the \textbf{inverse image sheaf} \index{00@Inverse image sheaf} \index{F@$F^{-1}\scr C_N^r$}
+\begin{align}
+F^{-1}\scr C_M^r=\bigcup_{U\in\mc T_X}F^{-1}\scr C_M^r(U)
+\end{align}
+where $F^{-1}\scr C^r_M(U)$ consists of all $f: U\rightarrow\Rbb$ that are \textbf{locally the pullbacks of sections in $\scr C_M^r$}, namely:
+\begin{itemize}
+\item For each $p\in U$, there exists $V\in\Nbh_N(F(p))$ and $g\in\scr C^r_N(V)$ such that
+\begin{align}
+f|_{U\cap F^{-1}(V)}=g\circ F|_{U\cap F^{-1}(V)}
+\end{align}
+\end{itemize}
+Clearly $f$ is continuous, because $f|_{U\cap F^{-1}(V)}$ is continuous for each such $V$.
+\end{df}
+
+
+
+
+\begin{exe}\label{lb943}
+Let $M,N$ be $C^r$-manifolds and $F:M\rightarrow N$ is continuous. Prove that the following are equivalent:
+\begin{enumerate}
+\item[(1)] $F$ is $C^r$.
+\item[(2)] For each $f\in\scr C_N^r(\Rbb)$, we have $f\circ F\in\scr C_M^r(\Rbb)$. More precisely, if $f\in C^r(V,\Rbb)$ where $V\subset N$ is open, then $f\circ F\in\scr C^r(F^{-1}(V),\Rbb)$. 
+\end{enumerate}
+We abbreviate condition (2) as
+\begin{align}
+F^*\scr C_N^r(\Rbb)\subset \scr C_M^r(\Rbb)
+\end{align}
+\end{exe}
+
+
+
+
+
+\subsubsection{Submanifolds of differential manifolds}
+
+\begin{df}
+Let $N$ be a $C^r$-manifold, and let $M\subset N$. We say that $M$ is  an \textbf{(embedded)} \pmb{$C^r$}\textbf{-submanifold} \index{00@Submanifold} of $N$ if for every $p\in M$, there exists a chart $(U,\varphi^1,\dots,\varphi^n)$ of $N$ such that $p\in U$, and that $\varphi(M\cap U)$ is a $C^r$-submanifold of $\varphi(U)$ (equivalently, $\varphi(M\cap U)$ is a $C^r$-submanifold of $\Rbb^n$).
+\end{df}
+
+
+
+\begin{rem}\label{lb945}
+The readers can easily check that the following gives an equivalent definition that $M$ is a $C^r$-submanifold of $N$: For each $p\in M$, there exist $U\in\Nbh_N(p)$, $d,k\in\Nbb$, and $C^r$-functions $\varphi^1,\dots,\varphi^d,f^1,\dots,f^k:U\rightarrow\Rbb$ satisfying the following conditions:
+\begin{enumerate}
+\item[(a)] $(\varphi,f)=(\varphi^1,\dots,\varphi^d,f^1,\dots,f^k)$ gives a $C^r$-diffeomorphism $U\xrightarrow{\simeq} V$ where $V$ is an open subset of $\Rbb^d\times\Rbb^k$.
+\item[(b)] The following diagram commutes:
+\begin{equation}\label{eq373}
+\begin{tikzcd}[column sep=large]
+M\cap U \arrow[r,"{(\varphi,0)}"] \arrow[d, hook] & (\Rbb^d\times 0)\cap V \arrow[d, hook] \\
+U \arrow[r,"{(\varphi,f)}","\simeq"']                 & (\Rbb^d\times\Rbb^k)\cap V=V            
+\end{tikzcd}
+\end{equation}
+\end{enumerate}
+Similar to Exp. \ref{lb941}, $M$ is has a canonical $C^r$-structure such that for every $U,\varphi,f$ described as above, $(M\cap U,\varphi|_{M\cap U})$ is a chart of $M$. Therefore, the top horizontal arrow $(\varphi,0):M\cap U\rightarrow(\Rbb^d\times 0)\cap V$ is a $C^r$-diffeomorphism since $\varphi:M\cap U\rightarrow\varphi(M\cap U)$ is a diffeomorphism.
+\end{rem}
+
+
+
+
+\begin{rem}\label{lb942}
+Let $V$ be an open subset of $\Rbb^d\times\Rbb^k$. Then $(\Rbb^d\times 0)\cap V$ is a $C^\infty$-submanifold of $V$. This is the standard model of submanifold, since every $C^r$-submanifold is, by definition, locally equivalent to this one. Therefore, to prove that a property is true for all submanifolds, suppose that it suffices to check this property locally, and suppose that the truth value of this property is unchanged under a diffeomorphism, then it suffices to check this property for the standard model
+\begin{align}\label{eq372}
+(\Rbb^d\times 0)\cap V\hookrightarrow (\Rbb^d\times\Rbb^k)\cap V=V
+\end{align}
+\end{rem}
+
+
+
+
+
+\begin{proof}
+This is a routine check. For example, one can prove it using Exe. \ref{lb943}. We leave the details to the readers.
+\end{proof}
+
+As an application of Rem. \ref{lb942} and Prop. \ref{lb944}, we prove:
+
+
+\begin{pp}
+Let $M$ be a $C^r$-submanifold of a $C^r$-manifold $N$. Then the inclusion map $\iota:M\hookrightarrow N$ is $C^r$.
+\end{pp}
+
+\begin{proof}
+The brief reason is that it suffices to check the $C^r$-ness locally. Therefore, since the model example \eqref{eq372} is clearly $C^r$, we conclude that $\iota:M\hookrightarrow N$ is $C^r$. 
+
+The detailed argument is as follows. By Prop. \ref{lb944}, it suffices to prove that for each $p\in M$ there exists $U\in\Nbh_N(p)$ such that the inclusion $M\cap U\rightarrow N$ is $C^r$. This is equivalent to proving that $M\cap U\rightarrow U$ is $C^r$. By the commutative diagram \eqref{eq373}, one can choose $U\in\Nbh_N(p)$ such that $\iota:M\cap U\rightarrow U$ is $C^r$-equivalent to the model example \eqref{eq372} where the latter is clearly $C^r$. So $M\cap U\rightarrow U$ is $C^r$.
+\end{proof}
+
+
+
+The following proposition is a further application of Rem. \ref{lb942}.
+
+\begin{pp}
+Let $X,N$ be $C^r$-manifolds. Let $M$ be a $C^r$-submanifold of $N$. Let $\iota:M\hookrightarrow N$ be the inclusion map. Let $F:X\rightarrow M$ be a map. Then $F:X\rightarrow M$ is $C^r$ iff $\iota\circ F:X\rightarrow N$ is $C^r$.
+\end{pp}
+
+\begin{proof}
+Since $M$ is equipped with the subspace topology, it is clear that $F:X\rightarrow M$ is continuous iff $\iota\circ F:X\rightarrow N$ is continuous. Thus, in the following, we assume that $F,\iota\circ F$ are continuous. Since $\iota$ is $C^r$, if $F$ is $C^r$ then $\iota\circ F$ is clearly also $C^r$.
+
+Now we assume that $\iota\circ F$ is $C^r$. Suppose we can prove that $M$ has an open cover $\fk W$ such that for each $W\in\fk W$, the restriction $F:F^{-1}(W)\rightarrow W$ is $C^r$. Then $F$ is $C^r$ by Prop. \ref{lb944}.
+
+To prove the desired property, we note that by Rem. \ref{lb945}, $M$ has an open cover whose members are of the form $M\cap U$ where $U$ is as in Rem. \ref{lb945}. We let $\varphi,f$ be as in Rem. \ref{lb945}.
+\end{proof}
+
+
+
+
+
+
+
+\hypertarget{beforeindex}{}
 
 
 
@@ -24724,7 +25385,7 @@ Riesz, F. (1910). Untersuchungen \"uber systeme integrierbarer funktionen. Mathe
 
 
 \bibitem[Rie11]{Rie11}
-Riesz, F. (1911). Sur certains systèmes singuliers d'\'equations int\'egrales. In Annales scientifiques de l'\'Ecole Normale Sup\'erieure (Vol. 28, pp. 33-62).
+Riesz, F. (1911). Sur certains syst\'emes singuliers d'\'equations int\'egrales. In Annales scientifiques de l'\'Ecole Normale Sup\'erieure (Vol. 28, pp. 33-62).
 
 \bibitem[Rie13]{Rie13}
 Riesz, F. (1913). Les syst\`emes d'\'equations lin\'eaires \`a une infinite d'inconnues.
@@ -24801,6 +25462,15 @@ Zorich, V. A.(2016). Mathematical analysis II, 2nd ed.
 
 
 
+\begin{CJK}{UTF8}{gkai}
+你今天明天后天\pmb{啊}
+
+
+凤飞飞威风威风
+
+
+sdgg公司高管反倒
+\end{CJK}
 
 
 
