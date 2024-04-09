@@ -90,23 +90,27 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 ## Notes 🥱
 
-- [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
+- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
 
+> These are the lecture notes for the course [Analysis I, II](Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
 
-> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note has been adapted to form the main body of my article *Convergence of Sewing Conformal Blocks*. The section on (multi) propagation of conformal blocks has been expanded and explained in more details in the article *Sewing and Propagation of Conformal Blocks*.
+- [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
+
+> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
+
 
 - [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
 
 
 > We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.
 
-- [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
+- [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
 
-> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
 
-- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
+> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note has been adapted to form the main body of my article *Convergence of Sewing Conformal Blocks*. The section on (multi) propagation of conformal blocks has been expanded and explained in more details in the article *Sewing and Propagation of Conformal Blocks*.
 
-> These are the lecture notes for the course [Analysis I, II](Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
+
+
 
 ## Learning notes 😧
 
