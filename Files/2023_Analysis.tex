@@ -402,7 +402,7 @@
 \newcommand{\Jbf}{\mathbf{J}}
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\GL}{\mathrm{GL}}
-
+\newcommand{\Lin}{\mathrm{Lin}}
 
 
 
@@ -479,7 +479,7 @@
 
 
 \noindent Sections on history include but are not limited to: 
-\ref{lb55} (point-set topology), \ref{lb549} (Hilbert spaces, Riesz-Fischer theorem), \ref{lb550} (integral theory, Fourier series), \ref{lb543} (Banach-Alaoglu, Hahn-Banach),  \ref{lb548} (quotient Banach spaces, Hahn-Banach), \ref{lb671} and most part of Ch. \ref{lb672} (Hilbert spaces), \ref{lb733} (measurable sets), \ref{lb896} (functional calculus, spectral theory)
+\ref{lb55} (point-set topology),  \ref{lb550} (integral theory, Fourier series), \ref{lb543} (Banach-Alaoglu, Hahn-Banach),  \ref{lb548} (quotient Banach spaces, Hahn-Banach), \ref{lb671} and most part of Ch. \ref{lb672} (Hilbert spaces), \ref{lb733} (measurable sets), \ref{lb896} (functional calculus, spectral theory)
 \normalsize
 %\thispagestyle{empty}	 %remove page number of this page
 
@@ -513,7 +513,7 @@
 
 \section{Preface}
 
-\subsection{Notations}
+\subsection{Notations}\label{mc74}
 Note: Topics marked with $\star\star$ are technical and/or their methods are rarely used in later studies. Topics marked with $\star$ are interesting, but not necessarily technical or difficult. They are not essential for understanding the rest of the notes. You can skim or skip the starred topics on first reading. When a chapter/section/subsection is starred, it means that all of the material in that chapter/section/subsection is starred.
 
 We use frequently the abbreviations:
@@ -583,6 +583,20 @@ If $A$ is a precompact subset of $B$ (cf. Def. \ref{lb930}), we write
 \begin{align*}
 A\Subset B
 \end{align*}
+
+If $V,W$ are vector spaces over a field $\Fbb$, we \index{V@$V^\vee$} let \index{Lin@$\Lin(V,W),\Lin(V)$} 
+\begin{gather*}
+\Lin_\Fbb(V,W)\equiv\Lin(V,W)=\{\text{linear maps }V\rightarrow W\}\\
+\Lin(V)=\Lin(V,V)\\
+V^\vee=\Lin(V,\Fbb)
+\end{gather*}
+On the other hand, if $\Fbb\in\{\Rbb,\Cbb\}$ and $V,W$ are normed vector spaces over $\Fbb$, we let
+\begin{gather*}
+\fk L(V,W)=\{\text{bounded linear maps }V\rightarrow W\}\\
+\fk L(V)=\fk L(V,V)
+V^*=\fk L(V,\Fbb)
+\end{gather*}
+Note that $V^\vee=V^*$ if $V$ is a finite dimensional normed vector space over $\Rbb$ or $\Cbb$. Therefore, we also let $V^*$ denote $V^\vee$ if $V$ is a finite dimensional vector space over any field $\Fbb$.
 
 \newpage
 
@@ -3616,12 +3630,14 @@ By Thm. \ref{lb112}, the exponential function $\exp:\Cbb\rightarrow\Cbb$ is cont
 Let $V$ be a Banach space over $\Fbb\in\{\Rbb,\Cbb\}$. 
 
 \begin{prob}\label{lb566}
-Let $W$ be a normed vector space. Prove that $W$ is complete iff every absolutely convergent series in $W$ is convergent (i.e. if $\sum_{n=1}^\infty \Vert w_n\Vert<+\infty$ then $\sum_{n=1}^\infty w_n$ converges).
+Let $W$ be a normed vector space. 
+\begin{enumerate}
+\item Prove that if $(w_n)_{n\in\Zbb_+}$ is a Cauchy sequence in $W$, then $(w_n)$ has a subsequence $(w_{n_k})_{k\in\Zbb_+}$ such that $\sum_{n=1}^\infty\Vert w_{n+1}-w_n\Vert<+\infty$.
+\item Use part 1 to prove that $W$ is complete iff every absolutely convergent series in $W$ is convergent.
+\end{enumerate}
 \end{prob}
 
-\begin{proof}[Hint]
-``$\Rightarrow$" was proved in Prop. \ref{lb94}. To prove ``$\Leftarrow$", for each Cauchy sequence $(w_n)$ in $W$, choose a subsequence $(w_{n_k})$ such that $\Vert w_{n_k}-w_{n_{k+1}}\Vert\leq 2^{-k}$. Apply Thm. \ref{lb79}.
-\end{proof}
+
 
 \begin{prob}\label{lb845}
 Use the formula of \textbf{summation by parts} \index{00@Summation by parts}
@@ -8627,91 +8643,10 @@ The proof of Thm. \ref{lb301} is complete.
 
 
 
-\subsection{Why did Hausdorff believe in completion?}\label{lb549}
-
-
-Thm. \ref{lb301}, the existence and uniqueness of completion of an arbitrary metric space, was proved by Hausdorff in his 1914 work introducing Hausdorff topological spaces \cite[Sec. 8.8, p.315]{Hau14}. The construction of completion using equivalence classes of Cauchy sequences is quite abstract: Although it mimics  Cantor's construction of real numbers (cf. Ch. \ref{lb167}), its main application is not in the realm of finite-dimensional geometric objects, but in the world of function spaces. But what is the practical significance of the equivalence classes of Cauchy sequences of functions? In concrete analysis problems about functions, these objects are much more difficult to deal with than functions themselves.
-
-
-Strangely enough, the only nontrivial examples we have now is $\Qbb\hookrightarrow\Rbb$. Besides this, we do not yet have  any exciting new metric spaces arising from completion. For example: we know that $[0,1]$ is the completion of $(0,1)$ under the Euclidean metric, and that $C([0,1],\Rbb)$ is the completion of the set of real polynomials $\Rbb[x]$ under the norm $\sup_{x\in[0,1]}|f(x)|$. (The density of the set of polynomials in $C([0,1],\Rbb)$ is due to Weierstrass.) But $[0,1]$ and $C([0,1],\Rbb)$ are examples we are already familiar with. 
-
-
-Mathematicians do not generalize just for the sake of generalization. They want to solve problems by generalizing old concepts to a broader context. Moreover, mathematicians do not randomly choose a way of generalization and then build a huge theory. Instead, they develop a theory only in the direction that has already proved useful in solving explicit problems. Thus, Hausdorff proved Thm. \ref{lb301} because he was already convinced of the importance of abstract completion by certain powerful examples. For the moment, we are not ready to study these examples rigorously. (We will do this in the next semester.) But I want to give an informal introduction to one of these examples which historically has paved the way for many important ideas in analysis.
-
-
-\subsubsection{The Fourier series method in integral equations}\label{lb370}
 
 
 
 
-In the years of 1900-1907, many important progress has been made in integral equations, which originated from the study of Dirichlet problems (finding solutions of harmonic equation $\Delta \varphi(x,y)=0$ with given boundary condition, where $\Delta=(\partial_x)^2+(\partial_y)^2$). For example, one asks if there is $\lambda\in\Rbb$ and a  single-variable complex valued function $f:[0,2\pi]\rightarrow\Cbb$ satisfying the eigenvalue problem $Tf=\lambda f$ where
-\begin{align*}
-(Tf)(x)=\int_{0}^{2\pi}K(x,y)f(y)dx
-\end{align*}
-and $K:[0,2\pi]^2\rightarrow\Rbb$ is given. (Cf. also Sec. \ref{lb55}.)
-
-Hilbert studied this problem using Fourier series. In the modern language, the theory of Fourier series claims that $C([0,2\pi],\Cbb)$, under the $L^2$-norm
-\begin{align}\label{eq100}
-\Vert f\Vert_{L^2}=\sqrt{\int_0^{2\pi}|f(x)|^2\cdot \frac{dx}{2\pi} }
-\end{align}
-has a completion
-\begin{gather}\label{eq98}
-\tcboxmath{\begin{gathered}
-\Phi:C([0,2\pi],\Cbb)\rightarrow l^2(\Zbb,\Cbb)\\
-\Phi(f)=\wht f
-\end{gathered}}
-\end{gather}
-where $l^2(\Zbb,\Cbb)$ is the space of all $g:\Zbb\rightarrow\Cbb$ satisfying $\sqrt{\sum_{n\in\Zbb} |g(n)|^2}<+\infty$, and 
-\begin{gather*}
-\wht f:\Zbb\rightarrow\Cbb\qquad 
-\wht f(n)=\int_0^{2\pi} f(x)e^{-\im nx}\cdot \frac{dx}{2\pi}
-\end{gather*}
-gives the \textbf{Fourier coefficients} of $f$. See Cor. \ref{lb603}.
-
-Hilbert studied the eigenvalue problem $Tf=\lambda f$ by transforming it into a linear algebra problem on $l^2(\Zbb,\Cbb)$ (so that $T$ becomes an $\infty\times\infty$ discrete matrix $\wht T$), finding the possible eigenvectors $\wht f$ and eigenvalues $\lambda$ satisfying
-\begin{align*}
-\wht T\wht f=\lambda\wht f
-\end{align*}
-and returning to the original problems by finding the function $f$ whose Fourier coefficents are $\wht f$. It is easy to return: if $f\in C([0,2\pi],\Cbb)$, then one gets $f$ from $\wht f$ by the formula
-\begin{align}
-f(x)=\sum_{n\in\Zbb} \wht f(n)e^{\im nx} \label{eq97}
-\end{align} 
-where the RHS is called the \textbf{Fourier series} of $f$.
-
-Here comes the crucial point: the range of $\Phi$, namely $\{\wht f:f\in C([0,1],\Cbb)\}$, is not the whole space $l^2(\Zbb,\Cbb)$ but only its dense subspace. This remains true if we enlarge $C([0,1],\Cbb)$ to the space of Riemann integrable functions $\scr R([0,1],\Cbb)$. However, the eigenvectors of $\wht T$ found by Hilbert were only known to be elements of $l^2(\Zbb,\Cbb)$. If we use \eqref{eq97} to find the eigenvectors of the original $T$, namely, if for an arbitrary $g\in l^2(\Zbb,\Cbb)$ we write 
-\begin{align}
-\Psi(g)=\sum_{n\in\Zbb} g(n)e^{\im nx}  \label{eq99}
-\end{align}
-then $\Psi(g)$ is not necessarily continuous or even Riemann integrable. It seems that, in the light of the proof of Thm. \ref{lb301}, the only way to make sense of \eqref{eq99} is as follows:
-\begin{itemize}
-\item One views $\Psi(g)$ as the Cauchy-equivalence class of the Cauchy sequence $(s_n)_{n\in\Zbb_+}$ in $C([0,2\pi],\Cbb)$ under the $L^2$-norm, where $s_n(x)=\sum_{k=-n}^n g(k)e^{\im kx}$.
-\end{itemize}
-But how can we understand $\Psi(g)$ as an actual function on $[0,2\pi]$ solving the eigenvalue problem $T\Psi(g)=\lambda\Psi(g)$? 
-
-
-Therefore, \eqref{eq98} and \eqref{eq99} are the very first example of abstract completion, and also one of the most important examples motivating Hausdorff's study of completion in general. %The completion \eqref{eq98} is abstract, in the sense that an element $g$ in the completion $l^2(\Zbb,\Cbb)$ of $C([0,2\pi],\Cbb)$ gives an ``abstract function" $\Psi(g)$ as described by \eqref{eq99}. $\Psi(g)$ is abstract, because it is not necessarily continuous or even Riemann integrable. 
-
-
-\subsubsection{Riesz-Fischer theorem}
-
-
-Hilbert established these results by  1906, the same year Fr\'echet defined metric spaces. The story was finished by Riesz and Fischer, who proved in 1907 that $\Psi(g)$ can actually be represented by a \textbf{Lebesgue measurable} $f:[0,2\pi]\rightarrow\Cbb$ satisfying $\Vert f\Vert_{L^2}<+\infty$, where the norm $\Vert f\Vert_{L^2}$ is defined by \eqref{eq100} using Lebesgue integral instead of Riemann integral. Let $L^2([0,2\pi],\Cbb)$ denote the space of all such functions, and view $C([0,2\pi],\Cbb)$ as its subspace. Then using the language of Thm. \ref{lb301}, we have a commutative diagram
-\begin{equation}\label{eq101}
-\begin{tikzcd}[column sep=tiny]
-                     & C([0,2\pi],\Cbb) \arrow[ld,"\Phi"'] \arrow[rd,hook,"\iota"] &   \\
-l^2(\Zbb,\Cbb) \arrow[rr,"\simeq"',"\Psi"] &                         & L^2([0,2\pi],\Cbb)
-\end{tikzcd}
-\end{equation}
-where $\iota$ is the inclusion map. Thus:
-\begin{itemize}
-\item The abstract completion $\Phi:C([0,2\pi],\Cbb)\rightarrow l^2(\Zbb,\Cbb)$ is equivalent to the concrete completion $C([0,2\pi],\Cbb)\subset L^2([0,2\pi],\Cbb)$, where ``concrete" means that it is function-theoretic.
-\end{itemize}
-This equivalence of abstract and concrete completions, connecting Hilbert's algebraic  approach to integral equations and Lebesgue's function-theoretic approach to measure theory, is the original form of \textbf{Riesz-Fischer theorem}  \index{00@Riesz-Fischer theorem} (proved in 1907),\footnote{More precisely, the original form of Riesz-Fischer theorem says that the $\Psi$ in \eqref{eq101} (whose explicit description is as in \eqref{eq99}) is an isometric isomorphism. As a consequence, the space $L^2$ is complete, because it is fairly easy to show that $l^2$ is complete. However, most modern analysis textbooks present Riesz-Fischer theorem in the following simple  form: ``$L^2$ is a complete metric space".} one of the most significant theorems in early 20th century.
-
-
-Thanks to Riesz-Fischer theorem, people were convinced that abstract completions of function spaces could deepen one's understanding of analysis in much the same way that Lebesgue's measure theory broadened one's understanding of functions by harmonizing with Hilbert's $l^2$ theory. So what is the hesitation in trying to prove an abstract theorem like Thm. \ref{lb301}?
-
-Hausdorff proved the existence and uniqueness of completion in general, but it was Riesz-Fischer theorem that proved the value of abstract completion.
 
 
 
@@ -10975,7 +10910,7 @@ This proves $\Vert\Psi(f)\Vert=\Vert f\Vert_p$ by Rem. \ref{lb372}. So $\Psi$ is
 
 
 
-I do not want to deviate too much from the main purpose of this section, which is to show some important applications of convex functions. I will therefore stop my discussion about $l^p$ spaces, and continue this topic in the future. The crucial role of $l^p$ spaces and their continuous versions (namely $L^p$ spaces) in modern analysis is a long story. The study of these objects constitutes a major part of the second half of this course. Let me mention just one point: the compactness of $\ovl B_{l^2(\Zbb,\Cbb)}(0,1)$ under the pointwise convergence topology (by viewing it as a subspace of $\Cbb^\Zbb$) was the most important reason for Hilbert and Schmidt to study the Hilbert space $l^2(\Zbb,\Cbb)$, and it was the crucial property that allowed them to fully solve the eigenvalue problem in integral equations (cf. Subsec. \ref{lb370}).
+I do not want to deviate too much from the main purpose of this section, which is to show some important applications of convex functions. I will therefore stop my discussion about $l^p$ spaces, and continue this topic in the future. The crucial role of $l^p$ spaces and their continuous versions (namely $L^p$ spaces) in modern analysis is a long story. The study of these objects constitutes a major part of the second half of this course. Let me mention just one point: the compactness of $\ovl B_{l^2(\Zbb,\Cbb)}(0,1)$ under the pointwise convergence topology (by viewing it as a subspace of $\Cbb^\Zbb$) was the most important reason for Hilbert and Schmidt to study the Hilbert space $l^2(\Zbb,\Cbb)$, and it was the crucial property that allowed them to fully solve the eigenvalue problem in integral equations (cf. Ch. \ref{lb672}).
 
 
 
@@ -13323,7 +13258,7 @@ If we let $a=0$ and $g(x)=x$, then one can compute that the Fourier series of $f
 
 
 
-\subsection{*-algebras and subalgebras}
+\subsection{*-algebras and subalgebras}\label{mc77}
 
 Fix $\Fbb\in\{\Rbb,\Cbb\}$.
 
@@ -14766,7 +14701,7 @@ where ``$\leq$" is ``$=$" for some nonzero $\varphi$ by the first paragraph. The
 \subsection{Problems and supplementary material}
 
 
-\begin{prob}
+\begin{prob}\label{mc64}
 Let $V$ be a vector space over a field $\Fbb$. Use Zorn's lemma to prove that $V$ has a basis, i.e. a set $E$ of linearly independent vectors such that any vector of $V$ can be written as a (finite) linear combination of elements of $E$.
 \end{prob}
 
@@ -15002,7 +14937,7 @@ Now let us show that $\ovl{\scr A}$ is compact. Choose any net $(f_\alpha)$ in $
 \begin{rem}\label{lb524}
 Theorem \ref{lb509} is of fundamental importance because most compactness results about function spaces (such as Arzel\`a-Ascoli Thm. \ref{lb516}, Banach-Alaoglu Thm. \ref{lb519}) are derived from this theorem. As we will see in Claim \ref{lb510}, when $X$ is separable, the proof of Thm. \ref{lb509} uses only the countable version of Tychonoff theorem, and hence not using Zorn's lemma. This is in line with the history that Thm. \ref{lb509} (which is implicit in the proof of Arzel\`a-Ascoli theorem) appeared earlier than Zorn's lemma and was proved using diagonal method. (If you remember, the proof of countable Tychonoff theorem uses diagonal method, cf. Thm. \ref{lb89}. And we will use Thm. \ref{lb89} to prove Claim \ref{lb510}.) 
 
-In the late 19th and early 20th centuries, the diagonal method was often used to derive compactness properties of function spaces. Prominent examples are Hilbert's and Schmidt's solutions of eigenvalue problems in integral equations (cf. Subset. \ref{lb370}) and F. Riesz's solution of moment problems (cf. Rem. \ref{lb526}). Thus, Thm. \ref{lb509} can be viewed as a summary of this method.  \hfill\qedsymbol
+In the late 19th and early 20th centuries, the diagonal method was often used to derive compactness properties of function spaces. Prominent examples are Hilbert's and Schmidt's solutions of eigenvalue problems in integral equations (cf. Ch. \ref{lb672}) and F. Riesz's solution of moment problems (cf. Rem. \ref{lb526}). Thus, Thm. \ref{lb509} can be viewed as a summary of this method.  \hfill\qedsymbol
 \end{rem}
 
 
@@ -15504,7 +15439,7 @@ We refer the readers to \cite[Ch. VI]{Die-H} and \cite{NB97} for more details ab
 
 In this section, all normed vector spaces are over $\Fbb\in\{\Rbb,\Cbb\}$.
 
-That one can do a lot of analysis on the \textit{linear maps} of function spaces is a remarkable fact. In fact, in the early history of functional analysis, people were more interested in \textit{nonlinear} functionals on function spaces, for example, the expression $S(f)$ in the calculus of variations (cf. \eqref{eq24}), for which one searched for the extreme values. The problem of finding extreme values is almost trivial if the functional $S$ is linear and defined on a vector space of functions. Even Hilbert studied the eigenvalue problem for the integral operator $(Tf)(x)=\int_0^1 K(x,y)f(x)dx$ (cf. Subsec. \ref{lb370}) by transforming it to the extreme value problem of the functional $S(f)=\eqref{eq206}$ defined for all $f$ on the closed unit ball of $L^2([0,1],\Cbb)$, viewing $S(f)$ as an (infinite-dimensional) \textbf{quadratic form}.
+That one can do a lot of analysis on the \textit{linear maps} of function spaces is a remarkable fact. In fact, in the early history of functional analysis, people were more interested in \textit{nonlinear} functionals on function spaces, for example, the expression $S(f)$ in the calculus of variations (cf. \eqref{eq24}), for which one searched for the extreme values. The problem of finding extreme values is almost trivial if the functional $S$ is linear and defined on a vector space of functions. Even Hilbert studied the eigenvalue problem for the integral operator $(Tf)(x)=\int_0^1 K(x,y)f(x)dx$ (cf. Ch. \ref{lb672}) by transforming it to the extreme value problem of the functional $S(f)=\eqref{eq206}$ defined for all $f$ on the closed unit ball of $L^2([0,1],\Cbb)$, viewing $S(f)$ as an (infinite-dimensional) \textbf{quadratic form}.
 
 
 The idea of operator norms was implicit in Hilbert's study of  boundedness of sesquilinear/quadratic forms. (See Subsec. \ref{lb643}.) But it was Riesz who gave the first systematic study of \textbf{operator norms}. Riesz used operator norms mainly in the following two cases:
@@ -17343,7 +17278,7 @@ Moreover, we have
 Immediate from Cor. \ref{lb601} and Thm. \ref{lb595}.
 \end{proof}
 
-The following result was mentioned in Subsec. \ref{lb370}.
+
 
 \begin{co}\label{lb603}
 The space $C[-\pi,\pi]$, under the inner product \eqref{eq250}, has a Banach space completion
@@ -19175,7 +19110,7 @@ where $L^2(\Sbb^1)$ is the space of $2\pi$-periodic Lebesgue measurable complex 
 \begin{align*}
 (\Psi f)(n)=\wht f(n):=\frac 1{2\pi}\int_{-\pi}^\pi fe_{-n}
 \end{align*}
-where $e_n(x)=e^{\im nx}$, and the integral on the RHS is the Lebesgue integral. This result is called the \textbf{Riesz-Fischer theorem}, as already mentioned in Sec. \ref{lb549}. 
+where $e_n(x)=e^{\im nx}$, and the integral on the RHS is the Lebesgue integral. This result is called the \textbf{Riesz-Fischer theorem}; see Cor. \ref{lb879} for the rigorous statement.
 
 With this result, the proof of \eqref{eq285} becomes more straightforward: Let $\varphi\in l^2(\Zbb)$. By Riesz-Fischer, $\varphi=\wht f$ for some $f\in L^2(\Sbb^1)$. Using the commutativity of limits and integrals (under certain assumptions) one sees that $g\in C^r(\Sbb^1)$ if $g$ is defined by the Lebesgue integral $g(x)=\frac 1{2\pi}\int_{-\pi}^\pi K(x,y)f(y)$. Parseval's identity implies $\wht g=\wht T\wht f$. 
 
@@ -23747,17 +23682,25 @@ for all $k\geq K$. In particular, $\Vert g\Vert_p\leq \Vert g-g_k\Vert_p+\Vert g
 
 If $(f_n)$ converges in $L^p$ to $f\in L^p(X,\mu)$, then $f$ and $g$ are the same elements in $L^p(X,\mu)$. So $\Vert f-g\Vert_p=0$, and hence $f=g$ a.e.. This proves that the subsequence $(g_k)$ converges to $f$ a.e..\\[-1ex]
 
-Step 2. Let us prove the claim. Since $(f_n)$ is Cauchy, for each $k\in\Zbb_+$ there is $n_k\in\Zbb_+$ such that $\Vert f_n-f_m\Vert_p\leq 2^{-k}$ for all $m,n\geq n_k$. By increasing the value of each $n_k$ we assume $n_1<n_2<\cdots$ so that $(g_k)=(f_{n_k})$ is a subsequence of $(f_n)$, and
-\begin{align*}
-\Vert g_{k+1}-g_k\Vert_p\leq 2^{-k}
-\end{align*}
-Let $g_0=0$. We shall show that $\sum_{k\in\Nbb}(g_{k+1}-g_k)$ converges absolutely a.e.. Then this series converges a.e., and hence $(g_k)$ converges a.e..
+Step 2. Let us prove the claim. By Pb. \ref{lb566}-1, the Cauchy sequence $(f_n)$ has a subsequence $(g_k)_{k\in\Zbb_+}$ such that $\sum_{k=1}^\infty\Vert g_{k+1}-g_k\Vert_p<+\infty$. Set $h_k=|g_{k+1}-g_k|$. Then $\sum_k\Vert h_k\Vert_p<+\infty$. Suppose we can prove that $H:=\sum_k h_k$ is finite a.e.. Then $\sum_k (g_{k+1}-g_k)$ converges absolutely a.e., and hence converges a.e.. In other words, $\lim_k g_k$ converges a.e.. This proves the claim.
 
-Let $h_k=|g_{k+1}-g_k|$. Let $H=\sum_{k\in\Nbb}h_k$  which is a measurable function $X\rightarrow\ovl\Rbb_{\geq0}$. We shall show that $H<+\infty$ a.e.. By Prop. \ref{lb752}, it suffices to prove that $\Vert H\Vert_p^p\equiv\int_XH^p$ is finite. Let $k\in\Nbb$. By Minkowski's inequality, we have $\Vert h_0+\cdots+h_k\Vert_p\leq \Vert h_0\Vert_p+\cdots+\Vert h_k\Vert_p\leq 1+2^{-1}+\cdots+2^{-k}\leq 2$. Thus, by Fatou's lemma (or by the monotone convergence theorem), we have
+Let us prove that $H<+\infty$ a.e.. We first consider the special case that $\mu$ is $\sigma$-finite on $X$. Then $X$ is a countable union of measurable subsets $E_1,E_2,\dots$ with finite measures. It suffices to prove that $H|_{E_n}$ is finite a.e.. Let $g=\chi_{E_n}$. Then $\Vert g\Vert_q<+\infty$ where $p^{-1}+q^{-1}=1$. By the monotone convergence Thm. \ref{lb760} and H\"older's inequality,
 \begin{align*}
-\Vert H\Vert_p^p\leq\liminf_k\Vert h_1+\cdots+h_k\Vert_p^p\leq 2^p
+\int_{E_n} H=\int_X Hg=\sum_k \int_X h_kg\leq\sum_k \Vert h_k\Vert_p\cdot\Vert g\Vert_q<+\infty
 \end{align*}
+Therefore, by Prop. \ref{lb752}, we have $H<+\infty$ a.e..
+
+In the general case, by Lem. \ref{mc87}, the set $Y=\bigcup_k \{x\in X:h_k(x)>0\}$ is $\sigma$-finite. The above special case implies that $H|_Y$ is finite a.e.. Since $H$ is zero outside $Y$, we get $H<+\infty$ a.e..
 \end{proof}
+
+
+\begin{lm}\label{mc87}
+Let $f\in L^p(X,\mu)$ where $1\leq p<+\infty$. Then $\Omega_f:=\{x\in X:f(x)\neq 0\}$ is $\sigma$-finite.
+\end{lm}
+\begin{proof}
+We have $\Omega_f=\bigcup_n E_n$ where $E_n=\{x\in X:|f(x)|\geq n^{-1}\}$. Then $n^{-p}\mu(E_n)=\int_{E_n} n^{-p}\leq\int_{E_n}|f|^p\leq \Vert f\Vert_p^p<+\infty$.
+\end{proof}
+
 
 
 
@@ -24002,16 +23945,27 @@ where $f:X\rightarrow\Rbb$ is defined by sending each $x\in [a,b]$ (where $[a,b]
 
 \subsubsection{Proof of the spectral Thm. \ref{lb881}}
 
-Let $\scr A$ be a (complex) unital $*$-algebra (cf. Def. \ref{lb586}). 
+Recall Sec. \ref{mc77} for the definitions of unital algebras and unital $*$-algebras.
+
+
+\begin{df}\label{mc78}
+Let $\scr A$ and $\scr B$ be unital $\Fbb$-algebras where $\Fbb\in\{\Rbb,\Cbb\}$. A linear map $\varphi:\scr A\rightarrow\scr B$ is called a \textbf{unital homomorphism} \index{00@Unital homomorphism} if for every $a,b\in\scr A$ we have
+\begin{align}
+\pi(ab)=\pi(a)\pi(b)\qquad \pi(1_{\scr A})=1_{\scr B}
+\end{align}
+If $\scr A,\scr B$ are (complex) unital $*$-algebras, a unital homomorphism $\varphi:\scr A\rightarrow\scr B$ is called a \textbf{unital $*$-homomorphism} \index{00@Unital $*$-homomorphism} if for all $a\in\scr A$ we have
+\begin{align}
+\varphi(a^*)=\varphi(a)^*
+\end{align}
+\end{df}
+
+
+In the remaining part of this subsection, we let $\scr A$ be a (complex) unital $*$-algebra. 
 
 \begin{df}
-A \textbf{unitary representation}  \index{00@Unitary representation of unital $*$-algebras} of $\scr A$ on $\mc H$ is defined to be a linear map $\pi:\scr A\rightarrow\fk L(\mc H)$ satisfying
-\begin{gather}
-\pi(ab)=\pi(a)\pi(b)\qquad \pi(1)=\idt_{\mc H}\qquad\pi(a^*)=\pi(a)^*
-\end{gather}
-for all $a,b\in\scr A$. In other words, a representation is a \textbf{unital $*$-homomorphism} \index{00@Unital $*$-homomorphism} from $\scr A$ to $\fk L(\mc H)$.
+A \textbf{unitary representation}  \index{00@Unitary representation of unital $*$-algebras} of $\scr A$ on $\mc H$ is defined to be a unital $*$-homomorphism $\pi:\scr A\rightarrow\fk L(\mc H)$ where the multiplication in $\fk L(\mc H)$ is the product of linear operators, and the $*$-structure is defined by taking the adjoints of bounded linear operators (cf. Cor. \ref{lb631}).
 
-If $\Omega\in\mc H$ is such that the linear subspace
+Let $\pi:\scr A\rightarrow\fk L(\mc H)$ be a unitary representation. If $\Omega\in\mc H$ is such that the linear subspace
 \begin{align*}
 \pi(\scr A)\Omega=\{\pi(a)\Omega:a\in\scr A\}
 \end{align*}
@@ -24023,7 +23977,8 @@ If $\mc K$ is a \textit{closed} linear subspace of $\mc H$, and if $\mc K$ is $\
 \end{align}
 We call $\pi|_{\mc K}$ a \textbf{(unitary) subrepresentation} of $\pi$. \hfill\qedsymbol
 \end{df}
-Note that $\pi(a)^*$ is the adjoint of the bounded linear operator $\pi(a)$, and $\pi(a)\pi(b)$ is the composition of the operators $\pi(a)$ and $\pi(b)$.
+
+%Note that $\pi(a)^*$ is the adjoint of the bounded linear operator $\pi(a)$, and $\pi(a)\pi(b)$ is the composition of the operators $\pi(a)$ and $\pi(b)$.
 
 
 \begin{df}
@@ -24395,7 +24350,7 @@ I believe that the best name for Riesz's spectral Thm. \ref{lb895} is the \textb
 \begin{align}
 \Lambda(f)=f(a)\rho(a)+\int_a^b f(\lambda)d\rho(\lambda)
 \end{align}
-in the Riesz representation Thm. \ref{lb847}. This is also clear from the proofs: Recall that in our \hyperlink{SecondRiesz}{second proof} of the Riesz representation theorem in Subsec. \ref{lb923}, we first extended $\Lambda$ to the set $\scr C_1$ of bounded lower semicontinuous functions. (This part was done in Sec. \ref{lb833}.) Then, we extended $\Lambda$ to $\scr C_2$, and related $\Lambda$ to Stieltjes integrals. Similarly, to prove the spectral Thm. \ref{lb895}, Riesz first extended $\pi_T:f\mapsto f(T)$ to $\scr C_1$, \footnote{In fact, Riesz first extended $\pi_T$ to the set of \textit{upper} semicontinuous functions.} then to $\scr C_2$, and finally related $\pi_T$ to quadratic-form valued Stieltjes integrals.
+in the Riesz representation Thm. \ref{lb847}. This is also clear from the proofs: Recall that in our \hyperlink{SecondRiesz}{second proof} of the Riesz representation theorem in Subsec. \ref{lb923}, we first extended $\Lambda$ to the set $\scr C_1$ of bounded lower semicontinuous functions. (This part was done in Sec. \ref{lb833}.) Then, we extended $\Lambda$ to $\scr C_2$, and related $\Lambda$ to Stieltjes integrals. Similarly, to prove the spectral Thm. \ref{lb895}, Riesz first extended $\pi_T:f\mapsto f(T)$ to $\scr C_1$, then to $\scr C_2$, and finally related $\pi_T$ to quadratic-form valued Stieltjes integrals.
 
 To summarize, unlike our proof of the modern spectral Thm. \ref{lb881} which uses the Riesz-Markov theorem as a black box, Riesz's proof of his spectral theorem uses ideas and perspectives from Thm. \ref{lb847} rather than just the conclusion. 
 
@@ -28094,14 +28049,16 @@ Similarly, if $g\in \ovl B_{L^\infty(\Rbb^N,m)}(0,1)$, Pb. \ref{mc57} and Pb. \r
 \section{Tensor products of vector spaces}
 
 
-In this chapter, we fix a field $\Fbb$. For simplicity, the reader can assume that $\Fbb\in\{\Rbb,\Cbb\}$. Unless otherwise stated, all vectors spaces are over $\Fbb$.
-
-\subsection{Introduction}
+In this chapter, we fix a field $\Fbb$. For simplicity, the reader can assume that $\Fbb\in\{\Rbb,\Cbb\}$. Unless otherwise stated, all vectors spaces are over $\Fbb$. Recall from Sec. \ref{mc74} that if $V,W$ are vector spaces then $\Lin(V,W)$ is the set of linear maps $V\rightarrow W$. When $\dim V<+\infty$, both $V^\vee$ and $V^*$ denote the algebraic dual space $\Lin(V,\Fbb)$. However, if $V$ is infinite dimensional, we only let $V^\vee$ denote $\Lin(V,\Fbb)$ since $V^*$ possibly has a different meaning, e.g., $V^*=\fk L(V,\Fbb)$ if $V$ is a normed vector space.
 
 
 
+\subsection{Introduction}\label{mc75}
 
-\subsubsection{Products of vector spaces}
+
+
+
+\subsubsection{Linear products of vector spaces}
 
 Suppose that $\scr A$ is a unital $\Fbb$-algebra, e.g., the set of $\Fbb$-polynomials, the algebra $C(X,\Fbb)$ (where $X$ is a compact space and $\Fbb\in\{\Rbb,\Cbb\}$), $\Fbb^X$ (where $X$ is a set), or $\Fbb^{n\times n}$ (the algebra of $n\times n$ matrices). Then we have a product map
 \begin{align*}
@@ -28131,13 +28088,13 @@ which can be interpreted as the associativity.
 
 Motivated by the above discussion, we make the following definition:
 \begin{df}
-Let $V_1,\dots,V_N$ be vector spaces. An \textbf{(algebraic) product} \index{00@Products of vector spaces} $\odot$ of $V_1,\dots,V_N$ is a vector space $V_1\odot\cdots\odot V_N$ together with a multilinear map
+Let $V_1,\dots,V_N$ be vector spaces. An \textbf{linear product} \index{00@Products of vector spaces} (or simply a \textbf{product}) $\odot$ of $V_1,\dots,V_N$ is a vector space $V_1\odot\cdots\odot V_N$ together with a multilinear map
 \begin{align}\label{eq439}
 \odot: V_1\times\cdots\times V_N\rightarrow V_1\odot\cdots\odot V_N\qquad (v_1,\dots,v_N)\mapsto v_1\odot\cdots\odot v_N
 \end{align}
 The \textbf{multilinearity} (or \pmb{$N$}\textbf{-linearity}) \index{00@Multilinear map} means that for each $1\leq i\leq N$ and each fixed $v_1\in V_1,\dots,v_{i-1}\in V_{i-1},v_{i+1}\in V_{i+1},\dots,v_N\in V_N$, the map $v\in V_i\mapsto v_1\otimes\cdots\otimes v_N$ is linear.
 
-We say that a product \eqref{eq439} is \textbf{surjective} \index{00@Surjective product of vector spaces} if the codomain $V_1\odot\cdots\odot V_N$ is spanned by the range.   \hfill\qedsymbol
+We say that a linear product \eqref{eq439} is a \textbf{surjective product} \index{00@Surjective product of vector spaces} if the codomain $V_1\odot\cdots\odot V_N$ is spanned by the range.   \hfill\qedsymbol
 \end{df}
 
 
@@ -28145,13 +28102,13 @@ A typical product $\odot$ is surjective. However, we do not assume surjectivity 
 
 
 \begin{eg}
-Let $V$ be a vector space, and let $V^*$ be its dual space. Then the canonical pairing $\bk{\cdot,\cdot}:V\times V^*\rightarrow\Fbb$ is a surjective product.
+Let $V$ be a vector space. Then the canonical pairing $\bk{\cdot,\cdot}:V\times V^\vee\rightarrow\Fbb$ is a surjective product.
 \end{eg}
 
 
-\subsubsection{Homomorphisms of products}
+\subsubsection{Homomorphisms of linear products}\label{mc76}
 
-Let $\scr A$ and $\scr B$ be unital $\Fbb$-algebras. A \textbf{(unital) homomorphism} \index{00@Unital homomorphism} $\Phi:\scr A\rightarrow\scr B$ is defined to be a linear map satisfying $\Phi(fg)=\Phi(f)\Phi(g)$ for all $f,g\in\scr A$.
+Let $\scr A$ and $\scr B$ be unital $\Fbb$-algebras. Recall from Def. \ref{mc78} that a unital homomorphism  $\Phi:\scr A\rightarrow\scr B$ is defined to be a linear map satisfying $\Phi(fg)=\Phi(f)\Phi(g)$ and $\Phi(1_{\scr A})=1_{\scr B}$ for all $f,g\in\scr A$.
 
 We shall use homomorphisms of algebras to motivate the definition of homomorphisms of products of vector spaces. However, for that purpose, it is not convenient to view $U,V$ as subspaces of $\scr A$. Instead, we should understand $U,V$ as vector spaces together with linear maps $\varphi:U\rightarrow\scr A$ and $\psi:V\rightarrow\scr A$. This gives a product
 \begin{gather*}
@@ -28178,17 +28135,20 @@ Let $\odot$ and $\boxdot$ be products of vector spaces $V_1,\dots,V_N$. A \textb
 \Phi(v_1\odot\cdots\odot v_N)=v_1\boxdot\cdots\boxdot v_N
 \end{gathered}
 \end{gather}
-for all $v_1\in V_1,\dots,v_N\in V_N$. If $\Phi$ is also bijective, then $\Phi^{-1}$ is a homomorphism from $\boxdot$ to $\odot$. In this case, we say that $\Phi$ is an \textbf{isomorphism of products}. \index{00@Isomorphism of products of vector spaces} \hfill\qedsymbol
+for all $v_1\in V_1,\dots,v_N\in V_N$. If $\Phi$ is also bijective, then $\Phi^{-1}$ is a homomorphism from $\boxdot$ to $\odot$. In this case, we say that $\Phi$ is an \textbf{isomorphism of products}, \index{00@Isomorphism of products of vector spaces} that $\otimes$ and $\odot$ are isomorphic, and we write $\otimes\simeq\odot$.  
 \end{df}
 
-It is clear that if $\odot$ is surjective, then there exists at most one homomorphism $\Phi:\odot\rightarrow\boxdot$.
+\begin{rem}\label{mc66}
+Suppose that $\odot$ is surjective. Then it is clear that there exists at most one homomorphism $\Phi:\odot\rightarrow\boxdot$. In particular, there exists precisely one automorphism on $\odot$ (i.e., homomorphism $\odot\rightarrow\odot$), which is the identity map on $V_1\otimes\cdots\otimes V_N$.
+\end{rem}
 
 
 
 
 
 
-\subsection{The tensor product $\otimes$}
+
+\subsection{Tensor products of vector spaces}
 
 
 
@@ -28198,19 +28158,606 @@ Let $V_1,\dots,V_N$ be vector spaces. A product $\otimes:V_1\times\cdots\times V
 \item[(a)] $\otimes$ is surjective, i.e., its range spans the codomain.
 \item[(b)] For any product $\odot:V_1\times\cdots\times V_N\rightarrow V_1\odot\cdots\odot V_N$ there exists a homomorphism of products $\Phi:\otimes\rightarrow\odot$.
 \end{enumerate}
-Note that such $\Phi$ must be unique by the surjectivity of $\otimes$.
+Note that such $\Phi$ must be unique by the surjectivity of $\otimes$. If $V_1,\dots,V_N$ are all $V$, we write the tensor product as $V^{\otimes N}$.
 \end{df}
 
 
 \begin{eg}
-Let $X_1,\dots,X_N$ be sets. Let $X=X_1\times\cdots\times X_N$. Let $\pi:X\rightarrow X_i,(x_1,\dots,x_N)\rightarrow x_i$ be the projection. Then
+Let $\otimes:V_1\times\cdots\times V_N\rightarrow V_1\otimes\cdots\otimes V_N$ be a tensor product of vector spaces. Let $\sigma:\{1,\dots,N\}\rightarrow\{1,\dots,N\}$ be a bijection. Then
 \begin{gather}
+V_1\times\cdots\times V_N\rightarrow V_{\sigma(1)}\otimes\cdots\otimes V_{\sigma(n)}\qquad (v_1,\dots,v_N)\mapsto v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(N)}
+\end{gather}
+is clearly a tensor product.
+\end{eg}
+
+
+\begin{eg}\label{mc65}
+Let $X_1,\dots,X_N$ be sets, equipped with the discrete topology. Let $X=X_1\times\cdots\times X_N$. Let $\pi:X\rightarrow X_i,(x_1,\dots,x_N)\rightarrow x_i$ be the projection. Let $\mc S(X_i)$ be the set of simple functions on $X_i$
+\begin{gather}\label{eq440}
 \begin{gathered}
-\Fbb^{X_1}\times\cdots\times\Fbb^{X_N}\rightarrow F^X\\
+C_c(X_1,\Fbb)\times\cdots\times C_c(X_N,\Fbb)\rightarrow C_c(X,\Fbb)\\
 (f_1,\dots,f_N)\rightarrow (f_1\circ\pi_1)\cdots (f_N\circ\pi_N)
 \end{gathered}
 \end{gather}
-is a tensor product of $\Fbb^{X_1},\dots,\Fbb^{X_N}$.
+is a tensor product of $C_c(X_1,\Fbb),\dots,C_c(X_N,\Fbb)$. Here, $C_c(X_i,\Fbb)$ is the set of $f\in\Fbb^{X_i}$ such that $\{x\in X_i:f(x_i)\neq 0\}$ is a finite set. $C_c(X,\Fbb)$ is understood in a similar way.
+\end{eg}
+
+Note that we often abbreviate $f_i\circ\pi_i$ so that $f_i$ is also viewed as a function on $X$. Then the product \eqref{eq440} sends $(f_1,\dots,f_N)$ to the usual product of functions $f_1\cdots f_N$. We have used this convention in Thm. \ref{lb826}.
+
+\begin{proof}
+For each $x\in X$, $\chi_{\{x\}}$ is clearly in the range of the product \eqref{eq440}. Therefore \eqref{eq440} is a surjective product.
+
+Write $V_i=C_c(X_i,\Fbb)$. Let $\otimes$ denote \eqref{eq440}, and let $\odot:V_1\times\cdots\times V_N\rightarrow W$ be another product (i.e., a multilinear map). Then for each $x=(x_1,\dots,x_N)\in X$, we have $\chi_{\{x\}}=\chi_{\{x_1\}}\otimes\cdots\otimes\chi_{\{x_N\}}$. Moreover, $\{\chi_{\{x\}}:x\in X\}$ is a basis of $C_c(X,\Fbb)$. Therefore, we have a unique linear map
+\begin{gather*}
+\Phi:C_c(X,\Fbb)\rightarrow W\qquad \Phi(\chi_{\{x\}})=\chi_{\{x_1\}}\odot\cdots\odot\chi_{\{x_N\}}
+\end{gather*}
+From this definition, it is clear that $\Phi(f_1\otimes\cdots\otimes f_N)=f_1\odot\cdots\odot f_N$ holds if for each $i$, $f_i=\chi_{\{x_i\}}$ for some $x_i\in X_i$. By the (multi-)linearity, this relation holds for all $f_i$. More precisely, since $f_i=\sum_{x_i\in X_i}f(x_i)\chi_{\{x_i\}}$, and since $f_1\otimes\cdots\otimes f_N$ equals $\sum_{x\in X}f_1(x_1)\cdots f_N(x_n)\cdot \chi_{\{x\}}$ (because it sends each $x$ to $f_1(x_1)\cdots f_N(x_n)$), we have
+\begin{align*}
+&\Phi(f_1\otimes\cdots\otimes f_N)=\Phi\Big(\sum_{x\in X}f_1(x_1)\cdots f_N(x_n)\cdot \chi_{\{x\}}\Big)\\
+=&\sum_{x\in X}f_1(x_1)\cdots f_N(x_n)\cdot\Phi(\chi_{\{x\}})=\sum_{x\in X}f_1(x_1)\cdots f_N(x_n)\cdot \chi_{\{x_1\}}\odot\cdots\odot\chi_{\{x_N\}}\\
+=&\Big(\sum_{x_1\in X_1}f_1(x_1)\chi_{\{x_1\}}\Big)\odot\cdots\odot\Big(\sum_{x_N\in X_N}f_N(x_N)\chi_{\{x_N\}}\Big)=f_1\odot\cdots\odot f_N
+\end{align*}
+This proves that $\Phi:\otimes\rightarrow\odot$ is a homomorphism of products.
+\end{proof}
+
+
+\begin{thm}\label{mc67}
+Let $V_1,\dots,V_N$ be vector spaces. Then there exists a tensor product $\otimes:V_1\times\cdots\times V_N\rightarrow V_1\otimes\cdots\otimes V_N$. Moreover, if $\odot:V_1\times\cdots\times V_N\rightarrow V_1\odot\cdots\odot V_N$ is also a tensor product, then $\otimes$ and $\odot$ are isomorphic. 
+\end{thm}
+
+\begin{proof}
+Since each $V_i$ has a basis indexed by some set $X_i$ (cf. Pb. \ref{mc64}), $V_i$ is linearly isomorphic to $C_c(X_i,\Fbb)$. Therefore, we may assume WLOG that $V_i=C_c(X_i,\Fbb)$. Then the existence of a tensor product $\otimes$ is due to Exp. \ref{mc65}. 
+
+Suppose that $\odot$ is another tensor product. By the definition of tensor products, there exists homomorphisms of tensor products $\Phi:\otimes\rightarrow\odot$ and $\Psi:\odot\rightarrow\otimes$. Therefore $\Psi\circ\Phi:\otimes\rightarrow\otimes$ must be an automorphism of $\otimes$, and hence is the identity map (on $V_1\otimes\cdots\otimes V_N$) by Rem. \ref{mc66}. Similarly, $\Phi\circ\Psi$ is the identity map. So $\Phi$ is an isomorphism.
+\end{proof}
+
+
+
+The fact that $\{\chi_{\{x\}}:x\in X\}$ is a basis of $C_c(X,\Fbb)$ is crucial to the proof that Exp. \ref{mc65} is a tensor product. By slightly generalizing this observation, we have:
+
+\begin{thm}\label{mc68}
+Let $V_1,\dots,V_N$ be vector spaces. For each $1\leq i\leq N$, assume that $(e_i(x_i))_{x_i\in X_i}$ is a basis of $V_i$. Let $\otimes:V_1\times\cdots\times V_N\rightarrow V_1\otimes\cdots\otimes V_N$ be a product. Then the following are equivalent:
+\begin{enumerate}
+\item[(1)] $\otimes$ is a tensor product.
+\item[(2)] $\dps \big(e_1(x_1)\otimes\cdots\otimes e_N(x_N)\big)_{x_1\in X_1,\dots,x_N\in X_N}$ is a basis of $V_1\otimes\cdots\otimes V_N$.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+Let $X=X_1\times\cdots\times X_N$. We may assume WLOG that $V_i=C_c(X_i,\Fbb)$ and that $e_i(x_i)=\chi_{\{x_i\}}$. Let $\boxtimes$ denote the tensor product in Exp. \ref{mc65}. Then $(\chi_{\{x\}})_{x\in X}$ is a basis of $C_c(X,\Fbb)$. By the definition of tensor products, there is a unique linear map $\Phi:C_c(X,\Fbb)\rightarrow V_1\otimes\cdots\otimes V_N$ sending each $f_1\boxtimes\cdots\boxtimes f_N$ to $f_1\otimes\cdots\otimes f_N$. Take $f_i=\chi_{\{x_i\}}=e_i(x_i)$, we see that $\Phi$ sends each $\chi_{\{x\}}$ to $e_1(x_1)\otimes\cdots\otimes e_N(x_N)$. Therefore, $\Phi$ is a linear isomorphism (and hence an isomorphism of products) iff  (2) is true.
+
+If $\Phi$ is an isomorphism, then $\otimes$ is a tensor product (since $\boxtimes$ is so). This proves (2)$\Rightarrow$(1). Conversely, suppose that $\otimes$ is a tensor product, by Thm. \ref{mc67}, there exists an isomorphism $\wtd\Phi:\boxtimes\rightarrow\otimes$. Since there exists at most one homomorphism from a surjective product to a product (Rem. \ref{mc66}), we must have $\Phi=\wtd\Phi$. Therefore $\Phi$ is an isomorphism. This proves (1)$\Rightarrow$(2).
+\end{proof}
+
+\begin{co}\label{mc81}
+Let $V_1,\dots,V_N$ be finite dimensional vector spaces. Let $\otimes:V_1\times\cdots\times V_N\rightarrow V_1\otimes\cdots\otimes V_N$ be a \uwave{surjective} product. Then $\otimes$ is a tensor product iff
+\begin{align}\label{eq441}
+\dim(V_1\otimes\cdots\otimes V_N)=\dim V_1\cdots\dim V_N
+\end{align}
+\end{co}
+
+
+\begin{proof}
+For each $i$, let $n_i=\dim V_i$, and let $e_i(1),\dots,e_i(n_i)$ be a basis of $V_i$. Since $\otimes$ is surjective, $\big(e_1(k_1)\otimes\cdots\otimes e_N(k_N)\big)_{k_1,\dots,k_N}$ spans $V_1\otimes\cdots\otimes V_N$. So it is a basis iff $\dim(V_1\otimes\cdots\otimes V_N)=n_1\cdots n_N$. In other words, condition (2) of Thm. \ref{mc68} is equivalent to \eqref{eq441}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Associativity and unitality}
+
+
+\begin{thm}\label{mc71}
+Let $U_1,\dots,U_M$ and $V_1,\dots,V_N$ be vector spaces. Let
+\begin{gather*}
+\odot:U_1\times\cdots\times U_M\rightarrow \scr U:=U_1\odot\cdots\odot U_M\\
+\boxdot:V_1\times\cdots\times V_N\rightarrow \scr V:=V_1\boxdot\cdots\boxdot V_N\\
+\oast:\scr U\times\scr V\rightarrow \scr U\oast\scr W
+\end{gather*}
+be tensor products. Then
+\begin{gather}\label{mc69}
+\begin{gathered}
+U_1\times\cdots\times U_M\times V_1\times\cdots\times V_N\rightarrow (U_1\odot\cdots\odot U_M)\oast(V_1\boxdot\cdots\boxdot V_N) \\
+(u_1,\dots,u_M,v_1,\dots,v_N)\mapsto (u_1\odot\cdots\odot u_M)\oast (v_1\boxdot\cdots\boxdot v_N)
+\end{gathered}
+\end{gather}
+is a tensor product. Consequently, if 
+\begin{gather}
+\otimes:U_1\times\cdots\times U_M\times V_1\times\cdots\times V_N\rightarrow U_1\otimes\cdots\otimes U_M\otimes V_1\otimes\cdots\otimes V_N
+\end{gather}
+is a tensor product, then there is a unique linear isomorphism $\Phi$ satisfying
+\begin{gather}
+\begin{gathered}
+\Phi:(U_1\odot\cdots\odot U_M)\oast(V_1\boxdot\cdots\boxdot V_N)\xlongrightarrow{\simeq}U_1\otimes\cdots\otimes U_M\otimes V_1\otimes\cdots\otimes V_N\\
+(u_1\odot\cdots\odot u_M)\oast(v_1\boxdot\cdots\boxdot v_N)\mapsto u_1\otimes\cdots\otimes u_M\otimes v_1\otimes\cdots\otimes v_N
+\end{gathered}
+\end{gather}
+\end{thm}
+
+\begin{proof}
+Using Thm. \ref{mc68}, it is easy to check that \eqref{eq69} is a tensor product.
+\end{proof}
+
+
+\begin{rem}
+Roughly speaking, Thm. \ref{mc71} says that one can freely add or remove parentheses in tensor products. In particular, writing all the tensor symbols as $\otimes$, we have linear isomorphisms
+\begin{gather}
+\begin{gathered}
+(V_1\otimes V_2)\otimes V_3\xlongrightarrow{\simeq} V_1\otimes V_2\otimes V_3\xlongleftarrow{\simeq} V_1\otimes (V_2\otimes V_3)\\
+(v_1\otimes v_2)\otimes v_3\mapsto v_1\otimes v_2\otimes v_3\mapsfrom v_1\otimes (v_2\otimes v_3)
+\end{gathered}
+\end{gather}
+\end{rem}
+
+
+
+The following proposition says that in a tensor product, one can freely remove $\Fbb$.
+
+\begin{pp}\label{mc70}
+Let $V$ be a vector space. Then
+\begin{subequations}
+\begin{gather}
+\Fbb\times V\rightarrow V\qquad (\lambda,v)\mapsto \lambda v\\
+V\times \Fbb\rightarrow V\qquad (v,\lambda)\mapsto \lambda v
+\end{gather}
+\end{subequations}
+are tensor products. Consequently, if 
+\begin{gather}
+\otimes_L: \Fbb\times V\rightarrow \Fbb\otimes_LV\qquad \otimes_R: V\times\Fbb\rightarrow V\otimes_R\Fbb 
+\end{gather}
+are tensor products, then there exist unique linear isomorphisms satisfying
+\begin{gather}
+\begin{gathered}
+\Fbb\otimes_L V\xlongrightarrow{\simeq} V\xlongleftarrow{\simeq} V\otimes_R\Fbb\\
+\lambda\otimes_Lv\mapsto \lambda v \mapsfrom v\otimes_R\lambda
+\end{gathered}
+\end{gather}
+\end{pp}
+
+\begin{proof}
+Obvious from Thm. \ref{mc68}.
+\end{proof}
+
+\begin{co}\label{mc72}
+Let $N\in\Zbb_+$. Let $\Fbb^{\otimes N}$ be a tensor product of $N$ pieces of $\Fbb$. Then there is a unique linear isomorphism satisfying
+\begin{gather}
+\Fbb^{\otimes N}\xlongrightarrow{\simeq}\Fbb\qquad \lambda_1\otimes\cdots\otimes\lambda_N\mapsto \lambda_1\cdots\lambda_N
+\end{gather}
+\end{co}
+
+\begin{proof}
+This follows from Prop. \ref{mc70}, Thm. \ref{mc71}, and induction on $N$. Alternatively, it also follows from applying Thm. \ref{mc68} to the product $\Fbb^N\rightarrow\Fbb$ sending $(\lambda_1,\dots,\lambda_N)\mapsto\lambda_1\cdots\lambda_N$.
+\end{proof}
+
+
+
+\begin{rem}\label{mc73}
+Readers encountering tensor products for the first time may feel uncomfortable with the fact that tensor products are not unique, but only unique up to isomorphisms. Here is a method to overcome this psychological barrier, which we will consistently adopt in the rest of this course.
+
+For any vector spaces $V_1,\dots,V_N$ such that each $V_i$ is not defined to be a tensor product of vector spaces, and that $V_i\neq\Fbb$, we choose an arbitrary tensor product $V_1\times\cdots\times V_N\rightarrow V_1\otimes\cdots\otimes V_N$. However, if some of $V_1,\dots,V_N$ are equal to $\Fbb$, we define their tensor products to be a tensor product of those $V_1,\dots,V_N$ not equal to $\Fbb$; if some of $V_1,\dots,V_N$ are already tensor products, we define their tensor product by ``removing the parentheses". Moreover, a tensor product of several pieces of $\Fbb$ is defined to be $\Fbb$ as in Cor. \ref{mc72}, namely,
+\begin{gather}
+\Fbb^{\otimes N}=\Fbb\qquad \lambda_1\otimes\cdots\otimes\lambda_N=\lambda_1\cdots\lambda_N
+\end{gather}
+
+For example, once the tensor products $V_1\otimes V_2\otimes V_3\otimes V_4$ and $V_2\otimes V_3$ have been chosen, we \textit{define} the tensor product of $V_1,\Fbb,\Fbb,V_2\otimes V_3,\Fbb,V_4$ to be
+\begin{gather*}
+V_1\times\Fbb\times\Fbb\times (V_2\otimes V_3)\times\Fbb\times V_4\rightarrow V_1\otimes V_2\otimes V_3\otimes V_4\\
+(v_1,\alpha,\beta,v_2\otimes v_3,\gamma,v_4)\mapsto \alpha\beta\gamma\cdot(v_1\otimes v_2\otimes v_3\otimes v_4)
+\end{gather*}
+That this is a tensor product follows from Thm. \ref{mc71} and Prop. \ref{mc70} (which imply that any tensor product $V_1\boxtimes\Fbb\boxtimes\Fbb\boxtimes (V_2\otimes V_3)\boxtimes\Fbb\boxtimes V_4$ is canonically isomorphic to $V_1\otimes V_2\otimes V_3\otimes V_4$). Alternatively, it also follows directly from Thm. \ref{mc68}.
+
+In this way, we have well-defined tensor products for all vector spaces over $\Fbb$. Moreover, we automatically have the strict associativity law
+\begin{gather}
+\begin{gathered}
+(V_1\otimes V_2)\otimes V_3=V_1\otimes V_2\otimes V_3=V_1\otimes (V_2\otimes V_3)\\
+(v_1\otimes v_2)\otimes v_3=v_1\otimes v_2\otimes v_3=v_1\otimes (v_2\otimes v_3)
+\end{gathered}
+\end{gather}
+(These three spaces are identical, not just isomorphic!) Similarly, we have
+\begin{align*}
+\Fbb\otimes V=V=V\otimes\Fbb\qquad \lambda\otimes v=\lambda v=v\otimes\lambda
+\end{align*}
+which means that $\Fbb$ is a ``unit" with respect to the tensor product operation $\otimes$. \hfill\qedsymbol
+\end{rem}
+
+
+\begin{rem}
+We continue the discussion in Rem. \ref{mc73}. The readers may wonder how to determine if a vector space is already a tensor product of some vector spaces. For example, suppose that for each $N\in\Zbb_+$ and for any finite sets $X_1,\dots,X_N$, if their cardinalities are all $\leq 5$ we \textit{define} the tensor product of $\Fbb^{X_1},\dots,\Fbb^{X_N}$ to be $\Fbb_1^{X_1\times\cdots\times X_N}$ as in Exp. \ref{mc65}, i.e.,
+\begin{align*}
+f_1\otimes\cdots\otimes f_N=f_1\cdots f_N
+\end{align*}
+On the other hand, if one of these sets have more than $5$ elements, we define the tensor product to be $\Fbb_1^{X_1\times\cdots\times X_N}$ but satisfying
+\begin{align*}
+f_1\otimes\cdots\otimes f_N=-f_1\cdots f_N
+\end{align*}
+
+Now choose finite sets $A,B,C$ with cardinalities $3,4,5$ respectively. Then the tensor product of $\Fbb^B$ and $\Fbb^C$ is $\Fbb^{B\times C}$ with $g\otimes h=gh$. What is the tensor product of $\Fbb^A$ and $\Fbb^{B\times C}$? Clearly it should be $\Fbb^{A\times B\times C}$. However, the product map depends on whether we view $\Fbb^{B\times C}$ as the tensor product of $\Fbb^B$ and $\Fbb^C$: If yes, then as mentioned in Rem. \ref{mc73}, we should remove the parenthesis. Therefore, for any $f\in\Fbb^A,g\in\Fbb^B,h\in\Fbb^C$ we have $f\otimes (gh)=f\otimes (g\otimes h)=f\otimes g\otimes h=fgh$. If no, then $f\otimes gh=-fgh$ since $\card(B\times C)>5$.
+
+The above conflict can be easily avoided by a trick of renaming the vector spaces (and their elements): We denote the tensor product of $\Fbb^{X_1},\dots,\Fbb^{X_N}$ defined in the first paragraph by the longer name $(\Fbb^{X_1\times\cdots\times X_N};X_1,\dots,X_N)$.\footnote{Alternatively, we may fix a point $x_i\in X_i$, and define the tensor product to be $\Fbb^{X_1\times\cdots\times X_N}\times \{x_1\}\times\cdots\times\{x_N\}$.} This space is isomorphic to $\Fbb^{X_1\times\cdots\times X_N}$ in the obvious way, but is not \textit{equal} to the latter. Then, the tensor product of $\Fbb^A$ and $\Fbb^{B\times C}$ satisfies $f\otimes (gh)=-fgh$, whereas the tensor product of $\Fbb^A$ and $(\Fbb^{B\times C};B,C)=\Fbb^B\otimes\Fbb^C$ satisfies $f\otimes (g\otimes h)=fgh$. 
+
+Similarly, the tensor product of $\Fbb$ and $V$ is equal to $V$ with $\lambda\otimes v=\lambda v$. However, if we want to consider a different tensor product without causing conflicts, we can consider a vector space isomorphic but not equal to $\Fbb$. For example, consider the space $\Fbb$ but with a longer name $(\Fbb,\heartsuit)$. Then we can define a tensor product $(\Fbb,\heartsuit)\otimes V$ not necessarily equal to $\Fbb\otimes V=V$.  \hfill\qedsymbol
+\end{rem}
+
+
+
+\begin{rem}
+In Sec. \ref{mc75}, we motivated the definition of (tensor) products by considering linear maps of vector spaces into a unital $\Fbb$-algebra $\scr A$. Now, it is natural to ask if the tensor product can be realized in this way. The answer is basically yes.
+
+Suppose that  there is a math problem studying the tensor products of vector spaces in a family $(V_i)_{i\in I}$ indexed by a set $I$. Define the \textbf{tensor algebra} \index{00@Tensor algebra}
+\begin{align}
+\scr A=\Fbb\oplus\bigg(\bigoplus_{n\in\Zbb_+}\bigoplus_{i_1,\dots,i_n\in  I} V_{i_1}\otimes\cdots\otimes V_{i_n}\bigg)
+\end{align}
+whose multiplication operation is the unique bilinear map $\cdot:\scr A\times\scr A\rightarrow\scr A$ restricting to the tensor product maps
+\begin{gather*}
+(V_{i_1}\otimes\cdots\otimes V_{i_n})\times (V_{j_1}\otimes\cdots\otimes V_{j_m})\longrightarrow V_{i_1}\otimes\cdots\otimes V_{i_n}\otimes V_{j_1}\otimes\cdots\otimes V_{j_m}\\
+\Fbb\times (V_{i_1}\otimes\cdots\otimes V_{i_n})\longrightarrow V_{i_1}\otimes\cdots\otimes V_{i_n}\\
+(V_{i_1}\otimes\cdots\otimes V_{i_n})\times\Fbb\longrightarrow V_{i_1}\otimes\cdots\otimes V_{i_n}\\
+\Fbb\times\Fbb\longrightarrow \Fbb^{\otimes 2}=\Fbb
+\end{gather*}
+for all $n,k\in\Zbb_+$ and $i_1,\dots,i_n,j_1,\dots,j_m\in I$. Then $\scr A$ is a unital $\Fbb$-algebra whose unit element is $1\in\Fbb$. Moreover,  if $W_1,\dots,W_n$ are tensor products of members of $(V_i)_{i\in I}$, it is clear that the tensor product $W_1\times\cdots\times W_n\rightarrow W_1\otimes\cdots\otimes W_n$ can be realized by the multiplication in $\scr A$ as in Subsec. \ref{mc76}.
+
+Finally, note that if for each $V_{i_1},\dots,V_{i_n}$ we define another tensor product $V_{i_1}\boxtimes\cdots\boxtimes V_{i_n}$, and if we use these tensor products to define a similar tensor algebra $\scr B$, then there is a canonical unital isomorphism of $\Fbb$-algebras $\scr A\rightarrow\scr B$ restricting to the isomomorphism of products $V_{i_1}\otimes\cdots\otimes V_{i_n}\xrightarrow{\simeq}V_{i_1}\boxtimes\cdots\boxtimes V_{i_n}$. In other words, an isomorphism of tensor products can be understood by a unital isomorphism of unital $\Fbb$-algebras. 
+
+I hope the above discussion can help convince the readers that different but isomorphic tensor products can be viewed as essentially the same, and that in practice it is not necessary to know how the tensor products are explicitly constructed.\hfill\qedsymbol
+\end{rem}
+
+
+
+
+
+
+
+
+
+\subsection{Tensor products of linear maps}
+
+
+\begin{rem}\label{mc79}
+Let $V_1,\dots,V_N$ and $W$ be vector spaces. Then we have a bijection of sets
+\begin{gather*}
+\Lin(V_1\otimes\cdots\otimes V_N,W)\quad\xlongrightarrow{\simeq}\quad\{\text{$N$-linear maps }V_1\times\cdots\times V_N\rightarrow W\}
+\end{gather*}
+where each $T\in\Lin(V_1\otimes\cdots\otimes V_N,W)$ corresponds to the $N$-linear map
+\begin{align}
+\wtd T:V_1\times\cdots\times V_N\rightarrow W\qquad (v_1,\cdots,v_N)\mapsto T(v_1\otimes\cdots\otimes v_N)
+\end{align}
+\end{rem}
+
+\begin{proof}
+The map $T\mapsto \wtd T$ is clearly injective. If $S$ is an $N$-linear map, i.e., a linear product of $V_1,\dots,V_N$, then by the definition of tensor products, we have a homomorphism of products $T:V_1\otimes\cdots\otimes V_N\rightarrow W$. So $T$ is a linear map sending $v_1\otimes\cdots\otimes v_N$ to $S(v_1,\dots,v_N)$. Then clearly $S=\wtd T$.
+\end{proof}
+
+
+
+The following theorem is the main result of this section. 
+
+\begin{thm}\label{mc82}
+Let $V_1,\dots,V_N$ and $W_1,\dots,W_N$ be vector spaces. Then there is an injective linear map
+\begin{gather}\label{eq446}
+\Phi:\Lin(V_1,W_1)\otimes\cdots\otimes\Lin(V_N,W_N)\longrightarrow \Lin(V_1\otimes\cdots\otimes V_N,W_1\otimes\cdots\otimes W_N)
+\end{gather}
+such that for each $T_i\in\Lin(V_i,W_i)$, the linear map $\Phi(T_1\otimes\cdots\otimes T_N)$ is described by
+\begin{gather}\label{eq445}
+\begin{gathered}
+\Phi(T_1\otimes\cdots\otimes T_N):V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N\\
+v_1\otimes\cdots\otimes v_N\mapsto T_1v_1\otimes\cdots\otimes T_Nv_N
+\end{gathered}
+\end{gather}
+Moreover, if $V_1,\dots,V_N$ are finite dimensional, then $\Phi$ is a linear isomorphism.
+\end{thm}
+
+
+In the remaining part of the notes, we are mainly interested in the case that each $V_i$ and $W_i$ are finite dimensional. In this case, by Cor. \ref{mc81}, the domain and the codomain of $\Phi$ have the same dimension. Therefore, to show that $\Phi$ is an isomorphism, it suffices to show that $\Phi$ is surjective. Thus, Step 2 of the following proof can be skipped.
+
+
+\begin{proof}
+Step 1. For each $i$ and $T_i\in\Lin(V_i,W_i)$, the map
+\begin{gather*}
+S:V_1\times\cdots\times V_N\rightarrow W_1\otimes\cdots\otimes W_N\\
+(v_1,\dots,v_N)\mapsto T_1v_1\otimes\cdots\otimes T_Nv_N
+\end{gather*}
+is clearly multilinear. Therefore, by Rem. \ref{mc79}, $S$ can be viewed as a linear map $V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N$ which we denote by $\Psi(T_1,\cdots, T_N)$. Then $\Psi(T_1,\cdots, T_N)$ clearly satisfies \eqref{eq445}, i.e., it sends $v_1\otimes\cdots\otimes v_N$ to $T_1v_1\otimes\cdots\otimes T_Nv_N$. (Alternatively, one can first use \eqref{eq445} to define $\Psi(T_1,\cdots, T_N)$ on a basis as described in Thm. \ref{mc68}-(2), and then extend it by linearity to the whole space. Then $\Psi(T_1,\cdots, T_N)$ satisfies \eqref{eq445}.)
+
+The map
+\begin{gather*}
+\Psi:\Lin(V_1,W_1)\times\cdots\times\Lin(V_N,W_N)\rightarrow \Lin(V_1\otimes\cdots\otimes V_N,W_1\otimes\cdots\otimes W_N)
+\end{gather*}
+defined above is clearly $N$-linear. Therefore, by Rem. \ref{mc79}, $\Psi$ gives rise to a linear map $\Phi$ as described in \eqref{eq446} and \eqref{eq445}. \\[-1ex]
+
+$\star$ Step 2. Let us show that $\Phi$ is injective. For each $i$, let $(T_i^{\alpha_i})_{\alpha_i\in \mc A_i}$ be a basis of $\Lin(V_i,W_i)$. We write $(\alpha_1,\dots,\alpha_N)$ as $\alpha$, and let $\mc A=\mc A_1\times\cdots\times \mc A_N$. Then by Thm. \ref{mc68},
+\begin{align*}
+\mc E=(T_\blt^\alpha)_{\alpha\in\mc A}\equiv(T_1^{\alpha_1}\otimes\cdots\otimes T_N^{\alpha_N})_{\alpha\in\mc A}
+\end{align*}
+is a basis of the domain of $\Phi$. To show that $\Phi$ is injective, it is equivalent to show that
+\begin{align*}
+\Phi(\mc E)=(\Phi(T_\blt^\alpha))_{\alpha\in\mc A}=(\Phi(T_1^{\alpha_1}\otimes\cdots\otimes T_N^{\alpha_N}))_{\alpha\in\mc A}
+\end{align*}
+is linearly independent. This means showing that if $(\lambda_\alpha)_{\alpha\in\mc A}$ has finitely many nonzero terms, and if
+\begin{align}\label{eq448}
+\sum_\alpha \lambda_\alpha\cdot T_1^{\alpha_1}v_1\otimes\cdots\otimes T_N^{\alpha_N}v_N=0
+\end{align}
+for all $i$ and $v_i\in V_i$, then $\lambda_\alpha=0$ for all $\alpha$. Moreover, by linearity, it suffices to assume \eqref{eq448} for all $v_i$ in a basis of $V_i$. From this description and from Thm. \ref{mc68}, it is clear that by induction on $N$, it suffices to treat the case that $N=2$.
+
+
+
+Let $\Gamma=\sum_{\alpha\in\mc A} \lambda_{\alpha_1,\alpha_2}\Phi(T_1^{\alpha_1}\otimes T_2^{\alpha_2})$ where all but finitely many $\lambda_\alpha$ are zero. Suppose that $\Gamma=0$. For each $v_1\in V_1,v_2\in V_2$ we have
+\begin{align}\label{eq447}
+\sum_\alpha \lambda_{\alpha_1,\alpha_2} T_1^{\alpha_1}v_1\otimes T_2^{\alpha_2}v_2=0
+\end{align}
+For each $\psi\in W_2^\vee$, the map $W_1\times W_2\rightarrow W_1$ sending $(w_1,w_2)\mapsto \bk{\psi,w_2}w_1$ is bilinear, and hence gives a linear map
+\begin{align*}
+\wtd\psi: W_1\otimes W_2\rightarrow W_1\qquad w_1\otimes w_2\mapsto \bk{\psi,w_2}w_1
+\end{align*}
+Applying $\wtd\psi$ to \eqref{eq447} gives
+\begin{align*}
+\sum_\alpha \lambda_{\alpha_1,\alpha_2}\bk{\psi,T_2^{\alpha_2}v_2}\cdot T_1^{\alpha_1}v_1=0
+\end{align*}
+Therefore, the linear map
+\begin{align*}
+\sum_{\alpha_1\in\mc A_1}\Big(\sum_{\alpha_2\in\mc A_2} \lambda_{\alpha_1,\alpha_2}\bk{\psi,T_2^{\alpha_2}v_2}\Big)\cdot T_1^{\alpha_1}
+\end{align*}
+is zero. By the linear independence of $(T_1^{\alpha_1})_{\alpha_1\in\mc A_1}$, we conclude that for each $\alpha_1\in\mc A_1$, the vector
+\begin{align*}
+\sum_{\alpha_2\in\mc A_2} \lambda_{\alpha_1,\alpha_2}T_2^{\alpha_2}v_2
+\end{align*}
+is zero when evaluating with any $\psi\in W_2^\vee$. Since $W_2^\vee$ separates points of $W_2$ (by an easy application of Zorn's lemma), we conclude that $\sum_{\alpha_2}\lambda_{\alpha_1,\alpha_2} T_2^{\alpha_2}$ is zero. Therefore $\lambda_{\alpha_1,\alpha_2}=0$ for each $\alpha_2$ (and each $\alpha_1$) because $(T_2^{\alpha_2})_{\alpha_2\in\mc A_2}$ is linearly independent.\\[-1ex]
+
+
+Step 3. Assume that each $V_i$ is finite dimensional. Let us prove that $\Phi$ is surjective in the special case that $N=2$. The general case follows either from a similar argument or from induction on $N$. Let $e_1,\dots,e_m$ and $f_1,\dots,f_n$ be bases of $V_1,V_2$ respectively. By Thm. \ref{mc68}, $(e_i\otimes f_j)_{1\leq i\leq m,1\leq j\leq n}$ is a basis of $V_1\otimes V_2$. Let $\Gamma:V_1\otimes V_2\rightarrow W_1\otimes W_2$ be linear. For each $i,j$, let $\xi_{i,j}=\Gamma(e_i\otimes f_j)$, and let $\Gamma_{i,j}:V_1\otimes V_2\rightarrow W_1\otimes W_2$ be the unique linear map sending $e_i\otimes f_j$ to $\xi_{i,j}$ and sending the other basis elements to $0$. Then $\Gamma=\sum_{i,j}\Gamma_{i,j}$. Therefore, it suffices to check that each $\Gamma_{i,j}$ is in the range of $\Phi$.
+
+So we fix $1\leq i\leq m$ and $1\leq j\leq n$. Write $\xi_{i,j}$ as a finite sum $\xi_{i,j}=\sum_{k,l}w_k\otimes \omega_l$ where $w_k\in W_1$ and $\omega_l\in W_2$. For each $k,l$, let $A_k:V_1\rightarrow W_1$ be the unique linear map sending $e_i$ to $w_l$ and sending the other basis elements to $0$, and let $B_l:V_2\rightarrow W_2$ be the unique linear map sending $f_j$ to $\omega_l$ and sending the other basis elements to $0$. Then
+\begin{align*}
+\Gamma_{i,j}=\sum_{k,l}\Phi(A_k\otimes B_l)
+\end{align*}
+since both sides send $e_i\otimes f_j$ to $\sum_{k,l}w_k\otimes\omega_l$ and send the other basis elements to $0$. This finishes the proof.
+\end{proof}
+
+
+
+\begin{cv}
+We use the notations in Thm. \ref{mc82}. Unless otherwise stated, we identify $T_1\otimes\cdots\otimes T_N$ with $\Phi(T_1\otimes\cdots\otimes T_N)$ so that $T_1\otimes\cdots\otimes T_N$ is the unique linear map satisfying
+\begin{gather}
+\begin{gathered}
+T_1\otimes\cdots\otimes T_N:V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N\\
+v_1\otimes\cdots\otimes v_N\mapsto Tv_1\otimes\cdots\otimes Tv_N
+\end{gathered}
+\end{gather}
+\end{cv}
+
+
+\begin{exe}
+Suppose that for each $1\leq i\leq N$ we have linear maps of vector spaces $S_i:U_i\rightarrow V_i$ and $T_i:V_i\rightarrow W_i$. Prove that
+\begin{align*}
+(T_1\circ S_1)\otimes\cdots\otimes (T_n\circ S_n)=(T_1\otimes\cdots\otimes T_N)\circ (S_1\otimes\cdots\otimes S_N)
+\end{align*} 
+\end{exe}
+
+\begin{exe}
+Suppose that for each $1\leq i\leq N$, the linear map $T_i:V_i\rightarrow W_i$ is injective (resp. surjective). Prove that $T_1\otimes\cdots\otimes T_N:V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N$ is injective (resp. surjective).
+\end{exe}
+
+
+
+\begin{co}\label{mc80}
+Let $V,W$ be vector spaces. Assume that $\dim V<+\infty$. Then there is a linear isomorphism 
+\begin{align}\label{eq442}
+W\otimes V^*\xlongrightarrow{\simeq} \Lin(V,W)\qquad w\otimes\varphi\mapsto T_{w,\varphi}
+\end{align}
+where for each $v\in V$ we have
+\begin{align}
+T_{w,\varphi}v=\bk{\varphi,v}\cdot w
+\end{align}
+\end{co}
+
+
+
+
+\begin{proof}
+We have a canonical linear isomorphism $W\simeq \Lin(\Fbb,W)$ where each $w\in W$ corresponds to the linear map $\lambda\in\Fbb\mapsto\lambda w$. Therefore, by Thm. \ref{mc82}, we have canonical isomorphisms
+\begin{align*}
+W\otimes V^*\simeq \Lin(\Fbb,W)\otimes\Lin(V,\Fbb)\simeq\Lin(\Fbb\otimes V,W\otimes \Fbb)=\Lin(V,W)
+\end{align*}
+We leave it to the readers to check that these isomorphisms send $w\otimes\varphi$ to $T_{w,\varphi}$.
+\end{proof}
+
+\begin{exe}
+Let $V,W$ be finite dimensional vector spaces with bases $(e_i)_{i\in I}$ and $(f_j)_{j\in J}$ respectively. Identify $W\otimes V^*$ with $\Lin(V,W)$ via the linear isomorphism \eqref{eq442}. Let $T\in\Lin(V,W)$. Let 
+\begin{subequations}
+\begin{align}
+T_i^j=\bk{Te_i,\wch f^j}
+\end{align}
+Prove that
+\begin{align}\label{eq444}
+T=\sum_{i\in I,j\in J}T_i^j\cdot(f_j\otimes\wch e^i)
+\end{align}
+\end{subequations}
+\end{exe}
+
+
+
+\begin{co}\label{mc83}
+Let $V_1,\dots,V_N$ be finite dimensional vector spaces. Then there is a canonical linear isomorphism
+\begin{align}
+V_1^*\otimes\cdots\otimes V_N^*\xlongrightarrow{\simeq}(V_1\otimes\cdots\otimes V_N)^*
+\end{align}
+such that if $\varphi_1\in V_1^*,\dots,\varphi_N\in V_N^*$, then $\varphi_1\otimes\cdots\otimes\varphi_N$ is the linear functional described by
+\begin{gather}
+\begin{gathered}
+\varphi_1\otimes\cdots\otimes\varphi_N:V_1\otimes\cdots\otimes V_N\rightarrow\Fbb\\
+v_1\otimes\cdots\otimes v_N\mapsto \varphi_1(v_1)\cdots\varphi_N(v_N)
+\end{gathered}
+\end{gather}
+\end{co}
+
+\begin{proof}
+In Thm. \ref{mc82}, take $W_1=\cdots=W_N=\Fbb$.
+\end{proof}
+
+
+\begin{df}\label{mc84}
+Let $V_1,\dots,V_N$ be finite dimensional vector spaces. The \textbf{canonical pairing}
+\begin{align*}
+\bk{\cdot,\cdot}:(V_1^*\otimes\cdots\otimes V_N^*)\times (V_1\otimes\cdots\otimes V_N)\rightarrow\Fbb
+\end{align*}
+is the bilinear map defined in terms of the pairing $W\otimes W^\vee\rightarrow\Fbb$ (for any vector space $W$) and the isomorphism in Cor. \ref{mc83}. In other words, it is the unique bilinear map satisfying
+\begin{align}\label{eq443}
+\bk{\varphi_1\otimes\cdots\otimes\varphi_N,v_1\otimes\cdots\otimes v_N}=\varphi_1(v_1)\cdots\varphi_N(v_N)
+\end{align}
+for each $1\leq i\leq N$, $v_i\in V_i$, $\varphi_i\in V_i$.
+\end{df}
+
+\begin{rem}
+Let $(e_{i,\alpha_i})_{\alpha_i\in\mc A_i}$ be a basis of the finite dimensional vector space $V_i$, and let $(\wch e_i^{\alpha_i})_{\alpha_i\in\mc A}$ be its dual basis. From \eqref{eq443}, it is clear that
+\begin{align*}
+\big(\wch e_1^{\alpha_1}\otimes\cdots\otimes \wch e_N^{\alpha_N} \big)_{\alpha_1\in\mc A_1,\dots,\alpha_N\in\mc A_N}
+\end{align*}
+is the dual basis of
+\begin{align*}
+\big(e_{1,\alpha_1}\otimes\cdots\otimes e_{N,\alpha_N} \big)_{\alpha_1\in\mc A_1,\dots,\alpha_N\in\mc A_N}
+\end{align*}
+\end{rem}
+
+
+
+
+
+
+
+
+\begin{eg}
+Let $V_1,V_2$ be finite dimensional vector spaces. Let $u_i,v_i\in V_i$ and $\varphi_i,\psi_i\in V_i^*$. Calculate the pairing of $\eta=2\varphi_1\otimes \varphi_2-\psi_1\otimes\psi_2$ and $\xi=(2u_1)\otimes (3u_2)+v_1\otimes v_2$.
+\end{eg}
+
+\begin{proof}
+By multilinearity, we have $\xi=6u_1\otimes u_2+v_1\otimes v_2$. So
+\begin{align*}
+\bk{\eta,\xi}=&12\bk{\varphi_1\otimes\varphi_2,u_1\otimes u_2}+2\bk{\varphi_1\otimes\varphi_2,v_1\otimes v_2}\\
+&-6\bk{\psi_1\otimes\psi_2,u_1\otimes u_2}-\bk{\psi_1\otimes\psi_2,v_1\otimes v_2}\\
+=&12\varphi_1(u_1)\varphi_2(u_2)+2\varphi_1(v_1)\varphi_2(v_2)-6\psi_1(u_1)\psi_2(u_2)-\psi_1(v_1)\psi_2(v_2)
+\end{align*}
+\end{proof}
+
+
+\begin{rem}\label{mc86}
+Let $p,q\in\Nbb$. Let $V$ be a finite dimensional vector space. An element $T\in V^{\otimes p}\otimes (V^*)^{\otimes q}$ is called a \textbf{tensor of type }\pmb{$(p,q)$}. \index{00@Tensor of type $(p,q)$} If $p=0$ (resp. $q=0$), we call $T$ a \textbf{covariant tensor of order $q$} \index{00@Covaraint tensor} (resp. \textbf{contravariant tensor of order $p$}). \index{00@Contravariant tensor}
+
+Let $e_1,\dots,e_n$ be a basis of $V$ with dual basis $\wch e^1,\dots,\wch e^n$. Let
+\begin{align}
+T_{j_1,\dots,j_q}^{i_1,\dots,i_p}=\bk{T,\wch e^{i_1}\otimes\cdots\otimes\wch e^{i_p}\otimes e_{j_1}\otimes\cdots\otimes e_{j_q}}
+\end{align}
+where $V$ is viewed as the dual of $V^*$ so that (by Def. \ref{mc84}) we have a canonical pairing between $V^{\otimes p}\otimes (V^*)^{\otimes q}$ and $(V^*)^{\otimes p}\otimes V^{\otimes q}$. Then
+\begin{align}
+T=\sum_{i_1,\dots,i_p,j_1,\dots,j_q} T_{j_1,\dots,j_q}^{i_1,\dots,i_p} ~\cdot e_{i_1}\otimes\cdots\otimes e_{i_p}\otimes \wch e^{j_1}\otimes\cdots\otimes \wch e^{j_q}
+\end{align}
+since both sides send $\wch e^{i_1}\otimes\cdots\otimes\wch e^{i_p}\otimes e_{j_1}\otimes\cdots\otimes e_{j_q}$ to $T_{j_1,\dots,j_q}^{i_1,\dots,i_p}$. In physics and mechanics, the data $(T_{j_1,\dots,j_q}^{i_1,\dots,i_p})_{i_\blt,j_\star}$ is often called a tensor. \hfill\qquad
+\end{rem}
+
+
+
+
+
+
+
+
+
+
+\subsection{Symmetric products}
+
+
+\begin{df}
+Let $V$ be a vector space. A bilinear form $\omega:V\times V\rightarrow\Fbb$ is called \textbf{symmetric} \index{00@Symmetric bilinear form} if $\omega(u,v)=\omega(v,u)$ for all $u,v\in V$. Suppose that $\omega$ is a symmetric bilinear form and $\Fbb=\Rbb$, we say that $\omega$ is a \textbf{positive semidefinite bilinear form} (or simply a \textbf{positive bilinear form}) \index{00@Positive (symmetric) bilinear form} if $\omega(v,v)\geq0$ for all $v\in V$. A positive bilinear form $\omega$ is called a \textbf{positive definite bilinear form} \index{00@Positive definite bilinear form} (also called a \textbf{real inner product}) \index{00@Real inner product} if $\omega(v,v)>0$ for all nonzero $v\in V$.
+\end{df}
+
+
+
+\begin{rem}
+If $\bk{\cdot|\cdot}$ is a sesquilinear form on a complex vector space $V$, and if $\bk{v|v}\geq0$ for all $v\in V$, then by Prop. \ref{lb588}, we have $\bk{u|v}=\ovl{\bk{v|u}}$ for all $u,v$. However, if $V$ is a real vector space, and if $\omega$ is a bilinear form on $V$ satisfying $\omega(v,v)\geq0$ for all $v\in V$, we do not necessarily have $\omega(u,v)=\omega(v,u)$; see Exp. \ref{mc85}. Therefore, we must include the symmetry condition $\omega(u,v)=\omega(v,u)$ in the definition of real positive bilinear forms.
+\end{rem}
+
+\begin{eg}\label{mc85}
+Let $V=\Rbb^2$ whose elements are viewed as $2\times 1$ matrices. Let $-2<\lambda<2$ and $A=\begin{pmatrix}
+1&\lambda\\
+0&1
+\end{pmatrix}$
+Let $\omega:V\times V\rightarrow\Rbb$ be defined by $\omega(u,v)=u^\tr Av$. Then $\omega(v,v)>0$ for all nonzero $v\in V$. However, we do not have $\omega(u,v)=\omega(v,u)$ in general.
+\end{eg}
+
+
+
+In the following, we shall only consider finite dimensional vector spaces. By Rem. \ref{mc79}, a bilinear form $\omega:V\times V\rightarrow\Rbb$ can be viewed as an element of $(V\otimes V)^*\simeq V^*\simeq V^*$. Let us describe the elements of $V^*\otimes V^*$ that are symmetric bilinear forms. 
+
+\begin{df}
+For each $u,v\in V$, define the \textbf{symmetric product} \index{00@Symmetric product} $\varphi\cdot\psi\in V\otimes V$ to be
+\begin{align}
+\varphi\cdot\psi=\frac 12(\varphi\otimes\psi+\psi\otimes\varphi)
+\end{align}
+\end{df}
+
+\begin{pp}
+Let $V$ be finite dimensional. Let $\omega\in V^*\otimes V^*$. Then $\omega$ is a symmetric bilinear form iff it is a sum of symmetric products of elements of $V^*$. 
+
+Moreover, suppose that $\omega$ is symmetric. Let $e_1,\dots,e_n$ be a basis of $V$ with dual basis $\wch e^1,\dots,\wch e^n$. Define the \textbf{Gram matrix} \index{00@Gram matrix} $G=(\omega(e_i\otimes e_j))_{1\leq i,j\leq n}$ by
+\begin{align}
+G_{i,j}=\omega(e_i\otimes e_j)
+\end{align} 
+Then $G$ is a symmetric matrix, and
+\begin{align}\label{eq449}
+\omega=\sum_{1\leq i,j\leq n}G_{i,j}\wch e^i\wch e^j
+\end{align}
+\end{pp}
+
+\begin{proof}
+If $\varphi,\psi\in V^*$, then $\varphi\psi$ sends $u\otimes v\in V\otimes V$ to $\frac 12(\varphi(u)\psi(v)+\varphi(v)\psi(u))$. So clearly $\varphi\psi$ is a symmetric bilinear form. Thus, a sum of symmetric products of linear functionals is a symmetric bilinear form.
+
+Conversely, let $\omega\in V^*\otimes V^*$ be a symmetric bilinear form. Let us prove \eqref{eq449}. Note that $\omega=\sum_{i,j}G_{i,j}\wch e^i\otimes \wch e^j$ since both sides send $e_i\otimes e_j$ to $G_{i,j}$. (See also Rem. \ref{mc86}.) Since $G_{i,j}=G_{j,i}$, we have
+\begin{align*}
+&\sum_{i,j}G_{i,j}\wch e^i\otimes\wch e^j=\sum_i G_{i,i}\wch e^i\otimes \wch e^i+\sum_{i<j}G_{i,j}\wch e^i\otimes\wch e^j+\sum_{i>j}G_{j,i}\wch e^i\otimes\wch e^j\\
+=&\sum_i G_{i,i}\wch e^i\otimes \wch e^i+\sum_{i<j}G_{i,j}(\wch e^i\otimes\wch e^j+\wch e^j\otimes\wch e^i)
+\end{align*}
+which equals $\sum_i G_{i,i}\wch e^i\wch e^i+2\sum_{i<j}G_{i,j}\wch e^i\wch e^j$. A similar calculation, but with $\otimes$ replaced by the symmetric product, shows that
+\begin{align*}
+\sum_{i,j}G_{i,j}\wch e^i\wch e^j=\sum_i G_{i,i}\wch e^i\wch e^i+\sum_{i<j}G_{i,j}(\wch e^i\wch e^j+\wch e^j\wch e^i)
+\end{align*}
+where the RHS also equals $\sum_i G_{i,i}\wch e^i\wch e^i+2\sum_{i<j}G_{i,j}\wch e^i\wch e^j$. This proves \eqref{eq449}.
+\end{proof}
+
+
+Note that \eqref{eq449} is not a sum of linearly independent vectors since (for example) $\wch e^1\wch e^2$ and $\wch e^2\wch e^1$ are linearly dependent. Thus, when doing explicit calculations, we often write $\omega$ as
+\begin{align}\label{eq450}
+\omega=\sum_iG_{i,i}\wch e^i\wch e^i+2\sum_{i<j}G_{i,j}\wch e^i\wch e^j
+\end{align}
+which is equivalent to \eqref{eq449}.
+
+\begin{eg}
+Suppose that $V$ is real and $\omega$ is an inner product with orthonormal basis $e_1,\dots,e_n$, then
+\begin{align}
+\omega=\wch e^1\wch e^1+\cdots+\wch e^n\wch e^n
+\end{align}
+\end{eg}
+
+\begin{eg}
+Let $e_1,e_2,e_3$ be a basis of $V\simeq\Rbb^3$. By \eqref{eq450}, the Gram matrices of $\varphi=\wch e_2\wch e_3$ and $\psi=4\wch e^1\wch e^1-6\wch e^2\wch e^3$ are respectively
+\begin{gather*}
+\begin{pmatrix}
+0&0&0\\
+0&0&\frac 12\\
+0&\frac 12 &0
+\end{pmatrix}\qquad
+\begin{pmatrix}
+4&0&0\\
+0&0&-3\\
+0&-3&0
+\end{pmatrix}
+\end{gather*}
 \end{eg}
 
 
@@ -28225,6 +28772,52 @@ is a tensor product of $\Fbb^{X_1},\dots,\Fbb^{X_N}$.
 
 
 
+\newpage
+
+
+
+\section{Integrals of functions on manifolds}
+
+
+\subsection{Covariant tensor fields}
+
+
+Let $M,N$ be smooth $\partial$-manifolds.
+
+
+
+\begin{df}
+Let $k\in\Nbb$. The \textbf{bundle of covariant $k$-tensors} of $M$ is defined to be \index{zz@$\bigotimes^kT^*M$}
+\begin{align*}
+\bigotimes\nolimits^kT^*M:=\bigsqcup_{p\in M}(T_p^*M)^{\otimes k}
+\end{align*}
+A function $A:M\rightarrow\bigotimes^k T^*M$ is called a \textbf{covariant tensor field of order $k$} \index{00@Covariant tensor field} if for each $p\in M$ we have $A_p\in (T_p^*M)^{\otimes k}$.
+\end{df}
+
+
+
+
+\begin{eg}
+Let $(U,\varphi^1,\dots,\varphi^n)$ be a chart on $M$. Then
+\begin{align}\label{eq451}
+A=\sum_{1\leq i_1,\dots,i_k\leq n}f_{i_1,\dots,i_k}d\varphi^{i_1}\otimes\cdots\otimes d\varphi^{i_k}
+\end{align}
+is a tensor field where $f_{i_1,\dots,i_k}:U\rightarrow\Rbb$. For each $p\in M$, the value $A|_p$ equals $\sum f_{i_1,\dots,i_k}(p)d\varphi^{i_1}\otimes\cdots\otimes d\varphi^{i_k}\big|_p$. Moreover, by Thm. \ref{mc68}, any tensor field $A:U\rightarrow\bigotimes^kT^*M$ can be uniquely written in the form \eqref{eq451}.
+\end{eg}
+
+\begin{rem}
+Let $(U,\varphi^1,\dots,\varphi^n)$ and $(U,\psi^1,\dots,\psi^n)$ be charts on $M$. Let $A=$\eqref{eq451}. Then, by Cor. \ref{lb987},
+\begin{align}
+A=\sum_{
+\begin{subarray}{c}
+1\leq i_1,\dots,i_k\leq n\\
+1\leq j_1,\dots,j_k\leq n
+\end{subarray}}
+f_{i_1,\dots,i_k}\cdot \frac{\partial\varphi^{i_1}}{\partial\psi^{j_1}}\cdots\frac{\partial\varphi^{i_k}}{\partial\psi^{j_k}}\cdot d\psi^{j_1}\otimes\cdots\otimes d\psi^{j_k}
+\end{align}
+\end{rem}
+
+
 
 
 
@@ -28236,6 +28829,7 @@ is a tensor product of $\Fbb^{X_1},\dots,\Fbb^{X_N}$.
 
 
 \hypertarget{beforeindex}{}
+
 
 
 \printindex	
