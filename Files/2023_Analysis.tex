@@ -479,7 +479,7 @@
 
 
 \noindent Sections on history include but are not limited to: 
-\ref{lb55} (point-set topology),  \ref{lb550} (integral theory, Fourier series), \ref{lb543} (Banach-Alaoglu, Hahn-Banach),  \ref{lb548} (quotient Banach spaces, Hahn-Banach), \ref{lb671} and most part of Ch. \ref{lb672} (Hilbert spaces), \ref{lb733} (measurable sets), \ref{lb896} (functional calculus, spectral theory)
+\ref{lb55} (point-set topology),  \ref{lb550} (integral theory, Fourier series), \ref{lb543} (Banach-Alaoglu, Hahn-Banach),  \ref{lb548} (quotient Banach spaces, Hahn-Banach), \ref{lb671} and most part of Ch. \ref{lb672} (Hilbert spaces, integral equations), \ref{lb733} (measurable sets), \ref{mc89} (Riesz-Fischer theorem, $L^p$-$L^q$ duality), \ref{lb896} (functional calculus, spectral theory)
 \normalsize
 %\thispagestyle{empty}	 %remove page number of this page
 
@@ -15465,11 +15465,14 @@ Let me explain the meaning of the statement ``$\fk L(V)$ is a Banach algebra". F
 Assume that $V$ is a normed vector spaces and $W$ is a Banach space. Recall that $\fk L(V,W)$ is a linear subspace of $W^V$ (cf. Prop. \ref{lb314}). Then $\fk L(V,W)$, equipped with the operator norm, is a Banach space.
 \end{thm}
 
+In particular, the dual space $V^*=\fk L(V,\Fbb)$ is a Banach space.
 
 \begin{proof}
-By Prop. \ref{lb314}, it remains to prove that $\fk L(V,W)$ is complete. Let $(T_n)$ be a Cauchy sequence in $\fk L(V,W)$. So $\lim_{m,n\rightarrow\infty}\Vert T_m-T_n\Vert=0$. For each $v\in V$, we have $\Vert T_mv-T_nv\Vert\leq \Vert T_m-T_n\Vert\cdot\Vert v\Vert$ which converges to $0$ under $\lim_{m,n}$. So $(T_nv)$ is a Cauchy sequence in $W$, converging to a vector $Tv\in W$. Thus, we have proved that $(T_n)$ converges pointwisely to $T$. Clearly $M:=\sup_{n\in\Zbb_+}\Vert T_n\Vert$ is a finite number. Therefore, by Prop. \ref{lb520}, we have $T\in\fk L(V,W)$ and $\Vert T\Vert\leq M$. 
+By Prop. \ref{lb314}, it remains to prove that $\fk L(V,W)$ is complete. Let $(T_n)$ be a Cauchy sequence in $\fk L(V,W)$. So $\lim_{m,n\rightarrow\infty}\Vert T_m-T_n\Vert=0$. For each $v\in V$, we have $\Vert T_mv-T_nv\Vert\leq \Vert T_m-T_n\Vert\cdot\Vert v\Vert$ which converges to $0$ under $\lim_{m,n}$. So $(T_nv)$ is a Cauchy sequence in $W$, converging to a vector $Tv\in W$. Thus, we have proved that $(T_n)$ converges pointwisely to $T$. Clearly $M:=\sup_{n\in\Zbb_+}\Vert T_n\Vert$ is a finite number. Since $T$ is obviously linear (as in the proof of Prop. \ref{lb520}), and since $\Vert T\xi\Vert=\lim_n\Vert T_n\xi\Vert\leq M\Vert \xi\Vert$ for all $\xi\in V$, we have $T\in\fk L(V,W)$ and $\Vert T\Vert\leq M$. 
 
-Note that $\lim_n\Vert T-T_n\Vert=0$ means precisely that $T_n\rightrightarrows T$ on $B_V(0,1)$. Since $(T_n)$ converges pointwise to $T$, to prove that $\lim_n\Vert T-T_n\Vert=0$, it suffices to prove that $(T_n)$ converges uniformly to some function on $B_V(0,1)$. This is due to the completeness of $l^\infty(B_V(0,1),W)$ and the Cauchyness of $(T_n|_{B_V(0,1)})_{n\in\Zbb_+}$. 
+
+
+Let us prove that $\lim_n\Vert T_n-T\Vert=0$. Since $(T_n)$ is Cauchy, for each $\eps>0$ there exists $K\in\Zbb_+$ such that $\Vert T_n-T_m\Vert\leq\eps$ for all $m,n\geq K$. Thus, for each $\xi\in\ovl B_V(0,1)$ we have $\Vert T_n\xi-T_m\xi\Vert\leq\eps$. Take $m\rightarrow\infty$. Then for each $n\geq K$ we have that $\Vert T_n\xi-T\xi\Vert\leq \eps$ for all $\xi\in\ovl B_V(0,1)$, and hence that $\Vert T_n-T\Vert\leq\eps$. This finishes the proof. 
 \end{proof}
 
 
@@ -23654,14 +23657,111 @@ In Pb. \ref{lb912} and \ref{lb910}, we will give applications of Thm. \ref{lb874
 
 
 
-\subsection{The Riesz-Fischer theorem}
+\subsection{The Riesz-Fischer theorem}\label{mc89}
 
 
 Let $(X,\fk M,\mu)$ be a measure space. 
 
-In this section, we shall show that $L^p(X,\mu)$ is complete. Recall how to prove that $l^p(X)$ is complete (cf. Thm. \ref{lb596}): Let $(f_n)$ be a Cauchy sequence in $l^p(X)$. We first show that for each $x\in X$, $(f_n(x))$ is a Cauchy sequence, and hence converges to some $f(x)$. Then we show that $\sum_X |f-f_n|^p$ is small for large enough $n$. In particular, $\Vert f\Vert_{l^p}\leq \Vert f-f_n\Vert_{l^p}+\Vert f_n\Vert_{l^p}<+\infty$. Thus $f\in l^p(X)$ and $\lim_n\Vert f-f_n\Vert_{l^p}=0$.
+\subsubsection{From $L^p$-$L^q$ duality to completeness}\label{mc88}
 
-Our proof of the completeness of $L^p(X,\mu)$ will follow a similar strategy, except for the following difference: If $(f_n)$ is a Cauchy sequence in $L^p(X,\mu)$, we cannot show that $(f_n)$ converges a.e.. But as a fallback, we can prove that $(f_n)$ has an a.e. convergent subsequence. 
+
+In this section, we shall show that $L^p(X,\mu)$ is complete. This result was first proved by Riesz and Fischer for $L^2([a,b],m)$, and was later generalized by Riesz to $L^p([a,b],m)$ (where $1<p<+\infty$) in \cite{Rie10}. To motivate our proof of Thm. \ref{lb875}, we first discuss Riesz's approach in \cite{Rie10}. See also \cite[Sec. IV.4]{Ber65} for a relevant discussion.
+
+
+
+A main goal of \cite{Rie10} was to study the moment problem in $L^p$ spaces. Therefore, the ideas of dual spaces and weak(-*) compactness (which are crucial to Riesz's treatment of moment problems, cf. Sec. \ref{lb543}) are important for us to understand Riesz's proof of the completeness of $L^p([a,b],m)$. Let us assume, as Riesz did, that $1<p<+\infty$. We shall first explain how Riesz proved $L^q([a,b],m)^*=L^p([a,b],m)$; the completeness of $L^p([a,b],m)$ then follows from the general fact that the dual of a normed vector space is complete (Thm. \ref{lb540}).
+
+
+
+The main difficulty of proving $(L^q)^*\simeq L^p$ lies in proving that any bounded linear functional $\Lambda\in L^q([a,b],m)^*$ can be realized by some $f\in L^p([a,b],m)$. Motivated by the proof of the Riesz representation Thm. \ref{lb847}, one may define $F(x)=\Lambda([a,x])$, hoping that $\Lambda(g)=\int gdF$. Thus, the natural candidate for the function $f$ representing $\Lambda$ should be the derivative $f=F'$. 
+
+In fact, in \cite{Rie10}, by using Lebesgue's differentiation theorem (cf. \cite[Ch. 7]{Rud-R}), Riesz succeeded in showing that $f:=F'$ exists a.e., that $f\in L^p([a,b],m)$, and that  $dF=fdm$. This finishes the proof. (This method can also be found in the English textbook \cite[Sec. 36]{RN}.)
+
+The modern proof of $L^p\simeq (L^q)^*$ for an arbitrary measure space $(X,\fk M,\mu)$ follows basically the same ideas, except that $F'$ should be replaced by the Radon-Nikodym derivative:  Assume for simplicity that $\mu$ is a finite measure. Define $\nu:\fk M\rightarrow\Cbb$ by $\nu(E)=\Lambda(\chi_E)$. This is a (so called) \textbf{complex measure}, which plays the role of $F$ in Riesz's treatment. The one shows that $d\nu=fd\mu$ for some measurable function $f$ (called the \textbf{Radon-Nikodym derivative} \index{00@Radon-Nikodym derivative} of $\nu$ with respect to $\mu$), and that $f\in L^p(X,\mu)$. Finally, one shows that $\Lambda(g)=\int fgd\mu$ for all $g\in L^q(X,\mu)$, concluding the proof. See e.g. \cite[Ch. 6]{Rud-R} or \cite[Sec. 3.2, 6.2]{Fol-R} for details.%\footnote{Riesz's method relies on Lebesgue's differentiation theorem (cf. \cite[Ch. 7]{Rud-R}) but not on the completeness of $L^p$ spaces. However, the Radon-Nikodym theorem relies on the completeness of $L^2$.}
+
+
+Once $L^p\simeq(L^q)^*$ has been proved, one can use the completeness of dual spaces to conclude that $L^p$ is complete. Let us recall how we proved in Thm. \ref{lb540} that a dual space is complete. I shall redo the proof by using a Fatou-type argument that Riesz used in  \cite[\S 7]{Rie10}. This argument is very helpful for us to understand the formal proof of the Riesz-Fischer Thm. \ref{lb875}.
+
+\begin{thm}
+Let $V$ be a normed vector space. Then $V^*$ is complete.
+\end{thm}
+
+\begin{proof}
+Let $(\varphi_n)$ be a Cauchy sequence in $V^*$. As in the proof of Thm. \ref{lb540}, one easily sees that $(\varphi_n)$ converges pointwise to a linear functional $\varphi:V\rightarrow\Fbb$, and that $\Vert\varphi\Vert\leq\sup_n\Vert\varphi_n\Vert<+\infty$. Thus, $(\varphi_n)$ converges weak-* to an element $\varphi\in V^*$.
+
+The following argument is crucial: Note that for each $m\in\Zbb_+$, $\lim_m(\varphi_n-\varphi_m)$ converges weak-* to $\varphi_n-\varphi$. Therefore, by \uwave{Fatou's lemma} for weak(-*) convergence (cf. Rem. \ref{lb770}), 
+\begin{align}\label{eq455}
+\Vert\varphi_n-\varphi\Vert\leq\liminf_m\Vert\varphi_n-\varphi_m\Vert
+\end{align}
+Since $(\varphi_n)$ is Cauchy, the RHS of \eqref{eq455} is small enough for sufficiently large $n$. Thus $\lim_n\Vert\varphi_n-\varphi\Vert=0$.
+\end{proof}
+
+
+
+In this course, we will not prove $(L^q)^*\simeq L^p$ in general. (But we will prove that there is a natural linear isometry $L^p\rightarrow(L^q)^*$. See Prop. \ref{lb897}.) However, the above discussions give us a hint on how to prove the completeness of $L^p(X,\mu)$. Let $(f_n)$ be a Cauchy sequence in $L^p(X,\mu)$. Let $\Lambda:L^q(X,\mu)\rightarrow\Cbb$ be defined by
+\begin{align}\label{eq452}
+\Lambda(g)=\lim_n \int_X f_ngd\mu  
+\end{align}
+H\"older's inequality implies that the RHS converges, and that $\Lambda$ is bounded. Suppose that we can prove that $\Lambda$ is realized by some $f\in L^p(X,\mu)$, namely, $\Lambda(g)=\int fg$ for all $g\in L^q$. By \eqref{eq452}, this means equivalently that we can find $f\in L^p$ such that $(f_n)$ converges weak-* to $f$ (i.e., $\lim_n\int f_ng=\int fg$ for all $g\in L^q$). Then the Fatou-type argument as in \eqref{eq455} shows that $(f_n)$ converges in $L^p$ to $f$. This will finish the proof.
+
+
+
+
+%Although we do not attempt to prove $L^p\simeq(L^q)^*$ in full generality, we can try to prove that this particular $\Lambda$ can be realized by some $f\in L^p(X,\mu)$. Suppose that such $f$ exists, then it is not hard to prove that $(f_n)$ converges in $L^p$ to $f$. Let me explain how Riesz proved $\lim_n\Vert f_n-f\Vert_p=0$ in \cite[\S 7]{Rie10}; his method will be very helpful for us to understand the formal proof of the Riesz-Fischer Thm. \ref{lb875}.
+
+%Riesz's method is as follows. Note that by \eqref{eq452}, the fact that $f$ represents $\Lambda$ (i.e., $\Lambda(h)=\int fh$ for all $h\in L^q$) means precisely that $(f_n)$ converges weakly to $f$. Thus, for each $k\in\Zbb_+$, $\lim_l (g_k-g_l)$ converges weakly to $g_k-f$. Now, by   \footnote{Recall how we proved in Thm. \ref{lb540} that $V^*$ is complete: Choose a Cauchy sequence $(\varphi_n)$ in $V^*$. We first showed that $(\varphi_n)$ converges pointwise (i.e., converges weak-*) to some $\varphi\in V^*$. Then we proved that $\lim_n\Vert\varphi_n-\varphi\Vert=0$.}
+
+%\footnote{This argument implies the following general fact: If $V$ is a normed vector space, and if $(\varphi_n)$ is a Cauchy sequence in $V^*$ converging weak-* to $\varphi\in V$, then $(\varphi_n)$ converges in norm to $\varphi$.}
+
+\subsubsection{Passing to a subsequence}
+
+
+To show that the Cauchy sequence $(f_n)$ converges weak-* to some $f\in L^p$, we should return to Riesz's paper. From a modern perspective, the structure of \cite{Rie13} is a bit odd: Riesz first proved that $\ovl B_{L^p([a,b],m)}(0,1)$ is weakly/weak-* compact by using the construction $F(x)=\Lambda([a,x])$ and its derivative. Then, as an immediate consequence of the weak(-*) compactness, he proved that $L^p([a,b],m)$ is complete. Finally, he proved $L^p([a,b],m)\simeq L^q([a,b],m)^*$ also using $F$ and $F'$. The argument in our proof of the Banach-Alaoglu Thm. \ref{lb519} is actually implicit in Riesz's proof of the weak(-*) compactness. Riesz did not conclude the completeness of $L^p$ from the fact that $L^p$ is a dual space, which might suggest that when Riesz wrote \cite{Rie10}, he did not have the general idea that the dual of a normed vector space is complete.
+
+%It seems that when writing \cite{Rie10}, Riesz did not have the general idea that the weak(-*) compactness of the closed unit ball of a normed vector space $V$ follows \textit{directly} from the from the 
+
+%closed unit ball of a dual normed vector space is weak-* compact. Nevertheless, Riesz's proof of weak compactness and his proof of $L^p\simeq(L^q)^*$ both utilize the construction $F(x)=\Lambda([a,x])$ and its derivative.
+
+Anyway, Riesz's proof of completeness from weak(-*) compactness suggests the following point: In order to show that $(f_n)$ converges weak-*, one can try to show that $(f_n)$ has a subsequence $(g_k)$ converging weak-* to some $f\in L^p(X,\mu)$. Then, the Fatou-type argument as in \eqref{eq455} shows that $\lim_k\Vert f-g_k\Vert_p=0$, and hence (by the Cauchy-ness of $(f_n)$) $\lim_n\Vert f-f_n\Vert_p=0$. Of course, $(f_n)$ also converges weak-* to $f$.
+
+
+
+\subsubsection{Main idea of the proof of Riesz-Fischer Thm. \ref{lb875}}
+
+Motivated by the above discussions, we shall prove the completeness of $L^p(X,\mu)$ in the following way. We want to find a subsequence $(g_k)$ of $(f_n)$ converging weak-* to some $f\in L^p(X,\mu)$. In fact, we shall find a subsequence $(g_k)$ converging a.e. to some measurable function. Almost everywhere convergence is closely related to weak-* convergence; see Pb. \ref{lb912}. In particular, we also have \uwave{Fatou's lemma} for pointwise/a.e. convergence so that we can use the trick \eqref{eq455}. %(We will use Fatou's lemma in our formal proof of the Riesz-Fischer Thm. \ref{lb875}.) 
+
+
+The subsequence $(g_k)$ is chosen to be an arbitrary one satisfying \begin{align}\label{eq453}
+\sum_k\Vert g_{k+1}-g_k\Vert_p<+\infty
+\end{align}
+That such $(g_k)$ converges a.e. can be easily seen when $\mu(X)<+\infty$ (e.g., Riesz's case $(X,\mu)=([a,b],m)$). Indeed, since $1\in L^q$, by H\"older's inequality, we have
+\begin{align}\label{eq454}
+\sum_k\int|g_{k+1}-g_k|<+\infty
+\end{align}
+So $\sum_k|g_{k+1}-g_k|$ converges a.e. by Prop. \ref{lb752}, and hence $\sum_k (g_{k+1}-g_k)$ converges absolutely a.e.. This proves that $\lim_k g_k$ converges a.e. to some measurable $f$. The case $\mu(X)=+\infty$ can also be handled by slightly adjusting the argument.
+
+
+Now, as in \eqref{eq455}, we can use Fatou's lemma for pointwise/a.e. convergence (Thm. \ref{lb768}) to show that $\lim_k\Vert g_k-f\Vert_p=0$, and hence that $f\in L^p$. This concludes the proof that $L^p$ is complete.
+
+We would like to point out that in the case $(X,\mu)=([a,b],m)$, we have Lebesgue's differentiation theorem (cf. \cite[Thm. 7.11]{Rud-R}):
+\begin{itemize}
+\item Let $f\in L^1([a,b],m)$. Then the function $F(x)=\int_{[a,x]}fdm$ is differentiable a.e., and $F'=f$ a.e..
+\end{itemize}
+Using this result and \eqref{eq454}, one easily shows that the subsequence $(g_k)$ converges a.e. to $F'$ where $F(x)=\Lambda([a,x])$ and $\Lambda$ is defined by \eqref{eq452}. Thus, although we do not discuss differentiation in the framework of the Lebesgue measure in this course, its idea has influenced the proof of the completeness of  $L^p$ spaces. 
+
+(Interestingly, the Radon-Nikodym derivative, which is a generalization of the differentiation in $(\Rbb,m)$, can be proved with the help of the completeness of $L^2$-spaces. See \cite[Thm. 6.10]{Rud-R}. Therefore, the ideas of differentiation, the completeness of $L^p$-spaces, the $L^p$-$L^q$ duality, and the weak(-*) compactness are intimately connected.)
+
+
+
+
+
+
+%Recall how to prove that $l^p(X)$ is complete (cf. Thm. \ref{lb596}): Let $(f_n)$ be a Cauchy sequence in $l^p(X)$. We first show that for each $x\in X$, $(f_n(x))$ is a Cauchy sequence, and hence converges to some $f(x)$. Then we show that $\sum_X |f-f_n|^p$ is small for large enough $n$. In particular, $\Vert f\Vert_{l^p}\leq \Vert f-f_n\Vert_{l^p}+\Vert f_n\Vert_{l^p}<+\infty$. Thus $f\in l^p(X)$ and $\lim_n\Vert f-f_n\Vert_{l^p}=0$.
+
+%Our proof of the completeness of $L^p(X,\mu)$ will follow a similar strategy, except for the following difference: If $(f_n)$ is a Cauchy sequence in $L^p(X,\mu)$, we cannot show that $(f_n)$ converges a.e.. But as a fallback, we can prove that $(f_n)$ has an a.e. convergent subsequence. 
+
+
+\subsubsection{Rigorous proofs}
 
 \begin{thm}[\textbf{Riesz-Fischer theorem}] \index{00@Riesz-Fischer theorem}\label{lb875}
 Let $1\leq p<+\infty$. Then $L^p(X,\mu)$ is a Banach space. Moreover, if $(f_n)$ is a sequence in $L^p(X,\mu)$, $f$ is in $L^p(X,\mu)$, and $\lim_n\Vert f-f_n\Vert_p=0$, then $(f_n)$ has a subsequence converging a.e. to $f$.
@@ -23672,15 +23772,15 @@ It follows that $L^2(X,\mu)$ is a Hilbert space under the inner product \eqref{e
 \begin{proof}
 Step 1. Let $(f_n)$ be a Cauchy sequence in $L^p(X,\mu)$. We claim that $(f_n)$ has a subsequence $(g_k)=(f_{n_k})$ converging pointwise outside a null set $\Delta$. 
 
-Suppose the claim is true. Let $g:X\rightarrow\Cbb$ be defined by $g(x)=\lim_kg_k(x)$ if $x\in X\setminus\Delta$, and $g(x)=0$ if $x\in\Delta$. Then $g$ is measurable. Since $(g_k)$ is $L^p$-Cauchy, for each $\eps>0$ there exists $K\in\Zbb_+$ such that for each $k,l\geq K$ we have $\Vert g_k-g_l\Vert_p\leq\eps$. By Fatou's lemma (Thm. \ref{lb768}), we get
+Suppose the claim is true. Let $f:X\rightarrow\Cbb$ be defined by $f(x)=\lim_kg_k(x)$ if $x\in X\setminus\Delta$, and $f(x)=0$ if $x\in\Delta$. Then $f$ is measurable. Since $(g_k)$ is $L^p$-Cauchy, for each $\eps>0$ there exists $K\in\Zbb_+$ such that for each $k,l\geq K$ we have $\Vert g_k-g_l\Vert_p\leq\eps$. By Fatou's lemma (Thm. \ref{lb768}), we get
 \begin{align*}
-\int_X |g_k-g|^p\leq\liminf_l\int_X|g_k-g_l|^p\leq \eps^p
+\int_X |g_k-f|^p\leq\liminf_l\int_X|g_k-g_l|^p\leq \eps^p
 \end{align*}
-for all $k\geq K$. In particular, $\Vert g\Vert_p\leq \Vert g-g_k\Vert_p+\Vert g_k\Vert_p<+\infty$. This proves that $g\in L^p(X,\mu)$ and that $(g_k)$ converges to $g$ in $L^p$. Therefore, $(f_n)$ converges in $L^p$ to $g$ since $(f_n)$ is $L^p$-Cauchy (cf. Thm. \ref{lb79}).
+for all $k\geq K$. In particular, $\Vert f\Vert_p\leq \Vert f-g_k\Vert_p+\Vert g_k\Vert_p<+\infty$. This proves that $f\in L^p(X,\mu)$ and that $(g_k)$ converges to $f$ in $L^p$. Therefore, $(f_n)$ converges in $L^p$ to $f$ since $(f_n)$ is $L^p$-Cauchy (cf. Thm. \ref{lb79}). This proves the completeness.
 
 
 
-If $(f_n)$ converges in $L^p$ to $f\in L^p(X,\mu)$, then $f$ and $g$ are the same elements in $L^p(X,\mu)$. So $\Vert f-g\Vert_p=0$, and hence $f=g$ a.e.. This proves that the subsequence $(g_k)$ converges to $f$ a.e..\\[-1ex]
+If $(f_n)$ converges in $L^p$ to $\wtd f\in L^p(X,\mu)$, then $f$ and $\wtd f$ are the same element in $L^p(X,\mu)$. So $\Vert f-\wtd f\Vert_p=0$, and hence $f=\wtd f$ a.e.. This proves that the subsequence $(g_k)$ converges to $\wtd f$ a.e.. This proves the second half of the theorem.\\[-1ex]
 
 Step 2. Let us prove the claim. By Pb. \ref{lb566}-1, the Cauchy sequence $(f_n)$ has a subsequence $(g_k)_{k\in\Zbb_+}$ such that $\sum_{k=1}^\infty\Vert g_{k+1}-g_k\Vert_p<+\infty$. Set $h_k=|g_{k+1}-g_k|$. Then $\sum_k\Vert h_k\Vert_p<+\infty$. Suppose we can prove that $H:=\sum_k h_k$ is finite a.e.. Then $\sum_k (g_{k+1}-g_k)$ converges absolutely a.e., and hence converges a.e.. In other words, $\lim_k g_k$ converges a.e.. This proves the claim.
 
@@ -23688,7 +23788,7 @@ Let us prove that $H<+\infty$ a.e.. We first consider the special case that $\mu
 \begin{align*}
 \int_{E_n} H=\int_X Hg=\sum_k \int_X h_kg\leq\sum_k \Vert h_k\Vert_p\cdot\Vert g\Vert_q<+\infty
 \end{align*}
-Therefore, by Prop. \ref{lb752}, we have $H<+\infty$ a.e..
+Therefore, by Prop. \ref{lb752}, we have $H|_{E_n}<+\infty$ a.e..
 
 In the general case, by Lem. \ref{mc87}, the set $Y=\bigcup_k \{x\in X:h_k(x)>0\}$ is $\sigma$-finite. The above special case implies that $H|_Y$ is finite a.e.. Since $H$ is zero outside $Y$, we get $H<+\infty$ a.e..
 \end{proof}
@@ -23701,7 +23801,7 @@ Let $f\in L^p(X,\mu)$ where $1\leq p<+\infty$. Then $\Omega_f:=\{x\in X:f(x)\neq
 We have $\Omega_f=\bigcup_n E_n$ where $E_n=\{x\in X:|f(x)|\geq n^{-1}\}$. Then $n^{-p}\mu(E_n)=\int_{E_n} n^{-p}\leq\int_{E_n}|f|^p\leq \Vert f\Vert_p^p<+\infty$.
 \end{proof}
 
-
+The idea in Step 2 of the proof of the Riesz-Fischer Thm. \ref{lb875} can be used to prove a generalized Minkowski's inequality. See Pb. \ref{mc49}.
 
 
 \begin{rem}
@@ -24387,9 +24487,9 @@ Nevertheless, although some of Riesz's ideas in \cite{Rie13} are not so modern, 
 
 We assume Riesz's representation Thm. \ref{lb899} for $L^p$ spaces, although its full proof is not given in the notes.
 
-\begin{sprob}\label{lb951}
+\begin{prob}\label{lb951}
 Let $1\leq p\leq+\infty$ and $(X,\fk M,\mu)$ is a $\sigma$-finite measure space. Let $p^{-1}+q^{-1}=1$. Let $f:X\rightarrow\Cbb$ be measurable. Prove that $f\in \mc L^p(X,\mu)$ iff $\dps\sup_{g\in\ovl B_{\mc L^q(X,\mu)}(0,1)}\int_X |fg|d\mu<+\infty$.
-\end{sprob}
+\end{prob}
 
 \begin{proof}[Hint]
 To prove ``$\Leftarrow$", choose an increasing sequence $(E_n)$ of measurable sets whose union is $X$ such that $\mu(E_n)<+\infty$ and $\Vert f\chi_{E_n}\Vert_{l^\infty}<+\infty$ for all $n$. Prove $\sup_n\Vert f\chi_{E_n}\Vert_p<+\infty$.
@@ -28883,6 +28983,9 @@ Folland, G. B. (1999). Real analysis: modern techniques and their applications. 
 
 \bibitem[G\"od47]{God47}
 G\"odel, K. (1947). What is Cantor's continuum problem?. The American Mathematical Monthly, 54(9), 515-525.
+
+%\bibitem[Gray84]{Gray84}
+%Gray, J. D. (1984). The shaping of the Riesz representation theorem: A chapter in the history of analysis. Archive for History of Exact Sciences, 31, 127-187.
 
 \bibitem[Gud74]{Gud74}
 Gudder, S. (1974). Inner product spaces. The American Mathematical Monthly, 81(1), 29-36.
