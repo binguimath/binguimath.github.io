@@ -213,11 +213,12 @@
 \DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
 \DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
 
+
 \usepackage{aurical}
 \DeclareMathOperator{\VVir}{\text{\Fontlukas V}\text{\kern -0pt {\Fontlukas\large ir}}\,}
 
-
-
+\newcommand{\vol}{\text{\Fontlukas V}}
+\newcommand{\dvol}{d~\text{\Fontlukas V}}
 
 
 
@@ -403,6 +404,10 @@
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Lin}{\mathrm{Lin}}
+
+
+
+
 
 
 
@@ -22365,7 +22370,11 @@ Then by Prop. \ref{lb751}, $\Lambda$ can be extended uniquely to an $\Rbb$-linea
 
 This extension is increasing, i.e., if $f,g\in\scr C_2$ and $f\leq g$ then $\Lambda(f)\leq\Lambda(g)$. To prove this, it suffices to prove $\Lambda(h)\geq0$ where $h=g-f$. Write $h=h^+-h^-$ where $h^\pm\in\scr C_1$. Then $h^+\geq h^-$. Therefore, by the monotonicity of $\Lambda:\scr C_1\rightarrow\Rbb_{\geq0}$ we have $\Lambda(h^+)\geq\Lambda(h^-)$, and hence $\Lambda(h)\geq0$.
 
-For each $x\in[a,b]$, the upper semicontinuous function $\chi_{[a,x]}$ belongs to $\scr C_2$. Therefore, we can define $\rho(x)=\Lambda(\chi_{[a,x]})$. Then $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ is increasing. For each decreasing sequence $(x_n)$ in $[a,b]$ converging to $x$, the increasing sequence $(1-\chi_{[a,x_n]})_{n\in\Zbb_+}$ converges pointwise to $1-\chi_{[a,x]}$. Therefore, by the monotone convergence Thm. \ref{lb789}, we have $\lim_n (\Lambda(1)-\rho(x_n))=\Lambda(1)-\rho(x)$. This proves that $\rho$ is right continuous.
+For each $x\in[a,b]$, the upper semicontinuous function $\chi_{[a,x]}$ belongs to $\scr C_2$. Therefore, we can define
+\begin{align*}
+\rho(x)=\Lambda(\chi_{[a,x]})
+\end{align*}
+Then $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ is increasing. For each decreasing sequence $(x_n)$ in $[a,b]$ converging to $x$, the increasing sequence $(1-\chi_{[a,x_n]})_{n\in\Zbb_+}$ converges pointwise to $1-\chi_{[a,x]}$. Therefore, by the monotone convergence Thm. \ref{lb789}, we have $\lim_n (\Lambda(1)-\rho(x_n))=\Lambda(1)-\rho(x)$. This proves that $\rho$ is right continuous.
 
 Finally, we show that $\Lambda=\mc I_\rho$ on $C([a,b],\Rbb)$. As in the first proof, for each $\eps>0$, choose a partition $\sigma=\{a_0<\cdots<a_n\}$ of $[a,b]$ such that $\diam f(a_{i-1},a_i]\leq\eps$ for all $i$.  Let $g,h$ be defined by \eqref{eq358}. Then $g\leq f\leq h$ and $g,h\in\scr C_2$. Therefore, by the monotonicity of $\Lambda:\scr C_2\rightarrow\Rbb_{\geq0}$ proved above, we have $\Lambda(g)\leq \Lambda(f)\leq\Lambda(h)$. By the definition of $\rho$, it is easy to see
 \begin{gather*}
@@ -22904,7 +22913,10 @@ This defines a map $\Lambda:C_c(X)\rightarrow\Cbb$ which is clearly $\Cbb$-linea
 
 
 \begin{df}\label{lb827}
-The positive linear functional $\Lambda$ in Thm. \ref{lb826} is denoted by $\Lambda_1\otimes\cdots\otimes\Lambda_N$ and called the \textbf{tensor product} of $\Lambda_1,\dots,\Lambda_N$. \index{00@Tensor product of positive linear functionals} The completion of the associated Radon measure of $\Lambda$ is denoted by $\mu_1\times\cdots\times\mu_N$ and called the \textbf{Radon product} \index{00@Radon product} of $\mu_1,\dots,\mu_N$.
+The positive linear functional $\Lambda$ in Thm. \ref{lb826} is denoted by $\Lambda_1\otimes\cdots\otimes\Lambda_N$ and called the \textbf{tensor product} of $\Lambda_1,\dots,\Lambda_N$. \index{00@Tensor product of positive linear functionals} The completion of the associated Radon measure of $\Lambda$ is denoted by $\mu_1\times\cdots\times\mu_N$ and called the \textbf{Radon product} \index{00@Radon product} of $\mu_1,\dots,\mu_N$. We also write
+\begin{align}
+d(\mu_1\times\cdots\times\mu_N)=d\mu_1\times\cdots\times d\mu_N
+\end{align}
 \end{df}
 
 \begin{rem}\label{lb841}
@@ -25774,13 +25786,13 @@ Then, assuming \eqref{eq386}, we have
 \right)
 \end{align}
 where the LHS is the multiplication of an $n\times 1$ matrix and a $1\times 1$ matrix, and the RHS is the multiplication of an $n\times m$ matrix and an $m\times 1$ matrix. In other words, for each $1\leq i\leq n$ we have
-\begin{align}
+\begin{align}\label{eq458}
 T^\tr \wch f^i=\sum_{j=1}^m A_j^i\wch e^j
 \end{align}
 This relation holds true because both sides equal $\bk{Te_j,\wch f^i}=A^i_j$ when evaluated with $e_j$.
 
 \eqref{eq401} also means that $A^\tr$ is the matrix representation of $T^\tr$ under the basis $\wch f$ and $\wch e$, i.e.,
-\begin{align}
+\begin{align}\label{eq460}
 T^\tr(\wch f^1,\dots,\wch f^n)=(\wch e^1,\dots,\wch e^m)A^\tr
 \end{align}
 However, in differential calculus, it would be more convenient if the superscript $i$ of $\wch f^i$ is always a row index. Therefore, we write the dual basis as a column (as in \eqref{eq401}) rather than as a row. %(This is consistent with our convention in linear algebra of writing a vector of $\Fbb^n$ as a column vector.)
@@ -26067,7 +26079,7 @@ Let $(U,\varphi)$ be a chart on $M$. Then each $\partial_{\varphi^j}$ is a smoot
 
 We shall show that $C^r$ (resp. Borel) $1$-forms can be described in a similar way as in Def. \ref{lb970}. Therefore, we need to consider the $1$-forms that are dual to the vector fields $\partial_{\varphi^1},\dots,\partial_{\varphi^n}$. We shall define them using differentials of maps, and then show that they are the dual basis of $\partial_{\varphi^1},\dots,\partial_{\varphi^n}$.
 
-%% Proofread
+
 
 
 \subsubsection{Differentials of functions as $1$-forms}
@@ -26097,6 +26109,7 @@ Therefore, if $X|_p=\gamma'(0)$, then
 \begin{align*}
 Xf|_p= (f\circ\gamma)'(0)
 \end{align*}
+This means that $Xf|_p$ is the ``derivative of $f$ in the direction $X|_p$".
 \end{rem}
 
 
@@ -26114,7 +26127,7 @@ This proposition explains the notation \eqref{eq392}. Moreover, \eqref{eq397} ca
 \begin{proof}
 Note that the identification of $T_{f(p)}\Rbb$ with $\Rbb$ is implemented by $dt$ where $t$ is the standard coordinate of $\Rbb$. By Thm. \ref{lb967}, we have
 \begin{align*}
-df|_p\cdot(\partial_{\varphi^1},\dots,\partial_{\varphi^n})|_p=\partial_t|_p\cdot \Jac(f\circ\varphi^{-1})|_{\varphi(p)}
+df|_p\cdot(\partial_{\varphi^1},\dots,\partial_{\varphi^n})|_p=\partial_t|_{F(p)}\cdot \Jac(f\circ\varphi^{-1})|_{\varphi(p)}
 \end{align*}
 where both sides are $1\times n$ matrices. Their $1\times j$ entries are the LHS and the RHS of \eqref{eq397}. This proves \eqref{eq397}. If $X:U\rightarrow TM$ is a smooth vector field, then $X=\sum_{j=1}^n X^j\partial_{\varphi^j}$ for some $X^1,\dots,X^n\in C^\infty(U,\Rbb)$. Then, by the linearity, we have
 \begin{align}
@@ -26136,7 +26149,7 @@ where $x^1,\dots,x^n$ are the standard coordinates of $\Rbb^n$. So the above exp
 \end{proof}
 
 
-\begin{co}
+\begin{co}\label{mc97}
 Let $\omega:M\rightarrow T^*M$ be a $1$-form. Then the following are equivalent.
 \begin{enumerate}
 \item[(1)]  $\omega$ is $C^r$ (resp. Borel).
@@ -26151,7 +26164,7 @@ are $C^r$ (resp. Borel).
 \begin{proof}
 Assume (1). Then $\omega|_U$ is $C^r$ (resp. Borel), and hence $\omega_i=\bk{\omega|_U, \partial_{\varphi^i}}$ is $C^r$ (resp. Borel). This proves (2).
 
-Assume (2). Choose any open $V\subset M$ and any $C^r$ (resp. Borel) vector field $X:V\rightarrow TM$. Let us prove that $\bk{X,\omega}$ is $C^r$ (resp. Borel). We discuss the Borel case; the $C^r$-case is similar. (However, the Borel case relies on the second countability, and the $C^r$ case does not.) Since $M$ is second countable, $M$ is has an atlas $\fk U$ containing countably many members. Therefore, it suffice to prove that for each $(U,\varphi)\in\fk U$, the restriction of $\bk{X,\omega}$ to $U\cap V$ is Borel.  To see this, we write $X|_{U\cap V}=\sum_i X^i\partial_{\varphi^i}$ where each $X^i:U\cap V\rightarrow\Rbb$ is Borel. Then $\bk{X,\omega}|_{U\cap V}=\sum_iX^i\omega_i|_{U\cap V}$ is Borel.
+Assume (2). Choose any open $V\subset M$ and any $C^r$ (resp. Borel) vector field $X:V\rightarrow TM$. Let us prove that $\bk{X,\omega}$ is $C^r$ (resp. Borel). We discuss the Borel case; the $C^r$-case is similar. (However, the Borel case relies on the second countability, and the $C^r$ case does not.) Since $M$ is second countable, $M$ has an atlas $\fk U$ containing countably many members. Therefore, it suffice to prove that for each $(U,\varphi)\in\fk U$, the restriction of $\bk{X,\omega}$ to $U\cap V$ is Borel.  To see this, we write $X|_{U\cap V}=\sum_i X^i\partial_{\varphi^i}$ where each $X^i:U\cap V\rightarrow\Rbb$ is Borel. Then $\bk{X,\omega}|_{U\cap V}=\sum_iX^i\omega_i|_{U\cap V}$ is Borel.
 \end{proof}
 
 
@@ -26207,7 +26220,7 @@ Assume the setting of Exp. \ref{lb974}. Let $g:\Rbb^2\times\Rbb_{>0}\rightarrow\
 We have $f=r^3\sin(2\theta)$ as a relation of functions on $M$. Therefore 
 \begin{align*}
 &df\big|_p=\frac{\partial f}{\partial r}\Big|_p\cdot dr|_p+\frac{\partial f}{\partial \theta}\Big|_p\cdot d\theta|_p=3r^2\sin(2\theta)\big|_p\cdot dr|_p+2r^3\cos(2\theta)\big|_p\cdot d\theta|_p\\
-=&6ab\cdot dr|_p+2(a-b)\sqrt{a^2+b^2}\cdot d\theta|_p
+=&6ab\cdot dr|_p+2(a^2-b^2)\sqrt{a^2+b^2}\cdot d\theta|_p
 \end{align*}
 \end{proof}
 
@@ -26221,7 +26234,10 @@ Define $F^*$ associating to each $p\in M$ the linear map
 \begin{align}
 F^*|_p:T^*_{F(p)}N\rightarrow T^*_pM 
 \end{align}
-defined to be the transpose $(dF|_p)^\tr$. We call $F^*$ the \textbf{cotangent map} \index{00@Cotangent map $F^*$} \index{F@$F^*$, the cotangent map} of $F$. If $w'\in T^*_{f(p)}N$, we call $F^*|_p w'$ the \textbf{pullback} of the cotangent vector $w'$ by $F$. \index{00@Pullback of a cotangent vector} 
+defined to be the transpose $(dF|_p)^\tr$. We call $F^*$ the \textbf{cotangent map} \index{00@Cotangent map $F^*$} \index{F@$F^*$, the cotangent map} of $F$. If $w'\in T^*_{f(p)}N$, we call $F^*|_p w'$ the \textbf{pullback} of the cotangent vector $w'$ by $F$. \index{00@Pullback of a cotangent vector} If $F$ is a diffeomorphism, we also write $(F^{-1})^*$ as $F_*$, i.e.,
+\begin{align}
+F_*|_p\equiv (F^{-1})^*|_{F(p)}:T_p^*M\rightarrow T_{F(p)}^*N
+\end{align}
 
 If $\omega:N\rightarrow T^*N$ is a $1$-form on $N$, the \textbf{pullback} \index{00@Pullback of $1$-form} of $\omega$ by $F$ is defined to be \index{F@$F^*\omega$, the pullback of the form $\omega$}
 \begin{align}
@@ -26258,7 +26274,7 @@ recalling that $\dps \frac{\partial(\psi^i\circ F)}{\partial\varphi^j}=\big(\par
 
 On the other hand, when doing proofs, it is sometimes easier to use the matrix representation of $F^*$ rather than using \eqref{eq404}. The matrix representation is easy to find:
 
-\begin{co}
+\begin{co}\label{mc98}
 Let $p\in M$ and $q=F(p)$. Let $(U,\varphi^1,\dots,\varphi^m)$ and $(V,\psi^1,\dots,\psi^n)$ be charts of $M,N$ containing $p,q$ respectively. Then
 \begin{align}
 \left(
@@ -26279,7 +26295,7 @@ d\varphi^m
 \end{co}
 
 \begin{proof}
-This follows from \eqref{eq404}. Alternatively, it also follows from Thm. \ref{lb967} and the fact that the matrix representation of the transpose $T^\tr$ of a linear operator $T$ is equal to the transpose of the matrix representation of $T$, cf. Sec. \ref{lb966} for details.
+This follows from \eqref{eq404}. Alternatively, it also follows from Thm. \ref{lb967} and the fact that the matrix representation of the transpose $T^\tr$ of a linear operator $T$ is equal to the transpose of the matrix representation of $T$, cf. \eqref{eq401}.
 \end{proof}
 
 
@@ -26304,7 +26320,7 @@ Let $\wtd F:M\rightarrow Q:=F(M)$ be the restriction of $F$. Let $q=F(p)$. Then 
 
 
 \begin{cv}\label{lb977}
-Suppose that $M$ is a smooth submanifold of $N$. By Prop. \ref{lb975}, for each $p\in M$, the linear map $d\iota|_p:T_pM\rightarrow T_pN$ is injective. Unless otherwise stated, we identify $T_pM$ with $d\iota(T_pM)$ through $d\iota$ so that $T_pM$ is a linear subspace of $T_pM$. In particular, if $N=\Rbb^n$, then $T_pM$ is naturally a linear subspace of $\Rbb^n$.
+Suppose that $M$ is a smooth submanifold of $N$. By Prop. \ref{lb975}, for each $p\in M$, the linear map $d\iota|_p:T_pM\rightarrow T_pN$ is injective. Unless otherwise stated, we identify $T_pM$ with $d\iota(T_pM)$ through $d\iota$ so that $T_pM$ is a linear subspace of $T_pN$. In particular, if $N=\Rbb^n$, then $T_pM$ is naturally a linear subspace of $\Rbb^n$.
 \end{cv}
 
 
@@ -26315,7 +26331,7 @@ In the following, we use tangent spaces and the differentials of smooth maps to 
 The following theorem \index{00@Geometric implicit function theorem} is a more geometric version of Cor. \ref{lb956}.
 
 \begin{thm}\label{lb976}
-Let $F:M\rightarrow N$ be smooth. Let $q\in N$. Assume that for each $p\in F^{-1}(q)$, $F$ is a \textbf{submersion} \index{00@Submersion} at $p$, i.e., the linear map $dF|_p:T_pM\rightarrow T_qN$ is surjective. Then $F^{-1}(q)$ is a smooth submanifold of $M$. Moreover, for each $p\in F^{-1}(p)$, viewing $T_pF^{-1}(q)$ as a linear subspace of $T_pM$, we have
+Let $F:M\rightarrow N$ be smooth. Let $q\in N$. Assume that for each $p\in F^{-1}(q)$, $F$ is a \textbf{submersion} \index{00@Submersion} at $p$, i.e., the linear map $dF|_p:T_pM\rightarrow T_qN$ is surjective. Then $F^{-1}(q)$ is a smooth submanifold of $M$. Moreover, for each $p\in F^{-1}(q)$, viewing $T_pF^{-1}(q)$ as a linear subspace of $T_pM$, we have
 \begin{align}\label{eq406}
 T_pF^{-1}(q)=\Ker (dF|_p)
 \end{align}
@@ -26330,7 +26346,7 @@ One may shrink $N$ to a neighborhood of $q$ so that $N$ is diffeomorphic to an o
 
 We shall show that for each $p$ there is $U\in\Nbh_M(p)$ such that $F^{-1}(q)\cap U$ is a smooth submanifold of $M\cap U$, and that \eqref{eq405} holds. Thus, we may shrink $M$ to a neighborhood of $p$ so that $M$ is diffeomorphic to an open subset of $\Rbb^n$. Then, by composing $F$ with a diffeomorphism on the source, we assume WLOG that $M$ is an open subset of $\Rbb^n$. Then we can write $F=(F^1,\dots,F^k)$ where $F^1,\dots,F^k:M\rightarrow\Rbb$ are smooth, and $F^{-1}(q)=Z(F)$. Since $dF$ is surjective everywhere on $Z(F)$, by Cor. \ref{lb956}, we conclude that $Z(F)$ is an $(n-k)$-dimensional smooth submanifold of $M$.
 
-It remains to prove \eqref{eq406}. For each smooth path $\gamma$ in $F^{-1}(q)$ satisfying $\gamma(0)=p$, since $F\circ\gamma$ is constant, we have $dF|p\cdot\gamma'(0)=(F\circ\gamma)'(0)=0$. This proves $T_pF^{-1}(q)=\Ker (dF|_p)$. Since $T_pF^{-1}(q)$ and $\Ker (dF|_p)$ both have dimension $n-k$, they must be equal.
+It remains to prove \eqref{eq406}. For each smooth path $\gamma$ in $F^{-1}(q)$ satisfying $\gamma(0)=p$, since $F\circ\gamma$ is constant, we have $dF|_p\cdot\gamma'(0)=(F\circ\gamma)'(0)=0$. This proves $T_pF^{-1}(q)\subset\Ker (dF|_p)$. Since $T_pF^{-1}(q)$ and $\Ker (dF|_p)$ both have dimension $n-k$, they must be equal.
 \end{proof}
 
 
@@ -26360,7 +26376,7 @@ is a smooth submanifold of $\Rbb^{n\times n}$ of dimension $n(n-1)/2$.
 \end{eg}
 
 \begin{proof}
-Let $M=\Rbb^{n\times n}$. Then map $A\in M\mapsto A^\tr A$ has range in
+Let $M=\Rbb^{n\times n}$. The map $A\in M\mapsto A^\tr A$ has range in
 \begin{align*}
 N=\{B\in \Rbb^{n\times n}:B=B^\tr\}
 \end{align*}
@@ -26433,11 +26449,11 @@ Assume that $A$ is a smooth submanifold. The path $\gamma(t)=(t,0)$ is a smooth 
 
 
 \begin{eg}
-$A=\{(x,y)\in\Rbb^2:y=x^2\text{ or }y=-x^3\}$ is not a smooth submanifold of $\Rbb^2$.
+$A=\{(x,y)\in\Rbb^2:y=x^2\text{ or }y=-x^4\}$ is not a smooth submanifold of $\Rbb^2$.
 \end{eg}
 
 \begin{proof}
-Assume that $A$ is a smooth submanifold of $\Rbb^2$. Clearly $\dim_pA=1$ whenever $p\neq 0$. Therefore, by Prop. \ref{lb982}, we have $\dim_0A=1$. Let $\gamma:(-\eps,\eps)$ be a smooth path in $A$ such that $\gamma(0)=0$. Since $\gamma(t)=(t,t^2)$ is a smooth path in $\Rbb^2$, by Prop. \ref{lb955}, $\gamma$ is a smooth path in $A$. Since $\gamma'(0)=(1,0)$, we conclude that $T_0A$ is spanned by $(1,0)$.
+Assume that $A$ is a smooth submanifold of $\Rbb^2$. Clearly $\dim_pA=1$ whenever $p\in A$ and $p\neq 0$. Therefore, by Prop. \ref{lb982}, we have $\dim_0A=1$. Since $\gamma(t)=(t,t^2)$ is a smooth path in $\Rbb^2$, by Prop. \ref{lb955}, $\gamma$ is a smooth path in $A$. Since $\gamma'(0)=(1,0)$, we conclude that $T_0A$ is spanned by $(1,0)$.
 
 Let $\pi:(x,y)\in\Rbb^2\mapsto x\in\Rbb$. Then $d\pi|_0$ sends $(1,0)$ to $1$. Therefore, if we let $\iota:A\rightarrow\Rbb^2$ be the inclusion and let $\varphi=\pi\circ\iota$, then $d\varphi|_0=d\pi_0\cdot d\iota|_0:T_0A\rightarrow\Rbb$ is a linear isomorphism. Therefore, by the inverse function Thm. \ref{lb980}, $\varphi$ must be injective on a neighborhood of $0$. But this is clearly impossible.
 \end{proof}
@@ -26447,7 +26463,7 @@ Using a similar idea, one can prove that $B:=A\cap(\Rbb_{\geq0}\times\Rbb)$ is n
 
 
 \begin{co}\label{lb981}
-Let $F:M\rightarrow N$ be an smooth injective map. Assume that $dF|_p:T_pM\rightarrow T_pN$ is bijective for each $p\in M$. Then $F(M)$ is an open subset of $N$, and $F$ restricts to a diffeomorphism $F:M\xrightarrow{\simeq}F(M)$.
+Let $F:M\rightarrow N$ be an smooth injective map. Assume that $dF|_p:T_pM\rightarrow T_{F(p)}N$ is bijective for each $p\in M$. Then $F(M)$ is an open subset of $N$, and $F$ restricts to a diffeomorphism $F:M\xrightarrow{\simeq}F(M)$.
 \end{co}
 
 \begin{proof}
@@ -26466,11 +26482,12 @@ Assume $\dim M=n$. Let $F:M\rightarrow N$ be a smooth injective map. Then $F$ is
 
 
 \begin{proof}
-Let $S=F(M)$. Suppose that $F$ is a smooth embedding. Then (b) clearly holds, and $F=\iota\circ\wtd F$ for some diffeomorphism $\wtd F:M\rightarrow S$. So both $d\iota|_{F(p)}$ and $d\wtd F|_p$ are injective. So $dF|_p=d\iota|_{F(p)}\cdot d\wtd F|_p$ is injective.
+Let $S=F(M)$. Suppose that $F$ is a smooth embedding. Then (b) clearly holds, and (a) follows from Prop. \ref{lb975}.
 
-Conversely, assume that $F$ satisfies (a) and (b). By Prop. \ref{lb955}, $F$ restricts to a smooth map $F:M\rightarrow S$. Let $\iota:S\hookrightarrow N$ be the inclusion. By assumption, $d(\iota\circ F)=d\iota\cdot dF$ is injective at any point on $M$. Since $d\iota$ is injective everywhere, $dF:T_pM\rightarrow T_pS$ must be injective for every $p\in S$. Since $\dim T_pM=n=\dim T_pS$, the map $dF:T_pM\rightarrow T_pS$ is a linear isometry. Therefore, by Cor. \ref{lb981}, $F:M\rightarrow S$ is a diffeomorphism.
+Conversely, assume that $F$ satisfies (a) and (b). By Prop. \ref{lb955}, $F$ restricts to a smooth map $\wtd F:M\rightarrow S$. Let $\iota:S\hookrightarrow N$ be the inclusion. By assumption, $dF=d(\iota\circ \wtd F)=d\iota\cdot d\wtd F$ is injective at any point of $M$. Since $d\iota$ is injective everywhere, $d\wtd F:T_pM\rightarrow T_{F(p)}S$ must be injective for every $p\in S$. Since $\dim T_pM=n=\dim T_{F(p)}S$, the map $d\wtd F:T_pM\rightarrow T_{F(p)}S$ is a linear isomorphism. Therefore, by Cor. \ref{lb981}, $\wtd F:M\rightarrow S$ is a diffeomorphism.
 \end{proof}
 
+%% Record #19 2024/05/09 three lectures  46
 
 \begin{eg}
 Let $D=(0,\pi)\times(0,2\pi)$. Let $R>0$. By Thm. \ref{lb976} (applied to the function $f(x,y,z)=x^2+y^2+z^2-R^2$), the sphere $R\Sbb^2$ (with radius $R$) is a $2$-dimensional submanifold of $\Rbb^3$. Since $\Omega=\Rbb^3\setminus (\Rbb_{\geq0}\times 0\times\Rbb)$ is open, $M:=R\Sbb^2\cap\Omega$ is a $2$-dimensional submanifold of $\Rbb^3$. The \textbf{spherical coordinates}
@@ -26495,7 +26512,7 @@ Let $M$ be a smooth manifold. Let $f\in C^\infty(M,\Rbb)$. Assume that $p\in M$ 
 
 
 \begin{proof}
-By shrinking $M$ to a neighborhood of $p$ and performing a diffeomorphism, we may assume that $M$ is an open subset of $\Rbb^n$. Since $f$ attains its local extrema at $p=(p_1,\dots,p_n)$, the function $t\mapsto (p_1+1,p_2,\dots,p_n)$ attains its local extrema at $t=0$. So $\partial_1f(p)=0$. Similarly, $\partial_2f(p)=\cdots=\partial_nf(p)=0$. So $df$ (which equals $\sum_i\partial_i fdx^i$ by Cor. \ref{lb987}) is zero at $p$.
+By shrinking $M$ to a neighborhood of $p$ and performing a diffeomorphism, we may assume that $M$ is an open subset of $\Rbb^n$. Since $f$ attains its local extrema at $p=(p_1,\dots,p_n)$, the function $t\mapsto (p_1+t,p_2,\dots,p_n)$ attains its local extrema at $t=0$. So $\partial_1f(p)=0$. Similarly, $\partial_2f(p)=\cdots=\partial_nf(p)=0$. So $df$ (which equals $\sum_i\partial_i fdx^i$ by Cor. \ref{lb987}) is zero at $p$.
 \end{proof}
 
 
@@ -26543,14 +26560,7 @@ Let $\iota:P\rightarrow M$ be the inclusion map. Then $p$ is a local extreme poi
 Let $\Omega$ be an open subset of $\Rbb^n$. Let $F=(F^1,\dots,F^k):\Omega\rightarrow\Rbb^k$ be smooth. Recall that $Z(F)=\{p\in\Omega:f^1(p)=\cdots=f^k(p)\}$ is the zero set of $F$. Assume that $\rank\Jac F|_p=k$ for every $p\in Z(F)$. Let $f\in C^\infty(\Omega)$. We now fix $p\in Z(F)$, assuming that $p$ is a local extreme point of $f|_{Z(F)}$. Then Thm. \ref{lb988} says that there exist $\lambda_1,\dots,\lambda_k\in\Rbb$ (called the \textbf{Lagrange multipliers}) satisfying the system of linear equations
 \begin{subequations}\label{eq410}
 \begin{gather}
-\left\{
-\begin{array}{c}
-\partial_1 f(p)=\lambda_1\partial_1 F^1(p)+\cdots+\lambda_k \partial_1 F^k(p)\\[1ex]
-\partial_2 f(p)=\lambda_1\partial_2 F^1(p)+\cdots+\lambda_2 \partial_1 F^k(p)\\
-\vdots\\[0.5ex]
-\partial_k f(p)=\lambda_1\partial_k F^1(p)+\cdots+\lambda_k \partial_k F^k(p)
-\end{array}
-\right.
+\partial_i f(p)=\lambda_1\partial_i F^1(p)+\cdots+\lambda_k \partial_i F^k(p)\qquad (\forall 1\leq i\leq k)
 \end{gather}
 Note that we also have
 \begin{gather}
@@ -26577,7 +26587,7 @@ Let $1<p,q<+\infty$ and $p^{-1}+q^{-1}=1$. Let $f,h:\Rbb^n\rightarrow\Rbb$ be $f
 \end{eg}
 
 \begin{proof}
-Assume WLOG that one of $a_1,\dots,a_n$ is nonzero, otherwise the problem is trivial. Let $b_\blt=(b_1,\dots,b_n)\in Z(h)$ be a maximal point of $f|_{Z(h)}$. Since changing $b_i$ to $|b_i|$ does not lower the value $f(b_\blt)$, we may assume that $b_i\geq0$. Since $b_\blt$ is a local extreme point of $f|_{Z(h)}$, by Rem. \ref{lb989}, there exists $\lambda\in\Rbb$ such that $\partial_i f(b_\blt)=\lambda_i h(b_\blt)$ for all $i$, namely,
+Assume WLOG that one of $a_1,\dots,a_n$ is nonzero, otherwise the problem is trivial. Let $b_\blt=(b_1,\dots,b_n)\in Z(h)$ be a maximal point of $f|_{Z(h)}$. Since changing $b_i$ to $|b_i|$ does not lower the value $f(b_\blt)$, we may assume that $b_i\geq0$. Since $b_\blt$ is a local extreme point of $f|_{Z(h)}$, by Rem. \ref{lb989}, there exists $\lambda\in\Rbb$ such that $\partial_i f(b_\blt)=\lambda\partial_i h(b_\blt)$ for all $i$, namely,
 \begin{align*}
 a_i=\lambda q b_i^{q-1}
 \end{align*}
@@ -26601,7 +26611,7 @@ This proves Minkowski's inequality. Assume for simplicity that $b_i>0$ for some 
 \end{rem}
 
 
-
+%% Proofread
 
 \newpage
 
@@ -26990,7 +27000,7 @@ Similar to Prop. \ref{lb952} and \ref{lb955}.
 
 
 \begin{eg}\label{mc16}
-$A=\{(x,y)\in\Rbb_{\geq0}\times\Rbb:y=x^2\text{ or }y=-x^3\}$ is not a smooth submanifold of $\Rbb^2$.
+$A=\{(x,y)\in\Rbb_{\geq0}\times\Rbb:y=x^2\text{ or }y=-x^4\}$ is not a smooth submanifold of $\Rbb^2$.
 \end{eg}
 
 \begin{proof}
@@ -27273,7 +27283,7 @@ Let $F:M\rightarrow N$ be smooth. We say that $F$ is an \textbf{immersion at $p\
 \end{df}
 
 \begin{eg}\label{mc19}
-Assume $\partial N=\emptyset$. Suppose that $F:M\rightarrow N$ is a smooth embedding. Then by (the proof of) Thm. \ref{mc12} or Thm. \ref{lb983}, $F$ is an immersion.
+Assume $\partial N=\emptyset$. Suppose that $F:M\rightarrow N$ is a smooth embedding. Then by the proof of Prop. \ref{lb975}, $F$ is an immersion.
 \end{eg}
 
 
@@ -27526,7 +27536,7 @@ When $M$ is $\Rbb^n$ and $\mu$ is the Lebesgue measure, one can use convolutions
 
 
 
-\begin{thm}
+\begin{thm}\label{mc99}
 Assume that $M$ is a compact smooth $\partial$-manifold. Then there exists a smooth embedding $F:M\rightarrow\Rbb^n$ for some $n\in\Nbb$.
 \end{thm}
 
@@ -27718,6 +27728,9 @@ Let $\mu,\nu$ be Radon measures on an LCH space $X$. Let $\fk U$ be an open cove
 \end{enumerate}
 \end{pp}
 
+Since a similar equivalence holds for ``$\geq$", we conclude that $\mu=\nu$ iff $\mu|_U\geq\nu|_U$ for every $U\in\fk U$.
+
+
 \begin{proof}
 (1)$\Rightarrow$(2) is clearly true. Assume (2). Let $f\in C_c(X,\Rbb_{\geq0})$. Let us prove that $\int_X fd\mu\leq\int f_Xd\nu$. In the special case that $\Supp(f)\subset U$ for some $U\in\fk U$, by \eqref{eq351} we have $\int_Xfd\mu=\int_Ufd\mu|_U\leq\int_Ufd\nu|_U=\int_Xfd\nu$. Now consider the general case. Let $\fk V$ be a finite subset of $\fk U$ covering $\Supp(f)$. By choosing a partition of unity of $\Supp(f)$ subordinate to $\fk V$ (cf. Thm. \ref{lb466}), we can write $f$ as a finite sum $\sum_i f_i$ where $f_i\in C_c(U_i,\Rbb_{\geq0})$ for each $i$. By the proved special case, we have $\int_X f_id\mu\leq\int_Xf_id\nu$. Therefore $\int_X fd\mu\leq\int f_Xd\nu$. This proves (1).
 \end{proof}
@@ -27826,6 +27839,18 @@ If $m(E)=0$, then the Borel function $\chi_E|\Jbf\Phi|$ is zero $m$-a.e. So the 
 
 Now, we assume that $E\subset\Omega$ is Lebesgue measurable. Then $E=A\cup B$ where $A$ is Borel and $B$ is $m$-null. So $\Phi(E)=\Phi(E)\cup\Phi(B)$ where $\Phi(E)$ is Borel and $\Phi(B)$ is $m$-null. So $\Phi(E)$ is Lebesgue measurable.
 \end{proof}
+
+
+\begin{co}\label{mc101}
+Let $M$ be a $C^r$ $\partial$-submanifold of $\Rbb^n$ where $r\geq1$. Assume that for each $p\in M$ we have $\dim_pM<n$. Then $m^n(M)=0$.
+\end{co}
+\begin{proof}
+There exists a family of charts $\fk U$ on $\Rbb^n$ covering $M$ such that for each $(U,\varphi)\in\fk U$, $\varphi$ sends $M\cap U$ into $\Rbb^{n-1}\times 0$. Since $\Rbb^{n-1}\times 0$ is null, by Cor. \ref{mc40}, $M\cap U$ is null. Since $M$ is second countable and hence Lindel\"of, we may assume that $\fk U$ is countable. So $M$ is a countable union of null sets. Therefore $M$ is null.
+\end{proof}
+
+
+
+
 
 
 \begin{rem}\label{mc41}
@@ -28050,9 +28075,14 @@ This finishes the proof.
 The following problem is a variant of Prop. \ref{mc36}.
 
 
-\begin{sprob}
-Let $X$ be a second countable topological space. Let $\mu,\nu:\fk B_X\rightarrow\ovl\Rbb_{\geq0}$ be Borel measures. Let $\fk U$ be an open cover of $X$. Prove that $\mu\leq\nu$ if and only if $\mu|_U\leq\nu|_U$ for every $U\in\fk U$.
-\end{sprob}
+\begin{prob}\label{mc106}
+Let $X$ be a second countable topological space. Let $\fk U$ be an open cover of $X$. 
+\begin{enumerate}
+\item Suppose that $\mu,\nu:\fk B_X\rightarrow\ovl\Rbb_{\geq0}$ are Borel measures. Prove that $\mu\leq\nu$ if and only if $\mu|_U\leq\nu|_U$ for every $U\in\fk U$.
+\item Suppose that for each $U\in\fk U$ a Borel measure $\mu_U$ on $U$ is chosen. Suppose that for each $U,V\in\fk U$ we have $\mu_U|_{U\cap V}=\mu_V|_{U\cap V}$. Prove that there exists a unique Borel measure $\mu$ on $X$ such that $\mu|_U=\mu_U$ for all $U\in\fk U$.
+\item In part 2, assume moreover that $X$ is LCH, and that $\mu_U$ is a Radon measure for each $U\in\fk U$. Prove that $\int_Xfd\mu<+\infty$ for all $f\in C_c(X,\Rbb_{\geq0})$, and hence (by Lem. \ref{lb806} and Thm. \ref{lb818}) that $\mu$ is a Radon measure on $X$.
+\end{enumerate}
+\end{prob}
 
 
 \begin{prob}\label{mc59}
@@ -28832,13 +28862,21 @@ For each $u,v\in V$, define the \textbf{symmetric product} \index{00@Symmetric p
 \begin{pp}\label{mc92}
 Let $V$ be finite dimensional. Let $\omega\in V^*\otimes V^*$. Then $\omega$ is a symmetric bilinear form iff it is a sum of symmetric products of elements of $V^*$. 
 
-Moreover, suppose that $\omega$ is symmetric. Let $e_1,\dots,e_n$ be a basis of $V$ with dual basis $\wch e^1,\dots,\wch e^n$. Define the \textbf{Gram matrix} \index{00@Gram matrix} $G=(\omega(e_i\otimes e_j))_{1\leq i,j\leq n}$ by
+Moreover, suppose that $\omega$ is symmetric. Let $e_1,\dots,e_n$ be a basis of $V$ with dual basis $\wch e^1,\dots,\wch e^n$. Define the \textbf{Gram matrix} \index{00@Gram matrix} $G=[\omega(e_\blt\otimes e_\blt)]=(\omega(e_i\otimes e_j))_{1\leq i,j\leq n}$ by
 \begin{align}
 G_{i,j}=\omega(e_i\otimes e_j)
 \end{align} 
 Then $G$ is a symmetric matrix, and
 \begin{align}\label{eq449}
-\omega=\sum_{1\leq i,j\leq n}G_{i,j}\wch e^i\wch e^j
+\omega=\sum_{1\leq i,j\leq n}G_{i,j}\wch e^i\wch e^j\equiv \begin{pmatrix}
+\wch e^1,\cdots,\wch e^n
+\end{pmatrix}
+G
+\begin{pmatrix}
+\wch e^1\\
+\vdots\\
+\wch e^n
+\end{pmatrix}
 \end{align}
 \end{pp}
 
@@ -28887,7 +28925,16 @@ Let $e_1,e_2,e_3$ be a basis of $V\simeq\Rbb^3$. By \eqref{eq450}, the Gram matr
 \end{gather*}
 \end{eg}
 
-
+\begin{eg}\label{mc113}
+Let $V_1,\dots,V_N$ be finite-dimensional real vector spaces. Let $V=V_1\oplus\cdots\oplus V_N$. For each $i$, let $\omega_i$ be a symmetric bilinear form on $V_i$. Define the \textbf{direct sum} \index{00@Direct sum of inner products}
+\begin{gather}
+\begin{gathered}
+\omega=\omega_1\oplus\cdots\oplus\omega_N\in (V\otimes V)^*\\
+\omega\big((u_1\oplus\cdots\oplus u_n)\otimes(v_1\oplus\cdots\oplus v_n) \big)=\omega_1(u_1\otimes v_1)+\cdots+\omega_n(u_n\otimes v_n)
+\end{gathered}
+\end{gather} 
+Then $\omega$ is positive (resp. positive definite) iff each $\omega_i$ is positive (resp. positive definite).
+\end{eg}
 
 
 
@@ -28903,7 +28950,7 @@ Let $e_1,e_2,e_3$ be a basis of $V\simeq\Rbb^3$. By \eqref{eq450}, the Gram matr
 
 
 
-\section{Integrals of functions on manifolds}
+\section{Integrals of functions on Riemannian manifolds}
 
 
 \subsection{Covariant tensor fields}
@@ -28955,7 +29002,7 @@ In particular, a $C^r$/Borel covariant tensor field of order $0$ is precisely a 
 
 
 \begin{proof}[Proof of equivalence]
-The equivalence follows immediately from Rem. \ref{mc90} and (for Borel tensor fields) the second countability of $M$.
+The equivalence follows immediately from Rem. \ref{mc90} and (for Borel tensor fields, cf. the proof of Cor. \ref{mc97}) the second countability of $M$.
 \end{proof}
 
 
@@ -29012,32 +29059,32 @@ By definition, a Riemannian $\partial$-manifold is smooth. If we only assume tha
 
 
 
-\begin{rem}
+\begin{rem}\label{mc100}
 Let $M$ be a smooth $\partial$-manifold, and let $\gk:M\rightarrow\bigotimes^2T^*M$ be smooth and symmetric. Let $(U,\varphi^1,\dots,\varphi^n)$ be a chart on $M$. Then by Prop. \ref{mc92}, for each $1\leq i,j\leq n$ we can find $\gk\in C^\infty(U,\Rbb)$ such that
-\begin{align}
-\gk|_U=\sum_{1\leq i,j\leq n}\gk_{i,j}d\varphi^id\varphi^j=
+\begin{align}\label{eq459}
+\gk|_U=\sum_{1\leq i,j\leq n}\gk_{i,j}d\varphi^id\varphi^j\xlongequal{\eqref{eq449}}
 \begin{pmatrix}
 d\varphi^1,\dots,d\varphi^n
 \end{pmatrix}
-G
+[\gk(\partial_\varphi\otimes\partial_\varphi)]
 \begin{pmatrix}
 d\varphi^1\\
 \vdots\\
 d\varphi^n
 \end{pmatrix}
 \end{align} 
-where $G=(\gk_{i,j})_{1\leq i,j\leq n}$ is the function of (symmetric) Gram matrices and
+where $[\gk(\partial_\varphi\otimes\partial_\varphi)]:M\rightarrow\Rbb^{n\times n}$ is the function of (symmetric) Gram matrices \index{zz@$[\gk(\partial_\varphi\otimes\partial_\varphi)]$}
 \begin{align}
-\gk_{i,j}=\gk(\partial_{\varphi^1}\otimes\partial_{\varphi^n})=\bk{\gk,\partial_{\varphi^1}\otimes\partial_{\varphi^n}}
+[\gk(\partial_\varphi\otimes\partial_\varphi)]=\big(\gk(\partial_{\varphi^i}\otimes\partial_{\varphi^j})\big)_{1\leq i,j\leq n}
 \end{align}
 \end{rem}
 
 \begin{eg}
-Let $x=(x^1,\dots,x^n)$ be the standard coordinates of $\Rbb^n$. Then
+Let $x=(x^1,\dots,x^n)$ be the standard coordinates of $\Rbb^n$. Then \index{En@$\fk E^n$, or $\fk E$, the Euclidean metric tensor}
 \begin{align*}
-\gk=(dx^1)^2+\cdots+(dx^n)^2=dx^1dx^1+\cdots+dx^ndx^n
+\fk E^n\equiv \fk E=(dx^1)^2+\cdots+(dx^n)^2=dx^1dx^1+\cdots+dx^ndx^n
 \end{align*}
-is the standard Riemannian metric on $\Rbb^n$, i.e., the\textbf{Euclidean metric tensor}. \index{00@Euclidean metric tensor} Unless otherwise stated, the metric tensor on $\Rbb^n$ is chosen to be the Euclidean metric tensor.
+is the standard Riemannian metric on $\Rbb^n$, i.e., the \textbf{Euclidean metric tensor}. \index{00@Euclidean metric tensor} Unless otherwise stated, the metric tensor on $\Rbb^n$ is chosen to be the Euclidean metric tensor.
 \end{eg}
 
 \begin{rem}
@@ -29079,14 +29126,251 @@ Assume that $(N,\gk)$ is a Riemannian manifold, $\Omega$ is a smooth $\partial$-
 is an isometric diffeomorphism. When $\Omega$ is $n$-dimensional smooth $\partial$-submanifold of $\Rbb^n$, $\wtd F$ is a parametrization of the submanifold $M$. Thus, the study of $(M,\gk|_{M})$ is equivalent to the study of $(\Omega,F^*\gk)$ which is often easier. 
 \end{rem}
 
-In the following example, we calculate $F^*\gk$ when $N$ is a Euclidean space.
+Let us calculate $F^*\gk$ when $N$ is a Euclidean space.
 
-\begin{eg}
-Let $\Omega$ be an $m$-dimensional smooth $\partial$-submanifold of $\Rbb^m$. Let $F:\Omega\rightarrow\Rbb^n$ be a smooth embedding with image $M:=F(\Omega)$. Let us understand the $\partial$-submanifold metric $\gk|_M$ by computing the metric $F^*\gk$ on $\Omega$.
+\begin{pp}\label{mc102}
+Let $\Omega$ be an $m$-dimensional smooth $\partial$-submanifold of $\Rbb^m$. Let $\Delta\subset\Rbb^n$ be open. Let $F:\Omega\rightarrow\Delta$ be a smooth embedding with image $M:=F(\Omega)$. Let $\gk$ be a Riemannian metric on $\Delta$ with Gram matrix $G=[\gk(\partial_x\otimes\partial_x)]$, i.e.,
+\begin{align*}
+\gk=\begin{pmatrix}
+dx^1,\dots,dx^n
+\end{pmatrix}G\begin{pmatrix}
+dx^1\\
+\vdots\\
+dx^n
+\end{pmatrix}
+\end{align*}
+Then the Gram matrix of the metric $F^*\gk$ on $\Omega$ with respect to $\partial_{x^1},\dots,\partial_{x^m}$ is
+\begin{align}
+[F^*\gk(\partial_x\otimes\partial_x)]=(\Jac F^\tr)\cdot (G\circ F)\cdot\Jac F
+\end{align}
+More precisely, for each $p\in M$ we have
+\begin{align*}
+[F^*\gk(\partial_x\otimes\partial_x)]\Big|_p=(\Jac F)^\tr|_p\cdot G|_{F(p)}\cdot \Jac F|_p
+\end{align*}
+\end{pp}
+
+
+Of particular importance is the case that $\gk$ is the Euclidean metric tensor $\fk E=(dx^1)^2+\cdots+(dx^n)^2$. Then
+\begin{align}
+[F^*\fk E(\partial_x\otimes\partial_x)]=(\Jac F)^\tr(\Jac F)
+\end{align}
+
+
+\begin{proof}
+By Cor. \ref{mc98}, we have
+\begin{align*}
+\begin{pmatrix}
+F^*dx^1\\
+\vdots\\
+F^*dx^n
+\end{pmatrix}
+=\Jac F\cdot\begin{pmatrix}
+dx^1\\
+\vdots\\
+dx^m
+\end{pmatrix}
+\end{align*}
+Then
+\begin{align*}
+&F^*\gk=\begin{pmatrix}
+F^*dx^1,\dots,F^*dx^m
+\end{pmatrix}(G\circ F)\begin{pmatrix}
+F^*dx^1\\
+\vdots\\
+F^*dx^m
+\end{pmatrix}\\
+=&\begin{pmatrix}
+dx^1,\dots,dx^m
+\end{pmatrix}\cdot(\Jac F)^\tr (G\circ F)(\Jac F)\cdot\begin{pmatrix}
+dx^1\\
+\vdots\\
+dx^m
+\end{pmatrix}
+\end{align*}
+\end{proof}
+
+
+
+Let $M$ be a smooth $\partial$-manifold. If there exists a Riemannian metric $\gk$ on $M$, then we can define integrals of functions on $M$. On the other hand, if $M$ is oriented, we can define integrals of differential forms on $M$. We will see that when $M$ is both oriented and equipped with a Riemannian metric, an integral of differential form can be transformed to an integral of a function, and vise versa. Now, the following theorem tells us that the existence of Riemannian metrics is automatic. Therefore, integrals of differential forms can always be understood by means of integrals of functions. 
+
+
+\begin{sthm}\label{mc109}
+Let $M$ be a smooth $\partial$-manifold. Then there exists a Riemannian metric on $M$.
+\end{sthm}
+
+
+\begin{proof}
+Step 1. We consider the special case that $M$ is compact. Of course, by Thm. \ref{mc99}, $M$ can be viewed as a smooth $\partial$-submanifold of $\Rbb^n$. Then the restriction of the Euclidean metric tensor to $M$ gives a Riemannian metric on $M$. However, we shall give a different proof that can be generalized to noncompact manifolds.\footnote{It is true that every smooth $\partial$-manifold can be smoothly embedded into some $\Rbb^n$. However, its proof is more involved than proving the current theorem.}
+
+For the convenience of the following discussion, let us call a smooth positive (but not necessarily positive definite) tensor field $\gk:M\rightarrow\bigotimes^2T^*M$ a \textbf{degenerate Riemannian metric}. We claim that for each $p\in M$, there exists a degenerate Riemannian metric $\gk_p$ which is non-degenerate on a neighborhood of $p$. Indeed, choose $U\in\Nbh_M(p)$ diffeomorphic to an open subset of the Euclidean space. Then $U$ has a Riemannian metric $\omega$ (defined e.g. by the pullback of the Euclidean metric tensor). By the smooth Urysohn's lemma, cf., Thm. \ref{mc25}, there exists $f\in C_c^\infty(U,[0,1])$ such that $f(p)=1$. Then $\gk_p=f\omega$ is compactly supported degenerate Riemannian metric on $U$, and hence can be viewed as a degenerate Riemannian metric on $\omega$ which is non-degenerate on $f^{-1}(0,+\infty)$.
+
+Now, a standard compactness argument gives $p_1,\dots,p_k\in M$ such that $\sum_{i=1}^k\gk_{p_i}$ is non-degenerate everywhere, and hence is a Riemannian metric on $M$. \\[-1ex]
+
+Step 2. We consider the general case. The same argument as above shows that if $U\subset M$ is open and $K\subset U$ is compact, then there is a degenerate Riemannian metric $\gk$ on $M$ which is compactly supported in $U$ and non-degenerate on $K$.
+
+Since $M$ is a union of precompact open sets, and since $M$ is second countable (and hence Lindel\"of), $M$ is a countable union of precompact open sets. Thus, we can find an increasing sequence of open precompact sets $U_1\subset U_2\subset\cdots \subset M$ such that $M=\bigcup_n U_n$. By Lem. \ref{lb460}, we can enlarge $U_2$ such that $U_2$ is still precompact, and that $\ovl U_1\Subset U_2$. Repeating this procedure, we obtain an increasing sequence of precompact open subsets $U_1\Subset U_2\Subset U_3\Subset\cdots\subset M$ whose union is $M$. 
+
+Set $U_{-1}=U_0=\emptyset$. For each $n\in\Zbb_+$, since the compact set $K_n=\ovl U_n\setminus U_{n-1}$ is contained in the open set $V_n=U_{n+1}\setminus\ovl U_{n-2}$, there exists a degenerate Riemannian metric $\gk_n$ on $M$ which is compactly supported in $V_n$ and non-degenerate on $K_n$. The sum $\gk=\sum_{k\in\Zbb_+}\gk_k$ is clearly finite when restricted to every $U_n$. Moreover, since $M=\bigcup_nK_n$, $\gk$ is clearly non-degenerate. So $\gk$ is a Riemannian metric.
+\end{proof}
+
+
+
+
+\subsection{Volume measures}
+
+
+
+In this section, we fix a Riemannian $\partial$-manifold $(M,\gk)$. The goal of this section is to define the volume measure $\vol$ on $M$. We will be mainly interested in the Borel $\sigma$-algebra $\fk B_X$; the generalization to its completion is quite straightforward. Recall the notation for the Euclidean metric tensor
+\begin{align*}
+\fk E\equiv \fk E^n=(dx^1)^2+\cdots+(dx^n)^2
+\end{align*}
+
+
+For any Borel $\Omega\subset\Rbb^n$ , we let $m_\Omega:\fk B_\Omega\rightarrow[0,+\infty]$ be the restriction of the Lebesgue measure to $m_\Omega$. Recall Rem. \ref{mc100} for the meaning of the notation $[\gk(\partial_\varphi\otimes\partial_\varphi)]$.
+
+
+
+
+
+
+\begin{comment}
+Suppose that $\omega$ is a symmetric bilinear form on a vector space $\mc V$ with basis $e_1,\dots,e_n$. Let us write the Gram matrix as
+\begin{align}
+[\omega(e_\blt\otimes e_\blt)]
+\end{align}
+According to this notation, if $(U,\varphi)=(U,\varphi^1,\dots,\varphi^n)$ is a chart on $M$, the function of Gram matrices with respect to $\partial_\varphi=(\partial_{\varphi^1},\dots,\varphi_{\varphi^n})$ is $[\gk(\partial_\varphi\otimes\partial_\varphi)]$. In other words, in view of \eqref{eq449}, we have
+\begin{align}
+\gk=(d\varphi^1,\dots,d\varphi^n)
+\end{align}
+\end{comment}
+
+To motivate the definition of $\vol$, we first consider the case that $\gk$ is a constant Riemannian metric on $\Rbb^n$. Then $\vol$ should be a measure proportional to the $n$-dimensional Lebesgue measure $m|_{\fk B_{\Rbb^n}}$. Write $\vol=\lambda m$. We hope that if $(\xi_1,\dots,\xi_n)$ is an orthonormal basis of $\Rbb^n$ under $\gk$ (i.e. $\gk(\xi_i\otimes\xi_j)=\delta_{i,j}$), and if $\Delta=\{t_1\xi_1+\cdots+t_n\xi_n:0\leq t_1,\dots,t_n\leq 1\}$ is the parallelopipied spanned by $\xi_1,\dots,\xi_n$, then $\vol(\Delta)=1$. Write $(\xi_1,\dots,\xi_n)=(\partial_{x^1},\dots,\partial_{x^n})A$ where $A\in\Rbb^{n\times n}$. Then $\Delta=A([0,1]^n)$, and hence $m(\Delta)=|\det A|$ by the change of variables formula. Thus $\lambda=|\det A|^{-1}$, and hence $\dvol=|\det A|^{-1}dm$
+
+
+Let $\wch\xi^1,\dots,\wch\xi^n$ be the dual basis. By \eqref{eq460}, we have $(dx^1,\dots,dx^n)=(\wch\xi^1,\dots,\wch\xi^n)A^\tr$. Thus
+\begin{align*}
+&\begin{pmatrix}
+\wch\xi^1,\dots,\wch\xi^n
+\end{pmatrix}
+\begin{pmatrix}
+\wch\xi^1\\
+\vdots\\
+\wch\xi^n
+\end{pmatrix}
+=\gk=\begin{pmatrix}
+dx^1,\dots,dx^n
+\end{pmatrix}
+[\gk(\partial_x\otimes\partial_x)]
+\begin{pmatrix}
+dx^1\\
+\vdots\\
+dx^n
+\end{pmatrix}\\
+=&\begin{pmatrix}
+\wch\xi^1,\dots,\wch\xi^n
+\end{pmatrix}
+A^\tr[\gk(\partial_x\otimes\partial_x)]A
+\begin{pmatrix}
+\wch\xi^1\\
+\vdots\\
+\wch\xi^n
+\end{pmatrix}
+\end{align*} 
+where the first equality is due to the orthogonality of $\xi_1,\dots,\xi_n$. It follows that $A^\tr[\gk(\partial_x\otimes\partial_x)]A=\idt$ and hence $|\det A|^2\cdot\det[\gk(\partial_x\otimes\partial_x)]=1$. Therefore
+\begin{align*}
+\dvol=\sqrt{\det[\gk(\partial_x\otimes\partial_x)]}dm
+\end{align*}
+
+
+
+\subsubsection{The volume measure on $n$-dimensional $\partial$-submanifolds of $\Rbb^n$}
+
+
+
+
+\begin{df}\label{mc103}
+Let $\Omega$ be an $n$-dimensional smooth $\partial$-submanifold of $\Rbb^n$. Let $\gk$ be a Riemannian metric on $\Omega$. Then the \textbf{volume measure} $\vol_{\Omega,\gk}=\vol_\gk:\fk B_\Omega\rightarrow[0,+\infty]$ \index{00@Volume measure} on \index{V@$\vol_{M,\gk}\equiv\vol_M\equiv\vol_\gk$, the volume measure} $(\Omega,\gk)$ is defined to be
+\begin{align}\label{eq467}
+\tcboxmath{\dvol_\gk=\sqrt{\det[\gk(\partial_x\otimes\partial_x)]}~dm_\Omega}
+\end{align}
+(Note that $\det[\gk(\partial_x\otimes\partial_x)]$ is a smooth function $\Omega\rightarrow\Rbb^{n\times n}$.) In particular, if $\gk=(dx^1)^2+\cdots+(dx^n)^2$, then $\dvol_\gk=dm_\Omega$.
+\end{df}
+
+\begin{rem}\label{mc104}
+Note that by Cor. \ref{mc101}, we have $\vol_\gk(\partial\Omega)=0$. Therefore, when integrating functions, it suffices to restrict the measure to $\Int\Omega$.
+\end{rem}
+
+\begin{eg}\label{mc110}
+Let $\Omega\subset\Rbb^m$ be a smooth $m$-dimensional $\partial$-submanifold. Let $F:\Omega\rightarrow\Rbb^n$ be a smooth embedding. Then by Prop. \ref{mc102}, we have
+\begin{align}
+\dvol_{\Omega,F^*\fk E^n}=\sqrt{\det((\Jac F)^\tr(\Jac F))}~dm_\Omega
+\end{align}
 \end{eg}
 
 
 
+The key to the construction of the volume measure on any Riemannian $\partial$-manifold is the following relationship between the pullbacks of measures and the pullbacks of Riemannian metrics.
+
+\begin{thm}\label{mc105}
+Let $\Omega$ and $\Delta$ be smooth $n$-dimensional $\partial$-submanifolds of $\Rbb^n$. Let $\Phi:\Omega\rightarrow\Delta$ be a diffeomorphism. Let $\gk$ be a Riemannian metric on $\Delta$. Then on $\fk B_\Omega$ we have
+\begin{align}\label{eq461}
+\Phi^*\dvol_\gk=\dvol_{\Phi^*\gk}
+\end{align}
+where $\vol_\gk$ and $\vol_{\Phi^*\gk}$ are the volume measures on $(\Delta,\gk)$ and $(\Omega,\Phi^*\gk)$ respectively.
+\end{thm}
+
+The following proof shows that if we let $\gk$ be $\fk E$, then \eqref{eq461} becomes exactly the change of variables formula $\Phi^* dm_\Delta=|\Jbf\Phi|dm_\Omega$ since, by \eqref{eq464},
+\begin{align}
+\dvol_{\Omega,\Phi^*\fk E}=|\Jbf\Phi|dm_\Omega
+\end{align}
+
+\begin{proof}
+By Thm. \ref{mc104}, it suffices to prove \eqref{eq461} when restricted to $\Int\Omega$. Therefore, replacing $\Omega,\Delta$ by $\Int\Omega,\Int\Delta$, we assume that both $\Omega,\Delta$ are open subsets of $\Rbb^n$. Let $G=[\gk(\partial_x\otimes\partial_x)]$ which is an element of $C^\infty(\Delta,\Rbb)$. Then by Prop. \ref{mc102}, we have
+\begin{align*}
+[\Phi^*\gk(\partial_x\otimes\partial_x)]=(\Jac\Phi)^\tr\cdot (G\circ\Phi)\cdot \Jac\Phi
+\end{align*}
+whose determinant is $\det(G\circ\Phi)\cdot (\Jbf\Phi)^2$. Therefore, by Def. \ref{mc103}, we have
+\begin{align}\label{eq464}
+\dvol_{\Phi^*\gk}=\sqrt{\det(G\circ\Phi)}\cdot |\Jbf\Phi|dm_\Omega
+\end{align}
+By Def. \ref{mc103}, we also have $\dvol_\gk=\sqrt{\det G}dm_\Delta$. Therefore, by the change of variables Thm. \ref{mc39}, we have
+\begin{align*}
+\Phi^*\dvol_\gk=\sqrt{\det(G\circ\Phi)}\cdot\Phi^*dm_\Delta=\sqrt{\det(G\circ\Phi)}\cdot |\Jbf\Phi|dm_\Omega
+\end{align*}
+This finishes the proof.
+\end{proof}
+
+
+\subsubsection{The volume measures on Riemannian $\partial$-manifolds}
+
+By Def. \ref{mc103}, we can define the volume measure of a Riemannian $\partial$-manifold locally. To construct the volume measure globally, we need either Pb. \ref{mc106}, or Prop. \ref{mc36} and the next property.
+
+\begin{pp}\label{mc107}
+Let $X$ be an LCH space with open cover $\fk U$. For each $U\in\fk U$, assume that a Radon measure $\mu_U:\fk B_U\rightarrow[0,+\infty]$ is chosen. Assume that for each $U,V\in\fk U$ we have $\mu_U|_{U\cap V}=\mu_V|_{U\cap V}$. Then there exists a unique Radon measure $\mu:\fk B_X\rightarrow[0,+\infty]$ such that $\mu|_U=\mu_U$ for each $U\in\fk U$.
+\end{pp}
+
+\begin{proof}
+The uniqueness follows from Prop. \ref{mc36}. Let us prove the uniqueness. For each $f\in C_c(X,\Rbb_{\geq0})$, define $\Lambda(f)\in\Rbb_{\geq0}$ as follows. Since $K=\Supp(f)$ is compact, there exist $U_1,\dots,U_n\in\fk U$ covering $K$. For each $1\leq i\leq n$ choose a Borel set $A_i\subset U_i$ such that $\bigcup_i U_i=\bigcup A_i$. (For example, let $A_1=U_1$, and let $A_{i+1}=U_{i+1}\setminus(U_1\cup\cdots\cup U_i)$.) Then $f\chi_{A_i}$ can be viewed as a Borel function on $U_i$. We let
+\begin{align*}
+\Lambda(f)=\sum_{i=1}^n\int_{U_i} f\chi_{A_i}d\mu_{U_i}
+\end{align*}
+
+Let us check that $\Lambda(f)$ is well-defined. Suppose that $V_1,\dots,V_l\in\fk U$ cover $K$, $B_j\subset V_j$ is Borel, and $\bigcup_j B_j=\bigcup_j V_j$. Then
+\begin{align*}
+\sum_i\int_{U_i} f\chi_{A_i}d\mu_{U_i}=\sum_{i,j}\int_{U_i} f\chi_{A_i\cap B_j}d\mu_{U_i}\xlongequal{\eqref{eq351}}\sum_{i,j}\int_{U_i\cap V_j} f\chi_{A_i\cap B_j}d(\mu_{U_i}|_{U_i\cap V_j})
+\end{align*}
+and similarly
+\begin{align*}
+\sum_j\int_{V_j}f\chi_{A_j}d\mu_{V_j}=\sum_{i,j}\int_{U_i\cap V_j} f\chi_{A_i\cap B_j}d(\mu_{V_j}|_{U_i\cap V_j})
+\end{align*}
+These two expressions are equal since, by assumption, we have $\mu_{U_i}|_{U_i\cap V_j}=\mu_{V_j}|_{U_i\cap V_j}$. This proves that $\Lambda(f)$ is well-defined.
+
+We now have a map $\Lambda:C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$. From its definition, it is obvious that $\Lambda$ is $\Rbb_{\geq0}$-linear. Therefore, by the Riesz-Markov representation theorem, there exists a unique Radon measure $\mu$ on $X$ satisfying $\Lambda(f)=\int_Xfd\mu$ for all $f\in C_c(X,\Rbb_{\geq0})$. Moreover, from the construction of $\Lambda$, if $U\in\fk U$, then for each $f\in C_c(U,\Rbb_{\geq0})$ we have $\Lambda(f)=\int_U fd\mu_U$, and hence
+\begin{align*}
+\int_U fd\mu|_U\xlongequal{\eqref{eq351}} \int_X fd\mu=\Lambda(f)=\int_Ufd\mu_U
+\end{align*}
+Since $\mu|_U:\fk B_U\rightarrow[0,+\infty]$ is obviously Radon, by the uniqueness Prop. \ref{lb791}, we have $\mu|_U=\mu_U$.
+\end{proof}
 
 
 
@@ -29094,6 +29378,385 @@ Let $\Omega$ be an $m$-dimensional smooth $\partial$-submanifold of $\Rbb^m$. Le
 
 
 
+Recall that if $\varphi$ is a diffeomorphism then we write the pullback  $(\varphi^{-1})^*\omega$ of a covariant tensor field $\omega$ as $\varphi_*\omega$, cf. Def. \ref{mc91}.
+
+\begin{thm}\label{mc108}
+Let $(M,\gk)$ be a Riemannian $\partial$-manifold. Then there is a unique Radon measure $\vol_{M,\gk}\equiv\vol_M\equiv\vol_\gk$ on $M$,  \index{00@Volume measure} called  \index{V@$\vol_{M,\gk}\equiv\vol_M\equiv\vol_\gk$, the volume measure} the \textbf{volume measure}, satisfying the following property:
+\begin{itemize}
+\item For any chart $(U,\varphi)$ on $M$, the following relation holds on $\fk B_{\varphi(U)}$:
+\begin{align}\label{eq462}
+\varphi_*\big(\dvol_\gk|_U\big)=\dvol_{\varphi_*\gk}
+\end{align}
+where $\vol_{\varphi_*\gk}$ is the volume measure of $(\varphi(U),\varphi_*\gk)$ defined as in Def. \ref{mc105}.
+\end{itemize}
+We have $\vol_\gk(\partial M)=0$. Moreover, if $M$ is a smooth $n$-dimensional $\partial$-submanifold of $\Rbb^n$, then $\vol_\gk$ agrees with the volume measure defined in Def. \ref{mc105}.
+\end{thm}
+
+
+
+\begin{proof}
+Step 1. The uniqueness is obvious: Choose an open cover $\fk U$ of $M$ such that any $U\in\fk U$ is diffeomorphic to an open subset of $\Hbb^n$. Then by \eqref{eq462}, for each $U\in\fk U$, $\vol_\gk|_U$ is uniquely determined. Therefore, by Prop. \ref{mc36}, $\vol_\gk$ is uniquely determined.
+
+Assume that $\vol_\gk$ exists. Since $M$ is second countable, we can assume that the above $\fk U$ is countable. Then by \eqref{eq462} and Rem. \ref{mc104}, for each $U\in\fk U$ we have $\vol_\gk(\partial M\cap U)=0$. Thus $\vol_\gk(\partial M)=0$.
+
+Suppose that $M$ is an $n$-dimensional $\partial$-submanifold of $\Rbb^n$. Then $(\Int M,x)$ (where $x$ is the standard coordinates of $\Rbb^n$) is a chart on $M$. Then by \eqref{eq462} and Rem. \ref{mc104}, and by $\vol_\gk(\partial M)=0$, one easily sees that the two definitions agree.\\[-1ex]
+
+Step 2. Let us prove the existence of $\vol_\gk$. Let $\fk U$ be the maximal atlas of $M$. For each $(U,\varphi)\in\fk U$, let $\mu_U:\fk B_U\rightarrow[0,+\infty]$ be
+\begin{align*}
+d\mu_U=\varphi^*\dvol_{\varphi_*\gk}
+\end{align*}
+Then $\mu_U$ is clearly a Borel measure finite on compact sets. Therefore, by Thm. \ref{lb818}, $\mu_U$ is a Radon measure. If we can prove that for any $(V,\psi)\in\fk U$ we have $\mu_U|_{U\cap V}=\mu_V|_{U\cap V}$, then Prop. \ref{mc107} or Pb. \ref{mc106} implies that there exists a Radon measure $\vol_\gk$ on $M$ such that $\vol_\gk|_U=\mu_U$ for every $(U,\varphi)\in\fk U$. Then \eqref{eq462} is clearly satisfied. This will finish the proof.
+
+Choose any charts $(U,\varphi)$ and $(V,\psi)$. Let $\Omega=\varphi(U\cap V)$ and $\Delta=\psi(U\cap V)$. Then $\psi\circ\varphi^{-1}:\Omega\rightarrow\Delta$ is a diffeomorphism. We have
+\begin{align*}
+d\mu_U|_{U\cap V}=(\varphi^*\dvol_{\varphi_*\gk})|_{U\cap V}=\varphi^*(\dvol_{\varphi_*\gk}|_\Omega)=\varphi^*\dvol_{\Omega,\varphi_*\gk}
+\end{align*} 
+Similarly, we have $\mu_V|_{U\cap V}=\psi^*\dvol_{\Delta,\psi_*\gk}$ where the RHS is, by Thm. \ref{mc105}, equal to
+\begin{align*}
+((\psi\circ\varphi^{-1})\circ\varphi)^*\dvol_{\Delta,\psi_*\gk}=\varphi^*(\psi\circ\varphi^{-1})^*\dvol_{\Delta,\psi_*\gk}=\varphi^*\dvol_{\Omega,(\psi\circ\varphi^{-1})^*\psi_*\gk}
+\end{align*}
+The last term above equals $\varphi^*\dvol_{\Omega,\varphi_*\gk}$ because
+\begin{align*}
+(\psi\circ\varphi^{-1})^*\psi_*\gk=(\varphi\circ\psi^{-1})_*\psi_*\gk=\varphi_*\gk
+\end{align*}
+This finishes the proof.
+\end{proof}
+
+\begin{rem}\label{mc119}
+Note that $m^0$ is the Dirac measure on $\Rbb^0=\{0\}$. Therefore, if $\dim M=0$, then $\vol_M$ is the counting measure on $M$.
+\end{rem}
+
+
+\begin{pp}\label{mc111}
+Let $(M,\gk)$ be a Riemannian $\partial$-manifold. 
+\begin{enumerate}
+\item[(a)] Let $U\subset M$ be open whose Riemannian metric is (the restriction of) $\gk$. Then
+\begin{align*}
+\vol_{M,\gk}|_U=\vol_{U,\gk}
+\end{align*}
+\item[(b)] Let $P$ be a smooth $\partial$-manifold, and let $\Phi:P\rightarrow M$ be a diffeomorphism. Then
+\begin{align}\label{eq463}
+\Phi^*\dvol_\gk=\dvol_{\Phi^*\gk}
+\end{align}
+holds on $\fk B_P$, where $\vol_\gk$ and $\vol_{\Phi^*\gk}$ are the volume measures of $(M,\gk)$ and $(P,\Phi^*\gk)$ respectively.
+\end{enumerate}
+\end{pp}
+
+
+
+\begin{proof}
+Obvious from Thm. \ref{mc108}.
+\end{proof}
+
+Note that if we set $\pk=\Phi^*\gk$, then \eqref{eq463} is equivalent to
+\begin{align}
+\Phi_*\dvol_\pk=\dvol_{\Phi_*\pk}
+\end{align}
+
+
+
+\begin{exe}
+Let $(M,\gk)$ be a Riemannian $\partial$-manifold. Let $(\fk M,\vol_\gk)$ be the completion of the Radon measure $(\fk B_M,\vol_\gk)$.
+\begin{enumerate}
+\item Let $\fk U$ be an atlas of $M$. Let $E\subset M$. Prove that $E\in\fk M$ iff $\varphi(E\cap U)$ is Lebesgue measurable for every $(U,\varphi)\in\fk U$. Prove that $E$ is $(\fk M,\vol_\gk)$-null iff $\varphi(E\cap U)$ is a Lebesgue null set for every $(U,\varphi)\in\fk U$.
+\item Prove that if $U\subset M$ is open, then $(\fk M|_U,\vol_\gk|_U)$ is the completion of $(\fk B_U,\vol_{U,\gk})$.
+\item  Let $P$ be a smooth $\partial$-manifold, and let $\Phi:P\rightarrow M$ be a diffeomorphism. Prove that $\Phi^*\dvol_\gk=\dvol_{\Phi^*\gk}$ holds on $\fk P$, where $(\fk P,\Phi^*\gk)$ is the completion of $(\fk B_P,\Phi^*\gk)$.
+\item Let $\wtd\gk$ be another Riemannian metric on $M$. Prove that the completions of $(\fk B_M,\vol_\gk)$ and $(\fk B_M,\vol_{\wtd\gk})$ have the same $\sigma$-algebra.
+\end{enumerate}
+We say that $E\subset M$ is \textbf{Lebesgue measurable} if $E\in\fk M$.\index{00@Lebesgue measurable subsets of a $\partial$-manifold} This notion is clearly independent of the choice of Riemannian metrics, and hence makes sense for any smooth $\partial$-manifold (due to Thm. \ref{mc109}).
+\end{exe}
+
+
+\begin{exe}
+Let $(M,\gk)$ be a Riemannian $\partial$-manifold. Let $(U,\varphi)$ be a chart on $M$. Prove that
+\begin{align}
+\gk(\partial_\varphi\otimes\partial_\varphi)=\big(\varphi_*\gk(\partial_x\otimes\partial_x)\big)\circ\varphi
+\end{align}
+Conclude that
+\begin{align}
+\dvol_\gk=\det[\gk(\partial_\varphi\otimes\partial_\varphi)]\cdot\varphi^*dm_{\varphi(\Omega)}
+\end{align}
+\end{exe}
+
+
+
+
+\subsection{Examples}
+
+In this section, unless otherwise stated, all measures on defined on the Borel $\sigma$-algebras (rather than on their completions). 
+
+
+\begin{cv}
+Unless otherwise stated, if $M$ is a $\partial$-submanifold of $\Rbb^n$, the Riemannian metric on $M$ is chosen to be the restriction of the Euclidean metric $\fk E^n|_M$.
+\end{cv}
+
+\begin{df}
+Let $(M,\gk)$ be a Riemannian $\partial$-manifold.
+\begin{align*}
+\Vol(M)\equiv\Vol_\gk(M):=\vol_M(M)
+\end{align*}
+is called the \textbf{volume} \index{00@Volume} of $M$. \index{00@$\Vol(M)$} If $\dim M=2$, then $\Vol(M)$ is called the \textbf{area} of $M$. If $\dim M=1$, $\Vol(M)$ is called the \textbf{length} of $M$.
+\end{df}
+
+
+
+
+\subsubsection{Basic examples}
+
+
+\begin{eg}\label{mc112}
+Let $\Omega$ be an $m$-dimensional smooth $\partial$-submanifold of $\Rbb^m$. Let $F:\Omega\rightarrow\Rbb^n$ be a smooth embedding with image $M:=F(\Omega)$, equipped with the standard metric $\fk E|_M$. Let $f:M\rightarrow\ovl\Rbb_{\geq0}$ be a Borel function. Then
+\begin{align}\label{eq465}
+\int_M f\dvol_M=\int_\Omega (f\circ F)\cdot\sqrt{(\Jac F)^\tr\Jac F}~dm
+\end{align}
+\end{eg}
+
+\begin{proof}
+We have
+\begin{align*}
+\int_M f\dvol_{M,\fk E|_M}\xlongequal{\eqref{eq423}}\int_\Omega (f\circ F)F^*\dvol_{M,\fk E|_M}\xlongequal{\eqref{eq463}}\int_\Omega (f\circ F)\dvol_{\Omega,F^*\fk E}
+\end{align*}
+where the last term equals the RHS of \eqref{eq465} by Exp. \ref{mc110}.
+\end{proof}
+
+\begin{eg}
+Let $I\subset\Rbb$ be an interval (equivalently, a connected $1$-dimensional smooth $\partial$-submanifold of $\Rbb$). Let $\gamma:I\rightarrow\Rbb^n$ be a smooth embedding. Let $C=\gamma(I)$. Let $f:C\rightarrow\ovl\Rbb_{\geq0}$ be Borel. Then
+\begin{align}
+\int_C f\dvol_C=\int_I (f\circ\gamma(t))\cdot\Vert\gamma'(t)\Vert dt
+\end{align}
+In particular, the length of the curve $C$ is 
+\begin{align*}
+\Vol(C)=\int_I \Vert\gamma'(t)\Vert dt
+\end{align*}
+\end{eg}
+
+\begin{proof}
+This is a special case of Exp. \ref{mc112}.
+\end{proof}
+
+
+\begin{eg}
+Let $M$ be a smooth $n$-dimensional $\partial$-manifold. Let $\gk$ be a Riemannian metric on $M$. Let $\lambda>0$. Then
+\begin{align*}
+\dvol_{\lambda\gk}=\lambda^{\frac n2}\dvol_{\gk}
+\end{align*}
+\end{eg}
+
+\begin{proof}
+By Prop. \ref{mc36}, it suffices to check the relation locally. Therefore, we my assume that $M$ is an open subset of $\Hbb^n$. Then
+\begin{align*}
+\det[\lambda\gk(\partial_x\otimes\partial_x)]=\lambda^n\det[\gk(\partial_x\otimes\partial_x)]
+\end{align*}
+Therefore, by Def. \ref{mc103}, we have $\dvol_{\lambda\gk}=\lambda^{\frac n2}\dvol_{\gk}$.
+\end{proof}
+
+
+
+
+
+\begin{eg}\label{mc121}
+Let $M$ be a $k$-dimensional Riemannian $\partial$-submanifold of $\Rbb^n$. Let $r>0$, and let $rM=\{rp:p\in M\}$. Then
+\begin{align*}
+\Vol(rM)=r^k\Vol(M)
+\end{align*}
+\end{eg}
+
+
+\begin{proof}
+Let $\Phi:M\rightarrow rM$ send each $p$ to $rp$, which is a diffeomorphism. Then $d\Phi$ sends each $v\in T_pM\subset\Rbb^n$ to $rv$. Thus $\Phi^*:T^*_{rp}rM\rightarrow T^*_pM$ is the multiplication by $r$. Let $\gk=\fk E^n|_M$ and $\pk=\fk E^n|_{rM}$ be the Riemannian metrics of $M$ and $rM$. Then $\Phi^*\pk=r^2\gk$. Therefore, by Prop. \ref{mc111}, we have $\Phi^*\dvol_{rM,\pk}=\dvol_{M,r^2\gk}$ where the RHS equals $r^k\dvol_{M,\gk}$ by Exp. \ref{mc112}.
+\end{proof}
+
+
+\subsubsection{Product manifolds}
+
+
+\begin{df}\label{mc114}
+Let $(M_1,\gk_1),\dots,(M_n,\gk_n)$ be Riemannian $\partial$-manifolds such that only one of them has possibly nonempty boundary. For each $1\leq i\leq n$, let $\pi_j:M_1\times\cdots\times M_n\rightarrow M_i$ be the projection. Then for each $p_i\in M_i$,
+\begin{gather}\label{eq466}
+\begin{gathered}
+d\pi_1\oplus\cdots \oplus d\pi_n: T_{(p_1,\dots,p_n)}(M_1\times\cdots\times M_n)\xlongrightarrow{\simeq} T_{p_1}M_1\oplus\cdots\oplus T_{p_n}M_n\\
+\xi\mapsto d\pi_1\xi\oplus\cdots\oplus d\pi_n\xi 
+\end{gathered}
+\end{gather}
+is a linear isomorphism, since this is true when $M_1,\dots,M_n$ are open subsets of Euclidean spaces or half spaces, and hence is true in general. Identify these two spaces. By Exp. \ref{mc113}, $\gk_1|_{p_1}\oplus\cdots\oplus\gk_n|_{p_n}$ is a real inner product on $T_{p_1}M_1\oplus\cdots\oplus T_{p_n}M_n$. One checks easily (again by using local coordinates) that $(p_1,\dots,p_n)\in M_1\times\cdots\times M_n\mapsto \gk_1|_{p_1}\oplus\cdots\oplus\gk_n|_{p_n}$ gives a Riemannian metric on $M_1\times\cdots\times M_n$, called the \textbf{direct sum} of $\gk_1,\dots,\gk_n$ \index{00@Direct sum of Riemannian metrics} and is denoted by $\gk_1\oplus\cdots\oplus\gk_n$. We call
+\begin{align*}
+(M_1\times\cdots\times M_n,\gk_1\oplus\cdots\oplus\gk_n)
+\end{align*}
+the \textbf{product Riemannian $\partial$-manifold} \index{00@Product Riemannian $\partial$-manifold} of $(M_1,\gk_1),\dots,(M_n,\gk_n)$
+\end{df}
+
+\begin{cv}
+Unless otherwise stated, in Exp. \ref{mc114}, if $p_1\in M_1,\dots,p_n\in M_n$, we make the following identification
+\begin{align}
+T_{(p_1,\dots,p_n)}(M_1\times\cdots\times M_n)= T_{p_1}M_1\oplus\cdots\oplus T_{p_n}M_n
+\end{align}
+via the canonical linear isomorphism \eqref{eq466}.
+\end{cv}
+
+
+\begin{pp}\label{mc116}
+Assume the setting of Def. \ref{mc114}. Then on $\fk B_{M_1\times\cdots\times M_n}$ we have
+\begin{align}\label{eq468}
+\dvol_{\gk_1\oplus\cdots\oplus\gk_n}=\dvol_{\gk_1}\times\cdots\times \dvol_{\gk_n}
+\end{align}
+where the RHS is the Radon product (Def. \ref{lb827}), restricted to the Borel $\sigma$-algebra.
+\end{pp}
+
+
+\begin{proof}
+Since the boundaries are null sets, it suffices to assume that $M_1,\dots,M_n$ all have empty boundaries. By Prop. \ref{mc36}, it suffices to check \eqref{eq468} locally. Therefore, we may assume that each $M_i$ is an open subset of $\Rbb^{k_i}$. Note that the Riemannian metric $\gk_i$ on $M_i$ is not necessarily Euclidean.
+
+Let $\gk=\gk_1\oplus\cdots\oplus\gk_n$, which is a Riemannian metric on $M:=M_1\times\cdots\times M_n$. Let $G_i$ (resp. $G$) be the Gram matrix of $\gk_i$ (resp. $G$) with respect to the standard basis of $\Rbb^{k_1}$ (resp. $\Rbb^{k_1+\cdots+k_n}$). Then $G=\diag(G_1,\dots,G_n)$ where $G_i:M_i\rightarrow\Rbb^{k_i\times k_i}$ is also viewed as a function on $M$ by the composition with the projection $\pi_i:M\rightarrow M_i$. Hence
+\begin{align*}
+\det G=\det G_1\cdots\det G_n
+\end{align*}
+By Def. \ref{mc103}, we have $\dvol_{\gk_i}=\sqrt{\det G_i}dm_{M_i}$ and $\dvol_\gk=\sqrt{\det G}dm_M$ where $dm_{M_i}$ (resp. $dm_M$) is the Lebesgue measure on $M_i$ (resp. $M$). This proves \eqref{eq468} thanks to the following Lem. \ref{mc115}.
+\end{proof}
+
+
+
+\begin{lm}\label{mc115}
+Let $X_1,\dots,X_n$ be second countable LCH spaces. Let $\mu_i$ be a Radon measure on $X_i$. Let $h_i:X_i\rightarrow[0,+\infty]$ be a Borel function such that $\int_{K_i}h_id\mu_i<+\infty$ for any compact $K_i\subset X_i$. Let $\nu_i$ be the Borel measure on $X_i$ defined by $d\nu_i=h_id\mu_i$, which is a Radon measure by Thm. \ref{lb818}. Then on $\fk B_{X_1\times\cdots\times X_n}$ we have
+\begin{align}\label{eq469}
+d\nu_1\times\cdots\times d\nu_n=(h_1\cdots h_n)d\mu_1\times\cdots\times d\mu_n
+\end{align}
+where $h_1\cdots h_n$ sends each $(p_1,\dots,p_n)\in X_1\times\cdots\times X_n$ to $h_1(p_1)\cdots h_n(p_n)$.
+\end{lm}
+
+\begin{proof}
+Choose any Borel $f:X_1\times\cdots\times X_n\rightarrow[0,+\infty]$. Then by Tonelli's Thm. \ref{lb835}, the integral of $f$ with respect to the two measures in \eqref{eq469} are equal.
+\end{proof}
+
+
+\begin{eg}\label{mc118}
+Let $(M_1,\gk_1),\dots,(M_n,\gk_n)$ be Riemannian $\partial$-manifols, at most one of which has nonempty boundary. For each $1\leq i\leq n$, assume that $M_i$ is equidimensional and let $k_i=\dim M_i$. Let $M=M_1\times\cdots\times M_n$. Let $\varrho_1,\dots,\varrho_n\in C^\infty(M,\Rbb_{>0})$. Define a Riemannian metric $\gk$ on $M$ by
+\begin{gather}
+\gk=(\varrho_1\gk_1)\oplus\cdots\oplus(\varrho_n\gk_n)
+\end{gather}
+In other words, for each $p=(p_1,\dots,p_n)\in M$, we have
+\begin{align*}
+\gk|_p=(\varrho_1(p)\gk_1|_{p_1})\oplus\cdots\oplus(\varrho_n(p)\gk_n|_{p_n})
+\end{align*}
+Then on $\fk B_M$ we have
+\begin{align}\label{eq470}
+\dvol_\gk=\sqrt{\varrho_1^{k_1}\cdots\varrho_n^{k_n}}~\dvol_{\gk_1}\times\cdots\times\dvol_{\gk_n}
+\end{align}
+\end{eg}
+
+
+\begin{proof}
+As in the proof of Prop. \ref{mc116}, we may assume WLOG that each $M_i$ is an open subset of $\Rbb^{k_i}$. Let $G_i=[\gk_i(\partial_x\otimes\partial_x)]$ and $G=[\gk(\partial_x\otimes\partial_x)]$. Then
+\begin{align*}
+\det G=\varrho_1^{k_1}\cdots\varrho_n^{k_n}\cdot\det G_1\cdots\det G_n
+\end{align*}
+Then by Def. \ref{mc103}, we have $\dvol_{\gk_i}=\sqrt{\det G_i}dm_{M_i}$ and
+\begin{align*}
+\dvol_\gk=\sqrt{\varrho_1^{k_1}\cdots\varrho_n^{k_n}\cdot\det G_1\cdots\det G_n}dm_M
+\end{align*}
+By Lem. \ref{mc115}, we have
+\begin{align*}
+&\dvol_{\gk_1}\times\cdots\times\dvol_{\gk_n}=\sqrt{\det G_1\cdots\det G_n}~dm_{M_1}\times\cdots\times dm_{M_n}\\
+=&\sqrt{\det G_1\cdots\det G_n}~dm_M
+\end{align*}
+on $\fk B_M$. This proves \eqref{eq470}.
+\end{proof}
+
+
+\subsubsection{Integrals with rotational symmetry}
+
+
+
+\begin{eg}\label{mc117}
+Let $M=\Rbb_{>0}\times\Sbb^{n-1}$ and
+\begin{gather*}
+\Phi:\Rbb_{>0}\times \Sbb^{n-1}\rightarrow \Rbb^n\setminus\{0\}\qquad r\times p\mapsto r\cdot p
+\end{gather*}
+which is clearly $C^r$ an bijective. Then for each $(r,p)\in M$, we have
+\begin{gather}\label{eq118}
+\begin{gathered}
+d\Phi|_{(r,p)}:\Rbb\oplus T_p\Sbb^{n-1}\rightarrow \Rbb^n\\
+d\Phi|_{(r,p)}\cdot (1\oplus 0)=p\qquad  d\Phi|_{(r,p)}\cdot(0\oplus \xi)=r\xi
+\end{gathered}
+\end{gather}
+where $T_p\Sbb^{n-1}$ is viewed as a linear subspace of $\Rbb^n$. So $d\Phi$ is everywhere invertible. Thus, by Cor. \ref{lb981}, $\Phi$ is a diffeomorphism.
+\end{eg}
+
+\begin{eg}
+We continue the discussion in Exp. \ref{mc117}. Let $\gk_M$ be $\Phi^*\fk E^n$, the pullback of the Euclidean metric under $\Phi$. Then $\gk_M$ is a Riemannian metric on $M=\Rbb_{>0}\times\Sbb^{n-1}$. Let $\gk_{\Sbb^{n-1}}$ be the restriction of the Euclidean metric tensor $\fk E^n$ to $\Sbb^{n-1}$ (i.e., the standard Riemannian metric on $\Sbb^{n-1}$). From \eqref{eq118}, one easily computes that
+\begin{align}
+\gk_M|_{(r,p)}=\fk E^1\oplus r^2\gk_{\Sbb^{n-1}}|_p
+\end{align}
+Therefore, by Exp. \ref{mc118}, on $\fk B_M$ we have
+\begin{align}\label{eq471}
+\dvol_{\gk_M}=r^{n-1}\cdot dm^1\times\dvol_{\gk_{\Sbb^{n-1}}}
+\end{align}
+where $dm^1$ is the Lebesgue measure on $\Rbb$ and $r$ is the standard coordinate on $\Rbb$.
+\end{eg}
+
+
+\begin{eg}\label{mc120}
+Let $n\in\Zbb_+$. Let $g:\Rbb_{>0}\rightarrow[0,+\infty]$ be Borel. Let $f:\Rbb^n\setminus\{0\}\rightarrow[0,+\infty]$ be defined $f(p)=g(\Vert p\Vert)$. Let $f(0)$ be an arbitrary element of $[0,+\infty]$ so that $f$ is a Borel function on $\Rbb^n$. Then
+\begin{align}\label{eq472}
+\int_{\Rbb^n}fdm^n=\Vol(\Sbb^{n-1})\int_{\Rbb_{>0}} r^{n-1}g(r)dm^1(r)
+\end{align}
+\end{eg}
+
+Note that $\Sbb^0=\{1,-1\}$. So $\Vol(\Sbb^0)=2$ by Rem. \ref{mc119}.
+
+
+\begin{proof}
+Let $M$ and $\Phi$ be as in Exp. \ref{mc117}. By Prop. \ref{mc111}, $\Phi^*dm^n$ equals $\dvol_{\gk_M}$ where $\gk_M=\Phi^*\fk E^n$. View $g$ also as a function on $\Rbb_{>0}\times\Sbb^{n-1}$ sending $(r,p)$ to $g(r)$, we have
+\begin{align*}
+&\int_{\Rbb^n}fdm^n=\int_{\Rbb^n\setminus\{0\}}fdm^n\xlongequal{\eqref{eq423}}\int_{\Rbb_{>0}\times\Sbb^{n-1}}(f\circ\Phi)\cdot\Phi^*dm^n\\
+=&\int_{\Rbb_{>0}\times\Sbb^{n-1}}g\dvol_{\gk_M}\xlongequal{\eqref{eq471}}\int_{\Rbb_{>0}\times\Sbb^{n-1}}r^{n-1}g\cdot dm^1\times\dvol_{\Sbb^{n-1}}
+\end{align*}
+The last term equals the RHS of \eqref{eq472} by Tonelli's Thm. \ref{lb835}.
+\end{proof}
+
+
+\subsubsection{The volumes of balls and spheres}
+
+We let
+\begin{align*}
+\mbb B^n=B_{\Rbb^n}(0,1)=\{p\in\Rbb^n:\Vert p\Vert<1\}
+\end{align*}
+
+\begin{eg}
+Let $n\in\Zbb_+$. We have
+\begin{align}
+\Vol(\mbb B^n)=\frac 1n\Vol(\Sbb^{n-1})
+\end{align}
+\end{eg}
+
+
+\begin{proof}
+In Exp. \ref{mc120}, set $g=\chi_{(0,1)}$. Then \eqref{eq472} says that $\Vol(\mbb B^n)$ equals $\Vol(\Sbb^{n-1})\int_0^1 r^{n-1}dr$.
+\end{proof}
+
+
+\begin{eg}
+We have
+\begin{gather}
+\Vol(\mbb B^n)=\left\{
+\begin{array}{ll}
+1&\text{ if }n=0\\
+2&\text{ if }n=1\\[0.5ex]
+\dps\frac{2\pi}{n}\Vol(\mbb B^{n-2})&\text{ if }n\geq2
+\end{array}
+\right.
+\end{gather}
+\end{eg}
+
+\begin{proof}
+The cases $n=0$ and $n=1$ are obvious. Assume $n\geq2$. Let $k=n-2$. Then $\mbb B^n$ is the set of all $(p,q)\in\mbb B^2\times\Rbb^k$ such that $\Vert p\Vert^2+\Vert q\Vert^2<1$. Thus $\mbb B^n=\bigcup_{p\in\mbb B^2}(\{p\}\times\sqrt{1-\Vert p\Vert^2}\mbb B^k)$. Therefore, since $\Vol(r\mbb B^k)=r^k\Vol(\mbb B^k)$ (cf. Exp. \ref{mc121}), we have
+\begin{align*}
+\Vol(\mbb B^n)=\int_{\mbb B^2}\Vol(\sqrt{1-\Vert p\Vert^2}\mbb B^k)dm^2(p)=\Vol(\mbb B^k)\cdot \int_{\mbb B^2}(1-x^2-y^2)^{\frac k2}dm^2(x,y)
+\end{align*}
+By using the polar coordinates $x=r\cos\theta,y=r\sin\theta$ and the change of variables formula, we see that the above expression equals $\Vol(\mbb B^k)$ times
+\begin{align*}
+\int_{0}^{2\pi}\int_0^1 (1-r^2)^{\frac k2}\cdot rdrd\theta=2\pi\int_0^1(1-r^2)^{\frac {n-2}2}\cdot rdr=-\frac{2\pi}n(1-r^2)^{\frac n2}\Big|_{r=0}^1=\frac{2\pi}{n}
+\end{align*}
+\end{proof}
 
 
 
