@@ -23701,7 +23701,7 @@ Let $V$ be a normed vector space. Then $V^*$ is complete.
 \begin{proof}
 Let $(\varphi_n)$ be a Cauchy sequence in $V^*$. As in the proof of Thm. \ref{lb540}, one easily sees that $(\varphi_n)$ converges pointwise to a linear functional $\varphi:V\rightarrow\Fbb$, and that $\Vert\varphi\Vert\leq\sup_n\Vert\varphi_n\Vert<+\infty$. Thus, $(\varphi_n)$ converges weak-* to an element $\varphi\in V^*$.
 
-The following argument is crucial: Note that for each $m\in\Zbb_+$, $\lim_m(\varphi_n-\varphi_m)$ converges weak-* to $\varphi_n-\varphi$. Therefore, by \uwave{Fatou's lemma} for weak(-*) convergence (cf. Rem. \ref{lb770}), 
+The following argument is crucial: Note that for each $n\in\Zbb_+$, $\lim_m(\varphi_n-\varphi_m)$ converges weak-* to $\varphi_n-\varphi$. Therefore, by \uwave{Fatou's lemma} for weak(-*) convergence (cf. Rem. \ref{lb770}), 
 \begin{align}\label{eq455}
 \Vert\varphi_n-\varphi\Vert\leq\liminf_m\Vert\varphi_n-\varphi_m\Vert
 \end{align}
@@ -26528,6 +26528,7 @@ Then
 \begin{align}
 (\Ker T)^\perp=T^\tr(\mc W^*)
 \end{align}
+where the RHS is the range of $T^\tr:\mc W^*\rightarrow\mc V^*$.
 \end{lm}
 
 \begin{proof}
@@ -26611,7 +26612,7 @@ This proves Minkowski's inequality. Assume for simplicity that $b_i>0$ for some 
 \end{rem}
 
 
-%% Proofread
+
 
 \newpage
 
@@ -26638,7 +26639,7 @@ Suppose that $A$ is a submanifold of $M$.  Then the new definition of smooth fun
 \end{eg}
 
 \begin{proof}
-Let $f:A\rightarrow \Rbb$. Then $A$ is covered by a family $\fk U$ of open subset of $M$ such that for each $U\in\fk U$, the inclusion $A\cap U\hookrightarrow U$ is equivalent to $(\Rbb^d\times 0)\cap V\hookrightarrow V$ where $V$ is an open subset of $\Rbb^d\times\Rbb^k$, cf. Rem. \ref{lb945}. It is clear that two two meanings of smooth functions on the subset $(\Rbb^d\times 0)\cap V$ of $V$ are the same.
+Let $f:A\rightarrow \Rbb^n$. Then $A$ is covered by a family $\fk U$ of open subsets of $M$ such that for each $U\in\fk U$, the inclusion $A\cap U\hookrightarrow U$ is equivalent to $(\Rbb^d\times 0)\cap V\hookrightarrow V$ where $V$ is an open subset of $\Rbb^d\times\Rbb^k$, cf. Rem. \ref{lb945}. It is clear that the two meanings of smooth functions on the subset $(\Rbb^d\times 0)\cap V$ of $V$ are the same.
 \end{proof}
 
 
@@ -26657,7 +26658,7 @@ If $U$ is an open subset of $\Hbb^n$, we let
 \begin{align*}
 \Int U=U\cap\Int\Hbb^n\qquad\partial U=U\cap\partial\Hbb^n
 \end{align*}
-We understand $\Hbb^0$ as $\{0\}$.
+We understand $\Hbb^0$ as $\{0\}\equiv\Rbb^0$.
 \end{df}
 
 \begin{df}
@@ -26677,14 +26678,18 @@ F(\Int U)=\Int V\qquad F(\partial U)=\partial V
 
 
 \begin{proof}
-Let $p\in \Int U$ and $q=F(p)$. We shall show that $q\in\Int U$. Suppose that $q\in\partial U$. Since $F^{-1}$ is smooth, there exists $\Delta\in\Nbh_{\Rbb^n}(q)$ such that $\Delta\cap\Hbb^n\subset V$, and that $F^{-1}|_{\Delta\cap\Hbb^n}=G|_{\Delta\cap\Hbb^n}$ for some $G\in C^\infty(\Delta,\Rbb^m)$. Since $F^{-1}(\Delta)$ is open in $\Hbb^n$, we can choose $D\in\Nbh_{\Int U}(p)$ such that $D\subset F^{-1}(\Delta)$. It follows that both $G$ and $F|_D$ are defined on open subsets of $\Rbb^n$, and $G\circ F|_D=\id_D$. Thus $\Jac G|_q\cdot\Jac F|_p=1$. Therefore $\Jac F|_p$ is injective, and hence $m\leq n$. Therefore, we have $m\geq n$ by a similar argument applied to $F^{-1}$. So $m=n$. Thus $\Jac F|_p$ is invertible. By the inverse function Thm. \ref{lb929}, $V$ contains an open ball centered at $q$. This contradicts $q\in\partial \Hbb^n$.
+Let $p\in \Int U$ and $q=F(p)$. We shall show that $q\in\Int U$. Then Rem. \ref{lb928} immediately implies that $m=n$. 
+
+Suppose that $q\in\partial U$. Since $F^{-1}$ is smooth, there exists $\Delta\in\Nbh_{\Rbb^n}(q)$ such that $\Delta\cap\Hbb^n\subset V$, and that $F^{-1}|_{\Delta\cap\Hbb^n}=G|_{\Delta\cap\Hbb^n}$ for some $G\in C^\infty(\Delta,\Rbb^m)$. Since $F$ is continuous, $F^{-1}(\Delta)=F^{-1}(\Delta\cap\Hbb^n)$ is open in $U$. Let $D=F^{-1}(\Delta)\cap\Int(U)$, which is an element of $\Nbh_{\Rbb^n}(p)$. Then $G\circ F$ can be defined on $D$. It is clear that $G\circ F|_D=\id_D$. Thus $\Jac G|_q\cdot\Jac F|_p=1$. 
+
+Since $G$ is continuous, $\Delta'=G^{-1}(D)$ is an open subset of $\Delta$ containing $q$. Then $F\circ G$ can be defined on the open set $\Delta'$, and $F\circ G|_{\Delta'\cap\Hbb^n}=\id$. Therefore $\Jac (F\circ G)=1$ since the right partial derivative of $F\circ G$ with respect to the first variable is $1$. Thus $\Jac F|_p\cdot\Jac G|_q=1$. This proves that $\Jac F|_p$ is invertible. By the inverse function Thm. \ref{lb929}, $V$ contains an open ball centered at $q$. This contradicts $q\in\partial \Hbb^n$.
 
 We have proved $m=n$ and $F(\Int U)\subset \Int V$. Applying the same result to $F^{-1}$, we then have $F(\Int U)=\Int V$, and $F(\partial U)=V\cap\partial\Hbb^n$ also follows immediately.
 \end{proof}
 
 
 \begin{df}\label{lb992}
-Let $U\subset\Hbb^n$ be open. Let $F\in C^\infty(U,\Rbb^k)$. Then $\partial_i F^k(p)$ is defined in the obvious way when $p\in\Int U$, or when $p\in\partial U$ and $i>1$. If $p\in\Int U$,  $\partial_1 F(p)$ is defined to be the right partial derivative
+Let $U\subset\Hbb^n$ be open. Let $F\in C^\infty(U,\Rbb^k)$. Then $\partial_i F^k(p)$ is defined in the obvious way when $p\in\Int U$, or when $p\in\partial U$ and $i>1$. If $p\in\partial U$,  $\partial_1 F(p)$ is defined to be the right partial derivative
 \begin{align*}
 \partial_1 F(p)=\lim_{t\rightarrow 0^+}\frac{F(p+t e_1)-F(p)}{t}
 \end{align*}
@@ -26693,7 +26698,7 @@ where $e_1=(1,0,\dots,0)\in\Rbb^n$. Equivalently, $\partial_1 F(p)$ can be defin
 
 
 \begin{rem}\label{lb994}
-Let $U\subset \Hbb^m$ and $V\subset\Hbb^n$ be open, and let $F\in C^\infty(U,V)$. By Def. \ref{lb992}, for each $p\in U$, $\Jac F|_p$ is defined as an $n\times m$ matrix. Now assume that $F$ is a diffeomorphism and $p\in\partial U$. By Lem. \ref{lb993}, we know that $m=n$ and that $q=F(p)$ belongs to $\partial V$. Moreover, \eqref{eq411} implies that $\partial_1 F|_p\geq0$, and that the first component of $\partial_i F|_p$ is zero if $i>0$. The partial derivatives of $F^{-1}$ at $q$ satisfy a similar property. This implies
+Let $U\subset \Hbb^m$ and $V\subset\Hbb^n$ be open, and let $F\in C^\infty(U,V)$. By Def. \ref{lb992}, for each $p\in U$, $\Jac F|_p$ is defined as an $n\times m$ matrix. Now assume that $F$ is a diffeomorphism and $p\in\partial U$. By Lem. \ref{lb993}, we know that $m=n$ and that $q=F(p)$ belongs to $\partial V$. Moreover, \eqref{eq411} implies that $\partial_1 F|_p\geq0$, and that the first component of $\partial_i F|_p$ is zero if $i>0$. The partial derivative of $F^{-1}$ at $q$ satisfies a similar property. This implies
 \begin{subequations}
 \begin{align}
 \Jac F|_p(\Hbb^n)=\Hbb^n\qquad \Jac F|_p(\partial\Hbb^n)=\partial\Hbb^n
@@ -26706,12 +26711,37 @@ and hence also
 \end{rem}
 
 
-\begin{exe}[\textbf{Inverse function theorem for $\Hbb^n$}]\label{mc8}
-Let $\Omega,\Gamma$ be nonempty open subsets of $\Hbb^n$. Let $F:\Omega\rightarrow \Gamma$ be smooth and satisfying $F(\partial \Omega)\subset\partial \Gamma$. Let $p\in\Omega$ and $q=F(p)$. Assume that $\Jac F|_p$ is invertible. Prove that there exist $U\in\Nbh_\Omega(p)$ and $V\in\Nbh_\Gamma(q)$ such that $F$ restricts to a diffeomorphism $F:U\rightarrow V$.
-\end{exe}
+\begin{thm}[\textbf{Inverse function theorem for $\Hbb^n$}]\label{mc8}
+Let $\Omega,\Gamma$ be nonempty open subsets of $\Hbb^n$. Let $F:\Omega\rightarrow \Gamma$ be smooth and satisfying $F(\partial \Omega)\subset\partial \Gamma$. Let $p\in\Omega$ and $q=F(p)$. Assume that $\Jac F|_p$ is invertible. Then there exist $U\in\Nbh_\Omega(p)$ and $V\in\Nbh_\Gamma(q)$ such that $F$ restricts to a diffeomorphism $F:U\rightarrow V$.
+\end{thm}
 
-\begin{proof}[Hint]
-When $p\in\Int\Omega$, show that $q\in\Int\Gamma$. Assume $p\in\partial\Omega$ and hence $q\in\partial\Gamma$. Shrink $U,V$ so that $U=\wtd U\cap\Hbb^n,V=\wtd V\cap\Hbb^n$ where $\wtd U,\wtd V$ are open in $\Rbb^n$, and $F$ can be extended to a smooth $\wtd F:\wtd U\rightarrow \wtd V$. Shrink $\wtd U,\wtd V$ further so that $\wtd F$ is a diffeomorphism. Shrink $\wtd U,\wtd V$ further so that $F$ restricts to a diffeomorphism of $(n-1)$-dimensional manifolds $F|_{\partial U}:\partial U\rightarrow\partial V$, and that $\wtd U$ is an open ball. Show that $\wtd F$ sends $\wtd U\cap (-\Int\Hbb^n)$ into $-\Int\Hbb^n$ by using the intermediate value theorem. Conclude $\wtd F(U)=V$.
+\begin{proof}
+When $p\in\Int\Omega$, the inverse function Thm. \ref{lb929} shows that $F(\Int\Omega)$ contains an open ball centerd at $q$. So we must have $q\in\Int\Gamma$. The theorem then follows immediately from Thm. \ref{lb929}.
+
+Let us consider the more difficult case that $p\in\partial\Omega$ and hence $q\in\partial\Gamma$. By Def. \ref{mc14}, there exists $D\in\Nbh_{\Rbb^n}(p)$ such that $D\cap\Hbb^n$ is a (clearly open) subset of $\Omega$, and that $F$ can be extended to a smooth map $F:D\rightarrow\Rbb^n$. By the inverse function Thm. \ref{lb929}, after shrinking $D$ to a neighborhood of $p$ in $\Rbb^n$, besides having that $D\cap\Hbb^n\subset\Omega$, we also have that $\Delta:=F(D)$ is open in $\Rbb^n$, and that $F:D\rightarrow \Delta$ is a diffeomorphism. 
+
+By assumption, we have $F(D\cap\partial\Hbb^n)\subset \Delta\cap\partial\Hbb^n$. We want ``$\subset$" to be ``$=$". For that purpose, note that since $D\cap\partial\Hbb^n$ is a smooth submanifold of $\Delta$, the diffeomorphism $F:D\rightarrow\Delta$ restricts to a smooth injective immersion $D\cap\partial\Hbb^n\rightarrow \Delta$, and hence restricts to a smooth injective immersion $D\cap\partial\Hbb^n\rightarrow \Delta\cap\partial\Hbb^n$. Since both sides have dimension $n-1$, the differential of this restricted map must be invertible everywhere. Therefore, by Cor. \ref{lb981}, $F(D\cap\partial\Hbb^n)$ is an open subset of $\Delta\cap\partial\Hbb^n$. Choose open $\Delta'\subset \Delta$ such that $\Delta'\cap\partial\Hbb^n=F(D\cap\partial\Hbb^n)$, and let $D'=F^{-1}(\Delta')$. Then $F|_{D'}:D'\rightarrow \Delta'$ is a diffeomorphism, and
+\begin{align}\label{eq473}
+F(D'\cap\partial\Hbb^n)=\Delta'\cap\partial\Hbb^n
+\end{align}
+Let $(x^1,\dots,x^n)$ be the standard coordinates of $\Rbb^n$. Then \eqref{eq473} means that for each $\xi\in D'$, we have $x^1(\xi)=0$ iff $x^1\circ F(\xi)=0$. Note that we also have
+\begin{align}\label{eq474}
+D'\cap\Hbb^n\subset\Omega
+\end{align}
+
+Shrink $D'$ to an open ball centered at $p$, and shrink $\Delta'$ to $F(D')$. Then
+\begin{align*}
+F|_{D'}:D'\xlongrightarrow{\simeq} \Delta'
+\end{align*}
+is a still a diffeomorphism, and for each $\xi\in D'$ we still have $x^1(\xi)=0$ iff $x^1\circ F(\xi)=0$ (i.e., \eqref{eq473} is still true). Let
+\begin{align*}
+U=D'\cap\Hbb^n\qquad V=\Delta'\cap\Hbb^n
+\end{align*}
+Then $U\in\Nbh_{\Omega}(p)$ and $V\in\Nbh_{\Hbb^n}(q)$ by \eqref{eq474}. Suppose we can show that $F(U)=V$. Then $F$ clearly restricts to a diffeomorphism $U\rightarrow V$, and we have $V\in\Nbh_\Gamma(q)$ since $V=F(U)\subset F(\Omega)\subset\Gamma$. This will finish the proof.
+
+
+
+Since $F(\Omega)\subset\Gamma\subset\Hbb^n$, we clearly have $F(U)\subset V$. To prove $F(U)=V$, it suffices to prove $F(D'\setminus\Hbb^n)\subset \Delta'\setminus\Hbb^n$. In other words, we need to prove that if $\xi\in D'$ satisfies $x^1(\xi)<0$ then $x^1\circ F(\xi)<0$. Note that $x^1\circ F(D'\setminus\Hbb^n)$ must intersect $\Rbb_{<0}$, otherwise we have $F(D'\setminus\Hbb^n)\subset\Hbb^n$ and hence $\Delta'\equiv F(D')\subset \Hbb^n$, which is impossible because $q\in\Delta'\cap\partial\Hbb^n$ is not an interior point of $\Delta'$ with respect to $\Rbb^n$. By \eqref{eq473}, if $x^1(\xi)<0$ then $x^1\circ F(\xi)\neq0$. Therefore $x^1\circ F(D'\setminus\Hbb^n)\subset \Rbb\setminus\{0\}$. Since the half-ball $D'\setminus\Hbb^n$ is connected, so is $x^1\circ F(D'\setminus\Hbb^n)$. So we must have $x^1\circ F(D'\setminus\Hbb^n)\subset\Rbb_{<0}$.
 \end{proof}
 
 
@@ -26729,7 +26759,7 @@ Let $M$ be a nonempty Hausdorff space. Let $\fk U=\big\{(U_\alpha,\varphi_\alpha
 \varphi_\beta\circ\varphi_\alpha^{-1}:\varphi_\alpha(U_\alpha\cap U_\beta)\xrightarrow{\simeq}\varphi_\beta(U_\alpha\cap U_\beta)
 \end{align}
 \end{itemize}
-The pair $(M,\fk U)$ (or simply $M$) is called \pmb{$C^\infty$}\textbf{/smooth manifold with boundary}, \index{00@@Manifold with boundary}, or simply a \textbf{smooth} \pmb{$\partial$}\textbf{-manifold}. \index{00@$\partial$-manifold} Unless otherwise stated, we assume that smooth $\partial$-manifolds are second countable.
+The pair $(M,\fk U)$ (or simply $M$) is called \pmb{$C^\infty$}\textbf{/smooth manifold with boundary}, \index{00@@Manifold with boundary} or simply a \textbf{smooth} \pmb{$\partial$}\textbf{-manifold}. \index{00@$\partial$-manifold} Unless otherwise stated, we assume that smooth $\partial$-manifolds are second countable.
 \end{df}
 
 
@@ -26752,17 +26782,17 @@ and call $\dim_pM$ the \textbf{dimension} \index{00@Dimensional of a manifold wi
 Suppose that we can find $d\in\Nbb$ such that $\dim_pM=d$ for all $p$, we call $M$ \textbf{equidimensional}, write $\dim M=d$, and call $d$ the \textbf{dimension} of $M$. \hfill\qedsymbol
 \end{df}
 
-\begin{rem}
+\begin{rem}\label{mc122}
 Similar to Prop. \ref{lb982}, if $M$ is a $\partial$-manifold, then for each $h\in\Nbb$, the set $U_d=\{p\in M:\dim_pM=d\}$ is both closed and open in $M$. In particular, if $M$ is connected, then $M$ is equidimensional.
 \end{rem}
 
 
 \begin{df}\label{mc23}
-Let $M$ be a smooth $\partial$-manifold. Let $p\in M$. We say that $p$ is a \textbf{boundary point} of $M$ if for some chart (and hence for every chart, cf. Lem. \ref{lb993}) $(U,\varphi^1,\dots,\varphi^n)$ containing $p$, we have $\varphi(p)\in\partial\Hbb^n$. We say that $p$ is an \textbf{interior point} of $M$ if $p$ is not a boundary point. The set of boundary points and the set of interior points are denoted by $\partial M$ and $\Int M$ \index{M@$\partial M$} \index{IntM@$\Int M$} and called the \textbf{(manifold) boundary} and the \textbf{(manifold) interior} \index{00@Boundary $\partial M$} \index{00@Interior $\Int M$} of $M$. It is clear that $M$ is a smooth manifold iff $\partial M=\emptyset$.
+Let $M$ be a smooth $\partial$-manifold. Let $p\in M$. We say that $p$ is a \textbf{boundary point} of $M$ if for some chart (and hence for every chart, cf. Lem. \ref{lb993}) $(U,\varphi^1,\dots,\varphi^n)$ containing $p$, we have $\varphi(p)\in\partial\Hbb^n$. We say that $p$ is an \textbf{interior point} of $M$ if $p$ is not a boundary point. The set of boundary points and the set of interior points are denoted by $\partial M$ and $\Int M$ \index{M@$\partial M$} respectively \index{IntM@$\Int M$} and called the \textbf{(manifold) boundary} and the \textbf{(manifold) interior} \index{00@Boundary $\partial M$} \index{00@Interior $\Int M$} of $M$. It is clear that $M$ is a smooth manifold iff $\partial M=\emptyset$.
 \end{df}
 
 \begin{cv}
-One should not confuse manifold interiors with \textbf{topological interiors} (defined in Def. \ref{lb187}). Unless otherwise stated, the interior of a $\partial$-manifold denotes the manifold interior.
+One should not confuse manifold interiors with \textbf{topological interiors} (defined in Def. \ref{lb187}). Unless otherwise stated, the interior of a $\partial$-manifold denotes the manifold interior. (But see Exe. \ref{mc24} for an important case where the two interiors are equal.)
 \end{cv}
 
 
@@ -26801,7 +26831,7 @@ Let $M,N$ be smooth $\partial$-manifolds where $\partial N=\emptyset$. Then $M\t
 \begin{df}
 Let $M,N$ be smooth $\partial$-manifolds. We say that a map $F:M\rightarrow N$ is \textbf{smooth} \index{00@Smooth map/function} if one of the following (clearly) equivalent conditions hold:
 \begin{enumerate}
-\item[(1)] For every charts $(U,\varphi)$ of $M$ and $(V,\psi)$ of $N$, the following map is $c^\infty$:
+\item[(1)] For every charts $(U,\varphi)$ of $M$ and $(V,\psi)$ of $N$, the following map is $C^\infty$:
 \begin{align}\label{eq412}
 \psi\circ F\circ\varphi^{-1}:\varphi(U\cap F^{-1}(V))\rightarrow \psi(V)
 \end{align}
@@ -26833,11 +26863,11 @@ We call $T_p^+M$ the \textbf{tangent cone} of $M$ at $p$. \index{00@Tangent cone
 T_p\Int M=T_p^+M\qquad\text{ if }p\in\Int M\\
 T_p\partial M\subset T_p^+M\qquad\text{ if }p\in\partial M
 \end{gather*}
-If $I$ is an open or right-open interal and $\gamma:I\rightarrow M$ is a smooth path in $M$, for each $t_0\in I$, the equivalence class of the path $t\mapsto \gamma(t+t_0)$ in $T_p^+M$ is denoted by \index{zz@$\gamma'$, the derivative of a path $\gamma$ in a manifold}
+If $I$ is an open or right-open interval and $\gamma:I\rightarrow M$ is a smooth path in $M$, for each $t_0\in I$, the equivalence class of the path $t\mapsto \gamma(t+t_0)$ in $T_p^+M$ is denoted by \index{zz@$\gamma'$, the derivative of a path $\gamma$ in a manifold}
 \begin{align}
 \gamma'(t_0)\equiv \frac {d\gamma}{dt}\big|_{t_0}
 \end{align}
-is called the \textbf{derivative} of $\gamma$ at $t_0$. 
+and is called the \textbf{derivative} of $\gamma$ at $t_0$. 
 \end{df}
 
 
@@ -26870,11 +26900,11 @@ Let $K$ be an $\Rbb_{\geq0}$-linear space isomorphic to $\Hbb^n$. Define the \te
 \begin{align}
 K^*=\{\Rbb_{\geq0}\text{-linear maps }K\rightarrow\Rbb\}
 \end{align}
-Then $K^*$ is an $n$-dimensional $\Rbb$-linear subspace of $\Rbb^K$. View $K$ as a subset of $K^{**}$ in the canonical way. Then $K$ is a positive cone (i.e., an $\Rbb_{\geq0}$-linear subspace) in $K^{**}$, and $K^{**}=\Span_\Rbb K$.
+Then $K^*$ is an $n$-dimensional $\Rbb$-linear subspace of $\Rbb^K$, and the canonical $\Rbb_{\geq0}$-linear map $K\rightarrow K^{**}$ (sending each $v\in K$ to $\bk{v,\cdot}:\varphi\in K^*\mapsto\bk{v,\varphi}$) is injective. Identify $K$ with its image in $K^{**}$ under this map. Then $K$ is a positive cone (i.e., an $\Rbb_{\geq0}$-linear subspace) in $K^{**}$, and $K^{**}=\Span_\Rbb K$.
 \end{lm}
 
 \begin{proof}
-It suffices to assume that $K=\Hbb^n$. Then by using Prop. \ref{lb751}, one easily sees that $K^*=\Rbb^n$.
+It suffices to assume that $K=\Hbb^n$. Then by using Prop. \ref{lb751}, one easily sees that $K^*=\Rbb^n$. The remaining statements are easy to prove.
 \end{proof}
 
 
@@ -26897,11 +26927,11 @@ The \textbf{tangent bundle} \index{00@Tangent bundle} resp. \textbf{cotangent bu
 \begin{align*}
 TM=\bigsqcup_{p\in M}T_pM\qquad T^*M=\bigsqcup_{p\in M}T_p^*M
 \end{align*}
-Vector fields $M\rightarrow TM$ and $1$-forms $M\rightarrow T^*M$ are defined in the same way as for manifolds without boundaries.  \hfill\qedsymbol
+Vector fields $M\rightarrow TM$ and $1$-forms $M\rightarrow T^*M$ are defined in the same way as those of manifolds without boundaries.  \hfill\qedsymbol
 \end{df}
 
 \begin{rem}
-Assume the setting of Thm. \ref{lb996}. Then by Prop. \ref{lb751}, we can extend \eqref{eq413} uniquely to a linear isomorphism $d\varphi|_p:T_pM\rightarrow\Rbb^n$. Then we have a commutative diagram
+Assume the setting of Thm. \ref{lb996}. Then by (e.g.) Prop. \ref{lb751}, we can extend \eqref{eq413} uniquely to a linear isomorphism $d\varphi|_p:T_pM\rightarrow\Rbb^n$. Then we have a commutative diagram
 \begin{equation}
 \begin{tikzcd}[row sep=large]
              & T_pM \arrow[ld,"d\varphi"'] \arrow[rd,"d\psi"] &   \\
@@ -26939,7 +26969,7 @@ Let us give the definition and  some of the basic properties of $\partial$-subma
 \begin{df}\label{mc13}
 Let $N$ be a smooth manifold, and let $M\subset N$. We say that $M$ is a \textbf{$C^\infty$/smooth submanifold of $N$ with boundary} (or a \textbf{$C^\infty$/smooth $\partial$-submanifold of $N$}) \index{00@Smooth submanifold with boundary} if \index{00@$\partial$-submanifold} for every $p\in M$ there exist $U\in\Nbh_N(p)$, $d,k\in\Nbb$, and $C^\infty$-functions $\varphi^1,\dots,\varphi^d,f^1,\dots,f^k:U\rightarrow\Rbb$ satisfying the following conditions:
 \begin{enumerate}
-\item[(a)] $(\varphi,f)=(\varphi^1,\dots,\varphi^d,f^1,\dots,f^k)$ gives a $C^r$-diffeomorphism $U\xrightarrow{\simeq} V$ where $V$ is an open subset of $\Rbb^d\times\Rbb^k$.
+\item[(a)] $(\varphi,f)=(\varphi^1,\dots,\varphi^d,f^1,\dots,f^k)$ gives a $C^\infty$-diffeomorphism $U\xrightarrow{\simeq} V$ where $V$ is an open subset of $\Rbb^d\times\Rbb^k$.
 \item[(b)] The following diagram commutes:
 \begin{equation}\label{eq415}
 \begin{tikzcd}[column sep=large]
@@ -26967,6 +26997,7 @@ The property of being a $\partial$-submanifold can be checked locally. Namely, s
 \begin{align}\label{eq417}
 \partial M=\bigcup_{U\in\fk U}\partial (M\cap U)
 \end{align}
+Therefore, proving that $\partial M$ equals a set $P$ is equivalent to proving that $\partial(M\cap U)=P\cap U$ for every $U\in\fk U$.
 \end{rem}
 
 
@@ -27004,7 +27035,7 @@ $A=\{(x,y)\in\Rbb_{\geq0}\times\Rbb:y=x^2\text{ or }y=-x^4\}$ is not a smooth su
 \end{eg}
 
 \begin{proof}
-$A\setminus \{0\}$ is a smooth $1$-dimensional submanifold of $\Rbb^2$. Assume that $A$ is a smooth submanifold of $\Rbb^2$, then by Prop. \ref{lb928} we have $\dim_0 A=1$. Let $\iota:A\rightarrow\Rbb^2$ be the inclusion map, which is smooth. Let $\gamma:[0,+\infty)\rightarrow A$ be $\gamma(t)=(t,t^2)$. Since $\iota\circ\gamma:[0,+\infty)\rightarrow\Rbb^2$ is smooth, by Prop. \ref{mc17}, $\gamma$ is smooth. Note that $d\iota|_0:T_0A\rightarrow\Rbb^2$ is the inclusion map, and  $d\iota|_0$ sends $\gamma'(0)$ to $(\iota\circ\gamma)'(0)=(1,0)$ by \eqref{eq420}. Therefore, $T_0A$, as a $1$-dimensional subspace of $\Rbb^2$, is spanned by $(1,0)$. 
+$A\setminus \{0\}$ is a smooth $1$-dimensional submanifold of $\Rbb^2$. Assume that $A$ is a smooth submanifold of $\Rbb^2$, then by Prop. \ref{lb982} we have $\dim_0 A=1$. Let $\iota:A\rightarrow\Rbb^2$ be the inclusion map, which is smooth. Let $\gamma:[0,+\infty)\rightarrow A$ be $\gamma(t)=(t,t^2)$. Since $\iota\circ\gamma:[0,+\infty)\rightarrow\Rbb^2$ is smooth, by Prop. \ref{mc17}, $\gamma$ is smooth. Note that $d\iota|_0:T_0A\rightarrow\Rbb^2$ is the inclusion map, and  $d\iota|_0$ sends $\gamma'(0)$ to $(\iota\circ\gamma)'(0)=(1,0)$ by \eqref{eq420}. Therefore, $T_0A$, as a $1$-dimensional subspace of $\Rbb^2$, is spanned by $(1,0)$. 
 
 Let $\pi:\Rbb^2\rightarrow\Rbb$ be the projection onto the first component. Then $d(\pi\circ\iota)=d\pi\cdot d\iota$ sends $(1,0)$ to $(1,0)$. Therefore, by the geometric inverse function Thm. \ref{lb980}, $\pi\circ\iota$ is injective on a neighborhood of $0$ in $A$. But this is clearly impossible.
 \end{proof}
@@ -27039,7 +27070,7 @@ Assume that $\partial N=\emptyset$. We say that $F:M\rightarrow N$ is a \textbf{
 \end{df}
 
 \begin{pp}
-Assume that $\partial N=\emptyset$, and $F:M\rightarrow N$ is a smooth embedding. The for each $p\in M$, the differential $dF|_p:T_pM\rightarrow T_{F(p)}N$ is injective. Therefore, unless otherwise stated, we identify $T_pM$ with $dF|_p(T_pM)$ via the map $dF|_p$.
+Assume that $\partial N=\emptyset$, and $F:M\rightarrow N$ is a smooth embedding. Then for each $p\in M$, the differential $dF|_p:T_pM\rightarrow T_{F(p)}N$ is injective. Therefore, if $M$ is a smooth $\partial$-submanifold of $N$ and $F$ is the inclusion map, unless otherwise stated, we identify $T_pM$ with $dF|_p(T_pM)$ via the map $dF|_p$.
 \end{pp}
 
 
@@ -27058,10 +27089,10 @@ Similar to Prop. \ref{lb975}.
 \subsubsection{The geometric implicit function theorem}
 
 
-The following \textbf{geometric implicit function theorem} \index{00@Geometric implicit function theorem} is analogue to Thm. \ref{lb976}.
+The following \textbf{geometric implicit function theorem} \index{00@Geometric implicit function theorem} is similar to Thm. \ref{lb976}.
 
 \begin{thm}\label{lb999}
-Assume that $\partial M=\partial N=\emptyset$. Let $F:M\rightarrow N\times\Rbb$ be smooth. Let $q\in N$ and $P=F^{-1}(\{q\}\times\Rbb_{\geq0})$. Assume that $F$ is \textbf{submersive} at every $p\in P$, i.e., $dF|_p:T_pM\rightarrow T_{F(p)}(N\times\Rbb)$ is surjective. Then $P$ is a smooth $\partial$-submanifold of $M$, and 
+Assume that $\partial M=\partial N=\emptyset$. Let $F:M\rightarrow N\times\Rbb$ be smooth. Let $q\in N$ and $P=F^{-1}(\{q\}\times\Rbb_{\geq0})$. Assume that $F$ is a \textbf{submersion} at every $p\in P$, i.e., $dF|_p:T_pM\rightarrow T_{F(p)}(N\times\Rbb)$ is surjective. Then $P$ is a smooth $\partial$-submanifold of $M$, and 
 \begin{align}
 \partial P=F^{-1}(\{q\}\times\{0\})
 \end{align}
@@ -27091,16 +27122,16 @@ P\cap U \arrow[r,"{(0,\dots,0,F^{k+1},y^1,\dots,y^d)}"] \arrow[d, hook] & (0_k\t
 U \arrow[r,"{(F^1,\dots,F^k,F^{k+1},y^1,\dots,y^d)}","\simeq"']                 & (\Rbb^{k+d+1})\cap V=V            
 \end{tikzcd}
 \end{equation}
-The top arrow is surjective (since the inverse image of $(0_k\times \Hbb^{d+1})\cap V$ under the bottom arrow is $P\cap U$) and hence is bijective. This proves that $P\cap U$ is a smooth $\partial$-submanifold of $U$, and that $(F^{k+1},y^1,\dots,y^d)$ is a coordinate on $P\cap U$. Therefore, $p$ belongs to $\partial P\cap U$ iff its first coordinate $F^{k+1}(p)$ is zero, i.e., iff $F(p)=\{q\}\times\{0\}$. It also proves that $\dim_pP=d+1$. Since $\dim_pM=n+1$ and $\dim_qN=k$, we have \eqref{eq419}. 
+The top arrow is surjective (since the inverse image of $(0_k\times \Hbb^{d+1})\cap V$ under the bottom arrow is $P\cap U$) and hence is bijective. This proves that $P\cap U$ is a smooth $\partial$-submanifold of $U$, and that $(F^{k+1},y^1,\dots,y^d)$ is a coordinate on $P\cap U$. Therefore, a point $p'\in U\cap P$ belongs to $\partial P\cap U$ iff its first coordinate $F^{k+1}(p')$ is zero, i.e., iff $p'\in F^{-1}(\{q\}\times\{0\})$. Thus $\partial P\cap U=F^{-1}(\{q\}\times\{0\})\cap U$. It also proves that $\dim_pP=d+1$. Since $\dim_pM=n+1$ and $\dim_qN=k$, we have \eqref{eq419}. 
 
-Clearly $F'=(F^1,\dots,F^k)$ and $F''=F^{k+1}$. If $\gamma:[0,\eps)$ is a smooth right path in $P$ satisfying $\gamma(0)=p$, then by \eqref{eq420} we have $dF'|_p\cdot \partial_t\gamma(0)=\partial_t(F'\circ\gamma)(0)$ where the RHS is zero since $F'\circ\gamma$ is always $0$. This proves $T_p^+P\subset\Ker(dF'|_p)$, and hence (by the linearity) $T_p\subset\Ker(dF'|_p)$. Since $\Jac F|_p=\Jac(F^1,\dots,F^{k+1})$ is surjective, $\Jac F|_p=\Jac(F^1,\dots,F^k)$ is a surjective $k\times(n+1)$ matrix. Therefore $\Ker(dF'|_p)$ has dimenion $n+1-k=d+1=\dim_pP$. This proves \eqref{eq418}.
+Clearly $F'=(F^1,\dots,F^k)$ and $F''=F^{k+1}$. If $\gamma:[0,\eps)$ is a smooth right path in $P$ satisfying $\gamma(0)=p$, then by \eqref{eq420} we have $dF'|_p\cdot \partial_t\gamma(0)=\partial_t(F'\circ\gamma)(0)$ where the RHS is zero since $F'\circ\gamma$ is always $0$. This proves $T_p^+P\subset\Ker(dF'|_p)$, and hence (by the linearity) $T_pP\subset\Ker(dF'|_p)$. Since $\Jac F|_p=\Jac(F^1,\dots,F^{k+1})$ is surjective, $\Jac F'|_p=\Jac(F^1,\dots,F^k)$ is a surjective $k\times(n+1)$ matrix. Therefore $\Ker(dF'|_p)$ has dimenion $n+1-k=d+1=\dim_pP$. This proves \eqref{eq418}.
 
 Since the above discussion holds for every $p\in P$, We have finished proving that $P$ is a smooth $\partial$-submanifold of $N$ with boundary $F^{-1}(\{q\}\times\{0\})$. 
 \end{proof}
 
 
 \begin{sexe}\label{mc3}
-Assume that $\partial M=\partial N=\emptyset$. Let $F:M\rightarrow N$ be a smooth map. Let $S$ be a smooth $\partial$-submanifold of $N$. Assume that $F$ is a submersion at every $p\in F^{-1}(S)$. Prove that $F^{-1}(S)$ is a smooth submanifold of $M$, and
+Assume that $\partial M=\partial N=\emptyset$. Let $F:M\rightarrow N$ be a smooth map. Let $S$ be a smooth $\partial$-submanifold of $N$. Assume that $F$ is a submersion at every $p\in F^{-1}(S)$. Prove that $F^{-1}(S)$ is a smooth $\partial$-submanifold of $M$, and
 \begin{align}
 \partial F^{-1}(S)=F^{-1}(\partial S)
 \end{align}
@@ -27116,7 +27147,7 @@ Conclude that
 
 
 \begin{proof}[Hint]
-Reduce to the case that $N$ is a neighborhood of $0\in\Rbb^k\times\Hbb^d$ and $S=(0_k\times\Hbb^d)\cap N$. If $q\in\partial S$ then $d\geq1$. Let $\pi:\Rbb^k\times\Hbb^d\rightarrow\Rbb^{k+1}$ send $(a_1,\dots,a_{k+d})$ to $(a_1,\dots,a_{k+1})$. Apply Thm. \ref{lb999} to $\pi\circ F$.
+Reduce to the case that $N$ is a neighborhood of $0\in\Rbb^k\times\Rbb^d$ and $S=(0_k\times\Hbb^d)\cap N$. If $q\in\partial S$ then $d\geq1$. Let $\pi:\Rbb^k\times\Hbb^d\rightarrow\Rbb^{k+1}$ send $(a_1,\dots,a_{k+d})$ to $(a_1,\dots,a_{k+1})$. Apply Thm. \ref{lb999} to $\pi\circ F$.
 \end{proof}
 
 
@@ -27142,7 +27173,7 @@ Exp. \ref{mc2} can also be proved by applying Exe. \ref{mc3} to the map $f:\Rbb^
 \begin{eg}\label{mc4}
 Let $-1<a<1$. Let 
 \begin{align}
-M=\{p\in\Rbb^n:(p_1)^2+\cdots+(p_n)^2+(p_{n+1})^2=1,p_{n+1}\geq a\}
+M=\{p\in\Rbb^{n+1}:(p_1)^2+\cdots+(p_n)^2+(p_{n+1})^2=1,p_{n+1}\geq a\}
 \end{align}
 Then $M$ is a smooth $n$-dimensional $\partial$-submanifold of $\Rbb^{n+1}$ with boundary
 \begin{align}\label{eq421}
@@ -27152,14 +27183,14 @@ Then $M$ is a smooth $n$-dimensional $\partial$-submanifold of $\Rbb^{n+1}$ with
 
 
 \begin{proof}
-Let $F=(F^1,F^2):\Rbb^n\rightarrow\Rbb^2$ where $F^1=(x^1)^2+\cdots+(x^{n+1})^2-1$ and $F^2=x^{n+1}-a$. Then
+Let $F=(F^1,F^2):\Rbb^{n+1}\rightarrow\Rbb^2$ where $F^1=(x^1)^2+\cdots+(x^{n+1})^2-1$ and $F^2=x^{n+1}-a$. Then
 \begin{align*}
 \Jac F=\begin{pmatrix}
 2x^1&\cdots &2x^n&2x^{n+1}\\
 0&\cdots&0&1
 \end{pmatrix}
 \end{align*} 
-is surjective on $U=\Rbb^{n+1}\setminus (0_k\times\Rbb)$. Therefore, by Thm. \ref{lb999}, $M\cap U$ is a smooth $\partial$-submanifold of $U$ whose boundary is the RHS of \eqref{eq421}. If $p\in M\setminus U$, then $p=(0,\dots,0,1)$. Then there exists $V\in\Nbh_{\Rbb^{n+1}}(p)$ such that $M\cap V=\Sbb^n\cap V$. So $M\cap V$ is a smooth submanifold of $V$ (without boundary). This finishes the proof.
+is surjective on $U=\Rbb^{n+1}\setminus (0_n\times\Rbb)$. Therefore, by Thm. \ref{lb999}, $M\cap U$ is a smooth $\partial$-submanifold of $U$ whose boundary is the RHS of \eqref{eq421}. If $p\in M\setminus U$, then $p=(0,\dots,0,1)$. Then there exists $V\in\Nbh_{\Rbb^{n+1}}(p)$ such that $M\cap V=\Sbb^n\cap V$. So $M\cap V$ is a smooth submanifold of $V$ (without boundary). This finishes the proof.
 \end{proof}
 
 
@@ -27168,7 +27199,7 @@ is surjective on $U=\Rbb^{n+1}\setminus (0_k\times\Rbb)$. Therefore, by Thm. \re
 One can also solve Exp. \ref{mc4} without computing the Jacobian:
 
 \begin{co}\label{mc6}
-Let $\Omega$ and $N$ be smooth manifolds (without boundary). Let $M$ be a smooth $d$-dimensional submanifold of $N$. Let $f\in C^\infty(\Omega,\Rbb)$ and $Z(f)=\{p\in\Omega:f(p)=0\}$. Assume that for each $p\in M\cap Z(f)$, the tangent space $T_pM$ (as a subspace of $T_p\Omega$) is not contained in $\Ker(df|_p)$. Then
+Let $\Omega$ be a smooth manifold (without boundary). Let $M$ be a smooth $d$-dimensional submanifold of $\Omega$. Let $f\in C^\infty(\Omega,\Rbb)$ and $Z(f)=\{p\in\Omega:f(p)=0\}$. Assume that for each $p\in M\cap Z(f)$, the tangent space $T_pM$ (as a subspace of $T_p\Omega$) is not contained in $\Ker(df|_p)$. Then
 \begin{align*}
 P=\{p\in M:f(p)\geq0\}
 \end{align*}
@@ -27183,7 +27214,7 @@ It follows from Exe. \ref{mc5} that $P$ is also a smooth $d$-dimensional $\parti
 \begin{proof}
 By Rem. \ref{mc1}, it suffices to show that for each $p\in P$ there exists $U\in\Nbh_M(p)$ such that $P\cap U$ is a smooth $d$-dimensional $\partial$-submanifold of $U$ with boundary $U\cap Z(f)$. This is clearly true when $f(p)>0$. So we assume $f(p)=0$, i.e., $p\in Z(f)$. 
 
-Let $g=f|_M$. Let $\iota:M\hookrightarrow\Omega$ be the inclusion. So $f=g\circ\iota$, and hence $df|_p=dg|_p\cdot d\iota|_p$. In other words, $dg|_p:T_pM\rightarrow\Rbb$ is the restriction of $df|_p:T_p\Omega\rightarrow\Rbb$ to $T_pM$. By assumption, $df|_p$ does not vanish on $T_pM$. So $dg|_p\neq0$. Thus, there exists $U\in\Nbh_M(p)$ such that $dg$ is nowhere zero on $U$. Therefore, by Thm. \ref{lb999}, $\{q\in U:f(q)\geq0\}$ is a smooth $d$-dimensional $\partial$-submanifold of $U$ with boundary $U\cap Z$. This finishes the proof.
+Let $g=f|_M$. Let $\iota:M\hookrightarrow\Omega$ be the inclusion. So $g=f\circ\iota$, and hence $dg|_p=df|_p\cdot d\iota|_p$. In other words, $dg|_p:T_pM\rightarrow\Rbb$ is the restriction of $df|_p:T_p\Omega\rightarrow\Rbb$ to $T_pM$. By assumption, $df|_p$ does not vanish on $T_pM$. So $dg|_p\neq0$. Thus, there exists $U\in\Nbh_M(p)$ such that $dg$ is nowhere zero on $U$. Therefore, by Thm. \ref{lb999}, $\{q\in U:f(q)\geq0\}$ is a smooth $d$-dimensional $\partial$-submanifold of $U$ with boundary $U\cap Z(f)$. This finishes the proof.
 \end{proof}
 
 
@@ -27191,18 +27222,20 @@ Let $g=f|_M$. Let $\iota:M\hookrightarrow\Omega$ be the inclusion. So $f=g\circ\
 Let $f=x^{n+1}-a:\Rbb^{n+1}\rightarrow\Rbb$. Then for each $p\in\Rbb^{n+1}$, $\Ker(df|_p)$ is the orthogonal complement of $(0,\dots,0,1)$. If $p\in\Sbb^n\cap Z(f)$, the tangent space $T_pS^n$ is not orthogonal to $(0,\dots,0,1)$, and hence is not contained in $\Ker(df|_p)$. This finishes the proof thanks to Cor. \ref{mc6}.
 \end{proof}
 
+%% Record #20 2024/05/11 three lectures  49
 
+%% Proofread
 
 \subsubsection{$\star$ Transversal intersections}
 
 
-Now, one may wonder if the two methods of proving Exp. \ref{mc4} are equivalent. One can also consider a similar situation: Let $\Omega$ be an open subset of $\Rbb^n$. Let $F=(F^1,\dots,F^k)$ and $G=(G^1,\dots,G^d)$ be smooth maps on $\Omega$ submersive at every point of $\Omega$. So $M=Z(G)$ is a smooth submanifold of $\Omega$. In order to prove that $M\cap Z(F)$ is a smooth submanifold of $\Omega$, one can either show that $\Jac(F^1,\dots,F^k,G^1,\dots,G^d)$ is surjective everywhere on $M\cap Z(F)$, or show that $d(F|_M):TM\rightarrow\Rbb^k$ is surjective everywhere on $M\cap Z(F)$. The following exercise shows that these two methods are equivalent.
+Now, one may wonder if the two methods of proving Exp. \ref{mc4} are equivalent. One can also consider a similar situation: Let $\Omega$ be an open subset of $\Rbb^n$. Let $F=(F^1,\dots,F^k)$ and $G=(G^1,\dots,G^d)$ be smooth maps on $\Omega$ that are submersions at every point of $\Omega$. So $M=Z(G)$ is a smooth submanifold of $\Omega$. In order to prove that $M\cap Z(F)$ is a smooth submanifold of $\Omega$, one can either show that $\Jac(F^1,\dots,F^k,G^1,\dots,G^d)$ is surjective everywhere on $M\cap Z(F)$, or show that $d(F|_M):TM\rightarrow\Rbb^k$ is surjective everywhere on $M\cap Z(F)$. The following exercise shows that these two methods are equivalent.
 
 \begin{exe}\label{mc7}
-Let $\Omega$ be a smooth manifold. Let $F=(F^1,\dots,F^k):\Omega\rightarrow\Rbb$ be smooth. Assume that $\Jac F$ is surjective everywhere on $\Omega$. Let $M$ be a smooth $\partial$-submanifold of $\Omega$. Let $\wtd F=F|_M$.
+Let $\Omega$ be a smooth manifold. Let $F=(F^1,\dots,F^k):\Omega\rightarrow\Rbb^k$ be smooth. Assume that $\Jac F$ is surjective everywhere on $\Omega$. Let $M$ be a smooth $\partial$-submanifold of $\Omega$. Let $\wtd F=F|_M$.
 \begin{enumerate}
 \item Let $p\in M\cap Z(F)$. Prove that $d\wtd F|_p:T_pM\rightarrow\Rbb^k$ is surjective iff $T_pM+\Ker (dF|_p)=T_p\Omega$. %In this case, we say that $F$ and $M$ \textbf{intersect transversally} at $p$.
-\item Assume that $M=Z(G)$ where $G=(G^1,\dots,G^d):\Omega\rightarrow\Rbb$ is smooth and is submersive at every point of $Z(G)$. Let $p\in M\cap Z(F)$. Prove that $d\wtd F|_p:T_pM\rightarrow\Rbb^k$ is surjective iff $\Jac (F^1,\dots,F^k,G^1,\dots,G^d)|_p$ is surjective. 
+\item Assume that $M=Z(G)$ where $G=(G^1,\dots,G^d):\Omega\rightarrow\Rbb$ is smooth and is a submersion at every point of $Z(G)$. Let $p\in M\cap Z(F)$. Prove that $d\wtd F|_p:T_pM\rightarrow\Rbb^k$ is surjective iff $\Jac (F^1,\dots,F^k,G^1,\dots,G^d)|_p$ is surjective. 
 \end{enumerate}
 \end{exe}
 
@@ -27230,7 +27263,7 @@ Let $F:M\rightarrow N$ be smooth and satisfying $F(\partial M)\subset\partial N$
 \end{thm}
 
 \begin{proof}
-This follows immediately from Exe. \ref{mc8}.
+This follows immediately from Thm. \ref{mc8}.
 \end{proof}
 
 \begin{co}\label{mc10}
@@ -28939,6 +28972,77 @@ Then $\omega$ is positive (resp. positive definite) iff each $\omega_i$ is posit
 
 
 
+\subsection{Tensor products of inner product spaces}
+
+
+In this section, all vector spaces and inner products are over $\Rbb$. A real vector space $V$ is called a \textbf{(real) inner product space} if it is equipped with an real inner product $\bk{\cdot,\cdot}_V$.
+
+\begin{thm}
+Let $V_1,\dots,V_N$ be finite-dimensional inner product spaces. Then there is a unique inner product $\bk{\cdot,\cdot}$ on $V=V_1\otimes\cdots\otimes V_N$ such that for each $u_i,v_i\in V_i$ we have
+\begin{align}\label{eq475}
+\bk{u_1\otimes\cdots\otimes u_N,v_1\otimes\cdots\otimes v_N}=\bk{u_1,v_1}_{V_1}\cdots\bk{u_N,v_N}_{V_N}
+\end{align}
+We call $(V,\bk{\cdot,\cdot})$ the \textbf{tensor product} \index{00@Tensor product of inner product spaces} of the inner product spaces $V_1,\dots,V_N$. It satisfies the property that if $(e_i(x_i))_{x_i\in X_i}$ is an orthonormal basis of $V_i$, then
+\begin{align}\label{eq476}
+\big(e_1(x_1)\otimes\cdots\otimes e_N(x_N)\big)_{x_1\in X_1,\dots,x_N\in X_N}
+\end{align}
+is an orthonormal basis of $V$.
+\end{thm}
+
+
+\begin{proof}
+The uniqueness of $\bk{\cdot,\cdot}$ satisfying \eqref{eq475} is obvious. To prove the existence, we choose any orthonormal basis $(e_i(x_i))_{x_i\in X_i}$ of $V_i$. Define $\bk{\cdot,\cdot}$ to be the unique inner product on $V$ such that \eqref{eq476} is an orthonormal basis. Then \eqref{eq475} holds when each $u_i,v_i$ is a member of $(e_i(x_i))_{x_i\in X_i}$. Therefore, by multilinearity, \eqref{eq475} holds in general.
+\end{proof}
+
+
+Similar to complex inner product spaces, if $T:V\rightarrow W$ is a linear map of finite-dimensional real inner product space, we can define the \textbf{adjoint operator} \index{00@Adjoint operator} $T^*:W\rightarrow V^*$ to be the unique linear map satisfying
+\begin{align}
+\bk{Tv,w}=\bk{v,T^*w}
+\end{align}
+for all $v\in V,w\in W$.
+
+
+\begin{exe}
+Let $T:V\rightarrow W$ be a linear map of finite-dimensional real inner product spaces. Let $(e_1,\dots,e_m)$ and $(f_1,\dots,f_n)$ be orthonormal bases of $V$ and $W$ respectively. Let $A\in\Rbb^{n\times m}$ such that
+\begin{align*}
+T(e_1,\dots,e_m)=(f_1,\dots,f_n)A
+\end{align*}
+Prove that
+\begin{align}
+T^*(e_1,\dots,e_m)=(f_1,\dots,f_n)A^\tr
+\end{align}
+\end{exe}
+
+
+
+
+\begin{pp}
+Let $T_i:V_i\rightarrow W_i$ be a linear map of finite-dimensional real inner product spaces, where $1\leq i\leq N$ and $N\in\Zbb_+$. Then the adjoint of $T_1\otimes\cdots\otimes T_N:V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N$ is
+\begin{align}\label{eq477}
+(T_1\otimes\cdots\otimes T_N)^*=T_1^*\otimes\cdots\otimes T_N^*
+\end{align}
+\end{pp}
+
+\begin{proof}
+Choose $v_i\in V_i,w_i\in W_i$. Then
+\begin{align*}
+&\bk{(T_1\otimes\cdots\otimes T_N)(v_1\otimes\cdots\otimes v_N),w_1\otimes\cdots\otimes w_N}\\
+=&\bk{T_1v_1\otimes\cdots\otimes T_Nv_N,w_1\otimes\cdots\otimes w_N}=\bk{v_1\otimes\cdots\otimes  v_N,T_1^*v_1\otimes\cdots\otimes T_N^*v_N}\\
+=&\bk{v_1\otimes\cdots\otimes v_N,(T_1\otimes\cdots\otimes T_N)^*(w_1\otimes\cdots\otimes w_N)}
+\end{align*}
+Therefore, \eqref{eq477} holds when evaluated between vectors of the form $v_1\otimes\cdots\otimes v_N,w_1\otimes\cdots\otimes w_N$. By linearity, \eqref{eq477} holds in general.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -29090,7 +29194,7 @@ is the standard Riemannian metric on $\Rbb^n$, i.e., the \textbf{Euclidean metri
 \begin{rem}
 In Def. \ref{mc93}, suppose that instead of assuming that the bilinear form $\gk|_p:T_pM\otimes T_pM\rightarrow\Rbb$ is positive definite, we only assume that it is symmetric and \textbf{non-degenerate} \index{00@Non-degenerate symmetric bilinear form} (i.e., if $\xi\in T_pM$ is nonzero, then the linear functional $\eta\in T_pM\mapsto \gk(\xi\otimes\eta)$ is nonzero), then $\gk$ is called a \textbf{Pseudo-Riemannian metric (tensor)}, \index{00@Pseudo-Riemannian metric} and $(M,\gk)$ is called a \textbf{pseudo-Riemannian $\partial$-manifold}. For example, if $d\geq1$, the \textbf{Minkowski space}
 \begin{align*}
-\Rbb^{1,d}=(\Rbb^{1+d},(dx^0)^2-(dx^1)^2-\cdots-(dx^n)^2)
+\Rbb^{1,d}=(\Rbb^{1+d},-(dx^0)^2+(dx^1)^2+\cdots+(dx^n)^2)
 \end{align*} 
 is an important pseudo-Riemannian manifold in physics.
 \end{rem}
@@ -29194,12 +29298,12 @@ dx^m
 Let $M$ be a smooth $\partial$-manifold. If there exists a Riemannian metric $\gk$ on $M$, then we can define integrals of functions on $M$. On the other hand, if $M$ is oriented, we can define integrals of differential forms on $M$. We will see that when $M$ is both oriented and equipped with a Riemannian metric, an integral of differential form can be transformed to an integral of a function, and vise versa. Now, the following theorem tells us that the existence of Riemannian metrics is automatic. Therefore, integrals of differential forms can always be understood by means of integrals of functions. 
 
 
-\begin{sthm}\label{mc109}
+\begin{thm}\label{mc109}
 Let $M$ be a smooth $\partial$-manifold. Then there exists a Riemannian metric on $M$.
-\end{sthm}
+\end{thm}
 
 
-\begin{proof}
+\begin{proof}[$\star$ Proof]
 Step 1. We consider the special case that $M$ is compact. Of course, by Thm. \ref{mc99}, $M$ can be viewed as a smooth $\partial$-submanifold of $\Rbb^n$. Then the restriction of the Euclidean metric tensor to $M$ gives a Riemannian metric on $M$. However, we shall give a different proof that can be generalized to noncompact manifolds.\footnote{It is true that every smooth $\partial$-manifold can be smoothly embedded into some $\Rbb^n$. However, its proof is more involved than proving the current theorem.}
 
 For the convenience of the following discussion, let us call a smooth positive (but not necessarily positive definite) tensor field $\gk:M\rightarrow\bigotimes^2T^*M$ a \textbf{degenerate Riemannian metric}. We claim that for each $p\in M$, there exists a degenerate Riemannian metric $\gk_p$ which is non-degenerate on a neighborhood of $p$. Indeed, choose $U\in\Nbh_M(p)$ diffeomorphic to an open subset of the Euclidean space. Then $U$ has a Riemannian metric $\omega$ (defined e.g. by the pullback of the Euclidean metric tensor). By the smooth Urysohn's lemma, cf., Thm. \ref{mc25}, there exists $f\in C_c^\infty(U,[0,1])$ such that $f(p)=1$. Then $\gk_p=f\omega$ is compactly supported degenerate Riemannian metric on $U$, and hence can be viewed as a degenerate Riemannian metric on $\omega$ which is non-degenerate on $f^{-1}(0,+\infty)$.
@@ -29495,7 +29599,7 @@ Let $(M,\gk)$ be a Riemannian $\partial$-manifold.
 \begin{align*}
 \Vol(M)\equiv\Vol_\gk(M):=\vol_M(M)
 \end{align*}
-is called the \textbf{volume} \index{00@Volume} of $M$. \index{00@$\Vol(M)$} If $\dim M=2$, then $\Vol(M)$ is called the \textbf{area} of $M$. If $\dim M=1$, $\Vol(M)$ is called the \textbf{length} of $M$.
+is called the \textbf{volume} \index{00@Volume} of $M$. \index{Vol@$\Vol(M)$} If $\dim M=2$, then $\Vol(M)$ is called the \textbf{area} of $M$. If $\dim M=1$, $\Vol(M)$ is called the \textbf{length} of $M$.
 \end{df}
 
 
@@ -29507,7 +29611,7 @@ is called the \textbf{volume} \index{00@Volume} of $M$. \index{00@$\Vol(M)$} If 
 \begin{eg}\label{mc112}
 Let $\Omega$ be an $m$-dimensional smooth $\partial$-submanifold of $\Rbb^m$. Let $F:\Omega\rightarrow\Rbb^n$ be a smooth embedding with image $M:=F(\Omega)$, equipped with the standard metric $\fk E|_M$. Let $f:M\rightarrow\ovl\Rbb_{\geq0}$ be a Borel function. Then
 \begin{align}\label{eq465}
-\int_M f\dvol_M=\int_\Omega (f\circ F)\cdot\sqrt{(\Jac F)^\tr\Jac F}~dm
+\int_M f\dvol_M=\int_\Omega (f\circ F)\cdot\sqrt{\det((\Jac F)^\tr\Jac F)}~dm
 \end{align}
 \end{eg}
 
@@ -29518,6 +29622,10 @@ We have
 \end{align*}
 where the last term equals the RHS of \eqref{eq465} by Exp. \ref{mc110}.
 \end{proof}
+
+
+
+
 
 \begin{eg}
 Let $I\subset\Rbb$ be an interval (equivalently, a connected $1$-dimensional smooth $\partial$-submanifold of $\Rbb$). Let $\gamma:I\rightarrow\Rbb^n$ be a smooth embedding. Let $C=\gamma(I)$. Let $f:C\rightarrow\ovl\Rbb_{\geq0}$ be Borel. Then
@@ -29533,6 +29641,43 @@ In particular, the length of the curve $C$ is
 \begin{proof}
 This is a special case of Exp. \ref{mc112}.
 \end{proof}
+
+
+\begin{rem}
+Suppose that $m,n\in\Zbb_+$ and $m\leq n$. Let $A\in\Rbb^{n\times m}$, i.e., $A$ is a real $n\times m$ matrix. Then one indeed has
+\begin{align}\label{eq478}
+\det(A^\tr A)=\sum_{1\leq i_1\leq\cdots\leq i_m\leq n} \det(A_{1,\dots,m}^{i_1,\dots,i_m})^2
+\end{align}
+where $A_{1,\dots,m}^{i_1,\dots,i_m}$ is the $m\times m$ submatrix of $A$ defined by the $i_1,\dots,i_m$-th rows and all the $m$ columns of $A$. In particular, $A$ is injective iff the RHS of \eqref{eq478} is nonzero.  It is sometimes easier to calculate $(\Jac F)^\tr\Jac F$ using the formula \eqref{eq478}. Let us see an example:
+\end{rem}
+
+\begin{eg}
+Let $\Omega$ be an $n$-dimensional smooth $\partial$-submanifold of $\Rbb^n$. Let $h\in C^\infty(\Omega,\Rbb)$. Define the \textbf{graph} $\fk G(h)=\{(p,q)\in\Omega\times\Rbb:q=h(p)\}$. The map 
+\begin{align*}
+F=\id\vee h:\Omega\rightarrow\Rbb^n\times\Rbb\qquad p\mapsto (p,(h(p)))
+\end{align*}
+is a topological embedding since it restricts to a continuous bijection $\Omega\rightarrow\fk G(h)$ whose inverse is the restriction of the projection $\Rbb^n\times\Rbb\rightarrow\Rbb^n$ to $\fk G(h)$. We compute
+\begin{align*}
+\Jac F=\begin{pmatrix}
+1&0&\cdots&0\\
+0&1&\cdots&0\\
+&&\vdots&\\
+0&0&\cdots&1\\
+\partial_1h&\partial_2h&\cdots&\partial_nh
+\end{pmatrix}
+\end{align*}
+which is an $(n+1)\times n$-matrix valued function with constant rank $n$. So $\Jac F$ is injective everywhere on $\Omega$, and hence $F$ is an immersion. Therefore, by Thm. \ref{mc21}, $F$ is a smooth embedding. In particular, $F(\Omega)=\fk G(h)$ is a smooth $\partial$-submanifold of $\Rbb^n\times\Rbb$. Using \eqref{eq478}, we easily calculate that
+\begin{align}
+\det((\Jac F)^\tr\Jac F)=1+(\partial_1h)^2+\cdots+\cdots+(\partial_nh)^2
+\end{align}
+Therefore, by Exp. \ref{mc112}, for each Borel $f:\fk G(h)\rightarrow[0,+\infty]$ we have
+\begin{align}
+\int_M f\dvol_M=\int_\Omega f(x,h(x))\sqrt{\Big(1+\sum_{i=1}^n(\partial_ih(x))^2\Big)}~dm(x)
+\end{align}
+\end{eg}
+
+
+
 
 
 \begin{eg}
@@ -29697,7 +29842,7 @@ where $dm^1$ is the Lebesgue measure on $\Rbb$ and $r$ is the standard coordinat
 \begin{eg}\label{mc120}
 Let $n\in\Zbb_+$. Let $g:\Rbb_{>0}\rightarrow[0,+\infty]$ be Borel. Let $f:\Rbb^n\setminus\{0\}\rightarrow[0,+\infty]$ be defined $f(p)=g(\Vert p\Vert)$. Let $f(0)$ be an arbitrary element of $[0,+\infty]$ so that $f$ is a Borel function on $\Rbb^n$. Then
 \begin{align}\label{eq472}
-\int_{\Rbb^n}fdm^n=\Vol(\Sbb^{n-1})\int_{\Rbb_{>0}} r^{n-1}g(r)dm^1(r)
+\int_{\Rbb^n}fdm^n=\Vol(\Sbb^{n-1})\int_{\Rbb_{>0}} r^{n-1}g(r)dm(r)
 \end{align}
 \end{eg}
 
@@ -29762,10 +29907,223 @@ By using the polar coordinates $x=r\cos\theta,y=r\sin\theta$ and the change of v
 
 
 
+\newpage
+
+
+\section{Exterior products of vector spaces}
+
+
+
+\subsection{Exterior products of vector spaces}
+
+
+Let $\Fbb$ be a field. We fix an $\Fbb$-vector space $V$. We write
+\begin{align*}
+V^{\times N}=\underbrace{V\times\cdots\times V}_{N\text{ times}}
+\end{align*}
+
+
+\begin{df}
+For any set $A$, a bijective map $A\rightarrow A$ is called a \textbf{permutation}.\index{00@Permutation} For each $N\in\Zbb_+$, the \textbf{symmetric group} \index{00@Symmetric group} of degree $N$ is \index{SN@$\fk S_N$, the symmetric group of degree $N$}
+\begin{align}
+\fk S_N=\{\text{permutations of }\{1,\dots,N\}\}
+\end{align}
+We say that $\sigma\in\fk S_N$ is a \textbf{transposition} \index{00@Transposition} if there exist $1\leq i<j\leq N$ such that $\sigma$ sends $i$ to $j$, sends $j$ to $i$, and fixes the other elements; we write such $\sigma$ as \index{ij@$(i~j)$, the transposition of $i$ and $j$}
+\begin{align}
+\sigma=(i~j)
+\end{align}
+In the special case that $j=i+1$, we call $(i~j)$ an \textbf{adjacent transposition}. \index{00@Adjacent transposition} The group structure is defined by
+\begin{align*}
+\sigma_1\cdot\sigma_2=\sigma_1\circ\sigma_2
+\end{align*}
+Note that the order of composition is from right to left.
+\end{df}
 
 
 
 
+
+\begin{df}
+For each $N\in\Zbb_+$, let $T:V^{\times N}\rightarrow W$ be a linear product, i.e., a $k$-linear map. We say that $T$ is \textbf{alternating} \index{00@Alternating product} (also called \textbf{skew-symmetric}) \index{00@Skew-symmetric product} if for any transposition $\sigma\in\fk S_N$ and any $v_1,\dots,v_N\in V$, we have
+\begin{align}\label{eq479}
+T(v_{\sigma(1)},\dots,v_{\sigma(N)})=-T(v_1,\dots,v_N)
+\end{align}
+By definition, if $N=1$, any linear map is automatically alternating. We say that $T$ is a \textbf{surjective alternating product} if the range of $T$ spans the codomain $W$.
+\end{df}
+
+\begin{exe}
+Show that any transposition is a composition of odd numbers of adjacent transposition. Conclude that if \eqref{eq479} holds for any adjacent transposition $\sigma$, then it holds for any transposition.
+\end{exe}
+
+\begin{df}\label{mc125}
+Let $N\in\Zbb_+$. An alternating linear product \index{zz@$\bigwedge^NV\equiv V^{\wedge N}$}
+\begin{gather}
+\wedge:V^{\times N}\rightarrow V^{\wedge N}\qquad (v_1,\dots,v_N)\mapsto v_1\wedge\cdots\wedge v_N
+\end{gather}
+is called a \textbf{$N$-fold exterior product} \index{00@Exterior product} of $V$ if the following conditions
+\begin{enumerate}
+\item[(a)] $\wedge$ is a surjective product, i.e., it has dense range.
+\item[(b)] For any alternating product $T:V^{\times N}\rightarrow W$ there exists a homomorphism of alternating $\Phi:\wedge\rightarrow T$, i.e., a linear map $\Phi:V^{\wedge N}\rightarrow W$ satisfying for all $v_1,\dots,v_N\in V$ that
+\begin{align}
+\Phi(v_1\wedge\cdots\wedge v_N)=T(v_1,\dots,v_N)
+\end{align}
+\end{enumerate}
+We write
+\begin{align*}
+\bigwedge\nolimits^NV\equiv V^{\wedge N}
+\end{align*}
+Due to the surjectivity, the homomorphism $\Phi:\wedge\rightarrow T$, if exists must be unique. Moreover, if $\wedge$ exists, then similar to Rem. \ref{mc79}, there is a natural bijection
+\begin{align}
+\Lin(V^{\wedge N},W)\qquad\xlongrightarrow{\simeq}\qquad  \{\text{Alternating products }V^{\times k}\rightarrow W\}
+\end{align}
+such that $\Phi$ corresponds to $T$. Also, if $V\neq 0$, we set
+\begin{align*}
+\bigwedge\nolimits^0V\equiv V^{\wedge 0}\equiv \Fbb
+\end{align*}
+We also set $\bigwedge^N0=0$.
+\end{df}
+
+\begin{cv}
+We adopt the following notation:
+\begin{align}
+v_1\wedge\cdots\wedge\wht{v_i}\wedge\cdots\wedge w_N=v_1\wedge\cdots\wedge v_{i-1}\wedge v_{i+1}\wedge\cdots\wedge v_N
+\end{align}
+\end{cv}
+
+
+\begin{rem}
+Similar to Thm. \ref{mc67}, two $N$-fold exterior products of $V$ are isomorphic. More precisely, if $\bigwedge^NV$ and $\bigsqcap^N V$ are two $N$-fold exterior products of $V$, then there is a (necessarily unique) linear isomorphism
+\begin{gather*}
+\Phi:\bigwedge\nolimits^NV\xlongrightarrow{\simeq} \bigsqcap\nolimits^NV\qquad\\
+\Phi(v_1\wedge\cdots\wedge v_N)=v_1\sqcap\cdots\sqcap v_N
+\end{gather*}
+\end{rem}
+
+\begin{cv}
+The identity map $\bigwedge^1V\rightarrow V$ is clearly an exterior product. Unless otherwise stated, we assume that $\bigwedge^1V$ is equal to $V$.
+\end{cv}
+
+\begin{pp}\label{mc123}
+Assume that $\dim V<N$. Then every alternating $N$-linear map $T:V^{\times N}\rightarrow W$ is zero. Consequently, $V^{\wedge N}=0$. 
+\end{pp}
+
+
+\begin{proof}
+Let $e_1,\dots,e_n$ be a basis of $V$ where $n<N$. Then for each $v_1,\dots,v_N\in V$, $T(v_1,\dots,v_N)$ is a linear combination of expressions of the form $T(e_{i_1},\dots,e_{i_N})$. There must exist $1\leq a<b\leq N$ such that $e_{i_a}=e_{i_b}$. Thus, exchanging the $a$-th and the $b$-th component of $T(e_{i_1},\dots,e_{i_N})$ does not change the expression. So $T(e_{i_1},\dots,e_{i_N})=0$.
+\end{proof}
+
+
+
+
+
+
+
+\begin{thm}\label{mc126}
+Let $V$ be a finite-dimensional. Then for each $N\in\Zbb_+$, there exists a finite-dimensional $N$-fold exterior product $\bigwedge^NV$. 
+\end{thm}
+
+\begin{proof}
+Let us prove it by induction on $\dim V$. When $\dim V=0$, this is obvious. When $\dim V=1$, this is due to Prop. \ref{mc123}. We now let $n\in\Zbb_+$ and assume that if $\dim V=n$ then $V^{\wedge N}$ exists and is finite-dimensional for all $N$. Now suppose $\dim V=n+1$. We may assume WLOG that $V=\Fbb\oplus U$ where $\dim U=n$. By assumption, the exterior products of $U$ exist. If $N\leq 1$, then $V^{\wedge N}$ clearly exists. Assume $N\geq 2$. Define
+\begin{subequations}\label{eq482}
+\begin{gather}
+\Gamma:V^{\times N}\rightarrow U^{\wedge (N-1)}\oplus U^{\wedge N}
+\end{gather}
+such that for any $a_i\in\Fbb$ and $u_i\in U$,
+\begin{align}\label{eq482b}
+\begin{aligned}
+&\Gamma(a_1\oplus u_1,\dots,a_N\oplus u_N)\\
+=&\Big(\sum_{i=1}^N (-1)^{i+1}a_i\cdot u_1\wedge\cdots\wedge\wht{u_i}\wedge\cdots\wedge u_N\Big)\oplus (u_1\wedge\cdots\wedge u_N)
+\end{aligned}
+\end{align}
+\end{subequations}
+It is easy to check that $\Gamma$ is alternating. Let $V^{\wedge N}$ be the span of the range of $\Gamma$ so that $\Gamma$ restricts to a surjective linear product $\Gamma:V^{\times N}\rightarrow V^{\wedge N}$. Clearly $V^{\wedge N}$ is finite-dimensional. Let us prove that $\Gamma$ is an exterior product.
+
+Let $T:V^{\times N}\rightarrow W$ be an alternating $N$-linear map. One easily calculates that
+\begin{align*}
+&T(a_1\oplus u_1,\dots,a_n\oplus u_n)\\
+=&\sum_{i=1}^N(-1)^{i+1}a_i T(1,u_2,\dots,\wht{u_i},\dots,u_N)+T(u_1,\dots,u_N)
+\end{align*}
+Motivated by this formula, we consider the $N$-linear map
+\begin{align*}
+U^{\times(N-1)}\rightarrow W\qquad (u_1,\dots,u_{N-1})\mapsto T(1,u_1,\dots,u_{N-1})
+\end{align*}
+which gives rise to a linear map
+\begin{align*}
+\Phi_1:U^{\wedge(N-1)}\rightarrow W\qquad  u_1\wedge\cdots \wedge u_{N-1}\mapsto T(1,u_1,\dots,u_{N-1})
+\end{align*}
+Similarly, we have a linear map
+\begin{align*}
+\Phi_2:U^{\wedge N}\rightarrow W\qquad u_1\wedge\cdots\wedge u_N\mapsto T(u_1,\dots,u_N)
+\end{align*}
+Let $\Phi:U^{\wedge(N-1)}\oplus U^{\wedge N}\rightarrow W$ send $\xi\oplus\eta$ to $\Phi_1(\xi)+\Phi_2(\eta)$. Then by the above calculation of $T$, one easily sees that $\Phi\circ\Gamma=T$.
+\end{proof}
+
+
+\begin{rem}
+The above proof should be compared with the (well-known) proof of the existence of the determinant function $\det_N:\Fbb^{N\times N}\rightarrow \Fbb$ by induction on $N$: Assuming that $\det_{N-1}$ exists, then $\det_N$ is defined in terms of $\det_{N-1}$ and the cofactor expansion along some row. Indeed, the expression
+\begin{align*}
+\sum_{i=1}^N (-1)^{i+1}a_i\cdot u_1\wedge\cdots\wedge\wht{u_i}\wedge\cdots\wedge u_N
+\end{align*}
+is similar to the cofactor expansion of an $N\times N$ matrix along the first row. 
+\end{rem}
+
+
+The proof of Thm. \ref{mc126} implies:
+
+\begin{pp}
+Let $\dim V=N$ where $N\in\Zbb_+$. Then for any basis $e_1,\dots,e_N$ of $V$, we have
+\begin{align*}
+V^{\wedge N}=\Span_\Fbb\{e_1\wedge\cdots\wedge e_N\}
+\end{align*}
+In particular, $\dim V^{\wedge N}=1$.
+\end{pp}
+
+\begin{proof}
+Let $e_1,\dots,e_N$ be a basis of $V$. Then $e_1\wedge\cdots\wedge e_N$ clearly spans $V^{\wedge N}$. Therefore, to finish the proof, it suffices to prove that $V^{\wedge N}\neq 0$. Let us prove it by induction on $N=\dim V$. 
+
+The case $\dim V=1$ is obvious. Choose any $N\in\Zbb_{\geq2}$, and assume that for any $(N-1)$-dimensional space $U$ we have $U^{\wedge (N-1)}\neq 0$. Assume $\dim V=N$. Let us prove that $V^{\wedge N}\neq0$. WLOG, we assume as in the proof of Thm. \ref{mc126} that $V=\Fbb\oplus U$. From the proof of Thm. \ref{mc126}, we know that the map $\Gamma$ defined as in \eqref{eq482}, after restricting the codomain to the range, is an $N$-fold wedge product. By Prop. \ref{mc123}, $U^{\wedge N}=0$. Therefore \eqref{eq482b} reads
+\begin{align}
+\Gamma(a_1\oplus u_1,\dots,a_N\oplus u_N)=\sum_{i=1}^N (-1)^{i+1}a_i\cdot u_1\wedge\cdots\wedge\wht{u_i}\wedge\cdots\wedge u_N
+\end{align}
+This implies that $\Gamma(1,u_2,\dots,u_N)$ is the element $u_2\wedge\dots\wedge u_N$ in $U^{\wedge(N-1)}$, which is nonzero if we choose $u_2,\dots,u_N$ to be a basis of $U$. This finishes the proof.
+\end{proof}
+
+
+
+
+
+\subsection{Exterior products of linear maps}
+
+
+In this section, all vector spaces are over a given field $\Fbb$. Similar to the fact that a tensor product of linear maps can be viewed as a linear map between tensor products of vector spaces (Thm. \ref{mc82}), we have
+\begin{thm}
+Let $T:V\rightarrow W$ be a linear map of finite-dimensional vector spaces. Then there is a unique linear map $\bigwedge^N T\equiv T^{\wedge N}$ \index{zz@$\bigwedge^N T\equiv T^{\wedge N}$, the wedge product of linear maps} satisfying
+\begin{gather}
+T^{\wedge N}:V^{\wedge N}\rightarrow W^{\wedge N}\qquad v_1\wedge\cdots\wedge v_N\mapsto Tv_1\wedge\cdots\wedge Tv_N
+\end{gather}
+\end{thm}
+
+\begin{proof}
+The uniqueness is obvious. The proof of the existence is similar to that of Thm. \ref{mc82}: The map $S:V^{\times N}\rightarrow W^{\wedge N}$ sending $v_1\times\cdots\times v_N\mapsto Tv_1\wedge\cdots\wedge Tv_N$ is clearly $N$-linear and alternating. Therefore, by Def. \ref{mc125}, there exists a linear map $T^{\wedge N}:V^{\wedge N}\rightarrow W^{\wedge N}$ such that the exterior product map $\wedge^N:V^{\times N}\rightarrow V^{\wedge N}$ composed with $T^{\wedge N}$ is equal to $S$.
+\end{proof}
+
+
+\begin{pp}
+Let $T:V\rightarrow W$ and $S:U\rightarrow V$ be linear maps of finite-dimensional vector spaces. Then $(\idt_V)^{\wedge N}:V^{\wedge N}\rightarrow V^{\wedge N}$ is the identity map $\idt_{V^{\wedge N}}$, and
+\begin{align}\label{eq481}
+T^{\wedge N}\circ S^{\wedge N}=(T\circ S)^{\wedge N}
+\end{align}
+\end{pp}
+
+\begin{proof}
+Both sides of \eqref{eq481} send $v_1\wedge\cdots\wedge v_N$ to $TSv_1\wedge\cdots\wedge TSv_N$. So \eqref{eq481} holds. A similar reasoning shows that $(\idt_V)^{\wedge N}$ equals $\idt_{V^{\wedge N}}$.
+\end{proof}
+
+
+
+
+
+\subsection{Bases of exterior products}
 
 
 
@@ -29774,6 +30132,81 @@ By using the polar coordinates $x=r\cos\theta,y=r\sin\theta$ and the change of v
 
 
 \hypertarget{beforeindex}{}
+
+
+
+
+
+In this section, we assume that $V$ is a \textit{finite-dimensional} vector space over a field $\Fbb$. There are two main goals of this section: We shall find a convenient basis of $V^{\wedge N}$, and we shall show that $(V^*)^{\wedge N}$ can be viewed naturally as the dual space of $V^{\wedge N}$. It turns out that the two goals can be achieved in the same framework.
+
+\begin{df}
+Let $V,W$ be finite dimensional $\Fbb$-vector spaces. A bilinear map $\omega:V\times W\rightarrow \Fbb$ is called a \textbf{perfect pairing} \index{00@Perfect pairing} if the linear map
+\begin{align}
+\Theta:V\rightarrow W^*\qquad v\mapsto \omega(v,\cdot)
+\end{align}
+is a linear isomorphism. This is equivalent to saying that
+\begin{align}\label{eq480}
+\Gamma:W\rightarrow V^*\qquad w\mapsto\omega(\cdot,w)
+\end{align}
+is a linear isomorphism, since one checks easily that $\Gamma=\Theta^\tr$.
+\end{df}
+Thus, a perfect pairing of $V$ and $W$ realizes $V$ and $W$ as dual spaces of each other.
+
+\begin{eg}\label{mc124}
+Assume that $V$ is real, and let $\bk{\cdot,\cdot}:V\times V\rightarrow\Rbb$ be a real inner product. Then it induces a linear isomorphism \index{zz@$\Theta_V$, the Riesz isomorphism of $V$}
+\begin{align}
+\Theta_V:V\rightarrow V^*
+\end{align}
+called the \textbf{Riesz isomorphism}. \index{00@Riesz isomorphism} When no confusion arises, we abbreviate $\Theta_V$ to $V$.
+\end{eg}
+
+
+\begin{exe}
+In Exp. \ref{mc124}, equip $V^*$ with the unique real inner product so that $\Theta$ is an isometry. Identify $V^{**}$ with $V$ in the obvious way. Prove that the Riesz isomorphism $\Theta_{V^*}:V^*\rightarrow V^{**}=V$ defined by $\Theta_{V^*}$ equals the transpose of $\Theta_V$.
+\end{exe}
+
+\begin{pp}
+Let $V,W$ be finite-dimensional $\Fbb$-vector spaces. Let $\omega:V\times W\rightarrow\Fbb$ be bilinear. Let $v_\blt=(v_1,\dots,v_n)$ be vectors in $V$. Let $w_\blt=(w_1,\dots,w_n)$ be vectors in $W$. Suppose that $v_\blt$ is \textbf{orthonormal to} $w_\blt$  \index{00@Orthonormal under a pairing} under $\omega$, i.e., for each $1\leq i,j\leq n$ we have
+\begin{align*}
+\omega(v_i,w_j)=\delta_{i,j}
+\end{align*}
+Then both $v_1,\dots,v_n$ and $w_1,\dots,w_n$ are linearly independent.
+\end{pp}
+
+%Suppose moreover that $V$ is spanned by $v_1,\dots,v_n$ and $W$ is spanned by $w_1,\dots,w_n$. Then $\omega$ is perfect pairing, $v_\blt$ is a basis of $V$, $w_\blt$ is a basis of $W$. Moreover, if $\Gamma$ is defined by \eqref{eq480}, then $(\Gamma w_1,\dots,\Gamma w_n)$ is the dual basis of $v_1,\dots,v_n$.
+
+
+\begin{proof}
+Assume that $\xi=\sum a_iv_i$ is zero where $a_i\in\Fbb$. Then $a_i=\omega(\xi,w_i)=0$. This proves that $v_\blt$ is linearly independent, and hence is a basis. Similarly, $w_\blt$ is a basis. Since $\bk{v_i,\Gamma w_j}=\omega(v_i,w_j)=\delta_{i,j}$, clearly $\Gamma w_j=\wch v^j$ where $\wch v^1,\dots,\dots \wch v^n$ are the dual basis of $v_\blt$. So the range of $\Gamma$ contains a basis of $V^*$, and hence must be surjective. Therefore $\Gamma$ is a linear isomorphism, namely, $\omega$ is a perfect pairing.
+\end{proof}
+
+
+
+
+\begin{thm}
+Let $N\in\Nbb$. There is a unique bilinear map satisfying
+\begin{gather}
+\begin{gathered}
+\bk{\cdot,\cdot}:V^{\wedge N}\times (V^*)^{\wedge N}\rightarrow\Fbb\\
+\bk{v_1\wedge\cdots\wedge v_N,\varphi_1\wedge\cdots\wedge\varphi_N}\mapsto 
+\end{gathered}
+\end{gather}
+\end{thm}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
