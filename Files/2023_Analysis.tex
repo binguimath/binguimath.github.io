@@ -404,7 +404,7 @@
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\Lin}{\mathrm{Lin}}
-
+\newcommand{\ALin}{\mathrm{ALin}}
 
 
 
@@ -22166,7 +22166,7 @@ Since \eqref{eq322} and \eqref{eq323} hold for every $\eps>0$, we conclude $\lam
 
 
 \begin{rem}
-The readers may wonder if there is a direct proof of Thm. \ref{lb818} without appealing to linear functionals and Riesz-Markov. Note that part of the above proof of Thm. \ref{lb818} shows that every open set $U$ is inner $\mu$-regular. Therefore, it remains to prove that every Borel set is outer $\mu$-regular. A  natural idea is to prove that the set of $\mu$-regular Borel sets form a $\sigma$-algebra. This idea actually works when $\mu$ is a finite measure, and also works when $\mu(X)=+\infty$ if one considers local $\mu$-regular sets instead. 
+The readers may wonder if there is a direct proof of Thm. \ref{lb818} without appealing to linear functionals and Riesz-Markov. Note that part of the above proof of Thm. \ref{lb818} shows that every open set $U$ is inner $\mu$-regular. Therefore, it remains to prove that every Borel set is outer $\mu$-regular. A  natural idea is to prove that the set of $\mu$-regular Borel sets form a $\sigma$-algebra. This idea actually works when $\mu$ is a finite measure, and also works when $\mu(X)=+\infty$ if one considers locally $\mu$-regular sets instead. 
 
 We will present such a proof in Subsec. \ref{lb824}, and we encourage the readers to read through that subsection. This will help the readers understand why Thm. \ref{lb818} can also be proved by the Riesz-Markov representation Thm. \ref{lb796}: It is because the proof of Riesz-Markov relies on Thm. \ref{lb724}, and the proof of the latter theorem is similar to the approach in Subsec. \ref{lb824}.    \hfill\qedsymbol
 \end{rem}
@@ -27224,7 +27224,7 @@ Let $f=x^{n+1}-a:\Rbb^{n+1}\rightarrow\Rbb$. Then for each $p\in\Rbb^{n+1}$, $\K
 
 %% Record #20 2024/05/11 three lectures  49
 
-%% Proofread
+
 
 \subsubsection{$\star$ Transversal intersections}
 
@@ -27267,7 +27267,7 @@ This follows immediately from Thm. \ref{mc8}.
 \end{proof}
 
 \begin{co}\label{mc10}
-Let $F:M\rightarrow N$ be an smooth injective map satisfying $F(\partial M)\subset\partial N$. Assume that $dF|_p:T_pM\rightarrow T_pN$ is bijective for each $p\in M$. Then $F(M)$ is an open subset of $N$, and $F$ restricts to a diffeomorphism $F:M\xrightarrow{\simeq}F(M)$.
+Let $F:M\rightarrow N$ be a smooth injective map satisfying $F(\partial M)\subset\partial N$. Assume that $dF|_p:T_pM\rightarrow T_{F(p)}N$ is bijective for each $p\in M$. Then $F(M)$ is an open subset of $N$, and $F$ restricts to a diffeomorphism $F:M\xrightarrow{\simeq}F(M)$.
 \end{co}
 
 
@@ -27321,7 +27321,7 @@ Assume $\partial N=\emptyset$. Suppose that $F:M\rightarrow N$ is a smooth embed
 
 
 \begin{thm}\label{mc20}
-Assume that $\partial N=\emptyset$. Let $F:M\rightarrow N$. Let $p\in M$. Then the following are equivalent:
+Assume that $\partial N=\emptyset$. Let $F:M\rightarrow N$ be smooth. Let $p\in M$. Then the following are equivalent:
 \begin{enumerate}
 \item[(1)] $F$ is an immersion at $p$.
 \item[(2)] There exists $U\in\Nbh_M(p)$ such that the restriction $F|_U:U\rightarrow N$ is a smooth embedding.
@@ -27333,11 +27333,15 @@ Assume (2). Then (1) follows from Exp. \ref{mc19} (applied to $F|_U:U\rightarrow
 
 Assume (1). Let $q=F(p)$. If we can find $U\in\Nbh_M(p)$ and $V\in\Nbh_N(q)$ such that $U\subset F^{-1}(V)$ and that $F|_U:U\rightarrow V$ is an embedding, then $F(U)$ is a smooth $\partial$-submanifold of $V$, and hence is a smooth $\partial$-submanifold of $N$. Then $F|_U$ clearly restricts to a diffeomorphism $F|_U:U\rightarrow F(U)$. 
 
-From the above discussion, we may shrink $M$ and $N$ to neighborhoods of $p,q$ such that $F(M)\subset N$, and that $M,N$ are open subsets of $\Hbb^m,\Rbb^n$ respectively. We may also assume that $p=0$. Since $\Jac F|_p$ is injective, we must have $m\leq n$. Moreover, one can find $m$ components of $F=(F^1,\dots,F^n)$ whose Jacobian at $0$ is invertible. By composing $F$ with an invertible linear map on the left, we assume WLOG that $\Jac F'$ is invertible at $0$ where $F'=(F^1,\dots,F^m)$ and $F''=(F^{m+1},\dots,F^n)$.
-
-Let $k=n-m$. Let $(x^1,\dots,x^m,y^1,\dots,y^k)$ be the standard coordinate of $\Rbb^n$. Let $G:M\times\Rbb^k\rightarrow\Rbb^n$ be
+From the above discussion, we may shrink $M$ and $N$ to neighborhoods of $p,q$ such that $F(M)\subset N$, and that $M,N$ are open subsets of $\Hbb^m,\Rbb^n$ respectively. Moreover, by Def. \ref{mc14}, we may assume that $F$ can be extended to a smooth map $F:\wtd M\rightarrow\Rbb^n$ where $\wtd M$ is an open subset of $\Rbb^m$ and
 \begin{align*}
-G(x^1,\dots,x^m,y^1,\dots,y^k)=F(x^1,\dots,x^m)+\sum_{j=1}^k y^je_{m_j}
+\Hbb^m\cap\wtd M=M  \tag{$\star$}\label{eq483}
+\end{align*}
+We may also assume that $p=0$. Since $\Jac F|_p$ is injective, we must have $m\leq n$. Moreover, one can find $m$ components of $F=(F^1,\dots,F^n)$ whose Jacobian at $0$ is invertible. By composing $F$ with an invertible linear map on the left, we assume WLOG that $\Jac F'$ is invertible at $0$ where $F'=(F^1,\dots,F^m)$ and $F''=(F^{m+1},\dots,F^n)$.
+
+Let $k=n-m$. Let $(x^1,\dots,x^m,y^1,\dots,y^k)$ be the standard coordinates of $\Rbb^n$. Let $G:\wtd M\times\Rbb^k\rightarrow\Rbb^n$ be
+\begin{align*}
+G(x^1,\dots,x^m,y^1,\dots,y^k)=F(x^1,\dots,x^m)+\sum_{j=1}^k y^je_{m+j}
 \end{align*}
 where $e_1,\dots,e_n$ are the standard basis of $\Rbb^n$. Then
 \begin{align*}
@@ -27346,19 +27350,19 @@ where $e_1,\dots,e_n$ are the standard basis of $\Rbb^n$. Then
 \Jac_x F''& 1_{k\times k}
 \end{pmatrix}
 \end{align*}
-is invertible at $0$. Therefore, by the inverse function Thm. \ref{lb929}, $G$ restricts to a diffeomorphism $G|_\Omega:\Omega\rightarrow\Delta$ where $\Omega,\Delta\subset\Rbb^n$ are open and $0\in\Omega$. We then have a commutative diagram
+is invertible at $0$. Therefore, by the inverse function Thm. \ref{lb929}, $G$ restricts to a diffeomorphism $G|_\Omega:\Omega\rightarrow\Delta$ where $\Omega\subset\wtd M,\Delta\subset N$ are open and $0\in\Omega$. We then have a commutative diagram
 \begin{equation}
 \begin{tikzcd}[column sep=2cm]
 (M\times 0_k)\cap\Omega \arrow[r,"F|_{M\cap\Omega}"] \arrow[d, hook] & F(M\cap\Omega) \arrow[d, hook] \\
 \Omega \arrow[r,"G","\simeq"']                 & \Delta                
 \end{tikzcd}
 \end{equation}
-where $M$ and $M\times 0_k$ are identified in the obvious way. The top arrow is clearly surjective, and hence is bijective by the commutativity of the diagram. Since $M\times 0_k$ is open in $\Hbb^m\times 0_k$, we may shrink $\Omega$ and $\Delta$ to smaller neighborhoods of $0$ and $q$ such that $(M\times 0_k)\cap\Omega=(\Hbb^m\times 0_k)\cap\Omega$. Therefore, by Def. \ref{mc13}, $F(M\cap\Omega)$ is a smooth $\partial$-submanifold of $N$ with (smooth) parametrization $F:M\cap\Omega=(\Hbb^m\times 0_k)\cap\Omega\rightarrow F(M\cap\Omega)$. This proves that $F:M\cap\Omega\rightarrow N$ is a smooth embedding.
+where $M$ and $M\times 0_k$ are identified in the obvious way. The top arrow is clearly surjective, and hence is bijective by the commutativity of the diagram. By \eqref{eq483} and $\Omega\subset\wtd M$, we have $(M\times 0_k)\cap\Omega=(\Hbb^m\times 0_k)\cap\Omega$. Therefore, by Def. \ref{mc13}, $F(M\cap\Omega)$ is a smooth $\partial$-submanifold of $N$ with (smooth) parametrization $F:M\cap\Omega=(\Hbb^m\times 0_k)\cap\Omega\rightarrow F(M\cap\Omega)$. This proves that $F:M\cap\Omega\rightarrow N$ is a smooth embedding.
 \end{proof}
 
 A smooth injective immersion is not necessarily an embedding: 
 
-\begin{eg}
+\begin{eg}\label{mc127}
 Consider the map $F:\Rbb\rightarrow \Rbb^2$ in Fig. \ref{mc18}. Then $A:=F(\Rbb)$ is not a smooth submanifold of $\Rbb^2$. Otherwise, similar to the proof of Exp. \ref{mc16}, one can find smooth right paths $\gamma_1,\gamma_2:[0,+\eps)\rightarrow A$ such that $\gamma_1(0)=\gamma_2(0)=p$, and that $\gamma_1'(0)$ and $\gamma_2'(0)$ are linearly independent. So $\dim T_pA=2$. This is impossible, since $A\setminus\{p\}$ is a smooth submanifold of $\Rbb^2$ of dimension $1$.\begin{figure}[h]
 	\centering
 \begin{equation*}
@@ -27369,9 +27373,27 @@ Consider the map $F:\Rbb\rightarrow \Rbb^2$ in Fig. \ref{mc18}. Then $A:=F(\Rbb)
 \end{figure}
 \end{eg}
 
-\begin{eg}
+\begin{eg}\label{mc128}
 Let $M=\{t\in\Rbb:0<t<1\}\times\{0,1\}$. Let $F:M\rightarrow\Rbb^2$ send $(t,0)$ to $(t,\sin(t^{-1}))$ and send $(t,1)$ to $(0,2t-1)$. Then $F(M)$, the topologist's sine curve, has no path connected neighborhood at $0\in\Rbb^2$, and hence is not a smooth manifold. So $F$ is not a smooth embedding, although $F$ is an injective immersion.
 \end{eg}
+
+
+\begin{rem}
+Thm. \ref{mc20}, Exp. \ref{mc127}, and Exp. \ref{mc128} tell us that any immersion must be a local embedding, but not necessarily a global embedding. Therefore, they seem at odds with our familiar principle that one can check locally whether a subset is a smooth $\partial$-submanifold. The issue here is that Thm. \ref{mc20} concerns the locality on the domains but not on the codomains. In fact, the correct locality principle for embedding should be as follows:  %This principle follows easily from the following Thm. \ref{mc21}.
+\end{rem}
+
+
+\begin{pp}\label{mc129}
+Let $F:M\rightarrow N$ be a smooth injective map where $\partial N=\emptyset$. Suppose that $\fk V$ is a collection of open subsets of $N$ covering $F(M)$. Then $F$ is a smooth embedding iff for each $V\in\fk V$, $F|_{F^{-1}(V)}:F^{-1}(V)\rightarrow N$ is a smooth embedding (equivalently, $F|_{F^{-1}(V)}:F^{-1}(V)\rightarrow V$ is a smooth embedding).
+\end{pp}
+
+
+\begin{proof}
+Let $S=F(M)$. Since for each $V\in \fk V$, $S\cap V$ is a smooth $\partial$-submanifold of $N$, $S$ must be a smooth $\partial$-submanifold of $N$. Let $\wtd F:M\rightarrow S$ be the restriction of $F$, which is bijective and smooth (by Prop. \ref{mc17}). For each $V\in\fk V$, since  $F|_{F^{-1}(V)}:F^{-1}(V)\rightarrow N$ is a smooth embedding, $\wtd F|_{F^{-1}(V)}:F^{-1}(V)\rightarrow S\cap V$ must be a diffeomorphism of smooth $\partial$-manifolds. Therefore $\wtd F^{-1}:S\rightarrow M$ is smooth on $S\cap V$ for each $V\in\fk V$. Therefore $\wtd F^{-1}$ is smooth, and hence $\wtd F$ is a diffeomorphism. Thus $F$ is a smooth embedding.
+\end{proof}
+
+
+
 
 
 Thm. \ref{mc12} gives a useful criterion for a smooth injective immersion to be a smooth embedding. We now give another one:
@@ -27390,9 +27412,7 @@ We have seen topological embeddings before: In Sec. \ref{lb473}, we used topolog
 Note that by Thm. \ref{lb236}, condition (b) is automatically satisfied if $M$ is compact.
 
 \begin{proof}
-If $F$ is a smooth embedding, then by Exp. \ref{mc19}, $F$ satisfies (a) and (b). 
-
-Conversely, assume (a) and (b). Then by (a) and Thm. \ref{mc20}, for each $p\in M$ there exists $U\in\Nbh_M(p)$ such that $F|_U:U\rightarrow N$ is a smooth embedding. By (b), $F(U)$ is open in $S:=F(M)$. Thus $F(U)=S\cap V$ for some neighborhood $V\subset N$ of $q:=F(p)$. Since $F|_U$ is a smooth embedding, $F(U)=S\cap V$ is a smooth $\partial$-submanifold of $N$, and $F|_U$ restricts to a diffeomorphism $U\xrightarrow{\simeq}S\cap V$. We have thus proved that for each $q\in S$ there exists $V\in\Nbh_N(q)$ such that $S\cap V$ is a smooth $\partial$-submanifold of $N$. Therefore, by Rem. \ref{mc1}, $S$ is a smooth $\partial$-submanifold of $N$. Moreover, the fact that $F|_U$ restricts to a diffeomorphism $U\xrightarrow{\simeq}F(U)$ implies that $F$ restricts to a diffeomorphism $M\rightarrow S$. This proves that $F$ is a smooth embedding.
+If $F$ is a smooth embedding, then by Exp. \ref{mc19}, $F$ satisfies (a) and (b). Conversely, assume (a) and (b). Then by (a) and Thm. \ref{mc20}, for each $p\in M$ there exists $U_p\in\Nbh_M(p)$ such that $F|_{U_p}:U_p\rightarrow N$ is a smooth embedding. By (b), $F(U_p)$ is open in $S:=F(M)$. Thus $F(U_p)=S\cap V_p$ for some $V_p\in\Nbh_N(F(p))$. Now, $\fk V=\{V_p:p\in M\}$ is a collection of open subsets of $N$ containing $S$. Moreover, for each $p\in M$, $F|_{F^{-1}(V_p)}:F^{-1}(V_p)\rightarrow N$ is a smooth embedding since $F^{-1}(V_p)=U_p$. Therefore, by Prop. \ref{mc129}, $F$ is a smooth embedding.
 \end{proof}
 
 
@@ -27412,7 +27432,7 @@ Let $M,N,S$ be smooth $\partial$-manifolds where $\partial N=\partial S=\emptyse
 
 
 \begin{proof}
-(a) is due to Prop. \ref{mc17}. (b) is due to the fact that $d\kappa_q:T_qN\rightarrow T_{\kappa(q)}S$ is injective for every $q\in N$. It is easy to show that $F$ is a topological embedding iff $\kappa\circ F$ is a topological embedding. (This is because the pushforward of the subspace topology of $F(M)$ by $\kappa$ equals the subspace topology of $\kappa\circ F(M)$ with respect to $\kappa(N)$, and hence equals the one with respect to $S$.) Therefore, (c) follows from (b) and Thm. \ref{mc21}. 
+(a) is due to Prop. \ref{mc17}. (b) is due to the fact that $d\kappa_q:T_qN\rightarrow T_{\kappa(q)}S$ is injective for every $q\in N$. It is easy to show (e.g. by using net convergence) that $F$ is a topological embedding iff $\kappa\circ F$ is a topological embedding. Therefore, (c) follows from (b) and Thm. \ref{mc21}. 
 \end{proof}
 
 
@@ -27456,11 +27476,11 @@ Similar to Thm. \ref{lb711}, one can apply smooth Urysohn's lemma to any open su
 
 
 \begin{proof}
-We first treat the special case that $K=\{p\}$. Then it suffices to find $U\in\Nbh_M(p)$ and $f\in C_c^\infty(U,[0,1])$ satisfying $f(p)=1$. Therefore, we may assume that $M$ is small enough such that $M$ is an open subset of $\Hbb^n$. We may assume moreover that $M=I_1\times\cdots\times I_n$, where $I_2,\dots,I_n$ are open intervals in $\Rbb$, and $I_1$ is either $(a,b)$ (where $0\leq a<b\leq +\infty$) or $[0,b)$ (where $0<b\leq+\infty$). Write $p=(p_1,\dots,p_n)$. By Prop. \ref{lb440}, there exists $\varphi_j\in C_c^\infty(I_j,[0,1])$ such that $\varphi_j(p_j)=1$. Then $f=\varphi_1\cdots\varphi_n$ belongs to $C_c^\infty(U,[0,1])$ and satisfies $f(p)=1$.
+We first treat the special case that $K=\{p\}$. Then it suffices to find $U\in\Nbh_M(p)$ and $f\in C_c^\infty(U,[0,1])$ satisfying $f(p)=1$. Therefore, we may assume that $M$ is small enough such that $M$ is an open subset of $\Hbb^n$. We may assume moreover that $M=I_1\times\cdots\times I_n$, where $I_2,\dots,I_n$ are open intervals in $\Rbb$, and $I_1$ is either $(a,b)$ (where $0\leq a<b\leq +\infty$) or $[0,b)$ (where $0<b\leq+\infty$). Write $p=(p_1,\dots,p_n)$. By Prop. \ref{lb440}, there exists $\varphi_j\in C_c^\infty(I_j,[0,1])$ such that $\varphi_j(p_j)=1$. Then $f=\varphi_1\cdots\varphi_n$ belongs to $C_c^\infty(M,[0,1])$ and satisfies $f(p)=1$.
 
-Now, we consider the general case. By the first paragraph, for each $p\in K$, there exists $g_p\in C_c^\infty(U_p,[0,1])$ such that $g_p(p)=1$. Let $U_p=g_p^{-1}(\Rbb_{>0})$. Then $U_p\in\Nbh_M(p)$. Since $K$ is compact, there exist $p_1,\dots,p_n\in K$ such that $K\subset U_{p_1}\cup\cdots\cup U_{p_n}$. Let $g=g_{p_1}+\cdots+g_{p_n}$. Then $h\in C_c^\infty(M,\Rbb_{\geq0})$ and $g|_K>0$. Let $\lambda=\inf g(K)$, which is $>0$. By scaling $g$, we may assume that $\lambda\geq1$. We have thus constructed $g\in C_c^\infty(M,\Rbb_{\geq0})$ satisfying $g|_K\geq1$.
+Now, we consider the general case. By the first paragraph, for each $p\in K$, there exists $g_p\in C_c^\infty(M,[0,1])$ such that $g_p(p)=1$. Let $U_p=g_p^{-1}(\Rbb_{>0})$. Then $U_p\in\Nbh_M(p)$. Since $K$ is compact, there exist $p_1,\dots,p_n\in K$ such that $K\subset U_{p_1}\cup\cdots\cup U_{p_n}$. Let $g=g_{p_1}+\cdots+g_{p_n}$. Then $h\in C_c^\infty(M,\Rbb_{\geq0})$ and $g|_K>0$. Let $\lambda=\inf g(K)$, which is $>0$. By scaling $g$, we may assume that $\lambda\geq1$. We have thus constructed $g\in C_c^\infty(M,\Rbb_{\geq0})$ satisfying $g|_K\geq1$.
 
-If we let $f=\max\{g,1\}$, then we have $f\in C_c(M,\Rbb_{\geq0})$ and $f|_K=1$, but $f$ is not necessarily smooth. To fix this issue, we replace the function $x\mapsto\max\{x,1\}$ by $h\in C_c^\infty(\Rbb,[0,1])$ satisfying $\Supp(h)\subset[0,+\infty)$ and $h|_{[1,+\infty)}=1$. Then $f=h\circ g$ is a desired smooth Urysohn function. Such $h$ exists: Fix an arbitrary $0<a<+\infty$, and let $\varphi:\Rbb\xrightarrow{\simeq}(-a,a)$ be an increasing diffeomorphism (e.g. $\varphi(x)=\arctan(x)$ if $a=\pi/2$). By Prop. \ref{lb440}, there exists $\wtd h\in C_c^\infty((-a,a),[0,1])$ such that $\Supp(\wtd h)\subset (\varphi(0),a)$ and $\wtd h|_{[\varphi(1),a)}=1$. Then $h=\wtd h\circ\varphi$ satisfies the requirement.
+If we let $f=\min\{g,1\}$, then we have $f\in C_c(M,\Rbb_{\geq0})$ and $f|_K=1$, but $f$ is not necessarily smooth. To fix this issue, we replace the function $x\mapsto\min\{x,1\}$ by $h\in C_c^\infty(\Rbb,[0,1])$ satisfying $h|_{(-\infty,0]}=0$ and $h|_{[1,+\infty)}=1$. Then $f=h\circ g$ is a desired smooth Urysohn function. Such $h$ exists: Fix an arbitrary $0<a<+\infty$, and let $\varphi:\Rbb\xrightarrow{\simeq}(-a,a)$ be an increasing diffeomorphism (e.g. $\varphi(x)=\arctan(x)$ if $a=\pi/2$). By Prop. \ref{lb440}, there exists $\wtd h\in C^\infty((-a,a),[0,1])$ such that $\wtd h|_{(-a,\varphi(0)]}=0$ and $\wtd h|_{[\varphi(1),a)}=1$. Then $h=\wtd h\circ\varphi$ satisfies the requirement.
 \end{proof}
 
 
@@ -27480,24 +27500,25 @@ This follows from smooth Urysohn's lemma in the same way that Thm. \ref{lb466} f
 
 Similar to the situation in Sec. \ref{lb464}, we can use smooth partitions of unity to prove the smooth Tietze extension theorem. We have mentioned the usefulness of this theorem briefly in Rem. \ref{lb479}.
 
-\begin{thm}[\textbf{Smooth Tietze extension theorem}] \index{00@Smooth Tietze extension theorem}\label{mc30}
-Let $K$ be a compact subset of $M$. Let $F:K\rightarrow\Rbb^k$ be a smooth map (in the sense of Def. \ref{mc15}). Then there exists $\wtd F\in C_c(M,\Rbb^k)$ such that $\wtd F|_K=F$ and $\Vert \wtd F\Vert_{l^\infty(M,\Rbb^k)}=\Vert F\Vert_{l^\infty(K,\Rbb^k)}$.
-\end{thm}
+\begin{sthm}[\textbf{Smooth Tietze extension theorem}] \index{00@Smooth Tietze extension theorem}\label{mc30}
+Let $K$ be a compact subset of $M$. Let $F:K\rightarrow\Rbb^k$ be a smooth map (in the sense of Def. \ref{mc15}). Then for each $\gamma>1$, there exists $\wtd F\in C_c^\infty(M,\Rbb^k)$ such that $\wtd F|_K=F$ and $\Vert \wtd F\Vert_{l^\infty(M,\Rbb^k)}\leq\gamma\Vert F\Vert_{l^\infty(K,\Rbb^k)}$.
+\end{sthm}
 
 For example, if $\partial M=\emptyset$ and $K$ is a compact smooth $\partial$-submanifold of $M$, then by Exe. \ref{mc26}, any smooth function on $K$ can be extended to a compactly supported smooth function on $M$ without increasing the $l^\infty$-norm.
 
 \begin{proof}
-This is similar to the proof of Exp. \ref{lb478}. By Def. \ref{mc15}, for each $p\in K$ there exists $U_p\in\Nbh_M(p)$ and $G_p\in C^\infty(U_p,\Rbb^k)$ such that $G_p|_{K\cap U_p}=F|_{K\cap U_p}$. Since $K$ is compact, there exist $E\in\fin(2^K)$ such that $K\subset\bigcup_{p\in E}U_p$. By Thm. \ref{mc27}, there exists a smooth partition of unity of $K$ subordinate to $(U_p)_{p\in E}$ which we denote by $(h_p)_{p\in E}$. Then $h_pG_p\in C_c^\infty(U_p,\Rbb^k)$ can be viewed as a compactly supported smooth map on $M$. Let $\wtd F=\sum_{p\in E}h_pG_p$. Then $\wtd F\in C_c(M,\Rbb^k)$. 
+%This is similar to the proof of Exp. \ref{lb478}. 
+Let $\lambda=\Vert F\Vert_{l^\infty(K,\Rbb^k)}$. By Def. \ref{mc15}, for each $p\in K$ there exists $U_p\in\Nbh_M(p)$ and $G_p\in C^\infty(U_p,\Rbb^k)$ such that $G_p|_{K\cap U_p}=F|_{K\cap U_p}$. By shrinking $U_p$, we may assume that for each $x\in U_p$ we have $\Vert G_p(x)\Vert\leq\gamma\lambda$. Since $K$ is compact, there exists $E\in\fin(2^K)$ such that $K\subset\bigcup_{p\in E}U_p$. By Thm. \ref{mc27}, there exists a smooth partition of unity of $K$ subordinate to $(U_p)_{p\in E}$ which we denote by $(h_p)_{p\in E}$. Then $h_pG_p\in C_c^\infty(U_p,\Rbb^k)$ can be viewed as a compactly supported smooth map on $M$. Let $\wtd F=\sum_{p\in E}h_pG_p$. Then $\wtd F\in C_c^\infty(M,\Rbb^k)$. 
 
-Let us check that $\wtd F$ satisfies the desired properties by using a similar argument as that in Lem. \ref{lb469}. For each $x\in K$, since $\sum_{p\in E}h_p(x)=1$, we have
+For each $x\in K$, since $\sum_{p\in E}h_p(x)=1$, we have
 \begin{align*}
 \wtd F(x)-F(x)=\sum_{p\in E}(h_p(x)G_p(x)-h_p(x)F(x))
 \end{align*}
-On the RHS, if $h_p(x)>0$, then $x\in U_p$, and hence $G_p(x)=F(x)$. This proves $\wtd F|_K=F|_K$. Let $\lambda=\Vert F\Vert_{l^\infty(K,\Rbb^k)}$.  If $x\in M$, then $\Vert h_p(x)G_p(x)\Vert\leq\lambda h_p(x)$, and hence
+On the RHS, if $h_p(x)>0$, then $x\in U_p$, and hence $G_p(x)=F(x)$. This proves $\wtd F|_K=F|_K$. For each $x\in U_p$, we have $\Vert h_p(x)G_p(x)\Vert\leq\gamma\lambda h_p(x)$. Therefore, for each $x\in M$, we have
 \begin{align*}
-\Vert \wtd F(x)\Vert\leq \lambda\sum_{p\in E}h_p(x)\leq \lambda
+\Vert \wtd F(x)\Vert\leq \gamma\lambda\sum_{p\in E}h_p(x)\leq \gamma\lambda
 \end{align*}
-since $0\leq\sum_p h_p(x)\leq 1$. This proves $\Vert \wtd F\Vert_{l^\infty(M,\Rbb^k)}\leq \lambda$.
+since $0\leq\sum_p h_p(x)\leq 1$. This proves $\Vert \wtd F\Vert_{l^\infty(M,\Rbb^k)}\leq \gamma\lambda$.
 \end{proof}
 
 
@@ -27519,12 +27540,12 @@ Clearly $C_c^\infty(M)$ is a $*$-subalgebra of $C_c(M)$. By the smooth Urysohn's
 \end{proof}
 
 
-Let us give a more elementary but longer proof of Thm. \ref{mc28} without using the Stone-Weierstrass theorem:
+Since polynomials are dense in $C[0,1]$, it is not surprising that Thm. \ref{mc28} can be proved by the Stone-Weierstrass theorem. But let us give a more elementary but longer proof of Thm. \ref{mc28} without using the Stone-Weierstrass theorem:
 
 \begin{proof}[Second proof]
-By treating the real and the imaginary parts separately, it suffices to prove that $C_c^\infty(M,\Rbb)$ is dense in $C_c(M,\Rbb)$. Let $f\in C_c(M,\Rbb)$. We shall use the strategy of proving Lem. \ref{lb469}. Namely, we shall first locally approximate $f$ by smooth functions (which is easy since we can choose constant functions), and then use smooth partitions of unity to obtain a global smooth approximation.
+By treating the real and the imaginary parts separately, it suffices to prove that $C_c^\infty(M,\Rbb)$ is dense in $C_c(M,\Rbb)$. Let $f\in C_c(M,\Rbb)$. We shall use the strategy in the proof of Lem. \ref{lb469}. Namely, we shall first locally approximate $f$ by smooth functions (which is easy since we can choose constant functions), and then use smooth partitions of unity to obtain a global smooth approximation.
 
-Let $K=\Supp(f)$. Let $\eps$. For each $p\in K$, since $f$ is continuous at $x$, there exists $U_p\in\Nbh_M(p)$ such that $\diam f(U_p)\leq\eps$. By the compactness of $K$, there exists $E\in\fin(2^E)$ such that $(U_p)_{p\in E}$ is an open cover of $K$ in $M$. Let $(h_p)_{p\in E}$ be a smooth partition of unity of $K$ subordinate to this open cover. Let $g=\sum_{p\in E}f(p)h_p$. Then $g\in C_c^\infty(M,\Rbb)$. Let us prove that $\Vert f-g\Vert_{l^\infty}\leq\eps$.
+Let $K=\Supp(f)$. Let $\eps>0$. For each $p\in K$, since $f$ is continuous at $x$, there exists $U_p\in\Nbh_M(p)$ such that $\diam f(U_p)\leq\eps$. By the compactness of $K$, there exists $E\in\fin(2^K)$ such that $(U_p)_{p\in E}$ is an open cover of $K$ in $M$. Let $(h_p)_{p\in E}$ be a smooth partition of unity of $K$ subordinate to this open cover. Let $g=\sum_{p\in E}f(p)h_p$. Then $g\in C_c^\infty(M,\Rbb)$. Let us prove that $\Vert f-g\Vert_{l^\infty}\leq\eps$.
 
 Suppose $x\in K$. Then $\sum_{p\in E}h_p(x)=1$, and hence
 \begin{align*}
@@ -27548,7 +27569,7 @@ Let $1\leq p<+\infty$. Let $\mu$ be a Radon measure (or its completion) on $M$. 
 \begin{proof}
 By Thm. \ref{lb866}, $C_c(M)$ is $L^p$-dense in $L^p(M,\mu)$. Therefore, it suffices to prove that any $f\in C_c(M)$ can be $L^p$-approximated by elements in $C_c^\infty(M)$. By Lem. \ref{lb460}, there exists a precompact open $U\subset M$ containing the compact set $\Supp(f)$. By Thm. \ref{mc28}, there exists a sequence $(f_n)$ in $C_c^\infty(U)$ (and hence in $C_c^\infty(M)$) converging uniformly to $f$. Then
 \begin{align*}
-\Vert f-f_n\Vert_p^p=\int_M|f-f_n|^pd\mu=\int_U|f-f_n|^pd\mu\leq \Vert f-f_n\Vert_{l^\infty(U)}\cdot \mu(U)
+\Vert f-f_n\Vert_p^p=\int_M|f-f_n|^pd\mu=\int_U|f-f_n|^pd\mu\leq \Vert f-f_n\Vert_{l^\infty(U)}^p\cdot \mu(U)
 \end{align*}
 where $\dps\lim_{n\rightarrow\infty}\text{RHS}=0$ since $\ovl U$ is compact and hence $\mu(U)<+\infty$.
 \end{proof}
@@ -27561,7 +27582,7 @@ By Thm. \ref{mc28} (and Rem. \ref{mc54}), $\ovl B_{C_c^\infty(M)}$ is $l^\infty$
 
 When $M$ is $\Rbb^n$ and $\mu$ is the Lebesgue measure, one can use convolutions to give an explicit construction of smooth approximations. See Rem. \ref{mc58}.
 
-
+%% Record #21 2024/05/13 Two lectures  51
 
 
 \subsubsection{$\star$ Embedding compact $\partial$-manifolds into $\Rbb^n$}
@@ -27582,7 +27603,7 @@ It suffices to find a finite set $\scr F\subset C^\infty(M,\Rbb)$ satisfying the
 \end{enumerate}
 Then, by (a), $F$ is a continuous injective map, and hence is a topological embedding because $M$ is compact. By (b), $F$ is an immersion. Then by Thm. \ref{mc21}, $F:M\rightarrow\Rbb^n$ is a smooth embedding. Moreover, note that if $\scr F$ satisfies (a) resp. (b), then any finite subset of $C^\infty(M,\Rbb)$ containing $\scr F$ also satisfies (a) resp. (b).
 
-Let us construct the $\scr F$ satisfying (a) and (b). For each $p$ there exist open precompact $U,V\subset M$ containing $p$ such that $\ovl U\subset V$, and that $V$ admits a coordinate. Therefore, by the compactness of $M$, there exists a finite index set $\scr A$ and families of precompact open sets $(U_\alpha)_{\alpha\in\scr A}$ and $(V_\alpha)_{\alpha\in\scr A}$ such that $\ovl U_\alpha\subset V_\alpha$, and that $(V_\alpha,\varphi_\alpha)=(V_\alpha,\varphi_\alpha^1,\dots,\varphi_\alpha^{n_\alpha})$ is a chart on $M$. By smooth Urysohn's lemma, there exists $f_\alpha\in C_c^\infty(M,[0,1])$ compactly supported in $V_\alpha$ such that $f_\alpha|_{\ovl U_\alpha}=1$. Then for each $\alpha\in\scr A$ and  $1\leq i\leq n_\alpha$, we have $\varphi^i_\alpha f_\alpha\in C_c^\infty(V_\alpha,\Rbb)\subset C_c^\infty(M,\Rbb)$. 
+Let us construct the $\scr F$ satisfying (a) and (b). For each $p$ there exist open precompact $U,V\subset M$ containing $p$ such that $\ovl U\subset V$, and that $V$ admits a coordinate. Therefore, by the compactness of $M$, there exists a finite index set $\scr A$ and families of precompact open sets $(U_\alpha)_{\alpha\in\scr A}$ and $(V_\alpha)_{\alpha\in\scr A}$ such that $\ovl U_\alpha\subset V_\alpha$, that $(V_\alpha,\varphi_\alpha)=(V_\alpha,\varphi_\alpha^1,\dots,\varphi_\alpha^{n_\alpha})$ is a chart on $M$, and that $\bigcup_{\alpha\in\scr A}U_\alpha=M$. By smooth Urysohn's lemma, there exists $f_\alpha\in C_c^\infty(M,[0,1])$ compactly supported in $V_\alpha$ such that $f_\alpha|_{\ovl U_\alpha}=1$. Then for each $\alpha\in\scr A$ and  $1\leq i\leq n_\alpha$, we have $\varphi^i_\alpha f_\alpha\in C_c^\infty(V_\alpha,\Rbb)\subset C_c^\infty(M,\Rbb)$. 
 
 If we let $\scr F$ be any finite subset of $C_c^\infty(M,\Rbb)$ contain all $\varphi_\alpha^if_\alpha$, and if we let $F$ be as in (b), then $dF$ is injective at any point of any $U_\alpha$. Therefore $\scr F$ satisfies (b). Now, we let $\scr F$ also contain all $f_\alpha$. Let us prove that $\scr F$ satisfies (a). Let $x,y\in M$ be distinct. Choose any $U_\alpha$ containing $x$.Then $f_\alpha(x)=1$. If $f_\alpha(y)<1$, then clearly $\scr F$ separates $x,y$. If $f_\alpha(y)=1$, then $x,y\in V_\alpha$, and hence one can find $i$ such that $\varphi^i_\alpha$ separates $x,y$. So $f_\alpha\varphi^i_\alpha$ separates $x,y$. Therefore $\scr F$ separates $x,y$.
 \end{proof}
@@ -27619,7 +27640,7 @@ Since Radon measures are determined by their integrals of compactly supported co
 If $\Phi$ is an invertible matrix $A$, then \eqref{eq436} reads \begin{align*}
 m(A(E))=|\det A|m(E)
 \end{align*}
-and is not hard to check. In the general case, one can decompose $E$ into a finite disjoint union of smaller cubes $E_1\cup E_2\cup\cdots$ such that on each $E_i$, $\Jac\Phi$ is almost a constant. Therefore, by shrinking $\Omega$ to an open set slightly larger than $E_i$ (and shrinking $\Delta$ accordingly), it suffices to assume that $\Jac\Phi|_x\approx A$ for all $x\in\Omega$, where $A$ is an invertible matrix. Then, to prove \eqref{eq436}, it suffices to prove for any cube $E\subset\Omega$ that
+and is not hard to prove. In the general case, one can decompose $E$ into a finite disjoint union of smaller cubes $E_1\cup E_2\cup\cdots$ such that on each $E_i$, $\Jac\Phi$ is almost a constant. Therefore, by shrinking $\Omega$ to an open set slightly larger than $E_i$ (and shrinking $\Delta$ accordingly), it suffices to assume that $\Jac\Phi|_x\approx A$ for all $x\in\Omega$, where $A$ is an invertible matrix. Then, to prove \eqref{eq436}, it suffices to prove for any cube $E\subset\Omega$ that
 \begin{align}\label{eq437}
 m(\Phi(E))\approx m(A(E))\equiv |\det A|m(E)
 \end{align}
@@ -27631,7 +27652,8 @@ P_1\subset \Phi(E)\subset P_2
 \end{align*}
 that $P_1$ is similar to but slightly smaller than the parallelepiped $A(E)$, and that $P_2$ is similar to but slightly larger than $A(E)$. However, as pointed out in \cite{Sch54}, it is very hard to find such $P_1$, because the interior of $\Phi(E)$ is difficult to control.
 
-Fortunately, the slightly larger $P_2$ is easier to find. In \cite{Sch54}, this task was achieved by a clever application of the $l^\infty$-norm on $\Rbb^n=l^\infty(\{1,\dots,n\},\Rbb)$. (More precisely, one should consider the norm $\Vert v\Vert:=\Vert Av\Vert_\infty$ for each $v:\{1,\dots,n\}\rightarrow\Rbb$. An open ball under this norm is precisely a parallelepiped $A(Q)$ for some open cube $Q$.) This is the most brilliant part in \cite{Sch54}. Since we will provide the details in Subsec. \ref{mc63}, we do not explain this part here.
+Fortunately, the slightly larger $P_2$ is easier to find. In \cite{Sch54}, this task was achieved by a clever application of the $l^\infty$-norm on $\Rbb^n=l^\infty(\{1,\dots,n\},\Rbb)$. %(More precisely, one should consider the norm $\Vert v\Vert:=\Vert Av\Vert_\infty$ for each $v:\{1,\dots,n\}\rightarrow\Rbb$. An open ball under this norm is precisely a parallelepiped $A(Q)$ for some open cube $Q$.) 
+This is the most brilliant part in \cite{Sch54}. Since we will provide the details in Subsec. \ref{mc63}, we do not explain this part here.
 
 Let us admit that such $P_2$ can be found, and explain how to finish proving the change of variables formula. Due to the existence of $P_2$,  one can find $\gamma\in\Rbb$ slightly larger than $1$ such that
 \begin{align}\label{eq438}
@@ -27651,7 +27673,7 @@ This proves the approximation \eqref{eq437}.
 
 
 
-
+%% Proofread
 
 
 
@@ -27761,7 +27783,7 @@ Let $\mu,\nu$ be Radon measures on an LCH space $X$. Let $\fk U$ be an open cove
 \end{enumerate}
 \end{pp}
 
-Since a similar equivalence holds for ``$\geq$", we conclude that $\mu=\nu$ iff $\mu|_U\geq\nu|_U$ for every $U\in\fk U$.
+Since a similar equivalence holds for ``$\geq$", we conclude that $\mu=\nu$ iff $\mu|_U=\nu|_U$ for every $U\in\fk U$.
 
 
 \begin{proof}
@@ -27784,6 +27806,8 @@ Let $\Omega\subset\Rbb^n$ be open. Let $\mu,\nu$ be Radon measures on $\Omega$. 
 \item[(2'')] For each closed cube $Q\subset\Rbb^n$ we have $\mu(Q)\leq\nu(Q)$. 
 \end{enumerate}
 \end{pp}
+
+(2'') is stated here for the sake of completeness and will not be used later.
 
 \begin{proof}
 Clearly (1)$\Rightarrow$(2), (2)$\Rightarrow$(2'), and (2)$\Rightarrow$(2''). Since each cube $Q$ can be written as $Q=\bigcap_{n=1}^\infty Q_n'$ where $Q_1'\supset Q_2'\supset\cdots$ are open cubes, we must have $\mu(Q)=\lim_n\mu(Q_n)$ and $\nu(Q)=\lim_n\nu(Q_n)$ since $\mu(Q_1)<+\infty$ and $\nu(Q_1)<+\infty$ (because $\mu,\nu$ are Radon and $\ovl Q_1$ is compact). Therefore (2')$\Rightarrow$(2). Similarly, since $Q=\bigcup_n Q_n''$ where $Q_1''\subset Q_2''\subset\cdots$ are closed cubes, we have (2'')$\Rightarrow$(2).
@@ -28105,7 +28129,7 @@ This finishes the proof.
 \subsection{Problems and supplementary material}
 
 
-The following problem is a variant of Prop. \ref{mc36}.
+Part 1 of the following problem is a variant of Prop. \ref{mc36}.
 
 
 \begin{prob}\label{mc106}
@@ -28612,14 +28636,17 @@ I hope the above discussion can help convince the readers that different but iso
 
 
 \begin{rem}\label{mc79}
-Let $V_1,\dots,V_N$ and $W$ be vector spaces. Then we have a bijection of sets
-\begin{gather*}
+Let $V_1,\dots,V_N$ and $W$ be vector spaces. Then we have a linear isomorphism
+\begin{subequations}\label{eq484}
+\begin{gather}\label{eq484a}
 \Lin(V_1\otimes\cdots\otimes V_N,W)\quad\xlongrightarrow{\simeq}\quad\{\text{$N$-linear maps }V_1\times\cdots\times V_N\rightarrow W\}
-\end{gather*}
+\end{gather}
 where each $T\in\Lin(V_1\otimes\cdots\otimes V_N,W)$ corresponds to the $N$-linear map
 \begin{align}
 \wtd T:V_1\times\cdots\times V_N\rightarrow W\qquad (v_1,\cdots,v_N)\mapsto T(v_1\otimes\cdots\otimes v_N)
 \end{align}
+\end{subequations}
+Recall that for any set $X$, $W^X$ has a natural linear structure. The linear structure of the RHS of \eqref{eq484a} is inherited from that of $(V_1\times\cdots\times V_N)^W$.
 \end{rem}
 
 \begin{proof}
@@ -28724,16 +28751,6 @@ v_1\otimes\cdots\otimes v_N\mapsto Tv_1\otimes\cdots\otimes Tv_N
 \end{cv}
 
 
-\begin{exe}
-Suppose that for each $1\leq i\leq N$ we have linear maps of vector spaces $S_i:U_i\rightarrow V_i$ and $T_i:V_i\rightarrow W_i$. Prove that
-\begin{align*}
-(T_1\circ S_1)\otimes\cdots\otimes (T_n\circ S_n)=(T_1\otimes\cdots\otimes T_N)\circ (S_1\otimes\cdots\otimes S_N)
-\end{align*} 
-\end{exe}
-
-\begin{exe}
-Suppose that for each $1\leq i\leq N$, the linear map $T_i:V_i\rightarrow W_i$ is injective (resp. surjective). Prove that $T_1\otimes\cdots\otimes T_N:V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N$ is injective (resp. surjective).
-\end{exe}
 
 
 
@@ -28837,7 +28854,29 @@ By multilinearity, we have $\xi=6u_1\otimes u_2+v_1\otimes v_2$. So
 \end{proof}
 
 
-\begin{rem}\label{mc86}
+\begin{exe}
+Suppose that for each $1\leq i\leq N$ we have linear maps of vector spaces $S_i:U_i\rightarrow V_i$ and $T_i:V_i\rightarrow W_i$. Prove that
+\begin{align}
+(T_1\circ S_1)\otimes\cdots\otimes (T_N\circ S_N)=(T_1\otimes\cdots\otimes T_N)\circ (S_1\otimes\cdots\otimes S_N)
+\end{align} 
+Prove that if $U_i=V_i$ and $S_i=\idt_{V_i}$, then
+\begin{align}
+\idt_{V_1}\otimes\cdots\otimes\idt_{V_N}=\idt_{V_1\otimes\cdots\otimes V_N}
+\end{align}
+Prove that if each $V_i,W_i$ are finite-dimensional, and if we identify $V_1^*\otimes\cdots V_N^*$ with $(V_1\otimes\cdots\otimes V_N)^*$ and identify $W_1^*\otimes\cdots W_N^*$ with $(W_1\otimes\cdots\otimes W_N)^*$ in the canonical way (cf. Cor. \ref{mc83}), then
+\begin{align}
+T_1^\tr\otimes\cdots\otimes T_N^\tr=(T_1\otimes\cdots\otimes T_N)^\tr
+\end{align}
+\end{exe}
+
+\begin{exe}
+Suppose that for each $1\leq i\leq N$, the linear map $T_i:V_i\rightarrow W_i$ is injective (resp. surjective). Prove that $T_1\otimes\cdots\otimes T_N:V_1\otimes\cdots\otimes V_N\rightarrow W_1\otimes\cdots\otimes W_N$ is injective (resp. surjective).
+\end{exe}
+
+
+
+
+\begin{srem}\label{mc86}
 Let $p,q\in\Nbb$. Let $V$ be a finite dimensional vector space. An element $T\in V^{\otimes p}\otimes (V^*)^{\otimes q}$ is called a \textbf{tensor of type }\pmb{$(p,q)$}. \index{00@Tensor of type $(p,q)$} If $p=0$ (resp. $q=0$), we call $T$ a \textbf{covariant tensor of order $q$} \index{00@Covaraint tensor} (resp. \textbf{contravariant tensor of order $p$}). \index{00@Contravariant tensor}
 
 Let $e_1,\dots,e_n$ be a basis of $V$ with dual basis $\wch e^1,\dots,\wch e^n$. Let
@@ -28849,7 +28888,7 @@ where $V$ is viewed as the dual of $V^*$ so that (by Def. \ref{mc84}) we have a 
 T=\sum_{i_1,\dots,i_p,j_1,\dots,j_q} T_{j_1,\dots,j_q}^{i_1,\dots,i_p} ~\cdot e_{i_1}\otimes\cdots\otimes e_{i_p}\otimes \wch e^{j_1}\otimes\cdots\otimes \wch e^{j_q}
 \end{align}
 since both sides send $\wch e^{i_1}\otimes\cdots\otimes\wch e^{i_p}\otimes e_{j_1}\otimes\cdots\otimes e_{j_q}$ to $T_{j_1,\dots,j_q}^{i_1,\dots,i_p}$. In physics and mechanics, the data $(T_{j_1,\dots,j_q}^{i_1,\dots,i_p})_{i_\blt,j_\star}$ is often called a tensor. \hfill\qquad
-\end{rem}
+\end{srem}
 
 
 
@@ -28970,7 +29009,7 @@ Then $\omega$ is positive (resp. positive definite) iff each $\omega_i$ is posit
 \end{eg}
 
 
-
+\begin{comment}
 
 \subsection{Tensor products of inner product spaces}
 
@@ -29032,7 +29071,7 @@ Choose $v_i\in V_i,w_i\in W_i$. Then
 \end{align*}
 Therefore, \eqref{eq477} holds when evaluated between vectors of the form $v_1\otimes\cdots\otimes v_N,w_1\otimes\cdots\otimes w_N$. By linearity, \eqref{eq477} holds in general.
 \end{proof}
-
+\end{comment}
 
 
 
@@ -29940,7 +29979,7 @@ Note that the order of composition is from right to left.
 \end{df}
 
 
-
+\subsubsection{Definitions and basic properties}
 
 
 \begin{df}
@@ -29951,6 +29990,11 @@ T(v_{\sigma(1)},\dots,v_{\sigma(N)})=-T(v_1,\dots,v_N)
 By definition, if $N=1$, any linear map is automatically alternating. We say that $T$ is a \textbf{surjective alternating product} if the range of $T$ spans the codomain $W$.
 \end{df}
 
+\begin{rem}\label{mc130}
+Suppose that $T:V^{\times N}\rightarrow W$ is an alternating $N$-linear map. Suppose that two of $v_1,\dots,v_N\in N$ are equal, say $v_i=v_j$ where $1\leq i<j\leq N$. Then exchanging the $i$-th and the $j$-th component of $T(v_1,\dots,v_N)$ does not change its expression. So we must have $T(v_1,\dots,v_N)=0$.
+\end{rem}
+
+
 \begin{exe}
 Show that any transposition is a composition of odd numbers of adjacent transposition. Conclude that if \eqref{eq479} holds for any adjacent transposition $\sigma$, then it holds for any transposition.
 \end{exe}
@@ -29960,7 +30004,7 @@ Let $N\in\Zbb_+$. An alternating linear product \index{zz@$\bigwedge^NV\equiv V^
 \begin{gather}
 \wedge:V^{\times N}\rightarrow V^{\wedge N}\qquad (v_1,\dots,v_N)\mapsto v_1\wedge\cdots\wedge v_N
 \end{gather}
-is called a \textbf{$N$-fold exterior product} \index{00@Exterior product} of $V$ if the following conditions
+is called a \textbf{degree-$N$ exterior product} \index{00@Exterior product} of $V$ if the following conditions
 \begin{enumerate}
 \item[(a)] $\wedge$ is a surjective product, i.e., it has dense range.
 \item[(b)] For any alternating product $T:V^{\times N}\rightarrow W$ there exists a homomorphism of alternating $\Phi:\wedge\rightarrow T$, i.e., a linear map $\Phi:V^{\wedge N}\rightarrow W$ satisfying for all $v_1,\dots,v_N\in V$ that
@@ -29972,16 +30016,24 @@ We write
 \begin{align*}
 \bigwedge\nolimits^NV\equiv V^{\wedge N}
 \end{align*}
-Due to the surjectivity, the homomorphism $\Phi:\wedge\rightarrow T$, if exists must be unique. Moreover, if $\wedge$ exists, then similar to Rem. \ref{mc79}, there is a natural bijection
-\begin{align}
+Due to the surjectivity, the homomorphism $\Phi:\wedge\rightarrow T$, if exists must be unique. Moreover, if $\wedge$ exists, then similar to Rem. \ref{mc79}, there is a natural linear isomorphism
+\begin{align}\label{eq487}
 \Lin(V^{\wedge N},W)\qquad\xlongrightarrow{\simeq}\qquad  \{\text{Alternating products }V^{\times k}\rightarrow W\}
 \end{align}
 such that $\Phi$ corresponds to $T$. Also, if $V\neq 0$, we set
-\begin{align*}
+\begin{align}\label{eq494}
 \bigwedge\nolimits^0V\equiv V^{\wedge 0}\equiv \Fbb
-\end{align*}
+\end{align}
 We also set $\bigwedge^N0=0$.
 \end{df}
+
+\begin{df}
+Let $V^{\wedge N}$ be a degree-$N$ tensor product of $V$. Then $\xi\in V^{\times N}$ is called a \textbf{degree-$N$ alternating tensor}  of $V$. \index{deg@$\deg\xi$, the degree of an alternating tensor $\xi$} We write
+\begin{align*}
+\deg\xi=N
+\end{align*} 
+\end{df}
+
 
 \begin{cv}
 We adopt the following notation:
@@ -29992,7 +30044,7 @@ v_1\wedge\cdots\wedge\wht{v_i}\wedge\cdots\wedge w_N=v_1\wedge\cdots\wedge v_{i-
 
 
 \begin{rem}
-Similar to Thm. \ref{mc67}, two $N$-fold exterior products of $V$ are isomorphic. More precisely, if $\bigwedge^NV$ and $\bigsqcap^N V$ are two $N$-fold exterior products of $V$, then there is a (necessarily unique) linear isomorphism
+Similar to Thm. \ref{mc67}, two degree-$N$ exterior products of $V$ are isomorphic. More precisely, if $\bigwedge^NV$ and $\bigsqcap^N V$ are two degree-$N$ exterior products of $V$, then there is a (necessarily unique) linear isomorphism
 \begin{gather*}
 \Phi:\bigwedge\nolimits^NV\xlongrightarrow{\simeq} \bigsqcap\nolimits^NV\qquad\\
 \Phi(v_1\wedge\cdots\wedge v_N)=v_1\sqcap\cdots\sqcap v_N
@@ -30009,17 +30061,17 @@ Assume that $\dim V<N$. Then every alternating $N$-linear map $T:V^{\times N}\ri
 
 
 \begin{proof}
-Let $e_1,\dots,e_n$ be a basis of $V$ where $n<N$. Then for each $v_1,\dots,v_N\in V$, $T(v_1,\dots,v_N)$ is a linear combination of expressions of the form $T(e_{i_1},\dots,e_{i_N})$. There must exist $1\leq a<b\leq N$ such that $e_{i_a}=e_{i_b}$. Thus, exchanging the $a$-th and the $b$-th component of $T(e_{i_1},\dots,e_{i_N})$ does not change the expression. So $T(e_{i_1},\dots,e_{i_N})=0$.
+Let $e_1,\dots,e_n$ be a basis of $V$ where $n<N$. Then for each $v_1,\dots,v_N\in V$, $T(v_1,\dots,v_N)$ is a linear combination of expressions of the form $T(e_{i_1},\dots,e_{i_N})$. There must exist $1\leq a<b\leq N$ such that $e_{i_a}=e_{i_b}$. Thus $T(e_{i_1},\dots,e_{i_N})=0$ by Rem. \ref{mc130}.
 \end{proof}
 
 
 
-
+\subsubsection{Existence of exterior products}
 
 
 
 \begin{thm}\label{mc126}
-Let $V$ be a finite-dimensional. Then for each $N\in\Zbb_+$, there exists a finite-dimensional $N$-fold exterior product $\bigwedge^NV$. 
+Let $V$ be a finite-dimensional. Then for each $N\in\Zbb_+$, there exists a finite-dimensional degree-$N$ exterior product $\bigwedge^NV$. 
 \end{thm}
 
 \begin{proof}
@@ -30068,25 +30120,69 @@ is similar to the cofactor expansion of an $N\times N$ matrix along the first ro
 \end{rem}
 
 
+\subsubsection{Bases and dimensions of exterior products}
+
+
 The proof of Thm. \ref{mc126} implies:
 
-\begin{pp}
-Let $\dim V=N$ where $N\in\Zbb_+$. Then for any basis $e_1,\dots,e_N$ of $V$, we have
-\begin{align*}
-V^{\wedge N}=\Span_\Fbb\{e_1\wedge\cdots\wedge e_N\}
-\end{align*}
-In particular, $\dim V^{\wedge N}=1$.
-\end{pp}
+\begin{thm}\label{mc131}
+Assume that $V$ has basis $e_1,\dots,e_n$ where $n\geq1$. Then for each $N\in\Nbb$,
+\begin{align}\label{eq485}
+\Big(e_{i_1}\wedge\cdots \wedge e_{i_N}\Big)_{1\leq i_1<\cdots<i_N\leq n}
+\end{align}
+is a basis of $V^{\wedge N}$. In particular,
+\begin{align}
+\dim V^{\wedge N}={n\choose N}
+\end{align}
+\end{thm}
+
+Note that $\emptyset$ is a basis of $\{0\}$. Thus, in the case that \eqref{eq485} is empty (i.e. $N>n$), we have $\dim V^{\wedge N}=0$. This is compatible with Prop. \ref{mc123}. When $N=0$ and $n>0$, we have $\dim V^{\wedge N}=1$, which is compatible with the convention \eqref{eq494}.
 
 \begin{proof}
-Let $e_1,\dots,e_N$ be a basis of $V$. Then $e_1\wedge\cdots\wedge e_N$ clearly spans $V^{\wedge N}$. Therefore, to finish the proof, it suffices to prove that $V^{\wedge N}\neq 0$. Let us prove it by induction on $N=\dim V$. 
-
-The case $\dim V=1$ is obvious. Choose any $N\in\Zbb_{\geq2}$, and assume that for any $(N-1)$-dimensional space $U$ we have $U^{\wedge (N-1)}\neq 0$. Assume $\dim V=N$. Let us prove that $V^{\wedge N}\neq0$. WLOG, we assume as in the proof of Thm. \ref{mc126} that $V=\Fbb\oplus U$. From the proof of Thm. \ref{mc126}, we know that the map $\Gamma$ defined as in \eqref{eq482}, after restricting the codomain to the range, is an $N$-fold wedge product. By Prop. \ref{mc123}, $U^{\wedge N}=0$. Therefore \eqref{eq482b} reads
-\begin{align}
-\Gamma(a_1\oplus u_1,\dots,a_N\oplus u_N)=\sum_{i=1}^N (-1)^{i+1}a_i\cdot u_1\wedge\cdots\wedge\wht{u_i}\wedge\cdots\wedge u_N
-\end{align}
-This implies that $\Gamma(1,u_2,\dots,u_N)$ is the element $u_2\wedge\dots\wedge u_N$ in $U^{\wedge(N-1)}$, which is nonzero if we choose $u_2,\dots,u_N$ to be a basis of $U$. This finishes the proof.
+By Rem. \ref{mc130}, it is clear that \eqref{eq485} spans $V^{\wedge N}$. Let us prove by induction on $\dim V$ that \eqref{eq485} is linearly independent. The case $\dim V=1$ is obvious. Suppose the case $\dim V=n$ has been proved for all $N$. Now assume $\dim V=n+1$. Then, as in the proof of Thm. \ref{mc126}, we can assume WLOG that $V=\Fbb\oplus U$. Choose any $N\in\Nbb$. Let $\xi=1\in\Fbb$. Let $(e_1,\dots,e_n)$ be an orthogonal basis of $U$. Let $\Gamma$ be defined by \eqref{eq482}. The proof of Thm. \ref{mc126} shows that after restricting the codomain of $\Gamma$ to its range, $\Gamma$ is the degree-$N$ exterior product of $V$. Therefore, we can view $V^{\wedge N}$ as a linear subspace of $U^{\wedge(N-1)}\oplus U^{\wedge N}$. Consider the following two collections of elements of $V^{\wedge N}$.
+\begin{gather*}
+A=\big(\xi\wedge e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}\big)_{1\leq i_1<\cdots<i_{N-1}\leq n}\\
+B=\big(e_{i_0}\wedge e_{i_1}\cdots\wedge e_{i_N}\big)_{1\leq i_0<i_1<\cdots<i_N\leq n}
+\end{gather*}
+Then the elements of $A$ resp. $B$ can be viewed as in $U^{\wedge(N-1)}$ resp. in $U^{\wedge N}$. More precisely, by \eqref{eq482b},
+\begin{gather*}\label{eq486}
+\begin{gathered}\tag{$\star$}
+\xi\wedge e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}=e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}\qquad \in U^{\wedge(N-1)}\\
+e_{i_0}\wedge\cdots\wedge e_{i_N}\qquad \in U^{\wedge N}
+\end{gathered}
+\end{gather*}
+Thus $\Span(A)\cap\Span(B)=0$. Moreover, by \eqref{eq486}, and by case $n-1$, we know that the elements in $A$ (resp. in $B$) are linearly independent. Thus $A\sqcup B$ form a basis of $V^{\wedge N}$. This proves the case $n+1$.
 \end{proof}
+
+
+Of particular interest is the case that $N=\dim V$:
+
+\begin{co}\label{mc133}
+Let $V\neq 0$ be finite dimensional. Let $n=\dim V$. Then $\dim V^{\wedge n}=1$. Moreover, for any basis $e_1,\dots,e_n$ of $V$, we have $V=\Span\{e_1\wedge\cdots\wedge e_n\}$.
+\end{co}
+\begin{proof}
+This is immediate from Thm. \ref{mc131}.
+\end{proof}
+
+\begin{df}
+Let $n=\dim V$ and assume that $0<n<+\infty$. For each $\xi,\eta\in V^{\wedge N}$ such that $\eta\neq0$, we let
+\begin{align}
+\frac{~\xi~}{~\eta~}=\text{``the unique element $\lambda\in\Fbb$ such that $\lambda\eta=\xi$"}
+\end{align}
+It is clear that for each $\xi,\eta,\mu\in\dim V^{\wedge n}$ satisfying $\eta\neq0,\mu\neq0$ we have
+\begin{align}
+\frac{~\xi~}{~\eta~}\cdot\frac{~\eta~}{~\mu~}=\frac{~\xi~}{~\mu~}\qquad
+\frac{~\eta~}{~\eta~}=1
+\end{align}
+\end{df}
+
+\begin{df}
+Let $V$ be a real finite dimensional space with $n=\dim V>0$. Suppose that $V$ is real. For $\xi,\eta\in V^{\wedge n}\setminus\{0\}$, we say that $\xi$ and $\eta$ have the \textbf{same orientation}  if $\xi/\eta>0$; otherwise, we say that $\xi$ and $\eta$ have \textbf{opposite orientations}. The equivalence class of vectors in $V^{\wedge N}\setminus\{0\}$ having the same orientation is called an \textbf{orientation}   \index{00@Orientation of a real vector space} of $V$. It is clear that $V$ has exactly two orientations. 
+\end{df}
+
+
+
+
 
 
 
@@ -30095,9 +30191,11 @@ This implies that $\Gamma(1,u_2,\dots,u_N)$ is the element $u_2\wedge\dots\wedge
 \subsection{Exterior products of linear maps}
 
 
-In this section, all vector spaces are over a given field $\Fbb$. Similar to the fact that a tensor product of linear maps can be viewed as a linear map between tensor products of vector spaces (Thm. \ref{mc82}), we have
+In this section, all vector spaces are over a given field $\Fbb$. Whenever we write $V^{\wedge N}$, we assume that $V^{\wedge N}$ exists (e.g. when $\dim V<+\infty$, cf. Thm. \ref{mc126}). As we will see in Thm. \ref{mc136}, this assumption is redundant.
+
+Similar to the fact that a tensor product of linear maps can be viewed as a linear map between tensor products of vector spaces (Thm. \ref{mc82}), we have:
 \begin{thm}
-Let $T:V\rightarrow W$ be a linear map of finite-dimensional vector spaces. Then there is a unique linear map $\bigwedge^N T\equiv T^{\wedge N}$ \index{zz@$\bigwedge^N T\equiv T^{\wedge N}$, the wedge product of linear maps} satisfying
+Let $T:V\rightarrow W$ be a linear map of vector spaces. Then there is a unique linear map $\bigwedge^N T\equiv T^{\wedge N}$ \index{zz@$\bigwedge^N T\equiv T^{\wedge N}$, the wedge product of linear maps} satisfying
 \begin{gather}
 T^{\wedge N}:V^{\wedge N}\rightarrow W^{\wedge N}\qquad v_1\wedge\cdots\wedge v_N\mapsto Tv_1\wedge\cdots\wedge Tv_N
 \end{gather}
@@ -30108,22 +30206,125 @@ The uniqueness is obvious. The proof of the existence is similar to that of Thm.
 \end{proof}
 
 
-\begin{pp}
-Let $T:V\rightarrow W$ and $S:U\rightarrow V$ be linear maps of finite-dimensional vector spaces. Then $(\idt_V)^{\wedge N}:V^{\wedge N}\rightarrow V^{\wedge N}$ is the identity map $\idt_{V^{\wedge N}}$, and
+\begin{pp}\label{mc134}
+Let $T:V\rightarrow W$ and $S:U\rightarrow V$ be linear maps of  vector spaces. Then $(\idt_V)^{\wedge N}:V^{\wedge N}\rightarrow V^{\wedge N}$ is the identity map $\idt_{V^{\wedge N}}$, and
 \begin{align}\label{eq481}
 T^{\wedge N}\circ S^{\wedge N}=(T\circ S)^{\wedge N}
+\end{align} 
+If $T$ is invertible, then $T^{\wedge N}$ is invertible, and
+\begin{align}\label{eq492}
+(T^{\wedge N})^{-1}=(T^{-1})^{\wedge N}
 \end{align}
 \end{pp}
 
 \begin{proof}
-Both sides of \eqref{eq481} send $v_1\wedge\cdots\wedge v_N$ to $TSv_1\wedge\cdots\wedge TSv_N$. So \eqref{eq481} holds. A similar reasoning shows that $(\idt_V)^{\wedge N}$ equals $\idt_{V^{\wedge N}}$.
+Both sides of \eqref{eq481} send $v_1\wedge\cdots\wedge v_N$ to $TSv_1\wedge\cdots\wedge TSv_N$. So \eqref{eq481} holds. A similar reasoning shows that $(\idt_V)^{\wedge N}$ equals $\idt_{V^{\wedge N}}$. If $T$ is invertible, then by \eqref{eq481} we have $T^{\wedge N}(T^{-1})^{\wedge N}=\idt_W$ and $(T^{-1})^{\wedge N}T^{\wedge N}=\idt_V$. This proves \eqref{eq492}.
 \end{proof}
 
 
 
+By Thm. \ref{mc131}, if $\dim V=n<+\infty$, then $\dim V^{\wedge n}=1$. In this case, $T^{\wedge n}$ is a scalar multiplication on $V\simeq\Fbb$. Thus, we can define:
+
+\begin{df}
+Let $V$ be a finite-dimensional nonzero vector space. Let $n=\dim V$. Then $\det T$, the \textbf{determinant of $T$}, \index{00@Determinant of a linear map} is defined to be the unique element of $\Fbb$ satisfying
+\begin{align}
+T^{\wedge n}=\det T\cdot\idt_{V^{\wedge n}}
+\end{align} 
+In particular, if $A\in\Fbb^{n\times n}$, then $\det A$ is defined by viewing $A$ as an element of $\Lin(\Fbb^n)$.
+\end{df}
+
+\begin{rem}
+By Cor. \ref{mc133}, it is clear that for any basis $e_1,\dots,e_n$ of $V$ and any $T\in\Lin(V)$, we have
+\begin{align}\label{eq493}
+\det T=\frac{Te_1\wedge\cdots\wedge Te_n}{e_1\wedge\cdots\wedge e_n}
+\end{align}
+\end{rem}
+
+\begin{co}\label{mc135}
+Let $V$ be finite-dimensional and $S,T\in\Lin(V)$. Then
+\begin{align*}
+\det(\idt_V)=1\qquad \det(S\circ T)=\det S\cdot\det T
+\end{align*}
+If $T$ is invertible, then
+\begin{align*}
+(\det T)^{-1}=\det(T^{-1})
+\end{align*}
+\end{co}
+
+\begin{proof}
+This is immediate from Prop. \ref{mc134}.
+\end{proof}
 
 
-\subsection{Bases of exterior products}
+
+\begin{co}
+Let $n\in\Zbb_+$. Then there exists a unique group homomorphism
+\begin{align}
+\sgn:\fk S_n\rightarrow\Zbb/2\Zbb=\{\pm1\}
+\end{align}
+(i.e., $\sgn(1)=1$ and $\sgn(\sigma_1\sigma_2)=\sgn(\sigma_1)\sgn(\sigma_2)$) such that $\sgn(\sigma)=-1$ for any transposition $\sigma$. Consequently, for any vector spaces $V,W$ and an alternating $n$-linear map $T:V^{\times N}\rightarrow W$, and for any $v_1,\dots,v_n\in V$ and $\sigma\in\fk S_N$, we have
+\begin{align}\label{eq496}
+T(v_{\sigma(1)},\dots,v_{\sigma(n)})=\sgn(\sigma)T(v_1,\dots,v_n)
+\end{align}
+\end{co}
+
+For each $\sigma\in\fk S_n$, we call $\sgn(\sigma)$ the \textbf{signature} \index{00@Signature} of \index{sgn@$\sgn(\sigma)$} $\sigma$.
+
+
+\begin{proof}
+The uniqueness is obvious since $\fk S_n$ is generated by transpositions. To prove the existence, let $U$ be an $n$-dimensional real vector space. Fix a basis $e_1,\dots,e_n$. For each $\sigma\in\fk S_n$, let $T_\sigma$ be the unique linear map sending $e_1,\dots,e_n$ to $e_{\sigma(1)},\dots,e_{\sigma(n)}$ respectively. Moreover, it is clear that $T_\sigma\in\GL(U)$ where $\GL(U)$ is the set of invertible linear maps on $U$. Then $\sigma\in\fk S_N\mapsto T_\sigma\in\GL(U)$ is clearly a group homomorphism. By Cor. \ref{mc135}, we have a homomorphism $\det:\GL(U)\rightarrow\Rbb\setminus\{0\}$. Therefore, we have a homomorphism $\sgn:\fk S_n\rightarrow\Rbb\setminus\{0\}$ defined by $\sgn(\sigma)=\det(T_\sigma)$.
+
+By \eqref{eq493}, the signature of a transposition is clearly $-1$. Since $\fk S_n$ is generated by transpositions, we must have $\sgn(\fk S_n)\subset\{\pm1\}$. This proves that $\sgn$ is the desired group homomorphism.
+
+\eqref{eq496} clearly holds when $\sigma$ is a transposition. Therefore, since we have proved that $\sgn$ is multiplicative, we see that \eqref{eq496} must be true for any $\sigma\in\fk S_N$ since we can write $\sigma$ as a product of transpositions.  
+\end{proof}
+
+We are ready to generalize Thm. \ref{mc126} to vector spaces that are not necessarily finite-dimensional. Even in the case that $V$ is finite-dimensional (which is the main case we are interested in), the following gives a different proof of the existence of $V^{\wedge N}$ than that of Thm. \ref{mc126}. Both proofs have their own value.
+
+%Since we will only use exterior products of finite dimensional vector spaces in the study of manifolds, the readers can safely skip the following theorem and its proof.
+
+\begin{thm}\label{mc136}
+Let $N\in\Nbb$. Let $V$ be a vector space. Then there exists an exterior product $V^{\wedge N}$.
+\end{thm}
+
+\begin{proof}
+The case $N=0$ is obvious. So we assume $N\ge1$. Define an $N$-linear map
+\begin{gather*}\label{eq495}
+V^{\times N}\rightarrow V^{\otimes N}\qquad(v_1,\dots,v_N)\mapsto v_1\wedge\cdots\wedge v_N   \tag{$\star$}
+\end{gather*}
+where
+\begin{subequations}
+\begin{align}
+v_1\wedge\cdots\wedge v_N=\frac{\sgn(\sigma)}{N!}\sum_{\sigma\in\fk S_N}v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(N)}
+\end{align}
+This map is clearly alternating. Restricting the codomain of \eqref{eq495} to its range gives an alternating $N$-linear map
+\begin{align}
+\wedge:V^{\times N}\rightarrow V^{\wedge N}
+\end{align}
+\end{subequations}
+ 
+
+
+
+Suppose that $T:V^{\times N}\rightarrow W$ is an alternating $N$-linear map. Then by Rem. \ref{mc79}, there is a linear $\wtd T:V^{\otimes N}\rightarrow W$ satisfying $\wtd T(v_1\otimes\cdots\otimes v_N)=T(v_1,\dots,v_N)$ for all $v_1,\dots,v_N\in V$. Therefore, 
+\begin{align*}
+\sgn(\sigma)\wtd T(v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma (N)})=\sgn(\sigma)T(v_{\sigma(1)},\dots,v_{\sigma(N)})=T(v_1,\dots,v_N)
+\end{align*}
+where the last equality is due to \eqref{eq496}. Summing the LHS over all $\sigma$ and dividing it by $\card(\fk S_N)=N!$, we get
+\begin{align*}
+\wtd T(v_1\wedge\cdots\wedge v_N)=T(v_1,\dots,v_N)
+\end{align*}
+This finishes the proof that $\wedge:V^{\times N}\rightarrow V^{\wedge N}$ is an exterior product of $V$.
+\end{proof}
+
+\begin{comment}
+By Rem. \ref{mc79}, the $N$-linear map $(v_1,\dots,v_N)\mapsto \sgn(\sigma)\cdot v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(N)}$ gives rise to a unique linear map satisfying
+\begin{gather*}
+\Phi_\sigma:V^{\otimes N}\rightarrow V^{\otimes N}\qquad v_1\otimes\cdots\otimes v_N\mapsto \sgn(\sigma)\cdot v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(N)}
+\end{gather*}
+Therefore, setting  $\dps\Psi=\frac 1{N!}\sum_{\sigma\in\fk S_N}\Phi_\sigma$, we have that $v_1\wedge\cdots\wedge v_N=\Psi(v_1\otimes\cdots\otimes v_N)$, and  that $V^{\wedge N}$ is the range of $\Psi$.
+\end{comment}
+
 
 
 
@@ -30132,6 +30333,115 @@ Both sides of \eqref{eq481} send $v_1\wedge\cdots\wedge v_N$ to $TSv_1\wedge\cdo
 
 
 \hypertarget{beforeindex}{}
+
+\subsection{Exterior products of alternating tensors}
+
+Fix a field $\Fbb$. All vectors spaces are over $\Fbb$. The following theorem is a generalization of the linear isomorphism \eqref{eq487}. 
+\begin{thm}\label{mc132}
+Let $k\in\Zbb_+$ and $n_1,\dots,n_k\in\Nbb$. Let $V_1,\dots,V_k$ be vector spaces. Let $W$ be a vector space. Then there is a linear isomorphism
+\begin{subequations}
+\begin{gather}\label{eq488}
+\ALin_k(V_1^{\times n_1}\times\cdots\times V_k^{\times n_k},W)\quad\xlongrightarrow{\simeq}\quad \Lin_k(V_1^{\wedge n_1}\times\cdots\times V_k^{\wedge n_k},W)
+\end{gather}
+where the RHS is the space of $k$-linear maps, and the LHS is the space of $(n_1+\cdots+n_k)$-linear maps that are alternating on each $V_i^{\times n_i}$ (when the vectors in the other components are fixed). The linear structure of both sides are defined by that of $W^X$ for any set $X$. Moreover, if $T$ in the LHS of \eqref{eq488} corresponds to $\wtd T$ on the RHS, then for each $1\leq i\leq k$ and $v_i(1),\dots v_i(n_i)\in V_i$, we have
+\begin{align}\label{eq490}
+\begin{aligned}
+&T(v_1(1),\dots,v_1(n_1),\dots,v_k(1),\dots,v_k(n_k))\\
+=&\wtd T(v_1(1)\wedge\cdots\wedge v_1(n_1),\dots,v_k(1)\wedge\dots\wedge v_k(n_k))
+\end{aligned}
+\end{align}
+\end{subequations}
+\end{thm}
+
+In the following, we give two proofs of this theorem. The first proof assumes that each $V_i$ is finite-dimensional. The second proof does not.
+
+
+\begin{proof}[First proof]
+In this proof, we assume that $\dim V_i<+\infty$ for each $V_i$ . Choose a basis of $V_i$. Then Thm. \ref{mc131} gives a canonical basis for each $V_i^{\wedge n_i}$. For each $T$ in the LHS of \eqref{eq490}, define $\wtd T$ to be an element of the RHS of \eqref{eq490} such that \eqref{eq490} holds for the chosen bases elements. Then, by skew-symmetry and  multilinearity, \eqref{eq490} holds in general.
+\end{proof}
+
+
+
+\begin{proof}[$\star$ Second proof]
+We prove this by induction on $k$. The case $k=1$ is due to \eqref{eq487}. Assume that case $k-1$ is true. Now, consider the case $k$. We note that for each vector spaces $A_1,\dots,A_k,B$ we have a linear isomorphism
+\begin{align}\label{eq489}
+\Lin_k(A_1\times A_2\times\cdots\times A_k,B)\simeq \Lin(A_1,\Lin_{k-1}(A_2\times\cdots\times A_k,B))
+\end{align}
+where each $k$-linear map belonging to the LHS corresponds to the linear map sending $\xi\in A_1$ to $T(\xi,\cdot)\in\Lin_{k-1}(A_2\times\cdots\times A_k,B)$. Using this isomorphism and the cases $1$ and $k-1$, we have 
+\begin{align*}
+&\Lin_k(V_1^{\wedge n_1}\times\cdots\times V_k^{\wedge n_k},W)\simeq \Lin(V^{\wedge n_1},\Lin_{k-1}(V_2^{\wedge n_2}\times\cdots\times V_k^{\wedge n_k},W))\\
+\simeq&\ALin_1(V^{\times n_1},\Lin_{k-1}(V_2^{\wedge n_2}\times\cdots\times V_k^{\wedge n_k},W))\\
+\simeq&\ALin_1(V^{\times n_1},\ALin_{k-1}(V_2^{\times n_2}\times\cdots\times V_k^{\times n_k},W))
+\end{align*}
+We have a linear isomorphism
+\begin{align}
+\begin{aligned}
+&\ALin_1(V^{\times n_1},\ALin_{k-1}(V_2^{\times n_2}\times\cdots\times V_k^{\times n_k},W))\\
+\simeq& \ALin_k(V_1^{\times n_1}\times\cdots\times V_k^{\times n_k},W)
+\end{aligned}
+\end{align}
+defined similar to \eqref{eq489}. The composition of these isomorphisms gives an isomorphism \eqref{eq488}. By keeping track of these isomorphisms, one easily checks that \eqref{eq490} is true.
+\end{proof}
+
+
+The following ``\textbf{parentheses removal property}" of exterior products is an immediate consequence of Thm. \ref{mc132}.
+
+
+\begin{co}
+Let $k\in\Zbb_+$ and $n_1,\dots,n_k\in\Nbb$. Let $V$ be a vector space. Then there is an (obviously unique) $k$-linear map
+\begin{subequations}\label{eq491}
+\begin{gather}
+\wedge: V^{\wedge n_1}\times\cdots\times V^{\wedge n_k}\rightarrow V^{\wedge(n_1+\cdots+n_k)}\qquad(\xi_1,\dots,\xi_k)\mapsto \xi_1\wedge\cdots\wedge\xi_N
+\end{gather}
+such that for each $1\leq i\leq k$ and $v_i(1),\dots,v_i(n_i)\in V$, we have
+\begin{align}\label{eq491b}
+\begin{aligned}
+&(v_1(1)\wedge\cdots\wedge v_1(n_1))\wedge\cdots\wedge (v_k(1)\wedge\cdots\wedge v_k(n_k))\\
+=&v_1(1)\wedge\cdots\wedge v_1(n_1)\wedge\cdots\wedge v_k(1)\wedge\cdots\wedge v_k(n_k)
+\end{aligned}
+\end{align}
+\end{subequations}
+We call $\xi_1\wedge\cdots\wedge\xi_N$ the \textbf{exterior product} \index{00@Exterior product of alternating tensors} of the alternating tensors $\xi_1,\dots,\xi_N$.
+\end{co}
+
+
+
+
+\begin{proof}
+Apply Thm. \ref{mc132} to the map
+\begin{gather*}
+T:V^{\times n_1}\times\cdots\times V^{\times n_k}\rightarrow\Fbb 
+\end{gather*}
+sending each $(v_1(1),\dots,v_1(n_1),\dots,v_k(1),\dots,v_k(n_k))$ to the RHS of \eqref{eq491b}.
+\end{proof}
+
+\begin{exe}
+Let $\xi,\eta,\mu$ be alternating tensors of a vector space $V$. Prove that
+\begin{subequations}
+\begin{gather}
+(\xi\wedge\eta)\wedge\mu=\xi\wedge\eta\wedge\mu=\xi\wedge(\eta\wedge\mu)\\
+\xi\wedge\eta=(-1)^{\deg\xi\cdot\deg\eta}~\eta\wedge\xi
+\end{gather}
+\end{subequations}
+\end{exe}
+
+
+
+
+
+
+
+
+
+
+\subsection{Exterior products of dual spaces}
+
+
+
+
+
+
+
 
 
 
