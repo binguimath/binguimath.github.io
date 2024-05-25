@@ -27504,7 +27504,7 @@ If we let $f=\min\{g,1\}$, then we have $f\in C_c(M,\Rbb_{\geq0})$ and $f|_K=1$,
 \begin{thm}\label{mc27}
 Let $K$ be a compact subset of $M$. Let $\fk U=(U_1,\dots,U_n)$ be a finite set of open subsets of $X$ covering $K$. Then there exist $h_i\in C_c^\infty(U_i,\Rbb_{\geq0})$ (for all $1\leq i\leq n$) satisfying the following conditions:
 \begin{enumerate}[label=(\arabic*)]
-\item $\dps \sum_{i=1}^nh_i\in C_c(U,[0,1])$ where $U=U_1\cup\cdots\cup U_n$. 
+\item $\dps \sum_{i=1}^nh_i\in C_c^\infty(U,[0,1])$ where $U=U_1\cup\cdots\cup U_n$. 
 \item  $\dps\sum_{i=1}^nh_i\big|_K=1$.
 \end{enumerate}
 Such $h_1,\dots,h_n$ are called a \textbf{smooth partition of unity of $K$ subordinate to $\fk U$}. \index{00@Smooth partition of unity}
@@ -29208,6 +29208,9 @@ Let $F:M\rightarrow N$ be a smooth map. Let $A:N\rightarrow\bigotimes^kT^*N$ be 
 
 
 
+
+
+
 \subsection{Riemannian manifolds}
 
 
@@ -29647,7 +29650,7 @@ Let $(M,\gk)$ be a Riemannian $\partial$-manifold. Let $(U,\varphi)$ be a chart 
 \end{align}
 Conclude that
 \begin{align}
-\dvol_\gk=\det[\gk(\partial_\varphi\otimes\partial_\varphi)]\cdot\varphi^*dm_{\varphi(\Omega)}
+\dvol_\gk=\sqrt{\det[\gk(\partial_\varphi\otimes\partial_\varphi)]}~\varphi^*dm_{\varphi(\Omega)}
 \end{align}
 \end{exe}
 
@@ -30419,7 +30422,7 @@ When $\dim V<+\infty$, the two proofs of the existence of $V^{\wedge N}$ is simi
 
 \subsection{Exterior products of alternating tensors}
 
-Fix a field $\Fbb$ satisfying $\mathrm{char}(\Fbb)\neq 2$. All vectors spaces are over $\Fbb$. The following theorem is a generalization of the linear isomorphism \eqref{eq487}. 
+Fix a field $\Fbb$ satisfying $\mathrm{char}(\Fbb)=0$ (e.g. $\Fbb\in\{\Rbb,\Cbb\}$). All vectors spaces are over $\Fbb$. The following theorem is a generalization of the linear isomorphism \eqref{eq487}. 
 \begin{thm}\label{mc132}
 Let $k\in\Zbb_+$ and $n_1,\dots,n_k\in\Nbb$. Let $V_1,\dots,V_k$ be vector spaces. Let $W$ be a vector space. Then there is a linear isomorphism
 \begin{subequations}
@@ -30515,7 +30518,15 @@ Let $\xi,\eta,\mu$ be alternating tensors of a vector space $V$. Prove that
 \end{subequations}
 \end{exe}
 
-
+\begin{pp}\label{mc223}
+Let $F:V\rightarrow W$ be a linear map of vector spaces. Then for each $\xi\in V^{\wedge k}$ and $\eta\in V^{\wedge l}$ we have
+\begin{align}\label{eq557}
+F^{\wedge(k+l)}(\xi\wedge\eta)=(F^{\wedge k}\xi)\wedge (F^{\wedge l}\eta)
+\end{align}
+\end{pp}
+\begin{proof}
+\eqref{eq557} clearly holds when $\xi$ and $\eta$ are of the form $\xi=v_1\wedge\cdots\wedge v_k$ and $\eta=v_1'\wedge\cdots\wedge v_l'$ where each $v_i$ and $v'_j$ are in $V$. Thus \eqref{eq557} holds in general.
+\end{proof}
 
 
 
@@ -30527,7 +30538,7 @@ Let $\xi,\eta,\mu$ be alternating tensors of a vector space $V$. Prove that
 \subsection{Exterior powers of dual spaces}
 
 
-As in the previous sections, all vector spaces in this section are over a fixed field $\Fbb$ satisfying $\mathrm{char}(\Fbb)\neq 2$. We shall show that if $V$ is a finite-dimensional vector space, then $(V^*)^{\wedge N}$ can be viewed naturally as the dual space of $V^{\wedge N}$. Many important conclusions can be drawn from this property. 
+As in the previous sections, all vector spaces in this section are over a fixed field $\Fbb$ satisfying $\mathrm{char}(\Fbb)=0$. We shall show that if $V$ is a finite-dimensional vector space, then $(V^*)^{\wedge N}$ can be viewed naturally as the dual space of $V^{\wedge N}$. Many important conclusions can be drawn from this property. 
 
 \subsubsection{Exterior powers of dual spaces}
 
@@ -32498,18 +32509,23 @@ Property $\boxed{2}$ will play a crucial role in our proof of Stokes' theorem, s
 
 
 
-Fix a smooth $\partial$-manifold $M$. For any open set $U\subset M$ and any $k$-form $\omega$ and $l$-form $\eta$ on $U$, the $(k+l)$-form $\omega\wedge\eta$ on $U$ is defined by the pointwise wedge product, i.e., for each $p\in U$,
+In this section, unless otherwise stated, we let $M$ denote a smooth $\partial$-manifold.
+
+For any open set $U\subset M$ and any $k$-form $\omega$ and $l$-form $\eta$ on $U$, the $(k+l)$-form $\omega\wedge\eta$ on $U$ is defined by the pointwise wedge product, i.e., for each $p\in U$,
 \begin{align}
 (\omega\wedge\eta)|_p=(\omega|_p)\wedge(\eta|_p) 
 \end{align}
-where the RHS is defined by Cor. \ref{mc150} and is an element of $\bwn^{k+l}T^*_pM$.
+where the RHS is defined by Cor. \ref{mc150} and is an element of $\bwn^{k+l}T^*_pM$. Note that if $\Phi:S\rightarrow U$ is a smooth map where $S$ is a smooth $\partial$-manifold, then by Prop. \ref{mc223}, we have
+\begin{align}\label{eq558}
+F^*(\omega\wedge\eta)=(F^*\omega)\wedge(F^*\eta)
+\end{align}
 
 \begin{df}\label{mc220}
 Let $(U,\varphi^1,\dots,\varphi^n)$ be a chart on $M$. Let $\omega$ be a $C^1$ $k$-form on $U$, written as
 \begin{align*}
 \omega=\sum_{1\leq i_1<\cdots<i_k\leq n}\omega_{i_1,\dots,i_k}d\varphi^{i_1}\wedge\cdots\wedge d\varphi^{i_k}
 \end{align*}
-where $\omega_{i_1,\dots,i_k}\in C^1(U,\Rbb)$. The \textbf{exterior derivative} \index{00@Exterior derivative} $d\omega$ is a differential form on $U$ defined by
+where $\omega_{i_1,\dots,i_k}\in C^1(U,\Rbb)$. The \textbf{exterior derivative}  $d\omega$ is a differential form on $U$ defined by
 \begin{align}
 d\omega=\sum_{1\leq i_1<\cdots<i_k\leq n}d\omega_{i_1,\dots,i_k}\wedge d\varphi^{i_1}\wedge\cdots\wedge d\varphi^{i_k}
 \end{align}
@@ -32554,17 +32570,8 @@ Then
 
 
 
-
-
-
-
-
-
-\begin{pp}
-Let $(U,\varphi^1,\dots,\varphi^n)$ be a chart on $M$. Let $\omega$ be a $C^2$ $k$-form on $U$. Then
-\begin{align}
-d(d\omega)=0
-\end{align}
+\begin{pp}\label{mc222}
+Let $(U,\varphi^1,\dots,\varphi^n)$ be a chart on $M$. Let $\omega$ be a $C^2$ $k$-form on $U$. Then $d^2\omega=\equiv dd\omega$ is zero.
 \end{pp}
 
 
@@ -32579,22 +32586,90 @@ Assume WLOG that $\omega=f\alpha$ where $f\in C^2(U,\Rbb)$ and $\alpha=d\varphi^
 
 
 
-\begin{thm}
+
+
+
+
+
+
+\begin{pp}\label{mc224}
 Let $N$ be a smooth $\partial$-manifold, and let $\Phi:M\rightarrow N$ be a smooth map. Let $(U,\varphi)$ and $(V,\psi)$ be charts on $M$ and $N$ respectively satisfying $\Phi(U)\subset V$. Let $\omega$ be a $C^1$ differential form on $V$. Then
-\begin{align}
+\begin{align}\label{eq556}
 \Phi^*(d\omega)=d(\Phi^*\omega)
 \end{align}
 where $d\omega$ is defined by the coordinates $\varphi$, and $d(\Phi^*\omega)$ is defined by $\psi$.
-\end{thm}
+\end{pp}
 
 
 
 \begin{proof}
-We prove this by induction on
+Step 1. Let $\scr A$ be the set of all $C^1$ differential forms $\omega$ on $V$ satisfying \eqref{eq556}. In this step, we show that if $\alpha,\beta\in\scr A$ then $\alpha\wedge\beta\in\scr A$. Choose $\alpha,\beta\in\scr A$. Using Prop. \ref{mc221} and Eq. \eqref{eq558}, we compute
+\begin{align*}
+&\Phi^*d(\alpha\wedge\beta)=\Phi^*(d\alpha\wedge\beta+(-1)^l\alpha\wedge d\beta)\\
+=&(\Phi^*d\alpha)\wedge(\Phi^*\beta)+(-1)^l(\Phi^*\alpha)\wedge (\Phi^*d\beta)\\
+=&d(\Phi^*\alpha)\wedge (\Phi^*\beta)+(-1)^l(\Phi^*\alpha)\wedge(d\Phi^*\beta)
+\end{align*}
+where the fact that $\alpha,\beta\in\scr A$ is used in the last equality. Also by Prop. \ref{mc221},
+\begin{align*}
+d\Phi^*(\alpha\wedge\beta)=d(\Phi^*\alpha\wedge \Phi^*\beta)=d(\Phi^*\alpha)\wedge (\Phi^*\beta)+(-1)^l(\Phi^*\alpha)\wedge(d\Phi^*\beta)
+\end{align*}
+This proves $\alpha\wedge\beta\in\scr A$.\\[-1ex]
+
+
+Step 2. Let us prove that any smooth differential form $\omega$ on $V$ belongs to $\scr A$ by induction on $\deg\omega$. 
+
+Assume $\deg\omega=0$. Then $\omega$ is a $C^1$ function. Then by Prop. \ref{lb985}, we have $\Phi^*d\omega=d(\omega\circ\Phi)=d(\Phi^*\omega)$. 
+
+Assume $\deg\omega=1$.  By linearity, it suffices to assume $\omega=fd\varphi^i$ for some $f\in C^1(V,\Rbb)$. We have proved that $f\in\scr A$. Thus, by Step 1, it suffices to prove that $d\varphi^i\in\scr A$. By Prop. \ref{mc222}, we have $\Phi^*dd\varphi^i=0$ and (by the case $\deg=0$)
+\begin{align*}
+d\Phi^*d\varphi^i=d^2\Phi^*\varphi^i=0
+\end{align*}
+This proves $d\varphi^i\in\scr A$.
+
+Finally, assume that any smooth differential forms on $V$ of degrees $\leq k$ belong to $\scr A$ (where $k\in\Zbb_+$). Let $\deg\omega=k+1$. By linearity, we may assume that $\omega$ is of the form $\omega=\alpha\wedge\beta$ where $\alpha,\beta$ are $C^1$ differential forms on $V$ and $1\leq\deg\alpha,\deg\beta\leq k$. (For example, we may assume $\omega=fd\varphi^{i_1}\wedge\cdots\wedge d\varphi^{i_{k+1}}$ where $f\in C^1(V,\Rbb)$. Then we can set $\alpha=fd\varphi^{i_1}\wedge\cdots\wedge d\varphi^{i_k}$ and $\beta=d\varphi^{i_{k+1}}$.) Then by the lower degree cases, we have $\alpha,\beta\in\scr A$. Thus $\omega\in\scr A$ by Step 1. This finishes the proof.
 \end{proof}
 
 
 
+\begin{co}\label{mc225}
+Let $(U,\varphi)$ and $(U,\psi)$ be charts on $M$, and let $\omega$ be a $C^1$ differential form on $U$. Then the exterior derivative $d\omega$ defined by $\varphi$ is equal to the one defined by $\psi$.
+\end{co}
+
+\begin{proof}
+In Prop. \ref{mc224}, set $N=M$, $V=U$, and $\Phi=\id_M$.
+\end{proof}
+
+
+The following theorem summarizes the main properties about exterior derivatives.
+
+\begin{thm}\label{mc226}
+Let $r\in\Zbb_+$. For each smooth $\partial$-manifold and each $C^r$ $k$-form $\omega$ on $M$, there is a unique $(k+1)$-form $d\omega$ on $M$ (called the \textbf{exterior derivative} of $\omega$) \index{00@Exterior derivative} satisfying the following property:
+\begin{itemize}
+\item For any chart $(U,\varphi)$ on $M$, the restriction $d\omega|_U$ is equal to the exterior derivative $d(\omega|_U)$ defined as in Def. \ref{mc220}. 
+\end{itemize}
+Moreover, $d\omega$ is $C^{r-1}$. The map $\omega\mapsto d\omega$ is linear. If $\omega,\eta$ are $C^r$ differential forms on $M$, then
+\begin{align}
+d(\omega\wedge\eta)=d\omega\wedge\eta+(-1)^{\deg\omega}\cdot \omega\wedge d\eta
+\end{align}
+If $r\geq2$, then
+\begin{align}
+d^2\omega=0
+\end{align}
+If $\Phi:S\rightarrow M$ is a smooth map where $S$ is a smooth $\partial$-manifold, then
+\begin{align}\label{eq559}
+\Phi^*d\omega=d\Phi^*\omega
+\end{align}
+\end{thm}
+
+\begin{proof}
+The uniqueness is obvious. The existence follows from Cor. \ref{mc225}. The other properties follow from the results proved in this section.
+\end{proof}
+
+\begin{sexe}
+Let $r\in\Zbb_+$. Prove that for each $C^2$ $\partial$-manifold and each $C^r$ $k$-form $\omega$ on $M$, there is a unique $(k+1)$-form $d\omega$ on $M$ whose local expression is determined Def. \ref{mc220} in a similar way to Def. \ref{mc226}. Prove that  $d\omega$ is $C^{r-1}$.
+
+Let $S$ be a $C^2$ $\partial$-manifold. Let $\Phi:S\rightarrow M$ be a $C^2$-maps. Prove that $\Phi^*\omega$ is a $C^1$ $k$-form, and that $\Phi^*d\omega=d\Phi^*\omega$.  \hfill\qedsymbol
+\end{sexe}
 
 
 
@@ -32607,6 +32682,69 @@ We prove this by induction on
 
 
 \subsection{Stokes' theorem}
+
+\begin{thm}
+Let $n\in\Zbb_+$. Let $M$ be a smooth oriented $\partial$-manifold with $\dim M=n$. Let $\omega$ be a $C^1$-differential $(n-1)$-form on $M$ with compact support. Equip $\partial M$ with the boundary orientation. Then
+\begin{align}\label{eq560}
+\int_{\partial M}\omega=\int_Md\omega
+\end{align}
+\end{thm}
+
+Note that by Conv. \ref{mc190}, $\int_{\partial M}\omega$ actually means $\int_{\partial M}\omega|_{\partial M}$ where $\omega|_{\partial M}$ is the pullback of $\omega$ by the inclusion map $\partial M\hookrightarrow M$.
+
+\begin{proof}
+Step 1. Let $K$ be the support of $\omega$, i.e., the closure of $\{p\in M:\omega|_p\neq0\}$. Since $K$ is compact, there exist connected charts $(U_1,\varphi_1),\dots,(U_k,\varphi_k)$ of $M$ covering $K$. By choosing a smooth partition of unity of $K$ subordinate to $U_1,\dots,U_k$ (cf. Thm. \ref{mc27}), we can write $\omega=\omega_1+\cdots \omega_k$ where each $\omega_i$ is a $C^1$ $(n-1)$-form compactly supported in $U_i$. for each $1\leq i\leq k$.  Therefore, it suffices to prove that $\int_{\partial M}\omega_i=\int_Md\omega_i$. 
+
+Let $V_i=\varphi_i(U_i)$. Let $\pm$ be $+$ (resp. $-$) if $\varphi_i$ is orientation-preserving (resp. orientation-reversing). Since $\partial M\cap U_i=\partial U_i$, we have
+\begin{align*}
+\int_{\partial M}\omega_i=\int_{\partial U_i}\omega_i\xlongequal{\eqref{eq527}}\pm\int_{\partial V_i}\varphi_*\omega_i
+\end{align*} 
+We also have
+\begin{align*}
+\int_M d\omega=\int_{U_i}d\omega\xlongequal{\eqref{eq527}}\pm\int_{V_i}\varphi_*d\omega_i\xlongequal{\eqref{eq559}}\pm\int_{V_i}d\varphi_*\omega_i
+\end{align*}
+Thus, it suffices to prove $\int_{\partial V_i}\varphi_*\omega_i=\int_{\partial V_i}\varphi_*\omega_i$.  \\[-1ex]
+
+Step 2. Replacing $M$ with $V_i$ and $\omega$ with $\varphi_*\omega_i$, it suffices to prove \eqref{eq560} under the assumption that $M$ is an open subset of $\Hbb^n$, and that $\omega$ is a compactly supported $C^1$ $(n-1)$-form on $M$. Thus, it suffices to prove
+\begin{align*}\label{eq561}
+\int_{\partial\Hbb^n}\omega=\int_{\Hbb^n}d\omega\tag{$\star$}
+\end{align*}
+Let $(x^1,\dots,x^n)$ be the standard coordinates of $\Hbb^n$. Then $\omega$ is a linear combination of the following two cases.
+
+Case 1: $\omega=fdx^2\wedge\cdots\wedge dx^{n-1}$ where $f\in C_c(\Hbb^n,\Rbb)$. Then
+\begin{align*}
+\int_{\partial\Hbb^n}\omega=-\int_{\Rbb^{n-1}}f(0,\mbf y)dm(\mbf y)
+\end{align*}
+where $\mbf y$ denotes a variable in $\Rbb^{n-1}$. On the RHS, we have the negative sign because the diffeomorphism $p\in\Rbb^{n-1}\mapsto (0,p)\in\partial\Hbb^n$ is orientation-reversing since $\partial\Hbb^n$ is equipped with the boundary orientation (cf. Thm. \ref{mc170}). Also,
+\begin{align*}
+&\int_{\Hbb^n}d\omega=\int_{\Hbb^n}\partial_1f dx^1\wedge\cdots\wedge dx^n=\int_{\Hbb^n}\partial_1f(x,\mbf y)dm(x,\mbf y)\\
+=&\int_{\Rbb^{n-1}}\int_0^{+\infty}\partial_1f(x,\mbf y)dm(x)dm(\mbf y)=-\int_{\Rbb^{n-1}}f(0,\mbf y)dm(\mbf y)
+\end{align*}
+where the last equality is due to the fundamental theorem of calculus. This proves \eqref{eq561}.
+
+Case 2: $\omega=fdx^1\wedge\cdots\wedge\wht{dx^k}\wedge\cdots\wedge dx^n$ where $2\leq k\leq n$. (In particular, $n\geq2$.) Then $\omega|_{\partial\Hbb^n}=0$. (Proof: Let $\iota:\partial\Hbb^n\rightarrow\Hbb^n$ be the inclusion map. Then $\iota^*dx^1=0$. Thus $\iota^*\omega=\iota^*f\cdot\iota^*dx^1\wedge\cdots=0$.) So $\int_{\partial\Hbb^n}\omega=0$. On the other hand
+\begin{align*}
+\int_{\Hbb^n}d\omega=(-1)^{k+1}\int_{\Hbb^n}\partial_kf dx^1\wedge\cdots\wedge dx^n=(-1)^{k+1}\int_{\Hbb^n}\partial_kfdm
+\end{align*}
+We can use Fubini's theorem to write the last term above as an iterated integral where the inside integral is $\int_\Rbb \partial_kf(x_1,\dots,x_n)dx_k$, which equals $0$ by the fundamental theorem of calculus and the fact that $x_k\in\Rbb\mapsto f(x_1,\dots,x_n)$ is a compactly supported $C^1$-function. This proves \eqref{eq561}, since both sides of \eqref{eq561} are zero.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
