@@ -20,7 +20,7 @@ This is a year-long course for first year undergraduate students in the Qiuzhen 
 
 The following lecture notes are the main reference for this course. 
 
-- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) (in progress)
+- [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) 
 > Please let me know if you find any typos or mistakes. This will help me improve the notes!
 
 I will cover Chapter 1 very quickly (or even skip this chapter) in class. Therefore, I recommend that you skim through Chapter 1 before the first class to make sure you know these topics: unions and intersections of families of sets, functions, partial and total orders, equivalence relations, cardinality, countable sets, NxN and Q are countable, R is uncountable, etc..
