@@ -17,7 +17,4 @@ In this course, we study 2d (chiral) conformal field theory in the framework of 
 
 
 
-- [Analysis II](Files/2023_Analysis_II_CH.pdf) taken by Zhangteng Ouyang (欧阳张腾) in 2023 Spring.
-
-
 
