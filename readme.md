@@ -40,6 +40,8 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
  
 - (2023 Fall & 2024 Spring) [Analysis I & II](Course_2023_Analysis.md)
 
+- (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Course_2024_ACFT.md)
+
 
 ## Publications and Preprints 😵‍💫
 
