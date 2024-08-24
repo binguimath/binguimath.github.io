@@ -20,6 +20,11 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 ## Lecture notes
 - To be uploaded
 
+## References
+
+- Haag, *Local Quantum Physics*
+- Halvorson, Müger, [*Algebraic Quantum Field Theory*](https://arxiv.org/abs/math-ph/0602036)
+
 
 
 
