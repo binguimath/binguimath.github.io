@@ -1,6 +1,7 @@
 # 2024 Fall, Topics in Operator Algebras: Algebraic Conformal Field Theory
 
 - Time: Friday 9:50-12:15
+  
 - Location: 六教6B312
 
 ## Course description
@@ -18,6 +19,7 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 
 ## Lecture notes
+
 - To be uploaded
 
 ## References (to be expanded)
@@ -25,6 +27,7 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 Books
 
 - Haag. *Local Quantum Physics*
+  
 - Halvorson, Müger. [*Algebraic Quantum Field Theory*](https://arxiv.org/abs/math-ph/0602036)
 
 Articles
