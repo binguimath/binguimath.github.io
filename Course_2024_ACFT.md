@@ -33,6 +33,8 @@ Books
 Articles
 
 - Buchholz,  Schulz-Mirbach (1990). *Haag duality in conformal quantum field theory*
+  
+- Rehren (2015). [*Algebraic conformal quantum field theory in perspective*](https://arxiv.org/abs/1501.03313)
 
 
 
