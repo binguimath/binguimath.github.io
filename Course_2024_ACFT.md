@@ -20,11 +20,16 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 ## Lecture notes
 - To be uploaded
 
-## References
+## References (to be expanded)
 
-- Haag, *Local Quantum Physics*
-- Halvorson, Müger, [*Algebraic Quantum Field Theory*](https://arxiv.org/abs/math-ph/0602036)
+Books
 
+- Haag. *Local Quantum Physics*
+- Halvorson, Müger. [*Algebraic Quantum Field Theory*](https://arxiv.org/abs/math-ph/0602036)
+
+Articles
+
+- Buchholz,  Schulz-Mirbach (1990). *Haag duality in conformal quantum field theory*
 
 
 
