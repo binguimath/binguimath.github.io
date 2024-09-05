@@ -1,17 +1,98 @@
-\documentclass[12pt,a4paper,notitlepage]{article}
-
-\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
-\usepackage{ulem} %wave underline
+% !TeX spellcheck = en_US
+% !TEX program = pdflatex
+\documentclass[12pt,b5paper,notitlepage]{article}
+\usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
+%\usepackage{fullpage}
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \wtidecheck
+%\usepackage{ulem} %wave underline
+\usepackage[dvipsnames]{xcolor}
 \usepackage{palatino}  %template
+
 \usepackage{slashed} % Dirac operator
 \usepackage{mathrsfs} % Enable using \mathscr
 %\usepackage{eufrak}  another template/font
 \usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{fontspec}
+%\setmainfont{Palatino Linotype}
+%\usepackage{emoji}
+
+
+% emoji, use lualatex  remove \usepackage{palatino}
+
+%%%%%%%%%%%%%
+
+
+\usepackage{CJK}   % Chinese package
+
+
+
+
+
+\usepackage{csquotes} % \begin{displayquote}   \begin{displaycquote}  for quotation
+\usepackage{epigraph}   %\epigraph{}{}  for quotation
+%\pmb  mandatory math bold 
+
 \usepackage{fancyhdr} % date in footer
 
+%\usepackage{soul}  %\ul underline break line automatically
 
+\usepackage{ulem}  % \uline  underline break line   also    \uwave
+
+\usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
+
+\usepackage{verbatim}  % comment environment
+
+
+\usepackage{halloweenmath} % Interesting halloween math symbols
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+% box around equations   \tcboxmath
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% circled colon and thick colon \hcolondel and \colondel
+
+\usepackage{pdfrender}
+
+\newcommand*{\hollowcolon}{%
+	\textpdfrender{
+		TextRenderingMode=Stroke,
+		LineWidth=.1bp,
+	}{:}%
+}
+
+\newcommand{\hcolondel}[1]{%
+	\mathopen{\hollowcolon}#1\mathclose{\hollowcolon}%
+}
+\newcommand{\colondel}[1]{%
+	\mathopen{:}#1\mathclose{:}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+\usepackage{tikz-cd}
 \usepackage[nottoc]{tocbibind}   % Add  reference to ToC
 
 
@@ -19,7 +100,7 @@
 
 
 % The following set up the line spaces between items in \thebibliography
-\usepackage{lipsum}
+\usepackage{lipsum}  
 \let\OLDthebibliography\thebibliography
 \renewcommand\thebibliography[1]{
 	\OLDthebibliography{#1}
@@ -27,6 +108,8 @@
 	\setlength{\itemsep}{2pt} 
 }
 
+
+%\hyperref{page.10}{...}
 
 \allowdisplaybreaks  %allow aligns to break between pages
 \usepackage{latexsym}
@@ -38,10 +121,14 @@
 	citecolor=[rgb]{0,0.5,0}}
 
 
-%\setcounter{tocdepth}{1}	 hide subsections in the content
+\setcounter{tocdepth}{1}	 %hide subsections in the content
 
-\usepackage{fullpage}
+
 \counterwithin{figure}{section}
+
+%\counterwithin*{footnote}{section}   %% Footnote numbering is recounted from the beginning of each subsection
+
+
 
 \pagestyle{plain}
 
@@ -49,6 +136,7 @@
 {
 	labelsep=none	
 }
+
 
 
 \theoremstyle{definition}
@@ -217,7 +305,7 @@
 \tableofcontents
 
 \vspace{-0.5cm}
-\blfootnote{Last major revision:  2021.9}
+\blfootnote{Finished in  2021.9. Last update in 2024.9}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 %\makeatletter
@@ -325,7 +413,7 @@ Indeed, $\leq$ follows from the above general inequality for $\lVert ST\lVert$. 
 
 
 
-The kernal and the range of $T\in\Hom(\mc H_1,\mc H_2)$ are denoted respectively by $\Ker(T)$ and $\Rng(T)$. We have
+The kernel and the range of $T\in\Hom(\mc H_1,\mc H_2)$ are denoted respectively by $\Ker(T)$ and $\Rng(T)$. We have
 \begin{align}
 \Rng(T)^\perp=\Ker (T^*).\label{eq19}	
 \end{align}
@@ -395,7 +483,7 @@ A partial isometry $U:\mc H_1\rightarrow\mc H_2$ whose source space is $\mc H_1$
 
 A positive measure $\mu$ on a locally compact Hausdorff space $X$ is called \textbf{Radon measure} when: (local finiteness)$\mu$ is finite on compact subsets; (outer regularity) for each Borel set $E\subset X$, $\mu(E)=\inf\{\mu(U):E\subset U,U\text{ is open}\}$; (inner regularity on open sets) if $U\subset X$ is open,   then $\mu(U)=\sup\{\mu(K):K\subset U,K\text{ is compact}\}$.  
 
-A Radon measure is automatically inner regular on any $\sigma$-finite Borel subset, cf.  \cite[Prop. 7.5]{Fol}.
+%A Radon measure is automatically inner regular on any $\sigma$-finite Borel subset, cf.  \cite[Prop. 7.5]{Fol}.
 
 The \textbf{Riesz-Markov representation theorem} \cite[Thm.2.14]{Rud-R} says that any positive linear functional on $C_c(X)$ (the algebra of continuous functions on $X$ with compact supports) can be written as $f\mapsto\int_Xfd\mu$ for a unique Radon measure $\mu$ on $X$.
 
@@ -411,7 +499,7 @@ for each measurable $\Omega\subset Y$. Then for each  measurable $f:Y\rightarrow
 \begin{align}
 \int_Y f~d\phi_*\mu=\int_X f\circ\phi ~d\mu.	\label{eq16}
 \end{align}
-Indeed, this is obvious when $f$ is a characteristic function $\chi_\Omega$, and hence true when $f$ is a step function. So it is true in general by monotone convergence theorem.
+Indeed, this is obvious when $f$ is a characteristic function $\chi_\Omega$, and hence true when $f$ is a simple function. So it is true in general by monotone convergence theorem.
 
 The \textbf{support} of a Borel  measure $\mu$ on a topological space is the (necessarily closed) subset of all points $x$ such that any neighborhood at $x$ has non-zero measure.
 
@@ -676,7 +764,7 @@ UT_jU^*\cdot (f_n)_{n\in\fk N}=(z_jf_n)_{n\in\fk N}.\label{eq10}
 Here we let $z_j$ be function indicating the $j$-th component $B_j$ of $X$, i.e., the one sending $(z_1,\dots,z_N)\in B_{r_1}\times\cdots\times B_{r_N}$ to $z_j$. Thus, the spectral theorem says that the action of adjointly commuting $T_1,\dots,T_N$ on $\mc H_j$ is unitarily equivalent to the multiplication of $z_1,\dots,z_N$ on a direct sum of Borel $L^2$-spaces over $X$.
 
 \begin{proof}
-By Hausdorff maximal principle, $\mc H$ is an (orthogonal) direct sum of $C(X)$-invariant cyclic subspaces, i.e., $\mc H=\oplus_n\mc H_n$ where each subspace $\mc H_n$ is invariant under the action of $C(X)$, and the action of $C(X)$ on $\mc H_i$ possesses a cyclic vector. (Consider the partially ordered set, each element of which is a set of mutually orthogonal non-zero cyclic $C(X)$ invariant closed subspaces.)  By Proposition \ref{lb7}, each subrepresentation $\mc H_n$ is unitarily equivalent  to the multiplication of $C(X)$ on $L^2(X,\mu_n)$, such that $T_j$ is equivalent to the multiplication of $z_j$. The theorem thus follows immediately.
+By Zorn's lemma, $\mc H$ is an (orthogonal) direct sum of $C(X)$-invariant cyclic subspaces, i.e., $\mc H=\oplus_n\mc H_n$ where each subspace $\mc H_n$ is invariant under the action of $C(X)$, and the action of $C(X)$ on $\mc H_i$ possesses a cyclic vector. (Consider the partially ordered set, each element of which is a set of mutually orthogonal non-zero cyclic $C(X)$ invariant closed subspaces.)  By Proposition \ref{lb7}, each subrepresentation $\mc H_n$ is unitarily equivalent  to the multiplication of $C(X)$ on $L^2(X,\mu_n)$, such that $T_j$ is equivalent to the multiplication of $z_j$. The theorem thus follows immediately.
 \end{proof}
 
 %In the case that $\mc H$ is not separable, the above spectral theorem still holds, except that the direct sum is possibly uncountable. To obtain such a direct sum, one uses Hausdorff maximal principle to find a maximal set of mutually orthogonal closed cyclic subspaces of $\mc H$.
@@ -689,7 +777,7 @@ For each bounded Borel function $f$ on $\Cbb^N$, there exists a net $g_\blt=(g_\
 \end{lm}
 
 \begin{proof}
-Let $\fk A$ be the directed set of all $(K,\epsilon)$ where $K$ is a finite set of finite Borel measures on $\Cbb^N$, and $\epsilon>0$.  $(K_1,\epsilon_1)\leq (K_2,\epsilon_2)$ means $K_1\subset K_2$ and $\epsilon_1\geq\epsilon_2$. By Lusin's Theorem \cite[Thm. 2.24]{Rud-R}, for each $\alpha=(K,\epsilon)\in\fk A$, we can find $g_\alpha\in C(\Cbb^N)$ whose $L^\infty$-norm is bounded by $\lVert f\lVert_\infty$, such that the subset $\{x\in \Cbb^N:f(x)\neq g_\alpha(x)\}$ has $(\sum_{\mu\in K}\mu)$-measure less than $\epsilon/\lVert f\lVert_\infty$.  Then $\lVert f-g_\alpha\lVert_{L^1(\Cbb^N,\mu)}<\epsilon$ for each $\mu\in K$. So $g_\blt$ is a desired net.
+Let $\fk A$ be the directed set of all $(K,\epsilon)$ where $K$ is a finite set of finite Borel measures on $\Cbb^N$, and $\epsilon>0$.  $(K_1,\epsilon_1)\leq (K_2,\epsilon_2)$ means $K_1\subset K_2$ and $\epsilon_1\geq\epsilon_2$. By Lusin's Theorem \cite[Thm. 2.24]{Rud-R}, for each $\alpha=(K,\epsilon)\in\fk A$, we can find $g_\alpha\in C(\Cbb^N)$ whose sup norm is bounded by $\lVert f\lVert_\infty$, such that the subset $\{x\in \Cbb^N:f(x)\neq g_\alpha(x)\}$ has $(\sum_{\mu\in K}\mu)$-measure less than $\epsilon/\lVert f\lVert_\infty$.  Then $\lVert f-g_\alpha\lVert_{L^1(\Cbb^N,\mu)}<\epsilon$ for each $\mu\in K$. So $g_\blt$ is a desired net.
 \end{proof}
 
 
@@ -700,7 +788,7 @@ Let $\fk A$ be the directed set of all $(K,\epsilon)$ where $K$ is a finite set 
 %\end{align}
 %\end{df}
 
-Recall $X=B_{r_1}\times\cdots B_{r_N}$.
+Recall $X=B_{r_1}\times\cdots\times B_{r_N}$.
 
 \begin{df}\label{lb58}
 For each bounded Borel function $f$ on $X$, we define a bounded operator $$\pi(f)\equiv f(T_1,\dots,T_N)$$ on $\mc H$ such that $Uf(T_1,\dots,T_N)U^*$ is the multiplication of $f$ on $\bigoplus_{n\in\fk N} L^2(X,\mu_n)$. 
@@ -709,13 +797,11 @@ For each bounded Borel function $f$ on $X$, we define a bounded operator $$\pi(f
 Let $B(X)$ be the set of bounded Borel functions on $X$, which is a unital $*$-algebra, whose $*$-structure is defined by $f^*(x_1,y_1,\dots,x_N,y_N)=\ovl{f(x_1,y_1,\dots,x_N,y_N)}$.
 
 \begin{thm}\label{lb28}
-$f(T_1,\dots,T_N)$ is independent of the spectral decomposition in Theorem \ref{lb8}, and agrees with the $\pi(f)$ defined in Thm. \ref{lb17} when $f\in C(X)$. $f\in B(X)\mapsto f(T_1,\dots,T_N)\in\End(\mc H)$ is a unital $*$-homomorphism.
-	
-Moreover, if $f_\blt$ is a net of bounded Borel functions on $X$ whose $L^\infty(X)$-norms are uniformly bounded (over the directed set), such that $\lim \int_X|f-f_\blt|d\mu=0$ for each finite (positive) Borel measure on $X$, then $f_\blt(T_1,\dots,T_N)$ converges strongly to $f(T_1,\dots,T_N)$.
+$\pi:f\in B(X)\mapsto f(T_1,\dots,T_N)\in\End(\mc H)$ is the unique unital $*$-homomorphism extending the continuous functional calculus in Thm. \ref{lb17} and satisfying the following property: If $f_\blt$ is a net of bounded Borel functions on $X$ whose $L^\infty(X)$-norms are uniformly bounded (over the directed set), such that $\lim \int_X|f-f_\blt|d\mu=0$ for each finite (positive) Borel measure on $X$, then $f_\blt(T_1,\dots,T_N)$ converges strongly to $f(T_1,\dots,T_N)$.
 \end{thm}
 
 \begin{proof}
-We first define $f(T_1,\dots,T_N)$ using a fixed spectral decomposition as in Theorem \ref{lb8}. The $f\mapsto f(T_1,\dots,T_N)$ is clearly a unital $*$-homomorphism. For each $\xi\in\mc H$, write $U\xi=(g_n)_{n\in\fk N}\in\bigoplus_n L^2(X,\mu_n)$. Then
+$\pi:f\mapsto f(T_1,\dots,T_N)$ is clearly a unital $*$-homomorphism. For each $\xi\in\mc H$, write $U\xi=(g_n)_{n\in\fk N}\in\bigoplus_n L^2(X,\mu_n)$. Then
 \begin{align*}
 &\lVert (f(T_1,\dots,T_N)-f_\blt(T_1,\dots,T_N))\xi\lVert^2\\
 =&	\lVert U(f(T_1,\dots,T_N)-f_\blt(T_1,\dots,T_N))U^*(g_n)_{n\in\fk N}\lVert^2\\
@@ -723,7 +809,28 @@ We first define $f(T_1,\dots,T_N)$ using a fixed spectral decomposition as in Th
 \end{align*}	
 which converges to $0$ by choosing $\mu=\sum_n |g_n|^2\mu_n$.
 
-It is clear that $f(T_1,\dots,T_N)$ agrees with the $\pi(f)$ defined in \eqref{eq15} when $f$ is a polynomial. Since our map $f\in C(X)\mapsto f(T_1,\dots,T_N)$  defined here by spectral decomposition is clearly a continuous unital $*$-homomorphism,  it agrees with the one defined in Thm. \ref{lb17} due to the uniqueness statement of that theorem.  In the general case that $f$ is bounded Borel,  Lemma \ref{lb18} and the result in the last paragraph show that $f(T_1,\dots,T_N)$ is uniquely determined and independent of the choice of spectral decomposition.
+It is clear that $f(T_1,\dots,T_N)$ agrees with the $\pi(f)$ defined in \eqref{eq15} when $f$ is a polynomial. Since our map $f\in C(X)\mapsto f(T_1,\dots,T_N)$  defined here by spectral decomposition is clearly a continuous unital $*$-homomorphism,  it agrees with the one defined in Thm. \ref{lb17} due to the uniqueness statement of that theorem.  
+
+
+Uniqueness: Let $\pi$ be as described in the theorem. Clearly $\pi(f)$ is uniquely determined when $f$ is a polynomial. Since $\pi$ is continuous (by Prop. \ref{lb46}), by Stone-Weierstrass, $\pi(f)$ is uniquely determined when $f\in C(X)$. By Lem. \ref{lb18}, $\pi(f)$ is uniquely determined when $f\in B(X)$. 
+\end{proof}
+
+
+
+%For any Borel set $X$, we let $B(X)$ be the unital $*$-algebra of bounded Borel functions on $X$. 
+
+The following proposition improves Prop. \ref{lb1}.
+\begin{pp}\label{lb46}
+Let $X$ be a topological space. Assume $\pi:B(X)\rightarrow\End(\mc H)$ is a unital $*$-homomorphism, i.e., preserves the identities, multiplications and linear combinations, and $*$-structures. Then $\lVert \pi(f)\Vert\leq \lVert f\lVert_{L^\infty(X)}$ for each $f\in B(X)$. 
+\end{pp}
+
+Thus,  the linear map $f\in B(\Sp(T_1,\dots,T_N))\rightarrow f(T_1,\dots,T_N)$ is bounded (with norm at most $1$) with respect to the $L^\infty$-norm and the operator norm.
+
+\begin{proof}
+The idea here is similar to (but slightly simpler than) Step. 3 of the proof of Thm. \ref{lb2}.	Let $r=\lVert f\lVert_\infty$. Then $r^2-f^*f$ is a positive function, for which we take the positive square root $g=\sqrt{r^2-f^*f}$. Then for each $\xi\in\mc H$, we compute
+	\begin{align*}
+		\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\pi(f^*f)\xi|\xi} =\bk{\pi(r^2-g^2)\xi|\xi}=r^2\lVert\xi\lVert^2-\lVert\pi(g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
+	\end{align*}
 \end{proof}
 
 
@@ -741,7 +848,7 @@ where $\chi_\Omega$ \index{zz@$\chi_\Omega$} is the characteristic function of $
 
 If $f$ is bounded Borel on $X$, we define $\int_XfdE$ to be the bounded linear operator on $\mc H$ satisfying
 \begin{align*}
-\int_X f\bk{dE\xi|\eta}.	
+\Big\langle \Big(\int_XfdE\Big)\xi|\eta \Big\rangle=\int_X f\bk{dE\xi|\eta}.	
 \end{align*}
 
 \begin{thm}\label{lb49}
@@ -757,7 +864,7 @@ f(T_1,\dots,T_N)=\int_X fdE.
 \end{align}
 
 \begin{proof}
-By linearity, it suffices to assume $\eta=\xi$ so that $\bk{E\xi|\xi}$ is a positive Borel measure. Then, from the definition of $E$, it is clear that \eqref{eq4} holds when $f$ is a characteristic function.  Thus \eqref{eq4} holds when $f$ is a step function, hence (by monotone convergence theorem) when $f$ is a positive bounded Borel function, and hence when $f$ is a bounded complex Borel function. 
+By linearity, it suffices to assume $\eta=\xi$ so that $\bk{E\xi|\xi}$ is a positive Borel measure. Then, from the definition of $E$, it is clear that \eqref{eq4} holds when $f$ is a characteristic function.  Thus \eqref{eq4} holds when $f$ is a simple function, hence (by monotone convergence theorem) when $f$ is a positive bounded Borel function, and hence when $f$ is a bounded complex Borel function. 
 \end{proof}
 
 
@@ -780,19 +887,7 @@ The above two exercises show that, once we have a bounded Borel function $f$ on 
 \end{rem}
 
 
-For any Borel set $X$, we let $B(X)$ be the unital $*$-algebra of bounded Borel functions on $X$. The following proposition improves Prop. \ref{lb1}.
-\begin{pp}\label{lb46}
-Assume $\pi:B(X)\rightarrow\End(\mc H)$ is a unital $*$-homomorphism, i.e., preserves the identities, multiplications and linear combinations, and $*$-structures. Then $\lVert \pi(f)\Vert\leq \lVert f\lVert_{L^\infty(X)}$ for each $f\in B(X)$. 
-\end{pp}
 
-Thus,  the linear map $f\in B(\Sp(T_1,\dots,T_N))\rightarrow f(T_1,\dots,T_N)$ is bounded (with norm at most $1$) with respect to the $L^\infty$-norm and the operator norm.
-
-\begin{proof}
-The idea here is similar to (but slightly simpler than) Step. 3 of the proof of Thm. \ref{lb2}.	Let $r=\lVert f\lVert_\infty$. Then $r^2-f^*f$ is a positive function, for which we take the positive square root $g=\sqrt{r^2-f^*f}$. Then for each $\xi\in\mc H$, we compute
-	\begin{align*}
-		\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\pi(f^*f)\xi|\xi} =\bk{\pi(r^2-g^2)\xi|\xi}=r^2\lVert\xi\lVert^2-\lVert\pi(g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
-	\end{align*}
-\end{proof}
 
 \subsection*{Appendix: Gelfand-Naimark theorem}
 
@@ -801,7 +896,7 @@ The following exercise outlines a proof of the celebrated Gelfand-Naimark Theore
 \begin{exe}\label{lb64}
 Let $\fk G$ be a (not necessarily finite) set of adjointly commuting self-adjoint bounded operators on $\mc H$. 
 \begin{enumerate}
-\item Let $\mc P$ be the set of polynomials with commuting  formal variables $\{t_T:T\in\fk G\}$. Namely, a generic element is a $\Cbb$-linear combination of $t_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ where $n_1,\dots,n_k\in\Nbb$ and $T_1,\dots,T_k\in\fk G$. The involution of $\mc P$ is defined by $(at_{T_1}^{n_1}\cdots t_{T_k}^{n_k})^*=\ovl at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ ($a\in\Cbb$). Define a linear map $\pi:\mc P\rightarrow\End(\mc H)$ sending each $at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ to $aT_1^{n_1}\cdots T_k^{n_k}$. Show that $\pi$ is a unital $*$-homomorphism. 
+\item Let $\mc P$ be the set of polynomials with commuting  formal variables $\{t_T:T\in\fk G\}$. Namely, a general element is a $\Cbb$-linear combination of $t_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ where $n_1,\dots,n_k\in\Nbb$ and $T_1,\dots,T_k\in\fk G$. The involution of $\mc P$ is defined by $(at_{T_1}^{n_1}\cdots t_{T_k}^{n_k})^*=\ovl at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ ($a\in\Cbb$). Define a linear map $\pi:\mc P\rightarrow\End(\mc H)$ sending each $at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ to $aT_1^{n_1}\cdots T_k^{n_k}$. Show that $\pi$ is a unital $*$-homomorphism. 
 
 \item Let $Y_T=[-\lVert T\lVert,\lVert T\lVert]^2\subset\Cbb$. Let $Y=\prod_{T\in\fk G}Y_T$, which is a compact Hausdorff space by Tychonoff's theorem. Use Prop. \ref{lb1} to show that $\pi(f)\leq \lVert f\lVert_{L^\infty(Y)}:=\sup_{t_T\in Y_T,\forall T\in\fk G}|f((t_T)_{T\in\fk G})|$ for each $f\in\mc P$. Conclude that $\pi$ can be extended uniquely to a unital $*$-homomorphism $\pi:C(Y)\rightarrow\End(\mc H)$. 
 
@@ -812,9 +907,9 @@ Let $\fk G$ be a (not necessarily finite) set of adjointly commuting self-adjoin
 
 \item Let $X$ be the (necessarily closed) subset of all $x\in Y$ satisfying $f(x)=0$ for each $f\in\mc I$. Apply Stone-Weierstrass theorem for locally compact Hausdorff spaces to the family $\mc I$ of functions to show that $\mc I=\{f\in C(Y):f|_X=0\}$. 
 
-\item By Tiezte extension theorem, the restriction map $f\in C(Y)\mapsto f|_X\in C(X)$ is surjective and has kernal $\mc I$. Conclude that we have a well-defined bijective unital $*$-homomorphism $\wtd\pi:C(X)\rightarrow A$ sending each $f|_X$ to $\pi(f)$ (where $f\in C(Y)$). Apply the proof of Prop. \ref{lb46} to $\wtd\pi$ and $\wtd\pi^{-1}$ to show that $\wtd\pi$ is isometric, i.e., $\lVert  \wtd\pi(f)\lVert=\lVert f\lVert_{L^\infty(X)}$ for each $f\in C(X)$.
+\item By Tiezte extension theorem, the restriction map $f\in C(Y)\mapsto f|_X\in C(X)$ is surjective and has kernel $\mc I$. Conclude that we have a well-defined bijective unital $*$-homomorphism $\wtd\pi:C(X)\rightarrow A$ sending each $f|_X$ to $\pi(f)$ (where $f\in C(Y)$). Apply the proof of Prop. \ref{lb46} to $\wtd\pi$ and $\wtd\pi^{-1}$ to show that $\wtd\pi$ is isometric, i.e., $\lVert  \wtd\pi(f)\lVert=\lVert f\lVert_{L^\infty(X)}$ for each $f\in C(X)$.
 
-\item Let $A$ be any commutative (unital) $C^*$-subalgebra of $\End(\mc H)$, i.e., $A$ is a commutative unital norm-closed $*$-subalgebra of $\End(\mc H)$. Show that is generated by a set $\fk G$ of  mutually-commuting self-adjoint operators. Conclude that any $A$ is equivalent (as a normed unital $*$-algebra) to $C(X)$ for some compact Hausdorff space $X$. (This is the \textbf{Gelfand-Naimark theorem}.)
+\item Let $A$ be any commutative (unital) $C^*$-subalgebra of $\End(\mc H)$, i.e., $A$ is a commutative unital norm-closed $*$-subalgebra of $\End(\mc H)$. Show that $A$ is generated by a set $\fk G$ of  mutually-commuting self-adjoint operators. Conclude that any $A$ is equivalent (as a normed unital $*$-algebra) to $C(X)$ for some compact Hausdorff space $X$. (This is the \textbf{Gelfand-Naimark theorem}.)
 \end{enumerate}
 \end{exe}
 
@@ -919,7 +1014,8 @@ The relations are thus verified. When $\scr D(A)=\mc H$, the last two domains ar
 \begin{df}
 Let $T$ be an unbounded operator from $\mc H_1$ to $\mc H_2$. We define
 \begin{align*}
-\Dom(T^*):=\{\eta\in\mc H_2:\text{There exists $\psi\in\Dom(\mc H_1)$ such that $\bk{T\xi|\eta}=\bk{\xi|\psi}$ for each $\xi\in\Dom(T)$}\}.	
+\Dom(T^*):=\{&\eta\in\mc H_2:\text{There exists $\psi\in\Dom(\mc H_1)$ such that}\\
+ &\text{$\bk{T\xi|\eta}=\bk{\xi|\psi}$ for each $\xi\in\Dom(T)$}\}.	
 \end{align*}
 Such $\psi$ is unique and is denoted by $T^*\eta$. So for each $\xi\in\Dom(T),\eta\in\Dom(T^*)$, we have
 \begin{align*}
@@ -2305,7 +2401,7 @@ for each bounded linear functional $\varphi\in\mc B^*$, which shows that our def
 \begin{proof}
 It is a straightforward check using definition that $f^*$ is holomorphic. If $\gamma:[a,b]\rightarrow\Cbb$ is a parametrization of $C$, then $\ovl \gamma:t\in[a,b]\mapsto \ovl{\gamma(t)}$ is one of $\ovl C$. Then
 \begin{align*}
-&\Big(\int_C f(z)dz \Big)^*=\Big(\int_a^b f(\gamma(t))\gamma'(t) \Big)^*=\int_a^b f(\gamma(t))^*\ovl\gamma'(t)dt\\
+&\Big(\int_C f(z)dz \Big)^*=\Big(\int_a^b f(\gamma(t))\gamma'(t)dt \Big)^*=\int_a^b f(\gamma(t))^*\ovl\gamma'(t)dt\\
 =&\int_a^b f^*(\ovl\gamma(t))\ovl\gamma'(t)dt=\int_{\ovl C} f^*(z)dz.
 \end{align*}
 \end{proof}
