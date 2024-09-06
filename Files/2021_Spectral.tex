@@ -491,7 +491,7 @@ All measures are positive unless otherwise stated (that it is a complex measure)
 
 In this note, we only consider  locally compact Hausdorff spaces $X$ which are also \textit{second countable}. (The only exception is the proof of Gelfand-Naimark Theorem, which is not used elsewhere in the note.) Then local finiteness implies inner and outer regularity \cite[Thm. 2.18]{Rud-R}. Thus, \textit{locally finite (in particular, finite) positive Borel measures on $X$ are automatically Radon measures}.
 
-Suppose $\phi:X\rightarrow Y$ is a measurable map between two measure spaces $X,Y$. If $\mu$ is a measure on $X$, its \textbf{pushforward} $\phi_*\mu$ is defined by
+Suppose $\phi:X\rightarrow Y$ is a Borel map between two measure spaces $X,Y$. If $\mu$ is a Borel measure on $X$, its \textbf{pushforward} $\phi_*\mu$ is defined by
 \begin{align*}
 \phi_*\mu(\Omega)=\mu(\phi^{-1}(\Omega))	
 \end{align*}
@@ -500,6 +500,11 @@ for each measurable $\Omega\subset Y$. Then for each  measurable $f:Y\rightarrow
 \int_Y f~d\phi_*\mu=\int_X f\circ\phi ~d\mu.	\label{eq16}
 \end{align}
 Indeed, this is obvious when $f$ is a characteristic function $\chi_\Omega$, and hence true when $f$ is a simple function. So it is true in general by monotone convergence theorem.
+
+If $\phi:X\rightarrow Y$ is Borel and bijective and if $\phi^{-1}:Y\rightarrow X$ is measurable, for each Borel measure $\nu$ on $Y$, the \textbf{pullback measure}  \index{zz@$\phi^*\nu$, the pullback measure} $\phi^*\nu$ is defined by $\phi^*\nu=(\phi^{-1})_*\nu$. Then for each measurable $f:Y\rightarrow[0,+\infty]$ we have
+\begin{align}\label{eq26}
+\int_Y fd\nu=\int_X (f\circ\phi)d\phi^*\nu
+\end{align}
 
 The \textbf{support} of a Borel  measure $\mu$ on a topological space is the (necessarily closed) subset of all points $x$ such that any neighborhood at $x$ has non-zero measure.
 
@@ -763,6 +768,8 @@ UT_jU^*\cdot (f_n)_{n\in\fk N}=(z_jf_n)_{n\in\fk N}.\label{eq10}
 \end{thm}
 Here we let $z_j$ be function indicating the $j$-th component $B_j$ of $X$, i.e., the one sending $(z_1,\dots,z_N)\in B_{r_1}\times\cdots\times B_{r_N}$ to $z_j$. Thus, the spectral theorem says that the action of adjointly commuting $T_1,\dots,T_N$ on $\mc H_j$ is unitarily equivalent to the multiplication of $z_1,\dots,z_N$ on a direct sum of Borel $L^2$-spaces over $X$.
 
+We write $UT_jU^*$ as $M_{z_j}$ and call it the \textbf{multiplication operator} \index{Mf@$M_f$, the multiplication operator of $f$} of $z_j$.
+
 \begin{proof}
 By Zorn's lemma, $\mc H$ is an (orthogonal) direct sum of $C(X)$-invariant cyclic subspaces, i.e., $\mc H=\oplus_n\mc H_n$ where each subspace $\mc H_n$ is invariant under the action of $C(X)$, and the action of $C(X)$ on $\mc H_i$ possesses a cyclic vector. (Consider the partially ordered set, each element of which is a set of mutually orthogonal non-zero cyclic $C(X)$ invariant closed subspaces.)  By Proposition \ref{lb7}, each subrepresentation $\mc H_n$ is unitarily equivalent  to the multiplication of $C(X)$ on $L^2(X,\mu_n)$, such that $T_j$ is equivalent to the multiplication of $z_j$. The theorem thus follows immediately.
 \end{proof}
@@ -791,7 +798,7 @@ Let $\fk A$ be the directed set of all $(K,\epsilon)$ where $K$ is a finite set 
 Recall $X=B_{r_1}\times\cdots\times B_{r_N}$.
 
 \begin{df}\label{lb58}
-For each bounded Borel function $f$ on $X$, we define a bounded operator $$\pi(f)\equiv f(T_1,\dots,T_N)$$ on $\mc H$ such that $Uf(T_1,\dots,T_N)U^*$ is the multiplication of $f$ on $\bigoplus_{n\in\fk N} L^2(X,\mu_n)$. 
+For each bounded Borel function $f$ on $X$, we define a bounded operator $$\pi(f)\equiv f(T_1,\dots,T_N)$$ on $\mc H$ such that $Uf(T_1,\dots,T_N)U^*$ is the multiplication of $f$ on $\bigoplus_{n\in\fk N} L^2(X,\mu_n)$, i.e. $M_f$.
 \end{df}
 
 Let $B(X)$ be the set of bounded Borel functions on $X$, which is a unital $*$-algebra, whose $*$-structure is defined by $f^*(x_1,y_1,\dots,x_N,y_N)=\ovl{f(x_1,y_1,\dots,x_N,y_N)}$.
@@ -948,7 +955,11 @@ which is an unbounded operator with domain
 \begin{align*}
 \scr D(aA+bB)=\scr D(A)\cap\scr D(B).
 \end{align*}
-
+We clearly have
+\begin{align*}
+(A+B)+C=A+(B+C)
+\end{align*}
+both of which are denoted by $A+B+C$.
 
 Note that by our definition, we have $A-A\subset 0$, with $\subset$ becomes $=$ if and only if $\Dom(A)=\mc H_1$.
 
@@ -1149,38 +1160,54 @@ Thus, positive operators are adjointable.
 
 
 
+\begin{df}
+Let $X$ be a measurable space equipped with a family of measures $(\mu_n)_{n\in\fk N}$. Let $f:X\rightarrow\Cbb$ be measurable. The \textbf{multiplication operator} \index{Mf@$M_f$, the multiplication operator of $f$} $M_f$ on $\mc H:=\bigoplus_{n\in\fk N}L^2(X,\mu_n)$ is the unbounded operator with domain
+\begin{align*}
+\Dom(M_f)=\Big\{\oplus_n g_n:\sum_n\Vert g_n\Vert_2<+\infty,\sum_n\Vert fg_n\Vert_2<+\infty\Big\}
+\end{align*}
+and satisfying $M_f(\oplus_n g_n)=\oplus_n fg_n$ for each $\oplus_n g_n\in\Dom(M_f)$. One checks easily \footnote{If $r>0$ and $E_r=\{x\in X:|f(x)|\leq r\}$, then for each $\xi\in\mc H$ we have $E_r\xi\in\Dom(M_f)$ and $\lim_{r\rightarrow+\infty}E_r\xi=\xi$ by the monotone convergence theorem.} that $\Dom(M_f)$ is dense, and that
+\begin{align*}
+(M_f)^*=M_{f^*}
+\end{align*}
+where $f^*(x)=\ovl{f(x)}$.
+\end{df}
+
+
+\begin{pp}\label{lb70}
+Let $\phi:X\rightarrow Y$ be a Borel isomorphism of topological spaces. Let $(\nu_n)_{n\in\fk N}$ be a family of Borel measures on $Y$. Then
+\begin{gather*}
+U:\bigoplus_nL^2(Y,\nu_n)\rightarrow \bigoplus_nL^2(X,\phi^*\nu_n)\qquad Ug=g\circ\phi
+\end{gather*}
+is unitary. Moreover, if $f:Y\rightarrow\Cbb$ is Borel, then on $\bigoplus_nL^2(Y,\nu_n)$ we have
+\begin{align*}
+UM_fU^{-1}=M_{f\circ\phi}
+\end{align*}
+In particular, $U\Dom(M_f)=M_{f\circ\phi}$.
+\end{pp}
+
+
+\begin{proof}
+That $U$ is unitary follows from \eqref{eq26}. That $U\Dom(M_f)=M_{f\circ\phi}$ and $UM_fU^{-1}=M_{f\circ\phi}$ are easy to check.
+\end{proof}
+
+
+
+
 \begin{thm}[Spectral theorem for a positive operator]\label{lb14}
 Let $T$ be a positive unbounded operator on $\mc H$. Then there exists a set $(\mu_n)_{n\in\fk N}$ of finite (positive) Borel measures on $[0,+\infty)$ and a unitary
 \begin{align*}
 	U:\mc H\rightarrow\bigoplus_{n\in\fk N} L^2([0,+\infty),\mu_n)
 \end{align*}
-satisfying $UTU^*=x$ where $x$ is the identity function on $[0,+\infty)$, understood as the multiplication operator. More precisely, we have $\Dom(UTU^*)=\Dom(x)$, and for  each $(f_n)_{n\in\fk N}\in \bigoplus_{n\in\fk N} L^2([0,+\infty),\mu_n)$ in $\Dom(x)$,
-\begin{align*}
-	UTU^*\cdot (f_n)_{n\in\fk N}=(xf_n)_{n\in\fk N}.
-\end{align*}
+satisfying $UTU^*=M_x$ where $x$ is the identity function on $[0,+\infty)$.
 \end{thm}
 
-Note that an element $(f_n)_{n\in\fk N}\in \bigoplus_{n\in\fk N} L^2([0,+\infty),\mu_n)$ belongs to $\Dom(x)$ iff $\sum_n\int |xf_n|^2d\mu_n<+\infty$.
-
-
-
-
-
-
-
-Also, any unbounded operator described in such way is a positive operator, since the multiplication operator defined by $(1+x)^{-1}$ is bounded and positive.
+Note that any unbounded operator described in such way is a positive operator, since the multiplication operator defined by $(1+x)^{-1}$ is bounded and positive.
 
 
 \begin{proof}
 Let $A$ be the bounded invertible positive operator whose inverse is $1+T$. Since $A$ is bounded and positive, we have $\Sp(A)\subset[0,+\infty)$. Since $\lVert A\lVert\leq 1$, we have $\Sp(A)\subset[0,1]$.  
 
-For each Borel set $X$, we let $B(X)$ be the set of bounded Borel functions of $X$, which is a $*$-algebra. We can thus define a map $\Phi:B([0,+\infty))\rightarrow B([0,1])$ sending each $g$ to $\wtd g$ satisfying $\wtd g(0)=0$ and  $\wtd g(x)=g(x^{-1}-1)$ when $x\neq0$. Then $\Phi$ is a $*$-homomorphism (non-necessarily preserving $1$). For each $g\in B([0,+\infty))$, define
-\begin{align*}
-g(T)=\wtd g(A).	
-\end{align*}
-(Notice Remark \ref{lb12}). Since for each $\xi\in\mc H$ the linear functional $g\in C_c(\Cbb)\mapsto \bk{g(T)\xi|\xi}$ is clearly positive (because $\wtd g(A)$ is a positive operator when $g$ is positive and hence $\wtd g$ is positive), we may use Riesz-Markov representation theorem and the cyclic vector method in the proof of Theorem \ref{lb8} to show that there is a set $(\mu_n)_{n\in\fk N}$ of finite Borel measures  and a unitary $U:\mc H\rightarrow\bigoplus_n L^2([0,+\infty),\mu_n)$ such that for each $g\in C_c([0,+\infty))$ and each $(f_n)_{n\in\fk N}\in \bigoplus_n L^2([0,+\infty),\mu_n)$, we have $Ug(T)U^*\cdot (f_n)_{n\in\fk N}=(gf_n)_{n\in\fk N}$.
-
-Let $g(x)=(x+1)^{-1}$. Then $\wtd g(x)=x$ and hence $g(T)=A$. Choose a sequence $g_k\in C_c([0,+\infty))$ uniformly bounded and converges pointwise to $g$.  Then $\wtd g_k$ is uniformly bounded and converges pointwise to $x$ (on $[0,1]$). Let $dE$ be the resolution of the identity for $A$.  So for each $\xi\in\mc H$, $\bk{\wtd g_k(A)\xi|\xi}=\int_0^1\wtd g_k\bk{dE\xi|\xi}$ converges to $\int_0^1\wtd g\bk{dE\xi|\xi}=\bk{\wtd g(A)\xi|\xi}=\bk{\xi|\xi}$ by dominated integral theorem. In other words, $g_k(T)$ converges weakly to $A$. Since $Ug_k(T)U^*$ is the multiplication of $g_n$ to each component of $\bigoplus_n L^2([0,+\infty),\mu_n)$, it also converges weakly to the multiplication of $g$. We conclude that $UAU^*$ equals the multiplication of $g(x)=(x+1)^{-1}$. So $UA^{-1}U^*=(UAU^*)^{-1}$ is the multiplication of $1+x$, and hence $UTU^*$ is the multiplication of $x$.
+By Thm. \ref{lb8}. $T$ is unitarily equivalent to $M_x$ on $\mc K=\bigoplus_n L^2([0,1],\nu_n)$ where $(\nu_n)_n$ is a family of finite Borel measure on $[0,1]$. Since $A$ is injective, we must have $\nu_n(\{0\})=0$, and hence $\mc K=\bigoplus_n L^2((0,1],\nu_n)$. Then $T=M_{x^{-1}-1}$ on $\mc K$. The proof is finished by applying Prop. \ref{lb70} to the homeomorphism $t\in[0,+\infty)\mapsto (1+t)^{-1}\in(0,1]$.
 \end{proof}
 
 
@@ -1230,15 +1257,15 @@ Assume $T$ is a positive unbounded operator on $\mc H$. Then there is a unique p
 \end{lm}
 
 \begin{proof}
-Existence: Apply the spectral theorem to $T$, we see that $T$ clearly has a positive square root.
+Existence: Apply the spectral theorem to $T$, we see that $T$ clearly has a positive square root, i.e. $M_{\sqrt x}$ if $T=M_x$.
 	
-Uniqueness: Suppose $H,K$ are positive, and $H^2=K^2=T$. Apply the spectral theorem \ref{lb14} to obtain a unitary $U:\mc H\rightarrow\bigoplus_n L^2([0,+\infty),\mu_n)$ such that $UHU^*$ is the multiplication of $x$. Then $U(1+H)^{-1}U^*=(1+x)^{-1}$ and $U(1+T)^{-1}U^*=(1+(UHU)^2)^{-1}=(1+x^2)^{-1}$.
+Uniqueness: Suppose $H,K$ are positive, and $H^2=K^2=T$. By the spectral theorem \ref{lb14}, $H$ is unitarily equivalent to $M_x$ on $\bigoplus_n L^2([0,+\infty),\mu_n)$. Assume WLOG that $H=M_x$. Then $T=(M_x)^2=M_{x^2}$. 
 
-We have $Uf((1+T)^{-1})U^*=f((1+x^2)^{-1})$ whenever $f$ is a polynomial, and hence, by Stone-Weierstrass theorem and Prop. \ref{lb46}, whenever $f\in C([0,1])$.  Note that $f((1+T)^{-1})$ is defined by approximation by polynomials and is hence independent of the spectral decomposition of $H$ or $T$ or $(1+T)^{-1}$. Set $f(x)=\frac{\sqrt x}{\sqrt x+\sqrt{1-x}}=\frac{1}{1+\sqrt{x^{-1}-1}}$. Then
+One checks easily $(1+M_{x^2})^{-1}=M_{(1+x^2)^{-1}}$. Thus $f((1+M_{x^2})^{-1})=M_{f((1+x^2)^{-1})}$ whenever $f$ is a polynomial, and hence, by Stone-Weierstrass theorem and Prop. \ref{lb46}, whenever $f\in C([0,1])$.  Set $f(x)=\frac{\sqrt x}{\sqrt x+\sqrt{1-x}}=\frac{1}{1+\sqrt{x^{-1}-1}}$. Then
 \begin{align*}
-Uf((1+T)^{-1})U^*=f((1+x^2)^{-1})=(1+x)^{-1}=U(1+H)^{-1}U^*
+f((1+M_{x^2})^{-1})=M_{f((1+x^2)^{-1})}=M_{(1+x)^{-1}}=(1+M_x)^{-1}
 \end{align*}
-Hence $(1+H)^{-1}=f((1+T)^{-1})$ and similarly $(1+K)^{-1}=f((1+T)^{-1})$. This proves $H=K$.
+Hence $(1+H)^{-1}=f((1+T)^{-1})$. Similarly $(1+K)^{-1}=f((1+T)^{-1})$. This proves $H=K$.
 \end{proof}
 
 
@@ -1251,7 +1278,7 @@ Recall the graph $\scr G(T)=\{(\xi,T\xi):\xi\in\Dom(T)\}$. Equivalently, we can 
 \bk{\xi|\eta}_{\fk G(T)}=\bk{\xi|\eta}+\bk{T\xi|T\eta}\label{eq11}
 \end{align}
 where $\bk {\cdot|\cdot}$ is the original inner product of $\mc H$. To avoid confusion, we write the vector in $\fk G(T)$ corresponding to $\xi\in\Dom(T)$ as $\Psi\xi$. Namely, we have a bijective linear map
-\begin{gather}
+\begin{gather}\label{eq27}
 \Psi:\Dom(T)\rightarrow\fk G(T),\nonumber\\
 \bk{\Psi\xi|\Psi\eta}=\bk{\xi|\eta}+\bk{T\xi|T\eta}	\label{eq7}
 \end{gather}
@@ -1382,7 +1409,7 @@ sending $H\xi\mapsto T\xi$ for each $\xi\in\Dom(T^*T)$. This map is well defined
 \end{align*}
 Since $\Dom(T^*T)=\Dom(H^2)$ is a core for $H$ and $T$ by Lemma \ref{lb16}, $H\Dom(T^*T)=H\Dom(H^2)$ is dense in $\Rng(H)$, and $T\Dom(T^*T)$ is dense in $T\Dom(T)=\Rng(T)$. Thus $U$ is extended uniquely to a unitary map from $\ovl{\Rng(H)}$ to $\ovl{\Rng(T)}$.	It is further extended to a partial isometry from $\mc H_1$ to $\mc H_2$ by acting trivially on $\Rng(H_1)^\perp$. So the source space $\sgm(U)$ and target space $\tau(U)$ are respectively $\ovl{\Rng(H)}$ and $\ovl{\Rng(T)}$.
 
-From  the construction of $U$, we see that $T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}$. Recall that $\Dom(T^*T)$ is a core for both $H$ and $T$. Thus, $\xi\in\Dom(T)$ means that there is a sequence $\xi_n\in\Dom(T^*T)$ converging to $\xi$ such that $T\xi_n$ is a Cauchy sequence, i.e., $\lVert T\xi_n-T\xi_m\lVert\rightarrow 0$ as $\min\{m,n\}\rightarrow \infty$. Similarly, $\xi\in\Dom(H)$ means that there is $\xi_n\in\Dom(T^*T)$ converging to $\xi$ such that $\lVert H\xi_n-H\xi_m\lVert$ (which equals $\lVert UH\xi_n-UH\xi_m\lVert$ since $\sgm(U)$ contains $\Rng(H)$) converges to $0$. So $T$ and $H$ have the same domain. If $\xi_n\in\Dom(T^*T)$ converges to $\xi\in\Dom(H)$ and $H\xi_n\rightarrow H\xi$, then $T\xi_n=UH\xi_n\rightarrow UH\xi$. Since $T$ is closed, we conclude $\xi\in\Dom(T)$ and $T\xi=UH\xi$. This proves $T\supset UH$. Since $\Dom(T)=\Dom(UH)$, we get $T=UH$.
+From  the construction of $U$, we see that $T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}$. Recall that $\Dom(T^*T)$ is a core for both $T$ and $H$, and hence also a core for $UH$. Thus, passing the closures of the graphs we must have $T=UH$.
 
 Since $U^*U$ is the projection of $\mc H_1$ onto $\sgm(U)=\ovl{\Rng(H)}$, by Exercise \ref{lb15}, we have $H=HU^*U$ and hence $T=(UHU^*)U$. Let $K=UHU^*$. By Remark \ref{lb21}, $K$ is a positive operator and $\ovl{\Rng(K)}=U\ovl{\Rng(H)}=\tau(U)$. So $T=KU$ is a right decomposition for $T$.
 
@@ -1594,7 +1621,7 @@ Strong commutativity of two unbounded closed operators $T_1,T_2$ cannot be defin
 \begin{pp}\label{lb29}
 Let $\mc M$ be a von Neumann algebra on $\mc H$.
 \begin{enumerate}
-\item Suppose $A_1,\dots,A_N\in\mc M$ are normal, and $f$ is a bounded Borel function on $\Cbb^N$. Then $f(A_1,\dots,A_N)\in\mc M$. 
+\item Suppose $A_1,\dots,A_N\in\mc M$ are normal and strongly commuting, and $f$ is a bounded Borel function on $\Cbb^N$. Then $f(A_1,\dots,A_N)\in\mc M$. 
 \item Let $A\in\End(\mc H)$ with left (resp. right) polar decomposition $A=UH$ (resp. $A=KU$). Then $A$ belongs to $\mc M$ if and only if both $U$ and $H$ (resp. both $U$ and $K$)  belong to $\mc M$.
 \item Any element in $\mc M$ is a linear combination of four unitary elements in $\mc M$.
 \end{enumerate}
@@ -1605,7 +1632,7 @@ Let $\mc M$ be a von Neumann algebra on $\mc H$.
 
 2. It is clear that $U,H\in\mc M$ (resp. $K,U\in\mc M$)  implies $A\in\mc M$. Conversely, we assume $A\in\mc M$. Then $A^*\in\mc M$ since $\mc M$ is a $*$-algebra. So $A^*A,AA^*\in\mc M$ and hence, by part 1, $H=\sqrt{A^*A},K=\sqrt{AA^*}$ belong to $\mc M$.
 
-We show that $U\in \mc M$. For each $r>0$, define $f_r\in L^\infty([0,+\infty))$ to be $f(x)=x^{-1}\chi_{(r,+\infty)}$. Then by part 1, we have $f(T)\in\mc M$ and hence $U\chi_{(r,+\infty)}(T)=UTf_r(T)=Af_r(T)\in\mc M$. As $r\rightarrow 0$, $\chi_{(r,+\infty)}$ converges to $\chi_{(0,+\infty)}$ pointwise. So by Thm. \ref{lb28}, we see that $\chi_{(r,+\infty)}(T)$ converges strongly to $\chi_{(0,+\infty)}(T)$, which shows $U\chi_{(0,+\infty)}(H)\in\mc M$. Recall our assumption in polar decomposition that the source space $\sgm(U)$ equals $\ovl{\Rng(H)}$. By Example \ref{lb15}, the projection onto $\ovl{\Rng(H)}$ is $\chi_{(0,+\infty)}(H)$. So $U=U\chi_{(0,+\infty)}(H)$ belongs to $\mc M$.
+We show that $U\in \mc M$. For each $r>0$, define $f_r\in L^\infty([0,+\infty))$ to be $f(x)=x^{-1}\chi_{(r,+\infty)}$. Then by part 1, we have $f(T)\in\mc M$ and hence $U\chi_{(r,+\infty)}(T)=UTf_r(T)=Af_r(T)\in\mc M$. As $r\rightarrow 0$, $\chi_{(r,+\infty)}$ converges to $\chi_{(0,+\infty)}$ pointwise. So by Thm. \ref{lb28}, we see that $\chi_{(r,+\infty)}(T)$ converges strongly to $\chi_{(0,+\infty)}(T)$, which shows $U\chi_{(0,+\infty)}(H)\in\mc M$. Recall our assumption in polar decomposition that the source space $\sgm(U)$ equals $\ovl{\Rng(H)}$. The spectral theorem for $H$ shows that the projection onto $\ovl{\Rng(H)}$ is $\chi_{(0,+\infty)}(H)$. So $U=U\chi_{(0,+\infty)}(H)$ belongs to $\mc M$.
 
 3. Any $A\in\mc M$ is a linear combination of two self-adjoint elments in $\mc M$, namely $A+A^*$ and $i(A-A^*)$. Any self-adjoint $A\in\mc M$ satisfying $\lVert A\lVert \leq1$ (and hence $\Sp(A)\subset[-1,1]$) is a sum of two unitary elements in $\mc M$: $A=f_+(A)+f_-(A)$, where $f_\pm(x)=x\pm\im\sqrt{1-x^2}$.
 \end{proof}
@@ -1767,75 +1794,67 @@ Conversely, suppose $U$ is normal and commutes strongly with $H$. $UH\subset HU$
 
 
 \begin{eg}\label{lb33}
-Let $X$ be a measure space  with a set of positive measures $\{\mu_n:n\in\fk N\}$. (One may assume the measures are finite, which is sufficient for application.) Let $f:X\rightarrow \Cbb$ be a (non-necessarily bounded) complex Borel function on $X$, acting on $\mc H=\bigoplus_{n\in\fk N} L^2(X,\mu_n)$ by multiplication on each component, i.e., $f(g_n)_{n\in\fk N}=(fg_n)_{\fk N}$. Then $f$ is closed. Indeed, let $u:X\rightarrow\Cbb$ be equal to $u(x)=f(x)/|f(x)|$ when $f(x)\neq 0$, and $u(x)=0$ when $f(x)=0$. Then $|f|$ is positive (because $1+|f|$ is the inverse of the clearly bounded injective positive operator $(1+|f|)^{-1}$), and it is not hard to check that $\ovl{\Rng(|f|)}$ is the set of all $(g_n)_{n\in\fk N}$ where each $g_n$ is zero at $\{x:f(x)=0\}$. Thus $\ovl{\Rng(|f|)}$ equals both the source space and the target space of $u$.
-	
-From this, we see that $f=u\centerdot |f|$ (note that $f$ and $|f|$ have the same domain as multiplication operators) is closed and $u\centerdot|f|,|f|\centerdot u$ are the left and right polar decompositions of $f$, understood as compositions of the multiplication operators of $|f|,u$. So $f$ is normal. By Thm. \ref{lb22}, the adjoint of the multiplication of $f$ is the composition $u^*\centerdot|f|$, which clearly equals the multiplication of the function $u^*|f|=f^*$ (since their domains are the same). So the multiplication of the adjoint of $f$ is the adjoint of the multiplication of $f$.
+Let $X$ be a measure space  with a set of measures $\{\mu_n:n\in\fk N\}$.  Let $f:X\rightarrow \Cbb$ be Borel. Let $u:X\rightarrow\Cbb$ be equal to $u(x)=f(x)/|f(x)|$ when $f(x)\neq 0$, and $u(x)=0$ when $f(x)=0$. Then one checks easily that $M_f=M_uM_{|f|}=M_{|f|}M_u$ gives the left and right polar decompositions of $M_f$. Thus $M_f$ is normal.
 \end{eg}
 
 
-\begin{cv}
-To avoid confusions, when necessary, we write $f\centerdot g$ to denote the product of the multiplication operators of $f$ and $g$, as distinguished from $fg=f\cdot g$.\index{fg@$f\centerdot g$}
-\end{cv}
+
 
 Spectral theorem says that any  finitely many strongly commuting normal operators are simultaneously unitarily equivalent to some complex Borel functions acting as multiplication on the Hilbert space given in Example \ref{lb33}.
 
 
 The meaning that the closed operators $T_1,\dots,T_N$ on a Hilbert space $\mc H$ are normal and commute strongly (with each other) is clear: $T_i$ commutes strongly with $T_j$ for each $1\leq i,j\leq N$.
 
-\begin{lm}\label{lb36}
-Let $T_1,\dots,T_N$ be strongly commuting normal closed operators on $\mc H$ with left polar decompositions $T_j=V_jH_j$. Let $R_j=(1+H_j)^{-1}$. Let $E$ be the resolution of the identity for $V_1,R_1,\dots,V_N,R_N$, considered as an operator valued measure on $(v_1,r_1,\dots,v_N,r_N)\in\Cbb^{2N}$. Let $\mbb S^1=\{z\in\Cbb:|z|=1\}$. \index{S1@$\mathbb S^1$} Then $E$ is zero (more precisely, $\bk{E\xi|\xi}$ is zero for every $\xi\in\mc H$) on any Borel subset of $\Cbb^{2N}$ which is outside
-\begin{align*}
-X=(\mbb S^1\cup\{0\})\times(0,1]\times\cdots\times(\mbb S^1\cup\{0\})\times(0,1].
-\end{align*}
-Moreover, for each $1\leq j\leq N$, if we let $\Omega_j$ (resp. $\Gamma_j$) be the subset of $X$ of all $(v_1,r_1,\dots,v_N,r_N)$ satisfying $v_j=0$ (resp. $r_j=1$), then $E$ is zero on $\Omega_j\Delta\Gamma_j:=(\Gamma_j-\Omega_j)\cup(\Omega_j-\Gamma_j)$.
-\end{lm}
-
-Namely, the conditions $v_j=0$ and $r_j=1$ are equivalent almost everywhere with respect to $E$. For the spectral decomposition of  $V_1,R_1,\dots,V_N,R_N$, we may restrict the integrals to
-\begin{align}
-Y:=X-\bigcup_{j=1}^N \Omega_j\Delta\Gamma_j.\label{eq13}
-\end{align}
-
-\begin{proof}
-$\mc H$ is unitarily equivalent to $\bigoplus_n L^2(\Cbb^{2N},\mu_n)$ such that $V_1,R_1,\dots,V_N,R_N$ are unitarily equivalent to the multiplications of the coordinate functions $v_1,r_1,\dots,v_N,r_N$ respectively. That $V_jV_j^*=V_j^*V_j$ are projections mean $|v_j|^2$ takes values in $\{0,1\}$. So $v_j$ is $0$ a.e. (with respect to any $\mu_n$) when outside $\mbb S^1\cup\{0\}$. Since $r_j$ is positive (as a multiplication operator), it is zero a.e. outside $[0,+\infty)$. Since $r_j$ is injective, it is clear that the set $\{(v_1,r_1,\dots,v_N,r_N):r_j=0\}$ has $\mu_n$-measure $0$. So we can restrict to $r_j>0$. $1+H_j$ is represented by $r_j^{-1}$, so $H_j$ is represented by $r_j^{-1}-1$, which must be positive a.e.. So $r_j$ is zero a.e. outside $(0,1]$.
-
-By the requirement on polar decompositions, we have $\ovl{\Rng(V_j)}=\ovl{\Rng(H_j)}$, or equivalently, $\ovl{\Rng(v_j)}=\ovl{\Rng(r_j^{-1}-1)}$. As in Example \ref{lb33}, it is easy to check that $\ovl{\Rng(v_j)}$ is the set of all $(f_n)_{n\in\fk N}$ vanishing on $\{v_j=0\}=\Omega_j$, and similarly  $\ovl{\Rng(r_j^{-1}-1)}$ is the set of all $(f_n)_{n\in\fk N}$ vanishing on $\{r_j^{-1}-1=0\}=\{r_j=1\}=\Gamma_j$. This finishes the proof.
-\end{proof}
-
 
 
 
 
 \begin{thm}[Spectral theorem]\label{lb35}
-Let $T_1,\dots,T_N$ be strongly commuting normal closed operators on $\mc H$. Then there exist a set $(\mu_n)_{n\in\fk N}$ of finite (positive) Borel measures on $\Cbb^N$, and also a unitary map
+Let $T_1,\dots,T_N$ be strongly commuting normal closed operators on $\mc H$. Then there exist a set $(\mu_n)_{n\in\fk N}$ of finite Borel measures on $\Cbb^N$, and also a unitary map
 	\begin{align*}
 		U:\mc H\rightarrow\bigoplus_{n\in\fk N} L^2(\Cbb^N,\mu_n)
 	\end{align*}
-	satisfying that for every $1\leq j\leq N$,  each $(f_n)_{n\in\fk N}\in \bigoplus_{n\in\fk N} L^2(\Cbb^N,\mu_n)$ belongs to $\Dom(UT_jU^*)=U\Dom(T_j)$ iff $\sum_n\int_{\Cbb^N}|z_jf_n|^2d\mu_n<+\infty$, and that
+	satisfying for every $1\leq j\leq N$ that
 	\begin{align}
-		UT_jU^*\cdot (f_n)_{n\in\fk N}=(z_jf_n)_{n\in\fk N}.
+		UT_jU^*=M_{z_j}
 	\end{align}
 \end{thm}
-Here we let $z_j$ be function indicating the $j$-th component of $X$, i.e., the one sending $(z_1,\dots,z_N)$ to $z_j$. We understood $z_j$ also as the multiplication operator. Then the above relation says $UT_jU^*=z_j$, noting that $\Dom(z_j)$ is precisely the set of all $(f_n)_{n\in\fk N}$ satisfying $\sum_n\int_{\Cbb^N}|z_jf_n|^2d\mu_n<+\infty$.
+Here we let $z_j$ be $j$-th standard coordinate of $\Cbb^N$, i.e., the one sending $(\zeta_1,\dots,\zeta_N)$ to $\zeta_j$. 
 
 
 \begin{proof}
-The method here is similar to that in Thm. \ref{lb14}. Let $T_j=V_jH_j$ be the left polar decomposition for $T_j$. Let $R_j=(1+H_j)^{-1}$. For each Borel set $X$ we let $B(X)$ be the set of Borel functions on $X$. Define a map $\Phi:B(\Cbb^N)\rightarrow B(Y)$ (where $Y$ is defined in \eqref{eq13}) sending each $g$ to $\wtd g$ defined by $\wtd g(v_1,r_1,\dots,v_N,r_N)=g(v_1(r_1^{-1}-1),\dots,v_N(r_N^{-1}-1))$. Then $\Phi$ is a homomorphism of unital $*$-algebras. So is $g\mapsto \wtd g(V_1,R_1,\dots,V_N,R_N)$ (which is well-defined by Lemma \ref{lb36}). Thus, for each $\xi\in\mc H$, we have a positive linear functional $g\in C_c(\Cbb^N)\rightarrow\Cbb$, $g\mapsto \bk{\wtd g(V_1,R_1,\dots,V_N,R_N)\xi|\xi}$. As argued in the proof of Thm. \ref{lb8} or \ref{lb14}, we find $U:\mc H\rightarrow\bigoplus_{n\in\fk N}L^2(\Cbb^N,\mu_n)$ such that for each $g\in C_c(\Cbb^N)$,  $U\wtd g(V_1,R_1,\dots,V_N,R_N)U^*$ equals the multiplication of $g$. 
+Step 1. Let $T_j=V_jH_j=H_jV_j$ be the polar decomposition of $T_j$, where $H_j\geq0$ and $V_j$ is the phase. Let $R_j=(1+H_j)^{-1}$. By Cor. \ref{lb34}, $V_1,R_1,\dots,V_N,R_N$ are strongly commuting normal bounded operators. By the spectral Thm. \ref{lb8}, after applying a unitary map on $\mc H$, one may assume that $\mc H=\bigoplus_{n\in\fk N} L^2(X,\nu_n)$ where $X=\Cbb^{2N}$, $\nu_n$ is a finite Borel measure on $X$, $V_j=M_{z_{2j-1}}$, and $R_j=M_{z_{2j}}$. 
 
-We claim that
-\begin{align}
-U\wtd g(V_1,R_1,\dots,V_N,R_N)U^*=g	\label{eq12}
-\end{align}
-when $g$ is one of the following two types of functions: (1) $\nu=z_j/|z_j|$ when $z_j\neq 0$ and $\nu=0$ when $z_j=0$; (2) $\kappa=(1+|z_j|)^{-1}$. Indeed, when $g$ is $\nu$ or $\kappa$, we can find a sequence $g_\blt\in C_c(\Cbb^N)$ such that $|g_\blt|\leq |g|$ and $\lim g_\blt=g$ pointwise. The same is true for $\wtd g_\blt$ and $\wtd g$. Choose any $\xi\in\mc H$ and write $U\xi=(h_n)_{n\in\fk A}$. Let $E$ be the resolution of the identity for $V_1,R_1,\dots,V_N,R_N$. Then
+Let $\pi_k:\Cbb^{2N}\rightarrow\Cbb$ be the projection onto the $k$-th component (where $1\leq k\leq 2N$). Since $V_j$ is a  partial isometry, we must have $\nu_n(\pi_{2j-1}^{-1}(\Cbb\setminus(\mbb S^1\cup\{0\})))=0$ for all $n$. (Otherwise, $V_j^*V_j=M_{|z_{2j-1}|^2}$ will not be a projection.) Since $0\leq R_j\leq 1$ and $R_j$ is injective, we must have $\nu_n(\pi_{2j}^{-1}(\Cbb\setminus(0,1]))=0$. Therefore, we may assume that $X=\big((\mbb S^1\cup\{0\})\times(0,1]\big)^N$.
+
+
+
+Let $\Rbb_+=[0,+\infty)$ and
 \begin{align*}
-	\int_{\Cbb^{2N}} \wtd g_\blt\bk{dE\xi|\xi}=\bk{\wtd g_\blt(V_1,R_1,\dots,V_N,R_N)\xi|\xi}=\sum_n\int_{\Cbb^N}g_\blt|h_n|^2d\mu_n	
-\end{align*} 
-together with the dominated convergence theorem proves \eqref{eq12} for these two types.
+Y=(\mbb S^1\cup\{0\})\times\Rbb_+
+\end{align*}
+Applying Prop. \ref{lb70} to the homeomorphism $Y^N\rightarrow X$ sending $(u_1,x_1,\dots,u_N,x_N)$ to $(u_1,(1+t_1)^{-1},\dots,u_N,(1+t_N)^{-1})$, we see that one may assume that $\mc H=\bigoplus_n L^2(Y^N,\omega_n)$ where $\omega_n$ is a finite Borel measure on $Y^N$ and
+\begin{gather*}
+V_j=M_{v_j}\qquad R_j=M_{(1+x_j)^{-1}}
+\end{gather*}
+Here, $v_j,x_j$ denote the $(2j-1)$-th and the $2j$-th standard coordinates of $Y^N$. Hence
+\begin{align*}
+H_j=M_{x_j}
+\end{align*}
 
-%for any bounded Borel $g$. Let $\mc E$ be the set of all Borel $\Omega\subset\Cbb^N$ such that \eqref{eq12} holds with $g=\chi_\Omega$ (the characteristic function of $\Omega$). Suppose first of all that $g=\chi_\Omega$ where $\Omega$ is open. Then by Urysohn's lemma, we can find an increasing sequence of positive functions $g_k\in C_C(\Cbb^N)$ converging pointwise to $g$. So $\wtd g_k$ is also increasing and converges pointwise to $\wtd g$. So $\mc E$ contains any open set (in particular $\Cbb^N$).  Now  If $\Omega\in\mc E$, then $\chi_{\Omega^c}=1-\chi_{\Omega}$ and  $\wtd \chi_{\Omega^c}=\wtd 1-\wtd\chi_{\Omega}$ show $\Omega^c\in\mc E$. If $\Omega_1,\Omega_2\in\mc E$, then $\chi_{\Omega_1\cap\Omega_2}=\chi_{\Omega_1}\chi_{\Omega_2}$ and hence $\wtd\chi_{\Omega_1\cap\Omega_2}=\wtd\chi_{\Omega_1}\wtd\chi_{\Omega_2}$ shows $\Omega\cap\Omega\in\mc E$. Consequently, $\mc E$ is closed under finite unions. Another application of monotone convergence theorem shows that $\mc E$ is closed under infinite union of an increasing sequence of subsets. So $\mc E$ is a $\sigma$-algebra containing all open sets, which must therefore contain all Borel subsets. So \eqref{eq12} holds whene $g$ is any characteristic function, hence whenever $g$ is bounded positive Borel by monotone convergence theorem again, and hence for any bounded Borel $g$.
 
-Let $h=|z_j|$ so that $\kappa=1/(1+h)$. We claim that  $\wtd \nu=v_j$ and $\wtd \kappa=r_j$. Then $\wtd \nu(V_1,R_1,\dots,V_N,R_N)=V_j$ and $\wtd k(V_1,R_1,\dots,V_N,R_N)=(1+H_j)^{-1}$. By \eqref{eq12}, $U(1+H_j)^{-1}U^*=U\wtd k(V_1,R_1,\dots,V_N,R_N)U^*=\kappa=(1+h)^{-1}$ so that $UH_jU^*=h$, and similarly $UV_jU^*=\nu$. So $UT_jU^*=\nu \centerdot h=z_j$, which finishes the proof. (That $\nu\centerdot h=\nu h=z_j$ follows from the obvious fact that $h=|z_j|$ and $z_j$ have domains as multiplication operators.)  
+Step 2. Since $V_j^*V_j$ is the projection onto $\ovl{\Rng(H_j)}$, each $\nu_n$ is supported on $Z^N$ where
+\begin{align*}
+Z=(\mbb S^1\times\Rbb_{>0})\cup (\{0\}\times\{0\})
+\end{align*}
+In fact, if this is not true, then there exist $n,j$ such that $\nu_n(A_j)+\nu_n(B_j)>0$ where
+\begin{gather*}
+A_j=Y\times\cdots\times Y\times \underbrace{\mbb S^1\times\{0\}}_{j\text{-th component}}\times Y\times\cdots\times Y\\
+B_j=Y\times\cdots\times Y\times \underbrace{\{0\}\times\Rbb_{>0}}_{j\text{-th component}}\times Y\times\cdots\times Y
+\end{gather*}
+We view $\chi_{A_j}$ and $\chi_{B_j}$ as elements of $\mc H$. Then $\chi_{A_j}\in\Rng (V_j^*V_j)$ and $\chi_{A_j}\perp \Rng(H_j)$. So we must have $\chi_{A_j}=0$ and hence $\nu_n(A_j)=0$. Similarly, we have $\chi_{B_j}\in\ovl{\Rng(H_j)}$ and $V_j\chi_{B_j}=0$ (and hence $\chi_{B_j}\perp \Rng(V_j^*V_j)$). So $\chi_{B_j}=0$, and hence $\nu_n(B_j)=0$. This gives a contradiction.
 
-Recall from \eqref{eq13} that $v_j=0$ iff $r_j=1$. By the definition of $\nu$, we see that $\wtd\nu$ equals $0$ when $v_j(r_j^{-1}-1)=0$, i.e., when $v_j=0$. If $v_j\neq 0$, then by \eqref{eq13}, we know that $|v_j|=1,r_j\in(0,1)$, so $\wtd\nu=\frac{v_j(r_j^{-1}-1)}{|v_j(r_j^{-1}-1)|}=v_j$. So $\wtd \nu$ is always $v_j$. Similarly, $\wtd\kappa=1/(1+|v_j(r_j^{-1}-1)|)$. If $v_j=0$, then $r_j=1$, and $\wtd\kappa=1=r_j$; if $v_j\neq 0$, then $|v_j|=1,r_j\in(0,1)$, so $\wtd\kappa=1/(1+r_j^{-1}-1)=r_j$. We always have $\wtd\kappa=r_j$. This finishes the proof.
+Now, we can assume that $\mc H=\bigoplus_n L^2(Z^N,\omega_n)$ and $V_j=M_{v_j},H_j=M_{x_j}$. Applying Prop. \ref{lb70} to the Borel isomorphism $\Phi^N:Z^N\rightarrow\Cbb^N$ where $\Phi:Z\rightarrow\Cbb$ is the Borel isomorphism sending $(u_j,t_j)$ to  $u_jt_j$, we see that there is a unitary map $U:\mc H\rightarrow\bigoplus_n L^2(\Cbb^N,\mu_n)$ (where $\mu_n$ is a finite Borel measure on $\Cbb^N$) such that $U^{-1}M_{z_j}U$ equals $M_{v_jx_j}$. One checks easily that $M_{v_jx_j}$ equals $M_{v_j}M_{x_j}$. (In particular, their domains are the same, being the $L^2$-functions whose multiplication by $x_j$  are $L^2$ (equivalently, whose multiplication by $v_jx_j$ are $L^2$).) Therefore $M_{v_jx_j}=V_jH_j=T$.
 \end{proof}
 
 
