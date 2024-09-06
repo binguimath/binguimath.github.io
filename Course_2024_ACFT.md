@@ -1,5 +1,7 @@
 # 2024 Fall, Topics in Operator Algebras: Algebraic Conformal Field Theory
 
+- Course language: Chinese
+
 - Time: Friday 9:50-12:15
   
 - Location: 六教6B312
