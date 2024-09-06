@@ -29,7 +29,7 @@ No previous knowledge in operator algebras is needed.
 
 ## Schedule
 
-- 9/13 Introduction to CPT symmetry, the Bisognano-Wichmann theorem in QFT, and their relationship to the Tomita-Takesaki theory in operator algebras.
+- 9/13 Introduction to the CPT symmetry in QFT, and its relationship to the Tomita-Takesaki theory in operator algebras.
 
 - 9/20 Review of important results about unbounded operators.
 
