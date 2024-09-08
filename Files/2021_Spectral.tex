@@ -780,7 +780,7 @@ By Zorn's lemma, $\mc H$ is an (orthogonal) direct sum of $C(X)$-invariant cycli
 
 
 \begin{lm}\label{lb18}
-For each bounded Borel function $f$ on $\Cbb^N$, there exists a net $g_\blt=(g_\alpha)_{\alpha\in\fk A}$ in $C_c(\Cbb^N)$, such that $\lVert g_\alpha\lVert_{L^\infty(\Cbb^N)}\leq \lVert f\lVert_{L^\infty(\Cbb^N)}$ for each $\alpha$, and that $\lim \int_{\Cbb^N}|f-g_\blt|d\mu=0$ for each finite (positive) Borel measure $\mu$ on $\Cbb^N$.
+For each bounded Borel function $f$ on $\Cbb^N$, there exists a net $g_\blt=(g_\alpha)_{\alpha\in\fk A}$ in $C_c(\Cbb^N)$, such that $\lVert g_\alpha\lVert_{l^\infty(\Cbb^N)}\leq \lVert f\lVert_{l^\infty(\Cbb^N)}$ for each $\alpha$, and that $\lim \int_{\Cbb^N}|f-g_\blt|d\mu=0$ for each finite (positive) Borel measure $\mu$ on $\Cbb^N$.
 \end{lm}
 
 \begin{proof}
@@ -801,22 +801,26 @@ Recall $X=B_{r_1}\times\cdots\times B_{r_N}$.
 For each bounded Borel function $f$ on $X$, we define a bounded operator $$\pi(f)\equiv f(T_1,\dots,T_N)$$ on $\mc H$ such that $Uf(T_1,\dots,T_N)U^*$ is the multiplication of $f$ on $\bigoplus_{n\in\fk N} L^2(X,\mu_n)$, i.e. $M_f$.
 \end{df}
 
-Let $B(X)$ be the set of bounded Borel functions on $X$, which is a unital $*$-algebra, whose $*$-structure is defined by $f^*(x_1,y_1,\dots,x_N,y_N)=\ovl{f(x_1,y_1,\dots,x_N,y_N)}$.
+Let $B(X)$ be the set of bounded Borel functions on $X$, which is a unital $*$-algebra, whose $*$-structure is defined by $f^*(z_1,\dots,z_N)=\ovl{f(z_1,\dots,z_N)}$. Let $z_j:X\rightarrow\Cbb$ denote the $j$-th standard coordinate $(\zeta_1,\dots,\zeta_N)\mapsto \zeta_j$.
 
 \begin{thm}\label{lb28}
-$\pi:f\in B(X)\mapsto f(T_1,\dots,T_N)\in\End(\mc H)$ is the unique unital $*$-homomorphism extending the continuous functional calculus in Thm. \ref{lb17} and satisfying the following property: If $f_\blt$ is a net of bounded Borel functions on $X$ whose $L^\infty(X)$-norms are uniformly bounded (over the directed set), such that $\lim \int_X|f-f_\blt|d\mu=0$ for each finite (positive) Borel measure on $X$, then $f_\blt(T_1,\dots,T_N)$ converges strongly to $f(T_1,\dots,T_N)$.
+$\pi:f\in B(X)\mapsto f(T_1,\dots,T_N)\in\End(\mc H)$ is the unique unital $*$-homomorphism satisfying the following properties
+\begin{enumerate}
+\item $\pi(z_j)=T_j$.
+\item If $f_\blt$ is a net of bounded Borel functions on $X$ whose $l^\infty(X)$-norms are uniformly bounded (over the directed set), such that $\lim \int_X|f-f_\blt|d\mu=0$ for each finite (positive) Borel measure on $X$, then $f_\blt(T_1,\dots,T_N)$ converges strongly to $f(T_1,\dots,T_N)$.
+\end{enumerate}
 \end{thm}
 
 \begin{proof}
-$\pi:f\mapsto f(T_1,\dots,T_N)$ is clearly a unital $*$-homomorphism. For each $\xi\in\mc H$, write $U\xi=(g_n)_{n\in\fk N}\in\bigoplus_n L^2(X,\mu_n)$. Then
+$\pi:f\mapsto f(T_1,\dots,T_N)$ is clearly a unital $*$-homomorphism satisfying $\pi(z_j)=T_j$. For each $\xi\in\mc H$, write $U\xi=(g_n)_{n\in\fk N}\in\bigoplus_n L^2(X,\mu_n)$. Let $C\in\Rbb_{\geq0}$ such that $\Vert f\Vert_{l^\infty}\leq C$ and $\Vert f_\blt\Vert_{l^\infty}\leq C$. Then
 \begin{align*}
 &\lVert (f(T_1,\dots,T_N)-f_\blt(T_1,\dots,T_N))\xi\lVert^2\\
 =&	\lVert U(f(T_1,\dots,T_N)-f_\blt(T_1,\dots,T_N))U^*(g_n)_{n\in\fk N}\lVert^2\\
-=&\sum_{n\in\fk N}\int_X |f-f_\blt|^2\cdot |g_n|^2d\mu_n\leq 2\lVert f\lVert_\infty \cdot \sum_{n\in\fk N}\int_X |f-f_\blt|\cdot |g_n|^2d\mu_n
+=&\sum_{n\in\fk N}\int_X |f-f_\blt|^2\cdot |g_n|^2d\mu_n\leq 2C \sum_{n\in\fk N}\int_X |f-f_\blt|\cdot |g_n|^2d\mu_n
 \end{align*}	
 which converges to $0$ by choosing $\mu=\sum_n |g_n|^2\mu_n$.
 
-It is clear that $f(T_1,\dots,T_N)$ agrees with the $\pi(f)$ defined in \eqref{eq15} when $f$ is a polynomial. Since our map $f\in C(X)\mapsto f(T_1,\dots,T_N)$  defined here by spectral decomposition is clearly a continuous unital $*$-homomorphism,  it agrees with the one defined in Thm. \ref{lb17} due to the uniqueness statement of that theorem.  
+%It is clear that $f(T_1,\dots,T_N)$ agrees with the $\pi(f)$ defined in \eqref{eq15} when $f$ is a polynomial. Since our map $f\in C(X)\mapsto f(T_1,\dots,T_N)$  defined here by spectral decomposition is clearly a continuous unital $*$-homomorphism,  it agrees with the one defined in Thm. \ref{lb17} due to the uniqueness statement of that theorem.  
 
 
 Uniqueness: Let $\pi$ be as described in the theorem. Clearly $\pi(f)$ is uniquely determined when $f$ is a polynomial. Since $\pi$ is continuous (by Prop. \ref{lb46}), by Stone-Weierstrass, $\pi(f)$ is uniquely determined when $f\in C(X)$. By Lem. \ref{lb18}, $\pi(f)$ is uniquely determined when $f\in B(X)$. 
@@ -826,17 +830,31 @@ Uniqueness: Let $\pi$ be as described in the theorem. Clearly $\pi(f)$ is unique
 
 %For any Borel set $X$, we let $B(X)$ be the unital $*$-algebra of bounded Borel functions on $X$. 
 
-The following proposition improves Prop. \ref{lb1}.
+\begin{comment}
+\begin{df}
+A (complex) \textbf{normed unital $*$-algebra} is a unital $\Cbb$-algebra $\scr A$ equipped with an involution $*$ (i.e. $*:\scr A\rightarrow\scr A$ is an antilinear bijective map satisfying $a^{**}=a$, $(ab)^*=b^*a^*$, and $1^*=1$ for all $a,b\in\scr A$) and a function $\Vert\cdot\Vert:\scr A\rightarrow\Rbb_{\geq0}$ such that $(\scr A,\Vert\cdot\Vert)$ is a normed vector space, $\Vert 1\Vert=1$, and $\Vert ab\Vert\leq\Vert a\Vert\cdot\Vert b\Vert$ for all $a,b\in\scr A$.
+\end{df}
+\end{comment}
+
+
+
+The following proposition gives a variant of Prop. \ref{lb1}.
+
 \begin{pp}\label{lb46}
-Let $X$ be a topological space. Assume $\pi:B(X)\rightarrow\End(\mc H)$ is a unital $*$-homomorphism, i.e., preserves the identities, multiplications and linear combinations, and $*$-structures. Then $\lVert \pi(f)\Vert\leq \lVert f\lVert_{L^\infty(X)}$ for each $f\in B(X)$. 
+Let $\scr A$ be a unital $*$-algebra equipped with a function $\Vert\cdot\Vert:\scr A\rightarrow\Rbb_{\geq0}$ satisfying the following property:
+\begin{itemize}
+\item If $f\in\scr A$, then there exists $g\in\scr A$ such that $f^*f+g^*g=\Vert f\Vert^2\cdot 1$.
+\end{itemize}
+Assume that $\pi:\scr A\rightarrow\End(\mc H)$ is a unital $*$-homomorphism, i.e., preserves the identities, multiplications and linear combinations, and $*$-structures. Then $\lVert \pi(f)\Vert\leq \lVert f\lVert$ for each $f\in \scr A$. 
 \end{pp}
 
-Thus,  the linear map $f\in B(\Sp(T_1,\dots,T_N))\rightarrow f(T_1,\dots,T_N)$ is bounded (with norm at most $1$) with respect to the $L^\infty$-norm and the operator norm.
+For example, $\scr A$ can be the space of bounded complex continuous functions on a topological space and $\Vert \cdot\Vert$ is the sup norm, or the space of bounded measurable functions and $\Vert \cdot\Vert$ is the $L^\infty$-norm. $\scr A$ can also be any unital $*$-subalgebra of $\End(\mc K)$ (where $\mc K$ is a Hilbert space) such that if $T\in\scr A$ is positive then $\sqrt T\in\scr A$. 
+
 
 \begin{proof}
-The idea here is similar to (but slightly simpler than) Step. 3 of the proof of Thm. \ref{lb2}.	Let $r=\lVert f\lVert_\infty$. Then $r^2-f^*f$ is a positive function, for which we take the positive square root $g=\sqrt{r^2-f^*f}$. Then for each $\xi\in\mc H$, we compute
+The idea here is similar to (but slightly simpler than) Step. 3 of the proof of Thm. \ref{lb2}.	Let $r=\lVert f\lVert$. Then $r^2-f^*f=g^*g$ for some $g\in\scr A$. For each $\xi\in\mc H$, we compute
 	\begin{align*}
-		\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\pi(f^*f)\xi|\xi} =\bk{\pi(r^2-g^2)\xi|\xi}=r^2\lVert\xi\lVert^2-\lVert\pi(g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
+		\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\pi(f^*f)\xi|\xi} =\bk{\pi(r^2-g^*g)\xi|\xi}=r^2\lVert\xi\lVert^2-\lVert\pi(g)\xi\lVert^2\leq r^2\lVert\xi\lVert^2.
 	\end{align*}
 \end{proof}
 
@@ -905,7 +923,7 @@ Let $\fk G$ be a (not necessarily finite) set of adjointly commuting self-adjoin
 \begin{enumerate}
 \item Let $\mc P$ be the set of polynomials with commuting  formal variables $\{t_T:T\in\fk G\}$. Namely, a general element is a $\Cbb$-linear combination of $t_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ where $n_1,\dots,n_k\in\Nbb$ and $T_1,\dots,T_k\in\fk G$. The involution of $\mc P$ is defined by $(at_{T_1}^{n_1}\cdots t_{T_k}^{n_k})^*=\ovl at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ ($a\in\Cbb$). Define a linear map $\pi:\mc P\rightarrow\End(\mc H)$ sending each $at_{T_1}^{n_1}\cdots t_{T_k}^{n_k}$ to $aT_1^{n_1}\cdots T_k^{n_k}$. Show that $\pi$ is a unital $*$-homomorphism. 
 
-\item Let $Y_T=[-\lVert T\lVert,\lVert T\lVert]^2\subset\Cbb$. Let $Y=\prod_{T\in\fk G}Y_T$, which is a compact Hausdorff space by Tychonoff's theorem. Use Prop. \ref{lb1} to show that $\pi(f)\leq \lVert f\lVert_{L^\infty(Y)}:=\sup_{t_T\in Y_T,\forall T\in\fk G}|f((t_T)_{T\in\fk G})|$ for each $f\in\mc P$. Conclude that $\pi$ can be extended uniquely to a unital $*$-homomorphism $\pi:C(Y)\rightarrow\End(\mc H)$. 
+\item Let $Y_T=[-\lVert T\lVert,\lVert T\lVert]^2\subset\Cbb$. Let $Y=\prod_{T\in\fk G}Y_T$, which is a compact Hausdorff space by Tychonoff's theorem. Use Prop. \ref{lb1} to show that $\pi(f)\leq \lVert f\lVert_{l^\infty(Y)}:=\sup_{t_T\in Y_T,\forall T\in\fk G}|f((t_T)_{T\in\fk G})|$ for each $f\in\mc P$. Conclude that $\pi$ can be extended uniquely to a unital $*$-homomorphism $\pi:C(Y)\rightarrow\End(\mc H)$. 
 
 \item Let $A$ be the smallest unital (norm-)closed $*$-subalgebra of $\End(\mc H)$ containing $\fk G$, called the \textbf{$C^*$-algebra} generated by $\fk G$. Use Stone-Weierstrass theorem to show that $A=\pi(C(Y))$. Thus we have a surjective unital $*$-homomorphism $\pi:C(Y)\rightarrow A$.
 
@@ -914,7 +932,7 @@ Let $\fk G$ be a (not necessarily finite) set of adjointly commuting self-adjoin
 
 \item Let $X$ be the (necessarily closed) subset of all $x\in Y$ satisfying $f(x)=0$ for each $f\in\mc I$. Apply Stone-Weierstrass theorem for locally compact Hausdorff spaces to the family $\mc I$ of functions to show that $\mc I=\{f\in C(Y):f|_X=0\}$. 
 
-\item By Tiezte extension theorem, the restriction map $f\in C(Y)\mapsto f|_X\in C(X)$ is surjective and has kernel $\mc I$. Conclude that we have a well-defined bijective unital $*$-homomorphism $\wtd\pi:C(X)\rightarrow A$ sending each $f|_X$ to $\pi(f)$ (where $f\in C(Y)$). Apply the proof of Prop. \ref{lb46} to $\wtd\pi$ and $\wtd\pi^{-1}$ to show that $\wtd\pi$ is isometric, i.e., $\lVert  \wtd\pi(f)\lVert=\lVert f\lVert_{L^\infty(X)}$ for each $f\in C(X)$.
+\item By Tiezte extension theorem, the restriction map $f\in C(Y)\mapsto f|_X\in C(X)$ is surjective and has kernel $\mc I$. Conclude that we have a well-defined bijective unital $*$-homomorphism $\wtd\pi:C(X)\rightarrow A$ sending each $f|_X$ to $\pi(f)$ (where $f\in C(Y)$). Apply the proof of Prop. \ref{lb46} to $\wtd\pi$ and $\wtd\pi^{-1}$ to show that $\wtd\pi$ is isometric, i.e., $\lVert  \wtd\pi(f)\lVert=\lVert f\lVert_{l^\infty(X)}$ for each $f\in C(X)$.
 
 \item Let $A$ be any commutative (unital) $C^*$-subalgebra of $\End(\mc H)$, i.e., $A$ is a commutative unital norm-closed $*$-subalgebra of $\End(\mc H)$. Show that $A$ is generated by a set $\fk G$ of  mutually-commuting self-adjoint operators. Conclude that any $A$ is equivalent (as a normed unital $*$-algebra) to $C(X)$ for some compact Hausdorff space $X$. (This is the \textbf{Gelfand-Naimark theorem}.)
 \end{enumerate}
@@ -1566,7 +1584,7 @@ The second statement means that the set of all $A\in\End(\mc H)$ is closed under
 
 
 \begin{df}\label{lb27}
-Let $A\in\End(\mc H)$ and let $T$ be a closed operator on $\mc H$. We say $A$ and $T$ \textbf{commute strongly} if
+Let $A\in\End(\mc H)$ and let $T$ be a preclosed operator on $\mc H$. We say $A$ and $T$ \textbf{commute strongly} if
 \begin{align*}
 AT\subset TA,\qquad A^*T\subset TA^*.	
 \end{align*}
@@ -1580,7 +1598,7 @@ Two \textit{bounded operators} $A,B$ commute strongly if and only if they \textb
 In the case that $A$ is unitary, strong and ordinary commutativities are the same:
 
 \begin{pp}\label{lb31}
-A unitary operator $U\in\End(\mc H)$ commutes strongly with a closed operator $T$ on $\mc H$ if and only if $UT=TU$ (equivalently, $UTU^*=T$).
+A unitary operator $U\in\End(\mc H)$ commutes strongly with a preclosed operator $T$ on $\mc H$ if and only if $UT=TU$ (equivalently, $UTU^*=T$).
 \end{pp}
 
 \begin{proof}
@@ -1590,7 +1608,41 @@ Conversely, suppose $UT\subset TU$ and $U^*T\subset TU^*$. $UT\subset TU$ implie
 \end{proof}
 
 
+We now discuss the meaning of strong commutativity when $A$ is a projection.
 
+\begin{pp}\label{lb71}
+Let $T$ be an unbounded operator on $\mc H$. Let $E$ be a projection on $\mc H$. Set $E^\perp=1-E$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $ET\subset TE$.
+\item[(2)] $\Dom(T)=\Dom_1\oplus \Dom_2$ where $\Dom_1\subset E\mc H$ and $\Dom_2\subset E^\perp\mc H$ are linear subspaces satisfying $T\Dom_1\subset E\mc H$ and $T\Dom_2\subset E^\perp\mc H$.
+\end{enumerate}
+Moreover, if (2) is true, then 
+\begin{subequations}\label{eq28}
+\begin{gather}
+\Dom_1=E\Dom(T)=E\mc H\cap\Dom(T)\qquad \Dom_2=E^\perp\Dom(T)=E^\perp\mc H\cap\Dom(T)\label{eq28a}\\
+\Dom(TE)=\Dom_1\oplus E^\perp\mc H\qquad \Dom(TE^\perp)=E\mc H\oplus\Dom_2\label{eq28b}
+\end{gather}
+\end{subequations}
+\end{pp}
+
+
+\begin{proof}
+Assume (1). Then $E\Dom(T)\subset\Dom(T)$. Since we also have $E^\perp T\subset TE^\perp$, we have $E^\perp\Dom(T)\subset\Dom(T)$. This proves $\Dom(T)=E\Dom(T)\oplus E^\perp\Dom(T)$. We have $TE\Dom(T)\subset ET\Dom(T)\subset E\mc H$ and, similarly, $TE^\perp\Dom(T)\subset E^\perp\mc H$. This proves (2).
+
+Assume (2). The decomposition $\Dom(T)=\Dom_1\oplus \Dom_2$ with $\Dom_1\subset E\mc H$ and $\Dom_2\subset E^\perp\mc H$ clearly implies \eqref{eq28a}. It is also easy to check \eqref{eq28b}. Now \eqref{eq28a} shows $E\Dom(T)=\Dom_1\subset\Dom(T)$. For each $\xi\in\Dom(T)$, we have $E\xi\in\Dom_1$, and hence $TE\xi\in T\Dom_1\subset E\mc H$. Similarly $TE^\perp\xi\subset E^\perp\mc H$. Therefore we have $ETE\xi=TE\xi$ and $ETE^\perp\xi=0$. Thus $ET\xi=ETE\xi+ETE^\perp\xi=TE\xi$. This proves (1). 
+\end{proof}
+
+
+
+
+\begin{rem}
+By Prop. \ref{lb71}, $ET\subset TE$ if and only if there exist a unitary map $U:\mc H\rightarrow\mc K_1\oplus\mc K_2$ (where $\mc K_1,\mc K_2$ are Hilbert spaces) such that:
+\begin{itemize}
+\item $UE\mc H=\mc K_1$. Hence $UE^\perp\mc H=\mc K_2$.
+\item There exists unbounded operators $S_1,S_2$ on $\mc K_1,\mc K_2$ with dense domains such that $UTU^*=\diag (S_1,S_2)$. In particular, $\Dom(T)=U^*\Dom(S_1)\oplus U^*\Dom(S_2)$.
+\end{itemize}
+It is clear that $T$ is closed (resp. preclosed) iff both $S_1$ and $S_2$ are so.
+\end{rem}
 
 
 
@@ -1901,13 +1953,18 @@ In particular, $TE_\alpha$ has dense domain (containing $\Dom(T)$).
 If we can choose $F_\blt=E_\blt$,  we say $E_\blt$ is a net of \textbf{(two-sided) bounding projections} for $T$. When $T$ is closed, a net of \textbf{left bounding projections} for $T$ is by definition a net of right bounding projections for $T^*$.
 \end{df}
 
+\begin{rem}
 By Prop. \ref{lb26}, if $E_\blt$ is a net of right (resp. two-sided) bounding projections for a preclosed $T$, then it is so for $\ovl T$. Then (by Prop. \ref{lb42}) each $\ovl TE_\alpha$ is (everywhere defined and) bounded.
+
+Also by Prop. \ref{lb26}, a net of bounding projections for $T$ is also a net of bounding projection for $T^*$.  \hfill\qedsymbol
+\end{rem}
+
 
 
 \begin{eg}\label{lb37}
-Let $T=VH=KV$ be the left and right polar decomposition for a closed operator $T:\mc H_1\rightarrow\mc H_2$. Let $\mc H_1$ be unitarily equivalent via a unitary operator $U$ to $\bigoplus_{n\in\fk N}L^2([0,+\infty),\mu_n)$ where each $\mu_n$ is a positive finite  Borel measure, such that $UHU^*$ is the multiplication of the identity function $x$. For each $r\geq 0$, let $\chi_{[0,r]}$ be the multiplication operator of the characteristic function of $[0,r]$. Then $\chi_{[0,r]}$ increases and converges to $1$ as $r\nearrow+\infty$. It is clear that $\chi_{[0,r]}$ is a net of bounding projections for $x$.  
+Let $T=VH=KV$ be the left and right polar decomposition for a closed operator $T:\mc H_1\rightarrow\mc H_2$. Let $\mc H_1$ be unitarily equivalent via a unitary operator $U$ to $\bigoplus_{n\in\fk N}L^2([0,+\infty),\mu_n)$ where each $\mu_n$ is a positive finite  Borel measure, such that $UHU^*=M_x$ where $x$ is the standard coordinate function of $[0,+\infty)$.  Then $M_{\chi_{[0,r]}}$ increases and converges to $\id$ as $r\nearrow+\infty$. It is clear that $M_{\chi_{[0,r]}}$ is a net of bounding projections for $M_x$.  
 
-Let $E_r=U^*\chi_{[0,r]}U$. Then $E_r$ is a net of bounding projections for $H$, and hence a net of right bounding projections for $T$. $F_r:=VE_rV^*$ is a net of bounding projections for $K=VHV^*$, and hence (noting $T^*=V^*K$) a net of left bounding projections for $T$. We have $F_rT\subset TE_r$. We say $E_\blt,F_\blt$ are respectively the \textbf{right} and \textbf{left bounding projections for $T$ via polar decompositions}.  
+Let $E_r=U^*M_{\chi_{[0,r]}}U$. Then $E_r$ is a net of bounding projections for $H$, and hence a net of right bounding projections for $T$. $F_r:=VE_rV^*$ is a net of bounding projections for $K=VHV^*$, and hence (noting $T^*=V^*K$) a net of left bounding projections for $T$. We have $F_rT\subset TE_r$. We say $E_\blt,F_\blt$ are respectively \textbf{right} and \textbf{left bounding projections for $T$ via polar decompositions}.  
 
 We note that each $E_r$ is in the von Neumann algebra generated by $(1+H)^{-1}$ (and is hence in $\{T\}''$), and similarly $F_r$ is in the von Neumann algebra generated by $(1+K)^{-1}$ (and is hence in $\{T\}''$). (This fact will be generalized later, cf. Thm. \ref{lb50}.)
 \end{eg}
@@ -1916,7 +1973,7 @@ We note that each $E_r$ is in the von Neumann algebra generated by $(1+H)^{-1}$ 
 \begin{proof}
 The statement about bounding projections is easy to check. Note that $F_rT\subset TE_r$ is from $E_rH\subset HE_r$.
 	
-We explain why each $E_r$ is in $\{(1+H)^{-1}\}''$; equivalently, $\chi_r\in\{(1+x)^{-1}\}''$. Let $h=(1+x)^{-1}$. Then each polynomial of $h$ is in $\{h\}''$. Note that $h$ takes values in $[0,1]$. Then, by Stone-Weierstrass theorem,  $f\circ h$ is in $\{h\}''$  whenever $f\in C([0,1])$. Now choose a sequence $f_n\in C([0,1])$ with $\lVert f_n\lVert_\infty\leq1$ and converging pointwise to $\chi_{[1/(1+r),1]}$. Then $f_n\circ h\in\{h\}''$ is uniformly (with respect to $n$ and $[0,+\infty)$) bounded and converging pointwise  to $\chi_{[1/(1+r),1]}\circ h=\chi_{[0,r]}$. Dominated convergence theorem shows $f_n\circ h$ (as a sequence of multiplication operators) converges strongly to $\chi_{[0,r]}$. So $\chi_{[0,r]}\in\{h\}''$.
+We explain why each $E_r$ is in $\{(1+H)^{-1}\}''$; equivalently, we show $M_{\chi_{[0,r]}}\in\{M_h\}''$ where $h=(1+x)^{-1}$. (Note that $(1+M_x)^{-1}=M_h$.) Clearly $M_{f\circ h}$ belongs to $\{M_h\}''$ if $f$ is a polynomial (since $M_{f\circ h}=f(M_h)$). Note that $h$ takes values in $[0,1]$. Then, by Stone-Weierstrass theorem,  $M_{f\circ h}\in\{M_h\}''$ whenever $f\in C([0,1])$. Now choose a sequence $f_n\in C([0,1])$ with $\lVert f_n\lVert_\infty\leq1$ and converging pointwise to $\chi_{[1/(1+r),1]}$. Then $f_n\circ h$ is uniformly (with respect to $n$ and $[0,+\infty)$) bounded and converging pointwise  to $\chi_{[1/(1+r),1]}\circ h=\chi_{[0,r]}$. The dominated convergence theorem shows that $M_{f_n\circ h}$ (as a sequence of multiplication operators) converges strongly to $M_{\chi_{[0,r]}}$. This proves $M_{\chi_{[0,r]}}\in\{M_h\}''$.
 \end{proof}
 
 
@@ -1931,14 +1988,16 @@ The reason we are interested in left and right bounding projections is due to th
 \begin{thm}\label{lb44}
 Let $E_\blt=(E_\alpha)_{\alpha\in\fk A}$ be a net of right bounding projections for a preclosed unbounded operator $T:\mc H_1\rightarrow\mc H_2$. Then the dense subspace
 \begin{align*}
-\Dom_0:=\bigcup_{\alpha\in\fk A}\Rng(E_\alpha)	
+\Dom_0:=\bigcup_{\alpha\in\fk A}E_\alpha\big(\Dom(T)\big)
 \end{align*}
-of $\mc H_1$ is inside $\Dom(T)$ and is a core for $T$.
+is a subspace of $\Dom(T)$ and is a core for $T$. 
 \end{thm}
+
+In particular, $\Dom_0$ is dense in $\mc H_1$.
 
 
 \begin{proof}
-Let $F_\blt$ converge strongly to $F\in\End(\mc H_2)$. That $F_\alpha T\subset TE_\alpha$ shows that $E_\alpha\Dom(T)\subset\Dom(T)$. Suppose $\xi\in\Dom(T)$. Then $E_\blt\xi$ belongs to $\Dom(T)$ and converges to $\xi$ (since $E_\blt\rightarrow 1$). Moreover, $TE_\blt\xi=F_\blt T\xi$ converges  to $FT\xi$.  As $\ovl T$ is closed, and $\ovl TE_\blt\xi\rightarrow FT\xi$, we conclude $\ovl T\xi=FT\xi$ and hence $T\xi=F T\xi$. Now, as $E_\blt\xi\in\Dom(T)$ converges to  $\xi\in\Dom(T)$ and $TE_\blt\xi$ converges to $T\xi$ for each $\xi\in\Dom(T)$, we conclude that $\Dom_0$ is a core for $T$.
+Let $F_\blt$ converge strongly to $F\in\End(\mc H_2)$. That $F_\alpha T\subset TE_\alpha$ shows that $E_\alpha\Dom(T)\subset\Dom(T)$. This proves $\Dom_0\subset\Dom(T)$. Suppose $\xi\in\Dom(T)$. Then $E_\blt\xi$ belongs to $\Dom_0$ and converges to $\xi$ (since $E_\blt\rightarrow 1$). Moreover, $TE_\blt\xi=F_\blt T\xi$ converges  to $FT\xi$. Therefore $(\xi,FT\xi)$ belongs to the closure of the graph of $T$ (i.e., belongs to $\scr G(\ovl T)$). So $FT\xi=\ovl T\xi=T\xi$. Hence $(\xi,T\xi)\in\scr G(T)$ can be approximated by $(E_\blt\xi,TE_\blt\xi)$. So $\Dom_0$ is a core for $T$.
 \end{proof}
 
 The above proof shows:
@@ -1964,14 +2023,14 @@ As an application, we get an equivalent condition for the strong commutativity o
 
 
 \begin{proof}
-Choose any $A\in\{TE_\blt\}'$. Then $ATE_\alpha=TE_\alpha A$ as (everywhere defined) bounded operators (since $A$ and $TE_\alpha$ are both bounded, notice Prop. \ref{lb42}).  Choose any $\xi\in\Dom(T)$. Then $E_\alpha A$ converges to $A\xi$. Also $TE_\alpha A\xi=ATE_\alpha\xi=AF_\alpha T\xi$ converges to $AFT\xi$ since the sequence $AF_\alpha$ converges strongly to $AF$. By Lemma \ref{lb40}, $FT\xi=T\xi$. So $TE_\alpha A\xi$ converges to $AT\xi$. Thus, as $T$ is closed, we conclude $A\xi\in\Dom(T)$ and $TA\xi=AT\xi$. This proves $AT\subset TA$. Similarly, $A^*T\subset TA^*$.
+Choose any $A\in\{TE_\blt\}'$. Then $ATE_\alpha=TE_\alpha A$ as (everywhere defined) bounded operators (since $A$ and $TE_\alpha$ are both bounded, notice Prop. \ref{lb42}).  Choose any $\xi\in\Dom(T)$. Then $E_\alpha A\xi$ converges to $A\xi$. Also $TE_\alpha A\xi=ATE_\alpha\xi=AF_\alpha T\xi$ converges to $AFT\xi$ since the net $F_\alpha$ converges strongly to $F$. By the closedness of $T$, we have $A\xi\in\Dom(T)$ and $TA\xi=AFT\xi$. By Lemma \ref{lb40}, $FT\xi=T\xi$. So $AT\subset TA$. Similarly, $A^*T\subset TA^*$.
 	
 	
 Now assume each $E_\alpha\in\{T\}''$. We shall show that each $TE_\alpha$ is in $\{T\}''$,  equivalently, that each $TE_\alpha$ commutes adjointly with $\{T\}'$. Choose any $A\in\{T\}'$ (i.e. $A$ commutes strongly with $T$). Note that $E_\alpha\in\{T\}''$ implies $A$ commutes adjointly with $E_\alpha$. Then $AT\subset TA$, so $ATE_\alpha\subset TAE_\alpha=TE_\alpha A$. Similarly, $A^*T\subset TA^*$ implies $A^*TE_\alpha\subset TE_\alpha A^*$. So $A$ commutes adjointly with $TE_\alpha$.
 \end{proof}
 
 
-
+The following theorem gives an application of Thm. \ref{lb41}. It is not used elsewhere in this note.
 
 
 
@@ -1981,9 +2040,9 @@ Let $S,T$ be strongly commuting closed operators on $\mc H$. Assume $\xi\in\Dom(
 
 
 \begin{proof}
-Let $E_r,F_r$ be  nets of right resp. left bounding projections of $T$ as in Example \ref{lb37}, which satisfies $E_r,F_r,TE_r\in\{T\}''$ also by Thm. \ref{lb41}. Then these three commute adjointly with $\{S\}''$, equivalently, commute strongly with $S$. So $E_rS\subset SE_r$, and $TE_rS\subset STE_r$ which shows $TE_r\Dom(S)\subset\Dom(S)$. 
+Let $E_r,F_r$ be  nets of right resp. left bounding projections of $T$ as in Example \ref{lb37}, which satisfies $TE_r\in\{T\}''$ also by Thm. \ref{lb41}. Then these three commute adjointly with $\{S\}''$, equivalently, commute strongly with $S$. So  $TE_rS\subset STE_r$. In particular, $TE_r\Dom(S)\subset\Dom(S)$. 
 
-Choose $\xi\in\Dom(TS)\cap\Dom(T)$, i.e., $\xi\in\Dom(S)\cap\Dom(T)$ and $S\xi\in\Dom(T)$. Then $TE_r\xi\in\Dom(S)$, and $STE_r\xi=TE_rS\xi=F_rTS\xi$. As $r\rightarrow+\infty$, we have $TE_r\xi=F_rT\xi\rightarrow T\xi$ and $STE_r\xi=F_rTS\xi\rightarrow TS\xi$. We see $(TE_r\xi,STE_r)$ approaches $(T\xi,TS\xi)$. Since $S$ is closed, $(T\xi,TS\xi)$ must be on the graph of $S$. So $T\xi\in\Dom(S)$ and $ST\xi=TS\xi$.
+Choose $\xi\in\Dom(TS)\cap\Dom(T)$. Then $TE_r\xi\in\Dom(S)$, and $STE_r\xi=TE_rS\xi=F_rTS\xi$. As $r\rightarrow+\infty$, we have $TE_r\xi=F_rT\xi\rightarrow T\xi$ (since $\xi\in\Dom(T)$) and $STE_r\xi=F_rTS\xi\rightarrow TS\xi$ (since $\xi\in\Dom(TS)$). We see $(TE_r\xi,STE_r\xi)$ approaches $(T\xi,TS\xi)$. Since $S$ is closed, $(T\xi,TS\xi)$ must be on the graph of $S$. So $T\xi\in\Dom(S)$ and $ST\xi=TS\xi$.
 \end{proof}
 
 
@@ -2019,29 +2078,28 @@ Note that even in the case that $T_1,\dots,T_N$ are normal and commute strongly,
 \begin{pp}\label{lb43}
 Let $T_1,\dots,T_N$ be closed operators on $\mc H$. 
 \begin{enumerate}
-\item  If $T_1,\dots,T_N$ are normal and strongly commuting, then there is a sequence $E_n$ of (two-sided) bounding projections for $T_1,\dots,T_N$ (and hence for $T_1^*,\dots,T_N^*$).
+\item  If $T_1,\dots,T_N$ are normal and strongly commuting, then there is a sequence $E_n$ of (two-sided) bounding projections for $T_1,\dots,T_N$ (and hence for $T_1^*,\dots,T_N^*$) in $\{T_1,\dots,T_N\}''$.
 \item Suppose there is a net $E_\blt$ of (two-sided) bounding projections for $T_1,\dots,T_N$. Let $p(T_1,T_1^*,\dots,T_N,T_N^*)$ be a polynomial of $T_1,T_1^*,\dots T_N,T_N^*$. Then $p(T_1,T_1^*,\dots,T_N,T_N^*)$ is densely defined and preclosed, and $E_\blt$  is also a net of bounding projections for $p(T_1,T_1^*,\dots,T_N,T_N^*)$ (and hence for its closure).
 \end{enumerate}
 \end{pp}	
 
 
 \begin{proof}
-1. We assume the setting of Thm. \ref{lb35}. Let $\mc D_r$ be the open disc in $\Cbb$ with center $0$ and radius $r$. We let $E_n=U^*\chi_{\mc D_n\times\cdots\times \mc D_n}U$. Then one checks easily that $(E_n)_{n\in\Nbb}$ is a sequence of bounding projections for $T_1,\dots,T_N$.
+1. We assume the setting of Thm. \ref{lb35}. Let $\mc D_r$ be the open disc in $\Cbb$ with center $0$ and radius $r$. We let $E_n=U^*M_{\chi_{\mc D_n\times\cdots\times \mc D_n}}U$. Then one checks easily that $(E_n)_{n\in\Nbb}$ is a sequence of bounding projections for $T_1,\dots,T_N$.
 	
-2. Since $E_\alpha T_j\subset T_jE_\alpha$ and $T_jE_\alpha$ is continuous (and hence bounded by Prop. \ref{lb42}), we have $\Rng(E_\alpha)=E_\alpha\mc H\subset \Dom(T)$. Moreover, $T_jE_\alpha$ and hence $T_j|_{\Rng(E_\alpha)}$ are bounded and leave $\Rng(E_\alpha)$ invariant. The same can be said about $T_j^*|_{\Rng(E_\alpha)}$. Thus, the action of $p(T_1,T_1^*,\dots,T_N,T_N^*)$  on each $\Rng(E_\alpha)$  is (everywhere defined and) bounded, which equals $p(T_1E_\alpha,T_1^*E_\alpha,\dots,T_NE_\alpha,T_N^*E_\alpha)$. Thus $p(T_1,T_1^*,\dots,T_N,T_N^*)$ has domain containing $\Dom_0=\bigcup_{\alpha\in\fk A}\Rng(E_\alpha)$. Similarly, $p^*(\cdots)$ has dense domain. Thus, by \eqref{eq14}, $p(T_1,T_1^*,\dots,T_N,T_N^*)$ is preclosed since its adjoint has dense domain. Using Prop. \ref{lb25}, one checks easily that $E_\alpha p(\cdots)\subset p(\cdots)E_\alpha$. 
-%Finally, note that $U\pi(f^*)U^*=f^*=(v_f|f|)^*=|f|v_f$ where the functions are understood as multiplication operators. ($f^*$ is the multiplication of $f$, not a priori the adjoint of the multiplication of $f$.)
+2. Since $E_\alpha T_j\subset T_jE_\alpha$ and $T_jE_\alpha$ is continuous (and hence bounded by Prop. \ref{lb42}), by \eqref{eq28b} of Prop. \ref{lb71}, we have $E_\alpha\mc H=E\Dom(T_j)$ where the latter is a $T_j$-invariant subspace of $\Dom(T_j)$. Similarly, $E_\alpha\mc H$ is a $T_j^*$-invariant subspace of $\Dom(T_j^*)$. Therefore, $E_\alpha\mc H$ is a $p(T_1,T_1^*,\dots,T_N,T_N^*)$-invariant subspace of the domain of  $p(T_1,T_1^*,\dots,T_N,T_N^*)$. Thus $p(T_1,T_1^*,\dots,T_N,T_N^*)$ has domain containing $\Dom_0=\bigcup_{\alpha\in\fk A}E_\alpha\mc H$. Similarly, $p^*(\cdots)$ has dense domain. Thus, by \eqref{eq14}, $p(T_1,T_1^*,\dots,T_N,T_N^*)$ is preclosed since its adjoint has dense domain. Using Prop. \ref{lb25}, one checks easily that $E_\alpha p(\cdots)\subset p(\cdots)E_\alpha$. Clearly $p(\cdots)$ is bounded when restricted to $E_\alpha\mc H$ for each $\alpha$. This proves that $E_\blt$ is a net of bounding projection of $p(\cdots)$.
 \end{proof}
 
 
 \section{Unbounded Borel functional calculus}
 
 
-In this section, we let $\scr B(X)$ \index{BX@$\scr B(X),B(X)$} be the unital $*$-algebra of complex-valued (non-necessarily bounded) Borel functions on a Borel set $X$. The algebra structure is given in an obvious way, and the $*$-structure is given by $f^*(x)\equiv\ovl f(x)=\ovl{f(x)}$. We let $B(X)$ be the unital $*$-subalgebra of bounded Borel functions.
+In this section, we let $\scr B(X)$ \index{BX@$\scr B(X),B(X)$} be the unital $*$-algebra of complex-valued (non-necessarily bounded) Borel functions on a topological space $X$. The algebra structure is given in an obvious way, and the $*$-structure is given by $f^*(x)\equiv\ovl f(x)=\ovl{f(x)}$. We let $B(X)$ be the unital $*$-subalgebra of bounded Borel functions.
 
 
 
 
-We fix strongly commuting normal closed operators $T_1,\dots,T_N$ on $\mc H$. In the following statement of the theorem, to avoid confusion of notations, we write the closure of a preclosed operator $A$ as $A^{**}$. Let $z_j$ denote the function sending $(z_1,\dots,z_N)$ to $z_j$.
+We fix strongly commuting normal closed operators $T_1,\dots,T_N$ on $\mc H$. In the following statement of the theorem, to avoid confusion of notations, we write the closure of a preclosed operator $A$ as $A^{**}$. Let $z_j$ denote the function sending $(\zeta_1,\dots,\zeta_N)$ to $\zeta_j$.
 
 
 \begin{thm}[Unbounded Borel functional calculus]\label{lb47}
@@ -2051,9 +2109,9 @@ There is a unique map $\pi$ from $\scr B(\Cbb^N)$ to the set of closed normal op
 \item $\pi(z_j)=T_j$ for each $1\leq j\leq N$.
 \item $\pi(1)=1$, $\pi(af+bg)=\big(a\pi(f)+b\pi(g)\big)^{**}$, $\pi(fg)=\big(\pi(f)\pi(g)\big)^{**}$, $\pi(f^*)=\pi(f)^*$. (Note Prop. \ref{lb43} for the preclosedness.)
 \item If $f\in B(\Cbb^N)$, then $\pi(f)$ is a bounded linear operator on $\mc H$.
-\item Assume $f\in B(\Cbb^N)$, and $(f_\alpha)_{\alpha\in\fk A}\in B(\Cbb^N)$ is a net such that $\sup_{\alpha\in\fk A}\lVert f_\alpha\lVert_{L^\infty(\Cbb^N)}<+\infty$, and that $\int_{\Cbb^N}|f_\blt-f|d\mu\rightarrow 0$ for each finite (positive) Borel measure $\mu$ on $\Cbb^N$. Then $\pi(f_\blt)\rightarrow\pi(f)$ strongly. 
+\item Assume $f\in B(\Cbb^N)$, and $(f_\alpha)_{\alpha\in\fk A}\in B(\Cbb^N)$ is a net such that $\sup_{\alpha\in\fk A}\lVert f_\alpha\lVert_{l^\infty(\Cbb^N)}<+\infty$, and that $\int_{\Cbb^N}|f_\blt-f|d\mu\rightarrow 0$ for each finite (positive) Borel measure $\mu$ on $\Cbb^N$. Then $\pi(f_\blt)\rightarrow\pi(f)$ strongly. 
 \end{enumerate}
-Moreover, for any $\pi$ satisfying the above conditions, if we choose spectral decomposition as in Thm. \ref{lb35}, then for each $f\in\scr B(\Cbb^N)$, $U\pi(f)U^*$ equals $f$, i.e.  the multiplication operator of $f$ on $\bigoplus_{n\in\fk N}L^2(\Cbb^N,\mu_n)$.
+Moreover, for any $\pi$ satisfying the above conditions, if we choose spectral decomposition as in Thm. \ref{lb35}, then for each $f\in\scr B(\Cbb^N)$ we have $U\pi(f)U^*=M_f$.
 \end{thm}
 
 We write
@@ -2064,42 +2122,56 @@ if we want to stress the dependence on the operators.
 
 
 \begin{proof}[Proof of existence]
-Choose spectral decomposition as in Thm. \ref{lb35}. We define $\pi(f)=U^*fU$ for each $f\in\scr B(\Cbb^N)$.	By Example \ref{lb33}, $f$ is normal with left  and right polar decomposition $f=v_f|f|=v_f\centerdot|f|=|f|\centerdot v_f$, where $v_f$ is defined to be $f/|f|$ when $f\neq 0$, and $0$ otherwise. So $\pi(f)$ is normal with left and right polar decompositions $\pi(f)=\pi(v_f)\pi(|f|)=\pi(|f|)\pi(v_f)$. Clearly $\pi(z_j)=T_j$, and $\pi(f)$ is bounded when $f$ is so. For any other $g\in\scr B(\Cbb^N)$ with left polar decomposition $g=v_g\centerdot|g|$, it is clear that $v_g$ and $(1+|g|)^{-1}$ commute strongly with $v_f$ and $(1+|f|)^{-1}$. So the multiplication operators $f,g$ commute strongly by Cor. \ref{lb34}. Hence $\pi(f),\pi(g)$ commute strongly.
+Choose spectral decomposition as in Thm. \ref{lb35}. We define $\pi(f)=U^*M_fU$ for each $f\in\scr B(\Cbb^N)$.	By Example \ref{lb33}, $M_f$ is normal with left  and right polar decomposition $M_f=M_{v_f}M_{|f|}=M_{|f|}M_{v_f}$, where $v_f$ is defined to be $f/|f|$ when $f\neq 0$, and $0$ otherwise. So $\pi(f)$ is normal with left and right polar decompositions $\pi(f)=\pi(v_f)\pi(|f|)=\pi(|f|)\pi(v_f)$. Clearly $\pi(z_j)=T_j$, and $\pi(f)$ is bounded when $f$ is so. For any other $g\in\scr B(\Cbb^N)$, it is clear that $M_{v_g}$ and $(1+M_{|g|})^{-1}=M_{(1+|g|)^{-1}}$ commute strongly with $M_{v_f}$ and $(1+M_{|f|})^{-1}=M_{(1+|f|)^{-1}}$. So $M_f,M_g$ commute strongly by Cor. \ref{lb34}. Hence $\pi(f),\pi(g)$ commute strongly.
 
-Clearly $\pi(1)=1$. For each $n\in\Zbb_+$, let $\Omega_n\subset\Cbb^N$ be the set of all points at which $|f|,|g|,|af+bg|,|fg|,|f^*|,|g^*|\leq n$. As $\chi_{\Omega_n}$ commute strongly with $f,g,fg$ (as proved above), it is clear that $\chi_{\Omega_n}$ is a sequence of (two-sided) bounding projections for both $f,g,fg$. So $E_n=U^*\chi_{\Omega_n}U$ is a sequence of bounding projections for $\pi(f),\pi(g),\pi(fg)$, and also for $\ovl{\pi(f)\pi(g)}$ by Prop. \ref{lb43}. It is clear that $\pi(fg)$ and $\ovl{\pi(f)\pi(g)}$ are equal on each $\Rng(E_n)$ (noting that $U\Rng(E_n)=\Rng(\chi_{\Omega_n})$ is the set of $(f_\blt)\in \bigoplus L^2(\Cbb^N,\mu_n)$ which are $0$ outside $\Omega_n$). So $\pi(fg)$ and $\ovl{\pi(f)\pi(g)}$ are equal on $\Dom_0:=\bigcup_n\Rng(E_n)$, which by Thm. \ref{lb44} is a core for both operators. So they are the same closed operators. The same method shows also $\pi(af+bg)=\ovl{\pi(af+bg)}$. That $\pi(f)^*=\pi(f^*)$ follows from the same method, or follows from that the adjoint of the multiplication of $f$ equals the multiplication of $f^*$ (cf. Example \ref{lb33}).
+Clearly $\pi(1)=1$. For each $n\in\Zbb_+$, let $\Omega_n\subset\Cbb^N$ be the set of all points at which $|f|,|g|,|af+bg|,|fg|\leq n$. As $M_{\chi_{\Omega_n}}$ commute strongly with $M_f,M_g,M_{fg}$ (as proved above), it is clear that $M_{\chi_{\Omega_n}}$ is a sequence of (two-sided) bounding projections for $M_f,M_g,M_{fg}$. So $E_n=U^*M_{\chi_{\Omega_n}}U$ is a sequence of bounding projections for $\pi(f),\pi(g),\pi(fg)$, and also for $\ovl{\pi(f)\pi(g)}$ by Prop. \ref{lb43}. It is clear that $\pi(fg)$ and $\ovl{\pi(f)\pi(g)}$ are equal on each $\Rng(E_n)$ (noting that $U\Rng(E_n)=\Rng(M_{\chi_{\Omega_n}})$ is the set of $(f_\blt)\in \bigoplus L^2(\Cbb^N,\mu_n)$ which are $0$ outside $\Omega_n$). So $\pi(fg)$ and $\ovl{\pi(f)\pi(g)}$ are equal on $\Dom_0:=\bigcup_n\Rng(E_n)$, which by Thm. \ref{lb44} is a core for both operators. So they are the same closed operators. The same method shows also $\pi(af+bg)=\ovl{\pi(af+bg)}$. That $\pi(f)^*=\pi(f^*)$ follows from the fact that both sides have core $\Dom_0$ (since $E_\blt$ is also a bounding sequence for $\pi(f)^*$).
 
-Finally, for bounded Borel functions, the strong convergence of $\pi(f_\blt)\rightarrow\pi(f)$ for a uniformly $L^\infty$-bounded $f_\blt$ converging to $f$ in the $L^1(\Cbb^N,\mu)$ norm (for every finite positive Borel $\mu$) can be proved using exactly the same method as in Thm. \ref{lb28}.
+Finally, for bounded Borel functions, the strong convergence of $\pi(f_\blt)\rightarrow\pi(f)$ for a uniformly $l^\infty$-bounded $f_\blt$ converging to $f$ in the $L^1(\Cbb^N,\mu)$ norm (for every finite positive Borel $\mu$) can be proved using exactly the same method as in Thm. \ref{lb28}.
 \end{proof}	
 
 
 
 \begin{proof}[Proof of uniqueness]
-Step 1. If $\Omega$ is a Borel subset of $\Cbb^N$, then $\pi(\chi_\Omega)^*=\pi(\chi_\Omega^*)=\pi(\chi_\Omega)$ and $\pi(\chi_\Omega)^2=\pi(\chi_\Omega^2)=\pi(\chi_\Omega)$ shows $\pi(\chi_\Omega)$ is a projection. If $f\in\scr B(\Cbb^N)$ is bounded on $\Omega$, then $\pi(\chi_{\Omega})\pi(f)\subset \ovl{\pi(\chi_{\Omega})\pi(f)}=\pi(f\chi_\Omega)$. Also, since $\pi(f)\pi(\chi_\Omega)$ has closure $\pi(f\chi_\Omega)$, by Prop. \ref{lb42}, we learn that $\pi(f)\pi(\chi_\Omega)$ is bounded and equals its closure. We conclude $\pi(\chi_\Omega)\pi(f)\subset\pi(f)\pi(\chi_\Omega)$. Simiarly, $\pi(\chi_\Omega)\pi(f)^*\subset\pi(f)^*\pi(\chi_\Omega)$ since $\pi(f)^*=\pi(f^*)$. It then follows that if $\Omega_\blt=(\Omega_\alpha)_{\alpha\in\fk A}$ is an increasing net of Borel subsets of $\Cbb^N$ satisfying that $\bigcup_\alpha \Omega_\alpha=\Cbb^N$, and that on each $\Omega_\alpha$ the function $f$ is bounded, then $\pi(\chi_{\Omega_\blt})$ is a net of (two-sided) bounding projections for $\pi(f)$. 
+Step 1. If $\Omega$ is a Borel subset of $\Cbb^N$, then $\pi(\chi_\Omega)^*=\pi(\chi_\Omega^*)=\pi(\chi_\Omega)$ and $\pi(\chi_\Omega)^2=\pi(\chi_\Omega^2)=\pi(\chi_\Omega)$ shows $\pi(\chi_\Omega)$ is a projection. If $f\in\scr B(\Cbb^N)$ is bounded on $\Omega$, then $\pi(\chi_{\Omega})\pi(f)\subset \ovl{\pi(\chi_{\Omega})\pi(f)}=\pi(f\chi_\Omega)$. Also, since $\pi(f)\pi(\chi_\Omega)$ has closure $\pi(f\chi_\Omega)$, by Prop. \ref{lb42}, we learn that $\pi(f)\pi(\chi_\Omega)$ is bounded and equals its closure. We conclude $\pi(\chi_\Omega)\pi(f)\subset\pi(f)\pi(\chi_\Omega)$. It then follows that if $\Omega_\blt=(\Omega_\alpha)_{\alpha\in\fk A}$ is an increasing net of Borel subsets of $\Cbb^N$ satisfying that $\bigcup_\alpha \Omega_\alpha=\Cbb^N$, and that on each $\Omega_\alpha$ the function $f$ is bounded, then $\pi(\chi_{\Omega_\blt})$ is a net of (two-sided) bounding projections for $\pi(f)$. 
 
-By Thm. \ref{lb44}, the closed operator $\pi(f)$ is determined by its restriction to each $\Rng(\pi(\chi_{\Omega_\alpha}))$, and hence determined by $\pi(f)\pi(\chi_{\Omega_\alpha})=\pi(f\chi_{\Omega_\alpha})$, where $f\chi_{\Omega_\alpha}\in B(\Cbb^N)$. Since we can always find such $\Omega_\blt$ for $f$ (e.g., $\Omega_n$ is the set of all points at which $|f|<n$),  it suffices to prove the uniqueness of $\pi$ on $B(\Cbb^N)$.
+By Thm. \ref{lb44}, the closed operator $\pi(f)$ is determined by its restriction to each $\Rng(\pi(\chi_{\Omega_\alpha}))$, and hence determined by $\pi(f)\pi(\chi_{\Omega_\alpha})=\pi(f\chi_{\Omega_\alpha})$, where $f\chi_{\Omega_\alpha}\in B(\Cbb^N)$. Since we can always find such $\Omega_\blt$ for $f$ (e.g., $\Omega_n$ is the set of all points at which $|f|<n$),  it suffices to prove the uniqueness of $\pi$ on $B(\Cbb^N)$.\\[-1ex]
+
+
+
 
 Step 2. Choose $f\in\scr B(\Cbb^N)$ with positive values. We claim that $\pi(f)$ is a positive closed operator. We have
 \begin{align*}
 	\pi(f)=\ovl{\pi(f^{\frac 12})\pi(f^{\frac 12})}\supset \pi(f^{\frac 12})\pi(f^{\frac 12})=\pi(f^{\frac 12})^*\pi(f^{\frac 12})
 \end{align*}
-since the conjugate of $f^{\frac 12}$ is itself. Let $A=\pi(f^{\frac 12})^*\pi(f^{\frac 12})$, which is positive and hence self-adjoint. $\pi(f)$ is also self-adjoint since $f^*=f$. So $\pi(f)\supset A$ implies $\pi(f)^*\subset A^*$, and hence $\pi(f)\subset A$. So $\pi(f)$ equals $A$, which is therefore positive.
+since the conjugate of $f^{\frac 12}$ is itself. Let $A=\pi(f^{\frac 12})^*\pi(f^{\frac 12})$, which is positive and hence self-adjoint. $\pi(f)$ is also self-adjoint since $f^*=f$. So $\pi(f)\supset A$ implies $\pi(f)^*\subset A^*$, and hence $\pi(f)\subset A$. So $\pi(f)$ equals $A$, which is therefore positive.\\[-1ex]
 
 Step 3. Choose $f\in\scr B(\Cbb^N)$, and let $\Omega\subset\Cbb^N$ be the subset of all points at which $f\neq 0$. We claim $\ovl{\Rng(\pi(f))}=\Rng(\pi(\chi_\Omega))$. (Recall that $\pi(\chi_\Omega)$ is a projection.) Note that $f=f\chi_\Omega$. So $\ovl {\pi(\chi_\Omega)\pi(f)}= \pi(\chi_\Omega f)=\pi(f)$, which shows $\Rng(\pi(f))\subset\Rng(\pi(\chi_\Omega))$.
 
-Conversely, for each $n\in\Zbb_+$ we let $\Omega_n\subset\Cbb^N$ be the set of all points at which $1/n<|f|$. Then the $L^\infty$-norms  of $\chi_{\Omega_n}$ are uniformly bounded, and $\chi_{\Omega_n}$ converges to $\chi_\Omega$ in the $L^1(\Cbb^N,\mu)$-norm for any positive finite Borel $\mu$. So $\pi(\chi_n)$ converges strongly to $\pi(\chi)$. Thus, to prove   $\ovl{\Rng(\pi(f))}=\Rng(\pi(\chi_\Omega))$, it suffices to show $\Rng(\pi(\chi_{\Omega_n}))\subset\ovl{\Rng(\pi(f))}$ for each $n$. Define $g_n\in B(\Cbb^N)$ to be $0$ outside $\Omega_n$ and $1/f$ in $\Omega_n$. Then $fg_n=\chi_{\Omega_n}$. So $\pi(\chi_{\Omega})=\ovl{\pi(f)\pi(g_n)}$ proves $\Rng(\pi(\chi_{\Omega_n}))\subset\ovl{\Rng(\pi(f))}$.
+Conversely, for each $n\in\Zbb_+$ we let $\Omega_n\subset\Cbb^N$ be the set of all points at which $1/n<|f|$. Then the $l^\infty$-norms  of $\chi_{\Omega_n}$ are uniformly bounded, and $\chi_{\Omega_n}$ converges to $\chi_\Omega$ in the $L^1(\Cbb^N,\mu)$-norm for any positive finite Borel $\mu$. So $\pi(\chi_n)$ converges strongly to $\pi(\chi)$. Thus, to prove   $\ovl{\Rng(\pi(f))}=\Rng(\pi(\chi_\Omega))$, it suffices to show $\Rng(\pi(\chi_{\Omega_n}))\subset\ovl{\Rng(\pi(f))}$ for each $n$. Define $g_n\in B(\Cbb^N)$ to be $0$ outside $\Omega_n$ and $1/f$ in $\Omega_n$. Then $fg_n=\chi_{\Omega_n}$. So $\pi(\chi_{\Omega})=\ovl{\pi(f)\pi(g_n)}$ proves $\Rng(\pi(\chi_{\Omega_n}))\subset\ovl{\Rng(\pi(f))}$.\\[-1ex]
 	
 Step 4. We know each $\pi(z_j)$ is uniquely determined. Let $v_j$ be $z_j/|z_j|$ when $z_j\neq 0$ and be $0$ otherwise. We know that $T_j=\pi(z_j)=\ovl{\pi(v_j)\pi(|z_j|)}$. We claim that $\pi(v_j)\pi(|z_j|)$ is a left polar decomposition for $T_j$. Then, by the uniqueness of left polar decompositions, $\pi(v_j)$ and $\pi(|z_j|)$ are uniquely determined by $T_j$. 
 
-From the previous steps, we know $\pi(|z_j|)$ is positive, and $\ovl{\Rng(\pi(|z_j|))}$ equals $\Rng(\chi_{\Omega_j})$, where $\Omega_j$ is the set of all points at which $z_j\neq 0$. Since $v_j^*v_j=v_jv_j^*=\chi_{\Omega_j}$, we see that $\pi(v_j)$ is a partial isometry whose source space and target space are both $\Rng(\chi_{\Omega_j})$, which equals $\ovl{\Rng(\pi(|z_j|))}$. Thus, by Remark \ref{lb45}, $\pi(v_j)\pi(|z_j|)$ is closed (and hence equals $T_j$), and this product is a left polar decomposition, which must be that of $T_j$.
+From the previous steps, we know $\pi(|z_j|)$ is positive, and $\ovl{\Rng(\pi(|z_j|))}$ equals $\Rng(\chi_{\Omega_j})$, where $\Omega_j$ is the set of all points at which $z_j\neq 0$. Since $v_j^*v_j=v_jv_j^*=\chi_{\Omega_j}$, we see that $\pi(v_j)$ is a partial isometry whose source space and target space are both $\Rng(\chi_{\Omega_j})$, which equals $\ovl{\Rng(\pi(|z_j|))}$. Thus, by Remark \ref{lb45}, $\pi(v_j)\pi(|z_j|)$ is closed (and hence equals $T_j$), and this product is a left polar decomposition, which must be that of $T_j$.\\[-1ex]
 
-Step 5. Let $r_j=(1+|z_j|)^{-1}\in B(X)$. Then by Prop. \ref{lb42},  $\pi(1+|z_j|)\pi(r_j)$ is a closed operator, which must be (everywhere defined and) bounded and equals $1$. So $\pi(1+|z_j|)$ sends each $\pi(r_j)\xi$ to $\xi$, and $\pi(r_j)$ is injective (and has dense range by \eqref{eq19}.) We conclude $\pi(1+|z_j|)\supset A$ where $A$ is the inverse of $\pi(r_j)$ (which is self-adjoint by Example \ref{lb13}), and hence $\pi(1+|z_j|)=\pi(1+|z_j|)^*\subset A^*=A$. This proves $\pi(1+|z_j|)$ equals the $A$, the inverse  of $\pi(r_j)$. So $\pi(r_j)$ is unique since (we have proved) $\pi(1+|z_j|)$ is so.
+Step 5. Let $r_j=(1+|z_j|)^{-1}\in B(X)$. Then by Prop. \ref{lb42},  $\pi(1+|z_j|)\pi(r_j)$ is a closed operator, which must be (everywhere defined and) bounded and equals $1$. So $\pi(1+|z_j|)$ sends each $\pi(r_j)\xi$ to $\xi$, and $\pi(r_j)$ is injective (and has dense range by \eqref{eq19}.) We conclude $\pi(1+|z_j|)\supset A$ where $A$ is the inverse of $\pi(r_j)$ (which is self-adjoint by Example \ref{lb13}), and hence $\pi(1+|z_j|)=\pi(1+|z_j|)^*\subset A^*=A$. This proves $\pi(1+|z_j|)$ equals the $A$, the inverse  of $\pi(r_j)$. So $\pi(r_j)$ is unique since (we have proved) $\pi(1+|z_j|)$ is so.\\[-1ex]
 
 
 
-Step 6. Since $\pi$ restricts to a unital $*$-homomorphism $B(\Cbb^N)\rightarrow\End(\mc H)$, it is clear that $\pi(p\circ(v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N))$ is uniquely determined for any polynomial $p$ of $v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N$. Let $Y=\mbb S^1\times (0,1)\cup \{0\}\times \{1\}\subset \Cbb^2$.  Then we have a bijective Borel map $(v_1,r_1,\dots,v_N,r_N):\Cbb^N\rightarrow Y^N$. Since $Y^N$ is a bounded subset of $(\Cbb\times\Rbb)^N$, it follows that  each $g\in C(\ovl {Y^N})$ (where the closure $\ovl{Y^N}=\ovl Y^N=(\mbb S^1\times[0,1]\cup \{0\}\times\{1\})^N$ is compact) can be approximated uniformly by a sequence of polynomials $p_n$. By Prop. \ref{lb46}, we conclude that $\pi(p_n\circ(v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N))$ approaches in the norm topology to $\pi(g\circ(v_1,r_1,\dots,v_N,r_N))$. Thus $\pi(g\circ(v_1,r_1,\dots,v_N,r_N))$ is uniquely determined.
+Step 6. Since $\pi$ restricts to a unital $*$-homomorphism $B(\Cbb^N)\rightarrow\End(\mc H)$, it is clear that $\pi(p\circ(v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N))$ is uniquely determined for any polynomial $p$ of $v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N$. Let
+\begin{align*}
+Y=\big(\mbb S^1\times (0,1)\big)\cup \big(\{0\}\times \{1\}\big)
+\end{align*}
+Then we have a bijective Borel map $\Phi=(v_1,r_1,\dots,v_N,r_N):\Cbb^N\rightarrow Y^N$ whose inverse is
+\begin{align*}
+\Phi^{-1}(u_1,\rho_1,\dots,u_N,\rho_N)=(u_1(\rho_1^{-1}-1),\dots,(u_N\rho_N^{-1}-1))
+\end{align*}
+The map $g\in B(Y^N)\rightarrow \pi(g\circ\Phi)\in\End(\mc H)$ satisfies the conditions of the (bounded) Borel functional calculus for $\pi(v_1),\pi(r_1),\dots,\pi(v_N),\pi(r_N)$ in Thm. \ref{lb28}. In particular, if $g\in B(Y)$, and if $(g_n)$ is a uniformly $l^\infty(Y)$-bounded net in $B(Y)$ such that $\lim\int_Y |g_\blt-g|d\nu=0$ for each finite Borel measure $\nu$ on $Y$, then for each finite Borel measure $\mu$ on $\Cbb^N$ we have
+\begin{align*}
+\lim \int_{\Cbb^N}|g_\blt\circ\Phi-g\circ\Phi|d\mu=\lim \int_{\Cbb^N}|g_\blt-g|d\Phi_*\mu=0
+\end{align*}
+Thus $\pi(g_\blt\circ\Phi)$ converges strongly to $\pi(g)$.
 
-Now, for each $f\in C_c(\Cbb^N)$, set $\wtd f\in B(\ovl Y^N)$ such that for each point $(u_1,\rho_1,\dots,u_N,\rho_N)\in \ovl Y^N$,  $\wtd f(u_1,\rho_1,\dots,u_N,\rho_N)$ equals $f(u_1(\rho_1^{-1}-1),\dots,u_N(\rho_N^{-1}-1))$ when $\rho_1\cdots\rho_N\neq0$, and equals $0$ otherwise. Using the fact that $f$ has compact support, one checks easily that $\wtd f$ is continuous on $\ovl Y^N$. One checks that $\wtd f\circ(v_1,v_1^*,r_1,\dots,v_N,v_N^*,r_N)$ equals $f$. 
-So $\pi(f)$ is unique whenever $f\in C_c(\Cbb^N)$. By Lemma \ref{lb18}, $\pi(f)$ is also unique in the general case $f\in B(\Cbb^N)$.
+By Step 5, $\pi(v_1),\pi(r_1),\dots,\pi(v_N),\pi(r_N)$ are uniquely determined. Thus, by Thm. \ref{lb28}, $\pi(g\circ\Phi)$ is uniquely determined for each $g\in B(Y^N)$. Now, for each $f\in B(\Cbb^N)$, writing $g=f\circ\Phi^{-1}$, we conclude that $\pi(f)=\pi(g\circ\Phi)$ is uniquely determined.
 \end{proof}
 
 
@@ -2114,9 +2186,13 @@ An alternative proof: By Thm. \ref{lb30}, if we take left polar decomposition of
 \end{proof}
 
 
+
+\begin{comment}
 \begin{rem}
 In \cite[Thm. 5.6.27]{Kad}, a version of uniqueness of unbounded Borel functional calculus $\pi$ (for a single normal closed operator $T$) was  provided. In that theorem, the condition $\{\pi(f)\}''\subset\{T\}''$ is assumed, which simplifies the proof a bit. In our Thm. \ref{lb47} (restricted to a single normal operator $T$), $\{\pi(f)\}''\subset\{T\}''$ is not an assumption but a consequence (Thm. \ref{lb50}). Thus, our Thm. \ref{lb47} is stronger than \cite[Thm. 5.6.27]{Kad}.
 \end{rem}
+\end{comment}
+
 
 
 We discuss compositions of functional calculus. In the following, we write $T_1,\dots,T_N$ as $T_\blt$ for short.
@@ -2131,7 +2207,7 @@ Note that on the left hand side, the functional calculus of $g_1,\dots,g_L$ is d
 
 
 \begin{proof}
-Define a map $\pi:f\in\scr B(\Cbb^L)\mapsto (f\circ(g_1,\dots,g_L))(T_\blt)$. It suffices to check that this is the unique functional calculus for $g_1(T_\blt),\dots,g_N(T_\blt)$. Namely, we shall verify all the conditions in Thm. \ref{lb47} (with $T_j$ replaced by $g_j(T_\blt)$). The only nontrivial condition is the last one about continuity. Choose $f\in B(\Cbb^L)$ and $(f_\alpha)_{\alpha\in\fk A}$ a net satisfying  $\sup_{\alpha\in\fk A}\lVert f_\alpha\lVert_{L^\infty(\Cbb^L)}<+\infty$ and $\int_{\Cbb^L}|f_\alpha-f|d\nu\rightarrow 0$ for each finite (positive) Borel measure $\nu$ on $\Cbb^L$. Now, for any finite positive Borel measure $\mu$ on $\Cbb^N$, we let $\gamma=(g_1,\dots,g_L)$, and let $\nu=\gamma_*\mu$ which is finite positive Borel measure. Then by \eqref{eq16},
+Define a map $\pi:f\in\scr B(\Cbb^L)\mapsto (f\circ(g_1,\dots,g_L))(T_\blt)$. It suffices to check that this is the unique functional calculus for $g_1(T_\blt),\dots,g_N(T_\blt)$. Namely, we shall verify all the conditions in Thm. \ref{lb47} (with $T_j$ replaced by $g_j(T_\blt)$). The only nontrivial condition is the last one about continuity. Choose $f\in B(\Cbb^L)$ and $(f_\alpha)_{\alpha\in\fk A}$ a net satisfying  $\sup_{\alpha\in\fk A}\lVert f_\alpha\lVert_{l^\infty(\Cbb^L)}<+\infty$ and $\int_{\Cbb^L}|f_\alpha-f|d\nu\rightarrow 0$ for each finite (positive) Borel measure $\nu$ on $\Cbb^L$. Now, for any finite positive Borel measure $\mu$ on $\Cbb^N$, we let $\gamma=(g_1,\dots,g_L)$, and let $\nu=\gamma_*\mu$ which is finite positive Borel measure. Then by \eqref{eq16},
 \begin{align*}
 \int_{\Cbb^N}|f\circ(g_1,\dots,g_L)-f_\alpha\circ (g_1,\dots,g_N)|d\mu=\int_{\Cbb^L}|f-f_\alpha|d\nu
 \end{align*}
@@ -2167,7 +2243,7 @@ For strongly commuting normal $T_1,\dots,T_N$, we have
 \begin{align}
 \Sp(T_1,\dots,T_N)\subset\Sp(T_1)\times\cdots\times\Sp(T_N).	
 \end{align}
-Indeed, suppose $(\lambda_1,\dots,\lambda_N)\neq \Sp(T_1)\times\cdots\times\Sp(T_N)$. Then one of $\lambda_1,\dots,\lambda_N$ is not in $\Sp(T_j)$, say $\lambda_1\notin\Sp(T_1)$. Choose a neighborhood $W\subset\Cbb$ of $\lambda_1$ such that $\chi_W(T_1)=0$. Then Cor. \ref{lb62} shows that $\chi_{W\times\Cbb^{N-1}}(T_1,\dots,T_N)=\chi_W(T_1)=0$. So $(\lambda_1,\dots,\lambda_N)$, which has $W\times\Cbb^{N-1}$ as a neighborhood, is outside $\Sp(T_1,\dots,T_N)$.
+Indeed, suppose $(\lambda_1,\dots,\lambda_N)\notin \Sp(T_1)\times\cdots\times\Sp(T_N)$. Then one of $\lambda_1,\dots,\lambda_N$ is not in $\Sp(T_j)$, say $\lambda_1\notin\Sp(T_1)$. Choose a neighborhood $W\subset\Cbb$ of $\lambda_1$ such that $\chi_W(T_1)=0$. Then Cor. \ref{lb62} shows that $\chi_{W\times\Cbb^{N-1}}(T_1,\dots,T_N)=\chi_W(T_1)=0$. So $(\lambda_1,\dots,\lambda_N)$, which has $W\times\Cbb^{N-1}$ as a neighborhood, is outside $\Sp(T_1,\dots,T_N)$.
 \end{rem}
 
 
@@ -2181,7 +2257,7 @@ Let $T$ be normal. Use spectral theorem to show that $\Sp(T)\subset[0,+\infty)$ 
 To see the power of Theorem \ref{lb48}, we do an example about von Neumann algebras and commutants, which can easily be generalized to other more complicated examples. Let $A,B$ be strongly commuting closed operators on $\mc H$, $A$ is self-adjoint and $B$ is positive. We show that $\{A,B\}''=\{\ovl{A+B^2},A^3\}''$. (Note that by the spectral theorem \ref{lb35}, it is clear that $A^3$ is closed.)
 \end{eg}
 \begin{proof}[Solution]
-Let $C=\ovl{A+B^2}$ and $D=A^3$. That $\{A,B\}''\supset\{C,D\}''$ follows from Thm. \ref{lb50}. Note that $\Sp(A,B)\subset \Sp(A)\times\Sp(B)\subset X:=\mbb R\times[0,+\infty)$. Let $(f_1,f_2)=(z_1+z_2^2,z_1^3)$. Then $(C,D)=(f_1,f_2)(A,B)$. The range of $(f_1,f_2)$ is in $Y:=\{(w_1,w_2):w_2\in\Rbb,w_1-\sqrt[3]{w_2}\geq 0\}$. We can define an inverse function $(g_1,g_2):Y\rightarrow X$ by $g(w_1,w_2)=(\sqrt[3]{w_2},\sqrt{w_1-\sqrt[3]{w_2}})$. Then $g\circ f=(z_1,z_2)$. So, by Thm. \ref{lb48}, $(g_1,g_2)(C,D)=(g_1\circ f_1,g_2\circ f_2)(A,B)=(A,B)$. By Thm. \ref{lb50} again, we conclude $\{A,B\}''\subset\{C,D\}''$.
+Let $C=\ovl{A+B^2}$ and $D=A^3$. That $\{A,B\}''\supset\{C,D\}''$ follows from Thm. \ref{lb50}. Note that $\Sp(A,B)\subset \Sp(A)\times\Sp(B)\subset X:=\mbb R\times[0,+\infty)$. Let $(f_1,f_2)=(z_1+z_2^2,z_1^3)$. Then $(C,D)=(f_1,f_2)(A,B)$. The range of $(f_1,f_2)$ is in $Y:=\{(w_1,w_2)\in\Rbb^2:w_1-\sqrt[3]{w_2}\geq 0\}$. We can define an inverse function $(g_1,g_2):Y\rightarrow X$ by $g(w_1,w_2)=(\sqrt[3]{w_2},\sqrt{w_1-\sqrt[3]{w_2}})$. Then $g\circ f=(z_1,z_2)$. So, by Thm. \ref{lb48}, $(g_1,g_2)(C,D)=(g_1\circ f_1,g_2\circ f_2)(A,B)=(A,B)$. By Thm. \ref{lb50} again, we conclude $\{A,B\}''\subset\{C,D\}''$.
 \end{proof}
 
 
