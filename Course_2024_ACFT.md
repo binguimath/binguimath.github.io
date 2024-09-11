@@ -14,7 +14,7 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
 
-No previous knowledge in operator algebras is needed.
+
 
 
 
