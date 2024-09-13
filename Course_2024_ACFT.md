@@ -24,7 +24,7 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 ## Lecture notes
 
-- To be uploaded
+[Topics in Operator Algebras: Algebraic Conformal Field Theory](Files/2024_ACFT.pdf)
 
 
 ## Schedule
