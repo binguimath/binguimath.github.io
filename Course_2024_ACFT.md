@@ -33,7 +33,9 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 - 9/13 Introduction to the CPT symmetry in QFT, and its relationship to the Tomita-Takesaki theory in operator algebras.
 
-- 9/20 Review of important results about unbounded operators.
+- 9/20 Spectral theorem and Borel functional calculus for adjointly commuting bounded normal operators. Basics of unbounded operators. Spectral theorem for unbounded positive operators. (Notes on Spectral Theory, Sec. 2-4)
+
+- 9/27 (Notes on Spectral Theory, Sec. 4-)
 
 
 
