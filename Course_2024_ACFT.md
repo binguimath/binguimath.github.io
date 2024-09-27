@@ -35,7 +35,9 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 - 9/20 Spectral theorem and Borel functional calculus for adjointly commuting bounded normal operators. Basics of unbounded operators. Spectral theorem for unbounded positive operators. (Notes on Spectral Theory, Sec. 2-4)
 
-- 9/27 (Notes on Spectral Theory, Sec. 4-)
+- 9/27 Uniqueness of positive square roots. Polar decomposition. Strong commutativity. (Notes on Spectral Theory, Sec. 4 (last lemma)-Sec. 6)
+
+- 10/11 (Notes on Spectral Theory, Sec. 4-)
 
 
 
