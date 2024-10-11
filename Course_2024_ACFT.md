@@ -37,7 +37,9 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 - 9/27 Uniqueness of positive square roots. Polar decomposition. Strong commutativity. (Notes on Spectral Theory, Sec. 4 (last lemma)-Sec. 6)
 
-- 10/11 (Notes on Spectral Theory, Sec. 4-)
+- 10/11 Strong commutativity, spectral theorem for strongly commuting normal closed operators. (Notes on Spectral Theory, Sec. 6, 7)
+
+- 10/18 
 
 
 
