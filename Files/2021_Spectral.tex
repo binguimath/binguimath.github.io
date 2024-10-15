@@ -1282,17 +1282,42 @@ Thus, positive operators are adjointable.
 
 
 
-\begin{df}
+\begin{df}\label{lb104}
 Let $X$ be a measurable space equipped with a family of measures $(\mu_n)_{n\in\fk N}$. Let $f:X\rightarrow\Cbb$ be measurable. The \textbf{multiplication operator} \index{Mf@$M_f$, the multiplication operator of $f$} $M_f$ on $\mc H:=\bigoplus_{n\in\fk N}L^2(X,\mu_n)$ is the unbounded operator with domain
 \begin{align*}
 \Dom(M_f)=\Big\{\oplus_n g_n:\sum_n\Vert g_n\Vert^2<+\infty,\sum_n\Vert fg_n\Vert^2<+\infty\Big\}
 \end{align*}
-and satisfying $M_f(\oplus_n g_n)=\oplus_n fg_n$ for each $\oplus_n g_n\in\Dom(M_f)$. One checks easily  that $\Dom(M_f)$ is dense,\footnote{If $r>0$ and $\Omega_r=\{x\in X:|f(x)|\leq r\}$, then for each $\xi\in\mc H$ we have $M_{\chi_{\Omega_r}}\xi\in\Dom(M_f)$ and $\lim_{r\rightarrow+\infty}M_{\chi_{\Omega_r}}\xi=\xi$ by the dominated convergence theorem.} and that
+and satisfying $M_f(\oplus_n g_n)=\oplus_n fg_n$ for each $\oplus_n g_n\in\Dom(M_f)$. 
+\end{df}
+
+\begin{pp}\label{lb105}
+In Def. \ref{lb104}, we have $\Dom(M_f)$ is dense in $\mc H$, and
 \begin{align*}
 (M_f)^*=M_{f^*}
 \end{align*}
 where $f^*(x)=\ovl{f(x)}$.
-\end{df}
+\end{pp}
+
+
+
+\begin{proof}
+If $r>0$ and $\Omega_r=\{x\in X:|f(x)|\leq r\}$, then for each $\xi\in\mc H$ we have $M_{\chi_{\Omega_r}}\xi\in\Dom(M_f)$ and $\lim_{r\rightarrow+\infty}M_{\chi_{\Omega_r}}\xi=\xi$ by the dominated convergence theorem. This shows the subspace of all $M_{\chi_{\Omega_r}}\xi$ (where $r>0$ and $\xi\in\mc H$) is clearly contained in $\Dom(M_f)$ and is dense in $\mc H$. Thus $\Dom(M_f)$ is dense in $\mc H$.
+
+One checks easily that $\bk{M_f\xi|\eta}=\bk{\xi|M_{f^*}\eta}$ for each $\xi\in\Dom(M_f),\eta\in\Dom(M_{f^*})$, i.e., $M_{f^*}\subset (M_f)^*$. It remains to show that for any $\eta\in\Dom((M_f)^*)$ we have $\eta\in \Dom(M_{f^*})$, i.e., writing $\eta=\oplus_n\eta_n$ where $\eta_n\in L^2(X,\mu_n)$, we have $\sum_{n\in\fk N}\Vert f^*\cdot\eta_n\Vert^2_{L^2(X,\mu_n)}<+\infty$. By the monotone convergence theorem, it suffices to find $C\geq0$ such that for any finite subset $r>0$ we have
+\begin{align*}
+\sum_{n\in\fk N}\int_{\Omega_r} |f^*\cdot\eta_n|^2\leq C^2
+\end{align*}
+namely, $\Vert M_{f^*\chi_{\Omega_r}}\eta\Vert^2\leq C^2$. 
+
+
+Note that $M_{f\chi_{\Omega_r}}$ is a bounded operator with adjoint $M_{f^*\chi_{\Omega_r}}$. For each $\xi\in\mc H$, recalling that $M_{\chi_{\Omega_r}}\xi\in\Dom(M_f)$ and (clearly) $M_fM_{\chi_{\Omega_r}}\xi=M_{f\chi_{\Omega_r}}\xi$, we have
+\begin{align*}
+\bk{\xi|M_{f^*\chi_{\Omega_r}}\eta}=\bk{M_{f\chi_{\Omega_r}}\xi|\eta}=\bk{M_f M_{\chi_{\Omega_r}}\xi|\eta}=\bk{M_{\chi_{\Omega_r}}\xi|(M_f)^*\eta}
+\end{align*}
+Thus $|\bk{\xi|M_{f^*\chi_{\Omega_r}}\eta}|\leq C\Vert M_{\chi_{\Omega_r}}\Vert\leq C$ for all $\xi\in\mc H$ if we set $C=\Vert (M_f)^*\eta\Vert$. Therefore $\Vert M_{f^*\chi_{\Omega_r}}\eta\Vert\leq C$.
+\end{proof}
+
+
 
 
 \begin{pp}\label{lb70}
@@ -1446,6 +1471,9 @@ Note that a core for $T$ is automatically a dense subspace of $\Dom(T)$ and of $
 \begin{eg}\label{lb23}
 If $T$ is adjointable, then $T^*$ is closed.
 \end{eg}
+
+
+For example, the $M_f$  in Prop. \ref{lb105} is closed, since it is the adjoint of $M_{f^*}$. 
 
 \begin{proof}
 Let $\eta_n\in\Dom(T^*)$ such that $\eta_n\rightarrow\eta\in\mc H_2$ and $T^*\eta_n\rightarrow\psi\in\mc H_1$. Choose any $\xi\in\Dom(T)$. Then
