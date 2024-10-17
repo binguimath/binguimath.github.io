@@ -39,7 +39,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](File
 
 - 10/11 Strong commutativity, spectral theorem for strongly commuting normal closed operators. (Notes ST, Sec. 6, 7)
 
-- 10/18 
+- 10/18 Bounding projections, unbounded Borel functional calculus. (Notes ST, Sec. 8, 9)
 
 
 
