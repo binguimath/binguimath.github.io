@@ -14,7 +14,7 @@ In this course, we study 2d conformal field theory (CFT) in the framework of alg
 
 We assume that the readers are familiar with the basic Hilbert space techniques such as the spectral theorem of bounded self-adjoint operators. Some familiarty with the basic notion of unbounded closed operators is also helpful. Important theorems about unbounded operators (spectral theorem, polar decomposition, Borel functional calculus, Stone's theorem) and probably their proofs will be reviewed in class. The reference for this part is:
 
-[Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
+Notes ST: [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
 
 
 
@@ -26,18 +26,18 @@ We assume that the readers are familiar with the basic Hilbert space techniques 
 
 ## Lecture notes
 
-[Topics in Operator Algebras: Algebraic Conformal Field Theory](Files/2024_ACFT.pdf)
+Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](Files/2024_ACFT.pdf)
 
 
 ## Schedule
 
-- 9/13 Introduction to the CPT symmetry in QFT, and its relationship to the Tomita-Takesaki theory in operator algebras.
+- 9/13 Introduction to the CPT symmetry in QFT, and its relationship to the Tomita-Takesaki theory in operator algebras. (Notes ACFT, Sec. 1)
 
-- 9/20 Spectral theorem and Borel functional calculus for adjointly commuting bounded normal operators. Basics of unbounded operators. Spectral theorem for unbounded positive operators. (Notes on Spectral Theory, Sec. 2-4)
+- 9/20 Spectral theorem and Borel functional calculus for adjointly commuting bounded normal operators. Basics of unbounded operators. Spectral theorem for unbounded positive operators. (Notes ST, Sec. 2-4)
 
-- 9/27 Uniqueness of positive square roots. Polar decomposition. Strong commutativity. (Notes on Spectral Theory, Sec. 4 (last lemma)-Sec. 6)
+- 9/27 Uniqueness of positive square roots. Polar decomposition. Strong commutativity. (Notes ST, Sec. 4 (last lemma)-Sec. 6)
 
-- 10/11 Strong commutativity, spectral theorem for strongly commuting normal closed operators. (Notes on Spectral Theory, Sec. 6, 7)
+- 10/11 Strong commutativity, spectral theorem for strongly commuting normal closed operators. (Notes ST, Sec. 6, 7)
 
 - 10/18 
 
