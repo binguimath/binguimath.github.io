@@ -41,6 +41,8 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](File
 
 - 10/18 Bounding projections, unbounded Borel functional calculus. (Notes ST, Sec. 8, 9)
 
+- 10/25 2d Conformal field theory. (Notes ACFT, Sec. 2)
+
 
 
 ## References (to be expanded)
