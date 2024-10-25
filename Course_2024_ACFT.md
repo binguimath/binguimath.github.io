@@ -41,7 +41,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](File
 
 - 10/18 Bounding projections, unbounded Borel functional calculus. (Notes ST, Sec. 8, 9)
 
-- 10/25 2d Conformal field theory. Introduction to the mathematical theory of chiral fields(Notes ACFT, Sec. 2, Subsec. 3.1-3.4)
+- 10/25 2d Conformal field theory. Introduction to the mathematical theory of chiral fields. (Notes ACFT, Sec. 2, Subsec. 3.1-3.4)
 
 
 
