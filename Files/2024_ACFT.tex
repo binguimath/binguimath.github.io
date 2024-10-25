@@ -262,7 +262,7 @@
 \newcommand{\Diff}{\mathrm{Diff}}
 \newcommand{\PSU}{\mathrm{PSU}(1,1)}
 \newcommand{\Vir}{\mathrm{Vir}}
-\newcommand{\Witt}{\mathscr W}
+\newcommand{\Witt}{\mathrm{Witt}}
 \newcommand{\Span}{\mathrm{Span}}
 \newcommand{\pri}{\mathrm{p}}
 \newcommand{\ER}{E^1(V)_{\mathbb R}}
@@ -275,7 +275,7 @@
 \newcommand{\GA}{\mathscr G_{\mathcal A}}
 \newcommand{\vs}{\varsigma}
 \newcommand{\Vect}{\mathrm{Vec}}
-\newcommand{\Vectc}{\mathrm{Vec}^{\mathbb C}}
+\newcommand{\Vectc}{\mathrm{Vec}_{\mathbb C}}
 \newcommand{\scr}{\mathscr}
 \newcommand{\sjs}{\subset\joinrel\subset}
 \newcommand{\Jtd}{\widetilde{\mathcal J}}
@@ -427,10 +427,16 @@
 \newcommand{\ybf}{\mathbf y}
 \newcommand{\ebf}{\mathbf e}
 \newcommand{\SO}{\mathrm{SO}}
-
-
-
-
+\newcommand{\Rc}{\mathbb R^{1,1}_{\mathrm{c}}}
+\newcommand{\Cf}{\mathrm{Cf}}
+\newcommand{\DiffS}{\mathrm{Diff}^+(\mathbb S^1)}
+\newcommand{\WDS}{\widetilde{\mathrm{Diff}^+}(\mathbb S^1)}
+\newcommand{\PU}{\mathrm{PU}}
+\newcommand{\HV}{\mathcal H_{\mathbb V}}
+\newcommand{\ek}{\mathfrak{e}}
+\newcommand{\ointn}{\oint\nolimits}
+\newcommand{\sd}{\slashed{d}}
+\newcommand{\ac}{\mathrm{ac}}
 
 
 
@@ -486,7 +492,7 @@
 	\pagenumbering{arabic}
 	%\pagenumbering{gobble}
 	\setcounter{page}{1}
-%	\setcounter{section}{-1}
+	\setcounter{section}{-1}
 	%\setcounter{equation}{6}
 
 
@@ -546,9 +552,11 @@
 \newpage
 
 
-\section*{Notations}
+\section{Notations}
 
-$\Nbb=\{0,1,2,\dots\}$, $\Zbb_+=\{1,2,3,\dots\}$.
+$\Nbb=\{0,1,2,\dots\}$. $\Zbb_+=\{1,2,3,\dots\}$. $\Cbb^\times=\Cbb\setminus\{0\}$. $\Dbb_r=\{z\in\Cbb:|z|<r\}$. $\ovl\Dbb_r=\{z\in\Cbb:|z|\leq r\}$. $\Dbb_r^\times=\{z\in\Cbb:0<|z|<r\}$.
+
+If $X$ is a complex manifold, we let $\scr O(X)$ denote the set of holomorphic functions $f:X\rightarrow\Cbb$.
 
 Unless otherwise stated, an \textbf{unbounded operator} $T:\mc H\rightarrow\mc K$ (where $\mc H,\mc K$ are Hilbert spaces) denotes a linear map from a dense linear subspace $\Dom(T)\subset \mc H$ to $\mc H$. $\Dom(T)$ is called the \textbf{domain} of $T$. We let $T^*$ be the adjoint of $T$. In practice, we are also interested in $T^*$ defined on a dense subspace of its domain $\Dom(T^*)$. We call its restriction a \textbf{formal adjoint} of $T$ and denote it by $T^\dagger$.
 
@@ -561,8 +569,29 @@ Whenever we write $\bk{\xi,\eta}$, we understand that it is linear on both varia
 
 If $\mc H,\mc K$ are Hilbert spaces, we let
 \begin{align}
-\Hom (\mc H,\mc K)=\{\text{Bounded linear maps }\mc H\rightarrow\mc H\}\qquad\End(\mc H)=\Hom(\mc H,\mc H)
+\fk L (\mc H,\mc K)=\{\text{Bounded linear maps }\mc H\rightarrow\mc K\}\qquad\fk L(\mc H)=\fk L(\mc H,\mc H)
 \end{align}
+If $V,W$ are vector spaces, we let 
+\begin{align}
+\Hom (V,W)=\{\text{Linear maps }V\rightarrow W\}\qquad\End(V)=\Hom(V,V)
+\end{align}
+An unbounded operator $T:\mc H\rightarrow\mc H$ denotes a linear map $\Dom(T)\rightarrow\mc H$ where $\Dom(T)$ is a dense linear subspace of $\mc H$. We say that an unbounded operator $T$ is \textbf{continuous} if it is continuous with respect to the norms on the domain and the codomain. Thus, ``bounded" means continuous and $\Dom(T)=\mc H$.
+
+
+
+If $z_\blt=(z_1,\dots,z_k)$ are mutually commuting formal variables, for each $n_\blt=(n_1,\dots,n_k)\in\Zbb^k$ we let
+\begin{align*}
+z_\blt^{n_\blt}=z_1^{n_1}\cdots z_k^{n_k}
+\end{align*}
+
+For each vector space $W$, we let
+\begin{gather*}
+W[[z_\blt]]=\Big\{\sum_{n_\blt\in\Nbb^k} w_{n_\blt}z_\blt^{n_\blt} \Big\}\qquad W[[z_\blt^{\pm1}]]=\Big\{\sum_{n_\blt\in\Zbb^k} w_{n_\blt}z_\blt^{n_\blt} \Big\}\\
+W((z_\blt))=\Big\{\sum_{n_\blt\in\Zbb^k} w_{n_\blt}z_\blt^{n_\blt}:w_{n_\blt}=0\text{ when }n_1,\dots,n_k\ll 0 \Big\}\\
+W[z_\blt]=W((z_\blt))\cap W((z_\blt^{-1}))=\text{polynomials of $z_\blt$ with $W$-coefficients}
+\end{gather*}
+where $w_{n_\blt}\in W$.
+
 
 If $X$ is a set, the $n$-fold \textbf{configuration space} \index{00@Configuration space} $\Conf^n(X)$ \index{Conf@$\Conf^n(X)$} is
 \begin{align}
@@ -576,6 +605,9 @@ A map of complex vector spaces $T:V\rightarrow V'$ is called \textbf{antilinear}
 \end{align}
 for all $\xi,\eta\in V$.
 \end{df}
+
+For each $n\in\Zbb$, we let $\ek_n\in C^\infty(\Sbb^1)$ be $\ek_n(z)=z^n$.
+
 
 
 \newpage
@@ -640,7 +672,7 @@ P_0\geq0\qquad (P_0)^2-(P_1)^2-\cdots-(P_d)^2\geq0
 The operator $P_0$ is called the \textbf{Hamiltonian} or the \textbf{energy operator}. $P_1,\dots,P_d$ are the momentum operators. $(P_0)^2-(P_1)^2-\cdots-(P_d)^2$ is the mass.
 \item We have a collection of \textbf{(quantum) fields} $\scr Q$, where each $\Phi\in\scr Q$ is an operator-valued function on $\Rbb^{1,d}$. For each $\mbf x\in\Rbb^{1,d}$, $\Phi(x)$ is a ``linear operator on $\mc H$".  
 \item {\textbf(Locality}) \index{00@Locality} If $\xbf_1,\xbf_2\in\Rbb^{1,d}$ are \uwave{spacelike} and $\Phi_1,\Phi_2\in\scr Q$, then
-\begin{align}
+\begin{align}\label{eq18}
 [\Phi_1(x_1),\Phi_2(x_2)]=0
 \end{align}
 \item (*-invariance) For each $\Phi\in\scr Q$, there exists $\Phi^\dagger\in\scr Q$ such that
@@ -707,7 +739,7 @@ In the remaining part of this section,  if possible, we also understand $\Phi(\x
 
 We now explore the consequences of positive energy. As we will see, it implies that $\Phi_1(\xbf_1)\cdots\Phi_n(\xbf_n)\Omega$, a function of $\xbf_\blt$, can be analytically continued.
 
-The fact that $P_0\geq0$ implies that when $t\geq0$, $e^{tP_0}$ is a bounded linear operator with operator norm $\leq1$. Therefore, if $\tau$ belongs to
+The fact that $P_0\geq0$ implies that when $t\leq0$, $e^{tP_0}$ is a bounded linear operator with operator norm $\leq1$. Therefore, if $\tau$ belongs to
 \begin{align*}
 \fk I=\{\Imag\tau\geq0\}
 \end{align*}
@@ -791,7 +823,7 @@ Thus $\sum_i a_iP_i\geq0$ for all such $a_\blt$. What are the consequences of th
 
 
 
-\subsection{}
+\subsection{}\label{lb12}
 
 
 
@@ -1088,7 +1120,7 @@ Note that since $\mc W$ is local to $-\mc W$, we have $[\scr A(\mc W),\scr A(-\m
 
 The set of formulas \eqref{eq15} is reminiscent of the Tomita-Takesaki theory, one of the deepest theories in the area of operator algebras. The setting is as follows. 
 
-Let $\mc M$ be a von Neumann algebra on a Hilbert space $\mc H$. Namely, $\mc M$ is a $*$-subalgebra of $\End(\mc H)$ closed under the ``strong operator topology". (We will formally introduce von Neumann algebras in a later section.) Let $\Omega\in\mc H$ be a unit vector. Assume that $\Omega$ is \textbf{cyclic} (i.e. $\mc M\Omega$ is dense) and \textbf{separating} (i.e., if $x\in\mc M$ and $x\Omega=0$ then $x=0$) under $\mc M$. Then the \textbf{Tomita-Takesaki theorem} says that the linear map
+Let $\mc M$ be a von Neumann algebra on a Hilbert space $\mc H$. Namely, $\mc M$ is a $*$-subalgebra of $\fk L(\mc H)$ closed under the ``strong operator topology". (We will formally introduce von Neumann algebras in a later section.) Let $\Omega\in\mc H$ be a unit vector. Assume that $\Omega$ is \textbf{cyclic} (i.e. $\mc M\Omega$ is dense) and \textbf{separating} (i.e., if $x\in\mc M$ and $x\Omega=0$ then $x=0$) under $\mc M$. Then the \textbf{Tomita-Takesaki theorem} says that the linear map
 \begin{align*}
 S:\mc M\Omega\rightarrow\mc M\Omega\qquad x\Omega\mapsto x^*\Omega
 \end{align*}
@@ -1096,7 +1128,7 @@ is antilinear and closable. Denote its closure also by $S$, and consider its pol
 \begin{align*}
 \Delta^{\im s}\mc M\Delta^{-\im s}=\mc M\qquad J\mc MJ=\mc M'
 \end{align*}
-where $\mc M'$ is the commutant $\{y\in\End(\mc H):xy=yx~(\forall x\in\mc M)\}$.We call $\Delta$ and $J$ respectively the \textbf{modular operator} and the \textbf{modular conjugation}.
+where $\mc M'$ is the commutant $\{y\in\fk L(\mc H):xy=yx~(\forall x\in\mc M)\}$.We call $\Delta$ and $J$ respectively the \textbf{modular operator} and the \textbf{modular conjugation}.
 
 
 
@@ -1161,8 +1193,2381 @@ We refer the readers to \cite[Sec. V.4.1]{Haag} and the reference therein for a 
  
 
 
+\newpage
 
 
+\section{2d conformal field theory}
+
+
+\subsection{}
+
+We look at a 2d \textbf{unitary full conformal field theory} (unitary full CFT) $\mc Q$ on the \textbf{space-compactified Minkowski space}\index{R@$\Rc$}
+\begin{align*}
+\pmb{\Rc}=\Rbb\times\Sbb^1\qquad \text{with metric tensor }(dt)^2-(dx)^2=dudv
+\end{align*}
+The space $\Rc$ describes the propagation of the closed string $\{0\}\times\Sbb^1$. Here, as in Subsec. \ref{lb12}, we write a general element of $\Rc$ as $\xbf=(t,x)$, and write
+\begin{align*}
+u=t-x\quad v=t+x\qquad\text{so that}\qquad t=\frac{u+v}2\quad x=\frac{-u+v}2
+\end{align*}
+The field operators are of the form $\Phi(\xbf)=\Phi(t,x)$. Recall that 
+\begin{align*}
+\wtd \Phi(u,v):=\Phi(t,x)=\Phi\big(\frac{u+v}2,\frac{-u+v}2\big)
+\end{align*}
+Identifying $\Rbb/2\pi\Zbb=\Sbb^1$ via $\exp$, a field $\Phi$ can be viewed as an ``operator valued function" on $\Rbb^{1,1}$ satisfying
+\begin{align}\label{eq29}
+\Phi(t,x+2\pi)=\Phi(t,x)\qquad\text{equivalently}\qquad \wtd\Phi(u,v)=\wtd\Phi(u-2\pi,v+2\pi)
+\end{align}
+The field operators are ``acting on" a Hilbert space $\mc H$ with vacuum vector $\Omega$.
+
+
+Compared to the axioms for Poincar\'e invariant QFT in Subsec. \ref{lb1}, some changes should be made to describe a CFT. We still have the locality \eqref{eq18}. Instead of considering $\mathrm{P}^+(1,1)$ we must consider the group of orientation-preserving, time-direction preserving, and conformal (i.e. angle-preserving) transforms on $\Rc$. ``Conformal" means that the diffeomorphism $g:\Rc\rightarrow\Rc$ satisfies
+\begin{align*}
+g^*(dudv)=\lambda(u,v)dudv
+\end{align*}
+for a smooth function $\lambda:\Rc\rightarrow\Rbb_{>0}$. Our next goal is to classify such $g$.
+
+
+\subsection{}
+
+\begin{df}
+We let $\Diffp(\Sbb^1)$ \index{Diff@$\Diffp(\Sbb^1)$} be the group of orientation-preserving diffeomorphisms of $\Sbb^1$. Equivalently, it is the group of smooth functions $f:\Sbb^1\rightarrow\Sbb^1$ whose lift $\wtd f:\Rbb\rightarrow\Rbb$ satisfies for all $x\in\Rbb$ that
+\begin{gather}\label{eq19}
+\wtd f(x+2\pi)=\wtd f(x)+2\pi\qquad \wtd f'(x)>0
+\end{gather}
+\end{df}
+
+Note that by the basics of covering spaces, any element of $\Diffp(\Sbb^1)$ can be lifted to $\wtd f$ satisfying \eqref{eq19}. Conversely, if $\wtd f$ satisfies \eqref{eq19}, then $\wtd f$ gives rise to an injective smooth map $f:\Sbb^1\rightarrow\Sbb^1$. (Note that $\wtd f'>0$ implies that $\wtd f$ is strictly increasing.) Since $\wtd f'(x)>0$, the function $f$ is injective, and the inverse function theorem shows that the compact set $f(\Sbb^1)$ is open, and hence equals $\Sbb^1$. Thus $f\in\Diffp(\Sbb^1)$.
+
+
+\begin{rem}
+Note that $f$ uniquely determines $\wtd f$ up to an $2\pi\Zbb$-addition, i.e., both $\wtd f$ and $\wtd f+2n\pi$ (where $n\in\Zbb$) correspond to $f$. Therefore, if we let \pmb{$\WDS$} \index{DiffS@$\WDS$} be the topological group formed by all $\wtd f$ satisfying \eqref{eq19},\footnote{The topology is defined such that a net $\wtd f_\alpha$ converges to $\wtd f$ iff the $n$-th derivative $\wtd f_\alpha^{(n)}$ converges uniformly to $\wtd f^{(n)}$ for all $n\in\Nbb$.} then we have an exact sequence
+\begin{align}\label{eq26}
+1\longrightarrow \Zbb\longrightarrow \WDS\longrightarrow\DiffS\longrightarrow 1
+\end{align}
+where $\Zbb$ is freely generated by $x\in\Rbb\mapsto x+2\pi$. 
+
+Note that the map $(\wtd f,t)\in\WDS\times[0,1]\mapsto \wtd f_t\in\WDS$ defined by
+\begin{align*}
+\wtd f_t(x)=(1-t)\wtd f(x)+tx
+\end{align*}
+shows that $\WDS$ is contractible (to the identity element) and hence simply-connected. (Therefore $\DiffS$ is connected.) We conclude that $\WDS$ is the universal cover of $\DiffS$. \hfill\qedsymbol
+\end{rem}
+
+
+
+\subsection{}
+\begin{thm}\label{lb13}
+Under the coordinates $(u,v)$, an orientation-preserving time-direction-preserving conformal transform $g$ of $\Rc$ is precisely of the form 
+\begin{align}\label{eq20}
+g(u,v)=(\alpha(u),\beta(v))
+\end{align}
+where $\alpha,\beta:\Rbb\rightarrow\Rbb$ belong to $\WDS$.
+\end{thm}
+
+
+
+\begin{proof}
+Step 1. First, suppose that $g$ is of the form \eqref{eq20}. Then $g$ gives a well-defined smooth map $\Rc\rightarrow\Rc$ because
+\begin{align}\label{eq21}
+g(u-2\pi,v+2\pi)=g(u,v)+(-2\pi,2\pi)
+\end{align}
+One checks easily that $g$ is a diffeomorphism (with inverse given by $(\alpha^{-1}(u),\beta^{-1}(v))$) preserving the orientation and the time direction. Since $g^*dudv=\alpha'(u)\beta'(v)dudv$, $g$ is conformal.\\[-1ex]
+
+Step 2. Conversely, choose an orientation preserving conformal transform $g$. We lift $g$ to a smooth conformal map $\Rbb^{1,1}\rightarrow\Rbb^{1,1}$ also denoted by $g=(\alpha,\beta)$. So $\alpha,\beta:\Rbb^{1,1}\rightarrow\Rbb$. Then, besides \eqref{eq21}, $g$ also satisfies:
+\begin{gather*}
+\partial_u\alpha\partial_u\beta=0\qquad \partial_v\alpha\partial_v\beta=0\tag{a}\label{eq22}\\
+\partial_u\alpha\partial_v\beta+\partial_v\alpha\partial_u\beta>0 \tag{b}\label{eq23}\\
+\partial_u\alpha\partial_v\beta-\partial_v\alpha\partial_u\beta>0 \tag{c}\label{eq24}
+\end{gather*}
+Here, \eqref{eq22} and \eqref{eq23} are due to the fact that
+\begin{align*}
+g^*(dudv)=(\partial_u\alpha du+\partial_v\alpha dv)(\partial_u\beta du+\partial_v\beta dv)
+\end{align*}
+equals $\lambda(u,v)dudv$ for some smooth $\lambda:\Rbb^{1,1}\rightarrow\Rbb_{>0}$. (So $\lambda$ is the LHS of \eqref{eq23}.) Since $g$ is orientation preserving, \eqref{eq24} follows from the computation
+\begin{align*}
+g^*(du\wedge dv)=(\partial_u\alpha\partial_v\beta-\partial_v\alpha\partial_u\beta)du\wedge dv
+\end{align*}
+
+Step 3. By \eqref{eq22}, at a given $p\in\Rbb^{1,1}$, if $\partial_u\alpha\neq0$, then $\partial_u\beta=0$. Conversely, if at $p$ we have $\partial_u\beta=0$, then \eqref{eq23} shows that $\partial_u\alpha\partial_v\beta>0$, and hence $\partial_u\alpha\neq0$. Thus
+\begin{gather*}
+\partial_u\alpha|_p\neq 0\qquad\Longleftrightarrow\qquad \partial_u\beta|_p=0\\
+\partial_v\alpha|_p\neq 0\qquad\Longleftrightarrow\qquad \partial_v\beta|_p=0
+\end{gather*}
+where the second equivalence follows from the same argument. Therefore, the set of $p$ at which $\partial_v\alpha= 0$ is both open and closed, and hence must be either $\Rbb^{1,1}$ or $\emptyset$. Similarly, either $\partial_u\beta=0$ everywhere, or $\partial_u\beta\neq0$ everywhere.
+
+Let us prove that
+\begin{align*}
+\partial_v\alpha=0\qquad \partial_u\beta=0
+\end{align*}
+everywhere. Suppose the first is not true. Then by the previous paragraph, we have  $\partial_v\alpha\neq0$ and $\partial_v\beta=0$ everywhere. Then \eqref{eq23} implies $\partial_v\alpha\partial_u\beta>0$, and \eqref{eq24} implies $-\partial_v\alpha\partial_u\beta>0$, impossible. So the first (and similarly the second) is true.\\[-1ex]
+
+Step 4. Therefore, we can write $\alpha=\alpha(u)$ and $\beta=\beta(v)$, and we have $\alpha'\neq0$ and $\beta'\neq0$ everywhere. \eqref{eq23} implies that $\alpha'(u)\beta'(v)>0$ for all $u,v$. Thus, either $\alpha'>0$ and $\beta'>0$ everywhere, or $\alpha'<0$ and $\beta'<0$ everywhere. The latter cannot happen, since $g$ preserves the direction of time. Thus $\alpha'>0$ and $\beta'>0$ everywhere. Since $g$  satisfies \eqref{eq21}, we see that $\alpha$ satisfies \eqref{eq19}. Similarly $\beta$ satisfies \eqref{eq19}. This finishes the proof.
+\end{proof}
+
+
+\subsection{}
+
+We let \pmb{$\Cf^+(\Rc)$} \index{CfR@$\Cf^+(\Rc)$} be the group of diffeomorphisms of $\Rc$ preserving the orientation and the time-direction. Then Thm. \ref{lb13} says that any $g\in\Cf^+(\Rc)$ can be represented by some $(\alpha,\beta)\in\WDS^2$. 
+
+However, $(\alpha,\beta)$ is not uniquely determined by $g$. Indeed, in Step 2 of the proof of Thm. \ref{lb13} we have lifted $g$ to a smooth map on $\mbb R^{1,1}$. This lift is unique up to addition by $(-2\pi,2\pi)\Zbb$ in the $(u,v)$ coordinates (or $(0,2\pi)\Zbb$ in the $(t,x)$ coordinates). Thus, $(\alpha,\beta)$ are unique up to addition by $(-2\pi,2\pi)\Zbb$. This non-uniqueness can be ignored once we pass to $(\wch\alpha,\wch\beta)$, the projection of $(\alpha,\beta)$ into $\DiffS^2$. Thus, we have a well-defined (continuous) surjective group homomorphism $\Gamma:\Cf^+(\Rc)\rightarrow\DiffS\times\DiffS$ sending $g$ to $(\wch \alpha,\wch\beta)$. 
+
+One checks easily that the kernel of this homomorphism is freely generated by $(2\pi,0)$ (equivalently, by $(0,2\pi)$) under the $(u,v)$ coordinates, equivalently, by $(\pi,\pi)$ under the $(t,x)$ coordinates. Therefore, we have an exact sequence of groups
+\begin{align}
+1\longrightarrow \Zbb\longrightarrow \Cf^+(\Rc)\xlongrightarrow{\Gamma}\DiffS^2\longrightarrow 1
+\end{align}
+Since $\Gamma$ is a covering map, we also have a covering map $\WDS^2\twoheadrightarrow \Cf^+(\Rc)$ such that the following diagram commutes
+\begin{equation}\label{eq25}
+\begin{tikzcd}
+                       & \WDS^2 \arrow[d, two heads] \arrow[ld, two heads] \\
+\Cf^+(\Rc) \arrow[r, two heads, "\Gamma"'] & \DiffS^2                                           
+\end{tikzcd}
+\end{equation}
+
+\subsection{}
+
+
+
+Since we require that $\mc Q$ is a CFT with Hilbert space $\mc H$, we must have a \textbf{strongly continuous projective unitary representation} \index{00@Projective unitary representation} $\mc U$ of $\Cf^+(\Rc)$. Namely,
+\begin{align*}
+\mc U:\Cf^+(\Rc)\rightarrow \PU(\mc H)
+\end{align*}
+is a continuous group homomorphism. Here, $\PU(\mc H)$ is the quotient group (with quotient topology) $U(\mc H)/\sim$ where $U(\mc H)$ is the group of unitary operators of $\mc H$ (equipped with the strong operator topology), and $U_1\simeq U_2$ iff $U_1=\lambda U_2$ for some $\lambda\in\Cbb$ such that $|\lambda|=1$. We suppress the adjectives ``strongly continuous" when no confusion arises.
+
+
+By \eqref{eq25}, $\mc U$ can be lifted to a projective unitary representation of $\WDS^2$ on $\mc H$. Since $\WDS^2$ is simply connected, its projective unitary representations are (roughly) equivalent to the projective unitary representations of the Lie algebra of $\WDS\times\WDS$, which is $\Vect(\Sbb^1)\oplus\Vect(\Sbb^1)$ where $\Vect(\Sbb^1)$ \index{Vec@$\Vect(\Sbb^1)$} is the Lie algebra of smooth real vector fields of $\Sbb^1$. 
+
+The elements of $\Vect(\Sbb^1)$ are of the form $f\partial_\theta$ where $f\in C^\infty(\Sbb^1,\Rbb)$ and $\partial_\theta$ is the unique vector field on $\Sbb^1$ that is pulled back by $\exp(\im \cdot):\Rbb\rightarrow\Sbb^1$ to $\partial_\theta\in\Vect(\Rbb^1)$ where $\theta$ is the standard coordinate of $\Rbb$ (sending $x$ to $x$). The Lie bracket of $\Vect(\Sbb^1)$ is the negative of the Lie derivative, i.e.
+\begin{align*}
+[f_1\partial_\theta,f_2\partial_\theta]_{\Vect(\Sbb^1)}=(-f_1\partial_\theta f_2+f_2\partial_\theta f_1)\partial_\theta
+\end{align*}
+The negative choice is due to the fact that the group action of $g\in\DiffS$ on $h\in C^\infty(\Sbb^1)$ is given by $h\circ g^{-1}$; however, the Lie derivative is defined by differentiating $g\mapsto h\circ g$.
+
+
+
+
+
+\subsection{}
+
+The complexification $\Vectc(\Sbb^1)$ \index{Vec@$\Vectc(\Sbb^1)$} of $\Vect(\Sbb^1)$ is the Lie algebra of all $f\partial_\theta$ where $f\in C^\infty(\Sbb^1)\equiv C^\infty(\Sbb^1,\Cbb)$. Let $z=e^{\im\theta}\in C^\infty(\Sbb^1)$, which is the inclusion map $\Sbb^1\hookrightarrow\Cbb$. Then we can define $\partial_z\in\Vectc(\Sbb^1)$ by 
+\begin{align}\label{eq28}
+\partial_z=\frac 1{\im z}\partial_\theta\qquad\text{so that}\qquad \partial_\theta=\im z\partial_z=\im e^{\im\theta}\partial_z
+\end{align}
+Then $\Vectc(\Sbb^1)$ is a $*$-Lie algebra, i.e., a complex Lie algebra equipped with an involution $\dagger$. For $\Vectc(\Sbb^1)$, the involution is defined by
+\begin{align*}
+(f\partial_\theta)^\dagger=-\ovl f\partial_\theta
+\end{align*}
+so that $\Vect(\Sbb^1)$ is precisely the set of all $\xk\in\Vectc(\Sbb^1)$ satisfying $\xk^\dagger=-\xk$. In particular, noting $\ovl z=z^{-1}$ on $\Sbb^1$, we have
+\begin{align}
+(\partial_z)^\dagger=z^2\partial_z
+\end{align}
+
+$\Vectc(\Sbb^1)$ contains a ``sufficiently large" $*$-Lie subalgebra, the \textbf{Witt algebra} \index{00@Witt algebra $\Witt$} $\Witt=\Span_\Cbb\{l_n:n\in\Zbb\}$, where \index{ln@$l_n=z^n\partial_z$}
+\begin{align}
+l_n=z^n\partial_z
+\end{align}
+One easily computes that $l_n^\dagger=l_{-n}$, and that
+\begin{align*}
+[l_m,l_n]=(m-n)l_{m+n}
+\end{align*}
+Projective unitary representations of $\WDS$ correspond to (honest) unitary representations of central extensions of $\WDS$, which (roughly) correspond to unitary representations of central extensions of $\Witt$. 
+
+
+
+
+\subsection{}
+
+It can be shown that the central extensions of $\Witt$ are equivalent to the \textbf{Virasoro algebra} \pmb{$\Vir$}. \index{00@Virasoro algebra $\Vir$} As a vector space, $\Vir$ has basis $\{C,L_n:n\in\Zbb\}$. These basis elements satisfy
+\begin{subequations}
+\begin{gather}
+[L_m,L_n]=(m-n)L_{m+n}+\frac C{12}(m^3-m)\delta_{m+n,0}\qquad [L_n,C]=0\\
+L_n^\dagger=L_{-n}\qquad C^\dagger=C 
+\end{gather}  
+\end{subequations}
+Thus, the projective unitary representation of $\WDS\times\WDS$ on $\mc H$ can be described by a unitary representation of $\Vir\oplus\wht\Vir$. Here, $\wht\Vir=\{\wht C,\wht L_n:n\in\Zbb\}$ is isomorphic to $\Vir$.
+
+
+One can decompose a (unitary full) CFT $\mc Q$ into a ``direct sum" of CFTs such that $C$ and $\wht C$ act as scalars $c,\wht c\in\Rbb$. (In fact, one can show that $c,\wht c\geq0$.) We call $(c,\wht c)$ the \textbf{central charge} \index{00@Central charge} of the CFT $\mc Q$. Since $L_0^\dagger=L_0$ and $\wht L_0^\dagger=\wht L_0$, one usually assume that $L_0,\wht L_0$ act as self-adjoint operators on $\mc H$.
+
+
+
+\subsection{}
+
+In a Poincar\'e invariant QFT, the vacuum vector is fixed by $\Poid$. However, in our CFT $\mc Q$, \uwave{the vacuum vector $\Omega$ is not fixed by $\Cf^+(\Rc)$}. In terms of $\Vir$, then $L_n\Omega$ is not necessarily zero for all $n$. This phenomenon  is related to the fact that an arbitrary one-parameter subgroup $t\in\Rbb\mapsto g_t\in  \WDS$, when each $g_t$ acts on $\Sbb^1$ and hence can be viewed as a map $g_t:\Sbb^1\rightarrow\Pbb^1$, does not have a sufficiently large domain for the analytic continuation $z\mapsto g_z$. 
+
+On the other hand, we do have
+\begin{align}
+L_n\Omega=0\qquad\text{ if }n=-1,0,1
+\end{align}
+(and similarly $\wht L_0\Omega=\wht L_{\pm 1}\Omega=0$). These $L_0,L_{\pm1}$ span a Lie $*$-subalgebra
+\begin{align*}
+\fk{sl}(2,\Cbb)=\Span_\Cbb\{L_0,L_{\pm1}\}
+\end{align*}
+with skew-symmetric part \index{su11@$\fk{su}(1,1)$}
+\begin{align}
+\fk{su}(2):=\{\xk\in\fk{sl}(2,\Cbb):\xk^\dagger=-\xk\}=\Span_\Rbb\Big\{\im l_0,\frac{l_1-l_{-1}}2,\frac{\im(l_1+l_{-1})}2\Big\}
+\end{align}
+As we will see in the future, the one-parameter group generated by $(l_1-l_{-1})/2$ is related to the PCT symmetry of the CFT.
+
+
+
+The Lie subgroup of $\WDS$ with Lie algebra $\fk{su}(2)$ is \pmb{$\UPSU$}, \index{PSU@$\PSU$ and $\UPSU$}, the universal cover of the \textbf{M\"obius group} $\PSU$ \index{00@M"obius group $\PSU$} whose elements are linear fractional transforms
+\begin{align*}
+z\in\Pbb^1\mapsto \frac{\alpha z+\beta}{\ovl\beta z+\ovl\alpha}\qquad \text{where }\alpha,\beta\in\Cbb,|\alpha|^2-|\beta|^2=1
+\end{align*}
+The condition $|\alpha|^2-|\beta|^2=1$ is to ensure that the transform sends $\Sbb^1$ to $\Sbb^1$. The exact sequence \eqref{eq26} restricts to
+\begin{align}
+1\longrightarrow \Zbb\longrightarrow \UPSU\longrightarrow\PSU\longrightarrow 1
+\end{align}
+where $\Zbb$ is freely generated by ``the anticlockwise rotation by $2\pi$". Thus, the projective action $\mc U(g)$ of any $g$ in $\UPSU\times\UPSU\subset\WDS\times\WDS$ fixes $\Omega$ up to $\Sbb^1$-multiplications. Now we choose $\mc U(g)$ to be the unique one such that $\mc U(g)\Omega=\Omega$. Then $\mc U$ gives an (honest) strongly-continuous unitary representation of $\UPSU\times\UPSU$ on $\mc H$ fixing $\Omega$.
+
+
+\subsection{}
+
+
+A field $\Phi\in\mc Q$ is called \textbf{chiral} (resp. \textbf{antichiral}) \index{00@Chiral/antichiral fields} if $\wtd\Phi$ depends only on $u$ (resp. $v$) but not on $v$ (resp. $u$). We let \pmb{$\mc V$} resp. \pmb{$\wht{\mc V}$} be the set of chiral resp. anti chiral fields. They can be viewed as algebraic structures. (We will say more about such structures in the future.) 
+
+
+Let $\mc H_0$ (resp. $\wht{\mc H}_0$) be the closure of the subspace spanned by $\varphi(f_1)\cdots\varphi(f_n)\Omega$ where each $f_i\in C_c^\infty(\Rc)$ and $\varphi_i\in\mc V$ (resp. $\varphi_i\in\wht{\mc V}$). Then $\mc H_0$ can be viewed as a (unitary) representation of $\mc V$, called the \textbf{vacuum representation}. Clearly $\Omega\in\mc H_0\cap\wht{\mc H}_0$. 
+
+A basic assumption of unitary full CFT is the existence of orthogonal decomposition
+\begin{align}\label{eq27}
+\mc H=\bigoplus_{i\in\fk I}\mc H_i\otimes\wht{\mc H}_i\qquad\supset\mc H_0\otimes\wht{\mc H}_0
+\end{align}
+where each $\mc H_i$ (resp. $\wht{\mc H}_i$) is an irreducible unitary representation of $\mc V$ (resp. $\wht{\mc V}$). Here, $\bigoplus$ could be a finite, or infinite discrete, or even continuous (i.e. a direct integral). A large class of important CFTs are called \textbf{rational CFTs} \index{00@Rational CFT}, which means that the direct sum is finite. Here, $\mc H_0$ is identified with $\mc H_0\otimes\Omega$ so that it can thus be viewed as a subspace of $\mc H$; similarly $\wht{\mc H}_0\simeq\Omega\otimes\wht{\mc H}_0$. Therefore, with respect to the decomposition \eqref{eq27}, the vacuum vector $\Omega\in\mc H$ can be written as $\Omega\otimes\Omega$. 
+
+
+\subsection{}
+
+
+From now on, we slightly change our notation a bit: 
+\begin{cv}
+An element of $\WDS$ is not viewed as a function $\wtd f:\Rbb\rightarrow\Rbb$, but rather a multivalued smooth function $f:\Sbb^1\rightarrow\Sbb^1$ related to the original $\wtd f$ by
+\begin{align*}
+f(e^{\im\theta})=\wtd f(\theta)
+\end{align*}
+Following this convention, and similar to \eqref{eq28}, we define
+\begin{align}
+f'(e^{\im\theta})\equiv\partial_z f(e^{\im\theta})=\frac{\wtd f'(\theta)}{\im e^{\im\theta}}
+\end{align}
+Similarly, for each $\Phi\in\mc Q$, we let
+\begin{align}
+\mathring{\Phi}(e^{\im u},e^{\im v})\xlongequal{\mathrm{def}}\wtd\Phi(u,v)=\Phi\big(\frac{u+v}2,\frac{u-v}2\big)
+\end{align}
+viewing $\mathring\Phi$ as a multivalued function on $\Sbb^1\times\Sbb^1$.
+\end{cv}
+
+
+
+
+Although the projective unitary representation $\mc U$ of $\WDS^2$ does not fix $\Omega$ up to $\Sbb^1$-multiplications, similar to \eqref{eq2}, there is a large class of $\Phi\in\mc Q$, called \textbf{primary fields}, satisfying the \textbf{conformal covariance property}: For each such $\Phi$, there exist $\delta,\wht\delta\in \Rbb_{\geq0}$ (called the \textbf{conformal weights} \index{00@Conformal weight} of $\Phi$) such that for all $(g,h)\in\WDS^2$ and 
+\begin{align}\label{eq30}
+\mc U(g,h)\mathring\Phi(e^{\im u},e^{\im v})\mc U(g,h)^{-1}=g'(e^{\im u})^\delta h'(e^{\im v})^{\wht\delta}\cdot\mathring\Phi(g(e^{\im u}),h(e^{\im v}))
+\end{align}
+in the sense of smeared operators.
+
+
+\subsection{}
+
+In the special case that $\varphi\in\mc V$, then \eqref{eq29} says that $\mathring\varphi$ is a single-valued function on $\Sbb^1$, and hence has a Fourier series expansion
+\begin{align}
+\mathring\varphi(z)=\sum_{n\in\Zbb}\mathring\varphi_nz^{-n-1}
+\end{align}
+So $\mathring\varphi_n=\Res_{z=0}\mathring\varphi(z)z^ndz$. The derivative $\mathring\varphi'(z)=\partial_z\mathring\varphi(z)$ is understood in the usual way, i.e., 
+\begin{align*}
+\mathring\varphi'(z)=\sum_n (-n-1)\mathring{\varphi}_nz^{-n-2}
+\end{align*}
+Now, writing $\mc U(g,1)$ as $\mc U(g)$, then for primary chiral $\varphi$, \eqref{eq30} becomes
+\begin{align}\label{eq31}
+\mc U(g)\mathring\varphi(z)\mc U(g)^{-1}=g'(z)^\delta\cdot\mathring \varphi(g(z))
+\end{align}
+We simply call $\delta$ the \textbf{conformal weight} of the chiral field $\varphi$. If \eqref{eq31} only holds for $g\in\UPSU$, we say that the chiral field $\varphi$ is \textbf{quasi-primary}.
+
+\begin{rem}
+For each primary (resp. quasi-primary) chiral $\varphi$, and for each $m\in\Zbb$ (resp. $m=0,\pm1$), we have
+\begin{subequations}\label{eq32}
+\begin{align}\label{eq32a}
+[L_m,\mathring\varphi(z)]=z^{m+1}\mathring\varphi'(z)+\delta\cdot (m+1) z^m\mathring\varphi(z)
+\end{align}
+Equivalently, for each $n\in\Zbb$ we have
+\begin{align}
+[L_m,\mathring\varphi_n]=-(m+n+1)\mathring\varphi_{m+n}+\delta\cdot(m+1)\mathring\varphi_{m+n}
+\end{align}
+\end{subequations}
+\end{rem}
+
+\begin{proof}[Heuristic proof]
+Let $t\mapsto g_t$ be the one-parameter group generated by $\xk=\sum_m a_ml_m$ (a finite sum) satisfying $\xk^\dagger=-\xk$, i.e., $\ovl{a_m}=-a_{-m}$. So $g_0(z)=z$ and $\partial_t g_t(z)\big|_{t=0}=\sum_m a_mz^{m+1}$. Set $X=\sum_m a_mL_m$. Then, informally, we have
+\begin{gather*}
+\frac d{dt} \mc U(g_t)\mathring\varphi(z)\mc U(g_t)^{-1}\big|_{t=0}=[X,\mathring\varphi(z)]
+\end{gather*}
+Also
+\begin{align*}
+\frac d{dt}\mathring\varphi(g_t(z))\big|_{t=0}=\mathring\varphi'(z)\cdot\partial_tg_t(z)\big|_{t=0}=\sum_m a_m z^{m+1}\mathring\varphi'(z)
+\end{align*}
+Since $\delta\cdot g_0'(z)^{\delta-1}=\delta\cdot  \big(\frac d{dz}(z)\big)^{\delta-1}=\delta$, we have
+\begin{align*}
+\frac d{dt}g_t'(z)^\delta\big|_{t=0}=\delta\cdot g'_0(z)^{\delta-1}\cdot \partial_t g_t'(z)\big|_{t=0}=\delta\sum_m (a_mz^{m+1})'=\delta\sum_m (m+1)a_m z^m
+\end{align*}
+Combining the above three results with \eqref{eq31}, we get \eqref{eq32a}.
+\end{proof}
+
+
+\newpage
+
+
+
+
+\section{Local fields and chiral algebras}
+
+In this section, we introduce a rigorous approach to the algebra $\mc V$ of chiral fields. We will give an axiomatic description of (the modes of) the chiral fields acting on $\Vbb$, the dense subspace of $\mc H_0$ with finite $L_0$-spectra. (So $\mc H_0$ is the Hilbert space completion of $\Vbb$.) Some of the proofs will be sketched or even omitted. But details can be found in \cite{Gui-V} (especially Sec. 7 and 8).
+
+\subsection{}\label{lb28}
+
+
+
+Unless otherwise stated, we fix a complex inner product space $\Vbb$ together with a diagonalizable operator $L_0\in\End(\Vbb)$ such that \uwave{the eigenvalues of $L_0$ belong to $\Nbb$}. Thus, we have \uwave{orthogonal} decomposition $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$ where $\Vbb(n)=\{v\in\Vbb:L_0v=nv\}$. If $v\in\Vbb$, we say that $v$ is \textbf{homogeneous} if $v\in\Vbb(n)$ for some $n$; in that case we write
+\begin{align*}
+\wt(v)=n
+\end{align*}
+The Hilbert space completion of $\Vbb$ is denoted by $\mc H_\Vbb$. \index{HV@$\mc H_\Vbb$, the Hilbert space completion of $\Vbb$} We assume that each $\Vbb(n)$ is finite-dimensional so that $\Vbb(n)^{**}=\Vbb(n)$. Define 
+\begin{align*}
+\Vbb^\ac=\prod_{n\in\Nbb}\Vbb(n)
+\end{align*}
+the \textbf{algebraic completion} \index{00@Algebraic completion} of $\Vbb$ \index{Vac@$\Vbb^{\ac}$}. Then clearly
+\begin{align*}
+\Vbb\subset\mc H_\Vbb\subset\Vbb^\ac
+\end{align*}
+Note that $L_0$ acts on $\Vbb^\ac$ in a canonical way by acting on each $\Vbb(n)$ as $n\cdot\id$. Similarly, for each $q\in\Cbb^\times$, $q^{L_0}$ acts on $\Vbb^\ac$. 
+
+For each $n\in\Nbb$, we define the projection onto the $n$-th component \index{Pn@$P_n:\Vbb^\ac\rightarrow\Vbb(n)$}
+\begin{align}
+P_n:\Vbb^\ac\rightarrow\Vbb(n)
+\end{align}
+Then for any $\xi\in\Vbb^\ac$, it is clear that
+\begin{align}
+\xi\in\HV\qquad\Longleftrightarrow\qquad \sum_{n\in\Nbb}\Vert P_n\xi\Vert^2<+\infty
+\end{align}
+Note that $L_0$ and $q^{L_0}$ commute with $P_n$. We also let \index{Pn@$P_{\leq n}$}
+\begin{align}
+P_{\leq n}=\sum_{k\in\Nbb,k\leq n}P_n
+\end{align}
+
+
+
+
+
+
+
+
+
+
+\subsection{}
+
+
+\begin{df}
+An \textbf{(homogeneous) field} on $\Vbb$ is an element
+\begin{align*}
+A(z)=\sum_{n\in\Zbb}A_nz^{-n-1}\in\End(\Vbb)[[z^{\pm1}]]
+\end{align*}
+(where each $A_n$ is in $\End(\Vbb)$) satisfying
+\begin{subequations}\label{eq33}
+\begin{align}\label{eq33a}
+[L_0,A(z)]=\wt(A)\cdot A(z)+z\partial_z A(z)
+\end{align}
+for some $\wt(A)\in\Nbb$ (called the \textbf{(conformal) weight}) \index{00@Conformal weight} of $A(z)$; equivalently,
+\begin{align}\label{eq33b}
+[L_0,A_n]=(\wt(A)-n-1)A_n
+\end{align}
+\end{subequations}
+\end{df}
+
+
+
+\begin{rem}\label{lb34}
+Note that by \eqref{eq33b}, for each $d$, $A_n$ restricts to
+\begin{align}\label{eq36}
+A_n: \Vbb(d)\rightarrow\Vbb(d+\wt(A)-n-1)
+\end{align}
+Since no nonzero homogeneous vectors can have negative weights, we see that $A_nv=0$ when $n\gg0$, and that $\bk{A_n\cdot|v}=0$ when $n\ll 0$. Thus
+\begin{align}\label{eq35}
+A(z)v\in\Vbb((z))
+\end{align}
+for each homogeneous $v\in\Vbb$, and hence for all $v\in\Vbb$. This is called the \textbf{lower truncation property}. \index{00@Lower truncation property} 
+\end{rem}
+
+Note that $A_n$ can be extended to $A_n^{\tr\tr}:\Vbb^\ac\rightarrow\Vbb^\ac$. We abbreviate $A_n^{\tr\tr}$ to $A_n$ when no confusion arises.
+
+
+\begin{eg}
+The field $\idt(z)=\id_\Vbb$ is called the \textbf{vacuum field}. \index{1@$\idt$, the vacuum field} By \eqref{eq33}, we clearly have
+\begin{align*}
+\wt(\idt)=0
+\end{align*}
+\end{eg}
+
+
+
+\subsection{}
+
+
+Let $A(z)$ be a homogeneous field. By \eqref{eq36}, we have a well defined linear map $(A_n)^\dagger:\Vbb\rightarrow\Vbb$ being the formal adjoint of $A_n$, i.e.,
+\begin{align*}
+\bk{A_nu|v}=\bk{u|(A_n)^\dagger v}
+\end{align*}
+This is because the restriction $A_n:\Vbb(d)\rightarrow\Vbb(d+\wt(A)-n-1)$ has an adjoint due the the finite-dimensionality. Thus $(A_n)^\dagger$ restricts to
+\begin{align}\label{eq38}
+(A_n)^\dagger:\Vbb(d)\rightarrow\Vbb(d-\wt(A)+n+1)
+\end{align}
+
+If $z$ is a formal variable, we understand $\ovl z\equiv z^\dagger$ as the formal conjugate of $z$. So $z,\ovl z$ are mutually commuting formal variables.
+
+\begin{df}\label{lb20}
+Define the \textbf{quasi-primary contragredient} \pmb{$A^\theta(z)$} \index{A@$A^\theta(z)$, the quasi-primary contragredient of $A(z)$} of $A(z)$ to be
+\begin{align}
+A^\theta(z)=(-z^{-2})^{\wt(A)}A(\ovl{z^{-1}})^\dagger=(-z^{-2})^{\wt(A)}\cdot \sum_{n\in\Zbb} (A_n)^\dagger z^{n+1}
+\end{align}
+One shows easily that
+\begin{align}\label{eq37}
+A^\theta_n=(-1)^{\wt(A)}\cdot (A_{-n-2+2\wt(A)})^\dagger
+\end{align}
+Comparing \eqref{eq37} with \eqref{eq38}, we see that $A_n^\theta$ restricts to $\Vbb(d)\rightarrow\Vbb(d+\wt(A)-n-1)$. Hence $A^\theta$ is homogeneous with weight
+\begin{align}\label{eq40}
+\wt(A^\theta)=\wt(A)
+\end{align}
+One checks easily that $A^{\theta\theta}=A$.
+\end{df}
+
+The reason we need the extra term $(-z^{-2})^{\wt(A)}$ will be clear when studying PCT symmetry for chiral CFTs in the future. At present, we at least know that part of the reasons we need $z^{-2}$ and its power $\wt(A)$ is because we want \eqref{eq40} to be true.
+
+
+
+\subsection{}
+
+\begin{rem}\label{lb16}
+The field $A^\theta(z)$ can also be understood in the following way: For each $u,v\in\Vbb$ we have
+\begin{align}\label{eq39}
+\bk{A^\theta(z)u|v}=(-z^{-2})^{\wt(A)}\bk{u|A(\ovl{z^{-1}})v}
+\end{align}
+as elements of $\Cbb[[z^{\pm1}]]$. By \eqref{eq35}, the LHS resp. RHS is in $\Cbb((z))$ resp. $\Cbb((z^{-1}))$, we conclude that \eqref{eq39} is in $\Cbb[z^{\pm1}]$. Similarly,
+\begin{align*}
+\bk{A(z)u|v}\in\Cbb[z^{\pm1}]
+\end{align*}
+Thus, $z\in\Cbb^\times\rightarrow\bk{A(z)u|v}\in\Cbb$ is a holomorphic function with finite poles at $0,\infty$, and \eqref{eq39} holds in $\scr O(\Cbb^\times)$. It follows that for each $m,n\in\Vbb$, 
+\begin{align*}
+z\in\Cbb^\times\mapsto P_m A(z)P_n
+\end{align*}
+is an $\Hom(\Vbb(n),\Vbb(m))$-valued holomorphic function.
+\end{rem}
+
+
+
+\begin{pp}\label{lb18}
+Let $u,v\in\Vbb$. Let $A$ be a homogeneous field. Then for each $z,q\in\Cbb^\times$ we have
+\begin{align}\label{eq41}
+\bk{q^{L_0}A(z)q^{-L_0}u|v}=q^{\wt(A)}\cdot\bk{A(qz)u|v}
+\end{align}
+\end{pp}
+
+In short, we have $q^{L_0}A(z)q^{-L_0}=q^{\wt(A)}A(qz)$ as linear maps $\Vbb\rightarrow\Vbb^\ac$. Compare this with Eq. \eqref{eq31}.
+
+\begin{proof}
+For each fixed $q\in\Cbb^\times$, by expanding both sides of \eqref{eq41} as Laurent series of $z$, we see that \eqref{eq41} is equivalent to
+\begin{align}
+\bk{q^{L_0}A_nq^{-L_0}u|v}=q^{\wt(A)-n-1}\bk{A_nu|v}
+\end{align}
+By linearity, it suffices to assume that $u,v$ are homogenous. In that case, this relation follows immediately from \eqref{eq36}.
+\end{proof}
+
+%% Proofread
+
+
+\subsection{}
+
+
+\begin{df}
+Let $A(z),B(z)$ be homogeneous fields on $\Vbb$. We say that $A(z),B(z)$ are mutually \textbf{local} \index{00@Local fields} if there exists $N\in\Nbb$ (depending on $A,B$) such that the following relation holds in $\End(\Vbb)[[z^{\pm1},w^{\pm1}]]$: 
+\begin{align}\label{eq34}
+(z-w)^N[A(z),B(w)]=0
+\end{align}
+We call $N$ an \textbf{order of pole between $A,B$}.
+\end{df}
+
+
+\begin{rem}
+A field $A(z)$ is not necessarily local to itself. If $A(z)$ is local to $A(z)$, we say that $A(z)$ is \textbf{self-local}.\index{00@Self-local fields} A collection of fields $(A^i(z))_{i\in I}$ is called \textbf{mutually local} \index{00@Mutually local fields} if $A^i(z)$ is local to $A^j(z)$ whenever $i,j\in I$ and $i\neq j$.
+\end{rem}
+
+
+Eq. \eqref{eq34} needs explanation. Let $R$ be a $\Cbb$-algebra. Write $z_\blt=(z_1,\dots,z_k)$. Then $R[[z_\blt^{\pm1}]]$ is an $R[z_\blt]$-module. However, this module is not necessarily torsion-free:
+
+\begin{eg}\label{lb14}
+Fix $N\in\Nbb$. Let $\alpha,\beta$ be the expansion of the meromorphic function $(z_1-z_2)^{-N}$ in $|z_1|<|z_2|$ and $|z_1|>|z_2|$, i.e.
+\begin{align*}
+\alpha=\sum_{j\in\Nbb} {-N\choose j}z_1^j(-z_2)^{-N-j}\qquad \beta=\sum_{j\in\Nbb}{-N\choose j}z_1^{-N-j}(-z_2)^j
+\end{align*}
+Then $\alpha\in \Cbb[[z_2^{\pm1}]][z_1]$ and $\beta\in\Cbb[[z_1^{\pm 1}]][z_2]$, and both belong to $\Cbb[[z_\blt^{\pm1}]]$. So $\alpha\neq \beta$ as elements of $\Cbb[[z_\blt^{\pm1}]]$. However, $(z_1-z_2)^N\alpha=(z_1-z_2)^N\beta=1$. Thus $\alpha-\beta$ is an torsion element of the $\Cbb[z_\blt]$-module $\Cbb[[z_\blt^{\pm1}]]$.
+\end{eg}
+
+
+
+
+
+Then $R[[z_\blt^{\pm1}]]$ is not naturally a $\Cbb$-algebra. In particular, not every two elements of $R[[z_\blt^{\pm1}]]$ can be multiplied. For example, the square of $\sum_{n\in\Zbb}z^n$ does not make sense. Moreover, the associativity of products does not necessarily hold even if the elements involved can be multiplied, as shown by Exp. \ref{lb15}. %Indeed, for $f,g,h\in R[[z_\blt^{\pm1}]]$, we only have $(fg)h=f(gh)$ when two of $f,g,h$ are in $R((z_\blt))$. (This is because $R[[z_\blt^{\pm1}]]$ is an $R((z_\blt))$-module.)
+
+\begin{eg}\label{lb15}
+In Exp. \ref{lb14}, both  $(\alpha\cdot (z_1-z_2)^N)\cdot \beta$ and $\alpha\cdot ((z_1-z_2)^N\cdot\beta)$ can be defined. However,
+\begin{gather*}
+(\alpha\cdot (z_1-z_2)^N)\cdot \beta=\beta\qquad \alpha\cdot ((z_1-z_2)^N\cdot \beta)=\alpha
+\end{gather*}
+\end{eg}
+
+
+
+
+\subsection{}\label{lb23}
+
+Assume that $A,B$ are mutually local fields with order of pole $N$. Choose any $u,v\in\Vbb$. By Rem. \ref{lb16}, we have $\bk{A(z)B(w)u|v}=(-z^{-2})^{\wt(A)}\bk{B(w)|A^\theta(\ovl{z^{-1}})v}$, which belongs to $\Cbb((z^{-1},w))$ by the lower truncation property \eqref{eq35}. Thus
+\begin{align*}
+\bk{A(z)B(w)u|v}\in \Cbb((z^{-1},w))\qquad\bk{B(w)A(z)u|v}\in\Cbb((z,w^{-1}))
+\end{align*}
+Therefore, setting
+\begin{align*}
+g:=(z-w)^N\bk{A(z)B(w)u|v}=(z-w)^N\bk{B(w)A(z)u|v}
+\end{align*}
+we have that
+\begin{align*}
+g\in\Cbb((z^{-1},w))\cap\Cbb((z,w^{-1}))=\Cbb[z^{\pm1},w^{\pm1}]
+\end{align*}
+Since the $\alpha(z,w),\beta(z,w)$ in Exp. \ref{lb16} are respectively the inverses of $(z-w)^N$ in the $\Cbb$-algebras $\Cbb((z^{-1},w))$ and $\Cbb((z,w^{-1}))$, we see that
+\begin{align*}
+\bk{A(z)B(w)u|v}=\beta g\qquad \bk{B(w)A(z)u|v}=\alpha g
+\end{align*}
+
+
+Consequently, the series $\bk{A(z)B(w)u|v}$ of $z,w$ converges \textbf{absolutely and locally uniformly (a.l.u)} \index{00@a.l.u.=absolute and locally uniform} on the region $\{(z,w)\in\Cbb:0<|w|<|z|\}$ in the sense that it converges uniformly on any compact subset of that open set. This is because the series $\beta g$ converges a.l.u. on this domain. 
+
+When $u,v$ are homogeneous, one sees easily that this a.l.u. convergence is equivalent to that of 
+\begin{align*}
+\sum_{n\in\Nbb}\bk{A(z)P_nB(w)u|v}
+\end{align*}
+viewed as a series of functions of $z,w$ on $\{0<|w|<|z|\}$. (This is because for each $n$, $\bk{A(z)P_nB(w)u|v}$ is a monomial of $z,w$.) Thus, by linearity, the a.l.u. convergence of this series of functions also holds for any $u,v\in\Vbb$. Similarly,
+\begin{align*}
+\sum_{n\in\Nbb}\bk{B(w)P_nA(z)u|v}
+\end{align*}
+converges a.l.u. on $\{0<|z|<|w|\}$. Moreover, the limit functions of these two series can be analytically extended to the same holomorphic function on $\Conf^2(\Cbb^\times)$, namely, the rational function $(z_1-z_2)^{-N}g(z_1,z_2)$.
+
+
+
+\subsection{}
+
+
+The results in the previous subsection to the following theorem. The proof is similar, and hence will not be given here.  See \cite[Subsec. 8.2]{Gui-V} for details.
+
+
+\begin{thm}\label{lb17}
+Let $A^1,\dots,A^k$ be mutually local fields. Then for each $u,v\in\Vbb$ and each permutation $\sigma$ of $\{1,\dots,k\}$, the series of Laurent polynomials of $z_\blt$
+\begin{align}\label{eq76}
+\sum_{n_2,\dots,n_k\in\Nbb}\bk{A^{\sigma(1)}(z_{\sigma(1)})P_{n_2}A^{\sigma(2)}(z_{\sigma(2)})P_3\cdots P_{n_k} A^{\sigma(k)}(z_{\sigma(k)})u|v}
+\end{align} 
+converges a.l.u. on
+\begin{align}
+\{z_\blt\in\Cbb^k:0<|z_{\sigma(k)}|<\cdots<|z_{\sigma(1)}|\}
+\end{align}
+and can be extended to some $f_{u,v}\in\scr O(\Conf^k(\Cbb^\times))$ independent of $\sigma$. Indeed, $f_{u,v}$ is a rational function.
+\end{thm}
+
+\begin{rem}
+We say that $u$ is \textbf{vacuum with respect to $A(z)$} \index{00@Vacuum with respect to a field} if $A(z)u\in\Vbb[[z]]$, i.e., if $A_nu=0$ if $n\geq0$. If $u$ is vacuum with respect to $A^1,\dots, A^k$, the same argument as in Subsec. \ref{lb23} shows that $f_{u,v}\in\scr O(\Conf^k(\Cbb))$. Thus \eqref{eq76} converges a.l.u. on
+\begin{align*}
+\{z_\blt\in\Cbb^k:|z_{\sigma(k)}|<\cdots<|z_{\sigma(1)}|\}
+\end{align*}
+\end{rem}
+
+
+
+\begin{df}\label{lb46}
+In the setting of Thm. \ref{lb17}, for each $u\in\Vbb$ and $z_\blt\in\Conf^k(\Cbb^\times)$, define
+\begin{align}
+A^1(z_1)\cdots A^k(z_k)u\in \Vbb^\ac
+\end{align}
+to be the one whose inner product with any $v\in\Vbb$ is $f_{u,v}(z)$. Thus $A^1(z_1)\cdots A^k(z_k)$ is a linear map $\Vbb\rightarrow\Vbb^\ac$, and for each $u,v\in\Vbb$ the function
+\begin{align}\label{eq70}
+z_\blt\in\Conf^k(\Cbb^\times)\mapsto \bk{A^1(z_1)\cdots A^k(z_k)u|v}\in\Cbb
+\end{align}
+is holomorphic. When $u$ is vacuum with respect to $A^1,\dots, A^k$, the same conclusion holds if we replace $\Cbb^\times$ with $\Cbb$.
+\end{df}
+
+It is clear that for each permutation $\sigma$ of $\{1,\dots,k\}$ we have
+\begin{align}\label{eq77}
+A^{\sigma(1)}(z_{\sigma(1)})\cdots A^{\sigma(k)}(z_{\sigma(k)})u=A^1(z_1)\cdots A^k(z_k)u
+\end{align}
+Some of the results about single operators can be generalized to products of operators:
+
+\begin{pp}\label{lb19}
+Let $A^1,\dots,A^k$ be mutually local fields. Then for each $z_\blt\in\Conf^k(\Cbb^\times)$ and $q\in\Cbb^\times$, we have in $\Hom(\Vbb,\Vbb^\ac)$ that
+\begin{align}\label{eq42}
+q^{L_0}A^1(z_1)\cdots A^k(z_k)=q^{\wt(A_1)+\cdots+\wt(A_k)}A^1(qz_1)\cdots A^k(qz_k)q^{L_0}
+\end{align}
+\end{pp}
+
+\begin{proof}
+Fix $q\in\Cbb^{\times}$ and $u,v\in\Vbb$. Let $f,g$ denote the LHS and the RHS of \eqref{eq42} inserted in $\bk{\cdot u|v}$. By Thm. \ref{lb17}, both $f$ and $g$ are holomorphic functions of $z_\blt\in\Conf^k(\Cbb^\times)$. Therefore, to prove $f=g$ on the connected region $\Conf^k(\Cbb^\times)$ it suffices to prove it on a nonempty open subset, say $\{0<|z_k|<\cdots<|z_1|\}$. In that case, the relation $f=g$ follows from the a.l.u. convergence in Thm. \ref{lb17} and the fact that for all $n_2,\dots,n_k\in\Nbb$ we have in $\Hom(\Vbb,\Vbb^\ac)$ that
+\begin{align*}
+&q^{L_0}A^1(z_1)P_{n_2}A^2(z_2)P_{n_3}\cdots P_{n_k}A^k(z_k)\\
+=&q^{\wt(A_1)+\cdots+\wt(A_k)}A^1(qz_1)P_{n_2}A^2(qz_2)P_{n_3}\cdots P_{n_k}A^k(qz_k)q^{L_0}
+\end{align*}
+The latter is due to Prop. \ref{lb18} and the fact that $q^{L_0}$ commutes with each $P_{n_j}$.
+\end{proof}
+
+
+\begin{pp}\label{lb21}
+Let $A^1,\dots,A^k$ be mutually local fields. Let $u,v\in\Vbb$. Then for each $z_\blt\in\Conf^k(\Cbb^\times)$ we have
+\begin{align}\label{eq43}
+\begin{aligned}
+&\bk{A^1(z_1)\cdots A^k(z_k)u|v}\\
+=&(-z_1^{-2})^{\wt(A^1)}\cdots (-z_k^{-2})^{\wt(A^k)}\bigbk{u\big|(A^k)^\theta\big(\ovl{z_k^{-1}}\big)\cdots(A^1)^\theta\big(\ovl{z_1^{-1}} \big)v}
+\end{aligned}
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+Similar to Prop. \ref{lb19}, it suffices to prove \eqref{eq43} when $0<|z_1|<\cdots<|z_k|$ (and hence $0<|\ovl{z_k^{-1}}|<\cdots<|\ovl{z_1^{-1}}|$). This special case follows from the a.l.u. convergence Thm. \ref{lb17} and Def. \ref{lb20}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\subsection{}
+
+
+We now discuss a further generalization (or variant) of the convergence Thm. \ref{lb17}. Its proof gives another application of the trick of analytic continuation (as in the proof of Prop. \ref{lb19} and \ref{lb21}).
+
+\begin{thm}\label{lb22}
+Assume that $A^1,\dots,A^m$ and $B^1,\dots,B^k$ are mutually local fields. Let
+\begin{align*}
+\Omega=\{(z_1,\dots,z_m,\zeta_1,\dots,\zeta_k)\in\Conf^{m+k}(\Cbb^{\times}):|z_i|>|\zeta_j|\text{ for all }i,j\}
+\end{align*}
+Then for each $u,v\in\Vbb$, the RHS of 
+\begin{align}
+\begin{aligned}
+&\bk{A^1(z_1)\cdots A^m(z_m)B^1(\zeta_1)\cdots B^k(\zeta_k)u|v}\\
+=&\sum_{n\in\Nbb}\bk{A^1(z_1)\cdots A^m(z_m)P_nB^1(\zeta_1)\cdots B^k(\zeta_k)u|v}
+\end{aligned}
+\end{align}
+converges a.l.u. on $\Omega$ to the LHS.
+\end{thm}
+
+
+\begin{proof}
+It suffices to prove the a.l.u. on
+\begin{align*}
+\Omega_r=\{(z_1,\dots,z_m,\zeta_1,\dots,\zeta_k)\in\Conf^{m+k}(\Cbb^{\times}):|z_i|>r|\zeta_j|\text{ for all }i,j\}
+\end{align*}
+for each $r>1$. In fact, we shall show that the series of functions
+\begin{align*}
+\sum_{n\in\Nbb} \bk{A^1(z_1)\cdots A^m(z_m)q^{L_0}P_nB^1(\zeta_1)\cdots B^k(\zeta_k)u|v}  \tag{a}\label{eq44}
+\end{align*}
+converges a.l.u. on $(z_\blt,\zeta_\star,q)\in \Omega_r\times \Dbb_r^\times$ to
+\begin{align*}
+q^\delta\bk{A^1(z_1)\cdots A^m(z_m)B^1(q\zeta_1)\cdots B^k(q\zeta_k)q^{L_0}u|v}  \tag{b}\label{eq45}
+\end{align*}
+where $\delta=\wt(B^1)+\cdots+\wt(B^k)$. By Thm. \ref{lb17} and Prop. \ref{lb18}, on
+\begin{align*}
+\Omega_r'=\{(z_\blt,\zeta_\star):0<r|\zeta_k|<\cdots<r|\zeta_1|<|z_m|<\cdots<|z_1|\}
+\end{align*}
+the series \eqref{eq44} is equivalent to
+\begin{align*}
+&\sum \bk{A^1(z_1)P_{\nu_2}\cdots P_{\nu_m}A^m(z_m)q^{L_0}P_nB^1(\zeta_1)P_{n_2}\cdots P_{n_k}B^k(\zeta_k)u|v}\\
+=&\sum q^\delta\bk{A^1(z_1)P_{\nu_2}\cdots P_{\nu_m}A^m(z_m)P_nB^1(q\zeta_1)P_{n_2}\cdots P_{n_k}B^k(q\zeta_k)q^{L_0}u|v}
+\end{align*}
+and hence converges a.l.u. to \eqref{eq45}. Therefore, if we let $\sum_\nu f_\nu q^\nu$ be the Laurent series expansion of \eqref{eq45} (where $f_\nu\in\scr O(\Omega_r)$), then this series converges a.l.u. on $\Omega_r\times\Dbb_r^\times$, and this series equals the series \eqref{eq44} on $\Omega_r'\times\Dbb_r^\times$. Thus $f_\nu$ equals the coefficient before $q^\nu$ of \eqref{eq44} on $\Omega_r'$, and hence on $\Omega_r$ by the holomorphicity of the coefficients (as functions on $\Omega_r$). Thus \eqref{eq44} converges a.l.u. on $\Omega_r$ to \eqref{eq45}.
+\end{proof}
+
+
+The following theorem follows almost immediately from Thm. \ref{lb22}.
+
+\begin{thm}\label{lb45}
+Let $A^1,\dots,A^k$ be mutually local fields. Let $v\in\Vbb$. Then we have a holomorhic function
+\begin{gather}
+\begin{gathered}
+\Conf^k(\Dbb^\times_1)\rightarrow \mc H_\Vbb\qquad z_\blt\mapsto A^1(z_1)\cdots A^k(z_k)v
+\end{gathered}
+\end{gather}
+\end{thm}
+
+\begin{proof}
+By Prop. \ref{lb21}, we have
+\begin{align*}
+&\sum_{n\in\Nbb}\Vert P_n  A^1(z_1)\cdots A^k(z_k)v\Vert^2\\
+=&\sum_{n\in\Nbb}(-\ovl{z_1}^{-2})^{\wt(A^1)}\cdots(-\ovl{z_k}^{-2})^{\wt(A^k)}\bk{A^k(1/\ovl{z_k})\cdots A^1(1/\ovl{z_1})P_nA^1(z_1)\cdots A^k(z_k)v|v}
+\end{align*}
+By Thm. \ref{lb22}, this series converges a.l.u. on $\Conf^k(\Dbb_1^\times)$. Therefore, for each $z_\blt\in \Conf^k(\Dbb_1^\times)$ we have $A^1(z_1)\cdots A^k(z_k)v\in\mc H_\Vbb$. Moreover, the above a.l.u. convergence implies the a.l.u. convergence of the series of $\mc H_\Vbb$-valued functions
+\begin{align*}
+z_\blt\in\Conf^k(\Dbb_1^\times)\mapsto\sum_{n\in\Nbb}P_n A^1(z_1)\cdots A^k(z_k)v
+\end{align*}
+because the summands are mutually orthogonal for different $n$. Since the partial sums of this series are holomorphic, the limit of the above series (namely, $A^1(z_1)\cdots A^k(z_k)v$) is also holomorphic.
+\end{proof}
+
+
+
+
+
+\subsection{}
+
+
+
+A linear combination of mutually local fields is clearly local to the original fields. It turns out that there is a non-associative ``product" $A_kB$ (where $k\in\Zbb$) that is local to any field $C$ whenever $A,B,C$ are mutually local. 
+
+\begin{df}\label{lb24}
+Let $A,B$ be mutually local fields. Let $k\in\Zbb$. For each $z\in\Cbb^\times$, define a linear map $(A_kB)(z):\Vbb\rightarrow\Vbb^\ac$ \index{AkB@$A_kB$ where $A,B$ are local fields} by
+\begin{align}\label{eq46}
+\bk{(A_kB)(z)u|v}=\oint_{\Gamma(z)}(\zeta-z)^k\bk{A(\zeta)B(z)u|v}\frac{d\zeta}{2\im\pi}
+\end{align}
+for each $u,v\in\Vbb$. Here, $\Gamma(z)$ is an anticlockwise circle around $z$. Clearly \eqref{eq46} is holomorphic over $z\in\Cbb^\times$. Let
+\begin{align*}
+(A_kB)_n:\Vbb\rightarrow\Vbb^\ac\qquad\bk{(A_kB)_nu|v}=\Res_{z=0}~z^n\bk{(A_kB)(z)u|v}dz
+\end{align*}
+So we have $(A_kB)(z)=\sum_{n\in\Zbb}(A_kB)_nz^{-n-1}$ in $\Hom(\Vbb,\Vbb^\ac)[[z]]$.
+\end{df}
+
+
+\subsection{}
+
+
+Let $A,B$ be mutually local fields. 
+
+\begin{thm}\label{lb25}
+For each $n,k\in\Zbb$ we have
+\begin{align}\label{eq47}
+(A_kB)_n=\sum_{l\in\Nbb}(-1)^l{k\choose l}A_{k-l}B_{n+l}-\sum_{l\in\Nbb}(-1)^{k+l}{k\choose l}B_{k+n-l}A_l
+\end{align}
+\end{thm}
+
+Note that by the lower truncation property \eqref{eq35}, the RHS of \eqref{eq47} is a finite sum when acting on each $v\in\Vbb$. 
+
+\begin{proof}
+Fix $w\in\Cbb^\times$. Then the function $f(z)=(z-w)^k\bk{A(z)B(w)u|v}$ is holomorphic on $z\in\Cbb^\times\setminus\{w\}$. Let $\Gamma_-,\Gamma_+$ be circles around $0$ with radii $<|w|$ and $>|w|$ respectively. Let $\Gamma(w)$ be a circle around $w$ and between $\Gamma_-$ and $\Gamma_+$. Then Cauchy's theorem implies that $\bk{(A_kB)(w)u|v}=\int_{\Gamma(w)}f(z)dz/2\im\pi$ equals $\int_{\Gamma_+-\Gamma_-}f(z)dz/2\im\pi$.
+
+
+We compute that $\int_{\Gamma_+}f(z)\frac{dz}{2\im\pi}$ equals
+\begin{align*}
+\int_{\Gamma_+}(z-w)^k\bk{A(z)B(w)u|v}\frac{dz}{2\im\pi}=\int_{\Gamma_+}\sum_{\nu\in\Nbb} (z-w)^k\bk{A(z)P_\nu B(w)u|v}\frac{dz}{2\im\pi}
+\end{align*}
+By Thm. \ref{lb17}, the series in the integral converges uniformly on $z\in\Gamma_+$. Thus $\int_{\Gamma_+}$ and $\sum_\nu$ can be exchanged. Therefore
+\begin{align*}
+&\int_{\Gamma_+}f(z)\frac{dz}{2\im\pi}=\sum_{\nu\in\Nbb}\int_{\Gamma_+} (z-w)^k\bk{A(z)P_\nu B(w)u|v}\frac{dz}{2\im\pi}\\
+=&\sum_{\nu\in\Nbb}\int_{\Gamma_+}\sum_{l\in\Nbb}{k\choose l}z^{k-l}(-w)^l \bk{A(z)P_\nu B(w)u|v}\frac{dz}{2\im\pi}\\
+=&\sum_{\nu\in\Nbb}\sum_{l\in\Nbb}{k\choose l}(-w)^l\bk{A_{k-l}P_\nu B(w)u|v}=\sum_{l\in\Nbb}{k\choose l}(-w)^l\bk{A_{k-l} B(w)u|v}
+\end{align*}
+Similarly, since $(z-w)^k=\sum_{l\in\Nbb}{k\choose l}z^l(-w)^{k-l}$ when $z$ is on $\Gamma_-$, we have
+\begin{align*}
+\int_{\Gamma_-}f(z)\frac{dz}{2\im\pi}=\sum_{\nu\in\Nbb}\int_{\Gamma_-} (z-w)^k\bk{B(w)P_\nu A(z) u|v}\frac{dz}{2\im\pi}=\sum_{l\in\Nbb}{k\choose l}(-w)^{k-l}\bk{B(w)A_lu|v}
+\end{align*}
+
+To summarize, we have
+\begin{align*}
+\bk{(A_kB)(w)u|v}=\sum_{l\in\Nbb}{k\choose l}(-w)^l\bk{A_{k-l} B(w)u|v}-\sum_{l\in\Nbb}{k\choose l}(-w)^{k-l}\bk{B(w)A_lu|v}
+\end{align*}
+Applying $\Res_{w=0}w^n(\cdots)dw$ to both sides, we get \eqref{eq47}.
+\end{proof}
+
+
+\begin{co}\label{lb26}
+Let $k\in\Zbb$. Then for each $n\in\Zbb$, the linear map $(A_kB)_n:\Vbb\rightarrow\Vbb^\ac$ has range in $\Vbb$. Moreover, $A_kB$ is a homogeneous field with weight
+\begin{align}\label{eq48}
+\wt(A_kB)=\wt(A)+\wt(B)-k-1
+\end{align}
+\end{co}
+
+\begin{proof}
+Eq. \eqref{eq47} shows that $(A_kB)_n$ sends each $\Vbb(d)$ to $\Vbb(d')$ where
+\begin{align*}
+&d'=d+(\wt(A)-k-l-1)+(\wt(B)-n-l-1)\\
+=&d+(\wt(B)-k-n+l-1)+(\wt(A)-l-1)
+\end{align*}
+which equals $d+\wt(A_kB)-n-1$ if we let $\wt(A_kB)$ be the RHS of \eqref{eq48}.
+\end{proof}
+
+
+
+\subsection{}
+
+
+With the help of $A_kB$, we can obtain several equivalent descriptions of local fields.
+
+\begin{thm}\label{lb27}
+Let $A,B$ be homogeneous fields and $N\in\Nbb$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $A,B$ are mutually local with pole of order $N$.
+\item For each $u,v\in\Vbb$, the series
+\begin{gather}
+\sum_{n\in\Nbb}\bk{A(z)P_nB(w)u|v}\qquad\text{and}\qquad \sum_{n\in\Nbb}\bk{B(w)P_nA(z)u|v}
+\end{gather}
+converge a.l.u. on
+\begin{align}
+\{(z,w)\in\Cbb^2:0<|w|<|z|\}\qquad\text{and}\qquad\{(z,w)\in\Cbb^2:0<|z|<|w|\}
+\end{align}
+respectively, and can be extended to a common function $f_{u,v}\in\scr O(\Conf^2(\Cbb^\times))$ such that $(z-w)^Nf_{u,v}$ is holomorphic on $(\Cbb^\times)^2$.
+\item For each $j=0,1,\dots,N-1$ there exists a sequence $(C^j_n)_{n\in\Zbb}$ in $\End(\Vbb)$ such that for all $m,k\in\Zbb$ we have
+\begin{align}\label{eq49}
+[A_m,B_k]=\sum_{l=0}^{N-1}{m\choose l}C^l_{m+k-l}
+\end{align}
+\end{enumerate}
+Moreover, if one of (1) and (2) is true, then $A_jB=0$ for all $j\geq N$, and (3) holds if for each $0\leq j\leq N$ we define $C^j(z)\equiv\sum_{n\in\Zbb}C^j_nz^{-n-1}$ to be
+\begin{align*}
+C^j(z)=(A_jB)(z)
+\end{align*}
+\end{thm}
+
+
+\begin{proof}
+(1)$\Rightarrow$(2) follows directly from Thm. \ref{lb17}.
+
+(2)$\Rightarrow$(3):  Note that $A_jB$ can be defined and satisfies Cor. \ref{lb26} whenever (2) holds. Assume (2), and set $C^j(z)=(A_jB)(z)$. By Def. \ref{lb24}, if $j\geq N$ then 
+\begin{align*}
+\bk{(A_jB)(w)u|v}=\Res_{z=w}(z-w)^jf_{u,v}(z,w)dz=0
+\end{align*}
+because $z\mapsto (z-w)^jf_{u,v}(z,w)$ is holomorphic on a neighborhood at $w$. So $C^j=0$ for all $j\geq N$.
+
+Fix $w\in\Cbb^\times$ and $g(z)=z^m\bk{A(z)B(w)u|v}$. Let $\Gamma_\pm,\Gamma(w)$ be as in the proof of Thm. \ref{lb25}. Then $\int_{\Gamma(w)}g(z)\frac{dz}{2\im\pi}=\int_{\Gamma_+-\Gamma_-}g(z)\frac{dz}{2\im\pi}$. Similar to the proof of Thm. \ref{lb25}, one computes that
+\begin{gather*}
+\int_{\Gamma_+}g(z)\frac{dz}{2\im\pi}=\bk{A_m B(w)u|v}\qquad \int_{\Gamma_-}g(z)\frac{dz}{2\im\pi}=\bk{B(w)A_mu|v}\\
+\int_{\Gamma(w)}g(z)\frac{dz}{2\im\pi}=\sum_{l\in\Nbb}{m\choose l}w^{m-l}\bk{(A_lB)(w)u|v}
+\end{gather*}
+since $z^m=\sum_{l\in\Nbb}{m\choose l}(z-w)^lw^{m-l}$ when $z\in\Gamma(w)$. Thus, for all $w\in\Cbb^\times$ we have
+\begin{align*}
+\bk{[A_m,B(w)]u|v}=\sum_{l=0}^{N-1}{m\choose l}w^{m-l}\bk{C^l(w)u|v}
+\end{align*}
+Applying $\Res_{w=0} w^k(\cdots)dw$ to both sides, we get \eqref{eq49}.
+
+(3)$\Rightarrow$(1): This is calculated by brutal force. Assume (3). Using $(z-w)^N=\sum_{j=0}^N{N\choose j}z^jw^{N-j}$, one computes that the coefficient before $z^{-m-1}w^{-m-1}$ of $(z-w)^N[A(z),B(w)]$ is
+\begin{align*}
+\Res_{z=0}\Res_{w=0}z^mw^n(z-w)^N[A(z),B(w)]dzdw=\sum_{l=0}^{N-1}\lambda_l C^l_{m+n+N-l}
+\end{align*}
+where $\lambda_l=\sum_{j=0}^N{N\choose j}(-1)^{N-j}{m+j\choose l}$ is a number depending on $N$ and $m\in\Zbb$. One shows that $p(z):=(1+z)^mz^N$ equals $\sum_{l\in\Nbb}\lambda_l z^l$ by first writing $p(z)$ as a polynomial of $(1+z)$, and then expanding each power of $1+z$. So $\lambda_l=0$ for $l\geq N$. This proves (1). See \cite[Subset. 7.8]{Gui-V} for details.
+\end{proof}
+
+
+\subsection{}
+
+Thm. \ref{lb27} gives us useful methods of proving locality. In this subsection, we give applications of Thm. \ref{lb27}-(2). In the next subsection, we discuss applications of Thm. \ref{lb27}-(3). 
+
+The following theorem is called \textbf{Dong's lemma} \index{00@Dong's lemma} or \textbf{Dong-Li's lemma}
+
+
+\begin{thm}\label{lb29}
+Let $A,B,C$ be mutually local fields. Then for each $k\in\Zbb$, $A_kB$ is local to $C$.
+\end{thm}
+
+\begin{proof}
+Choose any $u,v\in\Vbb$. Define $g\in\scr O(\Conf^2(\Cbb^\times))$ by
+\begin{align*}
+g(z_2,z_3)=\Res_{z_1=z_2}(z_1-z_2)^n\bk{A(z_1)B(z_2)C(z_3)u|v}
+\end{align*}
+Using Def. \ref{lb24} and Thm. \ref{lb17}, one shows that
+\begin{align*}
+\sum_{n\in\Nbb}\bk{(A_kB)(z_2)P_nC(z_3)u|v}\qquad\text{resp.}\qquad \sum_{n\in\Nbb}\bk{C(z_3)P_n(A_kB)(z_2)u|v}
+\end{align*}
+converges a.l.u. on
+\begin{align*}
+\{(z_2,z_3)\in\Cbb^2:0<|z_3|<|z_2|\}\qquad\text{resp.}\qquad\{(z_2,z_3)\in\Cbb^2:0<|z_2|<|z_3|\}
+\end{align*}
+to $g(z_2,z_3)$. Moreover, since $\bk{A(z_1)B(z_2)C(z_3)u|v}$ is a rational function of $z_1,z_2,z_3$, one checks easily that $g$ has finite poles at $z_2-z_3=0$. Thus $A_kB$ is local to $C$ by Thm. \ref{lb27}-(2). See \cite[Subsec. 8.7]{Gui-V} for details.
+\end{proof}
+
+
+\begin{co}
+Let $A,B$ be mutually local fields. Define $\partial A$ to be $\partial_zA(z)=\sum_{n\in\Zbb}(-n-1)A_nz^{-n-2}$, equivalently,
+\begin{align}\label{eq51}
+(\partial A)_n=-nA_{n-1}
+\end{align}
+Then $\partial A$ is homegeneous of weight
+\begin{align}\label{eq52}
+\wt(\partial A)=\wt(A)+1
+\end{align}
+Moreover, $\partial A$ is local to $B$.
+\end{co}
+
+\begin{proof}
+Eq. \eqref{eq52} is clear from \eqref{eq51}. Using \eqref{eq47} and \eqref{eq51}, one checks that
+\begin{align}
+\partial A=(A_{-2}\idt)
+\end{align}
+So the corollary follows from Thm. \ref{lb29}.
+\end{proof}
+
+Note that $A^\theta$ is not necessarily local to $B$ even if $A$ is local to $B$.
+
+
+
+
+\subsection{}
+
+
+\begin{eg}\label{lb40}
+Let $c\geq0$. A field $T(z)=\sum_n  L_nz^{-n-2}$ of weight $2$ is called a \textbf{unitary Virasoro field} \index{00@Unitary virasoro field $T(z)$} (or stress-energy field) of \textbf{central charge} $c$ \index{00@Central charge} if $L_0$ coincides with the one in Subsec. \ref{lb28}, and
+\begin{align}\label{eq50}
+[L_m,L_n]=(m-n)L_{m+n}+\frac c{12}(m^3-m)\delta_{m+n,0}\qquad L_n^\dagger=L_{-n}
+\end{align}
+for all $m,n\in\Zbb$. Note that $L_n^\dagger=L_{-n}$ means $\bk{L_nu|v}=\bk{u|L_{-n}v}$. Thus $T_n=L_{n-1}$. The \textbf{Virasoro relation} \eqref{eq50} shows that $T(z)$ is self-local.
+\end{eg}
+
+
+\begin{proof}[Proof of self-locality]
+Eq. \eqref{eq50} is equivalent to
+\begin{align*}
+[T_m,T_n]=(m-n)T_{m+n-1}+\frac c2{m\choose 3}\delta_{m+n-2,0}
+\end{align*}
+So $[T_m,T_n]=\sum_{l=0}^3{m\choose l}C^l_{m+n-l}$ if we set
+\begin{align*}
+C^0_k=-kT_{k-1} \qquad  C^1_k=2T_k\qquad C^2_k=0\qquad C^3_k=0
+\end{align*}
+In other words,
+\begin{align*}
+C^0(z)=\partial_zT(z)\qquad C^1(z)=2T(z)\qquad C^2(z)=0\qquad C^3(z)=\frac c2
+\end{align*}
+Thus, by Thm. \ref{lb27}-(3), $T(z)$ is self-local.
+\end{proof}
+
+
+\subsection{}
+
+
+
+\begin{df}\label{lb30}
+We say that $(\mc V,\Vbb)$ is a \textbf{(quasi-primary unitary) chiral algebra} \index{00@Chiral algebra} if $\Vbb$ is as in Subsec. \ref{lb28}, and $\mc V$ is a set of homogeneous fields satisfying the following conditions:
+\begin{enumerate}[label=(\arabic*)]
+\item Creation property: There is a distinguished vector $\Omega\in\Vbb(0)$ such that $A(z)\Omega\in\Vbb[[z]]$ (i.e., $A_n\Omega=0$ if $n\geq1$) for all $A\in\mc V$.
+\item Locality: Any two fields of $\mc V$ are mutually local. In particular, every field of $\mc V$ is self-local.
+\item Cyclicity: Vectors of the form $A^1_{n_1}\cdots A^k_{n_k}\Omega$ (where $k\in\Nbb$, $A^1,\dots,A^k\in\mc V$, and $n_1,\dots,n_k\in\Zbb$) span $\Vbb$
+\item M\"obius covariance: The operator $L_0$ can be extended to $\{L_0,L_{\pm1}\}$ satisfying for all $A\in\mc V$ and $m\in\{0,1,-1\}$ that
+\begin{subequations}\label{eq53}
+\begin{gather}
+[L_m,A(z)]=z^{m+1}\partial_z\Phi(z)+\wt(A)\cdot(m+1)z^mA(z)
+\end{gather}
+in $\End(\Vbb)[[z^{\pm1}]]$. Equivalently, for all $n\in\Zbb$ we have
+\begin{gather}\label{eq53b}
+[L_m,A_n]=-(m+n+1)A_{m+n}+\wt(A)\cdot(m+1)A_{m+n}
+\end{gather}
+\end{subequations}
+Moreover, we have
+\begin{align}\label{eq67}
+L_n\Omega=0\qquad\text{for all }n=0,\pm1
+\end{align}
+\item $\theta$-invariance: If $A\in\mc V$, then $A^\theta\in\mc V$.
+\end{enumerate}
+\end{df}
+
+\begin{rem}
+The adjective ``quasi-primary" means that \eqref{eq53} holds for $A\in\mc V$. However, for $A,B\in\mc V$ and $k\in\Zbb$, the fields $\partial A$ and $A_kB$ satisfy \eqref{eq53} only for $m=-1,0$, but not necessarily for $m=1$. In other words, $\partial A$ and $A_kB$ are not necessarily quasi-primary. Non quasi-primary fields satisfy a more complicated M\"obius covariance formula.
+\end{rem}
+
+
+\begin{df}
+A chiral algebra $(\mc V,\Vbb)$ is called \textbf{conformal} \index{00@Conformal chiral algebra} if $L_0,L_{\pm1}$ can be extended to a sequence $(L_n)_{n\in\Zbb}$ in $\End(\Vbb)$ such that the Virasoro relation \eqref{eq50} holds for some central charge $c$, and that $T(z)=\sum_{n\in\Zbb}L_nz^{-n-2}$ satisfies $\wt(T)=2$ and belongs to $\mc V$.
+
+If $(\mc V,\Vbb)$ is a conformal chiral algebra, we say that $A\in \mc V$ is a \textbf{primary field} \index{00@Primary field} if $A$ satisfies \eqref{eq53} for all $m\in\Zbb$. \hfill\qedsymbol
+\end{df}
+
+\begin{rem}
+Note that when $m=0,\pm 1$, the Virasoro relation specializes to $[L_m,L_n]=(m-n)L_{m+n}$ (for all $n\in\Zbb$). Thus $T(z)$ automatically satisfies \eqref{eq53}. However, if $c\neq 0$ and $m\neq 0,\pm1$, then \eqref{eq53} does not hold for $T(z)$. Thus $T(z)$ is not primary.
+\end{rem}
+
+
+\begin{rem}
+When $(\mc V,\Vbb)$ is a conformal chiral algebra, then \eqref{eq67} is redundant, since the creation proerty for $T(z)$ implies that
+\begin{align*}
+L_n\Omega=0\qquad\text{for all }n=-1,0,1,2,3,\dots
+\end{align*}
+\end{rem}
+
+
+\subsection{}
+
+
+\begin{df}
+A \textbf{unitary Lie algebra} \index{00@Unitary Lie algebra}  is defined to be a complex Lie algebra $\gk$ together with an inner product (called \textbf{invariant inner product}) \index{00@Invariant inner product} on $\gk$ and an \textbf{involution} \index{00@Involution} $\dagger$ (i.e., an antilinear map $\dagger:\gk\rightarrow\gk$ satisfying $X^{\dagger\dagger}=X$ for all $X\in\gk$) satisfying the following properties for all $X,Y,Z\in\gk$:
+\begin{enumerate}[label=(\arabic*)]
+\item $\bk{[X,Y]|Z}=\bk{Y|[X^\dagger,Z]}$, i.e., the representation $X\mapsto [X,-]$ is unitary.
+\item $[X,Y]^\dagger=[Y^\dagger,X^\dagger]$.
+\end{enumerate}
+If $W$ is an inner product space, we say that $\pi:\gk\rightarrow\End(W)$ is a \textbf{unitary representation} if $\pi([X,Y])=[\pi(X),\pi(Y)]$ and $\pi(X)^\dagger=\pi(X^\dagger)$ (i.e. $\bk{\pi(X)u|v}=\pi(u|\pi(X^)\dagger v)$) for all $X,Y\in\gk$. 
+\end{df}
+
+\begin{rem}
+One can show that a finitely dimensional complex Lie algebra $\gk$ is unitary iff it is isomorphic (but not necessarily unitarily isomorphic) to $\zk\oplus\gk_1\oplus\cdots\oplus\gk_n$ where $\zk$ is abelian (i.e. $\simeq \Cbb^k$ for some $k\in\Nbb$) and $\gk_1,\dots,\gk_n$ are complex simple Lie algebras. There are no canonical choices of the invariant inner products on $\zk$, since any two inner products are unitarily equivalent. However, $\gk_i$ has a canonical choice of invariant inner product: the one under which the longest root has length $\sqrt 2$. See \cite[Ch. II]{Was-10} for details. 
+\end{rem}
+
+
+\begin{eg}\label{lb41}
+Let $\gk$ be a finite-dimensional unitary Lie algebra. Let $l\in\Rbb_{>0}$. Suppose that $\mc V$ is a set of fields $X(z)=\sum_{n\in\Zbb}X_nz^{-n-1}$ (where $X\in\gk$) such that 
+\begin{align}\label{eq68}
+[X_m,Y_n]=[X,Y]_{m+n}+l\cdot m\bk{X|Y^*}\delta_{m+n,0}\qquad (X_n)^\dagger=(X^\dagger)_{-n}
+\end{align}
+for all $X,Y\in\gk$ and $m,n\in\Zbb$. Using Thm. \ref{lb27}-(3), one checks that any two fields of $\mc V$ are mutually local. We call $X(z)$ a \textbf{current field}. \index{00@Current field}
+
+
+Now assume that the creation property and the cyclicity in Def. \ref{lb30} holds for $(\mc V,\Vbb)$. Assume that $\gk$ is abelian resp. simple. Let $h^\vee$ be $0$ resp. the dual Coxeter number of $\gk$. Define $T(z)=\sum_{n\in\Zbb}L_nz^{-n-2}$ via the \textbf{Sugawara construction}
+\begin{align}
+T(z)=\frac 1{2(l+h^\vee)}\sum_{i} \big((E_i^\dagger)_{-1}E_i\big)(z)
+\end{align}
+where $(E_i)$ is an orthonormal basis of $\gk$. Set $T^\theta=T$ and $X^\theta=X$ (where $X\in\gk$). Then $\mc V\cup\{T(z)\}$ is a conformal chiral algebra, and all $X(z)$ are primary with
+\begin{align*}
+\wt(X)=1
+\end{align*}
+We call $\mc V$ the \textbf{current algebra} \index{00@Current algebra} of $\gk$ with \textbf{level} \index{00@Level of a current algebra} $l$. See \cite[Sec. 6]{Gui-V} for details.
+
+
+If $\gk$ is abelian, all $l>0$ are possible. In fact, in this case, $(\mc V,\Vbb)$ can be constructed from Bosonic Fock spaces. See \cite[Subsec. 6.13]{Gui-V}. If $\gk$ is simple and the invariant inner product is the canonical one (i.e., the one under which the longest root has length $\sqrt 2$), one can show that all possible $l>0$ form $\Zbb_+$. See \cite[Ch. III]{Was-10} for details.   \hfill\qedsymbol 
+\end{eg}
+
+
+
+
+\newpage
+
+
+\section{Energy-bounded fields and their smeared fields}
+
+
+
+We assume the setting of Subsec. \ref{lb28}. Recall that $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$ is graded by $L_0$. Therefore, $L_0$ is a symmetric operator on $\mc H$, and hence closable. Recall that $\oplus_n v_n\in\Vbb^\ac$ belongs to $\HV$ iff $\sum_n\Vert v_n\Vert^2<+\infty$. For each $n\in\Zbb$, define
+\begin{align}
+\ek_n:\Sbb^1\rightarrow\Cbb\qquad \ek_n(z)=z^n
+\end{align}
+For each $f\in C^\infty(\Sbb^1)$ and $t\in\Rbb$, define the $t$-th order Sobolev norm \pmb{$\Vert f\Vert_t$} to be
+\begin{align}
+\Vert f\Vert_t=\sum_{n\in\Zbb} (1+|n|)^t|\wht f(n)|
+\end{align}
+where $f=\sum_{n\in\Nbb}\wht f(n)\cdot \ek_n$ is the Fourier series. Note that $\Vert f\Vert_t<+\infty$ because $n\in\Zbb\mapsto \wht f(n)$ is rapidly decreasing.
+
+
+
+
+
+
+
+
+
+\subsection{}
+
+The following proposition implies, for example, that if $q\in\Cbb^\times$ then the action of $q^{L_0}$ on $\Vbb^\ac$ described in Subsec. \ref{lb28} is compatible with the Borel functional calculus $q^{\ovl{L_0}}$ on $\HV$. 
+
+\begin{pp}\label{lb33}
+The closure $\ovl {L_0}$ is a (closed self-adjoint) positive operator. Moreover, for each Borel function $f:\Rbb_{\geq0}\rightarrow\Cbb$ we have
+\begin{subequations}\label{eq54}
+\begin{align}\label{eq54a}
+\Dom(f(\ovl {L_0}))=\Big\{\oplus_n v_n\in\mc H_\Vbb:\sum_n |f(n)|^2\Vert v_n\Vert^2<+\infty\Big\}
+\end{align}
+Moreover, $\Vbb$ is a core for $f(\ovl{L_0})$. For each $\oplus_n v_n\in\HV$ we have
+\begin{align}\label{eq54b}
+f(\ovl{L_0})(\oplus_n v_n)=\oplus_n f(n)v_n
+\end{align}
+\end{subequations}
+\end{pp}
+
+
+In particular, if $r\in\Rbb$, we understand $(1+\ovl{L_0})^r$ as $f(\ovl{L_0})$ where $f(x)=(1+x)^r$. 
+
+
+\begin{proof}
+
+
+
+
+%Clearly $L_0$ is symmetric. Since $\Rng(\im+L_0)$ and $\Rng(\im-L_0)$ both contain $\Vbb$, they are dense in $\HV$. Thus, by Prop. \ref{lb31}, $\ovl{L_0}$ is self-adjoint and has core $\Vbb$. Since $\bk{\ovl{L_0}v|v}\geq0$ for each $v\in\Vbb$, by Rem. \ref{lb32}, we have $\ovl{L_0}\geq0$.
+
+By choosing an orthonormal basis for each $\Vbb(n)$, we can view $\HV$ as a direct sum $\bigoplus_{j\in J}L^2(\Nbb,\mu_j)$ where $J$ is a countable set and $\mu_j$ is a Dirac measure on $\Nbb$. Then clearly
+\begin{align*}
+\Vbb=\bigcup_{n\in\Nbb} M_{\chi_{[0,n]}}\HV
+\end{align*}
+This shows that $\Vbb$ is a core for the multiplication operator $M_f$ (since $(M_{\chi_{[0,n]}})_{n\in\Nbb}$ is a sequence of bounding projections for $M_f$, cf. \cite[Sec. 8]{Gui-S}).
+
+Now let $x:\Nbb\rightarrow\Cbb,n\mapsto n$. Then $M_x|_\Vbb=L_0$. Thus $\ovl{L_0}$ is the positive operator $M_x$. Hence $f(\ovl{L_0})=f(M_x)=M_f$. Thus \eqref{eq54} follows from the fact that $\Dom(M_f)$ equals the RHS of \eqref{eq54a}, and that the action of $M_f$ on $\Dom(M_f)$ is described by the RHS of \eqref{eq54b}.
+\end{proof}
+
+\begin{co}
+Restrict each $P_n$ to a projection on $\HV$. Then the von Neumann algebras $\{\ovl{L_0}\}''$ and $\{P_n:n\in\Nbb\}''$ are equal.
+\end{co}
+
+\begin{proof}
+By Prop. \ref{lb33}, we have $P_n=\chi_{\{n\}}(\ovl{L_0})$, and hence $P_n\in\{\ovl{L_0}\}''$. Thus $\{\ovl{L_0}\}''\supset\{P_n:n\in\Nbb\}''$. If $U$ is a unitary operator on $\HV$ commuting with each $P_n$, then $U$ preserves each $\Vbb(n)$. This implies $L_0U=L_0U$, and hence $U\in\{\ovl{L_0}\}'$. Thus $\{\ovl{L_0}\}''\subset\{P_n:n\in\Nbb\}''$.
+\end{proof}
+
+
+
+\subsection{}
+
+\begin{df}
+Let $r\in\Rbb$. The \textbf{\pmb{$r$}-th order Sobolev norm} \index{zz@$\Vert\cdot\Vert_r$, the $r$-th Sobolev norm} is defined to be
+\begin{gather*}
+\Vert\cdot\Vert_r:\Vbb^\ac\rightarrow[0,+\infty]\qquad \big\Vert\xi\big\Vert_r^2=\sum_{n\in\Nbb}(1+n)^{2r}\Vert P_n\xi\Vert^2
+\end{gather*}
+Moreover, if $r\geq0$, define the \textbf{\pmb{$r$}-th order Sobolev space} to be \index{HV@$\mc H_\Vbb^r,\HV^\infty$} 
+\begin{align*}
+\mc H_\Vbb^r:=\Dom((1+\ovl {L_0})^r)\xlongequal{\eqref{eq54a}} \{\xi\in\Vbb^\ac:\Vert\xi\Vert_r<+\infty\}
+\end{align*}
+Then, on $\HV^r$, the norm $\Vert\cdot\Vert_r$ is induced by the \textbf{\pmb{$r$}-th order Sobolev inner product} \index{zz@$\Vert\cdot\Vert_r$, the $r$-th Sobolev inner product}
+\begin{align*}
+\bk{\xi|\eta}_r=\sum_{n\in\Nbb}(1+n)^{2}\bk{P_n\xi|P_n\eta}
+\end{align*}
+Clearly for $r\leq r'$ we have for all $\xi\in\Vbb^\ac$ that
+\begin{align*}
+\Vert\xi\Vert_r\leq\Vert\xi\Vert_{r'} \qquad\text{and hence} \HV^r\supset\HV^{r'}
+\end{align*}
+We set
+\begin{align*}
+\HV^\infty=\bigcap_{r\geq0}\HV^r
+\end{align*}
+Vectors in \pmb{$\HV^\infty$} are called \textbf{smooth vectors}. \index{00@Smooth vectors}
+\end{df}
+
+\begin{rem}\label{lb37}
+Note that for each $r\in\Rbb$, the projection $P_n:(\HV^r,\bk{\cdot,\cdot}_r)\rightarrow (\HV^r,\bk{\cdot,\cdot}_r)$ onto $\Vbb(n)$ is a projection in the sense that $P_n^2=P_n$ and $\bk{P_n\xi|\eta}_r=\bk{\xi|P_n\eta}_r$ for all $\xi,\eta\in\HV^r$. Thus $P_n$ has operator norm $\leq 1$ under $\bk{\cdot,\cdot}_r$. The same can be said about $P_{\leq n}$.
+\end{rem}
+
+
+\begin{rem}\label{lb51}
+If $T$ is a positive operator on a Hilbert space $\mc H$ satisfying $T\geq a$ for some $a>0$, then $\Dom(T)$ is complete under the inner product $\bk{\xi|\eta}_T:=\bk{T\xi|T\eta}$. It follows that for each $r\geq0$, $\HV^r$ is complete under $\bk{\cdot|\cdot}_r$.
+\end{rem}
+
+
+\begin{proof}
+By (e.g.) spectral theory, $T^2-a^2$ is positive. Thus $\Vert T\xi\Vert^2\geq a^2\Vert\xi\Vert^2$. Thus, if $(\xi_n)$ is a Cauchy sequence in $\Dom(T)$ under $\bk{\cdot|\cdot}_T$, then $T\xi_n$ and $\xi_n$ both converge in $\mc H$. Let $\xi=\lim_n\xi_n$. Since $T$ is closed, we see that $(\xi_n,T\xi_n)$ converges in $\mc H\times\mc H$ to some $(\xi,T\xi)$ in the graph of $T$. So $\lim_n\Vert \xi-\xi_n\Vert_T=0$.
+\end{proof}
+
+
+
+\begin{df}
+Let $r\geq0$. We say that a field $A(z)$ satisfies \textbf{\pmb{$r$}-th order energy bounds} \index{00@Energy bounds and energy bounded} if there exist $M,t\geq0$ such that for any $n\in\Zbb$ and $v\in\Vbb$ we have
+\begin{align}\label{eq55}
+\Vert A_nv\Vert\leq M(1+|n|)^t \Vert v\Vert_r
+\end{align}
+In other words, the following linear map
+\begin{align*}
+A_n:(\Vbb,\Vert\cdot\Vert_r)\rightarrow (\Vbb,\Vert\cdot\Vert)
+\end{align*}
+is bounded with operator norm $\leq M(1+|n|)^t$.
+
+First order energy bounds are called \textbf{linear energy bounds}. \index{00@Linear energy bounds} A field satisfying $r$-th energy bounds for some $r\geq 0$ is called \textbf{(polynomial) energy-bounded}. \hfill\qedsymbol
+\end{df}
+
+
+
+\subsection{}
+
+
+\begin{pp}\label{lb35}
+Let $A(z)$ be a field satisfying \eqref{eq55}. Then for any $p\in\Rbb$, there exists $M_p\geq0$ such that for any $n\in\Zbb$ and $v\in\Vbb$ we have
+\begin{align*}
+\Vert A_nv\Vert_p\leq M_p(1+|n|)^{|p|+t}\Vert v\Vert_{p+r}
+\end{align*} 
+\end{pp}
+
+
+\begin{proof}
+We want to prove
+\begin{align*}
+\Vert A_nv\Vert_p^2\leq M_p^2(1+|n|)^{2(|p|+t)}\Vert v\Vert_{p+r}^2  \tag{a}\label{eq56}
+\end{align*}
+For different $m\in\Nbb$, $P_mv$ are mutually orthonormal under the $(p+r)$-th order Sobolev inner product. By Rem. \ref{lb34}, for different $m$, $A_nP_mv=P_{m+\wt(A)-n-1}A_nv$ are mutually orthonormal under the $p$-th order Sobolev inner product. Therefore, by replacing $v$ with $P_mv$, it suffices to prove \eqref{eq56} under the assumption that $v$ is homogeneous. We also assume that $A_nv\neq 0$. Then by Rem. \ref{lb34}, we have $\wt(A)+\wt(v)-1-n\geq0$.
+
+By \eqref{eq55}, we have
+\begin{align*}
+\Vert A_nv\Vert^2\leq M^2(1+|n|)^{2t}(1+\wt(v))^{2r}\Vert v\Vert^2
+\end{align*}
+Thus, using Rem. \ref{lb34}, we get
+\begin{align*}
+&\Vert A_nv\Vert^2_p=(\wt(A)+\wt(v)-n)^{2p}\Vert A_nv\Vert^2\\
+\leq& (\wt(A)+\wt(v)-n)^{2p}M^2(1+|n|)^{2t}(1+\wt(v))^{2r}\Vert v\Vert^2\\
+=&\Big(\frac{\wt(A)-n+\wt(v)}{1+\wt(v)}\Big)^{2p}M^2(1+|n|)^{2t}(1+\wt(v))^{2(p+r)}\Vert v\Vert^2\\
+=&\Big(\frac{\wt(A)-n+\wt(v)}{1+\wt(v)}\Big)^{2p}M^2(1+|n|)^{2t}\Vert v\Vert^2_{p+r}
+\end{align*}
+If $p\geq0$, then we can choose $M_p=(1+\wt(A))^pM$, since
+\begin{align*}
+&\Big(\frac{\wt(A)-n+\wt(v)}{1+\wt(v)}\Big)^{2p}\leq \Big(\frac{1+\wt(A)+|n|+\wt(v)}{1+\wt(v)}\Big)^{2p}\\
+\leq&(1+\wt(A)+|n|)^{2p}\leq (1+\wt(A))^{2p}(1+|n|)^{2p}
+\end{align*}
+Now assume $p<0$. If $1\leq \wt(A)-n$, then
+\begin{align*}
+\Big(\frac{\wt(A)-n+\wt(v)}{1+\wt(v)}\Big)^{2p}=\Big(\frac{1+\wt(v)} {\wt(A)-n+\wt(v)}\Big)^{2|p|}\leq 1\leq (1+|2n|)^{2|p|}
+\end{align*}
+If $1\geq \wt(A)-n$, then since $\wt(A)-n+\wt(v)\geq1$ (cf. the first paragraph),
+\begin{align*}
+&\Big(\frac{1+\wt(v)} {\wt(A)-n+\wt(v)}\Big)^{2|p|}=\Big(1+\frac{1+n-\wt(A)} {\wt(A)-n+\wt(v)}\Big)^{2|p|}\\
+\leq&(2+n-\wt(A))^{2|p|}\leq (2+2n+2\wt(A))^{2|p|}\leq 2^{2|p|}(1+\wt(A))^{2|p|}(1+|n|)^{2|p|}
+\end{align*}
+Therefore, if $p<0$, we can choose $M_p=2^{|p|}(1+\wt(A))^{2|p|}M$.
+\end{proof}
+
+\begin{co}
+Assume that $A(z)$ satisfies $r$-th order energy bounds where $r\geq0$. Then the quasi-primary contragredient $A^\theta(z)$ (cf. Def. \ref{lb20}) also satisfies $r$-th order energy bounds.
+\end{co}
+
+
+\begin{proof}
+Assume that $A(z)$ satisfies \eqref{eq55}. Then for each $u,v\in\Vbb$, we use \eqref{eq37} to compute that
+\begin{align*}
+&\big|\bk{A^\theta_nu|v}\big|=\big|\bk{u|A_{-n-2+\wt(A)}v}\big|=\big|\bk{(1+L_0)^ru|(1+L_0)^{-r}A_{-n-2+\wt(A)}v}   \big|\\
+\leq& \Vert u\Vert_r\cdot \Vert A_{-n-2+\wt(A)}v\Vert_{-r}
+\end{align*}
+By Prop. \ref{lb35}, we have
+\begin{align*}
+\Vert A_{-n-2+\wt(A)}v\Vert_{-r}\leq M_{-r}(1+|n+2+\wt(A)|)^{r+t}\Vert v\Vert\leq C (1+|n|)^{r+t}\Vert v\Vert
+\end{align*}
+where $C=M_{-r}(2+\wt(A))^{r+t}$. Thus, for any $u\in\Vbb$, we have
+\begin{align*}
+\big|\bk{A^\theta_nu|v}\big|\leq C(1+|n|)^{r+t} \Vert u\Vert_r\cdot \Vert v\Vert
+\end{align*}
+for all $v\in\Vbb$, and hence $\Vert A^\theta_n u\Vert\leq C(1+|n|)^{r+t}\Vert u\Vert_r$.
+\end{proof}
+
+
+
+
+
+
+
+\subsection{}\label{lb44}
+
+To prepare for the study of smeared fields we need:
+
+\begin{lm}\label{lb36}
+Let $F:\Sbb^1\rightarrow \Hom(\Vbb,\Vbb^\ac)$ satisfying the following properties:
+\begin{enumerate}[label=(\alph*)]
+\item For each $u,v\in\Vbb$, the function $z\in\Sbb^1\mapsto \bk{F(z)u|v}\in\Cbb$ is continuous.
+\item For each $z\in\Sbb^1$, there is a (necessarily unique $F(z)^\dagger\in\Hom(\Vbb,\Vbb^\ac)$) such that
+\begin{align*}
+\bk{F(z)u|v}=\bk{u|F(z)^\dagger v}
+\end{align*}
+for all $u,v\in\Vbb$.
+\end{enumerate}
+Then for each $f\in C_c^\infty(\Sbb^1)$, we have
+\begin{align}\label{eq58}
+\bigg(\oint\nolimits_{\Sbb^1}f(z)F(z)\frac{dz}{2\im\pi}\bigg)^\dagger=\oint\nolimits_{\Sbb^1}\ovl{z^2f(z)}\cdot F(z)^\dagger \frac{dz}{2\im\pi}
+\end{align}
+as elements of $\Hom(\Vbb,\Vbb^\ac)$. Namely, defining $S,T\in\Hom(\Vbb,\Vbb^\ac)$ by
+\begin{gather*}
+\bk{Su|v}=\oint_{\Sbb^1}\nolimits\bk{f(z)F(z)u|v}\frac{dz}{2\im\pi}\qquad \bk{Tu|v}=\oint_{\Sbb^1}\nolimits\bk{\ovl{z^2f(z)}F(z)^\dagger u|v}\frac{dz}{2\im\pi}
+\end{gather*}
+(for all $u,v\in\Vbb$), then $\bk{Su|v}=\bk{u|Tv}$.
+\end{lm}
+
+For example, by Rem. \ref{lb16}, if $A(z)$ is a homogeneous field, then $A$ satisfies the above properties, because for $z\in\Sbb^1$ we have
+\begin{align}\label{eq61}
+A(z)^\dagger=(-z^2)^{\wt(A)}A^\theta(z)
+\end{align}
+
+\begin{proof}
+We compute that
+\begin{align*}
+&\bk{Su|v}=\int_{-\pi}^\pi f(e^{\im\theta})\bk{F(e^{\im\theta})u|v}\cdot \frac{e^{\im\theta}d\theta}{2\pi}=\ovl{\int_{-\pi}^\pi \ovl{f(e^{\im\theta})}\bk{v|F(e^{\im\theta})u}\cdot \frac{e^{-\im\theta}d\theta}{2\pi}}\\
+=&\ovl{\int_{-\pi}^\pi \ovl{f(e^{\im\theta})}\bk{F(e^{\im\theta})^\dagger v|u}\cdot \frac{e^{-\im\theta}d\theta}{2\pi}}=\ovl{\int_{-\pi}^\pi \bk{\ovl{e^{2\im\theta}f(e^{\im\theta})}F(e^{\im\theta})^\dagger v|u}\cdot \frac{e^{\im\theta}d\theta}{2\pi}}=\ovl{\bk{Tv|u}}
+\end{align*}
+\end{proof}
+
+
+\begin{rem}
+There is a non-rigorous but heuristic way to prove \eqref{eq58} (and to help memorize \eqref{eq58}). Note that $\ovl z=z^{-1}$ on $\Sbb^1$. Therefore
+\begin{align*}
+&\bigg(\oint\nolimits_{\Sbb^1}f(z)F(z)\frac{dz}{2\im\pi}\bigg)^\dagger=\oint\nolimits_{\Sbb^1}\ovl{f(z)}\cdot F(z)^\dagger \frac{d{z^{-1}}}{-2\im\pi}=\oint\nolimits_{\Sbb^1}\ovl{f(z)}\cdot F(z)^\dagger\cdot z^{-2}\frac{dz}{2\im\pi}\\
+=&\oint\nolimits_{\Sbb^1}\ovl{z^2f(z)}\cdot F(z)^\dagger\frac{dz}{2\im\pi}
+\end{align*}
+\end{rem}
+
+
+\subsection{}
+
+We now define smeared fields. Let $A(z)$ a field satisfying $r$-th order energy bounds.
+
+\begin{df}\label{lb38}
+For each $f\in C^\infty(\Sbb^1)$, define the \textbf{smeared field} \index{Af@$A(f)$, the smeared field of $A(z)$}
+\begin{gather*}
+A(f):\Vbb\rightarrow\Vbb^\ac\\
+\bk{A(f)u|v}=\oint\limits_{\Sbb^1} \bk{A(z)u|v}f(z)\frac{dz}{2\im\pi}\equiv \int_{-\pi}^\pi \bk{A(e^{\im \theta})u|v}f(e^{\im \theta})\cdot \frac{e^{\im\theta}d\theta}{2\pi}
+\end{gather*} 
+for all $u,v\in\Vbb$. (The domain of $A(f)$ will be slightly extended, see Conv. \ref{lb48}.)
+\end{df}
+
+
+
+
+
+
+
+
+\begin{thm}\label{lb39}
+Let $f\in C^\infty(\Sbb^1)$. The following are true.
+\begin{enumerate}[label=(\alph*)]
+\item We have $A(f)\Vbb\subset\HV$, and hence $A(f)$ is an unbounded operator on $\HV$ with dense domain $\Vbb$. Moreover, writing $f(e^{\im\theta})=\sum_{n\in\Zbb}\wht f(n)e^{\im n\theta}$, then for each $u\in\Vbb$, the RHS below converges in $\HV$ to the LHS:
+\begin{align}\label{eq59}
+A(f)u=\sum_{n\in\Zbb}\wht f(n) A_nu
+\end{align}
+\item We have
+\begin{align}\label{eq62}
+(-1)^{\wt(A)}A^\theta\big(\ovl{\ek_{2-2\wt(A)}f}\big)\subset A(f)^*
+\end{align}
+Consequently, $A(f)$ is closable (because $\Dom(A(f)^*)$ is dense).
+\item $\HV^\infty$ is an \textbf{invariant core} \index{00@Invariant core} for $\ovl{A(f)}$. (Namely, $\HV^\infty\subset \Dom(\ovl{A(f)})$ is a core for $\ovl{A(f)}$, and $\ovl{A(f)}\HV^\infty\subset\HV^\infty$.) Moreover, assume that $A(z)$ satisfies \eqref{eq55}. Let $p\geq0$, and let $M_p$ be as in Prop. \ref{lb35}. Then for each $\xi\in\HV^\infty$  we have
+\begin{align}\label{eq63}
+\Vert \ovl{A(f)}\xi\Vert_p\leq M_p|f|_{t+|p|}\cdot \Vert \xi\Vert_{p+r}
+\end{align}
+\end{enumerate}
+\end{thm}
+
+Note that \eqref{eq63} means that the linear map
+\begin{align}
+A(f):(\HV^\infty,\Vert\cdot\Vert_{p+r})\rightarrow (\HV^\infty,\Vert\cdot\Vert_p)
+\end{align}
+is bounded with operator norm $\leq M_p\cdot |f|_{t+|p|}$.
+
+
+\begin{proof}
+(a): Let $u\in\Vbb$ be homogemeous. Then for each $v\in\Vbb$, since $\bk{A(z)u|v}=\sum_{n\in\Zbb}\bk{A_nu|v}z^{-n-1}$ (where the RHS is a finite sum), we have
+\begin{align*}
+&\bk{A(f)u|v}=\int_{-\pi}^\pi \bk{A(e^{\im \theta})u|v}f(e^{\im \theta})\cdot \frac{e^{\im\theta}d\theta}{2\pi}=\int_{-\pi}^\pi \sum_{n\in\Zbb}\bk{A_nu|v}e^{-\im n\theta}\cdot f(e^{\im \theta})\cdot \frac{d\theta}{2\pi}\\
+=& \sum_{n\in\Zbb}\int_{-\pi}^\pi\bk{A_nu|v}e^{-\im n\theta}\cdot f(e^{\im \theta})\cdot \frac{d\theta}{2\pi}=\sum_{n\in\Zbb} \bk{A_nu|v}\wht f(n)
+\end{align*}
+where all sums $\sum_{n\in\Zbb}$ are indeed finite. Thus, by Rem.\ref{lb34},
+\begin{align*}
+P_mA(f)u=\sum_{n\in\Zbb}\wht f(n)P_mA_nu=\wht f(\wt(A)+\wt(u)-m-1)A_{\wt(A)+\wt(u)-m-1}u  \tag{$\star$}\label{eq60}
+\end{align*}
+Now assume that $A$ satisfies \eqref{eq55}. Then $A_nu$ are mutually orthogonal for different $n$ (due to Rem. \ref{lb34}), and hence
+\begin{align*}
+\sum_{n\in\Zbb} \Vert \wht f(n)A_nu\Vert^2\leq \sum_{n\in\Zbb} |\wht f(n)|^2 \cdot M^2(1+|n|)^{2t}\cdot\Vert u\Vert_r^2
+\end{align*}
+is finite because $n\mapsto\wht f(n)$ is rapidly decreasing. Thus, the RHS of \eqref{eq59} converges in $\HV$. By \eqref{eq60}, the LHS of \eqref{eq59} belongs to $\HV$ and equals the RHS of \eqref{eq59}.\\[-1ex]
+
+(b): Using Lem. \ref{lb36} and \eqref{eq61}, we compute
+\begin{align*}
+&A(f)^\dagger=\Big(\ointn_{\Sbb^1}f(z)A(z)\frac{dz}{2\im\pi}\Big)^\dagger=\ointn_{\Sbb^1} \ovl{z^2f(z)}A(z)^\dagger\frac{dz}{2\im\pi}\\
+=&\ointn_{\Sbb^1} \ovl{z^2f(z)}\cdot (-z^2)^{\wt(A)}A^\theta(z)^\dagger\frac{dz}{2\im\pi}=\ointn_{\Sbb^1}(-1)^{\wt(A)}\ovl{z^{2-2\wt(A)}f(z)}A^\theta(z)\frac{dz}{2\im\pi}
+\end{align*}
+which equals $(-1)^{\wt(A)}A^\theta\big(\ovl{\ek_{2-2\wt(A)}f}\big)$. This proves \eqref{eq62}.\\[-1ex]
+
+(c): Let $u\in\Vbb$. For each $m\in\Nbb$, by \eqref{eq59} and Prop. \ref{lb35}, we have
+\begin{align*}
+&\Vert P_{\leq m}A(f)u\Vert_p\leq\sum_{n\in\Nbb}|\wht f(n)|\cdot \Vert P_{\leq m}A_nu\Vert_p\leq \sum_{n\in\Nbb}|\wht f(n)|\cdot \Vert A_nu\Vert_p\\
+\leq& \sum_{n\in\Nbb} |\wht f(n)|\cdot M_p(1+|n|)^{|p|+t}\Vert u\Vert_{p+t}=|f|_{|p|+t}M_p\Vert u\Vert_{p+t}
+\end{align*}
+noting that the second sum is finite, and also noting Rem. \ref{lb37}. Since $m$ is arbitrary, we have thus proved \eqref{eq63} for $\xi=u\in\Vbb$. In particular, $A(f)u\in\HV^p$.
+
+
+Now we consider an arbitrary $\xi\in\HV^\infty$. Applying \eqref{eq63} to $(P_{\leq n}-P_{\leq m})\xi$ and $p=0$, we get 
+\begin{align*}
+\Vert  \ovl{A(f)}P_{\leq n}\xi-\ovl{A(f)}P_{\leq m}\xi\Vert^2\leq M_p\Vert f\Vert_t\cdot\Vert (P_{\leq n}-P_{\leq m})\xi\Vert_r
+\end{align*}
+where the RHS converges to $0$ as $m,n\rightarrow\infty$. Thus $\lim_n \ovl{A(f)}P_{\leq n}\xi$ converges in $\HV$. Since $\lim_n P_{\leq n}\xi$ converges, by the closedness of $\ovl{A(f)}$, we see that $\xi\in\Dom(\ovl{A(f)})$ and
+\begin{align*}
+\lim_{n\rightarrow\infty} \ovl{A(f)}P_{\leq n}\xi=\ovl{A(f)}\xi \tag{$\triangle$} \label{eq64}
+\end{align*}
+In particular, we have proved that $\HV^\infty$ is contained in $\Dom(\ovl{A(f)})$, and hence is a core for $\ovl{A(f)}$ (since it contains $\Vbb$). 
+
+Moreover,  for each $m\in\Nbb$, since $ (1+{\ovl L_0})^pP_{\leq m}$ is bounded, we have
+\begin{align*}
+&\Vert P_{\leq m}\ovl{A(f)}\xi\Vert_p=\Vert (1+{\ovl L_0})^pP_{\leq m}\ovl{A(f)}\xi\Vert\xlongequal{\eqref{eq64}}\lim_{n\rightarrow\infty}\Vert (1+{\ovl L_0})^pP_{\leq m}\ovl{A(f)}P_{\leq n}\xi\Vert\\
+=&\lim_{n\rightarrow\infty}\Vert P_{\leq m}\ovl{A(f)}P_{\leq n}\xi\Vert_p\leq \limsup_{n\rightarrow\infty}\Vert \ovl{A(f)}P_{\leq n}\xi\Vert_p\\
+\leq& \limsup_{n\rightarrow\infty}M_p|f|_{t+|p|}\cdot \Vert P_{\leq n}\xi\Vert_{p+r}= M_p|f|_{t+|p|}\cdot \Vert \xi\Vert_{p+r}
+\end{align*}
+Since $m$ is arbitrary, we conclude that $\ovl{A(f)}\xi\in \HV^p$, and that \eqref{eq63} holds. Since $p$ can be arbitrary, we conclude that $\ovl{A(f)}\xi\in\HV^\infty$ (for all $\xi\in\HV^\infty$).
+\end{proof}
+
+
+\subsection{}
+
+
+\begin{cv}\label{lb48}
+From now on, if $A$ is an energy-bounded field and $f\in C^\infty(\Sbb^1)$, we let
+\begin{align*}
+A(f):\HV^\infty\rightarrow\HV^\infty
+\end{align*}
+be the unique closable operator on $\HV$ with dense domain $\Dom(A(f))=\HV^\infty$ such that $\Vbb$ is a core for $A(f)$, and that $A(f)|_\Vbb$ is the original map defined in Def. \ref{lb38}. Such $A(f)$ exists by Thm. \ref{lb39}. \index{00@Smeared field (as linear operator on $\HV^\infty$)} 
+
+By \eqref{eq62}, we have $\HV^\infty\subset\Dom(A(f)^*)$ and $A(f)^*\HV^\infty\subset\HV^\infty$. Thus we define \index{Af@$A(f)^\dagger$}
+\begin{align*}
+\pmb{A(f)^\dagger}:= A(f)^*|_{\HV^\infty}:\HV^\infty\rightarrow\HV^\infty
+\end{align*}
+viewed as an unbounded operator on $\HV$.  \hfill\qedsymbol
+\end{cv}
+
+
+\begin{pp}\label{lb49}
+Let $A^1,\dots,A^N$ be energy-bounded fields. Then there exist $t_1,\dots,t_N,r\geq0$ such that for any $p\geq0$, there exists $M_p\geq0$ such that
+\begin{align}\label{eq75}
+\Vert A^1(f_1)\cdots A^N(f_N)\Vert_p\leq M_p |f_1|_{t_1+|p|}\cdots |f_N|_{t_N+|p|}\cdot \Vert\xi\Vert_{p+r}
+\end{align}
+for all $\xi\in\HV^\infty$ and $f_1,\dots,f_N\in C^\infty(\Sbb^1)$. Moreover, $A^\blt(f_\blt):=A^1(f_1)\cdots A^N(f_N)$ is closable with core $\Vbb$.
+\end{pp}
+
+Note that by Conv. \ref{lb48}, $A^\blt(f_\blt)$ an unbounded operator on $\HV^\infty$ with invariant domain $\HV^\infty$.
+
+
+\begin{proof}
+Eq. \eqref{eq75} follows easily from \eqref{eq74}. Note that
+\begin{align*}
+A^\blt(f_\blt)^*\supset A^N(f_N)^*\cdots A^1(f_1)^*\supset A^N(f_N)^\dagger\cdots A^1(f_1)^\dagger
+\end{align*}
+where the RHS has dense domain $\HV^\infty$. So $A^\blt(f_\blt)$ is closable. If $\xi\in\HV^\infty$, then $\lim_n P_{\leq n}\xi=\xi$, and (similar to the proof of Thm. \ref{lb39}-(c)) Formula \eqref{eq75} implies that $(A^\blt(f_\blt)P_{\leq n}\xi)_{n\in\Nbb}$ is a Cauchy sequence, which must converge to $\ovl{A^\blt(f_\blt)}\xi$. So $\Vbb$ is a core for $A^\blt(f_\blt)$.
+\end{proof}
+
+
+
+\subsection{}
+
+
+So far, we haven't given any nontrivial example of energy-bounded field. Here we introduce one. 
+
+\begin{df}
+For each field $A$ we write \index{An@$A_{(n)}$}
+\begin{align}
+A(z)=\sum_{n\in\Zbb} A_{(n)}z^{-n-\wt(A)}
+\end{align}
+Thus, by Rem. \ref{lb34}, for each $d\in\Nbb$ we have
+\begin{align}
+[L_0,A_{(n)}]=-nA_{(n)}
+\end{align}
+Namely, $A_{(n)}$ increases the weight by $-n$.
+\end{df}
+
+For example, for the Virasoro field $T(z)$ in Exp. \ref{lb40} we have $T_{(n)}=L_n$. For the current field $X(z)$ in Exp. \ref{lb41} we have $X_{(n)}=X_n$.
+
+\begin{thm}\label{lb42}
+Let $A(z)$ be a field. Assume that there exist $C,t,r\geq0$ such that for each $n\in\Zbb$ and $v\in\Vbb$ we have
+\begin{align}\label{eq66}
+\big|\bk{[A_{(n)},A_{(n)}^\dagger]v|v}\big|\leq C^2(1+|n|)^{2t}\Vert v\Vert_r^2
+\end{align}
+Then there exists $M\geq0$ such that for each $v\in\Vbb$ and each \uwave{nonzero} $n\in\Zbb$, we have
+\begin{align}\label{eq65}
+\Vert A_{(n)}v\Vert \leq M(1+|n|)^t\Vert v\Vert_{r+\frac 12}
+\end{align}
+\end{thm}
+
+
+
+\begin{proof}
+We first assume that $n>0$ and prove the estimate for $A_{(-n)}$. For each $d\in\Nbb$, let $K_d$ be the operator norm of the restriction $A_{(-n)}:\Vbb(d)\rightarrow\Vbb(d+n)$, which is also the operator norm of $A_{(-n)}^\dagger:\Vbb(d+n)\rightarrow\Vbb(d)$. Choose any $v\in\Vbb(d)$ with $\Vert v\Vert\leq 1$. Then
+\begin{align*}
+&\Vert A_{(-n)}v\Vert^2=\Vert A_{(-n)}^\dagger v\Vert^2+\bk{[A_{(-n)},A_{(-n)}^\dagger]v|v}\leq K_{d-n}^2\Vert v\Vert+C^2(1+|n|)^{2t}\Vert v\Vert_r^2\\
+\leq& K_{d-n}^2+C^2(1+|n|)^{2t}(1+d)^{2r}
+\end{align*}
+Therefore
+\begin{align*}
+&K_d^2\leq K_{d-n}^2+C^2(1+|n|)^{2t}(1+d)^{2r}\\
+\leq& K_{d-2n}^2+C^2(1+|n|)^{2t}\big((1+d)^{2r}+(1+d-n)^{2r}\big)\leq\cdots\\
+\leq& C^2(1+|n|)^{2t}\int_1^{2+2d}x^{2r}dx\leq \frac{2^{2r+1}C^2}{2r+1}(1+|n|)^{2t}(1+d)^{2r+1}
+\end{align*}
+Take $M=\sqrt{\frac{2^{2r+1}}{2r+1}}C$. Then since $K_d=\Vert A_{(-n)}|_{\Vbb(d)}\Vert=\Vert A_{(-n)}^\dagger|_{\Vbb(d+n)}\Vert$, we have
+\begin{align*}
+\Vert A_{(-n)}v\Vert \leq M(1+|n|)^t\Vert v\Vert_{r+\frac 12}\qquad \Vert A_{(-n)}^\dagger v\Vert \leq M(1+|n|)^t\Vert v\Vert_{r+\frac 12}
+\end{align*}
+for each homogeneous $v$, and hence for all $v$ (by the same reasoning as in the proof of Prop. \ref{lb35}).
+
+Let $B(z)=\sum_{n\in\Zbb}B_{(n)}z^{-n-\wt A}$ where $B_{(n)}=A_{(-n)}^\dagger$. Then $[B_{(n)},B_{(n)}^\dagger]=-[A_{(-n)},A_{(-n)}^\dagger]$ satisfies a similar inequality to \eqref{eq66}. Therefore, by the above paragraph, if $n>0$ then $B_{(-n)}^\dagger=A_{(n)}$ satisfies a similar estimate to \eqref{eq65}.
+\end{proof}
+
+
+
+
+\subsection{}
+
+Let $(\mc V,\Vbb)$ be a chiral algebra. 
+
+\begin{co}\label{lb43}
+The field $\sum_{n\in 0,\pm1}L_nz^{-n-2}$ is linearly energy-bounded. If $(\mc V,\Vbb)$ is a conformal chiral algebra, then $T(z)=\sum_{n\in\Zbb}L_nz^{-n-2}$ is linearly energy-bounded.
+\end{co}
+
+
+\begin{proof}
+By the Virasoro relation \eqref{eq50}, there is $C\geq0$ such that $\bk{[L_n,L_n^\dagger]v|v}\leq C(1+|n|)^3\Vert v\Vert_{\frac 12}^2$ for all $v\in\Vbb$. Therefore, by Thm. \ref{lb42}, $\sum_{n\neq 0}L_nz^{-n-2}$ is linearly energy-bounded. So $\sum_n L_nz^{-n-2}$ is also linearly energy-bounded.
+\end{proof}
+
+
+\begin{co}
+Let $A\in\mc V$. Assume that the field $\sum_{n\in\Zbb}[A_{(n)},A_{(n)}^\dagger]z^{-n-1}$ satisfies $r$-th order energy bounds. Then $A(z)$ satisfies $(r+\frac 32)$-th order energy bounds.
+\end{co}
+
+\begin{proof}
+Assume that there exist $M,t\geq0$ such that $\Vert[A_{(n)},A_{(n)}^\dagger]v\Vert\leq M(1+|n|)^t\Vert v\Vert_r$ for all $n$. Then
+\begin{align*}
+|\bk{[A_{(n)},A_{(n)}^\dagger]v|v}|\leq \Vert[A_{(n)},A_{(n)}^\dagger]v\Vert\cdot \Vert v\Vert\leq M(1+|n|)^t\Vert v\Vert_r^2
+\end{align*}
+Thus, by Thm. \ref{lb42}, $\sum_{n\neq 0}A_{(n)}z^{-n-1}$ satisfies $(r+\frac 12)$-th order energy bounds. By \eqref{eq53b} we have $[L_{-1},A_1]=-A_0$. By Cor. \ref{lb43}, $L_{-1}$ satisfies $1$-st order energy bounds. Since $A_1$ satisfies $(r+\frac 12)$-th order energy bounds, by using Prop. \ref{lb35} we see that $A_0=-[L_{-1},A_1]$ satisfies $(r+\frac 32)$-th order energy bounds.
+\end{proof}
+
+
+\begin{co}
+Assume that $(\mc V,\Vbb)$ is the current algebra associated to a finite-dimensional unitary Lie algebra $\gk$. Then for each $X\in\gk$, the field $X(z)=\sum_{n\in\Zbb}X_nz^{-n-1}$ is linearly energy-bounded.
+\end{co}
+
+\begin{proof}
+It suffices to consider the case that $X^\dagger=X$. Then by \eqref{eq68} we have
+\begin{align*}
+[X_n,X_n^\dagger]=[X_n,X_{-n}]=l\cdot n \Vert X\Vert^2\cdot \idt
+\end{align*}
+Therefore, by Thm. \ref{lb42}, $\sum_{n\neq 0}X_nz^{-n-1}$ satisfies $\frac 12$-th order energy bounds. 
+
+It remains to study $X_0$. We have orthogonal decomposition $\gk=\gk_1+\gk_2$ where $\gk_1$ is abelian and $\gk_2$ is a direct sum of simple Lie algebras. Then $[\gk_1,\gk]=0$ and $[\gk,\gk]=\gk_2$. It suffices to assume that either $X\in \gk_1$ or $X\in\gk_2$. In the former case, by \eqref{eq68}, we see that $X_0$ commutes with $Y_n$ for every $Y\in\gk$ and $n\in\Zbb$. By the creating property in Def. \ref{lb30}, we have $X_0\Omega=0$. By the cyclicity in Def. \ref{lb30}, we know that $X_0v=0$ for all $v\in\Vbb$. Then $X_0$ is clearly linearly energy bounded.
+
+In the later case, since $[\gk,\gk]=\gk_2$, it suffices to assume that $X=[Y,Z]$ for some $Y,Z\in\gk$. Then by \eqref{eq68} we have $X_0=[Y_1,Z_{-1}]-l\bk{Y|Z^*}\cdot\idt$. Since we have proved that $Y_1$ and $Z_{-1}$ satisfy $\frac 12$-th order energy bounds, by Prop. \ref{lb35}, $[Y_1,Z_{-1}]$ is linearly energy-bounded.
+\end{proof}
+
+
+
+\subsection{}
+
+\begin{pp}
+Let $A,B$ be mutually local fields. Assume that $A,B$ are both energy-bounded. Then for each $k\in\Zbb$, $A_kB$ is energy-bounded.
+\end{pp}
+
+
+\begin{proof}
+As in the proof of Prop. \ref{lb35}, it suffices to establish the inequality for homogeneous vectors. Recall \eqref{eq47}, i.e.
+\begin{align*}
+(A_kB)_n=\sum_{l\in\Nbb}(-1)^l{k\choose l}A_{k-l}B_{n+l}-\sum_{l\in\Nbb}(-1)^{k+l}{k\choose l}B_{k+n-l}A_l \tag{$\star$}\label{eq69}
+\end{align*}
+Note that $\limsup_{l\rightarrow\infty}|{k\choose l}|l^{-|k|}<+\infty$. Choose any homogeneous $v\in\Vbb$. Then by the energy-boundedness of $A,B$, and by Prop. \ref{lb35}, there exist constants $C_\blt,r_\blt,t_\blt$ independent of $v$ and $n$ (but possibly depending on $k$) such that
+\begin{align*}
+&\Big\Vert \sum_{l\in\Nbb}(-1)^{k+l}{k\choose l}B_{k+n-l}A_lv  \Big\Vert\leq \sum_{l\geq0}C_1l^{|k|}\big\Vert B_{k+n-l}A_lv\big\Vert\\
+\leq&\sum_{l\geq0}C_2l^{|k|}(1+|k+n-l|)^{t_1}\big\Vert A_lv\Vert_{r_1}\\
+\leq &\sum_{0\leq l\leq \wt(A)+\wt(v)-1}C_3l^{|k|}(1+|n|)^{t_1}(1+l)^{t_1} \cdot (1+l)^{t_2}\Vert v\Vert_{r_2}\\
+\leq&\sum_{0\leq l\leq \wt(A)+\wt(v)-1}C_3(1+|n|)^{t_1}(1+l)^{|k|+t_1+t_2} \cdot \Vert v\Vert_{r_2}\\
+\leq& C_4(1+|n|)^{t_1}(1+\wt(v))^{1+|k|+t_1+t_2} \cdot \Vert v\Vert_{r_2}=C_4(1+|n|)^{t_1}\Vert v\Vert_{1+|k|+t_1+t_2+r_2}
+\end{align*}
+By a similar calculation, we obtain the desired bound for the first summand on the RHS of \eqref{eq69} acting on $v$.
+\end{proof}
+
+
+
+\subsection{}
+
+
+Our last topic of this section is a relationship between products of smeared fields and ``products" of pointed fields. We first expand the setting in Subsec. \ref{lb44}.
+
+
+\begin{df}\label{lb52}
+Let $I_1,\dots,I_N$ be real oriented smooth $1$-submanifolds of $\Cbb$. Let \index{I@$I_\blt=I_1\times\cdots\times I_N$} 
+\begin{align*}
+I_\blt=I_1\times\cdots\times I_N
+\end{align*}
+Suppose that $F:I_\blt\rightarrow\Hom(\Vbb,\Vbb^\ac)$ is continuous in the sense that for each $u,v\in\Vbb$, the function $z_\blt\in I_\blt\rightarrow\bk{F(z_\blt)u|v}\in\Cbb$ is continuous. Define \index{zz@$\int_{I_\blt}F(z_\blt)\sd z_\blt$}
+\begin{gather*}
+\int_{I_\blt}F(z_\blt)\sd z_\blt:\Vbb\rightarrow\Vbb^\ac
+\end{gather*}
+such that for each $u,v\in\Vbb$,
+\begin{align}
+\begin{aligned}
+&\Bigbk{\int_{I_\blt}F(z_\blt)\sd z_\blt\cdot u\Big| v}=\int_{I_N}\cdots\int_{I_1}\bk{F(z_\blt)u|v}\frac{dz_1}{2\im\pi}\cdots \frac{dz_N}{2\im\pi}\\
+\equiv&\int_{a_N}^{b_N}\cdots \int_{a_1}^{b_1}F(\gamma_1(\theta_1),\dots,\gamma_N(\theta_N))\gamma_1'(\theta_1)\cdots\gamma_N'(\theta_N)d\theta_1\cdots d\theta_N
+\end{aligned}
+\end{align}
+where each $\gamma_i:(a_i,b_i)\rightarrow I_i$ is a positive parametrization of $I_i$. (In Conv. \ref{lb53}, we will expand the domain of $\int_{I_\blt}F(z_\blt)\sd z_\blt$ to $\HV^\infty$ under reasonable conditions.)
+
+A similar definition applies to any $F:I_\blt\rightarrow\Vbb^\ac$ whose evaluation with any $v\in\Vbb$ is continuous over $I_\blt$.  \hfill\qedsymbol
+\end{df}
+
+Thus, in short we have \index{dz@$\sd z_\blt$}
+\begin{align*}
+\sd z_\blt=\frac{dz_1}{2\im\pi}\cdots \frac{dz_N}{2\im\pi}
+\end{align*}
+
+
+\subsection{}
+
+
+\begin{thm}\label{lb50}
+Let $A^1,\dots,A^N$ be mutually commuting energy-bounded fields. Let $I_1,\dots,I_N$ be mutually disjoint intervals of $\Sbb^1$. Choose $f_i\in C_c^\infty(I_i)$ for each $i$. Then as linear maps $\Vbb\rightarrow\Vbb^\ac$ we have
+\begin{align}\label{eq71}
+A^1(f_1)\cdots A^N(f_N)\big|_{\Vbb}=\int_{I_\blt} f_1(z_1)\cdots f_N(z_N)A^1(z_1)\cdots A^N(z_N)\sd z_\blt
+\end{align}
+\end{thm}
+
+Recall Def. \ref{lb46} for the continuity of \eqref{eq70}, the function $z_\blt\mapsto \bk{A^1(z_1)\cdots A^N(z_N)u|v}\in\Vbb^\ac$.
+
+
+\begin{proof}
+Let $u,v\in\Vbb$ be homogeneous. Let $\Delta$ be the set of all $(r_1,\dots,r_N)$ satisfying $r_1,\dots,r_N\in[1/2,1]$ and $r_{i+1}/r_i\in[1/2,1]$. For each $r_\blt\in\Delta$, Let
+\begin{align*}
+F(r_\blt)=\int_{I_\blt}f(z_1)\cdots f_N(z_N)\bk{A^1(r_1z_1)\cdots A^N(r_Nz_N)u|v}
+\end{align*}
+Let $\Rbf$ be the map on the RHS of \eqref{eq71}. Then by the continuity of \eqref{eq70} we have
+\begin{align*}
+\lim_{r_1,\dots,r_N\nearrow 1}F(r_\blt)=\bk{\Rbf u|v}
+\end{align*}
+
+
+
+For each fixed $r_\blt\in\Delta$, since $|r_1z_1|>\cdots>|r_Nz_N|>0$ for all $z_\blt\in I_\blt$, by Prop. \ref{lb18}
+\begin{align*}
+&\bk{A^1(r_1z_1)\cdots A^N(r_Nz_N)u|v}=\sum_{n_\blt\in\Nbb^N}\bk{P_{n_1}A^1(r_1z_1)P_{n_2}A^2(r_2z_2)\cdots P_{n_N}A^N(r_Nz_N)u|v}\\
+=&\sum_{n_\blt\in\Nbb^N}\bk{P_{n_1}A^1(z_1)P_{n_2}A^2(z_2)\cdots P_{n_N}A^N(z_N)u|v}\cdot \Delta(r_\blt)
+\end{align*}
+which converges a.l.u. for $z_\blt\in I_\blt$, where
+\begin{align*}
+\Delta(r_\blt)=r_1^{n_1} \Big(\frac{r_2}{r_1}\Big)^{n_2}\cdots  \Big(\frac{r_N}{r_{N-1}}\Big)^{n_N}\cdot r_1^{-\wt(A^1)}\cdots r_N^{-\wt(A^N)}
+\end{align*}
+Hence the sum commutes with the integrals, yielding
+\begin{align*}
+&F(r_\blt)=\sum_{n_\blt\in\Nbb^N}\int_{I_\blt}f_1(z_1)\cdots f_N(z_N)\bk{P_{n_1}A^1(z_1)P_{n_2}A^2(z_2)\cdots P_{n_N}A^N(z_N)u|v}\cdot \Delta(r_\blt)\\
+=&\sum_{n_\blt\in\Nbb^N}\bk{P_{n_1}A^1(f_1)P_{n_2}A^2(f_2)\cdots P_{n_N}A^N(f_N)u|v}\cdot \Delta(r_\blt)\tag{$\lozenge$}\label{eq72}
+\end{align*}
+
+
+
+By \eqref{eq59}, we have
+\begin{align*}
+\begin{aligned}\label{eq73}
+&\sum_{n_\blt\in\Nbb^N}\big\Vert P_{n_1}A^1(f_1)P_{n_2}A^2(f_n)\cdots P_{n_N}A^N(f_N)u\big\Vert\\
+=&\sum_{k_\blt\in\Nbb^N}\big\Vert A^1_{k_1}A^2_{k_2}\cdots A^N_{k_N}u\big\Vert\cdot |\wht f_1(k_1)\cdots \wht f_N(k_N)|
+\end{aligned}\tag{$\star$}
+\end{align*}
+which is finite by Prop. \ref{lb35} (and the fact that $k_i\mapsto\wht f_i(k_i)$ is rapidly decreasing). Hence, the function
+\begin{align*}
+\sup_{r_\blt\in\Delta}\Big|\bigbk{P_{n_1}A^1(f_1)P_{n_2}A^2(f_n)\cdots P_{n_N}A^N(f_N)u|v } \Big|\Delta(r_\blt)<+\infty
+\end{align*}
+Therefore, applying the dominated convergence theorem to \eqref{eq72}, we get
+\begin{align*}
+&\lim_{r_1,\dots,r_N\nearrow1}F(r_\blt)=\sum_{n_\blt\in\Nbb^N}\bk{P_{n_1}A^1(f_1)P_{n_2}A^2(f_2)\cdots P_{n_N}A^N(f_N)u|v}\\
+=& \bk{A^1(f_1)\cdots A^N(f_N)u|v}
+\end{align*}
+where the last equality is due to Lem. \ref{lb47}. This proves \eqref{eq71}.
+\end{proof}
+
+\begin{lm}\label{lb47}
+Let $T_1,\dots,T_N$ be closable operators on $\HV$ such that for each $1\leq i\leq N$, $\HV^\infty$ is contained in $\Dom(T_i)$ and $\Dom(T_i^*)$ and is invariant under $T_i$ and $T_i^*$. Then for each $\xi,\eta\in\HV^\infty$ we have
+\begin{align}\label{eq74}
+\sum_{n_N\in\Nbb}\cdots \sum_{n_1\in\Nbb}\bk{P_{n_1}T_1P_{n_2}T_2\cdots P_{n_N}T_N\xi|\eta}=\bk{T_1\cdots T_N\xi|\eta}
+\end{align}
+\end{lm}
+
+
+\begin{proof}
+The case $N=0$ is obvious. Assume case $N-1$ is true. Then for case $N$, the LHS of \eqref{eq74} equals
+\begin{align*}
+&\sum_{n_N}\cdots \sum_{n_2}\sum_{n_1}\bk{T_1P_{n_2}T_2\cdots P_{n_N}T_N\xi|P_{n_1}\eta}=\sum_{n_N}\cdots \sum_{n_2}\bk{T_1P_{n_2}T_2\cdots P_{n_N}T_N\xi|\eta}\\
+=&\sum_{n_N}\cdots \sum_{n_2}\bk{P_{n_2}T_2\cdots P_{n_N}T_N\xi|T_1^*\eta}=\bk{T_2\cdots T_N\xi|T_1^*\eta}=\bk{T_1T_2\cdots T_N\xi|\eta}
+\end{align*}
+\end{proof}
+
+
+\subsection{}
+
+
+\begin{cv}\label{lb53}
+Let $F:I_\blt\rightarrow\Hom(\Vbb,\Vbb^\ac)$ be as in Def. \ref{lb52}. Suppose that the linear map $\int_{I_\blt}F(z_\blt)\sd z_\blt:\Vbb\rightarrow\Vbb^\ac$ has range in $\HV$ and is closable. Suppose also that $\HV^\infty$ is contained in the domain of the closure of $\int_{I_\blt}F(z_\blt)\sd z_\blt$. We then let \index{zz@$\int_{I_\blt}F(z_\blt)\sd z_\blt$} 
+\begin{align*}
+\int_{I_\blt}F(z_\blt)\sd z_\blt:\HV^\infty\rightarrow\HV
+\end{align*}
+denote the restriction to $\HV^\infty$ of the closure of the original $\int_{I_\blt}F(z_\blt)\sd z_\blt$. 
+\end{cv}
+
+
+\begin{eg}\label{lb54}
+Assume the setting of Thm. \ref{lb50}, and let $F(z_\blt)=f_1(z_1)\cdots f(z_N)A^1(z_1)\cdots A^N(z_N)$ be the integrand on the RHS of \eqref{eq71}. Then by Thm. \ref{lb50}, $\int_{I_\blt}F(z_\blt)\sd z_\blt$ equals $A^\blt(f_\blt)|_\Vbb$. By Prop. \ref{lb49}, $\Vbb$ is a core for $A^\blt(f_\blt):\HV^\infty\rightarrow\HV^\infty$, and hence $\Dom(\ovl{A^\blt(f_\blt)|_\Vbb})\supset\HV^\infty$. Therefore Conv. \ref{lb53} applies to $F(z_\blt)$, and hence
+\begin{align}
+A^1(f_1)\cdots A^N(f_N)=\int_{I_\blt} f_1(z_1)\cdots f_N(z_N)A^1(z_1)\cdots A^N(z_N)\sd z_\blt
+\end{align}
+holds as closable operators on $\HV$ with common domain $\HV^\infty$.
+\end{eg}
+
+
+\begin{co}
+Let $A,B$ be energy-bounded and mutually local fields. Let $I,J$ be mutually disjoint intervals of $\Sbb^1$. Then for each $f\in C_c^\infty(I)$ and $g\in C_c^\infty(J)$ we have (on $\HV^\infty$) that
+\begin{align*}
+A(f)B(g)=B(g)A(f)
+\end{align*}
+\end{co}
+
+
+\begin{proof}
+By Exp. \ref{lb54}, as unbounded operators with domain $\HV^\infty$ we have
+\begin{align*}
+A(f)B(g)=\int_{I\times J}f(z_1)g(z_2)A(z_1)B(z_2)\sd z_\blt=B(g)A(f)
+\end{align*}
+noting \eqref{eq77} that the $A(z_1)$ and $B(z_2)$ in the integral are interchangeable.
+\end{proof}
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+\section{Methods of unbounded operators}
+
+
+In this section, we collect some useful properties about unbounded operators that will be used later.
+
+Let $\mc H$ be a Hilbert space. Recall \cite[Sec. 4]{Gui-S} for the meaning of unbounded positive operators. Assume that $T$ is self-adjoint. By spectral theorem, $T\geq0$ iff $\bk{T\xi|\xi}\geq0$ for all $\xi\in\Dom(T)$. Thus, if $\Dom_0\subset\Dom(T)$ is a core for $T$, then $T\geq0$ iff $\bk{T\xi|\xi}\geq0$ for all $\xi\in\Dom_0$.
+
+
+In this section, we fix a positive operator $H$ on $\mc H$ satisfying $H-a\geq0$ for some real number $a>0$. Recall Rem. \ref{lb51} that for each $p\geq0$, $\Dom(H^p)$ is complete under the inner product
+\begin{align}\label{eq57}
+\bk{\xi|\eta}_p:=\bk{H^p\xi|H^p\eta}
+\end{align}
+We always let $\Vert\cdot\Vert_p$ be the norm associated to this inner product. 
+
+\begin{rem}
+Note that for each $r\geq0$,
+\begin{align*}
+\mc H^\infty:=\bigcap_{p\geq0} \Dom(H^p)
+\end{align*}
+is a core for $H^r$. This is because $\mc H^\infty$ contains $\bigcup_{\lambda\geq0}\Rng(\chi_{[0,\lambda]}(H))$ where the latter is a core for $f(H)$.
+\end{rem}
+
+
+\subsection{}
+
+We know that if $A$ is self-adjoint, then $\Dom(A)$ is precisely the set of all $\xi$ such that $t\in\Rbb\mapsto e^{\im tA}\xi$ is differentiable at $0$. In a similar spirit, the following theorem describes the domain of $A^r$.
+
+
+\begin{thm}\label{lb56}
+Let $A$ be a positive operator on $\mc H$ satisfying $\chi_{\{0\}}(A)=0$ (equivalently, $A$ is injective). Let $r>0$, and let $\Dom_0\subset\Dom(A^r)$ be a core for $A^r$. Let 
+\begin{align*}
+\fk I=\{z\in\Cbb:-r\leq\Imag z\leq0\}
+\end{align*}
+Let $\xi\in\mc H$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\xi\in\Dom(A^r)$.
+\item The function $t\in\Rbb\mapsto A^{\im t}\in\mc H$ can be extended to a (necessarily unique) continuous function $F:\fk I\rightarrow\mc H$ and holomorphic on $\Int\fk I$.
+\item There exists $\psi\in\mc H$ such that for each $\eta\in\Dom_0$, there is a function $f_\eta$ continuous on $\fk I$, holomorphic on $\Int\fk I$, such that $f_\eta(t)=\bk{A^{\im t}\xi|\eta}$ for each $t\in\Rbb$, and that $f_\eta(-\im r)=\bk{\psi|\eta}$.
+\end{enumerate}
+Moreover, if the above statements are true, the function in (2) takes the form $F(z)=A^{\im z}\xi$. In particular, $F(-\im r)=A^r\xi$.
+\end{thm}
+
+
+\begin{proof}
+(1)$\Rightarrow$(2): The uniqueness follows from Lem. \ref{lb55}. As for the existence, one defines $F:z\in\fk I\mapsto A^{\im z}\xi$, noting that condition (1) ensures that $\xi\in\Dom(A^{\im\tau})$ for all $\tau\in\fk I$. The continuity of $(\tau,\mu)\in\fk I\times\fk I\mapsto \bk{A^{\im\tau}\xi|A^{\im\mu}\xi}$ (which follows from the spectral theory and the dominated convergence theorem) shows that $F$ is continuous; the holomorphicity of $F|_{\Int\fk I}$ follows from the spectral theory and Morera's theorem.
+
+(2)$\Rightarrow$(3): This is obvious. 
+
+(3)$\Rightarrow$(1): Since $\eta\in\Dom_0$, the map $z\in\fk I\mapsto A^{\im z}\eta\in\mc H$ is continuous on $\fk I$ and holomorphic on $\Int\fk I$. Therefore, we have a continuous function $\wtd f_\eta:\fk I\rightarrow\Cbb$, holomorphic on $\Int\fk I$, such that
+\begin{align*}
+\wtd f_\eta(z)=\bk{\xi|A^{-\im\ovl z}\eta}
+\end{align*}
+Extend $f_\eta$ to a continuous function $\fk I$ holomorphic on $\Int\fk I$. For each $t\in\Rbb$ we have
+\begin{align*}
+\wtd f_\eta(t)=\bk{\xi|A^{-\im t}\eta}=\bk{A^{\im t}\xi|\eta}=f_\eta(t)
+\end{align*}
+Thus, by the following Lem. \ref{lb55}, we have $\wtd f_\eta=f_\eta$ on $\fk I$. Therefore
+\begin{align*}
+\bk{\psi|\eta}=f_\eta(-\im r)=\wtd f_\eta(-\im r)=\bk{\xi|A^r\eta}
+\end{align*}
+Since all such $\eta$ form a core $\Dom_0$ for $A^r$, we see that $\xi\in\Dom((A^r)^*)=\Dom(A^r)$ and $A^r\xi=\psi$.
+\end{proof}
+
+
+
+
+
+\begin{lm}\label{lb55}
+Let $\Omega$ be an open subset of $\{z\in\Cbb:\Imag z\geq0\}$. Suppose that $I$ is a non-empty open interval contained in $\Rbb\cap\Omega$. Let $F:\Omega\rightarrow\mc H$ be a continuous function holomorphic on $\Int_\Cbb(\Omega)=\{z\in\Omega:\Imag z>0\}$. If $F|_I=0$, then $F=0$.
+\end{lm}
+
+Note that by applying a M\"obious transform, the lemma also applies to the case that $\Omega$ is an open subset of the unit closed disk $\ovl\Dbb_1$, and $I$ is an interval of $\Sbb^1$.
+
+\begin{proof}
+By considering the function $z\in\Omega\mapsto\bk{F(z)|\eta}$ for all $\eta\in\mc H$, it suffices to assume that $\mc H=\Cbb$. By the Schwarz reflection principle, $F$ can be extended to a holomorphic function on $\wtd\Omega=\{z\in\Cbb:z\in\Omega\text{ or }\ovl z\in\Omega\}$. (In fact, one defines $F(z)=\ovl{F(\ovl z)}$ if $\ovl z\in\Omega$, and uses Morera's theorem to show that $F$ is holomorphic.) Now $\wtd\Omega$ is an open subset of $\Cbb$. It is well-known that any holomorphic function on $\Omega$ vanishing on an interval must be vanishing everywhere. Thus $F|_I=0$ implies $F=0$.
+\end{proof}
+
+
+
+\begin{co}\label{lb57}
+Let $A$ be a positive operator on $\mc H$. Let $\fk I=\{z\in\Cbb:\Imag z\geq0\}$. Then for each $\xi\in\mc H$, the function $z\in\fk I\mapsto e^{\im zA}\xi\in\mc H$ is well-defined and holomorphic.
+\end{co}
+
+\begin{proof}
+Apply Thm. \ref{lb56} to the operator $B=e^{-A}$, which is bounded (and hence $\mc H=\Dom(B^r)$ for all $r\geq0$) because $A\geq0$. Note that the fact $B^{\im z}=e^{-\im zA}$ is due to the composition rule for Borel functional calculus, i.e., if $f,g:\Cbb\rightarrow\Cbb$ are Borel functions then $(f\circ g)(A)=f(g(A))$, c.f. \cite[Sec. 9]{Gui-S}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\subsection{}
+
+
+
+
+\begin{pp}\label{lb31}
+Let $T$ be a symmetric unbounded operator on $\mc H$. The following are true.
+\begin{enumerate}[label=(\arabic*)]
+\item $\ovl T$ is self-adjoint iff $\Rng(\im+T)$ and $\Rng(\im-T)$ are dense in $\mc H$.
+\item Assume that $\ovl T$ is self-adjoint, and let $\Dom_0$ be a linear subspace of $\Dom(T)$. Then $\Dom_0$ is a core for $T$ (equivalently, for $\ovl T$) iff $(\im+T)\Dom_0$ is dense in $\mc H$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+Let $\scr G(\ovl T)$ be the graph of $T$. Then
+\begin{align*}
+\Phi_\pm: \scr G(\ovl T)\rightarrow \Rng(\im\pm\ovl T)\qquad (\xi,\ovl T\xi)\mapsto \im\xi\pm\ovl T\xi
+\end{align*}
+is unitary (because $\ovl T$ is symmetric), restricting to a unitary map $\scr G(T|_{\Dom_0})\rightarrow (\im\pm T)\Dom_0$. Thus $\Dom_0$ is a core for $\ovl T$ iff $\scr G(T|_{\Dom_0})$ is dense in $\scr G(\ovl T)$, iff $(\im\pm T)\Dom_0$ is dense in $\Rng(\im\pm T)$. Therefore (2) follows from (1).
+
+Since $\Dom(T)$ is a core for $\ovl T$, by setting $\Dom_0=\Dom(T)$, we see that $\Rng(\im\pm T)$ is dense in $\Rng(\im\pm\ovl T)$. Since $\ovl T$ is self-adjoint iff $\Rng(\im+\ovl T)=\Rng(\im-\ovl T)=\mc H$ (cf. \cite[Sec. 10]{Gui-S}), (1) is proved.
+\end{proof}
+
+
+
+
+
+\subsection{}
+
+We use Prop. \ref{lb31} to give two criteria for cores.
+
+
+\begin{thm}\label{lb58}
+Let $A,B$ be self-adjoint closed operators on $\mc H$, and assume that $B$ is affiliated with $\{A\}''$ (e.g. $B=f(A)$ for some Borel $f:\Rbb\rightarrow\Rbb$). Choose a dense linear subspace $\Dom_0\subset\Dom(B)$ such that $e^{\im tA}\Dom_0\subset\Dom_0$ for any $t\in\Rbb$. Then $\Dom_0$ is a core for $B$.
+\end{thm}
+
+
+\begin{proof}
+By Prop. \ref{lb31}, it suffices to prove that $(\im+B)\Dom_0$ is dense in $\mc H$. Choose any $\eta\in\mc H$ orthogonal to $(\im+B)\Dom_0$. Then for each $\xi\in\Dom_0$ and $t\in\Rbb$, since $e^{\im tA}$ belongs to $\mc M:=\{H\}''$ and hence commutes strongly with $\im+B$, we have $e^{-\im tA}(\im+B)\subset(\im+B)e^{-\im tA}$. Therefore, since $e^{-\im tA}\xi\in\Dom_0$, we have
+\begin{align*}
+\bk{(\im+B)\xi|e^{\im tA}\eta}=\bk{(\im+B)e^{-\im tA}\xi|\eta}=0
+\end{align*}
+
+Let $\scr A=\Span_\Cbb\{e^{\im tA}:t\in\Rbb\}$, which is a unital $*$-algebra generating $\mc M$. Then clearly
+\begin{align*}
+\bk{(\im+B)\xi|x\eta}=0
+\end{align*}
+for all $x\in\scr A$, and hence (by passing to the strong operator closure) for all $x\in\mc M$. Since $\{B\}''\subset\mc M$, the projection $E_\lambda=\chi_{[-\lambda,\lambda]}(B)$ belongs to $\mc M$ for all $\lambda\geq0$. Thus, noting that $(-\im+B)E_\lambda$ is bounded (cf. \cite[Prop. 8.1]{Gui-S}) and hence $E_\lambda\eta\in\Dom(-\im+B)$, we have
+\begin{align*}
+\bk{\xi|(-\im+B)E_\lambda\eta}=\bk{(\im+B)\xi|E_\lambda\eta}=0
+\end{align*}
+Since $\xi\in\Dom_0$ is arbitrary and $\Dom_0$ is dense, we have $(-\im+B)E_\lambda\eta=0$. Thus $E_\lambda\eta=0$ because $-\im+B$ is injective. Letting $\lambda\nearrow+\infty$, we get $\eta=0$.
+\end{proof}
+
+
+\subsection{}
+
+Case 1 of the following theorem is \cite[Lem.7.2]{CKLW18}. Although Case 2 is motivated by the treatment of Case 1 in \cite{CKLW18}, and although Case 1 (as well as its proof) is interesting in its own right, we will not use Case 1 in this course. Thus, the proof of Case 1 below can be safely skipped.
+
+\begin{thm}
+Let $A$ be a self-adjoint operator on $\mc H$. Let $\Dom_0$ be a dense subspace of $\Dom(A^k)$. Suppose that there exist $\delta>0$ and a dense subspace $\Dom_\delta\subset\Dom_0$ such that $e^{\im tA}\Dom_\delta\subset\Dom_0$ for all $-\delta<t<\delta$. Then the following are true.
+\begin{enumerate}
+\item For each $k\in\Nbb$, $\Dom_0$ is a core for $A^k$.
+\item Assume that $A\geq0$, and $B$ is a self-adjoint operator affiliated with $\{A\}''$. Then $\Dom_0$ is a core for $B$.
+\end{enumerate} 
+\end{thm}
+
+
+
+\begin{proof}
+By Prop. \ref{lb31}, to show that $\Dom_0$ is a core for $A$, it suffices to choose any $\eta\in\mc H$ orthogonal to $(\im+B)\Dom_0$ and show that $\eta=0$. Since $e^{-\im tA}$ commutes strongly with $B$, we have $e^{-\im tA}(\im+B)\subset(\im+B)e^{-\im tA}$. Therefore, for each $\xi\in\Dom_\delta$ and $|t|<\delta$, since $e^{-\im tA}\xi\in\Dom_0$, we have
+\begin{align*}
+\bk{(\im+B)\xi|e^{\im tA}\eta}=\bk{(\im+B)e^{-\im tA}\xi|\eta}=0
+\end{align*}
+
+Case 1. Let $B=A^k$. Choose $h\in C_c^\infty(-\delta,\delta)$ with $\int_\Rbb h=1$, and let $\wht h$ be its Fourier transform. Recall that $\wht h(A)=\int_\Rbb h(t)e^{-\im tA}dt$, i.e., for each $\psi\in\mc H$ we have $\wht h(A)\psi=\int_\Rbb h(t)e^{-\im tA}\psi dt$ where the RHS is understood as the improper $\mc H$-valued Riemann integral. (See the end of \cite[Sec. 10]{Gui-S}.) Therefore
+\begin{align*}
+\bk{(\im+A^k)\xi|\wht h(A)\eta}=0
+\end{align*}
+By the basic properties of Borel functional calculus (cf. \cite[Sec. 9]{Gui-S}), if $\alpha,\beta:\Rbb\rightarrow\Cbb$ are Borel functions, then $(\alpha\beta)(A)=\ovl{\alpha(A)\beta(A)}$ where the latter equals $\alpha(A)\beta(B)$ when $\beta$ is bounded (cf. \cite[Prop. 8.1]{Gui-S}). Thus $A^k\wht h(A)$ equals $(x^k\wht h)(A)=(-\im)^k\wht{h^{(k)}}(A)$, which is a bounded operator because $\wht{h^{(k)}}$ is bounded. In particular $\wht h(A)\eta\in\Dom(-\im+A^k)$. So
+\begin{align*}
+\bk{\xi|(-\im+A^k)\wht h(A)\eta}=\bk{(\im+A^k)\xi|\wht h(A)\eta}=0
+\end{align*}
+Since $\xi\in\Dom_\delta$ is arbitrary, we get $(-\im+A^k)\wht h(A)\eta=0$, and hence $\wht h(A)\eta=0$. 
+
+Replacing $h$ with $h_n(x)=nh(nx)$, we have $\wht h_n(A)\eta=0$. Since 
+\begin{align*}
+\lim_{n\rightarrow\infty}\wht h_n(A)\eta=\lim_{n\rightarrow\infty} \int_\Rbb nh(nx)e^{-\im tA}\eta dx=\eta
+\end{align*}
+we get $\eta=0$.\\[-1ex]
+
+Case 2. Let $\fk I=\{z\in\Cbb:\Imag z\geq0\}$ and $\xi\in\Dom_\delta$. By Cor. \ref{lb57}, the function 
+\begin{align*}
+\fk I\mapsto\mc H\qquad z\mapsto \bk{(\im+B)\xi|e^{-\im \ovl zA}\eta}
+\end{align*}
+is continuous, and is holomorphic on $\Int\fk I$. Since we have shown that this function is zero on an interval of $\Rbb$, by Lem. \ref{lb55}, it is zero for all $z\in\fk I$ and, in particular, all $z=t\in\Rbb$. Thus, as in the proof of Thm. \ref{lb58}, for each $\lambda\geq0$ and $E_\lambda=\chi_{[-\lambda,\lambda]}(B)$ we have
+\begin{align*}
+\bk{\xi|(\im+B)E_\lambda\eta}=\bk{(\im+B)\xi|E_\lambda\eta}=0
+\end{align*}
+for all $\xi$ in the dense space $\Dom_\delta$. Hence $(\im+B)E_\lambda\eta=0$, and hence $E_\lambda\eta=0$ (for all $\lambda$), and hence $\eta=0$.
+\end{proof}
+
+
+
+
+\subsection{}
+
+As our last application of Prop. \ref{lb31}, we give an important criterion for self-adjointness originally due to A. Jaffe (cf. \cite[Thm. 19.4.3]{GJ}). Our presentation follows \cite{FL74}. Recall our assumption on $H$ at the beginning of this section.
+
+
+\begin{rem}\label{lb60}
+Suppose that $A$ is a self-adjoint operator on $\mc H$. Then any symmetric extension of $A$ equals $A$, i.e., if $A\subset B$ where $B$ is a symmetric operator, then $A=B$. Indeed, we have $A\subset B\subset B^*\subset A^*$ and $A=A^*$. Thus $A=B$.
+\end{rem}
+
+
+\begin{thm}\label{lb59}
+Let $T$ be a symmetric (i.e. $T\subset T^*$) closed operator on $\mc H$. Assume that $\Dom_0\subset\Dom(H)\cap\Dom(T)$ is a core for $H$, and there exists $C\geq0$ such that for every $\xi,\eta\in\Dom_0$ we have
+\begin{subequations}\label{eq78}
+\begin{gather}
+\Vert T\xi\Vert\leq C\Vert H\xi\Vert\label{eq78a}\\
+\big|\bk{T\xi|H\eta}-\bk{H\xi|T\eta} \big|\leq C\Vert H\xi\Vert\cdot\Vert\eta\Vert  \label{eq78b}
+\end{gather}
+\end{subequations}
+Then $\Dom_0$ is a core for $T$, and $T=T^*$.
+\end{thm}
+
+We are mainly interested in the case that $\Dom_0$ is invariant under $T$ and $H$. Then \eqref{eq78b} reads that for all $\xi,\eta\in\Dom_0$,
+\begin{align*}
+\big|\bk{[H,T]\xi|\eta}\big|\leq C\Vert H\xi\Vert\cdot\Vert\eta\Vert 
+\end{align*}
+equivalently, for all $\xi\in\Dom_0$ we have
+\begin{align*}
+\big\Vert [H,T]\xi\big\Vert\leq C\Vert H\xi\Vert
+\end{align*}
+Thus \eqref{eq78} holds, e.g., when $\Dom_0=\HV^\infty$, $H=\ovl{L_0}$, and $T$ is the closure of a linearly energy-bounded field that is symmetric.
+
+
+
+\begin{proof}
+Step 1. By Rem. \ref{lb60}, if we can prove that $\ovl{T|_{\Dom_0}}$ is self-adjoint, then $\ovl{T|_{\Dom_0}}=T$. Thus $T=T^*$ and $T$ has core $\Dom_0$. Therefore, by replacing $T$ with $\ovl{T|_{\Dom_0}}$, we may assume at the beginning that $\Dom_0$ is a core for $T$, and we only need to prove $T=T^*$. 
+
+We first show that $\Dom(H)\subset\Dom(T)$, and that \eqref{eq78} holds for all $\xi,\eta\in\Dom(H)$. Choose $\xi\in\Dom(H)$. Since $\Dom_0$ is an $H$-core, there exists a sequence $(\xi_n)$ in $\Dom_0$ converging to $\xi$ such that $H\xi_n$  converges to $H\xi$. By \eqref{eq78a}, $(T\xi_n)$ is a Cauchy sequence. Since $T$ is closed, we see that $\xi\in \Dom(T)$ and $T\xi=\lim_n T\xi_n$. 
+
+Let $\xi,\eta\in\Dom(H)$. By the above paragraph, we have sequences $(\xi_n),(\eta_\blt)$ converging to $\xi,\eta$ such that $\lim H\xi_n=H\xi$, $\lim T\xi_n=T\xi$, $\lim H\eta_n=H\eta$, $\lim T\eta_n=T\eta$. Since \eqref{eq78} holds when $\xi,\eta$ are replaced by $\xi_n,\eta_n$,  we see that \eqref{eq78} holds for $\xi,\eta$.\\[-1ex] 
+
+Step 2. Since $H\geq a>0$, by spectral theorem (or by the relation between $H$ and its inverse mentioned in \cite[Sec. 4]{Gui-S}), we have $\Rng(H^{-1})=\Dom(H)$ and $HH^{-1}=\idt_{\mc H}$. In particular
+\begin{align*}
+\Rng(H^{-1})\subset\Dom(H)\subset\Dom(T)
+\end{align*}
+Let us prove for each $\xi,\eta\in\mc H$ that
+\begin{subequations}\label{eq79}
+\begin{gather}
+\big|\bk{TH^{-1}\xi|\eta}-\bk{\xi|TH^{-1}\eta} \big|\leq C\Vert\xi\Vert\cdot \Vert H^{-1}\eta\Vert\label{eq79a}\\
+\big|\bk{TH^{-1}\xi|\eta}-\bk{\xi|TH^{-1}\eta} \big|\leq C\Vert H^{-1}\xi\Vert\cdot \Vert \eta\Vert\label{eq79b}
+\end{gather}
+\end{subequations}
+By \eqref{eq78b} (with $\xi,\eta$ replaced by $H^{-1}\xi,H^{-1}\eta$, both are in $\Dom(H)$), we get \eqref{eq79a}. Since $\bk{TH^{-1}\xi|\eta}-\bk{\xi|TH^{-1}\eta}$ has complex conjugate $-\bk{TH^{-1}\eta|\xi}+\bk{\eta|TH^{-1}\xi}$, \eqref{eq79b} follows by exchanging the $\xi$ and $\eta$ in \eqref{eq79a}.\\[-1ex]
+
+Step 3. Let us prove for each $\xi,\eta\in\mc H$ that
+\begin{align}\label{eq80}
+|\bk{TH^{-2}\xi|\eta}-\bk{\xi|TH^{-2}\eta}|\leq 2C\Vert H^{-1}\xi\Vert\cdot\Vert H^{-1}\eta\Vert
+\end{align}
+By \eqref{eq78a} (replacing $\xi$ with $H^{-1}\xi$), we have
+\begin{gather*}
+\big|\bk{TH^{-2}\xi|\eta}-\bk{H^{-1}\xi|TH^{-1}\eta} \big|\leq C\Vert H^{-1}\xi\Vert\cdot\Vert H^{-1}\eta\Vert
+\end{gather*}
+Note that $\bk{H^{-1}\xi|TH^{-1}\eta}=\bk{TH^{-1}\xi|H^{-1}\eta}$. By \eqref{eq78b} (replacing $\eta$ with $H^{-1}\eta$), we have
+\begin{align*}
+\big|\bk{TH^{-1}\xi|H^{-1}\eta}-\bk{\xi|TH^{-2}\eta} \big|\leq C\Vert H^{-1}\xi\Vert\cdot \Vert H^{-1}\eta\Vert
+\end{align*}
+This proves \eqref{eq80}.\\[-1ex]
+
+
+
+
+
+
+
+
+Step 4. For each $\xi\in\mc H$, we have
+\begin{align*}
+2\Imag\bk{TH^{-2}\xi|\xi}=-\im(\bk{TH^{-2}\xi|\xi}-\bk{\xi|TH^{-2}\xi})
+\end{align*}
+Thus \eqref{eq80} implies
+\begin{align}\label{eq81}
+|2\Imag\bk{TH^{-2}\xi|\xi}|\leq 2C\Vert H^{-1}\xi\Vert^2
+\end{align}
+
+Now, to prove that $T=T^*$, by Prop. \ref{lb31}, it suffices to find some $\lambda\in\Rbb\setminus\{0\}$ such that $T+\lambda\im$ and $T-\lambda\im$ have dense ranges. Choose $\lambda\in\Rbb\setminus\{0\}$ whose value will be determined shortly, let $\xi\in\mc H$ be orthogonal to the range of $T+\lambda\im$. Then
+\begin{align*}
+2\Imag\bk{(T+\lambda\im)H^{-2}\xi|\xi}=0
+\end{align*}
+namely,
+\begin{align*}
+\lambda \bk{H^{-2}\xi|\xi}=-2\Imag\bk{TH^{-2}\xi|\xi}
+\end{align*}
+Thus, by \eqref{eq81}, we have $|\lambda|\cdot |\bk{H^{-2}\xi|\xi}|\leq 2C\Vert H^{-1}\xi\Vert^2$, i.e.
+\begin{align*}
+|\lambda|\cdot \Vert H^{-1}\xi\Vert^2\leq 2C\Vert H^{-1}\xi\Vert^2
+\end{align*}
+So $\xi=0$ whenever $|\lambda|>2C$. Thus, taking $\lambda=2C+1$, we see that $T+\lambda\im$ and $T-\lambda\im$ have dense ranges.
+\end{proof}
+
+
+
+\subsection{}
+
+
+Our next goal is to prove Thm. \ref{lb63}, an extremely important criterion for strong commutativity. It will imply that two energy-bounded fields smeared over disjointly supported smooth functions are strongly commuting if one of them is linearly energy-bounded and its smeared field is symmetric.
+
+
+
+Let $T$ be a closable operator on $\mc H$ with \textbf{invariant domain} $\mc H^\infty$ (i.e. $\Dom(T)=\mc H^\infty$ and $T\mc H^\infty\subset\mc H^\infty$). Note that $H^n\Dom(H^m)\subset\Dom(H^{n+m})$ shows that $\mc H^\infty$ is $H^n$-invariant for every $n\in\Zbb$. 
+
+\begin{df}
+We say that $T$ satisfies \textbf{\pmb{$H$}-bounds of order $r$}\index{00@$H$-bounds of order $r$} (where $r\geq 0$) if for each $n\in\Nbb$ there exists a constant $|T|_n\geq0$ (the \textbf{\pmb{$n$}-th bounding constant}) such that for every $\xi\in\mc H^\infty$ we have
+\begin{align}
+\lVert H^nT\xi\lVert\leq |T|_n\cdot \lVert H^{n+r}\xi\lVert.\label{eqa7}	
+\end{align}
+In other words, if for each $s\in\Rbb$ we define
+\begin{align*}
+\bk{\xi|\eta}_r=\bk{H^s\xi|H^s\eta}\qquad\text{for all }\xi,\eta\in\Dom(H^s)
+\end{align*}
+then $T:(\mc H^\infty,\Vert\cdot\Vert_{n+r})\rightarrow (\mc H^\infty,\Vert\cdot\Vert_n)$ is a bounded linear map. $H$-bounds of order $1$ are called \textbf{linear \pmb{$H$}-bounds}.
+\end{df}
+
+Clearly, if $0\leq r_1\leq r_2$, then $H$-bounds of order $r_1$ implies $H$-bounds of order $r_2$.
+
+
+\begin{comment}
+\begin{lm}
+Choose $n\in\Nbb$. Assume \eqref{eqa7} holds for all $\xi\in\mc H^\infty$. Then
+\begin{align*}
+\Dom(H^{n+r})\subset\Dom(\ovl T)\qquad	 \ovl T\Dom(H^{n+r})\subset \Dom(H^n)
+\end{align*}
+and \eqref{eqa7} holds for all $\xi\in\Dom(H^{n+r})$ if $T$ is replaced by $\ovl T$.
+\end{lm}
+
+
+\begin{proof}
+Let $\xi\in\Dom(H^{n+r})\subset\Dom(H^r)$. Choose $\xi_k=\chi_{(-k,k)}(H)\xi$, which is in $\mc H^\infty$. Since $H^r\xi_k$ converges to $H^r\xi$, by \eqref{eqa7} (where $n=0$), $T\xi_k$ is a Cauchy sequence. So, since $\xi_k\rightarrow \xi$, we conclude $\xi\in\Dom(\ovl T)$ and $T\xi_k\rightarrow\ovl T\xi$. 
+
+Similarly, since $H^{n+r}\xi_k\rightarrow H^{n+r}\xi$, by \eqref{eqa7}, we conclude that $H^nT\xi_k$ converges to a vector whose norm is bounded by $|T|_n\lVert H^{n+r}\xi\lVert$. Thus, because $T\xi_k\rightarrow \ovl T\xi$, we have $\ovl T\xi\in\Dom(H^n)$ and $H^n\ovl T\xi$ has norm bounded by $|T|_n\lVert H^{n+r}\xi\lVert$.
+\end{proof}
+\end{comment}
+
+
+
+\begin{lm}\label{lba7}
+Assume $T$ is closable with invariant  domain $\mc H^\infty$. Assume also that $T$ satisfies linear $H$-bounds. Then for every $n\in\Zbb$ there exists a bounding constant $|T|_n\geq 0$ such that for every $\xi\in\mc H^\infty$ we have
+\begin{align*}
+\lVert H^nT\xi\lVert\leq |T|_n\cdot \lVert H^{n+1}\xi\lVert	
+\end{align*}
+\end{lm}
+
+\begin{proof}
+We know this is true when $n\geq 0$. Now assume $n<0$ and let $m=-n$. Then for every $\xi,\eta\in\mc H^\infty$,
+\begin{align*}
+&\big|\bk{H^{-m}T\xi|H^m\eta} \big|=\big|\bk{\xi|T\eta} \big|	=\big|\bk{H^{-m+1}\xi|H^{m-1}T\eta}  \big|\\
+\leq&	\lVert H^{-m+1}\xi\lVert\cdot |T|_{m-1}\lVert H^m\eta\lVert.	
+\end{align*}
+Since $H^m\mc H^\infty$ is dense (because $\mc H^\infty$ is a core for $H^m$, and $\Rng(H^m)$ is dense). Therefore $\lVert H^{-m}T\xi\lVert\leq |T|_{m-1}\lVert H^{-m+1}\xi\lVert$. 
+\end{proof}
+
+
+
+\subsection{}
+
+
+The following theorem is \cite[Prop. 2.1]{Tol99}.
+
+\begin{thm}\label{lba9}
+Assume $T$ is a symmetric operator on $\mc H$ with invariant domain $\mc H^\infty$. Assume that both $T$ and $[H,T]$ satisfy linear $H$-bounds. Then $\ovl T$ is self-adjoint. Moreover,  for any $n\in\Nbb$, $\Dom(H^n)$ is $e^{\im t\ovl T}$-invariant, and there exists a constant $C_n\geq 0$ such that for every  $\xi\in\Dom(H^n)$ and $t\in\Rbb$ we have
+\begin{align}
+\lVert H^n e^{\im t\ovl T}\xi\lVert\leq e^{C_n|t|}\cdot \lVert H^n\xi\lVert	\label{eqa11}
+\end{align}
+\end{thm}
+
+In short, our conclusion is that $\mc H^\infty$ is $e^{\im t\ovl T}$-invariant, and $e^{\im t\ovl T}:(\mc H^\infty,\bk{\cdot|\cdot}_n)\rightarrow(\mc H^\infty,\bk{\cdot|\cdot}_n)$ is bounded with operator norm $\leq e^{C_n|t|}$. 
+
+\begin{proof}[Idea of the proof]
+We know from Thm. \ref{lb59} that $\ovl T$ is self-adjoint. Take $N=H^{2n}$. Using the fact that $[H,T]$ satisfies linear $H$-bounds, it is not hard to check that $[N,T]$ satisfies $H$-bounds of order $2n$, and hence satisfies linear $N$-bounds. From this, one shows that $\im[N,T]\leq cN$ for $c>0$, namely, $\im\bk{[N,T]\xi|\xi}\leq c\bk{N\xi|\xi}$ where $\xi\in\mc H^\infty$.
+
+We ``integrate" the inequality $\im[N,T]\leq cN$ for $t\geq 0$, which gives $e^{-\im t\ovl T}Ne^{\im t\ovl T}\leq e^{ct}N$ evaluate in $\bk{\cdot \xi|\xi}$ for every ``nice" vector $\xi$. This shows $\lVert H^ne^{\im t\ovl T}\xi\lVert^2\leq e^{ct}\lVert H^n\xi\lVert^2$. To be more precise about ``integrating" the inequality, we consider the function $f_\xi(t)=e^{-ct}\bk{e^{-\im t\ovl T}Ne^{\im t\ovl T}\xi|\xi}$. Then $f_\xi'(t)=\im\bk{e^{-\im t\ovl T}[N,T]e^{\im t\ovl T}\xi|\xi}- c\bk{Ne^{\im t\ovl T}\xi|e^{\im t\ovl T}\xi}\leq 0$. So $f_\xi(t)\leq f_\xi(0)$, which shows \eqref{eqa11} when $t\geq 0$. In the case $t\leq 0$, we replace $t$ by $-t$ and $T$ by $-T$, to obtain again \eqref{eqa11}.
+
+The problem with this argument is that we don't know if every $\xi\in\Dom(\mc H^n)$ is good or not. To overcome this difficulty, we replace $N$ by the bounded operator $N_\epsilon=N(1+\epsilon N)^{-1}$ so that all the expressions in the above paragraph can be defined. One shows again that $\im\bk{[N_\epsilon,T]\xi|\xi}\leq c\bk{N_\epsilon\xi|\xi}$ where $\xi\in\mc H^\infty$, and by approximation, $\im\bk{N_\epsilon \ovl T\xi|\xi}-\im\bk{N_\epsilon\xi|\ovl T\xi}\leq c\bk{N_\epsilon\xi|\xi}$ when $\xi\in\Dom(\ovl T)$. Using the argument in the previous paragraph, we obtain (for $t\geq 0$) $e^{-\im t\ovl T}N_\epsilon e^{\im t\ovl T}\leq e^{ct}N_\epsilon$  evaluated in $\bk{\cdot \xi|\xi}$ whenever $\xi\in\Dom(\ovl T)$, and hence whenever $\xi\in\mc H$. Assume $\xi\in\Dom(H^n)$.  Then the limit of this inequality when $\epsilon\searrow0$ yields the desired result.
+\end{proof}
+
+
+
+
+\begin{proof}
+Step 1. By symmetry, it suffices to prove the claim for $t\geq 0$. By Thm. \ref{lb59}, $\ovl T$ is self-adjoint. Set $N=T^{2n}$. 
+
+For each $k\in\Zbb$, let $|T|_k$ be a $k$-th bounding constant for both $T$ and $[H,T]$. (Cf. Lemma \ref{lba7}.) Then, when acting on $\mc H^\infty$, 
+\begin{align*}
+	[N,T]=\sum_{j=0}^{2n-1}H^j[H,T]H^{2n-1-j}
+\end{align*}
+Set $c=\sum_{j=0}^{2n-1}|T|_{j-n}$. For each $\xi\in\mc H^\infty$,  
+\begin{align*}
+	&\im \bk{[N,T]\xi|\xi}=\im \bk{H^{-n}[N,T]\xi|H^n\xi}\leq \lVert H^n\xi \lVert\cdot \lVert H^{-n}[N,T]\xi \lVert\\
+	=&\sum_{j=0}^{2n-1}	\lVert H^n\xi \lVert\cdot\lVert H^{j-n}[H,T]H^{2n-1-j}\xi \lVert\leq \sum_{j=0}^{2n-1}	|T|_{j-n}	\lVert H^n\xi \lVert^2	\leq c\bk{N\xi|\xi}\tag{a}\label{eqa12}
+\end{align*}
+
+
+Step 2. In general,  $[S^{-1},T]=-S^{-1}[S,T]S^{-1}$ if a linear map $S:\mc H^\infty\rightarrow\mc H^\infty$  has inverse $S^{-1}:\mc H^\infty\rightarrow\mc H^\infty$. Choose $\epsilon>0$. Then, when acting on $\mc H^\infty$, we have
+\begin{align*}
+	[(1+\epsilon N)^{-1},T]=-\epsilon (1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1}
+\end{align*}
+and hence
+\begin{align*}
+	&[N(1+\epsilon N)^{-1},T]=-N\cdot \epsilon (1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1}+[N,T](1+\epsilon N)^{-1}\\
+	=&	(1+\epsilon N)^{-1}[N,T](1+\epsilon N)^{-1}
+\end{align*}
+Note that $\mc H^\infty$ is invariant under $T,N$. Also $\mc H^\infty=\bigcap_{p\geq0}\Dom(H^p)$ is invariant under $f(H)$ for any bounded Borel function $f$, because $f(H)H^p\subset H^pf(H)$. Thus $\mc H^\infty$ is invariant under $(1+\epsilon N)^{-1}$. It follows that for every $\xi\in\mc H^\infty$, we have (by \eqref{eqa12})
+\begin{align*}
+&\im\bk{[N(1+\epsilon N)^{-1},T]\xi|\xi}=\im\bk{[N,T](1+\epsilon N)^{-1}\xi|(1+\epsilon N)^{-1}\xi}\\
+\leq &c\bk{(1+\epsilon N)^{-1}N(1+\epsilon N)^{-1}\xi|\xi}
+\end{align*}
+By Borel functional calculus, $N(1+\epsilon N)^{-1}-N(1+\epsilon N)^{-2}$ is positive (since its closure is $g(N)$ where the function $g(x)=x(1+\epsilon x)^{-1}-x(1+\epsilon x)^{-2}$ is positive). Therefore
+\begin{align*}
+\im\bk{[N(1+\epsilon N)^{-1},T]\xi|\xi}\leq 	c\bk{N(1+\epsilon N)^{-1}\xi|\xi}\tag{b}\label{eqa13}
+\end{align*}
+for all $\xi\in\mc H^\infty$.
+
+Now suppose $\xi\in\Dom(\ovl T)$. Since $\mc H^\infty=\Dom(T)$ is a core for $\ovl T$, we may choose a sequence $\xi_n\in\mc H^\infty$ converging to $\xi$ such that $T\xi_n$ converges to $T\xi$. Note that $N(1+\epsilon N)^{-1}$ is bounded. Therefore, since each $\xi_n$ satisfies \eqref{eqa13}, we obtain
+\begin{align*}
+\im\bk{N(1+\epsilon N)^{-1}\ovl T\xi|\xi}-\im\bk{N(1+\epsilon N)^{-1}\xi|\ovl T\xi}	\leq 	c\bk{N(1+\epsilon N)^{-1}\xi|\xi}\tag{c}\label{eqa14}
+\end{align*}
+
+
+Step 3. Note that $N^{\frac 12}(1+\epsilon N)^{-\frac 12}$ and $N(1+\epsilon N)^{-1}$ are  bounded. For any $\xi\in\mc H$, we set
+\begin{gather*}
+\xi_t=e^{\im t\ovl T}\xi\\
+f_{\epsilon,\xi}(t)=	e^{-ct}\big\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi_t}\big\lVert^2=e^{-ct}\bk{N(1+\epsilon N)^{-1}\xi_t|\xi_t}
+\end{gather*}
+
+
+Assume $\xi\in\Dom(\ovl T)$. Then $\xi_t\in\Dom(\ovl T)$ and $\frac d{dt}\xi_t=\im\ovl T\xi_t$. So the derivative $f'_{\epsilon,\xi}(t)=\frac d{dt}f_{\epsilon,\xi}(t)$ exists for all $t\in\Rbb$.  We compute
+\begin{align*}
+f'_{\epsilon,\xi}(t)=-cf_{\epsilon,\xi}(t)+\im\bk{N(1+\epsilon N)^{-1}\ovl T\xi_t|\xi_t}-\im\bk{N(1+\epsilon N)^{-1}\xi_t|\ovl T\xi_t}\tag{d}\label{eqa9}
+\end{align*}
+By \eqref{eqa14},
+\begin{align*}
+f'_{\epsilon,\xi}(t)\leq-cf_{\epsilon,\xi}(t)+c\bk{N(1+\epsilon N)^{-1}\xi_t|\xi_t}=0
+\end{align*}
+Therefore, when $t\geq 0$, we have $f_{\epsilon,\xi}(t)\leq f_{\epsilon,\xi}(0)$, namely,
+\begin{align}
+e^{-ct}\big\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi_t}\big\lVert^2\leq \big\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi}\big\lVert^2\tag{e}\label{eqa10}
+\end{align}
+By approximation, \eqref{eqa10} holds for all $\xi\in\mc H$.
+
+By spectral theory, the RHS of \eqref{eqa10} increases as $\epsilon$ decreases. Moreover, by the monotone convergence theorem, we see that
+\begin{align*}
+\xi\in\Dom(N^{\frac12})=\Dom(H^n)\qquad\Longleftrightarrow\qquad\limsup_{\epsilon\searrow0}\big\lVert{N^{\frac 12}(1+\epsilon N)^{-\frac 12}\xi}\big\lVert^2<+\infty
+\end{align*}
+Therefore, if we now choose $\xi\in\Dom(H^n)=\Dom(N^{\frac 12})$, then by \eqref{eqa10} and the monotone convergence theorem, we have $\xi_t\in\Dom(H^n)$ and 
+\begin{align*}
+e^{-ct}\Vert H^n\xi_t\Vert^2\leq \Vert H^n\xi\Vert^2
+\end{align*}
+The proof is completed by setting $C_n=c/2$.
+\end{proof}
+
+
+
+
+\subsection{}
+
+\begin{df}
+For each $n\in\Nbb$, we let $o_H(h)$ \index{oh@$o_H(h^n)$} be the set of $\mc H^\infty$-valued functions $\psi=\psi(h)$ where each $\psi$ is  defined on a neighborhood of $0\in\Rbb$ and satisfies  for all $m\in\Nbb$ that
+\begin{align}
+	\lim_{h\rightarrow 0}\frac{~\lVert H^m \psi(h)\lVert~}{h^n}=0.\label{eqa16} 
+\end{align}
+Clearly, if \eqref{eq16} holds for all $m\in\Nbb$, then it holds for all $m\in\Rbb_{\geq0}$.
+\end{df}
+
+
+
+\begin{rem}\label{lba11}
+If $S$ is closable on $\mc H$ with invariant domain $\mc H^\infty$, and if $S$ satisfies $H$-bounds of some order $r$, then for all $n\in\Nbb$ it is clear that
+\begin{align*}
+S\cdot o_H(h^n)\subset o_H(h^n).	
+\end{align*}
+Moreover, by Thm. \ref{lba9}, we also have for all $t\in\Rbb$ that
+\begin{align*}
+e^{\im t\ovl S}o_H(h)\subset o_H(h),\qquad e^{\im (t+h)\ovl S}o_H(h)\subset o_H(h).	
+\end{align*}
+\end{rem}
+
+By Taylor series expansion, if $f$ is a smooth function on $(a,b)\subset\Rbb$, then for any $t,t+h\in(a,b)$ and $n\in\Nbb$, we have (cf. \cite[Thm. 9.29]{Apo})
+\begin{align}
+	f(t+h)=\sum_{k=0}^n\frac{f^{(k)}(t)}{k!}h^k+\frac 1{n!}\int_t^{t+h}(t-s)^nf^{(n+1)}(s)ds.	\label{eqa15}
+\end{align}
+We are now ready to prove the Taylor theorem for $e^{\im t\ovl T}\xi$ due to \cite[Cor. 2.2]{Tol99}.
+
+
+
+\begin{thm}\label{lba10}
+Let $T$ be as in Thm. \ref{lba9}. Then for every $\xi\in\mc H^\infty,n\in\Nbb,t\in\Rbb$, we have
+\begin{align}
+e^{\im(t+h)\ovl T}\xi=\sum_{k=0}^n\frac{(\im T)^k}{k!}e^{\im t\ovl T}\xi+R(h)\xi	
+\end{align}
+where each summand is in $\mc H^\infty$, and  $R_t(h)\xi\in o_H(h^n)$.
+\end{thm}
+
+
+\begin{proof}
+Applying \eqref{eqa15} to $f(t)=\bk{e^{\im(t+h)\ovl T}\xi|\eta}$ for every $\eta\in\mc H$, we obtain
+\begin{align*}
+R_t(h)\xi=\frac 1{n!}\int_t^{t+h}(t-s)^nT^{n+1}e^{\im s\ovl T}\xi ds.
+\end{align*}
+Thus, for any $\eta\in\mc H^\infty$, by \eqref{eqa7} and Thm. \ref{lba9}, there exist $\lambda,C>0$ such that
+\begin{align*}
+&|\bk{H^mR_t(h)\xi|\eta}|=|\bk{R_t(h)\xi|H^m\eta}|\leq \frac {h^{n+1}}{(n+1)!}\sup_{t\leq s\leq t+h}\big|\bk{T^{n+1}e^{\im s\ovl T}\xi|H^m\eta}\big|\\
+=&\frac {h^{n+1}}{(n+1)!}\sup_{t\leq s\leq t+h}\big|\bk{H^mT^{n+1}e^{\im s\ovl T}\xi|\eta}\big|\leq\frac {h^{n+1}}{(n+1)!}\lambda\cdot\sup_{t\leq s\leq t+h}\lVert H^{m+n+1}e^{\im s\ovl T}\xi\lVert\cdot\lVert\eta\lVert\\
+	\leq&\frac {h^{n+1}}{(n+1)!}\lambda e^{C|h|}\cdot\lVert H^{m+n+1}e^{\im t\ovl T}\xi\lVert\cdot\lVert\eta\lVert
+\end{align*}
+This proves $R_t(h)\xi\in o_H(h^n)$.
+\end{proof}
+	
+
+
+\subsection{}
+
+
+In this course, instead of using Thm. \ref{lba10} directly, we will use Cor. \ref{lb61}.
+
+\begin{df}
+Let $I$ be an interval in $\Rbb$. Let $U,V$ be inner product spaces, and let $T:t\in\Rbb\mapsto T_t\in\mc L(U,V)$. We say that $T$ has \textbf{(strong operator) derivative} at $t_0\in I$ if for each $\xi\in U$, the limit $\dps\lim_{t\rightarrow t_0}\frac{T_t\xi-T_{t_0}\xi}{t-t_0}$ converges to an element of $V$. In that case, we denote that limit by $\partial_tT\xi|_{t=t_0}$.
+\end{df}
+
+
+\begin{pp}\label{lb62}
+Let $I\subset\Rbb$ be an interval. Let $U,V,W$ be inner product spaces. Let $T:t\in I\mapsto T_t\in\mc L(U,V)$ and $S:t\in I\mapsto S_t\in\mc L(V,W)$. Let $t_0\in I$. Assume that both $S,T$ have derivatives at $t_0$, and that
+\begin{align}\label{eq84}
+\sup_{t\in I}\Vert S_t\Vert<+\infty
+\end{align}
+Then we have the \textbf{Leibniz rule}
+\begin{align*}
+\partial_t(S_t\circ T_t)\big|_{t=t_0}=\partial_tS_t\big|_{t=t_0}\circ T_{t_0}+S_{t_0}\circ \partial_tT_t\big|_{t=t_0}
+\end{align*}
+\end{pp}
+
+\begin{proof}
+Let $\xi\in U$. Assume for simplicity that $t_0=0$. Then for each $\xi\in U$,
+\begin{align*}
+(S_t T_t-S_0T_0)\xi=S_t(T_t-T_0)\xi+(S_t-S_0)T_0\xi
+\end{align*}
+Let $S'=\partial_t S_t|_{t=0}$ and $T'=\partial_t T_t|_{t=0}$. Then
+\begin{align*}
+\lim_{t\rightarrow0}t^{-1}(S_t-S_{t_0})T_0\xi=S'T_0\xi
+\end{align*}
+Moreover, we can write $t^{-1}(T_t-T_0)\xi=T'\xi+\eta(t)$ where $\lim_{t\rightarrow0}\eta(t)=0$. Since $t\mapsto S_tT'\xi$ is differentiable at $0$, it is continuous at $0$, and hence
+\begin{align*}
+\lim_{t\rightarrow 0}S_tT'\xi=S_0T'\xi
+\end{align*}
+By \eqref{eq84}, we have $\lim_{t\rightarrow 0}S_t\eta(t)=0$. Thus $\lim_{t\rightarrow0}t^{-1}(S_t T_t-S_0T_0)\xi$ converges to $S_0T'\xi+S'T_0\xi$.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{co}\label{lb61}
+Let $T$ be as in Thm. \ref{lba9}. Then for any $m\in\Nbb$, the family $t\in\Rbb\mapsto e^{\im t\ovl T}$ where
+\begin{align}\label{eq82}
+e^{\im t\ovl T}:(\mc H^\infty,\bk{\cdot|\cdot}_m)\rightarrow (\mc H^\infty,\bk{\cdot|\cdot}_m)
+\end{align}
+has derivative $Te^{\im t\ovl T}\big|_{\mc H^\infty}=e^{\im t\ovl T}T\big|_{\mc H^\infty}$ at each $t\in\Rbb$.
+\end{co}
+
+\begin{proof}
+This is obvious from Thm. \ref{lba10}. Note that by Thm. \ref{lba9}, the linear map \eqref{eq82} is bounded.
+\end{proof}
+
+
+	
+\begin{thm}\label{lb63}
+Let $S,T$ be closable operators on $\mc H$ with common ($S$- and $T$-)invariant domain $\Dom(S)=\Dom(T)=\mc H^\infty$. Assume $T$ is symmetric, $T$ and $[H,T]$ satisfies linear $H$-bounds,  $T$ satisfies $H$-bounds of some order $r\geq 0$, and $[S,T]=0$ on $\mc H^\infty$. Then $\ovl S$ commutes strongly with $\ovl T$.
+\end{thm}	
+	
+
+
+
+\begin{proof}
+By Thm. \ref{lba9}, $\ovl T$ is self-adjoint, and $e^{\im t\ovl T}$ leaves $\mc H^\infty$ invariant. Since $\{\ovl T\}''=\{e^{\im t\ovl T}:t\in\Rbb\}$, we need to show $e^{\im t\ovl T}\ovl Se^{-\im t\ovl T}=\ovl S$ for all $t$, which follows if we can show $e^{\im t\ovl T}Se^{-\im t\ovl T}=S$ (on $\mc H^\infty$).
+
+By enlarging $r$, we assume that $r\in\Nbb$. Since $S$ satisfies $r$-th order $H$-bounds, the linear map $T:(\mc H^\infty,\bk{\cdot|\cdot}_r)\rightarrow\mc H^\infty$ is bounded. By Cor. \ref{lb61}, the maps $t\mapsto e^{-\im t\ovl T}\in\fk L(\mc H^\infty)$ and $t\mapsto e^{\im t\ovl T}\in\fk L(\mc H^\infty,\bk{\cdot|\cdot}_r)$ have derivatives $-Te^{\im t\ovl T}|_{\mc H^\infty}$ and $Te^{\im t\ovl T}|_{\mc H^\infty}$ everywhere. Thus, by the Leibniz rule Prop. \ref{lb62} (noting that  \eqref{eq84} is ensured by Thm. \ref{lba9}) and the fact that $[S,T]=0$, we see that $t\in\Rbb\mapsto e^{\im t\ovl T}Se^{-\im t\ovl T}$ has derivative $0$ everywhere. Thus for each $\xi,\eta\in\mc H^\infty$, the function $t\mapsto \bk{e^{\im t\ovl T}Se^{-\im t\ovl T}\xi|\eta}$ has derivative $0$, and hence must be constant, and hence is always $\bk{S\xi|\eta}$.
+\end{proof}
+
+
+\subsection{}
+
+We close this section with another type of criteria for strong commutativity. %In this section, instead of the assumption $H\geq a$, we assume the weaker one that $H$ is self-adjoint.
+
+
+Suppose that $A_1,\dots,A_m$ and $B_1,\dots,B_n$ be closable operators on $\mc H$. Let $P(z_1,\dots,z_m)$ and $Q(\zeta_1,\dots,\zeta_n)$ be polynomials of non-commuting formal variables $z_1,\dots,z_m$ and $\zeta_1,\dots,\zeta_n$. Then we have (not necessarily densely-defined) unbounded operators $P(A_\blt)=P(A_1,\dots,A_m)$ and $Q(B_\blt)=Q(B_1,\dots,B_n)$, and their respective extensions $P(\ovl {A_\blt})=P(\ovl {A_1},\dots,\ovl {A_n})$ and $Q(\ovl{B_\blt})=B(\ovl{B_1},\dots,\ovl{B_n})$.
+
+
+\begin{pp}
+Assume that $P(\ovl{A_\blt})$ and $Q(\ovl{B_\blt})$ are densely-defined and closable, and each $\ovl{A_i}$ commutes strongly with each $\ovl{B_j}$. Then $\ovl{P(\ovl{A_\blt})}$ commutes strongly with $\ovl{Q(\ovl{B_\blt})}$.
+\end{pp}
+
+%From the following proof, it is clear that for this proposition, the assumption that $\mc H^\infty$ is an invariant domain of each $A_i$ and $B_j$ can be replaced by the weaker assumption that $P(\ovl{A_\blt})$ and $Q(\ovl{B_\blt})$ are densely-defined.
+
+\begin{proof}
+Let $\mc M=\{\ovl{A_1},\dots,\ovl{A_m}\}''$ and $\mc N=\{\ovl{B_1},\dots,\ovl{B_n}\}''$. By assumption, we have $[\mc M,\mc N]=0$. One shows easily that each element of $\mc M'=\{\ovl{A_1},\dots,\ovl{A_m}\}'$ commutes strongly with $P(\ovl{A_\blt})$, and hence commutes strongly with $P(\ovl{A_\blt})$, and hence (by taking closure) commutes strongly with $\ovl{P(\ovl{A_\blt})}$. This proves
+\begin{align}
+\{\ovl{P(\ovl{A_\blt})}\}''\subset\{\ovl{A_1},\dots,\ovl{A_m}\}''
+\end{align}
+and similarly $\{\ovl{Q(B_\blt)}\}''\subset\mc N$.
+\end{proof}
+
+
+In this course, it is often more convenient to consider $\ovl{P(A_\blt)}$ and $\ovl{Q(B_\blt)}$ instead of $\ovl{P(\ovl{A_\blt})}$ and $\ovl{Q(\ovl{B_\blt})}$. To prove a similar result for $\ovl{P(A_\blt)}$ and $\ovl{Q(B_\blt)}$, we first need the following lemma.
+
+
+
+\begin{lm}\label{lb64}
+Let $x\in\fk L(\mc H)$. Let $h\in C^\infty(\Rbb)$. Define
+\begin{align}
+x(h)=\int_\Rbb h(t)e^{\im tH}xe^{-\im tH}dt
+\end{align}
+sending each $\xi\in\mc H$ to $\int_\Rbb h(t)e^{\im tH}xe^{-\im tH}\xi dt$. The following are true.
+\begin{enumerate}
+\item We have $x(h)\mc H^\infty\subset\mc H^\infty$ and $x(h)^*\mc H^\infty\subset\mc H^\infty$.
+\item Assume  $\int_\Rbb h=1$. Let $h_n(t)=nh(nt)$. Then $\dps\lim_{n\rightarrow\infty}x(h_n)$ converges strongly* to $x$.
+\end{enumerate}
+\end{lm}
+
+
+\begin{proof}
+For each $s\in\Rbb$, let $\tau_sh(t)=h(t-s)$. Then one checks easily
+\begin{align}
+e^{\im sH}x(h)=x(\tau_sh)e^{\im sH}
+\end{align} 
+One shows easily that $\partial_s x(\tau_sh)$ converges strongly (at every $s$) to $-x(\tau_sh')$. Therefore, by Prop. \ref{lb62}, for each $\xi\in\Dom(H)$ we have
+\begin{align}\label{eq85}
+\partial_se^{\im sH}x(h)\xi=-x(\tau_sh')e^{\im sH}\xi+\im x(\tau_sh)e^{\im sH}H\xi
+\end{align}
+In particular, since the derivative on the LHS exists at $s=0$, we see that $x(h)\xi\in\Dom(H)$. Now for each $\xi\in\mc H^\infty$, Eq. \eqref{eq85} shows that $\partial_s^ne^{\im sH}\xi$ exists for any $n\in\Nbb$. This proves $x(h)\mc H^\infty\subset\mc H^\infty$. Since
+\begin{align*}
+x(h)^*=x^*(\ovl h)
+\end{align*}
+we get $x(h)^*\mc H^\infty\subset\mc H^\infty$.
+
+Now assume $\int_\Rbb h=1$. One shows easily that $x(h_n)$ converges strongly to $x$, and similarly, $x(h_n)^*=x^*(\ovl{h_n})$ converges strongly to $x^*$.
+\end{proof}
+
+
+
+\begin{pp}
+Let $\delta>0$. For each $1\leq i\leq m$ and $1\leq j\leq n$, assume that $\mc H^\infty$ is an invariant domain of $A_i$ and $B_j$, and that $e^{\im tH}\ovl{A_i}e^{-\im tH}$ commutes strongly with $\ovl{B_j}$ for each $-\delta<t<\delta$. Assume that $P(A_\blt)$ and $Q(B_\blt)$ (with common domain $\mc H^\infty$) are closable. Then $\ovl{P(A_\blt)}$ commutes strongly with $\ovl{Q(B_\blt)}$. 
+\end{pp}
+
+
+
+
+\begin{proof}
+We first prove the special case that $m=1$ and $P(z_1)=z_1$. Let $\mc M=\{\ovl A_1\}''$. For each $x\in\mc M$, we have that $e^{\im tH}xe^{-\im tH}$ commutes strongly with each $\ovl{B_j}$ for each $t\in(-\delta,\delta)$. Therefore, if we let $h\in C_c^\infty(-\delta,\delta)$ such that $\int h=1$, then $x(h)$ commutes strongly with each $\ovl{B_j}$. 
+
+Noting Lem. \ref{lb64}-1, we have $x(h)B_j=B_jx(h)$ and $x(h)^*B_j=B_jx(h)^*$ as unbounded operators with common domain $\mc H^\infty$. Thus $x(h)Q(B_\blt)=Q(B_\blt)x(h)$ and $x(h)^*Q(B_\blt)=Q(B_\blt)x(h)$, i.e., $x(h)$ commutes strongly with $Q(B_\blt)$, and hence commutes strongly with $\ovl{Q(B_\blt)}$. By Lem. \ref{lb64}-2, we see that $x$ commutes strongly with $\ovl{Q(B_\blt)}$. This proves that $\ovl A_1$ commutes strongly with $\ovl{Q(B_\blt)}$. 
+
+Note that for each $t\in(-\delta,\delta)$, $e^{\im tH}A_1e^{-\im tH}$ and $B_\blt$ satisfy a similar property. Thus $e^{\im tH}\ovl {A_1}e^{-\im tH}$ commutes strongly with $\ovl{Q(B_\blt)}$.
+
+Now we consider general $m$ and $P$. Since $\ovl{A_i}$ commutes strongly with $e^{-\im tH}\ovl{B_j}e^{\im tH}$ for all $t\in(-\delta,\delta)$, the above paragraph shows that $\ovl{P(A_\blt)}$ commutes strongly with $e^{-\im tH}\ovl{B_j}e^{\im tH}$ for all $t\in(-\delta,\delta)$. Thus, by the above paragraph again, $\ovl{P(A_\blt)}$ commutes strongly with $\ovl{Q(B_\blt)}$.
+\end{proof}
 
 
 
@@ -1183,12 +3588,11 @@ We refer the readers to \cite[Sec. V.4.1]{Haag} and the reference therein for a 
 
 
  
-\hypertarget{beforeindex}{}
-
-
-
+\hypertarget{beforeindex}{}	
 
 \newpage
+
+
 
 \printindex
 
@@ -1196,14 +3600,37 @@ We refer the readers to \cite[Sec. V.4.1]{Haag} and the reference therein for a 
 \begin{thebibliography}{999999}
 \footnotesize	
 
+\bibitem[Apo]{Apo}
+Apostol, Tom (1974), Mathematical analysis, second edition, Addison–Wesley.
+
+
+\bibitem[CKLW18]{CKLW18}
+Carpi, S., Kawahigashi, Y., Longo, R., \& Weiner, M. (2018). From vertex operator algebras to conformal nets and back (Vol. 254, No. 1213). American Mathematical Society.
+
+
+\bibitem[FL74]{FL74}
+Faris, W. G., \& Lavine, R. B. (1974). Commutators and self-adjointness of Hamiltonian operators. Communications in Mathematical Physics, 35, 39-48.
+
+
+\bibitem[GJ]{GJ}
+Glimm, J., \& Jaffe, A. (1981). Quantum physics: a functional integral point of view. Springer Science \& Business Media.
 
 
 \bibitem[Gui-S]{Gui-S}
 Gui, B. (2021). Spectral Theory for Strongly Commuting Normal Closed Operators. See \href{https://binguimath.github.io/}{https://binguimath.github.io/}
 
+\bibitem[Gui-V]{Gui-V}
+Gui, B. (2022). Lectures on Vertex Operator Algebras and Conformal Blocks. See \href{https://binguimath.github.io/}{https://binguimath.github.io/}
+
 
 \bibitem[Haag]{Haag}
 Haag, G. Local quantum physics. Fields, particles, algebras. 2nd., rev. and enlarged ed. Berlin: Springer-Verlag (1996)
+
+\bibitem[Tol99]{Tol99}
+Toledano-Laredo, V. (1999). Integrating unitary representations of infinite-dimensional Lie groups. Journal of functional analysis, 161(2), 478-508.
+
+\bibitem[Was-10]{Was-10}
+Wassermann, A. (2010). Kac-Moody and Virasoro algebras. arXiv preprint arXiv:1004.1287.
 
 
 
