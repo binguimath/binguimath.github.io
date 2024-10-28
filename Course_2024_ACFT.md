@@ -6,7 +6,7 @@
   
 - Location: 六教6B312
 
-- [Course Videos](https://1drv.ms/f/s!An4-WYL4ugmJhYxLdB9oGuUKpN1EUg?e=zKStMS)
+- [Course Videos](https://cloud.tsinghua.edu.cn/d/1706bfe52e85474f9b59/)
 
 ## Course description
 
