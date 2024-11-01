@@ -43,15 +43,19 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](File
 
 - 10/25 2d Conformal field theory. Introduction to the mathematical theory of chiral fields. (Notes ACFT, Sec. 2, Subsec. 3.1-3.4)
 
+- 11/1 Local fields. (Notes ACFT, Subsec. 3.5-3.13) 
+
 
 
 ## References (to be expanded)
 
-Books
+Books and monographs
 
 - Haag. *Local Quantum Physics*
   
 - Halvorson, Müger. [*Algebraic Quantum Field Theory*](https://arxiv.org/abs/math-ph/0602036)
+
+- Gui. [*Lectures on Vertex Operator Algebras and Conformal Blocks*](https://binguimath.github.io/Files/2022_VOA_Lectures.pdf)
 
 Articles
 
