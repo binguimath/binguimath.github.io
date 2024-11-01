@@ -43,7 +43,23 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](File
 
 - 10/25 2d Conformal field theory. Introduction to the mathematical theory of chiral fields. (Notes ACFT, Sec. 2, Subsec. 3.1-3.4)
 
-- 11/1 Local fields. (Notes ACFT, Subsec. 3.5-3.13) 
+- 11/1 Local fields. (Notes ACFT, Subsec. 3.5-3.13)
+
+- 11/8
+
+- 11/15
+
+- 11/22
+
+- 11/29
+
+- 12/6
+
+- 12/13
+
+- 12/20
+
+- 12/27
 
 
 
