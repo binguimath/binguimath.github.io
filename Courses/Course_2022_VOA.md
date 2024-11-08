@@ -9,7 +9,7 @@ Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告
 
 ## Lecture Notes and Videos
 
-[Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
+[Lectures on Vertex Operator Algebras and Conformal Blocks](https://binguimath.github.io/Files/2022_VOA_Lectures.pdf)
 
 Videos (Chinese starting from the second lecture) are available on [OneDrive](https://1drv.ms/f/s!An4-WYL4ugmJg6UZHa_Mq5jDuCHx1g) and [Bilibili](https://www.bilibili.com/video/BV1fZ4y1b7hg?share_source=copy_web)
 
@@ -108,7 +108,7 @@ References for conformal blocks
 
 * Tsuchiya-Kanie, Vertex operators in conformal field theory on P^1 and monodromy representations of braid group. (Very classical paper. Also assumes little background knowledge, although some of the terminology and methods are a bit outdated. Conformal blocks are called “primary fields” in this paper.)
 
-* My notes: [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
+* My notes: [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](https://binguimath.github.io/Files/2020_Conformal_Blocks.pdf) 
 
 > Our course could be viewed as a friendly introduction to the topics in this monograph. When studying these topics, we will make simplifications when possible. For instance, some results will be proved only for the genus 0 surface so that everything can be worked out using basic complex analysis.
 
