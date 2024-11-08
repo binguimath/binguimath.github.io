@@ -45,7 +45,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 11/1 Local fields. (Notes ACFT, Subsec. 3.5-3.13)
 
-- 11/8
+- 11/8 Chiral algebras and examples, energy-bounded fields, smeared fields. (Notes ACFT, Subsec. 3.14-3.15, 4.1-4.5)
 
 - 11/15
 
