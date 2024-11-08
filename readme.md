@@ -36,11 +36,11 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 
 ## Courses 😪
-- (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)
+- (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)
  
-- (2023 Fall & 2024 Spring) [Analysis I & II](Course_2023_Analysis.md)
+- (2023 Fall & 2024 Spring) [Analysis I & II](Courses/Course_2023_Analysis.md)
 
-- (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Course_2024_ACFT.md)
+- (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)
 
 
 ## Publications and Preprints 😵‍💫
@@ -94,11 +94,11 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) 
 
-> These are the lecture notes for the course [Analysis I & II](Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
+> These are the lecture notes for the course [Analysis I & II](Courses/Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
 
 - [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
 
-> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
+> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
 
 
 - [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
