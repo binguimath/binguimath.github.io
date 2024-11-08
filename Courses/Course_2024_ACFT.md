@@ -14,7 +14,7 @@ In this course, we study 2d conformal field theory (CFT) in the framework of alg
 
 We assume that the readers are familiar with the basic Hilbert space techniques such as the spectral theorem of bounded self-adjoint operators. Some familiarty with the basic notion of unbounded closed operators is also helpful. Important theorems about unbounded operators (spectral theorem, polar decomposition, Borel functional calculus, Stone's theorem) and probably their proofs will be reviewed in class. The reference for this part is:
 
-Notes ST: [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
+Notes ST: [Spectral Theory for Strongly Commuting Normal Closed Operators](https://binguimath.github.io/Files/2021_Spectral.pdf) 
 
 
 
@@ -26,7 +26,7 @@ Notes ST: [Spectral Theory for Strongly Commuting Normal Closed Operators](Files
 
 ## Lecture notes
 
-Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](Files/2024_ACFT.pdf)
+Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
 
 
 ## Schedule
