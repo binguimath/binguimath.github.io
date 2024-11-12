@@ -88,6 +88,8 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, ***Comm. Math. Phys.***, Vol. 405 (2024).  `arXiv:2306.11856`, [Preprint](Files/2023_Geometric_Positivity.pdf) [Slides](Files/2023_Tokyo.pdf)
 <!--- In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.--->
 
+- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces. [Preprint](Files/2024_CB2.pdf)
+
 
 
 ## Notes 🥱
