@@ -47,7 +47,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 11/8 Chiral algebras and examples, energy-bounded fields, smeared fields. (Notes ACFT, Subsec. 3.14-3.15, 4.1-4.5)
 
-- 11/15
+- 11/15 Criteria for energy bounds, product of smeared fields. (Notes ACFT, Subsec. 4.6-4.12)  Stone's theorem. (Notes ST, Sec. 10)
 
 - 11/22
 
