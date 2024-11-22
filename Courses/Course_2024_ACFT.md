@@ -49,7 +49,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 11/15 Criteria for energy bounds, product of smeared fields. (Notes ACFT, Subsec. 4.6-4.12)  Stone's theorem. (Notes ST, Sec. 10)
 
-- 11/22 Stone's theorem. (Notes ST, Sec. 10) Domain of positive operators and analytic continuation, criteria for cores and self-adjointness. (Notes ACFT, Subsec. 5.1-5.7)
+- 11/22 Stone's theorem. (Notes ST, Sec. 10) Domains of positive operators and analytic continuation, criteria for cores and self-adjointness. (Notes ACFT, Subsec. 5.1-5.7)
 
 - 11/29
 
