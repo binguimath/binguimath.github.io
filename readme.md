@@ -61,7 +61,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 
 
-- Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
+- Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](Files/2018_CE.pdf) [Errata](Files/Errata/2018_CE_Errata.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](Files/2021_Categorical_Extensions_MPPM.pdf))
 > This is the first paper studying the equivalence of the representation tensor categories associated to unitary completely rational VOAs and their conformal nets. 
 
 - Q-systems and extensions of completely unitary vertex operator algebras, ***Int. Math. Res. Not. IMRN***, Vol 2022, Issue 10, 7550–7614 `arXiv:1908.03484` [Preprint](Files/2019_Ext.pdf)
