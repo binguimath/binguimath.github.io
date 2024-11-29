@@ -51,7 +51,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 11/22 Stone's theorem. (Notes ST, Sec. 10) Domains of positive operators and analytic continuation, criteria for cores and self-adjointness. (Notes ACFT, Subsec. 5.1-5.7)
 
-- 11/29
+- 11/29 Criteria for strong commutativity, flows of Möbius transforms. (Notes ACFT, Subsec. 5.8-5.11, 6.1-6.2)
 
 - 12/6
 
