@@ -53,7 +53,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 11/29 Criteria for strong commutativity, flows of Möbius transforms. (Notes ACFT, Subsec. 5.8-5.11, 6.1-6.2)
 
-- 12/6
+- 12/6 Möbius covariance of smeared fields and pointed fields, the Reeh-Schlieder theorem for smeared fields and pointed fields. (Notes ACFT, Subsec. 6.3-6.8)
 
 - 12/13
 
