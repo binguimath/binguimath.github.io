@@ -55,7 +55,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 12/6 Möbius covariance of smeared fields and pointed fields, the Reeh-Schlieder theorem for smeared fields and pointed fields. (Notes ACFT, Subsec. 6.3-6.8)
 
-- 12/13
+- 12/13 The PT and PCT theorems. (Notes ACFT, Subsec. 7.1-7.9)
 
 - 12/20
 
