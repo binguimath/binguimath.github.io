@@ -57,7 +57,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 12/13 The PT and PCT theorems. (Notes ACFT, Subsec. 7.1-7.9)
 
-- 12/20
+- 12/20 The PCT theorem, Tomita-Takesaki theory for unbounded operators. (Notes ACFT, Subsec. 7.10-7.11, 8.1-8.9)
 
 - 12/27
 
