@@ -94,9 +94,16 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 ## Notes 🥱
 
+<!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
+
 - [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) 
 
 > These are the lecture notes for the course [Analysis I & II](Courses/Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
+
+- [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
+
+> These are the lecture notes for my course [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)  given at Yau Mathematical Sciences Center in 2024 Fall. 
+
 
 - [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
 
@@ -106,7 +113,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
 
 
-> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.
+> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.  
 
 - [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
 
