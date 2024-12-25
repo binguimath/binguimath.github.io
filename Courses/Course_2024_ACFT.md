@@ -59,11 +59,19 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 - 12/20 The PCT theorem, Tomita-Takesaki theory for unbounded operators. (Notes ACFT, Subsec. 7.10-7.11, 8.1-8.9)
 
-- 12/27
+- 12/27 Uniqueness of the modular operators, Bisognano-Wichmann theorem,  Haag duality, and their applications. (Notes ACFT, Subsec. 8.10-8.11, Sec. 9)
 
 
 
 ## References (to be expanded)
+
+### The most relevant references are:
+
+- Buchholz,  Schulz-Mirbach (1990). *Haag duality in conformal quantum field theory*
+
+- Carpi-Kawahigashi-Longo-Weiner (2018). [*From vertex operator algebras to conformal nets and back*](https://arxiv.org/abs/1503.01260)
+
+### Other references that might be helpful:
 
 Books and monographs
 
@@ -75,11 +83,9 @@ Books and monographs
 
 Articles
 
-- Rehren (2015). [*Algebraic conformal quantum field theory in perspective*](https://arxiv.org/abs/1501.03313)
-
-- Buchholz,  Schulz-Mirbach (1990). *Haag duality in conformal quantum field theory*
+- Kawahigashi (2015). [*Conformal field theory, tensor categories and operator algebras](https://arxiv.org/abs/1503.05675)
   
-
+- Rehren (2015). [*Algebraic conformal quantum field theory in perspective*](https://arxiv.org/abs/1501.03313)
 
 
 
