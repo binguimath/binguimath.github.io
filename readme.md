@@ -98,7 +98,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - [Qiuzhen Lectures on Analysis](Files/2023_Analysis.pdf) 
 
-> These are the lecture notes for the course [Analysis I & II](Courses/Course_2023_Analysis.html) offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
+> These are the lecture notes for the [course](Courses/Course_2023_Analysis.html)  ***Analysis I & II*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024.
 
 - [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
 
