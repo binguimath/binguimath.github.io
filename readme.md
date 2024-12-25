@@ -102,12 +102,12 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
 
-> These are the lecture notes for my course [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)  given at Yau Mathematical Sciences Center in 2024 Fall. 
+> These are the lecture notes for my [course](Courses/Course_2024_ACFT.md) ***Topics in Operator Algebras: Algebraic Conformal Field Theory***  given at Yau Mathematical Sciences Center in 2024 Fall. 
 
 
 - [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
 
-> These are the lecture notes for my course [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)  given at Yau Mathematical Sciences Center in 2022 Spring.
+> These are the lecture notes for my [course](Courses/Course_2022_VOA.md) ***Vertex Operator Algebras, Conformal Blocks, and Tensor Categories*** given at Yau Mathematical Sciences Center in 2022 Spring.
 
 
 - [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
