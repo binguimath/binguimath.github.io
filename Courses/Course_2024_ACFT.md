@@ -83,7 +83,7 @@ Books and monographs
 
 Articles
 
-- Kawahigashi (2015). [*Conformal field theory, tensor categories and operator algebras](https://arxiv.org/abs/1503.05675)
+- Kawahigashi (2015). [*Conformal field theory, tensor categories and operator algebras*](https://arxiv.org/abs/1503.05675)
   
 - Rehren (2015). [*Algebraic conformal quantum field theory in perspective*](https://arxiv.org/abs/1501.03313)
 
