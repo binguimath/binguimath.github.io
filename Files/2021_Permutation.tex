@@ -1,4 +1,6 @@
-\documentclass[12pt,a4paper,notitlepage]{article}
+\documentclass[11pt,b5paper,notitlepage]{article}
+\usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
+%\usepackage{fullpage}
 
 \usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \widecheck
 %\usepackage{ulem} %wave underline
@@ -44,7 +46,7 @@
 
 %\setcounter{tocdepth}{1}	 hide subsections in the content
 
-\usepackage{fullpage}
+
 \counterwithin{figure}{subsection}
 
 \pagestyle{plain}
@@ -272,9 +274,9 @@
 
 
 \begin{abstract}
-Let $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$ be a  vertex operator algebra (VOA),  let $E$ be a finite set, and let $G$ be a subgroup of the permutation group $\Perm(E)$ which acts on $\Vbb^{\otimes E}$ in a natural way. For each $g\in G$, the $g$-twisted $\Vbb^{\otimes E}$-moduls were first constructed and characterized by \cite{BDM02} when $g\curvearrowright E$ has one orbit. In general, if one writes $g$ as the product of disjoint cycles $g=g_1\dots g_k$ where $k$ is the number of $g$-orbits of $E$, then a direct sum of tensor products of $g_i$-permutation twisted modules is a $g$-twisted module. We call such module $\otimes$-factorizable. It is known that  all $g$-twisted modules are $\otimes$-factorizable if $\Vbb$ is rational \cite{BDM02}.
+Let $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$ be a  vertex operator algebra (VOA),  let $E$ be a finite set, and let $G$ be a subgroup of the permutation group $\Perm(E)$ which acts on $\Vbb^{\otimes E}=\bigotimes_{e\in E}\Vbb$ in a natural way. For each $g\in G$, the $g$-twisted $\Vbb^{\otimes E}$-modules were first constructed and characterized in \cite{BDM02} when $g\curvearrowright E$ has only one orbit, i.e., $E=\bk{g}e$ for some $e\in E$. In general, if $E$ is a disjoint union of several $\bk{g}$-orbits $E=E_1\sqcup\cdots\sqcup E_k$, and if for each orbit $E_i$  one chooses a $g$-twisted $\Vbb^{\otimes E_i}$-module $\mc W_i$, then $\mc W=\mc W_1\otimes\cdots\otimes\mc W_k$ is a $g$-twisted $\Vbb^{\otimes E}$-module. A direct sum of such $\mc W$ is called  a \textbf{$\otimes$-factorizable} $g$-twisted $\Vbb^{\otimes E}$-module. It is known that  all $g$-twisted modules are $\otimes$-factorizable if $\Vbb$ is rational \cite{BDM02}.
 
-In this article, we use the main result of \cite{Gui21b} to construct an explicit isomorphism from the space of genus-$0$ conformal blocks associated to the $\otimes$-factorizable $G$-twisted $\Vbb^{\otimes E}$-modules to the space of conformal blocks associated to the untwisted $\Vbb$-modules and a branched covering $C$ of the Riemann sphere $\Pbb^1$. When $\Vbb$ is CFT-type, $C_2$-cofinite, and rational, we use the above result, the (untwisted) factorization property \cite{DGT19b}, and the Riemann-Hurwitz formula to completely determine the fusion rules among $G$-twisted $\Vbb^{\otimes E}$-modules. 
+In this article, we use the main result of \cite{Gui24b} to construct an explicit isomorphism from the space of genus-$0$ conformal blocks associated to the $\otimes$-factorizable $G$-twisted $\Vbb^{\otimes E}$-modules to the space of conformal blocks associated to the untwisted $\Vbb$-modules and a branched covering $C$ of the Riemann sphere $\Pbb^1$. When $\Vbb$ is CFT-type, $C_2$-cofinite, and rational, we use the above result, the (untwisted) factorization property \cite{DGT22}, and the Riemann-Hurwitz formula to completely determine the fusion rules among $G$-twisted $\Vbb^{\otimes E}$-modules. 
 
 Furthermore, assuming $\Vbb$ is as above, we prove that the sewing/factorization of genus-$0$ $G$-twisted $\Vbb^{\otimes E}$-conformal blocks holds, and corresponds to the sewing/factorization of  untwisted $\Vbb$-conformal blocks associated to the branched coverings of $\Pbb^1$. This proves, in particular, the operator product expansion (i.e., associativity) of $G$-twisted $\Vbb^{\otimes E}$-intertwining operators (a key ingredient of the $G$-crossed braided tensor category $\Rep^G(\Vbb^{\otimes E})$ of the $G$-twisted $\Vbb^{\otimes E}$-modules) without assuming that the fixed point subalgebra $(\Vbb^{\otimes E})^G$ is $C_2$-cofinite (and rational), a condition known so far only when $G$ is solvable and remains a conjecture in the general case. More importantly, this result implies that besides the fusion rules, the associativity isomorphism of $\Rep^G(\Vbb^{\otimes E})$ is also characterized by the higher genus data of untwisted $\Vbb$-conformal blocks, which gives a new insight into the category $\Rep^G(\Vbb^{\otimes E})$.
 
@@ -334,19 +336,21 @@ We also discuss the applications to conformal nets, which are indeed the origina
 \subsection{Motivations from fusion rule calculations}
 An important problem that has long attracted people in orbifold conformal field theory is the following: given a nice (say, CFT-type, $C_2$-cofinite,  rational) vertex operator algebra (VOA) $\Vbb$ (or a completely rational conformal net $\mc A$) with a finite automorphism group $G$, once we know the tensor category $\Rep(\Vbb)$ of untwisted $\Vbb$-modules, what do we know about   the category $\Rep^G(\Vbb)$ of $G$-twisted $\Vbb$-modules?
 
-The most studied examples of this problem are permutation orbifold VOAs, namely, the permutation action of $G$ on $\Ubb=\Vbb^{\otimes E}$ where $E$ is a finite set and $G$ is a subgroup of the permutation group $\Perm(E)$. As shown in \cite{BHS98,BDM02} (cf. \cite{LX04,KLX05} for the conformal net version), all $G$-twisted $\Ubb$-modules can be explicitly constructed from (untwisted) $\Vbb$-modules. The $n$-fold covering maps $z\mapsto z^n$ for $\Pbb^1$ (for VOAs) or $S^1$ (for conformal nets) play a central role in these constructions. Recently, \cite{DXY21} gave a construction using Zhu's algebras. 
+The most studied examples of this problem are permutation orbifold VOAs, namely, the permutation action of $G$ on $\Ubb=\Vbb^{\otimes E}\equiv\bigotimes_{e\in E}\Vbb$ where $E$ is a finite set and $G$ is a subgroup of the permutation group $\Perm(E)$. As shown in \cite{BHS98,BDM02} (cf. \cite{LX04,KLX05} for the conformal net version), all $G$-twisted $\Ubb$-modules can be explicitly constructed from (untwisted) $\Vbb$-modules. The $n$-fold covering maps $z\mapsto z^n$ for $\Pbb^1$ (for VOAs) or $S^1$ (for conformal nets) play a central role in these constructions. Recently, \cite{DXY21} gave a construction using Zhu's algebras. 
 
 
 \subsubsection*{Fusion rules}
 
-Fusion rules among $G$-twisted $\Ubb$-modules have also been investigated by physicists \cite{BHS98,Ban98,Ban02} and mathematicians. On the mathematics side, the fusion rules among $\Zbb_2$-twisted modules of $\Vbb^{\otimes 2}$ or $\mc A^{\otimes 2}$, or among two twisted modules and an untwisted one, have been completely determined in \cite{LX04,KLX05,DLXY19}. It turns out that the structure theory of completely rational conformal nets relies essentially on the idea of  cyclic permutation orbifolds \cite{KLM01,LX04}.
+Fusion rules among $G$-twisted $\Ubb$-modules have also been investigated by physicists \cite{BHS98,Ban98,Ban02} and mathematicians. On the mathematics side, the fusion rules among $\Zbb_2$-twisted modules of $\Vbb^{\otimes 2}$ or $\mc A^{\otimes 2}$, or among two twisted modules and an untwisted one, have been completely determined in \cite{LX04,KLX05,DLXY24}. It turns out that the structure theory of completely rational conformal nets relies essentially on the idea of  cyclic permutation orbifolds \cite{KLM01,LX04}.
 
-On the abstract tensor category/modular functor level, the computation of fusion rules of $\Rep^G(\Ubb)$ (or any modular category) is more or less complete. \cite{BS11} used topological methods to construct a $G$-crossed  braided weakly fusion category $\scr C$ extending $\Rep(\Vbb)^{\boxtimes E}\simeq\Rep(\Ubb)$;  the fusion rules of $\scr C$ can be described easily in terms of the higher genus fusion rules of $\Rep(\Vbb)$. \cite{BS11} gives us a hint on what the fusion ring of $\Rep^G(\Ubb)$ looks like: If the expected property that $\scr C$ is rigid were proved (\cite{BS11} proved this only for the $\Zbb_2$-permutation), then a result of \cite{ENO10} would imply that $\scr C$ and $\Rep^G(\Ubb)$ have equivalent fusion rings, even though they are not necessarily equivalent as fusion categories (cf. \cite{Bis20,EG18}).
+On the abstract tensor category/modular functor level, the computation of fusion rules of $\Rep^G(\Ubb)$ (or any modular category) is more or less complete. \cite{BS11} used topological methods to construct a $G$-crossed  braided weakly fusion category $\scr C$ extending the Deligne product $\Rep(\Vbb)^{\boxtimes E}\simeq\Rep(\Ubb)$;  the fusion rules of $\scr C$ can be described easily in terms of the higher genus fusion rules of $\Rep(\Vbb)$. \cite{BS11} gives us a hint on what the fusion ring of $\Rep^G(\Ubb)$ looks like: If the expected property that $\scr C$ is rigid were proved (\cite{BS11} proved this only for the $\Zbb_2$-permutation), then a result of \cite{ENO10} would imply that $\scr C$ and $\Rep^G(\Ubb)$ have equivalent fusion rings, even though they are not necessarily equivalent as fusion categories (cf. \cite{Bis20,EG18}).
 %\footnote{When  $\Ubb$ is holomorphic, $\Rep^G(\Ubb)$, as a $G$-crossed extensions of $\Rep(\Ubb)$, might correspond to a nontrivial element of $H^3(G,\mbb T)$. Indeed, any element of $H^3(G,\mbb T)$ is possible. See \cite{Bis20,EG18}.} 
 More recently, \cite{BJ19} and \cite{Del19} provided rigorous and complete algorithms for computing the fusion ring of $\Rep^G(\Ubb)$ (or any (spherical) crossed extension of a modular category). In particular, in the case that $G$ is generated by a one cycle permutation, \cite{BJ19} explicitly calculated the fusion rings, which agree with \cite{BS11}.
 
 
-However, the important progress mentioned in the previous paragraph does not mean that the task of computing permutation fusion rules for VOAs or conformal nets is complete. Indeed,  when applied to the VOA/conformal net context, the above categorical results do not directly give us the fusion rule among three twisted $\Vbb$- or $\mc A$-modules constructed explicitly in \cite{BDM02,LX04,KLX05}.  In other words, \textit{we still need to identify the objects constructed categorically in \cite{BS11,BJ19,Del19} with those constructed explicitly in the VOA/conformal net context}. On the other hand, the objects in \cite{LX04,KLX05,DLXY19} are explicit, but their results on the fusion rules are  far from complete even in the special case of cyclic permutations.
+However, the important progress mentioned in the previous paragraph does not mean that the task of computing permutation fusion rules for VOAs or conformal nets is complete. Indeed,  when applied to the VOA/conformal net context, the above categorical results do not directly give us the fusion rule among three twisted $\Vbb$- or $\mc A$-modules constructed explicitly in \cite{BDM02,LX04,KLX05}.  In other words, \textit{we still need to identify the objects constructed categorically in \cite{BS11,BJ19,Del19} with those constructed explicitly in the VOA/conformal net context}. On the other hand, the objects in \cite{LX04,KLX05,DLXY24} are explicit, but their results on the fusion rules are  far from complete even in the special case of cyclic permutations.
+
+A main goal of this paper is to completely determine the fusion rules among $G$-twisted $\Vbb^{\otimes E}$-modules (as constructed in \cite{BDM02}) in terms of the fusion rules among untwisted $\Vbb$-modules. Here,  $\Vbb$ is CFT-type, $C_2$-cofinite, and rational. See Cor. \ref{lb50} for the result.\footnote{Our method is geometric. After this paper was finished, an algebraic computation of the fusion rules among $G$-twisted modules was given in \cite{DXY24} in terms of the $S$-matrix of $\Vbb$, where $G$ is a cyclic group.}
 
 
 
@@ -395,7 +399,7 @@ is free with $N-1$ free generators. For each $j$, let $\upepsilon_j$ be an antic
 Our assumption is that $\Gamma$ is generated by the homotopy classes $[\upalpha_1],\dots,[\upalpha_N]$. Thus, the monodromy on $\Pbb^1\setminus\Sbf$ is determined by that around the marked points.
 
 
-Now, fix a homomorphism $\Gamma\rightarrow\Perm(E)$, namely, an action of $\Gamma$ on the finite set $E$. We let $g_j$ be the action of $[\upalpha_j]$. Then these $g_\blt$ determine the action of $\Gamma$, and we call the $g_\blt$ arising from the actions of $\Gamma$ \textit{admissible}  (with respect to $\fk P$). These group elements determine the types of twisted modules associated to the marked points.
+Now, fix a homomorphism $\Gamma\rightarrow\Perm(E)$ (where $\Perm(E)$ is the group of bijections of $E$), namely, a group action of $\Gamma$ on the finite set $E$. We let $g_j$ be the action of $[\upalpha_j]$. Then these $g_\blt$ determine the action of $\Gamma$, and we call the $g_\blt$ arising from the actions of $\Gamma$ \textit{admissible}  (with respect to $\fk P$). These group elements determine the types of twisted modules associated to the marked points.
 
 
 
@@ -406,7 +410,7 @@ Let us pause for a moment and discuss the meaning of conformal blocks. This will
 \begin{align}
 u\in\Ubb\mapsto\uppsi(w_1\otimes\cdots\otimes Y(u,z)w_j\otimes\cdots\otimes w_N)	\label{eq100}
 \end{align}
-converge absolutely as a series of $z$ when $|z|$ is reasonably small, and (assuming the a trivialization $\mc U_\varrho(\eta_j):\scr U_{W_j}\xrightarrow{\simeq}\Ubb\otimes_\Cbb\scr O_{W_i}$ defined by the local coordinate $\eta_j$) can be extended to the same $\scr O_{\Pbb^1\setminus\Sbf}$-module morphism $\wr\uppsi(\cdot,w_\blt):\scr U_{\Pbb^1\setminus\Sbf}\rightarrow\scr O_{\Pbb^1\setminus\Sbf}$. When $\Pbb^1$ is replaced by any compact Riemann surface, one can use the same definition to define conformal blocks. See Sec. \ref{lb28} for details.
+converge absolutely as a series of $z$ when $|z|$ is reasonably large, and (assuming the a trivialization $\mc U_\varrho(\eta_j):\scr U_{W_j}\xrightarrow{\simeq}\Ubb\otimes_\Cbb\scr O_{W_i}$ defined by the local coordinate $\eta_j$) can be extended to the same $\scr O_{\Pbb^1\setminus\Sbf}$-module morphism $\wr\uppsi(\cdot,w_\blt):\scr U_{\Pbb^1\setminus\Sbf}\rightarrow\scr O_{\Pbb^1\setminus\Sbf}$. When $\Pbb^1$ is replaced by any compact Riemann surface, one can use the same definition to define conformal blocks. See Sec. \ref{lb28} for details.
 
 
 We can see that in order  to define untwisted conformal blocks, we do not need to choose paths in pointed Riemann surfaces (with local coordinates). This is not true for untwisted conformal blocks: $Y(u,z)$ is now multivalued over $z$, so \eqref{eq100} can never be extended to the same morphism. 
@@ -424,13 +428,13 @@ We now describe the permutation covering of $\fk P$ associated to the admissible
 \item A conjugacy class of (resp. cofinite) subgroups of the fundamental group $\Gamma$.
 \item A transitive (i.e., single-orbit) action of $\Gamma$  on a (resp. finite) set.
 \end{enumerate}
-For our purpose, it is more convenient to use (2) to describe $\varphi:C\setminus\varphi^{-1}(\Sbf)\rightarrow\Pbb^1\setminus\Sbf$. Then each connected component $C^\Omega$ of $C\setminus\varphi^{-1}(\Sbf)$ corresponds to an orbit $\Omega$ of $E$ (under the action of $\Gamma$). The precise description is the following elegant statement (cf. Thm. \ref{lb38}) :
+For our purpose, it is more convenient to use (2) to describe $\varphi:C\setminus\varphi^{-1}(\Sbf)\rightarrow\Pbb^1\setminus\Sbf$. Then each connected component $C^\Omega$ of $C\setminus\varphi^{-1}(\Sbf)$ corresponds to a $\Gamma$-orbit $\Omega$ in $E$. (So $\Omega$ is of the form $\Gamma e$ for some $e\in E$.) The precise description is the following elegant statement (cf. Thm. \ref{lb38}) :
 
 \textit{There exists a $\Gamma$-covariant bijection $\Psi_{\upgamma_\blt(1)}:E\rightarrow\varphi^{-1}(\upgamma_\blt(1))$.} 
 
 By ``\textbf{$\Gamma$-covariant}", we mean that for every $e\in E$ and every closed path in $\Pbb^1\setminus\Sbf$ from and to $\upgamma_\blt(1)$, the lift of $\upmu$ to $C\setminus\varphi^{-1}(\Sbf)$ ending at $\Psi_{\upgamma_\blt(1)}(e)$ must start from $\Psi_{\upgamma_\blt(1)}([\upmu]e)$. (See Def. \ref{lb66}.) Then any two branched coverings of $\Pbb^1$ with such $\Gamma$-covariant bijections are equivalent (Thm. \ref{lb29}).
 
-The set of marked points of our permutation covering $C$ is just $\varphi^{-1}(\Sbf)$. The untwisted $\Vbb$-conformal blocks will be defined for $C$ and these marked points. In order to  associate the correct $\Vbb$-module to each marked point, it is important to \textit{label the marked points with certain orbits of $E$}. Note that $\varphi^{-1}(\Sbf)$ is the disjoint union of all $\varphi^{-1}(x_j)$. The the labeling of the elements of $\varphi^{-1}(x_j)$ is given by a bijection
+The set of marked points of our permutation covering $C$ is just $\varphi^{-1}(\Sbf)$. The untwisted $\Vbb$-conformal blocks will be defined for $C$ and these marked points. In order to  associate the correct $\Vbb$-module to each marked point, it is important to \textit{label the marked points by certain orbits of $E$}. Note that $\varphi^{-1}(\Sbf)=\bigsqcup_{1\leq j\leq N}\varphi^{-1}(x_j)$. The the labeling of the elements of $\varphi^{-1}(x_j)$ is given by a bijection
 \begin{align*}
 \Upsilon_j:\{\bk{g_j}\text{-orbits in }E\}\longrightarrow \varphi^{-1}(x_j)
 \end{align*}
@@ -440,38 +444,43 @@ First of all, for each path $\uplambda$ in $\Pbb^1\setminus\Sbf$ from a point $x
 \begin{align*}
 \Psi_\uplambda:E\rightarrow\varphi^{-1}(x)	
 \end{align*}
-sending each $e\in E$ to the initial point of the lift of $\uplambda$ to $C\setminus\varphi^{-1}(\Sbf)$ ending at $\Psi_{\upgamma_\blt(1)}(e)$. Recall that $W_j$ is an open disc centered at $x_j$ and contains $\upgamma_j(0)$. For each $g_j$-orbit $\bk{g_j}e$, we can find a unique connected component $\wtd W_j$ of $\varphi^{-1}(W_j)$ whose intersection with $\varphi^{-1}(\upgamma_j(0))$ is exactly the set of points
+sending each $e\in E$ to the initial point of the lift of $\uplambda$ to $C\setminus\varphi^{-1}(\Sbf)$ ending at $\Psi_{\upgamma_\blt(1)}(e)$. Recall that $W_j$ is an open disc centered at $x_j$ and contains $\upgamma_j(0)$. For each $\bk{g_j}$-orbit $\bk{g_j}e$, we can find a unique connected component $\wtd W_j$ of $\varphi^{-1}(W_j)$ whose intersection with $\varphi^{-1}(\upgamma_j(0))$ is exactly the set of points
 \begin{align*}
 \Psi_{\upgamma_j}\big(\bk{g_j}e\big):=\Big\{\Psi_{\upgamma_j}(g_j^ke):k\in\Zbb\Big\}	
 \end{align*}
-evenly located around the center $\wtd W_j\cap\varphi^{-1}(x_j)$  of $\wtd W_j$. (The set $\wtd W_j\cap\varphi^{-1}(x_j)$ indeed has only one element.) The size of $\Psi_{\upgamma_j}\big(\bk{g_j}e\big)$ equals the size $k=|\bk{g_j}e|$ of the orbit  and also equals the branching index of $\varphi$ at $\wtd W_j\cap\varphi^{-1}(x_j)$. (See Prop. \ref{lb12}.) Then $\Upsilon(\bk{g_j}e)$  is defined to be the unique point of $\wtd W_j\cap\varphi^{-1}(x_j)$.
+evenly located around the center $\wtd W_j\cap\varphi^{-1}(x_j)$  of $\wtd W_j$. (The set $\wtd W_j\cap\varphi^{-1}(x_j)$ indeed has only one element.) The size of $\Psi_{\upgamma_j}\big(\bk{g_j}e\big)$ equals the size $k=|\bk{g_j}e|$ of the orbit $\bk{g_j}e$ and also equals the branching index of $\varphi$ at $\wtd W_j\cap\varphi^{-1}(x_j)$. (See Prop. \ref{lb12}.) Then $\Upsilon(\bk{g_j}e)$  is defined to be the unique point of $\wtd W_j\cap\varphi^{-1}(x_j)$.
 
 We see that the covering $\varphi:C\rightarrow\Pbb^1$ depends only $\Gamma\curvearrowright E$, but the labeling of the marked points of $C$ depends also on the paths $\upgamma_\blt$.
 
 
-Finally, we choose local coordinates of $C$ at each marked point as follows. For each $g_j$-orbit we fix a distinct point, called the \textbf{marked point} of that orbit. We let 
+Finally, we choose local coordinates of $C$ at each marked point as follows. For each $\bk{g_j}$-orbit we fix a distinct point, called the \textbf{marked point} of that orbit. Let 
 \begin{align*}
-	E(g_j)=\{\text{marked points of $g_j$-orbits}\}.
+	E(g_j)=\{\text{marked points of $\bk{g_j}$-orbits}\}.
 \end{align*}
-Recall that $\eta_j$ is a local coordinate defined on $W_j$ sending $x_j$ to $0$. For each marked point $\Upsilon(\bk{g_j}\tipae)$ of $C$ (where $\tipae\in E(g_j)$) which is contained in a unique connected component $\wtd W_{j,\tipae}$ of $\varphi^{-1}(W_j)$, there are $k=|\bk{g_j}\tipae|$ different injective analytic functions on $\wtd W_{j,\tipae}$ whose $k$-th power equals $\eta_j\circ\varphi$. The local coordinate we choose at $\Upsilon(\bk{g_j}\tipae)$ and denote by $\wtd\eta_{j,\tipae}$ is the one of them that satisfies
+(So $|E(g_j)|$ equals the number of $\bk{g_j}$-orbits in $E$.) Recall that $\eta_j$ is a local coordinate defined on $W_j$ sending $x_j$ to $0$. For each marked point $\Upsilon(\bk{g_j}\tipae)$ of $C$ (where $\tipae\in E(g_j)$) which is contained in a unique connected component $\wtd W_{j,\tipae}$ of $\varphi^{-1}(W_j)$, there are $k=|\bk{g_j}\tipae|$ different injective analytic functions on $\wtd W_{j,\tipae}$ whose $k$-th power equals $\eta_j\circ\varphi$. The local coordinate we choose at $\Upsilon(\bk{g_j}\tipae)$ and denote by $\wtd\eta_{j,\tipae}$ is the one of them that satisfies
 \begin{align*}
 \wtd\eta_{j,\tipae}\big(\Psi_{\upgamma_j}(\tipae)\big)>0,	
 \end{align*}
 which exists because of $\Psi_{\upgamma_j}(\tipae)\in\varphi^{-1}(\upgamma_j(0))$ and the positivity condition \eqref{eq101}.
 
-The above branched covering $\varphi:C\rightarrow\Pbb^1$ (or just $C$), together with the labeled marked points and local coordinates, is denoted by $\fk X$ and called the \textbf{permutation covering} of  $\fk P$ (see \eqref{eq102}) associated to the action $\Gamma\curvearrowright E$ and the set $E(g_\blt)$ of marked points of $g_\blt$-orbits.
+The above branched covering $\varphi:C\rightarrow\Pbb^1$ (or just $C$), together with the labeled marked points and local coordinates, is denoted by $\fk X$ and called the \textbf{permutation covering} of  $\fk P$ (see \eqref{eq102}) associated to the action $\Gamma\curvearrowright E$ and the set $E(g_\blt)$ of marked points of $\bk{g_\blt}$-orbits.
 
 
 
 \subsubsection*{The correspondence of twisted/untwisted conformal blocks}
 
-If $g\in\Perm(E)$ has only one cycle, the $g$-twisted $\Ubb$-modules are completely determined by \cite{BDM02}. When $g$ is a product of disjoint cycles $h_1h_2\cdots h_l$ where $l$ is the number of $g$-orbits, by taking the tensor product of $h_j$-twisted modules, one obtains a $g$-twisted $\Ubb$-module. We call any direct sum of such twisted modules  to be \textbf{$\otimes$-factorizable}. If $\Vbb$ is rational, then any $g$-twisted $\Vbb$-module is $\otimes$-factorizable \cite[Thm. 6.4]{BDM02}.
+%If $g_j$ has only one orbit in $E$ (i.e. $|E(g_j)|=1$), the $g_j$-twisted $\Ubb$-modules are completely determined by \cite{BDM02}. In the general case that $|E(g_j)|\geq1$, by taking the tensor product of $\Vbb^{\otimes \bk{g_j}\tipae}$ modules (over all $\tipae\in E(g_j)$),
+
+%$h_j$-twisted modules, one obtains a $g$-twisted $\Ubb$-module. We call any direct sum of such twisted modules  to be \textbf{$\otimes$-factorizable}. 
 
 %Now, let $\mc W_j$ be a $\otimes$-factorizable $g_j$-twisted $\Ubb=\Vbb^{\otimes E}$-module, and let $\uppsi:\mc W_\blt=\otimes_{1\leq j\leq N}\mc W_j\rightarrow\Cbb$ be a conformal block associated to $\fk P$ and $\mc W_\blt$ (Subsec. \ref{lb67}). The first main result of this article is that $\uppsi$ is equivalently a conformal block associated to $\fk P$ and certain (untwisted) $\Vbb$-modules.
 
 
 
-For each $g_j$-orbit $\bk{g_j}\tipae$ of $E$, we choose a $\Vbb$-module $\Wbb_{j,\tipae}$. Then by \cite{BDM02}, the vector space $\mc W_j=\otimes_{\tipae\in E(g_j)}\Wbb_{j,\tipae}$ is naturally equipped with a ($\otimes$-factorizable) $g_j$-twisted $\Ubb$-module structure (see also Subsec. \ref{lb23}). It should be reminded that this twisted module structure depends not only on the $g_j$-orbits but also on their marked points. For example, when $E=\{1,\dots,n\}$ and $g_j$ is the cycle $g=(12\cdots n)$, then for each $u=v_1\otimes\cdots \otimes v_n\in\Vbb^{\otimes n}$, setting $\tipaomega_n=e^{-2\pi\im/n}$, the twisted vertex operation $Y^g(u,z)$ at $z=1$ (with $\arg z=0$) is expressed by the untwisted ones $Y(\square v_i,\tipaomega_n^{i-1})$ (for all $i$) where $\square$ is a suitable operator. This corresponds to the marked point $1$. If we choose another marked point $l$, then $Y^g(u,1)$ should be expressed by all  $Y(\square v_i,\tipaomega_n^{i-l})$. There is no reason to assume that $1$ is superior than any other marked point.
+For each $\bk{g_j}$-orbit $\bk{g_j}\tipae$ in $E$ (where $\tipae\in E(g_j)$), we choose a $\Vbb$-module $\Wbb_{j,\tipae}$. Then by \cite{BDM02}, the vector space $\mc W_j=\otimes_{\tipae\in E(g_j)}\Wbb_{j,\tipae}$ is naturally equipped with a $g_j$-twisted $\Ubb$-module structure (see also Subsec. \ref{lb23}). A direct sum of such modules is called a \textbf{$\otimes$-factorizable} $g_j$-twisted $\Ubb$-module. If $\Vbb$ is rational, then any $g_j$-twisted $\Ubb$-module is $\otimes$-factorizable, cf. \cite[Thm. 6.4]{BDM02}.
+
+
+It should be reminded that this twisted module structure depends not only on the $\bk{g_j}$-orbits but also on their marked points. For example, when $E=\{1,\dots,n\}$ and $g_j$ is the cycle $g=(12\cdots n)$, then for each $u=v_1\otimes\cdots \otimes v_n\in\Vbb^{\otimes n}$, setting $\tipaomega_n=e^{-2\pi\im/n}$, the twisted vertex operation $Y^g(u,z)$ at $z=1$ (with $\arg z=0$) is expressed by the untwisted ones $Y(\square v_i,\tipaomega_n^{i-1})$ (for all $i$) where $\square$ is a suitable operator. This corresponds to the marked point $1$. If we choose another marked point $l$, then $Y^g(u,1)$ should be expressed by all  $Y(\square v_i,\tipaomega_n^{i-l})$. There is no reason to assume that $1$ is superior than any other marked point.
 
 We associate each $\Vbb$-module $\Wbb_{j,\tipae}$ to the marked point $\Upsilon(\bk{g_j}\tipae)$ of $\fk X$, and associate the twisted $\Ubb$-module $\mc W_j$ to the marked point $x_j$ of $\fk P$. Then, our first main result is:
 \begin{Mthm}(Cf. Thm. \ref{lb14})\label{lb69}
@@ -482,7 +491,7 @@ A linear functional
 is a conformal block associated to $\fk P$ and the associated twisted $\Ubb=\Vbb^{\otimes E}$-modules if and only if it is a conformal block associated to $\fk X$ and the associated untwisted $\Vbb$-modules.
 \emph{}
 \end{Mthm}
-In particular, we have constructed an explicit isomorphism between the two spaces of conformal blocks. The proof of this theorem relies on the main results of \cite{Gui21b}.
+In particular, we have constructed an explicit isomorphism between the two spaces of conformal blocks. The proof of this theorem relies on the main results of \cite{Gui24b}.
 
 
 \subsubsection*{Sewing and factorization}
@@ -504,7 +513,7 @@ The following are true.
 \end{enumerate}
 \end{Mthm}
 
-The first part of this theorem says that sewing and taking permutation coverings are commuting procedures. The second part says that sewing  permutation-twisted $\Ubb$-conformal blocks amounts to sewing untwisted $\Vbb$-conformal blocks. The third part is the genus-$0$ sewing/factorization property for permutation-twisted conformal blocks. Its proof relies in particular on the untwisted factorization property \cite{DGT19b}.
+The first part of this theorem says that sewing and taking permutation coverings are commuting procedures. The second part says that sewing  permutation-twisted $\Ubb$-conformal blocks amounts to sewing untwisted $\Vbb$-conformal blocks. The third part is the genus-$0$ sewing/factorization property for permutation-twisted conformal blocks. Its proof relies in particular on the untwisted factorization property \cite{DGT22}.
 
 
 
@@ -544,9 +553,9 @@ A main motivation of this article is to give a conceptual explanation of why mul
 \subsubsection*{Higher genus unitary VOA/conformal net correspondence}
 
 
-A systematic study of the relationships between unitary VOAs and conformal nets was initiated by \cite{CKLW18}. In particular, for many unitary VOAs, the corresponding conformal nets were constructed by taking the smeared vertex operators. A different approach was given by \cite{Ten19a}. The methods in these two papers were generalized to relate the representation categories $\Rep(\Vbb),\Rep(\mc A_\Vbb)$ of a (strongly-rational) unitary VOA $\Vbb$ and the corresponding conformal net $\mc A_\Vbb$; see \cite{Ten19b,Ten19c} and \cite{Gui21a,Gui20a}. 
+A systematic study of the relationships between unitary VOAs and conformal nets was initiated by \cite{CKLW18}. In particular, for many unitary VOAs, the corresponding conformal nets were constructed by taking the smeared vertex operators. A different approach was given by \cite{Ten19a}. The methods in these two papers were generalized to relate the representation categories $\Rep(\Vbb),\Rep(\mc A_\Vbb)$ of a (strongly-rational) unitary VOA $\Vbb$ and the corresponding conformal net $\mc A_\Vbb$; see \cite{Ten19b,Ten19c} and \cite{Gui21,Gui20a}. 
 
-In \cite{Gui21a,Gui20a}, smeared intertwining operators are   crucial ingredients relating $\Rep(\Vbb)$ and $\Rep(\mc A_\Vbb)$: similar to the construction of smeared vertex operators in \cite{CKLW18}, we integrate $\mc Y(w,z)f(z)$ over the unit circle $I$, where $\mc Y$ is an intertwining operator of $\Vbb$, $w$ is a vector of a $\Vbb$-module, $I$ is an open non-dense interval of $\mbb S^1$, and $f$ is a smooth function supported in $I$. Since intertwining operators are $3$-pointed genus-$0$ conformal blocks, our method of comparing the tensor categories $\Rep(\Vbb)$ and $\Rep(\mc A_\Vbb)$ are essentially genus-$0$.
+In \cite{Gui21,Gui20a}, smeared intertwining operators are   crucial ingredients relating $\Rep(\Vbb)$ and $\Rep(\mc A_\Vbb)$: similar to the construction of smeared vertex operators in \cite{CKLW18}, we integrate $\mc Y(w,z)f(z)$ over the unit circle $I$, where $\mc Y$ is an intertwining operator of $\Vbb$, $w$ is a vector of a $\Vbb$-module, $I$ is an open non-dense interval of $\mbb S^1$, and $f$ is a smooth function supported in $I$. Since intertwining operators are $3$-pointed genus-$0$ conformal blocks, our method of comparing the tensor categories $\Rep(\Vbb)$ and $\Rep(\mc A_\Vbb)$ are essentially genus-$0$.
 
 It is natural to think about relating higher genus aspects of unitary VOAs and conformal nets by integrating higher genus conformal blocks. However, an arbitrary integral will not give us the correct results. Note that in the genus-$0$ case, intertwining operators can only be integrated on an interval $I$ of $\mbb S^1$ ; otherwise the operators one gets will not have nice analytic properties. In arbitrary genus, one should integrate the conformal blocks on a correct real path inside the moduli space of pointed compact Riemann surfaces with (analytic) local coordinates.
 
@@ -554,7 +563,7 @@ Now, the twisted/untwisted correspondence proved in this article suggests how to
 
 This observation can be summarized by the slogan: \emph{the genus-$0$ permutation-twisted VOA/conformal net correspondence (as in \cite{CKLW18} or \cite{Ten19a}) is a higher-genus untwisted VOA/conformal net correspondence.}
 
-This observation shows the  importance of relating the VOA and the conformal net tensor categories  for orbifold CFT, especially for permutation orbifolds, in the framework of \cite{CKLW18} or \cite{Ten19a}. For instance, the equivalence of tensor categories discussed in \cite{Gui21a,Gui20a} should be generalized to orbifold CFT. We plan to explore this problem in future works.
+This observation shows the  importance of relating the VOA and the conformal net tensor categories  for orbifold CFT, especially for permutation orbifolds, in the framework of \cite{CKLW18} or \cite{Ten19a}. For instance, the equivalence of tensor categories discussed in \cite{Gui21,Gui20a} should be generalized to orbifold CFT. We plan to explore this problem in future works.
 
 
 
@@ -667,7 +676,7 @@ If $X$ is a locally compact Hausdorff space, and if $\sum_{n\in\Cbb} f_n$ is a s
 Let $\Vbb$ be a  VOA with vertex operator $Y(v,z)=\sum_{n\in\Zbb}Y(v)_nz^{-n-1}$, vacuum vector $\id$, and Virasoro operators $L_n=Y(\cbf)_{n+1}$. We assume throughout this article that a VOA $\Vbb$ has $L_0$-grading $\Vbb=\bigoplus_{n\in\Nbb}\Vbb(n)$ where each $\Vbb(n)$ is finite-dimensional.
 
 
-As in \cite{Gui21b},  a $\Vbb$-module $\Wbb$ always means a \textbf{finitely-admissible $\Vbb$-module}. This means that $\Wbb$ is a weak $\Vbb$-module in the sense of \cite{DLM97}, that $\Wbb$ is equipped with a diagonalizable operator $\wtd L_0$ satisfying \index{L0@$\wtd L_0$}  
+As in \cite{Gui24b},  a $\Vbb$-module $\Wbb$ always means a \textbf{finitely-admissible $\Vbb$-module}. This means that $\Wbb$ is a weak $\Vbb$-module in the sense of \cite{DLM97}, that $\Wbb$ is equipped with a diagonalizable operator $\wtd L_0$ satisfying \index{L0@$\wtd L_0$}  
 \begin{align}\label{eq34}
 	[\wtd L_0,Y_\Wbb(v)_n]=Y_\Wbb(L_0 v)_n-(n+1)Y_\Wbb(v)_n,	
 \end{align}
@@ -745,7 +754,7 @@ Consider $\zeta^{-1}\in\scr O(\Cbb^\times)$ where $\zeta$ is the standard coordi
 \begin{align*}
 \tipxgamma_z(t)=\frac 1{~z+t~}-\frac 1{~z~}.	
 \end{align*}
-On any $\Vbb$-module $\Wbb$ we have (cf. for instance \cite[Ex. 1.4]{Gui20b})
+On any $\Vbb$-module $\Wbb$ we have (cf. for instance \cite[Ex. 1.4]{Gui24a})
 \begin{align}
 \mc U(\tipxgamma_z)\equiv\mc U(\tipxgamma)_z=e^{z L_1}(-z^{-2})^{\wtd L_0}.	
 \end{align}
@@ -814,7 +823,7 @@ A \textbf{conformal block} $\upphi$ associated to $\fk X$ and $\Wbb_\blt$ is a l
 vanishing on $v\cdot w_\blt$ for all $w_\blt\in\Wbb_\blt$ and $v\in H^0(C,\scr V_C\otimes\omega_C(\star\SX))$.
 
 
-We need the following propagation property of conformal blocks. Cf. \cite[Sec. 8]{Gui21b}. For each open $U_1,\dots,U_n\subset C$, we set \index{Conf@$\Conf(U_\blt\setminus\SX)$}
+We need the following propagation property of conformal blocks. Cf. \cite[Sec. 8]{Gui24b}. For each open $U_1,\dots,U_n\subset C$, we set \index{Conf@$\Conf(U_\blt\setminus\SX)$}
 \begin{gather*}
 \Conf(U_\blt\setminus\SX)=(U_1\times\cdots\times U_n)\cap\Conf^n(C\setminus\SX).	
 \end{gather*}
@@ -984,15 +993,15 @@ converges a.l.u. on $\mc D_{R_\blt}$ in the sense of \eqref{eq10}; equivalently,
 
 When $\scr S\upphi$ converges $q$-absolutely, it can be regarded as a linear functional on $\Wbb_\blt$ sending each $w\in\Wbb_\blt$ to the limit of \eqref{eq11}.
 
-\begin{thm}[{\cite[Thm. 11.3]{Gui20b}}]\label{lb37}
+\begin{thm}[{\cite[Thm. 11.3]{Gui24a}}]\label{lb37}
 If $\scr S\upphi$ converges $q$-absolutely, then $\scr S\upphi$ is a conformal block associated to $\scr S\fk X$ and $\Wbb_\blt$.
 \end{thm}
 
-It is not known whether this theorem still holds if we assume the weaker condition that the series \eqref{eq11} converges absolutely for each $w$. However, in practice, whenever we can show the absolute convergence of sewing, we can also show the $q$-absolute convergence.
+%It is not known whether this theorem still holds if we assume the weaker condition that the series \eqref{eq11} converges absolutely for each $w$. However, in practice, whenever we can show the absolute convergence of sewing, we can also show the $q$-absolute convergence.
 
 
 
-\begin{thm}[{\cite[Thm. 13.1]{Gui20b}}]\label{lb39}
+\begin{thm}[{\cite[Thm. 13.1]{Gui24a}}]\label{lb39}
 If $\Vbb$ is $C_2$-cofinite, and if all the modules $\Wbb_1,\dots,\Wbb_N,\Mbb_1,\dots,\Mbb_M$ are finitely-generated, then $\scr S\upphi$ converges $q$-absolutely.
 \end{thm}
 
@@ -1021,7 +1030,7 @@ If $\Vbb$ is CFT-type, $C_2$-cofinite, and rational, and if $\Wbb_1,\dots,\Wbb_N
 
 
 \begin{proof}
-When $M=1$, this follows from \cite[Thm. 12.1]{Gui20b}. (Note that the surjectivity of $\scr S$ follows from the remarkable factorization property proved by \cite{DGT19b}.) Apply this result inductively, we can prove this theorem for a general $M$.
+When $M=1$, this follows from \cite[Thm. 12.1]{Gui24a}. (Note that the surjectivity of $\scr S$ follows from the remarkable factorization property proved by \cite{DGT22}.) Apply this result inductively, we can prove this theorem for a general $M$.
 \end{proof}
 
 
@@ -1032,7 +1041,7 @@ When $M=1$, this follows from \cite[Thm. 12.1]{Gui20b}. (Note that the surjectiv
 
 
 
-The following theorem is crucial to the main result of this article. Cf. \cite[Thm. 9.1]{Gui21b}.
+The following theorem is crucial to the main result of this article. Cf. \cite[Thm. 9.1]{Gui24b}.
 
 \begin{thm}\label{lb19}
 Assume $\scr S\upphi$ converges $q$-absolutely. Let $U_1,\dots U_n\subset C$ be open and disjoint from $W_j',W_j''$ (for all $1\leq j\leq N$), which can also be viewed as open subsets of $\scr SC$. Then there exist $R_1,\dots,R_M>1$ such that for each $v_i\in\scr V_C(U_i)=\scr V_{\scr SC}(U_i)$ and $w\in\Wbb_\blt$, the following infinite series
@@ -1074,7 +1083,7 @@ In particular, for each $w\in\mc W$ the lower truncation condition follows: $Y^g
 \begin{align}
 Y^g(gu,z)=Y^g(u,e^{-2\im\pi}z):=\sum_{n\in \frac 1{|g|} \Zbb}Y^g(u)_nw\cdot e^{2(n+1)\im\pi}z^{-n-1}.\label{eq21}
 \end{align}
-\item (Jacobi identity)  For each $u,v\in\Ubb,w\in\mc W,w'\in\mc W'$, and for each $z\neq \tipaz$ in $\Cbb^\times$ with chosen $\arg z,\arg \tipaz$, the following series of single-valued functions of $\log z,\log z,\log(z-\tipaz)$
+\item (Analytic Jacobi identity)\footnote{In \cite[Def. 3.1]{Hua18}, this property is called the duality property.}  For each $u,v\in\Ubb,w\in\mc W,w'\in\mc W'$, and for each $z\neq \tipaz$ in $\Cbb^\times$ with chosen $\arg z,\arg \tipaz$, the following series of single-valued functions of $\log z,\log z,\log(z-\tipaz)$
 \begin{gather}
 \bk{Y^g(u,z)Y^g(v,\tipaz)w,w'}:=\sum_{n\in\frac 1{|g|}\Nbb}	\bk{Y^g(u,z)P_n^gY^g(v,\tipaz)w,w'}\label{eq13}\\
 \bk{Y^g(v,\tipaz)Y^g(u,z)w,w'}:=\sum_{n\in\frac 1{|g|}\Nbb}	\bk{Y^g(v,\tipaz)P_n^gY^g(u,z)w,w'}\label{eq14}\\
@@ -1086,7 +1095,7 @@ Y^g(gu,z)=Y^g(u,e^{-2\im\pi}z):=\sum_{n\in \frac 1{|g|} \Zbb}Y^g(u)_nw\cdot e^{2
 \end{align*}
 which can furthermore be extended to a multivalued holomorphic function $f_{\tipaz}(z)$ on $\Cbb^\times\setminus\{\tipaz\}$ (i.e., a holomorphic function on the universal cover of $\Cbb^\times\setminus\{\tipaz\}$).
 \end{enumerate}
-In the above Jacobi identity, let $\mc W'=\bigoplus_{n\in\frac 1{|g|}\Nbb}\mc W(n)^*$, then  $P_n^g$ \index{Pn@$P_n,P_n^g$, the projection onto the $n$-eigenspace of $\wtd L_0$ resp. $\wtd L_0^g$} is defined to be the projection
+In the above analytic Jacobi identity, let $\mc W'=\bigoplus_{n\in\frac 1{|g|}\Nbb}\mc W(n)^*$, then  $P_n^g$ \index{Pn@$P_n,P_n^g$, the projection onto the $n$-eigenspace of $\wtd L_0$ resp. $\wtd L_0^g$} is defined to be the projection
 \begin{align}
 	P_n^g:(\mc W')^*=\prod_{n\in\frac 1{|g|}\Nbb}\mc W(n)\rightarrow\mc W(n).\label{eq72}
 \end{align}
@@ -1105,7 +1114,7 @@ when acting on  $\mc W$, we conclude
 \bk{L_n w,w'}=\bk{w,L_{-n}w'}.\label{eq85}	
 \end{align}
 
-The above Jacobi identity is equivalent to its well-known algebraic form (cf. \cite[Sec. 10]{Gui21b}). It follows easily from that algebraic Jacobi identity that \eqref{eq12} holds if $\wtd L_0^g$ is replaced by $L_0$. Thus, $\wtd L_0^g-L_0$ commutes with the actions of vertex operators. In particular, if $\mc W$ is an irreducible twisted $\Ubb$-module, then $\wtd L_0^g-L_0$ is a constant.
+The above analytic Jacobi identity is equivalent to its well-known algebraic form (cf. \cite[Sec. 10]{Gui24b}). It follows easily from that algebraic Jacobi identity that \eqref{eq12} holds if $\wtd L_0^g$ is replaced by $L_0$. Thus, $\wtd L_0^g-L_0$ commutes with the actions of vertex operators. In particular, if $\mc W$ is an irreducible twisted $\Ubb$-module, then $\wtd L_0^g-L_0$ is a constant.
 
 
 
@@ -1419,7 +1428,7 @@ Consider $\wr\uppsi(\upgamma_\blt(1),gu-u,w_\blt)$ as a multivalued holomorphic 
 \end{proof}
 
 \begin{rem}
-	Note that if a $g$-twisted $\mc W$ ($g\in G$) is non-trivial, then $u\in\Ubb\mapsto Y^g(u,z)$ is injective whenever $\Ubb$ is simple (as a $\Ubb$-module). Indeed, assume $Y^g(u,z)=0$. Choose any $v\in \Ubb$, and assume without loss of generality that $gv=e^{2\im a\pi/k}v$. Then the algebraic Jacobi identity for $Y^g$ (cf. for instance \cite[Sec. 10]{Gui21b}) shows that for each $m,n\in\Zbb$ we have
+	Note that if a $g$-twisted $\mc W$ ($g\in G$) is non-trivial, then $u\in\Ubb\mapsto Y^g(u,z)$ is injective whenever $\Ubb$ is simple (as a $\Ubb$-module). Indeed, assume $Y^g(u,z)=0$. Choose any $v\in \Ubb$, and assume without loss of generality that $gv=e^{2\im a\pi/k}v$. Then the algebraic Jacobi identity for $Y^g$ (cf. for instance \cite[Sec. 10]{Gui24b}) shows that for each $m,n\in\Zbb$ we have
 	\begin{align*}
 		\sum_{l\in\Nbb}{\frac ak+m\choose l} Y^g\big(Y(v)_{n+l}u,z\big)\cdot z^{\frac ak+m-l}=0.
 	\end{align*}
@@ -1456,7 +1465,7 @@ holds for any open simply-connected $U\subset X\setminus\Sbf$ containing $\upgam
 
 Fix an action $\Gamma\curvearrowright E$, and let $g_j\in\Perm(E)$ be the image of $[\upalpha_j]$. Then $E$ is the disjoint union of orbits of $\Gamma$. We choose one element for each orbit, called the marked point of that $\Gamma$-orbit. The set of all these marked points of $\Gamma$-orbits is denoted by $E(\Gamma)$, \index{EG@$E(\Gamma)$, the set of marked points of the $\Gamma$-orbits} which is a subset of $E$. Then
 \begin{align*}
-E=\coprod_{\mbf e\in E(\Gamma)}\Gamma \mbf e.	
+E=\bigsqcup_{\mbf e\in E(\Gamma)}\Gamma \mbf e.	
 \end{align*}
 
 
@@ -1464,7 +1473,7 @@ The following is well-known; see  \cite[Sec. 4.2.2, Thm. 2]{Don} or \cite[Sec. 1
 
 
 \begin{pp}\label{lb3}
-There is a compact Riemann surface $C=\coprod_{\mbf e\in E(\Gamma)}C^{\mbf e}$ whose connected components $\{C^{\mbf e}:\mbf e\in E(\Gamma)\}$ are in one-to-one correspondence with the points of $E(\Gamma)$, and a branched covering $\varphi:C\rightarrow\Pbb^1$ whose restriction $\varphi:C\setminus\varphi^{-1}(\Sbf)\rightarrow\Pbb^1\setminus\Sbf$ is unbranched,  such that the following condition is satisfied: (Note that $\varphi^{-1}(\Sbf)$ must be a discrete and hence finite subset of $C$.) 
+There is a compact Riemann surface $C=\bigsqcup_{\mbf e\in E(\Gamma)}C^{\mbf e}$ whose connected components $\{C^{\mbf e}:\mbf e\in E(\Gamma)\}$ are in one-to-one correspondence with the points of $E(\Gamma)$, and a branched covering $\varphi:C\rightarrow\Pbb^1$ whose restriction $\varphi:C\setminus\varphi^{-1}(\Sbf)\rightarrow\Pbb^1\setminus\Sbf$ is unbranched,  such that the following condition is satisfied: (Note that $\varphi^{-1}(\Sbf)$ must be a discrete and hence finite subset of $C$.) 
 
 For each $\mbf e\in E(\Gamma)$, there is an element $p^{\mbf e}\in C^{\mbf e}\cap\varphi^{-1}(\upgamma_\blt(1))$ satisfying the following condition: for any path $\upnu\in\Lambda_{\upgamma_\blt(1)}$ in $\Pbb^1\setminus\Sbf$, if $\wtd\upnu$ is its lift to $C$ ending at $p^{\mbf e}$, then the initial point of $\wtd\upnu$ is $p^{\mbf e}$ if and only if $[\upnu]\mbf e=\mbf e$.
 \end{pp}
@@ -1566,9 +1575,9 @@ Since $\varphi$ is locally equivalent to $z\mapsto z^n$ for some $n\in\Zbb_+$, i
 
 Since $W_j$  is biholomorphic to $\mc D_R$ via $\eta_j$, we identify these two spaces via $\eta_j$. In particular, $W_j\setminus\{x_j\}$ equals $\mc D_R^\times$, and hence we have a holomorphic covering $\varphi:\wtd W_j\setminus\varphi^{-1}(\Sbf)\rightarrow\mc D_R^\times$. Since all connected topological (and hence  analytic) coverings of $\mc D_R^\times$ are equivalent topologically (and hence analytically) to $\mc D_r^\times\xrightarrow{z^n}\mc D_R^\times$ where $n\in\Zbb_+$ and $r=\sqrt[n]{R}$, we conclude that there is a biholomorphic $\wtd\eta_j:\wtd W_j\setminus\varphi^{-1}(\Sbf)\rightarrow\mc D_r^\times$ such that \eqref{eq4} commutes when restricted to $\wtd W_j\setminus\varphi^{-1}(\Sbf)$. 
 
-We set $\wtd\eta_j$ to be $0$ on $\wtd W_j\cap\varphi^{-1}(\Sbf)$, which is a discrete and hence finite subset of $\wtd W_j$. To check that $\wtd\eta_j$ is analytic, by Morera's theorem, it suffices to check that $\wtd\eta_j$ is continuous at any $y\in\wtd W_j\cap\varphi^{-1}(\Sbf)=\wtd W_j\cap\varphi^{-1}(x_j)$. Choose a sequence $y_k\in\wtd W_j\setminus\varphi^{-1}(\Sbf)$ converging to $y$. Then $(\wtd\eta_j(y_k))^n=\eta_j\circ\varphi(y_k)\rightarrow\eta_j\circ\varphi(y)=\eta_j(x_j)=0$. This proves the continuity. 
+Note that $\wtd W_j\cap\varphi^{-1}(\Sbf)$ is a discrete  subset of $\wtd W_j$, and hence is finite because $C$ is compact. We set $\wtd\eta_j$ to be $0$ on $\wtd W_j\cap\varphi^{-1}(\Sbf)$. To check that $\wtd\eta_j$ is analytic, by Morera's theorem, it suffices to check that $\wtd\eta_j$ is continuous at any $y\in\wtd W_j\cap\varphi^{-1}(\Sbf)=\wtd W_j\cap\varphi^{-1}(x_j)$. Choose a sequence $y_k\in\wtd W_j\setminus\varphi^{-1}(\Sbf)$ converging to $y$. Then $(\wtd\eta_j(y_k))^n=\eta_j\circ\varphi(y_k)\rightarrow\eta_j\circ\varphi(y)=\eta_j(x_j)=0$. This proves the continuity. 
 
-We have proved that the diagram \eqref{eq4} commutes. To finish the proof, we shall show that $\wtd W_j\cap\varphi^{-1}(\Sbf)$ contains precisely one element of $\varphi^{-1}(\Sbf)$. This will also imply that $\eta_j:\wtd W_j\rightarrow\mc D_r$ is bijective.
+We have proved that the diagram \eqref{eq4} commutes. To finish the proof, we shall show that $\wtd W_j\cap\varphi^{-1}(\Sbf)$ contains precisely one element of $\varphi^{-1}(\Sbf)$. This will also imply that $\wtd\eta_j:\wtd W_j\rightarrow\mc D_r$ is bijective.
 
 
 A similar argument as above shows that $\varphi:\wtd W_j\rightarrow W_j$ is proper. Thus, if we choose a sequence $y_k$ in $W_j\setminus\varphi^{-1}(\Sbf)$ such that $\varphi(y_k)\rightarrow x_j$, by passing to a subsequence, we see $y_k\rightarrow y\in W_j$ and $\varphi(y)=x_j$. So $\wtd W_j$ contains at least one point of $\varphi^{-1}(x_j)$.
@@ -1670,14 +1679,14 @@ the \textbf{permutation covering} of $\Pbb^1$ associated to the permutations $g_
 
 
 \begin{rem}
-The $\Gamma$-orbits in $E$ are in one-to-one correspondence with the connected components of $C$: given a $\Gamma$-orbit $\Omega\subset E$, the corresponding connected component $C^\Omega$ is the one containing the set $\Psi_{\upgamma_\blt(1)}(\Omega)$, and hence containing $\Psi_{\uplambda}(\Omega)$ for any path $\uplambda$ in $C\setminus\varphi^{-1}(\Sbf)$ ending at $\upgamma_\blt(1)$. $C^\Omega\setminus\varphi^{-1}(\Sbf)$ is an $|\Omega|$-fold covering of $\Pbb^1\setminus\Sbf$ where $|\Omega|$ is the cardinality of $\Omega$. It is clear that for each $g_j$-orbit $\omega=\bk{g_j}e$, the branched point $\Upsilon(\bk{g_j}e)$ is on $C^\Omega$ if and only if $\omega\subset\Omega$. We know that the branching index at $\Upsilon(\omega)$ is $|\omega|$. Therefore, we may use the Riemann-Hurwitz formula \cite[17.14]{For} to conclude:
+The $\Gamma$-orbits in $E$ are in one-to-one correspondence with the connected components of $C$: given a $\Gamma$-orbit $\Omega\subset E$, the corresponding connected component $C^\Omega$ is the one containing the set $\Psi_{\upgamma_\blt(1)}(\Omega)$, and hence containing $\Psi_{\uplambda}(\Omega)$ for any path $\uplambda$ in $C\setminus\varphi^{-1}(\Sbf)$ ending at $\upgamma_\blt(1)$. $C^\Omega\setminus\varphi^{-1}(\Sbf)$ is an $|\Omega|$-fold covering of $\Pbb^1\setminus\Sbf$ where $|\Omega|$ is the cardinality of $\Omega$. It is clear that for each $\bk{g_j}$-orbit $\omega=\bk{g_j}e$, the branched point $\Upsilon(\bk{g_j}e)$ is on $C^\Omega$ if and only if $\omega\subset\Omega$. We know that the branching index at $\Upsilon(\omega)$ is $|\omega|$. Therefore, we may use the Riemann-Hurwitz formula \cite[17.14]{For} to conclude:
 \end{rem}
 
 
 
 
 \begin{co}
-For each $\Gamma$-orbit $\Omega$, let $\Orb_\Omega(g_j)$ be the set of $g_j$-orbits inside $\Omega$. Then  the genus $g(C^\Omega)$ of $C^\Omega$ equals
+For each $\Gamma$-orbit $\Omega$, let $\Orb_\Omega(g_j)$ be the set of $\bk{g_j}$-orbits inside $\Omega$. Then  the genus $g(C^\Omega)$ of $C^\Omega$ equals
 \begin{align}\label{eq88}
 g(C^\Omega)=1-|\Omega|+\frac 12\sum_{j=1}^N~\sum_{\omega\in\Orb_\Omega(g_j)}(|\omega|-1).
 \end{align}
@@ -1685,9 +1694,9 @@ g(C^\Omega)=1-|\Omega|+\frac 12\sum_{j=1}^N~\sum_{\omega\in\Orb_\Omega(g_j)}(|\o
 
 In this formula, the sum $\sum|\omega|$ clearly equals $|\Omega|$. Therefore
 \begin{align}
-	g(C^\Omega)=1+\Big(\frac N2-1\Big)|\Omega|-\frac 12\sum_{j=1}^N|\Orb_\Omega(g_j)|.\label{eq89}
+	g(C^\Omega)=1+\Big(\frac N2-1\Big)|\Omega|-\frac 12\sum_{j=1}^N|\Orb_\Omega(g_j)|\label{eq89}
 \end{align}
-When $N=3$, this formula agrees with \cite[Lemma 8]{BS11}.
+where $|\Orb_\Omega(g_j)|$ is the number of $\bk{g_j}$-orbits in $\Omega$. When $N=3$, Eq. \eqref{eq89} agrees with \cite[Lemma 8]{BS11}.
 
 
 
@@ -1766,9 +1775,9 @@ We have proved that $\Psi'_{\upgamma_\blt'(1)}$ is a $\Gamma'$-covariant bijecti
 
 \subsubsection{The permutation covering of $\fk P$ associated to $\Gamma\curvearrowright E$ and $E(g_\blt)$}\label{lb31}
 
-We now assume $\fk P$ is positively $N$-pathed, namely, \eqref{eq22} is also true. We have constructed the permutation covering $(C;\varphi^{-1}(\Sbf))$ of $(\Pbb^1;\Sbf)$. In this subsection, we shall add local coordinates to $C$ at these marked points. These local coordinates should be compatible with those of $\fk P$ and the branched covering map $\varphi$. Moreover, to uniquely determine these local coordinates, we have to fix an element $\tipae$ for each $g_j$-orbit, called the \textbf{marked point} of that $g_j$-orbit. We let \index{Eg@$E(g_j)$, the set of marked points of the $g_j$-orbits}
+We now assume $\fk P$ is positively $N$-pathed, namely, \eqref{eq22} is also true. We have constructed the permutation covering $(C;\varphi^{-1}(\Sbf))$ of $(\Pbb^1;\Sbf)$. In this subsection, we shall add local coordinates to $C$ at these marked points. These local coordinates should be compatible with those of $\fk P$ and the branched covering map $\varphi$. Moreover, to uniquely determine these local coordinates, we have to fix an element $\tipae$ for each $\bk{g_j}$-orbit, called the \textbf{marked point} of that $\bk{g_j}$-orbit. We let \index{Eg@$E(g_j)$, the set of marked points of the $\bk{g_j}$-orbits}
 \begin{align*}
-E(g_j)=\{\text{all marked points $\tipae$ of the $g_j$-orbits of $E$}\}.	
+E(g_j)=\{\text{all marked points $\tipae$ of the $\bk{g_j}$-orbits of $E$}\}.	
 \end{align*}
 
 
@@ -1805,7 +1814,7 @@ is a pointed compact Riemann surface with local coordinates. The data
 \begin{align*}
 	\boxed{~\fk P=(\Pbb^1;x_1,\dots,x_N;\eta_1,\dots,\eta_N;\upgamma_1,\dots,\upgamma_N)~}
 \end{align*}
-associated to the action $\Gamma\curvearrowright E$ and the set  $E(g_j)$ (for all $j$) of marked points of $g_j$-orbits. $\wtd\eta_{j,\tipae}$ is the local coordinate at $\Upsilon(\bk{g_j}\tipae)$ defined on an open disc $\wtd W_{j,\tipae}$. The set of all marked points is $\varphi^{-1}(\Sbf)$.
+associated to the action $\Gamma\curvearrowright E$ and the set  $E(g_j)$ (for all $j$) of marked points of $\bk{g_j}$-orbits. $\wtd\eta_{j,\tipae}$ is the local coordinate at $\Upsilon(\bk{g_j}\tipae)$ defined on an open disc $\wtd W_{j,\tipae}$. The set of all marked points is $\varphi^{-1}(\Sbf)$.
 
 
 
@@ -1824,10 +1833,8 @@ is a permutation covering of $\fk P'$ associated to $\Gamma'\curvearrowright E$ 
 \subsection{Permutation-twisted modules; Main Theorem}\label{lb23}
 
 
-
-
-
-We now let $\Ubb=\Vbb^{\otimes E}$, a tensor product of $|E|$ pieces of $\Vbb$ where $|E|$ is the cardinality of the finite set $E$.  $\Ubb$ is spanned by vectors of the form
+\begin{df}
+Let $\Ubb$ be the tensor product VOA $\Ubb=\Vbb^{\otimes E}\equiv\bigotimes_{e\in E}\Vbb$. So $\Ubb$ is spanned by vectors of the form
 \begin{align*}
 \vbf=\bigotimes_{e\in E} \vbf(e)\qquad (\text{each }\vbf(e)\in\Vbb).	
 \end{align*} 
@@ -1836,9 +1843,12 @@ Namely, $\vbf(e)$ is the $e$-th tensor component of $\vbf$. $\Perm(E)$ acts fait
 (g\cdot \vbf)(e)=\vbf(g^{-1}e).
 \end{align}
 Namely, $g\cdot \vbf$ is a tensor product of vectors whose $e$-th component is $v_{g^{-1}e}$. The conformal vector $\cbf_\Ubb$ of $\Ubb$ is $\sum_{\epsilon\in E}\cbf_\epsilon$ where $\cbf_\epsilon(e)$ equals $\cbf_\Vbb$ (the conformal vector of $\Vbb$) when $\epsilon=e$, and equals $\id$ otherwise.
+\end{df}
 
 
-Recall $g_1,\dots,g_N\in\Perm(E)$. For each $g_j$, we shall construct $g_j$-twisted $\mbb U$-modules. For each $g_j$-orbit $\bk{g_j}\tipae$ we choose a $\Vbb$-module $\Wbb_{j,\tipae}$.
+
+
+Recall $g_1,\dots,g_N\in\Perm(E)$. For each $g_j$, we shall construct $g_j$-twisted $\mbb U$-modules. For each $\bk{g_j}$-orbit $\bk{g_j}\tipae$ we choose a $\Vbb$-module $\Wbb_{j,\tipae}$.
 
 Let $\zeta$ be the standard coordinate of $\Cbb$. Fix any $\tipae\in E(g_j)$. We set a $2$-pointed Riemann sphere with local coordinates
 \begin{align}
@@ -1890,9 +1900,9 @@ if each $w_{j,\tipae}\in\Wbb_{j,\tipae}$ is $\wtd L_0$-homogeneous with eigenval
 \end{align}
 \end{thma}
 
-Note that $Y^{g_j}$ depends not only on $g_j$ and the $\Vbb$-modules associated to the $g_j$-orbits, but also on the set $E(g_j)$.
+Note that $Y^{g_j}$ depends not only on $g_j$ and the $\Vbb$-modules associated to the $\bk{g_j}$-orbits, but also on the set $E(g_j)$.
 \begin{proof}
-When there is only one $g_j$-orbit, this was proved in \cite[Sec. 10]{Gui21b}. In the general case, this follows from the fact that if for each $1\leq l\leq m$, $h_l$ is an automorphism of a VOA $\Vbb_l$ with finite order, and if $\mc M_l$ is a $h_l$-twisted $\Vbb_l$-module with vertex operation $Y^{h_l}$, then $\mc M_1\otimes\cdots\otimes\mc M_m$ is an $h=h_1\otimes\cdots\otimes h_m$-twisted $\Vbb_1\otimes\cdots\otimes \Vbb_m$-module with vertex operation $v_1\otimes\cdots\otimes v_m\mapsto Y^{h_1}(v_1,z)\otimes\cdots\otimes Y^{h_m}(v_m,z)$ and $\wtd L^h_0$-grading defined by the sum over all $1\leq l\leq m$ of the $\wtd L^{h_l}_0$-weight on the $\mc M_l$-component.
+When there is only one $\bk{g_j}$-orbit, this was proved in \cite[Sec. 10]{Gui24b}. In the general case, this follows from the fact that if for each $1\leq l\leq m$, $h_l$ is an automorphism of a VOA $\Vbb_l$ with finite order, and if $\mc M_l$ is a $h_l$-twisted $\Vbb_l$-module with vertex operation $Y^{h_l}$, then $\mc M_1\otimes\cdots\otimes\mc M_m$ is an $h=h_1\otimes\cdots\otimes h_m$-twisted $\Vbb_1\otimes\cdots\otimes \Vbb_m$-module with vertex operation $v_1\otimes\cdots\otimes v_m\mapsto Y^{h_1}(v_1,z)\otimes\cdots\otimes Y^{h_m}(v_m,z)$ and $\wtd L^h_0$-grading defined by the sum over all $1\leq l\leq m$ of the $\wtd L^{h_l}_0$-weight on the $\mc M_l$-component.
 \end{proof}
 
 
@@ -1911,7 +1921,7 @@ We now relate contragredient untwisted and twisted modules. Set
 \begin{align}
 h_j=g_j^{-1},\qquad E(h_j)=E(g_j).	
 \end{align}
-For each $h_j$-orbit $\bk{h_j}\tipae$ where $\tipae\in E(h_j)$, we choose $\Wbb_{j,\tipae}'$, the contragedient module of $\Wbb_{j,\tipae}$. Then $\mc W_j'$ equals $\bigotimes_{\tipae\in E(h_j)}\Wbb_{j,\tipae}'$ as $\wtd L_0$-graded vector spaces. We use these data to construct a vertex operation $Y^{h_j}$ for $\mc W_j'$ as in Thm. \ref{lb13}. Recall the definition of contragredient twisted modules in \eqref{eq64}. The following theorem will not be used until Chapter \ref{lb35}.
+For each $\bk{h_j}$-orbit $\bk{h_j}\tipae$ where $\tipae\in E(h_j)$, we choose $\Wbb_{j,\tipae}'$, the contragedient module of $\Wbb_{j,\tipae}$. Then $\mc W_j'$ equals $\bigotimes_{\tipae\in E(h_j)}\Wbb_{j,\tipae}'$ as $\wtd L_0$-graded vector spaces. We use these data to construct a vertex operation $Y^{h_j}$ for $\mc W_j'$ as in Thm. \ref{lb13}. Recall the definition of contragredient twisted modules in \eqref{eq64}. The following theorem will not be used until Chapter \ref{lb35}.
 
 \begin{thm}\label{lb42}
 $(\mc W_j',Y^{h_j})$ is the contragredient twisted module of $(\mc W_j,Y^{g_j})$.
@@ -1990,9 +2000,9 @@ In this section, we prove the ``only if" part of Thm. \ref{lb14}. Let us  make s
 \begin{rem}\label{lb15}
 $\scr U_{\Pbb^1}$ can be identified with a tensor product (indexed by $E$) over $\scr O_{\Pbb^1}$ of $\scr V_{\Pbb^1}$ such that for any open $V\subset\Pbb^1$ and locally injective $\mu\in\scr O(V)$, the trivialization $\mc U_\varrho(\eta):\scr U_V\xrightarrow{\simeq}\Ubb\otimes_\Cbb\scr O_V=\Vbb^{\otimes E}\otimes_\Cbb\scr O_V$ agrees with $\mc U_\varrho(\eta)^{\otimes E}:\scr V_V^{\otimes E}\xrightarrow{\simeq}\Vbb^{\otimes E}\otimes_\Cbb\scr O_V$. To see this, one checks that the two transition functions agree. This is easy from the definition of $\cbf_\Ubb$. It follows that for each connected open $U\subsetneq\Pbb^1$, we have
 \begin{align}
-\scr U_{\Pbb^1}(U)=\scr V_{\Pbb^1}(U)^{\otimes E}\label{eq41}
+\scr U_{\Pbb^1}(U)=\scr V_{\Pbb^1}(U)^{\otimes E}\equiv\otimes_{e\in E}\scr V_{\Pbb^1}(U)\label{eq41}
 \end{align}
-where the tensor product is over $\scr O(U)$.
+where the tensor product is over $\scr O(U)$ (rather than over $\Cbb$).
 \end{rem}
 
 Another useful fact is:
@@ -2102,7 +2112,7 @@ According to \eqref{eq11}, we know that \eqref{eq32} is the sewing of a propagat
 
 The unpropagated pointed Riemann surface with local coordinates is 
 \begin{align*}
-\fk Y=\fk X\sqcup\coprod_{\tipae\in E(g_j)}\fk Q_{j,\tipae}	
+\fk Y=\fk X\sqcup\bigsqcup_{\tipae\in E(g_j)}\fk Q_{j,\tipae}	
 \end{align*}
 where $\fk Q_{j,\tipae}=(\Pbb^1_{j,\tipae};0,\infty;\zeta,\zeta^{-1})$. The two marked points $0,\infty$ of $\fk Q_{j,\tipae}$ are associated with $\Vbb$-modules $\Wbb_{j,\tipae},\Wbb_{j,\tipae}'$ respectively. The (unpropagated) conformal block associated to $\fk Y$ is (recall \eqref{eq33})
 \begin{align*}
@@ -2275,13 +2285,13 @@ If $C$ is a connected compact Riemann surface of genus $g$, together with $N$ ma
 \begin{align*}
 \Nbf(g;\Wbb_\blt)=\Nbf(g;\Wbb_1,\dots,\Wbb_N)	 
 \end{align*}
-be the dimension of the space of conformal blocks associated to these data. By \cite{DGT19a,DGT19b}, this number is finite, and  is independent of the complex structure of $C$, the position of $N$ marked points, and the local coordinates. Moreover, $\Nbf(g;\Wbb_1,\dots,\Wbb_N)$ is unchanged if we rearrange the order $\Wbb_1,\dots,\Wbb_N$. In the special case that $g=0$ and $N=3$,
+be the dimension of the space of conformal blocks associated to these data. By \cite{DGT21,DGT22}, this number is finite, and  is independent of the complex structure of $C$, the position of $N$ marked points, and the local coordinates. Moreover, $\Nbf(g;\Wbb_1,\dots,\Wbb_N)$ is unchanged if we rearrange the order $\Wbb_1,\dots,\Wbb_N$. In the special case that $g=0$ and $N=3$,
 \begin{align*}
 \Nbf_{\Wbb_1,\Wbb_2}^{\Wbb_3}:=\Nbf(0;\Wbb_1,\Wbb_2,\Wbb_3')	
 \end{align*}
 is the \textbf{fusion rule} among $\Wbb_1,\Wbb_2,\Wbb_3$.
 
-By the factorization property proved by \cite{DGT19b} (cf. also Thm. \ref{lb40}), if $g\geq 1$, we have
+By the factorization property proved by \cite{DGT22} (cf. also Thm. \ref{lb40}), if $g\geq 1$, we have
 \begin{align}
 \Nbf(g;\Wbb_1,\dots,\Wbb_N)=\sum_{\Mbb\in\mc E}\Nbf(g-1;\Wbb_1,\dots,\Wbb_N,\Mbb,\Mbb').	
 \end{align}
@@ -2292,14 +2302,14 @@ If $g=g_1+g_2$ where $g_1,g_2\geq 0$, and if $1\leq L<N$, then
 These two formulas allow us to calculate any $\Nbf(g;\Wbb_\blt)$ using the fusion rules.
 
 
-Now we assume the setting of Main Theorem \ref{lb14}. Namely, $\fk P=\eqref{eq16}$ is a positively  $N$-pathed Riemann sphere with local coordinates, and to each marked point $x_j$ we associate a $g_j$-twisted  $\Ubb=\Vbb^{\otimes E}$-module $\mc W_j$ defined in Thm. \ref{lb13}. Note that $E(g_j)$ is the set of marked points of $g_j$-orbits. We assume $g_1,\dots,g_N$ are admissible, i.e., there is an action $\Gamma\curvearrowright E$ where each $[\upalpha_j]$ acts as $g_j$. So $\Gamma$-orbits in $E$ are precisely $\bk{g_1,\dots,g_N}$-orbits. We let $\Orb(\Gamma)$ be the set of $\Gamma$-orbits in $E$. As usual, for $\Omega\in\Orb(\Gamma)$, $|\Omega|$ denotes its cardinality.
+Now we assume the setting of Main Theorem \ref{lb14}. Namely, $\fk P=\eqref{eq16}$ is a positively  $N$-pathed Riemann sphere with local coordinates, and to each marked point $x_j$ we associate a $g_j$-twisted  $\Ubb=\Vbb^{\otimes E}$-module $\mc W_j$ defined in Thm. \ref{lb13}. Note that $E(g_j)$ is the set of marked points of $\bk{g_j}$-orbits. We assume $g_1,\dots,g_N$ are admissible, i.e., there is an action $\Gamma\curvearrowright E$ where each $[\upalpha_j]$ acts as $g_j$. So $\Gamma$-orbits in $E$ are precisely $\bk{g_1,\dots,g_N}$-orbits. We let $\Orb(\Gamma)$ be the set of $\Gamma$-orbits in $E$. As usual, for $\Omega\in\Orb(\Gamma)$, $|\Omega|$ denotes its cardinality.
 
 
 
 Now, by the Main Theorem \ref{lb14}, we have:
 
-\begin{co}
-For each $\Omega\in\Orb(\Gamma)$, let $(\Wbb)_\Omega$ be the list of all $\Wbb_{j,\tipae}$ where $j=1,\dots,N$, and $\tipae\in E(g_j)$ is such that the $g_j$-orbit $\bk{g_j}\tipae$ is contained in $\Omega$. Then the dimension of the space of conformal blocks associated to $\fk P$ and the twisted modules $\mc W_\blt$ equals
+\begin{co}\label{lb50}
+For each $\Omega\in\Orb(\Gamma)$, let $(\Wbb)_\Omega$ be the list of all $\Wbb_{j,\tipae}$ where $j=1,\dots,N$, and $\tipae\in E(g_j)$ is such that the $\bk{g_j}$-orbit $\bk{g_j}\tipae$ is contained in $\Omega$. Then the dimension of the space of conformal blocks associated to $\fk P$ and the twisted modules $\mc W_\blt$ equals
 \begin{align*}
 \prod_{\Omega\in\Orb(\Gamma)}\Nbf(g(C^\Omega);(\Wbb)_\Omega)	
 \end{align*}
@@ -2440,7 +2450,7 @@ of $\fk P^a$ and $\fk P^b$ respectively, where
 \fk X^a=	(C^a;\Upsilon^a(\bk{g_j}\tipae);\wtd\eta_{j,\tipae}\in\scr O(\wtd W_{j,\tipae})\text{ for all }0\leq j\leq N,\tipae\in E(g_j)),\\
 \fk X^b=	(C^b;\Upsilon^b(\bk{h_l}\tipae);\wtd\varpi_{l,\tipae}\in\scr O(\wtd M_{l,\tipae})\text{ for all }0\leq l\leq K,\tipae\in E(h_l)).		
 \end{gather*}
-We recall some details for the readers' convenience.  As in Thm. \ref{lb4} and Cor. \ref{lb6},  we define $\Psi^a,\Upsilon^a$ for $\fk P^a$ and $\fk X^a$, and define $\Psi^b,\Upsilon^b$ for $\fk P^b$ and $\fk X^b$. For each $0\leq j\leq N$ (resp. $0\leq k\leq K$), $E(g_j)$ (resp. $E(h_l)$) is the set marked points of $g_j$-orbits (resp. $h_l$-orbits). For each $\tipae\in E(g_j)$ (resp. $\tipae\in E(h_l)$), we let $\wtd W_{j,\tipae}$ (resp. $\wtd M_{l,\tipae}$) be the connected component of $W_j$ (resp. $M_l$) containing $\Upsilon^a(\bk{g_j}\tipae)$ (resp. $\Upsilon^b(\bk{h_l}\tipae)$). Let
+We recall some details for the readers' convenience.  As in Thm. \ref{lb4} and Cor. \ref{lb6},  we define $\Psi^a,\Upsilon^a$ for $\fk P^a$ and $\fk X^a$, and define $\Psi^b,\Upsilon^b$ for $\fk P^b$ and $\fk X^b$. For each $0\leq j\leq N$ (resp. $0\leq k\leq K$), $E(g_j)$ (resp. $E(h_l)$) is the set marked points of $\bk{g_j}$-orbits (resp. $\bk{h_l}$-orbits). For each $\tipae\in E(g_j)$ (resp. $\tipae\in E(h_l)$), we let $\wtd W_{j,\tipae}$ (resp. $\wtd M_{l,\tipae}$) be the connected component of $W_j$ (resp. $M_l$) containing $\Upsilon^a(\bk{g_j}\tipae)$ (resp. $\Upsilon^b(\bk{h_l}\tipae)$). Let
 \begin{align*}
 k_{j,\tipae}=|\bk{g_j}\tipae|\qquad\text{resp.}\qquad\tipak_{l,\tipae}=|\bk{h_l}\tipae|.	
 \end{align*}
@@ -2466,7 +2476,7 @@ commutes for some $r_j>0$ (resp. $\rho_l>0$), and that (similar to \eqref{eq28})
 \end{align}
 
 
-In addition to the above conditions (which we have assumed before), for the purpose of sewing $\fk X^a$ and $\fk X^b$, we also assume that $g_0$-orbits and $h_0$-orbits have the same set of marked points, i.e.,
+In addition to the above conditions (which we have assumed before), for the purpose of sewing $\fk X^a$ and $\fk X^b$, we also assume that $\bk{g_0}$-orbits and $\bk{h_0}$-orbits have the same set of marked points, i.e.,
 \begin{align}
 \boxed{~E(g_0)=E(h_0)~}
 \end{align} 
@@ -2689,7 +2699,7 @@ Assume the setting of Sec. \ref{lb59}. Assume that $\Vbb$ is $C_2$-cofinite. Ass
 
 
 \begin{proof}
-By the definition of $\uppsi^{a\#b}$ and $\scr S(\upphi^a\cdot \upphi^b)$, and by \eqref{eq74}, $\uppsi^{a\#b}$ converges $q$-absolutely to $\scr S(\upphi^a\cdot \upphi^b)$, which is an element of $\CB_{\fk X^{a\#b}}(\Wbb_{\blt\backslash0,\blt}\otimes\Mbb_{\blt\backslash0,\blt})$. By Thm. \ref{lb46}, $\fk X^{a\#b}$ is a permutation covering of $\fk P^{a\#b}$ associated to the action \eqref{eq59} and the sets $E(g_j),E(h_l)$ (where $j,l>0$) of marked points of $g_j$- and $h_l$-orbits. By Thm. \ref{lb14}, we have
+By the definition of $\uppsi^{a\#b}$ and $\scr S(\upphi^a\cdot \upphi^b)$, and by \eqref{eq74}, $\uppsi^{a\#b}$ converges $q$-absolutely to $\scr S(\upphi^a\cdot \upphi^b)$, which is an element of $\CB_{\fk X^{a\#b}}(\Wbb_{\blt\backslash0,\blt}\otimes\Mbb_{\blt\backslash0,\blt})$. By Thm. \ref{lb46}, $\fk X^{a\#b}$ is a permutation covering of $\fk P^{a\#b}$ associated to the action \eqref{eq59} and the sets $E(g_j),E(h_l)$ (where $j,l>0$) of marked points of $\bk{g_j}$- and $\bk{h_l}$-orbits. By Thm. \ref{lb14}, we have
 \begin{align}
 \CB_{\fk X^{a\#b}}(\Wbb_{\blt\backslash0,\blt}\otimes\Mbb_{\blt\backslash0,\blt})=\CB_{\fk P^{a\#b}}(\mc W_{\blt\backslash0}\otimes\mc M_{\blt\backslash0}).\label{eq75}
 \end{align}
@@ -2756,7 +2766,7 @@ z\in\Cbb^\times\mapsto \bk{\mc Y(w_1,z)w_2,w_3'}
 \begin{align}
 \frac d{dz}\bk{\mc Y(w_1,z)w_2,w_3'}=\bk{\mc Y(L_{-1}w_1,z)w_2,w_3'}	\label{eq81}
 \end{align}
-\item (Jacobi identity)  For each $u\in\Ubb$, and for each $z\neq \tipaz$ in $\Cbb^\times$ with chosen $\arg z,\arg \tipaz,\arg(z-\tipaz)$, the following series of single-valued functions of $\log z,\log z,\log(z-\tipaz)$
+\item (Analytic Jacobi identity)\footnote{A similar property is called the duality property in \cite[Def. 4.1]{Hua18}.}  For each $u\in\Ubb$, and for each $z\neq \tipaz$ in $\Cbb^\times$ with chosen $\arg z,\arg \tipaz,\arg(z-\tipaz)$, the following series of single-valued functions of $\log z,\log z,\log(z-\tipaz)$
 \begin{gather}
 	\bk{Y^{g_3}(u,z)\mc Y(w_1,\tipaz)w_2,w_3'}:=\sum_{n\in\frac 1{|g_3|}\Nbb}	\bk{Y^{g_3}(u,z)P_n^{g_3}\mc Y(w_1,\tipaz)w_2,w_3'}\label{eq76}\\
 	\bk{\mc Y(w_1,\tipaz)Y^{g_2}(u,z)w_2,w_3'}:=\sum_{n\in\frac 1{|g_2|}\Nbb}	\bk{\mc Y(w_1,\tipaz)P_n^{g_2}Y^{g_2}(u,z)w_2,w_3'}\label{eq77}\\
@@ -2778,12 +2788,12 @@ which can furthermore be extended to a multivalued holomorphic function $f_{\tip
 \end{df}
 
 \begin{rem}\label{lb55}
-In the above Jacobi identify, if we assume $u$ is fixed by $G$, then $f_\tipaz(z)$ is single-valued. In particular, if we choose $u$ to be the conformal vector of $\Ubb$, and apply the residue theorem to $zf_\tipaz(z)dz$, we obtain
+In the above analytic Jacobi identity, if we assume $u$ is fixed by $G$, then $f_\tipaz(z)$ is single-valued. In particular, if we choose $u$ to be the conformal vector of $\Ubb$, and apply the residue theorem to $zf_\tipaz(z)dz$, we obtain
 \begin{align*}
 	&\bk{\mc Y(w_1,\tipaz)w_2,L_0w_3'}-\bk{\mc Y(w_1,\tipaz)L_0w_2,w_3'}\nonumber\\
 	=&	\bk{\mc Y(L_0w_1,\tipaz)w_2,w_3'}+\tipaz\bk{\mc Y(L_{-1}w_1,\tipaz)w_2,w_3'}.
 \end{align*}
-Thus, assuming the Jacobi identity, condition 1  of Def. \ref{lb51}  (the $L_{-1}$-derivative) is equivalent to
+Thus, assuming the analytic Jacobi identity, condition 1  of Def. \ref{lb51}  (the $L_{-1}$-derivative) is equivalent to
 \begin{align}
 	&\bk{\mc Y(w_1,\tipaz)w_2,L_0w_3'}-\bk{\mc Y(w_1,\tipaz)L_0w_2,w_3'}\nonumber\\
 	=&	\bk{\mc Y(L_0w_1,\tipaz)w_2,w_3'}+\tipaz\frac d{d\tipaz}\bk{\mc Y(w_1,\tipaz)w_2,w_3'}\label{eq79}.
@@ -2843,7 +2853,7 @@ Consequently,  if we assume that each $\Lss$-eigenspace of $\mc W_3$ is finite-d
 
 
 
-The following property says that in order to show that $\mc Y$ is an intertwining operator, it suffices to verify the Jacobi identity for  $\tipaz$ in a small region. Therefore, at least in the case that $\Ubb^G$ is $C_2$-cofinite and the modules are $\Ubb^G$-finitely generated, our definition of intertwining operators agrees with that in \cite{McR21} (cf. the paragraph above Rem. 4.16).
+The following property says that in order to show that $\mc Y$ is an intertwining operator, it suffices to verify the analytic Jacobi identity for  $\tipaz$ in a small region. Therefore, at least in the case that $\Ubb^G$ is $C_2$-cofinite and the modules are $\Ubb^G$-finitely generated, our definition of intertwining operators agrees with that in \cite{McR21} (cf. the paragraph above Rem. 4.16).
 
 
 
@@ -2864,7 +2874,7 @@ Fix $\tipaz_0\in U$ with $\arg\tipaz_0=\arg_U(\tipaz_0)$. For each $\tipaz\in\Cb
 \bk{\mc Y(w_1,\tipaz)Y^{g_2}(u,z)w_2,w_3'}=\bk{\mc Y(\xi^{-L_0}w_1,\tipaz_0)Y^{g_2}(\xi^{-L_0}u,\xi^{-1}z)\xi^{-L_0}w_2,\xi^{L_0}w_3'}\\
 \bk{\mc Y(Y^{g_1}(u,z-\tipaz)w_1,\tipaz)w_2,w'_3}=\bk{\mc Y(Y^{g_1}(\xi^{-L_0}u,\xi^{-1}(z-\tipaz))\xi^{-L_0}w_1,\tipaz_0)\xi^{-L_0}w_2,\xi^{L_0}w'_3}	
 \end{gather*}
-which are defined in the similar way as \eqref{eq76}, \eqref{eq77}, \eqref{eq78}. Since the Jacobi identity holds for $\tipaz_0$, we know that: (a) The above three series converges a.l.u. when $|\xi^{-1}z|>|\tipaz_0|,|\xi^{-1}z|<|\tipaz_0|,|\xi^{-1}(z-\tipaz)|<|\tipaz_0|$ respectively. (b) If we assume that $\xi^{-1}z\in R_{\tipaz_0}$, that $\arg(\xi^{-1}z)=\arg z-\arg\xi$ equals $\arg\tipaz_0$, and that $\arg(\xi^{-1}z-\tipaz_0):=\arg(\xi^{-1}(z-\tipaz))=\arg(z-\tipaz)-\arg\xi$ equals either $\arg \tipaz_0$ or $\arg\tipaz_0-\pi$, then the above three functions of $\xi^{-1}z$ can be extended to  the same holomorphic function on $\Upsigma_{\tipaz_0}$ which can furthermore be extended to a multi-valued holomorphic function on $\Cbb^\times\setminus\{\tipaz_0\}$. The Jacobi identity for $\tipaz$ follows immediately.
+which are defined in the similar way as \eqref{eq76}, \eqref{eq77}, \eqref{eq78}. Since the analytic Jacobi identity holds for $\tipaz_0$, we know that: (a) The above three series converges a.l.u. when $|\xi^{-1}z|>|\tipaz_0|,|\xi^{-1}z|<|\tipaz_0|,|\xi^{-1}(z-\tipaz)|<|\tipaz_0|$ respectively. (b) If we assume that $\xi^{-1}z\in R_{\tipaz_0}$, that $\arg(\xi^{-1}z)=\arg z-\arg\xi$ equals $\arg\tipaz_0$, and that $\arg(\xi^{-1}z-\tipaz_0):=\arg(\xi^{-1}(z-\tipaz))=\arg(z-\tipaz)-\arg\xi$ equals either $\arg \tipaz_0$ or $\arg\tipaz_0-\pi$, then the above three functions of $\xi^{-1}z$ can be extended to  the same holomorphic function on $\Upsigma_{\tipaz_0}$ which can furthermore be extended to a multi-valued holomorphic function on $\Cbb^\times\setminus\{\tipaz_0\}$. The analytic Jacobi identity for $\tipaz$ follows immediately.
 \end{proof}
 
 
@@ -2913,7 +2923,7 @@ Let $\mc Y(\cdot,r)$ denote a linear map
 \end{gather*}
 also regarded as a linear functional on $\mc W_1\otimes\mc W_2\otimes \mc W_3$. Then the following two statements are equivalent.
 \begin{enumerate}
-\item $\mc Y(\cdot,r)$ satisfies the Jacobi identity in Def. \ref{lb51} (for the $g_1$-, $g_2$-, and $g_3$-twisted modules $\mc W_1,\mc W_2,\mc W_3$) in the special case that $\tipaz=r$ and $\arg\tipaz=0$.	
+\item $\mc Y(\cdot,r)$ satisfies the analytic Jacobi identity in Def. \ref{lb51} (for the $g_1$-, $g_2$-, and $g_3$-twisted modules $\mc W_1,\mc W_2,\mc W_3$) in the special case that $\tipaz=r$ and $\arg\tipaz=0$.	
 \item $\mc Y(\cdot,r)$ is a conformal block associated to $\fk P_r$ and the $g_1$-, $g_2$-, and $g_3^{-1}$-twisted modules $\mc W_1,\mc W_2,\mc W_3'$.
 \end{enumerate}	
 \end{pp}
@@ -2934,11 +2944,11 @@ on $0<|z^{-1/|g_3|}|<|r^{-1/|g_3|}|$, where $\mc U(\tipxgamma_z)$ equals $e^{zL_
 \end{align}
 where the right hand side is defined by \eqref{eq76}. This proves the equivalence of the ``convergence" part.
 
-Step 2. Recall that $\zeta$ is the standard coordinate of $\Cbb$. We set $\fk U=\{\mc U_\varrho(\zeta)^{-1}u:u\in\Ubb\}$, which is a subspace of $\scr U_{\Pbb^1}(\Pbb^1\setminus\Sbf)$ containing a subset that generates freely $\scr U_{\Pbb^1\setminus\Sbf}$ (cf. the proof of Lemma. \ref{lb53}). Set $\uppsi=\mc Y(\cdot,r)$. We shall verify the equivalence of: (a) the two conditions of Prop. \ref{lb11} (stated for the linear functional $\mc Y(\cdot,r)$), (b) the Jacobi identity in Def. \ref{lb51}.
+Step 2. Recall that $\zeta$ is the standard coordinate of $\Cbb$. We set $\fk U=\{\mc U_\varrho(\zeta)^{-1}u:u\in\Ubb\}$, which is a subspace of $\scr U_{\Pbb^1}(\Pbb^1\setminus\Sbf)$ containing a subset that generates freely $\scr U_{\Pbb^1\setminus\Sbf}$ (cf. the proof of Lemma. \ref{lb53}). Set $\uppsi=\mc Y(\cdot,r)$. We shall verify the equivalence of: (a) the two conditions of Prop. \ref{lb11} (stated for the linear functional $\mc Y(\cdot,r)$), (b) the analytic Jacobi identity in Def. \ref{lb51}.
 
-Assume (b). Part 1 of Prop. \ref{lb11} is already proved. For each $u\in\Ubb,w_1\in\mc W_1,w_2\in\mc W_2,w_3'\in\mc W_3'$, set $w_\blt=w_1\otimes w_2\otimes w_3'$, let $f_{r,u,w_\blt}$ be the multivalued holomorphic function $f_r=f_\tipaz$ in the Jacobi identity of Def. \ref{lb51}, which becomes single-valued on any open simply-connected  $U\subset\Pbb^1\setminus\Sbf$ if we specify a path $\uplambda$ in $\Pbb^1\setminus\Sbf$ from inside $U$ to $\bigstar$.  We define this function on $U$ to be $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta)^{-1}u,w_\blt)\big|_U$. Moreover, this multivalued function can be chosen such that when $U=\Upsigma_r$ and $\uplambda$ is any path in $\Upsigma_r$ with initial point $\bigstar$, then $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta)^{-1}u,w_\blt)\big|_{\Upsigma_r}$ agrees with the common (single-valued) holomorphic function on $\Upsigma_r$ mentioned in the Jacobi identity of Def. \ref{lb51}. It is now easy to check that condition 2 of Prop. \ref{lb11} holds for $W_j$ being $W_0$ or $W_r$ (notice Rem. \ref{lb9}). As for $W_\infty$, condition 2 also holds due to \eqref{eq83} and the fact that $\mc U_\varrho(\zeta)^{-1}u$ equals $\mc U(\tipxgamma_z)u$ under the trivialization $\mc U_\varrho(\zeta^{-1})$  (cf. Ex. \ref{lb36}). The proof of (a) is complete.
+Assume (b). Part 1 of Prop. \ref{lb11} is already proved. For each $u\in\Ubb,w_1\in\mc W_1,w_2\in\mc W_2,w_3'\in\mc W_3'$, set $w_\blt=w_1\otimes w_2\otimes w_3'$, let $f_{r,u,w_\blt}$ be the multivalued holomorphic function $f_r=f_\tipaz$ in the analytic Jacobi identity of Def. \ref{lb51}, which becomes single-valued on any open simply-connected  $U\subset\Pbb^1\setminus\Sbf$ if we specify a path $\uplambda$ in $\Pbb^1\setminus\Sbf$ from inside $U$ to $\bigstar$.  We define this function on $U$ to be $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta)^{-1}u,w_\blt)\big|_U$. Moreover, this multivalued function can be chosen such that when $U=\Upsigma_r$ and $\uplambda$ is any path in $\Upsigma_r$ with initial point $\bigstar$, then $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta)^{-1}u,w_\blt)\big|_{\Upsigma_r}$ agrees with the common (single-valued) holomorphic function on $\Upsigma_r$ mentioned in the analytic Jacobi identity of Def. \ref{lb51}. It is now easy to check that condition 2 of Prop. \ref{lb11} holds for $W_j$ being $W_0$ or $W_r$ (notice Rem. \ref{lb9}). As for $W_\infty$, condition 2 also holds due to \eqref{eq83} and the fact that $\mc U_\varrho(\zeta)^{-1}u$ equals $\mc U(\tipxgamma_z)u$ under the trivialization $\mc U_\varrho(\zeta^{-1})$  (cf. Ex. \ref{lb36}). The proof of (a) is complete.
 
-Assume (a). Let $\wr\uppsi$ be as in Prop. \ref{lb11}. Then it is easy to check that $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta^{-1})u,w_\blt)\big|_{\Upsigma_r}$ restricts to \eqref{eq76}, \eqref{eq77}, \eqref{eq78} in the required regions. This verifies the Jacobi identity in Def. \ref{lb51}, hence proves (b).
+Assume (a). Let $\wr\uppsi$ be as in Prop. \ref{lb11}. Then it is easy to check that $\wr\uppsi(\uplambda,\mc U_\varrho(\zeta^{-1})u,w_\blt)\big|_{\Upsigma_r}$ restricts to \eqref{eq76}, \eqref{eq77}, \eqref{eq78} in the required regions. This verifies the analytic Jacobi identity in Def. \ref{lb51}, hence proves (b).
 \end{proof}
 
 
@@ -2963,11 +2973,11 @@ For each $r>0$, the linear map $\nu_r$ is bijective.
 
 
 \begin{proof}
-By \eqref{eq81} and Lemma \ref{lb68}, $\nu_r$ is injective. To prove that $\nu_r$ is surjective, we choose any $\mc Y(\cdot,r)$ in the codomain of $\nu_r$, which satisfies Jacobi identify (in Def. \ref{lb51}) for $\tipaz=r$ and $\arg\tipaz=\arg r=0$. For a general $\tipaz\in\Cbb^\times$ with argument, we set
+By \eqref{eq81} and Lemma \ref{lb68}, $\nu_r$ is injective. To prove that $\nu_r$ is surjective, we choose any $\mc Y(\cdot,r)$ in the codomain of $\nu_r$, which satisfies the analytic Jacobi identify (in Def. \ref{lb51}) for $\tipaz=r$ and $\arg\tipaz=\arg r=0$. For a general $\tipaz\in\Cbb^\times$ with argument, we set
 \begin{align*}
 \bk{\mc Y(w_1,\tipaz)w_2,w_3'}=\bk{\mc Y(\xi^{-L_0}w_1,r)\xi^{-L_0}w_2,\xi^{L_0}w_3}	
 \end{align*}
-where $\xi=r^{-1}\tipaz$ and $\arg\xi=\arg\tipaz$. We may use the same method as in the proof of Prop. \ref{lb57} to prove the Jacobi identity for all $\tipaz$. Finally, it is straightforward to check that \eqref{eq79} holds, which is equivalent to condition 1 of Def. \ref{lb51} due to Rem. \ref{lb55}. This proves that $\mc Y$ is an intertwining operator whose value at $r$ is the given $\mc Y(\cdot,r)$.
+where $\xi=r^{-1}\tipaz$ and $\arg\xi=\arg\tipaz$. We may use the same method as in the proof of Prop. \ref{lb57} to prove the analytic Jacobi identity for all $\tipaz$. Finally, it is straightforward to check that \eqref{eq79} holds, which is equivalent to condition 1 of Def. \ref{lb51} due to Rem. \ref{lb55}. This proves that $\mc Y$ is an intertwining operator whose value at $r$ is the given $\mc Y(\cdot,r)$.
 \end{proof}
 
 \begin{lm}\label{lb68}
@@ -3163,16 +3173,20 @@ Bischoff, M., 2020. A remark about the anomalies of cyclic holomorphic permutati
 Carpi, S., Kawahigashi, Y., Longo, R. and Weiner, M., 2018. From vertex operator algebras to conformal nets and back (Vol. 254, No. 1213). Memoirs of the American Mathematical Society
 
 
-\bibitem[DGT19a]{DGT19a}
-Damiolini, C., Gibney, A., and Tarasca, N., 2019. Conformal blocks from vertex algebras and their connections on $\ovl{\mc M}_{g,n}$.  To appear in Geometry \& Topology, arXiv:1901.06981.
 
-\bibitem[DGT19b]{DGT19b}
-Damiolini, C., Gibney, A. and Tarasca, N., 2019. On factorization and vector bundles of conformal blocks from vertex algebras. arXiv preprint arXiv:1909.04683.
+\bibitem[CM16]{CM16}
+Carnahan, S. and Miyamoto, M., 2016. Regularity of fixed-point vertex operator subalgebras. arXiv preprint arXiv:1603.05645.
 
 
+\bibitem[DGT21]{DGT21}
+Damiolini, C., Gibney, A., and Tarasca, N. Conformal blocks from vertex algebras and their connections on $\ovl{\mc M}_{g,n}$.  Geom. Topol., 25(5):2235–2286, 2021.
 
-\bibitem[DLXY19]{DLXY19}
-Dong, C., Li, H., Xu, F. and Yu, N., 2019. Fusion products of twisted modules in permutation orbifolds. arXiv preprint arXiv:1907.00094.
+\bibitem[DGT22]{DGT22}
+Chiara Damiolini, Angela Gibney, and Nicola Tarasca. On factorization and vector bundles of conformal blocks from vertex algebras. Ann. Sci. \'Ec. Norm. Sup\'er., 2022.
+
+
+
+
 		
 \bibitem[DLM97]{DLM97}
 Dong, C., Li, H. and Mason, G., 1997. Regularity of Rational Vertex Operator Algebras. Advances in Mathematics, 132(1), pp.148-166.	
@@ -3181,13 +3195,17 @@ Dong, C., Li, H. and Mason, G., 1997. Regularity of Rational Vertex Operator Alg
 %Dong, C., Li, H. and Mason, G., 1998. Twisted representations of vertex operator algebras. Mathematische Annalen, 310(3), pp.571-600.	
 
 
-\bibitem[CM16]{CM16}
-Carnahan, S. and Miyamoto, M., 2016. Regularity of fixed-point vertex operator subalgebras. arXiv preprint arXiv:1603.05645.
 
+
+\bibitem[DLXY24]{DLXY24}
+Dong, C., Li, H., Xu, F., \& Yu, N. (2024). Fusion products of twisted modules in permutation orbifolds. Transactions of the American Mathematical Society, 377(03), 1717-1760.
 
 \bibitem[DXY21]{DXY21}
 Dong, C., Xu, F. and Yu, N., 2021. Permutation orbifolds and associative algebras. Science China Mathematics, pp.1-10.
 
+
+\bibitem[DXY24]{DXY24}
+Dong, C., Xu, F. and Yu, N., 2024. Fusion Products of Twisted Modules in Permutation Orbifolds: II. arXiv preprint arXiv:2411.15751
 
 
 \bibitem[Del19]{Del19}
@@ -3236,14 +3254,17 @@ Fulton, W., 2013. Algebraic topology: a first course (Vol. 153). Springer Scienc
 \bibitem[Gui20a]{Gui20a}
 Gui, B., 2020. Unbounded Field Operators in Categorical Extensions of Conformal Nets,  arXiv:2001.03095
 
-\bibitem[Gui20b]{Gui20b}
-Gui, B., 2020. Convergence of Sewing Conformal Blocks. arXiv preprint arXiv:2011.07450.
 
-\bibitem[Gui21a]{Gui21a}
+\bibitem[Gui21]{Gui21}
 Gui, B., 2021. Categorical extensions of conformal nets. Comm. Math. Phys. 383, 763-839 (2021).
 
-\bibitem[Gui21b]{Gui21b}
-Gui, B., 2021. Sewing and Propagation of Conformal Blocks. arXiv: 2110.04774.
+
+
+\bibitem[Gui24a]{Gui24a}
+Gui, B. (2024). Convergence of sewing conformal blocks. Commun. Contemp. Math., Vol. 26, No. 03.
+
+\bibitem[Gui24b]{Gui24b}
+Gui, B., 2024. Sewing and Propagation of Conformal Blocks. New York J. Math., 30 (2024) 187–230.
 
 \bibitem[HLZ10]{HLZ10}
 Huang, Y.Z., Lepowsky, J. and Zhang, L., 2010. Logarithmic tensor category theory, II: Logarithmic formal calculus and properties of logarithmic intertwining operators. arXiv preprint arXiv:1012.4196.
