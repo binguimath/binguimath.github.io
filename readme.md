@@ -41,7 +41,7 @@ I have written LaTeX lecture notes for the following courses. See [this page](Co
 
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)
  
-- (2023 Fall & 2024 Spring) [Analysis I & II](Courses/Course_2023_Analysis.md)
+- (2023 Fall & 2024 Spring) [Analysis I & II](Courses/Course_2023_Analysis.md) for Qiuzhen college
 
 - (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)
 
