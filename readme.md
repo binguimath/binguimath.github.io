@@ -37,7 +37,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 ## Courses 😪
 
-I have written LaTeX lecture notes for the following courses. See this page for the courses I taught using my old lecture notes.
+I have written LaTeX lecture notes for the following courses. See [this page](Courses/Other_Courses.md) for the courses I taught using my old lecture notes.
 
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)
  
