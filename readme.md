@@ -36,11 +36,18 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 
 ## Courses 😪
+
+I have written LaTeX lecture notes for the following courses. See this page for the courses I taught using my old lecture notes.
+
 - (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)
  
 - (2023 Fall & 2024 Spring) [Analysis I & II](Courses/Course_2023_Analysis.md)
 
 - (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)
+
+
+
+
 
 
 ## Publications and Preprints 😵‍💫
