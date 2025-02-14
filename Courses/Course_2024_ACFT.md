@@ -63,7 +63,7 @@ Notes ACFT: [Topics in Operator Algebras: Algebraic Conformal Field Theory](http
 
 
 
-## References (to be expanded)
+## References
 
 ### The most relevant references are:
 
