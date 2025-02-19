@@ -2856,7 +2856,7 @@ The goal of this subsection is to prove that closed intervals are sequentially c
 
 
 \begin{df}\label{lb266}
-Let $(x_n)$ be a sequence in a metric space $X$. We say that $x\in X$ is a \textbf{cluster point} \index{00@Cluster point of a sequence} of $(x_n)$, if $(x_n)$ has a subsequence $(x_{n_k})$ converging to $x$.
+Let $(x_n)$ be a sequence in a metric space $X$. We say that $x\in X$ is a \textbf{cluster point} \index{00@Cluster point of a sequence in a metric space} of $(x_n)$, if $(x_n)$ has a subsequence $(x_{n_k})$ converging to $x$.
 \end{df}
 
 Warning: In a general topological space, the cluster points of a sequence will be defined in a different way. (See Pb. \ref{lb223} and Rem. \ref{lb267}.)
@@ -3419,12 +3419,17 @@ This follows immediately from Prop. \ref{lb86}, Thm. \ref{lb87}, and the fact th
 \begin{prob}\label{lb64}
 Let $(x_n)$ be a sequence in a metric space $X$. Let $x\in X$. Prove that the following are equivalent.
 \begin{itemize}
-\item[(1)] $x$ is a cluster point of $(x_n)$, i.e., the limit of a convergent subsequence of $(x_n)$.
+\item[(1)] $x$ is the limit of a convergent subsequence of $(x_n)$.
 \item[(2)] For each $\eps>0$ and each $N\in\Zbb_+$, there exists $n\geq N$ such that $d(x_n,x)<\eps$.
 \end{itemize}
-(Note: in a general topological space, these two statements are not equivalent.)
+Any $x$ satisfying one of the above two statements is called a \textbf{cluster point}\index{00@Cluster point of a sequence in a metric space} of $(x_n)$.
 \end{prob}
 
+\begin{rem}
+In a general topological space $X$, we say that $x$ is a cluster point of the sequence $(x_n)$ if it satisfies condition (2) of Pb. \ref{lb64}. This is equivalent to saying that $(x_n)$ has a \textit{subnet} converging to $x$. (See Pb. \ref{lb223} for details.) 
+
+Therefore, if $X$ is metrizable, then $(x_n)$ has a subsequence converging to $x$ iff $(x_n)$ has a subnet converging to $x$. However, when $X$ is not metrizable,  the latter does not necessarily imply the former; in other words, we only have (1)$\Rightarrow$(2) but not necessarily (2)$\Rightarrow$(1) in Pb. \ref{lb64}.  \hfill\qedsymbol
+\end{rem}
 
 \begin{rem}
 Condition (2) is often abbreviated to ``for each $\eps>0$, the sequence $(x_n)$ is frequently in $B(x,\eps)$". In general, we say ``$(x_n)$ \textbf{frequently} satisfies P" if for each $N\in\Zbb_+$ there is $n\geq N$ such that $x_n$ satisfies P. We say that ``$(x_n)$ \textbf{eventually} satisfies P" if there exists $N\in\Zbb_+$ such that for every $n\geq N$, $x_n$ satisfies P. \index{00@Eventually} \index{00@Frequently}  
@@ -4199,6 +4204,8 @@ A preordered set $(I,\leq)$ is called a \textbf{directed set} \index{00@Direct s
 \forall\alpha,\beta\in I~~~\exists\gamma\in I~~\text{ such that }\alpha\leq \gamma,\beta\leq\gamma  \label{eq37}
 \end{align}
 If $I$ is a directed set and $X$ is a set, then a function $x:I\rightarrow X$ is called a \textbf{net} \index{00@Net $(x_\alpha)_{\alpha\in I}$} with directed set/index set $I$. We often write $x(\alpha)$ as $x_\alpha$ if $\alpha\in I$, and write $x$ as $(x_\alpha)_{\alpha\in I}$.
+
+Unless otherwise stated, for any net $(x_\alpha)_{\alpha\in I}$ we assume that $I\neq\emptyset$.  \hfill\qedsymbol
 \end{df}
 
 
@@ -6801,7 +6808,7 @@ Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$. Let $x\in X$. Prove that the fol
 \item For every neighborhood $U$ of $x$, we have that $x_\alpha$ is frequently in $U$.
 \item $x$ belongs to $\dps\bigcap_{\alpha\in I}\ovl{\{x_\beta:\beta\geq\alpha\}}$.
 \end{enumerate}
-Any $x\in X$ satisfying one of these three conditions is called a \textbf{cluster point} \index{00@Cluster point of a net} of $(x_\alpha)_{\alpha\in I}$. (Compare Pb. \ref{lb64}.)
+Any $x\in X$ satisfying one of these three conditions is called a \textbf{cluster point} \index{00@Cluster point of a net in a topological space} of $(x_\alpha)_{\alpha\in I}$. (Compare Pb. \ref{lb64}.)
 \end{prob}
 
 \begin{proof}[Hint]
@@ -7484,10 +7491,19 @@ Take a net $(x_\alpha,y_\alpha)$ in $X\times Y$. Since $X$ is compact, $(x_\alph
 Note that if $X\times Y$ is compact, then $X$, as the image of $X\times Y$ under the projection map, is compact by Thm. \ref{lb236}. Therefore, we conclude that $X\times Y$ is compact iff $X$ and $Y$ are compact.
 \end{rem}
 
+The following proposition will be used in Prop. \ref{lb245} and Lem. \ref{lb716}.
 
+\begin{pp}\label{lb1000}
+Let $K_1,K_2$ be mutually disjoint compact subsets of a Hausdorff space $X$. Then there exist mutually disjoint open subsets $U,V\subset X$ such that $K_1\subset U$ and $K_2\subset V$.
+\end{pp}
 
+Equivalently, there is an open $U\subset X$ containing $K_1$ such that $\ovl U\cap K_2=\emptyset$.
 
+\begin{proof}
+We first treat the special case that $K_1=\{x\}$. Then for each $y\in K_2$ there exist mutually disjoint $U_y\in\Nbh_X(x)$ and $V_y\in\Nbh_X(y)$. Since $K_2$ is compact, there exist $y_1,\dots,y_n\in K_2$ such that $V:=V_{y_1}\cup\cdots \cup V_{y_n}$ covers $K_2$. The proof is finished by setting $U=U_{y_1}\cap\cdots\cap U_{y_n}$.
 
+Now consider the general case. By the above special case, for each $x\in K_1$ there exist mutually disjoint open sets $U_x,V_x$ such that $x\in U_x$ and $K_2\subset V_x$. Since $K_1$ is compact, we can find $x_1,\dots,x_n\in K_1$ such that $U=U_{x_1}\cup\cdots\cup U_{x_n}$ covers $K_1$. Let $V=V_{x_1}\cap\cdots\cap V_{x_n}$, finishing the proof. 
+\end{proof}
 
 
 
@@ -7800,13 +7816,15 @@ Let $X$ be an LCH space. Then the closed subsets and the open subsets of $X$ are
 \end{pp}
 
 \begin{proof}
-Let $E\subset X$ be closed. Let $x\in E$. Then there is $U\in\Nbh_X(x)$ with compact closure $\Cl_X(U)$. So $\Cl_X(U)\cap E$ is compact by Cor. \ref{lb234}. Note that $U\cap E\in \Nbh_E(x)$, and $U\cap E$ is a subset of $\Cl_X(U)\cap E$. So $U\cap E$ is precompact in $E$. This proves that $E$ is LCH.
+Let $E\subset X$ be closed. Let $x\in E$. Then there is $U\in\Nbh_X(x)$ with compact closure $\Cl_X(U)$. So $\Cl_X(U)\cap E$ is compact by Cor. \ref{lb234}. We have thus proved that $x$ is contained in a neighborhood $U\cap E\in \Nbh_E(x)$, and that this neighborhood is contained in a compact subset of $E$ (namely, $\Cl_X(U)\cap E$). This proves that $E$ is LCH.
 
-Next, we let $W$ be an open subset of $X$. Let $x\in W$. We want to show that there exists $U\in\Nbh_X(x)$ such that $\ovl U=\Cl_X(U)$ is compact and $\ovl U\subset W$. Then $U$ is clearly precompact in $W$.
+Next, we let $W$ be an open subset of $X$. We want to prove that $W$ is LCH. Choose any $x\in W$. Since $X$ is LCH, there exists $\Omega\in\Nbh_X(x)$ whose closure $\ovl\Omega\equiv\Cl_X(\Omega)$ is compact. Thus, its closed subset $\ovl\Omega\setminus W$ is also compact (Cor. \ref{lb234}). Since $x\notin\ovl\Omega\setminus W$, by Prop. \ref{lb1000}, there exists $U\in\Nbh_X(x)$ such that $\Cl_X(U)\cap (\ovl\Omega\setminus W)=\emptyset$. So
+\begin{align*}
+\Cl_X(U\cap \Omega)\cap(\ovl\Omega\setminus W)=\emptyset
+\end{align*}
+Noting that $\Cl_X(U\cap\Omega)\subset\ovl\Omega$, we have $\Cl_X(U\cap\Omega)\setminus W=\emptyset$, i.e., $\Cl_X(U\cap\Omega)\subset W$.
 
-Since $X$ is LCH, there is $\Omega\in\Nbh_X(x)$ with compact closure $\ovl\Omega=\Cl_X(\Omega)$. Then every open subset $U$ of $\Omega$ containing $x$ has compact closure in $X$. Thus, it suffices to prove that there exists $U\in\mc I=\Nbh_\Omega(x)$  such that $\ovl U\subset W$. Suppose that this is not true. Then for each $U\in\mc I$ there is $x_U\in \ovl U\setminus W$. So $(x_U)_{U\in\mc I}$ is a net in $\ovl\Omega\setminus W$, where $\ovl\Omega\setminus W$ is compact by Cor. \ref{lb234}. So $(x_U)_{U\in\mc I}$ has a cluster point $y\in\ovl\Omega\setminus W$. In particular, $y\neq x$.
-
-Since $X$ is Hausdorff, by Cor. \ref{lb243}, there is $V_0\in\Nbh_X(x)$ such that $y\notin\ovl V_0$. Let $V=V_0\cap\Omega$. Then $V\in\mc I$ and $y\notin \ovl V$. For every $U\in\mc I$ satisfying $U\subset V$ we have $x_U\in\ovl V$. So $(x_U)_{U\in\mc I}$ is eventually not in the neighborhood $X\setminus \ovl V$ of $y$. This is impossible.
+Note that $\Cl_X(U\cap\Omega)$ is a closed subset of the compact set $\ovl\Omega$ and hence is compact (Cor. \ref{lb234}). We have thus proved that $x$ is contained in a neighborhood $U\cap\Omega\in\Nbh_W(x)$, and that this neighborhood is contained in a compact subset of $W$ (namely, $\Cl_X(U\cap\Omega)$). This proves that $W$ is LCH.
 \end{proof}
 
 
@@ -15306,7 +15324,7 @@ Thus, although regular spaces are not necessarily Hausdorff, the two equivalent 
 \begin{proof}%[$\star$ Proof]
 ``(1)$\Rightarrow$(2)" is obvious. ``(2)$\Rightarrow$(3)" is also obvious: if $X\subset K$ where $K$ is a compact subset of $X$, then every net in $A$ is a net in $K$, which has a cluster point in $K$ and hence in $X$. 
 
-Assume (3). Let us show that $\ovl A$ is compact by showing that every nonempty net $(x_\alpha)_{\alpha\in I}$ in $\ovl A$ has a cluster point in $\ovl A$. 
+Assume (3). Let us show that $\ovl A$ is compact by showing that every net $(x_\alpha)_{\alpha\in I}$ in $\ovl A$ has a cluster point in $\ovl A$. 
 For each $\gamma\in I$, let $E_\gamma=\{x_\alpha:\alpha\in I,\alpha\geq\gamma\}$. Define 
 \begin{align*}
 J=\big\{(U,\gamma)\in 2^X\times I:U\text{ is open and contains } E_\gamma \big\}
@@ -20544,9 +20562,7 @@ Suppose that $K_1,K_2$ are disjoint compact subsets of $X$. Then $\mu(K_1\cup K_
 \end{lm}
 
 \begin{proof}
-By the (countable) subadditivity of $\mu^*$, it remains to prove $\mu^*(K_1\cup K_2)\geq\mu^*(K_1)+\mu^*(K_2)$. By the definition of $\mu^*$, it suffices to prove that for each open $U$ containing $K_1\cup K_2$ we have $\mu(U)\geq\mu^*(K_1)+\mu^*(K_2)$. We claim that there exist disjoint open $U_1,U_2\subset U$ containing $K_1,K_2$ respectively. Then by condition (d) of Asmp. \ref{lb712}, we get $\mu(U)\geq\mu(U_1\cup U_2)=\mu(U_1)+\mu(U_2)\geq\mu^*(K_1)+\mu^*(K_2)$.
-
-The proof of the claim is a routine argument in point-set topology. Choose any $x\in K_1,y\in K_2$. Since $U$ is Hausdorff, there exist disjoint $V_{xy}\in\Nbh_U(x)$ and $W_{xy}\in\Nbh_U(y)$. Since $K_2$ is compact, there exit $y_1,\dots,y_n\in K_2$ such that $K_2$ is contained in $W_x=W_{xy_1}\cup\cdots \cup W_{xy_n}$. Let $V_x=V_{xy_1}\cap\cdots\cap V_{xy_n}$. Then $V_x$ and $W_x$ are disjoint open subsets of $U$ containing respectively $x$ and $K_2$. By the compactness of $K_1$, there are $x_1,\dots,x_m\in K_1$ such that $K_1$ is covered by $U_1=V_{x_1}\cup\cdots\cup V_{x_m}$. Then $U_2=W_{x_1}\cap\cdots\cap W_{x_m}$ contains $K_2$ and is disjoint from $U_1$. \footnote{An alternative proof when $X$ is LCH: By Prop. \ref{lb245}, the open set $W=U\setminus K_2$ is LCH. Therefore, by Lem. \ref{lb460}, there is an open precompact subset $U_1\Subset W$ containing $K_1$. Take $U_2=U\setminus\ovl U_1$.}
+By the (countable) subadditivity of $\mu^*$, it remains to prove $\mu^*(K_1\cup K_2)\geq\mu^*(K_1)+\mu^*(K_2)$. By the definition of $\mu^*$, it suffices to prove that for each open $U$ containing $K_1\cup K_2$ we have $\mu(U)\geq\mu^*(K_1)+\mu^*(K_2)$. By Prop. \ref{lb1000}, there exist disjoint open $U_1,U_2\subset U$ containing $K_1,K_2$ respectively. Then by condition (d) of Asmp. \ref{lb712}, we get $\mu(U)\geq\mu(U_1\cup U_2)=\mu(U_1)+\mu(U_2)\geq\mu^*(K_1)+\mu^*(K_2)$.
 \end{proof}
 
 
