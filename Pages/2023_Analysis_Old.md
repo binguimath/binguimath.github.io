@@ -1,60 +1,11 @@
 # Older versions of Qiuzhen Lectures on Analysis
 
+
+
 - [2025.02.19](2023_Analysis_Old/20250219.pdf)
 
-
-## Time and Venue:
-2.21~5.13 (Mon./Thurs.) 19:20-20:55 <br>
-Online: Zoom Meeting ID: 361 038 6975 Passcode: BIMSA Offline:近春西楼报告厅 (Jinchunyuan West Building) Lecture Hall
-
-## Lecture Notes
-
-(To be posted)
-
-## Course Description:
-Vertex operator algebras (VOAs) are mathematical objects describing 2d chiral conformal field theory. The representation category of a “strongly rational” VOA is a modular tensor category (which yields a 3d topological quantum field theory), and conjecturally, all modular tensor categories arise from such VOA representations. Conformal blocks are the crucial ingredients in the representation theory of VOAs.
-
-This course is an introduction to the basic theory of VOAs, their representations, and conformal blocks from the complex analytic point of view. Our goal in the first half of this course is to get familiar with the computations in VOA theory and some basic examples. The second half is devoted to the study of conformal blocks. The goal is to understand the following three crucial properties of conformal blocks and the roles they play in the representation categories of VOAs. (1) The spaces of conformal blocks form a vector bundle with (projectively flat) connections. (2) Sewing conformal blocks is convergent (3) Factorization property.
-
-
-## Prerequisites
-(Many instructors say in a topic course that the only prerequisites are the basics of "A", though the actual ones are a firm understanding of "ABCDE". Here I am trying to be as honest as possible.)
-- Complex analysis
-- You should be familiar with the materials taught in any course or textbook called "Differential Manifolds". You should also know the definition of its complex analog: complex manifolds. 
-- You should have some rough idea of how the representations of Lie algebras and Lie groups are related. 
+Revision *after* this version: A major revision was made to Ch. 21 on Hilbert spaces. Sec. 27.5-27.7 on spectral theory was completely rewritten and moved to Ch. 25. I hope this new presentation of Riesz's original treatment of the spectral theorem provides better insight into the monotone convergence extension, an important method in measure theory. The name of Ch. 27 was also changed to "completeness and duality in measure theory". 
 
 
 
-## References
-References for vertex operator algebras
-
-Note: I list these books simply because they are often recommended by others. Some topics in these books might be rather advanced or technical for beginners.
-
-- E.Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §1-5
-
-- I,Frenkel, Huang, Lepowsky, On axiomatic approaches to vertex operator algebras and modules
-
-- Kac, Vertex algebras for Beginners
-
-- Lepowsky & Li, Introduction to vertex operator algebras and their representations
-
-References for conformal blocks
-
-- Khono, Conformal Field Theory and Topology, §1. (My favorite introductory book on conformal blocks. Brief and concise. Assumes little background knowledge.)
-
-- Tsuchiya-Kanie, Vertex operators in conformal field theory on P^1 and monodromy representations of braid group. (Very classical paper. Also assumes little background knowledge, although some of the terminology and methods are a bit outdated. Conformal blocks are called “primary fields” in this paper.)
-
-- My notes: [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
-
-> Our course could be viewed as a friendly introduction to the topics in this monograph. When studying these topics, we will make simplifications when possible. For instance, some results will be proved only for the genus 0 surface so that everything can be worked out using basic complex analysis.
-
-The following references require a solid background in algebraic geometry, which we do NOT require in our course.
-
-- Frenkel & Ben-Zvi, Vertex algebras and algebraic curves, 2ed, §6,9,10,17,18
-
-- Tsuchiya-Ueno-Yamada (TUY), Conformal field theory on universal family of stable curves with gauge symmetries. (Very classical paper. Continuation of Tuchiya-Kanie. Notations are complicated.)
-
-- Ueno, Conformal field theory with gauge symmetry. (Interpretation and clarification of TUY. Notations in TUY are simplified.)
-
-- Bakalov-Kirillov, Lectures on tensor categories and modular functors, last chapter. (Interpretation of TUY)
-
+- [Newest version](https://binguimath.github.io/Files/2023_Analysis.pdf)
