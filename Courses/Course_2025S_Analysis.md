@@ -21,7 +21,7 @@
 
 - [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Files/2023_Analysis.pdf)
 
-> [戳我](https://binguimath.github.io/Pages/2023_Analysis_Old.html)看看一些旧版本讲义。
+> [看看](https://binguimath.github.io/Pages/2023_Analysis_Old.html)一些旧版本讲义归档。
   
 在前一两次课，我们会大致介绍一些关于网和拓扑空间的基本概念，对应于讲义第5,7,8章的部分内容。 Folland的书*Real Analysis*第4章也是不错的参考资料。
 
