@@ -22961,7 +22961,7 @@ Fix a Hilbert space $\mc H$.
 The goal of this section and the next one is to study Riesz's proof of spectral theorem for bounded self-adjoint operators on $\mc H$. Our approach largely follows Riesz's method from Ch. IV and V of \cite{Rie13}, with one minor modification: we use nets to simplify certain results that Riesz originally proved using sequences. The motivation for studying this topic is twofold.
 
 
-First, Riesz's proof relies heavily on the method of \textbf{monotone convergence extension}, which we have previously encountered in Sec. \ref{lb891}, Sec. \ref{lb833}, and Subsec. \ref{lb923}. Roughly speaking, this method extends positive linear functionals from a small class of functions to a larger class, with a crucial step being the proof of a version of the monotone convergence theorem. Although Riesz did not invent this method\footnote{Prior to Riesz, Young employed this method to provide an alternative construction of the Lebesgue integral. See \cite[Sec. 6.6]{Pes}.}, he was the first to apply it to Hilbert space theory, demonstrating its significance beyond integral theory.
+First, Riesz's proof relies heavily on the method of \textbf{monotone convergence extension}, which we have previously encountered in Sec. \ref{lb891}, Sec. \ref{lb833}, and Subsec. \ref{lb923} and summarized in Rem. \ref{lb1011}. Although Riesz did not invent this method\footnote{Prior to Riesz, Young employed this method to provide an alternative construction of the Lebesgue integral. See \cite[Sec. 6.6]{Pes}.}, he was the first to apply it to Hilbert space theory, demonstrating its significance beyond integral theory.
 
 Interestingly, Riesz's treatment of spectral theory in \cite{Rie13} later led him to find a simplified proof of his representation theorem for $C([a,b])^*$ in \cite{Rie14}, which is considerably simpler than his original proof in \cite{Rie09}. Our treatment in Subsec. \ref{lb923} is similar to that in \cite{Rie14}. Therefore, studying Riesz's spectral theory provides a valuable insight into the origins and the nature of the monotone convergence extension method.
 
@@ -23050,7 +23050,7 @@ Similar to Def. \ref{lb1004}, we define the \textbf{operator-valued Stieltjes in
 where the RHS converges weakly.
 \end{df}
 
-By slightly modifying the following proof, one can show that for each $\xi\in\mc H$, the net $(S(f,\sigma,\lambda_\blt,E)\xi)_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}$ in $\mc H$ is Cauchy. Therefore, the RHS of \eqref{eq570} converges strongly. We will not need this fact. 
+%By slightly modifying the following proof, one can show that for each $\xi\in\mc H$, the net $(S(f,\sigma,\lambda_\blt,E)\xi)_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}$ in $\mc H$ is Cauchy. Therefore, the RHS of \eqref{eq570} converges strongly. We will not need this fact. 
 
 \begin{proof}[Proof of convergence]
 Let $\xi\in\mc H$. Let $C=\Vert f\Vert_{l^\infty}$. Writing $F_i=E(\lambda_i)-E(\lambda_{i-1})$ and noting that $F_iF_j=0$ if $i\neq j$, we have
@@ -23103,6 +23103,7 @@ T=a\cdot E(a)+\int_a^b\lambda \cdot dE(\lambda)
 \end{align}
 \end{thm}
 
+As we shall see Rem. \ref{lb1023}, the RHS of \eqref{eq572} actually converges strongly to the LHS.
 
 \begin{eg}
 Assume that $\dim\mc H<+\infty$. Then by linear algebra (or by the Hilbert-Schmidt Thm. \ref{lb662}), $\mc H$ has an orthonormal basis $e_1,\dots,e_n$ such that each $e_i$ is an eigenvector with eigenvalue $\lambda_i\in[a,b]$ (i.e., $Te_i=\lambda_ie_i$). Then \eqref{eq572} holds if we let $E(\lambda)$ be the projection associated to $\Span\{e_i:1\leq i\leq n,\lambda_i\leq\lambda\}$.
@@ -23112,16 +23113,16 @@ Assume that $\dim\mc H<+\infty$. Then by linear algebra (or by the Hilbert-Schmi
 \subsection{$\star$ Monotone convergence extension III: proof of the spectral theorem}\label{lb1100}
 
 
-We continue to let $T$ be a self-adjoint bounded linear operator on a Hilbert space $\mc H$, and $a\leq T\leq b$. We assume for simplicity that $a<b$; otherwise, we have $T=a$ (by the polarization identity) and the spectral theorem is trivial. Throughout this section, we use the following notations:
+We continue to let $T$ be a self-adjoint bounded linear operator on a Hilbert space $\mc H$, and $a\leq T\leq b$. We assume $a<b$ for simplicity so that the polynomial algebra $\Rbb[x]$ can be viewed as a subalgebra of $C([a,b],\Rbb)$; otherwise, we have $T=a$ (by the polarization identity) and the spectral theorem is trivial. Throughout this section, we use the following notations:
 \begin{gather}
 \begin{gathered}
-\scr P=\{f\in\Rbb[x]:f|_{[a,b]}\geq0\}\\
+\scr P=\{f\in C([a,b],\Rbb_{\geq0}):f\text{ is a polynomial}\}\\
 \scr C_0=C([a,b],\Rbb_{\geq0})\\
 \scr C_1=\{\text{bounded lower semicontinuous }f:[a,b]\rightarrow\Rbb_{\geq0}\} \\
 \scr C_2=\Span_\Rbb\scr C_1=\{f^+-f^-:f^\pm\in\scr C_1\}
 \end{gathered}
 \end{gather}
-Then $\scr P\subset\scr C_0\subset\scr C_1\subset\scr C_2$, and $\scr P,\scr C_0,\scr C_1$ are unital $\Rbb_{\geq0}$-subalgebras of $(\Rbb_{\geq0})^{[a,b]}$. If $f,g\in\scr P$, by saying $f\leq g$ we mean $f|_{[a,b]}\leq g|_{[a,b]}$.
+Then $\scr P\subset\scr C_0\subset\scr C_1\subset\scr C_2$, and $\scr P,\scr C_0,\scr C_1$ are unital $\Rbb_{\geq0}$-subalgebras of $(\Rbb_{\geq0})^{[a,b]}$. Note that if $f,g$ belong to any of the above four spaces, by saying $f\leq g$ we mean $f|_{[a,b]}\leq g|_{[a,b]}$.
 
 \begin{df}
 Let $\scr A$ be a \textbf{unital \pmb{$\Rbb_{\geq0}$}-subalgebra} of $(\Rbb_{\geq0})^{[a,b]}$, namely, an $\Rbb_{\geq0}$-linear subspace of $(\Rbb_{\geq0})^{[a,b]}$ containing the constant function $1$ such that $fg\in\scr A$ whenever $f,g\in\scr A$.
@@ -23214,7 +23215,7 @@ It suffices to prove that $f(P_JTP_J)\geq0$. Then, applying $\lim_J$ and noting 
 \end{align*}
 This will prove that $f(T)\geq0$.
 
-Let $V_J=P_J(\mc H)$. Then $P_JTP_J$ is zero on $V_J^\perp$ and leaves $V_J$ invariant. Let $T_J$ be the restriction $P_JTP_J\big|_{V_J}:V_J\rightarrow V_J$. Since $T^*=T$, we also have $T_J^*=T_J$. Therefore, by linear algebra (or by Hilbert-Schmidt Thm. \ref{lb662}), $V_J$ has an orthonormal basis  consisting of eigenvectors of $P_JTP_J$. By choosing an arbitrary orthonormal basis on $V_J^\perp$, we obtain an orthonormal basis $(v_1,\dots,v_n)\cup \fk W$ of $\mc H$ such that $P_JTP_J\cdot v_i=\lambda_iv_i$ for some $\lambda_i\in\Rbb$, and $P_JTP_J\cdot w=0$ for all $w\in\fk W$. 
+Let $V_J=P_J(\mc H)$. Then $P_JTP_J$ is zero on $V_J^\perp$ and leaves the finite-dimensional subspace $V_J$ invariant. Let $T_J$ be the restriction $P_JTP_J\big|_{V_J}:V_J\rightarrow V_J$. Since $T^*=T$, we also have $T_J^*=T_J$ (because $\omega_T$ being Hermitian implies $\omega_{T_J}$ being Hermitian). Therefore, by linear algebra (or by the Hilbert-Schmidt Thm. \ref{lb662}), $V_J$ has a finite orthonormal basis  consisting of eigenvectors of $T_J$. By choosing an arbitrary orthonormal basis on $V_J^\perp$, we obtain an orthonormal basis $(v_1,\dots,v_n)\cup \fk W$ of $\mc H$ such that $P_JTP_J\cdot v_i=\lambda_iv_i$ for some $\lambda_i\in\Rbb$, and $P_JTP_J\cdot w=0$ for all $w\in\fk W$. 
 
 Inserting $a\leq T\leq b$ into $\bk{-P_Jv_i|P_Jv_i}=\bk{-v_i|v_i}$, we see that $\lambda_i\in[a,b]$. Thus we have $f(P_JTP_J)v_i=f(\lambda_i)v_i$ and $f(P_JTP_J)w=f(0)w$ if $w\in\fk W$. It now follows easily from $f|_{[a,b]}\geq0$ and $\lambda_i,0\in[a,b]$ that $f(P_JTP_J)\geq0$.
 \end{proof}
@@ -23387,6 +23388,16 @@ Finally, for each $\xi\in\mc H$, let $\Lambda_\xi:\scr C_1\rightarrow\Rbb$ be $\
 \end{align*}
 In view of Rem. \ref{lb1021}, we see that \eqref{eq574} holds when inserted in $\bk{-\xi|\xi}$. By the polarization identity, \eqref{eq574} is true. This proves (3).
 \end{proof}
+
+
+\begin{rem}\label{lb1023}
+One can show that the integral on the RHS of \eqref{eq574} \uwave{converges strongly} to the LHS. Indeed, note that for any tagged partition $(\sigma,\lambda_\blt)$ of $[a,b]$ we have $S(f,\sigma,\lambda_\blt,E)^2=S(f^2,\sigma,\lambda_\blt,E)$. Therefore, applying Thm. \ref{lb1022} to $f^2$, we see that $\lim_{(\sigma,\lambda_\blt)} S(f,\sigma,\lambda_\blt,E)^2$ converges weakly to
+\begin{align*}
+&f^2(T)-f(a)^2E(a)=f^2(T)-f(a)^2\chi_{\{a\}}(T)=(f^2-f(a)^2\chi_{\{a\}})(T)\\
+=&(f-f(a)\chi_{\{a\}})^2(T)=(f(T)-f(a)\chi_{\{a\}}(T))^2=(f(T)-f(a)E(a))^2
+\end{align*}
+Therefore, by the second part of Lem. \ref{lb1008}, $\lim_{(\sigma,\lambda_\blt)} S(f,\sigma,\lambda_\blt,E)$ converges strongly to $f(T)-f(a)E(a)$.
+\end{rem}
 
 
 The spectral Thm. \ref{lb895} now follows immediately from Thm. \ref{lb1022}.
@@ -24660,7 +24671,7 @@ Since $(\varphi_n)$ is Cauchy, the RHS of \eqref{eq455} is small enough for suff
 
 
 
-The above argument reminds us of Step 2 of the proof of Thm. \ref{lb636}. In fact, that proof suggests an idea of proving the Riesz-Fischer Thm. \ref{lb875}: Assume for simplicity that $1<p<+\infty$. Let $(f_n)$ be a Cauchy sequence in $L^p(X,\mu)$. It suffices to prove that $(f_n)$ (viewed as an sequence in $L^q(X,\mu)^*$) has a subsequence converging weak-* to some $f\in L^p(X,\mu)$. Then Fatou's lemma implies that $(f_n)$ converges in norm to $f$.
+The above argument reminds us of Step 2 of the proof of Thm. \ref{lb636}. In fact, that proof suggests an idea of proving the Riesz-Fischer Thm. \ref{lb875}: Assume for simplicity that $1<p<+\infty$. Let $(f_n)$ be a Cauchy sequence in $L^p(X,\mu)$. It suffices to prove that $(f_n)$ (viewed as a sequence in $L^q(X,\mu)^*$) has a subsequence converging weak-* to some $f\in L^p(X,\mu)$. Then Fatou's lemma implies that $(f_n)$ converges in norm to $f$.
 
 
 In the following proof of Thm. \ref{lb875}, we will roughly follow this idea, except that we choose a subsequence of $(f_n)$ converges a.e. (rather than weak-*) to some $f\in L^p(X,\mu)$.  In fact, a.e. convergence shares many similarities with weak-* convergence, one of which is that they both satisfy Fatou's lemma. See Pb. \ref{lb912} for another important relationship between a.e. and weak-* convergence.
