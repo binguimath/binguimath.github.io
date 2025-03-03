@@ -17284,8 +17284,8 @@ Let $\bk{\cdot|\cdot}$ be a sesquilinear form on $V$. The following are equivale
 (1)$\Rightarrow$(2): Obvious. (2)$\Rightarrow$(1): Let $(u|v)=\ovl{\bk{v|u}}$. Then $(\cdot|\cdot)$ is a sesquilinear form on $V$. Assuming (2), we have $\bk{v|v}=(v|v)$ for all $v\in \Rbb$. Therefore, by Prop. \ref{lb587}, we have $\bk{u|v}=(u|v)=\ovl{\bk{v|u}}$ for all $u,v$. So (1) is true.
 \end{proof}
 
-\begin{df}
-A sesquilinear form $\bk{\cdot|\cdot}$ on $V$ is called \textbf{positive semi-definite} (or simply \textbf{positive}), \index{00@Positive sesquilinear form} if $\bk{v|v}\geq0$ for all $v\in V$. If a positive sesquilinear form $\bk{\cdot|\cdot}$ on $V$ is fixed, we define
+\begin{df}\label{lb1026}
+A sesquilinear form $\bk{\cdot|\cdot}$ on $V$ is called \textbf{positive semi-definite} (or simply \textbf{positive}) and written as $\bk{\cdot|\cdot}\geq0$, \index{00@Positive sesquilinear form} if $\bk{v|v}\geq0$ for all $v\in V$. If a positive sesquilinear form $\bk{\cdot|\cdot}$ on $V$ is fixed, we define
 \begin{align}
 \Vert v\Vert=\sqrt{\bk{v|v}}\qquad\text{ for all }v\in V
 \end{align} 
@@ -18386,7 +18386,7 @@ Moreover, we have $\Vert T\Vert=\Vert T^*\Vert$, and $(T^*)^*=T$.
 
 \begin{proof}
 For each sesquilinear form $\omega:V\times W\rightarrow\Cbb$ we define its \textbf{adjoint sesquilinear form} \index{00@Adjoint sesquilinear form}
-\begin{align}
+\begin{align}\label{eq577}
 \omega^*:W\times V\rightarrow\Cbb\qquad \omega^*(\eta|\xi)=\ovl{\omega(\xi|\eta)}
 \end{align}
 Then clearly
@@ -19269,8 +19269,8 @@ Recall from linear algebra that $\lambda\in\Cbb$ is called an \textbf{eigenvalue
 Let $T\in\fk L(\mc H)$. We say that $T$ is \textbf{self-adjoint} \index{00@Self-adjoint operator} if one of the following conditions hold:
 \begin{enumerate}[label=(\arabic*)]
 \item $T=T^*$.
-\item $\bk{T\xi|\eta}=\bk{\xi|T\eta}$ for all $\xi,\eta\in\mc H$.
-\item The sesquilinear form $\omega_T$ is a Hermitian.
+%\item $\bk{T\xi|\eta}=\bk{\xi|T\eta}$ for all $\xi,\eta\in\mc H$.
+\item $\omega_T$ is a Hermitian, i.e., $\omega_T(\xi|\eta)=\ovl{\omega_T(\eta|\xi)}$ for all $\xi,\eta\in\mc H$.
 \item $\bk{T\xi|\xi}\in\Rbb$ for all $\xi\in\mc H$.
 \end{enumerate}
 \end{df}
@@ -19278,12 +19278,12 @@ Let $T\in\fk L(\mc H)$. We say that $T$ is \textbf{self-adjoint} \index{00@Self-
 %% Record #4 2024/03/07 three lectures  10
 
 \begin{proof}[Proof of equivalence]
-Since we always have $\bk{T\xi|\eta}=\bk{\xi|T^*\eta}$, the equivalence (1)$\Leftrightarrow$(2) is obvious. Recall that $\omega_T$ is Hermitian iff $\omega_T(\xi|\eta)=\ovl{\omega_T(\eta|\xi)}$. But $\ovl{\omega_T(\eta|\xi)}=\ovl{\bk{T\eta|\xi}}=\bk{\xi|T\eta}$, which equals $\bk{T\xi|\eta}$ for all $\xi,\eta$ iff (2) is true. This proves (2)$\Leftrightarrow$(3). By Prop. \ref{lb588}, we have (3)$\Leftrightarrow$(4).
+Recall that $\omega_{T^*}=(\omega_T)^*$ where the adjoint sesquilinear form $(\omega_T)^*$ is defined by \eqref{eq577}, and $\omega_T$ is Hermitian iff $\omega_T=(\omega_T)^*$. This proves (1)$\Leftrightarrow$(2). By Prop. \ref{lb588}, we have (2)$\Leftrightarrow$(3).
 \end{proof}
 
 
 \begin{rem}
-Let $T\in\fk L(\mc H)$. Assume that $E\subset\mc H$ spans a dense subspace of $\mc H$. By sesquilinearity, and by the continuity of $\bk{\cdot|\cdot}$, $T$ is self-adjoint iff $\bk{T\xi|\eta}=\bk{\xi|T\eta}$ for all $\xi,\eta\in E$. Therefore:
+Let $T\in\fk L(\mc H)$. Assume that $E\subset\mc H$ spans a dense subspace of $\mc H$. By sesquilinearity, and by the continuity of $\bk{\cdot|\cdot}$, $T$ is self-adjoint iff $\omega_T(\xi|\eta)=(\omega_T)^*(\xi|\eta)$ for all $\xi,\eta\in E$. Therefore:
 \end{rem}
 
 \begin{eg}\label{lb678}
@@ -19292,12 +19292,12 @@ Let $X$ be a set. Let $T\in\fk L(l^2(X))$. Let $K:X\times X\rightarrow\Cbb$ be t
 
 
 \begin{proof}
-This is because $\{\chi_{\{x\}}:x\in X\}$ spans a dense subspace, and $\ovl{K(y,x)}=\ovl{\bk{T\chi_{\{y\}}|\chi_{\{x\}}}}=\bk{ \chi_{\{x\}}|T\chi_{\{y\}} }$.
+This is because $\{\chi_{\{x\}}:x\in X\}$ spans a dense subspace, $K(x,y)=\omega_T(\chi_{\{x\}}|\chi_{\{y\}})$, and $\ovl{K(y,x)}=\ovl{\bk{T\chi_{\{y\}}|\chi_{\{x\}}}}=(\omega_T)^*(\chi_{\{x\}}|\chi_{\{y\}})$.
 \end{proof}
 
 
 \begin{df}
-Let $T\in\fk L(\mc H)$. We say that $T$ is \textbf{positive} \index{00@Positive operator} and write $T\geq0$ if $\bk{T\xi|\xi}\geq0$ for all $\xi\in\mc H$. Positive operators are clearly self-adjoint. More generally, if $S,T\in\fk L(\mc H)$, we write
+Let $T\in\fk L(\mc H)$. We say that $T$ is \textbf{positive} \index{00@Positive operator} and write $T\geq0$ if $\omega_T$ is positive (cf. Def. \ref{lb1026}), i.e., $\bk{T\xi|\xi}\geq0$ for all $\xi\in\mc H$. Positive operators are clearly self-adjoint. More generally, if $S,T\in\fk L(\mc H)$, we write
 \begin{align}
 S\leq T\qquad\Longleftrightarrow\qquad T-S\geq0
 \end{align}
@@ -19326,7 +19326,7 @@ Suppose that $T\in\fk L(\mc H)$ is positive. Assume that $\xi\in\mc H$ satisfies
 \end{lm}
 
 \begin{proof}
-Our assumption is $\omega_T(\xi|\xi)=0$. Since the sesquilinear form $\omega_T$ is positive, by Cauchy-Schwarz (cf. Rem. \ref{lb654}), for each $\eta\in\mc H$ we have $|\omega_T(\xi|\eta)|^2\leq \omega_T(\xi|\xi)\omega_T(\eta|\eta)=0$ and hence $\bk{T\xi|\eta}=0$. (Alternatively, one can use \eqref{eq240} to show $\omega_T(\xi|\eta)=0$.) Therefore $T\xi=0$.
+Our assumption is $\omega_T(\xi|\xi)=0$. Since the sesquilinear form $\omega_T$ is positive, by Cauchy-Schwarz (cf. Rem. \ref{lb654}), for each $\eta\in\mc H$ we have $|\omega_T(\xi|\eta)|^2\leq \omega_T(\xi|\xi)\omega_T(\eta|\eta)=0$ and hence $\bk{T\xi|\eta}=0$. (Alternatively, one can use \eqref{eq240} to show $\omega_T(\xi|\eta)=0$.) Therefore $\Vert T\xi\Vert^2=\omega_T(\xi|T\xi)=0$.
 \end{proof}
 
 
@@ -19511,19 +19511,27 @@ If $\lambda=\lambda_n$ for some $n$, then clearly $\chi_{\{n\}}$ is not in the r
 The proof of the Hilbert-Schmidt theorem in the last section, despite written in the modern language, is very close to the proof in Hilbert's 1906 paper, the fourth part of his work \cite{Hil12}. (Hilbert's proof is located in p.148-150 of \cite{Hil12}.)
 
 
-The two key properties in Ch. \ref{lb665} are the only analytic properties\footnote{Here, by ``analytic property" I mean any property about inner product spaces that is equivalent to completeness, such as those described in Thm. \ref{lb612}.} used in the proof of the Hilbert-Schmidt theorem. The key property 2, the weak compactness of $\ovl B_{\mc H}(0,1)$, is the most crucial one. In the proof of Thm. \ref{lb617}, we have used this property to find the unit vector $e_1$ maximizing the function $g(\xi)=\bk{T\xi|\xi}$ defined on $\ovl B_{\mc H}(0,1)$. This method is heavily influenced by the method of variation, and is compatible with Hilbert's sesquilinear form viewpoint (rather than Riesz's operator viewpoint). The subsequent vectors $e_2,e_3,\dots$ are constructed in the same way by restricting $T$ to orthogonal complements of finite dimensional subspaces. Hilbert used exactly the same method in his work! \uwave{The weak compactness of $\ovl B_{l^2(\Zbb)}(0,1)$ is the single most important reason that Hilbert spaces were introduced in history.}
+%The weak compactness of $\ovl B_{\mc H}(0,1)$ is the most crucial analytic property\footnote{Here, by ``analytic property" I mean any property about inner product spaces that is equivalent to completeness, such as those described in Thm. \ref{lb612}.} used in the proof of the Hilbert-Schmidt theorem. 
+
+In the proof of the Hilbert-Schmidt Thm. \ref{lb657}, we have used weak compactness of $\ovl B_{\mc H}(0,1)$  to find the unit vector $e_1$ maximizing the function $g(\xi)=\bk{T\xi|\xi}$ defined on $\ovl B_{\mc H}(0,1)$. This method is heavily influenced by the method of variation, and is compatible with Hilbert's sesquilinear form viewpoint (rather than Riesz's operator viewpoint). The subsequent vectors $e_2,e_3,\dots$ are constructed in the same way by restricting $T$ to orthogonal complements of finite dimensional subspaces. Hilbert used exactly the same method in his work! \uwave{The weak compactness of $\ovl B_{l^2(\Zbb)}(0,1)$ is the most important reason that Hilbert spaces were introduced in history.}
 
 %(By the way, Hilbert also treated positive forms first.)
 
-The key property 1, the convergence of summing orthogonal vectors, is used to ensure the existence of the orthogonal decompositions (cf. the proof of Thm. \ref{lb617}). In the proof of Thm. \ref{lb657}, this property is used (and only used) to show that $e_1,e_2,\dots$ and an orthonormal basis $(f_j)_{j\in J}$ of $\mc K^\perp=\{e_1,e_2,\dots\}^\perp$ form an orthonormal basis of $\mc H$. (Let us quickly recall the key point: It is obvious that $e_1,e_2,\dots$ and $(f_j)$ form an orthonormal family. To show that they are densely-spanning, for each $\xi\in\mc H$, one sets $\eta=\sum_n \bk{\xi|e_n}e_n$, which converges by key property 1. Then $\xi-\eta\in\mc K^\perp$. Apply Thm. \ref{lb595} to $\xi-\eta$. Then we have $\xi=\eta+\sum_j\bk{\xi-\eta|f_j}f_j$. So $\xi$ is approximated by linear combinations of $e_1,e_2,\dots$ and $(f_j)$.) 
+%In Step 3 of the proof of the Hilbert-Schmidt Thm. \ref{lb657} we have used Thm. \ref{lb617} to show that the orthonormal vectors $e_1,e_2,\dots$ and $(f_j)_{j\in J}$ span a dense subspace of $\mc H$ (and hence form an orthonormal basis of $\mc H$). Thm. \ref{lb617} relies on the key property 1 in Sec. \ref{lb640}, a property equivalent to the completeness of inner product spaces. Hilbert did not use this property in his proof. He did not need the vectors $(f_j)_{j\in J}$ since his ``Hilbert-Schmidt" theorem is stated in the following form (cf. \cite[Satz 35]{Hil12}): There exist orthonormal vectors $e_1,e_2,\dots$ and $\lambda_1\geq\lambda_2\geq\cdots\geq0$ satisfying $\lim_n\lambda_n=0$ and
+%\begin{align}
+%\omega_T(\xi|\xi)=\sum_n \lambda_n \bk{\xi|e_n}\bk{e_n|\xi}
+%\end{align}
+%for all vectors $\xi$. That each $e_n$ is a $\lambda_n$-eigenvector of $T$ is a mere consequence of this formula.
+
+
+
+
+
+
+%The key property 1, the convergence of summing orthogonal vectors, is used to ensure the existence of the orthogonal decompositions (cf. the proof of Thm. \ref{lb617}). In the proof of Thm. \ref{lb657}, this property is used (and only used) to show that $e_1,e_2,\dots$ and an orthonormal basis $(f_j)_{j\in J}$ of $\mc K^\perp=\{e_1,e_2,\dots\}^\perp$ form an orthonormal basis of $\mc H$. (Let us quickly recall the key point: It is obvious that $e_1,e_2,\dots$ and $(f_j)$ form an orthonormal family. To show that they are densely-spanning, for each $\xi\in\mc H$, one sets $\eta=\sum_n \bk{\xi|e_n}e_n$, which converges by key property 1. Then $\xi-\eta\in\mc K^\perp$. Apply Thm. \ref{lb595} to $\xi-\eta$. Then we have $\xi=\eta+\sum_j\bk{\xi-\eta|f_j}f_j$. So $\xi$ is approximated by linear combinations of $e_1,e_2,\dots$ and $(f_j)$.) 
 
 %By the way, when $\mc H$ is separable (which is the main interesting case), the existence of an orthonormal basis $(f_j)$ does not rely on any analytic property, but follows directly from Gram-Schmidt: see Exp. \ref{lb613}. Even if one does not assume that $\mc H$ is separable, the existence of $(f_j)$ also follows from key property 1 (cf. the proof of (2)$\Rightarrow$(3) of Thm. \ref{lb612}).
 
-Indeed, Hilbert did not use key property 1 and orthogonal decomposition in his proof. He did not need the vectors $(f_j)_{j\in J}$ since his ``Hilbert-Schmidt" theorem is stated in the following form (cf. \cite[Satz 35]{Hil12}): There exist orthonormal vectors $e_1,e_2,\dots$ and $\lambda_1\geq\lambda_2\geq\cdots\geq0$ satisfying $\lim_n\lambda_n=0$ and
-\begin{align}
-\omega_T(\xi|\xi)=\sum_n \lambda_n \bk{\xi|e_n}\bk{e_n|\xi}
-\end{align}
-for all vectors $\xi$. That each $e_n$ is a $\lambda_n$-eigenvector of $T$ is a mere consequence of this formula.
 
 
 \subsubsection{On the applicability of the Hilbert-Schmidt theorem}\label{lb920}
@@ -19531,7 +19539,7 @@ for all vectors $\xi$. That each $e_n$ is a $\lambda_n$-eigenvector of $T$ is a 
 
 The Hilbert-Schmidt theorem lies at the heart of modern partial differential equations. As mentioned in Subsec. \ref{lb667}, the inverse of $-\Delta$ (with boundary condition $u|_{\partial\Omega}=0$) is a completely continuous \textit{positive} operator on $L^2(\ovl\Omega)$. Therefore, by the Hilbert-Schmidt theorem, the unbounded operator $-\Delta$ have eigenvalues $0<\lambda_1\leq \lambda_2\leq\cdots$ converging to $+\infty$, and the eigenvectors (which can be proved to be ``good enough" such as $C^r$ or $C^\infty$) form an orthonormal basis of $L^2(\ovl\Omega)$. With the spectral analysis of $-\Delta$, the Dirichlet problem \eqref{eq271} can be understood very well.
 
-However, this modern theory was also developed with the help of some other theories that were not yet available at the time of Hilbert-Schmidt: distributions and Sobolev spaces, unbounded closed operators, etc..  As we have mentioned in Sec. \ref{lb668}, in the early days, the Dirichlet problem was studied in terms of their associated integral equations of functions on $\partial\Omega$. However, the Hilbert-Schmidt theorem has very limited application to these integral equations. Let me explain this in the following. 
+However, this modern theory was also developed with the help of some other theories that were not yet available at the time of Hilbert-Schmidt, such as unbounded operators and Sobolev spaces.  As we have mentioned in Sec. \ref{lb668}, in the early days, the Dirichlet problem was studied in terms of their associated integral equations of functions on $\partial\Omega$. However, the Hilbert-Schmidt theorem has very limited application to these integral equations. Let me explain this in the following. 
 
 
 We have mentioned that the operator $T$ in the integral equation \eqref{eq282}, after discretization by taking Fourier series, gives a bounded linear operator $\wht T$ on $l^2(\Zbb)$ whose matrix representation $\wht K:\Zbb\times\Zbb\rightarrow\Cbb$ is $l^2$-finite, i.e. $\sum_{m,n}|\wht K(m,n)|^2<+\infty$. (See Sec. \ref{lb669}.) Therefore, $\wht T$ is a Hilbert-Schmidt operator, and hence is completely continuous by Thm. \ref{lb651}. Moreover, some elementary calculations show that $-1$ is not an eigenvalue of $T$, cf. \cite[Thm. 3.3.9]{Sim-O} or \cite[Sec. 81]{RN}. Therefore, if $T$ is self-adjoint, the  Fredholm alternative (Cor. \ref{lb670}) shows that for each $g\in L^2(\partial\Omega)$ there exists a (necessarily unique) $f\in L^2(\partial\Omega)$ satisfying \eqref{eq282}. More precisely, one finds the Fourier series $\wht f\in l^2(\Zbb)$ solving $\wht f+\wht T\wht f=\wht g$.
@@ -19540,11 +19548,11 @@ We have mentioned that the operator $T$ in the integral equation \eqref{eq282}, 
 Unfortunately, in many cases $T$ is not self-adjoint (since the real-valued function $G$ in \eqref{eq277} does not satisfy $G(x,y)=G(y,x)$). Therefore, although the Hilbert-Schmidt theorem would later be proved to be an effective tool for studying the Dirichlet problem, at the time of its inception, its relevance to the Dirichlet problem was not significant. Hilbert restricted his study to self-adjoint operators (more precisely, Hermitian forms), perhaps in view of the many other uses of integral equations, such as the Sturm-Liouville problem. (See e.g. \cite[Sec. 3.2]{Sim-O}, \cite[Ch. 5]{Tes}, or \cite[Ch. 7]{CL} for a detailed discussion of the application of the Hilbert-Schmidt theorem to the integral equations in Sturm-Liouville problem.)
 
 
-Assuming self-adjointness, the original problem about integral equation can be fully solved: Let $K\in C^r(\Sbb^1\times\Sbb^1)$ where $r\geq0$. Then we have a linear operator $T:C^r(\Sbb^1)\rightarrow C^r(\Sbb^1)$ defined by $(Tf)(x)=\frac 1{2\pi}\int_{-\pi}^\pi K(x,y)f(y)dy$. Assume that $K$ is \textbf{symmetric}, i.e. $K(x,y)=\ovl{K(y,x)}$. In the following, we prove the $C^r$-Fredholm alternative: If there is no non-zero $f\in C^r(\Sbb^1)$ satisfying $f+Tf=0$, then for each $g\in C^r(\Sbb^1)$ there exists $f\in C^r(\Sbb^1)$ such that $f+Tf=g$. 
+Assuming self-adjointness, the original problem about integral equation can be fully solved: Let $K\in C^r(\Sbb^1\times\Sbb^1)$ where $r\geq0$. Then we have a linear operator $T:C^r(\Sbb^1)\rightarrow C^r(\Sbb^1)$ defined by $(Tf)(x)=\frac 1{2\pi}\int_{-\pi}^\pi K(x,y)f(y)dy$. Assume that $K$ is \textbf{symmetric}, i.e. $K(x,y)=\ovl{K(y,x)}$. In the following Subsec. \ref{lb1027}, we prove the $C^r$-Fredholm alternative: If there is no non-zero $f\in C^r(\Sbb^1)$ satisfying $f+Tf=0$, then for each $g\in C^r(\Sbb^1)$ there exists $f\in C^r(\Sbb^1)$ such that $f+Tf=g$. 
 
 
 
-\subsubsection{$\star\star$ Regularity of the solutions of integral equations}
+\subsubsection{$\star\star$ Regularity of the solutions of integral equations}\label{lb1027}
 
 
 
@@ -19581,7 +19589,7 @@ We have seen that the problem of finding an $C^r$-solution $f$ of an integral eq
 
 The lesson here is that even if we are ultimately interested in the Fourier series of functions in $C^r(\Sbb^1)$, i.e., the elements of $\Psi(C^r(\Sbb^1))$, at the outset, we must consider all possible elements of $l^2(\Zbb)$: If you remember, the proof of the Hilbert-Schmidt theorem uses the weak-compactness of the closed unit ball of $l^2(\Zbb)$. However, $\Psi(C(\Sbb^1))$ is a dense proper subspace of $l^2(\Zbb)$, and its closed unit ball is therefore not weakly compact (by Thm. \ref{lb636}).
 
-This lesson naturally leads to the question: What is the function-theoretic meaning of an element $\varphi\in l^2(\Zbb)$ that is not necessarily the Fourier series of a continuous (or even Riemann-integrable) $2\pi$-periodic function? 
+This lesson naturally leads to the question: What is the function-theoretic meaning of an element $\varphi\in l^2(\Zbb)$ that is not necessarily the Fourier series of a continuous (or even Riemann-integrable) $2\pi$-periodic function?This question becomes even more crucial upon realizing that for $\lambda=0$, a $\lambda$-eigenvector of $\wht T$ (i.e., an element of $\Ker T$) may not be the Fourier series of a continuous function.
 
 
 Lebesgue's integral theory was invented in 1902. And it was F. Riesz and Fischer who realized that Lebesgue integral gives a satisfying answer to the above question. They showed in 1907 (a year after Hilbert's seminal work \cite{Hil12} introducing the $l^2$-method to integral equations) that the linear isometry $\Psi:C(\Sbb^1)\rightarrow l^2(\Zbb)$ can be extended to a unitary map
@@ -19672,7 +19680,7 @@ Let $T\in\fk L(\mc H,\mc K)$. The following are equivalent.
 A linear map of normed vector spaces $T:V\rightarrow W$ is called \textbf{completely continuous} \index{00@Completely continuous} if $T$ is bounded, and if the restriction $T:\ovl B_V(0,1)\rightarrow W$ is continuous, where $\ovl B_V(0,1)$ is given the weak topology, and $W$ is given the norm topology.
 \end{df}
 
-Def. \ref{lb674} was introduced by F. Riesz in 1910 \cite{Rie10} for linear maps on $L^2$ spaces. However, this is not a good definition for $C[0,1]$ because, unlike $L^p$ and $l^p$ spaces (where $1<p<+\infty$), $C[0,1]$ is not reflexive and (hence) its closed unit ball is not weakly compact (cf. Thm. \ref{lb568}). In order to study integral equations on non-necessarily reflexive function spaces such as $C[0,1]$, in 1918, Riesz introduced the modern definition of compact operators (which he still called completely continuous operators). Let us recall the definition: 
+Def. \ref{lb674} was introduced by F. Riesz in 1910 \cite{Rie10} for linear maps on $L^2$ spaces. However, this is not a good definition for $C[0,1]$ because, unlike $L^p$ and $l^p$ spaces (where $1<p<+\infty$), $C[0,1]$ is not reflexive and (hence) its closed unit ball is not weakly compact (cf. Thm. \ref{lb568}). \uwave{In order to study integral equations on non-necessarily reflexive function spaces} such as $C[0,1]$, in 1918, Riesz introduced the modern definition of compact operators (which he still called completely continuous operators). Let us recall the definition: 
 
 \begin{df}\label{lb675}
 Let $T:V\rightarrow W$ be a linear map of normed vector spaces. We say that $T$ is a \textbf{compact operator} \index{00@Compact operator} if $T(\ovl B_V(0,1))$ is precompact in $W$ (under the norm topology).
@@ -19845,37 +19853,49 @@ Pb. \ref{lb816} and \ref{lb786} give an alternative proof that any completely co
 
 Starting from this chapter, we will study Lebesgue integrals, and study measure theory in general. We will be able to define $\int_{\Rbb^N} f$ for a large class of functions $f:\Rbb^N\rightarrow\Rbb$ called \textbf{Lebesgue measurable functions}. It is worth noting that when Lebesgue introduced his integral theory in 1902, he was primarily concerned with bounded measurable functions on a compact interval $[a,b]\subset\Rbb$. For example, the dominated convergence theorem, one of the most important theorems in measure theory, was first proved by Lebesgue for bounded measurable functions on $[a,b]$. 
 
-Only by knowing what were the earliest primary examples in history, and only by knowing how the theory can be developed and applied to these crucial examples, can one comprehend the essence of the theory. Therefore, I will sometimes give a more straightforward proof of an important special case of a theorem after proving this theorem in full generality. %The ideas in these straightforward proofs are closer to the original proofs of the theorem in history. 
+%Only by knowing what were the earliest primary examples in history, and only by knowing how the theory can be developed and applied to these crucial examples, can one comprehend the essence of the theory. Therefore, I will sometimes give a more straightforward proof of an important special case of a theorem after proving this theorem in full generality. %The ideas in these straightforward proofs are closer to the original proofs of the theorem in history. 
 
 
 In the following, we sketch Lebesgue's main idea of the construction of integrals. A detailed account of the history can be found in \cite[Sec. 5.1]{Haw} and \cite[Sec. 9.6]{Jah}.
 
 
 
-Let $-\infty<a<b<+\infty$, and let $f:(a,b)\rightarrow\Rbb$ be bounded, say $-M+1\leq f\leq M-1$ for some $M>1$.\footnote{Lebesgue originally considered functions on $[a,b]$. For the simplicity of the following discussion, we consider functions on $(a,b)$ instead, which makes no essential difference to the development of the theory.} We know that Riemann integrals are defined by partitioning the domain $(a,b)$. By contrast, the Lebesgue integral $\int_a^b fdm$ is defined by partitioning the codomain: Let $\{c_0<c_1<\dots<c_n\}$ be a partition of $[-M,M]$. Let $\xi_i\in(c_{i-1},c_i]$. Then it is expected that $\int_a^b fdm$ is approximated by the \textbf{Lebesgue sum} \index{00@Lebesgue sum}
+Let $-\infty<a<b<+\infty$, and let $f:(a,b)\rightarrow\Rbb$ be bounded, say $-M+1\leq f\leq M-1$ for some $M>1$.\footnote{Lebesgue originally considered functions on $[a,b]$. For the simplicity of the following discussion, we consider functions on $(a,b)$ instead, which makes no essential difference to the development of the theory.} We know the Riemann/Darboux integral is defined by partitioning the domain $(a,b)$. By contrast, the Lebesgue integral $\int_a^b fdm$ is defined by partitioning the codomain: Let $\{c_0<c_1<\dots<c_n\}$ be a partition of $[-M,M]$. Then we can define the  \textbf{upper Lebesgue sum} and the \textbf{lower Lebesgue sum} \index{00@Lebesgue sum}
 \begin{align}\label{eq287}
-\sum_{i=1}^n \xi_i\cdot m(E_i)
+\sum_{i=1}^n c_i\cdot m(E_i)\qquad \sum_{i=1}^n c_{i-1}\cdot m(E_i)
 \end{align}
 where $E_i=f^{-1}(c_{i-1},c_i]$, and $m(E_i)$ is the ``measure" of $E_i$. 
-Thus, one can attempt to define $\int_a^b fdm$ to be the limit of the ``Lebesgue sum" \eqref{eq287}. In fact, since $\int f$ should be the area of the region below the graph of $f$, it is expected that if $\sup_i |c_i-c_{i-1}|<\eps$, then 
-\begin{align*}
-\Big| \int_a^b fdm- \sum_{i=1}^n \xi_i\cdot m(E_i)  \Big|\leq (b-a)\eps
-\end{align*}
+The \textbf{upper integral} $\ovl\int^b_a fdm$ (resp. the \textbf{lower integral} $\underline\int^b_a fdm$) is defined to be the infimum (resp. supremum) of the upper (resp. lower) Lebesgue sums over all partitions of $[-M,M]$. 
 
-Therefore, in order to define the Lebesgue integral, one must first define the \textbf{Lebesgue measure} $m(E_i)$. Let me temporarily denote this value by $m^*(E_i)$ to reflect the fact (to be explained shortly) that not every subset of $(a,b)$ can be assigned a measure. The construction is as follows. Suppose that $E\subset(a,b)$. Then
+Since the difference of the two expressions of \eqref{eq287} is bounded by $(b-a)\cdot\sup_{i=1}^n (c_i-c_{i-1})$, one easily sees that $\ovl\int^b_a fdm$ equals $\underline\int^b_a fdm$. This common number is denoted by $\int_a^bfdm$ and called the \textbf{Lebesgue integral} of $f$.
+
+
+To ensure that the integral is additive, i.e., $\int_a^b (f+g)dm=\int_a^b fdm+\int_a^b gdm$, we need $m$ to be additive, i.e., if $E,F\subset (a,b)$ are disjoint then $m(E\cup F)=m(E)+m(F)$. In fact, assuming the additivity of $m$, then similar to Pb. \ref{lb732} one can show that $\ovl\int^b_a$ is \textbf{subadditive} and $\udl\int^b_a$ is \textbf{superadditive}, i.e., $\ovl\int_a^b (f+g)dm\leq\ovl\int_a^b fdm+\ovl\int_a^b gdm$ and $\udl\int_a^b (f+g)dm\geq\udl\int_a^b fdm+\udl\int_a^b gdm$
+
+
+
+
+
+%Therefore, in order to define the Lebesgue integral, one must first define the \textbf{Lebesgue measure} $m(E_i)$. Let me temporarily denote this value by $m^*(E_i)$ to reflect the fact (to be explained shortly) that not every subset of $(a,b)$ can be assigned a measure. The construction is as follows. 
+
+
+Lebesgue defined the measure $m(E)$ for $E\subset (a,b)$ as follows. Suppose that $E\subset(a,b)$. Let me temporarily denote $m(E)$ by $m^*(E)$ to reflect the fact (to be explained shortly) that not every subset of $(a,b)$ can be assigned a measure. Then
 \begin{align}\label{eq294}
 m^*(E)=\inf\Big\{\sum_{n\in\Zbb_+}|I_n|:I_1,I_2,\dots\text{ are intervals covering }E  \Big\}
 \end{align}
 is called the \textbf{outer Lebsgue measure} of $E$. Clearly $m^*(E)\leq m^*(F)$ if $E\subset F$. %It is an easy exercise that if $I$ is a subinterval of $(a,b)$ with endpoints $c\leq d$, then $m^*(I)=|I|:=d-c$.
 
 
-Unfortunately, it is not necessarily true that $m^*(E\cup F)=m^*(E)+m^*(F)$ if $F\subset(a,b)$ is disjoint from $E$. Indeed, it is not necessarily true that $b-a=m^*(E)+m^*((a,b)\setminus E)$. Consequently, if we use the Lebesgue sum to define the integral, then it is not necessarily true that $\int_a^b 1=\int_a^b\chi_E+\int_a^b\chi_{(a,b)\setminus E}$. In general, we only have
+
+
+
+Unfortunately, for \textit{arbitrary} disjoint $E,F\subset(a,b)$ it is not necessarily true that $m^*(E\cup F)=m^*(E)+m^*(F)$; in general, we only have
 \begin{align}\label{eq288}
 m^*(E\cup F)\leq m^*(E)+m^*(F)
 \end{align}
-if $E,F\in(a,b)$ are disjoint. Thus, we must focus on a class $\fk M$ of subsets of $(a,b)$ satisfying certain nice properties. The elements in $\fk M$ will be called \textbf{Lebesgue measurable sets}. 
+Thus, we must focus on a class $\fk M$ of subsets of $(a,b)$ satisfying certain nice properties. The elements in $\fk M$ will be called \textbf{Lebesgue measurable sets}. Then an equivalent definition of a \textbf{Lebesgue measurable function} $f$ is that $E_i=f^{-1}(c_{i-1},c_i]$ belongs to $\fk M$ for any partition $\{c_0<\cdots<c_n\}$ of $[-M,M]$.
 
-The most remarkable property about $\fk M$ is the \textbf{countable additivity}: If $E_1,E_2,\dots\in \fk M$ are mutually disjoint, then $\bigcup_n E_n\in\fk M$, and $m^*(\bigcup_n E_n)=\sum_nm^*(E_n)$. Then the Lebesgue integral will be defined for \textbf{Lebesgue measurable functions}, e.g., bounded functions $f:(a,b)\rightarrow\Rbb$ satisfying $f^{-1}(c,d]\in\fk M$ for all $c<d$. \uwave{The powerful properties concerning $\lim_n\int f_n=\int\lim_nf_n$ will be proved as easy consequences of the countable additivity.} Therefore, the construction of Lebesgue measure satisfying countable additivity is the most central and difficult part of the whole theory of Lebesgue's integrals.
+The class $\fk M$ constructed by Lebesgue indeed satisfies a much stronger condition called \textbf{countable additivity}: If $E_1,E_2,\dots\in \fk M$ are mutually disjoint, then $\bigcup_n E_n\in\fk M$, and $m^*(\bigcup_n E_n)=\sum_nm^*(E_n)$. This property ensures that if the pointwise limit $f$ of a uniformly bounded sequence $(f_n)$ of measurable functions exists, then $f$ is also measurable. Moreover, thanks to the countable additivity, \uwave{the definition of the integral by partitioning codomains matches perfectly the idea of \textbf{convergence in measure}, which enables one to show that $\int_a^b fdm=\lim_n\int_a^bf_ndm$}. See Rem. \ref{mc240} for further discussion.
 
 
 \begin{comment}
@@ -21298,7 +21318,9 @@ which clearly satisfies the subadditivity $\ovl \int_X(f+g)\leq\ovl\int_Xf+\ovl\
 \begin{align}\label{eq302}
 s_n=\sum_{k=1}^n \frac {k-1}n \chi_{E_k}\qquad t_n=\sum_{k=1}^n \frac {~k~}n \chi_{E_k}
 \end{align}
-Then $s_n,t_n\in\mc S_+(X)$, $s_n\leq f\leq t_n$, and $\int_X (t_n-s_n)\leq\mu(X)/n$. This proves that $\ovl\int_Xf\leq\int_Xf+\mu(X)/n$ for any $n$, and hence $\ovl\int_Xf=\int_Xf$. The linearity of $\int_X$ on bounded positive measurable functions is thus established. It also shows that $\int_Xf$ can be understood as the limit of Lebesgue sums, just as Riemann integrals are the limits of Riemann sums.
+Then $s_n,t_n\in\mc S_+(X)$, $s_n\leq f\leq t_n$, and $\int_X (t_n-s_n)\leq\mu(X)/n$. This proves that $\ovl\int_Xf\leq\int_Xf+\mu(X)/n$ for any $n$, and hence $\ovl\int_Xf=\int_Xf$. The linearity of $\int_X$ on bounded positive measurable functions is thus established. See also Sec. \ref{lb722}.
+
+%It also shows that $\int_Xf$ can be understood as the limit of Lebesgue sums, just as Riemann integrals are the limits of Riemann sums.
 
 It is a subtle task to extend the additivity of $\int_X$ to unbounded functions or to functions $f$ such that $\{x\in X:f(x)>0\}$ has infinite measures. (Consider for example the case that $f+g=\chi_A$ for some $A\in\fk M$ such that $\mu(A)=+\infty$. It is not so obvious why $\mu(A)\leq\int f+\int g$ is true.) In the following, we shall study the additivity in a more modern way.
 
