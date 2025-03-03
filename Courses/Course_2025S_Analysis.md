@@ -50,10 +50,12 @@
   
   注：我们在课上提到了Banach-Alaoglu定理使得对函数空间的对偶空间的研究变得重要。相关的数学问题为moment problem，可见17.5节。
 
-- 3/3 内积空间中的弱收敛，Fatou引理，单位闭球的弱紧性；从Dirichlet problem到积分方程到l^2(Z)，全连续算子，Hilbert-Schmidt算子（即矩阵表示为l^2的算子）是全连续的
+- 3/3 内积空间中的弱收敛，Fatou引理，单位闭球的弱紧性
+
+  Hilbert空间的历史：从Dirichlet problem到积分方程到l^2(Z)，全连续算子，Hilbert-Schmidt算子（即矩阵表示为l^2的算子）是全连续的
 
   讲义章节：21.4，22.1-22.4
 
-- 3/5 Hilbert-Schmidt定理（即全连续自伴算子的对角化定理），从全连续算子到紧算子
+- 3/5 Hilbert空间的历史：Hilbert-Schmidt定理（即全连续自伴算子的对角化定理），从全连续算子到紧算子
   
 
