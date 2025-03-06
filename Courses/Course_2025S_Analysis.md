@@ -56,7 +56,9 @@
 
   讲义章节：21.4，22.1-22.4
 
-- 3/5 Hilbert空间的历史：Hilbert-Schmidt定理（即全连续自伴算子的对角化定理），从全连续算子到紧算子，Lebesgue用切割codomain来定义积分
+- 3/5 Hilbert空间的历史：Hilbert-Schmidt定理（即全连续自伴算子的对角化定理），从全连续算子到紧算子
+
+  Lebesgue用切割codomain来定义积分
 
   讲义章节：22.5，22.7，23.1
 
