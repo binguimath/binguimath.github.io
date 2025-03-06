@@ -90,7 +90,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - On a Connes Fusion Approach to Finite Index Extensions of Conformal Nets. `arXiv:2112.15396`  [Preprint](Files/2021_Extensions.pdf)
 
-- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products. `arXiv:2305.10180`  [Preprint](Files/2023_Conformal_Block_1.pdf) [Slides](Files/2023_SJTU.pdf)
+- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products. `arXiv:2305.10180`  [Preprint](Files/2023_CB1.pdf) [Slides](Files/2023_SJTU.pdf)
 
 - Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, ***Comm. Math. Phys.***, Vol. 405 (2024).  `arXiv:2306.11856`, [Preprint](Files/2023_Geometric_Positivity.pdf) [Slides](Files/2023_Tokyo.pdf)
 <!--- In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.--->
