@@ -9851,26 +9851,6 @@ where $\Vert\varphi\Vert$ is the operator norm of $\varphi$. (Note that, by Rem.
 
 
 
-\begin{comment}
-From \eqref{eq118}, it is clear that for any $v\in V,\varphi\in V^*$ we have
-\begin{align}
-|\bk{\varphi,v}|\leq\Vert\varphi\Vert\cdot\Vert v\Vert \label{eq119}
-\end{align}
-Thus, the inequality ``$\geq$" trivially holds in \eqref{eq116}. The ``$\leq$" in \eqref{eq116} is nontrivial. 
-
-\begin{rem}\label{lb328}
-If we equip the \textbf{double dual space} \index{00@Double dual space $V^{**}$} $V^{**}=(V^*)^*$ \index{V@$V^{**}=(V^*)^*$} with the operator norm, then for each $\fk v\in V^{**}$, by \eqref{eq120} we have
-\begin{align*}
-\Vert\fk v\Vert=\sup_{\varphi\in \ovl B_{V^*}(0,1)}|\bk{\fk v,\varphi}|
-\end{align*}
-From this relation, it is clear that \eqref{eq116} holds if and only if the canonical linear map 
-\begin{gather}
-V\rightarrow V^{**}\qquad v\mapsto \bk{\cdot ,v}  \label{eq117}
-\end{gather} 
-(where $\bk{\cdot,v}$ sends each $\varphi\in V^*$ to $\bk{\varphi,v}=\varphi(v)$) is an isometry.
-\end{rem}
-
-\end{comment}
 
 
 
@@ -20773,8 +20753,13 @@ Why do we define $\mu$ on $\fk M_\mu$ to be the restriction of $\mu^*$ but not $
 By Thm. \ref{lb708}, $(\fk M_\mu,\mu)$ extends the completion of $(\fk B_X,\mu)$. Very often, we only care about the completion of $(\fk B_X,\mu)$ but not about the larger set $\fk M_\mu$. However, the following proposition shows that in many cases (e.g. when $X=\Rbb^N$ and $\mu=m$), $(\fk M_\mu,\mu)$ is equal to the completion.
 
 
+\begin{df}\label{lb1031}
+Let $(Y,\fk N,\nu)$ be a measure space. We say that $\nu$ is \pmb{$\sigma$-}\textbf{finite} \index{00@$\sigma$-finite} on $E$ if $E$ is a countable union of measurable subsets with finite $\nu$-measures. We say that $\nu$ is a \pmb{$\sigma$-}\textbf{finite measure} if $\nu$ is $\sigma$-finite on $Y$. 
+\end{df}
+
+
 \begin{spp}\label{lb737}
-Assume that $(\fk B_X,\mu)$ is \textbf{$\sigma$-finite}, i.e., $X$ is a countable union of elements of $\fk B_X$ with finite $\mu$-measures. Then $(\fk M_\mu,\mu)$ is the completion of $(\fk B_X,\mu)$.
+Assume that $(\fk B_X,\mu)$ is \textbf{$\sigma$-finite}. Then $(\fk M_\mu,\mu)$ is the completion of $(\fk B_X,\mu)$.
 \end{spp}
 
 \begin{proof}[$\star$ Proof]
@@ -21966,7 +21951,7 @@ We now use Thm. \ref{lb758} to prove the dominated convergence theorem:
 We are given a sequence $(f_n)$ in $\mc L(X)$ bounded by $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ and converging pointwise to $f$.  Let $\nu$ be the measure such that $d\nu=gd\mu$. Then $\nu(X)=\int_X gd\mu<+\infty$. Let $h_n(x)=f_n(x)/g(x)$ and $h(x)=f(x)/g(x)$ if $g(x)\neq 0$, and let $h_n(x)=h(x)=0$ if $g(x)=0$. It is easy to see that $h_n,h$ are measurable. Clearly $|h_n|\leq 1$, and $(h_n)$ converges pointwise to $h$. Therefore, by the bounded convergence Thm. \ref{lb758}, we have $\lim_n \int_Xh_nd\nu=\int_Xhd\nu$. Since $h_ng=f_n$ and $hg=f$, we get $\lim_n\int_X f_nd\mu=\int_X fd\mu$.
 \end{proof}
 
-\begin{prob}
+\begin{prob}\label{lb1028}
 Assume the setting of the dominated convergence Thm. \ref{lb755}, i.e., we are given a sequence $(f_n)$ in $\mc L(X,\Cbb)$ bounded by $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ and converging pointwise to $f$. For each $k\in\Zbb_+$, let
 \begin{align}
 E_k=g^{-1}[1/k,k]
@@ -22008,7 +21993,10 @@ Our proof of the dominated convergence Thm. \ref{lb755} relies on the linearity 
 \end{rem}
 
 
-We close this subsection by giving an application of convergence in measure.
+
+\subsubsection{Miscellaneous problems}
+
+The following theorem provides an application of convergence in measure.
 
 \begin{thm}[\textbf{Egorov's theorem}]\index{00@Egorov's theorem}\label{lb965}
 Assume that $\mu(X)<+\infty$. Let $\mc V$ be a normed vector space. Assume that $(f_n)$ is a sequence in $\mc L(X,\mc V)$ converging pointwise to some $f\in\mc L(X,\mc V)$. Then $(f_n)$ converges \textbf{almost uniformly} \index{00@Almost uniform convergence} to $f$, which means that for every $\delta>0$ there exists $A\in\fk M$ such that $\mu(X\setminus A)<\delta$, and that $(f_n)$ converges uniformly on $A$ to $f$.
@@ -22018,6 +22006,36 @@ Assume that $\mu(X)<+\infty$. Let $\mc V$ be a normed vector space. Assume that 
 \begin{prob}
 Prove Egorov's theorem. (Hint: Let $g_n(x)=\sup_{k\geq n}\Vert f(x)-f_k(x)\Vert$. Then $(g_n)$ converges in measure to $0$. For each $k\in\Zbb_+$, choose $n_k\in\Zbb_+$ such that $A_k=g_{n_k}^{-1}([0,1/k])$ is large enough. Let $A=\bigcap_n A_n$.)
 \end{prob}
+
+
+
+
+
+\begin{sthm}[\textbf{Generalized dominated convergence theorem}]\index{00@Generalized dominated convergence theorem}\label{lb1029}
+Let $(g_n)$ be a sequence in $\mc L^1(X,\Rbb_{\geq0})$ converging pointwise to $g\in\mc L^1(X,\Rbb_{\geq0})$. Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f\in\mc L(X,\Cbb)$. Assume that $|f_n|\leq g_n$ and $|f|\leq g$. Assume that $\dps\lim_n \int_Xg_nd\mu=\int_X gd\mu$. Prove that $\dps\lim_n \int_Xf_nd\mu=\int_X fd\mu$.
+\end{sthm}
+
+Let us prove Thm. \ref{lb1029} by generalizing the argument in Pb. \ref{lb1028}.
+
+\begin{sprob}\label{lb1030}
+Prove Thm. \ref{lb1029} following the steps below. 
+\begin{enumerate}
+\item For each $E\in\fk M$, use Fatou's lemma to show $\dps\int_E gd\mu=\lim_n\int_E g_nd\mu$.
+\item Let $\eps>0$. Show that there exists $E\in\fk M$ such that $\mu(E)<+\infty$ and $\dps\int_{X\setminus E}g\leq\eps$. Use part 1 to show that $\dps\limsup_n\int_{X\setminus E}|f_n|\leq\eps$ and $\dps\int_{X\setminus E}|f|\leq\eps$.
+\item For each $\lambda\in\Rbb_{\geq0}$, let $\varphi_\lambda:[0,+\infty)\rightarrow[0,1]$ be a continuous decreasing function satisfying $\varphi_\lambda|_{[0,\lambda]}=1$ and $\varphi_\lambda|_{[\lambda+1,+\infty)}=0$. Let $\theta_\lambda=1-\varphi_\lambda$. Use the bounded convergence Thm. \ref{lb758} to show that
+\begin{gather*}
+\lim_n \int_E f_n\cdot (\varphi_\lambda\circ |f_n|)=\int_E f\cdot(\varphi_\lambda\circ |f|)\\
+\lim_n \int_E g_n\cdot(\varphi_\lambda\circ g_n)=\int_E g\cdot(\varphi_\lambda\circ g)
+\end{gather*}
+Conclude that $\dps \lim_n \int_E g_n\cdot(\theta_\lambda\circ g_n)=\int_E g\cdot(\theta_\lambda\circ g)$.
+\item Show that there exists $\lambda$ such that $\dps\int_E g\cdot(\theta_\lambda\circ g)\leq\eps$.  Conclude that
+\begin{gather*}
+\limsup_n\int_E |f_n|\cdot(\theta_\lambda\circ |f_n|)\leq\eps\qquad \int_E |f|\cdot(\theta_\lambda\circ |f|)\leq\eps
+\end{gather*}
+(Here, you should use the fact that $\theta_\lambda$ is increasing.) Finish the proof of Thm. \ref{lb1029}.
+\end{enumerate}
+\end{sprob}
+
 
 
 
@@ -22581,86 +22599,7 @@ The converse of Lusin's theorem is given in Pb. \ref{lb868} and Rem. \ref{lb870}
 
 
 
-\subsection{Regularity beyond finite measures}
 
-Fix an LCH space $(X,\mc T_X)$, and let $(\fk M,\mu)$ be the completion of a Radon measure on $X$.
-
-We have said that regularity for sets of infinite measures is not as useful as regularity for sets of finite measures. (That's why we introduced local regularity in Subsec. \ref{lb736}.)  But why do we need outer regularity for any measurable set with possibly infinite measure (cf. Thm. \ref{lb804})? Because it shows that the measure $\mu$ is determined by its values on open sets. Similarly, why do we need inner regularity for open sets? Because it implies that $\mu$ on open sets is determined by the integrals of functions in $C_c(X,\Rbb_{\geq0})$, cf. Lem. \ref{lb777}. The regularity on sets with infinite measures is used to ensure certain uniqueness properties of the measures, rather than approximating these sets with open sets or compact sets.
-
-
-If $E\in\fk M$ and $\mu(E)=+\infty$, we cannot find open $U\subset E$ and $K\subset E$ such that $\mu(U\setminus K)$ is small. This is because $\mu(K)$ is finite. Nevertheless, we shall show that in many cases, if we replace $K$ by closed sets, then such an approximation of $E$ is possible. The crucial condition is $\sigma$-finiteness: 
-
-
-\begin{df}
-Let $(Y,\fk N,\nu)$ be a measure space. We say that $\nu$ is \pmb{$\sigma$-}\textbf{finite} \index{00@$\sigma$-finite} on $E$ if $E$ is a countable union of measurable subsets with finite $\nu$-measures. We say that $\nu$ is a \pmb{$\sigma$-}\textbf{finite measure} if $\nu$ is $\sigma$-finite on $Y$. 
-\end{df}
-
-Note that any measurable subset of a $\sigma$-finite set is $\sigma$-finite.
-
-
-\begin{rem}\label{lb809}
-The following conditions are equivalent.
-\begin{enumerate}
-\item[(1)] $\mu$ is a $\sigma$-finite measure on $\fk M$.
-\item[(2)] There exists an increasing sequence of open sets $U_1\subset U_2\subset\cdots$ such that $X=\bigcup_n U_n$ and that $\mu(U_n)<+\infty$ for each $n$.
-\end{enumerate}
-\end{rem}
-
-\begin{proof}
-Clearly (2) implies (1). Assume (1). Then $X=E_1\cup E_2\cup\cdots$ where $E_n\in\fk M$ and $\mu(E_n)<+\infty$. By Thm. \ref{lb804}, $\mu$ is outer regular on $E_n$. So we can find an open $V_n\supset E_n$ such that $\mu(V_n)<+\infty$. Take $U_n=V_1\cup\cdots\cup V_n$.
-\end{proof}
-
-
-\begin{eg}
-If $X$ is compact, then $\mu$ is finite, and hence is $\sigma$-finite.
-\end{eg}
-
-
-\begin{eg}\label{lb831}
-Assume that $X$ is second countable. Then $X$ is a countable union of precompact open subsets. In particular, $\mu$ is $\sigma$-finite on $X$.
-\end{eg}
-
-\begin{proof}
-Since $X$ is LCH, $X$ is a union of precompact open sets. Since $X$ is second countable, $X$ is Lindel\"of (by Cor. \ref{lb265}). Therefore, $X$ is a countable union of precompact open sets (which have finite measures because $\mu$ is Radon).
-\end{proof}
-
-We are ready to prove a variant of Cor. \ref{lb830}. In this course, the following Thm. \ref{lb808} will only be used in the proof of Thm. \ref{lb818}.
-
-
-\begin{thm}\label{lb808}
-Assume that $\mu$ is $\sigma$-finite (on $X$). Let $E\subset X$. Then the following are equivalent.
-\begin{enumerate}
-\item[(1)] $E\in\fk M$.
-\item[(2)] For every $\eps>0$ there exist a closed set $F\subset X$ and an open set $U\subset X$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\eps$. 
-\end{enumerate}
-\end{thm}
-
-
-
-\begin{proof}
-(2)$\Rightarrow$(1): Similar to the proof of Cor. \ref{lb830}, (2) implies that there is an $F_\sigma$ set $A$ and a $G_\delta$ set $B$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$. \footnote{We didn't single out this property and call it (2') because we will not use this property in the future of this course, and also because without assuming $\mu^*(E)<+\infty$ as in Cor. \ref{lb830}, one cannot prove (2')$\Rightarrow$(2) directly without first proving (2')$\Rightarrow$(1).} Since $A,B$ are Borel and $(\fk M,\mu)$ is complete, we conclude $E\in\fk M$.
-
-
-(1)$\Rightarrow$(2): Let $E\in\fk M$. To prove (2), it suffices to find an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps/2$. Then, a similar argument gives an open set $V$ containing $E^c$ such that $\mu(V\setminus E^c)<\eps/2$. Write $V=X\setminus F$ where $F$ is closed. Then $F\subset E\subset U$ and $\mu(E\setminus F)<\eps/2$. So $\mu(U\setminus F)<\eps$.
-
-Since every $\sigma$-finite measure is $\sigma$-finite on every measurable subset, we can write $E$ as a countable union $E=\bigcup_n E_n$ where $E_n\in\fk M$ and $\mu(E_n)<+\infty$. By Thm. \ref{lb804}, there exists an open $U_n$ containing $E_n$ such that $\mu(U_n)<\mu(E_n)+\eps/2^{n+1}$, and hence $\mu(U_n\setminus E_n)<\eps/2^{n+1}$. Let $U=\bigcup_nU_n$. Then $U\setminus E\subset\bigcup_n(U_n\setminus E_n)$, and hence $\mu(U\setminus E)<\eps/2$.
-\end{proof}
-
-We will only use Thm. \ref{lb808} in the special case that $X$ is second countable. (Then the $\sigma$-finiteness of $\mu$ follows automatically.) So the readers may as well assume this slightly stronger condition  which was assumed in many previous theorems.
-
-\begin{comment}
-A $\sigma$-compact set is clearly $F_\sigma$. In view of the similarity between Cor. \ref{lb830} and Thm. \ref{lb808}, one naturally wonders if the converse is true. The following is an answer:
-
-\begin{sexe}
-Assume that $X$ is $\sigma$-compact (which is automatic when $X$ is second countable). Let $A\subset X$. Prove that $A$ is $\sigma$-compact iff $A$ is $F_\sigma$.
-\end{sexe}
-
-
-\begin{srem}
-In (2') of Thm. \ref{lb808}, one can choose $A$ to be $\sigma$-compact. (Recall that $\sigma$-compact sets are $F_\sigma$.) To see this, take $E\in\fk M$. Since $\mu$ is $\sigma$-finite, we can write $E$ as a countable union $E=\bigcup_n E_n$ where each $E_n\in\fk M$ has finite measure. By Cor. \ref{lb830}, there is a $\sigma$-compact subset $A_n$ of $E_n$ such that $\mu(E_n\setminus A_n)=0$. Then $A=\bigcup_n A_n$ is $\sigma$-compact, and $\mu(E\setminus A)=0$. Thus, for any $B$ as in (2') of Thm. \ref{lb808}, since $\mu(B\setminus E)=0$, we have $\mu(B\setminus A)=0$.
-\end{srem}
-
-\end{comment}
 
 
 
@@ -22672,13 +22611,41 @@ In (2') of Thm. \ref{lb808}, one can choose $A$ to be $\sigma$-compact. (Recall 
 \subsection{A criterion for Radon measures}\label{lb822}
 
 
+The goal of this section is to give an extremely useful criterion for Radoness, namely, Thm. \ref{lb818}. We first show some elementary facts about $\sigma$-finiteness. (Recall Def. \ref{lb1031}.)
+
+
+\begin{rem}\label{lb809}
+Let $(\fk M,\mu)$ be a Radon measure (or its completion) on an LCH space $X$. The following conditions are equivalent.
+\begin{enumerate}
+\item[(1)] $\mu$ is a $\sigma$-finite measure on $\fk M$.
+\item[(2)] There exists an increasing sequence of open sets $U_1\subset U_2\subset\cdots$ such that $X=\bigcup_n U_n$ and that $\mu(U_n)<+\infty$ for each $n$.
+\end{enumerate}
+\end{rem}
+
+\begin{proof}
+Clearly (2) implies (1). Assume (1). Then $X=E_1\cup E_2\cup\cdots$ where $E_n\in\fk M$ and $\mu(E_n)<+\infty$. By Thm. \ref{lb804}, $\mu$ is outer regular on $E_n$. So we can find an open $V_n\supset E_n$ such that $\mu(V_n)<+\infty$. Take $U_n=V_1\cup\cdots\cup V_n$.
+\end{proof}
+
+
+
+
+
+\begin{eg}\label{lb831}
+Assume that $X$ is a second countable LCH space. Then $X$ is a countable union of precompact open subsets. In particular, every Radon measure is $\sigma$-finite on $X$.
+\end{eg}
+
+\begin{proof}
+Since $X$ is LCH, $X$ is a union of precompact open sets. Since $X$ is second countable, $X$ is Lindel\"of (by Cor. \ref{lb265}). Therefore, $X$ is a countable union of precompact open sets (which have finite measures under any Radon measure).
+\end{proof}
+
+
 \begin{thm}\label{lb818}
 Let $X$ be a second countable LCH space. Let $\mu:\fk B_X\rightarrow[0,+\infty]$ be a measure such that $\mu(K)<+\infty$ for every compact subset $K\subset X$. Then $\mu$ is a Radon measure.
 \end{thm}
 
 
 \begin{proof}
-By Lem. \ref{lb806}, we have $\int_Xfd\mu<+\infty$ for every $f\in C_c(X,\Rbb_{\geq0})$. Therefore, we have an $\Rbb_{\geq0}$-linear map
+Step 1. By Lem. \ref{lb806}, we have $\int_Xfd\mu<+\infty$ for every $f\in C_c(X,\Rbb_{\geq0})$. Therefore, we have an $\Rbb_{\geq0}$-linear map
 \begin{align*}
 \Lambda: C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}\qquad\Lambda(f)=\int_Xfd\mu
 \end{align*}
@@ -22686,23 +22653,16 @@ By Riesz-Markov, there is a unique Radon measure $\lambda$ on $X$ satisfying
 \begin{align*}
 \Lambda(f)=\int_Xfd\lambda
 \end{align*}
-for all $f\in C_c(X,\Rbb_{\geq0})$. We shall prove $\mu=\lambda$.
+for all $f\in C_c(X,\Rbb_{\geq0})$. We shall prove $\mu=\lambda$.\\[-1ex]
 
-We first prove that $\mu(U)=\lambda(U)$ for any nonempty open $U\subset X$. Since $\lambda$ is inner regular on open sets, we know that $\lambda(U)$ is the supremum of $\int fd\lambda=\Lambda(f)=\int fd\mu$ for all $f\in C_c(U,[0,1])$. Suppose that we can prove that $\mu$ is inner regular on open sets, then by Lem. \ref{lb777},  $\mu(U)$ is also the supremum of $\int fd\mu$ where $f\in C_c(U,[0,1])$. This proves $\mu(U)=\lambda(U)$.
+Step 2. Let us prove that $\mu(U)=\lambda(U)$ for any nonempty open $U\subset X$. Since $\lambda$ is inner regular on open sets, we know that $\lambda(U)$ is the supremum of $\int fd\lambda=\Lambda(f)=\int fd\mu$ for all $f\in C_c(U,[0,1])$. Suppose that we can prove that $\mu$ is inner regular on open sets, then by Lem. \ref{lb777},  $\mu(U)$ is also the supremum of $\int fd\mu$ where $f\in C_c(U,[0,1])$. This proves $\mu(U)=\lambda(U)$.
 
-To prove that $\mu$ is inner regular on $U$, note that since $U$ is LCH (cf. Prop. \ref{lb245}) and second countable, by Exp. \ref{lb831}, $U$ is a countable union of precompact open subsets. Therefore, we have a sequence of compact subsets $(K_n)$ of $U$ whose union is $U$. By replacing each $K_n$ with $K_1\cup\cdots\cup K_n$ we assume that $(K_n)$ is increasing. Therefore $\mu(U)=\lim_n\mu(K_n)$. This proves that $\mu(U)$ can be approximated by the measures of compact subsets. So $\mu$ is inner regular on $U$.
+To prove that $\mu$ is inner regular on $U$, note that since $U$ is LCH (cf. Prop. \ref{lb245}) and second countable, by Exp. \ref{lb831}, $U$ is a countable union of precompact open subsets. Therefore, we have a sequence of compact subsets $(K_n)$ of $U$ whose union is $U$. By replacing each $K_n$ with $K_1\cup\cdots\cup K_n$ we assume that $(K_n)$ is increasing. Therefore $\mu(U)=\lim_n\mu(K_n)$. This proves that $\mu(U)$ can be approximated by the measures of compact subsets. So $\mu$ is inner regular on $U$.\\[-1ex]
+
+Step 3. Let us prove that $\mu(E)=\lambda(E)$ whenever $E\in\fk B_X$ is contained in an open subset $U$ with finite $\lambda$-measure. Choose any $\eps>0$. By Cor. \ref{lb830}, there exist an open set $U\subset X$ with $\lambda(U)<+\infty$ and a compact set $K\subset E$ such that $\lambda(U\setminus K)<\eps$. By Step 2, we have $\mu(U)=\lambda(U)$ and $\mu(U\setminus K)=\lambda(U\setminus K)<\eps$. Hence $\mu(U\setminus E)<\eps$ and $\lambda(U\setminus E)<\eps$. Therefore $|\mu(U)-\mu(E)|<\eps$ and $|\lambda(U)-\lambda(E)|<\eps$, and hence $|\mu(E)-\lambda(E)|<2\eps$. Since $\eps$ is arbitrary, we get $\mu(E)=\lambda(E)$.\\[-1ex]
 
 
-
-Now we choose any $E\in\fk B_X$. Since $X$ is second countable and hence $\mu$ is $\sigma$-finite (Exp. \ref{lb831}), by Thm. \ref{lb808}, for each $\eps>0$ there exist an open $U\subset X$ and a closed $F\subset X$ such that $F\subset E\subset U$ and $\lambda(U\setminus F)<\eps$. So $\lambda(U\setminus E)<\eps$, and hence
-\begin{align}\label{eq322}
-\lambda(U)-\eps\leq\lambda(E)\leq\lambda(U)
-\end{align}
-Since both $U$ and $U\setminus F$ are open, we have $\mu(U)=\lambda(U)$ and $\mu(U\setminus F)=\lambda(U\setminus F)<\eps$. Therefore $\mu(U\setminus E)<\eps$. Thus $\mu(U)-\eps\leq\mu(E)\leq\mu(U)$, and hence
-\begin{align}\label{eq323}
-\lambda(U)-\eps\leq\mu(E)\leq\lambda(U)
-\end{align}
-Since \eqref{eq322} and \eqref{eq323} hold for every $\eps>0$, we conclude $\lambda(E)=\mu(E)$.
+Step 4. Choose any $E\in\fk B$. By Exp. \ref{lb831}, we have $X=\bigcup_{n=1}^\infty U_n$ where each $U_n$ is open and precompact. Since $\lambda$ is Radon, we have $\lambda(U_n)<+\infty$. Let $E_1=E\cap U_1$ and $E_n=E\cap \big(U_n\setminus(U_1\cup\cdots\cup U_n)\big)$ if $n>1$. Then $E$ is a disjoint union of $(E_n)_{n\in\Zbb_+}$. By Step 3, we have $\mu(E_n)=\lambda(E_n)$ for all $n$. By the countable additivity of $\mu$ and $\lambda$, we get $\mu(E)=\lambda(E)$.
 \end{proof}
 
 
@@ -22728,6 +22688,47 @@ Let $X$ be a compact metric space. Then, by Thm. \ref{lb252}, $X$ is second coun
 \end{eg}
 
 
+
+
+\subsection{$\star$ Regularity beyond finite measures}
+
+Fix an LCH space $(X,\mc T_X)$, and let $(\fk M,\mu)$ be the completion of a Radon measure on $X$. In this section, we prove a variant of Cor. \ref{lb830}. Since this result will not be used elsewhere in the course, readers may skip this section without concern.
+
+
+\begin{thm}\label{lb808}
+Assume that $\mu$ is $\sigma$-finite (on $X$). Let $E\subset X$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $E\in\fk M$.
+\item[(2)] For every $\eps>0$ there exist a closed set $F\subset X$ and an open set $U\subset X$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\eps$. 
+\end{enumerate}
+\end{thm}
+
+
+
+\begin{proof}
+(2)$\Rightarrow$(1): Similar to the proof of Cor. \ref{lb830}, (2) implies that there is an $F_\sigma$ set $A$ and a $G_\delta$ set $B$ such that $A\subset E\subset B$ and $\mu(B\setminus A)=0$. \footnote{We didn't single out this property and call it (2') because we will not use this property in the future of this course, and also because without assuming $\mu^*(E)<+\infty$ as in Cor. \ref{lb830}, one cannot prove (2')$\Rightarrow$(2) directly without first proving (2')$\Rightarrow$(1).} Since $A,B$ are Borel and $(\fk M,\mu)$ is complete, we conclude $E\in\fk M$.
+
+
+(1)$\Rightarrow$(2): Let $E\in\fk M$. To prove (2), it suffices to find an open $U$ containing $E$ such that $\mu(U\setminus E)<\eps/2$. Then, a similar argument gives an open set $V$ containing $E^c$ such that $\mu(V\setminus E^c)<\eps/2$. Write $V=X\setminus F$ where $F$ is closed. Then $F\subset E\subset U$ and $\mu(E\setminus F)<\eps/2$. So $\mu(U\setminus F)<\eps$.
+
+Since every $\sigma$-finite measure is $\sigma$-finite on every measurable subset, we can write $E$ as a countable union $E=\bigcup_n E_n$ where $E_n\in\fk M$ and $\mu(E_n)<+\infty$. By Thm. \ref{lb804}, there exists an open $U_n$ containing $E_n$ such that $\mu(U_n)<\mu(E_n)+\eps/2^{n+1}$, and hence $\mu(U_n\setminus E_n)<\eps/2^{n+1}$. Let $U=\bigcup_nU_n$. Then $U\setminus E\subset\bigcup_n(U_n\setminus E_n)$, and hence $\mu(U\setminus E)<\eps/2$.
+\end{proof}
+
+
+
+\begin{comment}
+A $\sigma$-compact set is clearly $F_\sigma$. In view of the similarity between Cor. \ref{lb830} and Thm. \ref{lb808}, one naturally wonders if the converse is true. The following is an answer:
+
+\begin{sexe}
+Assume that $X$ is $\sigma$-compact (which is automatic when $X$ is second countable). Let $A\subset X$. Prove that $A$ is $\sigma$-compact iff $A$ is $F_\sigma$.
+\end{sexe}
+
+
+\begin{srem}
+In (2') of Thm. \ref{lb808}, one can choose $A$ to be $\sigma$-compact. (Recall that $\sigma$-compact sets are $F_\sigma$.) To see this, take $E\in\fk M$. Since $\mu$ is $\sigma$-finite, we can write $E$ as a countable union $E=\bigcup_n E_n$ where each $E_n\in\fk M$ has finite measure. By Cor. \ref{lb830}, there is a $\sigma$-compact subset $A_n$ of $E_n$ such that $\mu(E_n\setminus A_n)=0$. Then $A=\bigcup_n A_n$ is $\sigma$-compact, and $\mu(E\setminus A)=0$. Thus, for any $B$ as in (2') of Thm. \ref{lb808}, since $\mu(B\setminus E)=0$, we have $\mu(B\setminus A)=0$.
+\end{srem}
+
+\end{comment}
 
 \subsection{Stieltjes integrals and Radon measures on $[a,b]$}
 
@@ -25029,7 +25030,9 @@ Assume that $p>1$, and $\mu$ is $\sigma$-finite if $p=+\infty,q=1$. Let $(f_n)$ 
 \begin{proof}[Hint]
 1. Use the density of simple functions in $L^q(X,\mu)$ (Thm. \ref{lb874}).
 
-2. Case $1<p<+\infty$: Use Fatou's lemma to prove $f\in L^p(X,\mu)$. Use convergence in measure (cf. Pb. \ref{lb757}, or use Egorov's Thm. \ref{lb965}) and H\"older's inequality to prove \eqref{eq355}.
+2. Case $1<p<+\infty$: Use Fatou's lemma to prove $f\in L^p(X,\mu)$.
+
+Proof of \eqref{eq355}: Method 1: Use convergence in measure (cf. Pb. \ref{lb757}, or use Egorov's Thm. \ref{lb965}) and H\"older's inequality. Method 2: Let $\varphi_\lambda,\theta_\lambda$ be as in Pb. \ref{lb1030}. Prove that $\lim_{\lambda\rightarrow+\infty}\sup_n\int_A |f_n|\cdot(\theta_\lambda\circ |f_n|)=0$.
 \end{proof}
 
 
