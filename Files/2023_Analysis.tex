@@ -21423,7 +21423,7 @@ Proof of (a). Assume that $\int_Xf>0$. By the definition of integrals, there is 
 
 Conversely, assume that $\int_Xf=0$. For each $n\in\Zbb_+$, let $E_n=f^{-1}[1/n,+\infty]$. Then $n^{-1}\chi_{E_n}\leq f$ and hence $\int_Xf\geq \int_X n^{-1}\chi_{E_n}=n^{-1}\mu(E_n)$. So $\mu(E_n)=0$. So $E=\bigcup_n E_n$ is null, and $f$ is zero outside $E$.
 
-Proof of (b). Let $I=\int_Xf<+\infty$ and assume $I<+\infty$. For each $n\in\Zbb_+$, let $\Delta_n=f^{-1}[n,+\infty]$. Then $n\chi_{\Delta_n}\leq f$, and hence $n\mu(\Delta_n)=\int_X n\chi_{\Delta_n}\leq I$. So $\mu(\Delta_n)\leq I/n$. Then $f<+\infty$ outside $\Delta=\bigcap_n \Delta_n$ where $\mu(\Delta)\leq\mu(\Delta_n)\leq I/n$, and hence $\mu(\Delta)=0$. 
+Proof of (b). Let $\Delta=f^{-1}\{+\infty\}$. Assume that $\mu(\Delta)>0$. Then $\int_Xfd\mu\geq \int_X (+\infty)\cdot\chi_\Delta d\mu=(+\infty)\cdot\mu(\Delta)=+\infty$, and hence $\inf_Xfd\mu=+\infty$.
 \end{proof}
 
 
@@ -22012,29 +22012,29 @@ Prove Egorov's theorem. (Hint: Let $g_n(x)=\sup_{k\geq n}\Vert f(x)-f_k(x)\Vert$
 
 
 \begin{sthm}[\textbf{Generalized dominated convergence theorem}]\index{00@Generalized dominated convergence theorem}\label{lb1029}
-Let $(g_n)$ be a sequence in $\mc L^1(X,\Rbb_{\geq0})$ converging pointwise to $g\in\mc L^1(X,\Rbb_{\geq0})$. Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f\in\mc L(X,\Cbb)$. Assume that $|f_n|\leq g_n$ and $|f|\leq g$. Assume that $\dps\lim_n \int_Xg_nd\mu=\int_X gd\mu$. Prove that $\dps\lim_n \int_Xf_nd\mu=\int_X fd\mu$.
+Let $(g_n)$ be a sequence in $\mc L^1(X,\mu,\Rbb_{\geq0})$ converging pointwise to $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$. Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f\in\mc L(X,\Cbb)$. Assume that $|f_n|\leq g_n$ and $|f|\leq g$. Assume that $\dps\lim_n \int_Xg_nd\mu=\int_X gd\mu$. Prove that $\dps\lim_n \int_Xf_nd\mu=\int_X fd\mu$.
 \end{sthm}
 
-Let us prove Thm. \ref{lb1029} by generalizing the argument in Pb. \ref{lb1028}.
+
+\begin{sprob}
+Prove Thm. \ref{lb1029}.
+\end{sprob}
+
+\begin{proof}[Hint]
+First consider the special case that $0\leq f_n\leq g_n$, and apply Fatou's lemma to $f_n$ and $g_n-f_n$. Then reduce the general case to the special case by considering $|f-f_n|$.
+\end{proof}
+
+
 
 \begin{sprob}\label{lb1030}
-Prove Thm. \ref{lb1029} following the steps below. 
-\begin{enumerate}
-\item For each $E\in\fk M$, use Fatou's lemma to show $\dps\int_E gd\mu=\lim_n\int_E g_nd\mu$.
-\item Let $\eps>0$. Show that there exists $E\in\fk M$ such that $\mu(E)<+\infty$ and $\dps\int_{X\setminus E}g\leq\eps$. Use part 1 to show that $\dps\limsup_n\int_{X\setminus E}|f_n|\leq\eps$ and $\dps\int_{X\setminus E}|f|\leq\eps$.
-\item For each $\lambda\in\Rbb_{\geq0}$, let $\varphi_\lambda:[0,+\infty)\rightarrow[0,1]$ be a continuous decreasing function satisfying $\varphi_\lambda|_{[0,\lambda]}=1$ and $\varphi_\lambda|_{[\lambda+1,+\infty)}=0$. Let $\theta_\lambda=1-\varphi_\lambda$. Use the bounded convergence Thm. \ref{lb758} to show that
-\begin{gather*}
-\lim_n \int_E f_n\cdot (\varphi_\lambda\circ |f_n|)=\int_E f\cdot(\varphi_\lambda\circ |f|)\\
-\lim_n \int_E g_n\cdot(\varphi_\lambda\circ g_n)=\int_E g\cdot(\varphi_\lambda\circ g)
-\end{gather*}
-Conclude that $\dps \lim_n \int_E g_n\cdot(\theta_\lambda\circ g_n)=\int_E g\cdot(\theta_\lambda\circ g)$.
-\item Show that there exists $\lambda$ such that $\dps\int_E g\cdot(\theta_\lambda\circ g)\leq\eps$.  Conclude that
-\begin{gather*}
-\limsup_n\int_E |f_n|\cdot(\theta_\lambda\circ |f_n|)\leq\eps\qquad \int_E |f|\cdot(\theta_\lambda\circ |f|)\leq\eps
-\end{gather*}
-(Here, you should use the fact that $\theta_\lambda$ is increasing.) Finish the proof of Thm. \ref{lb1029}.
-\end{enumerate}
+Assume that $\mu(X)<+\infty$. Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ converging pointwise to $f\in\mc L(X,\Cbb)$. Let $\varphi:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0}$ be a Borel function such that $\dps\liminf_{t\rightarrow+\infty}\varphi(t)=+\infty$. Assume that $\dps\sup_n\int_X |f_n|\cdot(\varphi\circ |f_n|)d\mu<+\infty$. Prove that $f_n,f\in\mc L^1(X,\mu)$ and $\dps\lim_n\int_X f_nd\mu=\int_X fd\mu$.
 \end{sprob}
+
+\begin{proof}[Hint]
+For each $\lambda\in\Rbb_{\geq0}$, let $\alpha_\lambda:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0}$ be the (continuous) piecewise linear increasing function such that $\alpha_\lambda|_{[0,\lambda]}=0$ and $\alpha_\lambda|_{[\lambda+1,+\infty)}=1$. Let $\beta_\lambda=1-\alpha_\lambda$. Show that for each $\eps>0$, we have $\dps\sup_n\int_X |f_n|\cdot(\alpha_\lambda\circ|f_n|)\leq\eps$ for sufficiently large $\lambda$. Apply the bounded convergence theorem to $f_n\cdot(\beta_\lambda\circ |f_n|)$.
+\end{proof}
+
+
 
 
 
@@ -25032,7 +25032,7 @@ Assume that $p>1$, and $\mu$ is $\sigma$-finite if $p=+\infty,q=1$. Let $(f_n)$ 
 
 2. Case $1<p<+\infty$: Use Fatou's lemma to prove $f\in L^p(X,\mu)$.
 
-Proof of \eqref{eq355}: Method 1: Use convergence in measure (cf. Pb. \ref{lb757}, or use Egorov's Thm. \ref{lb965}) and H\"older's inequality. Method 2: Let $\varphi_\lambda,\theta_\lambda$ be as in Pb. \ref{lb1030}. Prove that $\lim_{\lambda\rightarrow+\infty}\sup_n\int_A |f_n|\cdot(\theta_\lambda\circ |f_n|)=0$.
+Proof of \eqref{eq355}: Method 1: Use convergence in measure (cf. Pb. \ref{lb757}, or use Egorov's Thm. \ref{lb965}) and H\"older's inequality. Method 2: Use Pb. \ref{lb1030}.
 \end{proof}
 
 
