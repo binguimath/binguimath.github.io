@@ -20371,7 +20371,7 @@ A measure space $(X,\mu)$ is called \textbf{complete} \index{00@Complete measure
 
 A main advantage of completeness is the following property:
 
-\begin{pp}
+\begin{pp}\label{lb1032}
 Let $(X,\fk M,\mu)$ be a complete measure space. Let $(Y,\fk N)$ be a measurable space. If $f,g:X\rightarrow Y$ are equal a.e. (namely, there is a null set outside of which $f$ and $g$ are equal), and if $f$ is measurable, then $g$ is measurable.
 \end{pp}
 
@@ -21561,7 +21561,7 @@ The linear maps $f\in l^1(X)\mapsto\sum_{x\in X}f(x)$ and $f\in \mc L^1(X,\mu)\r
 
 
 \begin{pp}\label{lb780}
-Let $f\in\scr R[a,b]=\scr R([a,b],\Cbb)$ where $-\infty<a<b<+\infty$. Then the Riemann integral of $f$ equals the Lebesgue integral:
+Let $f\in\scr R[a,b]=\scr R([a,b],\Cbb)$ where $-\infty<a<b<+\infty$. Then $f\in\mc L^1([a,b],m)$, and the Riemann integral of $f$ equals the Lebesgue integral:
 \begin{align}\label{eq313}
 \int_a^b f(x)dx=\int_{[a,b]}fdm
 \end{align} 
@@ -21574,11 +21574,13 @@ Now pick any $f\in\scr R([a,b],\Rbb)$. Since $f$ is strongly Riemann integrable 
 \begin{align*}
 g=\sum_i \inf f(I_i)\cdot\chi_{I_i}\qquad h=\sum_i\sup f(I_i)\cdot\chi_{I_i}
 \end{align*}
-Then $g\leq f\leq h$, and $\int_a^b (h(x)-g(x))dx=\sum_i \diam f(I_i)\cdot|I_i|<\eps$. Since $g,h,h-g\in S$, their Riemann integrals and Lebsgue integrals are equal. (In particular, $\int_{[a,b]}(h-g)dm<\eps$.) Since 
+Then $g\leq f\leq h$, and $\int_a^b (h(x)-g(x))dx=\sum_i \diam f(I_i)\cdot|I_i|<\eps$. Since $g,h,h-g\in S$, their Riemann integrals and Lebsgue integrals are equal. (In particular, $\int_{[a,b]}(h-g)dm<\eps$.) If we can show that $f$ is Lebesgue measurable, then $f\in \mc L^1([a,b],m)$ (because $f$ is bounded), and 
 \begin{align*}
 \int_a^bg(x)dx\leq \int_a^bf(x)dx\leq\int_a^b h(x)dx\qquad \int_{[a,b]}gdm\leq \int_{[a,b]}fdm\leq\int_{[a,b]}hdm
 \end{align*}
-we have $|\int_a^bf(x)dx-\int_{[a,b]}fdm|<2\eps$. 
+This implies $|\int_a^bf(x)dx-\int_{[a,b]}fdm|<2\eps$ for arbitrary $\eps$. Hence \eqref{eq313} is true.
+
+By the above discussion, we can choose step functions $g_n,h_n$ such that $g_n\leq f\leq h_n$ and $\int (h_n-g_n)dm<1/n$. Replacing $g_n$ with $\max\{g_1,\dots,g_n\}$ and $h_n$ with $\min\{h_1,\dots,h_n\}$, we can assume that $(g_n)$ is increasing and $(h_n)$ is decreasing. Thus, they converge pointwise to $g,h:[a,b]\rightarrow\Rbb$ respectively. Since $g_n,h_n$ are Borel functions, by Thm. \ref{lb700}, $g,h$ are also Borel. Clearly $g\leq f\leq h$. Since $0\leq h-g\leq h_n-g_n$, we have $\int(h-g)dm<1/n$ for all $n$, and hence $\int(h-g)dm=0$. By Prop. \ref{lb752}, $\{x\in[a,b]:h(x)>g(x)\}$ is a Borel $m$-null set. Since the Lebesgue measure $m$ is complete (Thm. \ref{lb800}), the subset $\{x\in[a,b]:f(x)>g(x)\}$ is Lebesgue measurable and null. Therefore, $f$ and $g$ differ by a Lebesgue null set. By Prop. \ref{lb1032}, $f$ is Lebesgue measurable.
 \end{proof}
 
 
