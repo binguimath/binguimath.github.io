@@ -21996,7 +21996,7 @@ Our proof of the dominated convergence Thm. \ref{lb755} relies on the linearity 
 
 
 
-\subsubsection{$\star$ Miscellaneous problems}
+\subsubsection{$\star$ Various types of convergence properties}
 
 The following theorem provides an application of convergence in measure.
 
@@ -22027,6 +22027,27 @@ Prove Thm. \ref{lb1029}.
 First consider the special case that $0\leq f_n\leq g_n$, and apply Fatou's lemma to $f_n$ and $g_n-f_n$. (This special case is particularly important. It states, roughly, that if the equality in Fatou's lemma holds for $(g_n)$, then it also holds for any convergent sequence of positive functions bounded by $(g_n)$.) Then reduce the general case to the special case by considering $|f-f_n|$.
 \end{proof}
 
+\begin{comment}
+\begin{df}
+A family $(f_\alpha)_{\alpha\in\scr A}$ in $\mc L(X,\Cbb)$ is called \textbf{uniformly integrable} if for every $\eps>0$ there exists $g\in\mc L^1(X,\mu,\Rbb_{\geq0})$ such that
+\begin{align*}
+\sup_{\alpha\in\scr A}\int_{\{|f_\alpha|>g\}}|f_\alpha|d\mu\leq\eps
+\end{align*}
+Here, $\{|f_\alpha|>g\}$ is the abbreviation of $\{x\in X:|f_\alpha(x)|>g(x)\}$
+\end{df}
+
+\begin{prob}
+Let $(f_n)_{n\in\Zbb_+}$ be a uniformly integrable sequence in $\mc L(X,\Cbb)$ converging pointwise to $f:X\rightarrow\Cbb$. Prove that $f_n,f\in\mc L^1(X,\mu)$ and that $\dps\lim_n \int_Xf_nd\mu=\int_X fd\mu$.
+\end{prob}
+
+\begin{proof}
+Reduce to the case that $f_n,f$ are real-valued. Define $\varphi:\Rbb\times\Rbb_{\geq0}\rightarrow\Rbb$ by
+\begin{align*}
+\varphi(s,t)=\min\{|s|,t\}\cdot \sgn(s)
+\end{align*}
+where $\sgn(s)=s/|s|$ if $s\neq 0$ and $\sgn(s)=0$ if $s=0$. Show that $\varphi$ is continuous. Let $\eps,g$ be as in Def. Show that $|\varphi(f_n,g)|\leq g$, that $\lim_n\varphi(f_n,g)$ converges pointwise to $\varphi(f,g)$, and that $\dps\sup_n \int_X |f_n-\varphi(f_n,g)|d\mu\leq\eps$.
+\end{proof}
+\end{comment}
 
 
 
@@ -22037,7 +22058,11 @@ Assume that $\mu(X)<+\infty$. Let $(f_n)$ be a sequence in $\mc L(X,\Cbb)$ conve
 \end{prob}
 
 \begin{proof}[Hint]
-For each $\lambda\in\Rbb_{\geq0}$, let $\alpha_\lambda:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0}$ be the (continuous) piecewise linear increasing function such that $\alpha_\lambda|_{[0,\lambda]}=0$ and $\alpha_\lambda|_{[\lambda+1,+\infty)}=1$. Let $\beta_\lambda=1-\alpha_\lambda$. Show that for each $\eps>0$, we have $\dps\sup_n\int_X |f_n|\cdot(\alpha_\lambda\circ|f_n|)\leq\eps$ for sufficiently large $\lambda$. Apply the bounded convergence theorem to $f_n\cdot(\beta_\lambda\circ |f_n|)$.
+For each $\lambda\in\Rbb_{\geq0}$, let $\alpha_\lambda:\Rbb_{\geq0}\rightarrow\Rbb_{\geq0}$ be the (continuous) piecewise linear increasing function such that $\alpha_\lambda|_{[0,\lambda]}=0$ and $\alpha_\lambda|_{[\lambda+1,+\infty)}=1$. Let $\beta_\lambda=1-\alpha_\lambda$. Show that for each $\eps>0$, we have
+\begin{align*}
+\sup_n\int_X|f_n|\cdot(\chi_{[\lambda,+\infty)}\circ|f_n|)d\mu\leq\eps
+\end{align*}
+for sufficiently large $\lambda$. (This property is sometimes referred to as \textbf{uniform integrability}.)\index{00@Uniform integrability} Conclude that $\dps\sup_n\int_X |f_n|\cdot(\alpha_\lambda\circ|f_n|)\leq\eps$ for sufficiently large $\lambda$. Apply the bounded convergence theorem to $f_n\cdot(\beta_\lambda\circ |f_n|)$.
 \end{proof}
 
 
@@ -22242,7 +22267,7 @@ The main steps of monotone convergence extensions are as follows. Given a positi
 \item For each $f\in\scr L$, define $\Lambda(f)=\sup\{\Lambda(h):h\in \scr C,h\leq f\}$.
 \item Prove the \textbf{monotone convergence theorem}: If $(f_\alpha)$ is an increasing net/sequence converging pointwise to $f$, then $f\in\scr L$ and $\Lambda(f)=\lim_\alpha\Lambda(f_\alpha)$.
 \item Prove that every $f\in\scr L$ is the pointwise limit of an increasing net/sequence in $\scr C$.
-\item Use step 2 and 3 to show the linearity of the extended $\Lambda$.
+\item Use Steps 2 and 3 to show the linearity of the extended $\Lambda$.
 \end{enumerate}
 These are not exactly the steps originally taken by Riesz and others in the history. The equivalent but more classical (and more intuitive) steps they took are as follows:
 \begin{enumerate}[label=(\alph*)]
@@ -23481,14 +23506,19 @@ In other words, $x\in X$ belongs to $\Supp(\mu)$ iff every neighborhood $V$ of $
 \end{prob}
 
 
-\begin{prob}\label{lb868}
+\begin{sprob}\label{lb868}
 Prove the converse of Lusin's theorem: Let $X$ be LCH, and let $(\fk M,\mu)$ be the completion of a $\sigma$-finite Radon measure on $X$. Let $f:X\rightarrow\Cbb$ such that for every $A\in\fk B_X$ satisfying $\mu(A)<+\infty$, and for every $\eps>0$, there exists a compact $K\subset A$ such that $\mu(A\setminus K)<\eps$ and $f|_K$ is continuous. Then $f$ is $\fk M$-measurable.
-\end{prob}
+\end{sprob}
 
 
 \begin{srem}\label{lb870}
 Without assuming $\sigma$-finiteness, we have the following version of Lusin's theorem and its converse: A function $f:X\rightarrow\Cbb$ satisfies the description in Pb. \ref{lb868} iff $f$ is $\fk M_\mu$-measurable, where $\fk M_\mu$ is defined by Thm. \ref{lb724}, i.e., the set of all $E\subset X$ such that $\mu$ is regular on $E\cap\Omega$ for each open $\Omega$ with finite $\mu$-measure. (Equivalently, $\fk M_\mu$ is the saturation of $\fk M$, cf. Subsec. \ref{lb869}. Note that if $\mu|_{\fk B_X}$ is $\sigma$-finite then $\fk M_\mu=\fk M$ by Prop. \ref{lb737}.) We leave the proof to the readers.
 \end{srem}
+
+
+\begin{sprob}\label{lb1033}
+Let $\mu,\nu$ be Radon measures on $\Rbb$. Prove that $\mu=\nu$ iff $\mu(-\infty,x]=\nu(-\infty,x]$ for all $x\in\Rbb$.
+\end{sprob}
 
 
 
@@ -23553,7 +23583,7 @@ It is not necessary to prove \eqref{eq324} using Pb. \ref{lb801}. You can try to
 \end{proof}
 
 
-\subsubsection{The dual space $C_c(X)^*$}
+\subsubsection{$\star$ The dual space $C_c(X)^*$}
 
 
 Let $X$ be an LCH space.
@@ -23594,7 +23624,7 @@ for all $f\in C_c(X,\Rbb_{\geq0})$. This is called the \textbf{Jordan decomposit
 2. Prove $\Lambda+\Lambda^-\leq\Lambda^+$, and replace $\Lambda$ with $-\Lambda$.
 \end{proof}
 
-\begin{sprob}
+\begin{prob}
 Let $\mu$ be a finite Radon measure on $X$. Let $A\in\fk B_X$ and $B=X\setminus A$. Define a linear map $\Lambda:C_c(X,\Rbb)\rightarrow\Rbb$ by
 \begin{align*}
 \Lambda(f)=\int_Af d\mu-\int_B fd\mu
@@ -23603,7 +23633,7 @@ which is clearly bounded (with operator norm $\leq \mu(X)$). Prove that for ever
 \begin{align}
 \Lambda^+(f)=\int_Af d\mu\qquad \Lambda^-(f)=\int_B fd\mu
 \end{align}
-\end{sprob}
+\end{prob}
 
 \begin{proof}[Hint]
 To prove $\Lambda^+(f)\geq\int_Afd\mu$, find compact $K\subset A$ and $L\subset B$ such that $\mu(A\setminus K)$ and $\mu(B\setminus L)$ are small. Multiply $f$ by an Urysohn function associated to $K$ and $X\setminus L$.
@@ -23691,7 +23721,7 @@ Since $X$ is a countable union of open subsets, and since $\mu$ is finite on com
 
 
 
-\subsubsection{Stieltjes integrals and the Banach-Alaoglu theorem for $C([a,b],\Rbb)^*$}\label{lb851}
+\subsubsection{$\star$ Stieltjes integrals and the Banach-Alaoglu theorem for $C([a,b],\Rbb)^*$}\label{lb851}
 
 
 Let $-\infty<a<b<+\infty$. If $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ is increasing, for each $f:[a,b]\rightarrow\Cbb$, the Stieltjes integral $\int_a^bfd\rho$ is understood as $\int_a^b\Real(f)d\rho+\im\int_a^b\Imag(f)d\rho$ whenever it can be defined. Recall that
@@ -23777,9 +23807,9 @@ Let $(\rho_n)$ be a sequence of increasing functions $[a,b]\rightarrow[0,1]$. Th
 
 
 
-\begin{sprob}
+\begin{prob}
 Prove Helly's selection Thm. \ref{lb846}.
-\end{sprob}
+\end{prob}
 
 \begin{proof}[Hint]
 Choose a subsequence $(\rho_{n_k})$ converging pointwise on $[a,b]\cap\Qbb$ to an increasing $\tau:[a,b]\cap\Qbb\rightarrow[0,1]$. Extend $\tau$ to an increasing right continuous function $\tau:[a,b]\rightarrow[0,1]$ by $\dps\tau(x)=\lim_{t\rightarrow x^+,t\in\Qbb\cap[a,b]}\tau(t)$. Let $\Delta$ be the (countable) set of all $x\in[a,b]$ at which $\tau$ is not continuous. Prove that $(\rho_{n_k})$ converges pointwise on $[a,b]\setminus\Delta$ to $\tau$. Conclude that $(\rho_{n_k})$ has a subsequence converging everywhere on $[a,b]$.
@@ -23838,7 +23868,8 @@ d\mu_\rho=\rho(a)d\delta_a+\rho'dm
 \end{prob}
 
 \begin{proof}[Hint]
-By Pb. \ref{lb858}, it suffices to prove \eqref{eq347} on $\fk B_{[a,b]}$. Let $\nu$ be the Borel measure on $[a,b]$ such that $d\nu=\rho(a)d\delta_a+\rho'dm$. Show that $\nu$ is Radon. Show that it suffices to prove $\int_{[a,b]}fd\mu_\rho=\int_{[a,b]}fd\nu$ for any polynomial $f$. Prove this relation by using integration by parts (Pb. \ref{lb859}).
+Use Pb. \ref{lb1033} to show that \eqref{eq347} holds on $\fk B_{[a,b]}$. Use Pb. \ref{lb858} to show that any Lebesgue-measurable subset of $(a,b]$ is $\mu_\rho$-measurable.
+%Let $\nu$ be the Borel measure on $[a,b]$ such that $d\nu=\rho(a)d\delta_a+\rho'dm$. Show that $\nu$ is Radon. Show that it suffices to prove $\int_{[a,b]}fd\mu_\rho=\int_{[a,b]}fd\nu$ for any polynomial $f$. Prove this relation by using integration by parts (Pb. \ref{lb859}).
 \end{proof}
 
 
