@@ -21751,7 +21751,7 @@ Thm. \ref{lb768} and Cor. \ref{lb764} (see also Prop. \ref{lb770}) suggest that 
 
 \subsection{Problems and supplementary material}
 
-Let $(X,\fk M,\mu)$ be a measure space.
+Unless otherwise stated, we let $(X,\fk M,\mu)$ be a measure space.
 
 
 
@@ -21773,6 +21773,13 @@ Define $\nu:\fk M\rightarrow[0,+\infty]$ to be $\nu(E)=\int_X \chi_Ehd\mu$. Prov
 \begin{prob}\label{lb858}
 Let $h,\nu$ be as in Pb. \ref{lb328}. Let $(\ovl{\fk M},\ovl\mu)$ be the completion of $\mu$. Let $(\fk N,\ovl\nu)$ be the completion of $\nu$. Prove that $\ovl{\fk M}\subset\fk N$. Prove that $d\ovl\nu=hd\ovl\mu$ on $\ovl{\fk M}$.
 \end{prob}
+
+\begin{sprob}\label{lb1035}
+Let $(X,\fk M)$ be a measurable space, and let $\mu,\nu:\fk M\rightarrow[0,+\infty]$ be measures. Let $g:X\rightarrow\Rbb_{\geq0}$ be measurable. We say that $g$ is a \textbf{Radon-Nikodym derivative} \index{00@Radon-Nikodym derivative} of $\mu$ with respect to $\nu$ if $d\mu=gd\nu$. 
+
+Assume that $\nu$ is $\sigma$-finite. Prove that if $g,h$ are Radon-Nikodym derivatives of $\mu$ with respect to $\nu$, then $g=h$ outside a $\nu$-null set.
+\end{sprob}
+
 
 
 \subsubsection{$\star$ Bochner integrals}\label{lb979}
@@ -23524,9 +23531,7 @@ Without assuming $\sigma$-finiteness, we have the following version of Lusin's t
 \end{srem}
 
 
-\begin{sprob}\label{lb1033}
-Let $\mu,\nu$ be Radon measures on $\Rbb$. Prove that $\mu=\nu$ iff $\mu(-\infty,x]=\nu(-\infty,x]$ for all $x\in\Rbb$.
-\end{sprob}
+
 
 
 
@@ -23850,13 +23855,13 @@ Another prototype of the Banach-Alaoglu theorem is the compactness of the closed
 Understanding how abstract theorems like the Banach-Alaoglu theorem evolved from early explicit versions is important because it helps us understand the nature of mathematical development. We have emphasized this point throughout this course.
 
 
-\subsubsection{$\star$ Lebesgue-Stieltjes integrals}
+\subsubsection{$\star$ Stieltjes integrals}
 
 
 Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be increasing and right continuous. Let $\mu_\rho$ be the Lebesgue-Stieltjes measure associated to $\rho$ (cf. Def. \ref{lb857}), i.e., the completion of the unique Radon measure whose value at each $[a,x]$ equals $\rho(x)$.
 
 \begin{prob}\label{lb856}
-Let $f:[a,b]\rightarrow\Rbb$ be a bounded function. Assume that $f$ is Stieltjes integrable with respect to $\rho$. Prove that $f$ is $\mu_\rho$-measurable, and
+Let $f:[a,b]\rightarrow\Rbb$ be a bounded function. Assume that $f$ is Stieltjes integrable with respect to an increasing right-continuous $\rho:[a,b]\rightarrow\Rbb$. Prove that $f$ is $\mu_\rho$-measurable, and
 \begin{align*}
 \int_{[a,b]}fd\mu_\rho=f(a)\rho(a)+\int_a^bfd\rho
 \end{align*}
@@ -23867,18 +23872,46 @@ where $\int_a^bfd\rho$ is the Stieltjes integral.
 To prove that $f$ is $\mu_\rho$-measurable, use the lower and upper Darboux sums to find bounded Borel functions $g,h:[a,b]\rightarrow\Rbb$ satisfying $g\leq f\leq h$ and $\int_{[a,b]}(h-g)d\mu_\rho=0$. Show that $f-g=0$ $\mu_\rho$-a.e.. (Where is the completeness of $\mu_\rho$ used?)
 \end{proof}
 
-\begin{prob}
-Assume that $\rho$ has continuous derivative $\rho'\in C([a,b],\Rbb_{\geq0})$. Let $(\fk M,m)$ be the Lebesgue measure on $[a,b]$. Prove that every Lebesgue measurable set is $\mu_\rho$-measurable. Prove that  on $\fk M$ we have
-\begin{align}\label{eq347}
-d\mu_\rho=\rho(a)d\delta_a+\rho'dm
-\end{align}
-(cf. Pb. \ref{lb328} for the notation), where $\delta_a$ is the Dirac measure associated to $a$.
+
+
+
+
+\begin{prob}\label{lb1033}
+Let $\mu,\nu$ be Radon measures on $\Rbb$. Use outer regularity to prove that $\mu=\nu$ iff $\mu(-\infty,x]=\nu(-\infty,x]$ for all $x\in\Rbb$. 
 \end{prob}
 
-\begin{proof}[Hint]
-Use Pb. \ref{lb1033} to show that \eqref{eq347} holds on $\fk B_{[a,b]}$. Use Pb. \ref{lb858} to show that any Lebesgue-measurable subset of $(a,b]$ is $\mu_\rho$-measurable.
-%Let $\nu$ be the Borel measure on $[a,b]$ such that $d\nu=\rho(a)d\delta_a+\rho'dm$. Show that $\nu$ is Radon. Show that it suffices to prove $\int_{[a,b]}fd\mu_\rho=\int_{[a,b]}fd\nu$ for any polynomial $f$. Prove this relation by using integration by parts (Pb. \ref{lb859}).
-\end{proof}
+\begin{rem}
+In the following, we let 
+\begin{align*}
+d\rho=d\mu_\rho-\rho(a)\delta_a
+\end{align*}
+which is the unique (why?) Radon measure on $[a,b]$ sending each $[a,x]$ to $\rho(x)-\rho(a)$. (Recall that $\delta_a$ is the Dirac measure at $a$.) Thanks to Pb. \ref{lb856}, this notation is compatible with the symbol $d\rho$ in Stieltjes integral $\int_a^bfd\rho$ whenever $f$ is Stieltjes integrable.
+\end{rem}
+
+
+
+\begin{prob}\label{lb1034}
+(Fundamental theorem of calculus for Radon-Nikodym derivatives). Let $g\in\mc L^1([a,b],m)$ be a Borel function and $g\geq0$. Use Pb. \ref{lb1033} to prove that the following are equivalent:
+\begin{enumerate}
+\item[(a)] $\rho$ is a continuous function. Moreover, $g$ is the Radon-Nikodym derivative of $d\rho$ with respect to $dm$ on $\fk B_{[a,b]}$ (cf. Pb. \ref{lb1035}), that is, on $\fk B_{[a,b]}$ we have
+\begin{align}
+d\rho=gdm
+\end{align}
+\item[(b)] For each $x\in[a,b]$, we have
+\begin{align}\label{eq578}
+\rho(x)-\rho(a)=\int_a^xgdm
+\end{align}
+\end{enumerate}
+\end{prob}
+
+
+
+
+\begin{rem}\label{lb1036}
+In your future study of real analysis, you will encounter the \textbf{Lebesgue differentiation theorem}, which asserts that if \eqref{eq578} holds, then $\rho$ is differentiable and satisfies $\rho'=g$ outside an $m$-null subset of $[a,b]$. 
+
+Now, thanks to Pb. \ref{lb1034}, we see that the Lebesgue differentiation theorem can be understood as claiming that the Radon-Nikodym derivative, when it exists, is equal to the usual derivative outside an $m$-null set. (This is one half of the \textbf{fundamental theorem of calculus for the Lebesgue integral}. The second half says that if $\rho$ is an ``absolutely continuous" function, then $d\rho$ has a Radon-Nikodym derivative with respect to $dm$.\footnote{This second half follows from a more general fact: if $\nu$ is a $\sigma$-finite measure on a measurable space $X$, and if $\mu$ is an ``absolutely continuous" complex measure/signed measure on $X$, then $\mu$ has a Radon-Nikodym derivative with respect to $\nu$. See \cite[Thm. 6.10]{Rud-R}.})  \hfill\qedsymbol
+\end{rem}
 
 
 
@@ -23942,7 +23975,10 @@ satisfying that for each $f_i\in C_c(X_i)$, by viewing $f_1\cdots f_N$ as a func
 \begin{proof}
 Uniqueness: Let $\Gamma$ satisfy the same properties as $\Lambda$. Let $X_\blt=X_1\times\cdots\times X_N$. By Lem. \ref{lb460}, it is easy to see that $C_c(X_\blt)$ is the union of all $C_c(U_\blt)$ where $U_\blt=U_1\times\cdots\times U_N$ for some precompact open $U_1\subset X_1,\dots,U_N\subset X_N$. Therefore, it suffices to restrict $\Lambda$ and $\Gamma$ to each $C_c(U_\blt)$ and show that they are equal. 
 
-Let $\mc E=\{f_1\cdots f_N:f_i\in C_c(U_i)\}$. Then $\Lambda|_{\mc E}=\Gamma|_{\mc E}$. Note that $\Span_\Cbb\mc E$ is clearly a $*$-subalgebra of $C_0(U_\blt)$ vanishing nowhere and separating points of $U_\blt$. (This is because $C_c(U_i)$ vanishes nowhere and separates points of $U_i$, cf. Cor. \ref{lb474}.) Applying the Stone-Weierstrass Thm. \ref{lb828} to the LCH space $U_\blt$, we conclude that $\Span_\Cbb\mc E$ is dense in $C_c(U_\blt)$ (under the $l^\infty$-norm). \footnote{In fact, one can use the Stone-Weierstrass theorem for compact Hausdorff spaces since all functions involved have compact supports.} Therefore, by Lem. \ref{lb825}, we see that $\Lambda$ equals $\Gamma$ on $C_c(U_\blt)$. \\[-1ex]
+Let $\mc E=\{f_1\cdots f_N:f_i\in C_c(U_i)\}$. Then $\Lambda|_{\mc E}=\Gamma|_{\mc E}$. Note that $\Span_\Cbb\mc E$ is clearly a $*$-subalgebra of $C_0(U_\blt)$ vanishing nowhere and separating points of $U_\blt$. (This is because $C_c(U_i)$ vanishes nowhere and separates points of $U_i$, cf. Cor. \ref{lb474}.) Applying the Stone-Weierstrass Thm. \ref{lb828} to the LCH space $U_\blt$, we conclude that $\Span_\Cbb\mc E$ is dense in $C_c(U_\blt)$ (under the $l^\infty$-norm). Therefore, by Lem. \ref{lb825}, we see that $\Lambda$ equals $\Gamma$ on $C_c(U_\blt)$. This finishes the proof of the uniqueness.
+
+
+For readers who prefer not to invoke the SW theorem for LCH spaces (whose proof relies on one-point compactifications), we provide a different proof that $\Span\mc E$ is dense in $C_c(U_\blt)$. Let $f\in C_c(U_\blt)$. Let $K_i\subset U_i$ be compact such that $\Supp f\subset K_\blt:=K_1\times\cdots\times K_N$. Choose any $\eps>0$. By the SW theorem for compact Hausdorff spaces (Thm. \ref{lb450}), or simply by Cor. \ref{lb471}, there exists $g$ in $\Span\{g_1\cdots g_N:g_i\in C(\ovl{U_i})\}$ such that $\Vert f-g\Vert_{l^\infty(\ovl U_\blt)}\leq\eps$, where $\ovl U_\blt=\ovl U_1\times\cdots\times\ovl U_N$. In particular, since $f|_{\ovl U_\blt\setminus K_\blt}=0$, we have $|g|\leq\eps$ on $\ovl U_\blt\setminus K_\blt$. By Urysohn's lemma, there exists $h_i\in C_c(U_i,[0,1])$ such that $h_i|_{K_i}=1$. Let $h=h_1\cdots h_N\cdot g$. Then clearly $g\in\Span\mc E$, and $|f-h|=|f-g|\leq\eps$ on $K_\blt$. Since $|h|\leq|g|\leq\eps$ on $\ovl U_\blt\setminus K_\blt$, we get $|f-h|=|-h|\leq\eps$ on $\ovl U_\blt\setminus K_\blt$. Thus $\Vert f-h\Vert_{l^\infty(U_\blt)}\leq\eps$.\\[-1ex]
 
 Existence: By induction on $N$, it suffices to assume $N=2$. Choose any $f\in C_c(X_\blt)$, and let $K_i$ be the projection of $\Supp(f)$ to $X_i$. (So $K_1,K_2$ are compact, and $\Supp(f)\subset K_1\times K_2$.) For each net $(p_\alpha)_{\alpha\in I}$ converging in $X_1$ to $p$, the net of functions $(f(p_\alpha,\cdot)|_{K_2})_{\alpha\in I}$ in $C(K_2)$ converges uniformly to $f(p,\cdot)|_{K_2}$ due to Thm. \ref{lb274}. Therefore, by Thm. \ref{lb829}, we have
 \begin{align*}
@@ -24248,7 +24284,7 @@ E_y\times\{y\}=E\cap(X\times\{y\})
 \end{align}
 It is clear that $E$ is open iff each $E_y$ is open. Tonelli's Thm. \ref{lb832} implies that if $E$ is open then
 \begin{align}\label{eq335}
-(\mu\times\nu)(E)=\sum_y\mu(E)
+(\mu\times\nu)(E)=\sum_y\mu(E_y)
 \end{align}
 Let $f:X\times Y\rightarrow\ovl\Rbb_{\geq0}$. For each $y\in Y$, define $f_y:X\rightarrow\ovl\Rbb_{\geq0}$ be $f_y(x)=f(x,y)$. It follows from \eqref{eq334} that $f$ is lower semicontinuous iff $f_y$ is lower semicontinuous for each $y\in Y$.
 
@@ -24298,7 +24334,7 @@ By the outer regularity (cf. Thm. \ref{lb804}), it suffices to prove that $(m\ti
 \end{eg}
 
 \begin{rem}\label{lb842}
-In Exp. \ref{lb840}, we proved that the closed set $\Delta$ satisfies $(m\times\nu)^*(\Delta)=(m\times\nu)(\Delta)=+\infty$. Note that every compact subset $K$ of $\Delta$ is a finite set (since its image under the projection $X\times Y\rightarrow Y$ is compact and hence finite). Hence $K$ is $(m\times\nu)$-null. Therefore $(m\times\nu)_*(\Delta)=0$. This gives an example of Borel subset with infinite Radon measure which is not inner regular.
+In Exp. \ref{lb840}, we proved that the closed set $\Delta$ satisfies $(m\times\nu)^*(\Delta)=(m\times\nu)(\Delta)=+\infty$. Note that every compact subset $K$ of $\Delta$ is a finite set (since its image under the projection $X\times Y\rightarrow Y$ is compact under the discrete topology, and hence is finite). Hence $K$ is $(m\times\nu)$-null. Therefore $(m\times\nu)_*(\Delta)=0$. This gives an example of Borel subset with infinite Radon measure which is not inner regular.
 \end{rem}
 
 
@@ -24690,11 +24726,14 @@ Let us prove that $\mc E$ is dense in $L^p(X,\mu)$. Choose any $f\in L^p(X,\mu)$
 \end{proof}
 
 
+\begin{comment}
 \begin{rem}
 In the above proof, we have used the criterion Thm. \ref{lb818} to show that $\mu$ restricts to a Radon measure on the second countable compact set $K_n$. Since Thm. \ref{lb818} is a deep result, one may wonder if Thm. \ref{lb872} can be proved without using Thm. \ref{lb818}. The answer is yes. We sketch such a proof below.
 
 First, consider the special case that $\mu(X)<+\infty$. By Thm. \ref{lb866}, $C_c(X)$ is dense in $L^p(X,\mu)$. By Pb. \ref{lb484}, $C_c(X)$ is $l^\infty$-separable, and hence is $L^p$-separable (by the finiteness of $\mu(X)$). Therefore $L^p(X,\mu)$ is separable. Second, consider the general case. Since $X$ is second countable, we can write $X$ as a countable union $X=\bigcup_n U_n$ where $U_1\subset U_2\subset\cdots$ are open and precompact subsets of $X$. So $\mu(U_n)<+\infty$. The restriction $\mu_n=\mu|_{\fk B_{U_n}}$ is Radon. (This is easy to check by using the openness of $U_n$, and does not rely on the second countability. So Thm. \ref{lb818} is not needed here.) Therefore, $L^p(U_n,\mu_n)$ is separable. Similar to Step 2 of the proof of Thm. \ref{lb872}, one concludes that $L^p(X,\mu)$ is separable. \hfill\qedsymbol
 \end{rem}
+
+\end{comment}
 
 
 \begin{rem}
@@ -24752,11 +24791,11 @@ A main goal of \cite{Rie10} was to study the moment problem in $L^p$ spaces. The
 
 
 
-The main difficulty of proving $(L^q)^*\simeq L^p$ lies in proving that any bounded linear functional $\Lambda\in L^q([a,b],m)^*$ can be realized by some $f\in L^p([a,b],m)$. Motivated by the \hyperlink{SecondRiesz}{second proof} of the Riesz representation Thm. \ref{lb847} (cf. Subsec. \ref{lb923}), one may define $F(x)=\Lambda(\chi_{[a,x]})$, hoping that $\Lambda(g)=\int gdF$. Thus, the natural candidate for the function $f$ representing $\Lambda$ should be the (a.e.-)derivative $f=F'$ since $\Lambda(g)=\int gdF=\int gF'dm$. 
+The main difficulty of proving $(L^q)^*\simeq L^p$ lies in proving that any bounded linear functional $\Lambda\in L^q([a,b],m)^*$ can be realized by some $f\in L^p([a,b],m)$. Motivated by the \hyperlink{SecondRiesz}{second proof} of the Riesz representation Thm. \ref{lb847} (cf. Subsec. \ref{lb923}), one may define $F(x)=\Lambda(\chi_{[a,x]})$, hoping that $\Lambda(g)=\int gdF$. Thus, the natural candidate for the function $f$ representing $\Lambda$ should be the (a.e.-)derivative $f=F'$ since, at least formally, we have $\Lambda(g)=\int gdF=\int gF'dm$. 
 
-In fact, in \cite{Rie10}, by using the fundamental theorem of calculus for Lebesgue integrals (cf. \cite[Ch. 7]{Rud-R}), Riesz succeeded in showing that $f:=F'$ exists a.e., that $f\in L^p([a,b],m)$, and that  $dF=fdm$. This finishes the proof. (This method can also be found in the English textbook \cite[Sec. 36]{RN}.)
+In fact, in \cite{Rie10}, by using the fundamental theorem of calculus for Lebesgue integrals (cf. \cite[Ch. 7]{Rud-R}), Riesz succeeded in showing that $f:=F'$ exists a.e., that $f\in L^p([a,b],m)$, and that  $dF=fdm$. (See also Pb. \ref{lb1034} and the subsequent Rem. \ref{lb1036} for a related discussion.) This finishes the proof. (This method can also be found in the English textbook \cite[Sec. 36]{RN}.)
 
-The modern proof of $L^p\simeq (L^q)^*$ for an arbitrary measure space $(X,\fk M,\mu)$ follows basically the same ideas, except that $F'$ should be replaced by the Radon-Nikodym derivative:  Assume for simplicity that $\mu$ is a finite measure. Define $\nu:\fk M\rightarrow\Cbb$ by $\nu(E)=\Lambda(\chi_E)$. This is a (so called) \textbf{complex measure}, which plays the role of $F$ in Riesz's treatment. Then one shows that $d\nu=fd\mu$ for some measurable function $f$ (called the \textbf{Radon-Nikodym derivative} \index{00@Radon-Nikodym derivative} of $\nu$ with respect to $\mu$), and that $f\in L^p(X,\mu)$. Finally, one shows that $\Lambda(g)=\int fgd\mu$ for all $g\in L^q(X,\mu)$, concluding the proof. See e.g. \cite[Ch. 6]{Rud-R} or \cite[Sec. 3.2, 6.2]{Fol-R} for details.%\footnote{Riesz's method relies on Lebesgue's differentiation theorem (cf. \cite[Ch. 7]{Rud-R}) but not on the completeness of $L^p$ spaces. However, the Radon-Nikodym theorem relies on the completeness of $L^2$.}
+The modern proof of $L^p\simeq (L^q)^*$ for an arbitrary measure space $(X,\fk M,\mu)$ follows basically the same ideas, except that $F'$ should be replaced by the Radon-Nikodym derivative:  Assume for simplicity that $\mu$ is a finite measure. Define $\nu:\fk M\rightarrow\Cbb$ by $\nu(E)=\Lambda(\chi_E)$. This is a (so called) \textbf{complex measure}, which plays the role of $F$ in Riesz's treatment. One then shows that $L^2(X,\mu)$ is complete, and hence that $L^2\simeq(L^2)^*$ (due to the Riesz-Fr\'echet representation Thm. \ref{lb898}). The duality $L^2\simeq(L^2)^*$ allows one to show that $d\nu=fd\mu$ for some measurable function $f:X\rightarrow\Cbb$ (called the \textbf{Radon-Nikodym derivative} \index{00@Radon-Nikodym derivative} of $\nu$ with respect to $\mu$, cf. Pb. \ref{lb1035}), and that $f\in L^p(X,\mu)$. Therefore, one has $\Lambda(g)=\int fgd\mu$ when $g\in L^q(X,\mu)$ is a characteristic function. By using the density property Thm. \ref{lb874}, one obtains $\Lambda(g)=\int fgd\mu$ for all $g\in L^q(X,\mu)$, concluding the proof of $L^p\simeq(L^q)^*$. See e.g. \cite[Ch. 6]{Rud-R} for details.%\footnote{Riesz's method relies on Lebesgue's differentiation theorem (cf. \cite[Ch. 7]{Rud-R}) but not on the completeness of $L^p$ spaces. However, the Radon-Nikodym theorem relies on the completeness of $L^2$.}
 
 
 Once $L^p\simeq(L^q)^*$ has been proved, one can use the completeness of dual spaces to conclude that $L^p$ is complete.\footnote{The structure of Riesz's proof in \cite{Rie10} is as follows. He first derived the basic properties for $F(x)=\Lambda(\chi_{[a,x]})$ and $F'$. Then, he proved that $\ovl B_{L^p([a,b],m)}(0,1)$ is weakly compact and that $L^p([a,b],m)\simeq L^q([a,b],m)^*$. Both proofs used $F$. The completeness of $L^p([a,b],m)$ was derived as an immediate consequence of the weak compactness. From a modern perspective, Riesz's method can be viewed as first proving $L^p\simeq(L^q)^*$, then proving the weak compactness in a similar spirit as we proved the Banach-Alaoglu Thm. \ref{lb519}, and finally derived completeness from weak compactness.} In fact, combining the proof of $L^p\simeq(L^q)^*$ with the completeness of dual spaces, one can see\footnote{Indeed, viewing $(f_n)$ as a sequence in $(L^q)^*$, then it converges weak-* to $\Lambda\in (L^q)^*$ defined by $\Lambda(g)=\lim_n\int_a^b f_ngdm$. Then $\Lambda(g)=\int_a^b gF'dm$ where $F(x)=\Lambda(\chi_{[a,x]})=\lim_n\int_a^x f_ndm$. One then shows that $(f_n)$ converges in the operator norm of $(L^q)^*$ to $\Lambda$, cf. the proof of Thm. \ref{lb1025}. So $(f_n)$ converges in $L^p$ to $F'$.} that if $(f_n)$ is a Cauchy sequence in $L^p([a,b],m)$, then $(f_n)$ converges in $L^p$ to the a.e. derivative $F'\in L^p([a,b],m)$ of $F$, where
