@@ -97,7 +97,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 - (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces. `arXiv:2411.07707` [Preprint](Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](Files/Slides/2024_BIMSA_Nov.pdf))
 
-- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems. [Preprint](Files/2024_CB3.pdf).
+- (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems. [Preprint](Files/2025_CB3.pdf).
 
 
 
