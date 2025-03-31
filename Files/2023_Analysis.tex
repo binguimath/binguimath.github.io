@@ -24400,9 +24400,12 @@ Assume that $f,g\in\mc L(X,\Cbb)$ or $f,g\in\mc L_+(X)$. We have \textbf{Minkows
 \Vert f+g\Vert_p\leq\Vert f\Vert_p+\Vert g\Vert_p
 \end{align}
 and, if $1<p,q<+\infty$ and $p^{-1}+q^{-1}=1$, \textbf{H\"older's inequality} \index{00@H\"older's inequality}
-\begin{align}
-\Big|\int_X fgd\mu\Big|\leq \Vert f\Vert_p\cdot\Vert g\Vert_q
-\end{align}
+\begin{gather}
+\begin{gathered}
+\int_X fgd\mu\leq \Vert f\Vert_p\cdot\Vert g\Vert_q\qquad\text{if }f,g\in\mc L_+(X)\\
+\Big|\int_X fgd\mu\Big|\leq \Vert f\Vert_p\cdot\Vert g\Vert_q\qquad\text{if }\Vert f\Vert_p,\Vert g\Vert_q<+\infty
+\end{gathered}
+\end{gather}
 \end{thm}
 
 \begin{proof}
@@ -24633,7 +24636,7 @@ By Lusin's Thm. \ref{lb865}, for every $\eps>0$, there is a compact $K\subset A$
 Therefore $\Vert f-g\Vert_p\leq 2M\cdot\eps^{\frac 1p}$. Since $\eps$ can be arbitrary, we conclude that $f$ can be approximated by elements of $C_c(X)$.
  
 
-Now we treat the general case. Let $E_n=\{x\in X:1/n\leq|f(x)|\leq n\}$. Then $(E_n)$ is increasing and $\bigcup_n E_n=X$. Moreover, since $n^{-1}\chi_{E_n}\leq |f|$, we have $n^{-p}\mu(E_n)\leq\Vert f\Vert_p^p$ and hence $\mu(E_n)<+\infty$. Since $|f-f\chi_{E_n}|\leq |f|$ and $\int|f|^p<+\infty$,  we have $\lim_n \int |f-f\chi_{E_n}|^p=0$ by the dominated convergence theorem. By the above special case, $f\chi_{E_n}$ can be approximated by elements of $C_c(X)$. This finishes the proof.
+Now we treat the general case. Let $E_n=\{x\in X:1/n\leq|f(x)|\leq n\}$. Then $\lim_n f\chi_{E_n}$ converges pointwise to $f$. Moreover, since $n^{-1}\chi_{E_n}\leq |f|$, we have $n^{-p}\mu(E_n)\leq\Vert f\Vert_p^p$ and hence $\mu(E_n)<+\infty$. Since $|f-f\chi_{E_n}|\leq |f|$ and $\int|f|^p<+\infty$,  we have $\lim_n \int |f-f\chi_{E_n}|^p=0$ by the dominated convergence theorem. By the above special case, $f\chi_{E_n}$ can be approximated by elements of $C_c(X)$. This finishes the proof.
 \end{proof}
 
 
@@ -24692,7 +24695,7 @@ Let $1\leq p<+\infty$. Let $\mu$ be a Radon measure on $\Rbb$. Then $\Span_\Cbb\
 \end{co}
 
 \begin{proof}
-Choose any $f\in L^p(\Rbb,\mu)$. By Thm. \ref{lb866}, for each $\eps>0$ there exists $g\in C_c^\infty(\Rbb)$ such that $\Vert f-g\Vert_{L^p}\leq\eps$. Choose $-\infty<a<b<+\infty$ such that $\Supp g\subset[a,b]$. Then there exists a step function $h$ on $[a,b]$ such that $\Vert g-h\Vert_{l^\infty}\leq\eps(b-a)^{-\frac 1p}$, and hence $\Vert g-h\Vert_{L^p}\leq \eps$. Clearly $h$ belongs to $\Span_\Cbb\{\chi_{[x,y]}:-\infty<x\leq y<+\infty\}$, and $\Vert f-h\Vert_{L^p}\leq 2\eps$.
+Choose any $f\in L^p(\Rbb,\mu)$. By Thm. \ref{lb866}, for each $\eps>0$ there exists $g\in C_c^\infty(\Rbb)$ such that $\Vert f-g\Vert_{L^p}\leq\eps$. Choose $-\infty<a<b<+\infty$ such that $\Supp g\subset[a,b]$. Then there exists a step function $h$ on $[a,b]$ such that $\Vert g-h\Vert_{l^\infty}\leq\eps\cdot\mu([a,b])^{-\frac 1p}$, and hence $\Vert g-h\Vert_{L^p}\leq \eps$. Clearly $h$ belongs to $\Span_\Cbb\{\chi_{[x,y]}:-\infty<x\leq y<+\infty\}$, and $\Vert f-h\Vert_{L^p}\leq 2\eps$.
 \end{proof}
 
 
@@ -24768,7 +24771,9 @@ By approximating $\Real( f)$ and $\Imag(f)$ separately, we can assume that $f$ i
 
 In Pb. \ref{lb912} and \ref{lb910}, we will give applications of Thm. \ref{lb874} to the study of weak-* convergence in $L^p$ spaces.
 
-
+\begin{rem}
+Using Thm. \ref{lb874}, we can give an alternative proof of Thm. \ref{lb866} without appealing to the Tietze extension theorem. Indeed, by (the proof of) Thm. \ref{lb874}, it suffices to show that any characterisic function $f\in L^p(X,\mu)$ can be $L^p$-approximated by elements of $C_c(X)$. We write $f=\chi_A$ where $A$ is measurable. Since $\chi_A\in L^p(X,\mu)$, we have $\mu(A)<+\infty$. Therefore, by Cor. \ref{lb803}, for each $\eps>0$, there exist an open $U\subset X$ and a compact $K\subset X$ such that $K\subset A\subset U$ and $\mu(U\setminus K)<\eps$. By Urysohn's lemma, there exists $g\in C_c(U,[0,1])$ such that $g|_K=1$. One computes that $\Vert f-g\Vert_{L^p(X,\mu)}=\Vert f-g\Vert_{L^p(A\setminus K,\mu)}\leq\eps^{\frac 1p}$.
+\end{rem}
 
 
 
