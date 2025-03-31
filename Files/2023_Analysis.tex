@@ -22384,7 +22384,7 @@ Let $\scr I$ be the set of all $g\in C_c(\Omega_f,\Rbb_{\geq0})$ such that $g\le
 It suffices to prove that for every $A$ satisfying $0\leq A<f(x)$ there exists $g\in\scr I$ such that $g(x)\geq A$. Since $f$ is lower semicontinuous, $U=f^{-1}(A,+\infty]$ is a neighborhood of $x$ in $\Omega_f$. By Urysohn's lemma, there exists $g\in C_c(U,\Rbb_{\geq0})$ such that $0\leq g\leq A$ and $g(x)=A$. Then $g\in\scr I$.
 \end{proof}
 
-\begin{sexe}
+\begin{sexe}\label{lb1037}
 Assume that $X$ is second countable. Let $f\in\LSC_+(X)$ and $\Omega_f=f^{-1}(0,+\infty]$. Prove that there exists an increasing sequence $(f_n)_{n\in\Zbb_+}$ in $C_c(\Omega_f,\Rbb_{\geq0})$ converging pointwise on $X$ to $f$.
 \end{sexe}
 
@@ -23160,13 +23160,13 @@ Since $f$ is uniformly continuous, for each $\eps>0$ there is $\delta>0$ such th
 \begin{align*}
 (\sgm,\mu_\blt)=\big(\{c_0=a<c_1<\cdots<c_k=b\},(\mu_1,\dots,\mu_k) \big)
 \end{align*}
-is finer than $(\sigma,\lambda_\blt)$, setting $G_j=E(\mu_j)-E(\mu_{j-1})$, we have
+is finer than $(\sigma,\lambda_\blt)$, setting $G_j=E(c_j)-E(c_{j-1})$, we have
 \begin{align*}
-S(f,\sgm,\mu_\blt,E)=\sum_{j=1}^k f(c_j)G_j\qquad S(f,\sigma,\lambda_\blt,E)=\sum_{j=1}^k f(c_j')G_j
+S(f,\sgm,\mu_\blt,E)=\sum_{j=1}^k f(\mu_j)G_j\qquad S(f,\sigma,\lambda_\blt,E)=\sum_{j=1}^k f(\mu_j')G_j
 \end{align*}
-where $c_j'$ is some number from $a_1,\dots,a_n$ such that $|c_j'-c_j|\leq\delta$. Therefore, noting that $G_iG_j=0$ if $i\neq j$, and that $\bk{G_i}$, we have
+where $\mu_j'$ is some number from $a_1,\dots,a_n$ such that $|\mu_j'-\mu_j|\leq\delta$. Therefore, noting that $G_iG_j=0$ if $i\neq j$, and that $\bk{G_i\xi|\xi}\geq0$, we have
 \begin{align*}
-&\Big|\bigbk{(S(f,\sgm,\mu_\blt,E)-S(f,\sigma,\lambda_\blt,E))\xi\big|\xi}\Big|\leq \sum_{j=1}^k\Big|\bigbk{(f(c_j)-f(c_j'))G_j\xi\big|\xi}\Big|\\
+&\Big|\bigbk{(S(f,\sgm,\mu_\blt,E)-S(f,\sigma,\lambda_\blt,E))\xi\big|\xi}\Big|\leq \sum_{j=1}^k\Big|\bigbk{(f(\mu_j)-f(\mu_j'))G_j\xi\big|\xi}\Big|\\
 \leq& \eps\sum_{j=1}^k\bk{G_j\xi|\xi}
 =\eps\bk{(E(b)-E(a))\xi|\xi}\leq \eps\Vert\xi\Vert^2
 \end{align*}
@@ -23204,6 +23204,40 @@ As we shall see Rem. \ref{lb1023}, the RHS of \eqref{eq572} actually converges s
 \begin{eg}
 Assume that $\dim\mc H<+\infty$. Then by linear algebra (or by the Hilbert-Schmidt Thm. \ref{lb662}), $\mc H$ has an orthonormal basis $e_1,\dots,e_n$ such that each $e_i$ is an eigenvector with eigenvalue $\lambda_i\in[a,b]$ (i.e., $Te_i=\lambda_ie_i$). Then \eqref{eq572} holds if we let $E(\lambda)$ be the projection associated to $\Span\{e_i:1\leq i\leq n,\lambda_i\leq\lambda\}$.
 \end{eg}
+
+
+\begin{eg}
+Let $(X,\mu)$ be a measure space and $\mc H=L^2(X,\mu)$. (By Thm. \ref{lb875}, $\mc H$ is a Hilbert space.) Let $f:X\rightarrow[a,b]$ be measurable. Let $T\in\fk L(\mc H)$ be the \textbf{multiplication operator} $M_f$ defined by $M_f\xi=f\cdot \xi$. Then \eqref{eq572} holds if we let $E(\lambda)=M_{\chi_{A(\lambda)}}$, where $A(\lambda)=f^{-1}[a,\lambda]$.
+\end{eg}
+
+
+\begin{proof}
+We prove the more general fact that for each $\xi\in L^2(X,\mu)$ and $h\in C[a,b]$,
+\begin{align}
+\bk{M_{h\circ f}\xi|\xi}=h(a)\bk{E(a)\xi|\xi}+\int_a^b h(\lambda)d\bk{E(\lambda)\xi|\xi}
+\end{align}
+Then \eqref{eq572} holds by setting $h(\lambda)=\lambda$. In other words, we want to prove
+\begin{align}\label{eq579}
+\int_X (h\circ f)|\xi|^2d\mu=h(a)\int_{A(\lambda)}|\xi|^2d\mu+\int_a^b h(\lambda)d\int_{A(\lambda)}|\xi|^2d\mu
+\end{align}
+Note that $|\xi|^2d\mu$ is a finite measure on $X$. Let $\nu=f_*(|\xi|^2d\mu)$ be the pushforward measure on $\fk B_{[a,b]}$, cf. Def. \ref{mc31}. Then the LHS of \eqref{eq579} is $\int_{[a,b]} hd\nu$. Note that by Thm. \ref{lb818}, $\nu$ is a Radon measure. Let $\rho:[a,b]\rightarrow\Rbb_{\geq0}$ be
+\begin{align*}
+\rho(\lambda):=\nu([a,\lambda])=(f_*(|\xi|^2d\mu))([a,\lambda])=|\xi|^2d\mu(f^{-1}[a,\lambda])=\int_{A(\lambda)}|\xi|^2d\mu
+\end{align*}
+Then by Cor. \ref{lb855}, we have
+\begin{align*}
+\text{LHS of }\eqref{eq579}=\int_{[a,b]}hd\nu=h(a)\rho(a)+\int_a^b h(\lambda)d\rho(\lambda)=\text{RHS of }\eqref{eq579}
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
 
 
 \subsection{$\star$ Monotone convergence extension III: proof of the spectral theorem}\label{lb1100}
@@ -23254,7 +23288,7 @@ The goal of this subsection is to prove Thm. \ref{lb1012}. The only nontrivial p
 Let $V$ be an inner product space.
 
 \begin{lm}\label{lb888}
-Let $(A_\alpha)$ be a net in $\fk L(V)$ satisfying $\sup_\alpha \Vert A_\alpha\Vert<+\infty$. Assume that $(A_\alpha)$ converges pointwise to $A\in\fk L(V)$. Let $(\xi_\beta)$ be a net in $V$ converging pointwise to $\xi\in V$. Then $\dps\lim_{\alpha,\beta}A_\alpha\xi_\beta=A\xi$.
+Let $(A_\alpha)$ be a net in $\fk L(V)$ satisfying $\sup_\alpha \Vert A_\alpha\Vert<+\infty$. Assume that $(A_\alpha)$ converges strongly to $A\in\fk L(V)$. Let $(\xi_\beta)$ be a net in $V$ converging pointwise to $\xi\in V$. Then $\dps\lim_{\alpha,\beta}A_\alpha\xi_\beta=A\xi$.
 \end{lm}
 
 
@@ -23313,6 +23347,9 @@ This will prove that $f(T)\geq0$.
 
 Let $V_J=P_J(\mc H)$. Then $P_JTP_J$ is zero on $V_J^\perp$ and leaves the finite-dimensional subspace $V_J$ invariant. Let $T_J$ be the restriction $P_JTP_J\big|_{V_J}:V_J\rightarrow V_J$. Since $T^*=T$, we also have $T_J^*=T_J$ (because $\omega_T$ being Hermitian implies $\omega_{T_J}$ being Hermitian). Therefore, by linear algebra (or by the Hilbert-Schmidt Thm. \ref{lb662}), $V_J$ has a finite orthonormal basis  consisting of eigenvectors of $T_J$. By choosing an arbitrary orthonormal basis on $V_J^\perp$, we obtain an orthonormal basis $(v_1,\dots,v_n)\cup \fk W$ of $\mc H$ such that $P_JTP_J\cdot v_i=\lambda_iv_i$ for some $\lambda_i\in\Rbb$, and $P_JTP_J\cdot w=0$ for all $w\in\fk W$. 
 
+
+%Note that $\bk{P_JTP_J\xi|\xi}=\bk{TP_J\xi|P_J\xi}\leq b\Vert P_J\xi|P_J\xi\Vert=\leq b\Vert\xi\Vert^2$. So $P_JTP_J\leq b$. Similarly, that $-T\leq -a=|a|$ implies $P_J(-T)P_J\leq -a$. Thus $a\leq P_JTP_J\leq b$.  
+
 Inserting $a\leq T\leq b$ into $\bk{-P_Jv_i|P_Jv_i}=\bk{-v_i|v_i}$, we see that $\lambda_i\in[a,b]$. Thus we have $f(P_JTP_J)v_i=f(\lambda_i)v_i$ and $f(P_JTP_J)w=f(0)w$ if $w\in\fk W$. It now follows easily from $f|_{[a,b]}\geq0$ and $\lambda_i,0\in[a,b]$ that $f(P_JTP_J)\geq0$.
 \end{proof}
 
@@ -23329,6 +23366,7 @@ Let $\Lambda:\scr C_0\rightarrow\Rbb_{\geq0}$ be $\Rbb_{\geq0}$-linear. Then $\L
 \end{itemize}
 \end{thm}
 
+The uniqueness part holds if the net $(f_\alpha)$ is only assumed to be a sequence. See Exe. \ref{lb1037}.  (We will not need this fact.)
 
 
 \begin{proof}
