@@ -6,7 +6,7 @@
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](https://binguimath.github.io/Files/2017_UU1.pdf) [Errata](https://binguimath.github.io/Files/Errata/2017_UU1_Errata.pdf)
 
 - Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](https://binguimath.github.io/Files/2017_UU2.pdf) 
-> In this series of two papers, I initiated the systematic study of the unitarity of VOA representation tensor categories.
+
 
 
  
@@ -16,7 +16,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 
 - Categorical Extensions of Conformal Nets, ***Comm. Math. Phys.***, 383, 763-839 (2021). `arXiv:1812.04470` [Preprint](https://binguimath.github.io/Files/2018_CE.pdf) [Errata](https://binguimath.github.io/Files/Errata/2018_CE_Errata.pdf) (A [talk](https://www.youtube.com/watch?v=E-05-DkG2xc) with [slides](https://binguimath.github.io/Files/2021_Categorical_Extensions_MPPM.pdf))
-> This is the first paper studying the equivalence of the representation tensor categories associated to unitary completely rational VOAs and their conformal nets. 
+ 
 
 - Q-systems and extensions of completely unitary vertex operator algebras, ***Int. Math. Res. Not. IMRN***, Vol 2022, Issue 10, 7550–7614 `arXiv:1908.03484` [Preprint](https://binguimath.github.io/Files/2019_Ext.pdf)
 
