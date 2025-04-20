@@ -52,9 +52,11 @@ I have written LaTeX lecture notes for the following courses. See [this page](Co
 
 ## Publications and Preprints 😵‍💫
 
+See [this page](https://binguimath.github.io/Pages/Publications.html) for the full publications.
+
 The following are my best research papers. The number preceding each title indicates the year the paper was submitted to arXiv.
 
-See [this page](https://binguimath.github.io/Pages/Publications.html) for the full publications.
+
 
 
 
