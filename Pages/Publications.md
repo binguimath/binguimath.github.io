@@ -23,7 +23,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 - Bisognano-Wichmann Property for Rigid Categorical Extensions and Non-local Extensions of Conformal Nets, ***Ann. Henri Poincaré***, 22, 4017-4062 (2021). `arXiv:1912.10682` [Preprint](https://binguimath.github.io/Files/2019_Bisognano-Wichmann.pdf)
 
 - Unbounded Field Operators in Categorical Extensions of Conformal Nets, submitted. `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf)
-> This is the second paper studying the equivalence of representation tensor categories. I solved the conjecture that every unitary affine VOA (i.e. simply-connected WZW model) and its associated loop group conformal net have unitarily equivalent representation tensor categories.
+
 
 - Regular Vertex Operator Subalgebras and Compressions of Intertwining Operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](https://binguimath.github.io/Files/2020_Compressions.pdf)
 
