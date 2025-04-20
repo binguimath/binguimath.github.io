@@ -71,7 +71,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 
 
-### Older representative works
+### Earlier representative works
 
 
 
