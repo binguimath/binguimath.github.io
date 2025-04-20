@@ -55,9 +55,23 @@ I have written LaTeX lecture notes for the following courses. See [this page](Co
 
 See [this page](https://binguimath.github.io/Pages/Publications.html) for the full publications.
 
+### Recent papers
+
+2023 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products. `arXiv:2305.10180`  [Preprint](https://binguimath.github.io/Files/2023_CB1.pdf) [Slides](https://binguimath.github.io/Files/2023_SJTU.pdf)
+
+2023 Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, ***Comm. Math. Phys.***, Vol. 405 (2024).  `arXiv:2306.11856`, [Preprint](https://binguimath.github.io/Files/2023_Geometric_Positivity.pdf) [Slides](https://binguimath.github.io/Files/2023_Tokyo.pdf)
+<!--- In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.--->
+
+2024 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces. `arXiv:2411.07707` [Preprint](https://binguimath.github.io/Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](https://binguimath.github.io/Files/Slides/2024_BIMSA_Nov.pdf))
 
 
-### Representative works
+2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems, *submitted*, `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
+> We completely solve the problem of formulating and proving a factorization theorem for finite logarithmic chiral CFTs. In particular, our result naturally connects with the topological modular functors. Prior to our work, factorization had been established mainly for rational chiral CFTs, while for finite logarithmic chiral CFTs, no existing work had successfully proven a factorization result that aligns with the perspectives from TQFT and tensor category theory, even in low-genus cases such as genus one.
+
+
+
+
+### Older representative works
 
 
 
@@ -82,8 +96,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 > Although this paper focuses on VOAs, its motivation originates from conformal nets and operator algebras. One of its main goals is to address the question: Why are conformal nets, which are defined and studied in the genus-zero setting, capable of describing higher-genus chiral CFTs? The answer lies in what I refer to as the "permutation-twisted/untwisted correspondence": genus-zero permutation-twisted chiral CFTs correspond to higher-genus untwisted CFTs via branched coverings. This observation represents, in my view, a significant contribution of operator algebra theory to the understanding of VOAs. Unfortunately, the importance of this correspondence has not been widely recognized within the VOA community.
 
 
-2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems, *submitted*, `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
-> We completely solve the problem of formulating and proving a factorization theorem for finite logarithmic chiral CFTs. In particular, our result naturally connects with the topological modular functors. Prior to our work, factorization had been established mainly for rational chiral CFTs, while for finite logarithmic chiral CFTs, no existing work had successfully proven a factorization result that aligns with the perspectives from TQFT and tensor category theory, even in low-genus cases such as genus one.
+
 
 
 
