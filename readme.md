@@ -51,7 +51,7 @@ I have written LaTeX lecture notes for the following courses. See [this page](Co
 
 
 ## Publications and Preprints 😵‍💫
-> The number preceding each title indicates the year the paper was submitted to arXiv.
+> The number preceding each title indicates the year the paper was submitted to arXiv. Note that the preprints on this website might be more updated than the arXiv versions.
 
 See [this page](https://binguimath.github.io/Pages/Publications.html) for the full publications.
 
