@@ -57,12 +57,12 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 ### Recent papers
 
-2023 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products. `arXiv:2305.10180`  [Preprint](https://binguimath.github.io/Files/2023_CB1.pdf) [Slides](https://binguimath.github.io/Files/2023_SJTU.pdf)
+2023 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products, *submitted*,  `arXiv:2305.10180`  [Preprint](https://binguimath.github.io/Files/2023_CB1.pdf) [Slides](https://binguimath.github.io/Files/2023_SJTU.pdf)
 
 2023 Geometric Positivity of the Fusion Products of Unitary Vertex Operator Algebra Modules, ***Comm. Math. Phys.***, Vol. 405 (2024).  `arXiv:2306.11856`, [Preprint](https://binguimath.github.io/Files/2023_Geometric_Positivity.pdf) [Slides](https://binguimath.github.io/Files/2023_Tokyo.pdf)
 <!--- In the slides, the relationship between the unitarity of conformal blocks and diagonal full-boundary CFT is discussed. I make several conjectures that are not mentioned in the paper.--->
 
-2024 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces. `arXiv:2411.07707` [Preprint](https://binguimath.github.io/Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](https://binguimath.github.io/Files/Slides/2024_BIMSA_Nov.pdf))
+2024 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces, *submitted*, `arXiv:2411.07707` [Preprint](https://binguimath.github.io/Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](https://binguimath.github.io/Files/Slides/2024_BIMSA_Nov.pdf))
 
 
 2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems, *submitted*, `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
