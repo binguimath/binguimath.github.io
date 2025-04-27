@@ -68,6 +68,8 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems, *submitted*, `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
 > We completely solve the problem of formulating and proving a factorization theorem for finite logarithmic chiral CFTs. In particular, our result naturally connects with the topological modular functors. Prior to our work, factorization had been established mainly for rational chiral CFTs, while for finite logarithmic chiral CFTs, no existing work had successfully proven a factorization result that aligns with the perspectives from TQFT and tensor categories, even in low-genus cases such as genus one.
 
+2025 Comparison of Extensions of Unitary Vertex Operator Algebras and Conformal Nets. [Preprint](https://binguimath.github.io/Files/2024_Ext.pdf).
+
 
 
 
