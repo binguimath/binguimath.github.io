@@ -46,4 +46,4 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems. `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
 
-1. Comparison of Extensions of Unitary Vertex Operator Algebras and Conformal Nets. [Preprint](https://binguimath.github.io/Files/2024_Ext.pdf).
+1. 2025 Comparison of Extensions of Unitary Vertex Operator Algebras and Conformal Nets, `arXiv:2505.03235` [Preprint](https://binguimath.github.io/Files/2024_Ext.pdf).
