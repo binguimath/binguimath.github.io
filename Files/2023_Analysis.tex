@@ -30036,7 +30036,7 @@ whose determinant is $\det(G\circ\Phi)\cdot (\Jbf\Phi)^2$. Therefore, by Def. \r
 \end{align}
 By Def. \ref{mc103}, we also have $\dvol_\gk=\sqrt{\det G}dm_\Delta$. Therefore, by the change of variables Thm. \ref{mc39}, we have
 \begin{align*}
-\Phi^*\dvol_\gk=\sqrt{\det(G\circ\Phi)}\cdot\Phi^*dm_\Delta=\sqrt{\det(G\circ\Phi)}\cdot |\Jbf\Phi|dm_\Omega
+\Phi^*\dvol_\gk\xlongequal{\eqref{eq429}}\sqrt{\det(G\circ\Phi)}\cdot\Phi^*dm_\Delta=\sqrt{\det(G\circ\Phi)}\cdot |\Jbf\Phi|dm_\Omega
 \end{align*}
 This finishes the proof.
 \end{proof}
@@ -30102,7 +30102,7 @@ Moreover, the volume measure satisfies the following properties:
 \begin{proof}
 Step 1. The uniqueness is obvious: Choose an open cover $\fk U$ of $M$ such that any $U\in\fk U$ is diffeomorphic to an open subset of $\Hbb^n$. Then by \eqref{eq462}, for each $U\in\fk U$, $\vol_\gk|_U$ is uniquely determined. Therefore, by Prop. \ref{mc36}, $\vol_\gk$ is uniquely determined.
 
-Assume that $\vol_\gk$ exists. Since $M$ is second countable, we can assume that the above $\fk U$ is countable. Then by \eqref{eq462} and Rem. \ref{mc104}, for each $U\in\fk U$ we have $\vol_\gk(\partial M\cap U)=0$. Thus $\vol_\gk(\partial M)=0$.
+Assume that $\vol_\gk$ exists. Since $M$ is second countable and hence Lindel\"of, we can assume that the above $\fk U$ is countable. Then by \eqref{eq462} and Rem. \ref{mc104}, for each $U\in\fk U$ we have $\vol_\gk(\partial M\cap U)=0$. Thus $\vol_\gk(\partial M)=0$.
 
 Suppose that $M$ is an $n$-dimensional $\partial$-submanifold of $\Rbb^n$. Then $(\Int M,x)$ (where $x$ is the standard coordinates of $\Rbb^n$) is a chart on $M$. Then by \eqref{eq462} and Rem. \ref{mc104}, and by $\vol_\gk(\partial M)=0$, one easily sees that the two definitions agree.\\[-1ex]
 
@@ -30592,7 +30592,7 @@ Let $N\in\Zbb_+$. An alternating linear product \index{zz@$\bigwedge^NV\equiv V^
 \end{gather}
 is called a \textbf{degree-$N$ exterior power} (also called \textbf{exterior product}) \index{00@Exterior power=Exterior product} of $V$ if the following conditions hold:
 \begin{enumerate}
-\item[(a)] $\wedge$ is a surjective product, i.e., it has dense range.
+\item[(a)] $\wedge$ is a surjective product, i.e., its range spans $V^{\wedge N}$.
 \item[(b)] For any alternating product $T:V^{\times N}\rightarrow W$ there exists a homomorphism of alternating products $\Phi:\wedge\rightarrow T$, i.e., a linear map $\Phi:V^{\wedge N}\rightarrow W$ satisfying for all $v_1,\dots,v_N\in V$ that
 \begin{align}
 \Phi(v_1\wedge\cdots\wedge v_N)=T(v_1,\dots,v_N)
@@ -30661,7 +30661,9 @@ Let $V$ be finite-dimensional. Then for each $N\in\Zbb_+$, there exists a finite
 \end{thm}
 
 \begin{proof}
-Let us prove it by induction on $\dim V$. When $\dim V=0$, this is obvious. When $\dim V=1$, this is due to Prop. \ref{mc123}. We now let $n\in\Zbb_+$ and assume that if $\dim V=n$ then $V^{\wedge N}$ exists and is finite-dimensional for all $N$. Now suppose $\dim V=n+1$. We may assume WLOG that $V=\Fbb\oplus U$ where $\dim U=n$. By assumption, the exterior powers of $U$ exist. If $N\leq 1$, then $V^{\wedge N}$ clearly exists. Assume $N\geq 2$. Define
+Let us prove it by induction on $\dim V$. When $\dim V=0$, this is obvious. When $\dim V=1$, this is due to Prop. \ref{mc123}. We now let $n\in\Zbb_+$ and assume that if $\dim V=n$ then $V^{\wedge N}$ exists and is finite-dimensional for all $N$. 
+
+Now suppose $\dim V=n+1$. Choose a linear subspace $U\subset V$ with $\dim U=n$. Let $\xi\in V\setminus U$. (So each vector in $V$ can be written uniquely as $a\xi+u$ for some $a\in\Fbb,u\in U$.) By assumption, the exterior powers of $U$ exist. If $N\leq 1$, then $V^{\wedge N}$ clearly exists. Assume $N\geq 2$. Define a (clearly $N$-linear) map
 \begin{subequations}\label{eq482}
 \begin{gather}
 \Gamma:V^{\times N}\rightarrow U^{\wedge (N-1)}\oplus U^{\wedge N}
@@ -30669,32 +30671,40 @@ Let us prove it by induction on $\dim V$. When $\dim V=0$, this is obvious. When
 such that for any $a_i\in\Fbb$ and $u_i\in U$,
 \begin{align}\label{eq482b}
 \begin{aligned}
-&\Gamma(a_1\oplus u_1,\dots,a_N\oplus u_N)\\
+&\Gamma(a_1\xi+ u_1,\dots,a_N\xi+ u_N)\\
 =&\Big(\sum_{i=1}^N (-1)^{i+1}a_i\cdot u_1\wedge\cdots\wedge\wht{u_i}\wedge\cdots\wedge u_N\Big)\oplus (u_1\wedge\cdots\wedge u_N)
 \end{aligned}
 \end{align}
 \end{subequations}
-It is easy to check that $\Gamma$ is alternating. Let $V^{\wedge N}$ be the span of the range of $\Gamma$ so that $\Gamma$ restricts to a surjective linear product $\Gamma:V^{\times N}\rightarrow V^{\wedge N}$. Clearly $V^{\wedge N}$ is finite-dimensional. Let us prove that $\Gamma$ is an exterior power.
+It is easy to check that $\Gamma$ is alternating. Let us prove that $\Gamma$ is an exterior power. 
+
+For each $u_1,\dots,u_N\in U$, we have
+\begin{gather*}
+u_2\wedge\cdots\wedge u_N=\Gamma(\xi,u_2,\dots,u_N)\qquad u_1\wedge u_2\wedge\cdots\wedge u_N=\Gamma(u_1,u_2,\dots,u_N)
+\end{gather*}
+which imply $U^{\wedge(N-1)}\subset\Span(\Rng(\Gamma))$ and $U^{\wedge N}\subset\Span(\Rng(\Gamma))$. Therefore, condition (a) of Def. \ref{mc125} is satisfied.
+
+
 
 Let $T:V^{\times N}\rightarrow W$ be an alternating $N$-linear map. One easily calculates that
 \begin{align*}
-&T(a_1\oplus u_1,\dots,a_n\oplus u_n)\\
-=&\sum_{i=1}^N T(u_1,\dots,u_{i-1},a_i,u_{i+1},\dots,u_N)+T(u_1,\dots,u_N)\\
-=&\sum_{i=1}^N(-1)^{i+1}a_i T(1,u_1,\dots,\wht{u_i},\dots,u_N)+T(u_1,\dots,u_N)
+&T(a_1\xi+ u_1,\dots,a_N\xi+ u_N)\\
+=&\sum_{i=1}^N T(u_1,\dots,u_{i-1},a_i\xi,u_{i+1},\dots,u_N)+T(u_1,\dots,u_N)\\
+=&\sum_{i=1}^N(-1)^{i+1}a_i T(\xi,u_1,\dots,\wht{u_i},\dots,u_N)+T(u_1,\dots,u_N)
 \end{align*}
 Motivated by this formula, we consider the $(N-1)$-linear map
 \begin{align*}
-U^{\times(N-1)}\rightarrow W\qquad (u_1,\dots,u_{N-1})\mapsto T(1,u_1,\dots,u_{N-1})
+U^{\times(N-1)}\rightarrow W\qquad (u_1,\dots,u_{N-1})\mapsto T(\xi,u_1,\dots,u_{N-1})
 \end{align*}
 which gives rise to a linear map
 \begin{align*}
-\Phi_1:U^{\wedge(N-1)}\rightarrow W\qquad  u_1\wedge\cdots \wedge u_{N-1}\mapsto T(1,u_1,\dots,u_{N-1})
+\Phi_1:U^{\wedge(N-1)}\rightarrow W\qquad  u_1\wedge\cdots \wedge u_{N-1}\mapsto T(\xi,u_1,\dots,u_{N-1})
 \end{align*}
 Similarly, we have a linear map
 \begin{align*}
 \Phi_2:U^{\wedge N}\rightarrow W\qquad u_1\wedge\cdots\wedge u_N\mapsto T(u_1,\dots,u_N)
 \end{align*}
-Let $\Phi:U^{\wedge(N-1)}\oplus U^{\wedge N}\rightarrow W$ send $\xi\oplus\eta$ to $\Phi_1(\xi)+\Phi_2(\eta)$. Then by the above calculation of $T$, one easily sees that $\Phi\circ\Gamma=T$.
+Let $\Phi:U^{\wedge(N-1)}\oplus U^{\wedge N}\rightarrow W$ send $\mu\oplus\eta$ to $\Phi_1(\mu)+\Phi_2(\eta)$. Then, the above calculation of $T$ implies $\Phi\circ\Gamma=T$. Hence condition (b) of Def. \ref{mc125} is verified.
 \end{proof}
 
 
@@ -30714,7 +30724,7 @@ is similar to the cofactor expansion of an $N\times N$ matrix along the first ro
 \subsubsection{Bases and dimensions of exterior powers}
 
 
-The proof of Thm. \ref{mc126} implies:
+Our proof of Thm. \ref{mc126} is not the quickest way to establish the existence of exterior powers. Its advantage, however, is that it allows a quick proof of the following theorem without first developing the theory of determinants or the signs of permutations.
 
 \begin{thm}\label{mc131}
 Assume that $V$ has basis $e_1,\dots,e_n$ where $n\geq1$. Then for each $N\in\Nbb$,
@@ -30730,19 +30740,20 @@ is a basis of $V^{\wedge N}$. In particular,
 Note that $\emptyset$ is a basis of $\{0\}$. Thus, in the case that \eqref{eq485} is empty (i.e. $N>n$), we have $\dim V^{\wedge N}=0$. This is compatible with Prop. \ref{mc123}. When $N=0$ and $n>0$, we have $\dim V^{\wedge N}=1$, which is compatible with the convention \eqref{eq494}.
 
 \begin{proof}
-By Rem. \ref{mc130}, it is clear that \eqref{eq485} spans $V^{\wedge N}$. Let us prove by induction on $\dim V$ that \eqref{eq485} is linearly independent. The case $\dim V=1$ is obvious. Suppose the case $\dim V=n$ has been proved for all $N$. Now assume $\dim V=n+1$. Then, as in the proof of Thm. \ref{mc126}, we can assume WLOG that $V=\Fbb\oplus U$. Choose any $N\in\Nbb$. Let $\xi=1\in\Fbb$. Let $(e_1,\dots,e_n)$ be a basis of $U$. Let $\Gamma$ be defined by \eqref{eq482}. The proof of Thm. \ref{mc126} shows that after restricting the codomain of $\Gamma$ to its range, $\Gamma$ is the degree-$N$ exterior power of $V$. Therefore, we can view $V^{\wedge N}$ as a linear subspace of $U^{\wedge(N-1)}\oplus U^{\wedge N}$. Consider the following two collections of elements of $V^{\wedge N}$.
-\begin{gather*}
-A=\big(\xi\wedge e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}\big)_{1\leq i_1<\cdots<i_{N-1}\leq n}\\
-B=\big(e_{i_1}\wedge\cdots\wedge e_{i_N}\big)_{1\leq i_1<\cdots<i_N\leq n}
-\end{gather*}
-Then the elements of $A$ resp. $B$ can be viewed as in $U^{\wedge(N-1)}$ resp. in $U^{\wedge N}$. More precisely, by \eqref{eq482b} (whose LHS can be written as $(a_1\xi\oplus u_1)\wedge\cdots\wedge(a_N\xi\oplus u_N)$),
-\begin{gather*}\label{eq486}
-\begin{gathered}\tag{$\star$}
-\xi\wedge e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}=e_{i_1}\wedge\cdots\wedge e_{i_{N-1}}\qquad \in U^{\wedge(N-1)}\\
-e_{i_1}\wedge\cdots\wedge e_{i_N}\qquad \in U^{\wedge N}
-\end{gathered}
-\end{gather*}
-Thus $\Span(A)\cap\Span(B)=0$. Moreover, by \eqref{eq486}, and by case $n-1$, we know that the elements in $A$ (resp. in $B$) are linearly independent. Thus $A\sqcup B$ form a basis of $V^{\wedge N}$. This proves the case $n+1$.
+%By Prop. \ref{lb123}, it suffices to assume $N\leq n=\dim V$. 
+The case $N\leq 1$ is obvious. So let us assume $N>1$. By Rem. \ref{mc130}, it is clear that \eqref{eq485} spans $V^{\wedge N}$. Let us prove by induction on $\dim V$ that \eqref{eq485} is linearly independent. The case $\dim V=1$ is obvious. Suppose the case $\dim V=n-1$ (where $n\geq 2$) has been proved for all $N$. Now assume $\dim V=n$. Choose a $1$-codimensional linear subspace $U\subset V$. Then, by case $n-1$, we have
+\begin{align*}
+\dim U^{\wedge(N-1)}={n-1\choose N-1}\qquad\dim U^{\wedge N}={n-1\choose N}
+\end{align*}
+The proof of \ref{mc126} shows $V^{\wedge N}\simeq U^{\wedge(N-1)}\oplus U^{\wedge N}$, and hence
+\begin{align*}
+\dim V^{\wedge N}={n-1\choose N-1}+{n-1\choose N}
+\end{align*} 
+But we have ${n\choose N}={n-1\choose N-1}+{n-1\choose N}$ because
+\begin{align*}
+\sum_{N\in\Nbb}{n\choose N}x^N=(1+x)^n=(1+x)(1+x)^{n-1}=\sum_{N\in\Nbb}{n-1\choose N}x^N+\sum_{N\in\Nbb}{n-1\choose N}x^{N+1}
+\end{align*}
+Therefore, $V^{\wedge N}$ has dimension ${n\choose N}$, which equals the number of members in \eqref{eq485}. Thus \eqref{eq485} is a basis of $V^{\wedge N}$.
 \end{proof}
 
 
