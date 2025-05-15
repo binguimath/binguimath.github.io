@@ -99,6 +99,9 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 2021 Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case, *To appear in* ***Commun. Contemp. Math.***,  `arXiv:2111.04662`  [Preprint](https://binguimath.github.io/Files/2021_Permutation.pdf)  [Slides](https://binguimath.github.io/Files/2022_BIMSA.pdf)
 > Although this paper focuses on VOAs, its motivation originates from conformal nets and operator algebras. One of its main goals is to address the question: Why are conformal nets, which are defined and studied in the genus-0 setting, capable of describing higher-genus chiral CFTs? The answer lies in what I refer to as the "permutation-twisted/untwisted correspondence": genus-0 permutation-twisted chiral CFTs correspond to higher-genus untwisted chiral CFTs via branched coverings. This observation represents, in my view, a significant contribution of operator algebras to the understanding of VOAs. Unfortunately, the importance of this correspondence has yet to be widely recognized within the VOA community.
 
+> As an application, I gave the first complete computation of permutation-twisted fusion rules in terms of untwisted fusion rules for C2-cofinite rational VOAs.
+
+
 
 
 
