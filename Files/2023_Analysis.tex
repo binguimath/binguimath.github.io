@@ -31550,7 +31550,7 @@ For each $N\in\Nbb$, prove that
 Let $n=\dim V$. The two elements $\pm\xi\in V^{\wedge n}$ satisfying $\bigbk{\xi,\xi}_{V^{\wedge n}}=1$ are called the \textbf{volume tensors} \index{00@Volume tensors of an inner product space} of $V$. 
 \end{df}
 
-\begin{rem}
+\begin{rem}\label{mc243}
 It is clear that if $V$ is oriented, then $V$ has exactly one volume tensor in this orientation $\mc O$. If $e_1,\dots,e_n$ are a positive orthonormal basis of $(V,\mc O)$, then $e_1\wedge\cdots\wedge e_n$ is the volume tensor of $V$ in $\mc O$, and $\wch e^1\wedge\cdots\wedge \wch e^n$ is the volume tensor of $V^*$ in the dual orientation $\mc O^*$.
 \end{rem}
 
@@ -32568,7 +32568,7 @@ where the $\delta_{1,\dots,k}^{i_1,\dots,i_k}$ means $1$ if $i_1=1,\dots,i_k=k$ 
 
 Let us give a basis-free reformulation of Prop. \ref{mc192}:
 \begin{rem}\label{mc194}
-Suppose that $U$ is a $k$-dimensional linear subspace of $V$, equipped with an orientation $\mc O_U$. Let $U^\perp=\{v\in V:\bk{u,v}=0\text{ for all }u\in U\}$. We view $\bwn^kU$ and $\bwn^{n-k}U^\perp$ as inner product subspaces of $V$, cf. Rem. \ref{mc173}. Let $\mc O_{U^\perp}$ be the orientation such that
+Suppose that $U$ is a $k$-dimensional linear subspace of $V$, equipped with an orientation $\mc O_U$. Let $U^\perp=\{v\in V:\bk{u,v}=0\text{ for all }u\in U\}$. We view $\bwn^kU$ and $\bwn^{n-k}U^\perp$ as inner product subspaces of $\bwn^kV$ and $\bwn^{n-k}V$, cf. Rem. \ref{mc173}. Let $\mc O_{U^\perp}$ be the orientation such that
 \begin{align}
 \mc O_U\wedge\mc O_{U^\perp}=\mc O_V
 \end{align}
@@ -32651,10 +32651,10 @@ Let $(e_1,\dots,e_n)$ be a (not necessarily orthonormal) ordered basis of $V$ in
 where $\sgm$ is the sign of the permutation $[i_1,\dots,i_k,j_1,\dots,j_{n-k}]$, and $[\bk{e_\blt,e_\blt}]$ is the Gram matrix.
 \end{lm}
 
-The following rules help us remember the factor before $\wch e^{j_1}\wedge\cdots\wedge \wch e^{j_{n-k}}$: First, its absolute value is independent of $k$. Second, when $k=0$, $\star\Theta_V1$ should be the volume form, which according to Eq. \eqref{eq534} is $\sqrt {\det G}\cdot\wch e^1\wedge\cdots\wedge \wch e^n$ where $G=[\bk{e_\blt,e_\blt}]$. So the factor in general is $\pm\sqrt {\det G}$.
+%The following rules help us remember the factor before $\wch e^{j_1}\wedge\cdots\wedge \wch e^{j_{n-k}}$: First, its absolute value is independent of $k$. Second, when $k=0$, $\star\Theta_V1$ should be the volume form, which according to Eq. \eqref{eq534} is $\sqrt {\det G}\cdot\wch e^1\wedge\cdots\wedge \wch e^n$ where $G=[\bk{e_\blt,e_\blt}]$. So the factor in general is $\pm\sqrt {\det G}$.
 
 \begin{proof}
-Let $G=\det[\bk{e_\blt,e_\blt}]$. We prove the special case that $i_1=1,\dots,i_k=k$, and leave the general case to the readers. So let us prove
+Let $G=[\bk{e_\blt,e_\blt}]$. We prove the special case that $i_1=1,\dots,i_k=k$, and leave the general case to the readers. So let us prove
 \begin{align*}
 \star\Theta_V(e_1\wedge\cdots\wedge e_k)=\sqrt{\det G}\cdot  \wch e^{k+1}\wedge\cdots\wedge \wch e^n
 \end{align*}
@@ -32774,13 +32774,32 @@ Let $\nu\in V$ be the positive unit normal vector of $(U,\mc O_U)$. Let $\xi\in 
 \end{lm}
 Note that the RHS of \eqref{eq537} is the restriction of $\star\Theta \xi\in\big(\bwn^{n-1}V\big)^*$ to ${\bwn^{n-1}U}$, i.e., it is $(\wedge^{n-1}\iota^\tr)(\star\Theta \xi)$ where $\iota:U\rightarrow V$ is the inclusion map and hence $\wedge^{n-1}\iota^\tr:\bwn^{n-1}V^*\rightarrow \bwn^{n-1}U^*$.
 
-\begin{proof}
+\begin{proof}[First proof]
 It suffices to prove that the two sides of \eqref{eq537} are equal when evaluated with $\mc T_U$. We compute
 \begin{align*}
-\bigbk{\star\Theta_V \xi\big|_{\bwn^{n-1}U},\mc T_U }=\bk{\star\Theta_V \xi,\mc T_U}\xlongequal{\eqref{eq508}}\bk{\star\Theta_V \xi,\Theta_V\mc T_U}\xlongequal[\eqref{eq538}]{\eqref{eq536}}\bk{\star\Theta_V \xi,\star\Theta_V \nu}
+&\bigbk{\star\Theta_V \xi\big|_{\bwn^{n-1}U},\mc T_U }=\bk{\star\Theta_V \xi,\mc T_U}\xlongequal{\eqref{eq538}}\bk{\Theta_V\star \xi,\mc T_U}\xlongequal{\eqref{eq508}}\bk{\star\xi,\mc T_U}\\
+\xlongequal{\text{Cor. }\ref{mc200}}&\bk{\star^{-1}\star\xi,\star^{-1}\mc T_U}\xlongequal{\eqref{eq536}}\bk{\xi,\nu}
 \end{align*}
-Since $\star$ and $\Theta_V$ are both isometries, the last term above equals $\bk{\xi,\nu}$, and hence equals $\bk{\xi,\nu}\cdot\bk{\mc T_{U^*},\mc T_U}$.
+which, by Rem. \ref{mc243}, equals $\bk{\xi,\nu}\cdot\bk{\mc T_{U^*},\mc T_U}$.
 \end{proof}
+
+
+\begin{proof}[Second proof]
+Write $e_1=\nu$. Let $e_2,\dots,e_n$ be a positive orthonormal basis of $(U,\mc O_U)$. Then $e_1,\dots,e_n$ is a positive orthonormal basis of $V$, and $\mc T_{U^*}=\wch e^2\wedge\cdots\wedge \wch e^n$. By linearity, it suffices to consider the following two cases:
+
+Assume $\xi=e_1$. Then $\bk{\xi,\nu}\mc T_{U^*}=\wch e^2\wedge\cdots\wedge \wch e^n$, and
+\begin{align*}
+\star\Theta_V\xi=\star \wch e^1\xlongequal{\eqref{eq535}}\wch e^2\wedge\cdots\wedge\wch e^n
+\end{align*}
+whose restriction to $\bwn^{n-1}U$ is again $\wch e^2\wedge\cdots\wedge\wch e^n$.
+
+Assume $\xi=e_i$ where $2\leq i\leq n$. Then $\bk{\xi,\nu}\mc T_{U^*}=0$, and
+\begin{align*}
+\star\Theta_V\xi=\star \wch e^i\xlongequal{\eqref{eq535}}(-1)^{i+1}\wch e^1\wedge\cdots\wedge\wch e^{i-1}\wedge\wch e^{i+1}\wedge\cdots\wedge \wch e^n
+\end{align*}
+whose pairing with $e_2\wedge\cdots\wedge e_n$ (which spans $\bwn^{n-1}U$) is $0$. Therefore $\star\Theta_V\xi\big|_{\bwn^{n-1}U}=0$.
+\end{proof}
+
 
 
 \subsection{Hodge star and hypersurface integrals of vector fields}
@@ -32828,7 +32847,7 @@ Let $r\in\Nbb\cup\{\infty\}$. Let $E\subset M$. Let $A:E\rightarrow\bwn^kTM$ be 
 
 
 \begin{proof}
-By Prop. \ref{mc203} and the smoothness of $\gk$, one easily sees that $\star\Theta_V$ sends Borel/$C^r$ alternating tensor fields (inclusing contravariant alternating tensor fields and differential forms) to Borel/$C^r$  alternating tensor fields. Since $\Theta_V$ sends Borel/$C^r$ fields to Borel/$C^r$ fields, we conclude that $\star$ sends Borel/$C^r$-fields to Borel/$C^r$-fields. The same can be said about $\star^{-1}$ since $\star_k^{-1}=(-1)^{k(n-k)}\star_{n-k}$ (Cor. \ref{mc196}).
+By Lem. \ref{mc203} and the smoothness of $\gk$, one easily sees that $\star\Theta_V$ sends Borel/$C^r$ alternating tensor fields (inclusing contravariant alternating tensor fields and differential forms) to Borel/$C^r$  alternating tensor fields. Since $\Theta_V$ sends Borel/$C^r$ fields to Borel/$C^r$ fields, we conclude that $\star$ sends Borel/$C^r$-fields to Borel/$C^r$-fields. The same can be said about $\star^{-1}$ since $\star_k^{-1}=(-1)^{k(n-k)}\star_{n-k}$ (Cor. \ref{mc196}).
 \end{proof}
 
 
