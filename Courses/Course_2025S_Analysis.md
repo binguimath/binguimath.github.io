@@ -19,9 +19,9 @@
 
 本课程计划大致涵盖以下讲义的后半部分（第20-36章）.
 
-- [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Files/2023_Analysis.pdf)
+- [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html)
 
-> 以上链接中的版本会不断更新，最新版的章节或定理号可能会与下面的Schedule不一致。一致的版本请参见 [这里](https://binguimath.github.io/Pages/2023_Analysis.html)的2025.06.04版本，这是本课程期间更新的最后一个版本。
+> 以上链接包含讲义的最新版本以及若干历史版本。最新版本在课程结束后仍会更新，因此可能会与下面的Schedule中提到的章节或定理号不一致。一致的版本请参见连接中的2025.06.04版本，这是本课程期间更新的最后一个版本。
   
 在前一两次课，我们会大致介绍一些关于网和拓扑空间的基本概念，对应于讲义第5,7,8章的部分内容。 Folland的书*Real Analysis*第4章也是不错的参考资料。
 
