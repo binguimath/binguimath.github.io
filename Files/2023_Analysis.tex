@@ -7781,7 +7781,7 @@ Use binary representations in $[0,1]$.
 
 
 \begin{df}\label{lb458}
-A subset $A$ of a Hausdorff space $X$ is called \textbf{precompact} \index{00@Precompact subset} if its closure $\ovl A$ is compact. This is equivalent to saying that $A$ is contained in a compact subset of $X$.   
+A subset $A$ of a Hausdorff space $X$ is called \textbf{precompact} \index{00@Precompact subset} and written as $\pmb{A\Subset X}$ \index{zz@$\Subset$} if its closure $\ovl A$ is compact. This is equivalent to saying that $A$ is contained in a compact subset of $X$.   
 \end{df}
 
 \begin{proof}[Proof of equivalence]
@@ -13267,9 +13267,9 @@ Fix a Banach space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$.
 
 
 \begin{df}
-Let $X$ be a topological space. The \textbf{support} of a function $f\in V^X$ \index{00@@Support} \index{Supp@$\Supp(f)$} is defined to be the closure
+Let $X$ be a topological space. The \textbf{support} of a function $f\in V^X$ \index{00@@Support} \index{Supp@$\Supp_X(f)=\Supp(f)$} is defined to be the closure
 \begin{align*}
-\Supp(f)=\ovl{\{x\in X:f(x)\neq 0\}}
+\Supp_X(f)\equiv\Supp(f)=\Cl_X\{x\in X:f(x)\neq 0\}
 \end{align*}
 Define $C_c(X,V)$ \index{Cc@$C_c(X,V)$} to be the set of continuous functions with \textbf{compact support}
 \begin{align*}
@@ -13956,15 +13956,19 @@ C_c(X,\Rbb_{\geq0})=\{f\in C_c(X,\Rbb):f(X)\subset\Rbb_{\geq0}\}
 
 
 \begin{rem}\label{lb457}
-Let $U$ be an open subset of $X$. Let $f\in C_c(U,\mc V)$ supported in $U$. Then by zero-extension, $f$ can be viewed as an element of $C_c(X,\mc V)$ supported in $U$. Briefly speaking, we have
+Let $U$ be an open subset of $X$. Let $f\in C_c(U,\mc V)$. Then by zero-extension, $f$ can be viewed as an element of $C_c(X,\mc V)$ supported in $U$. Briefly speaking, we have
 \begin{align}
 C_c(U,\mc V)\subset C_c(X,\mc V)
+\end{align}
+Moreover, for each $f\in C_c(U,\mc V)$, we have
+\begin{align}
+\Supp_U(f)=\Supp_X(f)
 \end{align}
 \end{rem}
 
 
 \begin{proof}
-Let $f$ take value $0$ outside $U$. Let  $A=\{x\in U:f(x)\neq 0\}$ and $K=\Cl_U(A)$, which is compact by assumption. In particular, $K$ is closed in $X$ by Cor. \ref{lb234}. Then $X=U\cup K^c$ is an open cover on $X$. By assumption, $f|_U$ is continuous. Also $f|_{K^c}=0$ is continuous. So $f$ is continuous by Exe. \ref{lb184}. To show that $f\in C_c(X,\mc V)$ and $\Supp(f)\subset U$, it remains to prove that $\ovl A=\Cl_X(A)$ is compact and is contained in $U$. This fact follows from Rem. \ref{lb459}.
+Let $f$ take value $0$ outside $U$. Let $K=\Supp_U(f)$, which is compact by assumption. In particular, $K$ is closed in $X$ by Cor. \ref{lb234}. Then $X=U\cup K^c$ is an open cover on $X$. By assumption, $f|_U$ is continuous. Also $f|_{K^c}=0$ is continuous. So $f$ is continuous by Exe. \ref{lb184}. By the following Rem. \ref{lb459}, we have $\Supp_U(f)=\Supp_X(f)$. Therefore $f\in C_c(X,\mc V)$.
 \end{proof}
 
 
@@ -14633,7 +14637,7 @@ Let $X$ be LCH. Prove that $C_c(X,\mc V)$ is dense in $C_0(X,\mc V)$. (This prov
 \end{prob}
 
 \begin{proof}[Hint]
-Use Urysohn's lemma or Tietze extension.
+Multiply $f\in C_0(X,\mc V)$ by a suitable Urysohn function $h$ such that $\Vert f-hf\Vert_{l^\infty}$ is small.
 \end{proof}
 
 
@@ -21465,7 +21469,7 @@ Let $V$ be an $\Rbb$-vector space. A subset $K\subset V$ is called a \textbf{con
 \end{df}
 
 \begin{pp}\label{lb751}
-Let $K$ be a convex cone in an $\Rbb$-vector space $V$. Let $\wtd V$ be a $\Rbb$-linear space. Let $\Gamma:K\rightarrow \wtd V$ be an $\Rbb_{\geq0}$-linear map. Suppose that $V=\Span_\Rbb K$. Then $\Gamma$ can be extended uniquely to an $\Rbb$-linear map $\Lambda:V\rightarrow \wtd V$. 
+Let $K$ be a convex cone in an $\Rbb$-vector space $V$. Let $\wtd V$ be an $\Rbb$-linear space. Let $\Gamma:K\rightarrow \wtd V$ be an $\Rbb_{\geq0}$-linear map. Suppose that $V=\Span_\Rbb K$. Then $\Gamma$ can be extended uniquely to an $\Rbb$-linear map $\Lambda:V\rightarrow \wtd V$. 
 \end{pp}
 
 
@@ -24677,6 +24681,9 @@ Let $X$ be LCH. Let $\mu$ be the completion of a Radon measure on $X$. Let $1\le
 
 Note that by Exe. \ref{lb864}, the theorem will be no different if we deal with the original Radon measure rather than its completion.
 
+The following proof utilizes Lusin's theom the Tietze extension theorem. See Rem. \ref{lb1040} for an alternative (and more direct) proof without using these two theorems.
+
+
 \begin{proof}
 Let $f\in L^p(X,\mu)$. We shall show that $f$ can be approximated by elements of $C_c(X)$. 
 
@@ -24826,7 +24833,7 @@ By approximating $\Real( f)$ and $\Imag(f)$ separately, we can assume that $f$ i
 
 In Pb. \ref{lb912} and \ref{lb910}, we will give applications of Thm. \ref{lb874} to the study of weak-* convergence in $L^p$ spaces.
 
-\begin{rem}
+\begin{rem}\label{lb1040}
 Using Thm. \ref{lb874}, we can give an alternative proof of Thm. \ref{lb866} without appealing to the Tietze extension theorem. Indeed, by (the proof of) Thm. \ref{lb874}, it suffices to show that any characterisic function $f\in L^p(X,\mu)$ can be $L^p$-approximated by elements of $C_c(X)$. We write $f=\chi_A$ where $A$ is measurable. Since $\chi_A\in L^p(X,\mu)$, we have $\mu(A)<+\infty$. Therefore, by Cor. \ref{lb803}, for each $\eps>0$, there exist an open $U\subset X$ and a compact $K\subset X$ such that $K\subset A\subset U$ and $\mu(U\setminus K)<\eps$. By Urysohn's lemma, there exists $g\in C_c(U,[0,1])$ such that $g|_K=1$. One computes that $\Vert f-g\Vert_{L^p(X,\mu)}=\Vert f-g\Vert_{L^p(A\setminus K,\mu)}\leq\eps^{\frac 1p}$.
 \end{rem}
 
@@ -32967,7 +32974,7 @@ The following are equivalent:
 \end{enumerate}
 \end{co}
 
-In this corollary, there is no need to assume that $M$ is Riemannian since any smooth $\partial$-manifold has a Riemannian metric (Thm. \ref{mc109}).
+In this corollary, there is no need to assume that the oriented $\partial$-manifold $(M,\mc O_M)$ is Riemannian since any smooth $\partial$-manifold has a Riemannian metric (Thm. \ref{mc109}).
 
 \begin{proof}
 Assume (1). Let $\mc O_S$ be an orientation of $S$. Then the positive normal vector field $\nbf$ of $S$ is smooth (by Prop. \ref{mc205}) and hence satisfies the requirement of (2).
@@ -33273,19 +33280,19 @@ Let $n\in\Zbb_+$. Let $M$ be a smooth oriented $\partial$-manifold with $\dim M=
 Note that by Conv. \ref{mc190}, $\int_{\partial M}\omega$ actually means $\int_{\partial M}\omega|_{\partial M}$ where $\omega|_{\partial M}$ is the pullback of $\omega$ by the inclusion map $\partial M\hookrightarrow M$.
 
 \begin{proof}
-Step 1. Let $K$ be the support of $\omega$, i.e., the closure of $\{p\in M:\omega|_p\neq0\}$. Since $K$ is compact, there exist connected charts $(U_1,\varphi_1),\dots,(U_k,\varphi_k)$ of $M$ covering $K$. By choosing a smooth partition of unity of $K$ subordinate to $U_1,\dots,U_k$ (cf. Thm. \ref{mc27}), we can write $\omega=\omega_1+\cdots \omega_k$ where each $\omega_i$ is a $C^1$ $(n-1)$-form compactly supported in $U_i$. for each $1\leq i\leq k$.  Therefore, it suffices to prove that $\int_{\partial M}\omega_i=\int_Md\omega_i$. 
+Step 1. Let $K$ be the support of $\omega$, i.e., the closure of $\{p\in M:\omega|_p\neq0\}$. Since $K$ is compact, there exist connected charts $(U_1,\varphi_1),\dots,(U_k,\varphi_k)$ of $M$ covering $K$. By choosing a smooth partition of unity of $K$ subordinate to $U_1,\dots,U_k$ (cf. Thm. \ref{mc27}), we can write $\omega=\omega_1+\cdots+ \omega_k$ where each $\omega_i$ is a $C^1$ $(n-1)$-form compactly supported in $U_i$. for each $1\leq i\leq k$.  Therefore, it suffices to prove that $\int_{\partial M}\omega_i=\int_Md\omega_i$. 
 
 Let $V_i=\varphi_i(U_i)$. Let $\pm$ be $+$ (resp. $-$) if $\varphi_i$ is orientation-preserving (resp. orientation-reversing). Since $\partial M\cap U_i=\partial U_i$, we have
 \begin{align*}
-\int_{\partial M}\omega_i=\int_{\partial U_i}\omega_i\xlongequal{\eqref{eq527}}\pm\int_{\partial V_i}\varphi_*\omega_i
+\int_{\partial M}\omega_i=\int_{\partial U_i}\omega_i\xlongequal{\eqref{eq527}}\pm\int_{\partial V_i}\varphi_{i,*}\omega_i
 \end{align*} 
 We also have
 \begin{align*}
-\int_M d\omega=\int_{U_i}d\omega\xlongequal{\eqref{eq527}}\pm\int_{V_i}\varphi_*d\omega_i\xlongequal{\eqref{eq559}}\pm\int_{V_i}d\varphi_*\omega_i
+\int_M d\omega=\int_{U_i}d\omega\xlongequal{\eqref{eq527}}\pm\int_{V_i}\varphi_{i,*}d\omega_i\xlongequal{\eqref{eq559}}\pm\int_{V_i}\varphi_{i,*}\omega_i
 \end{align*}
-Thus, it suffices to prove $\int_{\partial V_i}\varphi_*\omega_i=\int_{V_i}d\varphi_*\omega_i$.  \\[-1ex]
+Thus, it suffices to prove $\int_{\partial V_i}\varphi_{i,*}\omega_i=\int_{V_i}d\varphi_{i,*}\omega_i$.  \\[-1ex]
 
-Step 2. Replacing $M$ with $V_i$ and $\omega$ with $\varphi_*\omega_i$, it suffices to prove \eqref{eq560} under the assumption that $M$ is an open subset of $\Hbb^n$, and that $\omega$ is a compactly supported $C^1$ $(n-1)$-form on $M$. Thus, it suffices to prove
+Step 2. Replacing $M$ with $V_i$ and $\omega$ with $\varphi_{i,*}\omega_i$, it suffices to prove \eqref{eq560} under the assumption that $M$ is an open subset of $\Hbb^n$, and that $\omega$ is a compactly supported $C^1$ $(n-1)$-form on $M$. Thus, it suffices to prove
 \begin{align*}\label{eq561}
 \int_{\partial\Hbb^n}\omega=\int_{\Hbb^n}d\omega\tag{$\star$}
 \end{align*}
