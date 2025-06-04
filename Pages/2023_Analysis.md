@@ -3,7 +3,7 @@
 - [Newest version](https://binguimath.github.io/Files/2023_Analysis.pdf)
 
 
-## Historical versions 
+## Some historical versions 
 
 
 
