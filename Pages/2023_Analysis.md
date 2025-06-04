@@ -1,5 +1,10 @@
 # Qiuzhen Lectures on Analysis
 
+- [Newest version](https://binguimath.github.io/Files/2023_Analysis.pdf)
+
+
+## Historical versions 
+
 
 
 - [2025.02.19](2023_Analysis_Old/20250219.pdf)
@@ -17,4 +22,4 @@ This version is the last version updated during the Analytics II(H) course in Sp
 
 
 
-- [Newest version](https://binguimath.github.io/Files/2023_Analysis.pdf)
+
