@@ -18,7 +18,7 @@ Revision *after* this version: The order of Sections 25.5 and 25.6 has been swap
 
 - [2025.06.04](2023_Analysis_Old/20250604.pdf)
 
-This version is the last version updated during the Analytics II(H) course in Spring 2025.The Schedule on the [course webpage](https://binguimath.github.io/Courses/Course_2025S_Analysis.html) matches the chapter and theorem numbers in this version.
+This is the last version updated during the Analytics II(H) course in Spring 2025.The Schedule on the [course webpage](https://binguimath.github.io/Courses/Course_2025S_Analysis.html) matches the chapter and theorem numbers in this version.
 
 
 
