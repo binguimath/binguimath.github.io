@@ -233,6 +233,7 @@
 
 \usepackage{aurical}
 \DeclareMathOperator{\VVir}{\text{\Fontlukas V}\text{\kern -0pt {\Fontlukas\large ir}}\,}
+\DeclareMathOperator{\Ses}{\text{\Fontlukas S}\text{\kern -0pt {\Fontlukas\large es}}\,}
 
 \newcommand{\vol}{\text{\Fontlukas V}}
 \newcommand{\dvol}{d~\text{\Fontlukas V}}
@@ -447,7 +448,7 @@
 \newcommand{\MF}{\mathcal F}
 \newcommand{\RM}{\mathcal {RM}}
 \newcommand{\Rp}{\mathbb R_{\geq0}}
-
+%\newcommand{\Ses}{\mathrm{Sesq}_{\mathrm b}}
 
 
 
@@ -707,6 +708,7 @@ which are potentially infinite.
 \begin{gather*}
 C_c(X)=C_c(X,\Cbb)\qquad \Bor(X)=\Bor(X,\Cbb)\qquad L^p(X,\mu)=L^p(X,\mu,\Cbb)
 \end{gather*}
+However, this convention does not apply to $\fk L(V)$: If $V$ is a normed vector space, then $\fk L(V)$ denotes $\fk L(V,V)$, the space of bounded linear operators on $V$.
 \end{itemize}
 
 
@@ -2997,7 +2999,7 @@ We say that $T$ is \textbf{bounded} \index{00@Bounded multilinear map} if $\Vert
 \end{df}
 
 
-\begin{df}
+\begin{df}\label{lb116}
 We let \index{LV@$\fk L(V_1\times\cdots\times V_N,W)$}
 \begin{gather}\label{eq26}
 \fk L(V_1\times\cdots\times V_N,W):=\{\text{bounded multilinear maps }V_1\times\cdots\times V_N \rightarrow W\}
@@ -4359,33 +4361,105 @@ Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on a $\Cbb$-vector space 
 
 
 \begin{exe}
-Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on $V$ with null space $\scr N$. Prove that there is a (necessarily unique) inner 
+Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on $V$ with null space $\scr N$. Prove that there is a (necessarily unique) inner product $\bk{\cdot|\cdot}_{V/\scr N}$ on the quotient space $V/\scr N$ such that for any $u,v\in V$, the cosets $u+\scr N$ and $v+\scr N$ satisfy
+\begin{align*}
+\bk{u+\scr N|v+\scr N }_{V/\scr N}=\bk{u|v}
+\end{align*}
 \end{exe}
 
 
-In the rest of this section, we let $V,W$ be inner product space.
+In the rest of this section, we let $V,W$ be inner product spaces.
 
-\subsubsection{Basic properties}
+\subsubsection{Basic definitions and properties}
 
 
 
 \begin{rem}
-Let $V$ be By Rem. \ref{lb115}, an inner p
+By Rem. \ref{lb115}, the inner product space $V$ is equipped with the norm defined by $\vert v\Vert=\sqrt{\bk{v|v}}$. In particular, $V$ is a metric space with metric $d(u,v)=\Vert u-v\Vert$. The topology on $V$ induced by this metric is called the \textbf{norm topology} \index{00@Norm topology} of $V$. 
 \end{rem}
 
-
-
 \begin{rem}
-Since $V$ is a normed vector space, $V$ is also a metric space with $d(u,v)=\Vert u-v\Vert=\sqrt{\bk{u-v|u-v}}$. Now, the polarisation identity (Prop. \ref{lb587}) says that for inner product spaces, \uwave{norms determine inner produts}, and hence \uwave{metrics determine inner products}. Therefore, if $W$ is an inner product space, and if $T:V\rightarrow W$ is a linear isometry, then
+By the polarization identity, the inner products are determined by the norms, and hence determined by the metrics. Therefore, if $T:V\rightarrow W$ is a linear isometry of normed vector spaces, then
 \begin{align*}
-\bk{Tu|Tv}=\bk{u|v}
+\bk{Tu|Tv}=\bk{u|v}\qquad\text{for all }u,v\in V
 \end{align*}
-for all $u,v\in V$. In particular, if $T$ is an isomorphism of normed vector sapces (i.e., $T$ is a linear surjective isometry, cf. Def. \ref{lb302}), then $T$ is an equivalence of inner product spaces. In this case, we say that $T$ is a \textbf{unitary map}, \index{00@Unitary maps} and say that $V,W$ are \textbf{isomorphic inner product spaces} (or that $V,W$ are \textbf{unitarily equivalent}). \index{00@Unitarily equivalent} 
+In particular, if $T$ is an isomorphism of normed vector sapces, then $T$ is an isomorphism of inner product spaces. In this case, we say that $T$ is a \textbf{unitary map}, \index{00@Unitary maps} and say that $V,W$ are \textbf{isomorphic inner product spaces} (or that $V,W$ are \textbf{unitarily equivalent}). \index{00@Unitarily equivalent} 
+
+
+Similarly, if $T:V\rightarrow V$ is antilinear, then $T$ is an isometry of metric spaces iff
+\begin{align*}
+\bk{Tv|Tv}=\bk{v|v}\qquad \text{for all }v\in V
+\end{align*}
+By the polarization identity, this is equivalent to
+\begin{align*}
+\bk{Tu|Tv}=\bk{v|u}\qquad \text{for all }u,v\in V
+\end{align*}
+A surjective antilinear isometry $T:V\rightarrow W$ is called an \textbf{antiunitary map}. \index{00@Antiunitary map} If $T:V\rightarrow W$ is antiunitary, we say that $V$ and $W$ are \textbf{antiunitarily equivalent}. \hqed
 \end{rem}
 
 
 
 
+\begin{df}
+The \textbf{(complex) conjugate} \index{00@Conjugate inner product space $V^\Co$} of $V$ is the inner product space $V^\Co$ \index{VCo@$V^\Co$} defined as follows. The elements of $V^\Co$ correspond bijectively to those of $V$ by the map \index{vc@$v^\Co=\ovl v$}
+\begin{align*}
+\Co:V\rightarrow V^\Co\qquad v\mapsto v^\Co\equiv\ovl v
+\end{align*}
+where $v^\Co\equiv\ovl v$ is an abstract element, called the \textbf{conjugate} of $v$. Moreover, the structure of an inner product space on $V^\Co$ is defined in such a way that $\Co$ is antiunitary. In other words, for each $u,v\in V$ and $a,b\in\Cbb$, we have
+\begin{gather*}
+\ovl{au+bv}=\ovl a\cdot\ovl u+\ovl b\cdot\ovl v\\
+\bk{\ovl u|\ovl v}_{V^\Co}=\bk{v|u}_V
+\end{gather*}
+\end{df}
+
+
+\begin{rem}
+An antilinear map $T:V\rightarrow W$ is equivalent to the linear map
+\begin{subequations}\label{eq61}
+\begin{gather}\label{eq61a}
+V\rightarrow W^\Co\qquad v\mapsto \ovl{Tv}
+\end{gather}
+and is also equivalent to the linear map
+\begin{align}\label{eq61b}
+V^\Co\rightarrow W\qquad \ovl v\mapsto Tv
+\end{align}
+\end{subequations}
+It is clear that $T$ is an antilinear isometry (resp. antiunitary) iff \eqref{eq61a} is a linear isometry (resp. unitary) iff \eqref{eq61b} is a linear isometry (resp. unitary).
+\end{rem}
+
+
+\begin{rem}
+A sesquilinear form $\omega:V\times W\rightarrow \Cbb$ is equivalent to a bilinear form
+\begin{align*}
+\wtd\omega:V\times W^\Co\rightarrow\Cbb\qquad (v|\ovl w)\mapsto \bk{v|w}
+\end{align*}
+Unless otherwise stated, we always view $\omega$ and $\wtd\omega$ as the same.
+\end{rem}
+
+\begin{df}
+Let $\omega:V\times W\rightarrow\Cbb$ be a sesquilinear form. The \textbf{norm} \index{00@Norm of sesquilinear forms} $\Vert\omega\Vert$ is defined to be the norm of the associated bilinear form $V\times W^\Co\rightarrow\Cbb$. Therefore, 
+\begin{align*}
+\Vert\omega\Vert=\sup_{v\in\ovl B_V(0,1),w\in\ovl B_W(0,1)}|\omega(u|v)|
+\end{align*}
+Recalling the notation \eqref{eq26}, we let \index{Sesq@$\Ses(V\vert W)$ and $\Ses(V)$}
+\begin{align*}
+\Ses(V|W):=\fk L(V\times W^\Co,\Cbb)
+\end{align*}
+which is the space of bounded sesquilinear forms $V\times W\rightarrow\Cbb$. We write
+\begin{align*}
+\Ses(V):=\Ses(V|V)
+\end{align*}
+The elements of $\Ses(V|W)$ (resp. $\Ses(V)$) are called \textbf{bounded sesquilinear forms} \index{00@Bounded sesquilinear forms} on $V\times W$ (resp. on $V$).
+\end{df}
+
+
+\begin{eg}
+The inner product
+\begin{align*}
+\bk{\cdot|\cdot}:V\times V\rightarrow\Cbb\qquad (u,v)\mapsto\bk{u|v}
+\end{align*}
+has operator norm, and hence belongs to $\Ses(V)$. Therefore, by Prop. \ref{lb35}, this map is continuous.
+\end{eg}
 
 
 
