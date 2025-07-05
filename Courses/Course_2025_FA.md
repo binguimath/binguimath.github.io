@@ -16,6 +16,8 @@
 
 
 
+
+
 ## Lecture notes (in English)
 
 - 正式版：TBA
@@ -25,6 +27,12 @@
 - [抢先版](https://binguimath.github.io/Files/2025_FA.pdf)
 
 > 与正式版相比，抢先版的进度较新。但多出的内容未经proofread，因此错误可能较多，并且后续也有可能有重大调整。抢先版的目的在于让大家事先了解我接下来会讲/写什么内容，便于大家预习。
+
+
+讲义中会引用若干点集拓扑和测度论的定理。这些定理的引用在常见的教材中都能找到。本讲义一般引用下面的课程讲义：
+
+[Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html)
+
 
 
 
