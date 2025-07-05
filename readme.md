@@ -45,7 +45,7 @@ I have written LaTeX lecture notes for the following courses. See [this page](Co
 
 - (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)
 
-- (2025 Fall) [Functional Analysis](Courses/Course_2025_FA.md)
+- (2025 Fall) [Functional Analysis](Courses/Course_2025_FA.md) for Qiuzhen college
 
 
 
