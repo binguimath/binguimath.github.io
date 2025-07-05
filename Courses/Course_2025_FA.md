@@ -45,7 +45,7 @@
 
 6. 赋范空间的凸性，Hahn-Banach定理
 
-7. Banach空间上的一致有界定理 
+7. Baire纲，Banach空间上的一致有界定理 
 
 
 
