@@ -16,7 +16,7 @@
 
 
 
-## 课程讲义
+## Lecture notes (in English)
 
 - 正式版：TBA
 
