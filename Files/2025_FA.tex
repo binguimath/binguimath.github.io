@@ -446,6 +446,7 @@
 \newcommand{\MG}{\mathcal G}
 \newcommand{\MD}{\mathcal D}
 \newcommand{\MF}{\mathcal F}
+\newcommand{\MH}{\mathcal H}
 \newcommand{\RM}{\mathcal {RM}}
 \newcommand{\Rp}{\mathbb R_{\geq0}}
 %\newcommand{\Ses}{\mathrm{Sesq}_{\mathrm b}}
@@ -3254,7 +3255,7 @@ Case $p<+\infty$: For each $\eps>0$, choose $N\in\Zbb_+$ such that for all $m,n\
 \end{proof}
 
 
-\begin{co}
+\begin{co}\label{lb128}
 The dual space $V^*$, equipped with the operator norm, is complete.
 \end{co}
 
@@ -3327,7 +3328,7 @@ We have proved that $\Vert\Psi(T)\Vert=\Vert T\Vert$. In particular, if $T$ is b
 \end{proof}
 
 
-\subsubsection{The role of duality}
+\subsubsection{The role of duality}\label{lb132}
 
 
 The following two corollaries follow immediate from Prop. \ref{lb40}.
@@ -3805,7 +3806,7 @@ First, the proof of Thm. \ref{lb13} is significantly more involved than the dire
 
 
 
-\begin{thm}
+\begin{thm}\label{lb127}
 Assume that $1<p\leq+\infty$. Then the map $\Psi:l^p(X,\Fbb)\rightarrow l^q(X,\Fbb)^*$ is an isomorphism of normed vector spaces.
 \end{thm}
 
@@ -4297,7 +4298,7 @@ b&c
 \end{align*}
 In fact, we only need the fact that if $f\geq0$ then $ac-b^2\geq0$. To see this, note that if $f$ is not always $0$, then one of $a,c$ must be nonzero; otherwise, $f(x,y)=2bxy$ cannot be always $\geq0$. Thus, assume WLOG that $a\neq0$. Then $f(x,1)=ax^2+2bx+c=a(x+b/a)^2+c-b^2/a$, which implies $a>0$ and $c-b^2/a\geq0$, and hence $ac-b^2\geq0$.
 
-Now, we take
+Now, we let $f:\Rbb^2\rightarrow\Rbb_{\geq0}$ be the quadratic form defined by pulling back the form $\xi\in V\mapsto\bk{\xi|\xi}$ via the map $(x,y)\in\Rbb^2\mapsto xu+yv\in V$, that is,
 \begin{align*}
 f(x,y)=\bk{xu+yv|xu+yv}=\Vert u\Vert^2\cdot x^2+2\Real\bk{u|v}\cdot xy+\Vert v\Vert^2\cdot y^2
 \end{align*}
@@ -4344,12 +4345,12 @@ It remains to check the subadditivity: for each $u,v\in V$, the Cauchy-Schwarz i
 
 
 
-\subsection{Inner product spaces}
+\subsection{Inner product spaces and bounded sesquilinear forms}
 
 
 
 
-
+\subsubsection{Inner product spaces}
 
 
 
@@ -4368,25 +4369,39 @@ Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on $V$ with null space $\
 \end{exe}
 
 
-In the rest of this section, we let $V,W$ be inner product spaces.
+\begin{eg}
+Let $X$ be a set. Then $l^2(X)=l^2(X,\Cbb)$ is an inner product space, where
+\begin{align*}
+\bk{f,g}=\sum_{x\in X} f(x)\ovl{g(x)}\qquad\text{for any }f,g\in l^2(X)
+\end{align*} 
+\end{eg}
 
-\subsubsection{Basic definitions and properties}
 
+\begin{eg}
+Let $(X,\mu)$ be a measure space. Then $L^2(X,\mu)$ is an inner product space, where
+\begin{align*}
+\bk{f,g}=\int_X f\ovl gd\mu\qquad\text{for any }f,g\in L^2(X,\mu)
+\end{align*}
+\end{eg}
 
 
 \begin{rem}
-By Rem. \ref{lb115}, the inner product space $V$ is equipped with the norm defined by $\vert v\Vert=\sqrt{\bk{v|v}}$. In particular, $V$ is a metric space with metric $d(u,v)=\Vert u-v\Vert$. The topology on $V$ induced by this metric is called the \textbf{norm topology} \index{00@Norm topology} of $V$. 
+By Rem. \ref{lb115}, an inner product space $V$ is equipped with the norm defined by $\vert v\Vert=\sqrt{\bk{v|v}}$. In particular, $V$ is a metric space with metric $d(u,v)=\Vert u-v\Vert$. The topology on $V$ induced by this metric is called the \textbf{norm topology} \index{00@Norm topology} of $V$. 
 \end{rem}
 
 \begin{rem}
-By the polarization identity, the inner products are determined by the norms, and hence determined by the metrics. Therefore, if $T:V\rightarrow W$ is a linear isometry of normed vector spaces, then
+Let $V,W$ be inner product spaces. If $T:V\rightarrow V$ is a linear map, then $T$ is an isometry of metric spaces iff $T$ is an isometry of normed vector spaces, i.e., 
 \begin{align*}
-\bk{Tu|Tv}=\bk{u|v}\qquad\text{for all }u,v\in V
+\bk{Tv|Tv}=\bk{v|v}\qquad \text{for all }v\in V
 \end{align*}
-In particular, if $T$ is an isomorphism of normed vector sapces, then $T$ is an isomorphism of inner product spaces. In this case, we say that $T$ is a \textbf{unitary map}, \index{00@Unitary maps} and say that $V,W$ are \textbf{isomorphic inner product spaces} (or that $V,W$ are \textbf{unitarily equivalent}). \index{00@Unitarily equivalent} 
+By the polarization identity, this is equivalent to
+\begin{align*}
+\bk{Tu|Tv}=\bk{u|v}\qquad \text{for all }u,v\in V
+\end{align*} 
+A surjective linear isometry $T:V\rightarrow W$ is called a \textbf{unitary map}. \index{00@Unitary maps} If $T:V\rightarrow W$ is unitary, we say that $V,W$ are \textbf{isomorphic inner product spaces} (or that $V,W$ are \textbf{unitarily equivalent}). \index{00@Unitarily equivalent} 
 
 
-Similarly, if $T:V\rightarrow V$ is antilinear, then $T$ is an isometry of metric spaces iff
+Similarly, if $T:V\rightarrow V$ is antilinear map between inner product spaces, then $T$ is an isometry of metric spaces iff
 \begin{align*}
 \bk{Tv|Tv}=\bk{v|v}\qquad \text{for all }v\in V
 \end{align*}
@@ -4397,6 +4412,14 @@ By the polarization identity, this is equivalent to
 A surjective antilinear isometry $T:V\rightarrow W$ is called an \textbf{antiunitary map}. \index{00@Antiunitary map} If $T:V\rightarrow W$ is antiunitary, we say that $V$ and $W$ are \textbf{antiunitarily equivalent}. \hqed
 \end{rem}
 
+
+
+\subsubsection{Bounded sesquilinear forms}
+
+
+
+
+Let $V,W$ be inner product spaces.
 
 
 
@@ -4410,6 +4433,16 @@ where $v^\Co\equiv\ovl v$ is an abstract element, called the \textbf{conjugate} 
 \ovl{au+bv}=\ovl a\cdot\ovl u+\ovl b\cdot\ovl v\\
 \bk{\ovl u|\ovl v}_{V^\Co}=\bk{v|u}_V
 \end{gather*}
+
+The conjugate of $V^\Co$ is defined to be $V$, that is,
+\begin{align*}
+(V^\Co)^\Co=V
+\end{align*}
+Moreover, the conjugate map $\Co:V^\Co\rightarrow V$ is defined by
+\begin{align*}
+\Co:V^\Co\rightarrow V\qquad \ovl v\mapsto v
+\end{align*}
+Thus $\ovl{\ovl v}=v$ for each $v\in V$. \hqed
 \end{df}
 
 
@@ -4431,7 +4464,7 @@ It is clear that $T$ is an antilinear isometry (resp. antiunitary) iff \eqref{eq
 \begin{rem}
 A sesquilinear form $\omega:V\times W\rightarrow \Cbb$ is equivalent to a bilinear form
 \begin{align*}
-\wtd\omega:V\times W^\Co\rightarrow\Cbb\qquad (v|\ovl w)\mapsto \bk{v|w}
+\wtd\omega:V\times W^\Co\rightarrow\Cbb\qquad (v,\ovl w)\mapsto \bk{v|w}
 \end{align*}
 Unless otherwise stated, we always view $\omega$ and $\wtd\omega$ as the same.
 \end{rem}
@@ -4453,16 +4486,360 @@ The elements of $\Ses(V|W)$ (resp. $\Ses(V)$) are called \textbf{bounded sesquil
 \end{df}
 
 
-\begin{eg}
+\begin{eg}\label{lb125}
 The inner product
 \begin{align*}
 \bk{\cdot|\cdot}:V\times V\rightarrow\Cbb\qquad (u,v)\mapsto\bk{u|v}
 \end{align*}
-has operator norm, and hence belongs to $\Ses(V)$. Therefore, by Prop. \ref{lb35}, this map is continuous.
+has norm $1$, and hence belongs to $\Ses(V)$. Therefore, by Prop. \ref{lb35}, this map is continuous.
 \end{eg}
 
 
 
+\subsection{Orthogonality}
+
+
+
+Let $V$ be an inner product spaces.
+
+
+
+\subsubsection{Orthogonal and orthonormal vectors}
+
+\begin{df}
+A set $\fk S$ of vectors of $V$ are called \textbf{orthogonal} \index{00@Orthogonal} if $\bk{u|v}=0$ for any distinct $u,v\in V$. An orthogonal set $\fk S$ is called \textbf{orthonormal} \index{00@Orthonormal} if $\Vert v\Vert=1$ for all $v\in V$. 
+\end{df}
+
+\begin{rem}
+We will also talk about an \textbf{orthogonal} resp.  \textbf{orthonormal family of vectors} $(e_i)_{i\in I}$. This means that $\bk{e_i|e_j}=0$ for any distinct $i,j\in I$ (resp. $\bk{e_i|e_j}=\delta_{i,j}$ for any $i,j\in I$). 
+\end{rem}
+
+In particular, two vectors $u,v\in V$ are called orthogonal and written as \index{uv@$u\perp v$}
+\begin{align*}
+u\perp v
+\end{align*}
+when $\bk{u|v}=0$. A fundamental fact about orthogonal vectors is
+\begin{pp}[\textbf{Pythagorean identity}]\index{00@Pythagorean identity}
+Suppose that $u,v\in V$ are orthogonal. Then
+\begin{align}\label{eq62}
+\Vert u+v\Vert^2=\Vert u\Vert^2+\Vert v\Vert^2
+\end{align}
+In particular,
+\begin{align}\label{eq63}
+\Vert v\Vert\leq\Vert u+v\Vert
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+$\Vert u+v\Vert^2=\bk{u+v|u+v}=\bk{u|u}+\bk{v|v}+2\Real \bk{u|v}=\bk{u|u}+\bk{v|v}$.
+\end{proof}
+
+
+Note that by applying \eqref{eq62} repeatedly, we see that if $v_1,\dots,v_n\in V$ are orthogonal, then
+\begin{align}\label{eq64}
+\Vert v_1+\cdots+v_n\Vert^2=\Vert v_1\Vert^2+\cdots+\Vert v_n\Vert^2
+\end{align}
+
+
+
+\begin{rem}
+Suppose that $\fk S$ is an orthonormal set of vectors of $V$. Then $\fk S$ is clearly linearly independent. (If $e_1,\dots,e_n\in\fk S$ and $\sum_i a_ie_i=0$, then $a_j=\sum_i\bk{a_ie_i|e_j}=\bk{0|e_j}=0$.) Thus, by linear algebra, if $\fk S=\{e_1,\dots,e_n\}$ is finite, then one can find uniquely $a_1,\dots,a_n\in\Cbb$ and $u\in V$ such that $v=a_1e_1+\cdots+a_ne_n+u$ and that $u$ is orthogonal to $e_1,\dots,e_n$. The expressions of $a_1,\dots,a_n,u$ can be expressed explicitly:
+\end{rem}
+
+
+\begin{pp}[\textbf{Gram-Schmidt}]\index{00@Gram-Schmidt}
+Let $e_1,\dots,e_n$ be orthonormal vectors in $V$. Let $v\in V$. Then
+\begin{align}
+v-\sum_{i=1}^n \bk{v|e_i}\cdot e_i
+\end{align}
+is orthogonal to $e_1,\dots,e_n$.
+\end{pp}
+
+\begin{proof}
+This is a direct calculation and is left to the readers.
+\end{proof}
+
+
+\begin{rem}\label{lb117}
+``Gram-Schmidt" usually refers to the following process. Let $v_1,\dots,v_n$ be a set of linearly independent vectors of $V$. Then there is an algorithm of finding an orthonormal basis of $U=\Span\{v_1,\dots,v_n\}$: Let $e_1=v_1/\Vert v_1\Vert$. Suppose that a set of orthonormal vectors $e_1,\dots,e_k$ in $U$ have been found. Then $e_{k+1}$ is defined by $\wtd v_{k+1}/\Vert\wtd v_{k+1}\Vert$ where $\wtd v_{k+1}=v_{k+1}-\sum_{i=1}^k \bk{v_{k+1}|e_i}\cdot e_i$.
+\end{rem}
+
+
+
+Combining Pythagorean with Gram-Schmidt, we have:
+\begin{co}[\textbf{Bessel's inequality}]\label{lb118}
+Let $(e_i)_{i\in I}$ be a family of orthonormal vectors of $V$. Then for each $v\in V$ we have
+\begin{align}\label{eq65}
+\sum_{i\in I}|\bk{v|e_i}|^2\leq \Vert v\Vert^2
+\end{align}
+In particular, the set $\{i\in I:\bk{v|e_i}\neq0\}$ is countable.
+\end{co}
+
+
+
+
+\begin{proof}
+The LHS of \eqref{eq65} is $\lim_{J\in\fin(2^I)}\sum_{j\in J}|\bk{v|e_j}|^2$. Thus, it suffices to show that for each $J\in\fin(2^I)$ we have $\sum_{j\in J}|\bk{v|e_j}|^2\leq \Vert v\Vert^2$. Let 
+\begin{align*}
+u_1=\sum_{j\in J}\bk{v|e_j}\cdot e_j\qquad u_2=v-u_1
+\end{align*}
+(Namely, $v=u_1+u_2$ is the orthogonal decomposition of $v$ with respect to $\Span\{e_j:j\in J\}$.) By Gram-Schmidt, we have $\bk{u_1|u_2}=0$. By Pythagorean, we have $\Vert u_1\Vert^2\leq\Vert v\Vert^2$. But Pythagorean \eqref{eq64} also implies
+\begin{align*}
+\Vert u_1\Vert^2=\sum_{j\in J}|\bk{v|e_j}|^2
+\end{align*}
+The last statement about countability follows from .
+\end{proof}
+
+
+
+\subsubsection{Orthogonal decomposition}
+
+
+\begin{df}\label{lb119}
+Let $U$ be a linear subspace of $V$. Let $v\in V$. An \textbf{orthogonal decomposition} \index{00@Orthogonal decomposition and orthonal projection} of $v$ with respect to $U$ is an expression of the form
+\begin{align*}
+v=u+w\qquad \text{where $u\in U$ and $w\perp U$}
+\end{align*}
+Orthogonal decompositions of $v$ are unique if exist. We call $u$ the \textbf{orthogonal projection} of $v$ onto $U$.
+\end{df}
+
+\begin{proof}[Proof of uniqueness]
+Suppose that $v=u'+w'$ is another orthogonal decomposition. Then $u-u'$ equals $w'-w$. Let $\xi=u-u'$. Then $\xi\in U$ and $\xi\perp U$. So $\bk{\xi|\xi}=0$, and hence $\xi=0$. So $u=u'$ and $w=w'$.
+\end{proof}
+
+
+\begin{eg}\label{lb124}
+Let $e_1,\dots,e_n$ be orthonormal vectors of $V$. Let $U=\Span\{e_1,\dots,e_n\}$. Choose any $v\in V$. Then by Gram-Schmidt,
+\begin{align}
+v=u+w\qquad\text{where }u=\sum_{i=1}^n\bk{v|e_i}e_i\text{ and }w=v-u
+\end{align}
+is the orthogonal decomposition of $v$ with respect to $U$.
+\end{eg}
+
+\begin{pp}\label{lb120}
+Let $U$ be a linear subspace of $V$. Suppose that $v\in V$ has orthogonal decomposition $v=u+w$ with respect to $U$. Then
+\begin{align}
+\Vert v-u\Vert=\inf_{\xi\in U}\Vert v-\xi\Vert
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+Clearly ``$\geq$" holds. Choose any $\xi\in U$. Then $v-\xi=v-u+u-\xi=w+(u-\xi)$. Since $u-\xi\in U$, we have $w\perp u-\xi$. Thus, by Pythagorean, we have $\Vert w\Vert\leq\Vert v-\xi\Vert$.
+\end{proof}
+
+
+
+\subsubsection{Orthonormal basis}
+
+
+
+\begin{df}\label{lb121}
+A set $\fk S$ (or a family $(e_i)_{i\in I}$) of orthonormal vectors of $V$ is called an \textbf{orthonormal basis} \index{00@Orthonormal basis} of $V$ if it spans a dense subspace of $V$.  
+\end{df}
+
+\begin{eg}
+If $X$ is a set, by Prop. \ref{lb109}, $l^2(X)$ has an orthonormal basis $(\chi_{\{x\}})_{x\in X}$.
+\end{eg}
+
+
+\begin{eg}\label{lb122}
+If $V$ is separable, then $V$ has a countable orthonormal basis.
+\end{eg}
+
+\begin{proof}
+Let $\{v_1,v_2,\dots\}$ be a dense subset of $V$ where $v_1\neq 0$. Then by Gram-Schmidt (Rem. \ref{lb117}), we can find $e_1,e_2,\dots\in V$ such that the set $\{e_1,e_2,\dots\}$ is orthnormal (after removing the duplicated terms), and that $\Span\{v_1,\dots,v_n\}=\Span\{e_1,\dots,e_n\}$ for each $n$. Then $\{e_1,e_2,\dots\}$ clearly spans a dense subspace of $V$.
+\end{proof}
+
+We remark that there are non-separable and non-complete inner product spaces that do not have orthonormal bases. See \cite{Gud74}.
+
+
+\begin{thm}\label{lb123}
+Suppose that $(e_i)_{i\in I}$ is an orthonormal basis of $V$. Then for each $v\in V$, the RHS of the following converges (under the norm of $V$) to the LHS:
+\begin{align}
+v=\sum_{i\in I}\bk{v|e_i}\cdot e_i
+\end{align}
+\end{thm}
+
+\begin{proof}
+Note that for $J\in\fin(2^I)$, the expression
+\begin{align*}
+\Big\Vert v-\sum_{j\in J}\bk{v|e_j}e_j\Big\Vert^2=\Vert v\Vert^2-\sum_{j\in J}|\bk{v|e_j}|^2
+\end{align*}
+decreases when $J$ increases. Thus, it suffices to prove that the $\inf_{J\in \fin(2^I)}$ of this expression is $0$. 
+
+By assumption,  we can find $J\in\fin(2^I)$ and $(\lambda_j)_{j\in J}$ in $\Cbb$ such that $\Vert v-\sum_{j\in J}\lambda_je_j\Vert$ is small enough. On the other hand, applying Prop. \ref{lb120} to the orthogonal projection $v=u+w$ where $w=\sum_{j\in J}\bk{v|e_j}e_j$ (cf. Exp. \ref{lb124}), we have
+\begin{align}
+\Big\Vert v-\sum_{j\in J}\bk{v|e_j}e_j\Big\Vert\leq \Big\Vert v-\sum_{j\in J}\lambda_je_j\Big\Vert
+\end{align}
+Thus, the infimum of the LHS over $J\in\fin(2^I)$ is zero.
+\end{proof}
+
+
+
+\begin{co}[\textbf{Parseval's identity}]\index{00@Parseval's identity}\label{lb601}
+Suppose that $(e_i)_{i\in I}$ is an orthonormal basis of $V$. Then for each $u,v\in V$ we have
+\begin{align}\label{eq246}
+\bk{u|v}=\sum_{i\in I}\bk{u|e_i}\cdot\bk{e_i|v}
+\end{align}
+In particular,
+\begin{align}
+\Vert v\Vert^2=\sum_{i\in I}|\bk{v|e_i}|^2
+\end{align}
+\end{co}
+
+\begin{proof}
+By Thm. \ref{lb123}, $u=\lim_{J\in\fin(2^I)}u_J$ where $u_J=\sum_{j\in J}\bk{u|e_j}\cdot e_j$. By the continuity of $\bk{\cdot|\cdot}:V\times V\rightarrow\Cbb$ (Exp. \ref{lb125}), we have
+\begin{align*}
+\bk{u|v}=\lim_{J\in\fin(2^I)}\bk{u_J|v}=\lim_{J\in\fin(2^I)}\sum_{j\in J}\bk{u|e_j}\cdot\bk{e_j|v}=\sum_{i\in I}\bk{u|e_i}\cdot\bk{e_i|v}
+\end{align*}
+\end{proof}
+
+
+
+\begin{co}\label{lb126}
+Suppose that $(e_x)_{x\in X}$ is an orthonormal basis of $V$. Then there is a linear isometry
+\begin{gather}\label{eq66}
+\Phi:V\rightarrow l^2(X)\qquad v\mapsto \big(\bk{v|e_x})_{x\in X}
+\end{gather} 
+whose range is dense in $l^2(X)$.
+\end{co}
+
+
+
+
+\begin{proof}
+Parseval's identity shows that $(\bk{v|e_x})_{x\in X}$ has finite $l^2$-norm $\Vert v\Vert$. So the map $\Phi$ defined by \eqref{eq66} is clearly a linear isometry. The density of the range of $\Phi$ follows from the fact that $l^2(X)$ contains all $\chi_{\{x\}}=\Phi(e_x)$, and that $\Span\{\chi_{\{x\}}:x\in X\}$ is dense in $l^2(X)$ (cf. Prop. \ref{lb109}).
+\end{proof}
+
+
+
+
+\subsection{Hilbert spaces}
+
+
+\begin{thm}\label{lb129}
+Let $\MH$ be an inner product space. Then the following three conditions are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item $\MH$ is (Cauchy) complete.
+\item For each orthonormal family $(e_i)_{i\in I}$ in $\MH$, and for each family $(a_i)_{i\in I}$ in $\Cbb$ satisfying $\sum_{i\in I}|a_i|^2<+\infty$, the unordered sum $\sum_{i\in I}a_ie_i$ converges (under the norm of $\MH$).
+\item $\MH$ is unitarily equivalent to $l^2(X)$ for some set $X$.
+\end{enumerate} 
+If $\MH$ satisfies any of these conditions, we say that $\MH$ is a \textbf{Hilbert space}.
+\end{thm}
+
+
+
+\begin{proof}
+(c)$\Rightarrow$(a): By Thm. \ref{lb127}, $l^2(X)$ is the dual space of $l^2(X)$. Since any dual space is complete (Cor. \ref{lb128}), $l^2(X)$ is complete.
+
+(a)$\Rightarrow$(b): Since $\sum_i |a_i|^2<+\infty$, for each $\eps>0$ there exists $J\in\fin(2^I)$ such that for all finite $K\subset I\setminus J$ we have $\sum_{k\in K}|a_k|^2<\eps$, and hence, by the Pythagorean identity,
+\begin{align*}
+\Big\Vert \sum_{k\in K}a_ke_k\Big\Vert^2=\sum_{k\in K}|a_ke_k|^2<\eps
+\end{align*}
+Thus $(\sum_{j\in J}a_je_j)_{J\in\fin(2^I)}$ is a Cauchy net. By the completeness of $\MH$, we see that $\sum_{i\in I}a_ie_i$ converges.
+
+(b)$\Rightarrow$(c): Assume (b). We first show that $\MH$ has an orthonormal basis. By Zorn's lemma, we can find a maximal (with respect to the partial order $\subset$) set of orthonormal vectors, written as a family $(e_i)_{i\in I}$. The maximality implies that every nonzero vector $\xi\in \MH$ is not orthogonal to some $e_i$. (Otherwise, $\{e_i:i\in I\}$ can be extended to $\{e_i:i\in I\}\cup\{\xi/\Vert\xi\Vert\}$.)
+
+Let us prove that $(e_i)_{i\in I}$ is an orthonormal basis. Suppose not. Then $U=\Span\{e_i:i\in I\}$ is not dense in $\MH$. Let $\xi\in \MH\setminus \ovl{U}$. By Bessel's inequality, we have
+\begin{align*}
+\sum_{i\in I}|\bk{\xi|e_i}|^2<+\infty
+\end{align*}
+Therefore, by (b),
+\begin{align}
+\sum_{i\in I}\bk{\xi|e_i}\cdot e_i
+\end{align}
+converges to some vector $\eta\in \MH$. By the continuity of $\bk{\cdot|\cdot}$ (Exp. \ref{lb125}), we see that $\bk{\eta|e_i}=\bk{\xi|e_i}$ for all $i$, and hence
+\begin{align}
+\bk{\xi-\eta|e_i}=0\qquad\text{ for all }i\in I
+\end{align}
+Since $\eta\in\ovl U$ and $\xi\notin\ovl U$, we conclude that $\xi-\eta$ is a nonzero vector orthogonal to all $e_i$. This contradicts the maximality of $(e_i)_{i\in I}$.
+
+Now we have an orthonormal basis $(e_i)_{i\in I}$. By Cor. \ref{lb126}, we have a linear isometry
+\begin{align*}
+\Phi:\MH\rightarrow l^2(I)\qquad \xi\mapsto \big(\bk{\xi|e_i}\big)_{i\in I}
+\end{align*}
+with dense range. If $(a_i)_{i\in I}$ belongs to $l^2(I)$, by (b), the unordered sum $\sum_{i\in I}a_ie_i$ converges to some $\xi\in \MH$. Clearly $\Phi(\xi)=(a_i)_{i\in I}$. This proves that $\Phi$ is surjective, and hence is a unitary map. So $\MH\simeq l^2(I)$.
+\end{proof}
+
+
+
+
+\begin{eg}
+By Thm. \ref{lb129}, if $X$ is a set, then $l^2(X)$ is a Hilbert space.
+\end{eg}
+
+
+\begin{eg}
+Let $(X,\mu)$ be a measure space. By the Riesz-Fischer Thm. \ref{lb26}, the inner product space $L^2(X,\mu)$ is a Hilbert space.
+\end{eg}
+
+\begin{co}\label{lb130}
+Every Hilbert space $\mc H$ has an orthonormal basis. Moreover, $\mc H$ is separable iff the orthonormal basis can be chosen to be countable.
+\end{co}
+
+\begin{proof}
+That $\mc H$ has an orthonormal basis follows from the proof of Thm. \ref{lb129} or from the fact that $l^2(X)$ has an orthonormal basis $(\chi_{\{x\}})_{x\in X}$. If $X$ is countable, then $l^2(X)$ has dense subset $\Span_{\Qbb+\im\Qbb}\{\chi_{\{x\}}:x\in X\}$ and hence is separable. Conversely, we have proved in Exp. \ref{lb122} that every separable inner product space has a countable orthonormal basis.
+\end{proof}
+
+
+\begin{thm}\label{lb131}
+Let $(e_x)_{x\in X}$ be an orthonormal basis of a Hilbert space $\mc H$. Then we have a unitary map
+\begin{gather}
+\mc H\xlongrightarrow{\simeq} l^2(X)\qquad \xi\mapsto\big(\bk{\xi|e_x}\big)_{x\in X}
+\end{gather}
+\end{thm}
+
+
+
+\begin{proof}
+This is clear from the proof of Thm. \ref{lb129}.
+\end{proof}
+
+
+
+\subsection{Bounded linear maps, sesquilinear forms, and matrices}
+
+
+
+In this section, we let $V,W$ be inner product spaces.
+
+\subsubsection{Bounded linear maps and bounded sesquilinear forms}
+
+In Subsec. \ref{lb132}, we discussed the close relationship between bounded linear maps and bounded bilinear forms in the general setting of normed vector spaces. This connection allows us to combine the strengths of both perspectives. One key advantage of the perspective of linear operators is that the space $\fk L(V)$ is particularly well-suited for symbolic calculus.
+
+
+In this section, we explore this relationship in the context of inner product spaces and Hilbert spaces. We will see that the passage from $\fk L(V)$ to bounded sesquilinear forms fundamentally relies on the Riesz–Fréchet theorem, a pivotal result that enables this correspondence.
+
+\begin{df}
+If $T\in\Lin(V,W)$, we let $\omega_T$ be the sesquilinear form \index{zz@$\omega_T$}
+\begin{gather*}
+\omega_T:V\times W\rightarrow\Cbb \qquad (v,w)\mapsto \bk{Tv|w}
+\end{gather*}
+\end{df}
+
+\begin{pp}
+For each $T\in\Lin(V,W)$, we have
+\begin{align*}
+\Vert T\Vert=\Vert\omega_T\Vert
+\end{align*}
+Consequently, $T$ is bounded iff $\omega_T$ is so, and the map $T\in\Lin(V,W)\mapsto \omega_T$ is injective.
+\end{pp}
+
+
+
+\begin{proof}
+For each $v\in V,w\in W$, we have
+\begin{align*}
+|\omega_T(v,w)|=|\bk{Tv|w}|\leq\Vert Tv\Vert\cdot\Vert w\Vert\leq \Vert T\Vert\cdot\Vert v\Vert\cdot\Vert w\Vert
+\end{align*}
+Applying $\sup$ over all $v,w$ in the closed unit balls, we get $\Vert\omega_T\Vert\leq\Vert T\Vert$. Moreover,
+\begin{align*}
+\Vert Tv\Vert^2=\omega_T(v|Tv)\leq\Vert \omega_T\Vert\cdot \Vert v\Vert\cdot\Vert Tv\Vert
+\end{align*}
+and hence $\Vert Tv\Vert\leq \Vert\omega_T\Vert\cdot\Vert v\Vert$. Applying $\sup$ over all $v$ in the closed unit ball, we get $\Vert T\Vert\leq\Vert\omega_T\Vert$.
+\end{proof}
 
 
 
@@ -4481,7 +4858,36 @@ has operator norm, and hence belongs to $\Ses(V)$. Therefore, by Prop. \ref{lb35
 \section{Spectral theorem for bounded self-adjoint operators}\label{lb114}
 
 
-\subsection{Continued fractions and the polynomial moment problem}
+\subsection{Prehistory of spectral theory: continued fractions}
+
+
+
+
+
+
+\subsection{Prehistory of spectral theory: the polynomial moment problem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4507,6 +4913,8 @@ Folland, G. B. (1999). Real analysis: modern techniques and their applications. 
 \bibitem[Gray84]{Gray84}
 Gray, J. D. (1984). The shaping of the Riesz representation theorem: A chapter in the history of analysis. Archive for History of Exact Sciences, 31, 127-187.
 
+\bibitem[Gud74]{Gud74}
+Gudder, S. (1974). Inner product spaces. The American Mathematical Monthly, 81(1), 29-36.
 
 \bibitem[Gui-A]{Gui-A}
 Bin Gui, Qiuzhen Lectures on Analysis. See \url{https://binguimath.github.io/Pages/2023_Analysis.html}
