@@ -6,7 +6,7 @@
 
 - 助教: 黄思睿 王昱仁
 
-- Office hour: 鉴于以往的固定office hour时间段没有同学来，因此本课程不设置固定的office hour时间。欢迎单独约时间。
+- Office hour: 鉴于固定的office hour时间段通常没有同学来，因此本课程不设置固定的office hour。欢迎单独约时间。
   
 - 办公室: 双清综合楼A座C648
   
