@@ -61,7 +61,7 @@
 
 - Methods of Modern Mathematical Physics, I: Functional Analysis.  By Reed and Simon
 
-另外，课程涵盖的数学理论与求真前几个学期的泛函分析课程相差不大。大家也可自行寻找兰洋和吴劲松老师的讲义作为参考和预习。
+另外，课程涵盖的数学理论与求真前几个学期的泛函分析课程相差不大。大家也可自行寻找兰洋或吴劲松老师的讲义作为参考和预习。
 
 
 ## Schedule
