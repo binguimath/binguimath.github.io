@@ -533,9 +533,9 @@
 	
 	\maketitle
 \small   
-%\hyperlink{page.7}{Last page of TOC}\qquad 
+\qquad 
 
-\hyperlink{current}{Current writing}
+\hyperlink{current}{Current writing}\qquad \hyperlink{page.2}{Last page of TOC}
 
 
 %\hyperlink{beforeindex}{Last page before index}~~~~~~  
@@ -634,6 +634,10 @@ An increasing function/sequence/net means a non-decreasing one.
 \item $Y^X$ is the set of functions with domain $X$ and codomain $Y$.
 \item $2^X$ is the set of subsets of $X$.
 \item $\fin(2^X)$ is the set of finite subsets of $X$.
+\item For each vector space $V$, we let $V[x_1,\dots,x_k]$ be the space of polynomials of the (mutually commuting) abstract variables $x_1,\dots,x_k$ with coefficients in $V$. Therefore, its elements are of the form
+\begin{align*}
+\sum_{n_1,\dots,n_k\in E}v_{n_1,\dots,n_k}x_1^{n_1}\cdots x_k^{n_k}\qquad\text{ where $E\in\fin(2^\Nbb)$ and $v_{n_1,\dots,n_k}\in V$}
+\end{align*}
 \item If $f:X\rightarrow Y$ is a map, then \index{Rng@$\Rng(f)$, the range of $f$}
 \begin{align*}
 \Rng(f)=f(X)
@@ -5316,7 +5320,7 @@ Before we explore further examples, let us examine another foundational perspect
 
 
 
-\subsection{Bounded matrices}
+\subsection{Bounded matrices}\label{lb154}
 
 
 Let $\MH,\MK,\MM$ be Hilbert spaces.
@@ -5430,20 +5434,260 @@ For $R,S,T\in\fk L(\MH)$, associativity of composition,
 (RS)T=R(ST)
 \end{align*}
 is almost tautological. However, when working with bounded sesquilinear forms or bounded matrices, associativity is far less transparent. To see this, consider $\sigma,\omega,\tau\in\Ses(\MH)$. Then the associativity $(\sigma\omega)\tau=\sigma(\omega\tau)$ amounts to the commutativity of the two unordered sums: for all $\xi,\eta\in\MH$,
-\begin{align*}
+\begin{align}\label{eq78}
 \sum_{y\in X}\sum_{x\in X} \sigma(\xi|e_x)\omega(e_x|e_y)\tau(e_y|\eta)=\sum_{x\in X}\sum_{y\in X}\sigma(\xi|e_x)\omega(e_x|e_y)\tau(e_y|\eta)
-\end{align*}
+\end{align}
 Similarly, if $A,B,C\in\Cbb^{X\times X}$ are bounded matrices, associativity of matrix multiplications means that for each $i,j\in X$, 
 \begin{align*}
 \sum_{y\in X}\sum_{x\in X} A(i,x)B(x,y)C(y,j)=\sum_{x\in X}\sum_{y\in X}A(i,x)B(x,y)C(y,j)
 \end{align*}
-At first glance, the commutativity of $\sum_{x\in X}$ and $\sum_{y\in Y}$ is not at all obvious.
+At first glance, the commutativity of $\sum_{x\in X}$ and $\sum_{y\in X}$ is not at all obvious.
 
 The issue of commutativity of unordered sums---which appears in the frameworks of sesquilinear forms and matrices---disappears in the perspective of linear maps. Where is this Fubini-type property hidden in the linear map viewpoint? And how can one understand the commutativity of such unordered sums in a more general context? We will answer this question in the next section.
 
 
 
 
+\subsection{SOT and WOT}
+
+
+
+Let $U,V,W$ be inner product spaces.
+
+\subsubsection{Convergence of vectors}
+
+
+\begin{df}
+The \textbf{weak topology} on $V$ \index{00@Weak topology on inner product spaces} is defined to be the pullback of the weak-* topology on $(V^\Co)^*$ by the Riesz isometry $V\rightarrow (V^\Co)^*$. Therefore, a net $(\xi_\alpha)$ in $V$ converges weakly to $\xi \in V$ iff
+\begin{align}\label{eq75}
+\lim_\alpha\bk{\eta|\xi_\alpha}=\bk{\eta|\xi}
+\end{align}
+holds for each $\eta\in V$
+\end{df}
+
+It is clear that norm convergence implies weak convergence.
+
+
+\begin{rem}
+Let $(\xi_\alpha)$ be a uniformly bounded net in $V$, and let $\xi\in V$. Let $U$ be a dense linear subspace of $V$. Applying Thm. \ref{lb80} to the images of $(\xi_\alpha)$ and $\xi$ in $(V^\Co)^*$, we see that $(\xi_\alpha)$ converges weakly to $\xi$ iff \eqref{eq75} holds for each $\eta\in U$. 
+\end{rem}
+
+
+
+\begin{pp}[\textbf{Fatou's lemma for weak convergence}]\label{lb153} \index{00@Fatou's lemma for weak convergence in inner product spaces}
+Let $(\xi_\alpha)$ be a net in $V$ converging weakly to $\xi\in V$. Then
+\begin{align}\label{eq76}
+\Vert\xi\Vert\leq\liminf_\alpha\Vert\xi_\alpha\Vert
+\end{align}
+Moreover, $(\xi_\alpha)$ converges in norm to $\xi$ iff  $\lim_\alpha\Vert\xi_\alpha\Vert$ converges to $\Vert\xi\Vert$.
+\end{pp}
+
+
+
+\begin{proof}
+The inequality \eqref{eq76} follows from Prop. \ref{lb106} and the fact that the Riesz isometry $V\rightarrow(V^\Co)^*$ is an isometry. But it can also be proved directly:
+\begin{align*}
+\Vert\xi\Vert^2=\lim_\alpha|\bk{\xi|\xi_\alpha}|=\liminf_\alpha|\bk{\xi|\xi_\alpha}|\leq\liminf_\alpha\Vert\xi\Vert\cdot\Vert\xi_\alpha\Vert
+\end{align*}
+
+If $(\xi_\alpha)$ converges in norm to $\xi$, then by the continuity of $\Vert\cdot\Vert:V\rightarrow\Rbb_{\geq0}$, $\lim_\alpha\Vert\xi_\alpha\Vert$ converges to $\Vert\xi\Vert$. Conversely, suppose that $\lim_\alpha\Vert\xi_\alpha\Vert=\Vert\xi\Vert$. Then, since $\bk{\xi|\xi_\alpha}\rightarrow\bk{\xi|\xi}$, we have
+\begin{align*}
+\bk{\xi-\xi_\alpha|\xi-\xi_\alpha}=\Vert \xi\Vert^2-2\Re\bk{\xi|\xi_\alpha}+\Vert\xi_\alpha\Vert^2\rightarrow\Vert\xi\Vert^2-2\Re\Vert\xi\Vert^2+\Vert\xi\Vert^2=0
+\end{align*}
+This shows that $\Vert\xi-\xi_\alpha\Vert\rightarrow0$.
+\end{proof}
+
+
+
+\subsubsection{Convergence of operators}
+
+
+Recall that the \textbf{norm topology} on $\fk L(V,W)$ is the topology determined by the operator norm on $\fk L(V,W)$.
+
+\begin{df}
+The \textbf{strong operator topology (SOT)} \index{00@Strong operator topology} \index{00@SOT} on $\fk L(V,W)$ is defined to be the pullback of the product topology on $W^V$ by the inclusion map
+\begin{align*}
+\fk L(V,W)\hookrightarrow W^V
+\end{align*}
+The \textbf{weak topology} \index{00@Weak topology on $\Ses(W\vert V)$} on $\Ses(W|V)$ is defined to be the pullback of the product topology on $\Cbb^{W\times V}$ by the inclusion map
+\begin{align*}
+\Ses(W|V)\hookrightarrow \Cbb^{W\times V}
+\end{align*}
+The \textbf{weak operator topology (WOT)} \index{00@Weak operator topology} \index{00@WOT} on $\fk L(V,W)$ is defined to be the pullback of the weak topology on $\Ses(W|V)$ by the linear isometry
+\begin{align*}
+\fk L(V,W)\rightarrow\Ses(W|V)\qquad T\mapsto \omega_T
+\end{align*}
+\end{df}
+
+
+\begin{rem}
+Let $(T_\alpha)$ be a net in $\fk L(V,W)$ and $T\in\fk L(V,W)$. Then $(T_\alpha)$ converges in SOT to $T$ iff
+\begin{align}
+\lim_\alpha T_\alpha\xi=T\xi
+\end{align}
+holds for each $\xi\in V$. $(T_\alpha)$ converges in WOT to $T$ iff
+\begin{align}
+\lim_\alpha \bk{\eta|T_\alpha\xi}=\bk{\eta|T\xi}
+\end{align}
+holds for each $\xi\in V,\eta\in W$. It is clear that
+\begin{align*}
+\text{convergence in norm}\quad\Rightarrow\quad\text{convergence in SOT}\quad\Rightarrow\quad\text{convergence in WOT}
+\end{align*}
+\end{rem}
+
+
+\begin{rem}
+Let $(T_\alpha)$ be a net in $\fk L(V,W)$ and $T\in\fk L(V,W)$. Then it is clear that $(T_\alpha)$ converges in WOT to $T$ iff
+\begin{align*}
+\lim_\alpha T\xi_\alpha\quad\text{converges weakly to}\quad\xi
+\end{align*}
+for each $\xi\in V$. By Prop. \ref{lb153}, $(T_\alpha)$ converges in SOT to $T$ iff the following two conditions hold:
+\begin{enumerate}[label=(\arabic*)]
+\item $(T_\alpha)$ converges in WOT to $T$.
+\item $\lim_\alpha \Vert T_\alpha\xi\Vert=\Vert T\xi\Vert$ for each $\xi\in V$.
+\end{enumerate}
+\end{rem}
+
+
+\begin{eg}\label{lb157}
+Suppose that $V$ has a basis basis $(e_x)_{x\in X}$. For each $I\in\fin(2^X)$, let $P_I$ be the projection of $V$ onto $V_I=\Span\{e_x:x\in I\}$, that is,
+\begin{align*}
+P_I\xi=\sum_{x\in I}e_x\cdot\bk{e_x|\xi}\qquad\text{for all }\xi\in V
+\end{align*}
+Then by Thm. \ref{lb123}, $\lim_{I\in\fin(2^X)}P_I$ converges strongly to $\idt$. 
+
+However, if $X$ is infinite, then $\lim_{I\in\fin(2^X)}P_I$ does not converge in norm to $\idt$. Indeed, for each $I$, choose $x\in X\setminus I$. Then $(\idt-P_I)e_x=e_x$, and hence
+\begin{align*}
+\Vert\idt-P_I\Vert\geq 1
+\end{align*}
+Indeed, by Prop. \ref{lb146}, $\idt-P_I$ is the projection operator associated to $U_I^\perp$, and hence has operator norm $1$.  \hqed
+\end{eg}
+
+
+
+
+\subsubsection{SOT and composition of operators}
+
+
+Let us examine the commutativity of unordered sums from Sec. \ref{lb154} through the lens of SOT.
+
+
+\begin{pp}\label{lb156}
+Let $(T_\alpha)_{\alpha\in\scr A}$ be a net in $\fk L(V,W)$ converging strongly to $T\in\fk L(V,W)$. Let $(\xi_\beta)_{\beta\in\scr B}$ be a net in $V$ converging strongly to $\xi\in V$. Then 
+\begin{align}
+\lim_\alpha \lim_\beta T_\alpha \xi_\beta=\lim_\beta\lim_\alpha T_\alpha \xi_\beta=T\xi
+\end{align}
+\end{pp}
+
+\begin{proof}
+We compute that
+\begin{align*}
+\lim_\alpha\lim_\beta T_\alpha \xi_\beta=\lim_\alpha T_\alpha \xi=T\xi
+\end{align*}
+and
+\begin{align*}
+\lim_\beta\lim_\alpha T_\alpha \xi_\beta=\lim_\beta T\xi_\beta=T\xi
+\end{align*}
+where the last equality is due to the continuity of $T$.
+\end{proof}
+
+
+\begin{co}\label{lb158}
+Let $(T_\alpha)_{\alpha\in\scr A}$ be a net in $\fk L(V,W)$ converging strongly to $T\in\fk L(V,W)$. Let $(S_\beta)_{\beta\in\scr B}$ be a net in $\fk L(U,V)$ converging strongly to $S\in\fk L(U,V)$. Then for each $u\in U$ we have
+\begin{align}
+\lim_\alpha \lim_\beta T_\alpha S_\beta u=\lim_\beta\lim_\alpha T_\alpha S_\beta u=TSu
+\end{align}
+\end{co}
+
+\begin{proof}
+Apply Prop. \ref{lb156} to $\xi_\beta= S_\beta u$.
+\end{proof}
+
+Cor. \ref{lb158} can be easily generalized to products of more than two nets of operators. We leave the details to the reader.
+
+
+\begin{eg}\label{lb160}
+Let $\MH$ be a Hilbert space with basis $(e_x)_{x\in X}$. Let $(P_I)_{I\in\fin(2^X)}$ be the net of projections where $P_I$ projects $\MH$ onto $V_I=\Span\{e_x:x\in I\}$. By Exp. \ref{lb157}, $\lim_I P_I$ converges strongly to $1$. Choose any $R,S,T\in\fk L(\MH)$. Then $\lim_I P_IS$ converges strongly to $S$, and $\lim_I P_IT$ converges strongly to $T$. Therefore, by Cor. \ref{lb158}, for each $\eta\in\MH$ we have
+\begin{align*}
+\lim_{J\in\fin(2^X)}\lim_{I\in\fin(2^X)}RP_ISP_JT\eta=\lim_{I\in\fin(2^X)}\lim_{J\in\fin(2^X)}RP_ISP_JT\eta=RST\eta
+\end{align*}
+Therefore, for each $\xi,\eta\in\MH$ we have
+\begin{align}\label{eq77}
+\lim_{J\in\fin(2^X)}\lim_{I\in\fin(2^X)}\bk{\xi|RP_ISP_JT\eta}=\lim_{I\in\fin(2^X)}\lim_{J\in\fin(2^X)}\bk{\xi|RP_ISP_JT\eta}=\bk{\xi|RST\eta}
+\end{align}
+The commutativity of the two iterated limits in \eqref{eq77} is equivalent to the commutativity of the two limits in \eqref{eq78}.
+\end{eg}
+
+
+
+
+Next, we introduce an elementary yet fundamental property of SOT. This property was first highlighted by Riesz in \cite{Rie11} as a key tool in his proof of the spectral theorem for bounded self-adjoint operators. In Ch. \ref{lb114}, we will also rely on it in our study of spectral theory. This properties roughly says that in Cor. \ref{lb158}, if the nets of operators are uniformly bounded, and if $\scr A=\scr B$, then $\lim_\alpha T_\alpha T_\alpha$ converges strongly to $TS$.
+
+
+\begin{thm}\label{lb155}
+Let $(T_\alpha)_{\alpha\in\scr A}$ be a net in $\fk L(V,W)$ satisfying $\sup_\alpha\Vert T_\alpha\Vert<+\infty$ and converging in SOT to $T\in\fk L(V,W)$. Let $(\xi_\beta)_{\beta\in\scr B}$ be a net in $V$ converging to $\xi\in V$. Then the double net $(T_\alpha\xi_\beta)_{(\alpha,\beta)\in\scr A\times\scr B}$ converges to $T\xi$, that is,
+\begin{align*}
+\lim_{(\alpha,\beta)\in\scr A\times\scr B}T_\alpha\xi_\beta=T\xi
+\end{align*}
+\end{thm}
+
+In particular, if $\scr A=\scr B$, since $(T_\alpha\xi_\alpha)_{\alpha\in\scr A}$ is a subnet of $(T_\alpha\xi_\beta)_{(\alpha,\beta)\in\scr A\times\scr A}$ (defined by $\alpha\in\scr A\mapsto(\alpha,\alpha)\in\scr A$), we conclude that
+\begin{align*}
+\lim_\alpha T_\alpha\xi_\alpha=T\xi
+\end{align*}
+
+\begin{proof}
+Let $C=\sup_\alpha\Vert T_\alpha\Vert$, which is finite. We compute that
+\begin{align*}
+\Vert T\xi-T_\alpha\xi_\beta\Vert\leq\Vert T\xi-T_\alpha\xi\Vert+\Vert T_\alpha\xi-T_\alpha\xi_\beta\Vert\leq \Vert T\xi-T_\alpha\xi\Vert+C\Vert\xi-\xi_\beta\Vert
+\end{align*}
+where the RHS converges to $0$ under $\lim_{\alpha,\beta}$.
+\end{proof}
+
+
+\begin{co}\label{lb159}
+Let $V_0,V_1,\dots,V_k$ be inner product spaces. For each $1\leq i\leq k$, let $(T^i_{\alpha_i})_{\alpha_i\in\scr A_i}$ be a net in $\fk L(V_{i-1},V_i)$ converging in SOT to $T^i\in\fk L(V_{i-1},V_i)$. Assume that
+\begin{align*}
+\sup_{\alpha_i\in\scr A_i}\Vert T^i_{\alpha_i}\Vert<+\infty\qquad\text{for all }2\leq i\leq k
+\end{align*}
+Then for each $\xi\in V_0$, we have
+\begin{align*}
+\lim_{(\alpha_1,\dots,\alpha_k)\in\scr A_1\times\cdots\times\scr A_k}T^k_{\alpha_k}\cdots T^1_{\alpha_1}\xi= T^k\cdots T^1\xi
+\end{align*}
+\end{co}
+
+Similar to Thm. \ref{lb155}, if we also assume $\scr A_1=\cdots=\scr A_k=\scr A$, then
+\begin{align*}
+\lim_{\alpha\in\scr A} T^k_\alpha\cdots T^1_\alpha\xi=T^k\cdots T^1\xi
+\end{align*}
+
+
+\begin{proof}
+This follows immediately from Thm. \ref{lb155}.
+\end{proof}
+
+
+\begin{co}
+Let $(T_\alpha)_{\alpha\in\scr A}$ be a net in $\fk L(V)$ satisfying $\sup_\alpha\Vert T_\alpha\Vert<+\infty$ and converging in SOT to $T\in\fk L(V)$. Then for each polynomial $f\in\Cbb[z]$ and $\xi\in V$,
+\begin{align*}
+\lim_\alpha f(T_\alpha)\xi=f(T)\xi
+\end{align*}
+\end{co}
+
+
+\begin{proof}
+This is clear by Cor. \ref{lb159}.
+\end{proof}
+
+
+
+\begin{eg}
+In Exp. \ref{lb160}, since $\sup_{I\in\fin(2^X)}\Vert E_I\Vert=1<+\infty$, by Cor. \ref{lb159} we have
+\begin{align*}
+\lim_{I\in\fin(2^X)}RP_ISP_IT\eta=RST\eta
+\end{align*}
+for each $\eta\in\MH$.
+\end{eg}
 
 
 
@@ -5451,7 +5695,12 @@ The issue of commutativity of unordered sums---which appears in the frameworks o
 
 
 
-\hypertarget{current}{}
+
+
+
+
+
+
 
 
 \newpage
@@ -5482,7 +5731,7 @@ The issue of commutativity of unordered sums---which appears in the frameworks o
 
 
 
-
+\hypertarget{current}{}
 
 
 
