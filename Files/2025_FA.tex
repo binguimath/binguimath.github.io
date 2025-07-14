@@ -205,12 +205,12 @@
 \newtheorem{claim}[df]{Claim}
 \newtheorem{spp}[df]{$\star$ Proposition}
 \newtheorem{scorollary}[df]{$\star$ Corollary}
+\newtheorem{cond}[df]{Condition}
 
 
-\newtheorem{cond}{Condition}
 \newtheorem{Mthm}{Main Theorem}
 \renewcommand{\thecond}{\Alph{cond}} % "letter-numbered" theorems
-\renewcommand{\theMthm}{\Alph{Mthm}} % "letter-numbered" theorems
+
 
 
 %\substack   multiple lines under sum
@@ -969,6 +969,16 @@ C_c(U,\mc V)=\{f\in C_c(X,\mc V):\Supp_X(f)\subset U\}
 
 
 
+\begin{pp}\label{lb180}
+Assume that $X$ is a metric space, and let $A\subset X$. Then $A$ is precompact iff every sequence $(x_n)$ in $A$ has a subsequence converging to some $x\in X$. 
+\end{pp}
+
+\begin{proof}
+The direction ``$\Rightarrow$" follows from the sequential compactness of $\ovl A$. Conversely, assume that every sequence in $A$ has a subsequence convering in $X$. Let us prove that $\ovl A$ is sequentially compact. Let $(x_n)$ be a sequence in $\ovl A$. For each $n$, choose $y_n\in A$ such that $d(x_n,y_n)<1/n$. By assumption, $(y_n)$ has a subsequence $(y_{n_k})$ converging to some $x\in X$. One easily checks that $(x_{n_k})$ converges to $x$.
+\end{proof}
+
+
+
 
 \subsubsection{LCH spaces}
 
@@ -1071,6 +1081,72 @@ One easily shows that $C_0(X,\mc V)$ is closed in $C(X,\mc V)$. To show that $C_
 \begin{rem}\label{lb84}
 Suppose that $X$ is second countable. Then $X$ is Lindel\"of. Therefore, $X$ has a countable open cover $\fk U=(U_n)_{n\in\Zbb_+}$ whose members $U_n$ are precompact open subsets of $X$. In particular, $X$ is $\sigma$-compact, since $X=\bigcup_{n\in\Zbb_+}\ovl{U_n}$ where each $\ovl{U_n}$ is compact.
 \end{rem}
+
+
+
+\subsubsection{Equicontinuity and the Arzel\`a-Ascoli theorem}
+
+Let $X$ be a topological space. Let $V$ be a normed vector space.
+
+\begin{df}
+Let $(f_\alpha)_{\alpha\in\scr A}$ be a family of functions $X\rightarrow V$. We say that $(f_\alpha)_{\alpha\in\scr A}$ is \textbf{equicontinuous at \pmb{$x\in X$}} \index{00@Equicontinuity} if for each $\eps>0$ there exists $U_x\in\Nbh_X(x)$ such that
+\begin{align}\label{eq93}
+\Vert f_\alpha(y)-f_\alpha(x)\Vert\leq\eps\qquad\text{for all }\alpha\in\scr A,y\in U_x
+\end{align}
+This is equivalent to saying that
+\begin{align*}
+\lim_{y\rightarrow x}\sup_\alpha\Vert f_\alpha(y)-f_\alpha(x)\Vert=0
+\end{align*}
+We say that $(f_\alpha)_{\alpha\in\scr A}$ is an \textbf{equicontinuous family of functions} if it is equicontinuous at every point of $X$.
+\end{df}
+
+
+\begin{thm}\label{lb179}
+Let $(f_\alpha)_{\alpha\scr A}$ be an equicontinuous net of functions $X\rightarrow V$ converging pointwise to some $f:X\rightarrow V$. Then $f$ is continuous. Moreover, if $X$ is compact, then $(f_\alpha)_{\alpha\scr A}$ converges uniformly to $f$.
+\end{thm}
+
+\begin{proof}
+For each $x\in X$ and $\eps>0$, choose  $U_x\in\Nbh_X(x)$ such that \eqref{eq93} holds. Applying $\lim_\alpha$, we see that $\Vert f(y)-f(x)\Vert\leq\eps$ for all $\alpha\in\scr A$ and $y\in U_x$. This proves that $f$ is continuous at every $x\in X$.
+
+Next, assume that $X$ is compact. Then there exist $x_1,\dots,x_n\in X$ such that $X=U_1\cup\cdots\cup U_n$ if we set $U_i=U_{x_i}$. For each $y\in X$, choose $i$ such that $y\in U_i$. Then
+\begin{align*}
+&\Vert f_\alpha(y)-f(y)\Vert\leq\Vert f_\alpha(y)-f_\alpha(x_i)\Vert+\Vert f_\alpha(x_i)-f(x_i)\Vert+\Vert f(x_i)-f(y)\Vert\\
+\leq& 2\eps+\Vert f_\alpha(x_i)-f(x_i)\Vert
+\end{align*}
+and hence
+\begin{align*}
+\sup_{y\in X}\Vert f_\alpha(y)-f(y)\Vert\leq 2\eps+\sum_{i=1}^n\Vert f_\alpha(x_i)-f(x_i)\Vert
+\end{align*}
+Since $f_\alpha$ converges to $f$ at $x_1,\dots,x_n$, we conclude that
+\begin{align*}
+\limsup_\alpha ~\sup_{y\in X}\Vert f_\alpha(y)-f(y)\Vert\leq 2\eps
+\end{align*}
+for all $\eps>0$. Hence $\lim_\alpha\sup_{y\in X}\Vert f_\alpha(y)-f(y)\Vert=0$.
+\end{proof}
+
+\begin{thm}[\textbf{Arzel\`a-Ascoli theorem}]\index{00@Arzel\`a-Ascoli theorem}
+Assume that $X$ is LCH. Let $\scr F$ be an equicontinuous set of functions $X\rightarrow\Fbb$. If $X$ is non-compact, we assume that 
+\begin{align}
+\lim_{x\rightarrow\infty}\sup_{f\in\scr F}|f(x)|=0
+\end{align}
+which means that for each $\eps>0$, there exists a compact $K\subset X$ such that
+\begin{align*}
+|f(x)|\leq\eps\qquad\text{for all }f\in\scr F,x\in X\setminus K
+\end{align*}
+Assume that $\scr F$ is \textbf{pointwise bounded}, i.e., $\sup_{f\in\scr F}|f(x)|<+\infty$ for each $x\in X$. Then $\scr F$ is precompact in $C_0(X,\Fbb)$ (under the $l^\infty$-norm).
+\end{thm}
+
+
+\begin{proof}
+It is easy to check that $\ovl{\scr F}$, the closure of $\scr F$, satisfies the same properties as $\scr F$. Therefore, replacing $\scr F$ with its closure, we assume WLOG that $\scr F$ is closed. 
+
+We first consider the case that $X$ is compact. Since $\scr F$ is pointwise bounded, it can be viewed as a subset of $\prod_{x\in X}D_x$ where $D_x$ is a compact set in $\Fbb$. Therefore, by the Tychonoff Thm. \ref{lb61}, every net $(f_\alpha)$ in $\scr F$ has a pointwise convergent subnet $(f_\beta)$. Since $(f_\beta)$ is equicontinuous and $X$ is compact, by Thm. \ref{lb179}, $(f_\beta)$ converges uniformly to some $f\in C(X,\Fbb)$. Since $\scr F$ is closed, we have $f\in\scr F$.5 This proves that $\scr F$ is compact.
+
+Next, assume that $X$ is not compact. Let $\wht X=X\cup\{\infty\}$ be the one-point compactification of $X$. Extend each $f\scr F$ to $\wht X\rightarrow\Fbb$ by setting $f(0)=0$. Then $\scr F$ is a pointwise bounded and equicontiuous family of functions $\wht X\rightarrow\Cbb$. By the previous paragraph, every net in $\scr F$ has a uniformly convergent subnet. Thus, $\scr F$ is compact.
+\end{proof}
+
+
+
 
 
 
@@ -1293,7 +1369,7 @@ Assume that condition (2) holds. Since Radon measures are inner regular on open 
 \end{proof}
 
 
-\begin{lm}
+\begin{lm}\label{lb163}
 Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be as in Def. \ref{lb98}, and assume that Condition (1) or (2) of Def. \ref{lb98} holds. The following are equivalent:
 \begin{enumerate}[label=(\alph*)]
 \item $\Supp(\mu)$ is a finite set.
@@ -3939,6 +4015,9 @@ Let $(\rho_\alpha)$ be a net in $BV(I,\Fbb)$. Let $\rho\in BV(I,\Fbb)$. Let $\La
 \end{align}
 \end{df}
 
+\begin{rem}
+Suppose that $(\rho_\alpha)$ is a uniformly bounded net of increasing functions $I\rightarrow\Rbb_{\geq0}$. Let $\rho:I\rightarrow\Rbb_{\geq0}$ be increasing.  Since $C_c(I,\Fbb)$ is dense in $C_0(I,\Fbb)$, by Thm. \ref{lb80}, the net $(d\rho_\alpha)$ converges weak-* to $d\rho$ iff \eqref{eq53} holds for any $f\in C_0(I,\Fbb)$.
+\end{rem}
 
 The following Thm. \ref{lb92} is parallel to Thm. \ref{lb78}. However, unlike Thm. \ref{lb78} whose proof relies on the isomorphism $L^p\simeq(L^q)^*$, Thm. \ref{lb92} does not rely on the Riesz representation theorem.
 
@@ -4310,7 +4389,7 @@ Thus, ``$\leq$" defines a partial order on the set of sesquilinear forms on $V$.
 
 
 
-\begin{thm}[\textbf{Cauchy-Schwarz inequality}] \index{00@Cauchy-Schwarz inequality}
+\begin{thm}[\textbf{Cauchy-Schwarz inequality}] \index{00@Cauchy-Schwarz inequality}\label{lb165}
 Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on $V$. Then for each $u,v\in V$ we have
 \begin{align*}
 |\bk{u|v}|\leq\Vert u\Vert\cdot\Vert v\Vert
@@ -4355,7 +4434,7 @@ Choose $\lambda\in\Sbb^1$ such that $\lambda\bk{u|v}\in\Rbb$. Since the above in
 \end{align*}
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb164}
 Let $\bk{\cdot|\cdot}$ be a positive sesquilinear form on $V$. Then we have
 \begin{align*}
 \{v\in V:\Vert v\Vert=0\}=\{v\in V:\bk{v|\xi}=0\text{ for all }\xi\in V\}
@@ -4778,8 +4857,14 @@ By Exp. \ref{lb124}, there is a projection operator $P$ of $V$ onto $U$. By Prop
 \end{proof}
 
 
+\begin{co}\label{lb171}
+Let $U$ be a linear subspace of $V$, and suppose that $V$ has a projection onto $U$. Let $P$ be the projection operator associated to $U$. Then $P^2=P$, and $\omega_P$ is positive.
+\end{co}
 
 
+\begin{proof}
+By Prop. \ref{lb146}, we assume that $V=U\oplus U^\perp$, and $P$ sends each $\xi\oplus\eta\in U\oplus U^\perp$ to $\xi=\xi\oplus 0$. Then it is easy to verify that $P^2=P$. Moreover, $\omega_P(\xi\oplus\eta)=\Vert\xi\Vert^2\geq0$.
+\end{proof}
 
 
 
@@ -5621,7 +5706,7 @@ The commutativity of the two iterated limits in \eqref{eq77} is equivalent to th
 
 
 
-Next, we introduce an elementary yet fundamental property of SOT. This property was first highlighted by Riesz in \cite{Rie11} as a key tool in his proof of the spectral theorem for bounded self-adjoint operators. In Ch. \ref{lb114}, we will also rely on it in our study of spectral theory. This properties roughly says that in Cor. \ref{lb158}, if the nets of operators are uniformly bounded, and if $\scr A=\scr B$, then $\lim_\alpha T_\alpha T_\alpha$ converges strongly to $TS$.
+Next, we introduce an elementary yet fundamental property of SOT. This property was first highlighted by Riesz in \cite{Rie11} as a key tool in his proof of the spectral theorem for bounded self-adjoint operators. In Ch. \ref{lb114}, we will also rely on it in our study of spectral theory. This property roughly says that in Cor. \ref{lb158}, if the nets of operators are uniformly bounded, and if $\scr A=\scr B$, then $\lim_\alpha T_\alpha S_\alpha$ converges strongly to $TS$.
 
 
 \begin{thm}\label{lb155}
@@ -5725,6 +5810,486 @@ Therefore, by Cor. \ref{lb161}, for each $T\in\fk L(H)$ and $f\in\Cbb[z]$,
 
 
 \subsection{Prehistory of spectral theory: the polynomial moment problem}
+
+
+
+In this section, we let $I\subset\Rbb$ be a proper closed interval. For simplicity, we assume that $I$ is one of the following intervals
+\begin{align*}
+\Rbb\qquad [0,+\infty)\qquad [0,1]
+\end{align*} 
+We let
+\begin{align}
+\begin{aligned}
+\scr R(I)=\{&\text{Increasing right continuous function }\rho:I\rightarrow\Rbb_{\geq0}\\
+&\text{satisfying }\lim_{x\rightarrow-\infty}\rho(x)=0\text{ if }I=\Rbb\}
+\end{aligned}
+\end{align}
+Fix a family $(c_n)_{n\in\Nbb}$ in $\Rbb$. Our goal is to study the following polynomial problem:
+
+\begin{problem}[\textbf{Polynomial moment problem}] \index{00@Polynomial moment problem}\label{lb162}
+Does there exists $\rho\in\scr R(I)$ such that
+\begin{align}\label{eq79}
+c_n=\int_I x^nd\rho\qquad\text{for each $n\in\Nbb$}
+\end{align}
+where the RHS is integrable, i.e., $\int_I |x|^nd\rho<+\infty$? Depending on $I$ is $\Rbb$, $\Rbb_{\geq0}$, or $[0,1]$, this problem is referred to as the \textbf{Hamburger moment problem}, \index{00@Hamburger moment problem} the \textbf{Stieltjes moment problem}, \index{00@Stieltjes moment problem} and the \textbf{Hausdorff moment problem}, \index{00@Hausdorff moment problem} respectively.
+\end{problem}
+
+\subsubsection{Preliminary}
+
+
+We now clarify the meaning of \eqref{eq79}, since we have so far defined $\int_Ifd\rho$ only for $f\in C_c(I)$.
+
+\begin{df}
+Let $f$ be a Borel function from $I$ to $\Cbb$ or $\ovl\Rbb_{\geq0}$. Let $\rho\in\scr R(I)$. Let $\mu_\rho$ be the finite Borel measure on $I$ associated to $\rho$ as in the Riesz representation Thm. \ref{lb9}. We define the \textbf{Stieltjes integral} $\int_I fd\rho$ to be \index{00@Stieltjes integral}
+\begin{align*}
+\int_I fd\rho:=\int_If\mu_\rho
+\end{align*}
+provided that the integral on the RHS exists.
+\end{df}
+
+
+\begin{rem}\label{lb176}
+When $f:I\rightarrow\Rbb_{\geq0}$ is continuous, the computation of the integral $\int_Ifd\rho$ can be reduced to those of compactedly supported continuous functions. Indeed, for each $\lambda\geq0$, let $\beta_\lambda:\Rbb\rightarrow[0,1]$ be the (continuous) piecewise linear functions such that
+\begin{align*}
+\beta_\lambda|_{[-\lambda,\lambda]}=1\qquad \beta_\lambda|_{(-\infty,-\lambda-1]\cup[\lambda+1,+\infty)}=0
+\end{align*}
+Then $f\beta_\lambda\in C_c(I)$, and $\int_I f\beta_\lambda d\rho$ is increasing as $\lambda$ increases. Therefore, by MCT, we have
+\begin{align*}
+\int_I fd\rho=\lim_{\lambda\rightarrow+\infty}\int_I f\beta_\lambda d\rho
+\end{align*}
+\end{rem}
+
+\begin{comment}
+\begin{eg}
+If $I=[0,1]$, then $\int_I d\rho=\rho(1)$. If $I$ equals $\Rbb$ or $\Rbb_{\geq0}$, then
+\begin{align*}
+\int_I d\rho=\lim_{x\rightarrow+\infty}\rho(x)
+\end{align*}
+\end{eg}
+
+\begin{proof}
+When $I=[0,1]$, the definition of Stieltjes integral clearly imply $\int_Id\rho=\rho(1)$. Assume that $I$ is $\Rbb$ or $\Rbb_{\geq0}$. Recall from \eqref{eq42} that $\rho(x)=\mu(I_{\leq x})$, and hence
+\begin{align*}
+\lim_{x\rightarrow+\infty}\rho(x)=\lim_{x\rightarrow+\infty} \int_I \chi_{I_{\leq x}}d\rho=\int_Id\rho
+\end{align*}
+where the last equality is due to MCT.
+\end{proof}
+\end{comment}
+
+
+
+
+
+
+\subsubsection{The Hankel matrix}
+
+
+\begin{df}
+Let $H\in\Cbb^{\Nbb\times\Nbb}$. Associate to $H$ the unique sesquilinear form
+\begin{align*}
+\bk{\cdot|\cdot}:\Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (x^m,x^n)\mapsto H(m,n)
+\end{align*} 
+We say that $H$ is \textbf{Hermitian} (resp. \textbf{positive}, \textbf{positive definite}) if $\bk{\cdot|\cdot}$ is Hermitian (resp. positive (semi-definite), positive definite). 
+
+For each $n\in\Nbb$, the \textbf{\pmb{$n$}-th truncation $\pmb{H_n}$} of $H$ is the $(n+1)\times(n+1)$ matrix defined by the first $(n+1)$ rows and columns of $H$. \hfill
+\end{df}
+
+
+\begin{rem}
+By linear algebra, $H$ is positive definite iff $\det H_n>0$ for each $n$; $H$ is positive (semi-definite) iff the determinant of each principal submatrix is $\geq0$.
+\end{rem}
+
+
+\begin{df}
+The \textbf{Hankel matrix $\pmb H$} \index{00@Hankel matrix} of $(c_n)_{n\in\Nbb}$ is defined by
+\begin{align*}
+H(m,n)=c_{m+n}
+\end{align*}
+That is,
+\begin{align*}
+H=\begin{pmatrix}
+c_0&c_1&c_2&c_3&\cdots\\
+c_1&c_2&c_3&c_4&\cdots\\
+c_2&c_3&c_4&c_5&\cdots\\
+c_3&c_4&c_5&c_6&\cdots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\end{align*}
+Equivalently, the associated sesquilinear form is determined by
+\begin{subequations}\label{eq80}
+\begin{gather}
+\bigbk{f\big|g}=\bigbk{1\big|\ovl fg}\qquad\text{for each }f,g\in\Cbb[x]\label{eq80a}\\
+\bigbk{1\big|x^n}=c_n\qquad\text{for each }n\in\Nbb\label{eq80b}
+\end{gather}
+\end{subequations}
+Since each $c_n$ is real, $H$ is Hermitian.
+
+We also let $H^+\in\Cbb^{\Nbb\times \Nbb}$ be the defined by $H^+(m,n)=H(m+1,n+1)$, that is,
+\begin{align*}
+H^+=\begin{pmatrix}
+c_1&c_2&c_3&c_4&\cdots\\
+c_2&c_3&c_4&c_5&\cdots\\
+c_3&c_4&c_5&c_6&\cdots\\
+c_4&c_5&c_6&c_7&\cdots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\end{align*}
+In other words, its associated sesquilinear form is
+\begin{align}\label{eq81}
+\Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|xg}
+\end{align}
+Since $c_n\in\Rbb$, $H^+$ is also Hermitian. It follows that
+\begin{align}\label{eq82}
+\Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|(1-x)g}
+\end{align}
+is the (Hermitian) sesquilinear form associated to $H-H^+$. \hqed
+\end{df}
+
+\begin{rem}\label{lb166}
+Note that by \eqref{eq80a}, for each $f,g,h\in\Cbb[x]$ we have
+\begin{align}
+\bigbk{f\big|hg}=\bigbk{\ovl hf\big|g}
+\end{align}
+since $\bk{f|hg}=\bk{1|\ovl fhg}=\bk{1|\ovl{\ovl hf}g}=\bk{\ovl hf|g}$.
+\end{rem}
+
+
+
+In the rest of this section, we always let $H$ denote the Hankel matrix of $(c_n)_{n\in\Nbb}$, and equip $\Cbb[x]$ with the sesquilinear form associated to $H$.
+
+
+\begin{pp}\label{lb168}
+Suppose that Pb. \ref{lb162} has a solution $\rho$. Then $H$ must be positive, and the following are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $H$ is positive definite.
+\item The range of the solution $\rho$ is not a finite set (equivalently, if the associated measure $\mu_\rho$ is not supported in a finite set, cf. Lem. \ref{lb163}).
+\end{enumerate}
+Moreover, if $I=[0,+\infty)$, then $H^+$ is positve; if $I=[0,1]$, then both $H^+$ and $H-H^+$ are positive.
+\end{pp}
+
+
+\begin{proof}
+Let $\rho$ be a solution of Pb. \ref{lb162}. Then for each $f,g\in\Cbb[x]$, we have
+\begin{align*}
+\bk{f|g}= \int_I \ovl f gd\rho
+\end{align*}
+since this is clearly true when $f=x^m,g=x^n$. Thus $\bk{f|f}=\int_I |f|^2d\rho\geq0$. 
+
+If $H$ is not non-degenerated, then there exists $0\neq f\in\Cbb[x]$ such that $\bk{f|f}=0$, and hence $\int_I|f|^2d\rho=0$. From this, one easily checks that $\Supp(\rho)$ is a subset of the finite set $f^{-1}(0)$. Conversely, if $\mu_\rho$ is supported in a finite set $E\subset I$, we choose a non-zero $f\in\Cbb[x]$ such that $f|_E=0$. Then $\bk{f|f}=\int_I|f|^2d\mu_\rho=0$. This shows that $H$ is not non-degenerate. This proves the equivalence of (1) and (2).
+
+If $I=[0,+\infty)$, then for each $f\in\Cbb[x]$, since $x|f|^2\geq0$ on $I$, we have
+\begin{align*}
+\bk{f|xf}=\int_{[0,+\infty)}x|f|^2d\rho\geq0
+\end{align*}
+Therefore, $H^+$ is positive. Similarly, if $I=[0,1]$, then for each $f\in\Cbb[x]$, both $x|f|^2$ and $(1-x)|f|^2$ are $\geq0$ on $I$. Therefore
+\begin{align*}
+\bk{f|xf}=\int_{[0,1]}x|f|^2d\rho\geq0\qquad  \bk{f|(1-x)f}=\int_{[0,1]}(1-x)|f|^2d\rho\geq0
+\end{align*}
+This proves that both $H^+$ and $H-H^+$ are positive. 
+\end{proof}
+
+
+Therefore, to solve the polynomial moment problem, we should at least assume that $H$ is positive. Indeed, Prop. \ref{lb168} implies a half of the following theorem.
+\begin{thm}\label{lb169}
+Let $H$ be the Hankel matrix for $(c_n)_{n\in\Nbb}$. The following are true
+\begin{enumerate}
+\item The Hamburger moment problem (i.e. $I=\Rbb$) has a solution iff $H$ is positive.
+\item The Stieltjes moment problem (i.e. $I=[0,+\infty)$) has a solution iff $H,H^+$ are positive.
+\item The Hausdorff moment problem (i.e. $I=[0,1]$) has a solution iff $H,H^+,H-H^+$ are positive.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+The direction ``$\Rightarrow$" follows from Prop. \ref{lb168}. The direction ``$\Rightarrow$" will follow immediately from Thm. \ref{lb177} once the latter has been established.
+\end{proof}
+
+
+
+\subsubsection{From the polynomial moment problem to diagonalization}
+
+Assume that $H$ is positive. 
+
+\begin{thm}\label{lb167}
+Then there exists an inner product space $V$, a vector $\Omega\in V$, and a linear operator $T\in\Lin(V)$ satisfying the following properties:
+\begin{enumerate}[label=(\arabic*)]
+\item For each $n\in\Nbb$ we have
+\begin{align}\label{eq85}
+\bk{\Omega|T^n\Omega}=c_n
+\end{align}
+\item $\omega_T$ is Hermitian, i.e., $\bk{\eta|T\xi}=\bk{T\eta|\xi}$ for each $\xi,\eta\in V$.
+\item (\textbf{Algebraic cyclicity})\index{00@Algebraic cyclicity} $V$ is spanned by $T^n\Omega$ for all $n\in\Nbb$.
+\end{enumerate}
+\end{thm}
+
+Note that \eqref{eq85} implies
+\begin{align}\label{eq86}
+\Vert \Omega\Vert^2=c_0
+\end{align}
+
+
+\begin{proof}
+Recall that $H$ determines a positive sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$. By Cor. \ref{lb164}, the null space $\scr N=\{f\in\Cbb[x]:\Vert f\Vert^2=0\}$ is a linear subspace of $\Cbb[x]$, and $\bk{\cdot|\cdot}$ descends to an inner product of
+\begin{align*}
+V=\Cbb[x]/\scr N
+\end{align*}
+Let
+\begin{align*}
+T:\Cbb[x]\rightarrow\Cbb[x]\qquad f\mapsto xf
+\end{align*}
+If $f\in\scr N$, by Cauchy-Schwarz (cf. Thm. \ref{lb165}) and Rem. \ref{lb166},
+\begin{align*}
+0\leq\bk{xf|xf}=\bk{x^2f|f}\leq\Vert x^2f\Vert\cdot\Vert f\Vert=0
+\end{align*}
+and hence $xf\in\scr N$. Therefore, the above map $T$ descends to a linear map
+\begin{align*}
+T:V\rightarrow V\qquad f+\scr N\mapsto xf+\scr N
+\end{align*}
+Let $\Omega\in V$ be
+\begin{align*}
+\Omega=1+\scr N
+\end{align*}
+Then $\bk{\Omega|T^n\Omega}=\bk{1|x^n}=c_n$. By Rem. \ref{lb166}, $\omega_T$ is Hermitian. The algebraic cyclicity is obvious.
+\end{proof}
+
+\begin{rem}\label{lb170}
+From the above proof, it is clear that for each $f,g\in\Cbb[x]$, we have
+\begin{align*}
+\bk{f(T)\Omega|g(T)\Omega}=\bk{f|g}
+\end{align*}
+Therefore, $\omega_T\geq0$ holds iff $\bk{f(T)\Omega|Tf(T)\Omega}\geq0$ for all $f\in\Cbb[x]$, iff $\bk{f|xf}\geq0$ for all $f\in\Cbb[x]$, iff $H^+$ is positive. Similarly, $\omega_{1-T}\geq0$ iff $H-H^+$ is positive.
+\end{rem}
+
+
+\begin{rem}
+The triple $(V,\Omega,T)$ satisfying the requirements in Thm. \ref{lb167} are unique up to unitary operators. Namely, if $(\wtd V,\wtd\Omega,\wtd T)$ is another triple satisfying the requirements in Thm. \ref{lb167}, then there is a (necessarily unique) unitary operator $\Phi:V\rightarrow\wtd V$ satisfying $\Phi\Omega=\wtd\Omega$ and $\Phi T=\wtd T\Phi$.
+\end{rem}
+
+
+\begin{proof}
+For each $f\in\Cbb[x]$, since $\omega_T$ is Hermitian, we have $\bk{\eta|f(T)\xi}=\bk{\ovl f(T)\eta|\xi}$ for each $\xi,\eta\in V$. A similar property holds for $\wtd T$. Therefore, 
+\begin{align*}
+\bigbk{f(T)\Omega\big|f(T)\Omega}=\bigbk{\Omega\big||f|^2(T)\Omega}=\bigbk{\wtd\Omega\big||f|^2(\wtd T)\wtd\Omega}=\bigbk{f(\wtd T)\wtd\Omega\big|f(\wtd T)\wtd\Omega}
+\end{align*}
+In particular, $f(T)\Omega=0$ iff $f(\wtd T)\wtd\Omega=0$. Therefore, by the algebraic cyclicity, we have a unitary map
+\begin{align}
+\Phi:V\rightarrow\wtd V\qquad f(T)\Omega\mapsto f(\wtd T)\wtd\Omega
+\end{align}
+This map clearly satisfies the desired property.
+
+Conversely, if $\Phi$ satisfies the requirements in the remark, then $\Phi$ must send $f(T)\Omega$ to $f(\wtd T)\wtd\Omega$. Therefore, such $\Phi$ must be unique. 
+\end{proof}
+
+
+
+\subsubsection{Solving the moment problem: the degenerate case}
+
+Assume $H\geq0$.
+
+In this section, we explain how the moment problem can be solved when $\dim V<+\infty$. This happens when $H$ is degenerate. In that case, if we let $f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0$ be the polynomial with lowest degree satisfying $\bk{f|f}=0$, then $f(T)\Omega=0$. Then $V$ has basis $\Omega,T\Omega,\cdots,T^{n-1}\Omega$, and $f$ is a minimal polynomial of $T$ on $V$. Conversely, it is also clear that if $\dim V<+\infty$, then $H$ is degenerate.
+
+
+Assume $\dim V<+\infty$. Then $T$ is a Hermitian operator on the finite-dimensional inner product space $V$, and hence can be diagonalized. More precisely, there exists an orthonormal basis $e_1,\dots,e_n$ of $T$ such that $Te_j=\lambda_je_j$ for all $1\leq j\leq n$, where $\lambda_j\in\Rbb$. Write
+\begin{align*}
+\Omega=a_1e_1+\cdots+a_ne_n
+\end{align*}
+where $a_j\in\Cbb$. Then, for each $f\in\Cbb[x]$, we have
+\begin{align*}
+f(T)\Omega=\sum_{j=1}^n a_jf(\lambda_j)e_j
+\end{align*}
+and hence
+\begin{align*}
+\bk{\Omega|f(T)\Omega}=\sum_{j=1}^n f(\lambda_j)|a_j|^2=\int_\Rbb fd\rho
+\end{align*}
+where $\rho:\Rbb\rightarrow\Rbb_{\geq0}$ is an increasing function corresponding to the measure $\mu=\sum_{j=1}^n |a_j|^2\delta_{\lambda_j}$. In particular, by Thm. \ref{lb167}-(1), we conclude
+\begin{align*}
+\int_\Rbb x^nd\rho=\bk{\Omega|T^n\Omega}=c_n
+\end{align*}
+Thus, the Hamburger moment problem is solved.
+
+Next, assume $I=[0,+\infty)$ and $H^+\geq0$. By Rem. \ref{lb170}, $T$ is positive, and hence each $\lambda_j$ belongs to $[0,+\infty)$. Therefore, the measure $\mu$ constructed in the above paragraph is supported in $[0,+\infty)$, and hence $\int_{[0,+\infty)}x^nd\rho=c_n$. This solves the Stieltjes moment problem.
+
+Finally, assume $I=[0,1]$ and $H^+,H-H^+$ are positive. By Rem. \ref{lb170}, $T$ and $1-T$ are positive. Therefore, each $\lambda_j$ belongs to $[0,1]$, and hence $\int_{[0,1]}x^nd\rho=c_n$. This solves the Hausdorff moment problem.
+
+To summarize, we have proved Thm. \ref{lb169} when $\dim V<+\infty$, equivalently, when $H$ is positive but not positive definite.
+
+
+
+
+
+\subsubsection{From discrete spectra to continuous spectra}
+
+
+In this subsection, we assume the following condition.
+
+\begin{cond}\label{lb178}
+Assume that $H\geq0$. Moreover:
+\begin{itemize}
+\item If $I=[0,+\infty)$, assume that $H^+\geq0$ (equivalently, $\omega_T\geq0$, cf. Rem. \ref{lb170}).
+\item If $I=[0,1]$, assume that $H^+,H-H^+$ are both positive (equivalently, $\omega_T$ and $\omega_{1-T}$ are positive, cf. Rem. \ref{lb170}). 
+\end{itemize}
+\end{cond}
+
+\begin{df}
+Let $T$ be as in Thm. \ref{lb167}. For each $n\in\Nbb$, let
+\begin{align*}
+P_n\text{ be the projection of $V$ onto }V_n=\Span\{\Omega,T\Omega,\dots,T^n\Omega\}
+\end{align*}
+Then we clearly have
+\begin{align}\label{eq84}
+\Omega\in V_0\qquad TV_n\subset V_{n+1}
+\end{align}
+\end{df}
+
+
+
+\begin{rem}\label{lb173}
+Since $\omega_T$ and $\omega_{P_n}$ are Hermitian (Cor. \ref{lb171}), for each $n$ and $\xi\in V$ we have
+\begin{align*}
+\bk{\xi|P_nTP_n\xi}=\bk{TP_n\xi|TP_n\xi}=\omega_T(P_n\xi|P_n\xi)\geq0
+\end{align*}
+It follows that $\omega_{PTP}$ is Hermitian. Similarly, if $H^+\geq0$ (equivalently, $\omega_T\geq0$), then
+\begin{align*}
+\bk{\xi|P_nTP_n\xi}=\bk{P_n\xi|TP_n\xi}\geq0
+\end{align*}
+and hence $\omega_{P_nTP_n}\geq0$. If both $H^+$ and $H-H^+$ are positive, then 
+\begin{align*}
+\bk{\xi|P_nTP_n\xi}=\bk{P_n\xi|TP_n\xi}\geq0\qquad\bk{\xi|P_n(1-T)P_n\xi}=\bk{P_n\xi|(1-T)P_n\xi}\geq0
+\end{align*}
+and hence $\omega_{P_nTP_n},\omega_{P_n(1-T)P_n}$ are positive.
+\end{rem}
+
+
+\begin{df}
+For each $n\in\Nbb$, define a family $(c_{n,m})_{m\in\Nbb}$ in $\Rbb$ by
+\begin{align}
+c_{n,m}=\bk{\Omega|(P_nTP_n)^m\Omega}
+\end{align}
+\end{df}
+
+\begin{rem}
+we have
+\begin{align}\label{eq83}
+c_{n,m}=c_m\qquad\text{if }m\leq 2n+1
+\end{align}
+Consequently,
+\begin{align}\label{eq90}
+\lim_{n\rightarrow\infty}c_{n,m}=c_m
+\end{align}
+\end{rem}
+
+\begin{proof}
+By \eqref{eq84}, we have 
+\begin{gather*}
+P_nTP_n\Omega=T\Omega\in V_1\qquad (P_nTP_n)^2\Omega=(P_nTP_n)T\Omega=T^2\Omega\in V_2\\
+(P_nTP_n)^3\Omega=(P_nTP_n) T^2\Omega=T^3\Omega\in V_3\qquad\cdots\\ (P_nTP_n)^n\Omega=(P_nTP_n)T^{n-1}\Omega=T^n\Omega
+\end{gather*}
+Thus, for each $m\leq 2n+1$, write $m=a+b$ where $a,b\in\Nbb$ and $a\leq n$ and $b\leq n+1$. Note that $(P_nTP_n)^{n+1}\Omega=P_nTP_nT^n\Omega=P_nT^{n+1}\Omega$, we have
+\begin{align*}
+&\bk{\Omega|(P_nTP_n)^m\Omega}=\bk{(P_nTP_n)^a\Omega|(P_nTP_n)^b\Omega}=\bk{T^a\Omega|P_nT^b\Omega}=\bk{P_nT^a\Omega|T^b\Omega}\\
+=&\bk{T^a\Omega|T^b\Omega}=\bk{\Omega|T^{a+b}\Omega}=c_m
+\end{align*}
+\end{proof}
+
+\begin{lm}\label{lb174}
+For each $n\in\Nbb$, there exists $\rho_n\in\scr R(I)$ such that $\Rng(\rho_n)$ is a finite subset of $[0,c_0]$, and that  for all $m\in\Nbb$ we have
+\begin{align}\label{eq87}
+c_{n,m}=\int_I x^md\rho_n
+\end{align}
+\end{lm}
+
+
+\begin{proof}
+We view $T_n:=P_nTP_n$ as a linear operator on $V_n$. By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_0,\dots,e_n$ such that $Te_i=\lambda_ie_i$ for all $0\leq i\leq n$, where $\lambda_i\in\Rbb$. Moreover, by Rem. \ref{lb173}, if $I=\Rbb_{\geq0}$ then $T_n\geq0$, and hence $\lambda_i\geq0$; if $I=[0,1]$ then $0\leq T_n\leq\id_{V_n}$, and hence $0\leq\lambda_i\leq 1$. It follows that $\lambda_i\in I$ in all cases.
+Write
+\begin{align*}
+\Omega=\sum_{i=0}^n a_ie_i
+\end{align*}
+where $a_n\in\Cbb$. (So $a_i=\bk{e_i|\Omega}$.) Thus
+\begin{align*}
+c_{n,m}=\bk{\Omega|(T_n)^m\Omega}=\sum_{i=0}^m \lambda_i^m\cdot |a_i|^2=\int_I x^md\rho_n
+\end{align*}
+where $\rho_n$ is the unique element in $\scr R(I)$ whose associated finite Borel measure is $\sum_{i=0}^n|a_i|^2\delta_{\lambda_i}$, that is,
+\begin{align*}
+\rho_n(x)=\sum_{\lambda_i\leq x}|a_i|^2
+\end{align*}
+In particular, by Parseval's identity, we have
+\begin{align*}
+0\leq \rho_n(x)\leq\sum_i |a_i|^2=\Vert\Omega\Vert^2\xlongequal{\eqref{eq86}}c_0
+\end{align*}
+\end{proof}
+
+
+\begin{df}\label{lb175}
+Let $(\rho_n)_{n\in\Nbb}$ be the uniformly bounded sequence in $\scr R(I)$ described by Lem. \ref{lb174}. By Helly's selection Thm. \ref{lb94}, $(\rho_n)$ has a subsequence $(\rho_{n_k})_{k\in\Nbb}$ converging pointwise to some increasing function $\wtd\rho:I\rightarrow\Rbb_{\geq0}$. Define $\rho\in\scr R(I)$ as follows.
+\begin{itemize}
+\item If $I$ is $\Rbb_{\geq0}$ or $[0,1]$, we let $\rho$ be the right-continuous normalization of $\wtd\rho$.
+\item If $I$ is $\Rbb$, we let $\rho$ be the right-continuous normalization of $\wtd\rho-\lim_{x\rightarrow-\infty}\wtd\rho(x)$.
+\end{itemize}
+Then by Thm. \ref{lb72} and Rem. \ref{lb93}, $d\rho$ and $d\wtd\rho$ represent the same element of $C_c(I,\Fbb)^*$. By Thm. \ref{lb92}, the sequence $(d\rho_{n_k})$ converges weak-* to $d\rho$.
+\end{df}
+
+
+\begin{thm}\label{lb177}
+Assume Condition \ref{lb178}, and let $\rho\in\scr R(I)$ be as in Def. \ref{lb175}. Then for each $m\in\Nbb$, we have
+\begin{align*}
+c_m=\int_I x^md\rho
+\end{align*}
+where the RHS is integrable.
+\end{thm}
+
+\begin{proof}
+The easiest case is where $I=[0,1]$. In that case, $x^m\in C_c(I)$. Therefore, by the weak-* convergence of $(d\rho_{n_k})$ to $d\rho$,
+\begin{align*}
+\int_I x^md\rho=\lim_k\int_I x^md\rho_{n_k}\xlongequal{\eqref{eq87}}\lim_k c_{n_k,m}\xlongequal{\eqref{eq90}}c_m
+\end{align*}
+
+Next, we consider the case where $I=\Rbb$. Let $\beta_\lambda$ be as in Rem. \ref{lb176}, and let $\alpha_\lambda=1-\beta_\lambda$. Let
+\begin{align*}
+0\leq \alpha_\lambda\leq \chi_{J_\lambda}\qquad\text{where }J_\lambda=(-\infty,-\lambda]\cup[\lambda,+\infty)
+\end{align*}
+
+
+We first consider the case where $m$ is even (so that $x^m\geq0$). Then $\int_Ix^md\rho$ exists as an element of $\ovl\Rbb_{\geq0}$. Moreover, we have
+\begin{align}\label{eq91}
+\lambda^2\alpha_\lambda\cdot x^m\leq \lambda^2\chi_{J_\lambda}\cdot x^m\leq x^{m+2}
+\end{align}
+Therefore,
+\begin{align*}
+\int_\Rbb \alpha_\lambda\cdot x^md\rho_{n_k}\leq\lambda^{-2}\int_\Rbb x^{m+2}d\rho_{n_k}
+\end{align*}
+By \eqref{eq83}, the RHS above is equal to $c_{m+2}$ when $1+2n_k\geq m$. Therefore, 
+\begin{align}\label{eq88}
+\lim_{\lambda\rightarrow+\infty}\sup_k\int_\Rbb \alpha_\lambda\cdot x^md\rho_{n_k}=0
+\end{align}
+
+
+Since $\beta_\lambda\cdot x^m$ is compactly supported, by the weak-* convergence of $(d\rho_{n_k})$ to $d\rho$,
+\begin{align}\label{eq89}
+\int_\Rbb \beta_\lambda\cdot x^m d\rho=\lim_k  \int_\Rbb \beta_\lambda\cdot x^m d\rho_{n_k}
+\end{align}
+By \eqref{eq88} and \eqref{eq89} and the fact that $\alpha_\lambda+\beta_\lambda=1$, for each $\eps>0$, we have
+\begin{align*}
+\bigg| \int_\Rbb \beta_\lambda\cdot x^m d\rho-\lim_k\int_\Rbb x^md\rho_{n_k}\bigg|\leq\eps\qquad\text{for sufficiently large } \lambda
+\end{align*}
+Therefore, by \eqref{eq83} and \eqref{eq90}, we have
+\begin{align}\label{eq92}
+\bigg| \int_\Rbb \beta_\lambda\cdot x^m d\rho-c_m\bigg|\leq\eps\qquad\text{for sufficiently large } \lambda
+\end{align}
+Since $\beta_\lambda\cdot x^m$ is increasing and converging pointwise to $x^m$ as $\lambda\nearrow+\infty$, by MCT, we conclude that $x^m$ is $d\rho$-integrable.
+
+
+
+Next, assume that $m$ is odd. Since $|x|^m\leq 1+x^{m+1}$ and since both $1=x^0$ and $x^{m+1}$ have been proved to be $d\rho$-integrable, we conclude that $\alpha_1|x|^m$ is $d\rho$-integrable, we conclude that $x^m$ is $d\rho$-integrable.
+
+Similar to \eqref{eq91}, we have
+\begin{align*}
+\lambda\alpha_\lambda\cdot x^m\leq \lambda\chi_{J_\lambda}\cdot x^m\leq x^{m+1}
+\end{align*}
+therefore, a similar argument as above shows that for each $\eps>0$, \eqref{eq92} holds for the odd number $m$. By DCT, we conclude that $\int_\Rbb x^md\rho=c_m$.
+
+The proof for the case that $I=\Rbb_{\geq0}$ is similar and is left to the reader. This case is even simpler, since $x^m\geq0$ for all $m$.
+\end{proof}
 
 
 
