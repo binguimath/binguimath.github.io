@@ -5805,7 +5805,120 @@ Therefore, by Cor. \ref{lb161}, for each $T\in\fk L(H)$ and $f\in\Cbb[z]$,
 \subsection{Prehistory of spectral theory: continued fractions}
 
 
+\subsubsection{Divergent series and the Pad\'e approximation}
 
+In 1894, Stieltjes introduced the Stieltjes integral in \cite{Sti94} (see \cite[Vol. II]{Sti-C} for an English translation) for the purpose of studying continued fractions. One key motivation for investigating continued fractions was to better understand the behavior of the series
+\begin{align}\label{eq94}
+\frac{c_0}{z}+\frac{c_1}{z^2}+\frac{c_2}{z^3}+\cdots\qquad\text{where each }c_n\geq0
+\end{align}
+in the divergent case---that is, when $\sum_n c_nr^n=+\infty$ for each $r>0$. The core idea is that even when the power series in \eqref{eq94} diverges, it may still define a meaningful function outside a closed interval $I\subset\Rbb$, provided we adopt a different notion of convergence. 
+
+Specifically, under suitable conditions on the sequence $(c_n)_{n\in\Nbb}$, one can construct a sequence of rational functions $(f_n(z))_{n\in\Nbb}$, 
+\begin{align}
+f_n(z)=\frac{q_n(z)}{p_n(z)}\qquad\text{where }p_n,q_n\in\Cbb[z],\deg p_n=n+1,\deg q_n=n
+\end{align}
+Moreover, when $|z|$ is sufficiently large, $f_n(z)$ has Laurent expansion
+\begin{gather}\label{eq97}
+f_n(z)=\sum_{m\in\Nbb}c_{n,m}z^{-m-1}\qquad\text{with $c_{n,m}=c_n$ when $m\leq 2n+1$}
+\end{gather}
+In other words,
+\begin{align*}
+f_n(z)=\frac{c_0}{z}+\frac{c_1}{z^2}+\cdots+\frac{c_{2n+1}}{z^{2n+2}}+\frac{?}{z^{2n+3}}+\cdots
+\end{align*}
+The sequence $(f_n)$ (or a subsequence thereof) converges locally uniformly on $\Cbb\setminus I$ to a holomorphic function $f$. This  approximation is referred to as a \textbf{Pad\'e approximation}. \index{00@Pad\`e approximation} In such cases, we say that the holomorphic function $f(z)$ represents the series \eqref{eq94} and write
+\begin{align*}
+f(z)\sim \frac{c_0}{z}+\frac{c_1}{z^2}+\frac{c_2}{z^3}+\cdots
+\end{align*}
+
+
+
+\subsubsection{Stieltjes integral as the weak-* completion of finite sum}
+
+
+With the help of Pad\'e approximation, we can understand how the Stieltjes integral naturally arises as the weak-* completion of finite sums. As we will see in the following sections, under suitable assumptions on the sequence $(c_n)$, each rational function $f_n(z)$ has only simple poles. Consequently, $f_n(z)$ admits the representation
+\begin{align}\label{eq95}
+f_n(z)=\sum_i \frac{a_{n,i}}{z-\lambda_{n,i}}
+\end{align}
+where the sum is finite. Moreover, we have $a_{n,i}\geq0$ and $\lambda_{n_i}\in I$.
+
+
+The general Stieltjes integral appears when one tries to understand the behavior of the finite sum on the RHS of \eqref{eq95} under the limit $n\rightarrow+\infty$. To understand this behavior, we define an increasing function $\rho_n:I\rightarrow\Rbb_{\geq0}$ by setting
+\begin{align*}
+\rho_n(x)=\sum_{\lambda_{n,i}\leq x}a_{n,i}
+\end{align*}
+That is, $\rho_n$ is the right-continuous increasing function associated to the measure $\sum_i a_{n,i}\delta_{\lambda_{n,i}}$. Then \eqref{eq95} can be rewritten as
+\begin{align*}
+f_n(z)=\int_I \frac{d\rho_n(x)}{z-x}
+\end{align*}
+
+
+The sequence $(\rho_n)$ is indeed uniformly bounded. Therefore, by passing to a subsequence if necessary, we may assume that $(\rho_n)$ almost converges to some increasing right-continuous function $\rho$. Therefore, by Thm. \ref{lb92}, $(\rho_n)$ converges weak-* to $\rho$. It follows that $(f_n)$ converges locally uniformly on $\Cbb\setminus I$ to
+\begin{align}\label{eq96}
+f(z)=\int_I\frac{d\rho(x)}{z-x}
+\end{align}
+This gives a holomorphic function $f$ on $\Cbb\setminus I$ representing the series \ref{lb94}.
+
+\begin{df}
+For each increasing function $\rho:I\rightarrow\ovl\Rbb_{\geq0}$, the function $f(z)$ defined by \eqref{eq96} is called the \textbf{Stieltjes transform} \index{00@Stieltjes transform} of $\rho$. If $\mu$ is a finite Borel measure on $I$, we also call the function
+\begin{align*}
+\Cbb\setminus I\rightarrow\Cbb\qquad z\mapsto\int_I\frac{d\mu(x)}{z-x}
+\end{align*}
+the \textbf{Stieltjes transform} of $\mu$.
+\end{df}
+
+
+We have thus seen that, via Pad\'e approximation, the Stieltjes integral with respect to a general increasing function emerges as the (weak-*) limit of finite sums. This marks the first historical appearance of approximating a continuous spectrum by discrete spectra.
+
+
+In the next section, we will see that the approximation of $\rho$ by the sequence $(\rho_n)$ can be interpreted as the approximation of an infinite-order (not necessarily bounded) Hermitian matrix by a sequence of finite-order Hermitian matrices. Since this type of approximation plays a central role in the development of spectral theory by Hilbert and Riesz, it is crucial to understand its origin in the study of divergent series and its connection with Pad\'e approximation.
+
+
+\subsubsection{The polynomial moment problem}
+
+
+
+
+We now investigate the following question: What assumption should we impose on $(c_n)_{n\in\Nbb}$ so that the above strategy can be carried out? Note that when $|z|>|\lambda_{n,i}|$, we have
+\begin{align*}
+(z-\lambda_{n,i})^{-1}=\sum_{m\in\Nbb} z^{-m-1}(\lambda_{n,i})^m
+\end{align*}
+Therefore, \eqref{eq95} becomes $f_n(z)=\sum_{m\in\Nbb}\sum_i z^{-m-1}\cdot a_{n,i}(\lambda_{n,i})^m$, and hence
+\begin{align*}
+f_n(z)=\sum_{m\in\Nbb}z^{-m-1}\cdot\int_I x^md\rho_n
+\end{align*}
+Comparing this with \eqref{eq97}, we obtain
+\begin{align*}
+c_{n,m}=\int_I x^m d\rho_n
+\end{align*}
+
+On the one hand, \eqref{eq97} shows that $\lim_n c_{n,m}=c_n$. On the other hand, the weak-* convergence of $(d\rho_n)$ to $d\rho$ actually implies that $\lim_n\int_I x^m d\rho_n(\lambda)$ converges to $\int_I x^m d\rho(\lambda)$. Thus, we obtain
+\begin{align}\label{eq98}
+c_m=\int_I x^md\rho\qquad\text{for all }m\in\Nbb
+\end{align}
+Therefore, a necessary condition for the above strategy to work is the existence of an increasing function $\rho$ satisfying \eqref{eq98}. As we shall see in the next section, this condition is also sufficient. In this way, the problem of representing a divergent series and approximating it using rational functions is closely related to the polynomial moment problem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\hypertarget{current}{}
 
 
 
@@ -5962,7 +6075,7 @@ In the rest of this section, we always let $H$ denote the Hankel matrix of $(c_n
 Suppose that Pb. \ref{lb162} has a solution $\rho$. Then $H$ must be positive, and the following are equivalent:
 \begin{enumerate}[label=(\arabic*)]
 \item $H$ is positive definite.
-\item The range of the solution $\rho$ is not a finite set (equivalently, if the associated measure $\mu_\rho$ is not supported in a finite set, cf. Lem. \ref{lb163}).
+\item The range of the solution $\rho$ is not a finite set (equivalently, the associated measure $\mu_\rho$ is not supported in a finite set, cf. Lem. \ref{lb163}).
 \end{enumerate}
 Moreover, if $I=[0,+\infty)$, then $H^+$ is positve; if $I=[0,1]$, then both $H^+$ and $H-H^+$ are positive.
 \end{pp}
@@ -6006,9 +6119,9 @@ The direction ``$\Rightarrow$" follows from Prop. \ref{lb168}. The direction ``$
 
 
 
-\subsubsection{From the polynomial moment problem to diagonalization}
+\subsubsection{An abstract formulation of the Hankel matrix and its positivity}
 
-Assume that $H$ is positive. 
+Assume that $H$ is positive. In this subsection, we express the positivity of $H,H^+,H-H^+$ in terms of the positivity of certain Hermitian operator $T$ and the operator $1-T$ on an inner product space $V$.
 
 \begin{thm}\label{lb167}
 Then there exists an inner product space $V$, a vector $\Omega\in V$, and a linear operator $T\in\Lin(V)$ satisfying the following properties:
@@ -6133,7 +6246,7 @@ Assume that $H\geq0$. Moreover:
 \begin{df}
 Let $T$ be as in Thm. \ref{lb167}. For each $n\in\Nbb$, let
 \begin{align*}
-P_n\text{ be the projection of $V$ onto }V_n=\Span\{\Omega,T\Omega,\dots,T^n\Omega\}
+E_n\text{ be the projection of $V$ onto }V_n=\Span\{\Omega,T\Omega,\dots,T^n\Omega\}
 \end{align*}
 Then we clearly have
 \begin{align}\label{eq84}
@@ -6144,26 +6257,26 @@ Then we clearly have
 
 
 \begin{rem}\label{lb173}
-Since $\omega_T$ and $\omega_{P_n}$ are Hermitian (Cor. \ref{lb171}), for each $n$ and $\xi\in V$ we have
+Since $\omega_T$ and $\omega_{E_n}$ are Hermitian (Cor. \ref{lb171}), for each $n$ and $\xi\in V$ we have
 \begin{align*}
-\bk{\xi|P_nTP_n\xi}=\bk{TP_n\xi|TP_n\xi}=\omega_T(P_n\xi|P_n\xi)\geq0
+\bk{\xi|E_nTE_n\xi}=\bk{TE_n\xi|TE_n\xi}=\omega_T(E_n\xi|E_n\xi)\geq0
 \end{align*}
 It follows that $\omega_{PTP}$ is Hermitian. Similarly, if $H^+\geq0$ (equivalently, $\omega_T\geq0$), then
 \begin{align*}
-\bk{\xi|P_nTP_n\xi}=\bk{P_n\xi|TP_n\xi}\geq0
+\bk{\xi|E_nTE_n\xi}=\bk{E_n\xi|TE_n\xi}\geq0
 \end{align*}
-and hence $\omega_{P_nTP_n}\geq0$. If both $H^+$ and $H-H^+$ are positive, then 
+and hence $\omega_{E_nTE_n}\geq0$. If both $H^+$ and $H-H^+$ are positive, then 
 \begin{align*}
-\bk{\xi|P_nTP_n\xi}=\bk{P_n\xi|TP_n\xi}\geq0\qquad\bk{\xi|P_n(1-T)P_n\xi}=\bk{P_n\xi|(1-T)P_n\xi}\geq0
+\bk{\xi|E_nTE_n\xi}=\bk{E_n\xi|TE_n\xi}\geq0\qquad\bk{\xi|E_n(1-T)E_n\xi}=\bk{E_n\xi|(1-T)E_n\xi}\geq0
 \end{align*}
-and hence $\omega_{P_nTP_n},\omega_{P_n(1-T)P_n}$ are positive.
+and hence $\omega_{E_nTE_n},\omega_{E_n(1-T)E_n}$ are positive.
 \end{rem}
 
 
 \begin{df}
 For each $n\in\Nbb$, define a family $(c_{n,m})_{m\in\Nbb}$ in $\Rbb$ by
 \begin{align}
-c_{n,m}=\bk{\Omega|(P_nTP_n)^m\Omega}
+c_{n,m}=\bk{\Omega|(E_nTE_n)^m\Omega}
 \end{align}
 \end{df}
 
@@ -6180,13 +6293,15 @@ Consequently,
 
 \begin{proof}
 By \eqref{eq84}, we have 
-\begin{gather*}
-P_nTP_n\Omega=T\Omega\in V_1\qquad (P_nTP_n)^2\Omega=(P_nTP_n)T\Omega=T^2\Omega\in V_2\\
-(P_nTP_n)^3\Omega=(P_nTP_n) T^2\Omega=T^3\Omega\in V_3\qquad\cdots\\ (P_nTP_n)^n\Omega=(P_nTP_n)T^{n-1}\Omega=T^n\Omega
-\end{gather*}
-Thus, for each $m\leq 2n+1$, write $m=a+b$ where $a,b\in\Nbb$ and $a\leq n$ and $b\leq n+1$. Note that $(P_nTP_n)^{n+1}\Omega=P_nTP_nT^n\Omega=P_nT^{n+1}\Omega$, we have
+\begin{subequations}
+\begin{gather}
+(E_nTE_n)^k\Omega=T^k\Omega\in V_k\qquad \text{if }0\leq k\leq n\\
+(E_nTE_n)^{n+1}\Omega=E_nT^{n+1}\Omega
+\end{gather}
+\end{subequations}
+where the first line is proved by induction on $k$. Thus, for each $m\leq 2n+1$, writing $m=a+b$ where $a,b\in\Nbb$ and $a\leq n$ and $b\leq n+1$, we have
 \begin{align*}
-&\bk{\Omega|(P_nTP_n)^m\Omega}=\bk{(P_nTP_n)^a\Omega|(P_nTP_n)^b\Omega}=\bk{T^a\Omega|P_nT^b\Omega}=\bk{P_nT^a\Omega|T^b\Omega}\\
+&\bk{\Omega|(E_nTE_n)^m\Omega}=\bk{(E_nTE_n)^a\Omega|(E_nTE_n)^b\Omega}=\bk{T^a\Omega|E_nT^b\Omega}=\bk{E_nT^a\Omega|T^b\Omega}\\
 =&\bk{T^a\Omega|T^b\Omega}=\bk{\Omega|T^{a+b}\Omega}=c_m
 \end{align*}
 \end{proof}
@@ -6200,7 +6315,7 @@ c_{n,m}=\int_I x^md\rho_n
 
 
 \begin{proof}
-We view $T_n:=P_nTP_n$ as a linear operator on $V_n$. By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_0,\dots,e_n$ such that $Te_i=\lambda_ie_i$ for all $0\leq i\leq n$, where $\lambda_i\in\Rbb$. Moreover, by Rem. \ref{lb173}, if $I=\Rbb_{\geq0}$ then $T_n\geq0$, and hence $\lambda_i\geq0$; if $I=[0,1]$ then $0\leq T_n\leq\id_{V_n}$, and hence $0\leq\lambda_i\leq 1$. It follows that $\lambda_i\in I$ in all cases.
+We view $T_n:=E_nTE_n$ as a linear operator on $V_n$. By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_0,\dots,e_n$ such that $Te_i=\lambda_ie_i$ for all $0\leq i\leq n$, where $\lambda_i\in\Rbb$. Moreover, by Rem. \ref{lb173}, if $I=\Rbb_{\geq0}$ then $T_n\geq0$, and hence $\lambda_i\geq0$; if $I=[0,1]$ then $0\leq T_n\leq\id_{V_n}$, and hence $0\leq\lambda_i\leq 1$. It follows that $\lambda_i\in I$ in all cases.
 Write
 \begin{align*}
 \Omega=\sum_{i=0}^n a_ie_i
@@ -6276,17 +6391,17 @@ Therefore, by \eqref{eq83} and \eqref{eq90}, we have
 \begin{align}\label{eq92}
 \bigg| \int_\Rbb \beta_\lambda\cdot x^m d\rho-c_m\bigg|\leq\eps\qquad\text{for sufficiently large } \lambda
 \end{align}
-Since $\beta_\lambda\cdot x^m$ is increasing and converging pointwise to $x^m$ as $\lambda\nearrow+\infty$, by MCT, we conclude that $x^m$ is $d\rho$-integrable.
+Since $\beta_\lambda\cdot x^m$ is increasing and converging pointwise to $x^m$ as $\lambda\nearrow+\infty$, by MCT, we conclude that $\int_\Rbb x^md\rho=c_m$. In particular, $x^m$ is $d\rho$-integrable.
 
 
 
-Next, assume that $m$ is odd. Since $|x|^m\leq 1+x^{m+1}$ and since both $1=x^0$ and $x^{m+1}$ have been proved to be $d\rho$-integrable, we conclude that $\alpha_1|x|^m$ is $d\rho$-integrable, we conclude that $x^m$ is $d\rho$-integrable.
+Next, assume that $m$ is odd. Since $|x|^m\leq 1+x^{m+1}$ and since both $1=x^0$ and $x^{m+1}$ have been proved to be $d\rho$-integrable, we conclude that $x^m$ is $d\rho$-integrable.
 
 Similar to \eqref{eq91}, we have
 \begin{align*}
 \lambda\alpha_\lambda\cdot x^m\leq \lambda\chi_{J_\lambda}\cdot x^m\leq x^{m+1}
 \end{align*}
-therefore, a similar argument as above shows that for each $\eps>0$, \eqref{eq92} holds for the odd number $m$. By DCT, we conclude that $\int_\Rbb x^md\rho=c_m$.
+Therefore, a similar argument as above shows that for each $\eps>0$, \eqref{eq92} holds for the odd number $m$. By DCT, we conclude that $\int_\Rbb x^md\rho=c_m$.
 
 The proof for the case that $I=\Rbb_{\geq0}$ is similar and is left to the reader. This case is even simpler, since $x^m\geq0$ for all $m$.
 \end{proof}
@@ -6303,7 +6418,7 @@ The proof for the case that $I=\Rbb_{\geq0}$ is similar and is left to the reade
 
 
 
-\hypertarget{current}{}
+
 
 
 
@@ -6375,6 +6490,13 @@ Riesz, F. (1918). \"Uber lineare funktionalgleichungen. Acta math, 41(1), 71-98.
 
 \bibitem[Rud-R]{Rud-R}
 Rudin, W. (1987). Real and complex analysis. 3rd ed.
+
+
+\bibitem[Sti94]{Sti94}
+Stieltjes, T. J. (1894). Recherches sur les fractions continues. Toulouse Ann. VIII, J1-J122.
+
+\bibitem[Sti-C]{Sti-C}
+Stieltjes. {\OE}uvres compl{\`e}tes. {Collected} papers. Vol. II contains an English translation of \cite{Sti94}.
 
 
 		
