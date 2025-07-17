@@ -5820,7 +5820,7 @@ in the divergent case---that is, when $\sum_n c_nr^n=+\infty$ for each $r>0$. Th
 
 Specifically, under suitable conditions on the sequence $(c_n)_{n\in\Nbb}$, one can construct a sequence of rational functions $(f_n(z))_{n\in\Nbb}$, 
 \begin{align}
-f_n(z)=\frac{q_n(z)}{p_n(z)}\qquad\text{where }p_n,q_n\in\Cbb[z],\deg p_n=n+1,\deg q_n=n
+f_n(z)=\frac{q_n(z)}{p_{n+1}(z)}\qquad\text{where }p_{n+1},q_n\in\Cbb[z],\deg p_{n+1}=n+1,\deg q_n=n
 \end{align}
 Moreover, when $|z|$ is sufficiently large, $f_n(z)$ has Laurent expansion
 \begin{subequations}\label{eq97}
@@ -5828,9 +5828,9 @@ Moreover, when $|z|$ is sufficiently large, $f_n(z)$ has Laurent expansion
 f_n(z)=\sum_{m\in\Nbb}c_{n,m}z^{-m-1}\qquad\text{with $c_{n,m}=c_n$ when $m\leq 2n+1$}
 \end{gather}
 In other words,
-\begin{align*}
+\begin{align}
 f_n(z)=\frac{c_0}{z}+\frac{c_1}{z^2}+\cdots+\frac{c_{2n+1}}{z^{2n+2}}+\frac{?}{z^{2n+3}}+\cdots
-\end{align*}
+\end{align}
 \end{subequations}
 The sequence $(f_n)$ (or a subsequence thereof) converges locally uniformly on $\Cbb\setminus I$ to a holomorphic function $f$. This  approximation is referred to as a \textbf{Pad\'e approximation}. \index{00@Pad\`e approximation} In such cases, we say that the holomorphic function $f(z)$ represents the series \eqref{eq94} and write
 \begin{align*}
@@ -5950,9 +5950,7 @@ represents the series $\sum_{n=0}^\infty c_nz^{-n-1}$ in the sense of Pad\'e app
 
 
 
-The classical construction of the sequence $(f_n)$ relies crucially on the idea of orthogonal polynomials. The approach presented in this section reformulates that classical method using the language of inner product spaces---a modern reinterpretation shaped by the development of spectral theory in Hilbert spaces. Of course, this reformulation is a retrospective abstraction that emerged only after the development of spectral theory in Hilbert spaces.
-
-In this section, we adopt this modern perspective, while aiming to present it in a way that remains mindful of its historical origins. In the following sections, we will explain how this approach connects to continued fractions and the classical formulation using orthogonal polynomials.
+The classical construction of the sequence $(f_n)$ relies crucially on the idea of orthogonal polynomials. The approach presented in this section reformulates that classical method using the language of inner product spaces---a modern reinterpretation shaped by the development of spectral theory in Hilbert spaces. Of course, this reformulation is a retrospective abstraction that emerged only after the development of spectral theory in Hilbert spaces. In this section, we adopt this modern perspective, while aiming to present it in a way that remains mindful of its historical origins. In the following sections, we will explain how this approach connects to continued fractions and the classical formulation using orthogonal polynomials.
 
 
 
@@ -6054,9 +6052,9 @@ Equivalently, the associated sesquilinear form is determined by
 \end{subequations}
 Since each $c_n$ is real, $H$ is Hermitian.
 
-We also let $H^+\in\Cbb^{\Nbb\times \Nbb}$ be the defined by $H^+(m,n)=H(m+1,n+1)$, that is,
+We also let $H'\in\Rbb^{\Nbb\times \Nbb}$ be the defined by $H'(m,n)=c_{m+n+1}$, that is,
 \begin{align*}
-H^+=\begin{pmatrix}
+H'=\begin{pmatrix}
 c_1&c_2&c_3&c_4&\cdots\\
 c_2&c_3&c_4&c_5&\cdots\\
 c_3&c_4&c_5&c_6&\cdots\\
@@ -6068,11 +6066,11 @@ In other words, its associated sesquilinear form is
 \begin{align}\label{eq81}
 \Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|xg}
 \end{align}
-Since $c_n\in\Rbb$, $H^+$ is also Hermitian. It follows that
+Since $c_n\in\Rbb$, $H'$ is also Hermitian. It follows that
 \begin{align}\label{eq82}
 \Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|(1-x)g}
 \end{align}
-is the (Hermitian) sesquilinear form associated to $H-H^+$. \hqed
+is the (Hermitian) sesquilinear form associated to $H-H'$. \hqed
 \end{df}
 
 \begin{rem}\label{lb166}
@@ -6094,15 +6092,15 @@ Suppose that Pb. \ref{lb162} has a solution $\rho$. Then $H$ must be positive, a
 \item $H$ is positive definite.
 \item The range of the solution $\rho$ is not a finite set (equivalently, the associated measure $\mu_\rho$ is not supported in a finite set, cf. Lem. \ref{lb163}).
 \end{enumerate}
-Moreover, if $I=[0,+\infty)$, then $H^+$ is positve; if $I=[0,1]$, then both $H^+$ and $H-H^+$ are positive.
+Moreover, if $I=[0,+\infty)$, then $H'$ is positve; if $I=[0,1]$, then both $H'$ and $H-H'$ are positive.
 \end{pp}
 
 
 \begin{proof}
 Let $\rho$ be a solution of Pb. \ref{lb162}. Then for each $f,g\in\Cbb[x]$, we have
-\begin{align*}
+\begin{align}\label{eq101}
 \bk{f|g}= \int_I \ovl f gd\rho
-\end{align*}
+\end{align}
 since this is clearly true when $f=x^m,g=x^n$. Thus $\bk{f|f}=\int_I |f|^2d\rho\geq0$. 
 
 If $H$ is not non-degenerated, then there exists $0\neq f\in\Cbb[x]$ such that $\bk{f|f}=0$, and hence $\int_I|f|^2d\rho=0$. From this, one easily checks that $\Supp(\rho)$ is a subset of the finite set $f^{-1}(0)$. Conversely, if $\mu_\rho$ is supported in a finite set $E\subset I$, we choose a non-zero $f\in\Cbb[x]$ such that $f|_E=0$. Then $\bk{f|f}=\int_I|f|^2d\mu_\rho=0$. This shows that $H$ is not non-degenerate. This proves the equivalence of (1) and (2).
@@ -6111,11 +6109,11 @@ If $I=[0,+\infty)$, then for each $f\in\Cbb[x]$, since $x|f|^2\geq0$ on $I$, we 
 \begin{align*}
 \bk{f|xf}=\int_{[0,+\infty)}x|f|^2d\rho\geq0
 \end{align*}
-Therefore, $H^+$ is positive. Similarly, if $I=[0,1]$, then for each $f\in\Cbb[x]$, both $x|f|^2$ and $(1-x)|f|^2$ are $\geq0$ on $I$. Therefore
+Therefore, $H'$ is positive. Similarly, if $I=[0,1]$, then for each $f\in\Cbb[x]$, both $x|f|^2$ and $(1-x)|f|^2$ are $\geq0$ on $I$. Therefore
 \begin{align*}
 \bk{f|xf}=\int_{[0,1]}x|f|^2d\rho\geq0\qquad  \bk{f|(1-x)f}=\int_{[0,1]}(1-x)|f|^2d\rho\geq0
 \end{align*}
-This proves that both $H^+$ and $H-H^+$ are positive. 
+This proves that both $H'$ and $H-H'$ are positive. 
 \end{proof}
 
 
@@ -6124,8 +6122,8 @@ Therefore, to solve the polynomial moment problem, we should at least assume tha
 Let $H$ be the Hankel matrix for $(c_n)_{n\in\Nbb}$. The following are true
 \begin{enumerate}
 \item The Hamburger moment problem (i.e. $I=\Rbb$) has a solution iff $H$ is positive.
-\item The Stieltjes moment problem (i.e. $I=[0,+\infty)$) has a solution iff $H,H^+$ are positive.
-\item The Hausdorff moment problem (i.e. $I=[0,1]$) has a solution iff $H,H^+,H-H^+$ are positive.
+\item The Stieltjes moment problem (i.e. $I=[0,+\infty)$) has a solution iff $H,H'$ are positive.
+\item The Hausdorff moment problem (i.e. $I=[0,1]$) has a solution iff $H,H',H-H'$ are positive.
 \end{enumerate}
 \end{thm}
 
@@ -6138,7 +6136,7 @@ The direction ``$\Rightarrow$" follows from Prop. \ref{lb168}. The direction ``$
 
 \subsubsection{An abstract formulation of the Hankel matrix and its positivity}
 
-Assume that $H$ is positive. In this subsection, we express the positivity of $H,H^+,H-H^+$ in terms of the positivity of certain Hermitian operator $T$ and the operator $1-T$ on an inner product space $V$.
+Assume that $H$ is positive. In this subsection, we express the positivity of $H,H',H-H'$ in terms of the positivity of certain Hermitian operator $T$ and the operator $1-T$ on an inner product space $V$.
 
 \begin{thm}\label{lb167}
 Then there exists an inner product space $V$, a vector $\Omega\in V$, and a linear operator $T\in\Lin(V)$ satisfying the following properties:
@@ -6187,7 +6185,7 @@ From the above proof, it is clear that for each $f,g\in\Cbb[x]$, we have
 \begin{align*}
 \bk{f(T)\Omega|g(T)\Omega}=\bk{f|g}
 \end{align*}
-Therefore, $\omega_T\geq0$ holds iff $\bk{f(T)\Omega|Tf(T)\Omega}\geq0$ for all $f\in\Cbb[x]$, iff $\bk{f|xf}\geq0$ for all $f\in\Cbb[x]$, iff $H^+$ is positive. Similarly, $\omega_{1-T}\geq0$ iff $H-H^+$ is positive.
+Therefore, $\omega_T\geq0$ holds iff $\bk{f(T)\Omega|Tf(T)\Omega}\geq0$ for all $f\in\Cbb[x]$, iff $\bk{f|xf}\geq0$ for all $f\in\Cbb[x]$, iff $H'$ is positive. Similarly, $\omega_{1-T}\geq0$ iff $H-H'$ is positive.
 \end{rem}
 
 
@@ -6237,9 +6235,9 @@ where $\rho:\Rbb\rightarrow\Rbb_{\geq0}$ is an increasing function corresponding
 \end{align*}
 Thus, the Hamburger moment problem is solved.
 
-Next, assume $I=[0,+\infty)$ and $H^+\geq0$. By Rem. \ref{lb170}, $T$ is positive, and hence each $\lambda_j$ belongs to $[0,+\infty)$. Therefore, the measure $\mu$ constructed in the above paragraph is supported in $[0,+\infty)$, and hence $\int_{[0,+\infty)}x^nd\rho=c_n$. This solves the Stieltjes moment problem.
+Next, assume $I=[0,+\infty)$ and $H'\geq0$. By Rem. \ref{lb170}, $T$ is positive, and hence each $\lambda_j$ belongs to $[0,+\infty)$. Therefore, the measure $\mu$ constructed in the above paragraph is supported in $[0,+\infty)$, and hence $\int_{[0,+\infty)}x^nd\rho=c_n$. This solves the Stieltjes moment problem.
 
-Finally, assume $I=[0,1]$ and $H^+,H-H^+$ are positive. By Rem. \ref{lb170}, $T$ and $1-T$ are positive. Therefore, each $\lambda_j$ belongs to $[0,1]$, and hence $\int_{[0,1]}x^nd\rho=c_n$. This solves the Hausdorff moment problem.
+Finally, assume $I=[0,1]$ and $H',H-H'$ are positive. By Rem. \ref{lb170}, $T$ and $1-T$ are positive. Therefore, each $\lambda_j$ belongs to $[0,1]$, and hence $\int_{[0,1]}x^nd\rho=c_n$. This solves the Hausdorff moment problem.
 
 To summarize, we have proved Thm. \ref{lb169} when $\dim V<+\infty$, equivalently, when $H$ is positive but not positive definite.
 
@@ -6255,8 +6253,8 @@ In this subsection, we assume the following condition.
 \begin{cond}\label{lb178}
 Assume that $H\geq0$. Moreover:
 \begin{itemize}
-\item If $I=[0,+\infty)$, assume that $H^+\geq0$ (equivalently, $\omega_T\geq0$, cf. Rem. \ref{lb170}).
-\item If $I=[0,1]$, assume that $H^+,H-H^+$ are both positive (equivalently, $\omega_T$ and $\omega_{1-T}$ are positive, cf. Rem. \ref{lb170}). 
+\item If $I=[0,+\infty)$, assume that $H'\geq0$ (equivalently, $\omega_T\geq0$, cf. Rem. \ref{lb170}).
+\item If $I=[0,1]$, assume that $H',H-H'$ are both positive (equivalently, $\omega_T$ and $\omega_{1-T}$ are positive, cf. Rem. \ref{lb170}). 
 \end{itemize}
 \end{cond}
 
@@ -6281,11 +6279,11 @@ Since $\omega_T$ and $\omega_{E_n}$ are Hermitian (Cor. \ref{lb171}), for each $
 \begin{align*}
 \bk{\xi|E_nTE_n\xi}=\bk{TE_n\xi|TE_n\xi}=\omega_T(E_n\xi|E_n\xi)\geq0
 \end{align*}
-It follows that $\omega_{PTP}$ is Hermitian. Similarly, if $H^+\geq0$ (equivalently, $\omega_T\geq0$), then
+It follows that $\omega_{PTP}$ is Hermitian. Similarly, if $H'\geq0$ (equivalently, $\omega_T\geq0$), then
 \begin{align*}
 \bk{\xi|E_nTE_n\xi}=\bk{E_n\xi|TE_n\xi}\geq0
 \end{align*}
-and hence $\omega_{E_nTE_n}\geq0$. If both $H^+$ and $H-H^+$ are positive, then 
+and hence $\omega_{E_nTE_n}\geq0$. If both $H'$ and $H-H'$ are positive, then 
 \begin{align*}
 \bk{\xi|E_nTE_n\xi}=\bk{E_n\xi|TE_n\xi}\geq0\qquad\bk{\xi|E_n(1-T)E_n\xi}=\bk{E_n\xi|(1-T)E_n\xi}\geq0
 \end{align*}
@@ -6313,7 +6311,7 @@ Consequently,
 
 \begin{proof}
 By \eqref{eq84}, we have 
-\begin{subequations}
+\begin{subequations}\label{eq102}
 \begin{gather}
 (E_nTE_n)^k\Omega=T^k\Omega\in V_k\qquad \text{if }0\leq k\leq n\\
 (E_nTE_n)^{n+1}\Omega=E_nT^{n+1}\Omega
@@ -6337,7 +6335,7 @@ c_{n,m}=\int_I x^md\rho_n
 \begin{proof}
 We view $T_n:=E_nTE_n$ as a linear operator on $V_n$. By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_{n,0},e_{n,1},\dots$ such that
 \begin{align}
-Te_{n,i}=\lambda_{n,i}e_{n,i}\qquad\text{for all }i
+T_ne_{n,i}=\lambda_{n,i}e_{n,i}\qquad\text{for all }i
 \end{align}
 where $\lambda_{n,i}\in\Rbb$. Moreover, by Rem. \ref{lb173}, if $I=\Rbb_{\geq0}$ then $T_n\geq0$, and hence $\lambda_{n,i}\geq0$; if $I=[0,1]$ then $0\leq T_n\leq\id_{V_n}$, and hence $0\leq\lambda_{n,i}\leq 1$. It follows that
 \begin{align*}
@@ -6487,9 +6485,9 @@ where $C_0(I)$ is equipped with the $l^\infty$-norm. Therefore, for each compact
 
 
 \begin{thm}\label{lb187}
-Let $\MV,\MW$ be normed vector spaces. Let $(T_\alpha)$ be a collection in $\fk L(\MV,\MW)$ satisfying $\sup_\alpha \Vert T_\alpha\Vert<+\infty$ and converging pointwise to some $T\in\fk L(\MV,\MW)$. Let $K$ be a precompact subset of $V$. Then $(T_\alpha)$ converges uniformly on $K$ to $T$. That is,
+Let $\MV,\MW$ be normed vector spaces. Let $(T_\alpha)$ be a net in $\fk L(\MV,\MW)$ satisfying $\sup_\alpha \Vert T_\alpha\Vert<+\infty$ and converging pointwise to some $T\in\fk L(\MV,\MW)$. Let $K$ be a precompact subset of $V$. Then $(T_\alpha)$ converges uniformly on $K$ to $T$. That is,
 \begin{align*}
-\lim_\alpha \sup_{\xi\in K}\Vert T\xi-T_\alpha\Vert=0
+\lim_\alpha \sup_{\xi\in K}\Vert T\xi-T_\alpha\xi\Vert=0
 \end{align*}
 \end{thm}
 
@@ -6502,6 +6500,9 @@ Replacing $K$ with $\ovl K$, we assume that $K$ is compact. Since $C:=\sup_\alph
 \subsection{Pad\'e approximation via orthogonal polynomials}
 
 
+\subsubsection{The setting}\label{lb194}
+
+
 Fix $I\in\{\Rbb,\Rbb_{\geq0},[0,1]\}$, and choose a sequence $(c_n)_{n\in\Nbb}$ in $\Rbb$ satisfying Condition \ref{lb178}. 
 Moreover, we assume that the Hankel matrix $H$ of $(c_n)$ is positive-definite. Therefore, the triple $(V,\Omega,T)$ in Thm. \ref{lb167} can be described as follows: $V$ is the vector space $\Cbb[x]$ together with the inner product determined by $H$, the cyclic vector $\Omega$ is chosen to be the constant $1$, and $T$ is the multiplication by $x$. We assume for simplicity that
 \begin{align*}
@@ -6509,17 +6510,7 @@ c_0=1
 \end{align*}
 Therefore, $\Vert\Omega\Vert=1$.
 
-
-Recall \eqref{eq100} for the meaning of $\Rr(I)$. Let $(\rho_n)_{n\in\Nbb}$ be the sequence described in Prop. \ref{lb174}. As in Thm. \ref{lb183}, we let $f_n(z)$ be the Stieltjes transform of $\rho_n$. Since $\rho_n$ has finite range, $f_n(z)$ is a rational function. 
-
-
-As shown in Thm. \ref{lb183}, the sequence $(f_n)$ forms a Pad\'e approximation to a holomorphic function $f$ representing the series $\sum_{n\in\Nbb}c_nz^{-n-1}$. The goal of this section is to provide an elementary description of $f_n$ in terms of orthogonal polynomials. This description not only offers insight into the historical development of Pad\'e approximation but is also essential for connecting Pad\'e approximation to continued fractions, as we will see in the next section.
-
-
-
-\subsubsection{Expressing $f_n(z)$ as a quotient of determinants}
-
-Let $V_n$ and $E_n$ be as in Def. \ref{lb189}. By Rem.\ref{lb173},
+Recall that $E_n$ is the projection operator of $V$ onto $V_n=\Span\{1,x,\dots,x^n\}=\Span\{\Omega,T\Omega,\dots,T^n\Omega\}$. By Rem. \ref{lb173},
 \begin{align*}
 T_n:=E_nTE_n\big|_{V_n}
 \end{align*}
@@ -6528,8 +6519,37 @@ is a self-adjoint operator on $V_n$. Note that
 \dim V_n=n+1
 \end{align*}
 
+Recall \eqref{eq100} for the meaning of $\Rr(I)$. Let $(\rho_n)_{n\in\Nbb}$ be the sequence in $\Rr(I)$ constructed in the proof of Prop. \ref{lb174}. That is,
+\begin{subequations}\label{eq114}
+\begin{align}
+\rho_n(x)=\sum_{
+\begin{subarray}{c}
+\text{all $i$ satisfying}\\
+\lambda_{n,i}\leq x
+\end{subarray}
+}|\bk{e_{n,i}|\Omega}|^2
+\end{align}
+where $e_{n,0},\dots,e_{n,n}$ form an orthonormal basis of $V_n$ such that
+\begin{align}
+T_ne_{n,i}=\lambda_{n,i}e_{n,i}\qquad\text{for all }i
+\end{align}
+\end{subequations}
+and $\lambda_{n,i}\in I$. As in Thm. \ref{lb183}, we let $f_n(z)$ be the Stieltjes transform of $\rho_n$, i.e.,
+\begin{align*}
+f_n(z)=\int_I\frac{d\rho_n(x)}{z-x}
+\end{align*}
+Since $\rho_n$ has finite range, $f_n(z)$ is a rational function. 
 
-\begin{pp}
+
+
+
+\subsubsection{Expressing $f_n(z)$ as a quotient of determinants}\label{lb191}
+
+
+As shown in Thm. \ref{lb183}, a subsequence of $(f_n)$ forms a Pad\'e approximation to a holomorphic function $f$ representing the series $\sum_{n\in\Nbb}c_nz^{-n-1}$. The goal of this section is to provide an elementary description of $f_n$ in terms of orthogonal polynomials. This description not only offers insight into the historical development of Pad\'e approximation but is also essential for connecting Pad\'e approximation to continued fractions, as we will see in the next section.
+
+
+\begin{pp}\label{lb195}
 For sufficiently large $|z|$, we have
 \begin{align*}
 f_n(z)=\bigbk{\Omega\big|(z-T_n)^{-1}\Omega}
@@ -6537,28 +6557,360 @@ f_n(z)=\bigbk{\Omega\big|(z-T_n)^{-1}\Omega}
 \end{pp}
 
 \begin{proof}
-We use the notation in the proof of Prop. \ref{lb174}. Then $(z-T_n)^{-1}e_{n,i}=(z-\lambda_{n,i})^{-1}e_{n,i}$. Hence, the relation $\Omega=\sum_{i=0}^n a_{n,i}e_{n,i}$ implies
+By \eqref{eq114}, we have $(z-T_n)^{-1}e_{n,i}=(z-\lambda_{n,i})^{-1}e_{n,i}$. Hence, the relation $\Omega=\sum_{i=0}^n e_{n,i}\cdot\bk{e_{n,i}|\Omega}$ implies
 \begin{align*}
-\bigbk{\Omega\big|(z-T_n)^{-1}\Omega}=\sum_i |a_{n,i}|^2\cdot (z-\lambda_{n,i})^{-1}=\int_I\frac{d\rho_n(x)}{z-x}
+\bigbk{\Omega\big|(z-T_n)^{-1}\Omega}=\sum_i |\bk{e_{n,i}|\Omega}|^2\cdot (z-\lambda_{n,i})^{-1}=\int_I\frac{d\rho_n(x)}{z-x}
 \end{align*}
 \end{proof}
 
 
-Therefore, if we extend the unit vector $\Omega$ to an orthonormal basis of $V_n$, then by Cramer's rule, $f_n(z)$ can be expressed as a quotient in which the denominator is $\det(z-T_n)$, and the numerator is a minor of $z-T_n$ of order $n$. In particular, the denominator and the numerator are monic polynomials of degree $n+1$ and $n$, respectively.
-
-Remarkably, the sequence of denominators $(\det(z-T_n))_{n\in\Nbb}$ turns out to be a sequence of orthogonal polynomials, as we will explain below.
-
-
-
-\subsubsection{Orthogonal polynomials and the Jacobi matrix}
-
-
-
-
+Therefore, if we extend the unit vector $\Omega$ to an orthonormal basis of $V_n$, then by Cramer's rule, $f_n(z)$ can be expressed as a quotient 
+\begin{align}\label{eq104}
+f_n(z)=\frac{\wtd q_n(z)}{\wtd p_{n+1}(z)}
+\end{align}
+where $\wtd p_{n+1}(z)=\det(z-T_n)$, and $\wtd q_n(z)$ is a minor of $z-T_n$ of order $n$. In particular, we have
+\begin{align*}
+\deg\wtd p_{n+1}=n+1\qquad \deg\wtd q_n=n
+\end{align*}
+Remarkably, the sequence $(\wtd p_n)_{n\in\Nbb}$ turns out to be orthogonal polynomials, as we will explain below.
 
 
 
+\subsubsection{Orthogonal polynomials}
 
+
+\begin{df}\label{lb190}
+Let $(p_n)_{n\in\Nbb}$ be a sequence in $\Cbb[x]$. We say that $(p_n)$ are \textbf{orthogonal polynomials} (resp. \textbf{orthonormal polynomials}) \index{00@Orthogonal and orthonormal polynomials} with respect to $(c_n)_{n\in\Nbb}$ if the following conditions are satisfied:
+\begin{enumerate}[label=(\arabic*)]
+\item $\deg p_n=n$.
+\item $(p_n)$ is orthogonal (resp. orthonormal) in the inner product space $\Cbb[x]$ defined by the Hankel matrix $H$ of $c_n$. Equivalently, $(p_n(T)\Omega)_{n\in\Nbb}$ is an orthonormal (resp. orthogonal) basis of $V$.
+\end{enumerate}
+Unless otherwise stated, we also assume that
+\begin{align}
+\text{the leading coefficient of $p_n$ is $>0$}
+\end{align}
+We say that $p_n$ is \textbf{monic} if the leading coefficient of $p_n$ is $1$.
+\end{df}
+
+\begin{rem}
+The orthonormal polynomials $(p_n)$ are uniquely determined by $(c_n)$, and can be constructed by the Gram-Schmidt process. Since $c_0=1$, it is clear that
+\begin{align*}
+p_0=1
+\end{align*}
+Moreover, since each $c_n$ is real, the Gram-Schmidt process indicates that all the coefficients of $p_n$ are real numbers.
+
+Similarly, the monic orthogonal polynomials $(\wtd p_n)$ are uniquely determined by $(c_n)$.   \hfill\qed
+\end{rem}
+
+
+\begin{rem}
+Moreover, if $\rho\in\Rr(I)$ solves the polynomial moment Problem \ref{lb162} for $(c_n)$, then by \eqref{eq101}, condition (2) of Def. \ref{lb190} is equivalent to
+\begin{align}
+\int_I \ovl{p_m}p_n d\rho=\delta_{m,n}\qquad\text{for each }m,n\in\Nbb
+\end{align}
+(But note that $\ovl{p_m}=p_m$.) In that case, we also say that $(\rho_n)$ are \textbf{orthonormal polynomials} with respect to $\rho$.
+\end{rem}
+
+
+
+\begin{thm}\label{lb196}
+Let $\wtd p_{n+1}(z)=\det(z-T_n)$ and $\wtd p_0(z)=1$. Then $(\wtd p_n(x))_{n\in\Nbb}$ are the (unique) monic orthogonal polynomials with respect to $(c_n)$.
+\end{thm}
+
+\begin{proof}
+We want to show that $\wtd p_{n+1}$ is orthogonal to $V_n$, equivalently, that $\wtd p_{n+1}(T)\Omega\perp V_n$.
+
+Applying the Cayley-Hamilton theorem to $T_n$, we have $\wtd p_{n+1}(T_n)=0$, equivalently, $\wtd p_{n+1}(E_nTE_n)=0$. Therefore, if $\wtd p_{n+1}(x)=\sum_{k=0}^{n+1} \gamma_kx^k$ where $\gamma_i\in\Rbb$, then
+\begin{align*}
+\sum_{k=0}^{n+1} \gamma_k (E_nTE_n)^k\Omega=0
+\end{align*}
+Together with \eqref{eq102}, this implies
+\begin{align*}
+\sum_{k=0}^{n+1} \gamma_k E_nT^k\Omega=0
+\end{align*}
+and hence $E_n\wtd p_{n+1}(T)\Omega=0$. This proves $\wtd p_{n+1}(T)\Omega\perp V_n$.
+\end{proof}
+
+
+\begin{co}
+We have
+\begin{align}\label{eq103}
+\det(z-T_n)=
+\begin{vmatrix}
+c_0&c_1&\cdots&c_{n+1}\\
+c_1&c_2&\cdots&c_{n+2}\\
+\vdots&\vdots&\ddots&\vdots\\
+c_n&c_{n+1}&\cdots&c_{2n+1}\\
+1&z&\cdots& z^{n+1}
+\end{vmatrix}
+\end{align}
+\end{co}
+
+\begin{proof}
+Denote the RHS by $\wtd p_{n+1}(z)$. Then $\wtd p_{n+1}(z)$ is a monic polynomial of degree $n+1$. Moreover, if we let $D_{i,j}$ be the $(i,j)$-th minor of the determinant on the RHS of \eqref{eq103}, then for each $0\leq k\leq n$, we have
+\begin{align*}
+\bk{x^k|\wtd p_{n+1}(x)}=\sum_{i=0}^{n+1}c_{k+i}D_{n+2,i+1}=\begin{vmatrix}
+c_0&c_1&\cdots&c_{n+1}\\
+c_1&c_2&\cdots&c_{n+2}\\
+\vdots&\vdots&\ddots&\vdots\\
+c_n&c_{n+1}&\cdots&c_{2n+1}\\
+c_k&c_{1+k}&\cdots& c_{n+k}
+\end{vmatrix}=0
+\end{align*}
+This proves that $\wtd p_{n+1}\perp V_n$.
+\end{proof}
+
+
+\subsubsection{The Jacobi matrix}
+
+
+
+
+
+
+We now study the numerator $\wtd q_n(z)$ in \eqref{eq104}. As discussed in Subsec. \ref{lb191}, $\wtd q_n(z)$ is a minor of $z-T_n$ of order $n$ under the orthonormal basis $p_0,\dots,p_n$ of $V_n$. To compute this minor, let us find the matrix representation of $T$ under this basis.
+
+
+\begin{df}\label{lb193}
+Let $(a_n)_{n\in\Nbb}$ and $(b_n)_{n\in\Nbb}$ be sequences in $\Rbb$ with $a_n>0$ for each $n$. Define $J,J^+\in\Rbb^{\Cbb\times\Cbb}$ by
+\begin{align*}
+J=\begin{pmatrix}
+b_0&a_0&0&0&0&\cdots\\
+a_0&b_1&a_1&0&0&\cdots\\
+0&a_1&b_2&a_2&0&\cdots\\
+0&0&a_2&b_3&a_3&\cdots\\
+0&0&0&a_3&b_4&\ddots\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}
+\qquad
+J^+=\begin{pmatrix}
+b_1&a_1&0&0&0&\cdots\\
+a_1&b_2&a_3&0&0&\cdots\\
+0&a_2&b_3&a_3&0&\cdots\\
+0&0&a_3&b_4&a_4&\cdots\\
+0&0&0&a_4&b_5&\ddots\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}
+\end{align*}
+The matrix $J$ is called the \textbf{Jacobi matrix} \index{00@Jacobi matrix $J$} for $(a_n)$ and $(b_n)$. We also call $(a_n)$ and $(b_n)$, the \textbf{off-diagonal sequence} and the \textbf{diagonal sequence} of $J$, respectively. 
+\end{df}
+
+By this definition, $J^+$ is the Jacobi matrix for
+\begin{gather}
+(a_n)^+=(a_1,a_2,\dots)\qquad (b_n)^+=(b_1,b_2,\dots)
+\end{gather}
+
+
+\begin{thm}\label{lb192}
+There is a bijection between:
+\begin{itemize}
+\item[(1)] A sequence $(c_n)_{n\in\Nbb}$ in $\Rbb$ where $c_n=1$, and the associated Hankel matrix $H$ is positive-definite.\footnote{In other words, $(c_n)$ satisfies the assumptions in Subsec. \ref{lb194} for the case $I=\Rbb$.}
+\item[(2)] A pair of sequences $(a_n)_{n\in\Nbb},(b_n)_{n\in\Nbb}$ in $\Rbb$ where $a_n>0$ for each $n$.
+\end{itemize}
+The bijection is described as follows. 
+\begin{itemize}
+\item Given $(c_n)$ satisfying (1), let $(p_n)_{n\in\Nbb}$ be the orthonormal polynomials with respect to $(c_n)$. Then the Jacobi matrix $J$ for $(a_n)$ and $(b_n)$ is the matrix representation of $T:V\rightarrow V$ under $(p_n)$. 
+\item Given $(a_n)$ and $(b_n)$ satisfying (2), then $c_n$ is the $(0,0)$-entry (i.e., the top-left entry) of $J^n$.
+\end{itemize}
+\end{thm}
+
+
+The Jacobi matrix $J$ for $(a_n),(b_n)$ is called the \textbf{Jacobi matrix associated to the Hankel matrix of \pmb{$(c_n)$}}. \index{00@Jacobi matrix associated to the Hankel matrix of $(c_n)_{n\in\Nbb}$}
+
+
+\begin{rem}\label{lb198}
+The fact that $J$ is the matrix representation of $T$ under $(p_n)$ can be made explicit as follows: The sequence $(p_n)_{n\in\Nbb}$ satisfies the \textbf{three-term recurrence relation} \index{00@Three-term recurrence relation}
+\begin{subequations}\label{eq105}
+\begin{align}
+xp_n(x)=a_np_{n+1}(x)+b_np_n(x)+a_{n-1}p_{n-1}(x)\qquad\text{for all }n\in\Nbb
+\end{align}
+where we set $p_{-1}(x)=0$, and let $a_{-1}$ be any number. Rewriting this relation as
+\begin{align*}
+a_np_{n+1}(x)=(x-b_n)p_n(x)-a_{n-1}p_{n-1}(x)
+\end{align*}
+and noting that
+\begin{align}
+p_{-1}(x)=0\qquad p_0(x)=1
+\end{align}
+\end{subequations}
+we see that $(p_n)$ is uniquely determined by $(a_n)$ and $(b_n)$ through \eqref{eq105}.
+\end{rem}
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb192}}]
+Step 1. Given $(c_n)$, let $J$ be the matrix representation of $T$ with respect to the orthonormal polynomials $(p_n)$. Since $\deg p_k=k$, we have
+\begin{align}
+xp_n(x)=a_np_{n+1}(x)+ b_n x^n+? x^{n+1}+\cdots+? x+?
+\end{align}
+where $a_{n+1}\in\Rbb_{>0}$ and $b_n\in\Rbb$. Therefore, $J$ is of the form
+\begin{align*}
+J=\begin{pmatrix}
+b_0&?&?&?&?&\cdots\\
+a_0&b_1&?&?&?&\cdots\\
+0&a_1&b_2&?&?&\cdots\\
+0&0&a_2&b_3&?&\cdots\\
+0&0&0&a_3&b_4&\ddots\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}
+\end{align*}
+Since $\omega_T$ is Hermitian, $J$ must be of the form given in Def. \ref{lb193}. This establishes the map
+\begin{align}\label{eq106}
+(c_n)\mapsto (a_n),(b_n)
+\end{align}
+equivalently, the map $H\mapsto J$. Moreover, we compute
+\begin{align*}
+c_n=\bk{1|x^n}=\bk{\Omega|T^n\Omega}=\bk{e_0|J^n e_0}
+\end{align*}
+This shows that $c_n$ is the $(0,0)$-entry of $J^n$. Consequently, the map \eqref{eq106} is injective.\\[-1ex]
+
+Step 2. It remains to prove that the map \eqref{eq106} is surjective. Let $J$ be the Jacobi matrix of $(a_n)$ and $(b_n)$ satisfying (2). Let $C_c(\Nbb)$ be the set of functions $\Nbb\rightarrow\Cbb$ with finite supports. The inner product on $C_c(\Nbb)$ is chosen to be the one inherited from that of $l^2(\Nbb)$. Then $J$ can be viewed as a linear operator on $C_c(\Nbb)$. Moreover, it is clear that
+\begin{align*}
+J^n\chi_{\{0\}}=a_0\cdots a_{n-1} \chi_{\{n\}}+?\chi_{\{n-1\}}+\cdots+?\chi_{\{0\}}
+\end{align*}
+where $a_0\cdots a_{n-1}$ is understood as $1$ if $n=0$. Therefore, $(J^n\chi_{\{0\}})_{n\in\Nbb}$ is a basis of $C_c(\Nbb)$, and there exists $p_n\in\Rbb[x]$ satisfying
+\begin{subequations}\label{eq108}
+\begin{gather}
+p_n(x)=(a_0\cdots a_{n-1})^{-1}x^n+?x^{n-1}+\cdots+?x+?\label{eq108a}\\
+\chi_{\{n\}}=p_n(J)\chi_{\{0\}}\label{eq108b}
+\end{gather}
+\end{subequations}
+
+
+We define
+\begin{align}\label{eq110}
+c_n=\bk{\chi_{\{0\}}|J^n\chi_{\{0\}}}
+\end{align}
+Then the sesquilinear form $\bk{\cdot|\cdot}$ on $V=\Cbb[x]$ determined by $(c_n)$ satisfies
+\begin{align}\label{eq107}
+\bk{g|h}=\bk{1|\ovl gh}\xlongequal{\eqref{eq110}}\bk{\chi_{\{0\}}|\ovl g(J)h(J)\chi_{\{0\}}}=\bk{g(J)\chi_{\{0\}}|h(J)\chi_{\{0\}}}
+\end{align}
+for each $g,h\in\Cbb[x]$. (Note that in the last equality of \eqref{eq107}, we have used the fact that $\bk{\eta|J\xi}=\bk{J\eta|\xi}$ for each $\xi,\eta\in C_c(\Nbb)$.) Therefore, $\bk{g|g}\geq0$. If $g\neq0$, by the fact that $(J^n\chi_{\{0\}})_{n\in\Nbb}$ is a basis, we have $g(J)\chi_{\{0\}}\neq0$, and hence
+\begin{align*}
+\bk{g|g}=\bk{g(J)\chi_{\{0\}}|g(J)\chi_{\{0\}}}>0
+\end{align*}
+Therefore, $\bk{\cdot|\cdot}$ is positive-definite. Thus, $(c_n)$ satisfies (1).
+
+Let us show that the map \eqref{eq106} sends $(c_n)$ to $(a_n),(b_n)$. By \eqref{eq107}, we have a unitary map
+\begin{gather}\label{eq109}
+\Phi:V=\Cbb[x]\rightarrow C_c(\Nbb)\qquad g=g(T)\Omega\mapsto g(J)\chi_{\{0\}} 
+\end{gather}
+By \eqref{eq108b}, $\Phi$ sends $\chi_{\{n\}}$ to $p_n$. Therefore, since $(\chi_{\{n\}})$ is an orthonormal basis of $C_c(\Nbb)$, the sequence $(p_n)_{n\in\Nbb}$ is an orthonormal basis of $V$. This, together with \eqref{eq108a}, shows that $(p_n)$ is the orthogonal polynomials with respect to $(c_n)$. 
+
+From \eqref{eq108}, we have $J\Phi=\Phi T$. Therefore, $J$ is the matrix representation of $T$ under $(p_n)$. This finishes the proof that \eqref{eq106} sends $(c_n)$ to $(a_n),(b_n)$.
+\end{proof}
+
+
+
+\begin{co}\label{lb197}
+Let $(p_n)_{n\in\Nbb}$ be the orthonormal polynomials with respect to $(c_n)$, and let $(a_n)$ be the off-diagonal sequence of the Jacobi matrix associated to $(c_n)$. Then the leading coefficient of $p_n$ is $(a_0\cdots a_{n-1})^{-1}$, understood to be $1$ if $n=0$.
+\end{co}
+
+\begin{proof}
+This is clear from the proof of Thm. \ref{lb192}, especially from \eqref{eq108}.
+\end{proof}
+
+
+
+\begin{co}\label{lb199}
+Let $(a_n)$ and $(b_n)$ be sequences in $\Rbb$ with $a_n>0$. Let $J$ be the associated Jacobi matrix. Let $(p_n)_{n\in\Nbb}$ be the sequence of polynomials satisfying \eqref{eq105}. Then $(p_n)$ can be described by
+\begin{align}
+a_0\cdots a_n\cdot p_{n+1}(z)=\det(z-J_{n+1})\qquad p_0(z)=1
+\end{align}
+where $J_{n+1}\in\Rbb^{(n+1)\times(n+1)}$ is the matrix formed by taking the first $n+1$ rows and columns of $J$.
+\end{co}
+
+
+\begin{proof}
+By Thm. \ref{lb192}, $J$ is the Jacobi matrix associated to the positive-definite Hankel matrix of a sequence $(c_n)$ satisfying $c_0=1$, and $(p_n)$ are the orthonormal polynomial with respect to $(c_n)$. Therefore, $J_{n+1}$ is the matrix representation of $T_n$ with respect to the orthonormal basis $p_0,\dots,p_n$ of $V_n$. It follows from Thm. \ref{lb196} the monic orthonormal polynomials $(\wtd p_n)$ satisfy $\wtd p_{n+1}(z)=\det(z-J_{n+1})$. By Cor. \ref{lb197}, we have $\wtd p_n=a_0\cdots a_n p_{n+1}(z)$. This finishes the proof.
+\end{proof}
+
+
+
+
+\subsubsection{The main theorem}
+
+Recall the sequence of rational functions $(f_n(z))_{n\in\Nbb}$ as in Subsec. \ref{lb194}.
+
+
+\begin{thm}\label{lb200}
+Let $J$ be the Jacobi matrix associated to the Hankel matrix of $(c_n)$, and let $(b_n)$ and $(a_n)$ be the diagonal and off-diagonal sequences of $J$, respectively. Choose sequences of polynomials $(p_n(x))_{n\in\Nbb}$ and $(q_n(x))_{n\in\Nbb}$ determined by
+\begin{gather}
+xp_n(x)=a_np_{n+1}(x)+b_np_n(x)+a_{n-1}p_{n-1}(x)\qquad p_{-1}(x)=0\quad p_0(x)=1\label{eq111}\\
+xq_n(x)=a_{n+1}q_{n+1}(x)+b_{n+1}q_n(x)+a_nq_{n-1}(x)\qquad q_{-1}(x)=0\quad q_0(x)=\frac{1}{a_0}\label{eq112}
+\end{gather}
+for each $n\in\Nbb$. Then
+\begin{align}\label{eq113}
+f_n(z)=\frac{q_n(z)}{p_{n+1}(z)}
+\end{align}
+\end{thm}
+
+
+\begin{proof}
+Let $J_{n+1}$ (resp. $J^+_n$) be the $(n+1)\times (n+1)$ (resp. $n\times n$)  matrix formed by taking the first $n+1$ (resp. first $n$) rows and columns of $J$ (resp. $J^+$). By the description of $J$ in Thm. \ref{lb192}, $J_n$ is the matrix representation of $T_n$ with respect to the orthonormal basis $p_0,\dots,p_n$. Therefore, since $p_0=1=\Omega$, by Prop. \ref{lb195} and Cramer's rule (or the inverse matrix formula), we have
+\begin{align}
+f_n(z)=\frac{\det(z-J^+_n)}{\det(z-J_{n+1})}
+\end{align}
+Applying Cor. \ref{lb199} to the Jacobi matrix $J$ (resp. $J^+$) and the sequence $(p_n)$ (resp. $(a_0q_n)$), we see that $\det(z-J_{n+1})=a_0\cdots a_np_{n+1}$ (resp. $\det(z-J^+_n)=a_1\cdots a_n\cdot a_0 q_n(z)$). This establishes \eqref{eq113}.
+\end{proof}
+
+
+
+
+
+\subsection{Pad\'e approximation via continued fractions}
+
+
+
+We continued to work in the setting of Subsec. \ref{lb194} and freely use the notations introduced there. In particular, we consider the sequence of rational functions $(f_n(z))_{n\in\Nbb}$ described by $f_n(z)=\bk{\Omega|(z-T_n)^{-1}\Omega}$ (cf. Prop. \ref{lb195}), which admits a subsequence that Pad\'e-approximates a holomorphic function $f$ representing the (possibly) divergent series $\sum_{n\in\Nbb}c_nz^{-n-1}$. 
+
+In this section, we use Thm. \ref{lb200} to express $(f_n)$ as finite approximations of a continued fraction. In \cite{Sti94}, Stieltjes's reasoning proceeds in the opposite direction: he begins with a continued fraction, derives the three-term recurrence relation satisfied by its finite approximants, and then uses orthogonality to obtain the Pad\'e approximation.
+
+\begin{thm}
+Let $J$ be the Jacobi matrix associated to the Hankel matrix of $(c_n)$, and let $(b_n)$ and $(a_n)$ be the diagonal and off-diagonal sequences of $J$, respectively. Then $f_n(z)$ is the $n$-th approximation of the continued fraction
+\begin{align*}
+\cfrac{1}{z-b_0-\cfrac{a_0^2}{z-b_1-\cfrac{a_1^2}{z-b_2-\cfrac{a_2^2}{z-b_3-\ddots}  } } }
+\end{align*}
+That is, for each $n\in\Nbb$, we have
+\begin{align}\label{eq115}
+f_n(z)=\cfrac{1}{z-b_0-\cfrac{a_0^2}{\ddots-\cfrac{a_{n-2}^2}{z-b_{n-1}-\cfrac{a_{n-1}^2}{z-b_n} } } }
+\end{align}
+\end{thm}
+
+\begin{proof}
+By Thm. \ref{lb200}, we have $f_n=q_n/p_{n+1}$ where $(p_n)$ and $(q_n)$ satisfy
+\begin{subequations}\label{eq116}
+\begin{gather}
+a_np_{n+1}(z)=(z-b_n)p_n(z)-a_{n-1}p_{n-1}(z)\qquad p_{-1}(z)=0\quad p_0(z)=1\label{eq116a}\\
+a_nq_n(z)=(z-b_n)q_{n-1}(z)-a_{n-1}q_{n-2}(z)\qquad q_{-1}(z)=0\quad q_0(z)=\frac{1}{a_0}\label{eq116b}
+\end{gather}
+\end{subequations}
+In particular, we have $p_1(z)=(b_0-z)/a_0$, and hence $f_0(z)=1/(z-b_0)$. This proves \eqref{eq115} for $n=0$. Note that \eqref{eq116b} originally holds only when $n\geq0$. However, by setting $a_{-1}=1$ and $q_{-2}(z)=-1$, Eq. \eqref{eq116} also holds when $n=0$. 
+
+We denote the RHS of \eqref{eq115} by $\Upsilon_n$. We view $(p_n),(q_n),(\Upsilon_n)$ as sequences of rational functions of $z,a_0,b_0,a_1,b_1,\dots$. Assume that \eqref{eq115} holds for $n-1$ where $n\in\Zbb_+$, i.e.,
+\begin{align*}
+\frac{q_{n-1}}{p_n}=\Upsilon_{n-1}
+\end{align*}
+Note that $\Upsilon_n$ is obtained from $\Upsilon_{n-1}$ by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. To prove that the \eqref{eq115} holds for $n$, it suffices to show that $a_np_{n+1}/(z-b_n)$ (resp. $a_nq_n/(z-b_n)$) is also obtained from $p_n$ (resp. $q_{n-1}$) by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. 
+
+Note that
+\begin{align}\label{eq117}
+a_{n-1}p_n=(z-b_{n-1})p_{n-1}-a_{n-2}p_{n-2}
+\end{align}
+and $p_{n-1}$ does not involve $b_{n-1}$. Replacing the $b_{n-1}$ on the RHS of \eqref{eq117} with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$, what we want to prove is
+\begin{align*}
+a_np_{n+1}/(z-b_n)=a_{n-1}^{-1}\Big(z-b_{n-1}-\frac{a_{n-1}^2}{z-b_n}\Big)p_{n-1}-a_{n-1}^{-1}a_{n-2}p_{n-2}
+\end{align*}
+equivalently,
+\begin{align*}
+a_{n-1}a_np_{n+1}=\Big((z-b_{n-1})(z-b_n)-a_{n-1}^2\Big)p_{n-1}-a_{n-2}(z-b_n)p_{n-2}
+\end{align*}
+But this follows from \eqref{eq116a} and \eqref{eq117}, since
+\begin{align*}
+&a_{n-1}a_np_{n+1}=(z-b_n)\cdot a_{n-1}p_n-a_{n-1}^2p_{n-1}\\
+=&(z-b_n)\cdot \big((z-b_{n-1})p_{n-1}-a_{n-2}p_{n-2}\big)-a_{n-1}^2p_{n-1}\\
+=&\Big((z-b_{n-1})(z-b_n)-a_{n-1}^2\Big)p_{n-1}-a_{n-2}(z-b_n)p_{n-2}
+\end{align*}
+This proves the desired property for $a_np_{n+1}/(z-b_n)$. A similar argument proves the desired property for $a_nq_n/(z-b_n)$. 
+\end{proof}
 
 
 
