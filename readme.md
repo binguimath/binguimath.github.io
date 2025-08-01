@@ -70,7 +70,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 2025 Comparison of Extensions of Unitary Vertex Operator Algebras and Conformal Nets, `arXiv:2505.03235` [Preprint](https://binguimath.github.io/Files/2024_Ext.pdf).
 
-
+2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Pseudotraces on Almost Unital and Finite-Dimensional Algebras [Preprint](https://binguimath.github.io/Files/2025_AUF.pdf)
 
 
 ### Earlier representative works
