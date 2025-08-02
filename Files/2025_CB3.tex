@@ -138,7 +138,7 @@
 \newcommand{\ML}{\mathcal{L}}
 \newcommand{\ev}{\mathrm{ev}}
 \newcommand{\coev}{\mathrm{coev}}
-\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\opp}{\mathrm{op}}
 \newcommand{\Rep}{\mathrm{Rep}}
 \newcommand{\diag}{\mathrm{diag}}
 \newcommand{\Dom}{\scr D}
@@ -191,6 +191,7 @@
 \newcommand{\Vbb}{\mathbb V}
 \newcommand{\Ubb}{\mathbb U}
 \newcommand{\Xbb}{\mathbb X}
+\newcommand{\Ybb}{\mathbb Y}
 \newcommand{\Wbb}{\mathbb W}
 \newcommand{\Mbb}{\mathbb M}
 \newcommand{\Gbb}{\mathbb G}
@@ -392,7 +393,7 @@ Let $\ff$ be a compact Riemann surface with $N$ incoming and $R$ outgoing marked
 \int^{\Mbb\in\Mod(\Vbb^{\otimes R})}\ST^*_\ff\big(\Mbb\otimes\Wbb\big)\otimes_\Cbb\ST^*_\fg\big(\Mbb'\otimes\Xbb\big)\simeq\ST_\fx^*\big(\Wbb\otimes \Xbb\big)
 \end{align*}
 
-We also discuss the relation between conformal blocks and the modular functors defined using Lyubashenko's coend in the case where $\Vbb$ is strongly finite and rigid. 
+We also discuss the relationship between conformal blocks and the modular functors defined using Lyubashenko's coend/construction.
 \end{abstract}
 
 \tableofcontents
@@ -709,7 +710,7 @@ Since $\ST^*_\ff\big(\Mbb\otimes\Wbb\big)\otimes_\Cbb\ST^*_\fg\big(\Mbb'\otimes\
 
 
 
-\subsection{The SF theorem in terms of (dual) fusion products}
+\subsection{The SF theorem in terms of (dual) fusion products}\label{lb60}
 
 
 In this paper, we will prove Thm. \ref{lb58} by first proving an equivalent version of the SF theorem. Fix $\Wbb$ and $\Xbb$. Since the conformal block functors are left exact (cf. Thm. \ref{lb11}), and since any functor from a finite $\Cbb$-linear category to $\Vect$ is representable \cite[Cor. 1.10]{DSPS19-balanced}, there exists $\bbs_\ff(\Wbb)\in\Mod(\Vbb^{\otimes R})$ such that we have an equivalence of contravariant functors
@@ -809,7 +810,7 @@ equipped with the local coordinates $1/\zeta,\zeta,\zeta-1$ (where $\zeta$ is th
 \subsection{Relationship between conformal blocks and topological modular functors}
 
 
-We close this Introduction with a brief discussion of the relationship between conformal blocks and the (topological) modular functors introduced by Lyubashenko \cite{Lyu96-Ribbon}, illustrating the significance of our SF theorems. We continue to assume that $\Vbb$ is $C_2$-cofinite, though we do not initially assume that $\Vbb$ is self-dual.
+We close this Introduction with a brief discussion of the relationship between conformal blocks and the (topological) modular functors introduced by Lyubashenko \cite{Lyu96-Ribbon}, illustrating the significance of our SF theorems. We continue to assume that $\Vbb$ is $C_2$-cofinite.
 
 
 
@@ -961,26 +962,20 @@ Therefore, \eqref{eq123} can be rewritten as
 \end{align}
 
 
-
-The $\Vbb$-module $\boxtimes_{\fk T}\Vbb$ can be related to Lyubashenko's coend
+To proceed, we give a categorical description of $\boxtimes_{\fk T}\Vbb$. By \cite{McR-deligne}, the bi-exact functor
 \begin{align*}
-\mbb L:=\int^{\Mbb\in\Mod(\Vbb)}\Mbb'\boxdot\Mbb
-\end{align*}
-in the following way. By the transitivity of fusion products (Thm. \ref{lb51}), another version of the SF theorem, we have a canonical isomorphism
-\begin{subequations}\label{eq124}
-\begin{align}
-\boxtimes_{\fk T}\Vbb\simeq \boxtimes_\fp(\boxtimes_\fq\Vbb)
-\end{align}
-See Fig. \ref{fig5}. On the other hand, it can be proved that the $\Vbb^{\otimes 2}$-module $\bbs_\fq\Vbb$ is a coend
+(\Wbb_1,\Wbb_2)\in\Mod(\Vbb)\times\Mod(\Vbb)\rightarrow \Wbb_1\otimes_\Cbb\Wbb_2\in\Mod(\Vbb^{\otimes 2})
+\end{align*} 
+is a Deligne product of two copies of $\Mod(\Vbb)$. Therefore, since $\boxtimes_\fp:\Mod(\Vbb^{\otimes2})\rightarrow\Mod(\Vbb)$ is right exact (Thm. \ref{lb11}), it is the unique lift of the (right exact) bifunctor $\boxdot:\Mod(\Vbb)\times\Mod(\Vbb)\rightarrow\Mod(\Vbb)$ to $\Mod(\Vbb^{\otimes2})$. In short, we have
 \begin{align*}
-\bbs_\fq\Vbb\simeq \int^{\Mbb\in\Mod(\Vbb)}\Mbb'\otimes\Mbb
-\end{align*}
-(More explanations will be given in a future work.) Therefore, since the functor $\boxtimes_\fp:\Mod(\Vbb^{\otimes 2})\rightarrow\Mod(\Vbb)$ is a left adjoint---specifically, it is the left adjoint of $\Mbb\in\Mod(\Vbb)\mapsto\bbs_\fq(\Mbb')$---it preserves coends. This implies
-\begin{align}
-\mbb L\simeq \boxtimes_\fp(\bbs_\fq\Vbb)
-\end{align}
-\end{subequations}
+\boxdot=\boxtimes_\fp\qquad\text{on }\Mod(\Vbb^{\otimes2})
+\end{align*} 
+Therefore, by the transitivity of fusion products (Thm. \ref{lb51}), another version of the SF theorem, we have a canonical isomorphism
 
+\begin{align}\label{eq129}
+\boxtimes_{\fk T}\Vbb\simeq \boxtimes_\fp(\boxtimes_\fq\Vbb)=\boxdot(\boxtimes_\fq\Vbb)
+\end{align}
+See Fig. \ref{fig5}. 
 
 \newcommand{\figc}{
 \vcenter{\hbox{\scalebox{0.8}{
@@ -1089,17 +1084,60 @@ See Fig. \ref{fig5}. On the other hand, it can be proved that the $\Vbb^{\otimes
 	\label{fig5}
 \end{figure} 
 
-
-
-Now assume that $\Vbb$ is strongly finite (in particular, that $\Vbb\simeq\Vbb'$), and that the conjectured rigidity property of $\Vbb$ holds. Then, by \cite{McR21-rational}, the category $\Mod(\Vbb)$ is modular. In this case, one can show that the coend $\bbs_\fq\Vbb$ is self-dual, i.e., $\bbs_\fq\Vbb\simeq\boxtimes_\fq\Vbb$. (Again, this will be explained in more detail in a future work.) Substituting this into \eqref{eq124}, we obtain the isomorphism
-\begin{align*}
-\mbb L\simeq\boxtimes_{\fk T}\Vbb
-\end{align*}
-Consequently, the isomorphism \eqref{eq125} becomes
-\begin{align}\label{eq126}
-\ST^*_{\fy_{p_\blt}}(\Xbb_1\otimes\cdots\otimes\Xbb_K)\simeq\Hom_\Vbb\big(\mbb L^{\boxdot R}\boxdot\Xbb_1\boxdot\cdots\boxdot\Xbb_K,\Vbb\big)
+It remains to give a categorical description of $\boxtimes_\fq\Vbb$. By Sec. \ref{lb60}, $\bbs_\fq\Vbb$ is the unique object in $\Mod(\Vbb^{\otimes2})$ implementing the natural equivalence 
+\begin{align}
+\Hom_{\Vbb^{\otimes 2}}(\Mbb,\bbs_\fq\Vbb)\simeq \ST^*_\fq(\Mbb\otimes\Vbb)
 \end{align}
-where the LHS is the space of genus-$R$ conformal blocks (with input modules $\Xbb_1,\dots,\Xbb_K$), and the RHS coincides with Lyubashenko's construction of modular functors (cf. the end of \cite[Sec. 8.2]{Lyu96-Ribbon}).\footnote{It is possible that this isomorphism can be generalized to the case where $\Vbb$ is not strongly finite. See, for instance, \cite[Rem. 8.7]{BW22-MFFH}.} 
+for all $\Mbb\in\Mod(\Vbb^{\otimes2})$. Equivalently,
+\begin{align}
+\Hom_{\Vbb^{\otimes 2}}(\boxtimes_\fq\Vbb,\Mbb)\simeq \ST^*_\fq(\Mbb'\otimes\Vbb)
+\end{align}
+If $\Mbb=\Xbb\otimes \Ybb'$ where $\Xbb,\Ybb\in\Mod(\Vbb)$, by the propagation of conformal blocks (cf. \cite[Cor. 2.44]{GZ1}), we have
+\begin{align*}
+\ST^*_\fq(\Xbb'\otimes\Ybb\otimes\Vbb)\simeq\Hom_\Vbb(\Ybb,\Xbb)
+\end{align*}
+and hence
+\begin{align}\label{eq128}
+\Hom_{\Vbb^{\otimes 2}}(\boxtimes_\fq\Vbb,\Xbb\otimes\Ybb')\simeq \Hom_\Vbb(\Ybb,\Xbb)
+\end{align}
+That is, $\boxtimes_\fq\Vbb$ is the unique object in the Deligne product of two copies of $\Mod(\Vbb)$ representing the left exact profunctor $(\Xbb,\Ybb)\mapsto\Hom_\Vbb(\Xbb,\Ybb)$. Therefore:
+\begin{thm}\label{lb61}
+For each $\Xbb\in\Mod(\Vbb)$, let $\pi_\Xbb:\boxtimes_\fq\Vbb\rightarrow\Xbb\otimes\Xbb'$ be the morphism representing the identity map $\id_\Xbb\in\Hom_\Vbb(\Xbb,\Xbb)$ in the sense of \eqref{eq128}. Then the dinatural transformation $(\pi_\Xbb)_{\Xbb\in\Mod(\Vbb)}$ is an end in $\Mod(\Vbb^{\otimes2})$. In short, we have
+\begin{align*}
+\boxtimes_\fq\Vbb\simeq\int_{\Mbb\in\Mod(\Vbb)}\Xbb\otimes_\Cbb\Xbb'
+\end{align*}
+\end{thm}
+
+An alternative proof of this theorem will be given in \cite{GZ5}.
+
+\begin{proof}
+We identify $\Mod(\Vbb)$ with its opposite category $\Mod(\Vbb)^\opp$ by identifying $\Xbb'$ with $\Xbb^\opp$. Therefore, it suffices to prove the claim the end $\End:=\int_{\Mbb\in\Mod(\Vbb)}\Xbb\otimes^{\mathrm{Del}}\Xbb^\opp$ represents the profunctor $\Hom_\Vbb(\Ybb,\Xbb)$, where $\otimes^{\mathrm{Del}}$ denotes the Deligne product. To prove this, one may assume that $\Mod(\Vbb)=\Mod(A)$ where $A$ is a unital finite dimensional $\Cbb$-algebra. In this case, the claim follows from \cite[Cor. 2.9]{FSS20}.
+\end{proof}
+
+It follows from \eqref{eq129} and Thm. \ref{lb61} that
+\begin{subequations}\label{eq130}
+\begin{align}
+\boxtimes_{\fk T}(\Vbb)\simeq \mbb L
+\end{align}
+where $\mbb L$ is the \textbf{Lyubashenko construction}
+\begin{align}
+\mbb L:=\boxdot\Big(\int_{\Mbb\in\Mod(\Vbb)}\Xbb\otimes\Xbb'\Big)
+\end{align}
+\end{subequations}
+defined in the context of Grothendieck-Verdier categories in \cite{MW23-cyclic-framed,BW22-MFFH}. In the case of finite tensor categories, this construction is introduced by Lyubashenko \cite{Lyu95-Invariants,Lyu96-Ribbon} in the form of the \textbf{Lyubashenko coend}
+\begin{align*}
+\mbb L=\int^{\Mbb\in\Mod(\Vbb)}\Xbb'\boxdot\Xbb
+\end{align*}
+(When $\Vbb$ is strongly finite, and if the conjectured rigidity of $\Mod(\Vbb)$ holds, then $\Mod(\Vbb)$ is modular by \cite{McR21-rational}. In that case, $\int_{\Mbb\in\Mod(\Vbb)}\Xbb\otimes_\Cbb\Xbb'$ is self-dual due to \cite{Shi-unimodular}, and hence $\int_{\Mbb\in\Mod(\Vbb)}\Xbb\otimes\Xbb'\simeq\int^{\Mbb\in\Mod(\Vbb)}\Xbb'\otimes\Xbb$. Since $\boxdot$ is a left adjoint---specifically, it is the left adjoint of $\Xbb\in\Mod(\Vbb)\rightarrow\bbs_\fq(\Xbb')\in\Mod(\Vbb^{\otimes2})$---the functor $\boxdot$ commutes with coends. Therefore, the above two definitions of $\mbb L$ are equivalent.)
+
+
+
+Thanks to \eqref{eq130}, the isomorphism \eqref{eq125} becomes
+\begin{align}\label{eq126}
+\ST^*_{\fy_{p_\blt}}(\Xbb_1\otimes\cdots\otimes\Xbb_K)\simeq\Hom_\Vbb\big(\mbb L^{\boxdot R}\boxdot\Xbb_1\boxdot\cdots\boxdot\Xbb_K,\Vbb'\big)
+\end{align}
+where the LHS is the space of genus-$R$ conformal blocks (with input modules $\Xbb_1,\dots,\Xbb_K$), and the RHS coincides with Lyubashenko's construction of modular functors (cf. \cite[Sec. 8.2]{Lyu96-Ribbon} or \cite[Cor. 8.1]{BW22-MFFH}).
+
 
 
 
@@ -1110,7 +1148,7 @@ where the LHS is the space of genus-$R$ conformal blocks (with input modules $\X
 
 
 
-We would like to thank Chiara Damiolini, Jishen Du, J\"urgen Fuchs, Yi-Zhi Huang, Liang Kong, Robert McRae, Yuto Moriwaki, Ingo Runkel, Christoph Schweigert, Yilong Wang, and Hao Zheng for helpful discussions. The first author is grateful to Zhipeng Yang for his warm hospitality and the support of Yunnan Key Laboratory of Modern Analytical Mathematics and Applications (No. 202302AN360007). The second author would like to thank Wenjun Niu for valuable discussions and for his hospitality at the Perimeter Institute for Theoretical Physics.
+We would like to thank Chiara Damiolini, Jishen Du, J\"urgen Fuchs, Yi-Zhi Huang, Liang Kong, Robert McRae, Yuto Moriwaki, Ingo Runkel, Christoph Schweigert, Yilong Wang, Lukas Woike, and Hao Zheng for helpful discussions. The first author is grateful to Zhipeng Yang for his warm hospitality and the support of Yunnan Key Laboratory of Modern Analytical Mathematics and Applications (No. 202302AN360007). The second author would like to thank Wenjun Niu for valuable discussions and for his hospitality at the Perimeter Institute for Theoretical Physics.
 
 
 
