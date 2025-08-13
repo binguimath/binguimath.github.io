@@ -1159,10 +1159,14 @@ Recall that $\Fbb\in\{\Rbb,\Cbb\}$. In this section, we let $\Kbb$ be any subfie
 
 
 \begin{df}
-A \textbf{$\Kbb$-algebra} \index{00@Algebra}  is defined to be a ring $\scr A$ (not necessarily having $1$) that is also a $\Kbb$-vector space, such that the vector addition agrees with the ring addition, and the scalar multiplication is compatible with the ring multiplication in the following sense: for all $\lambda\in\Kbb$ and $x,y\in\scr A$, we have
-\begin{align}
-\lambda(xy)=(\lambda x)y=x(\lambda y)
-\end{align}
+A \textbf{$\Kbb$-algebra} \index{00@Algebra}  is defined to be a ring $\scr A$ (not necessarily having $1$) that is also a $\Kbb$-vector space, together with a bilinear map
+\begin{align*}
+\scr A\times\scr A\rightarrow\scr A\qquad (x,y)\mapsto xy
+\end{align*}
+satisfying the associacitity rule
+\begin{align*}
+(xy)z=x(yz)\qquad\text{for all }x,y,z\in \scr A
+\end{align*}
 
 A $\Kbb$-algebra is called \textbf{unital} \index{00@Unital algebra} if $\scr A$, as a ring, has a multiplicative identity $1$. In this case, we write $\lambda\cdot 1$ as $\lambda$ if $\lambda\in\Kbb$. 
 
@@ -2562,7 +2566,7 @@ In fact, Riesz studied $L^2$ spaces several years before introducing the more ge
 As I will explain in the following, Hilbert’s role in this development is best understood through the lens of moment problems.
 
 
-\subsubsection{Moment problems and dual spaces}
+\subsubsection{Moment problems and dual spaces}\label{lb202}
 
 
 Let me begin by introducing moment problems and explaining how they relate to dual spaces---particularly to the characterization of dual spaces in terms of integral representations.
@@ -5315,6 +5319,13 @@ Let $A\in\fk L(\MH,\MK)$. Then $A^*A\in\fk L(\MH)$ is positive, because
 \end{align*}
 \end{eg}
 
+\begin{eg}\label{lb201}
+Let $A\in\fk L(\MH)$, and let $a\geq0$ such that $\Vert A\Vert\leq a$. Then $-a\leq A\leq a$.
+\end{eg}
+
+\begin{proof}
+Since $|\bk{\eta|A\xi}|\leq a\Vert\eta\Vert\cdot\Vert\xi\Vert$, we obtain $-a\Vert\xi\Vert^2\leq\bk{\xi|A\xi}\leq a\Vert\xi\Vert^2$, and hence $-a\leq A\leq a$. 
+\end{proof}
 
 
 \subsubsection{Composition of bounded linear operators and bounded sesquilinear forms}\label{lb152}
@@ -6028,7 +6039,7 @@ By linear algebra, $H$ is positive definite iff $\det H_n>0$ for each $n$; $H$ i
 \end{rem}
 
 
-\begin{df}
+\begin{df}\label{lb203}
 The \textbf{Hankel matrix $\pmb H$} \index{00@Hankel matrix} of $(c_n)_{n\in\Nbb}$ is defined by
 \begin{align*}
 H(m,n)=c_{m+n}
@@ -6157,7 +6168,11 @@ Note that \eqref{eq85} implies
 
 
 \begin{proof}
-Recall that $H$ determines a positive sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$. By Cor. \ref{lb164}, the null space $\scr N=\{f\in\Cbb[x]:\Vert f\Vert^2=0\}$ is a linear subspace of $\Cbb[x]$, and $\bk{\cdot|\cdot}$ descends to an inner product of
+Recall that $H$ determines a positive sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$. By Cor. \ref{lb164}, the null space
+\begin{align}
+\scr N=\{f\in\Cbb[x]:\Vert f\Vert^2=0\}
+\end{align}
+is a linear subspace of $\Cbb[x]$, and $\bk{\cdot|\cdot}$ descends to an inner product of
 \begin{align*}
 V=\Cbb[x]/\scr N
 \end{align*}
@@ -6170,9 +6185,9 @@ If $f\in\scr N$, by Cauchy-Schwarz (cf. Thm. \ref{lb165}) and Rem. \ref{lb166},
 0\leq\bk{xf|xf}=\bk{x^2f|f}\leq\Vert x^2f\Vert\cdot\Vert f\Vert=0
 \end{align*}
 and hence $xf\in\scr N$. Therefore, the above map $T$ descends to a linear map
-\begin{align*}
+\begin{align}\label{eq121}
 T:V\rightarrow V\qquad f+\scr N\mapsto xf+\scr N
-\end{align*}
+\end{align}
 Let $\Omega\in V$ be
 \begin{align*}
 \Omega=1+\scr N
@@ -6217,7 +6232,7 @@ Assume $H\geq0$.
 In this subsection, we explain how the moment problem can be solved when $\dim V<+\infty$. This happens when $H$ is degenerate. In that case, if we let $f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0$ be the polynomial with lowest degree satisfying $\bk{f|f}=0$, then $f(T)\Omega=0$. Then $V$ has basis $\Omega,T\Omega,\cdots,T^{n-1}\Omega$, and $f$ is a minimal polynomial of $T$ on $V$. Conversely, it is also clear that if $\dim V<+\infty$, then $H$ is degenerate.
 
 
-Assume $\dim V<+\infty$. Then $T$ is a Hermitian operator on the finite-dimensional inner product space $V$, and hence can be diagonalized. More precisely, there exists an orthonormal basis $e_1,\dots,e_n$ of $T$ such that $Te_j=\lambda_je_j$ for all $1\leq j\leq n$, where $\lambda_j\in\Rbb$. Write
+Assume $\dim V<+\infty$. Then $T$ is a Hermitian operator on the finite-dimensional inner product space $V$, and hence can be diagonalized. More precisely, there exists an orthonormal basis $e_1,\dots,e_n$ of $V$ such that $Te_j=\lambda_je_j$ for all $1\leq j\leq n$, where $\lambda_j\in\Rbb$. Write
 \begin{align*}
 \Omega=a_1e_1+\cdots+a_ne_n
 \end{align*}
@@ -6333,7 +6348,11 @@ c_{n,m}=\int_I x^md\rho_n
 
 
 \begin{proof}
-We view $T_n:=E_nTE_n$ as a linear operator on $V_n$. By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_{n,0},e_{n,1},\dots$ such that
+We view $E_nTE_n$ as a linear operator $T_n$ on $V_n$, i.e.,
+\begin{align}\label{eq120}
+T_n:=E_nTE_n\big|_{V_n}
+\end{align}
+By Rem. \ref{lb173}, $T_n$ is Hermitian. Therefore, by linear algebra, $V_n$ has an orthonormal basis $e_{n,0},e_{n,1},\dots$ such that
 \begin{align}
 T_ne_{n,i}=\lambda_{n,i}e_{n,i}\qquad\text{for all }i
 \end{align}
@@ -6350,7 +6369,7 @@ where $a_n\in\Cbb$. (So $a_{n,i}=\bk{e_{n,i}|\Omega}$.) Thus
 c_{n,m}=\bk{\Omega|(T_n)^m\Omega}=\sum_i (\lambda_{n,i})^m\cdot |a_{n,i}|^2=\int_I x^md\rho_n
 \end{align*}
 where $\rho_n$ is the unique element in $\Rr(I)$ whose associated finite Borel measure is $\sum_{i=0}^n|a_{n,i}|^2\delta_{\lambda_{n,i}}$, that is,
-\begin{align}
+\begin{align}\label{eq119}
 \rho_n(x)=\sum_{
 \begin{subarray}{c}
 \text{all $i$ satisfying}\\
@@ -6365,7 +6384,7 @@ In particular, by Parseval's identity, we have
 \end{proof}
 
 
-\subsubsection{From discrete spectra to continuous spectra}
+\subsubsection{From discrete spectra to continuous spectra}\label{lb205}
 
 
 We continue to assume Condition \ref{lb178}. In this subsection, we solve the moment problem (i.e., complete the proof of Thm. \ref{lb169}) by proving Thm. \ref{lb177}.
@@ -6889,7 +6908,7 @@ We denote the RHS of \eqref{eq115} by $\Upsilon_n$. We view $(p_n),(q_n),(\Upsil
 \begin{align*}
 \frac{q_{n-1}}{p_n}=\Upsilon_{n-1}
 \end{align*}
-Note that $\Upsilon_n$ is obtained from $\Upsilon_{n-1}$ by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. To prove that the \eqref{eq115} holds for $n$, it suffices to show that $a_np_{n+1}/(z-b_n)$ (resp. $a_nq_n/(z-b_n)$) is also obtained from $p_n$ (resp. $q_{n-1}$) by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. 
+Note that $\Upsilon_n$ is obtained from $\Upsilon_{n-1}$ by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. To prove that \eqref{eq115} holds for $n$, it suffices to show that $a_np_{n+1}/(z-b_n)$ (resp. $a_nq_n/(z-b_n)$) is also obtained from $p_n$ (resp. $q_{n-1}$) by replacing $b_{n-1}$ with $b_{n-1}+\frac{a_{n-1}^2}{z-b_n}$. 
 
 Note that
 \begin{align}\label{eq117}
@@ -6914,6 +6933,89 @@ This proves the desired property for $a_np_{n+1}/(z-b_n)$. A similar argument pr
 
 
 
+\subsection{Application: an alternative proof of the Riesz representation theorem}
+
+
+In Sec. \ref{lb202}, we noted that solving a moment problem and characterizing a dual space are often equivalent tasks. For the Hamburger and Stieltjes moment problems, the interval $I$ is non-compact, so there is no suitable norm on $C(I)$ that would allow us to reformulate the moment problem as a dual space problem. In contrast, the Hausdorff moment problem can be translated into such a characterization because $I$ is compact in this case.
+
+Since we have already solved all types of polynomial moment problems in Thm. \ref{lb169}, it is natural to expect that this theorem also yields an alternative proof of the main part of the Riesz representation Thm. \ref{lb9} for a compact interval
+$I$, namely, the classification of positive linear functionals on 
+$C(I)$. This is exactly what we will do in this section.
+
+For this purpose, we first need to show that positive linear functionals are bounded. This result is essentially an abstraction of the elementary fact that any positive integral operator is bounded whenever the constant function $1$ is integrable. We state this result in a general form:
+
+
+
+\begin{pp}\label{lb204}
+Let $\scr A$ be a unital *-algebra. Define a preorder $\leq$ by the fact that for each $f,g$,
+\begin{align*}
+f\leq g\qquad\Longleftrightarrow \qquad f+x_1^*x_1+\cdots+x_n^*x_n=g\text{ for some }x_1,\dots,x_n\in\scr A
+\end{align*}
+Let $\Lambda:\scr A\rightarrow\Cbb$ be a linear map which is \textbf{positive} in the sense that $\Lambda(x)\geq0$ for each $x\in\scr A$ satisfying $0\leq x$. Suppose that $\lambda\in\Rbb_{\geq0}$ and $f\in\scr A$ satisfy $f^*f\leq\lambda^2$. Then
+\begin{align}\label{eq118}
+|\Lambda(f)|\leq\lambda\cdot\Lambda(1)
+\end{align} 
+\end{pp}
+
+Note that since $\Lambda$ is positive and $0+1^*1=1$, we have $\Lambda(1)\geq0$.
+
+
+\begin{proof}
+Since $f^*f\leq\lambda^2$, and since $\Lambda$ is positive, we have $\Lambda(f^*f)\leq\Lambda(\lambda^2)=\lambda^2\Lambda(1)$. The positivity of $\Lambda$ indicates that
+\begin{gather}
+\scr A\times\scr A\rightarrow\Cbb\qquad (f,g)\mapsto\Lambda(f^*g)
+\end{gather}
+is a positive sesquilinear form. Therefore, by the Cauchy-Schwarz inequality (Thm. \ref{lb165}), we have
+\begin{align*}
+|\Lambda(f)|^2=|\Lambda(1^*f)|^2\leq\Lambda(1)\cdot\Lambda(f^*f)\leq\lambda^2\cdot\Lambda(1)^2
+\end{align*}
+This proves \eqref{eq118}. 
+\end{proof}
+
+
+
+\begin{thm}[\textbf{Riesz representation theorem}]\label{lb206}
+Let $I$ be a compact interval. Then positive linear functionals on $C(I)$ are precisely linear functionals of the form
+\begin{align*}
+C(I)\rightarrow\Cbb\qquad f\mapsto \int_Ifd\rho
+\end{align*}
+where $\rho:I\rightarrow\Rbb_{\geq0}$ is increasing.
+\end{thm}
+
+Recall from Thm. \ref{lb72} that replacing $\rho$ with its right-continuous normalization does not change the values of the Stieltjes integrals. Therefore, in the above theorem, one may assume that $\rho$ is right-continuous.
+
+\begin{proof}
+Clearly, any increasing function $\rho:I\rightarrow\Rbb_{\geq0}$ defines a positive linear functional. Conversely, let $\Lambda:C(I)\rightarrow\Cbb$ be a positive linear functional. We assume WLOG that $I=[0,1]$. Define a sequence $(c_n)_{n\in\Nbb}$ in $\Rbb$ by
+\begin{align*}
+c_n=\Lambda(x^n)
+\end{align*}
+Then, in view of Def. \ref{lb203}, the Hankel matrix $H$ of $(c_n)$ determines the sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$ satisfying $\bk{1|f}=\Lambda(f)$ for all $f\in\Cbb[x]$, and hence
+\begin{align*}
+\bk{f|g}=\bk{1|f^*g}=\Lambda(f^*g)
+\end{align*}
+for all $f,g\in\Cbb[x]$. Therefore, the positivity of $\Lambda$ implies that $\bk{\cdot|\cdot}$ is positive. Moreover, for each $f\in\Cbb[x]$ we have
+\begin{align*}
+\bk{xf|f}=\Lambda(xf^*f)\geq0\qquad \bk{(1-x)f|f}=\Lambda((1-x)f^*f)\geq0
+\end{align*}
+because $xf^*f$ and $(1-x)f^*f$ belong to $C([0,1],\Rbb_{\geq0})$. Therefore, $(c_n)$ satisfies the assumption of the Hausdorff moment problem. Hence, by Thm. \ref{lb169}, there exists an increasing $\rho:[0,1]\rightarrow\Rbb_{\geq0}$ such that $c_n=\int_Ix^nd\rho$ for all $n$, and hence
+\begin{align*}
+\Lambda(f)=\int_Ifd\rho
+\end{align*}
+for all $f\in\Cbb[x]$. By Prop. \ref{lb204}, $\Lambda$ is bounded, i.e., continuous. Therefore, since the integral operator defined by $\rho$ is continuous on $C(I)$, and since polynomials are dense in $C(I)$ (by Stone-Weierstrass), we conclude that $\Lambda(f)=\int_Ifd\rho$ holds for all $f\in C(I)$.
+\end{proof}
+
+
+\begin{rem}
+The above proof of the Riesz representation theorem aligns perfectly with Table \ref{tb4}. The reason is that the core of the proof of Thm. \ref{lb206} is the solution of the polynomial moment problem, namely, the proof of Thm. \ref{lb169}. Our proof of Thm. \ref{lb169} in Sec. \ref{lb188} (especially Subsec. \ref{lb205}) is an excellent illustration of Table \ref{tb4}: Principle \ref{lb23} is verified by approximating the linear functional
+\begin{gather*}
+\Lambda:\Cbb[x]\rightarrow\Cbb\qquad x^m\mapsto c_m
+\end{gather*}
+with a sequence $(\rho_n)$ of increasing functions (or a subsequence thereof), where each $\rho_n$ (defined in \eqref{eq119}) has finite range. The equivalence between pointwise convergence of functions and convergence of moments---that is, the equivalence of the two shaded areas in Table \ref{tb4}---is captured by Thm. \ref{lb92}, which is invoked in Def. \ref{lb175} in the process of solving the polynomial moment problem.
+
+It is worth noting that our use of $(\rho_n)$ to approximate $\Lambda$ is an instance of approximating the infinite by the finite. This is not only because each $\rho_n$ has finite range, but also because the definition of $\rho_n$ arises from the diagonalization of the finite-rank operator $T_n$ given in \eqref{eq120}.  In other words, approximating $\Lambda$ by $\rho_n$ is, at its core, an approximation of $T$ (described in Thm. \ref{lb167}) by $T_n$.
+
+Riesz, in contrast, proved the Riesz representation theorem using the method of linear extension rather than finite approximation. As we will discuss in Ch. \ref{lb181}, Riesz's treatment of the Riesz representation theorem and the spectral theorem of bounded self-adjoint operators marked a paradigm shift in functional analysis: the transition from finite approximation to linear extension. This paradigm shift will be one of the key themes of this course.    \hqed
+\end{rem}
 
 
 
@@ -6921,7 +7023,6 @@ This proves the desired property for $a_np_{n+1}/(z-b_n)$. A similar argument pr
 
 
 
-\hypertarget{current}{}
 
 
 
@@ -6932,12 +7033,34 @@ This proves the desired property for $a_np_{n+1}/(z-b_n)$. A similar argument pr
 
 
 
+\subsection{The spectral theorem of Hilbert}
+
+After Stieltjes' pioneering work on continued fractions \cite{Sti94}, the Stieltjes integral once again came into prominence with Hilbert’s spectral theorem for bounded symmetric bilinear forms \cite{Hil06}. It is fair to say that without Hilbert's discovery of the spectral theorem---and its subsequent refinement by later mathematicians, most notably F. Riesz---the Stieltjes integral might never have become the central and influential concept it is today. The reason modern readers are often unfamiliar with the Stieltjes integral is simply that its theory has been fully absorbed into modern measure theory. One should not forget that Stieltjes integrals are equivalent to integrals over intervals with respect to finite Borel measures.
+
+
+The formulation of the spectral theorem for bounded self-adjoint operators on Hilbert spaces has undergone significant evolution throughout history. In this chapter, we will encounter four versions: Hilbert's original version, Riesz's version, the Borel functional calculus version, and the multiplication operator version. The relationships among these formulations are not immediate, nor are they obviously equivalent. In fact, to meaningfully compare them, we must take a practical perspective, that is, consider the problems that these versions can solve or help illuminate. Among them, the Borel functional calculus version and the multiplication operator version are the more modern and practically useful formulations. However, to fully appreciate their significance, we must not overlook their historical development, particularly Hilbert's and Riesz's versions, as well as the background of the polynomial moment problem discussed in the previous chapter.
+
+
+
+
+In \cite{Hil06}, Hilbert introduced the Hilbert space $l^2(\Zbb)$ and proved the spectral theorem for bounded Hermitian forms on it \cite[Satz 31]{Hil06}. We first present a formulation of this theorem, slightly adapted to modern terminology, and then provide some comments.
+
+\begin{thm}
+Let $V$ be a separable inner product space, and let $\omega\in\Ses(V)$ be Hermitian. Choose $a\geq0$ such that $\Vert\omega\Vert\leq a$.
+\end{thm}
 
 
 
 
 
 
+
+
+
+
+
+
+\hypertarget{current}{}
 
 
 \printindex	
