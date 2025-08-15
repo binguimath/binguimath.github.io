@@ -890,7 +890,7 @@ Now, for each $n$, and for each $\alpha\geq\gamma_n$ and $k\geq n$, we have $d(x
 \end{proof}
 
 
-\begin{pp}
+\begin{pp}\label{lb217}
 $X$ is Hausdorff iff every net in $X$ has at most one limit.
 \end{pp}
 
@@ -919,14 +919,19 @@ Let $f:X\rightarrow Y$ be a map. Let $x\in X$. Then the following are equivalent
 \begin{enumerate}
 \item[(1)] $f$ is continuous at $x$, that is, for each $V\in\Nbh_Y(f(x))$, there exists $U\in\Nbh_X(x)$ that is contained in $f^{-1}(V)$.
 \item[(2)] For each net $(x_\alpha)$ in $X$ converging to $x$, the net $f(x_\alpha)$ converges to $f(x)$.
+\item[(3)] For each net $(x_\alpha)$ in $X\setminus\{x\}$ converging to $x$, the net $f(x_\alpha)$ converges to $f(x)$.
 \end{enumerate}
 \end{thm}
 
 
 \begin{proof}
-Assume (1). Let $(x_\alpha)$ be a net in $X$ converging to $x$. Then for any $V\in\Nbh(f(x))$, by choosing $U\in\Nbh(x)$ contained in $f^{-1}(V)$, we have that $(x_\alpha)$ is eventually in $U$, and hence $(f(x_\alpha))$ is eventually in $V$. Therefore $f(x_\alpha)\rightarrow f(x)$. This proves (2).
+(1)$\Rightarrow$(2): Assume (1). Let $(x_\alpha)$ be a net in $X$ converging to $x$. Then for any $V\in\Nbh(f(x))$, by choosing $U\in\Nbh(x)$ contained in $f^{-1}(V)$, we have that $(x_\alpha)$ is eventually in $U$, and hence $(f(x_\alpha))$ is eventually in $V$. Therefore $f(x_\alpha)\rightarrow f(x)$. This proves (2).
 
-Assume $\neg$(1). Then there exists $V\in\Nbh(f(x))$ such that any $U\in\Nbh(x)$ is not contained in $f^{-1}(V)$, i.e., there exists $x_U\in U$ not in $f^{-1}(V)$. Then $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X$ that is always outside $V$. Therefore, $(f(x_U))_{U\in\Nbh_X(x)}$ is not eventually inside $V$. Thus $f(x)$ is not a limit of $(f(x_U))_{U\in\Nbh_X(x)}$. Therefore, (2) is not true.
+(2)$\Rightarrow$(3): Obvious.
+
+(1)$\Rightarrow$(3): Note that $f$ is continuous at any discrete point, i.e., any point $x$ such that $\{x\}$ is open in $X$. Therefore, it suffices to assume that $\{x\}$ is not open. Let us assume that (1) is not true, and prove that (3) is not true.
+
+Since (1) is not true, there exists $V\in\Nbh(f(x))$ such that any $U\in\Nbh(x)$ is not contained in $f^{-1}(V)$, and hence $U\setminus\{x\}$ is not contained in $f^{-1}(V)$. Since $\{x\}$ is not open, the set $U\setminus\{x\}$ is not empty. Therefore, we can choose $x_U\in U\setminus\{x\}$ such that $f(x_U)\notin V$. It follows that $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X\setminus\{x\}$ converging to $x$ that is always outside $V$. Thus $f(x)$ is not a limit of $(f(x_U))_{U\in\Nbh_X(x)}$. Therefore, (3) is not true.
 \end{proof}
 
 
@@ -957,11 +962,18 @@ In other words, \uwave{topologies are determined by net convergence}.
 Apply Cor. \ref{lb211} to the identity map of $X$.
 \end{proof}
 
+\begin{df}
+Recall that a topological space $X$ is called \textbf{first-countable} \index{00@First-countable} if for each $x\in X$, there exists a sequence $(U_n)_{n\in\Zbb_+}$ in $\Nbh_X(x)$ such that $\{U_n:n\in\Zbb_+\}$ is cofinal in $\Nbh_X(x)$ (i.e., for each $V\in\Nbh_X(x)$ there exists $n$ such that $U_n\subset V$). Moreover, once we have such $(U_n)_{n\in\Zbb_+}$, by replacing $U_n$ with $U_1\cap\cdots\cap U_n$, we may assume that $U_1\supset U_2\supset\cdots$. Therefore, $X$ being first-countable means that for each $x\in X$, the net $(U)_{U\in\Nbh_X(x)}$ has a subnet that is also a sequence.
+\end{df}
 
-\begin{rem}
-In Prop. \ref{lb209}, Thm. \ref{lb210}, and Cor. \ref{lb211} and \ref{lb212}, if all the topologies involved are assumed to be metrizable, then the statements remain valid when nets are replaced by sequences. We leave the proof to the readers.
 
-For example, Cor. \ref{lb212} can be modified as follows: If $\MT_X$ and $\MT'_X$ are two metrizable topologies on $X$, then $\MT_X=\MT_X'$ iff any sequence $(x_n)$ converges to $x$ under $\MT_X$ iff $(x_n)$ converges to $x$ under $\MT'_X$. \hqed
+\begin{rem}\label{lb221}
+In Prop. \ref{lb217}, Prop. \ref{lb209}, Thm. \ref{lb210}, Cor. \ref{lb211}, and Cor. \ref{lb212}, if all the topologies involved are assumed to be first-countable, then the statements remain valid when nets are replaced by sequences. We leave the proof to the readers. 
+
+For example, Cor. \ref{lb212} can be modified as follows: If $\MT_X$ and $\MT'_X$ are two first-countable topologies on $X$, then $\MT_X=\MT_X'$ iff any sequence $(x_n)$ converges to $x$ under $\MT_X$ iff $(x_n)$ converges to $x$ under $\MT'_X$.
+
+
+Note that in Thm. \ref{lb210}, only the domain $X$ needs to be first-countable; the codomain $Y$ does not. \hqed
 \end{rem}
 
 
@@ -1039,25 +1051,184 @@ Let us prove that $J$ is directed: Suppose that $(\alpha_1,U_1)$ and $(\alpha_2,
 The map $(\alpha,U)\in J\mapsto \alpha\in I$ is clearly increasing; its range is cofinal, since $(\alpha,X)\in J$ for each $\alpha\in I$. Therefore, $(x_{\alpha,U})_{(\alpha,U)\in J}$ is a subnet of $(x_\alpha)$, which clearly converges to $x$. This proves (1).
 \end{proof}
 
+\begin{thm}\label{lb218}
+Assume that $X$ is first-countable, and let $(x_n)$ be a sequence in $X$. Let $x\in X$. Then $x$ is a cluster point of $(x_n)$ iff $(x_n)$ has a subsequence converging to $x$.
+\end{thm}
 
 
-\subsubsection{Compactness}
+\begin{proof}
+We leave the proof to the reader as an exercise.
+\end{proof}
 
+
+\subsubsection{First-countable nets}
+
+
+\begin{df}
+Let $(I,\leq)$ be a directed set. Let $\infty_I$ (often abbreviated to $\infty$) be a new symbol not in $I$. Then
+\begin{align*}
+I^*=I\cup\{\infty_I\}
+\end{align*}
+is also a directed set if we extend the preorder $\leq$ of $I$ to $I^*$ by setting
+\begin{align*}
+\alpha\leq\infty_I\qquad(\forall\alpha\in I^*)
+\end{align*}
+For each $\alpha\in I$, let
+\begin{align*}
+I^*_{\geq\alpha}=\{\beta\in I^*:\beta\geq\alpha\}
+\end{align*}
+The \textbf{standard topology} \index{00@Topology of $\mc I^*=I\cup\{\infty_I\}$ where $I$ is an index set} on $I^*$ is defined to be the one induced by the basis
+\begin{align}\label{eq127}
+\mc B=\big\{\{\alpha\}:\alpha\in I \big\}\cup \big\{I^*_{\geq\alpha}:\alpha\in I \big\}
+\end{align}
+\end{df}
+
+
+\begin{rem}\label{lb222}
+Suppose that $(x_\alpha)_{\alpha\in I}$ is a net in a topology space $X$. Let $x_\infty\in X$. Extend $(x_\alpha)$ to a function
+\begin{align*}
+x:I^*\rightarrow X\qquad \alpha\mapsto x_\alpha,\quad \infty\mapsto x_\infty
+\end{align*}
+The following facts are easy to check:
+\begin{enumerate}
+\item $x$ is continuous at every point of $I$.
+\item $x$ is continuous at $\infty$ iff the net $(x_\alpha)_{\alpha\in I}$ converges to $x_\infty$.
+\end{enumerate}
+In particular, $(x_\alpha)_{\alpha\in I}$ converges to $x_\infty$ iff the function $x:I^*\rightarrow X$ is continuous.
+\end{rem}
 
 
 
 \begin{df}
-Let $(x_\alpha)_{\alpha\in I}$ be a net in the compact Hausdorff space $\ovl\Rbb$. Let $S$ be the set of cluster points of $(x_\alpha)$ in $\ovl\Rbb$. Recall that $S$ is a closed subset by Thm. \ref{lb213}. For each $\alpha\in I$, define  \index{00@Limit inferior and superior}
-\begin{gather}
-A_\alpha=\inf\{x_\beta:\beta\geq \alpha \}\qquad  B_\alpha=\sup\{x_\beta:\beta\geq  \alpha \}
-\end{gather}
-Then $(A_\alpha)$ is increasing and $(B_\alpha)$ is decreasing. So they converge in $\ovl\Rbb$. Define \index{liminfsup@$\liminf,\limsup$}
-\begin{subequations}
-\begin{gather}
-\liminf_{\alpha\in I}x_\alpha=\sup\{A_\alpha:\alpha\in I\}=\lim_{\alpha\in I} A_\alpha \\
-\limsup_{\alpha\in I}x_\alpha=\inf\{B_\alpha:\alpha\in I\}=\lim_{\alpha\in I} B_\alpha
-\end{gather}
-\end{subequations}
+A directed set $I$ is called \textbf{first countable} \index{00@First countable directe sets and nets} if one of the following equivalent conditions holds:
+\begin{enumerate}[label=(\arabic*)]
+\item The standard topology on $I^*$ is first-countable.
+\item $I$ has a countable cofinal subset.
+\item The net $(\alpha)_{\alpha\in I}$ has a subnet which is also a sequence. (In other words, there is an increasing sequence in $I$ converging to $\infty$.) 
+\end{enumerate} 
+If $(x_\alpha)_{\alpha\in I}$ is a net in a set $X$ such that the index set $I$ is first-countable, we also say that $(x_\alpha)_{\alpha\in I}$ is a \textbf{first-countable net}. 
+\end{df}
+
+\begin{proof}[Proof of equivalence]
+(1)$\Rightarrow$(2): Assume (1). Then $\Nbh_{I^*}(\infty)$ has a countable cofinal subset, which (due to \eqref{eq127}) can be chosen to be of the form $I_{\geq\alpha_1}^*,I_{\geq\alpha_2}^*,\dots$ where $(\alpha_n)_{n\in\Zbb_+}$ is a sequence in $I$. Since $(I_{\geq\alpha_n}^*)_{n\in\Zbb_+}$ is cofinal in $\Nbh_{I^*}(\infty)$, for each $\beta\in I$ there exists $n$ such that $I_{\geq\alpha_n}^*\subset I_{\geq\beta}^*$, and hence $\alpha_n\geq\beta$. This proves that $\{\alpha_n:n\in\Zbb_+\}$ is a countable cofinite subset of $I$. Hence (2) is proved.
+
+(2)$\Rightarrow$(1): Assume (2). For every $\alpha\in I$, the direct set $\Nbh_{I^*}(\alpha)$ clearly has a countable cofinal subset, namely $\{\{\alpha\}\}$. Let $(\alpha_n)$ be a countable cofinal sequence in $I$. One checks easily that $(I_{\geq\alpha_n}^*)_{n\in\Zbb_+}$ is a cofinal sequence in $\Nbh_{I^*}(\infty)$. This proves (1).
+
+(3)$\Rightarrow$(2): Obvious.
+
+(2)$\Rightarrow$(3): Let $(\alpha_n)_{n\in\Zbb_+}$ be a cofinal sequence in $I$. Since $I$ is directed, by increasing $\alpha_2,\alpha_3,\dots$ successively, we can assume that $(\alpha_n)_{n\in\Zbb_+}$ is increasing. Clearly $(\alpha_n)$ converges to $\infty$.
+\end{proof}
+
+
+\begin{eg}
+If $X$ is a topological space, then $X$ is first-countable iff $\Nbh_X(x)$ is a first-countable directed set for each $x\in X$.
+\end{eg}
+
+
+\begin{eg}
+If $I,J$ are first-countable directed sets, then the directed set $I\times J$ is also first-countable. In particular, double sequences (i.e., nets of the form $(x_{m,n})_{m,n\in\Zbb_+}$) are first-countable nets.
+\end{eg}
+
+
+
+
+\begin{thm}\label{lb223}
+Let $(x_\alpha)_{\alpha\in I}$ be a first-countable net in a topological space $X$. Let $x_\infty\in X$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $(x_\alpha)$ converges to $x_\infty$.
+\item[(2)] For each sequence $(\alpha_n)_{n\in\Zbb_+}$ in $I$ converging to $\infty$, the sequence $(x_{\alpha_n})_{n\in\Zbb_+}$ converges to $x_\infty$.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+This follows immediately from Thm. \ref{lb210} and Rem. \ref{lb212}.
+\end{proof}
+
+With the help of Thm. \ref{lb223}, one can easily generalize the MCT, the DCT, and Fatou's lemma from sequences to first-countable nets of functions. We leave the details to the reader.
+
+\begin{thm}[\textbf{Monotone convergence theorem (MCT)}] \index{00@Monotone convergence theorem}\label{lb224}
+Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be an increasing first-countable net of measurable functions $X\rightarrow\ovl\Rbb_{\geq0}$. Let $f:X\rightarrow\ovl\Rbb_{\geq0}$ be the pointwise limit of $(f_\alpha)$. Then $f$ is measurable, and
+\begin{align*}
+\lim_\alpha\int_Xf_\alpha d\mu=\int_X fd\mu
+\end{align*}
+\end{thm} 
+
+\begin{thm}[\textbf{Dominated convergence theorem (DCT)}] \index{00@Dominated convergence theorem}\label{lb225}
+Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be an increasing first-countable net of measurable functions $X\rightarrow\Cbb$. Assume that $(f_\alpha)$ converges pointwise to a measurable function $f:X\rightarrow\Cbb$. Suppose that there exists an integrable function $g:X\rightarrow\ovl\Rbb_{\geq0}$ such that $|f_\alpha|\leq g$ for all $\alpha$. Then $f_\alpha,f$ are integrable, and 
+\begin{align*}
+\lim_\alpha\int_Xf_\alpha d\mu=\int_X fd\mu
+\end{align*}
+\end{thm}
+
+Note that without assuming the monotonicity of $(f_\alpha)$, the measurability of the limit function $f$ must be included as an assumption.
+
+\begin{thm}[\textbf{Fatou's lemma}]\index{00@Fatou's lemma}\label{lb226}
+Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be a first-countable net of measurable functions $X\rightarrow\ovl\Rbb_{\geq0}$. Assume that $(f_\alpha)$ converges pointwise to a measurable function $f:X\rightarrow\ovl\Rbb_{\geq0}$. Then
+\begin{align*}
+\liminf_\alpha\int_Xf_\alpha d\mu\geq\int_X fd\mu
+\end{align*}
+\end{thm}
+
+See Def. \ref{lb228} for the definition of $\liminf$.
+
+
+
+
+
+
+
+\subsection{Nets and compactness}
+
+\subsubsection{Compactness and cluster points}
+
+
+\begin{pp}\label{lb215}
+Let $X$ be a topological space. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $X$ is compact.
+\item (\textbf{Increasing chain property}) If $(U_\mu)_{\mu\in I}$ is an increasing net of open subsets of $X$ satisfying $\bigcup_{\mu\in I}U_\mu=X$, then $U_\mu=X$ for some $\mu$.
+\item (\textbf{Decreasing chain property}) If $(E_\mu)_{\mu\in I}$ is a decreasing net of nonempty closed subsets of $X$, then $\bigcap_{\mu\in I}E_\mu\neq\emptyset$.
+\end{enumerate}
+\end{pp}
+
+Here, ``increasing net" means $U_\mu\subset U_\nu$ if $\mu\leq \nu$, and ``decreasing net" means the opposite.
+
+\begin{proof}
+(1)$\Rightarrow$(2): Assume (1). Then $X=\bigcup_\mu U_\mu$ is an open cover of $X$. So, by the compactness of $X$, we have $X=U_{\mu_1}\cup\cdots\cup U_{\mu_n}$ for some $\mu_1,\dots,\mu_n\in I$. Choose $\mu\in I$ which is $\geq \mu_1,\dots,\mu_n$. Then $X=U_\mu$.
+
+(2)$\Rightarrow$(1): Assume (2). Let $X=\bigcup_{\alpha\in\scr A} W_\alpha$ be an open cover of $X$. Let $I=\fin(2^{\scr A})$. For each $\mu=\{\alpha_1,\dots,\alpha_n\}\in I$, let $U_\mu=W_{\alpha_1}\cup\cdots\cup W_{\alpha_n}$. Then $(U_\mu)_{\mu\in I}$ is an increasing net of open sets covering $X$. Thus, by (2), we have $U_\mu=X$ for some $\mu$. This proves (1).
+
+(2)$\Leftrightarrow$(3): If we let $E_\mu=X\setminus U_\mu$, then (2) says that if $(E_\mu)$ is a decreasing net of closed sets whose intersection is $\emptyset$, then $E_\mu=\emptyset$ for some $\mu$. This is the contraposition of (3).
+\end{proof}
+
+
+\begin{thm}\label{lb216}
+Let $X$ be a topological space. Then $X$ is compact iff every net in $X$ has at least one cluster point.
+\end{thm}
+
+
+\begin{proof}
+Assume that $X$ is compact. Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$. Define $F_\alpha$ by 
+\begin{align}
+F_\alpha=\{x_\beta:\beta\in I,\beta\geq\alpha \}\label{eq126}
+\end{align}
+Then $(\ovl F_\alpha)_{\alpha\in I}$ is a decreasing net of nonempty closed subsets. So $\bigcap_\alpha\ovl F_\alpha$ is nonempty by the decreasing chain property (cf. Prop. \ref{lb215}). By Thm. \ref{lb213}, $(\ovl F_\alpha)_{\alpha\in I}$ is the set of cluster points of $(x_\alpha)$. Therefore, $(x_\alpha)$ has a cluster point.
+
+
+Conversely, assume that every net of $X$ has a cluster point. By Prop. \ref{lb215}, to prove that $X$ is compact, it suffices to prove that $X$ satisfies the decreasing chain property. Let $(E_\alpha)_{\alpha\in I}$ be a decreasing net of nonempty closed subsets of $X$. For each $\alpha$ we choose $x_\alpha\in E_\alpha$, which gives a net $(x_\alpha)_{\alpha\in I}$ in $X$. The fact that $(E_\alpha)$ is decreasing implies that $F_\alpha\subset E_\alpha$ if we let $F_\alpha=\eqref{eq126}$. Thus, the closure $\ovl F_\alpha$ is a subset of $E_\alpha$ since $E_\alpha$ is closed. 
+
+By Thm. \ref{lb213},  $\bigcap_{\alpha\in I}\ovl F_\alpha$ is the set of cluster points of $(x_\alpha)$, which is non-empty by assumption. Therefore, $\bigcap_\alpha E_\alpha$ is nonempty.
+\end{proof}
+
+
+\begin{df}
+Recall that $X$ is called
+\begin{itemize}
+\item \textbf{separable} \index{00@Separable space} if $X$ has a countable dense subset.
+\item \textbf{second countable} \index{00@Second countable} if the topology $\MT_X$ has a countable basis.
+\item \textbf{Lindel\"of} \index{00@Lindel\"of space} if every open cover of $X$ has a countable subcover. 
+\end{itemize}
 \end{df}
 
 
@@ -1067,8 +1238,142 @@ Then $(A_\alpha)$ is increasing and $(B_\alpha)$ is decreasing. So they converge
 
 
 
-\hypertarget{current}{}
 
+
+
+
+
+
+
+
+
+\begin{eg}
+Any subspace of a second countable space is second countable.
+\end{eg}
+
+
+\begin{pp}\label{lb220}
+We have
+\begin{align*}
+\text{separable}\quad\Longleftarrow\quad\text{second countable}\quad\Longrightarrow\quad\text{Lindel\"of}
+\end{align*}
+Moreover, for first countable spaces, we have
+\begin{align*}
+\text{separable}\quad\Longleftrightarrow\quad\text{second countable}
+\end{align*}
+\end{pp}
+
+
+\begin{proof}
+Step 1. Suppose that $X$ is second countable. Let $\{U_1,U_2,\dots\}$ be a countable basis of $\MT_X$. We may assume WLOG that each $U_n$ is nonempty. Choose $x_n\in U_n$. Then $\{x_n:n\in\Zbb_+\}$ is a countable dense subset of $X$. Therefore, $X$ is separable. Let $\MW$ be an open cover of $X$. For each $n$, let $W_n$ be any member of $\MW$ containing $U_n$; if no such $W_n$ exists then we set $W_n=\emptyset$. By the fact that $\{U_1,U_2,\dots\}$ is a basis of $\MT_X$, one easily shows that $\bigcup_nW_n=X$. Therefore, $(W_n)$ is a countable subcover of $\MW$. This proves that $X$ is Lindel\"of.
+
+Step 2. Suppose that $X$ is first countable and separable. Let $\{x_1,x_2,\dot\}$ be a dense subset of $X$. For each $n$, let $U_{n,1},U_{n,2},\dots$ be a cofinal sequence in $\Nbh_X(x_n)$. Then $(U_{n,k})_{n,k\in\Zbb_+}$ is a countable basis of $\MT_X$. This proves that $X$ is second countable.
+\end{proof}
+
+
+
+\begin{df}
+Recall that a topological space $X$ is called \textbf{sequentially compact} \index{00@Sequential compact spaces} if every sequence in $X$ has a convergent subsequence. By Thm. \ref{lb218}, if $X$ is first-countable (in particular, if $X$ metrizable or second-countable), then $X$ is sequentially compact iff every sequence in $X$ has a cluster point.
+\end{df}
+
+
+\begin{thm}\label{lb219}
+Let $X$ be a second-countable topological space. Then $X$ is compact iff $X$ is sequentially compact.
+\end{thm}
+
+
+\begin{proof}
+Similar to the proof of Thm. \ref{lb216}, one shows that every sequence $(x_n)$ has a cluster point, (i.e., $\bigcap_n\ovl{x_k:k\geq n}$ is nonempty, cf. Thm. \ref{lb213}) iff the intersection of a decreasing \textit{sequence} of non-empty closed subsets of $X$ is non-empty. The latter condition is equivalent to that $X$ is \textbf{countably compact}, that is, every countable open cover of $X$ has a finite subcover. Since $X$ is Lindel\"of (Prop. \ref{lb220}), compactness and countable compactness are equivalent.
+\end{proof}
+
+
+
+\begin{co}
+Let $X$ be a metric space. Then $X$ is compact iff $X$ is sequentially compact.
+\end{co}
+
+\begin{proof}
+By Thm. \ref{lb219} and Prop. \ref{lb220}, it suffices to prove that $X$ is separable. Note that for each $\eps>0$, there exists a finite set $E_\eps\subset X$ such that the distance from any point of $X$ to $E_\eps$ is $\leq \eps$. (Otherwise, one can find a sequence $(x_n)_{n\in\Zbb_+}$ such that for each $n$, the distance from $x_{n+1}$ to $\{x_1,\dots,x_n\}$ is $>1/\eps$. Then any subsequence of $(x_n)$ is not a Cauchy sequence, and hence does not converge.) Then $\bigcup_{n\in\Zbb_+}E_{1/n}$ is a countable dense subset of $X$.
+\end{proof}
+
+
+
+
+\subsubsection{$\pmb\liminf$ and $\pmb\limsup$}
+
+
+
+\begin{thm}\label{lb227}
+Let $(x_\alpha)$ be a net in a compact Hausdorff space $X$, and let $x\in X$. The following are equivalent.
+\begin{enumerate}
+\item[(1)] $(x_\alpha)$ converges to $x$.
+\item[(2)] $x$ is the only cluster point of $(x_\alpha)$.
+\end{enumerate}
+\end{thm}
+
+In other words, $(x_\alpha)$ converges to $x$ iff any convergent subnet converges to $x$.
+
+\begin{proof}
+(1)$\Rightarrow$(2): This is obvious even without assuming that the Hausdorff space $X$ is compact.
+
+$\neg$(1)$\Rightarrow$$\neg$(2): Assume that (1) is not true. Since $(x_\alpha)$ does not converge to $x$, there exists $U\in\Nbh_X(x)$ such that $(x_\alpha)$ is frequently not in $U$. Therefore, $J=\{\alpha\in I:x_\alpha\notin U\}$ is a cofinal subset of $I$. It follows that $(x_\alpha)_{\alpha\in J}$ is a subnet of $(x_\alpha)_{\alpha\in I}$ that is always outside $U$.
+
+Since $X$ is compact, by Thm. \ref{lb216}, $(x_\alpha)_{\alpha\in J}$ has a subnet $(x_\mu)_{\mu\in K}$ converging to some $y\in X$. Then $y\notin U$, since $(x_\mu)$ is always not in $U$. Therefore, $x\neq y$, and $y$ is a cluster point of $(x_\alpha)$. Hence (2) is not true.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{df}\label{lb228}
+Let $(x_\alpha)_{\alpha\in I}$ be a net in the compact Hausdorff space $\ovl\Rbb$. Let $S$ be the set of cluster points of $(x_\alpha)$ in $\ovl\Rbb$. Recall that $S$ is a closed subset by Thm. \ref{lb213}, and is non-empty by Thm. \ref{lb216}. Define \index{liminfsup@$\liminf,\limsup$}
+\begin{align}
+\liminf_{\alpha\in I}x_\alpha=\inf S\qquad \limsup_{\alpha\in I}x_\beta=\sup S
+\end{align}
+Since $S$ is closed, $\liminf_{\alpha\in I}x_\alpha$ and $\limsup_{\alpha\in I}x_\beta$ are both cluster points of $(x_\alpha)$. Therefore, they are the smallest and the largest cluster points of $(x_\alpha)$, respectively.
+\end{df}
+
+
+\begin{rem}
+Let $(x_\alpha)$ be a net in $\ovl\Rbb$. Clearly $\liminf_\alpha x_\alpha\leq\limsup_\alpha x_\alpha$. By Thm. \ref{lb227}, if $x\in\ovl\Rbb$, then
+\begin{align}
+\lim_\alpha x_\alpha=x\qquad\Longleftrightarrow\qquad \liminf_\alpha x_\alpha=x=\limsup_\alpha x_\alpha
+\end{align}
+\end{rem}
+
+
+
+\begin{pp}
+Let $(x_\alpha)$ be a net in $\ovl\Rbb$. For each $\alpha\in I$, define  
+\begin{gather}
+A_\alpha=\inf\{x_\beta:\beta\geq \alpha \}\qquad  B_\alpha=\sup\{x_\beta:\beta\geq  \alpha \}
+\end{gather}
+Then $(A_\alpha)$ is increasing and $(B_\alpha)$ is decreasing; in particular, they converge in $\ovl\Rbb$. Moreover, we have
+\begin{align}\label{eq128}
+\lim_{\alpha\in I}A_\alpha=\liminf_{\alpha\in I}x_\alpha\qquad \lim_{\alpha\in I}B_\alpha=\limsup_{\alpha\in I}x_\alpha
+\end{align}
+\end{pp}
+
+\begin{proof}
+The monotonicities of $(A_\alpha)$ and $(B_\alpha)$ are obvious. Let $E_\alpha=\{x_\beta:\beta\geq\alpha\}$. Then $B_\alpha=\sup E_\alpha=\sup \ovl{E_\alpha}$. By Thm. \ref{lb213}, we have $\limsup_\alpha x_\alpha=\sup\bigcap_\alpha \ovl{E_\alpha}$. Since $\bigcap_\alpha \ovl{E_\alpha}\subset \ovl{E_\beta}$, we have $\limsup_\alpha x_\alpha\leq \sup \ovl E_\beta=B_\beta$. Therefore $\limsup x_\alpha\leq\lim B_\alpha$. 
+
+
+For each open interval $U$ in $\ovl\Rbb$ containing $\lim B_\alpha$, the net $(B_\alpha)_{\alpha\in I}=(\sup E_\alpha)_{\alpha\in I}$ must be eventually in $U$. From the definition of $E_\alpha$, we see that $(x_\alpha)$ is frequently in $U$. It follows from Thm. \ref{lb213} that $\lim B_\alpha$ is a cluster point of $(x_\alpha)$. Therefore $\limsup x_\alpha\geq\lim B_\alpha$. This proves one of the two relations in \eqref{eq128}; the other one can be proved in the same way.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\hypertarget{current}{}
 
 
 \subsection{Review of important facts in point-set topology}
@@ -1649,7 +1954,7 @@ d(x,y)=\sum_{n\in\Zbb_+}2^{-n}|f_n(x)-f_n(y)|\qquad\text{for each }x,y\in X
 The Stone-Weierstrass theorem will be used in the direction (c)$\Rightarrow$(d). The equivalence of (a,b,c) does not rely on the Stone-Weierstrass theorem.
 
 \begin{proof}
-(a)$\Rightarrow$(b): By .\\[-1ex]
+(a)$\Rightarrow$(b): Fix a metric on $X$. By the compactness, for each $n\in\Zbb_+$, $X$ is covered by finitely many open balls with radius $1/n$. One checks easily that the collection of all these open balls for all $n\in\Zbb_+$ is a countable basis of the topology of $X$.\\[-1ex]
 
 (b)$\Rightarrow$(c): Since $X$ is second countable, we can choose an infinite countable base $(U_n)_{n\in\Zbb}$ of the topology. For each $m,n\in\Zbb_+$, if $U_n\Subset U_m$, we choose $f_{m,n}\in C_c(U_m,[0,1])\subset C_c(X,[0,1])$ such that $f|_{\ovl U_n}=1$ (which exists by Urysohn's lemma); otherwise, we let $f_{m,n}=0$. 
 
@@ -7104,7 +7409,7 @@ we see that $(p_n)$ is uniquely determined by $(a_n)$ and $(b_n)$ through \eqref
 \begin{proof}[\textbf{Proof of Thm. \ref{lb192}}]
 Step 1. Given $(c_n)$, let $J$ be the matrix representation of $T$ with respect to the orthonormal polynomials $(p_n)$. Since $\deg p_k=k$, we have
 \begin{align}
-xp_n(x)=a_np_{n+1}(x)+ b_n x^n+? x^{n+1}+\cdots+? x+?
+xp_n(x)=a_np_{n+1}(x)+ b_n x^n+? x^{n-1}+\cdots+? x+?
 \end{align}
 where $a_{n+1}\in\Rbb_{>0}$ and $b_n\in\Rbb$. Therefore, $J$ is of the form
 \begin{align*}
