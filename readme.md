@@ -62,7 +62,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 
 
-2024 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces, *submitted*, `arXiv:2411.07707` [Preprint](https://binguimath.github.io/Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](https://binguimath.github.io/Files/Slides/2024_BIMSA_Nov.pdf))
+2024 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras II: Convergence of Sewing and Higher Genus Pseudo-q-traces, *To appear in* ***Commun. Contemp. Math.***, `arXiv:2411.07707` [Preprint](https://binguimath.github.io/Files/2024_CB2.pdf). (A [talk](https://youtu.be/0JJ9mW2UT3Y) with [slides](https://binguimath.github.io/Files/Slides/2024_BIMSA_Nov.pdf))
 
 
 2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras III: The Sewing-Factorization Theorems, *submitted*, `arXiv:2503.23995` [Preprint](https://binguimath.github.io/Files/2025_CB3.pdf).
@@ -80,7 +80,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 
 
-2017 Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](https://binguimath.github.io/Files/2017_UU2.pdf) 
+2017 Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  *** Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](https://binguimath.github.io/Files/2017_UU2.pdf) 
 > This is the second (and final) paper in a series where I initiated the systematic study of unitarity in the tensor categories of VOA representations.
 
 
