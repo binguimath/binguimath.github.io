@@ -164,7 +164,7 @@
 
 
 \theoremstyle{definition}
-\newtheorem{df}{Definition}[section]
+\newtheorem{df}{Definition}[subsection]
 \newtheorem{eg}[df]{Example}
 \newtheorem{exe}[df]{Exercise}
 \newtheorem{rem}[df]{Remark}
@@ -538,7 +538,6 @@
 \qquad 
 
 \hyperlink{current}{Current writing}\qquad \hyperlink{page.2}{Last page of TOC}
-
 
 %\hyperlink{beforeindex}{Last page before index}~~~~~~  
 %\hypertarget{beforeindex}{}
@@ -1011,7 +1010,7 @@ A subsequence of a sequence is a subnet of that sequence.
 \end{eg}
 
 
-\begin{pp}
+\begin{pp}\label{lb236}
 Let $(x_\alpha)_{\alpha\in I}$ be a net in a topological space $X$ converging to $x\in X$. Then every subnet $(x_{\alpha_s})_{s\in S}$ converges to $x$.
 \end{pp}
 
@@ -1020,7 +1019,7 @@ Choose any $U\in\Nbh(x)$. Since $x_\alpha\rightarrow x$, there exists $\beta\in 
 \end{proof}
 
 
-Note that a subnet does not necessarily have the same index set as the original net. This definition of subnets is motivated largely by the following important property:
+Note that a subnet does not necessarily have the same index set as the original net. This definition of subnets is motivated largely by the following important property, which will play a crucial role in Sec. \ref{lb229}.
 
 \begin{thm}\label{lb213}
 Let $(x_\alpha)_{\alpha\in I}$ be a net in a topological space $X$. Let $x\in X$. Then the following are equivalent.
@@ -1142,10 +1141,10 @@ Let $(x_\alpha)_{\alpha\in I}$ be a first-countable net in a topological space $
 
 
 \begin{proof}
-This follows immediately from Thm. \ref{lb210} and Rem. \ref{lb212}.
+This follows immediately from Thm. \ref{lb210} and Rem. \ref{lb222}.
 \end{proof}
 
-With the help of Thm. \ref{lb223}, one can easily generalize the MCT, the DCT, and Fatou's lemma from sequences to first-countable nets of functions. We leave the details to the reader.
+With the help of Thm. \ref{lb223}, one can easily generalize the MCT, the DCT, and Fatou's lemma from sequences to first-countable nets of functions. We leave the details of the proofs to the reader.
 
 \begin{thm}[\textbf{Monotone convergence theorem (MCT)}] \index{00@Monotone convergence theorem}\label{lb224}
 Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be an increasing first-countable net of measurable functions $X\rightarrow\ovl\Rbb_{\geq0}$. Let $f:X\rightarrow\ovl\Rbb_{\geq0}$ be the pointwise limit of $(f_\alpha)$. Then $f$ is measurable, and
@@ -1173,6 +1172,132 @@ Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be a first-countable net of m
 See Def. \ref{lb228} for the definition of $\liminf$.
 
 
+\subsubsection{Unordered sum}
+
+
+
+In this subsection, we fix a normed vector space $V$ over $\Fbb\in\{\Rbb,\Cbb\}$. Fix a set $X$. Recall that $\fin(2^X)$ is a directed set, ordered by the inclusion ($A\leq B$ meaning $A\subset B$).
+
+
+\begin{df}\label{lb230}
+Let $f:X\rightarrow V$ be a map. The expression
+\begin{align*}
+\sum_{x\in X}f(x)
+\end{align*}
+(or simply $\sum_X f$) is called an \textbf{unordered sum}.\index{00@Unordered sum} If $v\in V$, we say that $\sum_{x\in X}f(x)$ equals (or \text{converges} to) $v$, if
+\begin{align}\label{eq129}
+\lim_{A\in\fin(2^X)}\sum_{x\in A}f(x)=v
+\end{align}
+In this case, we write
+\begin{align}
+\sum_{x\in X}f(x)=v 
+\end{align}
+\end{df}
+
+Unwinding the definition of net convergence, \eqref{eq129} says that for every $\eps>0$, there exists a finite set $B\subset X$ such that for every finite set $A$ satisfying $B\subset A\subset X$, we have $\Vert v-\sum_{x\in A}f(x)\Vert<\eps$.
+
+
+\begin{rem}\label{lb232}
+If $V$ is complete, then $\sum_Xf$ converges precisely when the associated net $(\sum_A f)_{A\in\fin(2^X)}$ satisfies the Cauchy condition. Let us spell out what this Cauchy condition means:
+\begin{itemize}
+\item[(1)] For every $\eps>0$, there exists a finite set $B\subset X$ such that for any finite sets $A_1,A_2$ satisfying $B\subset A_1\subset X,B\subset A_2\subset X$, we have
+\begin{align*}
+\Big\Vert \sum_{A_1\setminus A_2}f-\sum_{A_2\setminus A_1}f \Big\Vert<\eps
+\end{align*} 
+\end{itemize}
+Note that the term inside the norm is $\sum_{A_1}f-\sum_{A_2}f$. This is also equivalent to:
+\begin{itemize}
+\item[(2)] For every $\eps>0$, there exists a finite set $B\subset X$ such that for any finite set $E\subset X\setminus B$, we have 
+\begin{align*}
+\Big\Vert \sum_Ef\Big\Vert<\eps
+\end{align*}
+\end{itemize}
+In practice, we will mainly use (2) as the Cauchy criterion for the convergence of $\sum_Xf$.
+\end{rem}
+
+
+\begin{proof}[Proof of the equivalence]
+(2) follows from (1) by taking $A_1=B$ and $A_2=B\cup E$. (1) follows from (2) by taking $E_1=A_1\setminus A_2$ and $E_2=A_2\backslash A_1$ and then concluding $\Vert \sum_{E_1}f-\sum_{E_2}f\Vert<2\eps$.
+\end{proof}
+
+
+
+\begin{df}\label{lb231}
+Let $g:X\rightarrow\ovl\Rbb_{\geq0}$ be a map. Note that the net $(\sum_A g)_{A\in\fin(2^X)}$ is increasing. Hence, its limit exists in $\ovl\Rbb$ and equals $\sup_{A\in\fin(2^X)}\sum_Ag$ (by Prop. \ref{lb214}). We write this as $\sum_Xg$, or more precisely:
+\begin{align}
+\sum_Xg\equiv\sum_{x\in X}g(x)\xlongequal{\mathrm{def}} \lim_{A\in \fin(2^X)}\sum_A g=\sup_{A\in \fin(2^X)}\sum_A g
+\end{align}
+We say that $\sum_Xg$ \textbf{converges} or \textbf{converges absolutely}, if $\sum_Xg<+\infty$. 
+\end{df}
+
+
+It is clear that $\sum_Xg<+\infty$ iff there exists $C\in\Rbb_{\geq0}$ such that $\sum_Ag<C$ for all $A\in\fin(2^X)$.
+
+
+\begin{rem}
+Note that when $g:X\rightarrow\Rbb_{\geq0}$, the convergence in Def. \ref{lb231} agrees with that in Def. \ref{lb230}. Therefore, Rem. \ref{lb232} still gives a Cauchy criterion for convergence.
+\end{rem}
+
+
+
+\begin{df}
+Let $f:X\rightarrow V$. We say that $\sum_Xf$ \textbf{converges absolutely} \index{00@Absolutely convergent unordered sum} if 
+\begin{align*}
+\sum_{x\in X}\Vert f(x)\Vert<+\infty
+\end{align*}
+\end{df}
+
+\begin{pp}\label{lb235}
+Let $f:X\rightarrow V$, and assume that $\sum_Xf$ converges absolutely. Then $\Supp(f):=\{x\in X:f(x)\neq0\}$ is a countable set.
+\end{pp}
+
+\begin{proof}
+For each $\eps>0$, let $A_\eps=\{x\in X:|f(x)|\geq \eps\}$. Then
+\begin{align*}
+\sum_X|f|\geq\sum_{A_\eps}|f|\geq\eps\sum_{A_\eps}1
+\end{align*}
+So $\sum_{A_\eps}1<+\infty$, and hence $A_\eps$ is a finite set. Since $\Supp(f)=\bigcup_{n\in\Zbb_+}A_{1/n}$, the set $\Supp(f)$ must be countable.
+\end{proof}
+
+
+
+
+
+\begin{pp}\label{lb234}
+Assume that $V$ is complete. Let $f:X\rightarrow V$. If  $\sum_Xf$ converges absolutely, then it converges, and
+\begin{align}\label{eq130}
+\Big\Vert \sum_{x\in X} f(x) \Big\Vert\leq\sum_{x\in X} \Vert f(x)\Vert 
+\end{align}
+We write this simply as $\Vert\sum_X f\Vert\leq\sum_X |f|$.
+\end{pp}
+
+\begin{proof}
+\eqref{eq130} clearly holds when $X$ is finite. In the general case, assume that $\sum_Xf $ converges absolutely. Then by the Cauchy criterion, for every $\eps>0$ there is $A\in \fin(2^X)$ such that for each finite $E\subset X\setminus A$ we have $\sum_E|f|<\eps$, and hence $\Vert \sum_E f\Vert<\eps$. Therefore $\sum_Xf$ converges by Cauchy criterion again.
+
+By the continuity of the norm function $v\in V\mapsto \Vert v\Vert\in\Rbb_{\geq0}$, we have
+\begin{align*}
+\Big\Vert \sum_X f \Big\Vert=\Big\Vert \lim_A \sum_Af \Big\Vert=\lim_A \Big\Vert \sum_Af \Big\Vert
+\end{align*}
+Since $\Vert \sum_A f\Vert\leq\sum_A|f|$, by by Prop. \ref{lb214}, the above expression is no less than
+\begin{align*}
+\lim_A\sum_A|f|=\sum_X|f|
+\end{align*}
+\end{proof}
+
+
+
+\begin{eg}
+Let $f:\Zbb_+\rightarrow V$, and assume that $\sum_{\Zbb_+}f$ converges. Then
+\begin{align*}
+\sum_{\Zbb_+}f=\lim_{n\rightarrow\infty} (f(1)+\cdots+f(n))
+\end{align*}
+\end{eg}
+
+\begin{proof}
+By assumption, the net $(\sum_Af)_{A\in\fin(2^{\Zbb_+})}$ converges to $v:=\sum_{\Zbb_+}f$. By Prop. \ref{lb236}, the subnet $(\sum_{\{1,\dots,n\}}f)_{n\in\Zbb_+}$ also converges to $v$.
+\end{proof}
+
+
 
 
 
@@ -1180,7 +1305,7 @@ See Def. \ref{lb228} for the definition of $\liminf$.
 
 \subsection{Nets and compactness}
 
-\subsubsection{Compactness and cluster points}
+\subsubsection{Compactness and cluster points}\label{lb229}
 
 
 \begin{pp}\label{lb215}
@@ -1332,7 +1457,7 @@ Since $X$ is compact, by Thm. \ref{lb216}, $(x_\alpha)_{\alpha\in J}$ has a subn
 \begin{df}\label{lb228}
 Let $(x_\alpha)_{\alpha\in I}$ be a net in the compact Hausdorff space $\ovl\Rbb$. Let $S$ be the set of cluster points of $(x_\alpha)$ in $\ovl\Rbb$. Recall that $S$ is a closed subset by Thm. \ref{lb213}, and is non-empty by Thm. \ref{lb216}. Define \index{liminfsup@$\liminf,\limsup$}
 \begin{align}
-\liminf_{\alpha\in I}x_\alpha=\inf S\qquad \limsup_{\alpha\in I}x_\beta=\sup S
+\pmb{\liminf_{\alpha\in I}x_\alpha}=\inf S\qquad \pmb{\limsup_{\alpha\in I}x_\beta}=\sup S
 \end{align}
 Since $S$ is closed, $\liminf_{\alpha\in I}x_\alpha$ and $\limsup_{\alpha\in I}x_\beta$ are both cluster points of $(x_\alpha)$. Therefore, they are the smallest and the largest cluster points of $(x_\alpha)$, respectively.
 \end{df}
@@ -1371,9 +1496,6 @@ For each open interval $U$ in $\ovl\Rbb$ containing $\lim B_\alpha$, the net $(B
 
 
 
-
-
-\hypertarget{current}{}
 
 
 \subsection{Review of important facts in point-set topology}
@@ -1423,6 +1545,54 @@ Then, a net $(x_\alpha)$ in $X$ converges under $f^*\mc T_Y$ to $x$ iff
 \lim_\alpha f(x_\alpha)=f(x)
 \end{align*}
 \end{df}
+
+
+
+\subsubsection{Semicontinuous functions}
+
+
+Let $X$ be a topological space.
+
+
+\begin{df}
+We say that $f:X\rightarrow\ovl\Rbb$ is called \textbf{lower semicontinuous} \index{00@Lower semicontinuous} if $f^{-1}(a,+\infty]$ is open for each $a\in\ovl\Rbb$. We say that $f$ is  \textbf{upper semicontinuous} \index{00@Upper semicontinuous} if $f^{-1}[-\infty,a)$ is open for each $a\in\ovl\Rbb$. 
+\end{df}
+
+\begin{eg}
+Let $A\subset X$. Then $\chi_A$ is lower semicontinuous iff $A$ is open.
+\end{eg}
+
+\begin{pp}
+Let $(f_i)_{i\in I}$ be a family of lower semicontinuous functions $X\rightarrow\ovl\Rbb$. Let $f(x)=\sup_{i\in I}f_i(x)$. Then $f:X\rightarrow\ovl\Rbb$ is lower semicontinuous.
+\end{pp}
+
+\begin{proof}
+Let $x\in f^{-1}(a,+\infty]$. Since $f(x)>a$, there exists $i$ such that $f_i(x)>a$. Since $f_i$ is lower semi-continuous, there exists $U\in\Nbh(x)$ such that $f_i|_U>a$ (e.g. $U=f_i^{-1}(a,+\infty]$), and hence $f|_U>a$. So $U\subset f^{-1}(a,+\infty]$. We have thus proved that any $x\in f^{-1}(a,+\infty]$ is an interior point of $f^{-1}(a,+\infty]$.
+\end{proof}
+
+
+\begin{pp}
+Let $f:X\rightarrow\ovl\Rbb$. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $f$ is lower semicontinuous.
+\item For each $x\in X$ and each net $(x_\alpha)$ in $X$ converging to $x$, we have $\liminf_\alpha f(x_\alpha)\geq f(x)$.
+\item For each $x\in X$ and each net $(x_\alpha)$ in $X$ converging to $x$, we have $\limsup_\alpha f(x_\alpha)\geq f(x)$.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+(1)$\Rightarrow$(2): Assume (1). Let $x\in X$, and let $(x_\alpha)$ be a net converging to $x$. If $\lambda\in\Rbb$ satisfies $\lambda<f(x)$, then by (1), $f^{-1}(\lambda,+\infty]$ is a neighborhood of $x$. Therefore, $x_\alpha$ is eventually in $f^{-1}(\lambda,+\infty]$, and hence $f(x_\alpha)$ is eventually $>\lambda$. Therefore $\liminf_\alpha f(x_\alpha)\geq\lambda$. Since $\lambda$ is arbitrary, we must have $\liminf_\alpha f(x_\alpha)\geq f(x)$. This proves (2).
+
+(2)$\Rightarrow$(1): This is obvious.
+
+$\neg$(1)$\Rightarrow$$\neg$(3): Assume that $f$ is not lower semicontinuous. Then there exists $\lambda\in\in[-\infty,+\infty)$ such that $f^{-1}(\lambda,+\infty]$ is not open, and hence has non-interior point $x$. Therefore, $f(x)>\lambda$, and for any $U\in\Nbh_X(x)$ there exists $x_U\in U$ such that $f(x_U)\leq\lambda$. So $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X$ converging to $x$, and $\limsup_U f(x_U)\leq\lambda<f(x)$. Hence (3) is false. 
+\end{proof}
+
+
+
+
+
 
 
 \subsubsection{Product topology and pointwise convergence}
@@ -4977,9 +5147,9 @@ is called the \textbf{quadratic form} \index{00@Quadratic form associated to a s
 Notice the difference between the notations $\bk{u|v}$ and $\bk{u,v}$: the latter always means a bilinear form, i.e., a function which is linear on both variables.
 
 
-\begin{rem}
+\begin{rem}\label{lb237}
 For each sesquilinear form $\bk{\cdot|\cdot}$ on $V$, we have the \textbf{polarization identity} \index{00@Polarization identity}
-\begin{align}
+\begin{align}\label{eq134}
 \begin{aligned}
 &\bk{u|v}=\frac 14\sum_{t=0,\frac \pi 2,\pi,\frac{3\pi}2}~ \bk{u+e^{\im t}v|u+e^{\im t}v}e^{\im t}\\
 =&\frac 14\Big(\bk{u+v|u+v}-\bk{u-v|u-v}+\im\bk{u+\im v|u+\im v}-\im\bk{u-\im v|u-\im v}\Big)
@@ -5276,6 +5446,28 @@ The inner product
 has norm $1$, and hence belongs to $\Ses(V)$. Therefore, by Prop. \ref{lb35}, this map is continuous.
 \end{eg}
 
+The following useful property says that a sesquilinear form is bounded iff the associated quadratic form is bounded.
+
+\begin{pp}\label{lb238}
+Let $\omega$ be sesquilinear form on $V$. Let $M\in\Rbb_{\geq0}$. Assume that
+\begin{align*}
+|\omega(\xi|\xi)|\leq M\Vert\xi\Vert^2
+\end{align*}
+for each $\xi\in V$. Then $\Vert\omega\Vert\leq 4M$.
+\end{pp}
+
+\begin{proof}
+Choose any $\xi,\eta\in \ovl B_V(0,1)$. For each $\lambda\in\Sbb^1$, we have
+\begin{align*}
+|\omega(\xi+\lambda\eta|\xi+\lambda\eta)|\leq M\Vert \xi+\lambda\eta\Vert^2\leq M(\Vert\xi\Vert+\Vert\eta\Vert)^2\leq 4M
+\end{align*}
+Therefore, by the polarization identity \eqref{eq134},
+\begin{align*}
+|\omega(\xi|\eta)|=\frac 14\Big\Vert\sum_{t=0,\frac \pi 2,\pi,\frac{3\pi}2}~ \omega(\xi+e^{\im t}\eta|\xi+e^{\im t}
+\eta)e^{\im t}\Big\Vert\leq 4M
+\end{align*}
+\end{proof}
+
 
 
 \subsection{Orthogonality}
@@ -5370,7 +5562,7 @@ u_1=\sum_{j\in J}e_j\cdot\bk{e_j|v} \qquad u_2=v-u_1
 \begin{align*}
 \Vert u_1\Vert^2=\sum_{j\in J}|\bk{e_j|v}|^2
 \end{align*}
-The last statement about countability follows from .
+The last statement about countability follows from Prop. \ref{lb235}.
 \end{proof}
 
 
@@ -6030,7 +6222,7 @@ Apply $\sup$ over all $\xi\in\ovl B_\MU(0,1)$ to
 
 
 
-\begin{co}
+\begin{co}\label{lb233}
 Let $T\in\fk L(\MH)$. Let $\Omega=\{z\in\Cbb:|z|>\Vert T\Vert\}$. Then for each $z\in\Omega$, the operator $z-T$ is invertible (cf. Def. \ref{lb116}). Moreover, for each $\xi,\eta\in\MH$, the function
 \begin{align*}
 z\in\Omega\mapsto \bk{\eta|(z-T)^{-1}\xi}=\omega_{(z-T)^{-1}}(\eta|\xi)
@@ -6038,7 +6230,7 @@ z\in\Omega\mapsto \bk{\eta|(z-T)^{-1}\xi}=\omega_{(z-T)^{-1}}(\eta|\xi)
 is holomorphic.
 \end{co}
 
-The expression $(z-T)^{-1}$ is called the \textbf{resolvent} of $T$. \index{00@Resolvent}
+The expression $(z-T)^{-1}$ is called the \textbf{resolvent} of $T$. \index{00@Resolvent operator}
 
 \begin{proof}
 By Prop. \ref{lb143}, we have $\Vert T^k\Vert\leq\Vert T\Vert^k$. Therefore, if $z\in\Omega$, then
@@ -7710,10 +7902,92 @@ In \cite{Hil06}, Hilbert introduced the Hilbert space $l^2(\Zbb)$ and proved the
 \subsubsection{The spectral theorem of Hilbert}
 
 \begin{thm}
-Let $V$ be a separable inner product space, and let $\omega\in\Ses(V)$ be Hermitian. Choose $a\geq0$ such that $\Vert\omega\Vert\leq a$.
+Let $V$ be a separable inner product space, and let $\omega\in\Ses(V)$ be Hermitian. Choose $r\geq0$ such that $\Vert\omega\Vert\leq r$. Then for each $\xi\in V$, there is an increasing right-continuous $\rho_\xi:[-r,r]\rightarrow\Rbb_{\geq0}$ such that for $z\in\Cbb$ satisfying $|z|>r$, the resolvent form $(z-\omega)^{-1}\in\Ses(V)$ satisfies
+\begin{align}\label{eq132}
+(z-\omega)^{-1}(\xi|\xi)=\int_{[-r,r]}\frac{d\rho_\xi(\lambda)}{z-\lambda}
+\end{align}
 \end{thm}
 
 
+The resolvent form $(z-\omega)^{-1}$ will be defined in the proof, and is related to the resolvent operator introduced in Cor. \ref{lb233}. The precise relationship will be discussed after the proof.
+
+
+\begin{proof}
+Let $u_1,u_2,\dots$ be an orthonormal basis of $V$. Similar to Def. \ref{lb189}, we let
+\begin{align*}
+V_n=\Span\{u_1,\dots,u_n\}\qquad V_\infty=\bigcup_{n\in\Zbb_+}=\Span\{u_1,u_2,\dots\}
+\end{align*}
+We shall first establish \eqref{eq132} for $\xi$ in dense subset of $V$, and then extend it to all $\xi\in V$.\\[-1ex]
+
+
+
+Step 1. Similar to \eqref{eq120}, we let $\omega_n\in\Ses(V_n)$ be the restriction of $\omega$ to $V_n\times V_n$. Then $\omega_n$ is Hermitian, and satisfies $\Vert\omega_n\Vert\leq r$. Hence $\omega_n=\omega_{T_n}$ for some self-adjoint $T_n\in\Lin(V_n)$, that is,
+\begin{align*}
+\omega_n(\xi|\eta)=\bk{\xi|T_n\eta}\qquad\text{for each }\xi,\eta\in V_n
+\end{align*}
+and $\Vert T_n\Vert\leq r$.
+
+By the spectral theorem for Hermitian operators on finite-dimensional inner product spaces, $T_n$ is diagonal. Therefore, there exist $\lambda_{n,1},\dots,\lambda_{n,n}\in\Rbb$ and an orthonormal basis $e_{n,1},\dots,e_{n,n}$ of $V_n$ such that
+\begin{align*}
+T_ne_{n,i}=\lambda_{n,i}e_{n_i}\qquad\text{for each }1\leq i\leq n
+\end{align*}
+Since $\Vert T\Vert\leq r$, we have $|\lambda_{n,i}|=\Vert Te_{n,i}\Vert\leq\Vert T\Vert\leq r$, and hence
+\begin{align*}
+\lambda_{n,1},\dots,\lambda_{n,n}\in [-r,r]
+\end{align*}
+
+
+Step 2. Let $\Kbb=\Qbb+\im\Qbb$. Let $U$ be a dense $\Kbb$-linear subspace of $V_\infty$ with countable cardinality, e.g.
+\begin{align*}
+U=\Span_\Kbb\{u_1,u_2,\dots\}
+\end{align*}
+In this step, we define $(z-\omega)^{-1}$ as a bounded $\Kbb$-sesquilinear form on $U$ admitting an integral representation as in \eqref{eq132}. Roughly speaking, $(z-\omega)^{-1}$ on $U$ will be defined to be the limit of a convergent subsequence of the sesquilinear forms associated to $(z-T_n)^{-1}$. The details are as follows.
+
+For each $\xi\in V_\infty$, we have $V_n\ni\xi$ for sufficiently large $n$. Moreover, for such $n$, we clearly have $(z-T_n)^{-1}\xi=\sum_{i=1}^n(z-\lambda_{n,i})^{-1}e_{n,i}\cdot\bk{e_{n,i}|\xi}$, and hence
+\begin{align}\label{eq131}
+\bk{\eta|(z-T_n)^{-1}\xi}=\sum_{i=1}^n (z-\lambda_{n,i})^{-1}\bk{\xi|e_{n,i}}\cdot \bk{e_{n,i}|\eta}\qquad\text{for each }\eta\in V
+\end{align}
+Similar to \eqref{eq119}, for each $\xi\in V_\infty$, we let $\rho_{\xi,n}:[-r,r]\rightarrow\Rbb_{\geq0}$ be
+\begin{align}
+\rho_{\xi,n}(x)=\sum_{
+\begin{subarray}{c}
+\text{all $i$ satisfying}\\
+\lambda_{n,i}\leq x
+\end{subarray}
+}|\bk{e_{n,i}|\xi}|^2
+\qquad\text{for all }V_n\ni\xi
+\end{align}
+We set $\rho_{\xi,n}=0$ if $V_n\notni\xi$. Then $(\rho_{\xi,n})_{n\in\Zbb_+}$ is a uniformly bounded sequence, since Bessel's inequality implies $0\leq\rho_{\xi,n}(x)\leq\Vert\xi\Vert^2$. It follows from \eqref{eq131} that
+\begin{align*}
+\bk{\xi|(z-T_n)^{-1}\xi}=\int_{[-r,r]}\frac{d\rho_{\xi,n}(\lambda)}{z-\lambda}\qquad\text{for all }V_n\ni\xi
+\end{align*}
+
+
+
+
+By Helley's selection Thm. \ref{lb94} and the diagonal method (Rem. \ref{lb52}), there exist strictly positive integers $n_1<n_2<\dots$ such that \footnote{When Hilbert wrote \cite{Hil06}, the Helly selection theorem had not yet been discovered. His argument proceeded as follows. He first applied the Arzel\`a-Ascoli theorem to obtain a uniformly convergent subsequence of the antiderivatives of $(\rho_{\xi,n})$. The limit of this subsequence is a convex function, and its derivative (which exists outside a countable set) is then taken as the definition of $\rho_\xi$.}
+\begin{align*}
+\lim_k \rho_{\xi,n_k}\text{ converges pointwise to some function }\rho_\xi\qquad\text{for each }\xi\in U
+\end{align*}
+with $0\leq\rho_\xi\leq\Vert\xi\Vert^2$. By Thm. \ref{lb92}, for each $\xi\in U$, the sequence $(d\rho_{\xi,n_k})$ converges weak-* to $d\rho_\xi$ as positive linear functionals on $C([-r,r])$. Therefore
+\begin{align}\label{eq133}
+\lim_k\bk{\xi|(z-T_{n_k})^{-1}\xi}=\int_{[-r,r]}\frac{d\rho_\xi(\lambda)}{z-\lambda}\qquad\text{for all }\xi\in U
+\end{align}
+By the polarization identity (cf. Rem. \ref{lb237}), $\lim_k\bk{\xi|(z-T_{n_k})^{-1}\eta}$ converges for each $\xi,\eta\in\{u_1,u_2,\dots\}$, and hence for all $\xi,\eta\in V_\infty$. We can thus define a $\Kbb$-sesquilinear form
+\begin{align}\label{eq135}
+(z-\omega)^{-1}:U\times U\rightarrow\Cbb\qquad (z-\omega)^{-1}(\xi|\eta)=\lim_k\bk{\xi|(z-T_{n_k})^{-1}\eta}
+\end{align}
+By \eqref{eq133}, the relation \eqref{eq132} is satisfied for all $\xi\in U$. Therefore, for each $\xi\in U$, since $0\leq\rho_\xi\leq\Vert\xi\Vert$, we have
+\begin{align}\label{eq136}
+\big| (z-\omega)^{-1}(\xi|\xi)\big|\leq \Vert\xi\Vert^2/\inf_{\lambda\in[-r,r]}|z-\lambda|
+\end{align}
+By the proof of Prop. \ref{lb238}, we conclude that $(z-\omega)^{-1}$ is a bounded $\Kbb$-sesquilinear form.\\[-1ex]
+
+
+Step 3. From the proof of Thm. \ref{lb31}, we know that $(z-\omega)^{-1}$ can be uniquely extended to a bounded ($\Cbb$-)sesquilinear form on $V$. We know that \eqref{eq132} holds for all $\xi\in U$. Let us establish the integral representation \eqref{eq132} for any $\xi\in V$.
+
+Suppose that $\xi\in V\setminus U$. Let $(\xi_n)$ be a sequence in $U$ converging to $\xi$. From the above proof, we know that $0\leq\rho_{\xi_n}\leq\Vert\xi_n\Vert$. In particular, the sequence $(\rho_{\xi_n})$ is bounded. By the Helly selection theorem,  $(\rho_{\xi_n})$ has a subsequence $(\rho_{\xi_{n_k}})$ converging pointwise to some increasing $\rho:[-a,a]\rightarrow\Rbb_{\geq0}$. By Thm. \ref{lb92}, $(d\rho_{\xi_{n_k}})$ converges to $d\rho_\xi$ when integrated against the function $\lambda\in[-r,r]\mapsto 1/(z-\lambda)$. This establishes \eqref{eq132} for all $\xi\in V$.
+\end{proof}
 
 
 
@@ -7726,6 +8000,8 @@ Let $V$ be a separable inner product space, and let $\omega\in\Ses(V)$ be Hermit
 
 
 
+
+\hypertarget{current}{}
 
 \printindex	
 
