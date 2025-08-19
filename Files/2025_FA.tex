@@ -5583,7 +5583,7 @@ Suppose that $v=u'+w'$ is another orthogonal decomposition. Then $u-u'$ equals $
 \end{proof}
 
 
-\begin{df}
+\begin{df}\label{lb246}
 Let $U$ be a linear subspace of $V$. We say that $V$ \textbf{has a projection onto $U$} \index{00@Projection onto a linear subspace} if every vector has an orthogonal decomposition with respect to $U$. In that case, we define the map
 \begin{align*}
 P:V\rightarrow V
@@ -5681,9 +5681,9 @@ Let $U$ be a linear subspace of $V$. Suppose that $V$ has a projection onto $U$,
 P:U\oplus U^\perp\rightarrow U\oplus U^\perp\qquad u\oplus v\mapsto u=u\oplus 0
 \end{align*}
 Consequently, $1-P$ is the projection of $V$ onto $U^\perp$, and we have 
-\begin{align*}
-\Rng(U)=\Ker(1-P)=U\qquad \Ker(P)=\Rng(1-P)=U^\perp
-\end{align*}
+\begin{align}\label{eq140}
+\Rng(P)=\Ker(1-P)=U\qquad \Ker(P)=\Rng(1-P)=U^\perp
+\end{align}
 \end{pp}
 
 It follows from $V=U\oplus U^\perp$ that $U$ is the orthogonal complement of $U^\perp$, i.e., $U=U^{\perp\perp}$.
@@ -6141,12 +6141,12 @@ is a bijective antilinear map, and that $(T^*)^*=T$. Prove that if $\MM$ is a Hi
 
 
 \begin{df}
-A bounded linear operator $T\in\fk L(\MH)$ is called \textbf{self-adjoint} \index{00@Self-adjoint bounded linear operators} if $T=T^*$, equivalently, if $\omega_T$ is self-adjoint.
+A bounded linear operator $T\in\fk L(\MH)$ is called \textbf{self-adjoint} \index{00@Self-adjoint bounded linear operators} if $T=T^*$, equivalently, if $\omega_T$ is Hermitian.
 \end{df}
 
 
-\begin{df}
-Let $A,B\in\fk L(\MH)$. We write
+\begin{df}\label{lb247}
+Let $A,B\in\fk L(\MH)$ be self-adjoint. We write
 \begin{align*}
 \pmb{A\leq B}
 \end{align*}
@@ -7871,7 +7871,7 @@ Riesz, in contrast, proved the Riesz representation theorem using the method of 
 
 
 
-\subsection{The spectral theorem of Hilbert}
+\subsection{Hilbert's spectral theorem}
 
 
 \subsubsection{Introduction}
@@ -7981,7 +7981,7 @@ By the proof of Prop. \ref{lb238}, we conclude that $(z-\omega)^{-1}$ is a bound
 
 Step 3. From the proof of Thm. \ref{lb31}, we know that $(z-\omega)^{-1}$ can be uniquely extended to a bounded ($\Cbb$-)sesquilinear form on $V$. We know that \eqref{eq132} holds for all $\xi\in U$. Let us establish the integral representation \eqref{eq132} for any $\xi\in V$.
 
-Suppose that $\xi\in V\setminus U$. Let $(\xi_n)$ be a sequence in $U$ converging to $\xi$. From the above proof, we know that $0\leq\rho_{\xi_n}\leq\Vert\xi_n\Vert$. In particular, the sequence $(\rho_{\xi_n})$ is bounded. By the Helly selection theorem,  $(\rho_{\xi_n})$ has a subsequence $(\rho_{\xi_{n_k}})$ converging pointwise to some increasing $\rho:[-a,a]\rightarrow\Rbb_{\geq0}$. By Thm. \ref{lb92}, $(d\rho_{\xi_{n_k}})$ converges to $d\rho_\xi$ when integrated against the function $\lambda\in[-r,r]\mapsto 1/(z-\lambda)$. This establishes \eqref{eq132} for all $\xi\in V$.
+Suppose that $\xi\in V\setminus U$. Let $(\xi_n)$ be a sequence in $U$ converging to $\xi$. From the above proof, we know that $0\leq\rho_{\xi_n}\leq\Vert\xi_n\Vert$. In particular, the sequence $(\rho_{\xi_n})$ is bounded. By the Helly selection theorem,  $(\rho_{\xi_n})$ has a subsequence $(\rho_{\xi_{n_k}})$ converging pointwise to some increasing $\rho:[-r,r]\rightarrow\Rbb_{\geq0}$. By Thm. \ref{lb92}, $(d\rho_{\xi_{n_k}})$ converges to $d\rho_\xi$ when integrated against the function $\lambda\in[-r,r]\mapsto 1/(z-\lambda)$. This establishes \eqref{eq132} for all $\xi\in V$.
 \end{proof}
 
 
@@ -8070,7 +8070,151 @@ Thus, the real significance of Hilbert's spectral theorem is that it makes trans
 
 
 
-\subsection{Projections on Hilbert spaces}
+\subsection{Towards Riesz's spectral theorem: projections}
+
+
+\subsubsection{Hilbert's spectral theorem holds for inner product spaces}
+
+
+It is often said that one of the main differences between mathematicians and physicists in their approaches to the mathematics of quantum mechanics is that mathematicians stress the completeness of Hilbert spaces, emphasizing that they are more than just inner product spaces, whereas physicists find the notion of completeness largely irrelevant. Mathematicians commonly justify this emphasis by pointing out that the spectral theorem for self-adjoint operators requires completeness. This is certainly true for the spectral theorems developed after Hilbert. However, as we saw in Thm. \ref{lb239}, Hilbert's own spectral theorem already holds for general inner product spaces.---If this observation causes a degree of unease for the reader, then I have achieved my aim.
+
+
+
+
+The fact that Hilbert's spectral theorem holds for all inner product spaces, while later versions hold only for Hilbert spaces, shows that Hilbert's version is less powerful and can therefore be established under weaker assumptions. Even so, completeness still plays a role in Hilbert's theorem---though not the Cauchy completeness of the inner product space. Rather, it is the weak-* completeness of Stieltjes integrals against increasing functions, already noted in Table \ref{tb3}. Since Hilbert's spectral theorem is the ancestor of all later versions, we may conclude that the truly central analytic condition underlying all spectral theorems is not the Cauchy completeness of Hilbert space (or, equivalently, the Riesz isomorphism $\mc H\simeq (\mc H^\Co)^*$, cf. Thm. \ref{lb135}), but instead the weak-* completeness of increasing functions/finite Borel measures.
+
+
+
+
+
+\subsubsection{Why Riesz’s spectral theorem requires Hilbert spaces}
+
+
+Riesz's spectral theorem, proved in \cite[Ch. V]{Rie13}, is a significant improvement over Hilbert's. Beginning with this section, we prepare for the introduction of Riesz's version.
+
+An important drawback of Hilbert's spectral theorem is that it is unclear how the increasing function $\rho_\xi$ in Thm. \ref{lb239} relies on $\xi$. The first highlight of Riesz's spectral theorem is that, under the assumption that $\MH$ is a Hilbert space and $T\in\fk L(\MH)$ is self-adjoint with $\Vert T\Vert\leq r$, he realizes $\rho_\xi$ through an increasing net of projections $(E(\lambda))_{\lambda\in[-r,r]}$ associated to $T$ (called the \textbf{spectral projections} of $T$), more precisely:
+\begin{align*}
+\bk{\xi|E(\lambda)\xi}=\rho_\xi(\lambda)\qquad\text{for all }\lambda\in[-r,r]\text{ and }\xi\in\MH
+\end{align*}
+
+As we will learn in this section, for each Hilbert space $\MH$ there is a order-preserving bijection between projection operators and closed linear subspaces of $\MH$, related by $P\mapsto \Rng(P)$. Therefore, Riesz's replacement of scalar-valued increasing functions $\rho_\xi$ with projection-valued increasing functions $E$ brings the geometry of Hilbert spaces into the formulation of the spectral theorem. In fact, when $\dim \MH<+\infty$, the subspace associated to $E(\lambda)$ is spanned by eigenvectors of $T$ with eigenvalues $\leq\lambda$.
+
+
+Interestingly, even for non-complete inner product spaces, the correspondence $P\mapsto\Rng(P)$ is still injective (cf. the proof of Thm. \ref{lb248}), which is sufficient for the spectral theorem. The essential reason Riesz's spectral theorem applies only to Hilbert spaces and not to general inner product spaces is that he constructs $E(\lambda)$ by first constructing its associated sesquilinear form $\omega_{E(\lambda)}$, as we will see in Sec. \ref{lb245}. However, if an inner product space $V$ is not complete, there is even no natural injective maps from the set of \textbf{projection forms} \index{00@Projective forms} (i.e., bounded Hermitian forms $\omega$ satisfying $\omega\circ\omega=\omega$, cf. Def. \ref{lb144} for the definition of $\omega\circ\omega$) to the set of linear subspaces of $V$. 
+
+To turn a projection form into a projection operator, one needs the isomorphism $\Ses(\MH)\simeq\fk L(\MH)$ in Thm. \ref{lb136}, which holds only for Hilbert spaces $\MH$ due to the Riesz-Fr\'echet Thm. \ref{lb135}. This is one major reason why completeness is essential in Riesz's spectral theorem---though not in the form of Cauchy completeness, but rather through the duality $\MH\simeq(\MH^\Co)^*$. 
+
+In Sec. \ref{lb245}, we will see another fundamental way in which the duality $\MH\simeq(\MH^\Co)^*$ enters Riesz's proof of the spectral theorem, once again through the isomorphism $\Ses(\MH)\simeq\fk L(\MH)$.
+
+
+\subsubsection{Projections}
+
+
+
+
+
+\begin{df}
+A \textbf{projection operator} (or simply a \textbf{projection}) \index{00@Projection} on an inner product $V$ is an element $P\in\fk L(V)$ such that $\omega_P$ is Hermitian (i.e. $\bk{\xi|P\eta}=\bk{P\xi|\eta}$ for all $\xi,\eta\in V$) and $P^2=\id_V$. It is easy to check that \index{00@$P^\perp=1-P$}
+\begin{align*}
+P^\perp:=1-P
+\end{align*}
+is also a projection.
+\end{df}
+
+Recall that if $V$ is a Hilbert space, $\omega_P$ being Hermitian is equivalent to $P^*=P$.
+
+
+\begin{eg}
+Let $U$ be a linear subspace of an inner product space $V$, and suppose that $V$ has a projection onto $U$. Then by Cor. \ref{lb171}, the projection operator associated to $U$ is a projection.
+\end{eg}
+
+
+In what follows, we will mainly discuss projections on Hilbert spaces, although many of the results extend naturally to general inner product spaces.
+
+
+
+\begin{thm}\label{lb248}
+Let $\MH$ be a Hilbert space. We have a bijection
+\begin{gather}\label{eq139}
+\{\text{projections on $\MH$}\}\xlongrightarrow{\simeq}\{\text{closed linear subspaces of $\MH$}\}\qquad P\mapsto \Rng(P)
+\end{gather}
+Moreover, $P$ is the projection operator associated to $\Rng(P)$ in the sense of Def. \ref{lb246}. That is, for each $\xi\in\MH$, we have $P\xi\in\Rng(P)$ and $\xi-P\xi\in\Rng(P)^\perp$.
+\end{thm}
+
+\begin{proof}
+If $P$ is a projection on $\MH$, then clearly $1-P$ is also a projection (i.e. $1-P$ is self-adjoint and $(1-P)^2=1-P$). Moreover, we have
+\begin{align}\label{eq138}
+\Rng(P)=\Ker(1-P)
+\end{align}
+Indeed, for each $\xi\in\MH$ we have $(1-P)P\xi=P\xi-P^2\xi=0$ and hence $\Rng(P)\subset\Ker(1-P)$; if $(1-P)\xi=0$, then $\xi=P\xi$, and hence $\Ker(1-P)\subset\Rng(P)$. This proves $\Rng(P)=\Ker(1-P)$. We have thus proved that $\Rng(P)$ is a closed linear subspace of $\MH$, since the kernel of any bounded linear operator is a close linear subspace (Cor. \ref{lb147}).
+
+If $\xi\in\MH$, then clearly $P\xi\in\Rng(P)$. For each $\eta\in\MH$, we have $\bk{P\eta|\xi-P\xi}=\bk{\eta|P\xi-P^2\xi}=0$. Thus $\xi-P\xi\in\Rng(P)^\perp$. This proves that $P$ is the (unique) projection associated to $\Rng(P)$. In particular, $P$ is determined by $\Rng(P)$, and hence the map \eqref{eq139} is injective. The surjectivity follows from Thm. \ref{lb149}.
+\end{proof}
+
+
+Recall Def. \ref{lb247} for the meaning of $A\leq B$ where $A,B$ are bounded self-adjoint operators on a Hilbert space. The following property says that the bijection \eqref{eq139} is an isomorphism of partially ordered sets.
+
+
+\begin{pp}\label{lb249}
+Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\Rng(P)\subset \Rng(Q)$.
+\item $QP=P$.
+\item $PQ=P$. 
+\item $P\leq Q$, namely, $\bk{\xi|P\xi}\leq \bk{\xi|Q\xi}$ for all $\xi\in\mc H$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+(1)$\Rightarrow$(2): Assume (1). Choose any $\xi\in\MH$. Since $P\xi\in \Rng(Q)$, and since (by \eqref{eq138} or \eqref{eq140}) $\Rng(Q)=\Ker(Q-1)$, we have $(Q-1)P\xi=0$. This proves (2).
+
+(2)$\Rightarrow$(3): This follows from $(QP)^*=PQ$.
+
+(2,3)$\Rightarrow$(4): Note that any projection $P$ is $\geq0$, since $P=P^*P$. Since $1-P$ is a projection, we have $1-P\geq0$, i.e., $P\leq 1$. Therefore, for each $\xi\in\MH$ we have $\bk{\xi|P\xi}\leq\bk{\xi|\xi}$. Replacing $\xi$ with $Q\xi$ and assuming (2) and (3), we obtain
+\begin{align*}
+\bk{\xi|P\xi}=\bk{\xi|QPQ\xi}=\bk{Q\xi|PQ\xi}\leq\bk{Q\xi|Q\xi}=\bk{\xi|Q\xi}
+\end{align*} 
+
+(4)$\Rightarrow$(1): Assume (4). Then we have $1-Q\leq 1-P$. Therefore, for each $\xi\in\Ker(P^\perp)$ we have $\bk{Q^\perp\xi|Q^\perp\xi}=\bk{\xi|Q^\perp\xi}\leq\bk{\xi|P^\perp\xi}=0$, and hence $\Ker(P^\perp)\subset\Ker(Q^\perp)$. By \eqref{eq138} or \eqref{eq140}, we have $\Ker(P^\perp)=\Rng(P)$ and $\Ker(Q^\perp)=\Rng(Q)$. This proves (1).
+\end{proof}
+
+\begin{co}
+Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $\Rng(P)\perp\Rng(Q)$.
+\item $QP=0$.
+\item $PQ=0$. 
+\item $P+Q\leq 1$.
+\end{enumerate}
+\end{co}
+
+\begin{proof}
+Note that (1) is equivalent to $\Rng(P)\subset\Rng(Q)^\perp$. By \eqref{eq140}, we have $\Rng(Q)^\perp=\Rng(1-Q)$. Thus (1) is equivalent to $\Rng(P)\subset\Rng(1-Q)$, and hence (by Prop. \ref{lb249}) is equivalent to each of the following three conditions: $P(1-Q)=0$,  $(1-Q)P=0$, and $P\leq 1-Q$.
+\end{proof}
+
+
+
+
+\begin{rem}
+Let $P,Q$ be projections on a Hilbert space such that $P\leq Q$. Then $Q-P$ is the projection operator associated to $\Rng(Q)\cap\Rng(P)^\perp$, that is,
+\begin{align*}
+(Q-P)(\MH)=Q(\MH)\cap P(\MH)^\perp
+\end{align*}
+\end{rem}
+
+\begin{proof}
+Let $\mc K=Q(\MH)$. Since $P(\MH)\subset\MK$, $P|_\MK$ and $Q|_\MK$ are bounded linear operators on $\MK$, with $Q|_\MK$ being the identity operator of $\MK$ and $P|_\MK$ being the projection of $\MK$ onto $P(\MH)$. By \eqref{eq140}, the range of $\id_\MK-P|_\MK=Q|_\MK-P|_\MK$ (which equals $(Q-P)(\MH)$ because $(Q-P)Q=Q^2-PQ=Q-P$) equals the orthogonal complement of $P(\MH)$ in $\MK$.
+\end{proof}
+
+
+
+
+
+\subsection{Towards Riesz's spectral theorem: monotone convergence extensions}
+
+
+
+
 
 
 
@@ -8082,6 +8226,20 @@ Thus, the real significance of Hilbert's spectral theorem is that it makes trans
 
 
 \hypertarget{current}{}
+
+
+
+\subsection{Riesz's spectral theorem: two paradigm shifts}\label{lb245}
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{Problems}
