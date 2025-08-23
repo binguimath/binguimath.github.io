@@ -229,6 +229,8 @@
 \DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
 \DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
 \DeclareMathOperator{\Bor}{\mathscr{B}\text{\kern -2pt {\calligra\large or}}\,}
+\DeclareMathOperator{\Borb}{{\mathscr{B}\text{\kern -2pt {\calligra\large or}}\,}^{\mathrm b}}
+
 
 
 \usepackage{aurical}
@@ -581,7 +583,7 @@
 
 \section{Preliminaries}
 
-\subsection{Notation}
+\subsection{Notation}\label{lb251}
 
 In this monograph, unless otherwise stated, we understand the field $\Fbb$ as either $\Rbb$ or $\Cbb$.
 
@@ -697,11 +699,12 @@ is its $n$-th Fourier coefficient (whenever the integral can be defined).
 \Vert f\Vert_{l^p(X,V)}=\Vert f\Vert_{l^p}=\Big(\sum_{x\in X}\Vert f(x)\Vert^p\Big)^{\frac 1p}\\
 |f|\text{ is the function }X\rightarrow \Rbb_{\geq0}\text{ such that }|f|(x)=\Vert f(x)\Vert
 \end{gather*}
-We call $|f|$ the \textbf{absolute value function} of $f$. For each $E\subset V$, we let
+We call $|f|$ the \textbf{absolute value function} of $f$. For each $E\subset V$, we let\index{Borb@$\Borb(X,V)$}
 \begin{gather*}
 C_c(X,E)=\{f\in C(X,E):\Supp(f)\text{ is compact in $X$}\}\\
 l^\infty(X,V)=\{f\in V^X:\Vert f\Vert_\infty<+\infty\}\\
-l^p(X,V)=\{f\in V^X:\Vert f\Vert_p<+\infty\}
+l^p(X,V)=\{f\in V^X:\Vert f\Vert_p<+\infty\}\\
+\Borb(X,V)=\Bor(X,V)\cap l^\infty(X,V)=\{f\in V^X:f\text{ is Borel and bounded}\}
 \end{gather*}
 We are particularly interested in the case that $E=V$, $E=[0,1]$, and $E=\Rbb_{\geq0}$.
 \item Let $V$ be a normed vector space. Let $X$ be a set. We say that a family $(f_\alpha)_{\alpha\in\scr A}$ in $V^X$ is \textbf{uniformly bounded} \index{00@Uniformly bounded families of functions} if $\sup_{\alpha\in\scr A}\Vert f_\alpha\Vert_{l^\infty(X,V)}<+\infty$.
@@ -8048,7 +8051,7 @@ Thus, another major novelty of Hilbert’s proof of the spectral theorem was the
 \end{proof}
 
 
-\begin{question}
+\begin{question}\label{lb250}
 I noticed that the more modern versions of the spectral theorem we will encounter later (such as Riesz's version, the Borel functional calculus version, and the multiplication operator version) are more powerful and widely applicable than Hilbert's spectral theorem. In fact, Hilbert's version seems more like a special case of these modern results. So what is the significance of studying the proof of Hilbert's spectral theorem?
 \end{question}
 
@@ -8066,7 +8069,7 @@ While Hilbert's spectral theorem is less general than its modern counterparts, i
 
 
 
-Thus, the real significance of Hilbert's spectral theorem is that it makes transparent why the Riesz representation theorem enters spectral theory in the first place. Hilbert's proof, the earliest version of the spectral theorem, can be viewed as a linear-algebraic reinterpretation of all the key steps in the proof of the Hausdorff moment problem---and hence as an equivalent reformulation of the Riesz representation theorem for $C(I)$. The additional layers found in modern spectral theorems---those not directly tied to the moment problem/Riesz representation paradigm---were introduced later, as part of the refinement and expansion of the theory.
+Thus, the real significance of Hilbert's spectral theorem is that it makes transparent why the Riesz representation theorem enters spectral theory in the first place. Hilbert's proof, the earliest version of the spectral theorem, can be viewed as a linear-algebraic reinterpretation of all the key steps in the proof of the Hausdorff moment problem---and hence as an almost equivalent reformulation of the Riesz representation theorem for $C(I)$. The additional layers found in modern spectral theorems---those not directly tied to the moment problem/Riesz representation paradigm---were introduced later, as part of the refinement and expansion of the theory.
 \end{proof}
 
 
@@ -8099,7 +8102,7 @@ An important drawback of Hilbert's spectral theorem is that it is unclear how th
 \bk{\xi|E(\lambda)\xi}=\rho_\xi(\lambda)\qquad\text{for all }\lambda\in[-r,r]\text{ and }\xi\in\MH
 \end{align*}
 
-As we will learn in this section, for each Hilbert space $\MH$ there is a order-preserving bijection between projection operators and closed linear subspaces of $\MH$, related by $P\mapsto \Rng(P)$. Therefore, Riesz's replacement of scalar-valued increasing functions $\rho_\xi$ with projection-valued increasing functions $E$ brings the geometry of Hilbert spaces into the formulation of the spectral theorem. In fact, when $\dim \MH<+\infty$, the subspace associated to $E(\lambda)$ is spanned by eigenvectors of $T$ with eigenvalues $\leq\lambda$.
+As we will learn in this section, for each Hilbert space $\MH$ there is an order-preserving bijection between projection operators and closed linear subspaces of $\MH$, related by $P\mapsto \Rng(P)$. Therefore, Riesz's replacement of scalar-valued increasing functions $\rho_\xi$ with projection-valued increasing functions $E$ brings the geometry of Hilbert spaces into the formulation of the spectral theorem. In fact, when $\dim \MH<+\infty$, the subspace associated to $E(\lambda)$ is spanned by eigenvectors of $T$ with eigenvalues $\leq\lambda$.
 
 
 Interestingly, even for non-complete inner product spaces, the correspondence $P\mapsto\Rng(P)$ is still injective (cf. the proof of Thm. \ref{lb248}), which is sufficient for the spectral theorem. The essential reason Riesz's spectral theorem applies only to Hilbert spaces and not to general inner product spaces is that he constructs $E(\lambda)$ by first constructing its associated sesquilinear form $\omega_{E(\lambda)}$, as we will see in Sec. \ref{lb245}. However, if an inner product space $V$ is not complete, there is even no natural injective maps from the set of \textbf{projection forms} \index{00@Projective forms} (i.e., bounded Hermitian forms $\omega$ satisfying $\omega\circ\omega=\omega$, cf. Def. \ref{lb144} for the definition of $\omega\circ\omega$) to the set of linear subspaces of $V$. 
@@ -8212,7 +8215,74 @@ Let $\mc K=Q(\MH)$. Since $P(\MH)\subset\MK$, $P|_\MK$ and $Q|_\MK$ are bounded 
 
 
 
-\subsection{Towards Riesz's spectral theorem: monotone convergence extensions}
+\subsection{Towards Riesz's spectral theorem: monotone convergence extension}
+
+
+\subsubsection{Paradigm shift: from finite approximation to linear extension}
+
+
+Another of Riesz's innovations on Hilbert's spectral theorem is his entirely different approach to the polynomial moment problem/the Riesz representation theorem. One year after his proof of the spectral theorem in \cite{Rie13}, Riesz gave a new proof of the Riesz representation theorem in \cite{Rie14}; this proof draws on key steps from his treatment of the spectral theorem in \cite{Rie13} and simplifies the method he originally used in \cite{Rie11}.
+
+We will not discuss \cite{Rie11}, since it offers little insight for this course. Instead we compare the method used in \cite{Rie13,Rie14}---which I call the monotone convergence extension---with the Stieltjes-Hilbert method for treating the moment problem. (Recall again that the Riesz representation theorem for $C(I)$, with $I$ a compact interval, is roughly equivalent to the Hausdorff moment problem, cf. the answer to Question \ref{lb250}.) The transition from the Stieltjes-Hilbert method to Riesz's method marked \uwave{a paradigm shift in the early development of functional analysis: the move from finite approximation to linear extension}. We explain this in more detail below.
+
+
+
+As discussed in Sec. \ref{lb41} and summarized in Table \ref{tb4}, the traditional approach to moment problems and to characterizing dual spaces proceeds in two steps: (1) establish the link between pointwise convergence of functions and convergence of moments; (2) show that any bounded (or positive) linear functional can be approximated in the weak-* topology by elementary functions. The treatment of polynomial moment problems in Ch. \ref{lb114} exemplifies this strategy: the connection in step (1) is captured by Thm. \ref{lb92} together with the Helly selection theorem (Thm. \ref{lb94}), while step (2) is achieved via Pad\'e approximation, implemented as finite-rank approximations of Hermitian operators. \uwave{This approach clearly belongs to the paradigm of finite approximation.}
+
+
+This finite-approximation paradigm gave way to the linear-extension paradigm, with F. Riesz as its prime mover. In this course we will exhibit two main patterns of the linear-extension paradigm:
+\begin{itemize}
+\item The \textbf{monotone convergence extension}, the main subject of this section (and treated in greater detail in \cite[Ch.  24-25]{Gui-A}), which is closely tied to integration theory.
+\item The \textbf{bounded linear extension}, which is intimately connected with convexity in normed spaces and with various forms of the Hahn-Banach theorem.
+\end{itemize}
+The monotone convergence extension may be regarded as a gift from integration theory to functional analysis. Whereas Lebesgue developed integration by first defining measurable sets, the approach of monotone convergence extension---originally introduced by Young as an alternative to Lebesgue's approach that appealed to more conservative contemporaries \footnote{See \cite[Sec.~6.6]{Pes}.}---builds the integral by enlarging the class of integrable functions in such a way that the integral satisfies the monotone convergence theorem.
+
+
+\subsubsection{Monotone convergence extension}
+
+Fix $\Kbb\in\{\Rbb_{\geq0},\Rbb,\Cbb\}$. Let $X$ be a topological space. Recall from Sec. \ref{lb251} that\index{Borb@$\Bor(X,\Kbb)$}
+\begin{align}
+\Borb(X,\Kbb)=\{\text{bounded Borel functions }X\rightarrow\Kbb\}
+\end{align}
+As usual, $\Borb(X)$ denotes $\Borb(X,\Cbb)$.
+
+
+\begin{df}
+A positive linear functional $\Lambda:\Borb(X,\Kbb)\rightarrow\Kbb$ is called \textbf{normal} \footnote{This terminology is borrowed from the theory of von Neumann algebras.} \index{00@Nomality of positive linear functionals} if it satisfies the monotone convergence theorem, that is, if $(f_n)$ is an increasing sequence in $\Borb(X,\Kbb)$ converging pointwise to $f\in\Borb(X,\Kbb)$, then
+\begin{align*}
+\lim_n\Lambda(f_n)=\Lambda(f)
+\end{align*}
+\end{df}
+
+
+\begin{pp}\label{lb252}
+We have a bijective map
+\begin{gather}\label{eq141}
+\begin{gathered}
+\{\text{finite Borel measures on $X$}\}\xlongrightarrow{\simeq}\{\text{normal positive linear functionals}\}\\
+\mu\mapsto\Lambda_\mu
+\end{gathered}
+\end{gather}
+where $\Lambda_\mu(f)=\int_Xfd\mu$ for each $f\in\Borb(X,\Kbb)$.
+\end{pp}
+
+\begin{proof}
+Given each finite Borel measure $\mu$, $\Lambda_\mu$ satisfies the MCT. Therefore the map \eqref{eq141} is well-defined. Since $\Lambda_\mu$ is determined by its values on $\Borb(X,\Rbb_{\geq0})$, and since each $f\in\Borb(X,\Rbb_{\geq0})$ is the pointwise limit of an increasing sequence of simple functions, $\Lambda_\mu$ must be determined by the values $\Lambda_\mu(\chi_E)=\mu(E)$ for all any Borel set $E\subset X$. Therefore, the map \eqref{eq141} is injective.
+
+To prove that \eqref{eq141} is surjective, we pick an arbitrary normal positive linear functional $\Lambda:X\rightarrow\Kbb$. Then $\Lambda$ being normal implies that $\mu:E\in\fk B_X\mapsto \Lambda(\chi_E)\in\Rbb_{\geq0}$ is a (Borel) measure on $X$. So $\Lambda$ and $\Lambda_\mu$ agree on simple functions. Since both $\Lambda$ and $\Lambda_\mu$ and satisfy MCT, by the argument in the first paragraph, we conclude $\Lambda=\Lambda_\mu$.
+\end{proof}
+
+
+Prop. \ref{lb252}, which gives us a linear functional interpretation of measure theory, allows us to formulate the Riesz-Markov representation theorem (Thm. \ref{lb7}) for compact metrizable spaces in the form of monotone convergence extension.
+
+
+\begin{thm}[\textbf{Riesz-Markov representation theorem}]\label{lb253} \index{00@Riesz-Markov representation theorem}
+Let $X$ be a compact metrizable space. Then any positive linear functional $\Lambda:C(X,\Kbb)\rightarrow\Kbb$ can be extended uniquely to a normal positive linear functional $\Lambda:\Borb(X,\Kbb)\rightarrow\Kbb$.
+\end{thm} 
+
+
+
+
 
 
 
@@ -8310,6 +8380,10 @@ Hilbert, D. (1906) Grundz\"uge einer allgemeinen Theorie der linearen Integralgl
 
 \bibitem[Jah]{Jah}
 Jahnke, H. N. (2003). A history of analysis (No. 24). American Mathematical Soc..
+
+
+\bibitem[Pes]{Pes}
+Pesin, I. N. (1970). Classical and modern integration theories.
 
 \bibitem[Rie09]{Rie09}
 Riesz, F. (1909). Sur les op\'erations functionnelles lin\'eaires. Gauthier-Vllars.
