@@ -6212,7 +6212,7 @@ Let $\omega\in\Ses(\MH|\MK)$ and $\sigma\in\Ses(\MK|\MM)$. Then the \textbf{comp
 \begin{align*}
 (\omega\circ\sigma)(\psi|\xi)=\sum_{i\in I}\omega(\psi|e_i)\cdot\sigma(e_i|\xi)\qquad\text{for all }\psi\in\MH,\xi\in\MM
 \end{align*}
-where $(e_i)_{i\in I}$ is a basis of $\MK$. This definition is independent of the choice of basis. Moreover, by Lem. \ref{lb138}, for each $T\in\fk L(\MK,\MH)$ and $S\in\fk L(\MM,\MK)$, we have
+where $(e_i)_{i\in I}$ is a basis of $\MK$. This definition is independent of the choice of basis (and applies even to bounded sesquilinear forms on inner product spaces). Moreover, by Lem. \ref{lb138}, for each $T\in\fk L(\MK,\MH)$ and $S\in\fk L(\MM,\MK)$, we have
 \begin{align*}
 \omega_{T\circ S}=\omega_T\circ\omega_S
 \end{align*}
@@ -6400,12 +6400,17 @@ is almost tautological. However, when working with bounded sesquilinear forms or
 \sum_{y\in X}\sum_{x\in X} \sigma(\xi|e_x)\omega(e_x|e_y)\tau(e_y|\eta)=\sum_{x\in X}\sum_{y\in X}\sigma(\xi|e_x)\omega(e_x|e_y)\tau(e_y|\eta)
 \end{align}
 Similarly, if $A,B,C\in\Cbb^{X\times X}$ are bounded matrices, associativity of matrix multiplications means that for each $i,j\in X$, 
-\begin{align*}
+\begin{align}\label{eq144}
 \sum_{y\in X}\sum_{x\in X} A(i,x)B(x,y)C(y,j)=\sum_{x\in X}\sum_{y\in X}A(i,x)B(x,y)C(y,j)
-\end{align*}
+\end{align}
 At first glance, the commutativity of $\sum_{x\in X}$ and $\sum_{y\in X}$ is not at all obvious.
 
 The issue of commutativity of unordered sums---which appears in the frameworks of sesquilinear forms and matrices---disappears in the perspective of linear maps. Where is this Fubini-type property hidden in the linear map viewpoint? And how can one understand the commutativity of such unordered sums in a more general context? We will answer this question in the next section.
+
+
+
+
+
 
 
 
@@ -6666,6 +6671,33 @@ Therefore, by Cor. \ref{lb161}, for each $T\in\fk L(H)$ and $f\in\Cbb[z]$,
 \end{eg}
 
 
+
+
+
+
+
+\subsection{Problems}
+
+
+Let $V$ be an inner product space.
+
+
+\begin{problem}
+Let $\omega$ be a Hermitian form on $V$. Prove the following sharpened polarization identity: For each $\xi,\eta\in V$ we have
+\begin{align}\label{eq145}
+\omega(\xi|\eta)=\frac 14\big(\omega(\xi+\eta|\xi+\eta)-\omega(\xi-\eta|\xi-\eta)\big)
+\end{align}
+Conclude that if $M\in\Rbb_{\geq0}$ and
+\begin{align*}
+|\omega(\xi|\xi)|\leq M\Vert\xi\Vert^2
+\end{align*}
+for each $\xi\in V$, then $\Vert\omega\Vert\leq M$. This sharpens Prop. \ref{lb238} in the Hermitian case.
+\end{problem}
+
+
+\begin{proof}[Hint]
+The strategy differs slightly from that of Prop.\ \ref{lb238}. In particular, apply \eqref{eq145} to the inner product on $V$ at an appropriate step.
+\end{proof}
 
 
 
@@ -7941,7 +7973,7 @@ In \cite{Hil06}, Hilbert introduced the Hilbert space $l^2(\Zbb)$ and proved the
 
 \subsubsection{The spectral theorem of Hilbert}
 
-\begin{thm}\label{lb239}
+\begin{thm}[\textbf{Hilbert's spectral theorem}]\label{lb239} \index{00@Hilbert's spectral theorem}
 Let $V$ be a separable inner product space, and let $\omega\in\Ses(V)$ be Hermitian. Choose $r\geq0$ such that $\Vert\omega\Vert\leq r$. Then for each $\xi\in V$, there is an increasing function $\rho_\xi:[-r,r]\rightarrow\Rbb_{\geq0}$ such that for $z\in\Cbb$ satisfying $|z|>r$, the resolvent form $(z-\omega)^{-1}\in\Ses(V)$ satisfies
 \begin{align}\label{eq132}
 (z-\omega)^{-1}(\xi|\xi)=\int_{[-r,r]}\frac{d\rho_\xi(\lambda)}{z-\lambda}
@@ -8085,7 +8117,9 @@ In \cite{Fre03}, Fredholm sought to analyze the solutions of integral equations 
 \begin{align*}
 f(x)+\int_0^1K(x,y)f(y)=g(y)
 \end{align*}
-where $K,g$ are given continuous functions and $f$ is the unkown solution. Fredholm considered the resolvent of the integral operator $S:C([0,1])\rightarrow C([0,1])$ defined by $(Sf)(x)=\int_0^1K(x,y)f(y)$. As in Question \ref{lb242}, this resolvent was not defined directly as the inverse operator of $z-S$, but rather as the limit of $(z-S_n)^{-1}$, where $(S_n)$ is a sequence of finite-rank matrices (with increasing ranks) obtained by partioning the interval $[0,1]$. Moreover, the inverse $(z-S_n)^{-1}$ was expressed in terms of determinants, thanks to Cramer's rule/the inverse matrix formula.
+where $K,g$ are given continuous functions and $f$ is the unkown solution. Fredholm considered the resolvent of the integral operator $S:C([0,1])\rightarrow C([0,1])$ defined by $(Sf)(x)=\int_0^1K(x,y)f(y)$. As in Question \ref{lb242}, this resolvent was not defined directly as the inverse operator of $z-S$, but rather as the limit of $(z-S_n)^{-1}$, where $(S_n)$ is a sequence of finite-rank matrices (with increasing ranks) obtained by partioning the interval $[0,1]$. Moreover, the inverse $(z-S_n)^{-1}$ was expressed in terms of determinants, thanks to Cramer's rule/the inverse matrix formula. Fredholm studied the invertibility of $z-S$ by analyzing the zeros of the holomorphic function $\Delta(z):=\lim_n \det(z-S_n)$.
+
+
 
 Thus, another major novelty of Hilbert’s proof of the spectral theorem was the way it connected Fredholm’s notion of the resolvent, developed in the study of integral equations, with the Stieltjes transforms arising from the polynomial moment problem and divergent series.
 \end{proof}
@@ -8132,7 +8166,7 @@ The fact that Hilbert's spectral theorem holds for all inner product spaces, whi
 
 
 
-\subsubsection{Why Riesz’s spectral theorem requires Hilbert spaces}
+\subsubsection{Why Riesz’s spectral theorem requires Hilbert spaces}\label{lb260}
 
 
 Riesz's spectral theorem, proved in \cite[Ch. V]{Rie13}, is a significant improvement over Hilbert's. Beginning with this section, we prepare for the introduction of Riesz's version.
@@ -8200,27 +8234,28 @@ If $\xi\in\MH$, then clearly $P\xi\in\Rng(P)$. For each $\eta\in\MH$, we have $\
 Recall Def. \ref{lb247} for the meaning of $A\leq B$ where $A,B$ are bounded self-adjoint operators on a Hilbert space. The following property says that the bijection \eqref{eq139} is an isomorphism of partially ordered sets.
 
 
-\begin{pp}\label{lb249}
+\begin{thm}\label{lb249}
 Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
-\item $\Rng(P)\subset \Rng(Q)$.
-\item $QP=P$.
-\item $PQ=P$. 
-\item $P\leq Q$, namely, $\bk{\xi|P\xi}\leq \bk{\xi|Q\xi}$ for all $\xi\in\mc H$.
+\item[(1)] $\Rng(P)\subset \Rng(Q)$.
+\item[(2)] $QP=P$.
+\item[(2')] $PQ=P$. 
+\item[(3)] $P\leq Q$, namely, $\bk{\xi|P\xi}\leq \bk{\xi|Q\xi}$ for all $\xi\in\mc H$.
+\item[(3')] $\Vert P\xi\Vert\leq\Vert Q\xi\Vert$ for all $\xi\in\MH$.
 \end{enumerate}
-\end{pp}
+\end{thm}
 
 \begin{proof}
 (1)$\Rightarrow$(2): Assume (1). Choose any $\xi\in\MH$. Since $P\xi\in \Rng(Q)$, and since (by \eqref{eq138} or \eqref{eq140}) $\Rng(Q)=\Ker(Q-1)$, we have $(Q-1)P\xi=0$. This proves (2).
 
-(2)$\Rightarrow$(3): This follows from $(QP)^*=PQ$.
+(2)$\Leftrightarrow$(2'): This follows from $(QP)^*=PQ$.
 
-(2,3)$\Rightarrow$(4): Note that any projection $P$ is $\geq0$, since $P=P^*P$. Since $1-P$ is a projection, we have $1-P\geq0$, i.e., $P\leq 1$. Therefore, for each $\xi\in\MH$ we have $\bk{\xi|P\xi}\leq\bk{\xi|\xi}$. Replacing $\xi$ with $Q\xi$ and assuming (2) and (3), we obtain
-\begin{align*}
-\bk{\xi|P\xi}=\bk{\xi|QPQ\xi}=\bk{Q\xi|PQ\xi}\leq\bk{Q\xi|Q\xi}=\bk{\xi|Q\xi}
-\end{align*} 
+(3)$\Leftrightarrow$(3'): This follows from $\Vert P\xi\Vert^2=\bk{P\xi|P\xi}=\bk{\xi|P^*P\xi}=\bk{\xi|P\xi}$ and, similarly, $\Vert Q\xi\Vert^2=\bk{\xi|Q\xi}$.
 
-(4)$\Rightarrow$(1): Assume (4). Then we have $1-Q\leq 1-P$. Therefore, for each $\xi\in\Ker(P^\perp)$ we have $\bk{Q^\perp\xi|Q^\perp\xi}=\bk{\xi|Q^\perp\xi}\leq\bk{\xi|P^\perp\xi}=0$, and hence $\Ker(P^\perp)\subset\Ker(Q^\perp)$. By \eqref{eq138} or \eqref{eq140}, we have $\Ker(P^\perp)=\Rng(P)$ and $\Ker(Q^\perp)=\Rng(Q)$. This proves (1).
+(2')$\Rightarrow$(3'): Since $\xi=P\xi+(1-P)\xi$ where $P\xi\perp(1-P)\xi$, by the Pythagorean identity, we have $\Vert P\xi\Vert\leq \Vert\xi\Vert$. Replacing $\xi$ with $Q\xi$, we get $\Vert PQ\xi\Vert\leq\Vert Q\xi\Vert$. Therefore, (3') follows from (2'). 
+
+
+(3')$\Rightarrow$(1'): Assume (3'). Then $\Vert Q\xi\Vert=0$ implies $\Vert P\xi\Vert=0$, i.e.,  $\Ker(Q)\subset\Ker(P)$. Therefore, $\Ker(P)^\perp\subset\Ker(Q)^\perp$. By \eqref{eq140}, we have $\Ker(P)^\perp=\Rng(P)$ and $\Ker(Q)^\perp=\Rng(Q)$. This proves (1').
 \end{proof}
 
 \begin{co}
@@ -8234,13 +8269,13 @@ Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
 \end{co}
 
 \begin{proof}
-Note that (1) is equivalent to $\Rng(P)\subset\Rng(Q)^\perp$. By \eqref{eq140}, we have $\Rng(Q)^\perp=\Rng(1-Q)$. Thus (1) is equivalent to $\Rng(P)\subset\Rng(1-Q)$, and hence (by Prop. \ref{lb249}) is equivalent to each of the following three conditions: $P(1-Q)=0$,  $(1-Q)P=0$, and $P\leq 1-Q$.
+Note that (1) is equivalent to $\Rng(P)\subset\Rng(Q)^\perp$. By \eqref{eq140}, we have $\Rng(Q)^\perp=\Rng(1-Q)$. Thus (1) is equivalent to $\Rng(P)\subset\Rng(1-Q)$, and hence (by Thm. \ref{lb249}) is equivalent to each of the following three conditions: $P(1-Q)=0$,  $(1-Q)P=0$, and $P\leq 1-Q$.
 \end{proof}
 
 
 
 
-\begin{rem}
+\begin{rem}\label{lb263}
 Let $P,Q$ be projections on a Hilbert space such that $P\leq Q$. Then $Q-P$ is the projection operator associated to $\Rng(Q)\cap\Rng(P)^\perp$, that is,
 \begin{align*}
 (Q-P)(\MH)=Q(\MH)\cap P(\MH)^\perp
@@ -8250,6 +8285,54 @@ Let $P,Q$ be projections on a Hilbert space such that $P\leq Q$. Then $Q-P$ is t
 \begin{proof}
 Let $\mc K=Q(\MH)$. Since $P(\MH)\subset\MK$, $P|_\MK$ and $Q|_\MK$ are bounded linear operators on $\MK$, with $Q|_\MK$ being the identity operator of $\MK$ and $P|_\MK$ being the projection of $\MK$ onto $P(\MH)$. By \eqref{eq140}, the range of $\id_\MK-P|_\MK=Q|_\MK-P|_\MK$ (which equals $(Q-P)(\MH)$ because $(Q-P)Q=Q^2-PQ=Q-P$) equals the orthogonal complement of $P(\MH)$ in $\MK$.
 \end{proof}
+
+
+The convergence of an increasing net of projections also has a geometric meaning:
+
+\begin{thm}\label{lb264}
+Let $(E_\alpha)_{\alpha\in I}$ be a net of projections on $\MH$. Assume that $(E_\alpha)$ is increasing, i.e., $E_\alpha\leq E_\beta$ whenever $\alpha\leq\beta$. Let $E$ be the projection operator such that
+\begin{align}
+\Rng(E)=\Cl_\MH\Big(\bigcup_{\alpha\in I}\Rng(E_\alpha)\Big)
+\end{align}
+Then $E_\alpha\leq E$ for each $\alpha$, and $\lim_\alpha E_\alpha$ converges in SOT to $E$.
+\end{thm}
+
+Consequently, if an increasing net of projections $(E_\alpha)$ converges in WOT to some $F\in\fk L(\MH)$, then clearly $F=E$. It follows that $F$ is a projection, that $(E_\alpha)$ in SOT to $E$, and that $\Rng(F)=\Cl_\MH\big(\bigcup_{\alpha\in I}\Rng(E_\alpha)\big)$.
+
+\begin{proof}
+Since $\Rng(E_\alpha)\subset\Rng(E)$, we have $E_\alpha\leq E$. Let $\xi\in\MH$. By the definition of $E$, for each $\eps>0$ there exists $\alpha\in I$ such that
+\begin{align*}
+\Vert E\xi-E_\alpha\eta\Vert\leq\eps
+\end{align*}
+for some $\eta\in\MH$. Since $E\xi-E_\alpha\eta=(E-E_\alpha)\xi+E_\alpha(\xi-\eta)$ with $(E-E_\alpha)\xi$ orthogonal to $E_\alpha(\xi-\eta)$ (cf. Rem. \ref{lb263}), the Pythagorean identity shows that $(E-E_\alpha)\xi\Vert\leq\Vert E\xi-E_\alpha\eta\Vert$ and hence
+\begin{align*}
+\Vert (E-E_\alpha)\xi\Vert\leq\eps
+\end{align*}
+Therefore, for each $\beta\geq\alpha$, we have $E-E_\beta\leq E-E_\alpha$ due to Rem. \ref{lb263}, and hence $\Vert (E-E_\beta)\xi\Vert\leq\eps$. This proves $\lim_\alpha E_\alpha\xi=E\xi$.
+\end{proof}
+
+
+\begin{co}\label{lb266}
+Let $(E_\alpha)_{\alpha\in I}$ be a decreasing net of projections on $\MH$. Let $E$ be the projection operator onto
+\begin{align*}
+\Rng(E)=\bigcap_{\alpha\in I}\Rng(E_\alpha)
+\end{align*}
+Then $E_\alpha\geq E$ for each $\alpha$, and $\lim_\alpha E_\alpha$ converges in SOT to $E$.
+\end{co}
+
+
+\begin{proof}
+Apply Thm. \ref{lb264} to the increasing net $(E_\alpha^\perp)$ and use the following Exe. \ref{lb265}.
+\end{proof}
+
+
+\begin{exe}\label{lb265}
+Let $(\MK_\alpha)_{\alpha\in\scr A}$ be a family of closed linear subspaces of $\MH$. Prove that
+\begin{gather}
+\Cl_\MH\Big(\bigcup_\alpha\MK_\alpha\Big)^\perp=\bigcap_\alpha\MK_\alpha^\perp \qquad\Big(\bigcap_\alpha \MK_\alpha\Big)^\perp=\Cl_\MH\Big(\bigcup_\alpha\MK_\alpha^\perp\Big)
+\end{gather}
+(Hint: use Cor. \ref{lb151}.)
+\end{exe}
 
 
 
@@ -8338,12 +8421,12 @@ This follows immediately from Thm. \ref{lb7} and Prop. \ref{lb252}.
 \end{proof}
 
 
-\begin{co}
+\begin{co}[\textbf{Abstract Hausdorff moment theorem}]\label{lb261}\index{00@Abstract Hausdorff moment theorem}\label{lb262}
 Let $X$ be a second-countable compact Hausdorff space. Let $\scr A$ be a unital *-$\Fbb$-subalgebra of $C(X,\Fbb)$ separating points of $X$. Then we have an $\Rbb_{\geq0}$-linear isomorphism
 \begin{gather}
 \begin{gathered}
 \begin{array}{c}
-\{\text{normal positive linear functionals $\Borb(X,\Kbb)\rightarrow\Fbb$}\}\\
+\{\text{normal positive linear functionals $\Borb(F,\Kbb)\rightarrow\Fbb$}\}\\
 \raisebox{0.3cm}{\rotatebox{-90}{$\xlongrightarrow{\rotatebox{90}{$\simeq$}}$}}\\
 \{\text{positive linear functionals $\scr A\rightarrow\Fbb$}\}
 \end{array}
@@ -8356,6 +8439,16 @@ Let $X$ be a second-countable compact Hausdorff space. Let $\scr A$ be a unital 
 \begin{proof}
 By Stone-Weierstrass, the $l^\infty$-closure of $\scr A$ is $C(X,\Fbb)$. Therefore, the corollary follows from Thm. \ref{lb253} and \ref{lb254}.
 \end{proof}
+
+
+
+\begin{rem}
+Suppose that $X$ is a compact Hausdorff space, not necessarily second-countable. A positive linear functional $\Lambda:\Borb(X,\Fbb)\rightarrow\Fbb$ is called \textbf{Radon} \index{00@Radon positive linear functional} if there exists a (necessarily finite) Radon measure $\mu$ on $X$ such that
+\begin{align*}
+\Lambda(f)=\int_X fd\mu\qquad\text{for all }f\in\Borb(X,\Fbb)
+\end{align*}
+It is clear that Thm. \ref{lb253} and Cor. \ref{lb261} can be generalized to this situation, with normal positive linear functionals replaced by Radon positive linear functionals.
+\end{rem}
 
 
 
@@ -8414,7 +8507,7 @@ where $\chi_{I_{\leq x}}$ is an upper semicontinuous function (and hence lies to
 For a more detailed discussion of the monotone convergence extension method, see \cite[Ch. 25]{Gui-A}.
 
 
-\hypertarget{current}{}
+
 
 
 
@@ -8436,7 +8529,83 @@ As discussed before (for instance, in Sec. \ref{lb24} and \ref{lb43}), functiona
 
 
 
-We have seen that Hilbert's spectral theorem (Thm. \ref{lb239}) is stated in the language of bilinear/sesquilinear forms. As noted in Sec.\ref{lb258}, one reason Riesz framed his spectral theorem in the language of linear operators is that projection operators correspond more naturally to linear subspaces of an inner-product space than do projective forms. Another reason---mentioned in Subsec. \ref{lb132}---is that symbolic calculus is easier to manipulate in the operator framework, i.e. one may replace the real or complex variable $x$ in a function $f(x)$ by an operator or a sesquilinear form. We will explore this in more detail in this section and in Sec. \ref{lb259}.
+We have seen that Hilbert's spectral theorem (Thm. \ref{lb239}) is stated in the language of bilinear/sesquilinear forms. As noted in Sec. \ref{lb258}, one reason Riesz framed his spectral theorem in the language of linear operators is that projection operators correspond more naturally to linear subspaces of an inner-product space than do projection forms. Another reason---mentioned in Subsec. \ref{lb132}---is that symbolic calculus is easier to manipulate in the operator framework, i.e. one may replace the real or complex variable $x$ in a function $f(x)$ by an operator or a sesquilinear form. We will explore this in more detail in this section and in Sec. \ref{lb259}. For now, we answer some questions that readers might naturally ask.
+
+
+\begin{question}
+What's the role played by symbolic calculus in Riesz's spectral theorem?
+\end{question}
+
+\begin{proof}[Answer]
+Let $T\in\fk L(\MH)$ be a bounded self-adjoint operator on a Hilbert space $\MH$. Starting with the polynomial functional calculus, i.e. the linear map
+\begin{align*}
+\pi_T:\Cbb[x]\rightarrow \fk L(\MH)\qquad x^n\mapsto T^n
+\end{align*}
+Riesz applied the Riesz representation theorem to extend $\pi_T$ to a homomorphism
+\begin{align*}
+\pi_T:\Span\LSCb([-r,r])\rightarrow \fk L(\MH)
+\end{align*}
+where $r\in\Rbb_{\geq0}$ satisfies $r\geq\Vert T\Vert$. This extended linear map is not only linear but also multiplicative (i.e. $\pi_T(fg)=\pi_T(f)\pi_T(g)$) and preserves the involutions (i.e. $\pi_T(\ovl f)=\pi_T(f)^*$). Therefore, since for each $\lambda\in[-a,a]$ we have $\ovl{\chi_{[a,\lambda]}}=\chi_{[a,\lambda]}$ and $\chi_{[a,\lambda]}^2=\chi_{[a,\lambda]}$, the operator
+\begin{align*}
+E(\lambda):=\pi_T(\chi_{[a,\lambda]})
+\end{align*}
+is a projection. This yields the construction of the spectral projections mentioned in Subsec. \ref{lb260}.
+\end{proof}
+
+
+Note that the above answer also explains how the Riesz representation theorem is used in the proof of Riesz's spectral theorem.
+
+
+
+
+\begin{question}
+Why does symbolic/functional calculus require the linear-operator perspective rather than the bilinear/sesquilinear form perspective?
+\end{question}
+
+
+
+\begin{proof}[Answer]
+Of course, to perform symbolic/functional calculus one must first define multiplication of operators, sesquilinear forms, or matrices. As noted in Subsec. \ref{lb260}, multiplication of bounded sesquilinear forms or bounded matrices can be defined as in Def. \ref{lb144}; this historical approach was indeed the one originally adopted by mathematicians. 
+
+The principal complexity with the sesquilinear-form and matrix perspectives---which does not arise in finite-dimensional linear algebra---is not their definition but the associativity of multiplication: one must address the Fubini-type issues for infinite sums appearing in \eqref{eq78} and \eqref{eq144}. For bounded sesquilinear forms and bounded matrices, defining products in terms of orthonormal bases introduces many inconveniences that are absent in the finite-dimensional setting, whereas the operator framework avoids this subtlety.
+\end{proof}
+
+
+\subsubsection{Riesz's spectral theorem, and why the third paradigm shift is missing}
+
+
+In the rest of this section, we fix a Hilbert space $\MH$. 
+
+\begin{df}
+Let $I$ be an interval. An \textbf{increasing net of projections} indexed by $I$ is defined to be a function
+\begin{align*}
+E:I\rightarrow\{\text{projections on }\MH\}
+\end{align*}
+such that $E(\lambda)\leq E(\mu)$ (cf. Thm. \ref{lb249}) for all $\lambda,\mu\in I$ satisfying $\lambda\leq\mu$. We say that $E$ is \textbf{right-continuous}, if for each $\lambda\in[a,b)$ we have
+\begin{align}
+\lim_{\lambda\rightarrow\lambda_0} E(\lambda)=E(\lambda_0)
+\end{align}
+By Cor. \ref{lb266}, the SOT and WOT of the above limit are equivalent; moreover, this limit is equivalent to
+\begin{align*}
+\Rng(E(\lambda_0))=\bigcap_{\lambda>\lambda_0}\Rng(E(\lambda))
+\end{align*}
+\end{df}
+
+
+The following theorem was proved in \cite[Ch. V, Sec. 94]{Rie13}.
+
+
+\begin{thm}[\textbf{Riesz's spectral theorem}]\label{lb267}
+Let $T\in\fk L(\MH)$ be self-adjoint. Let $r\in\Rbb_{\geq0}$ such that $\Vert T\Vert\leq r$. Then there exists a right-continuous increasing net of projections $E:I\rightarrow\fk L(\MH)$ (called the \textbf{spectral projections}) \index{00@Spectral projections} such that for any $f\in C([-r,r])$, the continuous functional calculus $f(T)$ satisfies
+\begin{align}\label{eq146}
+f(T)=\int_{[-r,r]}f(\lambda)dE(\lambda)
+\end{align}
+\end{thm}
+
+Right-continuity is not essential; it is imposed to ensure uniqueness of the net $E$ satisfying \eqref{eq146}. We will not need this uniqueness in the course.
+
+
+Neither the continuous functional calculus nor the integral on the RHS of \eqref{eq146} has been defined yet. We will do this in the following subsections.
 
 
 
@@ -8445,6 +8614,11 @@ We have seen that Hilbert's spectral theorem (Thm. \ref{lb239}) is stated in the
 
 
 
+
+
+
+
+\hypertarget{current}{}
 
 \subsection{Borel functional calculus}\label{lb259}
 
