@@ -190,7 +190,7 @@
 \newtheorem{sprob}[prob]{\color{red}$\star$ Problem}
 %\renewcommand*{\thesprob}{{\color{red}\arabic{section}.\arabic{sprob}}}
 % \newtheorem{ssprob}[prob]{$\star\star$ Problem}
-
+\newtheorem{dprob}[prob]{\color{red}$\dagger$ Problem}
 
 
 \theoremstyle{plain}
@@ -626,6 +626,7 @@ We assume $a\cdot(+\infty)=(+\infty)\cdot a=+\infty$ if $a\in(0,+\infty]$, and $
 An increasing function/sequence/net means a non-decreasing one.
 
 
+Unless otherwise stated, when mentioning a function space, i.e., a linear subspace of $\Fbb^X$ where $X$ is a set, we assume that $X$ is non-empty.
 
 
 
@@ -882,7 +883,7 @@ Let $x$ be the limit of $(x_\alpha)$. Then for each $\eps>0$, there exists $\gam
 
 Recall that a metric space $X$ is called \textbf{(Cauchy) complete} \index{00@Cauchy completeness} if each Cauchy sequence in $X$ converges.
 
-\begin{thm}
+\begin{thm}\label{lb269}
 Suppose that $X$ is a complete metric space. Then every Cauchy net in $X$ converges.
 \end{thm}
 
@@ -1023,7 +1024,7 @@ Choose any $U\in\Nbh(x)$. Since $x_\alpha\rightarrow x$, there exists $\beta\in 
 \end{proof}
 
 
-Note that a subnet does not necessarily have the same index set as the original net. This definition of subnets is motivated largely by the following important property, which will play a crucial role in Sec. \ref{lb229}.
+Note that a subnet does not necessarily have the same index set as the original net. This definition of subnets is motivated largely by the following important property, which will play a crucial role in Subsec. \ref{lb229}.
 
 \begin{thm}\label{lb213}
 Let $(x_\alpha)_{\alpha\in I}$ be a net in a topological space $X$. Let $x\in X$. Then the following are equivalent.
@@ -1145,7 +1146,7 @@ Let $(x_\alpha)_{\alpha\in I}$ be a first-countable net in a topological space $
 
 
 \begin{proof}
-This follows immediately from Thm. \ref{lb210} and Rem. \ref{lb222}.
+This follows immediately from Thm. \ref{lb210} and Rem. \ref{lb221}.
 \end{proof}
 
 With the help of Thm. \ref{lb223}, one can easily generalize the MCT, the DCT, and Fatou's lemma from sequences to first-countable nets of functions. We leave the details of the proofs to the reader.
@@ -1386,17 +1387,18 @@ We have
 \begin{align*}
 \text{separable}\quad\Longleftarrow\quad\text{second countable}\quad\Longrightarrow\quad\text{Lindel\"of}
 \end{align*}
-Moreover, for first countable spaces, we have
+Moreover, for metrizable spaces, we have
 \begin{align*}
 \text{separable}\quad\Longleftrightarrow\quad\text{second countable}
 \end{align*}
 \end{pp}
 
+In fact, Lindel\"of metrizable spaces are also second countable. We will not need this fact.
 
 \begin{proof}
 Step 1. Suppose that $X$ is second countable. Let $\{U_1,U_2,\dots\}$ be a countable basis of $\MT_X$. We may assume WLOG that each $U_n$ is nonempty. Choose $x_n\in U_n$. Then $\{x_n:n\in\Zbb_+\}$ is a countable dense subset of $X$. Therefore, $X$ is separable. Let $\MW$ be an open cover of $X$. For each $n$, let $W_n$ be any member of $\MW$ containing $U_n$; if no such $W_n$ exists then we set $W_n=\emptyset$. By the fact that $\{U_1,U_2,\dots\}$ is a basis of $\MT_X$, one easily shows that $\bigcup_nW_n=X$. Therefore, $(W_n)$ is a countable subcover of $\MW$. This proves that $X$ is Lindel\"of.
 
-Step 2. Suppose that $X$ is first countable and separable. Let $\{x_1,x_2,\dot\}$ be a dense subset of $X$. For each $n$, let $U_{n,1},U_{n,2},\dots$ be a cofinal sequence in $\Nbh_X(x_n)$. Then $(U_{n,k})_{n,k\in\Zbb_+}$ is a countable basis of $\MT_X$. This proves that $X$ is second countable.
+Step 2. Suppose that $X$ is a separable metric space. Let $\{x_1,x_2,\dots\}$ be a dense subset of $X$. Then $(B(x_n,1/k))_{n,k\in\Zbb_+}$ is a countable basis of $\MT_X$. This proves that $X$ is second countable.
 \end{proof}
 
 
@@ -2878,7 +2880,7 @@ If $\sigma,\sigma'\in\mc P(J)$, then clearly $\sigma\cup\sigma'\in\mc P(J)$ and 
 \end{rem}
 
 
-\begin{df}
+\begin{df}\label{lb268}
 A \textbf{tagged partition} \index{00@Tagged partition} of $I$ is an ordered pair
 \begin{align}\label{eq41}
 (\sigma,\xi_\blt)=\big(\{a_0=a<a_1<\cdots<a_n=b\},(\xi_1,\dots,\xi_n) \big)
@@ -2924,10 +2926,10 @@ Note that when $f(a)\neq0$, the integral $\int_{(a,b]}fd\rho$ depends not only o
 
 \begin{proof}[Proof of the convergence of \eqref{eq1}]
 Since $f$ is uniformly continuous, for each $\eps>0$, there exists $\delta>0$ such that $\Vert f(x)-f(y)\Vert\leq\eps$ for all $x,y\in[a,b]$ and $|x-y|\leq\delta$. Choose any tagged partition $(\sigma,\xi_\blt)$ of $[a,b]$ with mesh $\leq\delta$. Then one easily sees that for any $(\sigma',\xi_\blt')\succ(\sigma,\xi)$ we have
-\begin{align*}
-\Vert S(f,\sigma',\xi_\blt')-S(f,\sigma,\xi_\blt)\Vert\leq \eps(\rho(b)-\rho(a))
-\end{align*}
-Therefore, the net $(S(f,\sigma,\xi_\blt))_{(\sigma,\xi_\blt)\in\mc Q(I)}$ is Cauchy. So it must converge because $V$ is complete.
+\begin{align}\label{eq149}
+\Vert S_\rho(f,\sigma',\xi_\blt')-S_\rho(f,\sigma,\xi_\blt)\Vert\leq \eps(\rho(b)-\rho(a))
+\end{align}
+Therefore, the net $(S(f,\sigma,\xi_\blt))_{(\sigma,\xi_\blt)\in\mc Q(I)}$ is Cauchy. So it must converge due to Thm. \ref{lb269} and the completeness of $V$.
 \end{proof}
 
 \begin{rem}\label{lb63}
@@ -6225,17 +6227,33 @@ where $(e_i)_{i\in I}$ is a basis of $\MK$. This definition is independent of th
 However, many properties about composition that are straightforward from the perspective of bounded linear operators become far less transparent when viewed in terms of sesquilinear forms. For instance, consider the following basic result:
 
 \begin{pp}\label{lb143}
-Let $\MU,\MV,\MW$ be normed vector spaces. Let  $T\in\fk L(\MV,\MW)$ and $S\in\fk L(\MU,\MV)$. Then
+Let $\MU,\MV,\MW$ be normed vector spaces. Then for any  $T\in\fk L(\MV,\MW)$ and $S\in\fk L(\MU,\MV)$, we have
 \begin{align*}
 \Vert TS\Vert\leq \Vert T\Vert\cdot\Vert S\Vert
 \end{align*}
+In other words, the multiplication map
+\begin{align*}
+\fk L(\MV,\MW)\times\fk L(\MU,\MV)\rightarrow\fk L(\MU,\MW)\qquad (T,S)\mapsto TS
+\end{align*}
+is a bounded bilinear map with operator norm $\leq 1$.
 \end{pp}
+
 
 \begin{proof}
 Apply $\sup$ over all $\xi\in\ovl B_\MU(0,1)$ to
 \begin{align*}
 \Vert TS\xi\Vert\leq\Vert T\Vert\cdot \Vert S\xi\Vert\leq \Vert T\Vert\cdot\Vert S\Vert\cdot\Vert\xi\Vert
 \end{align*}
+\end{proof}
+
+
+
+\begin{co}
+Let $\MV$ be a normed $\Fbb$-vector space. Let $\scr A$ be an $\Fbb$-subalgebra of $\fk L(\MV)$. Let $\ovl{\scr A}$ be the closure of $\scr A$ in $\fk L(\MV)$. Then $\scr A$ is also an $\Fbb$-subalgebra of $\fk L(\MV)$.
+\end{co}
+
+\begin{proof}
+Clearly $\ovl{\scr A}$ is an $\Fbb$-linear subspace of $\fk L(\MV)$. If $T,S\in\scr A$, then there exist sequences $(T_n)$ and $(S_n)$ in $\scr A$ converging in the operator norm to $T$ and $S$, respectively. By Prop. \ref{lb143}, the multiplication map $\fk L(\MV)\times\fk L(\MV)\rightarrow\fk L(\MV)$ is continuous. Thus $(T_nS_n)$ converges in the operator norm to $TS$. This proves that $TS\in\ovl{\scr A}$. Therefore, $\ovl{\scr A}$ is an $\Fbb$-subalgebra.
 \end{proof}
 
 
@@ -6653,7 +6671,6 @@ In Exp. \ref{lb160}, since $\sup_{I\in\fin(2^X)}\Vert E_I\Vert=1<+\infty$, by Co
 \begin{align*}
 \lim_{I\in\fin(2^X)}RP_ISP_IT\eta=RST\eta\qquad\text{for each $\eta\in\MH$}
 \end{align*}
-
 \end{eg}
 
 
@@ -6682,7 +6699,7 @@ Therefore, by Cor. \ref{lb161}, for each $T\in\fk L(H)$ and $f\in\Cbb[z]$,
 Let $V$ be an inner product space.
 
 
-\begin{problem}
+\begin{prob}
 Let $\omega$ be a Hermitian form on $V$. Prove the following sharpened polarization identity: For each $\xi,\eta\in V$ we have
 \begin{align}\label{eq145}
 \omega(\xi|\eta)=\frac 14\big(\omega(\xi+\eta|\xi+\eta)-\omega(\xi-\eta|\xi-\eta)\big)
@@ -6692,7 +6709,7 @@ Conclude that if $M\in\Rbb_{\geq0}$ and
 |\omega(\xi|\xi)|\leq M\Vert\xi\Vert^2
 \end{align*}
 for each $\xi\in V$, then $\Vert\omega\Vert\leq M$. This sharpens Prop. \ref{lb238} in the Hermitian case.
-\end{problem}
+\end{prob}
 
 
 \begin{proof}[Hint]
@@ -6700,6 +6717,21 @@ The strategy differs slightly from that of Prop.\ \ref{lb238}. In particular, ap
 \end{proof}
 
 
+
+\begin{df}
+Let $V$ be an inner product space. A \textbf{Hilbert space complete} \index{00@Hilbert space completion} denotes a linear isometry $\Phi:V\rightarrow\MH$ such that $\MH$ is a Hilbert space and $\Phi(V)$ is dense in $\MH$. Replacing $V$ with $\Phi(V)$, one may view $V$ as a dense inner product subspace of $\MH$
+\end{df}
+
+
+\begin{dprob}
+Prove that any inner product space $V$ admits a Hilbert space completion.
+\end{dprob}
+
+Note that when $V$ admits an orthonormal basis (e.g. when $V$ is separable), the problem is directly solved by Cor. \ref{lb126}.
+
+\begin{proof}[Hint]
+Let $\MH$ be the metric space completion of $V$. Define vector additions, scalar multiplications, and the sesquilinear form $\bk{\cdot|\cdot}$ in an appropriate way, and prove that $\bk{\cdot|\cdot}$ is positive definite. 
+\end{proof}
 
 
 
@@ -7846,7 +7878,7 @@ For that purpose, Thm. \ref{lb31} must be adapted so that the moment-problem int
 
 
 \begin{pp}\label{lb204}
-Let $X$ be a set. Let $\scr A$ be a unital *-$\Fbb$-subalgebra of $l^\infty(X,\Fbb)$.  Let $\Lambda:\scr A\rightarrow\Cbb$ be a linear map which is \textbf{positive} in the sense that $\Lambda(f)\geq0$ for each $f\geq0$. Then $\Lambda$ is bounded with operator norm $\leq \Lambda(1)$. 
+Let $X$ be a set. Let $\scr A$ be a unital *-$\Fbb$-subalgebra of $l^\infty(X,\Fbb)$.  Let $\Lambda:\scr A\rightarrow\Fbb$ be a linear map which is \textbf{positive} in the sense that $\Lambda(f)\geq0$ for each $f\geq0$. Then $\Lambda$ is bounded with operator norm $\leq \Lambda(1)$. 
 \end{pp}
 
 
@@ -8382,7 +8414,7 @@ Fix $\Kbb\in\{\Rbb_{\geq0},\Rbb,\Cbb\}$. Let $X$ be a topological space. Recall 
 As usual, $\Borb(X)$ denotes $\Borb(X,\Cbb)$.
 
 
-\begin{df}
+\begin{df}\label{lb273}
 A positive linear functional $\Lambda:\Borb(X,\Kbb)\rightarrow\Kbb$ is called \textbf{normal} \footnote{This terminology is borrowed from the theory of von Neumann algebras.} \index{00@Nomality of positive linear functionals} if it satisfies the monotone convergence theorem, that is, if $(f_n)$ is an increasing sequence in $\Borb(X,\Kbb)$ converging pointwise to $f\in\Borb(X,\Kbb)$, then
 \begin{align*}
 \lim_n\Lambda(f_n)=\Lambda(f)
@@ -8433,12 +8465,12 @@ This follows immediately from Thm. \ref{lb7} and Prop. \ref{lb252}.
 \end{proof}
 
 
-\begin{co}[\textbf{Abstract Hausdorff moment theorem}]\label{lb261}\index{00@Abstract Hausdorff moment theorem}\label{lb262}
+\begin{co}[\textbf{Abstract Hausdorff moment theorem}]\label{lb261}\index{00@Abstract Hausdorff moment theorem}\
 Let $X$ be a second-countable compact Hausdorff space. Let $\scr A$ be a unital *-$\Fbb$-subalgebra of $C(X,\Fbb)$ separating points of $X$. Then we have an $\Rbb_{\geq0}$-linear isomorphism
 \begin{gather}
 \begin{gathered}
 \begin{array}{c}
-\{\text{normal positive linear functionals $\Borb(F,\Kbb)\rightarrow\Fbb$}\}\\
+\{\text{normal positive linear functionals $\Borb(X,\Kbb)\rightarrow\Fbb$}\}\\
 \raisebox{0.3cm}{\rotatebox{-90}{$\xlongrightarrow{\rotatebox{90}{$\simeq$}}$}}\\
 \{\text{positive linear functionals $\scr A\rightarrow\Fbb$}\}
 \end{array}
@@ -8581,7 +8613,7 @@ Why does symbolic/functional calculus require the linear-operator perspective ra
 \begin{proof}[Answer]
 Of course, to perform symbolic/functional calculus one must first define multiplication of operators, sesquilinear forms, or matrices. As noted in Subsec. \ref{lb260}, multiplication of bounded sesquilinear forms or bounded matrices can be defined as in Def. \ref{lb144}; this historical approach was indeed the one originally adopted by mathematicians. 
 
-The principal complexity with the sesquilinear-form and matrix perspectives---which does not arise in finite-dimensional linear algebra---is not their definition but the associativity of multiplication: one must address the Fubini-type issues for infinite sums appearing in \eqref{eq78} and \eqref{eq144}. For bounded sesquilinear forms and bounded matrices, defining products in terms of orthonormal bases introduces many inconveniences that are absent in the finite-dimensional setting, whereas the operator framework avoids this subtlety.
+The principal complexity with the sesquilinear-form and matrix perspectives---which does not arise in finite-dimensional linear algebra---is not their definition but the associativity of multiplication: one must address the Fubini-type issues for infinite sums appearing in \eqref{eq78}, in \eqref{eq144}, and in more complicated expressions. For bounded sesquilinear forms and bounded matrices, defining products in terms of orthonormal bases introduces many inconveniences that are absent in the finite-dimensional setting, whereas the operator framework avoids this subtlety.
 \end{proof}
 
 
@@ -8621,7 +8653,7 @@ Right-continuity is not essential; it is imposed to ensure uniqueness of the net
 
 Neither the continuous functional calculus nor the integral on the RHS of \eqref{eq146} has been defined yet. We will do this in the following subsections.
 
-\begin{question}
+\begin{question}\label{lb271}
 What is the essence of Riesz's spectral theorem?
 \end{question}
 
@@ -8635,7 +8667,7 @@ Indeed, just as the Riesz representation theorem (Thm. \ref{lb9}) expresses a po
 \end{proof}
 
 
-\begin{question}
+\begin{question}\label{lb270}
 Is the Cauchy completeness of $\MH$ used in Riesz's proof of his spectral theorem?
 \end{question}
 
@@ -8670,6 +8702,187 @@ By contrast, many modern expositions of the spectral theorem, fully committed to
 \end{proof}
 
 
+\subsubsection{The Stieltjes integral again increasing projections}
+
+
+In this subsection, we fix $-\infty<a<b<+\infty$.
+
+\begin{df}
+Let $E:[a,b]\rightarrow\fk L(\mc H)$ be an increasing net of projections. Let $f\in C([a,b])$. For each tagged partition 
+\begin{align*}
+(\sigma,\lambda_\blt)=\big(\{a_0=a<a_1<\cdots<a_n=b\},(\lambda_1,\dots,\lambda_n) \big)
+\end{align*}
+(cf. Def. \ref{lb268}), define the Stieltjes sum
+\begin{align*}
+S_E(f,\sigma,\lambda_\blt)=\sum_{j=1}^n f(\lambda_j)(E(a_j)-E(a_{j-1}))
+\end{align*}
+Define the \textbf{operator-valued Stieltjes integrals}
+\begin{gather}
+\int_{(a,b]} f(\lambda)dE(\lambda)=\lim_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}S_E(f,\sigma,\lambda_\blt)\label{eq148}\\
+\int_{[a,b]} f(\lambda)dE(\lambda)=f(a)E(a)+\int_{(a,b]} f(\lambda)dE(\lambda)
+\end{gather}
+\end{df}
+
+\begin{pp}
+The limit on the RHS of \eqref{eq148} converges under the operator norm. 
+\end{pp}
+
+
+
+
+\begin{proof}
+By Cor. \ref{lb39}, $\Ses(\MH)$ is Cauchy-complete (even if $\MH$ is replaced by a general inner product space). Since we have a canonical isomorphism of normed vector spaces $\Ses(\MH)\simeq\fk L(\MH)$ (cf. Thm. \ref{lb136}), we conclude that $\fk L(\MH)$ is complete. \footnote{Of course, since $\MH$ is complete, one can directly invoke Cor. \ref{lb39} to conclude that $\fk L(\MH)$ is complete. The argument provided here is to justify the answer to Question \ref{lb270}, namely, that the isomorphism $\MH\simeq(\MH^\Co)^*$ rather than the Cauchy completeness of $\MH$ is used to prove the Riesz spectral theorem.} Therefore, by Thm. \ref{lb269}, it suffices to show that $(S_E(f,\sigma,\lambda_\blt))_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}$ is a Cauchy net. 
+
+
+
+
+Since $f$ is uniformly continuous, for each $\eps>0$ there is $\delta>0$ such that $|f(s)-f(t)|\leq\eps$ whenever $|s-t|\leq\delta$. Choose any tagged partition $(\sigma,\lambda_\blt)$ with mesh $\leq\delta$. If a tagged partition $(\sigma',\lambda_\blt')$ is finer than $(\sigma,\lambda_\blt)$, then for each $\xi\in\MH$, applying \eqref{eq149} to the increasing function $\rho_\xi(\lambda)=\bk{\xi|E(\lambda)\xi}$, we get
+\begin{align*}
+&\Big|\bigbk{(S_E(f,\sigma',\lambda'_\blt)-S_E(f,\sigma,\lambda_\blt))\xi\big|\xi}\Big|=|S_{\rho_\xi}(f,\sigma',\lambda_\blt')-S_{\rho_\xi}(f,\sigma,\lambda_\blt)|\\
+\leq& \eps\cdot(\rho_\xi(b)-\rho_\xi(a))\leq\eps\cdot\rho_\xi(b)=\eps\bk{\xi|E(b)\xi}\leq\eps\Vert\xi\Vert^2
+\end{align*}
+It follows from Prop. \ref{lb238} that
+\begin{align*}
+\Vert S_E(f,\sgm,\mu_\blt)-S_E(f,\sigma,\lambda_\blt)\Vert\leq 4\eps
+\end{align*}
+finishing the proof of the Cauchyness.
+\end{proof}
+
+
+
+\subsubsection{Borel functional calculus, and why the semicontinuous functional calculus is sufficient}
+
+
+
+
+\begin{comment}
+\begin{df}
+Let $\scr A$ and $\scr B$ be *-$\Fbb$-algebras. A linear map $\varphi:\scr A\rightarrow\scr B$ is called a \textbf{*-homomorphism} \index{00@*-homomorphism} if it satisfies
+\begin{align*}
+\varphi(xy)=\varphi(x)\varphi(y)\qquad\varphi(x^*)=\varphi(x)^*
+\end{align*}
+for all $x,y\in\scr A$. If $\scr A$ and $\scr B$ are both unital, a *-homomorphism $\varphi:\scr A\rightarrow\scr B$ is called \textbf{unital} \index{00@Unital *-homomorphism} if
+\begin{align*}
+\varphi(1_{\scr A})=1_{\scr B}
+\end{align*}
+\end{df}
+\end{comment}
+
+
+
+Recall that *-algebras mean *-$\Cbb$-algebras.
+
+
+\begin{df}
+Let $\scr A$ be a unital $*$-algebra. A \textbf{pre-unitary representation} of $\scr A$ \index{00@Pre-unitary representation of a unital $*$-algebra} denotes a pair $(\pi,V)$ where $V$ is an inner product space, and
+\begin{align*}
+\pi:\scr A\rightarrow\fk L(V)
+\end{align*}
+is a linear map satisfying
+\begin{align*}
+\pi(xy)=\pi(x)\pi(y)\qquad\bk{\eta|\pi(x)\xi}=\bk{\pi(x^*)\eta|\xi}\qquad\pi(1_{\scr A})=\id_V
+\end{align*}
+for all $x,y\in\scr A$ and $\xi,\eta\in V$. If moreover $V$ is a Hilbert space, we say that $(\pi,V)$ is \textbf{unitary representation} of $\scr A$. \index{00@Unitary representation of a unital $*$-algebra}
+\end{df}
+
+%In other words, a unitary representation denotes a pair $(\pi,V)$ where $V$ is a Hilbert space and $\pi:\scr A\rightarrow\fk L(V)$ is a unital $*$-homomorphism.
+
+
+\begin{cv}
+When the context is clear, a pre-unitary representation $(\pi,V)$ is abbreviated to $V$, and $\pi(x)\xi$ is abbreviated to $x\xi$.
+\end{cv}
+
+
+\begin{df}
+Let $X$ be a set, and let $\scr A$ be a unital *-subalgebra of $l^\infty(X)$. A pre-unitary representation $(\pi,V)$ of $\scr A$ is called \textbf{positive} \index{00@Positive pre-unitary representation} if the linear functional $\bk{\xi|\pi(-)\xi}:\scr A\rightarrow\Cbb$ is positive for each $\xi\in V$; in other words,
+\begin{align}
+\bk{\xi|\pi(f)\xi}\geq0\qquad\text{for all }\xi\in V\text{ and }f\in\scr A\text{ satisfying }f\geq0
+\end{align}
+\end{df}
+
+\begin{pp}\label{lb272}
+Let $X$ be a set, and let $\scr A$ be a unital *-subalgebra of  $l^\infty(X)$. Suppose that any $f\in\scr A$ with $f\geq0$ can be written as $f=g^*g$ for some $g\in\scr A$. Then any pre-unitary representation $(\pi,V)$ is positive.
+\end{pp}
+
+For example, if $X$ is a compact Hausdorff space, any pre-unitary representation of $C(X)$ or $\Borb(X)$ are positive.
+
+\begin{proof}
+For each $f\in\scr A$ with $f\geq0$, write $f=g^*g$. Then
+\begin{align*}
+\bk{\xi|\pi(f)\xi}=\bk{\xi|\pi(g^*)\pi(g)\xi}=\bk{\pi(g)\xi|\pi(g)\xi}\geq0
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{pp}
+Let $X$ be a set. Let $\scr A$ be a unital *-subalgebra of $l^\infty(X)$. Let $(\pi,V)$ be a \uwave{positive} pre-unitary representation of $\scr A$. Then the linear map $\pi:\scr A\rightarrow\fk L(V)$ is bounded with operator norm $1$.
+\end{pp}
+
+
+Consequently, if $X$ is a compact Hausdorff space, any pre-unitary representation of $C(X)$ or $\Borb(X)$ has operator norm $\leq 1$.
+
+\begin{proof}
+Since $(\pi,V)$ is positive, for each $\xi\in V$, the linear functional
+\begin{align*}
+\Lambda_\xi:\scr A\rightarrow\Cbb\qquad f\mapsto\bk{\xi|\pi(f)\xi}
+\end{align*}
+is positive. Therefore, by Prop. \ref{lb204}, for each $f\in\scr A$ we have $|\Lambda_\xi(f)|\leq\Vert f\Vert_{l^\infty}\cdot\Lambda_\xi(1)$, i.e.,
+\begin{align*}
+|\bk{\xi|\pi(f)\xi}|\leq \Vert f\Vert_{l^\infty}\cdot\Vert\xi\Vert^2
+\end{align*}
+Since $\Vert f^*f\Vert_{l^\infty}=\Vert f\Vert_{l^\infty}^2$, we obtain
+\begin{align*}
+\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\xi|\pi(f^*f)\xi}\leq\Vert f\Vert_{l^\infty}^2\cdot\Vert\xi\Vert^2
+\end{align*}
+and hence $\Vert\pi(f)\Vert\leq\Vert f\Vert_{l^\infty}$. This shows that $\Vert\pi\Vert\leq 1$. Since $\pi(1)=\id$, we 
+\end{proof}
+
+
+\begin{df}
+Let $X$ be a topological space. A pre-unitary representation $(\pi,V)$ of $\Borb(X)$ (which is automatically positive) is called \textbf{normal} \index{00@Normal pre-unitary representation of a unital *-algebra} if for each $\xi\in V$, the linear functional
+\begin{align}
+\scr A\rightarrow\Cbb\qquad f\mapsto\bk{\xi|\pi(f)\xi}
+\end{align}
+is normal in the sense of Def. \ref{lb273}.
+\end{df}
+
+\begin{thm}[\textbf{Operator-valued Hausdorff moment theorem}]\index{00@Operator-valued Hausdorff moment theorem}\label{lb274}
+Let $X$ be a second-countable compact Hausdorff space. Let $\scr A$ be a unital *-subalgebra of $C(X,\Fbb)$ separating points of $X$. Then there is a one-to-one correspondence between the following two classes of objects: \footnote{Since these two classes are proper classes rather than sets, we avoid using the term "bijection".}
+\begin{itemize}
+\item[(1)] normal unitary representations of $\Borb(X)$;
+\item[(2)] positive unitary representations of $\scr A$,
+\end{itemize}
+such that $(\pi,\MH)$ in the first class corresponds to $(\pi|_{\scr A},\MH)$ in the second class.
+\end{thm}
+
+\begin{proof}
+Step 1. An object $(\pi,\MH)$ in the first class clearly restricts to an object $(\pi|_{\scr A},\MH)$ in the second class. Moreover, if $(\pi_1,\MH)$ and $(\pi_2,\MH)$ satisfy $\pi_1|_{\scr A}=\pi_2|_{\scr A}$, then for each $\xi\in \MH$, the positive linear functionals $\scr A\rightarrow\Cbb$ defined by $f\mapsto\bk{\xi|\pi_1(f)\xi}$ and by $f\mapsto\bk{\xi|\pi_2(f)\xi}$ are normal and are equal on $\scr A$. Therefore, by Cor. \ref{lb261}, these two linear functionals are equal. This proves $\pi_1=\pi_2$.
+
+We have thus proved that the correspondence $(\pi,\MH)\mapsto(\pi|_{\scr A},\MH)$ from the first to the second class is injective. To prove that it is surjective, let us prove that any positive unitary representation $(\pi,\MH)$ of $\scr A$ can be extend to a normal unitary representation of $\Borb(X)$.\\[-1ex]
+
+Step 2. Fix $(\pi,\MH)$ in the second class. By Cor. \ref{lb261}, for each $\xi\in \MH$, the positive linear functional
+\begin{align*}
+\Lambda_\xi:\scr A\rightarrow\Cbb\qquad f\mapsto\bk{\xi|\pi(f)\xi}
+\end{align*}
+can be extended uniquely to a normal positive linear functional
+\begin{align*}
+\Lambda_\xi:\Borb(X)\rightarrow\Cbb
+\end{align*}
+For each $\xi,\eta\in \MH$, define
+\begin{gather*}
+\Phi:\Borb(X)\times \MH\times \MH^\Co\rightarrow\Cbb\\
+\Phi(f,\xi,\ovl\eta)=\frac 14\sum_{t=0,\frac \pi 2,\pi,\frac{3\pi}2}\Lambda_{\xi+e^{\im t}\eta}(f)\cdot e^{\im t}
+\end{gather*}
+\end{proof}
+
+
 
 
 
@@ -8677,6 +8890,13 @@ By contrast, many modern expositions of the spectral theorem, fully committed to
 \hypertarget{current}{}
 
 \subsection{Borel functional calculus}\label{lb259}
+
+
+
+
+
+
+
 
 
 
