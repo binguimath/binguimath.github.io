@@ -5952,7 +5952,9 @@ If $V$ is dense, then $V^\perp=\ovl V^\perp=\MH^\perp=0$. Conversely, if $V^\per
 \end{proof}
 
 
-
+\begin{exe}\label{lb281}
+Let $V$ be a closed linear subspace of $\MH$. Show that an orthonormal basis of $V$, together with an orthonormal basis of $V^\perp$, forms an orthonormal basis of $\MH$.
+\end{exe}
 
 
 
@@ -7185,7 +7187,7 @@ To summarize, we have proved Thm. \ref{lb169} when $\dim V<+\infty$, equivalentl
 
 
 
-\subsubsection{Finite-rank approximation of $T$}
+\subsubsection{Finite-rank approximation of $T$}\label{lb285}
 
 
 In this subsection, we assume the following condition.
@@ -8430,7 +8432,7 @@ We have a bijective map
 \mu\mapsto\Lambda_\mu
 \end{gathered}
 \end{gather}
-where $\Lambda_\mu(f)=\int_Xfd\mu$ for each $f\in\Borb(X,\Kbb)$.
+where $\Lambda_\mu(f)=\int_Xfd\mu$ for each $f\in\Borb(X,\Kbb)$. The measure $\mu$ is determined by $\Lambda_\mu$ by the relation $\mu(E)=\Lambda_\mu(\chi_E)$ for each Borel set $E\subset X$.
 \end{pp}
 
 \begin{proof}
@@ -8545,7 +8547,7 @@ First, extend $\Lambda$ from $\LSCb(X,\Rbb_{\geq0})$ to
 \begin{align*}
 \scr C_0=\{f+h:f\in\LSCb(X,\Rbb_{\geq0}),h\geq0,h=0\text{ almost everywhere}\}
 \end{align*}
-by setting $\Lambda(f+h)=0$ (with "almost everywhere" interpreted appropriately \footnote{One defines "almost everywhere" by defining a set $E\subset X$ to be null if it is contained in some open set $U\subset X$ with $\Lambda(\chi_U)=0$.}). Then apply steps (a)–(c) above to extend $\Lambda$ from $\scr C_0$ to the class $\scr C_1$ of functions that are pointwise limits of increasing sequences in $\scr C_0$. Finally, using Lem. \ref{lb5} and Eq. \eqref{eq143}, extend $\Lambda$ to $\scr C_2:=\Span_\Fbb(\scr C_1)$. One then verifies that $\scr C_2$ coincides with the space of bounded measurable functions. 
+by setting $\Lambda(f+h)=0$ (with "almost everywhere" interpreted appropriately \footnote{One defines "almost everywhere" by defining a set $E\subset X$ to be null if it is contained in some open set $U\subset X$ with $\Lambda(\chi_U)=0$.}). Then apply steps (a)-(c) above to extend $\Lambda$ from $\scr C_0$ to the class $\scr C_1$ of functions that are pointwise limits of increasing sequences in $\scr C_0$. Finally, using Lem. \ref{lb5} and Eq. \eqref{eq143}, extend $\Lambda$ to $\scr C_2:=\Span_\Fbb(\scr C_1)$. One then verifies that $\scr C_2$ coincides with the space of bounded measurable functions. 
 
 
 The above approach was in fact used by Riesz and Sz.-Nagy to construct the Lebesgue integral on a compact interval $I\subset\Rbb$, though with nonnegative step functions in place of $\LSCb(X,\Rbb_{\geq0})$. See \cite[Sec. 16-22]{RN} or \cite[Ch. 10]{Apo}. However, to prove the Riesz representation theorem for $C(I,\Fbb)$---that is, to represent a positive linear functional
@@ -8716,13 +8718,13 @@ By contrast, many modern expositions of the spectral theorem, fully committed to
 \subsection{Proof of Riesz's spectral theorem}\label{lb278}
 
 
-In this section, we prove the Riesz spectral theorem (Thm. \ref{lb256}).
+In this section, we prove the Riesz spectral theorem (Thm. \ref{lb267}).
 
 
 \subsubsection{The Stieltjes integral against increasing projections}
 
 
-In this subsection, we fix $-\infty<a<b<+\infty$.
+Let $-\infty<a<b<+\infty$.
 
 \begin{df}
 Let $E:[a,b]\rightarrow\fk L(\mc H)$ be an increasing net of projections. Let $f\in C([a,b])$. For each tagged partition 
@@ -8740,22 +8742,29 @@ Define the \textbf{operator-valued Stieltjes integrals}
 \end{gather}
 \end{df}
 
-\begin{pp}
-The limit on the RHS of \eqref{eq148} converges under the operator norm. 
+\begin{pp}\label{lb282}
+The limit on the RHS of \eqref{eq148} converges under the operator norm. Moreover, for each $\xi\in\MH$, we have
+\begin{align}\label{eq159}
+\Bigbk{\xi\Big|\int_{[a,b]}f(\lambda)dE(\lambda)\xi}=\int_{[a,b]}f(\lambda)d\bk{\xi|E(\lambda)\xi}
+\end{align}
+where the RHS is the Stieltjes integral of $f$ against the increasing function $\lambda\mapsto\bk{\xi|E(\lambda)\xi}$ on $[a,b]$.
 \end{pp}
 
 
 
 
 \begin{proof}
-By Cor. \ref{lb39}, $\Ses(\MH)$ is Cauchy-complete (even if $\MH$ is replaced by a general inner product space). Since we have a canonical isomorphism of normed vector spaces $\Ses(\MH)\simeq\fk L(\MH)$ (cf. Thm. \ref{lb136}), we conclude that $\fk L(\MH)$ is complete. \footnote{Of course, since $\MH$ is complete, one can directly invoke Cor. \ref{lb39} to conclude that $\fk L(\MH)$ is complete. The argument provided here is to justify the answer to Question \ref{lb270}, namely, that the isomorphism $\MH\simeq(\MH^\Co)^*$ rather than the Cauchy completeness of $\MH$ is used to prove the Riesz spectral theorem.} Therefore, by Thm. \ref{lb269}, it suffices to show that $(S_E(f,\sigma,\lambda_\blt))_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}$ is a Cauchy net. 
+By Cor. \ref{lb39}, $\Ses(\MH)$ is Cauchy-complete (even if $\MH$ is replaced by a general inner product space). Since we have a canonical isomorphism of normed vector spaces $\Ses(\MH)\simeq\fk L(\MH)$ (cf. Thm. \ref{lb136}), we conclude that $\fk L(\MH)$ is complete. \footnote{Of course, since $\MH$ is complete, one can directly invoke Cor. \ref{lb39} to conclude that $\fk L(\MH)$ is complete. The argument provided here is to justify the answer to Question \ref{lb270}, namely, that the isomorphism $\MH\simeq(\MH^\Co)^*$ rather than the Cauchy completeness of $\MH$ is used to prove the Riesz spectral theorem.} Therefore, by Thm. \ref{lb269}, it suffices to show that $(S_E(f,\sigma,\lambda_\blt))_{(\sigma,\lambda_\blt)\in\mc Q([a,b])}$ is a Cauchy net. Eq. \ref{eq159} will follow from the easy fact that
+\begin{align}
+\bigbk{\xi\big|S_E(f,\sigma,\lambda_\blt)\xi}=S_{\rho_\xi}(f,\sigma,\lambda_\blt)
+\end{align}
+where $\rho_\xi(\lambda)=\bk{\xi|E(\lambda)\xi}$.
 
 
 
-
-Since $f$ is uniformly continuous, for each $\eps>0$ there is $\delta>0$ such that $|f(s)-f(t)|\leq\eps$ whenever $|s-t|\leq\delta$. Choose any tagged partition $(\sigma,\lambda_\blt)$ with mesh $\leq\delta$. If a tagged partition $(\sigma',\lambda_\blt')$ is finer than $(\sigma,\lambda_\blt)$, then for each $\xi\in\MH$, applying \eqref{eq149} to the increasing function $\rho_\xi(\lambda)=\bk{\xi|E(\lambda)\xi}$, we get
+Since $f$ is uniformly continuous, for each $\eps>0$ there is $\delta>0$ such that $|f(s)-f(t)|\leq\eps$ whenever $|s-t|\leq\delta$. Choose any tagged partition $(\sigma,\lambda_\blt)$ with mesh $\leq\delta$. If a tagged partition $(\sigma',\lambda_\blt')$ is finer than $(\sigma,\lambda_\blt)$, then for each $\xi\in\MH$, applying \eqref{eq149} to the increasing function $\rho_\xi$, we get
 \begin{align*}
-&\Big|\bigbk{(S_E(f,\sigma',\lambda'_\blt)-S_E(f,\sigma,\lambda_\blt))\xi\big|\xi}\Big|=|S_{\rho_\xi}(f,\sigma',\lambda_\blt')-S_{\rho_\xi}(f,\sigma,\lambda_\blt)|\\
+&\Big|\bigbk{\xi\big|(S_E(f,\sigma',\lambda'_\blt)-S_E(f,\sigma,\lambda_\blt))\xi}\Big|=|S_{\rho_\xi}(f,\sigma',\lambda_\blt')-S_{\rho_\xi}(f,\sigma,\lambda_\blt)|\\
 \leq& \eps\cdot(\rho_\xi(b)-\rho_\xi(a))\leq\eps\cdot\rho_\xi(b)=\eps\bk{\xi|E(b)\xi}\leq\eps\Vert\xi\Vert^2
 \end{align*}
 It follows from Prop. \ref{lb238} that
@@ -8786,8 +8795,9 @@ for all $x,y\in\scr A$. If $\scr A$ and $\scr B$ are both unital, a *-homomorphi
 \end{comment}
 
 
+As noted in the answer to Question \ref{lb271}, proving Riesz's spectral theorem essentially amounts to establishing an operator-valued analogue of the Riesz representation theorem, and is therefore almost equivalent to proving an operator-valued analogue of the Hausdorff moment problem. We will approach this in a slightly more general framework: namely, we shall prove Thm. \ref{lb274}, an operator-valued version of the abstract Hausdorff moment theorem (Cor.\ \ref{lb261}).
 
-Recall that *-algebras mean *-$\Cbb$-algebras.
+In this subsection, we define an operator-valued version of Radon/normal positive linear functionals. Recall that *-algebras refer to *-$\Cbb$-algebras.
 
 
 \begin{df}
@@ -9065,28 +9075,79 @@ For each $\xi\in\MH$ and $\eta\in\MK$, we have $\lim_\alpha\bk{\eta|T_\alpha A\x
 \end{proof}
 
 
+We end this subsection with an easy observation that, thanks to the multiplicativity of $\wht\pi$, the WOT convergence in \eqref{eq158} can in fact be strengthened to SOT convergence:
+
+
+\begin{pp}
+Let $(\pi,V)$ be a Radon pre-unitary representation of $\Borb(X)$. Suppose that $(f_\alpha)$ is a net in $\Borb(X)$ converging to $f\in\Borb(X)$ in the universal $L^2$-topology. Then $\lim_\alpha\pi(f_\alpha)$ converges in SOT to $\pi(f)$.
+\end{pp}
+
+\begin{proof}
+Choose any $\xi\in V$. Since $\Lambda_\xi:g\in\Borb(X)\mapsto\bk{\xi|\pi(g)\xi}$ is a Radon positive linear funtional, we have
+\begin{align*}
+&\Vert \pi(f)\xi-\pi(f_\alpha)\xi\Vert^2=\bk{\pi(f-f_\alpha)\xi|\pi(f-f_\alpha)\xi}=\bk{\xi|\pi(f-f_\alpha)^*\pi(f-f_\alpha)\xi}\\
+=&\bk{\xi|\pi(|f-f_\alpha|^2)\xi}=\Lambda_\xi(|f-f_\alpha|^2)\rightarrow0
+\end{align*}
+\end{proof}
+
+
+
+
 \subsubsection{Borel functional calculus for bounded self-adjoint operators}
 
 
 
-Let $T\in\fk L(\MH)$ be self-adjoint. Choose $r\in\Rbb_{\geq0}$ such that $\Vert T\Vert\leq r$.
+Let $T\in\fk L(\MH)$ be self-adjoint. Choose $r\in\Rbb_{\geq0}$ such that $\Vert T\Vert\leq r$. In this subsection we establish, in Thm. \ref{lb283}, the Borel functional calculus for $T$, which can be viewed the operator-valued (classical) Hausdorff moment theorem.
+
+As we shall see, Thm. \ref{lb283} follows directly from the operator-valued abstract Hausdorff moment Thm. \ref{lb274}, once a subtle difference has been addressed: namely, the distinction between the abstract Hausdorff moment theorem (Cor. \ref{lb261})---applied in the special case $X=I=[a,b]$ with $-\infty<a<b<+\infty$ and $\scr A$ the polynomial algebra $\Cbb[x]$ (viewed as a unital *-subalgebra of $C([a,b])$)---and the classical Hausdorff moment Thm. \ref{lb169}.
 
 
-\begin{thm}[\textbf{Borel functional calculus}]
+The solvability condition for the (classical) Hausdorff moment problem $\int_I x^nd\rho=c_n$ is that $H,H',H-H'$ are all positive. Define the linear functional
+\begin{align*}
+\Lambda:\scr A=\Cbb[x]\rightarrow\Cbb\qquad x^n\mapsto c_n
+\end{align*}
+Then the positivity of $H,H',H-H'$ means that $\Lambda(f)\geq0$ whenever $f\in\Cbb[x]$ has one of the following three forms:
+\begin{align*}
+f(x)=p(x)^*p(x)\qquad f(x)=xp(x)^*p(x)\qquad f(x)=(1-x)p(x)^*p(x)
+\end{align*}
+with $p\in\Cbb[x]$. Recall that is the condition in the special case $I=[0,1]$. In the general $I=[a,b]$, the corresponding solvability condition is that $\Lambda(f)\geq0$ for all $f$ of one of the following three forms (with $p\in\Cbb[x]$):
+\begin{align}\label{eq160}
+f(x)=p(x)^*p(x)\qquad f(x)=(x-a)p(x)^*p(x)\qquad f(x)=(b-x)p(x)^*p(x)
+\end{align}
+
+
+By contrast, in the abstract Hausdorff moment theorem (Cor. \ref{lb261}), the condition required of $\Lambda$ is that $\Lambda(f)\geq0$ for all $f$ belonging to the set
+\begin{align}\label{eq161}
+\{f\in\Cbb[x],f|_I\geq0\}
+\end{align}
+This condition is indeed equivalent to one above, since the set \eqref{eq161} is $\Rbb_{\geq0}$-spanned by polynomials of the form in \eqref{eq160}; see Pb. \ref{lb284}.
+
+
+We will not rely on this equivalence to establish the Borel functional calculus, because this method does not extend to the setting of several mutually commuting bounded self-adjoint operators. Instead, we will use finite approximations of $T$ (as in Subsec. \ref{lb285} or the proof Hilbert's spectral Thm. \ref{lb239}) to  prove the operator-valued version of this equivalence: the condition $-r\leq T\leq r$ is equivalent to $f(T)\geq0$ for all $f\in\Cbb[x]$ satisfying $f|_{[-r,r]}\geq0$. \footnote{The direction "$\Leftarrow$" follows directly by choosing $f(x)=x+r$. Therefore, it suffices to prove "$\Rightarrow$".}
+
+
+
+\hypertarget{current}{}
+
+
+\begin{thm}[\textbf{Borel functional calculus}]\label{lb283}
 There exists a unique normal unitary representation
 \begin{align*}
-\pi:\Borb([-r,r])\rightarrow\fk L(\MH)\qquad f\mapsto f(T)
+\pi_T:\Borb([-r,r])\rightarrow\fk L(\MH)
 \end{align*}
 sending the function $x=\id_{[-r,r]}$ to $T$.
 \end{thm}
 
-We call $(\pi,\MH)$ the \textbf{Borel functional calculus} \index{00@Borel functional calculus of bounded self-adjoint operators} of $T$. Its restriction to $C([-r,r])$ is called the \textbf{continuous functional calculus}. \index{00@Continuous functional calculus}
+We call $(\pi_T,\MH)$ the \textbf{Borel functional calculus} \index{00@Borel functional calculus of bounded self-adjoint operators} of $T$. Its restriction to $C([-r,r])$ is called the \textbf{continuous functional calculus}. \index{00@Continuous functional calculus} We write \index{fT@$f(T)$, the Borel functional calculus of $T$}
+\begin{align*}
+\pmb{f(T)}:=\pi_T(f)
+\end{align*}
 
 
 \begin{proof}
-Let $\scr A$ be the set of polynomials on $[-r,r]$ (viewed as functions on $[-r,r]$). Then $\scr A$ is a unital $*$-subalgebra of $C([-r,r])$ separating points of $[-r,r]$. There is a unique unitary representation $(\pi,\MH)$ of $\scr A$ sending $x$ to $T$. If we can prove that this representation is positive, then by Thm. \ref{lb274}, it can be extended uniquely to a normal unitary representation of $\Borb([-r,r])$, finishing the proof.
+Let $\scr A$ be the set of polynomials on $[-r,r]$ (viewed as functions on $[-r,r]$). Then $\scr A$ is a unital $*$-subalgebra of $C([-r,r])$ separating points of $[-r,r]$. There is a unique unitary representation $(\pi_T,\MH)$ of $\scr A$ sending $x$ to $T$. If we can prove that this representation is positive, then by Thm. \ref{lb274}, it can be extended uniquely to a normal unitary representation of $\Borb([-r,r])$, finishing the proof.
 
-Let us prove that $\pi$ is positive on $\scr A$, that is, for any polynomial $f$ satisfying $f|_{[-r,r]}\geq0$, the operator $f(T):=\pi(T)$ is positive. Let $(e_i)_{i\in\scr I}$ be an orthonormal basis of $\MH$. For each $\alpha\in\fin(2^{\scr I})$, let $E_\alpha$ be the projection onto $\Span\{e_i:i\in\alpha\}$. By Exp. \ref{lb157} (or more generally, by Thm. \ref{lb264}), $(E_\alpha)_{\alpha\in\fin(2^{\scr I})}$ is an increasing net of projections converging in SOT to $\id_\MH$. Since $\Vert E_\alpha\Vert\leq 1$, by Cor. \ref{lb159}, the net $(f(E_\alpha TE_\alpha))_{\alpha\in\fin(2^{\scr I})}$ converges in SOT to $f(T)$. Therefore, it suffices to show that each $f(E_\alpha TE_\alpha)$ is positive.
+Let us prove that $\pi_T$ is positive on $\scr A$, that is, for any polynomial $f$ satisfying $f|_{[-r,r]}\geq0$, the operator $f(T):=\pi_T(T)$ is positive. Let $(e_i)_{i\in\scr I}$ be an orthonormal basis of $\MH$. For each $\alpha\in\fin(2^{\scr I})$, let $E_\alpha$ be the projection onto $\Span\{e_i:i\in\alpha\}$. By Exp. \ref{lb157} (or more generally, by Thm. \ref{lb264}), $(E_\alpha)_{\alpha\in\fin(2^{\scr I})}$ is an increasing net of projections converging in SOT to $\id_\MH$. Since $\Vert E_\alpha\Vert\leq 1$, by Cor. \ref{lb159}, the net $(f(E_\alpha TE_\alpha))_{\alpha\in\fin(2^{\scr I})}$ converges in SOT to $f(T)$. Therefore, it suffices to show that each $f(E_\alpha TE_\alpha)$ is positive.
 
 
 The linear operator
@@ -9095,13 +9156,47 @@ T_\alpha=E_\alpha TE_\alpha\big|_{\Rng(E_\alpha)}
 \end{align*}
 is self-adjoint since $\bk{\xi|E_\alpha TE_\alpha\xi}=\bk{E_\alpha\xi|TE_\alpha\xi}\in\Rbb$. Therefore, by finite-dimensional linear algebra, $T_\alpha$ is diagonalizable. Thus, there exists an orthonormal basis $v_1,\dots,v_n$ of $\Rng(E_\alpha)$ such that $T_\alpha v_i=\lambda_iv_i$ with $\lambda_i\in\Rbb$. 
 
-Extend $\{v_1,\dots,v_n\}$ to an orthonormal basis of $\MH$ (by choosing an orthonormal basis of $\Rng(E_\alpha)^\perp$). Then, under this basis, the matrix representation of $E_\alpha TE_\alpha$ (cf. Def. \ref{lb280}) is diagonal, with the first $n$-diagonal terms being $\lambda_1,\dots,\lambda_n$ and the remaining terms being $0$. Since $\Vert E_\alpha TE_\alpha\Vert\leq\Vert T\Vert\leq r$, we must have
+Extend $\{v_1,\dots,v_n\}$ to an orthonormal basis of $\MH$ (cf. Exe. \ref{lb281}). Then, under this basis, the matrix representation of $E_\alpha TE_\alpha$ (cf. Def. \ref{lb280}) is diagonal, with the first $n$-diagonal terms being $\lambda_1,\dots,\lambda_n$ and the remaining terms being $0$. Since $\Vert E_\alpha TE_\alpha\Vert\leq\Vert T\Vert\leq r$, we must have
 \begin{align*}
 \lambda_i\in[-r,r]
 \end{align*}
 Therefore, the condition $f|_{[-r,r]}\geq0$ implies that $f(\lambda_i)\geq0$. 
 
 The matrix representation of $f(E_\alpha TE_\alpha)$ is also diagonal, with the first $n$-diagonal terms being $f(\lambda_1),\dots,f(\lambda_n)$ (all $\geq0$) and the remaining terms being $0$. Thus $f(E_\alpha TE_\alpha)\geq0$.
+\end{proof}
+
+
+
+\subsubsection{Proof of the Riesz spectral Thm. \ref{lb267}}
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb267}}]
+Define
+\begin{align*}
+E(\lambda)=\chi_{[-r,\lambda]}(T)=\pi_T(\chi_{[-r,\lambda]})
+\end{align*}
+Then, since $\pi_T$ is a unitary representation, and since $\chi_{[-r,\lambda]}=(\chi_{[-r,\lambda]})^*=(\chi_{[-r,\lambda]})^2$, we conclude that $E(\lambda)$ is a projection. Since $\pi_T$ is positive (cf. Prop. \ref{lb272}), whenever $-r\leq\lambda_1\leq\lambda_2\leq b$ we have $\chi_{[-r,\lambda_2]}-\chi_{[-r,\lambda_1]}\geq0$ and hence $E(\lambda_2)-E(\lambda_1)\geq0$. This proves that the net $E:=(E(\lambda))_{\lambda\in[-r,r]}$ is increasing. 
+
+Since $\pi_T$ is normal, the linear functional $\Lambda_\xi:f\mapsto\bk{\xi|f(T)\xi}$ is normal (and positive). Therefore, by MCT or DCT (for first-countable nets, cf. Thm. \ref{lb224} or \ref{lb225}), we have
+\begin{align*}
+\lim_{\lambda\searrow\lambda_0}\bk{\xi|E(\lambda)\xi}=\bk{\xi|E(\lambda_0)\xi}
+\end{align*}
+That is, $\lim_{\lambda\searrow\lambda_0 E(\lambda)}$ converges in SOT to $E(\lambda_0)$. We have thus proved that $E$ is right-continuous.
+
+
+In view of Prop. \ref{lb282} (and the polarization identity), to prove $f(T)=\int_{[-r,r]}f(\lambda)dE(\lambda)$, it suffices to show for each $\xi\in\MH$ and $f\in C([-r,r])$ that
+\begin{align*}
+\Lambda_\xi(f)=\int_{[-r,r]}f(\lambda)d\bk{\xi|E(\lambda)\xi}
+\end{align*}
+By Prop. \ref{lb252}, we have
+\begin{align*}
+\Lambda_\xi(f)=\int_{[-r,r]}fd\mu_\xi\qquad\text{for each }f\in\Borb([-r,r])
+\end{align*}
+where $\mu_\xi:\fk B_{[-r,r]}\rightarrow\Rbb_{\geq0}$ is given by $\mu_\xi(E)=\Lambda_\xi(\chi_E)$. Recall from Thm. \ref{lb9} that when $f\in C([-r,r])$, the integral $\int_{[-r,r]}fd\mu_\xi$ can be expresses by the Stieltjes integral of $f$ against the increasing function sending each $\lambda\in[-r,r]$ to
+\begin{align*}
+\mu_\xi([-r,\lambda])=\Lambda_\xi(\chi_{[-r,\lambda]})=\bk{\xi|\chi_{[-r,\lambda]}(T)\xi}=\bk{\xi|E(\lambda)\xi}
+\end{align*}
+This finishes the proof.
 \end{proof}
 
 
@@ -9113,7 +9208,6 @@ The matrix representation of $f(E_\alpha TE_\alpha)$ is also diagonal, with the 
 
 
 
-\hypertarget{current}{}
 
 
 \subsection{Borel functional calculus}\label{lb259}
@@ -9149,6 +9243,20 @@ Let $(T_\alpha)$ be a net of bounded normal operators on $\MH$. Let $T\in\fk L(\
 \begin{proof}[Hint]
 Recall Rem. \ref{lb241}.
 \end{proof}
+
+
+\begin{prob}\label{lb284}
+Let $-\infty<a<b<+\infty$. Let $f\in\Cbb[x]$. Prove that $f|_{[a,b]}\geq0$ iff $f$ is can be written as
+\begin{align*}
+\ovl{p_1(x)}p_1(x)+(x-a)\ovl{p_2(x)}p_2(x)+(b-x)\ovl{p_3(x)}p_3(x)
+\end{align*}
+where $p_1,p_2,p_3\in\Cbb[x]$. (Assume for simplicity that $a=0,b=1$.)
+\end{prob}
+
+\begin{proof}[Hint]
+Show that $f\in\Rbb[x]$. Factor the polynomial $f$ into linear factors. Show that any real root of $f$ with odd multiplicity must be outside the open interval $(a,b)$.
+\end{proof}
+
 
 
 \begin{prob}\label{lb240}
