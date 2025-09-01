@@ -46,13 +46,13 @@
 
 3. Hilbert空间上的无界自伴算子的谱理论
 
-4. Hilbert空间上的无界闭算子的一般理论
+4. Hilbert空间上的无界自伴算子的构造和验证方法
 
-5. 从Hilbert空间上的全连续（半）双线型到Banach空间上的紧算子：对角化理论，Riesz-Schauder理论
+5. 紧算子，具有紧resolvent的无界自伴算子
+   
+7. 赋范空间的凸性，Hahn-Banach定理
 
-6. 赋范空间的凸性，Hahn-Banach定理
-
-7. Baire纲，Banach空间上的一致有界定理 
+8. Baire纲，Banach空间上的一致有界定理（若时间够）
 
 
 ## 参考书
