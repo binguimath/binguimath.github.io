@@ -9086,7 +9086,7 @@ For each $\xi\in\MH$ and $\eta\in\MK$, we have $\lim_\alpha\bk{\eta|T_\alpha A\x
 We end this subsection with an easy observation that, thanks to the multiplicativity of $\wht\pi$, the WOT convergence in \eqref{eq158} can in fact be strengthened to SOT convergence:
 
 
-\begin{pp}
+\begin{pp}\label{lb293}
 Let $(\pi,V)$ be a Radon pre-unitary representation of $\Borb(X)$. Suppose that $(f_\alpha)$ is a net in $\Borb(X)$ converging to $f\in\Borb(X)$ in the universal $L^2$-topology. Then $\lim_\alpha\pi(f_\alpha)$ converges in SOT to $\pi(f)$.
 \end{pp}
 
@@ -9213,7 +9213,7 @@ This finishes the proof.
 Let $T\in\fk L(\MH)$ be self-adjoint where $\MH$ is a Hilbert space. Let $r\geq \Vert T\Vert$. 
 
 \begin{rem}\label{lb287}
-We proved the Riesz spectral Thm. \ref{lb267} by establishing the Borel functional calculus (Thm. \ref{lb283}). However, as noted in the answer to Question \ref{lb286}, it actually suffices---just as Riesz himself did in \cite{Rie13}---to establish the \textbf{semicontinuous functional calculus} \index{00@Semicontinuous functional calculus}. That is, one proves the existence of a (unique) unitary representation
+We proved the Riesz spectral Thm. \ref{lb267} by establishing the Borel functional calculus (Thm. \ref{lb283}). However, as noted in the answer to Question \ref{lb286}, it actually suffices---just as Riesz himself did in \cite{Rie13}---to establish the \textbf{semicontinuous functional calculus}. \index{00@Semicontinuous functional calculus} That is, one proves the existence of a (unique) unitary representation
 \begin{align*}
 \pi_T:\Span_\Cbb\LSCb([-r,r],\Rbb_{\geq0})\rightarrow\fk L(\MH)
 \end{align*}
@@ -9225,14 +9225,14 @@ for each $\xi\in\MH$ and each increasing sequence $(f_n)$ in $\LSCb(X,\Rbb_{\geq
 
 One reason Riesz did not use the Borel functional calculus in \cite{Rie13} is simply that measure theory had not yet matured at the time. In fact, the spectral theorem itself was a major driving force behind the development of modern measure theory.
 
-For a more faithful presentation of Riesz’s original proof of his spectral theorem in \cite{Rie13}, see Sec. 25.8 and 25.9 of \cite{Gui-A}.  
+For a more faithful presentation of Riesz’s original proof of his spectral theorem in \cite{Rie13}, see Sec. 25.8 and 25.9 of \cite{Gui-A}.  \hqed
 \end{rem}
 
 
 \begin{rem}
 Although Riesz's treatment of the spectral theorem is framed primarily within the paradigm of linear extension and largely avoids the perspective of finite approximation, the latter is not completely absent: it is used to prove the positivity of the polynomial functional calculus, as seen in the proof of Thm. \ref{lb283}. 
 
-Modern approaches to the spectral theorem completely abandon the finite approximation paradigm. This is because they aim to develop methods that are also applicable to operators on Banach spaces, not just Hilbert spaces. In these modern treatments, the primary non-trivial step---apart from applying the Riesz(-Markov) representation theorem---is proving the positivity of the polynomial functional calculus. The following is a list of mainstream approaches, along with the key theorems used to establish this crucial positivity.
+Modern approaches to the spectral theorem often abandon the finite approximation paradigm completely. One motivation is to develop methods that apply equally well to operators on Banach spaces, not just on Hilbert spaces. In these modern treatments, the primary non-trivial step---apart from applying the Riesz(-Markov) representation theorem---is still to prove the positivity of the polynomial functional calculus. The following is a list of mainstream approaches, along with the key theorems used to establish this crucial positivity.
 \begin{itemize}
 \item The approach using the notion of spectrum
 \begin{align*}
@@ -9248,8 +9248,8 @@ The key theorems are \textbf{Gelfand's spectral radius theorem}
 \begin{align*}
 f(T)=\oint_C\frac{f(z)}{z-T}\cdot\frac{dz}{2\pi\im}
 \end{align*}
-where $C$ is a suitable closed curve in $\Cbb$ surrounding $[-r,r]$. The key theorem is $(fg)(T)=f(T)g(T)$, and that any holomorphic function $f$, defined and strictly positive on a neighborhood of $[-r,r]$, can be written as $h^*h$ with $h$ holomorphic. This allows the argument of Prop. \ref{lb272} to apply. See \cite{Gui-S}.
-\item The approach reducing the spectral theorem for self-adjoint operators to that of unitary operators. The crucial point is that positivity of the polynomial functional calculus is easier to establish for unitary operators: any strictly positive polynomial polynomial $f$ on $\Sbb^1$ can be written as $g^*g$ for some polynomial $g$, again allowing the argument of Prop. \ref{lb272} to go through. See \cite{Xia}.
+where $C$ is a suitable closed curve in $\Cbb$ surrounding $[-r,r]$. The key theorem is $(fg)(T)=f(T)g(T)$ and $f^\dagger(T)=f(T)^*$ (where $f^\dagger(z)=\ovl{f(\ovl z)}$), and that any holomorphic function $f$, defined and strictly positive on a neighborhood of $[-r,r]$, can be written as $h^\dagger h$ with $h$ holomorphic. This allows the argument of Prop. \ref{lb272} to apply. See \cite{Gui-S}.
+\item The approach reducing the spectral theorem for self-adjoint operators to that of unitary operators. The crucial point is that positivity of the polynomial functional calculus is easier to establish for unitary operators, due to the (nontrivial) fact that any strictly positive polynomial polynomial $f$ on $\Sbb^1$ can be written as $g^*g$ for some polynomial $g$. This again allows the argument of Prop. \ref{lb272} to go through. See \cite{Xia}.
 \end{itemize}
 \hqed 
 \end{rem}
@@ -9265,6 +9265,14 @@ where $C$ is a suitable closed curve in $\Cbb$ surrounding $[-r,r]$. The key the
 
 
 In this section, we fix a Hilbert space $\MH$.
+
+\begin{df}
+An operator $T\in\fk L(\MH)$ is called \textbf{normal} \index{00@Normal} if it satisfies $T^*T=TT^*$. This is equivalent to its real part $\Real(T)$ \index{00@Real part of an operator} and its imaginary part $\Imag(T)$ \index{00@Imaginary part of an operator} commuting with each other, where
+\begin{align*}
+\Real(T)=\frac{T+T^*}2\qquad \Imag(T)=\frac{T-T^*}{2\im}
+\end{align*}
+\end{df}
+
 
 
 \subsubsection{Introduction}
@@ -9303,7 +9311,25 @@ We view $=\Cbb[x_\blt]$ as a unital *-subalgebra of $C(X)$ where
 \begin{align*}
 X=[-R_1,R_1]\times\cdots\times[-R_N,R_N]
 \end{align*}
-As in the proof of Thm. \ref{lb283}, in order to apply the operator-valued abstract Hausdorff moment Thm. \ref{lb274}, the main obstacle lies in proving that $\pi_{T_\blt}$ is positive, that is, $f(T_\blt)\geq0$ for each $f\in\Cbb[x_\blt]$ satisfying $f|_X\geq0$. We shall still apply the method of 
+As in the proof of Thm. \ref{lb283}, the main obstacle in applying the operator-valued abstract Hausdorff moment Thm. \ref{lb274} is to prove thatt $\pi_{T_\blt}$ is positive, i.e., that $f(T_\blt)\geq0$ for each $f\in\Cbb[x_\blt]$ satisfying $f|_X\geq0$. 
+
+
+To overcome this difficulty, we employ a different type of finite approximation. The earlier method---approximating $T_i$ by $ET_iE$ where $E$ is the projection onto a finite-dimensional subspace---fails here, since $ET_iE$ and $ET_jE$ need not commute. Instead, we use \textbf{finite-spectrum approximation}\index{00@Finite spectrum approximation} rather than \textbf{finite-dimensional approximation}. Specifically, we approximate each $T_i$ by $f_i(T_i)$ where $f_i\in\Borb([-R_i,R_i])$ has finite range. In this way, the operators $f_i(T_i)$ and $f_j(T_j)$ commute, as shown below.
+
+
+\begin{lm}
+Let $A,B\in\fk L(A)$ be self-adjoint. Choose $a,b\in\Rbb_{\geq0}$ such that $\Vert A\Vert\leq a$ and $\Vert B\Vert\leq b$. Then $f(A)$ commutes with $g(B)$ for each $f\in\Borb([-a,a])$ and $g\in\Borb([-b,b])$.
+\end{lm}
+
+
+\begin{proof}
+By Lem. \ref{lb276}, there is a net of polynomials $(f_\alpha)$ of $z_\blt$ converging universally-$L^2$ to $f$. By Prop. \ref{lb293}, the net $(f_\alpha(A))$ converges in SOT to $f(A)$. Since each $f_\alpha(A)$ commutes with $B$, $f(A)$ also commutes with $B$. A similar argument shows that $f(A)$ commutes with $g(B)$.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -9484,7 +9510,7 @@ Stieltjes. {\OE}uvres compl{\`e}tes. {Collected} papers. Vol. II contains an Eng
 \bibitem[Xia]{Xia}
 
 \begin{CJK*}{UTF8}{gkai}
-夏道行，吴卓人，严绍宗，舒五昌. 实变函数论与泛函分析，下册，第二版修订本
+夏道行，吴卓人，严绍宗，舒五昌. 实变函数论与泛函分析，下册，第二版修订本.
 \end{CJK*}
 
 
