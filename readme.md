@@ -80,7 +80,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 
 
-2017 Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  *** Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](https://binguimath.github.io/Files/2017_UU2.pdf) 
+2017 Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, II,  ***Comm. Math. Phys.***, (2019) 372: 893-950. `arXiv:1712.04931` [Preprint](https://binguimath.github.io/Files/2017_UU2.pdf) 
 > This is the second (and final) paper in a series where I initiated the systematic study of unitarity in the tensor categories of VOA representations.
 
 
