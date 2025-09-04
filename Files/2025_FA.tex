@@ -9141,7 +9141,7 @@ Choose any $\xi\in V$. Since $\Lambda_\xi:g\in\Borb(X)\mapsto\bk{\xi|\pi(g)\xi}$
 The proof of Thm. \ref{lb274} also indicates that $\wht\pi:\Borb(X)\rightarrow\fk L(\MH)$ is bounded. Therefore, if $(f_\alpha)$ converges uniformly to $f$, then $\lim_\alpha\pi(f_\alpha)$ converges in the operator norm to $\pi(f)$. We record this fact in a more general form, as the operator-valued analogue of Prop. \ref{lb204}.
 
 \begin{pp}\label{lb294}
-Let $X$ be a set. Let $\scr A$ be a unital *-subalgebra of $l^\infty(X)$, equipped with the $l^\infty$-norm. Let $\pi:\scr A\rightarrow\fk L(\MH)$ be a positive unitary representation of $\scr A$. Then $\pi$ is bounded with operator norm $\Vert\pi\Vert\leq 4$.
+Let $X$ be a set. Let $\scr A$ be a unital *-subalgebra of $l^\infty(X)$, equipped with the $l^\infty$-norm. Let $\pi:\scr A\rightarrow\fk L(\MH)$ be a positive unitary representation of $\scr A$. Then $\pi$ is bounded with operator norm $\Vert\pi\Vert=1$.
 \end{pp}
 
 \begin{proof}
@@ -9149,7 +9149,11 @@ By Prop. \ref{lb204}, for each $f\in\scr A$ and $\xi\in\MH$ we have
 \begin{align*}
 |\bk{\xi|\pi(f)\xi}|\leq \Vert f\Vert_{l^\infty}\cdot\bk{\xi|\pi(1)\xi}=\Vert f\Vert_{l^\infty}\cdot \Vert\xi\Vert^2
 \end{align*}
-This, together with Prop. \ref{lb238}, finishes the proof.
+Thus
+\begin{align*}
+\bk{\pi(f)\xi|\pi(f)\xi}=\bk{\xi|\pi(f^*f)\xi}\leq \Vert f^*f\Vert_{l^\infty}\cdot \Vert\xi\Vert^2=\Vert f\Vert_{l^\infty}^2\cdot\Vert\xi\Vert^2
+\end{align*}
+This proves $\Vert\pi\Vert\leq1$. Since $\Vert\pi(1)\Vert=1$, we have $\Vert\pi\Vert=1$.
 \end{proof}
 
 
@@ -9367,7 +9371,7 @@ X=[-R_1,R_1]\times\cdots\times[-R_N,R_N]
 As in the proof of Thm. \ref{lb283}, the main obstacle in applying the operator-valued abstract Hausdorff moment Thm. \ref{lb274} is to prove thatt $\pi_{T_\blt}$ is positive, i.e., that $f(T_\blt)\geq0$ for each $f\in\Cbb[x_\blt]$ satisfying $f|_X\geq0$. 
 
 
-To overcome this difficulty, we employ a different type of finite approximation. The earlier method---approximating $T_i$ by $ET_iE$ where $E$ is the projection onto a finite-dimensional subspace---fails here, since $ET_iE$ and $ET_jE$ need not commute. Instead, we use \textbf{finite-spectrum approximation}\index{00@Finite spectrum approximation} rather than \textbf{finite-dimensional approximation}. Specifically, we approximate each $T_i$ by $f_i(T_i)$ where $f_i\in\Borb([-R_i,R_i])$ has finite range. In this way, the operators $f_i(T_i)$ and $f_j(T_j)$ commute, as shown below.
+To overcome this difficulty, we employ a different type of finite approximation. The earlier method---approximating $T_i$ by $ET_iE$ where $E$ is the projection onto a finite-dimensional subspace---fails here, since $ET_iE$ and $ET_jE$ need not commute. Instead, we use \textbf{finite-spectrum approximation}\index{00@Finite spectrum approximation} rather than \textbf{finite-rank approximation}. Specifically, we approximate each $T_i$ by $f_i(T_i)$ where $f_i\in\Borb([-R_i,R_i])$ has finite range. In this way, the operators $f_i(T_i)$ and $f_j(T_j)$ commute, as shown below.
 
 
 \begin{lm}\label{lb295}
@@ -9508,7 +9512,7 @@ We say that $\pi$ is \textbf{compactly supported} (or that $\pi$ has \textbf{com
 
 
 \begin{rem}\label{lb302}
-In the remainder of this course, whenever we speak of $\Supp(\pi)$, we will always assume that one of the following conditions is satisfied:
+Assume that one of the following conditions is satisfied:
 \begin{enumerate}
 \item[(1)] $X$ is second countable, and $\pi$ is normal.
 \item[(2)] $X$ is LCH, and $\pi$ is Radon.
@@ -9522,17 +9526,37 @@ For each $\xi\in V$, we have $\Supp(\mu)\subset\Supp(\pi)$. By Def. \ref{lb298},
 
 
 \begin{rem}\label{lb301}
-Let $(\pi,V)$ be a pre-unitary representation of $\Borb(X)$. Choose any closed subset $K\subset X$ containing $\Supp(\pi)$. Then for each $f\in\Borb(X)$ we have
+Let $(\pi,V)$ be a pre-unitary representation of $\Borb(X)$ satisfying either (1) or (2) of Rem. \ref{lb302}. Choose any Borel subset $K\subset X$ containing $\Supp(\pi)$. Then for each $f,g\in\Borb(X)$ we have
 \begin{align*}
-\pi(f)=\pi(f\cdot\chi_K)
+f|_K=g|_K\qquad\Longrightarrow\qquad\pi(f)=\pi(g)
 \end{align*}
-Therefore, if $f,g\in\Borb(X)$ satisfy $f|_K=g|_K$, then $\pi(f)=\pi(g)$.
 \end{rem}
 
+
+
 \begin{proof}
-By Rem. \ref{lb302}, we have $\pi_{K^c}=0$. Therefore, $\pi(f)=\pi(f\chi_K)+\pi(f\chi_{K^c})+\pi(f\chi_K)+\pi(f)\pi(\chi_{K^c})=\pi(f\chi_K)$.
+By Rem. \ref{lb302}, we have $\pi(\Supp(\pi)^c)=0$. Since $0\leq \chi_{K^c}\leq\chi_{\Supp(\pi)^c}$, by the positivity of $\pi$ (Prop. \ref{lb272}), we have $0\leq \pi(\chi_{K^c})\leq\pi(\chi_{\Supp(\pi)^c})$, and hence $\pi(\chi_{K^c})=0$. It follows that
+\begin{align*}
+\pi(f)=\pi(f\chi_K)+\pi(f\chi_{K^c})+\pi(f\chi_K)+\pi(f)\pi(\chi_{K^c})=\pi(f\chi_K)
+\end{align*}
+Thus, if $f|_K=g|_K$, then $f\chi_K=g\chi_K$, and hence $\pi(f)=\pi(g)$.
 \end{proof}
 
+\begin{pp}\label{lb303}
+Assume that $X$ is second-countable, and let $(\pi,V)$ be a normal pre-unitary representation of $\Borb(X)$. Let $K\subset X$ be a Borel set containing $\Supp(\pi)$. Then there is a unique normal pre-unitary representation
+\begin{gather}\label{eq163}
+\pmb{\pi|_K}:\Borb(K)\rightarrow\fk L(V)\qquad \pi|_K(f|_K)=\pi(f)
+\end{gather}
+(where $f\in\Borb(X)$). We call $\pi|_K$ the \textbf{restriction} \index{00@Restriction representation $\pi\vert_K$} of $\pi$ to $K$.
+\end{pp}
+
+\begin{proof}
+The uniqueness is obvious. Existence: For each $g\in\Borb(K)$, extend $g$ by zero to $\wtd g:X\rightarrow\Cbb$, and set $\pi|_K(g)=\pi(\wtd g)$. Then for each $f\in\Borb(X)$, we have
+\begin{align*}
+\pi|_K(f|_K)=\pi(\wtd{f|_K})=\pi(f\chi_K)=\pi(f)
+\end{align*}
+where the last step is by Rem. \ref{lb301}. In particular, $\pi|_K(1_K)=\pi(1|_X)$. It follows that $\pi|_K$ is a normal pre-unitary representation satisfying \eqref{eq163}.
+\end{proof}
 
 
 
@@ -9555,23 +9579,11 @@ Here, $z_i$ is the $i$-th \textbf{coordinate function}\index{00@Coordinate funct
 \begin{proof}
 Uniqueness: Suppose that $\pi_1,\pi_2$ both satisfy the requirement for $\pi_{T_\blt}$. Let $K$ be a compact subset of $\Cbb^N$ containing $\Supp(\pi_1)\cup\Supp(\pi_2)$. Let $\scr A$ be the polynoimal algebra $\Cbb[z_\blt,\ovl{z_\blt}]$ (cf. Exp. \ref{lb300}). By enlarging $K$, we assume that $K$ has non-empty interior so that $\scr A$ can be viewed as a unital *-subalgebra of $C(K)$. 
 
-The map
+By Prop. \ref{lb303},
 \begin{align*}
-\wtd\pi_i:\Borb(K)\rightarrow\fk L(\MH)\qquad \wtd\pi_i(f)=\pi_i(f)
+\pi_1|_K(z_i|_K)=\pi_1(z_i)=T_i
 \end{align*}
-(where each $f\in\Borb(K)$ is extended by zero to $\Cbb^N$) is clearly a normal unitary representation of $\Borb(K)$, noting that
-\begin{align*}
-\wtd\pi_1(1_K)=\pi_1(\chi_K)=\pi_1(\chi_K)+\pi_1(\chi_{\Cbb^N\setminus K})=\pi_1(1_{\Cbb^N})=\id_\MH
-\end{align*}
-and similarly $\wtd\pi_2(1_K)=\id_\MH$. Since
-\begin{align*}
-\wtd\pi_1(z_i|_K)=\pi_1(z_i\chi_K)=\pi_1(z_i\chi_K)+\pi_1(z_i)\pi_1(\chi_{\Cbb^N\setminus K})=\pi_1(z_i)=T_i
-\end{align*}
-and similarly $\wtd\pi_2(z_i|_K)=T_i$, we conclude that $\wtd\pi_1|_{\scr A}=\wtd\pi_2|_{\scr A}$, and hence $\wtd\pi_1=\wtd\pi_2$ by the uniqueness part of Thm. \ref{lb274}. Therefore, for each $f\in\Borb(X)$, we have
-\begin{align*}
-\pi_1(f)=\pi_1(f\chi_K)+\pi_1(f)\pi_1(\chi_{\Cbb^N\setminus K})=\pi_1(f\chi_K)=\wtd\pi_1(f)
-\end{align*}
-and similarly $\pi_2(f)=\wtd\pi_2(f)$. This proves $\pi_1=\pi_2$.\\[-1ex]
+and similarly $\pi_2|_K(z_i|_K)=T_i$. Thus $\pi_1|_K$ and $\pi_2|_K$ agree on $\scr A$, and hence $\pi_1|_K=\pi_2|_K$ by the uniqueness part of Thm. \ref{lb274}. By Prop. \ref{lb303}, we conclude $\pi_1=\pi_2$.\\[-1ex]
 
 Existence: Let $A_i=\Real(T_i)$ and $B_i=\Imag(T_i)$. Then $A_1,\dots,A_N,B_1,\dots,B_N$ are mutually commuting bounded self-adjoint operators on $\MH$, and hence admit a Borel functional calculus by Thm. \ref{lb296}. We choose $R_i\in\Rbb_{>0}$ such that $\Vert T_i\Vert\leq R$ for each $i$. Let 
 \begin{align*}
@@ -9602,11 +9614,15 @@ The support of the Borel functional calculus $\pi_{T_\blt}:\Borb(\Cbb^N)\rightar
 
 
 \begin{rem}
-By Rem. \ref{lb301}, for each $f\in\Borb(\Cbb^N)$, we have
+Let $K\subset\Cbb^N$ be a Borel set containing $\Sp(T_\blt)$. By Rem. \ref{lb301}, for each $f,g\in\Borb(\Cbb^N)$, we have
 \begin{align*}
-f(T_\blt)=(f\chi_{\Sp(T_\blt)})(T_\blt)
+f|_K=g|_K\qquad\Longrightarrow\qquad f(T_\blt)=g(T_\blt)
 \end{align*}
-Therefore, if $f,g\in\Borb(\Cbb^N)$ are equal outside $\Sp(T_\blt)$, then $f(T_\blt)=g(T_\blt)$.
+By Prop. \ref{lb303}, there is a unique normal unitary representation
+\begin{gather}\label{eq164}
+\Borb(K)\rightarrow\fk L(\MH)\qquad g\mapsto g(T_\blt)
+\end{gather}
+satisfying $(f|_K)(T_\blt)=f(T_\blt)$ for each $f\in\Borb(X)$. The map \eqref{eq164} is also called a \textbf{Borel functional calculus} \index{00@Borel functional calculus for bounded normal operators} of $T_\blt$.
 \end{rem}
 
 
@@ -9615,8 +9631,59 @@ Therefore, if $f,g\in\Borb(\Cbb^N)$ are equal outside $\Sp(T_\blt)$, then $f(T_\
 
 
 \begin{pp}
-Let $f\in\Borb(\Cbb^N)$.
+For each $f\in\Borb(\Cbb^N)$, we have
+\begin{align*}
+\Vert f(T_\blt)\Vert\leq \Vert f\Vert_{l^\infty(\Sp(T_\blt))}
+\end{align*}
+Consequently, if $(f_\alpha)$ is a net in $\Borb(\Cbb^N)$ converging uniformly on $\Sp(T_\blt)$ to $f\in\Borb(\Cbb^N)$, then $f_\alpha(T_\blt)$ converges in norm to $f(T_\blt)$.
 \end{pp}
+
+
+\begin{proof}
+This is an immediate consequence of Prop. \ref{lb294}.
+\end{proof}
+
+
+
+\begin{pp}
+Let $(f_\alpha)$ be a net in $\Borb(\Cbb^N)$. Let $f\in \Borb(\Cbb^N)$. Suppose that $(f_\alpha)$ converges universally-$L^2$ to $f$ when restricted to $\Sp(T_\blt)$, that is,
+\begin{align*}
+\lim_\alpha\int_{\Sp(T_\blt)}|f-f_\alpha|^2d\mu=0
+\end{align*}
+for each Radon measure (equivalently, finite Borel measure) $\mu$ on $\Supp(T_\blt)$. Then $f_\alpha(T_\blt)$ converges in SOT to $f(T_\blt)$.
+\end{pp}
+
+\begin{proof}
+Apply Prop. \ref{lb293} to $\pi_{T_\blt}|_{\Sp(T_\blt)}$.
+\end{proof}
+
+
+\begin{pp}\label{lb304}
+For each $f,g\in\Borb(\Cbb^N)$, the operators $f(T_\blt)$ and $g(T_\blt)$ are normal, and they commute adjointly.
+\end{pp}
+
+\begin{proof}
+We have $[f(T_\blt),g(T_\blt)]=0$ since
+\begin{align*}
+f(T_\blt)g(T_\blt)=(fg)(T_\blt)=(gf)(T_\blt)=g(T_\blt)f(T_\blt)
+\end{align*}
+Since $g^*(T_\blt)=g(T_\blt)^*$, we have $[f(T_\blt),g(T_\blt)^*]=0$. Thus $f(T_\blt)$ commutes adjointly with $g(T_\blt)$. Setting $g=f$, we see that $f(T_\blt)$ is normal.
+\end{proof}
+
+
+\begin{thm}
+Let $g_1,\dots,g_L\in\Borb(\Cbb^N)$ and $f\in\Borb(\Cbb^L)$. Then
+\begin{align}\label{eq165}
+f(g_1(T_\blt),\dots,g_L(T_\blt))=(f\circ(g_1,\dots,g_L))(T_\blt)
+\end{align}
+\end{thm}
+
+Note that by Prop. \ref{lb304}, $g_1(T_\blt),\dots,g_L(T_\blt)$ are adjointly-commuting bounded normal operators. Therefore, their Borel functional calculus $f(g_1(T_\blt),\dots,g_L(T_\blt))$ can be defined.
+
+
+\begin{proof}
+
+\end{proof}
 
 
 
