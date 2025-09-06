@@ -22,7 +22,7 @@
 ## Lecture notes (in English)
 
 
-- [讲义](https://binguimath.github.io/Files/2025_FA.pdf)
+- [Qiuzhen Lectures in Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf)
 
 讲义中靠后的内容未经proofread，也可能以后会有结构和内容上的调整。目前已经proofread的部分为：
 
