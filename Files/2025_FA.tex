@@ -457,7 +457,7 @@
 \newcommand{\RM}{\mathcal {RM}}
 \newcommand{\Rp}{\mathbb R_{\geq0}}
 %\newcommand{\Ses}{\mathrm{Sesq}_{\mathrm b}}
-
+\newcommand{\SI}{\mathscr I}
 
 
 
@@ -733,6 +733,10 @@ However, this convention does not apply to $\fk L(V)$: If $V$ is a normed vector
 If $A,B\in\Lin(V)$, we let
 \begin{align*}
 [A,B]=AB-BA
+\end{align*}
+\item If $(V_\alpha)_{\alpha\in\scr A}$ is a family of linear subspaces of a vector space $V$, we let
+\begin{align*}
+\sum_{\alpha\in\scr A}V_\alpha=\Span\{\xi\in V_\alpha\text{ where }\alpha\in\scr A\}
 \end{align*}
 \end{itemize}
 
@@ -1300,6 +1304,15 @@ Since $\Vert \sum_A f\Vert\leq\sum_A|f|$, by by Prop. \ref{lb214}, the above exp
 
 
 \begin{eg}
+Let $X$ be a set, equipped with the \textbf{counting measure} $\mu:2^X\rightarrow[0,+\infty]$. \index{00@Counting measure} That is, for each $A\subset X$, we have $\mu(A)=|A|$ if $A$ is a finite set, and $\mu(A)=+\infty$ if $A$ is infinite. Then for each $f:X\rightarrow\ovl\Rbb_{\geq0}$, we have
+\begin{align}\label{eq172}
+\int_X fd\mu=\sum_{x\in X}f(x)
+\end{align}
+If $f:X\rightarrow\Cbb$ satisfies $\sum_X|f|<+\infty$, then \eqref{eq172} still holds. The details are left to the reader.
+\end{eg}
+
+
+\begin{eg}
 Let $f:\Zbb_+\rightarrow V$, and assume that $\sum_{\Zbb_+}f$ converges. Then
 \begin{align*}
 \sum_{\Zbb_+}f=\lim_{n\rightarrow\infty} (f(1)+\cdots+f(n))
@@ -1559,6 +1572,12 @@ Then, a net $(x_\alpha)$ in $X$ converges under $f^*\mc T_Y$ to $x$ iff
 \lim_\alpha f(x_\alpha)=f(x)
 \end{align*}
 \end{df}
+
+The following fact is well-known.
+
+\begin{pp}\label{lb324}
+Let $X$ be a metric space. Let $A\subset X$, whose metric inherits from that of $X$. If $A$ is complete, then $A$ is closed. Conversely, if $A$ is closed and $X$ is complete, then $A$ is complete.
+\end{pp}
 
 
 
@@ -5950,7 +5969,7 @@ Let $(X,\mu)$ be a measure space. By the Riesz-Fischer Thm. \ref{lb26}, the inne
 \end{eg}
 
 \begin{eg}\label{lb148}
-If $V$ is a closed linear subspace of $\MH$ whose inner product is inherited from that of $\MH$, then $V$ is a Hilbert space. This is either due to Thm. \ref{lb129}-(b), or due to the fact that a closed subset of a complete metric space is complete.
+If $V$ is a closed linear subspace of $\MH$ whose inner product is inherited from that of $\MH$, then $V$ is a Hilbert space. This is either due to Thm. \ref{lb129}-(b), or due to the fact that a closed subset of a complete metric space is complete (Prop. \ref{lb324}). We say that $V$ is a \textbf{Hilbert subspace} of $\MH$. \index{00@Hilbert subspace}
 \end{eg}
 
 
@@ -8109,7 +8128,7 @@ In this step, we define $(z-\omega)^{-1}$ as a bounded $\Kbb$-sesquilinear form 
 
 For each $\xi\in V_\infty$, we have $V_n\ni\xi$ for sufficiently large $n$. Moreover, for such $n$, we clearly have $(z-T_n)^{-1}\xi=\sum_{i=1}^n(z-\lambda_{n,i})^{-1}e_{n,i}\cdot\bk{e_{n,i}|\xi}$, and hence
 \begin{align}\label{eq131}
-\bk{\eta|(z-T_n)^{-1}\xi}=\sum_{i=1}^n (z-\lambda_{n,i})^{-1}\bk{\xi|e_{n,i}}\cdot \bk{e_{n,i}|\eta}\qquad\text{for each }\eta\in V
+\bk{\xi|(z-T_n)^{-1}\xi}=\sum_{i=1}^n (z-\lambda_{n,i})^{-1}\bk{\xi|e_{n,i}}\cdot \bk{e_{n,i}|\xi}
 \end{align}
 Similar to \eqref{eq119}, for each $\xi\in V_\infty$, we let $\rho_{\xi,n}:[-r,r]\rightarrow\Rbb_{\geq0}$ be
 \begin{align}
@@ -8187,7 +8206,7 @@ Thus, the question reduces to whether $(z-\omega)^{-1}$ coincides with the bound
 \begin{align}
 \lim_n (z-E_nTE_n)^{-1}=(z-T)^{-1}
 \end{align}
-in WOT. This will be proves in Rem. \ref{lb305}.
+in WOT. This will be proved in Rem. \ref{lb305}.
 \end{proof}
 
 
@@ -8354,7 +8373,7 @@ Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
 (3')$\Rightarrow$(1'): Assume (3'). Then $\Vert Q\xi\Vert=0$ implies $\Vert P\xi\Vert=0$, i.e.,  $\Ker(Q)\subset\Ker(P)$. Therefore, $\Ker(P)^\perp\subset\Ker(Q)^\perp$. By \eqref{eq140}, we have $\Ker(P)^\perp=\Rng(P)$ and $\Ker(Q)^\perp=\Rng(Q)$. This proves (1').
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb322}
 Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $\Rng(P)\perp\Rng(Q)$.
@@ -8362,24 +8381,33 @@ Let $P,Q$ be projections on a Hilbert space $\MH$. The following are equivalent.
 \item $PQ=0$. 
 \item $P+Q\leq 1$.
 \end{enumerate}
+Moreover, if any of these conditions holds, then $P+Q$ is the projection onto the $\Rng(P)+\Rng(Q)$.
 \end{co}
 
+If $P$ and $Q$ satisfies one of these conditions, we say that $P$ is \textbf{orthogonal} to $Q$. \index{00@Orthogonal projections}
+
 \begin{proof}
-Note that (1) is equivalent to $\Rng(P)\subset\Rng(Q)^\perp$. By \eqref{eq140}, we have $\Rng(Q)^\perp=\Rng(1-Q)$. Thus (1) is equivalent to $\Rng(P)\subset\Rng(1-Q)$, and hence (by Thm. \ref{lb249}) is equivalent to each of the following three conditions: $P(1-Q)=0$,  $(1-Q)P=0$, and $P\leq 1-Q$.
+Note that (1) is equivalent to $\Rng(P)\subset\Rng(Q)^\perp$. By \eqref{eq140}, we have $\Rng(Q)^\perp=\Rng(1-Q)$. Thus (1) is equivalent to $\Rng(P)\subset\Rng(1-Q)$, and hence (by Thm. \ref{lb249}) is equivalent to each of the following three conditions: $P(1-Q)=0$,  $(1-Q)P=0$, and $P\leq 1-Q$. This proves the equivalence of the four conditions.
+
+Now, assume that these four conditions hold. Clearly $P+Q$ is a projection operator, and its range lies inside $\Rng(P)+\Rng(Q)$. Conversely, any vector in $\Rng(P)+\Rng(Q)$ can be written as $P\xi+Q\eta$ where $\xi,\eta\in\MH$. Then
+\begin{align*}
+P\xi+Q\eta=(P+Q)(P\xi+Q\eta)
+\end{align*}
+This proves that $\Rng(P)+\Rng(Q)$ is the range of $P+Q$.
 \end{proof}
 
 
 
 
-\begin{rem}\label{lb263}
+\begin{co}\label{lb263}
 Let $P,Q$ be projections on a Hilbert space such that $P\leq Q$. Then $Q-P$ is the projection operator associated to $\Rng(Q)\cap\Rng(P)^\perp$, that is,
 \begin{align*}
 (Q-P)(\MH)=Q(\MH)\cap P(\MH)^\perp
 \end{align*}
-\end{rem}
+\end{co}
 
 \begin{proof}
-Let $\mc K=Q(\MH)$. Since $P(\MH)\subset\MK$, $P|_\MK$ and $Q|_\MK$ are bounded linear operators on $\MK$, with $Q|_\MK$ being the identity operator of $\MK$ and $P|_\MK$ being the projection of $\MK$ onto $P(\MH)$. By \eqref{eq140}, the range of $\id_\MK-P|_\MK=Q|_\MK-P|_\MK$ (which equals $(Q-P)(\MH)$ because $(Q-P)Q=Q^2-PQ=Q-P$) equals the orthogonal complement of $P(\MH)$ in $\MK$.
+Clearly $E:=Q-P$ is a projection, and $PE=EP=0$. By Cor. \ref{lb322}, we have $Q(\MH)=P(\MH)+E(\MH)$ where $P(\MH)\perp E(\MH)$. From this one easily shows $E(\MH)=Q(\MH)\cap P(\MH)^\perp$.
 \end{proof}
 
 
@@ -8400,11 +8428,11 @@ Since $\Rng(E_\alpha)\subset\Rng(E)$, we have $E_\alpha\leq E$. Let $\xi\in\MH$.
 \begin{align*}
 \Vert E\xi-E_\alpha\eta\Vert\leq\eps
 \end{align*}
-for some $\eta\in\MH$. Since $E\xi-E_\alpha\eta=(E-E_\alpha)\xi+E_\alpha(\xi-\eta)$ with $(E-E_\alpha)\xi$ orthogonal to $E_\alpha(\xi-\eta)$ (cf. Rem. \ref{lb263}), the Pythagorean identity shows that $(E-E_\alpha)\xi\Vert\leq\Vert E\xi-E_\alpha\eta\Vert$ and hence
+for some $\eta\in\MH$. Since $E\xi-E_\alpha\eta=(E-E_\alpha)\xi+E_\alpha(\xi-\eta)$ with $(E-E_\alpha)\xi$ orthogonal to $E_\alpha(\xi-\eta)$ (cf. Cor. \ref{lb263}), the Pythagorean identity shows that $(E-E_\alpha)\xi\Vert\leq\Vert E\xi-E_\alpha\eta\Vert$ and hence
 \begin{align*}
 \Vert (E-E_\alpha)\xi\Vert\leq\eps
 \end{align*}
-Therefore, for each $\beta\geq\alpha$, we have $E-E_\beta\leq E-E_\alpha$ due to Rem. \ref{lb263}, and hence $\Vert (E-E_\beta)\xi\Vert\leq\eps$. This proves $\lim_\alpha E_\alpha\xi=E\xi$.
+Therefore, for each $\beta\geq\alpha$, we have $E-E_\beta\leq E-E_\alpha$ due to Cor. \ref{lb263}, and hence $\Vert (E-E_\beta)\xi\Vert\leq\eps$. This proves $\lim_\alpha E_\alpha\xi=E\xi$.
 \end{proof}
 
 
@@ -8655,7 +8683,7 @@ As discussed before (for instance, in Sec. \ref{lb24} and \ref{lb43}), functiona
 
 
 
-We have seen that Hilbert's spectral theorem (Thm. \ref{lb239}) is stated in the language of bilinear/sesquilinear forms. As noted in Sec. \ref{lb258}, one reason Riesz framed his spectral theorem in the language of linear operators is that projection operators correspond more naturally to linear subspaces of an inner-product space than do projection forms. Another reason---mentioned in Subsec. \ref{lb132}---is that symbolic calculus is easier to manipulate in the operator framework, i.e. one may replace the real or complex variable $x$ in a function $f(x)$ by an operator or a sesquilinear form. We will explore this in more detail in the following sections. For now, we answer some questions that readers might naturally ask.
+We have seen that Hilbert's spectral theorem (Thm. \ref{lb239}) is stated in the language of bilinear/sesquilinear forms. As noted in Sec. \ref{lb258}, one reason Riesz's spectral theorem is framed in the language of linear operators is that projection operators correspond more naturally to linear subspaces of an inner-product space than do projection forms. Another reason---mentioned in Subsec. \ref{lb132}---is that symbolic calculus is easier to manipulate in the operator framework, i.e. one may replace the real or complex variable $x$ in a function $f(x)$ by an operator or a sesquilinear form. We will explore this in more detail in the following sections. For now, we answer some questions that readers might naturally ask.
 
 
 \begin{question}\label{lb286}
@@ -9467,7 +9495,7 @@ sending each $x_i$ to $T_i$. We abbreviate $\pi_{T_\blt}$ to $\pi$ for simplicit
 
 In the following, we prove the positivity of $\pi$ in the case $N=2$; the general case follows from the same idea. We write $A=T_1$ and $B=T_2$.\\[-1ex]
 
-Step 2. Let $R=\max\{R_1,R_2\}$, and let $(g_n)$ be a sequence of simple functions in $\Borb([-R,R],[-R,R])$ converging uniformly to the the identity function. Then, by Prop. \ref{lb294}, $g_n(A)$ and $g_n(B)$ converge in the operator norm to $A$ and $B$ respectively. By Prop. \ref{lb243}, for each $f\in\scr A$, the sequence $f(g_n(A),g_n(B))$ converges in norm to $f(A,B)$. Therefore, to prove the positivity of $\pi$, it remains to prove that $f(g(A),g(B))\geq0$ for each $f\in\scr A$ satisfying $f|_X\geq0$, and for simple function $g\in\Borb([-R,R],[-R,R])$.\\[-1ex]
+Step 2. Let $R=\max\{R_1,R_2\}$, and let $(g_n)$ be a sequence of simple functions in $\Borb([-R,R],[-R,R])$ converging uniformly to the the identity function. Then, by Prop. \ref{lb294}, $g_n(A)$ and $g_n(B)$ converge in the operator norm to $A$ and $B$ respectively. By Prop. \ref{lb143}, for each $f\in\scr A$, the sequence $f(g_n(A),g_n(B))$ converges in norm to $f(A,B)$. Therefore, to prove the positivity of $\pi$, it remains to prove that $f(g(A),g(B))\geq0$ for each $f\in\scr A$ satisfying $f|_X\geq0$, and for simple function $g\in\Borb([-R,R],[-R,R])$.\\[-1ex]
 
 Step 3. Since $g$ has finite range, we can write
 \begin{align*}
@@ -9999,7 +10027,7 @@ whose restriction to $\MH$ equals $U$.
 
 By Prop. \ref{lb315}, we have $\Sp(W)\subset\Sbb^1$. On $\Sbb^1$, the sequence of functions
 \begin{align*}
-f_n:=\frac 1n\sum_{k=0}^{k-1}z^k
+f_n:=\frac 1n\sum_{k=0}^{n-1}z^k
 \end{align*}
 which equals $(1-z^n)/n(1-z)$ outside $\{1\}$, is uniformly bounded and converges pointwise to $\chi_{\{1\}}$. By DCT, for any finite Borel measure $\mu$ on $\Sbb^1$ we have
 \begin{align*}
@@ -10054,7 +10082,7 @@ where the LHS converges to the RHS in the $L^2$-norm.  \hqed
 
 
 \begin{exe}\label{lb320}
-Let $(X,\fk M,\mu)$ be a probability space. Let $\phi:X\rightarrow X$ be measure preserving transform. Prove that $\phi$ is ergodic iff the map $U$ defined in \eqref{eq170} satisfies $\Ker(\idt-U)=\Span\{1\}$ .
+Let $(X,\fk M,\mu)$ be a probability space. Let $\phi:X\rightarrow X$ be a measure preserving transform. Prove that $\phi$ is ergodic iff the map $U$ defined in \eqref{eq170} satisfies $\Ker(\idt-U)=\Span\{1\}$ .
 \end{exe}
 
 \begin{proof}[Hint]
@@ -10065,7 +10093,112 @@ Let $(X,\fk M,\mu)$ be a probability space. Let $\phi:X\rightarrow X$ be measure
 
 
 
-\subsection{Spectral theorem: the multiplication operator form}
+\subsection{The multiplication-operator version of the spectral theorem}
+
+
+In this section, we introduce the final version of the Spectral Theorem, the multiplication operator version. For students already familiar with measure theory, this version is not only the most accessible but also the one most easily extended to the spectral theory of unbounded operators.
+
+Historically, the multiplication-operator version appeared later for several reasons: First, measure theory was not yet fully developed when the earlier versions of the theorem were established. Second, the spectral decomposition in this setting is not unique. Third, several of the ideas underlying this version grew out of representation theory and operator algebras. Finally, unlike the earlier formulations, this version adopts most completely the perspective of linear operators rather than that of bilinear or sesquilinear forms (cf. the paradigm shift \eqref{eq147b}). One drawback of this approach is that, because of this last reason, the proof by itself does not make clear how the Riesz representation theorem interacts with the rest of the argument, since the bilinear/sesquilinear form framework is more naturally suited to the Riesz representation theorem; cf. Subsec. \ref{lb132}.
+
+Informally, the multiplication-operator version of the Spectral Theorem asserts that every bounded normal operator is unitarily equivalent to a multiplication operator on a direct sum of $L^2$-spaces. A detailed statement and explanation will be given in the following subsections.
+
+
+\subsubsection{Infinite direct sums of Hilbert spaces}
+
+\begin{df}
+Let $(V_\alpha)_{\alpha\in\SI}$ be a family of $\Fbb$-vector space. Then the $\Fbb$-vector space structure on \textbf{direct product} \index{00@Direct product vector space} $\pmb{\prod_{\alpha\in\SI}V_\alpha}$ is defined componentwisely. Namely, for each $(\xi_\alpha)_{\alpha\in\SI},(\eta_\alpha)_{\alpha\in\SI}$ in $\prod_{\alpha\in\SI}\MH_\alpha$ and $\lambda\in\Cbb$ we have
+\begin{align*}
+(\xi_\alpha)_{\alpha\in\SI}+(\eta_\alpha)_{\alpha\in\SI}=(\xi_\alpha+\eta_\alpha)_{\alpha\in\SI}\qquad 
+\end{align*}
+\end{df}
+
+
+
+
+
+
+\begin{df}
+Let $(\MH_\alpha)_{\alpha\in\SI}$ be a family of Hilbert spaces. The \textbf{Hilbert space direct sum} \index{00@Hilbert space direct sum} of $(\MH_\alpha)_{\alpha\in\SI}$, denoted by $\pmb{\bigoplus_{\alpha\in\SI}\MH_\alpha}$, the subspace consisting of all
+\begin{align*}
+(\MH_\alpha)_{\alpha\in\SI}=\Big\{(\xi_\alpha)_{\alpha\in\SI}\in\prod_{\alpha\in\SI}\MH_\alpha:\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2<+\infty\Big\}
+\end{align*}
+We write any $\xi=(\xi_\alpha)_{\alpha\in\SI}$ in $\bigoplus_{\alpha\in\SI}\MH_\alpha$ as $\pmb{\oplus_{\alpha\in\SI}\xi_\alpha}$. Then $(\MH_\alpha)_{\alpha\in\SI}$ is equipped with the inner product
+\begin{align}\label{eq171}
+\bigbk{\oplus_{\alpha\in\SI}\eta_\alpha\big|\oplus_{\alpha\in\SI}\xi_\alpha }=\sum_{\alpha\in\SI}\bk{\eta_\alpha|\xi_\alpha}
+\end{align}
+and is a Hilbert space. We view each $\MH_\alpha$ as an inner product subspace of $\bigoplus_{\alpha\in\SI}\MH_\alpha$ by identifying each $\xi_\alpha\in\MH_\alpha$ with the element of $\bigoplus_{\alpha\in\SI}\MH_\alpha$ whose $\alpha$-component is $\eta_\alpha$ and whose other components are zero.
+\end{df}
+
+\begin{proof}[Explanation]
+For each finite set $I\subset\SI$, 
+\begin{align*}
+&\sum_{\alpha\in I}|\bk{\eta_\alpha|\xi_\alpha}|\leq\sum_{\alpha\in I}\Vert\eta_\alpha\Vert\cdot\Vert\xi_\alpha\Vert\leq\Big(\sum_{\alpha\in I}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}\cdot \Big(\sum_{\alpha\in I}\Vert\xi_\alpha\Vert^2\Big)^{\frac 12}\\
+\leq&\Big(\sum_{\alpha\in\SI}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}\cdot \Big(\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2\Big)^{\frac 12}:=C
+\end{align*}
+Applying $\sup_{I\in\fin(2^\SI)}$, we obtain $\sum_{\alpha\in \SI}|\bk{\eta_\alpha|\xi_\alpha}|\leq C<+\infty$. Therefore, the RHS of \eqref{eq171} converges absolutely (and hence converges, cf. Prop. \ref{lb234}).
+
+To prove that $\MH:=\bigoplus_{\alpha\in\SI}\MH_\alpha$ is a Hilbert space, one can either show that $\MH$ is Cauchy-complete, or show that any bounded linear functional $\Lambda:\MH\rightarrow\Cbb$ is realized by a pairing with some element of $\MH$, cf. Thm. \ref{lb135}. We follow the second approach. The restriction of $\Lambda$ to each $\MH_\alpha$ is a bounded linear functional. Hence, by Thm. \ref{lb135}, there exists $\eta_\alpha\in\MH_\alpha$ such that
+\begin{align*}
+\Lambda(\xi_\alpha)=\bk{\eta_\alpha|\xi_\alpha}\qquad\text{for any }\xi_\alpha\in\MH_\alpha
+\end{align*} 
+Moreover, for each $I\in\SI$, noting that $\sum_{\alpha\in I}\eta_\alpha$ equals $\oplus_{\alpha\in I}\eta_\alpha$, we have
+\begin{align*}
+\sum_{\alpha\in I}\Vert\eta_\alpha\Vert^2=\Lambda\big(\oplus_{\alpha\in I}\eta_\alpha\big)\leq\Vert\Lambda\Vert\cdot \big\Vert\oplus_{\alpha\in I}\eta_\alpha\big\Vert=\Vert\Lambda\Vert\cdot \Big(\sum_{\alpha\in I}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}
+\end{align*}
+and hence $\sum_{\alpha\in I}\Vert\eta_\alpha\Vert^2\leq\Vert\Lambda\Vert^2$. Applying $\sup_{I\in\fin(2^\SI)}$, we obtain
+\begin{align*}
+\sum_{\alpha\in\SI}\Vert\eta_\alpha\Vert^2\leq\Vert\Lambda\Vert^2<+\infty
+\end{align*}
+This proves that $\eta:=\oplus_{\alpha\in\SI}\eta_\alpha$ belongs to $\MH$. Clearly $\Lambda$ equals the pairing with $\eta$ when restricted to the subspace spanned by all $\MH_\alpha$ where $\alpha\in\SI$. Since this subspace is dense, we conclude from Cor. \ref{lb44} that $\Lambda$ equals the pairing with $\eta$ on the whole space $\MH$.
+\end{proof}
+
+
+
+\begin{df}
+Let $(\MH_\alpha)_{\alpha\in\SI}$ and $(\MK_\alpha)_{\alpha\in\SI}$ be families of Hilbert spaces. Let $(T_\alpha)_{\alpha\in\SI}$ be a family where $T_\alpha\in\fk L(\MH_\alpha,\MK_\alpha)$ for each $\alpha\in\SI$. Assume that
+\begin{align*}
+\sup_{\alpha\in\SI}\Vert T_\alpha\Vert<+\infty
+\end{align*}
+Then \index{T@$\oplus_{\alpha\in\SI}T_\alpha$}
+\begin{gather*}
+\pmb{\oplus_{\alpha\in\SI}T_\alpha}:\bigoplus_{\alpha\in\SI}\MH_\alpha\rightarrow\bigoplus_{\alpha\in\SI}\MK_\alpha\qquad \oplus_{\alpha\in\SI}\xi_\alpha\mapsto\oplus_{\alpha\in\SI}T_\alpha\xi_\alpha
+\end{gather*}
+is clearly a bounded linear map whose adjoint is $\oplus_{\alpha\in\SI}T_\alpha^*$. 
+\end{df}
+
+
+\subsubsection{Orthogonal decomposition of Hilbert spaces}
+
+
+\begin{eg}\label{lb323}
+Let $\MH$ be a Hilbert space. Let $(\MH_\alpha)_{\alpha\in\SI}$ be a family of \textit{mutually-orthogonal} closed linear subspaces of $\MH$. Then we have a linear isometry
+\begin{align}\label{eq173}
+U:\bigoplus_{\alpha\in\SI}\MH_\alpha\rightarrow\MH\qquad  \oplus_{\alpha\in\MH}\xi_\alpha\mapsto\sum_{\alpha\in\SI}\xi_\alpha
+\end{align}
+where $\sum_{\alpha\in\SI}\xi_\alpha$ is an unordered sum of mutually orthogonal vectors, and hence converges in $\MH$ due to Thm. \ref{lb129}-(b). We can therefore view $\bigoplus_{\alpha\in\SI}\MH_\alpha$ as a complete (equivalently, closed, cf. Prop. \ref{lb324}) linear subspace of $\MH$ by identifying the elements on the two sides via $U$. It follows that 
+\begin{align*}
+\Rng(U)=\Cl_\MH\Big(\sum_{\alpha\in\SI}\MH_\alpha\Big)
+\end{align*}
+since $\Rng(U)$ contains the span $\sum_{\alpha\in\SI}\MH_\alpha$ as dense subspace.
+
+In particular, viewing $\bigoplus_\alpha\MH_\alpha$ as a Hilbert subspace of $\MH$, we see that $\bigoplus_\alpha\MH_\alpha=\MH$ iff $\sum_{\alpha\in\SI}\MH_\alpha$ is dense in $\MH$. \hqed
+\end{eg}
+
+
+\begin{rem}
+In Exp. \ref{lb323}, let $P_\alpha\in\fk L(\MH)$ be the projection of $\MH$ onto $\MH_\alpha$. Note that by Cor. \ref{lb322}, for each $I\in\fin(2^\SI)$, the sum $\sum_{\alpha\in I}P_\alpha$ is the projection on to the subspace spanned by $(\MH_\alpha)_{\alpha\in\SI}$. Therefore, 
+\begin{align*}
+\Big(\sum_{\alpha\in I}P_\alpha\Big)_{I\in\fin(2^\SI)}
+\end{align*}
+is an increasing net of projections. It follows from Thm. \ref{lb264} that the \textbf{sum of projections} \index{00@Sum of projections $\sum_\alpha P_\alpha$}
+\begin{gather*}
+\pmb{\sum_{\alpha\in\SI}P_\alpha}:=\lim_{I\in\fin(2^\SI)}\sum_{\alpha\in I}P_\alpha
+\end{gather*}
+converges in SOT to the projection onto the range of \eqref{eq173}. In particular,
+\begin{align*}
+\sum_{\alpha\in\SI}P_\alpha=\id_\MH\qquad\Longleftrightarrow\qquad \bigoplus_{\alpha\in\SI}\MH_\alpha=\MH
+\end{align*}
+\end{rem}
 
 
 
@@ -10091,12 +10224,17 @@ where $p_1,p_2,p_3\in\Cbb[x]$. (Assume for simplicity that $a=0,b=1$.)
 Show that $f\in\Rbb[x]$. Factor the polynomial $f$ into linear factors. Show that any real root of $f$ with odd multiplicity must be outside the open interval $(a,b)$.
 \end{proof}
 
+
+
+
+
+
 \begin{df}
 The \textbf{strong-* operator topology (SOT*)} \index{00@strong-* operator topology (SOT*)} \index{00@SOT*} on $\fk L(\MH,\MK)$ is defined as the pullback topology along the map
 \begin{align*}
 \fk L(\MH,\MK)\rightarrow\fk L(\MH,\MK)\times\fk L(\MK,\MH)\qquad T\mapsto (T,T^*)
 \end{align*}
-where the RHS carries the product topology of SOT on $\fk L(\MH,\MK)$ and on $\fk L(\MK,\MH)$, respectively. Equivalently, a net $(T_\alpha)$ in $\fk L(\MH,\MK)$ converges to $T\in\fk L(\MH,\MK)$ in SOT* iff $(T_\alpha)\rightarrow T$ in SOT and simultaneously $(T_\alpha^*)\rightarrow T$ in SOT.
+where the RHS carries the product topology of SOT on $\fk L(\MH,\MK)$ and on $\fk L(\MK,\MH)$, respectively. Equivalently, a net $(T_\alpha)$ in $\fk L(\MH,\MK)$ converges to $T\in\fk L(\MH,\MK)$ in SOT* iff $(T_\alpha)\rightarrow T$ in SOT and simultaneously $(T_\alpha^*)\rightarrow T^*$ in SOT.
 \end{df}
 
 
