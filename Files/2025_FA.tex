@@ -458,6 +458,7 @@
 \newcommand{\Rp}{\mathbb R_{\geq0}}
 %\newcommand{\Ses}{\mathrm{Sesq}_{\mathrm b}}
 \newcommand{\SI}{\mathscr I}
+\newcommand{\SJ}{\mathscr J}
 \newcommand{\SA}{\mathscr A}
 \newcommand{\SF}{\mathscr F}
 \newcommand{\Mbf}{\mathbf M}
@@ -668,7 +669,7 @@ If $X,Y$ are vector spaces and $f$ is linear, then
 \end{array}
 \right.
 \end{align*} 
-\item $\Cl_X(A)$, also denoted by $\Cl(A)$ or $\ovl A$, is the closure of $A\subset X$ with respect to the topological space $X$.
+\item $\Cl_X(A)$, \index{Cl@$\Cl_X(A)=\ovl A$, the closure of $A$ in the ambient space $X$.} also denoted by $\Cl(A)$ or $\ovl A$, is the closure of $A\subset X$ with respect to the topological space $X$.
 \item If $X$ is a metric space and $p\in X,r\in[0,+\infty]$, we let \index{B@$B_X(p,r),\ovl B_X(p,r)$}
 \begin{gather*}
 B_X(p,r)=\{x\in X:d(x,p)<r\}\qquad \ovl B_X(p,r)=\{x\in X:d(x,p)\leq r\}
@@ -2414,8 +2415,9 @@ See \cite[Sec. 27.2]{Gui-A}.
 
 
 \begin{thm}[\textbf{Riesz-Fischer theorem}, the modern form]\index{00@Riesz-Fischer theorem, the modern form}\label{lb26}
-The normed vector space $L^p(X,\mu,\Fbb)$ is (Cauchy) complete. Moreover, any Cauchy sequence in $L^p(X,\mu,\Fbb)$ has a subseqence converging $\mu$-a.e..
+The normed vector space $L^p(X,\mu,\Fbb)$ is (Cauchy) complete. Moreover, if $(f_n)$ is a sequence in $L^p(X,\mu,\Fbb)$ converging (in $L^p$) to $f\in L^p(X,\mu,\Fbb)$, then $(f_n)$ has a subsequence converging $\mu$-a.e. to $f$.
 \end{thm}
+
 
 
 \begin{proof}
@@ -9717,7 +9719,7 @@ This finishes the proof.
 
 
 
-\subsection{Joint spectrum $\Sp(T_\blt)$ and basic properties of Borel functional calculus}
+\subsection{Joint spectrum $\Sp(T_\blt)$ and basic properties of Borel functional calculus}\label{lb335}
 
 
 Fix a Hilbert space $\MH$ an adjointly-commuting bounded normal operators $T_1,\dots,T_N\in\fk L(\MH)$. Recall Exp. \ref{lb300} for the meaning of $\Cbb[z_\blt,\ovl{z_\blt}]$. Recall that $\Fbb\in\{\Rbb,\Cbb\}$.
@@ -9842,25 +9844,24 @@ Let $T\in\fk L(\MH)$ be normal, and let $\lambda\in\Cbb$. Then $\chi_{\{\lambda\
 
 
 \begin{proof}
-If $\xi\in\Ker(T-\lambda)$, then, by \eqref{eq166},
-\begin{align*}
-0=\Vert (T-\lambda)\xi\Vert^2=\int_\Cbb |z-\lambda|^2d\mu_\xi
-\end{align*}
-and hence $\Cbb\setminus\lambda$ is $\mu_\xi$-null by Prop. \ref{lb310}. It follows that
-\begin{align*}
-\Vert \chi_{\{\lambda\}}(T)-\lambda\xi\Vert^2=\int_\Cbb |\chi_{\{\lambda\}}-\lambda|^2d\mu_\xi=\int_{\{\lambda\}} |\chi_{\{\lambda\}}-\lambda|^2d\mu_\xi=0
-\end{align*}
-and hence $\chi_{\{\lambda\}}(T)\xi=\xi$.
+Since $\chi_{\{\lambda\}}=\chi_{\{\lambda\}}^2=\ovl{\chi_{\{\lambda\}}}$, the operator $\chi_{\{\lambda\}}(T)$ is a projection. It remains to prove that $\Ker(T-\lambda)$ equals the range of $\chi_{\{\lambda\}}(T)$.
 
-Next, assume that $\xi\perp\Ker(T-\lambda)$. Since
+For each $\xi\in\MH$, we compute that
 \begin{align*}
-T\chi_{\{\lambda\}}(T)\xi=(z\chi_{\{\lambda\}})(T)\xi=\lambda\chi_{\{\lambda\}}(T)
+\Vert (T-\lambda)\chi_{\{\lambda\}}(T)\xi\Vert^2=\int_\Cbb |z-\lambda|^2\chi_{\{\lambda\}}^2d\mu_\xi=0
 \end{align*}
-we have $\chi_{\{\lambda\}}(T)\xi\in\Ker(T-\lambda)$, and hence $\xi\perp\chi_{\{\lambda\}}\xi$. Therefore
+and hence $(T-\lambda)\chi_{\{\lambda\}}(T)\xi=0$. This proves $\Rng(\chi_{\{\lambda\}}(T))\subset\Ker(T-\lambda)$.
+
+
+For each $\psi\in\Ker(T-\lambda)$, by \eqref{eq166},
 \begin{align*}
-\Vert\chi_{\{\lambda\}}(T)\xi\Vert^2=\bk{\chi_{\{\lambda\}}(T)\xi|\xi}=0
+0=\Vert (T-\lambda)\psi\Vert^2=\int_\Cbb |z-\lambda|^2d\mu_\psi
 \end{align*}
-This proves $\chi_{\{\lambda\}}(T)\xi=0$.
+and hence $\Cbb\setminus\lambda$ is $\mu_\psi$-null by Prop. \ref{lb310}. It follows that
+\begin{align*}
+\Vert \chi_{\{\lambda\}}(T)\psi-\psi\Vert^2=\int_\Cbb |\chi_{\{\lambda\}}-1|^2d\mu_\psi=\int_{\{\lambda\}} |\chi_{\{\lambda\}}-1|^2d\mu_\psi=0
+\end{align*}
+and hence $\chi_{\{\lambda\}}(T)\psi=\psi$. This proves that $\Ker(T-\lambda)\subset\Rng(\chi_{\{\lambda\}}(T))$.
 \end{proof}
 
 
@@ -10006,6 +10007,8 @@ Conversely, assume that $\Sp(U)\subset\Sbb^1$. Then $z^*z|_{\Sp(\Sbb^1)}=1$, and
 
 
 
+
+
 \begin{comment}
 \begin{df}
 Let $V$ is an $\Fbb$-vector space $T\in\Lin(V)$. Let $\lambda\in\Fbb$. We say that $\xi\in V$ is an \textbf{$\pmb\lambda$-eigenvector} of $T$ if $T\xi=\lambda\xi$. If there exists a non-zero $\lambda$-eigenvector of $T$, we say that $\lambda$ is an \textbf{eigenvalue} of $T$. \index{00@Eigenvalues and eigenvectors}
@@ -10080,7 +10083,7 @@ This finishes the proof that $\xi\perp\Ker(\idt-W)$.
 
 
 \begin{eg}
-Let $(X,\fk M,\mu)$ be a \textbf{probability space} \index{00@Probability} space, i.e., a measure space satisfying $\mu(X)=1$. Let $\phi:X\rightarrow X$ be a \textbf{measure preserving transform}. \index{00@Measure preserving transform} This means that $\phi$ is a measurable map satisfying $\phi_*\mu=\mu$, that is, $\mu(\phi^{-1}(A))=\mu(A)$ for each measurable $A\subset X$ (cf. Def. \ref{lb319}). Then
+Let $(X,\fk M,\mu)$ be a \textbf{probability space}, \index{00@Probability} i.e., a measure space satisfying $\mu(X)=1$. Let $\phi:X\rightarrow X$ be a \textbf{measure preserving transform}. \index{00@Measure preserving transform} This means that $\phi$ is a measurable map satisfying $\phi_*\mu=\mu$, that is, $\mu(\phi^{-1}(A))=\mu(A)$ for each measurable $A\subset X$ (cf. Def. \ref{lb319}). Then
 \begin{align}\label{eq170}
 U:L^2(X,\mu)\rightarrow L^2(X,\mu)\qquad f\mapsto f\circ\phi
 \end{align}
@@ -10192,9 +10195,11 @@ is clearly a bounded linear map whose adjoint is $\oplus_{\alpha\in\SI}T_\alpha^
 \end{df}
 
 
-\subsubsection{Orthogonal decomposition of Hilbert spaces}
+\subsubsection{Orthogonal decompositions of Hilbert spaces and bounded linear operators}
 
 Let $\MH$ be a Hilbert space. Recall from Exp. \ref{lb148} that a Hilbert subspace of $\MH$ refers to a closed (equivalently, complete) linear subspace of $\MH$.
+
+The following example shows that the direct sum of an orthogonal family of Hilbert subspaces of $\MH$ can be viewed as a Hilbert subspace of $\MH$.
 
 \begin{eg}\label{lb323}
 Let $(\MH_\alpha)_{\alpha\in\SI}$ be a family of \textit{mutually-orthogonal} Hilbert subspaces of $\MH$. Then we have a linear isometry
@@ -10272,12 +10277,19 @@ This proves that $\bigoplus_\alpha\MH_\alpha$ is $T$-invariant. Since \eqref{eq1
 
 
 
+An especially important case of Exp. \ref{lb326} is when $\sum_\alpha\MH_\alpha$ is dense in $\MH$. In this situation, \eqref{eq176} reads
+\begin{align*}
+T=\oplus_{\alpha\in\SI}(T|_{\MH_\alpha})
+\end{align*}
+which can be interpreted as writing $T$ in block-diagonal form.
 
-\subsubsection{Orthogonal decomposition of unitary representations}
+
+
+\subsubsection{Orthogonal decompositions of unitary representations}
 
 
 
-Fix a unital $*$-algebra $\SA$.  
+Fix a unital $*$-algebra $\SA$. In this subsection, we explain how a unitary representation of $\SA$ can be decomposed into smaller components. 
 
 
 \begin{df}
@@ -10394,7 +10406,7 @@ due to MCT.
 Let $X$ be a topological space. Let $(\pi,\MH)$ be a normal unitary representation of $\Borb(X)$. Let $\psi\in\MH$. Then the following are equivalent.
 \begin{enumerate}
 \item[(1)] $\psi$ is a cyclic vector.
-\item[(2)] There exists a finite Borel measure $\mu:\fk B_X\rightarrow[0,+\infty]$ together with a unitary map unitary equivalence
+\item[(2)] There exists a finite Borel measure $\mu:\fk B_X\rightarrow[0,+\infty]$ together with a unitary equivalence
 \begin{align*}
 \Phi:(\pi,\MH)\xlongrightarrow{\simeq}(\Mbf,L^2(X,\mu))
 \end{align*}
@@ -10466,12 +10478,13 @@ Since $\pi(z_i)=T_i$, we obtain \eqref{eq181}.
 \end{proof}
 
 
+With the multiplication-operator version of the spectral theorem, one can give an explicit description of the Borel functional calculus:
 
 
 
 
 
-\begin{pp}
+\begin{thm}\label{lb334}
 Let $(X,\fk M)$ be a measurable space. Let $f_1,\dots,f_N:X\rightarrow\Cbb$ be bounded measurable functions. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. For each $1\leq i\leq N$, define $T_i\in\fk L(\MH)$ by 
 \begin{align*}
 T_i=\oplus_{\alpha\in\SI}\Mbf_{f_i}
@@ -10480,7 +10493,7 @@ Then $T_1,\dots,T_N$ are adjointly-commuting bounded normal operators. Moreover,
 \begin{align}
 g(T_1,\dots,T_N)=\oplus_{\alpha\in\SI}\Mbf_{g\circ f_i}
 \end{align}
-\end{pp}
+\end{thm}
 
 Note that since $\sup_\alpha\Vert \Mbf f_i\Vert\leq \Vert f_i\Vert_{l^\infty}$, the direct sum operator $\oplus_{\alpha\in\SI}\Mbf_{f_i}$ can be defined as a bounded linear operator.
 
@@ -10490,23 +10503,51 @@ Note that $(\oplus_{\alpha\in\SI}\Mbf,\MH)$ is a unitary representaiton of $\Bor
 \begin{align*}
 \pi:\Borb(\Cbb^N)\rightarrow \fk L(\MH)\qquad g\mapsto \Mbf_{g\circ f_i} 
 \end{align*}
-is clearly a unitary representation supported in $K$ where $K\subset\Cbb^N$ is any compact set containing $\Rng(f_1,\dots,f_N)$. It remains to prove that $(\pi,\MH)$ is normal.
+is clearly a unitary representation supported in $K$ where $K\subset\Cbb^N$ is any compact set containing $\Rng(f_\blt)=\Rng(f_1,\dots,f_N)$. It remains to prove that $(\pi,\MH)$ is normal.
 
 Choose an increasing sequence $(g_n)$ in $\Borb(\Cbb^N,\Rbb_{\geq0})$ converging pointwise to $g\in \Borb(\Cbb^N,\Rbb_{\geq0})$. Let $\xi=\oplus_{\alpha\in\SI}\xi_\alpha$ be an element of $\MH$. MCT implies
 \begin{align*}
-&\lim_n\bk{\xi|\pi(g_n)\xi}=\lim_n \sum_{\alpha\in\SI}\int_X (g_n\circ f)|\xi_\alpha|^2d\mu_{\alpha}=\sum_{\alpha\in\SI}\lim_n\int_X (g_n\circ f)|\xi_\alpha|^2d\mu_{\alpha}\\
-=&\sum_{\alpha\in I}\int_X (g\circ f)|\xi_\alpha|^2d\mu_{\alpha}=\bk{\xi|\pi(g)\xi}
+&\lim_n\bk{\xi|\pi(g_n)\xi}=\lim_n \sum_{\alpha\in\SI}\int_X (g_n\circ f_\blt)|\xi_\alpha|^2d\mu_{\alpha}=\sum_{\alpha\in\SI}\lim_n\int_X (g_n\circ f_\blt)|\xi_\alpha|^2d\mu_{\alpha}\\
+=&\sum_{\alpha\in\SI}\int_X (g\circ f)|\xi_\alpha|^2d\mu_{\alpha}=\bk{\xi|\pi(g)\xi}
 \end{align*}
 recalling that $\sum_{\alpha\in\SI}$ coincides with the integral on $\SI$ with respect to the counting measure (so that MCT applies).
 \end{proof}
 
 
 
+\begin{exe}
+In the setting of Thm. \ref{lb334}, choose an element $\xi=\oplus_{\alpha\in\SI}\xi_\alpha$ of $\MH$. Recall the measure $\mu_\blt$ in Rem. \ref{lb297}. Show that
+\begin{align}
+d\mu_\xi=\sum_{\alpha\in\SI}(f_\blt)_*\big(\Vert\xi_\alpha\Vert^2d\mu_\alpha\big)
+\end{align}
+where all but countably many summands are zero due to Prop. \ref{lb235}. Note that in the special case where $X\subset\Cbb^N$ is compact and $f_i=z_i$, the above relation becomes
+\begin{align}
+d\mu_\xi=\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2d\mu_\alpha
+\end{align}
+\end{exe}
+
+
+
+The joint spectra can also be described explicitly:
+
+
+\begin{exe}
+In the setting of Thm. \ref{lb334}, assume that each $\mu_\alpha$ is $\sigma$-finite. Prove that
+\begin{align*}
+\Sp(T_\blt)= \Cl_{\Cbb^N}\Big(\bigcup_{\alpha\in\SI}\Ess(f_\blt,\mu_\alpha)\Big)
+\end{align*}
+where $\Ess(f_\blt,\mu_\alpha)$ is the essential range (cf. Def. \ref{lb319}) of the map $f_\blt=(f_1,\dots,f_N):X\rightarrow\Cbb^N$ with respect to $\mu_\alpha$. (Indeed, the relation "$\subset$" can be proved without assuming $\sigma$-finiteness.)
+\end{exe}
+
+
+We encourage the reader to use the results from this subsection to provide alternative proofs for the basic properties of the Borel functional calculus and joint spectra, namely those in Sec. \ref{lb335}. I must confess, when I was proving certain propositions in Sec. \ref{lb335} (for example, Prop. \ref{lb317}), I often had in mind the concrete case of multiplication operators as in Thm. \ref{lb330}---sometimes even restricting to the situation where the index set $\SI$ consists of a single point---and then figured out the argument. This is my secret method for working with the Borel functional calculus.
 
 
 
 
-\hypertarget{current}{}
+
+
+
 
 \subsection{Problems}
 
@@ -10540,17 +10581,20 @@ where the RHS carries the product topology of SOT on $\fk L(\MH,\MK)$ and on $\f
 
 
 
-\begin{prob}
+\begin{prob}\label{lb337}
 Let $(T_\alpha)$ be a net of normal operators on $\MH$. Let $T\in\fk L(\MH)$. 
 \begin{enumerate}
-\item Prove that if $(T_\alpha)$ converges in WOT to $T$, then $(T_\alpha^*)$ converges in WOT to $T^*$.
-\item Assume that $T$ and each $T_\alpha$ are normal. Prove that if $(T_\alpha)$ converges in SOT to $T$, then $(T_\alpha)$ converges in SOT* to $T$.
+\item Assume that $(T_\alpha)$ converges in WOT to $T$. Prove that $(T_\alpha^*)$ converges in WOT to $T^*$.
+\item Assume that each $T_\alpha$ is normal, and that $(T_\alpha)$ converges in SOT* to $T\in\fk L(\MH)$. Prove that $T$ is normal.
+\item Assume that $T$ and each $T_\alpha$ are normal, and that $(T_\alpha)$ converges in SOT to $T$. Prove that $(T_\alpha)$ converges in SOT* to $T$.
 \end{enumerate}
 \end{prob}
 
 
-\begin{proof}[Hint]
-Recall Rem. \ref{lb241}.
+\begin{proof}[Note]
+Part 2. One cannot conclude that $(T_\alpha^*T_\alpha)$ converges in SOT to $T^*T$, since $\sup_{\alpha\in I}\Vert T_\alpha\Vert$ is not assumed to be finite. (Cf. Cor. \ref{lb159}.) Consider WOT instead.
+
+Part 3. Recall Rem. \ref{lb241}.
 \end{proof}
 
 
@@ -10559,7 +10603,7 @@ Recall Rem. \ref{lb241}.
 
 
 \begin{prob}\label{lb240}
-Let $(T_\alpha)$ be a net of bounded normal operators on $\MH$ satisfying $\sup_\alpha\Vert T_\alpha\Vert\leq R$ for some $R\in\Rbb_{\geq0}$. Let $f\in C(\ovl B_\Cbb(0,R))$. Assume that $(T_\alpha)$ converges in SOT to a normal operator $T\in\fk L(\MH)$. Prove that
+Let $(T_\alpha)$ be a net of bounded normal operators on $\MH$ satisfying $\sup_\alpha\Vert T_\alpha\Vert\leq R$ for some $R\in\Rbb_{\geq0}$. Let $f\in C(\ovl B_\Cbb(0,R))$. Assume that $(T_\alpha)$ converges in SOT* to $T\in\fk L(\MH)$. Note that $T$ is normal by Pb. \ref{lb337}. Prove that
 \begin{align}
 \lim_\alpha f(T_\alpha)=f(T)\qquad\text{in SOT*}
 \end{align}
@@ -10583,7 +10627,135 @@ Now suppose that $\MH$ is separable and infinite-dimensional, and let $e_1,e_2,\
 This proves that Hilbert's resolvent is equal to the usual definition of resolvent for bounded linear operators, as discussed in the answer to Question \ref{lb242}.  \hqed
 \end{rem}
 
+\begin{prob}
+Let $P\in\fk L(\MH)$ be normal. Prove that $P$ is a projection iff $\Sp(P)\subset\{0,1\}$.
+\end{prob}
 
+
+\subsubsection{The origin of Borel functional calculus and abstract Riesz-Fischer theorem}
+
+Let $\fk S$ be a set of adjointly-commuting bounded normal operators on $\MH$. 
+
+\begin{df}\label{lb336}
+Let $\pmb{\Cbb[\fk S\cup\fk S^*]}$ be the set of polynomials of elements of $\fk S\cup\fk S^*$, which is clearly a commutative unital *-subalgebra of $\fk L(\MH)$. Let $\pmb {W^*(\fk S)}$ be the closure of $\Cbb[\fk S\cup\fk S^*]$ in SOT*.
+\end{df}
+
+In the following, we always let $\SA=\Cbb[\fk S\cup\fk S^*]$. Note that $W^*(\fk S)=W^*(\SA)$.
+
+\begin{eg}\label{lb340}
+Let $T_1,\dots,T_N\in\fk S$ and $f\in\Borb(\Cbb^N)$. Then $f(T_\blt)\in W^*(\fk S)$.
+\end{eg}
+
+
+\begin{proof}
+By Lem. \ref{lb276}, there is a net $(f_\alpha)$ of polynomials of $z_1,\ovl{z_1},\dots,z_N,\ovl{z_N}$ converging to $f$ in the universal $L^2$-topology on $\Sp(T_\blt)$. By Prop. \ref{lb316}, $f_\alpha(T_\blt)$ converges in SOT $f(T_\blt)$. Since $f(T_\blt)$ is normal (Prop. \ref{lb304}), the convergence is in SOT* due to Pb. \ref{lb337}. Since $f_\alpha(T_\blt)\in\Cbb[\fk S\cup\fk S^*]$, we have $f(T_\blt)\in W^*(\fk S)$.
+\end{proof}
+
+
+\begin{rem}
+By Prop. \ref{lb143}, if $(A_\alpha)_{\alpha\in I}$ and $(B_\beta)_{\beta\in J}$ are nets in $\SA$ converging in norm to $A,B\in\fk L(\MH)$ respectively, then $(A_\alpha B_\beta)_{(\alpha,\beta)\in I\times J}$ converges in norm to $AB$. Thus, the norm closure of $\SA$ is closed under multiplication, and hence is a unital *-subalgebra of $\fk L(\MH)$. The proof that $W^*(\fk S)$ is closed under multiplication is much less straightforward, as we will establish in the following theorem.
+\end{rem}
+
+
+\begin{thm}\label{lb338}
+$W^*(\fk S)$ is an (automatically SOT*-closed) unital *-subalgebra of $\fk L(\MH)$.
+\end{thm}
+
+
+
+\begin{prob}\label{lb341}
+The goal of this problem is to prove Thm. \ref{lb338}.
+\begin{enumerate}
+\item Prove that any two elements of $W^*(\fk S)$ are normal and commute adjointly.
+\item Let $S,T\in\fk L(\MH)$ be normal and adjointly-commuting. Assume that $f\in\Borb(\Cbb)$ has Lipschitz constant $C$ when restricted to $K:=\Sp(S)\cup\Sp(T)$. Prove that
+\begin{align*}
+\Vert f(S)\xi-f(T)\xi\Vert^2\leq C^2\cdot\Vert S\xi-T\xi\Vert^2
+\end{align*}
+\item Let $(T_\alpha)_{\alpha\in\SI}$ be a net in $W^*(\fk S)$ converging in SOT* to $T\in\fk L(\MH)$. (So $T\in W^*(\fk S)$.) Assume that $f\in\Borb(\Cbb)$ is Lipschitz continuous on a compact set $K\subset\Cbb$ containing $\Sp(T)$ and all $\Sp(T_\alpha)$. Prove that 
+\begin{align*}
+\lim_\alpha f(T_\alpha)=f(T)\qquad\text{in SOT*}
+\end{align*}
+(Note that Pb. \ref{lb240} is not applicable here, since we do not assume $\sup_\alpha\Vert T_\alpha\Vert<+\infty$.)
+\item Prove Thm. \ref{lb338}.
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Hint]
+2. Use the multiplication-operator version of the spectral theorem. Alternatively, apply the Borel functional calculus to $S,T$ and the function $g(z,w)=f(z)-f(w)$ defined on $K\times K$.
+
+4. Let $S,T\in W^*(\fk S)$. To show $ST\in W^*(\fk S)$, restrict to the case where $S,T$ are self-adjoint. Choose nets $(S_\alpha)_{\alpha \in I}$ and $(T_\beta)_{\beta\in J}$ in $\SA$ converging in SOT to $S,T$. Find a suitable bounded Lipschitz-continuous $f:\Rbb\rightarrow\Rbb$ such that $f(x)=x$ whenever $x\in\Sp(S)\cup \Sp(T)$. Use Cor. \ref{lb159} to show that $\lim_{(\alpha,\beta)\in I\times J}f(S_\alpha)f(T_\beta)$ converges in SOT* to $ST$.
+\end{proof}
+
+
+\begin{rem}
+It follows from Thm. \ref{lb338} that $W^*(\fk S)$ is the smallest SOT*-closed unital *-subalgebra of $\fk L(\MH)$ containing $\fk S$. In particular, if $\fk T\subset W^*(\fk S)$, then $W^*(\fk T)\subset W^*(\fk S)$.
+\end{rem}
+
+
+\begin{thm}\label{lb339}
+Assume that $\MH$ is separable, and $\fk S=\{T_1,\dots,T_N\}$ is a finite set. Then
+\begin{align*}
+W^*(\fk S)=\{f(T_\blt):f\in\Borb(\Cbb^N)\}
+\end{align*}
+\end{thm}
+
+
+\begin{prob}
+In this problem, we prove Thm. \ref{lb339}. By Exp. \ref{lb340}, it suffices to show that any $S\in W^*(\fk S)$ is a Borel functional calculus of $T_\blt$. By considering $\Real(S)$ and $\Imag(S)$ separately, it suffices to assume that $S=S^*$.
+\begin{enumerate}
+\item Show that there exists a net of polynomials $(f_\alpha)_{\alpha\in\SI}$ of $z_1,\ovl{z_1},\dots,z_N,\ovl{z_N}$ such that $(f_\alpha(T_\blt))$ converges in SOT* to $S$, and that each $f_\alpha$ is real-valued on $\Cbb^N$.
+\item Show that one can assume moreover that the net $(f_\alpha)_{\alpha\in\SI}$ is uniformly bounded on $\Cbb^N$. That is, $\sup_\alpha \Vert f_\alpha\Vert_{l^\infty(\Cbb^N)}<+\infty$.
+\item Let $(\psi_n)_{n\in\Zbb_+}$ be a densely-spanning sequence in $\MH$ satisfying $\sum_n\Vert\psi_n\Vert^2<+\infty$. Define a Borel measure on $\Cbb^N$ by
+\begin{align*}
+\mu=\sum_n \mu_{\psi_n}
+\end{align*}
+where $\mu_{\psi_n}$ is the finite Borel measure associated to $\psi_n$ and $T_\blt$. (That is, $\bk{\psi_n|g(T_\blt)\psi_n}=\int_{\Cbb^N}gd\mu_{\psi_n}$ for each $g\in\Borb(\Cbb^N)$, cf. Rem. \ref{lb297}.) Show that $(f_\alpha)$ is a Cauchy net in $L^2(\Cbb,\mu)$, that is,
+\begin{align*}
+\lim_{\alpha,\beta\in\SI}\int_X |f_\alpha-f_\beta|^2d\mu=0
+\end{align*}
+\item By the Riesz-Fischer Thm. \ref{lb26} (and Thm. \ref{lb269}), there exists $f\in L^2(\Cbb^N,\mu)$ such that $\lim_\alpha\Vert f-f_\alpha\Vert_{L^2(X,\mu)}=0$. Show that $f$ can be chosen to be a bounded Borel function.
+\item Show that $S=f(T_\blt)$.
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Hint]
+2. Find a suitable bounded Lipschitz-continuous $\varphi:\Rbb\rightarrow\Rbb$ such that $\varphi(x)=x$ whenever $x\in [-\Vert S\Vert,\Vert S\Vert]$. Use Pb. \ref{lb341} and Thm. \ref{lb306} to show that $f_\alpha$ can be replaced with $\varphi\circ f_\alpha$.
+
+4. Choose a sequence $(\alpha_n)_{n\in\Zbb_+}$ in $\SI$ such that $\lim_n \Vert f-f_{\alpha_n}\Vert_{L^2(\mu)}=0$. Apply the second part of Thm. \ref{lb26}.
+\end{proof}
+
+\begin{thm}\label{lb342}
+Assume that $\fk S$ is countable. Then there exists a self-adjoint $S\in \fk L(\MH)$ such that $W^*(\fk S)=W^*(S)$.
+\end{thm}
+
+\begin{prob}
+In this problem, we prove Thm. \ref{lb342}.
+\begin{enumerate}
+\item Prove that $W^*(\fk S)$ contains a countable subset $\fk E$ of mutually-commuting projections such that $W^*(\fk S)=W^*(\fk E)$.
+\item Suppose that $P,H\in\fk L(\MH)$ commute with each other, $P$ is a projection, and $0\leq H\leq 1/2$. Show that $P=\chi_{[1,+\infty)}(P+H)$.
+\item Write $\fk E=\{E_0,E_1,E_2,\dots\}$. For each $n\in\Nbb$, let
+\begin{align*}
+S_n=\sum_{k=n}^{+\infty} 3^{-k}E_k
+\end{align*}
+Show that the above limit converges in SOT*; in particular, $S_n\in W^*(\fk S)$.
+\item Use Part 2 to prove that $E_n\in W^*(S_n)$. Conclude $E_0,E_1,E_2,\dots\in W^*(S_0)$.
+\item Conclude that $W^*(\fk S)=W^*(S_0)$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Hint]
+1. Consider $\chi_{(a,b]}(T)$ where $a,b\in\Qbb$ and $T\in\fk S$.
+
+2. View $P,H$ as $\Mbf_p$ and $\Mbf_h$ where $p,h\in\Borb(\Cbb^2)$. Show that $p,h$ can be chosen so that $p$ is a characteristic function, and $0\leq h\leq 1/2$.
+\end{proof}
+
+
+
+
+
+\hypertarget{current}{}
 
 
 \newpage
