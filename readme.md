@@ -114,7 +114,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 <!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
 
-- [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf) (In progess
+- [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf) (In progess)
 > These are the lecture notes for the [course](https://binguimath.github.io/Courses/Course_2025_FA.html)  ***Functional Analysis*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2025. 
 
 - [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html) 
