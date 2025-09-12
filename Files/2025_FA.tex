@@ -545,7 +545,8 @@
 \small   
 \qquad 
 
-\hyperlink{current}{Current writing}\qquad \hyperlink{page.2}{Last page of TOC}
+\hyperlink{current}{Current writing}\qquad \hyperlink{page.2}{Last page of TOC}\qquad
+\hyperlink{proofread}{Current proofread}
 
 %\hyperlink{beforeindex}{Last page before index}~~~~~~  
 %\hypertarget{beforeindex}{}
@@ -714,6 +715,11 @@ l^p(X,V)=\{f\in V^X:\Vert f\Vert_p<+\infty\}\\
 \Borb(X,V)=\Bor(X,V)\cap l^\infty(X,V)=\{f\in V^X:f\text{ is Borel and bounded}\}
 \end{gather*}
 We are particularly interested in the case that $E=V$, $E=[0,1]$, and $E=\Rbb_{\geq0}$.
+\item Unless otherwise stated, if $f:X\rightarrow\Cbb$ where $X$ is a set, we let
+\begin{align*}
+f^*:X\rightarrow\Cbb\qquad f^*(x)=\ovl{f(x)}
+\end{align*} 
+Thus $f=f^*$ iff $f$ is real-valued.
 \item Let $V$ be a normed vector space. Let $X$ be a set. We say that a family $(f_\alpha)_{\alpha\in\scr A}$ in $V^X$ is \textbf{uniformly bounded} \index{00@Uniformly bounded families of functions} if $\sup_{\alpha\in\scr A}\Vert f_\alpha\Vert_{l^\infty(X,V)}<+\infty$.
 \item If $X$ is LCH and $V$ is a normed $\Fbb$-vector space, we understand $C_c(X,V)$ as a normed $\Fbb$-vector space whose linear structure inherits from that of $V^X$, and \uwave{whose norm is chosen to be the $l^\infty$-norm}.
 \item If $(X,\fk M)$ and $(Y,\fk N)$ are measurable spaces, then
@@ -745,7 +751,7 @@ C_c(X)=C_c(X,\Cbb)\qquad \Bor(X)=\Bor(X,\Cbb)\qquad L^p(X,\mu)=L^p(X,\mu,\Cbb)
 However, this convention does not apply to $\fk L(V)$ and $\Lin(V)$: If $V$ is a normed vector space, then $\fk L(V)$ denotes $\fk L(V,V)$, the space of bounded linear operators on $V$. Likewise, if $V$ is a vector space, then $\Lin(V)$ denotes $\Lin(V,V)$.
 \end{itemize}
 
-% Proofread
+
 
 \subsection{Nets}
 
@@ -754,14 +760,14 @@ In this section, we present results on nets that are essential for the topics co
 
 \subsubsection{Basic definitions}
 
-\begin{df}
+\begin{df}\label{lb352}
 A relation $\leq$ on a set $I$ is called a \textbf{preorder} \index{00@Preorder, and preordered set} if for all $\alpha,\beta,\gamma\in I$, the following are satisfied:
 \begin{itemize}
 \item (Reflexivity) $\alpha\leq \alpha$.
 \item (Transitivity) If $\alpha\leq \beta$ and $\beta\leq \gamma$ then $a\leq \gamma$.
 \end{itemize}
 The pair $(I,\leq)$ (or simply $I$) is called a \textbf{preordered set}. For each $\beta\in I$, we write \index{I@$I_{\geq\beta}$}
-\begin{gather}
+\begin{gather}\label{eq183}
 I_{\geq\beta}=\{\alpha\in I:\alpha\geq\beta\}
 \end{gather}
 \end{df}
@@ -935,6 +941,7 @@ Conversely, assume that $x\notin\ovl A$. Then there exists $U\in\Nbh_X(x)$ disjo
 \end{proof}
 
 
+
 \begin{thm}\label{lb210}
 Let $f:X\rightarrow Y$ be a map. Let $x\in X$. Then the following are equivalent:
 \begin{enumerate}
@@ -950,9 +957,8 @@ Let $f:X\rightarrow Y$ be a map. Let $x\in X$. Then the following are equivalent
 
 (2)$\Rightarrow$(3): Obvious.
 
-(1)$\Rightarrow$(3): Note that $f$ is continuous at any discrete point, i.e., any point $x$ such that $\{x\}$ is open in $X$. Therefore, it suffices to assume that $\{x\}$ is not open. Let us assume that (1) is not true, and prove that (3) is not true.
-
-Since (1) is not true, there exists $V\in\Nbh(f(x))$ such that any $U\in\Nbh(x)$ is not contained in $f^{-1}(V)$, and hence $U\setminus\{x\}$ is not contained in $f^{-1}(V)$. Since $\{x\}$ is not open, the set $U\setminus\{x\}$ is not empty. Therefore, we can choose $x_U\in U\setminus\{x\}$ such that $f(x_U)\notin V$. It follows that $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X\setminus\{x\}$ converging to $x$ that is always outside $V$. Thus $f(x)$ is not a limit of $(f(x_U))_{U\in\Nbh_X(x)}$. Therefore, (3) is not true.
+$\neg$(1)$\Rightarrow$$\neg$(3): %Note that $f$ is continuous at any discrete point, i.e., any point $x$ such that $\{x\}$ is open in $X$. Therefore, it suffices to assume that $\{x\}$ is not open. Let us assume that (1) is not true, and prove that (3) is not true.
+Since (1) is not true, there exists $V\in\Nbh(f(x))$ such that any $U\in\Nbh(x)$ is not contained in $f^{-1}(V)$. Since $x\in f^{-1}(V)$, the set $U\setminus\{x\}$ is not contained in $f^{-1}(V)$. (In particular, $U\setminus\{x\}$ is not empty.) Therefore, we can choose $x_U\in U\setminus\{x\}$ such that $f(x_U)\notin V$. It follows that $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X\setminus\{x\}$ converging to $x$ that is always outside $V$. Thus $f(x)$ is not a limit of $(f(x_U))_{U\in\Nbh_X(x)}$, because $f(x_U)$ is always outside $V$. Therefore, (3) is not true.
 \end{proof}
 
 
@@ -984,7 +990,7 @@ This follows immediately from Thm. \ref{lb210}.
 Let $\MT_X$ and $\MT'_X$ be two topologies on $X$. Then the following are equivalent.
 \begin{enumerate}
 \item[(1)] $\MT_X=\MT_X'$.
-\item[(2)] For each $x\in X$ and each net $(x_\alpha)$ in $X$, the net $(x_\alpha)$ converges to $x$ under $\MT_X$ iff $(x_\alpha)$ converges to $x$ under $\MT'_X$. 
+\item[(2)] For each $x\in X$ and each net $(x_\alpha)$ in $X$, the net $(x_\alpha)$ converges to $x$ in $\MT_X$ iff $(x_\alpha)$ converges to $x$ in $\MT'_X$. 
 \end{enumerate}
 \end{co}
 
@@ -1018,7 +1024,7 @@ A subset $E$ of a directed set $I$ is called \textbf{cofinal} \index{00@Cofinal 
 \begin{align*}
 \forall\alpha\in I~~~\exists\beta\in E~~~\text{such that }\alpha\leq\beta
 \end{align*}
-By the transitivity in Def. \ref{lb116} and property \eqref{eq37}, we clearly have
+By the transitivity in Def. \ref{lb352} and property \eqref{eq183}, we clearly have
 \begin{align*}
 \forall\alpha_1,\dots,\alpha_n\in I~~~\exists\beta\in E~~~\text{such that }\alpha_1\leq\beta,\dots,\alpha_n\leq\beta
 \end{align*}
@@ -1031,7 +1037,7 @@ Let $(x_\alpha)_{\alpha\in I}$ be a net in a set $X$. A \textbf{subnet} \index{0
 \begin{align*}
 (\alpha_s)_{s\in S}:S\rightarrow I\qquad s\mapsto \alpha_s
 \end{align*}
-is an increasing function satisfying one of the following (clearly) equivalent conditions:
+is an increasing function (i.e. $s\leq s'\Rightarrow \alpha_s\leq\alpha_{s'}$) satisfying one of the following (clearly) equivalent conditions:
 \begin{enumerate}
 \item[(a)] The range $\{\alpha_s:s\in S\}$ is cofinal in $I$.
 \item[(b)] For each $\beta\in I$, the net $(\alpha_s)_{s\in S}$ is eventually $\geq\beta$.
@@ -1078,7 +1084,7 @@ J=\{(\alpha,U)\in I\times\Nbh_X(x):x_\alpha\in U \}\\[0.5ex]
 (\alpha,U)\leq (\alpha',U')\qquad\Longleftrightarrow\qquad \alpha\leq \alpha'\text{ and }U\supset U'
 \end{gathered}
 \end{gather}
-Let us prove that $J$ is directed: Suppose that $(\alpha_1,U_1)$ and $(\alpha_2,U_2)$ belong to $J$. Since $(\alpha)_{\alpha\in I}$ is eventually $\geq\alpha_1$ and eventually $\geq\alpha_2$, and since (by (2)) $(x_\alpha)$ is frequently in $U$, by Rem. \ref{lb208}, it is frequently true that $\alpha\geq\alpha_1,\alpha_2$ and $x_\alpha\in U_1\cap U_2$. Choose $\alpha\in I_{\geq\alpha_1}\cap I_{\geq\alpha_2}$ such that $x_\alpha\in U_1\cap U_2$. Then $(\alpha,U_1\cap U_2)$ belongs to $J$ and is $\geq(\alpha_1,U_1)$ and $\geq(\alpha_2,U_2)$. This proves that $J$ is directed.
+Let us prove that $J$ is directed: Suppose that $(\alpha_1,U_1)$ and $(\alpha_2,U_2)$ belong to $J$. Since $(\alpha)_{\alpha\in I}$ is eventually $\geq\alpha_1$ and eventually $\geq\alpha_2$, and since (by (2)) $(x_\alpha)$ is frequently in $U_1\cap U_2$, by Rem. \ref{lb208}, it is frequently true that $\alpha\geq\alpha_1,\alpha_2$ and $x_\alpha\in U_1\cap U_2$. Choose $\alpha\in I_{\geq\alpha_1}\cap I_{\geq\alpha_2}$ such that $x_\alpha\in U_1\cap U_2$. Then $(\alpha,U_1\cap U_2)$ belongs to $J$ and is $\geq(\alpha_1,U_1)$ and $\geq(\alpha_2,U_2)$. This proves that $J$ is directed.
 
 
 The map $(\alpha,U)\in J\mapsto \alpha\in I$ is clearly increasing; its range is cofinal, since $(\alpha,X)\in J$ for each $\alpha\in I$. Therefore, $(x_{\alpha,U})_{(\alpha,U)\in J}$ is a subnet of $(x_\alpha)$, which clearly converges to $x$. This proves (1).
@@ -1143,7 +1149,7 @@ If $(x_\alpha)_{\alpha\in I}$ is a net in a set $X$ such that the index set $I$ 
 \end{df}
 
 \begin{proof}[Proof of equivalence]
-(1)$\Rightarrow$(2): Assume (1). Then $\Nbh_{I^*}(\infty)$ has a countable cofinal subset, which (due to \eqref{eq127}) can be chosen to be of the form $I_{\geq\alpha_1}^*,I_{\geq\alpha_2}^*,\dots$ where $(\alpha_n)_{n\in\Zbb_+}$ is a sequence in $I$. Since $(I_{\geq\alpha_n}^*)_{n\in\Zbb_+}$ is cofinal in $\Nbh_{I^*}(\infty)$, for each $\beta\in I$ there exists $n$ such that $I_{\geq\alpha_n}^*\subset I_{\geq\beta}^*$, and hence $\alpha_n\geq\beta$. This proves that $\{\alpha_n:n\in\Zbb_+\}$ is a countable cofinite subset of $I$. Hence (2) is proved.
+(1)$\Rightarrow$(2): Assume (1). Then $\Nbh_{I^*}(\infty)$ has a countable cofinal subset, which (due to \eqref{eq127}) can be chosen to be of the form $I_{\geq\alpha_1}^*,I_{\geq\alpha_2}^*,\dots$ where $(\alpha_n)_{n\in\Zbb_+}$ is a sequence in $I$. Since $(I_{\geq\alpha_n}^*)_{n\in\Zbb_+}$ is cofinal in $\Nbh_{I^*}(\infty)$, for each $\beta\in I$ there exists $n$ such that $I_{\geq\alpha_n}^*\subset I_{\geq\beta}^*$, and hence $\alpha_n\geq\beta$. This proves that $\{\alpha_n:n\in\Zbb_+\}$ is a countable cofinal subset of $I$. Hence (2) is proved.
 
 (2)$\Rightarrow$(1): Assume (2). For every $\alpha\in I$, the direct set $\Nbh_{I^*}(\alpha)$ clearly has a countable cofinal subset, namely $\{\{\alpha\}\}$. Let $(\alpha_n)$ be a countable cofinal sequence in $I$. One checks easily that $(I_{\geq\alpha_n}^*)_{n\in\Zbb_+}$ is a cofinal sequence in $\Nbh_{I^*}(\infty)$. This proves (1).
 
@@ -1151,6 +1157,7 @@ If $(x_\alpha)_{\alpha\in I}$ is a net in a set $X$ such that the index set $I$ 
 
 (2)$\Rightarrow$(3): Let $(\alpha_n)_{n\in\Zbb_+}$ be a cofinal sequence in $I$. Since $I$ is directed, by increasing $\alpha_2,\alpha_3,\dots$ successively, we can assume that $(\alpha_n)_{n\in\Zbb_+}$ is increasing. Clearly $(\alpha_n)$ converges to $\infty$.
 \end{proof}
+
 
 
 \begin{eg}
@@ -1188,7 +1195,7 @@ Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be an increasing first-counta
 \end{thm} 
 
 \begin{thm}[\textbf{Dominated convergence theorem (DCT)}] \index{00@Dominated convergence theorem}\label{lb225}
-Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be an increasing first-countable net of measurable functions $X\rightarrow\Cbb$. Assume that $(f_\alpha)$ converges pointwise to a measurable function $f:X\rightarrow\Cbb$. Suppose that there exists an integrable function $g:X\rightarrow\ovl\Rbb_{\geq0}$ such that $|f_\alpha|\leq g$ for all $\alpha$. Then $f_\alpha,f$ are integrable, and 
+Let $(X,\mu)$ be a measure space. Let $(f_\alpha)$ be a first-countable net of measurable functions $X\rightarrow\Cbb$. Assume that $(f_\alpha)$ converges pointwise to a measurable function $f:X\rightarrow\Cbb$. Suppose that there exists an integrable function $g:X\rightarrow\ovl\Rbb_{\geq0}$ such that $|f_\alpha|\leq g$ for all $\alpha$. Then $f_\alpha,f$ are integrable, and 
 \begin{align*}
 \lim_\alpha\int_Xf_\alpha d\mu=\int_X fd\mu
 \end{align*}
@@ -1265,7 +1272,7 @@ We say that $\sum_Xg$ \textbf{converges} or \textbf{converges absolutely}, if $\
 \end{df}
 
 
-It is clear that $\sum_Xg<+\infty$ iff there exists $C\in\Rbb_{\geq0}$ such that $\sum_Ag<C$ for all $A\in\fin(2^X)$.
+It is clear that $\sum_Xg<+\infty$ iff there exists $C\in\Rbb_{\geq0}$ such that $\sum_Ag\leq C$ for all $A\in\fin(2^X)$.
 
 
 \begin{rem}
@@ -1308,11 +1315,11 @@ We write this simply as $\Vert\sum_X f\Vert\leq\sum_X |f|$.
 \begin{proof}
 \eqref{eq130} clearly holds when $X$ is finite. In the general case, assume that $\sum_Xf $ converges absolutely. Then by the Cauchy criterion, for every $\eps>0$ there is $A\in \fin(2^X)$ such that for each finite $E\subset X\setminus A$ we have $\sum_E|f|<\eps$, and hence $\Vert \sum_E f\Vert<\eps$. Therefore $\sum_Xf$ converges by Cauchy criterion again.
 
-By the continuity of the norm function $v\in V\mapsto \Vert v\Vert\in\Rbb_{\geq0}$, we have
+By the continuity of the norm function $v\in V\mapsto \Vert v\Vert\in\Rbb_{\geq0}$ (cf. Rem. \ref{lb59}),
 \begin{align*}
 \Big\Vert \sum_X f \Big\Vert=\Big\Vert \lim_A \sum_Af \Big\Vert=\lim_A \Big\Vert \sum_Af \Big\Vert
 \end{align*}
-Since $\Vert \sum_A f\Vert\leq\sum_A|f|$, by by Prop. \ref{lb214}, the above expression is no less than
+Since $\Vert \sum_A f\Vert\leq\sum_A|f|$, by Prop. \ref{lb214}, the above expression is no greater than
 \begin{align*}
 \lim_A\sum_A|f|=\sum_X|f|
 \end{align*}
@@ -1381,7 +1388,7 @@ Assume that $X$ is compact. Let $(x_\alpha)_{\alpha\in I}$ be a net in $X$. Defi
 \begin{align}
 F_\alpha=\{x_\beta:\beta\in I,\beta\geq\alpha \}\label{eq126}
 \end{align}
-Then $(\ovl F_\alpha)_{\alpha\in I}$ is a decreasing net of nonempty closed subsets. So $\bigcap_\alpha\ovl F_\alpha$ is nonempty by the decreasing chain property (cf. Prop. \ref{lb215}). By Thm. \ref{lb213}, $(\ovl F_\alpha)_{\alpha\in I}$ is the set of cluster points of $(x_\alpha)$. Therefore, $(x_\alpha)$ has a cluster point.
+Then $(\ovl F_\alpha)_{\alpha\in I}$ is a decreasing net of nonempty closed subsets. So $\bigcap_\alpha\ovl F_\alpha$ is nonempty by the decreasing chain property (cf. Prop. \ref{lb215}). By Thm. \ref{lb213}, $\bigcap_\alpha\ovl F_\alpha$ is the set of cluster points of $(x_\alpha)$. Therefore, $(x_\alpha)$ has a cluster point.
 
 
 Conversely, assume that every net of $X$ has a cluster point. By Prop. \ref{lb215}, to prove that $X$ is compact, it suffices to prove that $X$ satisfies the decreasing chain property. Let $(E_\alpha)_{\alpha\in I}$ be a decreasing net of nonempty closed subsets of $X$. For each $\alpha$ we choose $x_\alpha\in E_\alpha$, which gives a net $(x_\alpha)_{\alpha\in I}$ in $X$. The fact that $(E_\alpha)$ is decreasing implies that $F_\alpha\subset E_\alpha$ if we let $F_\alpha=\eqref{eq126}$. Thus, the closure $\ovl F_\alpha$ is a subset of $E_\alpha$ since $E_\alpha$ is closed. 
@@ -1434,7 +1441,9 @@ Moreover, for metrizable spaces, we have
 In fact, Lindel\"of metrizable spaces are also second countable. We will not need this fact.
 
 \begin{proof}
-Step 1. Suppose that $X$ is second countable. Let $\{U_1,U_2,\dots\}$ be a countable basis of $\MT_X$. We may assume WLOG that each $U_n$ is nonempty. Choose $x_n\in U_n$. Then $\{x_n:n\in\Zbb_+\}$ is a countable dense subset of $X$. Therefore, $X$ is separable. Let $\MW$ be an open cover of $X$. For each $n$, let $W_n$ be any member of $\MW$ containing $U_n$; if no such $W_n$ exists then we set $W_n=\emptyset$. By the fact that $\{U_1,U_2,\dots\}$ is a basis of $\MT_X$, one easily shows that $\bigcup_nW_n=X$. Therefore, $(W_n)$ is a countable subcover of $\MW$. This proves that $X$ is Lindel\"of.
+Step 1. Suppose that $X$ is second countable. Let $\{U_1,U_2,\dots\}$ be a countable basis of $\MT_X$. We may assume WLOG that each $U_n$ is nonempty. Choose $x_n\in U_n$. Then $\{x_n:n\in\Zbb_+\}$ is a countable dense subset of $X$. Therefore, $X$ is separable. 
+
+Let $\MW$ be an open cover of $X$. For each $n$, let $W_n$ be any member of $\MW$ containing $U_n$; if no such $W_n$ exists then we set $W_n=\emptyset$. By the fact that $\{U_1,U_2,\dots\}$ is a basis of $\MT_X$, one easily shows that $\bigcup_nW_n=X$. Therefore, $(W_n)$ is a countable subcover of $\MW$. This proves that $X$ is Lindel\"of.
 
 Step 2. Suppose that $X$ is a separable metric space. Let $\{x_1,x_2,\dots\}$ be a dense subset of $X$. Then $(B(x_n,1/k))_{n,k\in\Zbb_+}$ is a countable basis of $\MT_X$. This proves that $X$ is second countable.
 \end{proof}
@@ -1452,12 +1461,12 @@ Let $X$ be a second-countable topological space. Then $X$ is compact iff $X$ is 
 
 
 \begin{proof}
-Similar to the proof of Thm. \ref{lb216}, one shows that every sequence $(x_n)$ has a cluster point, (i.e., $\bigcap_n\ovl{x_k:k\geq n}$ is nonempty, cf. Thm. \ref{lb213}) iff the intersection of a decreasing \textit{sequence} of non-empty closed subsets of $X$ is non-empty. The latter condition is equivalent to that $X$ is \textbf{countably compact}, that is, every countable open cover of $X$ has a finite subcover. Since $X$ is Lindel\"of (Prop. \ref{lb220}), compactness and countable compactness are equivalent.
+Similar to the proof of Thm. \ref{lb216}, one shows that every sequence $(x_n)$ has a cluster point (i.e., $\bigcap_n\ovl\{x_k:k\geq n\}$ is nonempty, cf. Thm. \ref{lb213}) iff the intersection of a decreasing \textit{sequence} of non-empty closed subsets of $X$ is non-empty. The latter condition is equivalent to that $X$ is \textbf{countably compact}, that is, every countable open cover of $X$ has a finite subcover. Since $X$ is Lindel\"of (Prop. \ref{lb220}), compactness and countable compactness are equivalent.
 \end{proof}
 
 
 
-\begin{co}
+\begin{co}\label{lb354}
 Let $X$ be a metric space. Then $X$ is compact iff $X$ is sequentially compact.
 \end{co}
 
@@ -1485,7 +1494,7 @@ In other words, $(x_\alpha)$ converges to $x$ iff any convergent subnet converge
 \begin{proof}
 (1)$\Rightarrow$(2): This is obvious even without assuming that the Hausdorff space $X$ is compact.
 
-$\neg$(1)$\Rightarrow$$\neg$(2): Assume that (1) is not true. Since $(x_\alpha)$ does not converge to $x$, there exists $U\in\Nbh_X(x)$ such that $(x_\alpha)$ is frequently not in $U$. Therefore, $J=\{\alpha\in I:x_\alpha\notin U\}$ is a cofinal subset of $I$. It follows that $(x_\alpha)_{\alpha\in J}$ is a subnet of $(x_\alpha)_{\alpha\in I}$ that is always outside $U$.
+$\neg$(1)$\Rightarrow$$\neg$(2): Assume that (1) is not true. Since $(x_\alpha)$ does not converge to $x$, there exists $U\in\Nbh_X(x)$ such that $(x_\alpha)$ is frequently not in $U$. Therefore, $J=\{\alpha\in I:x_\alpha\notin U\}$ is a cofinal subset of $I$. Note that $J$ is also directed: if $\alpha,\beta\in J$, choose $\gamma\in I$ such that $\alpha,\beta\leq\gamma$, then there exists $\delta\in I_{\geq\gamma}$ such that $x_\delta\notin U$, and hence $\delta\in J$. It follows that $(x_\alpha)_{\alpha\in J}$ is a subnet of $(x_\alpha)_{\alpha\in I}$ that is always outside $U$.
 
 Since $X$ is compact, by Thm. \ref{lb216}, $(x_\alpha)_{\alpha\in J}$ has a subnet $(x_\mu)_{\mu\in K}$ converging to some $y\in X$. Then $y\notin U$, since $(x_\mu)$ is always not in $U$. Therefore, $x\neq y$, and $y$ is a cluster point of $(x_\alpha)$. Hence (2) is not true.
 \end{proof}
@@ -1559,7 +1568,7 @@ If $f$ has a Lipschitz constant, we say that $f$ is \textbf{Lipschitz continuous
 
 
 \begin{df}
-If $d$ and $d'$ are two metrics on a set $X$, we say that $d$ and $d'$ are \textbf{equivalent} \index{00@Equivalent metrics} if there exists $\alpha,\beta\in\Rbb_{>0}$ such that
+If $d$ and $d'$ are two metrics on a set $X$, we say that $d$ and $d'$ are \textbf{equivalent} \index{00@Equivalent metrics} if there exist $\alpha,\beta\in\Rbb_{>0}$ such that
 \begin{align*}
 d(x,y)\leq \alpha d'(x,y)\qquad d'(x,y)\leq\beta d(x,y)\qquad\text{for all }x,y\in X
 \end{align*}
@@ -1590,12 +1599,17 @@ Then, a net $(x_\alpha)$ in $X$ converges under $f^*\mc T_Y$ to $x$ iff
 \end{align*}
 \end{df}
 
-The following fact is well-known.
+The following facts are well-known.
 
 \begin{pp}\label{lb324}
 Let $X$ be a metric space. Let $A\subset X$, whose metric inherits from that of $X$. If $A$ is complete, then $A$ is closed. Conversely, if $A$ is closed and $X$ is complete, then $A$ is complete.
 \end{pp}
 
+
+
+\begin{pp}\label{lb353}
+Let $X$ be a Hausdorff space. Let $A\subset X$. If $A$ is compact, then $A$ is closed. Conversely, if $A$ is closed and $X$ is compact, then $A$ is compact.
+\end{pp}
 
 
 \subsubsection{Semicontinuous functions}
@@ -1605,7 +1619,7 @@ Let $X$ be a topological space.
 
 
 \begin{df}
-We say that $f:X\rightarrow\ovl\Rbb$ is called \textbf{lower semicontinuous} \index{00@Lower semicontinuous} if $f^{-1}(a,+\infty]$ is open for each $a\in\ovl\Rbb$. We say that $f$ is  \textbf{upper semicontinuous} \index{00@Upper semicontinuous} if $f^{-1}[-\infty,a)$ is open for each $a\in\ovl\Rbb$. 
+We say that $f:X\rightarrow\ovl\Rbb$ is \textbf{lower semicontinuous} \index{00@Lower semicontinuous} if $f^{-1}(a,+\infty]$ is open for each $a\in\ovl\Rbb$. We say that $f$ is  \textbf{upper semicontinuous} \index{00@Upper semicontinuous} if $f^{-1}[-\infty,a)$ is open for each $a\in\ovl\Rbb$. 
 \end{df}
 
 \begin{eg}
@@ -1634,9 +1648,9 @@ Let $f:X\rightarrow\ovl\Rbb$. Then the following are equivalent.
 \begin{proof}
 (1)$\Rightarrow$(2): Assume (1). Let $x\in X$, and let $(x_\alpha)$ be a net converging to $x$. If $\lambda\in\Rbb$ satisfies $\lambda<f(x)$, then by (1), $f^{-1}(\lambda,+\infty]$ is a neighborhood of $x$. Therefore, $x_\alpha$ is eventually in $f^{-1}(\lambda,+\infty]$, and hence $f(x_\alpha)$ is eventually $>\lambda$. Therefore $\liminf_\alpha f(x_\alpha)\geq\lambda$. Since $\lambda$ is arbitrary, we must have $\liminf_\alpha f(x_\alpha)\geq f(x)$. This proves (2).
 
-(2)$\Rightarrow$(1): This is obvious.
+(2)$\Rightarrow$(3): This is obvious.
 
-$\neg$(1)$\Rightarrow$$\neg$(3): Assume that $f$ is not lower semicontinuous. Then there exists $\lambda\in\in[-\infty,+\infty)$ such that $f^{-1}(\lambda,+\infty]$ is not open, and hence has non-interior point $x$. Therefore, $f(x)>\lambda$, and for any $U\in\Nbh_X(x)$ there exists $x_U\in U$ such that $f(x_U)\leq\lambda$. So $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X$ converging to $x$, and $\limsup_U f(x_U)\leq\lambda<f(x)$. Hence (3) is false. 
+$\neg$(1)$\Rightarrow$$\neg$(3): Assume that $f$ is not lower semicontinuous. Then there exists $\lambda\in[-\infty,+\infty)$ such that $f^{-1}(\lambda,+\infty]$ is not open, and hence has non-interior point $x$. Therefore, $f(x)>\lambda$, and for any $U\in\Nbh_X(x)$ there exists $x_U\in U$ such that $f(x_U)\leq\lambda$. So $(x_U)_{U\in\Nbh_X(x)}$ is a net in $X$ converging to $x$, and $\limsup_U f(x_U)\leq\lambda<f(x)$. Hence (3) is false. 
 \end{proof}
 
 
@@ -1716,7 +1730,7 @@ If $\mc U_\alpha$ is a base of the topology of $X_\alpha$, then
 \end{align*}
 is a base of the the product topology, which is countable if each $\MU_\alpha$ is countable.
 
-Now assume that each $X_\alpha$ is equipped with a metric $d_\alpha$. Fix any $R\in\Rbb_{>0}$, and let $\wtd d_\alpha$ be metric on $X_\alpha$ inducing the same topology as $d_\alpha$, and satisfies $d_\alpha\leq R$. For example,
+Now assume that each $X_\alpha$ is equipped with a metric $d_\alpha$. Fix any $R\in\Rbb_{>0}$, let $\wtd d_\alpha$ be metric on $X_\alpha$ inducing the same topology as $d_\alpha$ and satisfying $\wtd d_\alpha\leq R$. For example,
 \begin{subequations}\label{eq32}
 \begin{align}
 \wtd d_\alpha(x_\alpha,y_\alpha)=\min\{d_\alpha(x_\alpha,y_\alpha),R\}\qquad\text{for each }x_\alpha,y_\alpha\in X_\alpha
@@ -1726,7 +1740,7 @@ Let $\nu:\scr A\rightarrow\Zbb_+$ be an injective map, and define a metric $d$ o
 d(x,y)=\sum_{\alpha\in\scr A}2^{-\nu(\alpha)}\wtd d_\alpha(x(\alpha),y(\alpha))\qquad\text{for each }x,y\in S
 \end{align}
 \end{subequations}
-One shows easily that a net $(x_\mu)$ in $S$ converging to $x\in S$ iff $\lim_\mu \wtd d_\alpha(x_\mu(\alpha),x(\alpha))=0$ for all $\alpha\in\scr A$. Therefore, by Thm. \ref{lb50}, $d$ induces the product topology.
+One shows easily that a net $(x_\mu)$ in $S$ converges in the metric $d$ to $x\in S$ iff $\lim_\mu \wtd d_\alpha(x_\mu(\alpha),x(\alpha))=0$ for all $\alpha\in\scr A$. Thus, by Thm. \ref{lb50}, $d$ induces the product topology.
 \end{proof}
 
 
@@ -1742,7 +1756,7 @@ Assume that $X_\alpha$ is compact for each $\alpha\in\scr A$. Then $S$ is compac
 
 
 \begin{proof}[$\star$ Proof]
-Assume WLOG that $\scr A$ is non-empty, that each $X_\alpha$ is non-empty. Let $(x_\mu)_{\mu\in I}$ be a net in $S$. We want to show that $(x_\mu)_{\mu\in I}$ has a cluster point.
+Assume WLOG that $\scr A$ is non-empty, and that each $X_\alpha$ is non-empty. Let $(x_\mu)_{\mu\in I}$ be a net in $S$. We want to show that $(x_\mu)_{\mu\in I}$ has a cluster point.
 
 For each $\scr E\subset\scr A$, let $S_{\scr E}=\prod_{\alpha\in\scr E}X_\alpha$. For each $x\in S_{\scr E}$, we write $\Domain(x)=\scr E$.  For each $\scr E\subset\scr F\subset\scr A$ and $y\in S_{\scr F}$, let $y|_{\scr E}=(y(\alpha))_{\alpha\in\scr E}$. Let
 \begin{align*}
@@ -1760,18 +1774,12 @@ Now we can apply Zorn's lemma, which claims that $P$ has a maximal element $x\in
 
 
 \begin{rem}\label{lb52}
-If $\scr A$ is a countable set, and if each $X_\alpha$ is compact and second-countable, the \textbf{diagonal method} \index{00@Diagonal method} can be used in place of Zorn's lemma to prove that $S$ (which is second countable by Prop. \ref{lb51}).
+If $\scr A$ is a countable set, and if each $X_\alpha$ is compact and second-countable, the \textbf{diagonal method} \index{00@Diagonal method} can be used in place of Zorn's lemma to prove that $S$ (which is second countable by Prop. \ref{lb51}) is compact.
 
-We consider the case that $\scr A=\Zbb_+$. (The case that $\scr A$ is finite is even simpler.) Let $(x_n)_{n\in\Zbb_+}$ be a sequence in $S$. We construct inductively a double sequence $(x_{m,n})_{m,n\in\Zbb_+}$ in $S$ as follows. Since $X_1$ is sequentially compact, $(x_n)$ has subseqeunce $(x_{1,n})_{n\in\Zbb_+}$ whose first component $(x_{1,n}(1))_{n\in\Zbb_+}$ converges to some $x(1)\in X_1$. Suppose that $(x_{m-1,n})_{n\in\Zbb_+}$ has been constructed (where $m-1\geq 1$). Since $X_m$ is sequentially compact, $(x_{m-1,n})_{n\in\Zbb_+}$ has a subsequence $(x_{m,n})_{n\in\Zbb_+}$ whose $m$-th component $(x_{m,n}(m))_{n\in\Zbb_+}$ to some $x(m)\in S$. In this way, the double sequence $(x_{m,n})$ in $S$ and the element $x\in S$ are constructed. One checks easily that $(x_{n,n})_{n\in\Zbb_+}$ is a subsequence of $(x_n)$ converging to $x$.  
+We consider the case that $\scr A=\Zbb_+$. (The case that $\scr A$ is finite is even simpler.) Let $(x_n)_{n\in\Zbb_+}$ be a sequence in $S$. We construct inductively a double sequence $(x_{m,n})_{m,n\in\Zbb_+}$ in $S$ as follows. Since (by Thm. \ref{lb219}) $X_1$ is sequentially compact, $(x_n)$ has subseqeunce $(x_{1,n})_{n\in\Zbb_+}$ whose first component $(x_{1,n}(1))_{n\in\Zbb_+}$ converges to some $x(1)\in X_1$. Suppose that $(x_{m-1,n})_{n\in\Zbb_+}$ has been constructed (where $m-1\geq 1$). Since $X_m$ is sequentially compact, $(x_{m-1,n})_{n\in\Zbb_+}$ has a subsequence $(x_{m,n})_{n\in\Zbb_+}$ whose $m$-th component $(x_{m,n}(m))_{n\in\Zbb_+}$ to some $x(m)\in X_m$. In this way, the double sequence $(x_{m,n})$ in $S$ and the element $x\in S$ are constructed. One checks easily that $(x_{n,n})_{n\in\Zbb_+}$ is a subsequence of $(x_n)$ converging to $x$.  
 
 We have thus proved that $S$ is sequentially compact. By Thm. \ref{lb219}, $S$ is compact. \hqed 
 \end{rem}
-
-
-
-
-
-
 
 
 
@@ -1789,14 +1797,14 @@ We have thus proved that $S$ is sequentially compact. By Thm. \ref{lb219}, $S$ i
 Let $X$ be a Hausdorff space. 
 
 \begin{df}
-Let $A\subset X$. We say that $A$ is \textbf{precompact} relative to $X$ and write \index{zz@$\Subset$}
+Let $A\subset X$. We say that $A$ is \textbf{precompact} relative to $X$ and \index{zz@$\Subset$} write 
 \begin{align*}
 A\Subset X
 \end{align*}
 if $\Cl_X(A)$ is compact, equivalently, if $A$ is contained in a compact subset of $X$.
 \end{df}
 
-Recall that a subset of a compact Hausdorff space is closed iff it is compact.
+Recall that a subset of a compact Hausdorff space is closed iff it is compact (cf. Prop. \ref{lb353}).
 
 \begin{proof}[Proof of equivalence]
 "$\Rightarrow$": Obvious. "$\Leftarrow$": Let $B\subset X$ be compact and containing $A$. Then $B$ is closed in $X$. So $\Cl_X(A)\subset B$. Since $\Cl_X(A)$ is closed in $X$ and hence closed in $B$, it is compact.
@@ -1815,9 +1823,9 @@ In practice, we often choose $W$ to be an open subset of $X$.
 \begin{proof}
 "$\Leftarrow$": $\Cl_X(A)$ is a compact set inside $W$ and contains $A$. So $A\Subset W$.
 
-"$\Rightarrow$": We have a compact set $B$ such that $A\subset B\subset W$. So $A\Subset X$. Since $B$ is closed in any larger set, we have $\Cl_X(A)\subset B$ and hence $\Cl_X(A)\subset W$.
+"$\Rightarrow$": We have a compact set $B$ such that $A\subset B\subset W$. So $A\Subset X$. Since $B$ is closed in $X$, we have $\Cl_X(A)\subset B$ and hence $\Cl_X(A)\subset W$.
 
-It is obvious that $\Cl_W(A)\subset\Cl_X(A)$. Assume $A\Subset W$. Then $\Cl_W(A)$ is compact. In the above paragraph, if we choose $B=\Cl_W(A)$. then we have $\Cl_X(A)\subset B=\Cl_X(A)$. This proves $\Cl_W(A)=\Cl_X(A)$.
+It is obvious that $\Cl_W(A)\subset\Cl_X(A)$. Assume $A\Subset W$. Then $\Cl_W(A)$ is compact. In the above paragraph, if we choose $B=\Cl_W(A)$. then we have $\Cl_X(A)\subset B=\Cl_W(A)$. This proves $\Cl_W(A)=\Cl_X(A)$.
 \end{proof}
 
 \begin{rem}\label{lb2}
@@ -1832,7 +1840,7 @@ Moreover, for each $f\in C_c(U,\mc V)$, we have
 \end{rem}
 
 \begin{proof}
-Let $f$ take value $0$ outside $U$. Let $K=\Supp_U(f)$, which is compact by assumption. Since $f|_U$ is continuous and $f|_{K^c}=0$ are continuous, and since $X=U\cup K^c$ is an open cover on $X$, $f$ is continuous. By the Rem. \ref{lb1}, we have $\Supp_U(f)=\Supp_X(f)$. Therefore $f\in C_c(X,\mc V)$.
+Let $f$ take value $0$ outside $U$. Let $K=\Supp_U(f)$, which is compact by assumption. Since $f|_U$ and $f|_{K^c}=0$ are continuous, and since $X=U\cup K^c$ is an open cover on $X$, $f$ is continuous. By the Rem. \ref{lb1}, we have $\Supp_U(f)=\Supp_X(f)$. Therefore $f\in C_c(X,\mc V)$.
 \end{proof}
 
 
@@ -1848,7 +1856,7 @@ Assume that $X$ is a metric space, and let $A\subset X$. Then $A$ is precompact 
 \end{pp}
 
 \begin{proof}
-The direction "$\Rightarrow$" follows from the sequential compactness of $\ovl A$. Conversely, assume that every sequence in $A$ has a subsequence convering in $X$. Let us prove that $\ovl A$ is sequentially compact. Let $(x_n)$ be a sequence in $\ovl A$. For each $n$, choose $y_n\in A$ such that $d(x_n,y_n)<1/n$. By assumption, $(y_n)$ has a subsequence $(y_{n_k})$ converging to some $x\in X$. One easily checks that $(x_{n_k})$ converges to $x$.
+The direction "$\Rightarrow$" follows from the sequential compactness of $\ovl A$ (cf. Cor. \ref{lb354}). Conversely, assume that every sequence in $A$ has a subsequence convering in $X$. Let us prove that $\ovl A$ is sequentially compact. Let $(x_n)$ be a sequence in $\ovl A$. For each $n$, choose $y_n\in A$ such that $d(x_n,y_n)<1/n$. By assumption, $(y_n)$ has a subsequence $(y_{n_k})$ converging to some $x\in X$. One easily checks that $(x_{n_k})$ converges to $x$.
 \end{proof}
 
 
@@ -1895,7 +1903,7 @@ See \cite[Sec. 15.4]{Gui-A}.
 
 
 \begin{rem}\label{lb57}
-Urysohn's lemma can be used in the following way. Suppose that $K\subset U\subset X$ where $K$ is compact and $U$ is open in $X$. By Prop. \ref{lb3}, $U$ is LCH. Therefore, by Thm. \ref{lb56}, there exists $f\in C_c(U,[0,1])$ such that $f|_K=1$. By Rem. \ref{lb2}, $f$ can be viewed as an element of $C_c(X,[0,1])$ satisfying $f|_K=1$ and $\Supp(f)\subset U$.
+Urysohn's lemma can be used in the following way. Suppose that $K\subset U\subset X$ where $K$ is compact and $U$ is open in $X$. By Prop. \ref{lb3}, $U$ is LCH. Therefore, by Thm. \ref{lb56}, there exists $f\in C_c(U,[0,1])$ such that $f|_K=1$. By Rem. \ref{lb2}, $f$ can be viewed as an element of $C_c(X,[0,1])$ satisfying $f|_K=1$ and $\Supp_X(f)\subset U$.
 \end{rem}
 
 
@@ -1928,16 +1936,7 @@ See \cite[Sec. 15.4]{Gui-A}.
 
 
 \begin{df}
-We let \index{C0@$C_0(X,\mc V),C_0(X,E)$}
-\begin{align*}
-C_0(X,\mc V)=\left\{
-\begin{array}{ll}
-\{f\in C(X,\mc V):\lim_{x\rightarrow\infty}\Vert f(x)\Vert=0\}&\text{if $X$ is not compact}\\[0.5ex]
-C(X,\mc V)=C_c(X,\mc V)&\text{if $X$ is compact}
-\end{array}
-\right.
-\end{align*}
-where $\wht X=X\cup\{\infty\}$ is the one-point compactification of $X$. Equivalently, $C_0(X,\mc V)$ is the set of all $f\in C(X,\mc V)$ such that for any $\eps>0$ there exists a compact $K\subset X$ such that $\Vert f\Vert_{l^\infty(X\setminus K)}<\eps$. See \cite[Subsec. 15.8.1]{Gui-A} for more discussions. For each $E\subset\mc V$, we let
+We let \index{C0@$C_0(X,\mc V),C_0(X,E)$} $\pmb{C_0(X,\mc V)}$ be the set of all $f\in C(X,\mc V)$ whose zero-extension to the one-point compactification of $X$ is continuous at $\infty$. Equivalently, $C_0(X,\mc V)$ is the set of all $f\in C(X,\mc V)$ such that for any $\eps>0$ there exists a compact $K\subset X$ such that $\Vert f\Vert_{l^\infty(X\setminus K)}<\eps$. See \cite[Subsec. 15.8.1]{Gui-A} for more discussions. For each $E\subset\mc V$, we let
 \begin{align*}
 C_0(X,E)=C_0(X,V)\cap E^X
 \end{align*}
@@ -1953,8 +1952,9 @@ One easily shows that $C_0(X,\mc V)$ is closed in $C(X,\mc V)$. To show that $C_
 \end{proof}
 
 \begin{rem}\label{lb84}
-Suppose that $X$ is second countable. Then $X$ is Lindel\"of. Therefore, $X$ has a countable open cover $\fk U=(U_n)_{n\in\Zbb_+}$ whose members $U_n$ are precompact open subsets of $X$. In particular, $X$ is $\sigma$-compact, since $X=\bigcup_{n\in\Zbb_+}\ovl{U_n}$ where each $\ovl{U_n}$ is compact.
+Suppose that $X$ is second countable. Then $X$ is Lindel\"of by Prop. \ref{lb220}. Therefore, $X$ has a countable open cover $\fk U=(U_n)_{n\in\Zbb_+}$ whose members $U_n$ are precompact open subsets of $X$. In particular, $X$ is $\sigma$-compact, since $X=\bigcup_{n\in\Zbb_+}\ovl{U_n}$ where each $\ovl{U_n}$ is compact.
 \end{rem}
+
 
 
 
@@ -1980,7 +1980,7 @@ Let $(f_\alpha)_{\alpha\scr A}$ be an equicontinuous net of functions $X\rightar
 \end{thm}
 
 \begin{proof}
-For each $x\in X$ and $\eps>0$, choose  $U_x\in\Nbh_X(x)$ such that \eqref{eq93} holds. Applying $\lim_\alpha$, we see that $\Vert f(y)-f(x)\Vert\leq\eps$ for all $\alpha\in\scr A$ and $y\in U_x$. This proves that $f$ is continuous at every $x\in X$.
+For each $x\in X$ and $\eps>0$, choose  $U_x\in\Nbh_X(x)$ such that \eqref{eq93} holds. Applying $\lim_\alpha$, we see that $\Vert f(y)-f(x)\Vert\leq\eps$ for all $y\in U_x$. This proves that $f$ is continuous at every $x\in X$.
 
 Next, assume that $X$ is compact. Then there exist $x_1,\dots,x_n\in X$ such that $X=U_1\cup\cdots\cup U_n$ if we set $U_i=U_{x_i}$. For each $y\in X$, choose $i$ such that $y\in U_i$. Then
 \begin{align*}
@@ -2014,11 +2014,10 @@ Assume that $\scr F$ is \textbf{pointwise bounded}, i.e., $\sup_{f\in\scr F}|f(x
 \begin{proof}
 It is easy to check that $\ovl{\scr F}$, the closure of $\scr F$, satisfies the same properties as $\scr F$. Therefore, replacing $\scr F$ with its closure, we assume WLOG that $\scr F$ is closed. 
 
-We first consider the case that $X$ is compact. Since $\scr F$ is pointwise bounded, it can be viewed as a subset of $\prod_{x\in X}D_x$ where $D_x$ is a compact set in $\Fbb$. Therefore, by the Tychonoff Thm. \ref{lb61}, every net $(f_\alpha)$ in $\scr F$ has a pointwise convergent subnet $(f_\beta)$. Since $(f_\beta)$ is equicontinuous and $X$ is compact, by Thm. \ref{lb179}, $(f_\beta)$ converges uniformly to some $f\in C(X,\Fbb)$. Since $\scr F$ is closed, we have $f\in\scr F$.5 This proves that $\scr F$ is compact.
+We first consider the case that $X$ is compact. Since $\scr F$ is pointwise bounded, it can be viewed as a subset of $\prod_{x\in X}D_x$ where $D_x$ is a compact set in $\Fbb$. Therefore, by the Tychonoff Thm. \ref{lb61}, every net $(f_\alpha)$ in $\scr F$ has a pointwise convergent subnet $(f_\beta)$. Since $(f_\beta)$ is equicontinuous and $X$ is compact, by Thm. \ref{lb179}, $(f_\beta)$ converges uniformly to some $f\in C(X,\Fbb)$. Since $\scr F$ is closed, we have $f\in\scr F$. This proves that $\scr F$ is compact.
 
 Next, assume that $X$ is not compact. Let $\wht X=X\cup\{\infty\}$ be the one-point compactification of $X$. Extend each $f\in\scr F$ to $\wht X\rightarrow\Fbb$ by setting $f(0)=0$. Then $\scr F$ is a pointwise bounded and equicontiuous family of functions $\wht X\rightarrow\Cbb$. By the previous paragraph, every net in $\scr F$ has a uniformly convergent subnet. Thus, $\scr F$ is compact.
 \end{proof}
-
 
 
 
@@ -2041,14 +2040,15 @@ satisfying the associacitity rule
 (xy)z=x(yz)\qquad\text{for all }x,y,z\in \scr A
 \end{align*}
 
-A $\Kbb$-algebra is called \textbf{unital} \index{00@Unital algebra} if $\scr A$, as a ring, has a multiplicative identity $1$. In this case, we write $\lambda\cdot 1$ as $\lambda$ if $\lambda\in\Kbb$. 
+A $\Kbb$-algebra is called \textbf{unital} \index{00@Unital algebra} if $\scr A$, as a ring, has a multiplicative identity $1_\SA=1$ (i.e. $1x=x1=1$ for all $x\in\SA$). In this case, we write $\lambda\cdot 1$ as $\lambda$ if $\lambda\in\Kbb$. 
 
 A $\Kbb$-algebra is called \textbf{commutative} or \textbf{abelian} \index{00@Commutative algebra} \index{00@Abelian algebra} if $xy=yx$ for all $x,y\in\scr A$.
 
-If $\scr A$ is a $\Kbb$-algebra, then a \textbf{($\Kbb$-)subalgebra} \index{00@Subalgebra} is a subset $\scr B$ which is invariant under the ring addition, ring multiplication, and scalar multiplication. (Namely, $\scr B$ is a subring and also a subspace of $\scr A$.) If $\scr A$ is unital, then a \textbf{unital ($\Kbb$-)subalgebra} of $\scr A$ is a $\Kbb$-subalgebra containing the identity of $\scr A$.  \hfill\qedsymbol
+If $\scr A$ is a $\Kbb$-algebra, then a \textbf{($\pmb\Kbb$-)subalgebra} \index{00@Subalgebra} is a subset $\scr B$ which is closed under the ring addition, ring multiplication, and scalar multiplication. (Namely, $\scr B$ is a subring and also a linear subspace of $\scr A$.) If $\scr A$ is unital, then a \textbf{unital ($\pmb\Kbb$-)subalgebra} of $\scr A$ is a $\Kbb$-subalgebra containing the identity of $\scr A$.  \hfill\qedsymbol
 \end{df}
 
 
+\begin{comment}
 \begin{rem}
 A unital $\Kbb$-algebra $\scr A$ can equivalently be described as a ring with identity, together with a ring homomorphism $\Cbb\rightarrow Z(\scr A)$ where $Z(\scr A)$ is the \textbf{center} of $\scr A$, i.e.
 \begin{align*}
@@ -2056,6 +2056,8 @@ Z(\scr A)=\{x\in\scr A:xy=yx\text{ for every }y\in\scr A\}
 \end{align*}
 We leave the verification of this equivalence to the reader.
 \end{rem}
+\end{comment}
+
 
 
 
@@ -2064,16 +2066,16 @@ If $V$ is a $\Fbb$-vector space, then $\End(V)$, the set of $\Fbb$ linear maps $
 \end{eg}
 
 \begin{df}\label{lb53}
-A \textbf{*-$\Kbb$-algebra} \index{00@*-$\Kbb$-algebra} is defined to be a $\Kbb$-algebra together with an \textbf{antilinear map} \index{00@Antilinear map} $*:\scr A\rightarrow\scr A$ sending $x$ to $x^*$ (where "antilinear" means that for every $a,b\in\Cbb$ and $x,y\in\scr A$ we have $(ax+by)^*=\ovl ax^*+\ovl by^*$) such that for every $x,y\in\scr A$, we have
+A \textbf{*-$\pmb\Kbb$-algebra}  \index{00@*-$\Kbb$-algebra} is defined to be a $\Kbb$-algebra together with an \textbf{antilinear map} \index{00@Antilinear map} $*:\scr A\rightarrow\scr A$ sending $x$ to $x^*$ (where "antilinear" means that for every $a,b\in\Cbb$ and $x,y\in\scr A$ we have $(ax+by)^*=\ovl ax^*+\ovl by^*$) such that for every $x,y\in\scr A$, we have
 \begin{align*}
 (x^*)^*=x\qquad (xy)^*=y^*x^*
 \end{align*}
 Note that $*$ must be bijective. We call $*$ an \textbf{involution}. 
-\index{00@Involution} A \textbf{*-$\Kbb$-subalgebra} \index{00@*-$\Kbb$-subalgebra} $\scr B$ is defined to be a subalgebra satisfying $x\in\scr B$ iff $x^*\in\scr B$. If $\scr A$ is a unital algebra with unit $\idt$, we say that $\scr A$ is a \textbf{unital *-$\Kbb$-algebra} if $\scr A$ is equipped with an involution $*:\scr A\rightarrow\scr A$ such that $\scr A$ is a *-algebra, and that
+\index{00@Involution} A \textbf{*-$\Kbb$-subalgebra} \index{00@*-$\pmb\Kbb$-subalgebra} $\scr B$ is defined to be a subalgebra satisfying $x\in\scr B$ iff $x^*\in\scr B$. If $\scr A$ is a unital algebra with unit $1_\SA$, we say that $\scr A$ is a \textbf{unital *-$\pmb\Kbb$-algebra} if $\scr A$ is equipped with an involution $*:\scr A\rightarrow\scr A$ such that $\scr A$ is a *-algebra, and that
 \begin{align*}
-\idt^*=\idt
+1_\SA^*=1_\SA
 \end{align*}
-A unital *-subalgebra is a unital subalegbra and also a *-subalgebra.
+A \textbf{unital *-$\pmb\Kbb$-subalgebra} of $\SA$ is defined to be a $*$-$\Kbb$-subalgebra of $\SA$ containing $1_\SA$.
 \end{df}
 
 \begin{cv}
@@ -2104,38 +2106,42 @@ The set of complex $n\times n$ matrices $\Cbb^{n\times n}$ is naturally a unital
 \end{eg}
 
 
-
+\begin{comment}
 \begin{eg}
 Let $X$ be a set. Then $\Kbb^X$ is naturally a unital $\Kbb$-algebra, and $l^\infty(X,\Kbb)$ is its unital $\Kbb$-subalgebra. If $X$ is a topological space, then $C(X,\Kbb)$ is a unital $\Kbb$-subalgebra of $\Kbb^X$. If $X$ is compact, then $C(X,\Kbb)$ is a unital $\Kbb$-subalgebra of $l^\infty(X,\Kbb)$.
 \end{eg}
+\end{comment}
+
 
 
 
 \begin{eg}\label{lb255}
-Let $X$ be a set. Then $\Cbb^X$ is a unital *-algebra if for every $f\in\Cbb^X$ we define \index{f@$f^*(x)=\ovl{f(x)}$}
+Let $X$ be a set. Then $\Kbb^X$ is a unital *-algebra if for every $f\in\Kbb^X$ we define \index{f@$f^*(x)=\ovl{f(x)}$}
 \begin{align}\label{eq33}
-f^*:X\rightarrow\Cbb\qquad \pmb{f^*(x)}=\ovl{f(x)}
+f^*:X\rightarrow\Kbb\qquad \pmb{f^*(x)}=\ovl{f(x)}
 \end{align}
-Then $\Kbb^X$ and $l^\infty(X,\Kbb)$ are unital *-$\Kbb$-subalgebras of $\Cbb^X$.
+and $l^\infty(X,\Kbb)$ is a unital *-$\Kbb$-subalgebras of $\Kbb^X$.
 
-Assume that $X$ is a compact topological space. Then $C(X,\Fbb)$ is a unital *-$\Fbb$-subalgebra of $l^\infty(X,\Fbb)$. If $f_1,\dots,f_n\in C(X,\Fbb)$, then $\Fbb[f_1,\dots,f_n]$, the set of polynomials of $f_1,\dots,f_n$ with coefficients in $\Fbb$, is a unital $\Fbb$-subalgebra of $C(X,\Fbb)$. And $\Fbb[f_1,f_1^*,\dots,f_n,f_n^*]$ is a unital *-$\Fbb$-subalgebra of $C(X,\Fbb)$.  \hqed
+If $f_1,\dots,f_n\in \Kbb^X$, then $\pmb{\Kbb[f_1,\dots,f_n]}$, \index{F@$\Fbb[f_1,\dot,f_n]$} the set of polynomials of $f_1,\dots,f_n$ with coefficients in $\Kbb$, is a unital $\Kbb$-subalgebra of $C(X,\Fbb)$. And $\Kbb[f_1,f_1^*,\dots,f_n,f_n^*]$ is a unital *-$\Kbb$-subalgebra of $C(X,\Kbb)$.  \hqed
 \end{eg}
 
 
 More generally, we have:
 
 \begin{eg}
-Let $\scr A$ be an abelian unital $\Kbb$-algebra. Let $\fk S\subset\scr A$. Then \index{FS@$\Kbb\bk{\fk S}$}
+Let $\scr A$ be a unital $\Kbb$-algebra. Let $\fk S\subset\scr A$. Then \index{FS@$\Fbb\bk{\fk S},\Fbb[\fk S]$}
 \begin{align}
-\Kbb\bk{\fk S}=\Span_\Kbb\{x_1^{n_1}\cdots x_k^{n_k}:k\in\Zbb_+,x_i\in\fk S,n_i\in\Nbb\}
+\pmb{\Kbb\bk{\fk S}}=\Span_\Kbb\{x_1^{n_1}\cdots x_k^{n_k}:k\in\Zbb_+,x_i\in\fk S,n_i\in\Nbb\}
 \end{align}
-the set of (possibly non-commutative) polynomials of elements in $\fk S$, is the smallest unital $\Kbb$-subalgebra containing $\fk S$, called the \textbf{unital $\Kbb$-subalgebra generated by $\fk S$}. \index{00@Subalgebra generated by...} (Here, we understand $x^0=1$ if $x\in\scr A$.) Thus, if $\scr A$ is an abelian unital *-algebra, then $\Cbb\bk{\fk S\cup\fk S^*}$ (where $\fk S^*=\{x^*:x\in\fk S\}$) is the smallest unital *-algebra containing $\fk S$, called the \textbf{unital *-$\Kbb$-subalgebra generated by $\fk S$}.
+the set of (possibly non-commutative) polynomials of elements in $\fk S$, is the smallest unital $\Kbb$-subalgebra containing $\fk S$, called the \textbf{unital $\pmb\Kbb$-subalgebra generated by $\fk S$}. \index{00@Subalgebra generated by...} (Here, we understand $x^0=1$ if $x\in\scr A$.) Thus, if $\scr A$ is an abelian unital *-algebra, then $\Cbb\bk{\fk S\cup\fk S^*}$ (where $\fk S^*=\{x^*:x\in\fk S\}$) is the smallest unital *-algebra containing $\fk S$, called the \textbf{unital *-$\pmb\Kbb$-subalgebra generated by $\fk S$}. 
+
+If $\SA$ is commutative, we write $\Kbb\bk{\fk S}$ as $\pmb{\Kbb[\fk S]}$. \hqed
 \end{eg}
 
 
 
 \begin{df}
-Let $X$ be sets. Let $(f_\alpha)_{\alpha\in\fk A}$ be a family of maps where $f_\alpha:X\rightarrow Y_\alpha$ and $Y_\alpha$ is a set.  We say that $(f_\alpha)_{\alpha\in\fk A}$ \textbf{separates the points of $\pmb X$} \index{00@Seperate points} if for any distinct $x_1,x_2\in X$ there exists $\alpha\in\fk A$ such that $f_\alpha(x_1)\neq f_\alpha(x_2)$. Equivalently, the map
+Let $X$ be a set. Let $(f_\alpha)_{\alpha\in\fk A}$ be a family of maps where $f_\alpha:X\rightarrow Y_\alpha$ and each $Y_\alpha$ is a set.  We say that $(f_\alpha)_{\alpha\in\fk A}$ \textbf{separates the points of $\pmb X$} \index{00@Seperate points} if for any distinct $x_1,x_2\in X$ there exists $\alpha\in\fk A$ such that $f_\alpha(x_1)\neq f_\alpha(x_2)$. This is equivalent to saying that the map
 \begin{gather}
 \bigvee_{\alpha\in\fk A}f_\alpha:X\rightarrow \prod_{\alpha\in\fk A}Y_\alpha\qquad x\mapsto (f_\alpha(x))_{\alpha\in\fk A}
 \end{gather}
@@ -2148,16 +2154,16 @@ Let $X$ be an LCH space. Then $C_c(X,[0,1])$ separates the points of $X$.
 \end{eg}
 
 \begin{proof}
-Choose any distinct points $x,y\in X$. By Urysohn's lemma (Rem. \ref{lb57}), there exists $f\in C_c(X,[0,1])$ such that $f(x)=1$ and $\Supp(f)\subset X\setminus\{y\}$. So $f$ separates $x,y$.
+Choose any distinct points $x,y\in X$. By Urysohn's lemma (Rem. \ref{lb57}), there exists $f\in C_c(X,[0,1])$ such that $f(x)=1$ and $\Supp(f)\subset X\setminus\{y\}$. So $f$ separates $x$ and $y$.
 \end{proof}
 
 \begin{thm}[\textbf{Stone-Weierstrass theorem}]\index{00@Stone-Weierstrass}\label{lb87}
-Let $X$ be a compact Hausdorff space. Let $\fk S\subset C(X,\Fbb)$. Suppose that $\fk S$ separates the points of $X$. Then the *-$\Fbb$-subalgebra $\Fbb\bk{\fk S\cup\fk S^*}$ generated by $\fk S$ is dense in $C(X,\Fbb)$ in the $l^\infty$-norm.
+Let $X$ be a compact Hausdorff space. Let $\fk S\subset C(X,\Fbb)$. Suppose that $\fk S$ separates the points of $X$. Then the *-$\Fbb$-subalgebra $\Fbb[\fk S\cup\fk S^*]$ generated by $\fk S$ is dense in $C(X,\Fbb)$ in the $l^\infty$-norm.
 \end{thm}
 
 Note that if $\Fbb=\Rbb$, then $\fk S^*=\fk S$ by \eqref{eq33}.
 
-If $\Fbb=\Cbb$, then since $(\Qbb+\im\Qbb)\bk{\fk S\cup\fk S^*}$ is $l^\infty$-dense in $\Cbb\bk{\fk S\cup\fk S^*}$, it is clear that $(\Qbb+\im\Qbb)\bk{\fk S\cup\fk S^*}$ is $l^\infty$-dense in $C(X)$. Similarly, if $\Fbb=\Rbb$, then $\Qbb\bk{\fk S}$ is $l^\infty$-dense in $C(X,\Rbb)$.
+If $\Fbb=\Cbb$, then since $(\Qbb+\im\Qbb)[\fk S\cup\fk S^*]$ is $l^\infty$-dense in $\Cbb[\fk S\cup\fk S^*]$, it follows that $(\Qbb+\im\Qbb)[\fk S\cup\fk S^*]$ is $l^\infty$-dense in $C(X)$. Similarly, if $\Fbb=\Rbb$, then $\Qbb[\fk S]$ is $l^\infty$-dense in $C(X,\Rbb)$.
 
 \begin{proof}
 See \cite[Ch. 15]{Gui-A}.
@@ -2194,18 +2200,18 @@ d(x,y)=\sum_{n\in\Zbb_+}2^{-n}|f_n(x)-f_n(y)|\qquad\text{for each }x,y\in X
 
 
 
-The Stone-Weierstrass theorem will be used in the direction (c)$\Rightarrow$(d). The equivalence of (a,b,c) does not rely on the Stone-Weierstrass theorem. Moreover, condition (a) will seldom be used in this course: while metrizability is a convenient notion for beginners in analysis, the second countability condition is more flexible and broadly applicable.
+The Stone-Weierstrass theorem will be used in the direction (c)$\Rightarrow$(d). The equivalence of (a), (b), and (c) does not rely on the Stone-Weierstrass theorem. In this course, we will mainly use the equivalence of (b), (c), and (d).
 
 \begin{proof}
 (a)$\Rightarrow$(b): Fix a metric on $X$. By the compactness, for each $n\in\Zbb_+$, $X$ is covered by finitely many open balls with radius $1/n$. One checks easily that the collection of all these open balls for all $n\in\Zbb_+$ is a countable basis of the topology of $X$.\\[-1ex]
 
-(b)$\Rightarrow$(c): Since $X$ is second countable, we can choose an infinite countable base $(U_n)_{n\in\Zbb}$ of the topology. For each $m,n\in\Zbb_+$, if $U_n\Subset U_m$, we choose $f_{m,n}\in C_c(U_m,[0,1])\subset C_c(X,[0,1])$ such that $f|_{\ovl U_n}=1$ (which exists by Urysohn's lemma); otherwise, we let $f_{m,n}=0$. 
+(b)$\Rightarrow$(c): Since $X$ is second countable, we can choose an infinite countable base $(U_n)_{n\in\Zbb}$ of the topology. For each $m,n\in\Zbb_+$, if $U_n\Subset U_m$, we choose $f_{m,n}\in C_c(U_m,[0,1])\subset C_c(X,[0,1])$ such that $f|_{\ovl {U_n}}=1$ (which exists by Urysohn's lemma); otherwise, we let $f_{m,n}=0$. 
 
 Let us prove that $\{f_{m,n}:m,n\in\Zbb_+\}$ separates the points of $X$: Choose distinct $x,y\in X$. Since $X\setminus\{y\}\in\Nbh_X(x)$, there exists $U_m$ containing $x$ and is contained in $X\setminus\{y\}$. By Cor. \ref{lb54}, there exists $n$ such that $\{x\}\subset U_n\Subset U_m$. Then $f_{m,n}(x)=1$ and $f_{m,n}(y)=0$.\\[-1ex]
 
 (c)$\Rightarrow$(a,b): Since $(f_n)$ separates points, the map
 \begin{gather*}
-\Phi=\bigvee_n f_n:X\rightarrow\Fbb^{\Zbb_+}\qquad x\mapsto (f_n(x))_{n\in\Zbb_+}
+\Phi=\bigvee_{n\in\Zbb_+} f_n:X\rightarrow\Fbb^{\Zbb_+}\qquad x\mapsto (f_n(x))_{n\in\Zbb_+}
 \end{gather*}
 is injective. By Cor. \ref{lb55}, $\Phi$ is continuous. Since $X$ is compact, the map $\Phi$ restricts to a homeomorphism $\Phi:X\rightarrow\Phi(X)$, where $\Phi(X)$ is equipped with the subspace topology of the product topology of $\Fbb^{\Zbb_+}$. By Prop. \ref{lb51}, $\Fbb^{\Zbb_+}$ is metrizable and second countable, so $\Phi(X)$, and hence $X$, is metrizable and second countable. This proves (a) and (b).\\[-1ex]
 
@@ -2240,7 +2246,7 @@ Let $(X,\mu)$ be a measure space, and let $f:X\rightarrow[0,+\infty]$ be measura
 \subsubsection{Some useful definitions and their basic properties}
 
 \begin{df}
-Let $X$ be a set. Suppose that $\scr C$ is an $\Fbb$-linear subspace of $\Fbb^X$. A \textbf{positive linear functional} \index{00@Positive linear functional} on $\scr C$ denotes an $\Fbb$-linear map $\Lambda:\scr C\rightarrow\Fbb$ such that $\Lambda(f)\geq0$ for all $f\in\scr C\cap \Rbb_{\geq0}^X$. 
+Let $X$ be a set. Let $\Kbb\in\{\Rbb_{\geq0},\Rbb,\Cbb\}$. Suppose that $\scr C$ is an $\Kbb$-linear subspace of $\Kbb^X$. A \textbf{positive linear functional} \index{00@Positive linear functional} on $\scr C$ denotes an $\Kbb$-linear map $\Lambda:\scr C\rightarrow\Kbb$ such that $\Lambda(f)\geq0$ for all $f\in\scr C\cap \Rbb_{\geq0}^X$. Note that this condition is redundant when $\Kbb=\Rbb_{\geq0}$.
 \end{df}
 
 Recall that if $(X,\fk M)$ is a measurable space, an \textbf{\pmb{$\Fbb$}-valued simple function} on $X$ \index{00@Simple function} is an $\Fbb$-linear combination of characteristic functions over measurable sets; that is, an element of $\Span_\Fbb\{\chi_E:E\in\fk M\}$.
@@ -2265,7 +2271,7 @@ Then $\Supp(\mu)$ is a closed subset of $X$, because we clearly have
 \begin{align*}
 X\setminus\Supp(\mu)=\bigcup_{U\in\mc T_X,\mu(U)=0}U
 \end{align*}
-Moreover, we have $\mu(X\setminus\Supp(\mu))=0$. Thus, $\Supp(\mu)$ is the largest closed subset whose complement is $\mu$-null.
+Moreover, we have $\mu(X\setminus\Supp(\mu))=0$. Thus, $\Supp(\mu)$ is the smallest closed subset whose complement is $\mu$-null.
 \end{df}
 
 \begin{proof}[Proof that $X\setminus\Supp(\mu)$ is null]
@@ -2278,7 +2284,7 @@ Assume that condition (2) holds. Since Radon measures are inner regular on open 
 
 
 \begin{lm}\label{lb163}
-Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be as in Def. \ref{lb98}, and assume that Condition (1) or (2) of Def. \ref{lb98} holds. The following are equivalent:
+Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be as in Def. \ref{lb298}, and assume that Condition (1) or (2) of Def. \ref{lb298} holds. The following are equivalent:
 \begin{enumerate}[label=(\alph*)]
 \item $\Supp(\mu)$ is a finite set.
 \item $\mu$ is a linear combination of Dirac measures (restricted to $\fk M$).
@@ -2290,7 +2296,7 @@ Let $\mu:\fk M\rightarrow\ovl\Rbb_{\geq0}$ be as in Def. \ref{lb98}, and assume 
 
 (a)$\Rightarrow$(b): Write $E=\Supp(\mu)$. Choose any measurable $f:X\rightarrow\ovl\Rbb_{\geq0}$. Then, since $\mu|_{X\setminus E}=0$, the integral of any measurable function $g:X\rightarrow\ovl\Rbb_{\geq0}$ vanishing ourside $E$ is zero. In particular, we can choose $g$ to be the unique one such that $g+\sum_{x\in E}f(x)\chi_{\{x\}}=f$. Therefore
 \begin{align*}
-\int_Xfd\mu=\int_E \sum_{x\in E}f(x)\chi_{\{x\}}d\mu=\sum_{x\in E}f(x)\cdot \mu(\{x\})
+\int_Xfd\mu=\int_X \sum_{x\in E}f(x)\chi_{\{x\}}d\mu=\sum_{x\in E}f(x)\cdot \mu(\{x\})
 \end{align*}
 This shows that $\mu=\sum_{x\in E}\mu(\{x\})\delta_x$.
 \end{proof}
@@ -2307,11 +2313,11 @@ Then
 \begin{align}
 \int_Yfd\Phi_*\mu=\int_X(f\circ\Phi)d\mu
 \end{align}
-holds for any simple function $f:X\rightarrow\Rbb_{\geq0}$, and hence (by MCT) for any measurable $f:X\rightarrow\Rbb_{\geq0}$. We call
+holds for any simple function $f:X\rightarrow\Rbb_{\geq0}$, and hence (by MCT) for any measurable $f:X\rightarrow\Rbb_{\geq0}$. If $Y$ is a topological space and $\fk N$ contains $\fk B_Y$, we call
 \begin{align*}
 \pmb{\Ess(\Phi,\mu)}:=\Supp(\Phi_*\mu)
 \end{align*}
-the essential range of $\Phi$ \index{00@Essential range $\Ess(\Phi,\mu)=\Ess(\Phi)$} \index{Rngess@$\Ess(\Phi,\mu)=\Ess(\Phi)$} and abbreviate it to $\Ess(\Phi)$ when no confusion arises.
+the \textbf{essential range} of $\Phi$ with respect to $\mu$ \index{00@Essential range $\Ess(\Phi,\mu)=\Ess(\Phi)$} and \index{Rngess@$\Ess(\Phi,\mu)=\Ess(\Phi)$} abbreviate it to $\Ess(\Phi)$ when no confusion arises.
 \end{df}
 
 
@@ -2329,7 +2335,7 @@ Let $(X,\mu)$ be a measure space, and let $f:X\rightarrow\Cbb$ be measurable. It
 Fix a measurable space $(X,\fk M)$. 
 
 \begin{df}
-Let $\mu,\nu:\fk M\rightarrow[0,+\infty]$ are measures. We say that $\nu$ is \textbf{absolutely continuous} with respect to $\mu$ \index{00@Absolute continuity of measures} and write $\pmb{\nu\ll\mu}$ \index{zz@$\nu\ll\mu$} if any $\mu$-null set is $\nu$-null. We say that $h\in\mc L(X,\ovl\Rbb_{\geq0})$ is a \textbf{Radon-Nikodym derivative} of $\nu$ with respect to $\mu$ if 
+Let $\mu,\nu:\fk M\rightarrow[0,+\infty]$ be measures. We say that $\nu$ is \textbf{absolutely continuous} with respect to $\mu$ \index{00@Absolute continuity of measures} and write $\pmb{\nu\ll\mu}$ \index{zz@$\nu\ll\mu$} if any $\mu$-null set is $\nu$-null. We say that $h\in\mc L(X,\ovl\Rbb_{\geq0})$ is a \textbf{Radon-Nikodym derivative} of $\nu$ with respect to $\mu$ if 
 \begin{align*}
 \int_X fd\nu=\int_X fhd\mu\quad \text{ for all }f\in\mc L(X,\ovl\Rbb_{\geq0})
 \end{align*}
@@ -2354,7 +2360,7 @@ Then $\int_{A_k} h_1d\mu\leq k\mu(X)<+\infty$, and
 \begin{align*}
 \int_{A_k} h_1d\mu=\int_{A_k} d\nu=\int_{A_k}h_2d\mu
 \end{align*}
-Taking subtraction, we get $\int_{A_k}(h_2-h_1)d\mu=0$. Let $A=\bigcup_k A_k=\{x\in X:h_1(x)<h_2(x)\}$. By MCT,  $\int_A(h_2-h_1)d\mu=0$. Since $h_2-h_1\geq0$ on $A$, we conclude $h_2-h_1=0$ $\mu$-a.e. on $A$, and hence $\mu(A)=0$. Similarly, $\mu(B)=0$ where $B=\{x\in X:h_1(x)>h_2(x)\}$.
+Taking subtraction, we get $\int_{A_k}(h_2-h_1)d\mu=0$. Let $A=\bigcup_k A_k=\{x\in X:h_1(x)<h_2(x)\}$. By MCT,  $\int_A(h_2-h_1)d\mu=0$. Since $h_2-h_1\geq0$ on $A$, we conclude from Prop. \ref{lb310} that $h_2-h_1=0$ $\mu$-a.e. on $A$, and hence $\mu(A)=0$. Similarly, $\mu(B)=0$ where $B=\{x\in X:h_1(x)>h_2(x)\}$.
 \end{proof}
 
 \begin{rem}
@@ -2379,7 +2385,7 @@ Assume that $\mu,\nu:\fk M\rightarrow[0,+\infty]$ are $\sigma$-finite measures. 
 \begin{gather*}
 \Lambda: L^2(X,\psi)\rightarrow\Cbb\qquad \xi\mapsto \int_X \xi d\mu
 \end{gather*}
-is bounded. Since $L^2(X,\psi)$ is a Hilbert space (Thm. \ref{lb26}), by the Riesz-Fr\'echet theorem, there exists $f\in L^2(X,\psi)$ such that $\int_X\xi d\nu=\int_X \xi fd\psi$ for all $\xi\in L^2(X,\psi)$. Since $\Lambda$ sends positive functions to $\Rbb_{\geq0}$, after adding an $\psi$-a.e. function to $\xi$, we have $\psi\geq0$ everywhere.
+is bounded (with operator norm $\leq\psi(X)$). Since $L^2(X,\psi)$ is a Hilbert space (Thm. \ref{lb26}), by the Riesz-Fr\'echet Thm. \ref{lb135}, there exists $f\in L^2(X,\psi)$ such that $\int_X\xi d\mu=\int_X \xi fd\psi$ for all $\xi\in L^2(X,\psi)$. Since $\Lambda$ sends positive functions to $\Rbb_{\geq0}$, after replacing $f$ with $\Real(f)$ and adding a measurable $\psi$-a.e. zero function to $f$, we have $f\geq0$ everywhere.
 
 
 We have found $f\in\mc L(X,\Rbb_{\geq0})$ such that $d\mu=fd\psi$. Similarly, we have $g\in\mc L(X,\Rbb_{\geq0})$ such that $d\nu=gd\psi$.  Since $\mu\leq\psi \ll \mu$, we have $f>0$ outside a $\psi$-null set $\Delta$. Let $h=g/f$ outside $\Delta$, and $h=0$ on $\Delta$. Then $d\nu=hd\mu$. 
@@ -2439,7 +2445,7 @@ Consequently, for each $f\in\mc L(X,\Cbb)$ we have
 
 
 \begin{proof}
-By H\"older's inequality, we have "$\geq$".  To prove "$\leq$", we note that \eqref{eq16} follows immediately from \eqref{eq15} by writing $f=u|f|$ where $u\in\mc L(X,\Sbb^1)$ and applying \eqref{eq15} to $|f|$. Thus, in the following, we assume $f\in\mc L(X,\ovl\Rbb_{\geq0})$. 
+By H\"older's inequality, we have "$\geq$".  To prove "$\leq$", we note that \eqref{eq16} follows immediately from \eqref{eq15} by writing $f=u|f|$ where $u\in\mc L(X,\Sbb^1)$ and applying \eqref{eq15} to $|f|$. Thus, in the following, we assume $f\in\mc L(X,\ovl\Rbb_{\geq0})$. Moreover, we assume $\Vert f\Vert_{L^p}>0$; otherwise, the inequality is trivial.
 
 Case $1<p<+\infty$: Choose an increasing sequence $(f_n)$ (i.e. $f_1\leq f_2\leq\cdots$) in $\mc S_+$ converging pointwise to $f$ such that each $f_n$ vanishes outside a measurable $\mu$-finite set. Let $g_n=(f_n)^{p-1}$. After removing the first several terms, we assume $\Vert g_n\Vert_{L^q}>0$ for all $n$. Then
 \begin{align*}
@@ -2449,11 +2455,11 @@ By MCT, we have $\lim_n \Vert g_n\Vert_p=\Vert f\Vert_p^{p/q}$ and $\lim_n \int_
 \begin{align*}
 \lim_n\Vert g_n\Vert_q^{-1}\int_X fg_n=\Vert f\Vert_p^{-p/q}\cdot \Vert f\Vert_p^p=\Vert f\Vert_p
 \end{align*}
-This proves \eqref{eq15} when $\Vert f\Vert_p<+\infty$. If $\Vert f\Vert_p=+\infty$, then, by MCT, $\Vert f_n\Vert_p<+\infty$ can be sufficiently large. Applying \eqref{eq15} to $f_n$, we obtain $g\in\mc S_+$ such that $\Vert g\Vert_q\leq 1$ and $\int f_ng$ is sufficiently large, and hence $\int fg$ is sufficiently large. Thus \eqref{eq15} holds again.
+This proves \eqref{eq15} when $\Vert f\Vert_p<+\infty$. If $\Vert f\Vert_p=+\infty$, then, by MCT, $\Vert f_n\Vert_p<+\infty$ can be sufficiently large. Applying \eqref{eq15} to $f_n$ instead of $f$, we obtain $g\in\mc S_+$ such that $\Vert g\Vert_q\leq 1$ and $\int f_ng$ is sufficiently large, and hence $\int fg$ is sufficiently large. Thus \eqref{eq15} holds again.
 
 Case $p=1$: Let $g=1$.
 
-Case $p=+\infty$: Write $X=\bigcup_{n\in\Nbb} \Omega_n$ where $\Omega_n\in\fk M$ and $\mu(\Omega_n)<+\infty$. Choose any $0\leq\lambda<\Vert f\Vert_\infty$. Then $A:=\{|f|>\lambda\}$ satisfies $\mu(A)>0$. Thus, there exists $n$ such that $0<\mu(A\cap\Omega_n)<+\infty$. Let $g=\chi_{A\cap\Omega_n}/\mu(A\cap\Omega_n)$. Then $g\in\mc S_+$, $\Vert g\Vert_1=1$, and $\int fg\geq\lambda$. This proves \eqref{eq15}.
+Case $p=+\infty$: Write $X=\bigcup_{n\in\Nbb} \Omega_n$ where $\Omega_n\in\fk M$ and $\mu(\Omega_n)<+\infty$. Choose any $0\leq\lambda<\Vert f\Vert_\infty$. Then $A:=\{f>\lambda\}$ satisfies $\mu(A)>0$. Thus, there exists $n$ such that $0<\mu(A\cap\Omega_n)<+\infty$. Let $g=\chi_{A\cap\Omega_n}/\mu(A\cap\Omega_n)$. Then $g\in\mc S_+$, $\Vert g\Vert_1=1$, and $\int fg\geq\lambda$. This proves \eqref{eq15}.
 \end{proof}
 
 
@@ -2484,7 +2490,11 @@ When $p<+\infty$, the assumption on $\sigma$-finiteness can be removed. See \cit
 By H\"older's inequality and Lem. \ref{lb28}, $\Psi$ is an isometry. Let us show that any $\Lambda\in L^q(X,\mu,\Fbb)^*$ belongs to the range of $\Psi$. \\[-1ex]
 
 
-Step 1. By considering the real and imaginary parts, we can first assume that $\Lambda$ is real, i.e., $\Lambda(f)\in\Rbb$ for any $f\in L^q(X,\mu,\Rbb_{\geq0})$. 
+Step 1. By considering the real and imaginary parts
+\begin{gather*}
+(\Real\Lambda)(f)=\frac{\Lambda(f)+\ovl{\Lambda(\ovl f)}}{2}\qquad (\Imag\Lambda)(f)=\frac{\Lambda(f)-\ovl{\Lambda(\ovl f)}}{2\im}
+\end{gather*}
+separately, we can assume that $\Lambda$ is real, i.e., $\Lambda(f)\in\Rbb$ for any $f\in L^q(X,\mu,\Rbb_{\geq0})$. 
 
 Let us define $\Rbb_{\geq0}$-linear maps $\Lambda^+,\Lambda^-:L^q(X,\mu,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$ with operator norms $\leq \Vert\Lambda\Vert$, i.e.,
 \begin{align}\label{eq18}
@@ -2502,9 +2512,9 @@ Define the  $\Lambda^\pm:L^q(X,\mu,\Rbb_{\geq0})\rightarrow \ovl\Rbb$ by sending
 \end{gather}
 Since $0\leq g$, we clearly have $\Lambda^+(g)\geq0$. Since $\Lambda$ is bounded and $\Vert h\Vert_q\leq\Vert g\Vert_q$, we clearly have $\Vert\Lambda^+(g)\Vert\leq \Vert\Lambda\Vert\cdot\Vert g\Vert_q$. In particular, $\Lambda^+$ has range in $\Rbb_{\geq0}$. Since $\Lambda^\pm=(-\Lambda)^\mp$, a similar property holds for $\Lambda^-$. Thus, we have checked \eqref{eq18}.
 
-Clearly, for each $f,g\in L^1(X,\mu,\Rbb_{\geq0})$, we have $\Lambda^+(f+g)\geq\Lambda^+(f)+\Lambda^+(g)$. To prove the other direction, choose any $h\in L^q(X,\mu,\Rbb_{\geq0})$ such that $h\leq f+g$. Let $h_1=fh/(f+g)$ and $h_2=gh/(f+g)$, understood to be zero where the denominator vanishes. Then $h_1,h_2\in L^1(X,\mu,\Rbb_{\geq0})$ and $h_1\leq f$ and $h_2\leq g$. This proves $\Lambda^+(f+g)\leq\Lambda^+(f)+\Lambda^+(g)$. Thus $\Lambda^+$ (and similarly $\Lambda^-$) is $\Rbb_{\geq0}$-linear.
+Clearly, for each $f,g\in L^q(X,\mu,\Rbb_{\geq0})$, we have $\Lambda^+(f+g)\geq\Lambda^+(f)+\Lambda^+(g)$. To prove the other direction, choose any $h\in L^q(X,\mu,\Rbb_{\geq0})$ such that $h\leq f+g$. Let $h_1=fh/(f+g)$ and $h_2=gh/(f+g)$, understood to be zero where the denominator vanishes. Then $h_1,h_2\in L^q(X,\mu,\Rbb_{\geq0})$ and $h_1\leq f$ and $h_2\leq g$. This proves $\Lambda^+(f+g)\leq\Lambda^+(f)+\Lambda^+(g)$. Thus $\Lambda^+$ (and similarly $\Lambda^-$) is $\Rbb_{\geq0}$-linear.
 
-From \eqref{eq17}, one easily checks $\Lambda(g)+\Lambda^-(g)\leq\Lambda^+(g)$ for each $f\in L^q(X,\mu,\Rbb_{\geq0})$. Replacing $\Lambda$ with $-\Lambda$, we get $-\Lambda(g)+\Lambda^+(g)\leq \Lambda^-(g)$. Thus \eqref{eq19} holds.\\[-1ex]
+From \eqref{eq17}, one easily checks $\Lambda(g)+\Lambda^-(g)\leq\Lambda^+(g)$ for each $g\in L^q(X,\mu,\Rbb_{\geq0})$. Replacing $\Lambda$ with $-\Lambda$, we get $-\Lambda(g)+\Lambda^+(g)\leq \Lambda^-(g)$. Thus \eqref{eq19} holds.\\[-1ex]
 
 
 
@@ -2556,7 +2566,7 @@ We say that $\mu$ is \textbf{inner regular} on $E$ if
 We say that $\mu$ is \textbf{regular} on $E$ if $\mu$ is both outer and inner regular on $E$.
 \end{df}
 
-
+\hypertarget{proofread}{}
 
 
 \begin{lm}\label{lb4}
@@ -4840,7 +4850,7 @@ Now that the equivalence of the first two columns of Table \ref{tb1} for $V=L^q(
 
 Of course, at least when $X$ is countable, this isomorphism is a special case of the duality $L^p(X,\mu,\Fbb)\simeq L^q(X,\mu,\Fbb)^*$ from Thm. \ref{lb13}, by taking $\mu:2^X\rightarrow[0,+\infty]$ to be the counting measure. However, there are good reasons to study the proof of $l^q(X,\Fbb)^*\simeq l^p(X,\Fbb)$ independently. 
 
-First, the proof of Thm. \ref{lb13} is significantly more involved than the direct proof in the $l^p$ setting. Whenever a result admits a simpler proof in a special case, it is worthwhile to examine that proof directly. Second, Thm. \ref{lb13} depends crucially on the Radon–Nikodym Thm. \ref{lb27}, which in turn can be derived from the Riesz-Fr\'echet Theorem. The latter can be proved with the help of the isomorphism $l^2(X,\Fbb)\simeq l^2(X,\Fbb)^*$. Third, since the proof below follows the idea in Rem. \ref{lb110}, it also serves as another concrete illustration of Table \ref{tb4}.
+First, the proof of Thm. \ref{lb13} is significantly more involved than the direct proof in the $l^p$ setting. Whenever a result admits a simpler proof in a special case, it is worthwhile to examine that proof directly. Second, Thm. \ref{lb13} depends crucially on the Radon-Nikodym Thm. \ref{lb27}, which in turn can be derived from the Riesz-Fr\'echet Theorem. The latter can be proved with the help of the isomorphism $l^2(X,\Fbb)\simeq l^2(X,\Fbb)^*$. Third, since the proof below follows the idea in Rem. \ref{lb110}, it also serves as another concrete illustration of Table \ref{tb4}.
 
 
 %We note that the reason that $(l^q)^*\simeq l^p$ does not hold for $p=1$ is that Principle \ref{lb23} does not hold for $V=l^\infty(X,\Fbb)$ (when $X$ is infinite), that is, not all elements of $l^\infty(X,\Fbb)^*$ can be weak-* approximated 
@@ -8114,7 +8124,7 @@ Compare this problem with the proof of Thm. \ref{lb167}.
 
 
 \begin{rem}\label{lb349}
-The pre-unitary representation $(\pi,V)$ of $\SA$ constructed in Pb. \ref{lb348} is commonly known as the \textbf{GNS construction} \index{00@GNS construction} (after Gelfand–Naimark–Segal). It may be regarded as an abstraction of the construction of the Hankel matrix $H$ and the associated matrix $H'$ from the moments $(c_n)$ in Sec. \ref{lb188}.
+The pre-unitary representation $(\pi,V)$ of $\SA$ constructed in Pb. \ref{lb348} is commonly known as the \textbf{GNS construction} \index{00@GNS construction} (after Gelfand-Naimark-Segal). It may be regarded as an abstraction of the construction of the Hankel matrix $H$ and the associated matrix $H'$ from the moments $(c_n)$ in Sec. \ref{lb188}.
 
 To see how the GNS construction generalizes the classical setting, define $\Lambda:\Cbb[x]\rightarrow\Cbb$ to be the unique linear functional with $\Lambda(x^n)=c_n$ for each $n\in\Nbb$. Then the sesquilinear form \eqref{eq182} is precisely the one whose Gram matrix, with respect to the basis $1,x,x^2,\dots$, is the Hankel matrix $H$ defined in Def. \ref{lb203}. Similarly, the matrix $H'$, also from Def. \ref{lb203}, is the matrix representation of $\pi(x)$ under the same basis.  \hqed
 \end{rem}
@@ -10154,7 +10164,7 @@ Now, assume that the measure preserving $\phi:X\rightarrow X$ is \textbf{ergodic
 \end{align*}
 must satisfy either $\mu(A)=0$ or $\mu(X\setminus A)=0$. This implies that $\Ker(\idt-U)=\Span\{1\}$, cf. Exe. \ref{lb320}. Thus, for each $f\in L^2(X,\mu)$, since $\bk{1|f}=\int_Xfd\mu$, it follows from the mean ergodic Thm. \ref{lb321} that
 \begin{align*}
-\lim_{n\rightarrow\infty}\frac {1}{n}\sum_{k=0}^{n-1}f\circ\underbrace{\phi\circ\cdots\circ\phi}_{k \text{times}}=\int_Xfd\mu
+\lim_{n\rightarrow\infty}\frac {1}{n}\sum_{k=0}^{n-1}f\circ\underbrace{\phi\circ\cdots\circ\phi}_{k\text{ times}}=\int_Xfd\mu
 \end{align*}
 where the LHS converges to the RHS in the $L^2$-norm.  \hqed
 \end{eg}
@@ -10212,7 +10222,7 @@ and is a Hilbert space. We view each $\MH_\alpha$ as an inner product subspace o
 For each finite set $I\subset\SI$, 
 \begin{align*}
 &\sum_{\alpha\in I}|\bk{\eta_\alpha|\xi_\alpha}|\leq\sum_{\alpha\in I}\Vert\eta_\alpha\Vert\cdot\Vert\xi_\alpha\Vert\leq\Big(\sum_{\alpha\in I}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}\cdot \Big(\sum_{\alpha\in I}\Vert\xi_\alpha\Vert^2\Big)^{\frac 12}\\
-\leq&\Big(\sum_{\alpha\in\SI}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}\cdot \Big(\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2\Big)^{\frac 12}:=C
+\leq&\Big(\sum_{\alpha\in\SI}\Vert\eta_\alpha\Vert^2\Big)^{\frac 12}\cdot \Big(\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2\Big)^{\frac 12}=:C
 \end{align*}
 Applying $\sup_{I\in\fin(2^\SI)}$, we obtain $\sum_{\alpha\in \SI}|\bk{\eta_\alpha|\xi_\alpha}|\leq C<+\infty$. Therefore, the RHS of \eqref{eq171} converges absolutely (and hence converges, cf. Prop. \ref{lb234}).
 
