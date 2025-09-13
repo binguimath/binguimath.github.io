@@ -1952,7 +1952,9 @@ One easily shows that $C_0(X,\mc V)$ is closed in $C(X,\mc V)$. To show that $C_
 \end{proof}
 
 \begin{rem}\label{lb84}
-Suppose that $X$ is second countable. Then $X$ is Lindel\"of by Prop. \ref{lb220}. Therefore, $X$ has a countable open cover $\fk U=(U_n)_{n\in\Zbb_+}$ whose members $U_n$ are precompact open subsets of $X$. In particular, $X$ is $\sigma$-compact, since $X=\bigcup_{n\in\Zbb_+}\ovl{U_n}$ where each $\ovl{U_n}$ is compact.
+Suppose that $X$ is second countable. Then $X$ is Lindel\"of by Prop. \ref{lb220}. Therefore, $X$ has a countable open cover $\fk U=(U_n)_{n\in\Zbb_+}$ whose members $U_n$ are precompact open subsets of $X$. In particular, $X$ is $\sigma$-compact, since $X=\bigcup_{n\in\Zbb_+}\ovl{U_n}$ where each $\ovl{U_n}$ is compact. 
+
+Since any open subset $W\subset X$ is second-countable and is LCH (by Prop. \ref{lb3}), it follows that $W$ is a countable union of precompact open subsets of $W$; in particular, $W$ is $\sigma$-compact.  \hqed
 \end{rem}
 
 
@@ -2566,7 +2568,7 @@ We say that $\mu$ is \textbf{inner regular} on $E$ if
 We say that $\mu$ is \textbf{regular} on $E$ if $\mu$ is both outer and inner regular on $E$.
 \end{df}
 
-\hypertarget{proofread}{}
+
 
 
 \begin{lm}\label{lb4}
@@ -2622,7 +2624,7 @@ Note that Radon measures are determined by their integrals against functions in 
 \begin{rem}\label{lb12}
 There exist canonical bijections among:
 \begin{itemize}
-\item $\Rbb_{\geq0}$-linear maps $C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$
+\item $\Rbb_{\geq0}$-linear maps $C_c(X,\Rbb_{\geq0})\rightarrow\Rbb_{\geq0}$.
 \item Positive linear functionals on $C_c(X,\Rbb)$.
 \item Positive linear functionals on $C_c(X)=C_c(X,\Cbb)$.
 \end{itemize}
@@ -2647,7 +2649,7 @@ v=v^+-v^-
 \end{align*}
 where $v^+,v^-\in K$. (Proof: Since $V=\Span_\Rbb K$, we have $v=a_1u_1+\cdots+a_mu_m-b_1w_1-\cdots-b_nw_n$ where each $u_i,w_j$ are in $K$, and each $a_i,b_j$ are in $\Rbb_{\geq0}$. One sets $v^+=\sum_i a_iu_i$ and $v^-=\sum_j b_jw_j$.) We then define $\Lambda(v)=\Gamma(v^+)-\Gamma(v^-)$. 
 
-Let us show that this gives a well-defined map $\Lambda:V\rightarrow W$. Assume that $v=w^+-w^-$ where $w^+,w^-\in K$. Then $\Gamma(v^+)-\Gamma(v^-)=\Gamma(w^+)-\Gamma(w^-)$ iff $\Gamma(v^+)+\Gamma(w^-)=\Gamma(v^-)+\Gamma(w^+)$, iff (by the additivity of $\Gamma$) $\Gamma(v^++w^-)=\Gamma(v^-+w^+)$. The last statement is true because $v^+-v^-=w^+-w^-$ implies $v^++w^-=v^-+w^+$.
+Let us show that this gives a well-defined map $\Lambda:V\rightarrow W$. Assume that $v=v^+-v^-=w^+-w^-$ where $v^\pm,w^\pm\in K$. Then $\Gamma(v^+)-\Gamma(v^-)=\Gamma(w^+)-\Gamma(w^-)$ iff $\Gamma(v^+)+\Gamma(w^-)=\Gamma(v^-)+\Gamma(w^+)$, iff (by the additivity of $\Gamma$) $\Gamma(v^++w^-)=\Gamma(v^-+w^+)$. The last statement is true because $v^+-v^-=w^+-w^-$ implies $v^++w^-=v^-+w^+$.
 
 It is easy to see that $\Lambda$ is additive. If $c\geq0$, then $cv=cv^+-cv^-$ where $cv^+,cv^-\in K$. So $\Lambda(cv)=\Gamma(cv^+)-\Gamma(cv^-)$, which (by the $\Rbb_{\geq0}$-linearity of $\Gamma$) equals $c\Gamma(v^+)-c\Gamma(v^-)=c\Lambda(v)$. Since $-v=v^--v^+$, we have $\Lambda(-v)=\Gamma(v^-)-\Gamma(v^+)=-\Lambda(v)$. Hence $\Lambda(-cv)=c\Lambda(-v)=-c\Lambda(v)$. This proves that $\Lambda$ commutes with the $\Rbb$-multiplication.
 \end{proof}
@@ -2688,6 +2690,7 @@ To fix this issue, we note that since $\mu$ is outer regular on $U\setminus E$, 
 \end{proof}
 
 
+The following criterion for Radon measures is of fundamental importance and will be used repeatedly throughout this course.
 
 \begin{thm}\label{lb64}
 Assume that $X$ is second countable. Let $\mu$ be a Borel measure on $X$. Then $\mu$ is Radon iff $\mu(K)<+\infty$ for any compact $K\subset X$.
@@ -2696,7 +2699,13 @@ Assume that $X$ is second countable. Let $\mu$ be a Borel measure on $X$. Then $
 In particular, a finite Borel measure on $\Rbb^n$ (where $n\in\Nbb$) is Radon.
 
 \begin{proof}
-See \cite[Sec. 25.5]{Gui-A}.
+See \cite[Sec. 25.5]{Gui-A}. The rough idea is as follows. By Thm. \ref{lb7}, there exists a Radon measure $\nu$ such that $\int fd\mu=\int fd\nu$ for all $f\in C_c(X)$. It suffices to show $\mu=\nu$. 
+
+If $U\subset X$ is open, then $U$ is $\sigma$-compact by Rem. \ref{lb84}. Using Urysohn's lemma, we can find an increasing sequence $(f_n)$ in $C_c(I,[0,1])$ converging pointwise to $\chi_U$. By MCT, we have $\mu(U)=\lim_n \int f_nd\mu=\lim_n\int f_nd\nu=\nu(U)$.
+
+Next, let $E\in\fk B_X$ such that $\nu(E)<+\infty$. Since $\nu$ is Radon, by Thm. \ref{lb101}, there exist a compact $K\subset E$ and an open $U\supset E$ such that $\nu(U\setminus K)$ is small. By the above paragraph, $\mu(U\setminus K)=\nu(U\setminus K)$ is also small, and $\mu(U)=\nu(U)$. Thus $\mu(E)\approx\mu(U)=\nu(U)\approx\nu(E)$. Hence $\mu(E)=\nu(E)$.
+
+Finally, choose any $E\in\fk B_X$. Since $X$ is $\sigma$-compact, it is covered by an increasing sequence $(K_n)$ of compact subsets. Since $\nu$ is Radon, we have $\nu(K_n)<+\infty$ and hence $\nu(E\cap K_n)<+\infty$. By the above paragraph, we have $\mu(E\cap K_n)=\nu(E\cap K_n)$. Hence $\mu(E)=\nu(E)$.
 \end{proof}
 
 
@@ -2711,9 +2720,6 @@ The main reference for this subsection is \cite[Sec. 27.2]{Gui-A}.
 
 
 
-
-
-
 \begin{thm}[\textbf{Lusin's theorem}]\label{lb82}\index{00@Lusin's theorem}
 Let $X$ be LCH. Let $\mu$ be a Radon measure (or its completion) on $X$ with $\sigma$-algebra $\fk M$. Let $f:X\rightarrow\Fbb$ be measurable. Let $A\in\fk M$ such that $\mu(A)<+\infty$. Then for each $\eps>0$ there exists a compact $K\subset A$ such that $\mu(A\setminus K)<\eps$ and that $f|_K:K\rightarrow\Fbb$ is continuous.
 \end{thm}
@@ -2721,7 +2727,7 @@ Let $X$ be LCH. Let $\mu$ be a Radon measure (or its completion) on $X$ with $\s
 With the help of the Tietze extension Thm. \ref{lb83}, Lusin's theorem implies that for each $\eps>0$ there exist a compact $K\subset A$ and some $\wtd f\in C_c(X,\Fbb)$ such that $\wtd f|_K=f|_K$ and $\mu(A\setminus K)<\eps$.
 
 \begin{proof}
-See \cite[Sec. 25.4]{Gui-A}.
+See \cite[Sec. 25.4]{Gui-A}. The rough idea is that one first uses Thm. \ref{lb101} to prove the case where $\wtd f:=f\chi_A$ is a simple function. The general case follows by choosing an increasing sequence of simple functions converging uniformly to $\wtd f\chi_{F_n}$, where $F_n=|\wtd f|^{-1}([0,n])$ and $n$ is sufficiently large.
 \end{proof}
 
 
@@ -2731,7 +2737,7 @@ Let $1\leq p<+\infty$. Let $\mu$ be a Radon measure (or its completion) on an LC
 
 
 \begin{proof}
-See \cite[Sec. 27.2]{Gui-A}.
+See \cite[Sec. 27.2]{Gui-A}. Rough idea: Choose $f\in L^p$. Use Lusin's theorem to approximate $f\chi_{E_n}$ by functions of $C_c(X,\Fbb)$, where $E_n=\{1/n<|f|<n\}$ and $n$ is sufficiently large. Alternatively, first approximate $f$ by a simple function $g$ (cf. Thm. \ref{lb79}). Then use Thm. \ref{lb101} and Urysohn's lemma to approximate $g$ by functions of $C_c(X,\Fbb)$.
 \end{proof}
 
 
@@ -2783,7 +2789,9 @@ Let $1\leq p<+\infty$. Let $\mu$ be a Radon measure (or its completion) on a sec
 
 
 \begin{proof}
-See \cite[Sec. 27.2]{Gui-A}.
+See \cite[Sec. 27.2]{Gui-A}. The rough idea is as follows. First assume that $X$ is compact. Then $\mu(X)<+\infty$. By Thm. \ref{lb75}, $C(X,\Fbb)$ is $l^\infty$-separable, and hence $L^p$-separable. Therefore, by Thm. \ref{lb14}, $L^p(X,\mu,\Fbb)$ is separable.
+
+In the general case, one writes $X=\bigcup_n K_n$ where $K_1\subset K_2\subset\cdots$ are compact. Clearly $\sum_n L^p(K_n,\mu|_{K_n},\Fbb)$ is dense in $L^p(X,\mu,\Fbb)$. By Thm. \ref{lb64}, each $\mu|_{K_n}$ is Radon. By the above paragraph, each $L^p(K_n,\mu|_{K_n},\Fbb)$ is separable. Thus $L^p(X,\mu,\Fbb)$ is separable.
 \end{proof}
 
 
@@ -2806,7 +2814,7 @@ We now assume that $X$ is LCH.
 A complex (resp. signed) measure on $\fk B_X$ is called \textbf{Radon} if it is a $\Cbb$-linear (resp. $\Rbb$-linear) combination of finite Radon measures. 
 \end{df}
 
-Suppose that $\mu$ is a complex Radon measure on $X$. Then similar to the proof of Rem. \ref{lb12}, for each $f\in C_0(X)$, we can extend the $\Rbb_{\geq0}$-linear functional $f\mapsto\int_X fd\mu$, where $\mu$ are finite Radon measures, to $\mu\mapsto \int_X fd\mu$ for all complex Radon measures $\mu$. This gives a $\Cbb$-bilinear map
+Suppose that $\mu$ is a complex Radon measure on $X$. Then similar to the proof of Rem. \ref{lb12}, for each $f\in C_0(X)$, we can extend the $\Rbb_{\geq0}$-linear functional $\mu\mapsto\int_X fd\mu$ (for all finite Radon measures $\mu$) to $\mu\mapsto \int_X fd\mu$ (for all complex Radon measures $\mu$). This gives a $\Cbb$-bilinear map
 \begin{align*}
 (f,\mu)\mapsto\int_X fd\mu\qquad\in\Cbb
 \end{align*}
@@ -2845,6 +2853,8 @@ Let $\mu$ be a complex Radon measure on $X$. Let $\Lambda\in C_c(X,\Fbb)^*=C_0(X
 \end{align*}
 \end{df}
 \end{comment}
+
+
 
 
 
@@ -2890,12 +2900,12 @@ Replacing $\rho$ with $\arctan\circ\rho$, we may assume that $\rho$ is bounded. 
 \begin{align*}
 \sum_{x\in B}(\rho(x^+)-\rho(x^-))\leq C
 \end{align*}
-Applying $\lim_B$, we get $\sum_{x\in A}(\rho(x^+)-\rho(x^-))\leq C<+\infty$. Therefore $A$ is countable.
+Applying $\lim_B$, we get $\sum_{x\in A}(\rho(x^+)-\rho(x^-))\leq C<+\infty$. It follows from Prop. \ref{lb235} that $A$ is countable.
 \end{proof}
 
 
 \begin{df}
-Let $\rho:I\rightarrow\Rbb$. The \textbf{right-continuous normalization} \index{00@Right-continuous normalization} of $\rho$ is the function $\wtd\rho:I\rightarrow \Rbb$ defined by
+Let $\rho:I\rightarrow\Rbb$ be increasing. The \textbf{right-continuous normalization} \index{00@Right-continuous normalization} of $\rho$ is the function $\wtd\rho:I\rightarrow \Rbb$ defined by
 \begin{gather*}
 \wtd\rho(x)=\left\{
 \begin{array}{ll}
@@ -3008,7 +3018,7 @@ is a directed set.
 
 
 \begin{df}\label{lb66}
-Let $V$ be a Banach space. Assume $[a,b]\subset I$ and $a<b$. Let $f\in C([a,b],V)$. For each $(\sigma,\xi_\blt)\in\mc Q(I)$, define the \textbf{Stieltjes sum}\index{00@Stieltjes sum} \index{Sf@$S_\rho(f,\sigma,\xi_\blt)$}
+Let $V$ be a complete normed vector space. Assume $[a,b]\subset I$ and $a<b$. Let $f\in C([a,b],V)$. For each $(\sigma,\xi_\blt)\in\mc Q(I)$, define the \textbf{Stieltjes sum}\index{00@Stieltjes sum} \index{Sf@$S_\rho(f,\sigma,\xi_\blt)$}
 \begin{align*}
 S_\rho(f,\sigma,\xi_\blt)=\sum_{j\geq 1}f(\xi_j)\big(\rho(a_j)-\rho(a_{j-1})\big)
 \end{align*}
@@ -3056,6 +3066,7 @@ The integrals of the constant function $1$ are
 \end{align*}
 \end{eg}
 
+\begin{comment}
 \begin{eg}\label{lb68}
 Suppose that $\rho|_{(a,b]}=1$. Then
 \begin{align*}
@@ -3063,6 +3074,8 @@ Suppose that $\rho|_{(a,b]}=1$. Then
 \end{align*}
 In particular, if $\rho|_{[a,b]}=1$, then $\dps\int_{(a,b]}fd\rho=0$ and $\dps\int_{[a,b]}fd\rho=f(a)$.
 \end{eg}
+\end{comment}
+
 
 
 
@@ -3077,7 +3090,11 @@ is linear. Moreover, since $\Vert S(f,\sigma,\xi_\blt)\Vert\leq (\rho(b)-\rho(a)
 \begin{align*}
 \Big\Vert\int_{[a,b]}fd\rho\Big\Vert\leq \rho(b)\Vert f\Vert_{l^\infty}\qquad\text{for all }f\in C([a,b],V)
 \end{align*}
-In particular, $\Lambda$ is bounded.
+In particular, $\Lambda$ is bounded. Similarly, the linear functional
+\begin{align*}
+C([a,b],V)\rightarrow V\qquad f\mapsto \int_{(a,b]}fd\rho
+\end{align*}
+has operator norm $\leq\rho(b)-\rho(a)$.
 \end{rem}
 
 \begin{rem}\label{lb6}
@@ -3089,7 +3106,7 @@ by considering tagged partitions finer than $\{a,c,b\}$.
 \end{rem}
 
 
-Exp. \ref{lb68} suggests that the value of $\int_{[a,b]}fd\rho$ is independent of $\rho(a)$:
+%Exp. \ref{lb68} suggests that the value of $\int_{[a,b]}fd\rho$ is independent of $\rho(a)$:
 
 \begin{lm}\label{lb69}
 Suppose that $\rho_1,\rho_2:[a,b]\rightarrow\Rbb_{\geq0}$ are increasing and satisfies $\rho_1|_{(a,b]}=\rho_2|_{(a,b]}$. Then for each $f\in C([a,b],V)$ we have $\dps\int_{[a,b]}fd\rho_1=\int_{[a,b]}fd\rho_2$.
@@ -3098,11 +3115,11 @@ Suppose that $\rho_1,\rho_2:[a,b]\rightarrow\Rbb_{\geq0}$ are increasing and sat
 See Thm. \ref{lb67} for a generalization of this lemma.
 
 \begin{proof}
-Assume WLOG that $\rho_1(a)\leq\rho_2(a)$. Let $\lambda=\rho_2(a)-\rho_1(a)$. Then $\rho_2-\rho_1=\lambda\cdot\chi_{\{a\}}=\lambda\cdot (1-\chi_{(a,b]})$, and hence $\rho_1+\lambda=\rho_2+\lambda\cdot\chi_{(a,b]}$. By Rem. \ref{lb6},
+Since $f$ is continuous, for each increasing $\rho:[a,b]\rightarrow\Rbb_{\geq0}$, the integral $\int_{[a,b]}fd\rho$ can be approximated by $f(a)\rho(a)+S_\rho(f,\sigma,\xi_\blt)$ where $(\sigma,\xi_\blt)=\eqref{eq41}$ and $\xi_1=a$. Then
 \begin{align*}
-\int_{[a,b]}fd\rho_1+\lambda\int_{[a,b]} fd1=\int_{[a,b]}fd\rho_2+\lambda\int_{[a,b]} fd\chi_{(a,b]}
+f(a)\rho(a)+S_\rho(f,\sigma,\xi_\blt)=f(a)\rho(a_1)+\sum_{j\geq2}f(\xi_j)(\rho(a_j)-\rho(a_{j-1}))
 \end{align*}
-By Exp. \ref{lb6}, we obtain $\int_{[a,b]}fd\rho_1=\int_{[a,b]}fd\rho_2$.
+is independent of $\rho(a)$. Hence $\int_{[a,b]}fd\rho$ is independent of $\rho(a)$.
 \end{proof}
 
 
@@ -3127,7 +3144,7 @@ where the RHS converges. Similarly, we can define $\int_{-\infty}^{+\infty}fd\rh
 Let $I\subset\Rbb$ be a proper interval, and let $a=\inf I$ and $b=\sup I$. Note that $I$ is not assumed to be bounded. 
 
 \begin{df}
-For each $f\in C_c(I,V)$ and each increasing $\rho:I\rightarrow\Rbb$, we can still define the \textbf{Stieltjes integral} \index{00@Stieltjes integral}
+For each $f\in C_c(I,V)$ and each increasing $\rho:I\rightarrow\Rbb_{\geq0}$, we can still define the \textbf{Stieltjes integral} \index{00@Stieltjes integral}
 \begin{align*}
 \int_I fd\rho:=\int_Jfd\rho
 \end{align*}
@@ -3175,7 +3192,7 @@ This completes the proof by choosing arbitrary $\eps$.
 
 
 \begin{thm}\label{lb72}
-Let $\rho_1,\rho_2:I\rightarrow\Rbb_{\geq0}$ be \uwave{bounded} increasing functions satisfying
+Let $\rho_1,\rho_2:I\rightarrow\Rbb_{\geq0}$ be increasing functions satisfying
 \begin{gather}\label{eq48}
 \begin{gathered}
 %\lim_{x\rightarrow a^+}\rho_1(x)=\lim_{x\rightarrow a^+}\rho_2(x)\qquad\text{if}\qquad a\in I\\
@@ -3208,10 +3225,10 @@ choose $\varphi_{v,y}\in C_c(I,[0,1])$ satisfying
 \end{align*}
 Choose $u\in(a,v)$ such that $\varphi_{v,y}$ vanishes outside $[u,y]$. Then by Rem. \ref{lb6},
 \begin{align*}
-&\int_I\varphi_{v,y}d\rho=\int_{[u,y]}\varphi_{v,y}d\rho=\varphi_{v,y}(u)+\int_{(u,v]}\varphi_{v,y}d\rho+\int_{(v,x]}\varphi_{v,y}d\rho+\int_{(x,y]}\varphi_{v,y}d\rho\\
-=&\int_{(u,v]}\varphi_{v,y}d\rho+\rho(x)-\rho(v)+\int_{(x,y]}\varphi_{v,y}d\rho
+&\int_I\varphi_{v,y}d\rho=\int_{[u,y]}\varphi_{v,y}d\rho=\int_{[u,v]}\varphi_{v,y}d\rho+\int_{(v,x]}\varphi_{v,y}d\rho+\int_{(x,y]}\varphi_{v,y}d\rho\\
+=&\int_{[u,v]}\varphi_{v,y}d\rho+\rho(x)-\rho(v)+\int_{(x,y]}\varphi_{v,y}d\rho
 \end{align*}
-where Exp. \ref{lb71} is used in the last equality. By Rem. \ref{lb63}, we have $\int_{(u,v]}\varphi_{v,y}d\rho\leq \rho(v)-\rho(u)\leq\rho(v)$ and $\int_{(x,y]}\varphi_{v,y}d\rho\leq (\rho(y)-\rho(x))$. Since $\rho$ is right-continuous and satisfies \eqref{eq48}, we have
+where Exp. \ref{lb71} is used in the last equality. By Rem. \ref{lb65}, we have $\int_{[u,v]}\varphi_{v,y}d\rho\leq\rho(v)$ and $\int_{(x,y]}\varphi_{v,y}d\rho\leq \rho(y)-\rho(x)$. Since $\rho$ is right-continuous and satisfies \eqref{eq48}, we have
 \begin{align*}
 \lim_{v\searrow a^+}\rho(v)=\lim_{y\searrow x^+}(\rho(y)-\rho(x))=0
 \end{align*}
@@ -3231,7 +3248,7 @@ Case 2: Assume $a\in I$ and $a\leq x<b$. For each $y\in(x,b)$, choose $\varphi_y
 \begin{align*}
 \int_I\varphi_yd\rho=\int_{[a,x]}\varphi_yd\rho+\int_{(x,y]}\varphi_yd\rho=\rho(x)+\int_{(x,y]}\varphi_yd\rho
 \end{align*}
-where Exp. \ref{lb71} is used. By Rem. \ref{lb63}, $\int_{(x,y]}\varphi_yd\rho\leq \rho(y)-\rho(x)$. Therefore, the right-continuity of $\rho$ implies
+where Exp. \ref{lb71} is used. By Rem. \ref{lb65}, $\int_{(x,y]}\varphi_yd\rho\leq \rho(y)-\rho(x)$. Therefore, the right-continuity of $\rho$ implies
 \begin{align*}
 \lim_{y\searrow x^+}\int_I \varphi_yd\rho=\rho(x)
 \end{align*}
@@ -3253,6 +3270,10 @@ The assumption \eqref{eq48} imposes little restriction. Indeed, suppose $a\notin
 \end{align}
 Therefore, when $a\notin I$, given any two increasing functions $\rho_1,\rho_2:I\rightarrow\Rbb_{\geq0}$, we can freely add constants to $\rho_1$ and $\rho_2$ to ensure that \eqref{eq48} holds.
 \end{rem}
+
+
+
+
 
 
 
@@ -3286,10 +3307,10 @@ Note that by Thm. \ref{lb64}, finite Borel measures on $I$ and finite Radon meas
 
 
 \begin{proof}
-Step 1. Thm. \ref{lb7} establishes the equivalence between a bounded positive linear $\Lambda$ and a finite Borel measure $\mu$. We let prove the equivalence between the radon measures $\mu$ and the functions $\rho$ satisfying (a).
+Step 1. Thm. \ref{lb7} establishes the equivalence between a bounded positive linear functional $\Lambda$ and a finite Borel measure $\mu$. Let us prove the equivalence between the radon measures $\mu$ and the functions $\rho$ satisfying (a).
 
 More precisely, given a Radon measure $\mu$ on $I$, let $\rho_\mu:I\rightarrow\Rbb_{\geq0}$ be defined by \eqref{eq42}, that is, for each $x\in I$ we have 
-\begin{align}
+\begin{align}\label{eq184}
 \rho_\mu(x)=\mu(I_{\leq x})
 \end{align}
 Then $\rho_\mu$ is clearly bounded and increasing. By DCT,  $\rho_\mu$ is right-continuous, and we have $\lim_{x\rightarrow a^-}\rho(x)=0$ when $a\notin I$. Therefore, $\rho_\mu$ satisfies (a). 
@@ -3320,7 +3341,7 @@ Also, we have $\Vert f-g\Vert_{l^\infty(I)}\leq\eps$ where
 \begin{align*}
 g=f(\alpha)\chi_{\{a\}}+\sum_{i=1}^n f(\xi_i)\chi_{(a_{i-1},a_i]}
 \end{align*}
-By \eqref{eq42}, we have
+By \eqref{eq184}, we have
 \begin{align*}
 \mu(\{\alpha\})=\rho_\mu(\alpha)-\mu(I_{<\alpha})\qquad \mu((a_{i-1},a_i])=\rho_\mu(a_i)-\rho_\mu(a_{i-1})
 \end{align*}
@@ -3369,6 +3390,8 @@ These relations allow us to convert the setting of \cite[Sec. 25.7]{Gui-A}, whic
 \end{comment}
 
 
+
+
 \subsubsection{The general case}
 
 
@@ -3381,7 +3404,7 @@ By Rem. \ref{lb65} and \ref{lb6}, we have an $\Rbb_{\geq0}$-bilinear functional
 \begin{align*}
 (f,\rho)\mapsto \int_I fd\rho\qquad\in\Rbb_{\geq0}
 \end{align*}
-for $f\in C_c(I,\Rbb_{\geq0})$ and bounded increasing $\rho:I\rightarrow\Rbb_{\geq0}$. Similar to the proof of Rem. \ref{lb12}, it can be extended to a positive bililinear functional 
+for $f\in C_c(I,\Rbb_{\geq0})$ and bounded increasing $\rho:I\rightarrow\Rbb_{\geq0}$. Similar to the proof of Rem. \ref{lb12}, it can be extended to a positive $\Cbb$-bililinear functional 
 \begin{align*}
 C_c(I,\Cbb)\times BV(I,\Cbb)\rightarrow\Cbb\qquad (f,\rho)\mapsto \int_I fd\rho
 \end{align*}
@@ -3409,6 +3432,11 @@ This is immediate from Thm. \ref{lb8} and \ref{lb9}.
 \newpage
 
 
+
+
+
+
+
 \section{Normed vector spaces and their dual spaces}
 
 
@@ -3416,7 +3444,7 @@ This is immediate from Thm. \ref{lb8} and \ref{lb9}.
 
 
 
-Linear functional analysis treats function spaces as linear spaces with appropriate geometric/topological structures and analytic properties. In the foundational theory of functional analysis, two analytic properties are especially important: (Cauchy) completeness and duality. In this course, our focus is primarily on normed vector spaces $V$. For such spaces, Cauchy completeness is interpreted in the same way as in any metric space. Duality, on the other hand, refers to the natural identification of $V$ as the dual space $V^*$ of another normed vector space $U$.
+Linear functional analysis treats function spaces as linear spaces with appropriate geometric/topological structures and analytic properties. In the foundational theory of functional analysis, two analytic properties are especially important: (Cauchy) completeness and duality. In this course, our focus is primarily on normed vector spaces $V$. For such spaces, Cauchy completeness is interpreted in the same way as in any metric space. Duality, on the other hand, refers to the natural identification of $V$ as the dual space $U^*$ of another normed vector space $U$.
 
 
 
@@ -3480,9 +3508,12 @@ where $\Lambda:V\rightarrow W$ is a bounded linear operator (called the \textbf{
 
 
 
-The problem of expressing $\delta S[f,\eta]$ as an integral involving $\eta$ is therefore transformed to the problem of characterizing the dual space $V^*$. More precisely, the space $V$---and in particular its norm---is not fixed in advance. The situation is not that one starts with a given normed space and is then asked to characterize its dual. Rather, the task is to find an appropriate norm on a suitable function space $V$ such that the bounded linear functionals on $V$, once studied and classified as integrals, are well-suited to capturing the variation of $S$.\footnote{The same function space $V$, when equipped with different norms, leads to different classifications of bounded linear functionals. For example, let $V=C([a,b])$. If the norm is $l^\infty$, then by Thm. \ref{lb10}, the bounded linear functionals are the Stieltjes integrals with respect to BV functions. If the norm is $L^2$, then by Exp. \ref{lb49}, the bounded linear functionals are those of the form $f\mapsto\int fgdm$ where $g\in L^2([a,b],m)$.} \uwave{The two perspectives on $\delta S[f,\eta]$---as a bounded linear functional on $V$, and as an integral involving $\eta$---together offer a deeper and more complete understanding of the variation of $S$.}
+The problem of expressing $\delta S[f,\eta]$ as an integral involving $\eta$ is therefore transformed to the problem of characterizing the dual space $V^*$. More precisely, the space $V$---and in particular its norm---is not fixed in advance. The situation is not that one starts with a given normed space and is then asked to characterize its dual. Rather, the task is to find an appropriate norm on a suitable function space $V$ such that the bounded linear functionals on $V$, once studied and classified as integrals, are well-suited to capturing the variation of $S$. \footnote{The same function space $V$, when equipped with different norms, leads to different classifications of bounded linear functionals. For example, let $V=C([a,b])$. If the norm is $l^\infty$, then by Thm. \ref{lb10}, the bounded linear functionals are the Stieltjes integrals with respect to BV functions. If the norm is $L^2$, then by Exp. \ref{lb49}, the bounded linear functionals are those of the form $f\mapsto\int fgdm$ where $g\in L^2([a,b],m)$.} \uwave{The two perspectives on $\delta S[f,\eta]$---as a bounded linear functional on $V$, and as an integral involving $\eta$---together offer a deeper and more complete understanding of the variation of $S$.}
 
 More discussion of the relationship between dual spaces and the calculus of variations can be found in \cite{Gray84}.
+
+
+
 
 
 \subsection{Moment problems: a bridge between integral theory and dual spaces}\label{lb41}
@@ -3557,7 +3588,7 @@ Conversely, if we know that $V_0=\Span\{\xi_n\}$ is dense in $V$, then \eqref{eq
 \end{align*}
 is well-defined and bounded, with operator norm $\Vert\varphi\Vert\leq M$. By boundedness, $\varphi$ extends uniquely to a bounded linear functional on all of $V$, cf. Thm. \ref{lb31}. Therefore, Problem \ref{lb17} can always be solved.
 
-The case where $V_0$ is not dense in $V$ is more subtle and will be treated in detail in a later chapter.   \hqed
+The case where $V_0$ is not dense in $V$ is more subtle and will be treated in detail in Ch. \ref{lb355}.   \hqed
 \end{rem}
 
 
@@ -3575,6 +3606,8 @@ Characterize the elements of $V^*$ as precisely those linear functionals $\varph
 Conversely, Problem \ref{lb22} can be reduced to the moment Problem \ref{lb16} by choosing a densely-spanning $(\xi_n)$ and taking $c_n=\bk{\xi_n,\varphi}$. The solution to Problem \ref{lb16} then yields a function $f$ such that $\bk{\xi_n,f}=\bk{\xi_n,\varphi}$. By the density of $\Span\{\xi_n\}$ in $V$, it follows that $\varphi$ is represented by $f$. 
 
 Thus, we conclude that when $(\xi_n)$ spans a dense subspace of $V$, \uwave{the moment problem (Problem \ref{lb16}) and the characterization of dual spaces (Problem \ref{lb22}) are equivalent}.
+
+
 
 
 
@@ -3687,13 +3720,15 @@ Thus, the second and third columns of Table \ref{tb1} are equivalent. See Thm. \
 On the other hand, \eqref{eq9} generalizes the condition \eqref{eq5}, which, as previously mentioned, arises naturally in the study of Fourier series and continued fractions. As such, its function-theoretic interpretation---highlighted by the following theorems---provides a general framework for understanding the convergence of the sequence $(f_n)$ to $f$ in Problem \ref{lb18}. 
 
 
-\begin{thm}
+\begin{thm}\label{lb356}
 Let $1<p\leq+\infty$ and $p^{-1}+q^{-1}=1$. Let $(f_n)$ be a uniformly $L^p$-norm bounded sequence in $L^p([a,b],m)$. Suppose that $(f_n)$ converges pointwise to $f$. Then we have $f\in L^p([a,b],m)$. Moreover,  $(f_n)$ converges weak-* to $f$, which means that $\lim_n\int f_ngdm=\int fgdm$ for all $g\in L^q([a,b],m)$.
 \end{thm}
 
 \begin{proof}
 See Thm. \ref{lb81}.
 \end{proof}
+
+
 
 
 \begin{thm}\label{lb20}
@@ -3738,7 +3773,7 @@ By saying that $(d\rho_n)$ converges weak-* to $d\rho$, we mean $\lim_n \int gd\
 See Thm. \ref{lb92} and Cor. \ref{lb95}.
 \end{proof}
 
-The above theorems establish an intimate connection between the (pointwise) convergence of moments and the pointwise convergence of the antiderivatives of a sequence of functions.\footnote{We are viewing $\rho_n$ and $\rho$ as the antiderivatives of $d\rho_n$ and $d\rho$.} Our understanding of convergence from various perspectives can thus be summarized in Table \ref{tb1}.
+The above theorems establish an intimate connection between the (pointwise) convergence of moments and the pointwise convergence of (the antiderivatives of) a sequence of functions.\footnote{We are viewing $\rho_n$ and $\rho$ as the antiderivatives of $d\rho_n$ and $d\rho$.} Our understanding of convergence from various perspectives can thus be summarized in Table \ref{tb1}.
 
 \begin{table}[H]
 \centering
@@ -3770,7 +3805,7 @@ $\begin{array}{c}
 Thm. \ref{lb20} and \ref{lb21}, which establish the equivalence of the first and second columns of Table \ref{tb1}, are not easy to prove. In fact, proving Thm. \ref{lb20} typically requires the duality $L^p([a,b])\simeq L^q([a,b])^*$, or at least techniques closely related to those used in establishing this duality. 
 
 
-Therefore, the solvability of the moment problems (Problems \ref{lb16} and \ref{lb17})---in other words, the solvability of Problem \ref{lb22} concerning the characterization of dual spaces---is closely related to the equivalence between the first and second columns of Table \ref{tb1}. This close connection rests on the following principle:
+Therefore, the solvability of the moment problems (Problems \ref{lb16})---equivalently, the solvability of Problem \ref{lb22} concerning the characterization of dual spaces---is closely related to the equivalence between the first and second columns of Table \ref{tb1}. This close connection rests on the following principle:
 
 \begin{principle}\label{lb23}
 Usually, if $V$ is a normed vector space consisting of functions,  any element $\varphi$ of $V^*$ can be weak-* approximated by elementary functions with uniformly bounded norms. More precisely, there exists a sequence (or a net) of elementary functions $(f_n)$ such that the operator norms of the linear functionals $\xi\in V\mapsto\int \xi f_n$ are uniformly bounded, and
@@ -3786,35 +3821,32 @@ Here is how, with the help of Principle \ref{lb23}, the characterization of $V^*
 By this principle, for each $\varphi\in V^*$, we can select a sequence $(f_n)$  approximating weak-* to $\varphi$. Since the second column of Table \ref{tb1} implies the first column, the sequence $(f_n)$ converges to some function $f$ in the sense described in the first column of Table \ref{tb1}. Then, by the equivalence of the three modes of convergence in that table, it follows that $(f_n)$ converges weak-* to $f$. Consequently, $\varphi$ is represented by integration against $f$, thereby solving the problem of characterizing the dual space $V^*$. \hqed
 \end{rem}
 
-The idea outlined in Rem. \ref{lb110} is roughly the approach Riesz employed in 1907 to solve the following trigonometric moment problem.
+The idea outlined in Rem. \ref{lb110} is roughly the approach Riesz employed in \cite{Rie07a} to solve the following trigonometric moment problem.
 
 \index{00@Riesz-Fischer theorem, Riesz's original version}
 \begin{thm}[\textbf{Riesz-Fischer theorem}, Riesz's original version]\footnote{The modern interpretation of the Riesz-Fischer theorem as stating that $L^2(X,\mu)$ (or more generally $L^p(X,\mu)$) is Cauchy-complete for any measure space $(X,\mu)$ has led to a significant misunderstanding. In fact, while Fischer formulated the theorem for $L^2([-\pi,\pi],\frac m{2\pi})$ in terms of Cauchy sequences, Riesz understood it quite differently---through the lens of moment problems.
 
-Therefore, once Riesz realized that solving moment problems is equivalent to the characterization of dual spaces, he immediately obtained the Riesz-Fr\'echet Thm. \ref{lb15}. As we have emphasized at the beginning of Sec. \ref{lb24}, completeness and duality are fundamentally distinct properties, each serving distinct purposes and arising from different considerations. The fact that they coincide in the case of inner product spaces is purely a coincidence.}
-For each $(c_k)_{k\in\Zbb}$ in $l^2(\Zbb)$, there is an (automatically unique) $f\in L^2([-\pi,\pi],\frac m{2\pi})$ whose Fourier series is equal to $(c_k)$.
+Therefore, once Riesz realized that solving moment problems is equivalent to the characterization of dual spaces, he immediately obtained the Riesz-Fr\'echet Thm. \ref{lb15} in \cite{Rie07b}. As we have emphasized at the beginning of Sec. \ref{lb24}, completeness and duality are fundamentally distinct properties, each serving distinct purposes and arising from different considerations. The fact that they coincide in the case of inner product spaces is purely a coincidence.}
+For each $(c_k)_{k\in\Zbb}$ in $l^2(\Zbb)$, there is a (necessarily unique) $f\in L^2([-\pi,\pi],\frac m{2\pi})$ whose Fourier series is equal to $(c_k)$.
 \end{thm}
 
 
-\begin{proof}[\textbf{Riesz's idea of the proof}]\footnote{See \cite[Ch. 6]{Haw-L}.}
-Choose $(c_k)_{k\in\Zbb}$ in $l^2(\Zbb)$. One aims to solve the moment problem that there exists $f\in L^2$ such that $\frac{1}{2\pi}\int fe_{-k}=c_k$ for all $k\in\Zbb$, where $e_k(x)=e^{\im kx}$. For each $n\in\Nbb$, let
+\begin{proof}[\textbf{Riesz's proof}]\footnote{See \cite[Ch. 6]{Haw-L} or \cite{Rie07a}.}
+Choose $(c_k)_{k\in\Zbb}$ in $l^2(\Zbb)$. Riesz aimed to solve the moment problem that there exists $f\in L^2$ such that $\frac{1}{2\pi}\int fe_{-k}=c_k$ for all $k\in\Zbb$, where $e_k(x)=e^{\im kx}$. For each $0<r<1$, let
 \begin{align*}
-f_n=\sum_{-n\leq k\leq n}c_ke_k
+f_r=\sum_{n\in\Zbb}r^{|n|}c_ne_n
 \end{align*}
-Then $(f_n)$ converges weak-* to the bounded linear functional $\varphi\in (L^2)^*$ satisfying $\bk{e_{-k},\varphi}=c_k$ for all $k$. (This is an instance of Principle \ref{lb23}.) \footnote{Riesz's original proof does not use the language of linear functionals.} 
+which belongs to $C^\infty(\Sbb^1)$. Then $\lim_{r\rightarrow 1}f_r$ converges weak-* to the bounded linear functional $\varphi\in (L^2)^*$ satisfying $\bk{e_{-k},\varphi}=c_k$ for all $k$. (This is an instance of Principle \ref{lb23}.) \footnote{Riesz's original proof does not use the language of linear functionals.} 
 
-On the other hand, the property $\sum_k|c_k|^2<+\infty$ implies that the antiderivatives of $(f_n)$ converge pointwise to some function $F$ in the sense of \eqref{eq14}. This establishes the convergence described in the first column of Table \ref{tb1}. 
 
-Then, applying the fundamental theorem of calculus for the Lebesgue integral, Riesz deduced the convergence in the second column of Table \ref{tb1} for the derivative function $f:=F'$ (which exists a.e. and is $L^2$) and for another densely spanning set of functions---the set $\{\chi_{[a,x]}:x\in[a,b]\}$.\footnote{The fact that the fundamental theorem of calculus for the Lebesgue integral---one of the deepest results in measure theory---is used here highlights how non-trivial the equivalence between the first and second columns of Table \ref{tb1} really is.} Namely, he obtained
-\begin{align*}
-\bk{\chi_{[a,x]},f}=\lim_n\bk{\chi_{[a,x]},f_n}\qquad\text{for all }x\in[a,b]
-\end{align*}
-Therefore, since the second column of Table \ref{tb1} is equivalent to the third, $(f_n)$ converges weak-* to $f$. Thus $\varphi$ is represented by $f$, which implies that $f$ solves the desired moment problem---since $\varphi$ does.
+Using a result of Fatou, Riesz showed that $\lim_{r\rightarrow 1}f_r$ converges a.e. to some Lebesgue-measurable function $f$, thereby partially illustrating that the second cell of Table \ref{tb1} implies the first. \footnote{Indeed, $f$ was defined in \cite{Rie07a} as the derivative of the absolutely continuous function $F(x)=\lim_{n\rightarrow\infty}\int_{-\pi}^x g_n$ where $g_n=\sum_{k=-n}^n c_ke_k$. Note that $(g_n)$ also converges weak-* to $\varphi$, again illustrating Principle \ref{lb23}.} Using Thm. \ref{lb356}, Riesz deduced that $f\in L^2$, and that $\lim_{r\rightarrow 1}f_r$ converges weak-* to $f$. This can be seen as an example that the first cell of Table \ref{tb1} implies the second one. Since $\lim_{r\rightarrow 1}f_r$ also converges weak-* to $\varphi$, we conclude that $\varphi$ is represented by the integral against $f$, and hence $f$ solves the desired moment problem.
 \end{proof}
 
-Note that the fundamental theorem of calculus for the Lebesgue integral is crucial to the above proof. Likewise, the Radon-Nikodym Thm. \ref{lb27}---a modern form of the fundamental theorem of calculus---also plays a central role in the proof of Theorem \ref{lb13}, which establishes the duality \ref{lb13} on $L^p(X,\mu)\simeq L^q(X,\mu)^*$. This reinforces the point that the characterization of dual spaces is deeply connected to the equivalence between the first and second columns of Table \ref{tb1}. 
+%Note that the fundamental theorem of calculus for the Lebesgue integral is crucial to the above proof. Likewise, the Radon-Nikodym Thm. \ref{lb27}---a modern form of the fundamental theorem of calculus---also plays a central role in the proof of Theorem \ref{lb13}, which establishes the duality \ref{lb13} on $L^p(X,\mu)\simeq L^q(X,\mu)^*$. This reinforces the point that the characterization of dual spaces is deeply connected to the equivalence between the first and second columns of Table \ref{tb1}. 
 
-See \cite[Sec. 27.3]{Gui-A} for further discussion on the relationship between the classical and modern proofs of the duality $L^p\simeq(L^q)^*$, the connection between this duality and the completeness of $L^p$-spaces, and the role of derivatives---both in the classical sense and in the form of Radon-Nikodym derivatives---in this context.
+See \cite[Sec. 27.3]{Gui-A} for further discussion on the relationship between the classical and modern proofs of the duality $L^p\simeq(L^q)^*$, and the connection between this duality and the completeness of $L^p$-spaces. In Ch. \ref{lb114}, we will see that the strategy outlined in Rem. \ref{lb110} was also the original approach used to study polynomial moment problems, i.e., the moment problems related to the dual space of $C(I)$.
+
+%and the role of derivatives---both in the classical sense and in the form of Radon-Nikodym derivatives---in this context.
 
 
 
@@ -3934,6 +3966,9 @@ The more appropriate viewpoint is to regard the Lebesgue integral as arising fro
 \normalsize
 
 
+
+
+
 \subsection{Bounded multilinear maps}
 
 
@@ -4001,7 +4036,8 @@ Similarly, $\Vert u\Vert\leq\Vert v\Vert$. Therefore $\Vert u\Vert=\Vert v\Vert$
 
 If $u,v\in V$ and $a,b\in\Fbb$, then
 \begin{align*}
-\Vert a(u+V_0)+b(v+V_0)\Vert_{V/V_0}=\Vert au+bv+V_0\Vert_{V/V_0}=\Vert au+bv\Vert\leq |a|\Vert u\Vert+|b|\Vert v\Vert
+&\Vert a(u+V_0)+b(v+V_0)\Vert_{V/V_0}=\Vert au+bv+V_0\Vert_{V/V_0}=\Vert au+bv\Vert\\
+\leq& |a|\Vert u\Vert+|b|\Vert v\Vert=|a|\Vert u+V_0\Vert_{V/V_0}+|b|\Vert v+V_0\Vert_{V/V_0}
 \end{align*}
 \end{proof}
 
@@ -4023,7 +4059,7 @@ v_i\in V_i\mapsto T(v_1,\dots,v_N)\in W
 \end{align*}
 is $\Fbb$-linear. We let \index{Lin@$\Lin(V_1\times\cdots\times V_N,W)$}
 \begin{align*}
-\Lin(V_1\times\cdots\times V_N,W)=\{\text{multilinear maps }V_1\times\cdots\times V_N\rightarrow W\}
+\pmb{\Lin(V_1\times\cdots\times V_N,W)}=\{\text{multilinear maps }V_1\times\cdots\times V_N\rightarrow W\}
 \end{align*}
 For each $T\in \Lin(V_1\times\cdots\times V_N,W)$, we define the \textbf{operator norm}\index{00@Operator norm $\Vert T\Vert$}\index{T@$\Vert T\Vert$, the operator norm of $T$}
 \begin{align*}
@@ -4036,7 +4072,7 @@ We say that $T$ is \textbf{bounded} \index{00@Bounded multilinear map} if $\Vert
 \begin{df}\label{lb116}
 We let \index{LV@$\fk L(V_1\times\cdots\times V_N,W)$}
 \begin{gather}\label{eq26}
-\fk L(V_1\times\cdots\times V_N,W):=\{\text{bounded multilinear maps }V_1\times\cdots\times V_N \rightarrow W\}
+\pmb{\fk L(V_1\times\cdots\times V_N,W)}:=\{\text{bounded multilinear maps }V_1\times\cdots\times V_N \rightarrow W\}
 \end{gather}
 viewed as an $\Fbb$-linear subspace of $W^{V_1\times\cdots\times V_N}$. We let \index{LV@$\fk L(V)$} \index{V@$V^*=\fk L(V,\Fbb)$}
 \begin{align*}
@@ -4050,13 +4086,15 @@ The space $V^*$ is called the \textbf{dual space} of $V$.
 \end{df}
 
 \begin{rem}
-In this course, the most frequently encountered cases of \eqref{eq26} are $\fk L(V)$, $V^*$, and $\fk L(U\times V,\Fbb)$. In Ch. \ref{lb181}, we also consider spaces such as $\fk L(U\times V\times V_*,\Fbb)$, where $V_*$ is a normed vector space with dual space $V$. In such cases, Prop. \ref{lb40} gives isomorphisms
+In this course, the most frequently encountered cases of \eqref{eq26} are $\fk L(V)$, $V^*$, and $\fk L(U\times V,\Fbb)$. 
+\end{rem}
+
+\begin{comment}
+In Ch. \ref{lb181}, we also consider spaces such as $\fk L(U\times V\times V_*,\Fbb)$, where $V_*$ is a normed vector space with dual space $V$. In such cases, Prop. \ref{lb40} gives isomorphisms
 \begin{align*}
 \fk L(U\times V\times V_*,\Fbb)\simeq\fk L(U,\fk L(V\times V_*,\Fbb))\simeq \fk L(U,\fk L(V))
 \end{align*}
-\end{rem}
-
-
+\end{comment}
 
 
 
@@ -4097,6 +4135,7 @@ Moreover, if $T$ is bounded, and if $V_1\times\cdots\times V_N$ is equipped with
 
 What matters about the Lipschitz constant above is not its exact formula, but the implication it carries: namely, that any family $(T_\alpha)$ in $\fk L(V_1\times\cdots\times V_N,W)$ satisfying $\sup_\alpha\Vert T_\alpha\Vert<+\infty$, when restricted to a bounded subset of $V_1\times\cdots\times V_N$, admits a uniform Lipschitz constant.
 
+\hypertarget{proofread}{}
 
 \begin{proof}
 Clearly (a)$\Rightarrow$(b).
@@ -10936,7 +10975,7 @@ Let $\fk S=\{T_1,T_2,\dots\}$. By Thm. \ref{lb342}, there exists a self-adjoint 
 
 
 
-\section{From completely continuous forms to compact operators}
+\section{From completely continuous forms to compact operators}\label{lb355}
 
 
 \newpage
@@ -11019,6 +11058,15 @@ Boron. (1956)
 
 \bibitem[RS-1]{RS-1}
 M. Reed and B. Simon, Methods of modern mathematical physics. {I}: {Functional} analysis. {Rev}. and enl. ed. (1982)
+
+\bibitem[Rie07a]{Rie07a}
+Riesz, F. (1907). \"Uber orthogonale Funktionensysteme. Nachr. Ges. Wiss. G{\"o}ttingen, Math.-Phys. Kl.  1907, 116-122.
+
+
+\bibitem[Rie07b]{Rie07b}
+Riesz, F. (1907). Sur une esp{\`e}ce de g{\'e}om{\'e}trie analytique des syst{\`e}mes de fonctions sommables. C. R. Acad. Sci., Paris.  144, 1409-1411.
+
+
 
 \bibitem[Rie09]{Rie09}
 Riesz, F. (1909). Sur les op\'erations functionnelles lin\'eaires. Gauthier-Vllars.
