@@ -1578,7 +1578,7 @@ d(x,y)\leq \alpha d'(x,y)\qquad d'(x,y)\leq\beta d(x,y)\qquad\text{for all }x,y\
 Let $X_1,\dots,X_N$ be metric spaces. For each $1\leq p<+\infty$, the \textbf{\pmb{$l^\infty$}-product metric} $d_\infty$ \index{00@$l^\infty$-product metric} and the \textbf{\pmb{$l^p$}-product metric} \index{00@$l^p$-product metric} $d_p$ are the metrics on $X_1\times\cdots\times X_N$ defined by
 \begin{gather*}
 d_\infty((x_1,\dots,x_N),(y_1,\dots,y_N)):=\max\{d(x_1,y_1),\dots,d(x_N,y_N)\}\\
-d_p((x_1,\dots,x_N),(y_1,\dots,y_N)):=\sqrt[p]{d(x_1,y_1)^p+\cdots+d(x_N,y_N)}
+d_p((x_1,\dots,x_N),(y_1,\dots,y_N)):=\sqrt[p]{d(x_1,y_1)^p+\cdots+d(x_N,y_N)^p}
 \end{gather*}
 for all $x_i,y_i\in X_i$. These metrics are equivalent. We equip $X_1\times\cdots\times X_N$ with any metric equivalent to $l^\infty$ and $l^p$.
 \end{df}
@@ -9836,14 +9836,16 @@ This finishes the proof.
 
 
 
-\subsection{Joint spectrum $\Sp(T_\blt)$ and basic properties of Borel functional calculus}\label{lb335}
+\subsection{Joint spectrum $\Sp(T_\blt)$ and the basic properties of Borel functional calculus}\label{lb335}
 
 
 Fix a Hilbert space $\MH$ an adjointly-commuting bounded normal operators $T_1,\dots,T_N\in\fk L(\MH)$. Recall Exp. \ref{lb300} for the meaning of $\Cbb[z_\blt,\ovl{z_\blt}]$. Recall that $\Fbb\in\{\Rbb,\Cbb\}$.
 
-\begin{df}
-The support of the Borel functional calculus $\pi_{T_\blt}:\Borb(\Cbb^N)\rightarrow\fk L(\MH)$ is denoted by $\pmb{\Sp(T_1,\dots,T_N)}$ (abbreviated to $\pmb{\Sp(T_\blt)}$) \index{Sp@$\Sp(T_\blt)$} and called the \textbf{joint spectrum} \index{00@Joint spectrum $\Sp(T_\blt)$} of $T_1,\dots,T_N$.
+\begin{df}\label{lb358}
+The support of the Borel functional calculus $\pi_{T_\blt}:\Borb(\Cbb^N)\rightarrow\fk L(\MH)$ is denoted by $\pmb{\Sp(T_1,\dots,T_N)}$ (abbreviated to $\pmb{\Sp(T_\blt)}$) \index{Sp@$\Sp(T_\blt)$} and called the \textbf{joint spectrum} \index{00@Joint spectrum $\Sp(T_\blt)$} of $T_1,\dots,T_N$. That is, $\lambda_\blt\in\Cbb^N$ belongs to $\Sp(T_\blt)$ iff $\chi_U(T_\blt)\neq0$ for each $U\in\Nbh_{\Cbb^N}(\lambda_\blt)$.
 \end{df}
+
+
 
 
 \begin{rem}\label{lb314}
@@ -10974,24 +10976,127 @@ Let $\fk S=\{T_1,T_2,\dots\}$. By Thm. \ref{lb342}, there exists a self-adjoint 
 \section{Unbounded operators and their spectral theorem}\label{lb292}
 
 
-\subsection{Quantum mechanics}\label{lb291}
+\subsection{Von Neumann and the mathematical foundation of quantum mechanics}\label{lb291}
 
 
-The mathematical formulation of quantum mechanics, developed around 1925 by physicists such as Heisenberg, Born, Jordan, and Schr\"odinger, can be summarized as follows. A particle (for instance, an atom) may exist in different states, each represented by a vector. These vectors are often concrete objects, such as functions on $\Rbb^3$ (i.e., wave functions). Since waves can superpose, quantum states also admit superposition, which mathematically corresponds to vector addition. Thus, the collection of all possible states of a particle forms a complex vector space $V$. This space is in fact equipped with an inner product, which provides a notion of length. A genuine quantum state is then required to have length $1$.
+
+\subsubsection{The mathematical interpretation of quantum mechanics by physicists}
+
+The mathematical formulation of quantum mechanics, developed around 1925 by physicists such as Heisenberg, Born, Jordan, and Schr\"odinger, can be summarized as follows. A particle (for instance, an atom) may exist in different states, each represented by a vector. These vectors are often concrete objects, such as functions on $\Rbb^3$ (i.e., wave functions). Since waves can superpose, quantum states also admit superposition, which mathematically corresponds to vector addition. Thus, the collection of all possible states of a particle forms a complex vector space $\MV$. This space is in fact equipped with an inner product, which provides a notion of length. A genuine quantum state is then required to have length $1$.
 
 Another fundamental notion is that of observables, i.e., measurable quantities of a quantum system such as energy, momentum, position, and angular momentum. Mathematically, observables are represented by Hermitian operators; in finite dimensions these are simply Hermitian matrices. Actual quantum systems, however, are infinite-dimensional, and in that setting physicists did not initially adopt the same level of rigor as mathematicians in defining what precisely constitutes a "Hermitian operator". The need for such rigor, especially in giving a precise mathematical foundation to the notion of observables, became one of the main starting points for von Neumann's investigation of the spectral theory of unbounded operators, beginning with \cite{vN27}.
 
 
 
-An observable cannot, in general, be measured with perfect accuracy in all states. If a state (i.e., a vector $\xi\in V$) allows the observable $T$ to be measured with perfect accuracy and value $\lambda$, then mathematically this means $T\xi=\lambda\xi$. Thus, the unit eigenvectors of a Hermitian operator correspond exactly to those states in which the observable can be measured precisely. 
 
-In general, at least when $\dim V<+\infty$, a vector $\xi$ can be expanded as a finite sum $\sum_i a_ie_i$ where $e_1,e_2,\dots$ are orthonormal eigenvectors of $T$ corresponding to distinct eigenvalues $\lambda_1,\lambda_2,\dots\in\Rbb$. This shows that the value of the observable $I$ measured in state $\xi$ cannot be predicted with certainty; rather, it follows a probability distribution: the probability of measuring the value $\lambda_i$ is $|a_i|^2$. By the Pythagorean identity, the probabilities sum to $\sum_i|a_i|^2=1$, due to the Pythagorean identity. The expected value of measuring $T$ in state $\xi$ is $\bk{\xi|T\xi}$, since
+
+An observable cannot, in general, be measured with perfect accuracy in all states. If a state (i.e., a vector $\xi\in \MV$) allows the observable $T$ to be measured with perfect accuracy and value $\lambda$, then mathematically this means $T\xi=\lambda\xi$. Thus, the unit eigenvectors of a Hermitian operator correspond exactly to those states in which the observable can be measured precisely. 
+
+In general, at least when $\dim \MV<+\infty$, a vector $\xi$ can be expanded as a finite sum $\sum_i a_ie_i$ where $e_1,e_2,\dots$ are orthonormal eigenvectors of $T$ corresponding to distinct eigenvalues $\lambda_1,\lambda_2,\dots\in\Rbb$, and each $a_i\in\Cbb$. This shows that the value of the observable $I$ measured in state $\xi$ cannot be predicted with certainty; rather, it follows a probability distribution: the probability of measuring the value $\lambda_i$ is $|a_i|^2$. By the Pythagorean identity, the probabilities sum to $\sum_i|a_i|^2=1$, due to the Pythagorean identity. \uwave{The expectation value of measuring $T$ in state $\xi$ is $\bk{\xi|T\xi}$}, since
 \begin{align*}
 \sum_i |a_i|^2\lambda_i=\bk{\xi|T\xi}
 \end{align*}
 
+For example, the multiplication operator $\Mbf_{x_i}$ (abbreviated to $x_i$) for the $i$-th coordinate function of $\Rbb^3$ is the observable measuring the $i$-th component of the position. Thus, for a function $\xi$ on $\Rbb^3$, the quantity $\bk{\xi|x_i\xi}$ gives the expectation value of the $i$-th component of the position of $\xi$. Similarly,
+\begin{align*}
+p_i:=\frac\partial{\im\partial x_i}
+\end{align*}
+is the momentum operator for the $i$-th component, and hence $\bk{\xi|p_i\xi}$ gives the expectation value of the $i$-th coordinate of the momentum of $\xi$. The \textbf{energy operator} (or \textbf{Hamiltonian}) $H=H_t$ typically takes the form
+\begin{align}\label{eq186}
+H_t=-\Delta+V=p_1^2+p_2^2+p_3^2+V(t,x)
+\end{align}
+where $V$ is the potential function defined on $\Rbb\times\Rbb^3$.
 
 
+
+The time evolution of a state $\xi$, denoted $t\in\Rbb\rightarrow \xi(t)\in \MV$, is governed by the \textbf{Schr\"odinger equation} $\im\partial_t\xi(t)=H\xi(t)$ with initial condition $\xi(0)=\xi$, where $H$ is the Hermitian operator for the energy (so that $\bk{\xi|H\xi}$ is the expected energy in state $\xi$.) In the important case where $H$ is time-independent (e.g. the potential function $V(t,x)$ in \eqref{eq186} does not depend on $t$), the formal solution of the Schr\"odinger equation is
+\begin{align*}
+\xi(t)=e^{-\im tH}\xi
+\end{align*}
+
+To compute the RHS explicitly, one may decompose $\xi=\sum_i u_i$ where $u_1,u_2,\dots$ are mutually orthogonal eigenvectors of $H$ with corresponding eigenvalues $\lambda_1,\lambda_2,\dots\in\Rbb$. Then
+\begin{align*}
+e^{-\im tH}\xi=\sum_i e^{-\im t\lambda_i}u_i
+\end{align*}
+Of course, this argument relies on the diagonalization of Hermitian operators, which is valid when $\dim \MV<+\infty$. In infinite dimensions, physicists still assume that Hermitian operators admit a kind of diagonalization, though quite different from mathematician's spectral theorems in Ch. \ref{lb181}. Instead, physicists like Dirac assumed that a Hermitian operator $T$ can be "diagonalized" as a combination of a discrete sum and a continuous (Riemann) integral, as described below (see \cite{Dir30}, especially Sec. 10, 16, and 17).
+
+
+\subsubsection{Physicists' spectral decomposition}
+
+
+Let $\delta$ denote the \textbf{delta function} on $\Rbb$, i.e., the idealized function satisfying $\delta(x)=0$ when $x\neq0$, $\delta(0)=+\infty$, and $\int\delta(x)dx=1$. Then there exists a family of vectors $(u_\lambda)$ indexed by real numbers $\lambda$, together with a countable family $v_{\lambda_1},v_{\lambda_2},\dots$ for distinct real numbers $\lambda_1,\lambda_2,\dots$, such that these two collections together form an "orthonormal basis" in the sense that
+\begin{align}\label{eq187}
+\bk{u_{\lambda}|u_{\lambda'}}=\delta(\lambda-\lambda')\qquad \bk{u_{\lambda}|v_{\lambda_i}}=0\qquad \bk{v_{\lambda_i}|v_{\lambda_j}}=\delta_{i,j}
+\end{align}
+and that for each $\xi,\eta\in \MV$, the "Parseval identity"
+\begin{align*}
+\bk{\xi|\eta}=\int \bk{\xi|u_\lambda}\bk{u_\lambda|\eta}d\lambda+\sum_i\bk{\xi|v_{\lambda_i}}\bk{v_{\lambda_i}|\eta}
+\end{align*}
+holds. These vectors are eigenvectors of $T$, in the sense that $T$ admits the spectral decomposition
+\begin{align*}
+\bk{\xi|f(T)\eta}=\int f(\lambda)\bk{\xi|u_\lambda}\bk{u_\lambda|\eta}d\lambda+\sum_if(\lambda_i)\bk{\xi|v_{\lambda_i}}\bk{v_{\lambda_i}|\eta}
+\end{align*}
+In particular, when $T$ is the time-independent Hamiltonian $H$, setting $f(x)=e^{\im tx}$ gives the solution of the Schr\"odinger equation. Note that the integrals in the above formulas are understood in the classical sense—essentially what mathematicians would call Riemann integrals, rather than the more general Stieltjes integral (which was regarded as too abstract by physicists).
+
+
+Physicists refer to the vectors $u_\lambda$ as \textbf{scattering states}, since their squared lengths are $\delta(0)=+\infty$, in contrast to the unit vectors $v_{\lambda_i}$, which are called \textbf{bound states}. For example, when $T$ is the Hamiltonion for the hydrogen atom
+\begin{align*}
+H=-\Delta-e^2/|x|\qquad e>0
+\end{align*}
+its spectral decomposition contains both continuous and discrete parts (scattering and bound eigenstates), cf. \cite[Sec.\ 39]{Dir30}. As another instance, assuming for simplicity that the space has one dimension (so that the wave functions are defined on $\Rbb$), the eigenstates of the position and momentum operators $x$ and $p=\frac{\partial}{\im\partial x}$ are scattering states: the $\lambda$-eigenstate of $x$ is $\delta(x-\lambda)$, while the $\lambda$-eigenstate of $p$ is $\frac 1{\sqrt{2\pi}}e^{\im\lambda x}$.
+
+
+
+\subsubsection{Von Neumann's notion of abstract Hilbert spaces}
+
+
+Von Neumann rejected the use of vectors of infinite length (i.e., scattering states) such as delta functions in his effort to place quantum mechanics on a rigorous mathematical foundation. He insisted that wave functions must be square-integrable, and hence elements of $L^2(\Rbb^n,m)$. Consequently, he opposed the physicists' practice of interpreting operators in quantum mechanics as continuous (or mixed continuous and discrete) versions of matrices, since that interpretation necessarily relied on "orthonormal bases" of the type in \eqref{eq187}, which in turn presupposed scattering states.
+
+For von Neumann, the concept that unifies ordinary matrices and operators on function spaces was the Riesz-Fischer theorem. To him, this theorem asserts that for any subset $\Omega\subset\Rbb^n$, the space $L^2(\Omega,m)$ of Lebesgue square-integrable functions is an abstract, separable Hilbert space. This abstract definition of a Hilbert space was a major departure from the early 20th-century view, where Hilbert spaces were specifically understood as $l^2(\Zbb)$. Introducing this abstract notion of Hilbert space was one of the central contributions of \cite{vN27}, von Neumann's first paper laying down the mathematical foundations of quantum mechanics.
+
+
+This version of the Riesz-Fischer theorem did not exist before von Neumann's work. Riesz and Fischer had only proved (in 1907) the completeness of $L^2(I,m)$ where $I\subset\Rbb$ is a compact interval. It was in \cite{vN27} (see Anhang 2) that the completeness of $L^2(\Omega,m)$ for any higher-dimensional set $\Omega\subset\Rbb^n$ was first established.\footnote{Unlike the original proofs, which depended heavily on the fundamental theorem of calculus, von Neumann's proof could be extended to general measure spaces and is closer in spirit to modern textbook proofs of the completeness of $L^p$ spaces over abstract measure spaces. See also Subsec. \ref{lb345}.} In addition, \cite{vN27} proved that every separable (abstract) Hilbert space admits an orthonormal basis. Taken together, these results imply a unitary equivalence $L^2(\Omega,m)\simeq l^2(\Zbb)$ (when $m(\Omega)>0$), thus providing the mathematical foundation for unifying discrete matrices with operators on function spaces.
+
+
+
+\subsubsection{Von Neumann's spectral decomposition for unbounded operators}
+
+
+For von Neumann, another reason for adopting Hilbert spaces as the rigorous framework of quantum mechanics was that, as we have seen in Ch. \ref{lb181}, Hilbert and especially F. Riesz had already established spectral theorems for bounded self-adjoint operators. The only missing piece was that operators arising in quantum mechanics typically involve differential operators. Unlike bounded self-adjoint operators, these are unbounded and are defined only on dense linear subspaces of the Hilbert space.
+
+Despite this, Riesz's spectral Thm. \ref{lb267} provided a clear path forward. It states that any bounded self-adjoint operator $T$ on a Hilbert space $\MH$ admits a decomposition $T=\int_{[-a,a]}\lambda dE(\lambda)$. As von Neumann recognized in \cite{vN27}, this suggests that the spectral decomposition of an unbounded operator representing a quantum observable should have a similar form:
+\begin{align}\label{eq188}
+T=\int_{-\infty}^{+\infty}\lambda dE(\lambda)
+\end{align}
+where $E=(E(\lambda))_{\lambda\in\Rbb}$ is an increasing family of projections satisfying
+\begin{align*}
+\lim_{\lambda\rightarrow-\infty}E(\lambda)=0\qquad \lim_{\lambda\rightarrow+\infty}E(\lambda)=\idt_\MH
+\end{align*}
+with both limits holding in SOT (cf. Thm. \ref{lb264}). More precisely, for each $\xi\in\MH$, one defines
+\begin{align*}
+T\xi=\int_{-\infty}^{+\infty}\lambda dE(\lambda)\xi=\lim_{a\rightarrow+\infty}\int_{[-a,a]}\lambda dE(\lambda)\xi
+\end{align*} 
+whenever the limit exists; the domain of $T$ is defined to be the set of all $\xi\in\MH$ such that this limit exists. 
+
+
+For modern readers familiar with the multiplication-operator version of the spectral theorem (Thm. \ref{lb330}), the most suitable version for unbounded operators is that any such operator $T$ is unitarily equivalent to a multiplication operator $\Mbf_f$ where $f$ is a real-valued Borel function that is not necessarily bounded.
+
+
+\subsubsection{Measurement with absolute precision vs. measurement with prescribed accuracy}
+
+
+
+Von Neumann's spectral decomposition for observables abandons the notion of scattering states and the idea that one can measure a quantity $T$ with absolute precision, as is the case with bound states. The mathematically rigorous viewpoint is instead that, for $\lambda\in\Rbb$ lying in the continuous spectrum, the quantity $T$ can only be measured to within an arbitrarily prescribed accuracy. 
+
+To see how this rigorous viewpoint arises, one must understand von Neumann's interpretation of projections in \cite{vN27}, later expanded and refined in \cite{vN32}.\footnote{\cite{vN32} may be regarded as a greatly expanded version of \cite{vN27}. There, von Neumann develops and clarifies his earlier treatment of the mathematical foundations of quantum mechanics.} A projection $E$ on $\MH$ represents a "proposition" (or "event") in a quantum system, i.e., an observable that can take only the values $0$ and $1$, interpreted as "false" and "true", respectively. Thus, $\Rng(E)$ is the subspace of states in which the proposition holds, and $\Ker(E)$ is the subspace of states in which it fails. It follows that for any unit vector $\xi\in \MH$, the value $\bk{\xi|E\xi}$ gives the probability that the proposition is true in the state $\xi$.
+
+Applying this interpretation to the spectral projections $E(\lambda)$ in \eqref{eq188}, one finds that for any unit vector $\xi$, the value $\bk{\xi|E(\lambda)}\xi$ is the probability that the observable $T$ takes a value not exceeding $\lambda$ in the state $\xi$. Therefore, if we define the projection
+\begin{align*}
+E(\lambda,\lambda')=E(\lambda')-E(\lambda)
+\end{align*}
+for $\lambda\leq\lambda'$, then $\bk{\xi|E(\lambda,\lambda')\xi}$ is the probability that a measurement of $T$ in the state $\xi$ yields a value in the interval $(\lambda,\lambda']$.
+
+As in Def. \ref{lb358}, a number $\lambda\in\Rbb$ belongs to the spectrum of $T$ precisely when $E(\lambda-\eps,\lambda+\eps)\neq0$ for all $\eps>0$. For such $\lambda$, one can always choose a unit vector $\xi$ in $\Rng(E(\lambda-\eps,\lambda+\eps))$ so that $\bk{\xi|E(\lambda,\lambda')\xi}=1$. Therefore, in the state $\xi$, a measurement of $T$ is not guaranteed to yield exactly $\lambda$, but must lie within the interval $(\lambda-\eps,\lambda+\eps]$. This is the precise meaning of \textbf{measurement with arbitrarily prescribed accuracy}.
 
 
 
@@ -11035,6 +11140,12 @@ Apostol, Tom M. (1974). Mathematical analysis. 2nd ed.
 
 \bibitem[Dav]{Dav}
 Davidson, K. R. (1996). $C^*$-algebras by example. RI: AMS, American Mathematical Society.
+
+
+\bibitem[Dir30]{Dir30}
+Dirac, P. A. M. (1958). The principles of quantum mechanics. 4th ed. First edition in 1930.
+
+
 
 
 \bibitem[Fol-R]{Fol-R}
@@ -11088,7 +11199,7 @@ von Neumann, J. \"Uber Funktionen von Funktionaloperatoren. Annals of Math. (2) 
 
 
 \bibitem[vN32]{vN32}
-von Neumann, J. (1932). Mathematical foundations of quantum mechanics. English translation by {Robert} {T}. {Beyer}.
+von Neumann, J. (1932). Mathematical foundations of quantum mechanics. English translation of von Neumann's book \textit{Mathematische Grundlagen der Quantenmechanik}.
 
 \bibitem[Pes]{Pes}
 Pesin, I. N. (1970). Classical and modern integration theories.
