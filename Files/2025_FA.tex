@@ -9593,7 +9593,7 @@ X=[-R_1,R_1]\times\cdots\times[-R_N,R_N]
 As in the proof of Thm. \ref{lb283}, the main obstacle in applying the operator-valued abstract Hausdorff moment Thm. \ref{lb274} is to prove thatt $\pi_{T_\blt}$ is positive, i.e., that $f(T_\blt)\geq0$ for each $f\in\Cbb[x_\blt]$ satisfying $f|_X\geq0$. 
 
 
-To overcome this difficulty, we employ a different type of finite approximation. The earlier method---approximating $T_i$ by $ET_iE$ where $E$ is the projection onto a finite-dimensional subspace---fails here, since $ET_iE$ and $ET_jE$ need not commute. Instead, we use \textbf{finite-spectrum approximation}\index{00@Finite spectrum approximation} rather than \textbf{finite-rank approximation}. Specifically, we approximate each $T_i$ by $f_i(T_i)$ where $f_i\in\Borb([-R_i,R_i])$ has finite range. In this way, the operators $f_i(T_i)$ and $f_j(T_j)$ commute, as shown below.
+To overcome this difficulty, we adopt a different type of finite approximation, following von Neumann’s treatment of the spectral theorem for bounded normal operators in \cite[Anhang 2]{vN29a}: The earlier method---approximating $T_i$ by $ET_iE$ where $E$ is the projection onto a finite-dimensional subspace---fails here, since $ET_iE$ and $ET_jE$ need not commute. Instead, we use \textbf{finite-spectrum approximation}\index{00@Finite spectrum approximation} rather than \textbf{finite-rank approximation}. Specifically, we approximate each $T_i$ by $f_i(T_i)$ where $f_i\in\Borb([-R_i,R_i])$ has finite range. In this way, the operators $f_i(T_i)$ and $f_j(T_j)$ commute, as shown below.
 
 
 \begin{lm}\label{lb295}
@@ -10978,6 +10978,11 @@ Let $\fk S=\{T_1,T_2,\dots\}$. By Thm. \ref{lb342}, there exists a self-adjoint 
 
 \subsection{Von Neumann and the mathematical foundation of quantum mechanics}\label{lb291}
 
+In this chapter we study unbounded operators and their spectral theory. Von Neumann was the principal developer of this theory; his chief motivation, beginning in 1927, was to place quantum mechanics on a firm mathematical footing. The aim of this section is to sketch that historical and conceptual background so the reader can appreciate von Neumann's concrete goals and methods.
+
+
+
+
 
 
 \subsubsection{The mathematical interpretation of quantum mechanics by physicists}
@@ -11018,7 +11023,7 @@ To compute the RHS explicitly, one may decompose $\xi=\sum_i u_i$ where $u_1,u_2
 \begin{align*}
 e^{-\im tH}\xi=\sum_i e^{-\im t\lambda_i}u_i
 \end{align*}
-Of course, this argument relies on the diagonalization of Hermitian operators, which is valid when $\dim \MV<+\infty$. In infinite dimensions, physicists still assume that Hermitian operators admit a kind of diagonalization, though quite different from mathematician's spectral theorems in Ch. \ref{lb181}. Instead, physicists like Dirac assumed that a Hermitian operator $T$ can be "diagonalized" as a combination of a discrete sum and a continuous (Riemann) integral, as described below (see \cite{Dir30}, especially Sec. 10, 16, and 17).
+Of course, this argument relies on the diagonalization of Hermitian operators, which is valid when $\dim \MV<+\infty$. In infinite dimensions, physicists still assume that Hermitian operators admit a kind of diagonalization, though quite different from mathematician's spectral theorems in Ch. \ref{lb181}. Instead, physicists like Dirac assumed that a Hermitian operator $T$ can be "diagonalized" as a combination of a discrete sum and a continuous (Riemann) integral, as described below. (See \cite{Dir30}, especially Sec. 10, 16, and 17.)
 
 
 \subsubsection{Physicists' spectral decomposition}
@@ -11032,7 +11037,7 @@ and that for each $\xi,\eta\in \MV$, the "Parseval identity"
 \begin{align*}
 \bk{\xi|\eta}=\int \bk{\xi|u_\lambda}\bk{u_\lambda|\eta}d\lambda+\sum_i\bk{\xi|v_{\lambda_i}}\bk{v_{\lambda_i}|\eta}
 \end{align*}
-holds. These vectors are eigenvectors of $T$, in the sense that $T$ admits the spectral decomposition
+holds. These vectors are eigenvectors of $T$, in the sense that for each reasonable real-valued function $f$ on $\Rbb$, the following spectral decomposition holds:
 \begin{align*}
 \bk{\xi|f(T)\eta}=\int f(\lambda)\bk{\xi|u_\lambda}\bk{u_\lambda|\eta}d\lambda+\sum_if(\lambda_i)\bk{\xi|v_{\lambda_i}}\bk{v_{\lambda_i}|\eta}
 \end{align*}
@@ -11090,13 +11095,59 @@ Von Neumann's spectral decomposition for observables abandons the notion of scat
 
 To see how this rigorous viewpoint arises, one must understand von Neumann's interpretation of projections in \cite{vN27}, later expanded and refined in \cite{vN32}.\footnote{\cite{vN32} may be regarded as a greatly expanded version of \cite{vN27}. There, von Neumann develops and clarifies his earlier treatment of the mathematical foundations of quantum mechanics.} A projection $E$ on $\MH$ represents a "proposition" (or "event") in a quantum system, i.e., an observable that can take only the values $0$ and $1$, interpreted as "false" and "true", respectively. Thus, $\Rng(E)$ is the subspace of states in which the proposition holds, and $\Ker(E)$ is the subspace of states in which it fails. It follows that for any unit vector $\xi\in \MH$, the value $\bk{\xi|E\xi}$ gives the probability that the proposition is true in the state $\xi$.
 
-Applying this interpretation to the spectral projections $E(\lambda)$ in \eqref{eq188}, one finds that for any unit vector $\xi$, the value $\bk{\xi|E(\lambda)}\xi$ is the probability that the observable $T$ takes a value not exceeding $\lambda$ in the state $\xi$. Therefore, if we define the projection
+Applying this interpretation to the spectral projections $E(\lambda)=\chi_{(-\infty,\lambda]}(T)$ in \eqref{eq188}, one finds that for any unit vector $\xi$, the value $\bk{\xi|E(\lambda)\xi}$ is the probability that the observable $T$ takes a value not exceeding $\lambda$ in the state $\xi$. Therefore, if we define the projection
 \begin{align*}
 E(\lambda,\lambda')=E(\lambda')-E(\lambda)
 \end{align*}
 for $\lambda\leq\lambda'$, then $\bk{\xi|E(\lambda,\lambda')\xi}$ is the probability that a measurement of $T$ in the state $\xi$ yields a value in the interval $(\lambda,\lambda']$.
 
 As in Def. \ref{lb358}, a number $\lambda\in\Rbb$ belongs to the spectrum of $T$ precisely when $E(\lambda-\eps,\lambda+\eps)\neq0$ for all $\eps>0$. For such $\lambda$, one can always choose a unit vector $\xi$ in $\Rng(E(\lambda-\eps,\lambda+\eps))$ so that $\bk{\xi|E(\lambda,\lambda')\xi}=1$. Therefore, in the state $\xi$, a measurement of $T$ is not guaranteed to yield exactly $\lambda$, but must lie within the interval $(\lambda-\eps,\lambda+\eps]$. This is the precise meaning of \textbf{measurement with arbitrarily prescribed accuracy}.
+
+
+
+\subsubsection{Conclusion}
+
+
+
+We can now clarify the true starting point of von Neumann's study of unbounded operators. A common misconception is that his project began with a rigorous definition of unbounded self-adjoint operators, with the goal of proving a spectral theorem for them. In fact, such a rigorous definition was not available at the outset---the notion of the adjoint for unbounded operators is far subtler than in the bounded case. Rather, von Neumann's aim was to find a natural definition of observables under which the spectral decomposition of the form \eqref{eq188} would hold.
+
+Following von Neumann’s line of thought, the next section introduces the first such notion: the notion of a closed Hermitian operator with zero deficiency indices. This is not yet the final definition of unbounded self-adjoint operators; indeed, in modern textbooks it often appears as a criterion for self-adjointness rather than a definition. Nevertheless, we will see that checking that a Hermitian operator has zero deficiency indices is frequently more convenient than checking self-adjointness directly, and that many central ideas in the theory of unbounded operators---such as the Cayley transform and the concept of closed operators---are more naturally understood from the perspective of deficiency indices.
+
+
+\subsection{Deficiency indices and extensions of Hermitian operators}
+
+
+Let $\MH,\MK$ be Hilbert spaces.
+
+\begin{df}
+An \textbf{unbounded operator} \index{00@Unbounded operator} $T$ from $\MH$ to $\MK$ (abbreviated to $T:\MH\rightarrow\MH$) is defined to be a linear map from a dense linear subspace $\Dom(T)$ of $\MH$ to $\MK$. We call $\Dom(T)$ the \textbf{domain} of $T$. \index{00@Domain of an unbounded operator} If $\MH=\MK$, we say that $T$ is an \textbf{unbounded operator on $\pmb\MH$}.
+\end{df}
+
+Note that bounded linear maps are unbounded operators. This should not seem contradictory, since "unbounded" actually means "not necessarily bounded".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
