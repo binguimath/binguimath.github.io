@@ -230,7 +230,7 @@
 \DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
 \DeclareMathOperator{\Bor}{\mathscr{B}\text{\kern -2pt {\calligra\large or}}\,}
 \DeclareMathOperator{\Borb}{{\mathscr{B}\text{\kern -2pt {\calligra\large or}}\,}_{\mathrm b}}
-\DeclareMathOperator{\Cay}{\mathscr{C}\text{\kern -2pt {\calligra\large ay}}\,}
+\DeclareMathOperator{\Cay}{\mathscr{C}\text{\kern -3pt {\calligra\large ay}}\,}
 
 
 
@@ -11505,6 +11505,17 @@ It is useful to keep in mind that
 \end{gather}
 
 
+\begin{pp}
+Let $A:\MK\rightarrow\ML$ and $B:\MH\rightarrow\MK$ be injective n.d.d. unbounded operators. Note that $AB$ is clearly injective. We have
+\begin{align*}
+(AB)^{-1}=B^{-1}A^{-1}
+\end{align*}
+\end{pp}
+
+\begin{proof}
+The only non-trivial part is to compare their domains. The domain of $(AB)^{-1}$ is $\Rng(AB)$. An element $\psi\in\ML$ belongs to $\Dom(B^{-1}A^{-1})$ iff $\psi\in\Dom(A^{-1})=\Rng(A)$ and $A^{-1}\psi\in\Dom(B^{-1})=\Rng(B)$, iff $\psi=A\eta$ and $\eta=B\xi$ for some $\eta\in\Dom(A)$ and $\xi\in\Dom(B)$, iff $\psi\in\Rng(AB)$.
+\end{proof}
+
 
 
 
@@ -11602,7 +11613,7 @@ since $\Vert T\xi\Vert^2=\Vert T^*\xi\Vert^2$ for each $\xi\in\MH$. It follows f
 Let $\MH$ be a Hilbert space.
 
 
-\subsubsection{Introduction}
+\subsubsection{Introduction}\label{lb395}
 
 
 In this section we follow von Neumann's idea in \cite{vN29a} to investigate which Hermitian operators admit spectral decompositions. As noted in Subsec. \ref{lb375}, a spectral decomposition for a Hermitian operator $T$ means that it can be written in the form $\int_{-\infty}^{+\infty}\lambda dE(\lambda)$. We will take a more modern, beginner-friendly viewpoint: we say that $T$ has a spectral decomposition if it is unitarily equivalent to a multiplication operator on a direct sum of $L^2$-spaces (cf. Exp. \ref{lb366}).
@@ -11615,7 +11626,7 @@ where $A$ is skew-symmetric (so $\idt-A$ is invertible). Here ``generic'' means 
 
 For von Neumann, the Cayley transform and its inverse
 \begin{align*}
-U=\frac{T-\im}{T+\im}\qquad T=-\im\frac{U+\idt}{U-\idt}
+U=\frac{T-\im}{T+\im}\qquad T=\frac{U+\idt}{\im(U-\idt)}
 \end{align*}
 connect ``generic'' unitary operators $U$ with Hermitian operators $T$ that admit spectral decompositions. The meaning of ``generic'' becomes clear if we take $T$ to be a multilication operator $\Mbf_f$ where $f:X\rightarrow\Rbb$ is measurable. Then $U$ is expected to correspond to $\Mbf_u$ where $u=(f+\im)/(f-\im)$. One can easily check that $u$ takes values in $\Sbb^1\setminus\{1\}$, and conversely any measurable function $u:X\rightarrow\Sbb^1\setminus\{1\}$ arises in this way from some measurable $f:X\rightarrow\Rbb$. In light of Exp. \ref{lb372}, it is natural to guess that ``generic'' here should mean that the unitary operator $U$ satisfies $\Ker(U-\idt)=\{0\}$.
 
@@ -11709,9 +11720,9 @@ T\subset\wtd T\qquad\Longleftrightarrow\qquad U\subset\wtd U
 \end{align}
 \end{thm}
 
-Note that $(U-\idt)^{-1}$ is well-defined by Lem. \ref{lb378}. As in Def. \ref{lb379}, it is customary to write $-\im(U+\idt)(U-\idt)^{-1}$ as $-\im\frac{U+\idt}{U-\idt}$ and call it the \textbf{inverse Cayley transform} of $U$. \index{00@Inverse Cayley transform} It is the unique map satisfying
+Note that $(\im U-\im)^{-1}$ is well-defined by Lem. \ref{lb378}. As in Def. \ref{lb379}, it is customary to write $(U+\idt)(\im U-\im)^{-1}$ as $\frac{U+\idt}{\im(U-\idt)}$ and call it the \textbf{inverse Cayley transform} of $U$. \index{00@Inverse Cayley transform} It is the unique map satisfying
 \begin{align}\label{eq193}
-\tcboxmath{-\im\frac{U+\idt}{U-\idt}:\Rng(U-\idt)\rightarrow\MH\qquad (U-\idt)\eta\mapsto -\im(U+\idt)\eta}
+\tcboxmath{\frac{U+\idt}{\im(U-\idt)}:\Rng(U-\idt)\rightarrow\MH\qquad \im(U\eta-\eta)\mapsto U\eta+\eta}
 \end{align}
 where $\eta\in\Dom(U)$.
 
@@ -11726,35 +11737,7 @@ By \eqref{eq193}, the domain of $T_U$ is $\Rng(U-\idt)$, which is dense in $\MH$
 \end{align*}
 where $\bk{U\eta|U\eta}=\bk{\eta|\eta}$ is used. Since $\bk{U\eta|\eta}=\ovl{\bk{\eta|U\eta}}$, the last term above is a real number. Thus $\bk{\xi|T_U\xi}$ is real, and hence $T_U$ is Hermitian.\\[-1ex]
 
-Step 2. For each Hermitian $T$, the operator $U_T$ sends its domain vectors $T\xi+\im\xi$ to $T\xi-\im\xi$ (where $\xi\in\Dom(T)$). For each $U$ in (2), the operator $T_U$ sends its domain vectors $U\eta-\eta$ to $-\im(U\eta+\eta)$ (where $\eta\in\Dom(U)$). Thus 
-\begin{align*}
-T_{U_T}:U_T\eta-\eta\mapsto -\im(U_T\eta+\eta)
-\end{align*}
-where $\eta\in\Dom(U_T)$. Recall from \eqref{eq192} that $\Dom(U_T)=\Rng(T+\im)$. Thus, such $\eta$ can be described equivalently by $T\xi+\im\xi$ where $\xi\in\Dom(T)$. Thus
-\begin{align*}
-T_{U_T}:U_T(T\xi+\im\xi)-(T\xi+\im\xi)\mapsto -\im(U_T(T\xi+\im\xi)+(T\xi+\im\xi))
-\end{align*}
-By \eqref{eq192}, the above correspondence is
-\begin{align*}
-T_{U_T}:-2\im\xi\mapsto -2\im T\xi
-\end{align*}
-This proves that $T_{U_T}=T$.\\[-1ex]
-
-Step 3. By the beginning of Step 2, we have
-\begin{align*}
-U_{T_U}:T_U\xi+\im\xi\mapsto T_U\xi-\im\xi
-\end{align*}
-where $\xi\in\Dom(T_U)$. By \eqref{eq193}, we have $\Dom(T_U)=\Rng(U-\idt)$. Thus, such $\xi$ can be described equivalently by $U\eta-\eta$ where $\eta\in\Dom(U)$. Thus
-\begin{align*}
-U_{T_U}:T_U(U\eta-\eta)+\im(U\eta-\eta)\mapsto T_U(U\eta-\eta)-\im(U\eta-\eta)
-\end{align*}
-By \eqref{eq193}, the above correspondence equals
-\begin{align*}
-U_{T_U}:-2\im\eta\mapsto -2\im U\eta
-\end{align*}
-This proves $U_{T_U}=U$.\\[-1ex]
-
-Step 4. If $T\subset\wtd T$, then clearly $U_T\subset U_{\wtd T}$. This proves the direction ``$\Rightarrow$'' in \eqref{eq194}. If $U\subset\wtd U$, then clearly $T_U\subset T_{\wtd U}$. This proves the direction ``$\Leftarrow$'' in \eqref{eq194}.
+Step 2. Next we must prove that $T_{U_T}=T$ and $U_{T_U}=U$, and that the equivalence \eqref{eq193} holds. While these facts can be checked directly, the most convenient argument is to use operator graphs. We therefore defer the proof of Step 2 to Rem. \ref{lb394}.
 \end{proof}
 
 
@@ -11786,7 +11769,7 @@ Let $T$ be a Hermitian operator on $\MH$. Let $\ovl T$ denote the inverse Cayley
 The idea for approaching this question is as follows. Note that $\Dom(\ovl{U_T})$ consists of vectors $\eta\in\MH$ that are limits of elements of $\Dom(U_T)=\Rng(T+\im)$. Thus, $\eta\in\MH$ belongs to $\Dom(\ovl{U_T})$ iff there exists a sequence $(\xi_n)$ in $\Dom(T)$ such that $\eta=\lim_n (T+\im)\xi_n$. In view of \eqref{eq197}, the fact that $(T\xi_n+\im\xi_n)$ is a Cauchy sequence is equivalent to that both $(\xi_n)$ and $(T\xi_n)$ are Cauchy sequences. This suggests that $\xi:=\lim_n\xi_n$ should be in the domain $\Dom(\ovl T)$, and that such $\xi$ form the whole domain $\Dom(\ovl T)$. Moreover, it is easy to guess how $\ovl T$ is defined on such $\xi$: the element $\ovl T\xi$ should equal $\lim_n T\xi_n$. 
 
 
-Although the above reasoning can be made rigorous, in the next section we prefer to present the argument using the important concept of the graph of an operator, introduced by von Neumann in his slightly later paper \cite{vN32b}. In particular, as we will see in Def. \ref{lb386}, the approximation $(\xi_n,T\xi_n)\rightarrow(\xi,\ovl T\xi)$ mentioned above can be understood geometrically in terms of operator graphs and their closures.
+Although the above reasoning can be made rigorous, in the next section we prefer to present the argument using the important concept of operator graphs, introduced implicitly by von Neumann in \cite{vN29a} and later further explored in \cite{vN32b}. In particular, as we will see in Def. \ref{lb386}, the approximation $(\xi_n,T\xi_n)\rightarrow(\xi,\ovl T\xi)$ mentioned above can be understood geometrically in terms of operator graphs and their closures.
 
 
 
@@ -11949,10 +11932,10 @@ Define the \textbf{Cayley transform}
 \begin{align}\label{eq198}
 \Cay:\MH\oplus\MH\xlongrightarrow{\simeq}\MH\oplus\MH\qquad \xi\oplus\phi\mapsto \frac{\phi+\im\xi}{\sqrt2}\oplus  \frac{\phi-\im\xi}{\sqrt2}
 \end{align}
-If $\fk G\subset\MH\oplus\MH$, the subspace $\Cay(\fk G)$ \index{Cay@$\Cay(\fk G)$, the Cayley transform of a $\fk G\subset\MH\oplus\MH$} is called the \textbf{Cayley transform} of $\fk G$, \index{00@Cayley transforms of linear subspace of $\MH\times\MH$} and $\fk G$ is called the \textbf{inverse Cayley transform} \index{00@Inverse Cayley transforms of linear subspace of $\MH\times\MH$} of $\Cay(\fk G)$. Clearly $\fk G$ is the image of $\Cay(\fk G)$ under
-\begin{align*}
+If $\fk G\subset\MH\oplus\MH$, the set $\Cay(\fk G)$ \index{Cay@$\Cay(\fk G)$, the Cayley transform of a $\fk G\subset\MH\oplus\MH$} is called the \textbf{Cayley transform} of $\fk G$, \index{00@Cayley transforms of linear subspace of $\MH\times\MH$} and $\fk G$ is called the \textbf{inverse Cayley transform} \index{00@Inverse Cayley transforms of linear subspace of $\MH\times\MH$} of $\Cay(\fk G)$. Clearly $\fk G$ is the image of $\Cay(\fk G)$ under
+\begin{align}\label{eq199}
 \Cay^{-1}:\MH\oplus\MH\xlongrightarrow{\simeq}\MH\oplus\MH\qquad \eta\oplus\psi\mapsto \frac{\im(\psi-\eta)}{\sqrt 2}\oplus\frac{\psi+\eta}{\sqrt 2}
-\end{align*}
+\end{align}
 \end{df}
 
 
@@ -11971,13 +11954,36 @@ and similarly $\Vert\phi-\im\xi\Vert^2=\Vert\phi\Vert^2+\Vert\xi\Vert^2-2\im\Rea
 
 
 
-\begin{eg}
+\begin{eg}\label{lb392}
 Let $T$ be a Hermitian operator on $\MH$. Then $\Cay(\SG(T))$ is the graph of the Cayley transform of $T$.
 \end{eg}
 
 \begin{proof}
 The Cayley transform $U_T$ of $T$ sends $T\xi+\im\xi$ to $T\xi-\im\xi$ where $\xi\in\Dom(T)$. Replacing $\xi$ with $\xi/\sqrt2$, we see that $\SG(U_T)$ consists of points of the form $(T\xi+\im\xi)/\sqrt2\oplus(T\xi-\im\xi)/\sqrt2$. This is compatible with \eqref{eq198} by setting $\phi=T\xi$.
 \end{proof}
+
+
+\begin{eg}\label{lb393}
+Let $U$ satisfy Condition (2) of Thm. \ref{lb383}. Then $\Cay^{-1}(\SG(U))$ is the graph of the inverse Cayley transform of $T$.
+\end{eg}
+
+\begin{proof}
+The inverse Cayley transform $T_U$ of $U$ sends $\im(U\eta-\eta)$ to $U\eta+\eta$ where $\eta\in\Dom(U)$. Replacing $\eta$ with $\eta/\sqrt2$, we see that $\SG(T_U)$ consists of points of the form $\im(U\eta-\eta)/\sqrt2\oplus(U\eta+\eta)/\sqrt2$. This is compatible with \eqref{eq199} by setting $\psi=U\eta$.
+\end{proof}
+
+
+\begin{rem}\label{lb394}
+We are now ready to complete the second step in the proof of Thm. \ref{lb383}.
+\end{rem}
+
+\begin{proof}
+Let $U_T$ be the Cayley transform of $T$, and let $T_U$ be the inverse Cayley transform of $U$. By Exp. \ref{lb392} and \ref{lb393}, the Cayley transform $\Cay$ maps the graph of $T$ to the graph of $U_T$; the inverse Cayley transform $\Cay^{-1}$ maps the graph of $U$ to the graph of $T_U$, and hence maps the graph of $U_T$ to the graph of $T_{U_T}$. So the graphs of $T$ and $T_{U_T}$ are equal. This proves $T=T_{U_T}$. A similar argument shows $U=U_{T_U}$.
+
+That $T\subset\wtd T$ is equivalent to $U_T\subset U_{\wtd T}$ follows directly from the fact that $\Cay$ maps a larger graph to a larger one.
+\end{proof}
+
+
+
 
 
 \begin{thm}\label{lb389}
@@ -11996,8 +12002,70 @@ By Thm. \ref{lb383}, there exists a Hermitian operator $\wht T$ on $\MH$ whose C
 \subsection{Extensions of Hermitian operators III: the non-unique part}
 
 
+Let $\MH$ be a Hilbert space. In Thm. \ref{lb383}, we have related the extensions of a Hermitian operator $T$ to the isometric extensions of its Cayley transform $U_T$. According to Thm. \ref{lb389}, the extension of $T$ to $\ovl T$ corresponds to the unique bounded linear extension of $U_T$ to $\ovl{\Dom(U_T)}$.
+
+In this section, we study closed extensions of a closed Hermitian operator $T$, which corresponds to isometric extensions of $U_T$ to larger closed linear subspaces of $\MH$ containing $\Dom(U_T)$.
 
 
+
+\begin{thm}\label{lb396}
+Let $T$ be a closed Hermitian operator on $\MH$. Then there exists a bijection between:
+\begin{enumerate}
+\item[(1)] A closed Hermitian operator $\wht T$ extending $T$.
+\item[(2)] A unitary map $V:\Dom(V)\xlongrightarrow{\simeq}\Rng(V)$ where $\Dom(V)$ is a Hilbert subspace of $\Rng(T+\im)^\perp$ and $\Rng(V)$ is a Hilbert subspace of $\Rng(T-\im)^\perp$.
+\end{enumerate}
+Viewing $V$ as an n.d.d. unbounded operator on $\MH$, the correspondence is given by
+\begin{gather}\label{eq200}
+\begin{gathered}
+\Dom(\wht T)=\Dom(T)+\Rng(V-\idt)\\
+\wht T|_{\Rng(V-\idt)}:\im(V\eta-\eta)\mapsto (V\eta+\eta)
+\end{gathered}
+\end{gather}
+for each $\eta\in\Dom(V)$.
+\end{thm}
+
+If one does not require that $\wht T$ is closed, then $\Dom(V)$ and $\Rng(V)$ are not necessarily complete.
+
+\begin{proof}
+Let $U_T:\Rng(T+\im)\xlongrightarrow{\simeq}\Rng(T+\im)$ be the Cayley transform of $T$. By Thm. \ref{lb383} and \ref{lb389}, the Cayley transform establishes a bijection between $\wht T$ and unitary $\wht U:\Dom(\wht U)\xlongrightarrow{\simeq}\Rng(\wht U)$ extending $U_T$, where $\Dom(\wht U)$ and $\Rng(\wht U)$ are closed linear subspaces of $\MH$.
+
+The bijection between $\wht U$ and $V$ is as follows. Given $\wht U$, then $\Dom(V)$ is chosen to be the orthogonal complement of $\Rng(T+\im)$ in $\Dom(\wht U)$, and $V$ is defined to be $\wht U|_{\Dom(V)}$. Conversely, given $V$, then $\Dom(\wht U)$ is set to be $\Rng(T+\im)+\Dom(V)$, and $\wht U$ is defined to be the unique extension of the Cayley transform $U_T$ whose restriction to $\Dom(V)$ equals $V$. Eq. \ref{eq200} is easy to check.
+\end{proof}
+
+\begin{df}
+Let $T$ be a Hermitian operator on $\MH$. Let
+\begin{align*}
+n_+=\dim \Rng(T+\im)^\perp\qquad n_-=\dim\Rng(T-\im)^\perp
+\end{align*}
+Then $(n_+,n_-)$ is called the (pair of) \textbf{deficiency indices} \index{00@Deficiency index} of $T$. 
+\end{df}
+
+By \ref{lb389}, $T$ and its closure $\ovl T$ have the same deficiency indices. Therefore, it suffices to consider deficiency indices of closed Hermitian operators.
+
+
+\begin{rem}
+As discussed in Subsec. \ref{lb384}, the Hermitian operators $T$ that admit spectral decompositions are those satisfying $\Rng(T+\im)=\Rng(T-\im)=\MH$. Later we will show that these operators are precisely the self-adjoint ones. By Thm. \ref{lb396}, this implies that a Hermitian operator $T$ has a self-adjoint extension iff its deficiency indices satisfy $n_+=n_-$.
+\end{rem} 
+
+
+
+\subsection{Adjoints of unbounded operators}
+
+
+Let $\MH,\MK$ be Hilbert spaces.
+
+
+In \cite{vN29a}, von Neumann introduced the notion of the adjoint operator for a Hermitian operator $T$. The idea is straightforward: viewing $T$ as a differential operator, the extended operator $T^*$ should have domain $\Dom(T^*)$ consisting of all $\eta\in\MH$ for which the ``weak derivative'' $T^*\eta$ exists. Concretely, these are the vectors $\eta\in\MH$ such that the linear functional
+\begin{align*}
+\Dom(T)\rightarrow\Cbb\qquad \xi\mapsto\bk{\eta|T\xi}
+\end{align*}
+is bounded. Since $\Dom(T)$ is dense, we have $\Dom(T)^*\simeq\MH^*$ due to Cor. \ref{lb144}. Therefore, by the Riesz-Fr\'echet Thm. \ref{lb135}, there exists a unique element $T^*\eta\in\MH$ such that
+\begin{align*}
+\bk{\eta|T\xi}=\bk{T^*\eta|\xi}\qquad\text{for all }\xi\in\Dom(T)
+\end{align*}
+
+
+This definition of $T^*$ clearly applies to any unbounded operator $T$ on $\MH$. However, without assuming that $T$ is Hermitian, the adjoint operator $T^*$ need not $T$. In fact, $\Dom(T^*)$ is not necessarily densely-defined, so $T^*$ may be only an n.d.d. unbounded operator. The systematic study of adjoints of general (not necessarily Hermitian) operators was undertaken by von Neumann in \cite{vN32b}. In this course, contrary to the historical order, we will first examine adjoints of general operators before specializing to Hermitian operators. 
 
 
 
