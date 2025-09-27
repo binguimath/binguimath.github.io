@@ -358,6 +358,7 @@
 \newcommand{\Hbb}{\mathbb H}
 \newcommand{\Tbb}{\mathbb T}
 \newcommand{\Jbb}{\mathbb J}
+\newcommand{\Ibb}{\mathbb I}
 \newcommand{\cbf}{\mathbf c}
 \newcommand{\Rbf}{\mathbf R}
 \newcommand{\wt}{\mathrm{wt}}
@@ -11796,7 +11797,7 @@ Let $\fk G$ be a linear subspace of $\MH\oplus\MK$. The \textbf{domain} \index{0
 \begin{align*}
 \pmb{\Dom(\fk G)}=\{\xi\in\MH:\xi\oplus\eta\in\fk G\text{ for some }\eta\in\MK\}
 \end{align*}
-which is clearly a linear subspace of $\MH$. We say that $\fk G$ is \textbf{densely-defined} \index{00Densely-defined linear subspace of $\MH\oplus\MK$} if $\Dom(\fk G)$ is dense in $\MH$.
+which is clearly a linear subspace of $\MH$. We say that $\fk G$ is \textbf{densely-defined} \index{00@Densely-defined linear subspace of $\MH\oplus\MK$} if $\Dom(\fk G)$ is dense in $\MH$.
 \end{df}
 
 
@@ -11845,7 +11846,7 @@ For each $\eta\in\MK$, we have $0\oplus\eta\in\ovl{\SG(T)}$ iff there exists a s
 
 
 \begin{cv}
-As in Convention \ref{lb385}, a closable/closed operator $T$ is automatically understood to be densely-defined. If this assumption is dropped, we will say that $T$ is an \textbf{n.d.d. closable/closed operator}.
+As in Convention \ref{lb385}, a closable/closed operator $T$ is automatically understood to be densely-defined. If this assumption is dropped, we will say that $T$ is an \textbf{n.d.d. closable/closed operator}. However, if it has already been stated that an unbounded operator is n.d.d., then ``closable'' and ``closed'' are automatically taken in the n.d.d. sense.
 \end{cv}
 
 
@@ -11896,7 +11897,10 @@ If $\fk G\subset\MH\oplus\MK$ is a linear subspace, we call \index{G@$\fk G^{-1}
 \begin{align*}
 \fk G^{-1}=\{\eta\oplus\xi:\xi\oplus\eta\in\MK\oplus\MH\}
 \end{align*}
-the \textbf{diagonal reflection} of $\fk G$.
+the \textbf{diagonal reflection} of $\fk G$. In other words, $\fk G^{-1}$ is the image of $\fk G$ under the (clearly unitary) \textbf{diagonal reflection map} \index{00@Diagonal reflection map}
+\begin{align}\label{eq206}
+\fk r:\MH\oplus\MK\rightarrow\MK\oplus\MK\qquad \xi\oplus\eta\mapsto\eta\oplus\xi
+\end{align}
 \end{df}
 
 \begin{comment}
@@ -11915,7 +11919,7 @@ It follows immediately that $T$ is closed iff $T^{-1}$ is closed. Moreover, if b
 \subsubsection{Closures of Hermitian operators and their Cayley transforms}
 
 
-\begin{df}
+\begin{df}\label{lb412}
 Define the \textbf{Cayley transform}
 \begin{align}\label{eq198}
 \Cay:\MH\oplus\MH\xlongrightarrow{\simeq}\MH\oplus\MH\qquad \xi\oplus\phi\mapsto \frac{\phi+\im\xi}{\sqrt2}\oplus  \frac{\phi-\im\xi}{\sqrt2}
@@ -11977,6 +11981,8 @@ That $T\subset\wtd T$ is equivalent to $U_T\subset U_{\wtd T}$ follows directly 
 \begin{thm}\label{lb389}
 Let $T$ be a Hermitian operator on $\MH$ with Cayley transform $U_T$. Then $T$ is closable and $\ovl T$ is Hermitian. Moreover, the Cayley transform of $\ovl T$ is equal to the unique bounded linear extension of $U_T$ to $\ovl{\Dom(U_T)}\rightarrow\MH$.
 \end{thm}
+
+It follows that $T$ is closed iff $\Dom(U_T)$ is closed (equivalently, $\Rng(U_T)$ is closed).
 
 
 \begin{proof}
@@ -12043,7 +12049,7 @@ As discussed in Subsec. \ref{lb384}, the Hermitian operators $T$ that admit spec
 Let $\MH,\MK$ be Hilbert spaces.
 
 
-In \cite{vN29a}, von Neumann introduced the notion of the adjoint operator for a Hermitian operator $T$. The idea is straightforward: viewing $T$ as a differential operator, the extended operator $T^*$ should have domain $\Dom(T^*)$ consisting of all $\eta\in\MH$ for which the ``weak derivative'' $T^*\eta$ exists. Concretely, these are the vectors $\eta\in\MH$ such that the linear functional
+In \cite{vN29a}, von Neumann introduced the notion of the adjoint operator $T^*$ for a Hermitian operator $T$.\footnote{However, in \cite{vN29a} von Neumann did not yet regard $T^*$ as the adjoint of $T$. See Subsec. \ref{lb411} for a detailed discussion.} The idea is straightforward: viewing $T$ as a differential operator, the extended operator $T^*$ should have domain $\Dom(T^*)$ consisting of all $\eta\in\MH$ for which the ``weak derivative'' $T^*\eta$ exists. Concretely, these are the vectors $\eta\in\MH$ such that the linear functional
 \begin{align}\label{eq203}
 \Dom(T)\rightarrow\Cbb\qquad \xi\mapsto\bk{\eta|T\xi}
 \end{align}
@@ -12053,7 +12059,7 @@ is bounded. Since $\Dom(T)$ is dense, we have $\Dom(T)^*\simeq\MH^*$ due to Cor.
 \end{align*}
 
 
-This definition of $T^*$ clearly applies to any unbounded operator $T$ on $\MH$. However, without assuming that $T$ is Hermitian, the adjoint operator $T^*$ need not extend $T$. In fact, $\Dom(T^*)$ is not necessarily densely-defined, so $T^*$ may be only an n.d.d. unbounded operator. The systematic study of adjoints of general (not necessarily Hermitian) unbounded operators was undertaken by von Neumann in \cite{vN32b}. In this course, contrary to the historical order, we will first examine adjoints of general operators before specializing to Hermitian operators. The most surprising result we will see in this section is the equivalence of the closability of $T$ and the density $\Dom(T^*)$; see Thm. \ref{lb402}.5
+This definition of $T^*$ clearly applies to any unbounded operator $T$ on $\MH$. However, without assuming that $T$ is Hermitian, the adjoint operator $T^*$ need not extend $T$. In fact, $\Dom(T^*)$ is not necessarily densely-defined, so $T^*$ may be only an n.d.d. unbounded operator. The systematic study of adjoints of general (not necessarily Hermitian) unbounded operators was undertaken by von Neumann in \cite{vN32b}. In this course, contrary to the historical order, we will first examine adjoints of general operators before specializing to Hermitian operators. The most surprising result we will see in this section is the equivalence of the closability of $T$ and the density of $\Dom(T^*)$; see Thm. \ref{lb402}.
 
 
 
@@ -12111,7 +12117,7 @@ Consequently, we have
 Therefore, it is unambiguous to omit parentheses and write $\Jbb\fk G^\perp$ and $\Jbb\fk G^{-1}$.
 
 \begin{proof}
-The first relation follows from $\Jbb_{\MH,\MK}^*=\Jbb_{\MK,\MH}$. The third one follows from the unitarity of the diagonal reflection map $\fk r:\MH\oplus\MK\rightarrow\MK\oplus\MH,\xi\oplus\eta\mapsto\eta\oplus\xi$. The second one follows from $\Jbb\fk r=-\fk r\Jbb$ and the fact that $-\fk V=\fk V$ for any linear subspace $\fk V$.
+The first and third relations follow from the fact that any unitary tranform commutes with taking orthogonal complements.  The second one follows from $\Jbb\fk r=-\fk r\Jbb$ and the fact that $-\fk V=\fk V$ for any linear subspace $\fk V$.
 \end{proof}
 
 
@@ -12145,6 +12151,11 @@ Recall that $\Dom(\fk G)$ consists of all $\xi\in\MH$ such that $\xi\oplus\phi\i
 \begin{co}\label{lb401}
 Let $\fk G\subset\MH\oplus\MK$ be a linear subspace. Then $\ovl{\fk G}$ is an operator graph iff $\Ad(\fk G)$ is densely defined.
 \end{co}
+
+\begin{proof}
+Part 2 of Thm. \ref{lb400} implies that $\Ad(\fk G)$ is densely defined iff $\Ad(\Ad(\gk G))$ is an operator graph, and Thm. part 1 says $\Ad(\Ad(\gk G))=\ovl{\fk G}$.
+\end{proof}
+
 
 \begin{comment}
 \begin{df}
@@ -12193,8 +12204,16 @@ As discussed near \eqref{eq203}, $\Dom(T^*)$ can also be described as the set of
 \end{rem}
 
 
+\begin{rem}
+Let $A,B:\MH\rightarrow\MK$ be unbounded operators satisfying $A\subset B$. Then $B^*\supset A^*$. This is due to the more general (obvious) fact that if $\fk G,\fk K$ are linear subspaces of $\MH\oplus\MK$, then
+\begin{align*}
+\fk G\subset\fk K\qquad\Longrightarrow\qquad\Jbb\fk G^\perp\supset\Jbb\fk K^\perp
+\end{align*}
+\end{rem}
 
-\begin{eg}
+
+
+\begin{eg}\label{lb409}
 Let $T$ be an unbounded operator on $\MH$. Then $T$ is Hermitian iff $T\subset T^*$.
 \end{eg}
 
@@ -12216,13 +12235,16 @@ Let $T:\MH\rightarrow\MK$ be an unbounded operator. Then the following are equiv
 \item[(1)] $T$ is closable.
 \item[(2)] $T^*$ is densely-defined (i.e. $T^*$ is an unbounded operator).
 \end{enumerate}
-Moreover, if one of (1) and (2) is true, then $T^*$ is a closed operator, and $\ovl T=T^{**}$.
+Moreover, if either (1) or (2) is true, then $T^*$ is a closed operator, and 
+\begin{align}\label{eq205}
+\ovl T=T^{**}\qquad (\ovl T)^*=T^*=T^{***}
+\end{align}
 \end{thm}
 
-Consequently, if $T$ is closable, then $T^{***}=\ovl{T^*}=T^*$.
+
 
 \begin{proof}
-The equivalence of (1) and (2) is due to Cor. \ref{lb401}. If (1) or (2) is true, then $\ovl T=T^{**}$ by Thm. \ref{lb400}-1, and the closedness of $T^*$ is due to the closedness of $\SG(T^*)=(\Jbb\SG(T))^\perp$. (Note that any orthogonal complement is closed; cf. Rem. \ref{lb150}.)
+The equivalence of (1) and (2) is due to Cor. \ref{lb401}. If (1) or (2) is true, then $\ovl T=T^{**}$ by Thm. \ref{lb400}-1, and the closedness of $T^*$ is due to the closedness of $\SG(T^*)=(\Jbb\SG(T))^\perp$. (Note that any orthogonal complement is closed; cf. Rem. \ref{lb150}.) Applying adjoints to both sides of $\ovl T=T^{**}$ gives $(\ovl T)^*=T^{***}$. Replacing $T$ by $T^*$ in the relation $\ovl T=T^{**}$ gives $\ovl{T^*}=T^{***}$, and hence $T^*=T^{***}$ because $T^*$ is closed.\footnote{Alternatively, \eqref{eq205} also follows from the fact that for each linear subspace $V$ of a Hilbert space, the relations $\ovl V=V^{\perp\perp}$ and $\ovl V^\perp=V^\perp=V^{\perp\perp\perp}$ hold due to Rem. \ref{lb150} and Cor. \ref{lb151}.}
 \end{proof}
 
 
@@ -12250,16 +12272,240 @@ Let $\eta\in\MK$. Then $\eta\in\Ker(T^*)$ iff the linear functional $\eta\in\Dom
 \end{proof}
 
 
+Inverses of bounded injective operators with dense ranges provide a large class of examples of closed operators. The following proposition shows that the adjoints of such closed operators can be computed in terms of the adjoints of the original bounded operators.
+
+
 \begin{pp}\label{lb404}
-Let $T:\MH\rightarrow\MK$ be an injective closed operator with dense range. Then $T^*:\MK\rightarrow\MH$ is also an injective closed operator with dense range, and
+Let $T:\MH\rightarrow\MK$ be an injective closed operator with dense range. Then $T^{-1},T^*:\MK\rightarrow\MH$ are also an injective closed operator with dense range, and
 \begin{align}\label{eq204}
 (T^*)^{-1}=(T^{-1})^*
 \end{align}
 \end{pp}
 
 \begin{proof}
-By Thm. \ref{lb402}, $T^*:\MK\rightarrow\MH$ is a closed operator. By Prop. \ref{lb403}, $\Ker(T^*)=\Rng(T)^\perp=\{0\}$ and $\ovl{\Rng(T^*)}=\Ker(T)^\perp=\MH$. Therefore $T^*$ is injective with dense range. Eq. \eqref{eq204} follows immediately from Prop. \ref{lb399}.
+By Thm. \ref{lb402}, $T^*:\MK\rightarrow\MH$ is a closed operator. By Prop. \ref{lb403}, $\Ker(T^*)=\Rng(T)^\perp=\{0\}$ and $\ovl{\Rng(T^*)}=\Ker(T)^\perp=\MH$. Therefore $T^*$ is injective with dense range. Clearly $T^{-1}$ is injectve with dense range. Since the diagonal reflection map \eqref{eq206} is unitary, the operator $T^{-1}$ is closed.  Eq. \eqref{eq204} follows immediately from Prop. \ref{lb399}.
 \end{proof}
+
+
+
+\subsubsection{Examples: Sobolev spaces}
+
+
+
+Let $\Omega\subset\Rbb^N$ be open. 
+
+\begin{df}
+For each \textbf{multi-index}
+\begin{align*}
+\alpha=(\alpha_1,\dots,\alpha_n)\in\Nbb^n
+\end{align*}
+we  define an unbounded operator \index{zz@$\partial^\alpha$}
+\begin{align}
+\pmb{\partial^\alpha}=\partial_{x_1}^{\alpha_1}\cdots\partial_{x_N}^{\alpha_N}:L^2(\Omega,m)\rightarrow L^2(\Omega,m)\qquad\Dom(\partial^\alpha)=C_c^\infty(\Omega)
+\end{align}
+The \textbf{order} of $\alpha$ is defined to be \index{zz@$\vert\alpha\vert$, the order of the multi-index $\alpha$}
+\begin{align*}
+\pmb{|\alpha|}=\alpha_1+\cdots+\alpha_N
+\end{align*}
+We also define the \textbf{gradient operator} \index{zz@$\nabla$, the gradient operator}
+\begin{gather}
+\begin{gathered}
+\nabla:L^2(\Omega,m)\rightarrow L^2(\Omega,m)^{\oplus N}\qquad f\mapsto \partial_{x_1}f\oplus\cdots\oplus\partial_{x_N}f\\
+\Dom(\nabla)=C_c^\infty(\Omega)
+\end{gathered}
+\end{gather}
+and the \textbf{divergence operator}
+\begin{gather}
+\begin{gathered}
+\dive:L^2(\Omega,m)^{\oplus N}\rightarrow L^2(\Omega,m)\qquad f_1\oplus\cdots\oplus f_N\mapsto \partial_{x_1}f_1+\cdots+\partial_{x_N}f\\
+\Dom(\dive)=C_c^\infty(\Omega)^{\oplus N}
+\end{gathered}
+\end{gather}
+both understood as unbounded operators.
+\end{df}
+
+
+\begin{pp}\label{lb406}
+The unbounded operators $\partial^\alpha,\nabla,\dive$ are closable, and
+\begin{align}\label{eq207}
+(\partial^\alpha)^*\supset (-1)^{|\alpha|}\partial^\alpha\qquad \nabla^*\supset-\dive\qquad \dive^*\supset-\nabla
+\end{align}
+\end{pp}
+
+
+\begin{proof}
+As in the proof of Exp. \ref{lb362},  integration by parts gives $\bk{f|\partial_{x_i}g}=-\bk{\partial_{x_i}f|g}$ for each $f,g\in C_c^\infty(\Omega)$. Hence
+\begin{align*}
+\bk{f|\partial^\alpha g}=(-1)^{|\alpha|}\bk{\partial^\alpha f|g}\qquad \text{for each }f,g\in C_c^\infty(\Omega)
+\end{align*}
+This is equivalent to the relation $(\partial^\alpha)^*\supset (-1)^{|\alpha|}$. The other two inclusion relations in \eqref{eq207} follow by a similar argument. 
+
+Eq. \eqref{eq207} implies that the adjoints of $\partial^\alpha,\nabla,\dive$ are densely defined. Hence they are closable by Thm. \ref{lb402}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{df}
+Let $T:\MH\rightarrow\MK$ be an n.d.d. unbounded operator. The \textbf{graph inner product} (of $T$) \index{00@Graph inner product $\bk{\cdot|\cdot}_T$} on $\Dom(T)$ \index{DomT@$\bk{\cdot\vert\cdot}_T$, the graph inner product} is defined by
+\begin{gather*}
+\pmb{\bk{\cdot|\cdot}_T}:\Dom(T)\times\Dom(T)\mapsto\Cbb\qquad \bk{\xi|\eta}_T= \bk{\xi|\eta}+\bk{T\xi|T\eta}
+\end{gather*}
+In other words, $\bk{\cdot|\cdot}_T$ is the pullback of the inner product of $\SG(T)$ to $\Dom(T)$ via the linear bijection
+\begin{align*}
+\Psi:\Dom(T)\rightarrow\SG(T)\qquad \xi\mapsto\xi\oplus T\xi
+\end{align*}
+It follows that $T$ is closed iff $\Dom(T)$ is complete.
+\end{df}
+
+
+\begin{eg}
+Define the \textbf{Sobolev spaces}  \index{00@$H^1_0(\Omega),H^1(\Omega)$}
+\begin{gather*}
+H^1_0(\Omega)=\Dom\big(\ovl{\nabla}\big)\qquad H^1(\Omega)=\Dom\big(\dive^*\big)
+\end{gather*} 
+equipped with the graph inner products of the closed operators $\ovl\nabla$ and $\dive^*$, respectively. Then $H^1_0(\Omega)$ and $H^1(\Omega)$ are Hilbert spaces.
+\end{eg}
+
+
+\begin{eg}
+For each $k\in\Nbb$,  define unbounded operators
+\begin{gather*}
+\nabla^k:L^2(\Omega,m)\rightarrow \bigoplus_{|\alpha|\leq k}L^2(\Omega,m)\qquad f\mapsto\oplus_\alpha \partial^\alpha f\\
+\Dom(\nabla^k)=C_c^\infty(\Omega)
+\end{gather*}
+and
+\begin{gather*}
+\dive^k:\bigoplus_{|\alpha|\leq k}L^2(\Omega,m)\rightarrow  L^2(\Omega,m)\qquad\oplus_\alpha f_\alpha\mapsto\sum_\alpha \partial^\alpha f_\alpha\\
+\Dom(\dive^k)=\bigoplus_{|\alpha|\leq k}C_c^\infty(\Omega)
+\end{gather*}
+Similar to Prop. \ref{lb406}, one easily checks that
+\begin{align}\label{eq208}
+(\nabla^k)^*\supset \dive^k\cdot \Ibb_k\qquad (\dive^k)^*\supset \Ibb_k\cdot\nabla^k
+\end{align}
+where $\Ibb_k\in\fk L\big(\bigoplus_{|\alpha|\leq k}L^2(\Omega,m)\big)$ is the unitary operator defined by $\Ibb_k(\oplus_\alpha f_\alpha)=\oplus_\alpha (-1)^{|\alpha|}f_\alpha$. Hence $\nabla^k$ and $\dive^k$ are closable by Thm. \ref{lb402}. Define the \index{00@Sobolev spaces $H^k_0(\Omega),H^k(\Omega)$} \textbf{Sobolev spaces} \index{Hk@$H_0^k(\Omega),H^k(\Omega)$}
+\begin{align*}
+H^k_0(\Omega)=\Dom\big(\ovl{\nabla^k}\big)\qquad H^k(\Omega)=\Dom\big((\dive^k)^*\big)
+\end{align*}
+equipped with the graph inner products of $\ovl{\nabla^k}$ and $(\dive^k)^*$, respectively. Then these two spaces are Hilbert spaces, because $\ovl{\nabla^k}$ and $(\dive^k)^*$ are closed. Moreover, it is easy to check that
+\begin{align*}
+H^k(\Omega)=\bigcap_{|\alpha|\leq k}\Dom\big((\partial^\alpha)^*\big)
+\end{align*}
+\end{eg}
+
+
+
+\begin{rem}
+From the second relation in \eqref{eq208}, we clearly have that $H^k_0(\Omega)\subset H^k(\Omega)$, and that the inner product of $H^k(\Omega)$ restricts to that of $H^k_0(\Omega)$. Moreover, by \eqref{eq208}, the closure of $\SG(\Ibb_k\cdot\nabla^k)$ in $\SG((\dive^k)^*)$ is $\SG(\Ibb_k\cdot\ovl{\nabla^k})$. It follows that $H^k_0(\Omega)$ is the closure of $C_c^\infty(\Omega)$ in $H^k(\Omega)$. 
+\end{rem}
+
+Heuristically, $H^k_0(\Omega)$ consists of those functions $f\in H^k(\Omega)$ such that $(\partial^\alpha)^*f$ ``vanishes at the boundary of $\Omega$'' for each $|\alpha|\leq k-1$. 
+
+
+\subsection{Adjoints of closed Hermitian operators}\label{lb408}
+
+
+Let $\MH$ be a Hilbert space. In this section, we show that a Hermitian operator $T$ on $\MH$ satisfies $T=T^*$ iff \begin{align}\label{eq209}
+\Rng(T+\im)=\Rng(T-\im)=\MH
+\end{align}
+that is, iff the Cayley transform of $T$ is a unitary operator on $\MH$. The motivation for establishing this result requires some explanation, which we provide in the following subsection.
+
+
+
+
+\subsubsection{Introduction}\label{lb411}
+
+%As mentioned before, the goal of von Neumann in \cite{vN27,vN29a} was to find a natural characterization of Hermitian operators $T$ on $\MH$ admitting spectral decompositions. As discussed in Subsec. \ref{lb384}, the first such condition he arrived at is $\Rng(T+\im)=\Rng(T-\im)=\MH$. Indeed, in his more systematic (than \cite{vN27}) treatment of the mathematical foundations of quantum mechanics in \cite{vN32a}, von Neumann only mentioned $\Rng(T+\im)=\Rng(T-\im)=\MH$ as the equivalence criterion for the existence of spectral decompositions.
+
+
+The most fundamental result in the theory of unbounded operators is that Hermitian operators $T$ satisfying $T=T^*$ admit spectral decompositions, as proved by von Neumann in \cite{vN29a}. Today, we call unbounded operators with $T=T^*$ \textbf{self-adjoint} operators. This terminology, however, has often caused confusion about the actual development of the theory of unbounded operators.
+
+The first main confusion is that one might think the notions of adjoint and self-adjointness for unbounded operators are straightforward, and that the real difficulty lies in proving that self-adjoint operators admit spectral decompositions. But this is not how the theory evolved. As emphasized earlier, having a spectral decomposition is not the ultimate goal, but rather the starting point. The true objective is to identify natural conditions on Hermitian operators that are equivalent to the existence of spectral decompositions. The first such condition encountered is \eqref{eq209}, as discussed in Subsec. \ref{lb384}. The final condition is  $T=T^*$. In other words, the condition $T=T^*$ is not the point of departure, but rather the culmination of the development of spectral theory for unbounded operators.
+
+Why, then, did von Neumann in \cite{vN29a} (and most later authors) not regard \eqref{eq209} as the definitive condition for Hermitian operators to admit spectral decompositions? This requires some explanation, especially since in Ch. \ref{lb407} we will see that in many situations it is actually easier to verify \eqref{eq209} than to check $T=T^*$ directly. The reason lies in a second major source of confusion concerning the notion of self-adjoint operators, which I now discuss.
+
+
+
+In \cite{vN29a}, von Neumann did not use the term ``self-adjoint'' for Hermitian operators satisfying $T=T^*$. Instead, he called them \textbf{hypermaximal operators}. Correspondingly, in that paper he did not regard $T^*$ as the adjoint of $T$, but rather as an extension of $T$. (Recall that Hermitian operators $T$ satisfy $T\subset T^*$; see Exp. \ref{lb409}.) Of course, for non-Hermitian operators one does not have $T\subset T^*$---but this is precisely why it was only later, in \cite{vN32b}, where von Neumann considered $T^*$ for general operators (not just Hermitian ones), that he began to interpret $T^*$ as the adjoint of $T$. 
+
+There are many clues in \cite{vN29a} that demonstrate von Neumann's original perspective of $T^*$ as an extension of the Hermitian operator $T$, rather than its adjoint:
+\begin{itemize}
+\item In footnote 46, von Neumann used $\ovl{\ovl T}$ to denote what we now call $T^*$.
+\item A key concept in \cite{vN29a} is \textbf{extension elements} (Erweiterungselemente), which are defined as those vectors belonging to the domain of (what we now call) $T^*$.
+\item In the second paragraph of Section I, von Neumann used both ``self-adjoint'' (selbstadjungiert) and ``Hermitian'' (Hermitsch) to describe Hermitian operators.
+\end{itemize}
+
+
+To explain why von Neumann regarded the condition $T=T^*$ (in his notation, $T=\ovl{\ovl T}$) rather than \eqref{eq209} as the definitive criterion for Hermitian operators admitting spectral decompositions, let's examine the following result; see \cite[Satz 33]{vN29a}:
+
+\begin{pp}\label{lb410}
+Let $T$ be a Hermitian operator on $\MH$. Then $T$ is \textbf{maximal} \index{00@Maximal Hermitian operator} (i.e., any Hermitian operator extending $T$ must be equal to $T$) if and only if
+\begin{align}\label{eq210}
+\Rng(T+\im)=\MH\qquad\text{or}\qquad\Rng(T-\im)=\MH
+\end{align}
+\end{pp}
+
+It follows from Thm. \ref{lb389} that a Hermitian operator $T$ is maximal precisely when it is closed and one of its deficiency indices is zero.
+
+\begin{proof}
+This follows directly from Thm. \ref{lb383}, since \eqref{eq210} means precisely that the Cayley transform of $T$ has no proper extension satisfying condition (2) of Thm. \ref{lb383}.
+\end{proof}
+
+
+Of course, a maximal Hermitian operator need not satisfy \eqref{eq209}. This naturally raises the following question:
+
+\begin{question}
+What is the analogue of Prop. \ref{lb410} for condition \eqref{eq209}? In other words, what is the natural property corresponding to \eqref{eq209}, in the same way that ``maximality'' corresponds to condition \eqref{eq210}?
+\end{question}
+
+\begin{proof}[Answer]
+The corresponding theorem is that a Hermitian operator $T$ is hypermaximal iff \eqref{eq209} holds. The natural property sought is precisely hypermaximality $T=\ovl{\ovl T}$ (i.e. $T=T^*$). Heuristically, this means not only that $T$ has no proper Hermitian extensions, but also that it has no proper ``hyperextensions'', if we interpret any unbounded operator between $T$ and $\ovl{\ovl T}\equiv T^*$ as a \textbf{hyperextension}\footnote{Von Neumann himself did not use the word ``hyperextension'' in his writings.} of $T$.
+\end{proof}
+
+
+ 
+\subsubsection{Characterization of adjoints of closed Hermitian operators}
+
+For a Hermitian operator $T$ on $\MH$, to relate the condition $T=T^*$ with \eqref{eq209}, we need a clear understanding $T^*$ in terms of $\Rng(T\pm\im)$. The goal of this subsection is to present such a characterization of $T^*$, originally due to \cite{vN29a}. However, we'll simplify the original technical computations by using the Cayley transform $\Cay:\MH\oplus\MH\rightarrow\MH\oplus\MH$ introduced in Def. \ref{lb412}.
+
+
+\begin{lm}
+Let $T$ be a Hermitian operator on $\MH$ with Cayley transform $U_T$. Then $\Cay(\SG(T^*))$ consists precisely of element $\alpha\oplus\beta\in\MH\oplus\MH$ satisfying
+\begin{align}\label{eq211}
+\bk{\alpha|\eta}=\bk{\beta|U_T\eta}\qquad\text{for each }\eta\in\Dom(U_T)
+\end{align}
+\end{lm}
+
+
+\begin{proof}
+On $\MH\oplus\MH$, one computes that
+\begin{align*}
+\Cay\circ\Jbb\circ\Cay^{-1}=\Gamma:\MH\oplus\MH\rightarrow\MH\oplus\MH\qquad \eta\oplus\phi\mapsto(-\eta)\oplus\phi
+\end{align*}
+Therefore, noting that any unitary transform commutes with taking orthogonal complements, we compute that
+\begin{align*}
+\Cay(\Jbb\fk G^\perp)=(\Cay\Jbb\fk G)^\perp=(\Gamma\Cay\fk G)^\perp
+\end{align*}
+and hence
+\begin{align}
+\Cay(\Ad(\fk G))=\{\alpha\oplus\beta\in\MH\oplus\MH:\bk{\alpha|\eta}=\bk{\beta|\psi}\text{ for each }\eta\oplus\psi\in\Cay(\fk G)\}
+\end{align}
+Eq. \eqref{eq211} follows by taking $\fk G=\SG(T)$.
+\end{proof}
+
+
+
+
+
+
 
 
 
@@ -12281,6 +12527,16 @@ Let $A,B:\MH\rightarrow\MK$ and $C:\MM\rightarrow\MH$ be unbounded operators. As
 \end{align*}
 Moreover, if $A\in\fk L(\MH,\MK)$, prove that $(A+B)^*=A^*+B^*$, and $(AB)^*=B^*A^*$. 
 \end{prob}
+
+
+
+\newpage
+
+
+\section{Examples of unbounded self-adjoint operators}\label{lb407}
+
+
+
 
 
 
