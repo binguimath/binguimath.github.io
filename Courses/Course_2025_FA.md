@@ -85,7 +85,7 @@
 
   讲义章节：1.3.2，1.4.3，2.6，3.1，3.2，3.3.1（部分）
 
-- 9/30 正交分解，投影算子，正交直和，标准正交基，Paerseval等式，Hilbert空间的等价刻画，Hilbert空间关于闭线性子空间存在投影算子，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随矩阵，有界sesquilinear form的复合
+- 9/30 正交分解，投影算子，正交直和，标准正交基，Parseval等式，Hilbert空间的等价刻画，Hilbert空间关于闭线性子空间存在投影算子，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随矩阵，有界sesquilinear form的复合
 
   讲义章节：3.3，3.4，3.5.1-3.5.3，3.5.4（部分）
 
