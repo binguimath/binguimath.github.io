@@ -9216,7 +9216,7 @@ is Radon in the sense of Rem. \ref{lb275}.
 
 
 
-\begin{df}
+\begin{df}\label{lb433}
 More generally, consider the case where $X$ is a topological space. A pre-unitary representation $(\pi,V)$ of $\Borb(X)$ is called a \textbf{normal pre-unitary representation} \index{00@Normal pre-unitary representation} if for each $\xi\in V$, the linear functional \eqref{eq151} is normal, that is,
 \begin{align*}
 \lim_n\bk{\xi|\pi(f_n)\xi}=\bk{\xi|\pi(f)\xi}
@@ -9632,7 +9632,7 @@ where $C$ is a suitable closed curve in $\Cbb$ surrounding $[-r,r]$. The key the
 In this section, we fix a Hilbert space $\MH$.
 
 \begin{df}
-An operator $T\in\fk L(\MH)$ is called \textbf{normal} \index{00@Normal} if it satisfies $T^*T=TT^*$. This is equivalent to its real part $\Real(T)$ \index{00@Real part of an operator} and its imaginary part $\Imag(T)$ \index{00@Imaginary part of an operator} commuting with each other, where
+An operator $T\in\fk L(\MH)$ is called \textbf{normal} \index{00@Normal operators, bounded} if it satisfies $T^*T=TT^*$. This is equivalent to its real part $\Real(T)$ \index{00@Real part of an operator} and its imaginary part $\Imag(T)$ \index{00@Imaginary part of an operator} commuting with each other, where
 \begin{align*}
 \Real(T)=\frac{T+T^*}2\qquad \Imag(T)=\frac{T-T^*}{2\im}
 \end{align*}
@@ -12872,11 +12872,11 @@ Two self-adjoint operators $A,B$ on $\MH$ are said to \textbf{commute strongly} 
 
 
 \begin{eg}\label{lb430}
-Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $f_1,\dots,f_N:X\rightarrow\Rbb$ be measurable. Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Then the multiplication operators $\Mbf_{f_1},\dots,\Mbf_{f_N}$ (cf. Exp. \ref{lb366}) are strongly-commuting self-adjoint operators on $\MH$.
+Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $f_1,\dots,f_N:X\rightarrow\Rbb$ be measurable. Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Then the multiplication operators $\Mbf_{f_1},\dots,\Mbf_{f_N}$ (cf. Exp. \ref{lb366}) are strongly-commuting self-adjoint operators on $\MH$. Moreover, the Cayley transform of $\Mbf_{f_j}$ is $\Mbf_{(f_j-\im)/(f_j+\im)}$.
 \end{eg}
 
 \begin{proof}
-If $f=f_i$, then clearly $\Mbf_f\pm\im=\Mbf_{f\pm\im}$. By Exp. \ref{lb373}, $\Mbf_{f\pm\im}$ is injective with dense range, and $\Mbf_{f\pm\im}^{-1}=\Mbf_{1/(f\pm\im)}$. In particular, $\Rng(\Mbf_{f\pm\im})=\Dom(\Mbf_{1/(f\pm\im)})=\MH$. This proves that $\Rng(\Mbf_f\pm\im)=\MH$. Therefore, by Cor. \ref{lb420}, $\Mbf_f$ is self-adjoint.
+If $f=f_j$, then $\Mbf_f$ is Hermitian, because $\bk{\xi|\Mbf_f\xi}=\sum_\alpha \int f|\xi_\alpha|^2d\mu_\alpha\in\Rbb$ for each $\xi=\oplus_\alpha\xi_\alpha\in\Dom(\Mbf_f)$. It is also clear that $\Mbf_f\pm\im=\Mbf_{f\pm\im}$. By Exp. \ref{lb373}, $\Mbf_{f\pm\im}$ is injective with dense range, and $\Mbf_{f\pm\im}^{-1}=\Mbf_{1/(f\pm\im)}$. In particular, $\Rng(\Mbf_{f\pm\im})=\Dom(\Mbf_{1/(f\pm\im)})=\MH$. This proves that $\Rng(\Mbf_f\pm\im)=\MH$. Therefore, by Cor. \ref{lb420}, $\Mbf_f$ is self-adjoint.
 
 By Rem. \ref{lb371}, the Cayley transform of $\Mbf_f$ equals
 \begin{align*}
@@ -12889,20 +12889,276 @@ where $u=(f-\im)/(f+\im):X\rightarrow\Sbb^1$ is measurable. This proves that the
 To prove that any finite family of strongly commuting self-adjoint operators are unitarily equivalent to multiplication operators, we need the following lemma. Recall Def. \ref{lb431} for the meanings of measurable isomorphisms and pullback measures.
 
 
-\begin{lm}
+\begin{lm}\label{lb432}
 Let $(X,\fk M)$ and $(Y,\fk N)$ be measurable spaces. Let $\phi:X\rightarrow Y$ be a measurable isomorphism. Let $(\nu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk N$. Then the map
 \begin{align*}
-\Phi:\bigoplus_{\alpha\in\SI}L^2(Y,\nu_\alpha)\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(X,\phi^*\nu_\alpha)\qquad \oplus_\alpha\eta_\alpha\mapsto \oplus_\alpha (\eta_\alpha\circ\phi)
+\Gamma:\bigoplus_{\alpha\in\SI}L^2(Y,\nu_\alpha)\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(X,\phi^*\nu_\alpha)\qquad \oplus_\alpha\eta_\alpha\mapsto \oplus_\alpha (\eta_\alpha\circ\phi)
 \end{align*}
 is unitary. Moreover, if $f\in X\rightarrow\Cbb$ is measurable, then the identity
 \begin{align*}
-\Phi\Mbf_f\Phi^{-1}=\Mbf_{f\circ\phi}
+\Gamma\Mbf_f\Gamma^{-1}=\Mbf_{f\circ\phi}
 \end{align*}
-holds as bounded linear operators on $\bigoplus_{\alpha\in\SI}L^2(X,\phi^*\nu_\alpha)$. In particular, $\Phi\Dom(\Mbf_f)=\Dom(\Mbf_{f\circ\phi})$.
+holds as bounded linear operators on $\bigoplus_{\alpha\in\SI}L^2(X,\phi^*\nu_\alpha)$. In particular, $\Gamma\Dom(\Mbf_f)=\Dom(\Mbf_{f\circ\phi})$.
 \end{lm}
 
 \begin{proof}
-The fact that $\Phi$ is an isometry follows from \eqref{eq224}. It is easy to see that $\Phi$ is a bijection, and that $\Phi\Mbf_f\Phi^{-1}=\Mbf_{f\circ\phi}$ holds.
+The fact that $\Gamma$ is an isometry follows from \eqref{eq224}. It is easy to see that $\Gamma$ is a bijection, and that $\Gamma\Mbf_f\Gamma^{-1}=\Mbf_{f\circ\phi}$ holds.
+\end{proof}
+
+
+
+\begin{thm}\label{lb436}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Then there exists a family $(\mu_\alpha)_{\alpha\in\SI}$ of finite Borel measures on $\Rbb$, together with a unitary map
+\begin{align*}
+\Phi:\MH\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)
+\end{align*}
+such that for each $1\leq j\leq N$, we have
+\begin{align}
+\Phi T_j\Phi^{-1}=\Mbf_{x_j}
+\end{align}
+as unbounded operators on $\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)$.
+\end{thm}
+
+Here, $x_i$ denotes the $i$-th coordinate function of $\Rbb^N$, i.e., the map sending $(a_1,\dots,a_N)\in\Rbb^N$ to $a_i$.
+
+
+\begin{proof}
+Step 1. Let $U_j$ be the Cayley transform of $T_j$, which is a unitary operator on $\MH$ by Cor. \ref{lb420}. By Prop. \ref{lb315}, we have $\Sp(T_j)\subset\Tbb\equiv\Sbb^1$. Since $U_1,\dots,U_N$ commute adjointly, by the spectral Thm. \ref{lb330}, there exists a family $(\nu_\alpha)_{\alpha\in\SI}$ of finite Borel measures on $\Tbb^N$, together with a unitary map
+\begin{align*}
+\Psi:\MH\rightarrow\bigoplus_{\alpha\in\SI}L^2(\Tbb^N,\nu_\alpha)
+\end{align*}
+such that $\Psi U_j\Psi^{-1}=\Mbf_{z_j}$ where $z_j:\Tbb^N\rightarrow\Tbb$ is the $i$-th coordinate function of $\Tbb^N$.\\[-1ex]
+
+
+Step 2. In this step, we reduce $\Tbb^N$ to $(\Tbb\setminus\{1\})^N$. Recall from Lem. \ref{lb378} that $1$ is not an eigenvalue of $U_j$. Hence $1$ is not an eigenvalue of $\Mbf_{z_j}$. Therefore, for each $\alpha\in\SI$, we have $\nu_\alpha(z_j^{-1}(1))=0$. (Otherwise, there exists $\alpha$ such that $\chi_{z_j^{-1}(1)}$ is a non-zero vector of $L^2(\Tbb^N,\nu_\alpha)$, but this vector is an eigenvector of $\Mbf_{z_j}$ with eigenvalue $1$.) 
+
+We have thus proved that $\nu_\alpha$ vanishes on $\bigcup_j z_j^{-1}(1)$, the complement of $(\Tbb\setminus\{1\})^N$. Therefore, we can restrict each $\nu_\alpha$ to $(\Tbb\setminus\{1\})^N$ so that the unitary map $\Psi$ in Step 1 becomes
+\begin{align*}
+\Psi:\MH\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2((\Tbb\setminus\{1\})^N,\nu_\alpha)
+\end{align*}
+and that
+\begin{align}\label{eq226}
+\Psi U_j\Psi^{-1}=\Mbf_{z_j}
+\end{align}
+where 
+\begin{align*}
+z_j:Y=(\Tbb\setminus\{1\})^N\rightarrow\Tbb
+\end{align*}
+is the $i$-th coordinate function of $\Tbb\setminus\{1\}$.\\[-1ex]
+
+Step 3. Define a homeomorphism
+\begin{align*}
+u_j=\frac{x_j-\im}{x_j+\im}:\Rbb\xlongrightarrow{\simeq}\Tbb\setminus\{1\}
+\end{align*}
+Applying Lem. \ref{lb432} to the homeomorphism
+\begin{align*}
+(u_1,\dots,u_N):\Rbb^N\rightarrow (\Tbb\setminus\{1\})^N
+\end{align*}
+gives a unitary map
+\begin{align*}
+\Gamma:\bigoplus_{\alpha\in\SI}L^2((\Tbb\setminus\{1\})^N,\nu_\alpha)\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)
+\end{align*}
+where $\mu_\alpha=(u_1,\dots,u_N)^*\nu_\alpha$ is a finite Borel measure on $\Rbb^N$, and
+\begin{align*}
+\Gamma\Mbf_f \Gamma^{-1}=\Mbf_{f\circ(u_1,\dots,u_N)}\qquad\text{for each Borel function }f:(\Tbb\setminus\{1\})^N\rightarrow\Cbb
+\end{align*}
+Therefore $\Gamma\Mbf_{z_j}\Gamma^{-1}=\Mbf_{u_j}=\Mbf_{(x_j-\im)/(x_j+\im)}$. This relation, together with \eqref{eq226}, implies
+\begin{align}\label{eq225}
+\Phi U_j\Phi^{-1}=\Mbf_{(x_j-\im)/(x_j+\im)}
+\end{align}
+if the unitary map $\Phi$ is defined to be
+\begin{align*}
+\Phi=\Gamma\circ\Psi:\MH\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)
+\end{align*}
+
+Since $U_j$ is the Cayley transform of $T_j$, the LHS of \eqref{eq225} is the Cayley transform of $\Phi T_j\Phi^{-1}$. By Exp. \ref{lb430}, the RHS of \eqref{eq225} is the Cayley transform of $\Mbf_{x_j}$. This proves $\Phi T_j\Phi^{-1}=\Mbf_{x_j}$.
+\end{proof}
+
+
+\subsection{Borel functiona calculus and the joint spectrum $\Sp(T_\blt)$}
+
+Let $\MH$ be a Hilbert space.
+
+
+\subsubsection{Borel functional calculus}
+
+
+Recall that if $X$ is a topological space, then $\Bor(X)$ (resp. $\Borb(X)$) denotes the space of Borel functions (resp. bounded Borel functions) $X\rightarrow\Cbb$. The main goal of this subsection is to prove the following theorem.
+
+\begin{thm}\label{lb434}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Then there exists a unique map
+\begin{align*}
+\pi_{T_\blt}:\Bor(\Rbb^N)\rightarrow\{\text{unbounded operators on }\MH\}
+\end{align*}
+satisfying the following properties:
+\begin{enumerate}[label=(\arabic*)]
+\item The map $\pi_{T_\blt}$ restricts to a normal unitary representation\footnote{Recall from Def. \ref{lb433} that ``normal'' means that if $(f_n)$ is an increasing sequence in $\Borb(\Rbb^N)$ converging to $f\in\Borb(\Rbb^N)$, then $\lim_n\bk{\xi|\pi_{T_\blt}(f_n)\xi}=\bk{\xi|\pi_{T_\blt}(f)\xi}$ for each $\xi\in\MH$.}
+\begin{align*}
+\pi_{T_\blt}|_{\Borb(\Rbb^N)}:\Borb(\Rbb^N)\rightarrow\fk L(\MH)
+\end{align*}
+In particular, the normality implies (by Prop. \ref{lb252}) that for each $\xi\in\MH$, there is a unique finite Borel measure $\pmb{\mu_\xi}$ on $\Rbb^N$ \index{zz@$\mu_\xi,\mu_{\eta,\xi}$} (called the \textbf{measure associated to $\xi$}) \index{00@Measure $\mu_\xi$ associated to a vector $\xi$} such that
+\begin{align}
+\bk{\xi|\pi_{T_\blt}(f)\xi}=\int_{\Rbb^N}fd\mu_\xi\qquad\text{for each }f\in\Borb(\Rbb^N)
+\end{align}
+\item For each $1\leq j\leq N$, if $x_j:\Rbb^N\rightarrow\Rbb$ denotes the $j$-th coordinate function of $\Rbb^N$, then
+\begin{align*}
+\pi_{T_\blt}\Big(\frac{x_j-\im}{x_j+\im}\Big)=\frac{T_j-\im}{T_j+\im}
+\end{align*}
+\item For each $\xi\in\MH$ and $f\in\Bor(\Rbb^N)$, we have
+\begin{align}
+\xi\in\Dom(\pi_{T_\blt}(f))\qquad\Longleftrightarrow\qquad \int_{\Rbb^N} |f|^2d\mu_\xi<+\infty
+\end{align}
+Moreover, if $\xi\in\Dom(\pi_{T_\blt}(f))$, then \footnote{Note that if $\int_{\Rbb^N} |f|^2d\mu_\xi<+\infty$, then $\int_{\Rbb^N} |f|d\mu_\xi<+\infty$ by Cauchy-Schwarz and the fact that $\mu_\xi(\Rbb^N)<+\infty$.}
+\begin{align}
+\bk{\xi|\pi_{T_\blt}(f)\xi}=\int_{\Rbb^N}fd\mu_\xi
+\end{align}
+\end{enumerate}
+\end{thm}
+
+
+We call $(\pi_{T_\blt},\MH)$ the \textbf{Borel functional calculus} \index{00@Borel functional calculus of bounded self-adjoint operators} of $T_\blt$, and write
+\begin{align*}
+\pmb{f(T_\blt)}:=\pi_{T_\blt}(f)
+\end{align*}
+
+
+
+\begin{proof}
+Let us prove the uniqueness. Suppose that $\wtd\pi_{T_\blt}$ satisfies also conditions (1), (2), and (3). We extend $\pi_{T_\blt}$ and $\wtd\pi_{T_\blt}$ by zero to
+\begin{align*}
+\pi_{T_\blt},\wtd\pi_{T_\blt}:\Borb(\ovl\Rbb^N)\rightarrow\{\text{unbounded operators on }\MH\}
+\end{align*}
+In other words, if $f\in\Borb(\ovl\Rbb^N)$, then $\pi_{T_\blt}(f)=\pi_{T_\blt}(f|_{\Rbb^N})$, and $\wtd\pi_{T_\blt}$ is defined in a similar way.
+
+
+By (2), the maps $\pi_{T_\blt}$ and $\wtd\pi_{T_\blt}$ agree on the functions $u_j=(x_j-\im)/(x_j+\im)$. Here, $u_j$ is viewed a continuous function on $\ovl\Rbb^N\simeq\Tbb^N$, where the homeomorphism $\ovl\Rbb\simeq\Tbb$ is defiend by the Cayley transform $x\mapsto \frac{x+\im}{x-\im}$. Since $u_1,\dots,u_N$ are the coordinate functions on $\Tbb^N$, they separate the points of $\ovl\Rbb^N$. By the uniqueness part in Thm. \ref{lb274}, $\pi_{T_\blt}$ and $\wtd\pi_{T_\blt}$ agree on $\Borb(\ovl\Rbb^N)$, and hence on $\Borb(\Rbb^N)$. In particular, for each $\xi\in\MH$, the measures $\mu_\xi,\wtd\mu_\xi$ defined respectively by $\pi_{T_\blt},\wtd\pi_{T_\blt}$ are equal. 
+
+Now choose any $f\in\Bor(\Rbb^N)$. By property (3), the unbounded operators $\pi_{T_\blt}(f)$ and $\wtd\pi_{T_\blt}(f)$ have the same domain $\Dom_0$, and for any $\xi\in\Dom_0$ we have $\bk{\xi|\pi_{T_\blt}\xi}=\bk{\xi|\wtd\pi_{T_\blt}\xi}$. By the polarization identiy, we have $\bk{\eta|\pi_{T_\blt}(f)\xi}=\bk{\eta|\wtd\pi_{T_\blt}(f)\xi}$ for each $\eta,\xi\in\Dom_0$. The density of $\Dom_0$ implies $\pi_{T_\blt}(f)\xi=\wtd\pi_{T_\blt}(f)\xi$. Thus $\pi_{T_\blt}$ equals $\wtd\pi_{T_\blt}$ on the whole space $\Bor(\Rbb^N)$.
+
+To prove the existence, one may assume that $T_1,\dots,T_N$ are equal to the multiplication operators $\Mbf_{x_1},\dots,\Mbf_{x_N}$ as described in the spectral Thm. \ref{lb436}. Then the uniqueness follows immediately by applying the following Thm. \ref{lb435} to $X=\Rbb^N$ and $f_1=x_1,\dots,f_N=x_N$.
+\end{proof}
+
+
+
+
+
+\begin{thm}\label{lb435}
+Let $(X,\fk M)$ be a measurable space. Let $f_1,\dots,f_N:X\rightarrow\Rbb$ be measurable functions. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Then the map
+\begin{align}
+\pi_{T_\blt}:\Bor(\Rbb^N)\rightarrow\{\text{unbounded operators on }\MH\}\qquad g\mapsto \Mbf_{g\circ f_\blt}
+\end{align}
+(where $f_\blt=(f_1,\dots,f_N):\Rbb^N\rightarrow\Rbb^N$) is a Borel functional calculus of $\Mbf_{f_1},\dots,\Mbf_{f_N}$.
+\end{thm}
+
+
+Recall from Exp. \ref{lb430} that $\Mbf_{f_1},\dots,\Mbf_{f_N}$ are strongly commuting self-adjoint operators. In short, Thm. \ref{lb435} says that for each $g\in\Bor(\Rbb^N)$, we have
+\begin{align*}
+g(\Mbf_{f_1},\dots,\Mbf_{f_N})=\Mbf_{g\circ f_\blt}
+\end{align*}
+
+\begin{proof}
+Step 1. We need to prove that $\pi_{T_\blt}$ satisfies the three properties in Thm. \ref{lb434}.
+
+Property (1) is easy to check. In particular, for each $\xi=\oplus_\alpha\xi_\alpha$ in $\MH$, noting that $\xi_\alpha=0$ for all $\alpha$ outside a countable subset of $\SI$ (Rem. \ref{lb333}), if we define
+\begin{align}
+d\mu_\xi=\sum_{\alpha\in\SI}(f_\blt)_*(|\xi_\alpha|^2d\mu_\alpha)
+\end{align}
+then for each $g\in\Bor(\Rbb^N,\ovl{\Rbb}_{\geq0})$ we have (recalling Def. \ref{lb314} for the basic properties of pushforward measures)
+\begin{align}\label{eq227}
+\sum_{\alpha\in\SI}\int_X(g\circ f_\blt)|\xi_\alpha|^2d\mu_\alpha=\sum_{\alpha\in\SI}\int_{\Rbb^N}g\cdot (f_\blt)_*(|\xi_\alpha|^2d\mu_\alpha)=\int_{\Rbb^N}gd\mu_\xi
+\end{align}
+The LHS of \eqref{eq227} equals $\bk{\xi|\pi_{T_\blt}(g)\xi}$ when $g\in\Borb(\Rbb^N,\Rbb_{\geq0})$. Thus $\bk{\xi|\pi_{T_\blt}(g)\xi}=\int_{\Rbb^N}gd\mu_\xi$ holds for all $g\in\Borb(\Rbb^N,\Rbb)$, and hence for all $g\in\Borb(\Rbb^N)$ by linearity. Thus $\mu_\xi$ is the finite Borel measure associated to $\xi$.\\[-1ex]
+
+Step 2. Let us check property (2). According to the definition of $\pi_{T_\blt}$,
+\begin{align*}
+\pi_{T_\blt}\Big(\frac{x_j-\im}{x_j+\im}\Big)=\Mbf_{\frac{x_j-\im}{x_j+\im}\circ f_\blt}=\Mbf_{(f_j-\im)/(f_j+\im)}
+\end{align*}
+where the last term equals the Cayley transform of $\Mbf_{f_j}$ by Exp. \ref{lb430}.\\[-1ex]
+
+Step 3. We now check property (3). Choose any $g\in\Bor(\Rbb^N)$ and $\xi=\oplus_\alpha\xi_\alpha\in\MH$. From the definition of multiplication operators, we have $\xi\in\Dom(\Mbf_{g\circ f_\blt})$ iff
+\begin{align*}
+\sum_{\alpha\in\SI}\int_X |g\circ f_\blt|\cdot|\xi_\alpha|d\mu_\alpha<+\infty
+\end{align*}
+By \eqref{eq227}, this is equivalent to $\int_{\Rbb^N}|g|^2d\mu_\xi<+\infty$. This proves the first half of (3).
+
+By linearity, \eqref{eq227} holds when $g\in\Bor(\Rbb^N,\Rbb)$, and when $g_+=\max\{g,0\},g_-=\max\{-g,0\}$ are $\mu_\xi$-integrable (equivalently, $|g|$ is $\mu_\xi$-integrable). Therefore, \eqref{eq227} holds when $g\in\Bor(\Rbb^N)$, and when $\Real g,\Imag g$ are $\mu_\xi$-integrable (equivalently, $|g|$ is $\mu_\xi$-integrable). Therefore, it holds when $g\in\Bor(\Rbb^N)$ and $|g|^2$ is $\mu_\xi$-integral. This last statement is equivalent to
+\begin{align*}
+\bk{\xi|\pi_{T_\blt}(g)\xi}=\int_{\Rbb^N}gd\mu_\xi
+\end{align*}
+whenever $\int_{\Rbb^N}|g|^2d\mu_\xi<+\infty$ (equivalently, $\xi\in\Dom(\Mbf_{g\circ f_\blt})$). This proves the second half of (3).
+\end{proof}
+
+
+\subsubsection{Basic properties of Borel functional Calculus}
+
+
+
+\begin{thm}\label{lb437}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $g_1,\dots,g_L:\Rbb^N\rightarrow\Rbb$ be Borel functions. Then $g_1(T_\blt),\dots,g_L(T_\blt)$ are strongly commuting self-adjoint operator on $\MH$, and
+\begin{align}\label{eq228}
+f(g_1(T_\blt),\dots,g_L(T_\blt))=(f\circ(g_1,\dots,g_L))(T_\blt)
+\end{align}
+holds for each $f\in\Bor(\Rbb^L)$.
+\end{thm}
+
+
+\begin{proof}
+By Thm. \ref{lb436}, we may assume that $\MH=\bigoplus_\alpha L^2(\Rbb^N,\mu_\alpha)$ where $(\mu_\alpha)$ is a family of finite Borel measures on $\Rbb^N$, and $T_j=\Mbf_{x_j}$. By Thm. \ref{lb435}, we have $g_k(T_\blt)=\Mbf_{g_k}$. Therefore, by Exp. \ref{lb430}, $g_1(T_\blt),\dots,g_L(T_\blt)$ are strongly commuting self-adjoint operators.
+
+Let $f\in\Bor(\Rbb^L)$. By Thm. \ref{lb435}, we have
+\begin{align*}
+&f(g_1(\Mbf_{x_\blt}),\dots,g_L(\Mbf_{x_\blt}))=f(\Mbf_{g_1},\dots,\Mbf_{g_L})\\
+=&\Mbf_{f\circ(g_1,\dots,g_L)}=(f\circ(g_1,\dots,g_L))(\Mbf_{x_\blt})
+\end{align*}
+This proves \eqref{eq228}.
+\end{proof}
+
+\begin{co}\label{lb439}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $1\leq L\leq N$. Assume that $f\in\Bor(\Rbb^N)$ depends only on the first $L$ variables so that $f$ can also be viewed as a Borel function on $\Rbb^L$. Then
+\begin{align*}
+f(T_1,\dots,T_L)=f(T_1,\dots,T_N)
+\end{align*} 
+\end{co}
+
+In particular, if $f$ only depends on the first variable, then $f(T_1)=f(T_1,\dots,T_N)$.
+
+\begin{proof}
+Apply Thm. \ref{lb437} to the case that $f\in\Bor(\Rbb^L)$ and $g_1,\dots,g_L$ are the first $L$ coordinate functions of $\Rbb^N$.
+\end{proof}
+
+Next, we give some useful criteria for the strong commutativity of self-adjoint operators.
+
+\begin{pp}\label{lb438}
+Let $T$ be a self-adjoint operator on $\MH$ with Cayley transform $U_T$. Let $V\in\fk L(\MH)$ be unitary. Then $VT=TV$ iff $V$ commutes with $U_T$.
+\end{pp}
+
+We emphasize that the commutativity of a unitary operator and a bounded linear operator implies the adjoint commutativity (cf. Exp. \ref{lb429}).
+
+\begin{proof}
+In general, if two self-adjoint operators are unitarily equivalent via a unitary operator $V$, then there Cayley transforms are also unitarily equivalent via $V$. Therefore, if $VTV^{-1}=T$, then $VU_TV^{-1}=U_T$. This proves ``$\Rightarrow$''.
+
+Similarly, if two unitary operators $U_1,U_2$ are unitarily equivalent via a unitary operator $V$, and if $\Rng(U_1-\idt)$ and $\Rng(U_2-\idt)$ are dense in $\MH$, then the inverse Cayley transforms of $U_1,U_2$ are also unitarily equivalent via $V$. This proves ``$\Leftarrow$''.
+\end{proof}
+
+
+
+\begin{thm}
+Let $T_1,T_2$ be self-adjoint operators on $\MH$ with Cayley transforms $U_1,U_2$ respectively. Then the following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item $T_1$ and $T_2$ commute strongly, that is, $U_1U_2=U_2U_1$.
+\item $U_1T_2=T_2U_1$.
+\item $U_2T_1=T_1U_2$.
+\item For each $f_1,f_2\in\Bor(\Rbb,\Rbb)$, the self-adjoint operators $f_1(T_1),f_2(T_2)$ commute strongly.
+\item For each $f_1,f_2\in\Borb(\Rbb)$, the bounded normal operators $f_1(T_1),f_2(T_2)$ commute adjointly.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+The equivalence of (1), (2), and (3) follow immediately from Prop. \ref{lb438}. The direction (1)$\Rightarrow$(4) follows from Thm. \ref{lb437} and Cor. \ref{lb439}.
+
+(4)$\Rightarrow$(5): Assume (4). The (5) clearly holds in the special case that $f_1,f_2\in\Borb(\Rbb,\Rbb)$. Therefore, if $f_1,f_2\in\Borb(\Rbb)$, then the real and imaginary parts of $f_1(T_1)$ commute with those of $f_2(T_2)$; hence $f_1(T_1)$ commutes adjointly with $f_2(T_2)$.
+
+(5)$\Rightarrow$(1): Assume (5). Let $f_1=f_2=f:=\frac{x-\im}{x+\im}$. By property (2) in Thm. \ref{lb434}, $f(T_j)$ is the Cayley transform $U_i$ of $T_j$. Therefore, $U_1$ commutes with $U_2$, and hence (1) holds.
 \end{proof}
 
 
@@ -12947,7 +13203,7 @@ Let $I=(a,b)$ where $-\infty\leq a<b\leq+\infty$. Let $T_0$ be the unbounded ope
 \end{array}
 \right.
 \end{gather*}
-\item Conclude that if $I=(0,+\infty)$, the Hermitian operator $T$ has deficiency indices $(1,0)$, and hence has no self-adjoint extensions.
+\item Conclude that if $I=(0,+\infty)$, the Hermitian operator $T$ has deficiency indices $n_+=1,n_-=0$, and hence has no self-adjoint extensions.
 \item Conclude that if $I=\Rbb$, then $H^1(I)=H^1_0(I)$, and $T_0$ is essentially self-adjoint.
 \end{enumerate}
 \end{prob}
