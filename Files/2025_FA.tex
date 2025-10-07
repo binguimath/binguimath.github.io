@@ -10182,7 +10182,7 @@ Therefore, (2) is not true.
 
 
 \begin{exe}
-Let $\lambda_\blt=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$. Prove that $\lambda_\blt\in\Sp(T_\blt)$ iff $\lambda_\blt$ is a \textbf{approximate joint eigenvalue} \index{00@Approximate joint eigenvalue} of $T_\blt$, that is, there exists a sequence of unit vectors $(\xi_n)$ in $\MH$ such that
+Let $\lambda_\blt=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$. Prove that $\lambda_\blt\in\Sp(T_\blt)$ iff $\lambda_\blt$ is a \textbf{joint approximate eigenvalue} \index{00@Joint approximate eigenvalue} of $T_\blt$, that is, there exists a sequence of unit vectors $(\xi_n)$ in $\MH$ such that
 \begin{align*}
 \lim_n (T_i-\lambda_i)\xi_n=0\qquad\text{for all }1\leq i\leq N
 \end{align*}
@@ -11596,7 +11596,7 @@ Exp. \ref{lb373} shows that $\oplus_{\alpha\in\SI}\Mbf_f$ has dense range if it 
 
 
 
-\begin{df}
+\begin{df}\label{lb452}
 We say that an unbounded operator $T:\MH\rightarrow\MK$ has an \textbf{everywhere-defined bounded inverse} \index{00@Everywhere-defined bounded inverse} if $T=S^{-1}$ for some injective $S\in\fk L(\MK,\MH)$ with dense range. (Note that such $S$ must be unique, since $S=T^{-1}$.)
 \end{df}
 
@@ -12065,8 +12065,11 @@ Let $T$ be a Hermitian operator on $\MH$. Let
 \begin{align*}
 n_+=\dim \Rng(T+\im)^\perp\qquad n_-=\dim\Rng(T-\im)^\perp
 \end{align*}
-Then $(n_+,n_-)$ is called the (pair of) \textbf{deficiency indices} \index{00@Deficiency index} of $T$. 
+More precisely, $n_\pm$ is the cardinality of any orthonormal basis of $\Rng(T\pm\im)^\perp$. We call $(n_+,n_-)$ the (pair of) \textbf{deficiency indices} \index{00@Deficiency index} of $T$. 
 \end{df}
+
+If $\MH$ is separable, the only infinite cardinality is that of $\Nbb$. In that case, it is unambiguous to denote this cardinality by $\infty$.
+
 
 By \ref{lb389}, $T$ and its closure $\ovl T$ have the same deficiency indices. Therefore, it suffices to consider deficiency indices of closed Hermitian operators.
 
@@ -13268,6 +13271,18 @@ By the spectral Thm. \ref{lb436}, one may assume that $\MH=\bigoplus_{\alpha\in\
 
 
 
+\begin{pp}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $1\leq L<N$. Then
+\begin{align}
+\Sp(T_1,\dots,T_N)\subset\Sp(T_1,\dots,T_L)\times\Sp(T_{L+1},\dots,T_N)
+\end{align}
+\end{pp}
+
+\begin{proof}
+This can be proved in the same way as in Prop. \ref{lb307}. Alternatively, one may assume that $T_1,\dots,T_N$ are the multiplication operators $\Mbf_{x_1},\dots,\Mbf_{x_N}$, and invoke Thm. \ref{lb441}.
+\end{proof}
+
+
 
 
 
@@ -13323,9 +13338,10 @@ By ``exceptional case'' von Neumann meant the situation where exactly one of the
 
 It might be too harsh to accuse Hilbert’s method of failing to clarify the extension process for Hermitian operators---after all, according to the paradigm shift \eqref{eq147a}, the paradigm of linear extension directly opposes that of finite approximation. What can be said fairly, however, is that the finite-approximation paradigm does not provide a structural understanding of the non-uniqueness of spectral decompositions of Hermitian operators.
 
-Indeed, as seen in Sec. \ref{lb188}, the solution to the Hamburger and Stieltjes moment problems is not always unique, and this non-uniqueness corresponds to the fact that it is often a subsequence of $(z-E_nTE_n)^{-1}$, rather than the full sequence, that converges. (Beyond the polynomial moment problems, even the existence of a convergent subsequence is not guaranteed.) Consequently, the resolvent $(z-T)^{-1}$, defined as the limit of a subsequence $(z-E_{n_k}TE_{n_k})^{-1}$, is not unique and depends on the chosen subsequence; the same holds for the spectral decomposition of $T$, expressed via the integral representation of $T$.
+Indeed, as seen in Sec. \ref{lb188}, the solutions to the Hamburger and Stieltjes moment problems are not always unique, and this non-uniqueness corresponds to the fact that it is often a subsequence of $(z-E_nTE_n)^{-1}$, rather than the full sequence, that converges. %(Beyond the polynomial moment problems, even the existence of a convergent subsequence is not guaranteed.) 
+Consequently, the resolvent $(z-T)^{-1}$, defined as the limit of a subsequence $(z-E_{n_k}TE_{n_k})^{-1}$, is not unique and depends on the chosen subsequence; the same holds for the spectral decomposition of $T$, expressed via the integral representation of $T$. In von Neumann's spectral theory, by contrast, this non-uniqueness appears as the non-uniqueness of the self-adjoint extensions $\wht T$ of $T$. 
 
-In von Neumann's spectral theory, by contrast, this non-uniqueness appears as the non-uniqueness of the self-adjoint extensions $\wht T$ of $T$. One may therefore interpret the various resolvents $(z-\wht T)^{-1}$ and the spectral decompositions of these $\wht T$ as corresponding to the different possible resolvents and spectral decompositions of $T$ obtained using Hilbert's finite-approximation method. 
+%One may therefore interpret the various resolvents $(z-\wht T)^{-1}$ and the spectral decompositions of these $\wht T$ as corresponding to the different possible resolvents and spectral decompositions of $T$ obtained using Hilbert's finite-approximation method. 
 
 In light of this comparison, the real advantage of von Neumann's theory over Hilbert's finite-approximation method becomes clear: \uwave{Von Neumann's framework characterizes the non-uniqueness (and even the non-existence) of the resolvents and the spectral decompositions of a Hermitian operator $T$ in a structural and conceptual way through the extensions of the Cayley transform of $T$ and the deficiency indices $n_+,n_-$, rather than through the choice of subsequences of $(z-E_nTE_n)^{-1}$.}
 
@@ -13365,7 +13381,7 @@ Therefore, the two deficiency indices $n_+,n_-$ of $T$ are equal. By Cor. \ref{l
 
 
 
-The above theorem provides an alternative solution to the Hamburger moment problem as stated in Thm. \ref{lb169}. (See Exp. \ref{lb351} for the spectral-theoretic solution to the Hausdorff moment problem).
+The above theorem provides an alternative proof of the Hamburger moment theorem as stated in Thm. \ref{lb169}. (See Exp. \ref{lb351} for the spectral-theoretic solution to the Hausdorff moment problem).
 
 
 \begin{eg}
@@ -13387,16 +13403,6 @@ for each $f\in\Bor(\Rbb)$ satisfying $\Omega\in\Dom(f(\wht T))$. Setting $f(x)=x
 
 
 
-
-
-
-
-
-
-
-
-\hypertarget{current}{}
-
 \subsection{Problems}
 
 
@@ -13411,6 +13417,27 @@ Let $A,B:\MH\rightarrow\MK$ and $C:\MM\rightarrow\MH$ be unbounded operators. As
 Moreover, if $A\in\fk L(\MH,\MK)$, prove that $(A+B)^*=A^*+B^*$, and $(AB)^*=B^*A^*$. 
 \end{prob}
 
+
+\begin{prob}\label{lb449}
+Let $A,B$ be n.d.d. injective unbounded operators on $\MH$. Prove that
+\begin{align}\label{eq232}
+A^{-1}+B^{-1}\supset A^{-1}(A+B)B^{-1}
+\end{align}
+where the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and the RHS has domain $\Dom(A^{-1})\cap\Dom(AB^{-1})$. Conclude that the inclusion relation ``$\supset$'' in \eqref{eq232} becomes ``$=$'' if $A$ is everywhere defined on $\MH$.
+\end{prob}
+
+\begin{prob}
+Let $T$ be a Hermitian operator on $\MH$.
+\begin{enumerate}
+\item Prove that
+\begin{gather*}
+\Dom(T)=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}=0\}\\
+\Dom(T)+\Rng(T+\im)^\perp=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}\geq0\}\\
+\Dom(T)+\Rng(T-\im)^\perp=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}\leq0\}
+\end{gather*}
+\item Assume that $\MH$ is separable. Let $a,b\in\Rbb$ with $a\neq0$. Prove that $T$ and $aT+b$ have the same pair of deficiency indices.
+\end{enumerate}
+\end{prob}
 
 
 
@@ -13440,6 +13467,47 @@ Restrict $f\in\Dom(T^*)$ to bounded intervals, and apply the results in Sec. \re
 \end{proof}
 
 
+\begin{prob}
+Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a collection of measures on $\fk M$. Let $f:X\rightarrow\Cbb$ be a measurable function. Let $\Mbf_f$ be the multiplication operator on $\MH:=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$ associated with $f$. Prove that
+\begin{align*}
+(\Mbf_f)^*=\Mbf_{\ovl f}
+\end{align*} 
+\end{prob}
+
+
+
+
+\begin{prob}
+Let $A,B$ be self-adjoint operators on $\MH$. Let $U\in\fk L(\MH)$ be unitary. For each $\lambda\in\Rbb$, let $E(\lambda)=\chi_{(-\infty,\lambda]}(A)$ and $F(\lambda):=\chi_{(-\infty,\lambda]}(B)$.
+\begin{enumerate}
+\item Prove that $UA=AU$ iff $UE(\lambda)=E(\lambda)U$ for each $\lambda\in\Rbb$.
+\item Prove that $A$ commutes strongly with $B$ iff $E(\lambda)F(\mu)=F(\mu)E(\lambda)$ for each $\lambda,\mu\in\Rbb$.
+\end{enumerate}
+\end{prob}
+
+
+\begin{df}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. We say that $\lambda=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$ is a \textbf{joint approximate eigenvalue} \index{00@Joint approximate eigenvalue} of $T_1,\dots,T_N$ if one of the following (clearly) equivalent conditions holds:
+\begin{enumerate}
+\item[(1)] For each $\eps>0$ there exists a nonzero vector $\xi\in\Dom(T_1)\cap\cdots\cap\Dom(T_N)$ such that
+\begin{align*}
+\Vert T_j\xi-\lambda_j\xi\Vert\leq\eps\Vert\xi\Vert\qquad\text{for each $1\leq j\leq N$}
+\end{align*}
+\item[(2)] There exists a sequence $(\xi_n)_{n\in\Zbb_+}$ of unit vectors in $\Dom(T_1)\cap\cdots\cap\Dom(T_N)$ such that
+\begin{align*}
+\lim_n (T_j-\lambda_j)\xi_n=0\qquad\text{for each $1\leq j\leq N$}
+\end{align*}
+\end{enumerate}
+\end{df}
+
+
+\begin{prob}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $\lambda_\blt=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$. Prove that $\lambda_\blt\in\Sp(T_\blt)$ (in particular, $\lambda_\blt\in\Rbb^N$) iff $\lambda_\blt$ is a joint approximate eigenvalue of $T_1,\dots,T_N$.
+\end{prob}
+
+\begin{prob}
+Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\lambda\in\Sp(T)$ iff $\lambda-T$ has an everywhere defined bounded inverse (cf. Def. \ref{lb452}).
+\end{prob}
 
 
 
@@ -13448,8 +13516,11 @@ Let $(U_\alpha)_{\alpha\in\SA}$ be a net of unitary operators on $\MH$ convergin
 \end{prob}
 
 \begin{proof}[Hint]
-Use Pb. \ref{lb447} to show that $f(U_\alpha)$ converges in WOT to $f(U)$, and that $f(U_\alpha)^*f(U_\alpha)$ converges in WOT to $f(U)^*f(U)$.
+Use Pb. \ref{lb240} to show that if $f\in C(\Sbb^1)$, then $f(U_\alpha)$ converges in WOT to $f(U)$, and $f(U_\alpha)^*f(U_\alpha)$ converges in WOT to $f(U)^*f(U)$. Then apply Pb.\ \ref{lb447} to remove the assumption that $f$ is continuous at $1$.
 \end{proof}
+
+
+\subsubsection{Convergence in the strong resolvent sense}
 
 
 \begin{df}
@@ -13466,7 +13537,7 @@ Let $(T_\alpha)_{\alpha\in\SA}$ be a net of self-adjoint operators on $\MH$ conv
 \end{prob}
 
 
-\begin{prob}
+\begin{prob}\label{lb450}
 Let $T$ be a self-adjoint operator on $\MH$ with Cayley transform $U_T$. Let $\lambda\in\Cbb\setminus\Rbb$.
 \begin{enumerate}
 \item Show that $\lambda-T$ is injective and $\Rng(\lambda-T)=\MH$, and that the inverse $(\lambda-T)^{-1}:\MH\rightarrow\MH$ is a bounded linear map.
@@ -13475,15 +13546,24 @@ Let $T$ be a self-adjoint operator on $\MH$ with Cayley transform $U_T$. Let $\l
 \end{enumerate}
 \end{prob}
 
+\begin{prob}\label{lb451}
+Let $(T_\alpha)_{\alpha\in\SA}$ be a net of self-adjoint operators on $\MH$. Let $T$ be a self-adjoint operator on $\MH$. Suppose that $\Dom_0\subset\Dom(T)$ is a core for $T$ satisfying $\Dom_0\subset\Dom(T_\alpha)$ for each $\alpha\in\SA$. Suppose that
+\begin{align*}
+\lim_\alpha T_\alpha\xi=T\xi\qquad\text{for each }\xi\in\Dom_0
+\end{align*}
+Prove that $(T_\alpha)$ converges in the strong resolvent sense to $T$.
+\end{prob}
 
 
+\begin{proof}[Hint]
+Use Pb. \ref{lb449} and part 3 of Pb. \ref{lb450}.
+\end{proof}
+
+
+The following problem introduces the appropriate version of the finite-rank approximation for self-adjoint operators.
 
 \begin{prob}
-Let $A,B$ be self-adjoint operators on $\MH$. Let $U\in\fk L(\MH)$ be unitary. For each $\lambda\in\Rbb$, let $E(\lambda)=\chi_{(-\infty,\lambda]}(A)$ and $F(\lambda):=\chi_{(-\infty,\lambda]}(B)$.
-\begin{enumerate}
-\item Prove that $UA=AU$ iff $UE(\lambda)=E(\lambda)U$ for each $\lambda\in\Rbb$.
-\item Prove that $A$ commutes strongly with $B$ iff $E(\lambda)F(\mu)=F(\mu)E(\lambda)$ for each $\lambda,\mu\in\Rbb$.
-\end{enumerate}
+Assume that $\MH$ is infinite-dimensional and separable. Let $T$ be a self-adjoint operator on $\MH$. Let $f_1,f_2,\dots\in\Rng(T+\im)$ be an orthonormal basis of $\Rng(T+\im)$. Let $e_n=(T+\im)^{-1}f_n$. Let $E_n\in\fk L(\MH)$ be the projection of $\MH$ onto $\Span\{e_1,\dots,e_n\}$. Show that each $E_nTE_n$ is a bounded self-adjoint operator on $\MH$, and that $(E_nTE_n)_{n\in\Zbb_+}$ converges in the strong resolvent sense to $T$. 
 \end{prob}
 
 
@@ -13491,6 +13571,7 @@ Let $A,B$ be self-adjoint operators on $\MH$. Let $U\in\fk L(\MH)$ be unitary. F
 
 
 
+\hypertarget{current}{}
 
 
 \newpage
@@ -13543,6 +13624,26 @@ In particular, if $(\idt+T)\xi=0$ then $\xi=0$. Therefore, the unbounded operato
 \bk{\phi|\phi}\geq\bk{S\phi|S\phi}\qquad\text{for each }\phi\in\MH
 \end{align*}
 Thus $S\in\fk L(\MH)$. Moreover, since the diagonal reflection of a positive graph is clearly also positive, we conclude that $S\geq0$. In particular, we have $S^*=S$. By Prop. \ref{lb404}, we have $(\idt+T)^*=(S^{-1})^*=(S^*)^{-1}=S^{-1}=\idt+T$, and hence $\idt+T^*=\idt+T$. Therefore $T$ is self-adjoint.
+\end{proof}
+
+
+
+
+\subsection{Problems}
+
+
+Let $\MH$ be a Hilbert space.
+
+
+
+\begin{prob}
+Let $A$ be a positive self-adjoint operator on $\MH$. Let $n\in\Zbb_+$. Prove that there exists a unique positive self-adjoint operator $B$ on $\MH$ satisfying $B^n=A$.
+\end{prob}
+
+
+\begin{proof}[Hint for the uniqueness]
+Apply the composition law (cf. Thm. \ref{lb437}) to the Borel functional calculus of $B$.
+%Show that $B$ commutes strongly with $A$. Then use the (unique) Borel functional calculus for $A,B$ to prove that $B=f(A,B)$ where $f:\Rbb_{\geq0}\times\Rbb_{\geq0}\rightarrow\Rbb$ is defined by $f(x,y)=x^{\frac 1n}$. Use Cor. \ref{lb439} to show that $B=g(A)$ where $g:\Rbb_{\geq0}\rightarrow\Rbb$ is defined by $g(x)=x^{\frac 1n}$.
 \end{proof}
 
 
