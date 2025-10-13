@@ -8097,7 +8097,7 @@ We continued to work in the setting of Subsec. \ref{lb194} and freely use the no
 
 In this section, we use Thm. \ref{lb200} to express $(f_n)$ as finite approximations of a continued fraction. In \cite{Sti94}, Stieltjes's reasoning proceeds in the opposite direction: he begins with a continued fraction, derives the three-term recurrence relation satisfied by its finite approximants, and then uses orthogonality to obtain the Pad\'e approximation.
 
-\begin{thm}
+\begin{thm}\label{lb454}
 Let $J$ be the Jacobi matrix associated to the Hankel matrix of $(c_n)$, and let $(b_n)$ and $(a_n)$ be the diagonal and off-diagonal sequences of $J$, respectively. Then $f_n(z)$ is the $n$-th approximation of the continued fraction
 \begin{align*}
 \cfrac{1}{z-b_0-\cfrac{a_0^2}{z-b_1-\cfrac{a_1^2}{z-b_2-\cfrac{a_2^2}{z-b_3-\ddots}  } } }
@@ -8107,6 +8107,9 @@ That is, for each $n\in\Nbb$, we have
 f_n(z)=\cfrac{1}{z-b_0-\cfrac{a_0^2}{\ddots-\cfrac{a_{n-2}^2}{z-b_{n-1}-\cfrac{a_{n-1}^2}{z-b_n} } } }
 \end{align}
 \end{thm}
+
+
+Recall from Thm. \ref{lb192} that any pair of real sequences $(a_n)_{n\in\Nbb}$ and $(b_n)_{n\in\Nbb}$ with $a_n>0$ arises from a unique sequence $(c_n)_{n\in\Nbb}$ with positive Hankel matrix and $c_0=1$ in the manner described in Thm. \ref{lb454}.
 
 \begin{proof}
 By Thm. \ref{lb200}, we have $f_n=q_n/p_{n+1}$ where $(p_n)$ and $(q_n)$ satisfy
@@ -9669,19 +9672,24 @@ An operator $T\in\fk L(\MH)$ is called \textbf{normal} \index{00@Normal operator
 
 
 \begin{eg}\label{lb311}
-Let $U\in\fk L(\MH,\MK)$ where $\MH$ and $\MK$ are Hilbert spaces. Then $U$ is unitary iff $U^*U=\idt_\MH$ and $UU^*=\idt_\MK$. Therefore, unitary operators on $\MH$ are normal.
+Let $U\in\fk L(\MH,\MK)$ where $\MH$ and $\MK$ are Hilbert spaces. Then the following are true.
+\begin{enumerate}
+\item $U$ is an isometry iff $U^*U=\idt_\MH$.
+\item $U$ is unitary iff $U^*U=\idt_\MH$ and $UU^*=\idt_\MK$.
+\end{enumerate}
+It follows that unitary operators on $\MH$ are normal.
 \end{eg}
 
 It follows that $U^{-1}=U^*$ if $U$ is a unitary operator between Hilbert spaces.
 
 \begin{proof}
-Suppose that $U$ is unitary, i.e., a linear isometry which is also surjective (and hence bijective). In particular, $U^{-1}\in\fk L(\MK,\MH)$ Then for each $\xi,\eta\in\MH$, we have
+For each $\xi,\eta\in\MH$, we have
 \begin{align*}
-\bk{\eta|U^{-1}U\xi}=\bk{\eta|\xi}=\bk{U\eta|U\xi}=\bk{\eta|U^*U\xi}
+\bk{U\xi|U\eta}=\bk{\xi|U^*U\eta}
 \end{align*}
-This shows that $U^{-1}=U^*$, and hence $U^*U=\idt_\MH,UU^*=\idt_\MK$.
+Thus $U$ is an isometry iff $\bk{\xi|\eta}=\bk{\xi|U^*U\eta}$ for each $\xi,\eta\in\MH$. This proves the first equivalence.
 
-Conversely, assume that $U^*U=\idt_\MH$ and $UU^*=\idt_\MK$. Then $U^*$ is the inverse of $U$. In particular, $U$ is bijective. For each $\xi\in\MH$ we have $\bk{U\xi|U\xi}=\bk{\xi|U^*U\xi}=\bk{\xi|\xi}$. Thus $U$ is a linear isometry, and hence unitary.
+By the first equivalence, $U$ is unitary iff $U^*U=\idt_\MH$ and $U$ is bijective (in which case the inverse $U^{-1}$ must be an isometry, and hence bounded), iff $U^*U=\idt_\MH$ and $U$ has a bounded linear inverse, iff $U^*$ is the inverse of $U$, iff $U^*U=\idt_\MH$ and $UU^*=\idt_\MK$.
 \end{proof}
 
 \subsubsection{Introduction}
@@ -13588,7 +13596,7 @@ Assume that $\MH$ is infinite-dimensional and separable. Let $T$ be a self-adjoi
 
 
 
-\hypertarget{current}{}
+
 
 
 \newpage
@@ -13603,6 +13611,11 @@ Assume that $\MH$ is infinite-dimensional and separable. Let $T$ be a self-adjoi
 
 
 
+Let $\MH$ be a Hilbert space.
+
+
+
+
 \begin{df}
 An unbounded operator $T$ on $\MH$ is called a \textbf{positive operator} \index{00@Positive (unbounded) operators} if $\bk{\xi|T\xi}\geq0$ for each $\xi\in\MH$. 
 
@@ -13610,6 +13623,20 @@ More generally, a linear subspace $\fk G\subset\MH\times\MH$ is called a \textbf
 \end{df}
 
 Positive operators are clearly Hermitian.
+
+
+
+Many Hermitian operators arising in partial differential equations and quantum mechanics are positive. For example, if $\Omega\subset\Rbb^n$ is open, then the negative Laplacian $-\Delta=-(\partial_{x_1}^2+\cdots+\partial_{x_n}^2)$ on $L^2(\Omega,m)$ with domain $C_c^\infty(\Omega)$ is positive, since
+\begin{align}
+-\bk{\xi|\Delta\xi}=\bk{\nabla\xi|\nabla\xi}\qquad\text{for each }\xi\in C_c^\infty(\Omega)
+\end{align}
+In quantum mechanics, one also considers the Hamitonian operator $H=-\Delta+V$ on $L^2(\Omega,m)$ with domain $C_c^\infty(\Omega)$, where $V$ is a positive Borel function on $\Omega$ (more precisely, the corresponding multiplication operator $\Mbf_V$). Of course, such $H$ is in general not closed, and hence not self-adjoint. Therefore,in order to obtain a spectral theorem for $H$ (so that, for example, one can solve the Schr\"odinger equation $\im\partial_t\xi(t)=H\xi(t)$ with initial condition $\xi(0)=\xi$ using the Borel functional calculus $\xi(t)=e^{-\im tH}\xi$), one must extend $H$ to a positive self-adjoint operator.
+
+The goal of this section is show that any positive operator admits a canonical extension that is both positive and self-adjoint, called the Friedrichs extension.
+
+
+\subsubsection{A basic criterion for positive self-adjoint operators}
+
 
 
 \begin{pp}
@@ -13644,6 +13671,10 @@ Thus $S\in\fk L(\MH)$. Moreover, since the diagonal reflection of a positive gra
 \end{proof}
 
 
+
+
+
+\hypertarget{current}{}
 
 
 \subsection{Problems}
