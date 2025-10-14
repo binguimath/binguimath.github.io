@@ -470,7 +470,8 @@
 \newcommand{\SG}{\mathscr G}
 \newcommand{\Mbf}{\mathbf M}
 \newcommand{\pbf}{\mathbf p}
-
+\newcommand{\DD}{\Delta_{\mathrm D}}
+\newcommand{\DN}{\Delta_{\mathrm N}}
 
 
 
@@ -6970,9 +6971,7 @@ Therefore, by Cor. \ref{lb161}, for each $T\in\fk L(H)$ and $f\in\Cbb[z]$,
 \subsection{Problems}
 
 
-Let $V$ be an inner product space.
-
-
+Let $V$ be an inner product space. 
 \begin{prob}
 Let $\omega$ be a Hermitian form on $V$. Prove the following sharpened polarization identity: For each $\xi,\eta\in V$ we have
 \begin{align}\label{eq145}
@@ -7006,6 +7005,11 @@ Note that when $V$ admits an orthonormal basis (e.g. when $V$ is separable), the
 \begin{proof}[Hint]
 Let $\MH$ be the metric space completion of $V$. Define vector additions, scalar multiplications, and the sesquilinear form $\bk{\cdot|\cdot}$ in an appropriate way, and prove that $\bk{\cdot|\cdot}$ is positive definite. 
 \end{proof}
+
+
+
+
+
 
 
 
@@ -10862,6 +10866,7 @@ We encourage the reader to use the results from this subsection to provide alter
 
 In this section, we fix Hilbert spaces $\MH,\MK$.
 
+
 \begin{prob}\label{lb284}
 Let $-\infty<a<b<+\infty$. Let $f\in\Cbb[x]$. Prove that $f|_{[a,b]}\geq0$ iff $f$ can be written as
 \begin{align*}
@@ -10875,8 +10880,32 @@ Show that $f\in\Rbb[x]$. Factor the polynomial $f$ into linear factors. Show tha
 \end{proof}
 
 
+The following problem complements Exp. \ref{lb311}.
+
+\begin{prob}\label{lb459}
+Let $\Phi\in\fk L(\MH,\MK)$. Prove that the following conditions are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item There exists closed linear subspaces $V\subset\MH$ and $W\subset\MK$ such that $\Phi$ restricts to a unitary map $\Phi|_V:V\xlongrightarrow{\simeq}W$, and $\Phi|_{V^\perp}$ is zero.
+\item There exists closed linear subspaces $V'\subset\MH$ and $W'\subset\MK$ such that $\Phi^*$ restricts to a unitary map $\Phi^*|_{W'}:W'\xlongrightarrow{\simeq}V'$, and $\Phi^*|_{(W')^\perp}$ is zero.
+\item $\Phi^*\Phi$ is a projection operator on $\MH$.
+\item $\Phi\Phi^*$ is a projection operator on $\MK$.
+\end{enumerate}
+Prove that if these conditions are satisfied, then 
+\begin{align}\label{eq240}
+\Rng(\Phi^*\Phi)=V=V'\qquad \Rng(\Phi\Phi^*)=W=W'
+\end{align}
+
+Such $\Phi$ is called a \textbf{partial isometry},\index{00@Partial isometries} and $V$ and $W$ are called the \textbf{source space} \index{00@Source space of a partial isometry} and the \textbf{target space} \index{00@Target space of a partial isometry} of $\Phi$ respectively. Clearly $\Phi^*$ is a partial isometry with source space $W$ and target space $V$.\hqed
+\end{prob}
 
 
+\begin{proof}[Suggestion]
+Suppose that (1) holds. Prove that (2) holds with $V'=V$ and $W'=W$. Then prove that (3) holds and $\Rng(\Phi^*\Phi)=V$. A similar argument yields $\Rng(\Phi\Phi^*)=W$. In particular, $V$ and $W$ are uniquely determined by $\Phi$.
+
+Exchanging the roles of $\Phi$ and $\Phi^*$, we conclude that (1)$\Leftrightarrow$(2), (1)$\Rightarrow$(3), (2)$\Rightarrow$(4), and that \eqref{eq240} holds. In particular, $V,V',W,W'$ are uniquely determined by $\Phi$.
+
+Finally, prove (3)$\Rightarrow$(1) (and similarly, (4)$\Rightarrow$(2)) by computing $\bk{\Phi\Phi^*\Phi\xi|\Phi\Phi^*\Phi\xi}$ and $\bk{\Phi(\idt-\Phi^*\Phi)\xi|\Phi(\idt-\Phi^*\Phi)\xi}$.
+\end{proof}
 
 
 \begin{df}
@@ -11318,7 +11347,7 @@ An \textbf{unbounded operator} \index{00@Unbounded operator} $T$ from $\MH$ to $
 \end{df}
 
 \begin{cv}\label{lb385}
-Unless otherwise stated, we assume that the domain $\Dom(T)$ of an unbounded operator $T:\MH\rightarrow\MK$ is dense. If this assumption is dropped, we will say that $T$ is an \textbf{n.d.d. unbounded operator}, where ``n.d.d.'' stands for ``non-necessarily densely defined''. \index{zz@n.d.d.=non-necessarily densely defined}
+Unless otherwise stated, we assume that the domain $\Dom(T)$ of an unbounded operator $T:\MH\rightarrow\MK$ is dense. If this assumption is dropped, we will say that $T$ is an \textbf{n.d.d. unbounded operator}, where ``n.d.d.'' stands for ``non-necessarily densely defined''. \index{ndd@n.d.d.=non-necessarily densely defined}
 \end{cv}
 
 
@@ -11359,7 +11388,7 @@ One checks that both sides have domain $\Dom(A)\cap\Dom(B)\cap\Dom(C)$, and that
 
 
 
-\begin{pp}
+\begin{pp}\label{lb457}
 Let $A:\ML\rightarrow\MM$, $B:\MK\rightarrow\ML$, and $C:\MH\rightarrow\MK$ be n.d.d. unbounded operators. Then $(AB)C=A(BC)$.
 \end{pp}
 
@@ -11445,12 +11474,17 @@ as functions of $x_2,\dots,x_N$. Hence
 
 
 \begin{eg}
-We work in the setting of Exp. \ref{lb362}. Let $f$ be a real polynomial with $N$ mutually-commuting variables. Define $f(\pbf_\blt)=f(\pbf_1,\dots,\pbf_N)$ in the obvious way, e.g., if $f=x_1x_3^2-2x_4^3x_5$ then $f(\pbf_\blt)=\pbf_1\pbf_3^2-2\pbf_4^3\pbf_5$. According to Def. \ref{lb363} and \ref{lb364}, $f(\pbf_\blt)$ has domain $C_c^\infty(\Omega)$. Using the fact that each $\pbf_j$ is Hermitian, one easily checks that $f(\pbf_\blt)$ is Hermitian. In particular, the \textbf{Laplacian} \index{00@Laplacian $\Delta$}
-\begin{align*}
-\Delta=-\pbf_1^2-\cdots-\pbf_N^2=\partial_{x_1}^2+\cdots+\partial_{x_N}^2
-\end{align*}
-(with domain $C_c^\infty(\Omega)$) is Hermitian.
+We work in the setting of Exp. \ref{lb362}. Let $f$ be a real polynomial with $N$ mutually-commuting variables. Define $f(\pbf_\blt)=f(\pbf_1,\dots,\pbf_N)$ in the obvious way, e.g., if $f=x_1x_3^2-2x_4^3x_5$ then $f(\pbf_\blt)=\pbf_1\pbf_3^2-2\pbf_4^3\pbf_5$. According to Def. \ref{lb363} and \ref{lb364}, $f(\pbf_\blt)$ has domain $C_c^\infty(\Omega)$. Using the fact that each $\pbf_j$ is Hermitian, one easily checks that $f(\pbf_\blt)$ is Hermitian. In particular, the \textbf{Laplacian} \index{00@Laplacian $\Delta$, with $\Dom(\Delta)=C_c^\infty(\Omega)$}
+\begin{gather*}
+\Delta=-\pbf_1^2-\cdots-\pbf_N^2=\partial_{x_1}^2+\cdots+\partial_{x_N}^2\\
+\Dom(\Delta)=C_c^\infty(\Omega)
+\end{gather*}
+is Hermitian. \index{zz@$\Delta$, the Laplacian with domain $C_c^\infty(\Omega)$} In this course, unless other stated, we always understand that $\Delta$ has domain $C_c^\infty(\Omega)$.
 \end{eg}
+
+
+
+
 
 \begin{df}\label{lb365}
 Let $(X,\fk M,\mu)$ be a measure space. Let $f:X\rightarrow\Cbb$ be measurable. The \textbf{multiplication operator} \index{00@Multiplication operator $\Mbf_f$, unbounded} $\pmb{\Mbf_f}$ \index{Mf@$\Mbf_f$, the multiplication operator, unbounded} is an unbounded operator on $L^2(X,\mu)$ defined by
@@ -11555,7 +11589,7 @@ It is useful to keep in mind that
 \end{gather}
 
 
-\begin{pp}
+\begin{pp}\label{lb455}
 Let $A:\MK\rightarrow\ML$ and $B:\MH\rightarrow\MK$ be injective n.d.d. unbounded operators. Note that $AB$ is clearly injective. We have
 \begin{align*}
 (AB)^{-1}=B^{-1}A^{-1}
@@ -11816,7 +11850,7 @@ which exists uniquely by Thm. \ref{lb31} (together with the completeness of $\ov
 Let $T$ be a Hermitian operator on $\MH$. Let $\ovl T$ denote the inverse Cayley transform of $\ovl{U_T}$, the unique bounded linear extension of $U_T$ to $\ovl{\Dom(U_T)}$. Can we give a direct definition of $\ovl T$ without appealing to its Cayley transform $\ovl{U_T}$?
 \end{question}
 
-The idea for approaching this question is as follows. Note that $\Dom(\ovl{U_T})$ consists of vectors $\eta\in\MH$ that are limits of elements of $\Dom(U_T)=\Rng(T+\im)$. Thus, $\eta\in\MH$ belongs to $\Dom(\ovl{U_T})$ iff there exists a sequence $(\xi_n)$ in $\Dom(T)$ such that $\eta=\lim_n (T+\im)\xi_n$. In view of \eqref{eq197}, the fact that $(T\xi_n+\im\xi_n)$ is a Cauchy sequence is equivalent to that both $(\xi_n)$ and $(T\xi_n)$ are Cauchy sequences. This suggests that $\xi:=\lim_n\xi_n$ should be in the domain $\Dom(\ovl T)$, and that such $\xi$ form the whole domain $\Dom(\ovl T)$. Moreover, it is easy to guess how $\ovl T$ is defined on such $\xi$: the element $\ovl T\xi$ should equal $\lim_n T\xi_n$. 
+The idea for approaching this question is as follows. Note that $\Dom(\ovl{U_T})$ consists of vectors $\eta\in\MH$ that are limits of elements of $\Dom(U_T)=\Rng(T+\im)$. Thus, $\eta\in\MH$ belongs to $\Dom(\ovl{U_T})$ iff there exists a sequence $(\xi_n)$ in $\Dom(T)$ such that $\eta=\lim_n (T+\im)\xi_n$. In view of \eqref{eq197}, the fact that $(T\xi_n+\im\xi_n)$ is a Cauchy sequence is equivalent to that both $(\xi_n)$ and $(T\xi_n)$ are Cauchy sequences. This suggests that $\xi:=\lim_n\xi_n$ should be in the domain $\Dom(\ovl T)$, and that such $\xi$ form the whole domain $\Dom(\ovl T)$---that is, elements of $\Dom(\ovl T)$ are precisely those of the form $\xi=\lim_n\xi_n$ where $(\xi_n)$ is a sequence in $\Dom(T)$ such that both $(\xi_n)$ and $(T\xi_n)$ are Cauchy sequences. Moreover, it is easy to guess how $\ovl T$ is defined on such $\xi$: the element $\ovl T\xi$ should equal $\lim_n T\xi_n$. 
 
 
 Although the above reasoning can be made rigorous, in the next section we prefer to present the argument using the important concept of operator graphs, introduced implicitly by von Neumann in \cite{vN29a} and later further explored in \cite{vN32b}. In particular, as we will see in Def. \ref{lb386}, the approximation $(\xi_n,T\xi_n)\rightarrow(\xi,\ovl T\xi)$ mentioned above can be understood geometrically in terms of operator graphs and their closures.
@@ -12468,7 +12502,10 @@ H^k(\Omega)=\bigcap_{|\alpha|\leq k}\Dom\big((\partial^\alpha)^*\big)
 From the second relation in \eqref{eq208}, we clearly have that $H^k_0(\Omega)\subset H^k(\Omega)$, and that the inner product of $H^k(\Omega)$ restricts to that of $H^k_0(\Omega)$. Moreover, by \eqref{eq208}, the closure of $\SG(\Ibb_k\cdot\nabla^k)$ in $\SG((\dive^k)^*)$ is $\SG(\Ibb_k\cdot\ovl{\nabla^k})$. It follows that $H^k_0(\Omega)$ is the closure of $C_c^\infty(\Omega)$ in $H^k(\Omega)$. 
 \end{rem}
 
+\begin{rem}\label{lb464}
 Heuristically, $H^k_0(\Omega)$ consists of those functions $f\in H^k(\Omega)$ such that $(\partial^\alpha)^*f$ ``vanishes at the boundary of $\Omega$'' for each $|\alpha|\leq k-1$. 
+\end{rem}
+
 
 
 \subsection{Adjoints of closed Hermitian operators}\label{lb408}
@@ -12645,13 +12682,27 @@ Let $T$ be a Hermitian operator on $\MH$. Then $T$ is self-adjoint iff
 Since self-adjoint operators are closed (by Thm. \ref{lb402}), and since Hermitian operators satisfying $\Rng(T+\im)=\Rng(T-\im)=\MH$ are also closed (by Thm. \ref{lb389}), the two conditions can be compared under the assumption that $T$ is a closed Hermitian operator. Then the equivalence follows immediately from Thm. \ref{lb415}.
 \end{proof}
 
-\begin{co}
+\begin{co}\label{lb461}
 Let $T$ be a Hermitian operator on $\MH$. Then $T$ is essentially self-adjoint iff both $\Rng(T+\im)$ and $\Rng(T-\im)$ are dense in $\MH$.
 \end{co}
 
 \begin{proof}
 This follows immediately from Cor. \ref{lb420}, together with the fact that $\Rng(\ovl T\pm\im)$ is the closure of $\Rng(T\pm\im)$ (due to Thm. \ref{lb389} or Eq. \eqref{eq197}).
 \end{proof}
+
+
+\begin{co}\label{lb462}
+Let $T$ be an essentially self-adjoint operator on $\MH$. Then $\ovl T$ is the unique closed Hermitian extension of $T$, and $\ovl T$ is self-adjoint.
+\end{co}
+
+\begin{proof}[First proof]
+Clearly $\ovl T$ is a self-adjoint extension. By Cor. \ref{lb461}, the Cayley transform of $T$ is a unitary map $U:\Dom(U)\rightarrow\Rng(U)$ where $\Dom(T)=\Rng(T+\im)$ and $\Rng(U)=\Rng(T-\im)$ are dense linear subspaces of $\MH$. Thus $U$ has at most one extension to a bounded linear map on a closed linear subspace of $\MH$ containing $\Dom(U)$. Therefore, by Thm. \ref{lb389}, $T$ has at most one closed Hermitian extension.
+\end{proof}
+
+\begin{proof}[Second proof]
+Clearly $\ovl T$ is self-adjoint. If $S$ is a closed Hermitian extension of $T$, then $T\subset S$ implies $\ovl T\subset S$. Thus $S^*\subset\ovl T^*$, and hence $\ovl T\subset S\subset S^*\subset \ovl T^*$. As $\ovl T=\ovl T^*$, we conclude $\ovl T=S$.
+\end{proof}
+
 
 
 \begin{co}\label{lb424}
@@ -12798,8 +12849,8 @@ Note that $e^{-x}$ and $e^x$ are orthogonal in the inner product of $H^1(I)$, ra
 Readers unfamiliar with absolutely continuous functions can skip the following remark.
 
 
-\begin{rem}
-Eq. \ref{eq221} can be strengthened as follows. Let $AC(\ovl I)$ be the set of absolutely continuous functions $\ovl I\rightarrow\Cbb$. Then
+\begin{rem}\label{lb463}
+Eq. \eqref{eq221} can be strengthened as follows. Let $AC(\ovl I)$ be the set of absolutely continuous functions $\ovl I\rightarrow\Cbb$. Then
 \begin{subequations}\label{eq222}
 \begin{gather}
 H^1_0(I)=\{f\in AC(\ovl I):f'\in L^2(I,m),f(a)=f(b)=0\}\label{eq222a}\\
@@ -13607,11 +13658,11 @@ Assume that $\MH$ is infinite-dimensional and separable. Let $T$ be a self-adjoi
 
 
 
-\subsection{Positive self-adjoint operators}
+\subsection{The positive self-adjoint operator $T^*T$}
 
 
 
-Let $\MH$ be a Hilbert space.
+Let $\MH,\MK$ be Hilbert spaces.
 
 
 
@@ -13632,14 +13683,14 @@ Many Hermitian operators arising in partial differential equations and quantum m
 \end{align}
 In quantum mechanics, one also considers the Hamitonian operator $H=-\Delta+V$ on $L^2(\Omega,m)$ with domain $C_c^\infty(\Omega)$, where $V$ is a positive Borel function on $\Omega$ (more precisely, the corresponding multiplication operator $\Mbf_V$). Of course, such $H$ is in general not closed, and hence not self-adjoint. Therefore, in order to obtain a spectral theorem for $H$ (so that, for example, one can solve the Schr\"odinger equation $\im\partial_t\xi(t)=H\xi(t)$ with initial condition $\xi(0)=\xi$ using the Borel functional calculus $\xi(t)=e^{-\im tH}\xi$), one must extend $H$ to a positive self-adjoint operator.
 
-The goal of this section is to show that any positive operator admits a canonical extension that is both positive and self-adjoint, called the Friedrichs extension.
+The goal of this section is to show that $T^*T$ is a positive self-adjoint operator if $T$ is a closed operator, cf. Thm. \ref{lb458}. Using this result, we show that  $-\Delta$ admits two canonical positive self-adjoint extensions, the Dirichlet and Neumann Laplacians. The study of positive self-adjoint extensions for the more general Hamiltonian operator $-\Delta+V$ will be addressed in Sec. \ref{lb465}.
 
 
 \subsubsection{A basic criterion for positive self-adjoint operators}
 
 
 
-\begin{pp}
+\begin{pp}\label{lb456}
 Let $T$ be an unbounded operator on $\MH$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $T$ is self-adjoint and positive.
@@ -13671,6 +13722,168 @@ Thus $S\in\fk L(\MH)$. Moreover, since the diagonal reflection of a positive gra
 \end{proof}
 
 
+\subsubsection{The positive self-adjoint operator $T^*T$}
+
+
+%In this section, we prove that for each closed operator $T$, the n.d.d. operator $T^*T$ is positive and self-adjoint; in particular, $T^*T$ is densely defined. This result---established by von Neumann in \cite{vN32b}---implies that the the negative Laplacian operator $-\Delta$ with domain $\Dom(\Delta)=C_c^\infty(\Omega)$ admits self-adjoint extensions, as will be discussed in Subsec. \ref{lb460}.
+
+
+
+The following theorem was proved by von Neumann in \cite{vN32b}.
+
+\begin{thm}\label{lb458}
+Let $T:\MH\rightarrow\MK$ be a closed operator. Then $T^*T$ is a positive self-adjoint operator on $\MH$, and $\Dom(T^*T)$ is a core for $T$. Moreover, if we let \index{zz@$\Pi_T:\SG(T)\rightarrow\MH$}
+\begin{align}
+\Pi_T:\SG(T)\rightarrow\MH\qquad \xi\oplus T\xi\mapsto \xi
+\end{align}
+Then $\Pi_T\Pi^*_T:\MH\rightarrow\MH$ is the everywhere-defined bounded inverse of $\idt+T^*T$.
+\end{thm}
+
+Note that since $T$ is closed, the graph $\SG(T)$ is a Hilbert space. Thus $\Pi_T$ is a bounded linear map between Hilbert spaces. Hence, its adjoint $\Pi_T^*$ belongs to $\fk L(\MH,\SG(T))$. We abbreviate $\Pi_T$ to $\Pi$ when no confusion arises.
+
+\begin{proof}
+For each $\xi\in\Dom(T^*T)=\Dom(\idt+T^*T)$, we clearly have
+\begin{align*}
+\bk{\xi|(\idt+T^*T)\xi}=\bk{\xi|\xi}+\bk{T\xi|T\xi}\geq0
+\end{align*}
+Thus, $\idt+T^*T$ is an n.d.d. positive operator on $\MH$.\\[-1ex]
+
+Step 1. Note that $\Pi_T$ is injective with dense range $\Rng(\Pi_T)=\Dom(T)$. Its inverse is the unbounded operator
+\begin{gather*}
+\Psi_T:\MH\rightarrow\SG(T)\qquad \xi\mapsto \xi\oplus T\xi\\
+\Dom(\Psi_T)=\Dom(T)
+\end{gather*}
+We abbreviate $\Psi_T$ to $\Psi$ when no confusion arises. In this step, we prove
+\begin{align}\label{eq238}
+\Psi_T^*\Psi_T=\idt+T^*T
+\end{align}
+
+If $\xi\in\Dom(T^*T)$, then for each $\eta\in\Dom(\Psi)$, we have
+\begin{align*}
+\bk{\Psi\eta|\Psi\xi}=\bk{\eta|\xi}+\bk{T\eta|T\xi}=\bk{\eta|(\idt+T^*T)\xi}
+\end{align*}
+which shows that $\Psi\xi\in\Dom(\Psi^*)$ (and hence $\xi\in\Dom(\Psi^*\Psi)$) and $\Psi^*\Psi\xi=\xi+T^*T\xi$.
+
+Conversely, if $\xi\in\Dom(\Psi^*\Psi)$, then for each $\eta\in\Dom(T)$ we have
+\begin{align*}
+\bk{T\eta|T\xi}=-\bk{\eta|\xi}+\bk{\Psi\eta|\Psi\xi}=-\bk{\eta|\xi}+\bk{\eta|\Psi^*\Psi\xi}
+\end{align*}
+which shows that $T\xi\in\Dom(T^*)$, and hence $\xi\in\Dom(T^*T\xi)$. This finishes the proof of \eqref{eq238}.\\[-1ex]
+
+Step 2. Since $\Psi=\Pi^{-1}$, by Prop. \ref{lb404} we have $\Psi^*=(\Pi^*)^{-1}$ where $\Psi^*$ and $\Pi^*$ are injective with dense ranges. Therefore, \eqref{eq238} implies
+\begin{align}\label{eq239}
+\idt+T^*T=(\Pi^*)^{-1}\Pi^{-1}=(\Pi\cdot\Pi^*)^{-1}
+\end{align}
+where the last equality is due to Prop. \ref{lb455}. In particular,
+\begin{align*}
+\Rng(\idt+T^*T)=\Dom(\Pi\cdot\Pi^*)=\MH
+\end{align*}
+This proves that $\idt+T^*T$ has range $\MH$. To prove that $T^*T$ is positive self-adjoint, by Prop. \ref{lb456}, it remains to prove that $\Dom(T^*T)$ is dense. This will follow from the stronger fact that $\Dom(T^*T)$ is a core for $T$, to be proved in the next step.\\[-1ex]
+
+Step 3. Observe that $\Dom(T^*T)=\Dom(\idt+T^*T)$ equals $\Rng(\Pi\cdot\Pi^*)$ due to \eqref{eq239}. On the other hand, since $\Psi=\Pi^{-1}$, by Prop. \ref{lb457} we have
+\begin{align*}
+\Psi(\Pi\cdot\Pi^*)=(\Psi\Pi)\cdot\Pi^*=\id_{\Dom(\Pi)}\Pi^*=\id_\MH\Pi^*=\Pi^*
+\end{align*}
+Thus $\Psi$ maps $\Dom(T^*T)=\Rng(\Pi\cdot\Pi^*)$ to $\Rng(\Pi^*)$. As observed in Step 2, $\Pi^*$ has dense range in $\SG(T)$. This shows that $\Psi\Dom(T^*T)$ is dense subspace of $\SG(T)$. Since
+\begin{align*}
+\Psi\Dom(T^*T)=\{\xi\oplus T\xi:\xi\in\Dom(T^*T)\}=\SG(T|_{\Dom(T^*T)})
+\end{align*}
+the graph of $T|_{\Dom(T^*T)}$ is dense in that of $T$. Namely, $\Dom(T^*T)$ is a core for $T$.
+\end{proof}
+
+\begin{df}
+An element $\Phi\in\fk L(\MH,\MK)$ is called a \textbf{partial isometry} \index{00@Partial isometries} if there exists a closed linear subspace $V\subset\MH$ such that $\Phi|_V:V\rightarrow\MK$ is an isometry, and $\Phi|_{V^\perp}=0$. Note that $V$ is uniquely determined by $\Phi$ by the relation
+\begin{align*}
+V^\perp=\Ker(\Phi)
+\end{align*}
+We call $V=\Ker(\Phi)^\perp$ the \textbf{source space} \index{00@Source space of a partial isometry} of $\Phi$, and call $\Rng(\Phi)$ the \textbf{target space} \index{00@Target space of a partial isometry} of $\Phi$.
+\end{df}
+
+
+The following immediate consequence of Thm. \ref{lb458} is also due to \cite{vN32b}.
+
+\begin{thm}
+Let $T:\MH\rightarrow\MK$ be a closed operator. Then $\sqrt{T^*T}$ is a positive self-adjoint operator on $\MH$, and there exists a unique partial isometry $U\in\fk L(\MH,\MK)$ with source space $\ovl{\Rng(\sqrt{T^*T})}$ satisfying
+\begin{align}\label{eq241}
+T=U\sqrt{T^*T}
+\end{align}
+We call \eqref{eq241} the \textbf{(left) polar decomposition} of $T$. \index{00@Polar decompositions of closed operators}
+\end{thm}
+
+Note that $\sqrt{T^*T}$ is defined by the continuous functional calculus $f(T^*T)$ with $f(x)=\sqrt{x}$.
+
+\begin{proof}
+Let $H=\sqrt{T^*T}$. Then $H$ is clearly positive and self-adjoint, and hence $H^*H=H^2=T^*T$. \footnote{Note that Thm. \ref{lb437} is used to conclude $(\sqrt{T^*T})^2=T^*T$.} Therefore, by Thm. \ref{lb458}, $\Dom(T^*T)$ is a common core for $H$ and $T$. Thus, $H\Dom(T^*T)$ is dense in $\Rng(H)$. Therefore, any bounded linear operator $\MH\rightarrow\MK$ is uniquely determined by its values on $H\Dom(T^*T)$ and on $\Rng(H^\perp)$. Thus, the elements $U\in\fk L(\MH,\MK)$ satisfying $T|_{\Dom(T^*T)}=UH|_{T^*T}$ and vanishing on $\Rng(H)^\perp$ are unique.
+
+Let us prove the existence part. For each $\xi\in\Dom(T^*T)=\Dom(H^*H)$, we have
+\begin{align*}
+\bk{H\xi|H\xi}=\bk{\xi|H^*H\xi}=\bk{\xi|T^*T\xi}=\bk{T\xi|T\xi}
+\end{align*}
+Therefore, by Lem. \ref{lb368}, there exits a linear isometry $U$ from the closure of $H\Dom(T^*T)$ (which equals $\ovl{\Rng(H)}$ due to the first paragraph) to $\MK$ satisfying $T\xi=UH\xi$ for each $\xi\in\Dom(T^*T)$. Thus
+\begin{align*}
+T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}
+\end{align*}
+Since $\Dom(T^*T)$ is a core for $T$ and $H$, the closures of the two sides above are equal to $T$ and $UH$ respectively. This proves \eqref{eq241}. 
+\end{proof}
+
+
+\subsubsection{The Dirichlet and Neumann Laplacians}\label{lb460}
+
+
+Let $\Omega\subset\Rbb^N$ be an open subset. Recall Subsec. \ref{lb416} for the Sobolev spaces $H^1_0(\Omega)=\Dom(\ovl\nabla)$ and $H^1(\Omega)=\Dom(\dive^*)$, equipped with the (complete) graph inner products of $\dive^*$ and $\ovl\nabla$ respectively. Note that $(\ovl\nabla)^*=\nabla^*$ and $(\ovl\dive)^*=\dive^*$ due to Thm. \ref{lb402}.
+
+
+
+
+
+\begin{df}
+The unbounded \index{zz@$\DD$, the Dirichlet Laplacian} operators \index{zz@$\DN$, the Neumann Laplacian}
+\begin{align}
+\pmb{\DD}=-\nabla^*\cdot\ovl\nabla\qquad \pmb{\DN}=-\ovl\dive\cdot\dive^*
+\end{align}
+(which are negative and self-adjoint due to Thm. \ref{lb458}) are called the \textbf{Dirichlet Laplacian} \index{00@Dirichlet Laplacian} and the \textbf{Neumann Laplacian} \index{00@Neumann Laplacian} respectively.
+\end{df}
+
+\begin{rem}
+For each $\xi\in C_c^\infty(\Omega)$, we have $\ovl\nabla\xi=\dive^*\xi=\nabla\xi$. Therefore
+\begin{align*}
+\bk{\eta|\nabla^*\ovl\nabla\xi}=\bk{\nabla\eta|\nabla\xi}=\bk{\dive^*\eta|\dive^*\xi}=\bk{\eta|\ovl\dive\cdot\dive^*\xi}
+\end{align*}
+for each $\xi,\eta\in C_c^\infty(\Omega)$. Moreover, integration by parts gives $\bk{\nabla\eta|\nabla\eta}=\bk{\eta|-\Delta\xi}$. This proves
+\begin{align}
+\DD|_{C^\infty_c(\Omega)}=\DN|_{C^\infty_c(\Omega)}=\Delta
+\end{align}
+where $\Delta$ is the usual Laplacian operator on $L^2(\Omega,m)$ with domain $\Dom(\Delta)=C_c^\infty(\Omega)$. Thus, both $-\DD$ and $-\DN$ are positive self-adjoint extensions of $-\Delta$.
+\end{rem}
+
+\begin{rem}
+Recall from Rem. \ref{lb464} that $\Dom(\ovl\nabla)=H^1_0(\Omega)$ consists of functions $f\in H^1(\Omega)$ ``vanishing on the boundary $\partial\Omega$''. Therefore, if $f\in\Dom(\DD)$, then $f\in H^1(\Omega)$ vanishes on $\partial\Omega$ (i.e., $f$ satisfies the Dirichlet boundary condition). If $f\in\Dom(\DN)$, then $\dive^* f$ belongs to $H^1_0(\Omega)$, and hence $(\partial_{x_1})^*f,\dots,(\partial_{x_N})^*f$ vanish on $\partial\Omega$ (i.e., $f$ satisfies the Neumann boundary condition). The description of $\Dom(\DD)$ and $\Dom(\DN)$ can be made explicit when $\Omega$ is a bounded open interval, as illustrated by the following example.
+\end{rem}
+
+
+\begin{eg}
+Assume that $\Omega$ is a bounded open interval $I=(a,b)$ in $\Rbb$. Let $T_0=-\im d/dx$ with domain $C_c^\infty(I)$. Recall Rem. \ref{lb463} for the description of $T:=\ovl {T_0}$ and $T^*$ in terms of absolutely continuous functions on $\ovl I=[a,b]$. In particular, $\Dom(T)=H_0^1(I)$ and $\Dom(T^*)=H^1(I)$ are described by \eqref{eq222}. Clearly
+\begin{align*}
+\DD=-T^*T\qquad \DN=-TT^*
+\end{align*}
+From this one concludes:
+\begin{itemize}
+\item The domain $\Dom(\DD)$ consists of all $f\in AC(\ovl I)$ satisfying
+\begin{align*}
+f(a)=f(b)=0\qquad f'\in AC(\ovl I)\qquad f''\in L^2(I,m)
+\end{align*}
+For each such $f$ we have $\DD f=-f''$.
+\item The domain $\Dom(\DN)$ consists of all $f\in AC(\ovl I)$ satisfying
+\begin{align*}
+f'\in AC(\ovl I)\qquad f'(a)=f'(b)=0\qquad f''\in L^2(I,m)
+\end{align*}
+For each such $f$ we have $\DN f=-f''$.
+\end{itemize}
+\end{eg}
+
+
+
+\subsection{The Friedrichs extension}\label{lb465}
 
 
 
