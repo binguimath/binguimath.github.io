@@ -473,7 +473,7 @@
 \newcommand{\DD}{\Delta_{\mathrm D}}
 \newcommand{\DN}{\Delta_{\mathrm N}}
 \newcommand{\Frm}{{\mathrm F}}
-
+\newcommand{\Krm}{{\mathrm K}}
 
 
 
@@ -11403,7 +11403,7 @@ The only non-trivial part is the compare their domains:
 \end{proof}
 
 
-\begin{pp}
+\begin{pp}\label{lb485}
 Let $A,B:\MK\rightarrow\ML$ and $C,D\in\MH\rightarrow\MK$ be n.d.d. unbounded operators. Then
 \begin{gather}
 (A+B)C=AC+BC\qquad A(C+D)\supset AC+AD
@@ -11506,7 +11506,7 @@ Then $\sum_{n\in\Zbb_+} V_n$ is dense in $L^2(X,\mu)$ (by DCT), and each $V_n$ i
 
 
 
-\begin{df}
+\begin{df}\label{lb483}
 Let $(\MH_\alpha)_{\alpha\in\SI}$ and $(\MK_\alpha)_{\alpha\in\SI}$ collections of Hilbert spaces. For each $\alpha\in\SI$, let $T_\alpha:\MH_\alpha\rightarrow\MK_\alpha$ be an n.d.d. unbounded operators. Their \textbf{direct sum} \index{00@Direct sum of unbounded operators} $\pmb{\oplus_{\alpha\in\SI}T_\alpha}$ is an n.d.d. unbounded operator $\bigoplus_{\alpha\in\SI}\MH_\alpha\rightarrow \bigoplus_{\alpha\in\SI}\MK_\alpha$ defined by
 \begin{gather*}
 \oplus_{\alpha\in\SI}T_\alpha:\Dom(\oplus_{\alpha\in\SI}T_\alpha)\rightarrow \bigoplus_{\alpha\in\SI}\MK_\alpha\qquad \oplus_{\alpha\in\SI}\xi_\alpha\mapsto \oplus_{\alpha\in\SI} T_\alpha\xi_\alpha
@@ -13577,6 +13577,10 @@ Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a co
 \end{prob}
 
 
+\begin{prob}\label{lb484}
+Let $(\MH_\alpha)_{\alpha\in\SA}$ be a family of Hilbert spaces. For each $\alpha\in\scr A$, let $(T_\alpha)$ be a Hermitian operator on $\MH_\alpha$. Prove that the direct sum operator $T:=\oplus_\alpha T_\alpha$ (cf. Def. \ref{lb483}) is self-adjoint iff each $T_\alpha$ is self-adjoint.
+\end{prob}
+
 
 
 \begin{prob}
@@ -13720,11 +13724,11 @@ The goal of this section is to show that $T^*T$ is a positive self-adjoint opera
 
 
 \begin{pp}\label{lb456}
-Let $T$ be an unbounded operator on $\MH$. The following are equivalent.
+Let $T$ be an unbounded operator on $\MH$. Let $\lambda\in\Rbb_{>0}$. The following are equivalent.
 \begin{enumerate}[label=(\arabic*)]
 \item $T$ is self-adjoint and positive.
 \item $T$ is self-adjoint and $\Sp(T)\subset\Rbb_{\geq0}$.
-\item $T$ is positive, and $\Rng(\idt+T)=\MH$.
+\item $T$ is positive, and $\Rng(\lambda+T)=\MH$.
 \end{enumerate}
 \end{pp}
 
@@ -13733,21 +13737,21 @@ Let $T$ be an unbounded operator on $\MH$. The following are equivalent.
 \begin{proof}
 $\neg$(2)$\Rightarrow$$\neg$(1): Assume that $T$ is self-adjoint and $\Sp(T)\nsubset\Rbb_{\geq0}$. By the spectral Thm. \ref{lb436}, one may assume that $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb,\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb$, and $T=\Mbf_x$. By Thm. \ref{lb441}, there exists $\alpha$ such that $\Supp(\mu_\alpha)\nsubset\Rbb_{\geq0}$ and hence $\mu_\alpha(\Rbb_{<0})\geq0$. Thus, viewing $\xi=\chi_{\Rbb_{<0}}$ as an element of $L^2(\Rbb,\mu_\alpha)$ (and hence an element of $\MH$), we have $\bk{\xi|T\xi}=\int_{\Rbb_{<0}}xd\mu_\alpha<0$. So $T$ is not positive.
 
-(2)$\Rightarrow$(3): By the spectral Thm. \ref{lb436} and Thm. \ref{lb441}, we may assume that $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb_{\geq0},\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb_{\geq0}$, and $T=\Mbf_x$. Then $T$ is clearly positive. Since the function $1/(1+x)$ is bounded, by Rem. \ref{lb371}, we have
+(2)$\Rightarrow$(3): By the spectral Thm. \ref{lb436} and Thm. \ref{lb441}, we may assume that $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb_{\geq0},\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb_{\geq0}$, and $T=\Mbf_x$. Then $T$ is clearly positive. Since the function $1/(\lambda+x)$ is bounded, by Rem. \ref{lb371}, we have
 \begin{align*}
-(\idt+T)\Mbf_{1/(1+x)}=\Mbf_{1+x}\Mbf_{1/(1+x)}=\Mbf_1=\idt
+(\lambda+T)\Mbf_{1/(\lambda+x)}=\Mbf_{\lambda+x}\Mbf_{1/(\lambda+x)}=\Mbf_1=\idt
 \end{align*} 
-Thus $\Rng(\idt+T)=\MH$.
+Thus $\Rng(\lambda+T)=\MH$.
 
 (3)$\Rightarrow$(1): Since $T$ is positive, we have
 \begin{align*}
-\bk{(\idt+T)\xi|(\idt+T)\xi}\geq \bk{\xi|\xi}\qquad\text{for each }\xi\in\Dom(T)
+\bk{(\lambda+T)\xi|(\lambda+T)\xi}\geq \lambda^2\bk{\xi|\xi}\qquad\text{for each }\xi\in\Dom(T)
 \end{align*}
-In particular, if $(\idt+T)\xi=0$ then $\xi=0$. Therefore, the unbounded operator $\idt+T$ is injective and has range $\MH$. Let $S:\MH\rightarrow\MH$ be its inverse, whose domain is $\Dom(S)=\Rng(\idt+T)=\MH$. Then the above inequality becomes
+In particular, if $(\lambda+T)\xi=0$ then $\xi=0$. Therefore, the unbounded operator $\lambda+T$ is injective and has range $\MH$. Let $S:\MH\rightarrow\MH$ be its inverse, whose domain is $\Dom(S)=\Rng(\lambda+T)=\MH$. Then the above inequality becomes
 \begin{align*}
-\bk{\phi|\phi}\geq\bk{S\phi|S\phi}\qquad\text{for each }\phi\in\MH
+\bk{\phi|\phi}\geq\lambda^2\bk{S\phi|S\phi}\qquad\text{for each }\phi\in\MH
 \end{align*}
-Thus $S\in\fk L(\MH)$. Moreover, since the diagonal reflection of a positive graph is clearly also positive, we conclude that $S\geq0$. In particular, we have $S^*=S$. By Prop. \ref{lb404}, we have $(\idt+T)^*=(S^{-1})^*=(S^*)^{-1}=S^{-1}=\idt+T$, and hence $\idt+T^*=\idt+T$. Therefore $T$ is self-adjoint.
+Thus $S\in\fk L(\MH)$. Moreover, since the diagonal reflection of a positive graph is clearly also positive, we conclude that $S\geq0$. In particular, we have $S^*=S$. By Prop. \ref{lb404}, we have $(\lambda+T)^*=(S^{-1})^*=(S^*)^{-1}=S^{-1}=\lambda+T$, and hence $\lambda+T^*=\lambda+T$. Therefore $T$ is self-adjoint.
 \end{proof}
 
 \begin{eg}\label{lb475}
@@ -13767,7 +13771,7 @@ A similar result holds for the $n$-th root of $T$ where $n\in\Zbb_+$.  \hqed
 
 
 \begin{eg}\label{lb477}
-Let $T$ be a positive self-adjoint operator on $\MH$. Let $x\in\fk L(H)$ be positive. Then $x+T$ is a positive self-adjoint operator on $\MH$. In particular, for each $\lambda\geq0$, $\lambda+T$ is a positive self-adjoint operator on $\MH$.
+Let $T$ be a positive self-adjoint operator on $\MH$. Let $x\in\fk L(H)$ be positive. Then $x+T$ is a positive self-adjoint operator on $\MH$. 
 \end{eg}
 
 
@@ -14196,12 +14200,16 @@ For example, if $H=-\Delta+V$ on $L^2(\Omega,m)$, where $\Omega\subset\Rbb^N$ is
 Let $\MH,\MK$ be Hilbert spaces.
 
 
-\begin{prob}
-Let $T$ be a positive unbounded operator on $\MH$. Let $\Dom_0$ be a linear subspace of $\Dom(T)$. Prove that $\Dom_0$ is a core for $T$ iff $(\idt+T)\Dom_0$ is dense in $(\idt+T)\Dom(T)$.
+\begin{prob}\label{lb482}
+Let $T$ be a positive unbounded operator on $\MH$. Let $\Dom_0$ be a linear subspace of $\Dom(T)$. Let $\lambda\in\Rbb_{>0}$.
+\begin{enumerate}
+\item Prove that $\Dom_0$ is a core for $T$ iff $(\lambda+T)\Dom_0$ is dense in $(\lambda+T)\Dom(T)$.
+\item Prove that $T$ is closed iff $(\lambda+T)\Dom(T)$ is closed in $\MH$.
+\end{enumerate} 
 \end{prob}
 
 \begin{proof}[Hint]
-Show that the graph inner product of $T$ on $\Dom(T)$ is equivalent (cf. Def. \ref{lb481}) to $(\xi,\eta)\mapsto\bk{(\idt+T)\xi|(\idt+T)\eta}$.
+Show that the graph inner product of $T$ on $\Dom(T)$ is equivalent (cf. Def. \ref{lb481}) to $(\xi,\eta)\mapsto\bk{(\lambda+T)\xi|(\lambda+T)\eta}$.
 \end{proof}
 
 
@@ -14235,7 +14243,69 @@ is lower semicontinuous. In other words, if $(\xi_n)$ is a sequence/net in $\Dom
 (2)$\Rightarrow$(1): Use Def. \ref{lb480}-(2) to show that $T$ is closable. Let $(\xi_n)$ be a sequence in $\Dom(T)$ converging to $0$ such that $(T\xi_n)$ converges. Consider $\Vert T(\xi_m-\xi_n)\Vert$ for large enough $m,n$. Apply $\liminf_n$.
 \end{proof}
 
+\begin{df}
+If $A,B$ are positive self-adjoint operators on $\MH$, we write $\pmb{A\leq B}$ \index{AB@$A\leq B$ where $A,B$ are unbounded Hermitian operators} if $\Dom(\sqrt B)\subset\Dom(\sqrt A)$ and $\bk{\sqrt A\xi|\sqrt A\xi}\leq\bk{\sqrt B\xi|\sqrt B\xi}$ for each $\xi\in\Dom(B)$. This definition can be simplified to
+\begin{align*}
+\bk{\sqrt A\xi|\sqrt A\xi}\leq\bk{\sqrt B\xi|\sqrt B\xi}\qquad\text{for each }\xi\in\Dom(\MH)
+\end{align*}
+if for each closed operator $T:\MH\rightarrow\MK$ and $\xi\in\MH$ we let
+\begin{align*}
+\Vert T\xi\Vert=+\infty\qquad\text{when }\xi\in\MH\setminus\Dom(T)
+\end{align*}
+\end{df}
 
+
+\begin{prob}
+Let $A,B$ be unbounded positive operators on $\MH$ with Friedrichs extensions $A_\Frm,B_\Frm$. 
+\begin{enumerate}
+\item Assume that $\Dom(B)\subset\Dom(A)$ and $\bk{\xi|A\xi}\leq\bk{\xi|B\xi}$ for each $\xi\in \Dom(B)$. Prove that $A_\Frm\leq B_\Frm$.
+\item Conclude that $A_\Frm$ is the largest positive self-adjoint extension of $A$ with respect to the partial order $\leq$. (That is, if $A\subset\wht A$ where $\wht A$ is a positive self-adjoint operator, then $\wht A\leq A_\Frm$.)
+\end{enumerate}
+\end{prob}
+
+\begin{df}
+An unbounded operator $A$ on $\MH$ is called \textbf{strictly positive} \index{00@Strictly positive unbounded operator} if $A-\eps$ is positive for some $\eps>0$.
+\end{df}
+
+
+\begin{prob}
+Let $A$ be a strictly positive closed operator on $\MH$. Solve the problem following the given hint. 
+\begin{enumerate}
+\item Show that the inner product $\omega$ on $\Dom(A)$ defined by $\omega(\xi|\eta)=\bk{\xi|A\eta}+\bk{A\xi|A\eta}$ is equivalent to the graph inner product on $\Dom(A)$, and hence is complete.
+\item Show that for each $\psi\in\MH$ there exists $\xi\in\Dom(A)$ such that $\psi-\xi-A\xi\in\Rng(A)^\perp$.
+\item Show that
+\begin{align}\label{eq246}
+\pmb{A_\Krm}:=A^*|_{\Dom(A)+\Ker(A^*)}
+\end{align}
+is a positive self-adjoint operator on $\MH$ extending $A$. We call $A_\Krm$ the \textbf{Krein-von Neumann extension} \index{00@Krein-von Neumann extension $A_\Krm$} of $A$.
+\end{enumerate}
+\end{prob}
+
+
+\begin{proof}[Hint]
+2.  Show that the linear functional $\xi\in\Dom(A)\rightarrow\bk{\psi|A\xi}$ is bounded in the inner product $\omega$. Then apply the Riesz-Fr\'echet Thm. \ref{lb135}.
+
+3. Show that $A_\Krm$ is positive and $\idt+A_\Krm$ has range $\MH$.
+\end{proof}
+
+
+\begin{prob}
+Let $A$ be a strictly positive closed operator on $\MH$. In this problem, following von Neumann's original method in \cite{vN29a}, we give a more operator-theoretic proof that the Krein-von Neumann extension $A_\Krm=\eqref{eq246}$ is positive self-adjoint. Let $P\in\fk L(\MH)$ be the projection onto $\Rng(A)$ (which is a closed subspace by Pb. \ref{lb482}).
+\begin{enumerate}
+\item Show that
+\begin{align*}
+P^\perp A_\Krm\subset A_\Krm P^\perp
+\end{align*}
+(That is, $P^\perp\Dom(A_\Krm)\subset\Dom(A_\Krm)$, and $P^\perp A_\Krm\xi=A_\Krm P^\perp\xi$ for each $\xi\in\Dom(A_\Krm)$.) Conclude from Prop. \ref{lb485} that $PA_\Krm\subset A_\Krm P$.
+\item Use $PA_\Krm\subset A_\Krm P$ to show that
+\begin{align*}
+A_\Krm P\Dom(A_\Krm)=P\Rng(A_\Krm)=\Rng(A)
+\end{align*}
+Conclude that we have an unbounded operator $B=A_\Krm|_{\Rng(A)}$ on $\Rng(A)$ with domain $P\Dom(A_\Krm)$ defined by sending $P\xi\in P\Dom(A_\Krm)\mapsto A_\Krm P\xi$. 
+\item Show that $A$ equals the direct sum operator (cf. Def. \ref{lb483}) of $B$ on $\Rng(A)$ and $0$ on $\Rng(A)^\perp$. (Note that for any linear subspace $V\subset \MH$, we have $V=PV\oplus P^\perp V$ iff $PV\subset V$ iff $P^\perp V\subset V$.) Conclude that $B$ is strictly positive. 
+\end{enumerate}
+Since $B$ is strictly positive and surjective (due to part 2), by Prop. \ref{lb456}, $B$ is self-adjoint. It follows from Pb. \ref{lb484} that $A_\Krm=B\oplus 0$ is positive self-adjoint.
+\end{prob}
 
 
 
