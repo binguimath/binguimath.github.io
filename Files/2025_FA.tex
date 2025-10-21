@@ -466,6 +466,7 @@
 \newcommand{\SI}{\mathscr I}
 \newcommand{\SJ}{\mathscr J}
 \newcommand{\SA}{\mathscr A}
+\newcommand{\SE}{\mathscr E}
 \newcommand{\SF}{\mathscr F}
 \newcommand{\SG}{\mathscr G}
 \newcommand{\Mbf}{\mathbf M}
@@ -1163,7 +1164,7 @@ In particular, $(x_\alpha)_{\alpha\in I}$ converges to $x_\infty$ iff the functi
 
 
 
-\begin{df}
+\begin{df}\label{lb492}
 A directed set $I$ is called \textbf{first countable} \index{00@First countable directe sets and nets} if one of the following equivalent conditions holds:
 \begin{enumerate}[label=(\arabic*)]
 \item The standard topology on $I^*$ is first-countable.
@@ -6757,6 +6758,18 @@ This shows that $\Vert\xi-\xi_\alpha\Vert\rightarrow0$.
 \begin{eg}
 Let $\MH$ be an infinite-dimensional Hilbert space. Let $(e_n)_{n\in \Zbb_+}$ be a sequence of orthonormal vectors. By Bessel's inequality (Cor. \ref{lb118}), for each $\xi\in\MH$ we have $\sum_{n\in\Zbb_+}|\bk{e_n|\xi}|^2<+\infty$, and hence $\lim_n\bk{e_n|\xi}=0$. Therefore, the sequence $(e_n)_{n\in\Zbb_+}$ converges weakly to $0$. However, it does not converge in norm to $0$. 
 \end{eg}
+
+
+
+\begin{thm}\label{lb494}
+Let $\MH$ be a Hilbert space. Then the closed unit ball $\ovl B_\MH(0,1)$ is weakly compact.
+\end{thm}
+
+\begin{proof}
+This follows immediately from the Riesz isomorphism $\MH\simeq(\MH^\Co)^*$ (cf. Thm. \ref{lb135}) and the weak-* compactness of the closed unit ball of $(\MH^\Co)^*$ (due to the Banach-Alaoglu Thm. \ref{lb60}).
+
+Alternatively, one may assume that $\MH=l^2(X)$ where $X$ is a set. For each net $(f_\alpha)$ in the closed unit ball $\ovl B_{l^2(X)}(0,1)$, by Tychonoff's theorem, $(f_\alpha)$ has a subnet $(f_{\alpha_\nu})$ converging pointwise on $X$. By Thm. \ref{lb111}, $(f_{\alpha_\nu})$ converges weak-* to some $f\in l^2(X)$. By Prop. \ref{lb153}, $f$ has length $\leq 1$. This proves that any net $(f_\alpha)$ in $\ovl B_{l^2(X)}(0,1)$ admits a weakly (i.e. weak-*) convergent subnet. Hence $\ovl B_{l^2(X)}(0,1)$ is compact.
+\end{proof}
 
 
 
@@ -14190,7 +14203,7 @@ where $\lambda\in\Rbb$ is any number such that $A+\lambda$ is positive, and $(A+
 For example, if $H=-\Delta+V$ on $L^2(\Omega,m)$, where $\Omega\subset\Rbb^N$ is open, $V:\Omega\rightarrow\Rbb$ is a lower-bounded locally-$L^2$ function, and $\Dom(H)=C_c^\infty(\Omega)$, then $H$ is a lower bounded Hermitian operator, and hence admits a Friedrichs extension.
 
 
-\subsection{Strongly continuous unitary representations of $\Rbb^N$}
+\subsection{Unitary representations of the group $\Rbb^N$}
 
 Fix a Hilbert space $\MH$. Let $N\in\Zbb_+$. We adopt the notation
 \begin{gather*}
@@ -14322,10 +14335,33 @@ This proves that $\xi\in\Dom(T^*)$ and $(\im T)^*\xi=-\psi$. Since $T=T^*$, we c
 
 
 
+
+
+
+
+
+\subsubsection{From unitary representations to self-adjoint operators}
+
+
+In this subsection, we prove that the direction (1)$\Rightarrow$(2) in Thm. \ref{lb488} is surjective. We first consider the case that $N=1$.
+
+
+
+
+
+
+
+
+
+
+
+
 \hypertarget{current}{}
 
 
-\subsection{Basics of the Fourier transform}
+
+
+\subsection{Harmonic analysis on the group $\Rbb^N$}
 
 
 Let $N\in\Zbb_+$. We define the normalized Lebesgue measure on $\Rbb^N$ by \index{m@$\mk_N\equiv \mk=(2\pi)^{-N/2}m_N$, the normalized Lebesgue measure}
@@ -14499,6 +14535,242 @@ Let $A$ be a Hermitian operator on $\MH$. Suppose that $\Rng(A)=\MH$. Then $A$ i
 \begin{proof}
 Since $\Rng(A)=\MH$, for each $\xi\in\Dom(A^*)$ there exists $\eta\in\Dom(A)$ such that $A^*\xi=A\eta$, and hence $\xi-\eta\in\Ker(A^*)$. Since $\Ker(A^*)=\Rng(A)^\perp=0$ (Cor. \ref{lb403}), we conclude that $\xi=\eta$. Therefore $\Dom(A^*)\subset\Dom(A)$, and hence $A=A^*$.
 \end{proof}
+
+
+
+
+\begin{subappendices}
+
+
+
+\subsection{Integrals of measurable functions valued in Hilbert spaces}
+
+
+
+In this appendix section, we let $\MH,\MK$ be a Hilbert space, and let $(X,\fk M,\mu)$ be a measure space.
+
+\subsubsection{A criterion for measurability}
+
+
+
+
+
+
+
+\begin{pp}\label{lb491}
+Let $f:X\rightarrow \MH$ with separable range $f(X)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $f$ is measurable. 
+\item[(2)] For each $\eta\in \MH$, the function $\bk{\eta|f}:X\rightarrow\Cbb$ defined by $x\mapsto \bk{\eta|f(x)}$ is measurable.
+\end{enumerate}
+\end{pp}
+
+
+
+
+\begin{proof}
+(1)$\Rightarrow$(2) is obvious, since $\bk{\eta|f(x)}$ is the composition of a continuous linear functional and the measurable map $f$. Let us prove (2)$\Rightarrow$(1).
+
+Let $E$ be a countable dense subset of $f(X)$. Then $U:=\ovl{\Span_\Cbb E}$ is separable, since $\Span_{\Qbb+\im\Qbb}E$ is a countable dense subspace of $U$. Moreover, $U$ contains $f(X)$. Since the inclusion map $U\hookrightarrow \MH$ is continuous, to show that $f:X\rightarrow \MH$ is measurable, it suffices to show that the restriction $f:X\rightarrow U$ is measurable.
+
+From now on, we view $U$ as the codomain of $f$. We need to show that $f^{-1}(\Omega)$ is measurable for each open set $\Omega\subset U$. Since $\Omega$ is a separable metric space, it is second countable and hence Lindel\"of. Therefore, $\Omega$ is a countable union of open balls. Thus, it suffices to prove that $f^{-1}(B_U(v,r))$ is measurable for each $v\in U$ and $r\in\Rbb_{>0}$.
+
+Let $\xi_1,\xi_2,\dots$ be a dense sequence in the closed unit ball $\ovl B_U(0,1)$. Then $\Vert\eta\Vert=\sup_n|\bk{\xi_n|\eta}|$ for each $\eta\in U$. Therefore, the function
+\begin{align*}
+|f-v|:X\rightarrow\Rbb_{\geq0}\qquad x\mapsto \Vert f(x)-v\Vert=\sup_n|\bk{\xi_n|f(x)-v}|
+\end{align*}
+is measurable, because each $\bk{\xi_n|f-v}$ is measurable. The inverse image of $[0,r)$ by the map $|f-v|$ is precisely $f^{-1}(B_U(v,r))$. Therefore $f^{-1}(B_U(v,r))$ is measurable.
+\end{proof}
+
+\begin{eg}
+Assume that $X$ is a $\sigma$-compact topological space. Then any continuous map $f:X\rightarrow \MH$ has separable range.
+\end{eg}
+
+\begin{proof}
+Write $X=\bigcup_{n\in\Zbb_+} K_n$ where each $K_n$ is compact. Then $f(K_n)$ is a compact subset of $\MH$, and hence is metrizable. By Thm. \ref{lb75}, $f(K_n)$ is second countable (and hence separable). Therefore $f(X)=\bigcup_n f(K_n)$ is separable.
+\end{proof}
+
+
+
+Given measurable functions $f,g:X\rightarrow \MH$ the sum $f+g$ is not necessarily measurable.\footnote{More generally, $f\vee g:x\in X\mapsto (f(x),g(x))\in \MH^2$ is not necessarily measurable. This is related to the fact that not all open subsets $\Omega\subset \MH^2$ can be written as a countable union $\bigcup_n A_n\times B_n$ where $A_n,B_n\subset \MH$ are open.} However, if $f(X),g(X)$ are separable, then $f+g$ is indeed measurable.
+
+\begin{co}
+Let $f,g:X\rightarrow \MH$ be measurable functions with separable ranges. Let $\gamma:X\rightarrow\Cbb$ be measurable. Then $f+g$ and $\gamma f$ are measurable.
+\end{co}
+
+
+\begin{proof}
+By Prop. \ref{lb491}, for each $\eta\in \MH$, the $\Cbb$-valued functions $\bk{\eta|f}$ and $\bk{\eta|g}$ are measurable. So $\bk{\eta|f+g}$ and $\bk{\eta|\gamma f}$ are measurable. By Prop. \ref{lb491} again, $f+g$ and $\gamma$ are measurable.
+\end{proof}
+
+
+\begin{co}
+Let $(f_n)$ be a sequence of measurable functions $X\rightarrow \MH$ converging pointwise to $f:X\rightarrow \MH$. Assume that $f_n(X)$ is separable for each $n$. Then $f$ is measurable.
+\end{co}
+
+\begin{proof}
+The closure of $\bigcup_n f_n(X)$ is a separable set containing $f(X)$. Therefore, we can apply Prop. \ref{lb491}: For each $\eta\in \MH$ the function $\bk{\eta|f_n}$ is measurable for each $n$. Hence $\bk{\eta|f}$ is measurable. Thus $f$ is measurable. 
+\end{proof}
+
+
+
+
+\subsubsection{Weakly integrable functions}
+
+
+\begin{df}
+A measurable function $f:X\rightarrow \MH$ is called \textbf{weakly integrable} \index{00@Weakly integrable} if there exists a vector $\int_X fd\mu\in \MH$ such that for each $\eta\in \MH$, we have
+\begin{align*}
+\Bigbk{\eta\Big|\int_X fd\mu}=\int_X\bk{\eta|f(x)}d\mu(x)
+\end{align*} 
+where the RHS is $\mu$-integrable. If such $\int_X fd\mu$ exists, then it must be unique, and we call it the \textbf{integral} \index{00@Integral of vector-valued functions} of $f$ on $X$ with respect to $\mu$.
+\end{df}
+
+
+
+Clearly, the set of weakly integrable functions form a linear subspace of the space of measurable functions. Moreover, the integral operator $\int_X$ on this subspace is linear.
+
+
+
+
+
+
+
+
+
+\begin{pp}\label{lb493}
+Let $f:X\rightarrow \MH$ be weakly integrable. Then
+\begin{align*}
+\Big\Vert\int_Xfd\mu\Big\Vert\leq \Vert f\Vert_{L^1(X,\mu)}
+\end{align*}
+\end{pp}
+
+
+\begin{proof}
+The inequality is obvious when $\xi:=\int_Xfd\mu$ is zero. Thus, we assume WLOG that $\xi\neq0$. Then
+\begin{align*}
+\Vert\xi\Vert^2\leq\int_X\bk{\xi|f}d\mu\leq\int_X \Vert\xi\Vert\cdot |f|d\mu= \Vert\xi\Vert\int_X|f|d\mu
+\end{align*}
+Dividing both sides by $\Vert\xi\Vert$ yields the desired inequality.
+\end{proof}
+
+\begin{comment}
+\begin{eg}
+Let $\xi\in V$. Let $E\in\fk M$ such that $\mu(E)<+\infty$. Then one checks easily that $\chi_E\cdot \xi$ is weakly integrable and
+\begin{align*}
+\int_X \chi_E\xi\cdot d\mu=\mu(E)\xi
+\end{align*}
+By linearity, any simple function $f:X\rightarrow V$ vanishing outside a measurable set with finite measure is weakly integrable.
+\end{eg}
+\end{comment}
+
+\begin{pp}
+Let $f:X\rightarrow \MH$ be weakly integrable. Let $T\in\fk L(\MH,\MK)$. Then $T\circ f$ is weakly integrable, and 
+\begin{align*}
+T\int_X fd\mu=\int_X T\circ fd\mu
+\end{align*}
+\end{pp}
+
+\begin{proof}
+Clearly $T\circ f$ is measurable. Let $\xi=\int_Xfd\mu$. For each $\eta\in \MH$, we have
+\begin{align*}
+\int_X\bk{\eta|T\circ f}d\mu=\int_X\bk{T^*\eta|f}d\mu=\bk{T^*\eta|\xi}=\bk{\eta|T\xi}
+\end{align*} 
+which shows that $T\circ f$ is weakly integrable with integral $T\xi$.
+\end{proof}
+
+
+
+Recall Def. \ref{lb492} for the definition of first-countable nets.
+
+\begin{thm}[\textbf{Dominated convergence theorem}]\label{lb495} \index{00@Dominated convergence theorem for vector-valued functions}
+Let $(f_\alpha)_{\alpha\in\SI}$ be a first-countable net of (measurable and) weakly integrable maps $X\rightarrow \MH$ converging pointwise to a measurable map $f:X\rightarrow \MH$. Assume that there exists a measurable $g:X\rightarrow\ovl\Rbb_{\geq0}$ with $\int_X gd\mu<+\infty$ such that $|f_\alpha|\leq g$ holds for each $\alpha\in\SI$. Then $f$ is weakly integrable, and
+\begin{align}\label{eq249}
+\lim_\alpha\int_X f_\alpha d\mu=\int_Xfd\mu
+\end{align}
+\end{thm}
+
+Note that the convergence of the LHS of \eqref{eq249} is also part of the conclusion of Thm. \ref{lb495}.
+
+\begin{proof}
+Let $\xi_\alpha=\int_X f_\alpha d\mu$. By Prop. \ref{lb493}, we have $\sup_\alpha\Vert\xi\Vert_\alpha\leq \int_Xgd\mu<+\infty$, and hence $(\xi_\alpha)_{\alpha\in\SI}$ is bounded. By Thm. \ref{lb494}, $(\xi_\alpha)$ has a subnet $(\xi_{\alpha_\nu})$ converging weakly to some $\xi$. Then for each $\eta\in \MH$ we have
+\begin{align*}
+\int_X\bk{\eta|f}d\mu=\lim_\alpha\int_X\bk{\eta|f_\alpha}d\mu=\lim_\alpha\bk{\eta|\xi_\alpha}=\lim_\nu\bk{\eta|\xi_{\alpha_\nu}}=\bk{\eta|\xi}
+\end{align*}
+where the first equality is due to the DCT for first countable nets (cf. Thm. \ref{lb225}). This proves that $f$ is weakly integrable (with integral $\xi$). By Prop. \ref{lb493},
+\begin{align*}
+\Big\Vert \int_X fd\mu-\int_X f_\alpha d\mu\Big\Vert\leq\int_X|f-f_\alpha|d\mu
+\end{align*}
+and the RHS converges under $\lim_\alpha$ to $0$ due to DCT. This proves the limit \eqref{eq249}.
+\end{proof}
+
+
+
+The weak integrability of Thm. \ref{lb495} also follows from the following Thm. \ref{lb496}.
+
+
+
+
+\subsubsection{A criterion for weak integrability}
+
+
+\begin{thm}\label{lb496}
+Let $f:X\rightarrow\MH$ be \textbf{integrable}, \index{00@Integrable vector-valued functions} that is, $f$ is measurable and satisfies $\Vert f\Vert_{L^1(X,\mu)}<+\infty$. Then $f$ is weakly integrable.
+\end{thm}
+
+
+\begin{proof}
+Step 1. Assume WLOG that $\MH=l^2(I)$ where $I$ is a set. We can thus write
+\begin{align*}
+f(x)=(f_i(x))_{i\in I}
+\end{align*}
+where each $f_i:X\rightarrow\Cbb$ equals $\bk{\chi_{\{i\}}|f}$ and hence is measurable. Moreover, from
+\begin{align}\label{eq248}
+\Vert f\Vert_{L^1}=\int_X|f|d\mu=\int_X\sqrt{\sum_{i\in I}|f_i(x)|^2}d\mu(x)
+\end{align}
+we see that each $f_i$ is integrable. We can thus define
+\begin{align*}
+\xi=(\xi_i)_{i\in I}\qquad \text{where }\xi_i=\int_X f_id\mu
+\end{align*}
+which is an element of $\Cbb^I$. Our goal is to show that $\xi\in l^2(I)$, and that $\xi$ is the weak integral of $f$.\\[-1ex]
+
+
+Step 2. Let $M=\Vert f\Vert_{L^1}$. To prove $\sum_{i\in I}|\xi_i|^2<+\infty$, it suffices to prove $\sum_{i\in I_0}|\xi_i|^2\leq M$ for each finite subset $I_0\subset I$. To prove this inequality, by the Riesz isometry for $l^2(I_0)$, it suffices to prove
+\begin{align*}
+\Big|\sum_{i\in I_0} c_i\xi_i\Big|\leq \Vert c\Vert_{l^2(I_0)}\cdot M
+\end{align*}
+for each $c=(c_i)_{i\in I_0}\in l^2(I_0)$. We compute that
+\begin{align*}
+&\Big|\sum_{i\in I_0} c_i\xi_i\Big|=\Big|\sum_{i\in I_0}\int_Xc_if_i(x)d\mu(x)\Big|\leq\int_X\sum_{i\in I_0}c_i|f_i(x)|d\mu(x)\\
+&\leq \int_X\Vert c\Vert_{l^2(I_0)}\cdot\sqrt{\sum_{i\in I_0}|f_i(x)|^2}d\mu(x)\leq \Vert c\Vert_{l^2(I_0)}\cdot M
+\end{align*}
+where the last inequality is due to \eqref{eq248}. We have finished proving $\xi\in l^2(I)$.\\[-1ex]
+
+Step 3. By Cor. \ref{lb118}, the set $J=\{i\in I:\xi_i\neq 0\}$ is countable. For each $c=(c_i)_{i\in I}\in l^2(I)$, we compute
+\begin{align*}
+\bk{c|\xi}=\sum_{i\in J}\ovl{c_i}\xi_i=\sum_{i\in J}\int_X \ovl{c_i}f_i(x)d\mu(x)=\lim_{J_0\in\fin(2^J)}\int_X\sum_{i\in J_0}\ovl{c_i}f_i(x)d\mu(x)
+\end{align*}
+The limit $\lim_{J_0}$ and the integral $\int_X$ can be exchanged due to DCT (for first countable nets, cf. Thm. \ref{lb225}) and the fact that the family of functions $(\sum_{i\in J_0}c_if_i)_{J_0\in\fin(2^J)}$ is dominated by the function $\sum_{i\in J}|c_if_i|$, where the latter is integrable because
+\begin{align*}
+&\int_X\sum_{i\in J}|c_if_i(x)|d\mu(x)=\int_X\lim_{J_0\in\fin(2^J)}\sum_{i\in J_0}|c_if_i(x)|d\mu(x)\\
+&\xlongequal{\text{Thm. \ref{lb224}}}\lim_{J_0\in\fin(2^J)}\int_X\sum_{i\in J_0}|c_if_i(x)|d\mu(x)\leq \limsup_{J_0\in\fin(2^J)}\int_X\Vert c\Vert_{l^2(J_0)}\cdot\sqrt{\sum_{i\in J_0}|f_i(x)|^2}d\mu(x)\\
+&\leq \Vert c\Vert_{l^2(I)}\cdot \Vert f\Vert_{L^1(X,\mu)}<+\infty
+\end{align*}
+Thus
+\begin{align*}
+\bk{c|\xi}=\int_X\lim_{J_0\in\fin(2^J)}\sum_{i\in J_0}\ovl{c_i}f_i(x)d\mu(x)=\int_X\sum_{i\in J}\ovl{c_i}f_i(x)d\mu(x)=\int_X\bk{c|f}d\mu
+\end{align*}
+This proves that $f$ is weakly integrable with integral $\xi$.
+\end{proof}
+
+
+
+
+
+
+\end{subappendices}
+
+
 
 
 
