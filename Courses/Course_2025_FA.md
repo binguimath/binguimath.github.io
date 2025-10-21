@@ -97,7 +97,7 @@
 
   讲义章节：4.1，4.2.1-4.2.5，4.2.6（刚开始）
 
-- 10/21 利用Hermitian operator的有限逼近来给出矩问题的近似解，通过取子列找到原本矩问题的解，Hermitian operator的有限逼近的resolvent给出了对应发散级数的Pade approximation，矩问题中的系数(c_n)与连分数中的系数(a_n) (b_n)如何关联，正线性泛函的有界性
+- 10/21 利用Hermitian operator的有限逼近来给出矩问题的近似解，通过取子列找到原本矩问题的解，Hermitian operator的有限逼近的resolvent给出了对应发散级数的Pade approximation，矩问题/发散级数中的系数(c_n)与连分数中的系数(a_n) (b_n)如何关联，正线性泛函的有界性
 
   讲义章节：4.2.6-4.2.8，4.3，4.4，4.5（部分）
 
