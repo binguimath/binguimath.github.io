@@ -14307,7 +14307,7 @@ by DCT. This proves that $U$ is strongly continuous at $0$.
 
 Next, we show that if (2) comes from (1), then (1) can be recovered from (2) by the process described at the end of Thm. \ref{lb488}. In particular, the direction (1)$\Rightarrow$(2) is injective.
 
-\begin{lm}
+\begin{lm}\label{lb497}
 Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Then for each $1\leq j\leq N$, $\Dom(T_j)$ is the set of all $\xi\in\MH$ such that $\partial_{t_j} e^{\im t_jT_j}\xi\big|_{t_j=0}$ exists, and for any such $\xi$ we have $\im T_j\xi=\partial_{t_j}e^{\im t_jT_j}\xi\big|_{t_j=0}$.
 \end{lm}
 
@@ -14347,7 +14347,30 @@ In this subsection, we prove that the direction (1)$\Rightarrow$(2) in Thm. \ref
 
 
 
+\begin{lm}
+Let $U$ be a strongly continuous unitary representation of $\Rbb$ on $\MH$. Then there exists a unique self-adjoint operator $T$ on $\MH$ such that $U(t)=e^{\im tT}$ for each $t\in\Rbb$.
+\end{lm}
 
+
+\begin{proof}
+Step 1. The uniqueness follows from Lem. \ref{lb497}. Let us prove the existence. Let $\Dom(T)$ be the subspace of all $\xi\in\MH$ such that the limit $\partial_t U(t)\xi|_{t=0}$ exists, called the \textbf{space of differential elements} of $U$. For any $\xi\in\Dom(T)$, let
+\begin{align*}
+T\xi=-\im\partial_t U(t)\xi\big|_{t=0}
+\end{align*}
+Then $T$ is an n.d.d. unbounded operator on $\MH$ with domain $\Dom(T)$. Moreover, for each $\xi,\eta\in\Dom(T)$, since $U(t)^*=U(-t)$, we have
+\begin{align*}
+\bk{\eta|T\xi}=-\im\partial_t\bk{\eta| U(t)\xi}\big|_{t=0}=-\im\partial_t\bk{U(-t)\eta|\xi}\big|_{t=0}=\bk{T\eta|\xi}
+\end{align*}
+This proves that $T$ is an n.d.d. Hermitian operator on $\MH$.
+
+In the following steps, we show that $\Dom(T)$ is dense, that $T$ is essentially self-adjoint (and hence $\ovl T$ is self-adjoint), and $e^{\im t\ovl T}=U(t)$ for each $t\in\Rbb$.\\[-1ex]
+
+Step 2. In this step, we show that $\Dom(T)$ is dense. For each $\xi\in\MH$ and $h\in C_c^\infty(\Rbb)$, let
+\begin{align*}
+\xi(h)=\int_\Rbb h(x)U(x)\xi dx
+\end{align*}
+where the integral is understood as in Sec. \ref{lb498}.
+\end{proof}
 
 
 
@@ -14479,6 +14502,16 @@ Let $A,B$ be unbounded positive operators on $\MH$ with Friedrichs extensions $A
 \end{enumerate}
 \end{prob}
 
+\begin{prob}
+Let $T$ be a lower-bounded Hermitian operator on $\MH$. Prove that any self-adjoint extension of $T$ is lower-bounded.
+\end{prob}
+
+\begin{proof}[Hint]
+Find a lower bound for $\Real\bk{\xi|T^*\xi}$.
+\end{proof}
+
+
+
 \begin{df}
 An unbounded operator $A$ on $\MH$ is called \textbf{strictly positive} \index{00@Strictly positive unbounded operator} if $A-\eps$ is positive for some $\eps>0$.
 \end{df}
@@ -14543,7 +14576,7 @@ Since $\Rng(A)=\MH$, for each $\xi\in\Dom(A^*)$ there exists $\eta\in\Dom(A)$ su
 
 
 
-\subsection{Integrals of measurable functions valued in Hilbert spaces}
+\subsection{Integrals of measurable functions valued in Hilbert spaces}\label{lb498}
 
 
 
@@ -14716,7 +14749,7 @@ is bounded since $|\int_X\bk{\eta|f}d\mu|\leq\Vert\eta\Vert\int_X|f|d\mu=\Vert\e
 Recall Def. \ref{lb492} for the definition of first-countable nets.
 
 \begin{thm}[\textbf{Dominated convergence theorem}]\label{lb495} \index{00@Dominated convergence theorem for vector-valued functions}
-Let $(f_\alpha)_{\alpha\in\SI}$ be a first-countable net of (measurable and) weakly integrable maps $X\rightarrow \MH$ converging pointwise to a measurable map $f:X\rightarrow \MH$. Assume that there exists a measurable $g:X\rightarrow\ovl\Rbb_{\geq0}$ with $\int_X gd\mu<+\infty$ such that $|f_\alpha|\leq g$ holds for each $\alpha\in\SI$. Then $f$ is weakly integrable, and
+Let $(f_\alpha)_{\alpha\in\SI}$ be a first-countable net of (measurable and) weakly integrable maps $X\rightarrow \MH$ converging pointwise to a measurable map $f:X\rightarrow \MH$. Assume that there exists a measurable $g:X\rightarrow\ovl\Rbb_{\geq0}$ with $\int_X gd\mu<+\infty$ such that $|f_\alpha|\leq g$ holds for each $\alpha\in\SI$. Then $f$ is integrable, and
 \begin{align}\label{eq249}
 \lim_\alpha\int_X f_\alpha d\mu=\int_Xfd\mu
 \end{align}
@@ -14725,7 +14758,7 @@ Let $(f_\alpha)_{\alpha\in\SI}$ be a first-countable net of (measurable and) wea
 Note that the convergence of the LHS of \eqref{eq249} is also part of the conclusion of Thm. \ref{lb495}.
 
 \begin{proof}
-Clearly $|f|\leq g$. Hence $\int_X|f|d\mu\leq\int_Xgd\mu<+\infty$. Therefore, by Thm. \ref{lb495}, $f$ is weakly integrable.  By Prop. \ref{lb493},
+Clearly $|f|\leq g$, and hence $\int_X|f|d\mu\leq\int_Xgd\mu<+\infty$. Thus $f$ is integrable.  By Prop. \ref{lb493},
 \begin{align*}
 \Big\Vert \int_X fd\mu-\int_X f_\alpha d\mu\Big\Vert\leq\int_X|f-f_\alpha|d\mu
 \end{align*}
