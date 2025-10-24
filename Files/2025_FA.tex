@@ -459,6 +459,7 @@
 \newcommand{\MK}{\mathcal K}
 \newcommand{\ML}{\mathcal L}
 \newcommand{\MM}{\mathcal M}
+\newcommand{\MS}{\mathcal S}
 \newcommand{\MT}{\mathcal T}
 \newcommand{\RM}{\mathcal {RM}}
 \newcommand{\Rp}{\mathbb R_{\geq0}}
@@ -4808,7 +4809,7 @@ Recall that $\Vert f\Vert_{l^\infty}\leq 1$. Thus, for each $1\leq i\leq n$, we 
 
 
 \begin{co}
-Let $\mu$ be a finite Borel measure on $\Sbb^1$. Let $U=\Span_\Cbb\{e_n:n\in\Zbb\}$ where $e_n:z\in\Sbb^1\mapsto z^n\in\Cbb$. Then for each $f\in L^p(\Sbb^1,\mu)$, there exists a sequence $(f_n)$ in $U$ converging weak-* to $f$ and satisfying $\sup_n\Vert f\Vert_{L^p}\leq\Vert f\Vert_{L^p}$.
+Let $\mu$ be a finite Borel measure on $\Sbb^1$. Let $U=\Span_\Cbb\{e_n:n\in\Zbb\}$ where $e_n:z\in\Sbb^1\mapsto z^n\in\Cbb$. Then for each $f\in L^p(\Sbb^1,\mu)$, there exists a sequence $(f_n)$ in $U$ converging weak-* to $f$ and satisfying $\sup_n\Vert f_n\Vert_{L^p}\leq\Vert f\Vert_{L^p}$.
 \end{co}
 
 \begin{proof}
@@ -9196,6 +9197,8 @@ is a linear map satisfying
 \pi(xy)=\pi(x)\pi(y)\qquad\bk{\eta|\pi(x)\xi}=\bk{\pi(x^*)\eta|\xi}\qquad\pi(1_{\scr A})=\id_V
 \end{align*}
 for all $x,y\in\scr A$ and $\xi,\eta\in V$. If moreover $V$ is a Hilbert space and $\pi(\SA)\subset\fk L(V)$, we say that $(\pi,V)$ is \textbf{unitary representation} of $\scr A$. \index{00@Unitary representation of a unital *-algebra}
+
+When $\SA$ is a non-unital *-algebra, one can define pre-unitary and unitary representations in the same way, except that one does not assume $\pi(1_\SA)=\id_V$. \hqed 
 \end{df}
 
 %In other words, a unitary representation denotes a pair $(\pi,V)$ where $V$ is a Hilbert space and $\pi:\scr A\rightarrow\fk L(V)$ is a unital *-homomorphism.
@@ -14567,22 +14570,122 @@ Let $N\in\Zbb_+$. We continue to use the notation at the beginning of Sec. \ref{
 \begin{align*}
 d\mk_N=? dm_N\qquad\text{where }?\in\Rbb_{>0}
 \end{align*}
-We abbreviate $\mk_N$ to $\mk$ when no confusion arises.
+We call $\mk_N$ a \textbf{Haar measure} of $\Rbb^N$ and abbreviate $\mk_N$ to $\mk$ when no confusion arises. 
+
+\begin{cv}
+In this section, integrals of the form $\int_{\Rbb^N} fd\mk=\int_{\Rbb^N}f(x)d\mk(x)$ will also be written as $\int_{\Rbb^N}f(x)dx$.
+\end{cv}
 
 
-\subsubsection{Fourier transforms of $L^1$-functions}
+
+\subsubsection{The convolution algebra $L^1(\Rbb^N,\mk)$}
+
+\begin{pp}
+Let $f,g\in L^1(\Rbb^N,\mk)$. The \textbf{convolution} \index{00@Convolution}
+\begin{align*}
+(f*g)(x)=\int_{\Rbb^N}f(x-y)g(y)dy\equiv \int_{\Rbb^N}f(y)g(x-y)dy
+\end{align*}
+exists for almost every $x$. Moreover, we have $f*g\in L^1(\Rbb^N,\mk)$ and
+\begin{align}\label{eq253}
+\Vert f*g\Vert_{L^1(\Rbb^N,\mk)}\leq\Vert f\Vert_{L^1(\Rbb^N,\mk)}\Vert g\Vert_{L^1(\Rbb^N,\mk)}
+\end{align}
+Therefore, the convolution map $L^1(\Rbb^N,\mk)\times L^1(\Rbb^N,\mk)\rightarrow L^1(\Rbb^N,\mk)$ is bounded with operator norm $\leq 1$.
+\end{pp}
+
+
+\begin{proof}
+If $f,g\in L^1(\Rbb^N,\mk)$, then since $\int\int |f(x-y)g(y)|dxdy=\Vert f\Vert_{L^1}\cdot\Vert g\Vert_{L^1}<+\infty$, Fubini's theorem implies that $f*g$ can be defined a.e., and that $f*g$ has $L^1$-norm $\leq \Vert f\Vert_{L^1}\Vert g\Vert_{L^1}$.
+\end{proof}
+
+\begin{thm}\label{lb512}
+The space $L^1(\Rbb^N,\mk)$, equipped with the algebra multiplication defined by the convolution $f*g$ and the *-structure defined by $f\mapsto f^\dagger$ with
+\begin{align*}
+f^\dagger(x)=\ovl{f(-x)}
+\end{align*}
+is a commutative *-algebra, called the \textbf{convolution ($\pmb{L^1}$-)algebra} \index{00@Convolution $L^1$-algebra} of $\Rbb^N$. Moreover, $C_c(\Rbb^N)$ is a *-subalgebra of $L^1(\Rbb^N,\mk)$.
+\end{thm}
+
+
+\begin{proof}
+For each $f,g,h\in C_c(\Rbb^N,\mk)$ we have
+\begin{align*}
+&((f*g)*h)(z)=\int (f*g)(x)h(z-x)dx \\
+=&\int\int f(y)g(x-y)h(z-x)dydx=\int\int f(y)g(x-y)h(z-x)dxdy\\
+=&\int f(y)(g*h)(z-y)dy=(f*(g*h))(z)
+\end{align*}
+This proves $((f*g)*h)=(f*(g*h))$ whenever $f,g,h\in C_c(\Rbb^N,\mk)$. In the general case that $f,g,h\in L^1(\Rbb^N,\mk)$, by Thm. \ref{lb14}, there exist sequences $(f_n),(g_n),(h_n)$ in $C_c(\Rbb^N,\mk)$ converging in $L^1$ to $f,g,h$ respectively. Since the bilinear convolution map is bounded in the $L^1$-norm, we have
+\begin{align*}
+((f*g)*h)=\lim_n ((f_n*g_n)*h_n)=\lim_n (f_n*(g_n*h_n))=f*(g*h)
+\end{align*}
+This proves that the convolution is associative. 
+
+The commutativity $f*g=g*f$ is obvious. Moreover,
+\begin{align*}
+&(f*g)^\dagger(x)=\ovl{f*g(-x)}=\ovl{\int f(-x-y)g(y)dy}=\int\ovl{f(-x-y)}\cdot\ovl{g(y)}dy\\
+=&\int f^\dagger (x+y)g^\dagger(-y)dy=(g^\dagger*f^\dagger)(x)
+\end{align*}
+This proves that $L^1(\Rbb^N,\mk)$ is a commutative *-algebra. 
+
+Clearly $C_c(\Rbb^N)$ is closed under convolution and taking $\dagger$. Thus it is a *-subalgebra of $L^1(\Rbb^N,\mk)$.
+\end{proof}
+
+The main reason for introducing the convolution algebra is that it turns a strongly continuous unitary representation of the group $\Rbb^N$ into a unitary representation of $L^1(\Rbb^N,\mk)$, as shown by the following theorem.
+
+\begin{thm}
+Let $U:\Rbb^N\rightarrow\MH$ be a strongly continuous unitary representation of $\Rbb^N$. Then we have a unitary representation of $L^1(\Rbb^N,\mk)$, also denoted by $U$, defined by
+\begin{gather}\label{eq251}
+U:L^1(\Rbb^N,\mk)\rightarrow\fk L(\MH)\qquad f\mapsto \int_{\Rbb^N}f(x)U(-x)dx
+\end{gather}
+Here, $U(f):=\int_{\Rbb^N}f(x)U(-x)dx$ is the bounded linear operator on $\MH$ defined by
+\begin{align*}
+U(f):\MH\rightarrow\MH\qquad \xi\mapsto\int_{\Rbb^N}f(x)U(-x)\xi dx
+\end{align*}
+where $\int_{\Rbb^N}f(x)U(-x)\xi dx$ is defined as in Sec. \ref{lb498}. Moreover, the linear map \eqref{eq251} is bounded with operator norm $\leq 1$.
+\end{thm}
+
+The negative sign in $U(-x)$ is chosen to ensure compatibility with the Fourier transform convention $\int f(x)e^{-\im tx}dx$.
+
+
+\begin{proof}
+Since $U:\Rbb^N\rightarrow\MH$ is strongly continuous, for each $\xi\in\MH$ the function $x\mapsto f(x)U(-x)\xi$ is integrable, and hence the integral $\int f(x)U(x)\xi dx$ exists by Thm. \ref{lb496}. Moreover, since $\Vert U(x)\xi\Vert=\Vert \xi\Vert$, Prop. \ref{lb493} shows that $\Vert U(f)\xi\Vert\leq \Vert f\Vert_{L^1}\cdot\Vert \xi\Vert$. Therefore $U(f)\in\fk L(\MH)$, and $\Vert U\Vert\leq 1$. 
+
+For each $f,g\in L^1(\Rbb^N,\mk)$ and $\xi,\eta\in\MH$, we compute that
+\begin{align*}
+\bk{U(f)\eta|\xi}=\int \ovl{f(x)}\bk{U(-x)\eta|\xi}dx=\int\ovl{f(x)}\bk{\eta|U(x)\xi}dx=\bk{\eta|U(f^\dagger)\eta}
+\end{align*}
+This proves $U(f)^*=U(f^\dagger)$. We also compute that
+\begin{align*}
+\bk{\eta|U(f*g)\xi}=\int (f*g)(x)\bk{\eta|U(-x)\xi} dx=\int\int f(y)g(x-y)\bk{\eta|U(-x)\xi}dydx
+\end{align*}
+By Exp. \ref{lb515}, $U(\Rbb^N)$ is separable. Therefore, we can apply Prop. \ref{lb514}:
+\begin{align*}
+&\bk{\eta|U(f)U(g)\xi}=\bk{U(f^\dagger)\eta|U(g)\xi}=\int\int f(-s)g(t)\bk{U(-s)\xi|U(-t)\eta}dsdt\\
+=&\int\int f(-s)g(t)\bk{\xi|U(s-t)\eta}dsdt
+\end{align*}
+The change of variables $y=-s,x=t-s$ implies $U(f*g)=U(f)U(g)$.
+\end{proof}
+
+
+
+
+
+
+
+\subsubsection{The Fourier transform $L^1(\Rbb^N,\mk)\rightarrow C_0(\Rbb^N)$ as a *-homomorphism}
+
+
+
 
 \begin{df}
 Given $f\in L^1(\Rbb^N,\mk)$, the \textbf{Fourier transform} \index{00@Fourier transform} $\pmb{\wht f}$ and the \textbf{inverse Fourier transform} \index{00@Inverse Fourier transform} $\pmb{\wch f}$ are functions $\Rbb^N\rightarrow\Cbb$ defined by
 \begin{gather*}
-\wht f(t)=\int_{\Rbb^N}f(x)e^{-\im tx}d\mk(x)\qquad \wch f(t)=\wht f(-t)=\int_{\Rbb^N}f(x)e^{\im tx}d\mk(x)
+\wht f(t)=\int_{\Rbb^N}f(x)e^{-\im tx}dx\qquad \wch f(t)=\wht f(-t)=\int_{\Rbb^N}f(x)e^{\im tx}dx
 \end{gather*}
 \end{df}
 
+The following proposition prepares us for the proof of Thm. \ref{lb516}, the main result of this subsection.
 
-
-
-\begin{pp}
+\begin{pp}\label{lb510}
 For each function $f\in L^1(\Rbb^N,\mk)$ and $y\in\Rbb^N$, the \textbf{translation} $\pmb{\tau_yf}\in L^1(\Rbb^N,\mk)$ \index{zz@$\tau_yf$, the translation of $f$ by $y$} be defined by $(\tau_yf)(x)=f(x-y)$. Then for each $y,s\in\Rbb^N$ we have
 \begin{gather*}
 \wht{\tau_yf}=e_{-y}\cdot\wht f\qquad \wht{e_s\cdot f}=\tau_s\wht f\\
@@ -14593,6 +14696,149 @@ For each function $f\in L^1(\Rbb^N,\mk)$ and $y\in\Rbb^N$, the \textbf{translati
 \begin{proof}
 This follows easily from a change of coordinates in the computation of the integrals.
 \end{proof}
+
+
+
+\begin{thm}\label{lb516}
+The Fourier transform defines a map
+\begin{gather}
+\MF:L^1(\Rbb^N,\mk)\rightarrow C_0(\Rbb^N)\qquad f\mapsto \wht f \label{eq256}
+\end{gather}
+The map $\MF$ is a \textbf{*-homomorphism}, \index{00@*-homomorphism} that is, $\MF$ is linear and satisfies
+\begin{align}\label{eq254}
+\wht{f*g}=\wht f\cdot\wht g\qquad \wht{\,f^\dagger\,}=\ovl{\,\wht f\,}\qquad\text{for each }f,g\in L^1(\Rbb^N,\mk)
+\end{align}
+Moreover, the linear map $\MF$ is bounded with operator norm $\leq 1$, that is,
+\begin{align}\label{eq252}
+\Vert \wht f\Vert_{l^\infty}\leq\Vert f\Vert_{L^1(\Rbb^N,\mk)}\qquad \text{for each }f\in L^1(\Rbb^N,\mk)
+\end{align}
+In addition, the map $\MF$ is injective with dense range. 
+\end{thm}
+
+The same conclusions hold for the inverse Fourier transform $f\mapsto\wch f$.
+
+\begin{proof}
+Step 1. The map $\MF:f\in L^1(\Rbb^N)\mapsto \wht f$ is clearly linear, and the relation \eqref{eq252} is obvious. By DCT, the function $\wht f$ is continuous. Therefore, to show that $\MF$ has range in $C_0(\Rbb^N)$, it suffices to show that for each $f\in L^1(\Rbb^N,\mk)$, the function $\wht f$ satisfies $\lim_{|t|\rightarrow+\infty}\wht f(t)=0$. (This property is known as the \textbf{Riemann-Lebesgue lemma}.)\index{00@Riemann-Lebesgue lemma}
+
+We first consider the special case that $f\in C_c(\Rbb^N)$. Since $f$ is uniformly continuous, for any $\eps>0$ there exists $\delta$ such that for all $y\in\Rbb^N$ with $|y|\leq\delta$ we have $\Vert f-\tau_yf\Vert_{L^1}\leq\eps$, and hence $\Vert (1-e_y)\wht f\Vert_{l^\infty}\leq\eps$ by Prop. \ref{lb510} and \eqref{eq252}. Thus, for all $0<|y|\leq\delta$ and $t\in\Rbb^N$ we have
+\begin{align*}
+|\wht f(t)|=\frac{|(1-e^{\im ty})\wht f(t)|}{|1-e^{\im ty}|}\leq\frac\eps{|1-e^{\im ty}|}
+\end{align*}
+Therefore, for each $|t|\geq\pi/\delta$, by choosing $y=\pi t/|t|^2$ (so that $0<|y|=\pi/|t|\leq\delta$ and $ty=\pi$), we obtain $|\wht f(t)|\leq \eps/2$. This proves $\wht f\in C_0(\Rbb^N)$.
+
+In the general case, by Prop. \ref{lb14}, there exists a sequence $(f_n)$ in $C_c(\Rbb^N)$ such that $\lim_n\Vert f-f_n\Vert_{L^1}=0$. By \eqref{eq252}, we have $\lim_n\Vert \wht f-\wht{f_n}\Vert_{l^\infty}=0$. Since $\wht{f_n}\in C_0(\Rbb^N)$, and since $C_0(\Rbb^N)$ is closed in $l^\infty(\Rbb^N)$, the function $\wht f$ belongs to $C_0(\Rbb^N)$.\\[-1ex]
+
+Step 2. In the previous step, we have proved that $\MF$ is a linear map with range in $C_0(\Rbb^N)$ satisfying the inequality \eqref{eq252}. In this step, we prove \eqref{eq254}. 
+
+For each $f,g\in L^1(\Rbb^N,\mk)$ and $t\in\Rbb^N$, we have
+\begin{align*}
+&\wht{f*g}(t)=\int (f*g)(x)e^{\im tx}dx=\int\int f(x-y)g(y)e^{\im tx}dydx\\
+=&\int\int f(x-y)g(y)e^{\im tx}dxdy=\int\int f(u)g(y)e^{\im tu}e^{\im ty}d\mk(u)dy=\wht f(t)\wht g(t)
+\end{align*}
+where the Fubini theorem is applicable since $\int\int|f(x-y)g(y)e^{\im tx}|dxdy=\Vert f\Vert_{L^1}\Vert g\Vert_{L^1}<+\infty$. The relation $\wht{\,f^\dagger\,}=\ovl{\,\wht f\,}$ is easy to check.\\[-1ex]
+
+
+Step 3. It remains to check that $\MF$ has dense range, and that $\MF$ is injective. This follows from Thm. \ref{lb509} and Lem. \ref{lb518} respectively.
+\end{proof}
+
+\begin{thm}\label{lb509}
+The Fourier transform $\MF:L^1(\Rbb^N,\mk)\rightarrow C_0(\Rbb^N)$ sends $C_c(\Rbb^N)$ to an $l^\infty$-dense $*$-subalgebra of $C_0(\Rbb^N)$.
+\end{thm}
+
+\begin{proof}
+Since $\SA:=C_c(\Rbb^N)$ is a *-subalgebra of $L^1(\Rbb^N,\mk)$, and since we have proved in Thm. \ref{lb516} that $\MF$ is a *-homomorphism with range in $C_0(\Rbb^N)$, it follows that $\wht\SA:=\MF(C_c(\Rbb^N))$ is a $*$-subalgebra of $C_0(\Rbb^N)$.
+
+For each $t\in\Rbb^N$, one can find $f\in C_c(\Rbb^N,\Rbb_{\geq0})$ supported in a neighborhood of $0$ with $\int fd\mk=1$ such that $\wht f(t)=\int f(x)e^{\im tx}dx$ is close to $e^{\im t\cdot 0}=1$. Therefore, $\wht\SA$ vanishes nowhere. For each $s,t\in\Rbb^N$ such that $s\neq t$, choose any $y\in\Rbb^N$ such that $e^{\im sy}\neq e^{\im ty}$. Again, one can find $f\in C_c(\Rbb^N,\Rbb_{\geq0})$ supported in a neighborhood of $y$ with $\int fd\mk=1$ such that $\wht f(t)$ is close to $e^{\im ty}$, and that $\wht f(s)$ is close to $e^{\im sy}$. In particular, one can find $f$ such that $\wht f(t)\neq \wht f(s)$. This proves that $\wht\SA$ separates points of $\Rbb^N$. Therefore, by the Stone-Weierstrass Thm. \ref{lb360}, $\wht\SA$ is dense in $C_0(\Rbb^N)$.
+\end{proof}
+
+
+To show that the Fourier transform is injective we need the following result.
+
+
+\begin{pp}\label{lb517}
+Let $f,g\in L^1(\Rbb^N,\mk)$. Then
+\begin{align*}
+\int_{\Rbb^N}\wht fgd\mk=\int_{\Rbb^N}f\wht gd\mk
+\end{align*}
+\end{pp}
+
+
+\begin{proof}
+We compute that
+\begin{align*}
+\int \wht f(t)g(t)dt=\int \int f(x)e^{-\im tx}g(t)dxdt=\int \int f(x)e^{-\im tx}g(t)dtdx=\int f(x)\wht g(x)dx
+\end{align*}
+where the integrals can be exchanged due to $\int\int|f(x)e^{-\im tx}g(t)|dtdx=\Vert f\Vert_{L^1}\Vert g\Vert_{L^1}<+\infty$.
+\end{proof}
+
+\begin{lm}\label{lb518}
+If $f\in L^1(\Rbb^N,\mk)$ and $\wht f=0$, then $f=0$ (a.e.).
+\end{lm}
+
+\begin{proof}
+For each $g\in C_c(\Rbb^N)$, by Prop. \ref{lb517} we have $\int f\wht g=\int\wht fg=0$. By Thm. \ref{lb509}, all such $\wht g$ form a dense linear subspace of $C_0(\Rbb^N)$. It follows that $\int fh=0$ for each $h\in C_0(\Rbb^N)$, and hence for each $h\in C_c(\Rbb^N)$. By Thm. \ref{lb86}, $C_c(\Rbb^N)$ is weak-* dense in $L^\infty(\Rbb^N,\mk)$. Therefore $\int fh=0$ for each $h\in L^\infty(\Rbb^N,\mk)$. It follows easily (e.g. from Lem. \ref{lb28}, from the isomorphism $L^\infty\simeq (L^1)^*$, or from an elementary measure-theoretic argument) that $\Vert f\Vert_{L^1}=0$.
+\end{proof}
+
+
+
+
+
+
+\hypertarget{current}{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{The Schwartz space $\MS(\Rbb^N)$}
+
+
+
+\begin{df}
+A smooth function $f:\Rbb^N\rightarrow\Cbb$ is called a \textbf{Schwartz function} \index{00@Schwartz function} (or \textbf{rapidly decreasing function}) \index{00@Rapidly decreasing function} if for each $m_1,\dots,m_N,n_1,\dots,n_N\in\Nbb$ we have
+\begin{align*}
+\big\Vert x_1^{m_1}\cdots x_N^{m_N}\partial_{x_1}^{n_1}\cdots \partial_{x_N}^{n_N}f\big\Vert_{l^\infty(\Rbb^N)}<+\infty
+\end{align*}
+The space of Schwartz functions is denoted by $\pmb{\MS(\Rbb^N)}$. \index{SR@$\MS(\Rbb^N)$}
+\end{df}
+
+Intuitively, if $f\in\MS(\Rbb^N)$, then all partial derivatives of $f$ grow lower than arbitrary polynomials. In particular, we have $\MS(\Rbb^N)\subset L^p(\Rbb^N,\mk)$ for each $1\leq p\leq+\infty$.
+
+\begin{pp}
+For each $1\leq i\leq N$ we have
+\begin{align*}
+\partial_{x_i}\MS(\Rbb^N)\subset\MS(\Rbb^N)\qquad x_i\MS(\Rbb^N)\subset\MS(\Rbb^N)\qquad \wht{\MS(\Rbb^N)}\subset\MS(\Rbb^N)
+\end{align*}
+Moreover, for each $f\in\MS(\Rbb^N)$ and $t=(t_1,\dots,t_N)$ we have
+\begin{align}\label{eq255}
+\wht{\partial_{x_i}f}(t)=\im t_i \wht f(t)\qquad \wht{x_if}(t)=\im\partial_{t_i}\wht f(t)
+\end{align}
+\end{pp}
+
+\begin{proof}
+The space $\MS(\Rbb^N)$ is clearly invariant under partial derivatives and multiplication by polynomials. If $f\in\MS(\Rbb^N)$, integration by parts gives
+\begin{align*}
+\wht{\partial_{x_i}f}(t)=\int \partial_{x_i}f(x)e^{-\im tx}dx=-\int f(x)\partial_{x_i}e^{-\im tx}dx=\im t_i \wht f(t)
+\end{align*} 
+DCT shows that $\partial_{t_i}\wht f$ exists everywhere and
+\begin{align*}
+\partial_{t_i}\wht f(t)=\int f(x)\partial_{t_i}e^{-\im tx}dx=-\im\int x_if(x)e^{-\im tx}dx=-\im\wht{x_if}(t)
+\end{align*}
+This proves \eqref{eq255}. By applying \eqref{eq255} repeatedly, we see that $\wht f$ is smooth, and that any expression of the form $g=t_1^{m_1}\cdots t_N^{m_N}\partial_{t_1}^{n_1}\cdots \partial_{t_N}^{n_N}\wht f$ can be written as the Fourier transform of an element of $\MS(\Rbb^N)$. Therefore, by \eqref{eq252}, the function $g$ is bounded since $\Vert g\Vert_{l^\infty}\leq\Vert g\Vert_{L^1}<+\infty$. Hence $\wht f\in\MS(\Rbb^N)$. We have thus proves that $\MS(\Rbb^N)$ is invariant under the Fourier transform.
+\end{proof}
+
+
+
 
 \begin{pp}\label{lb511}
 For each $f\in L^1(\Rbb^N,\mk)$, we have
@@ -14605,69 +14851,6 @@ where $f^\dagger(x)=\ovl{f(-x)}$.
 \begin{proof}
 This is easy to check.
 \end{proof}
-
-\begin{pp}[\textbf{Riemann-Lebesgue lemma}]\label{lb510} \index{00@Riemann-Lebesgue lemma}
-Let $f\in L^1(\Rbb^N,\mk)$. Then $\wht f,\wch f\in C_0(\Rbb^N)$, and
-\begin{align}\label{eq252}
-\Vert \wht f\Vert_{l^\infty}\leq\Vert f\Vert_{L^1(\Rbb^N,\mk)}\qquad \Vert \wch f\Vert_{l^\infty}\leq\Vert f\Vert_{L^1(\Rbb^N,\mk)}
-\end{align}
-\end{pp}
-
-
-\begin{proof}
-The inequalities \eqref{eq252} are obvious. Moreover, DCT shows that $\wht f$ and $\wch f$ are continuous. It remains to prove that $\wht f\in C_0(\Rbb^N)$ (and similarly $\wch f\in C_0(\Rbb^N)$).
-
-We first consider the special case that $f\in C_c(\Rbb^N)$. Since $f$ is uniformly continuous, for any $\eps>0$ there exists $\delta$ such that for all $y\in\Rbb^N$ with $|y|\leq\delta$ we have $\Vert f-\tau_yf\Vert_{L^1}\leq\eps$, and hence $\Vert (1-e_y)\wht f\Vert_{l^\infty}\leq\eps$ by Prop. \ref{lb510} and \eqref{eq252}. Thus, for all $0<|y|\leq\delta$ and $t\in\Rbb^N$ we have
-\begin{align*}
-|\wht f(t)|=\frac{|(1-e^{\im ty})\wht f(t)|}{|1-e^{\im ty}|}\leq\frac\eps{|1-e^{\im ty}|}
-\end{align*}
-Therefore, for each $|t|\geq\pi/\delta$, by choosing $y=\pi t/|t|^2$ (so that $0<|y|=\pi/|t|\leq\delta$ and $ty=\pi$), we obtain $|\wht f(t)|\leq \eps/2$. This proves $\wht f\in C_0(\Rbb^N)$.
-
-In the general case, by Prop. \ref{lb14}, there exists a sequence $(f_n)$ in $C_c(\Rbb^N)$ such that $\lim_n\Vert f-f_n\Vert_{L^1}=0$. By \eqref{eq252}, we have $\lim_n\Vert \wht f-\wht{f_n}\Vert_{l^\infty}=0$. Since $\wht{f_n}\in C_0(\Rbb^N)$, and since $C_0(\Rbb^N)$ is closed in $l^\infty(\Rbb^N)$, the function $\wht f$ belongs to $C_0(\Rbb^N)$.
-\end{proof}
-
-
-
-\begin{pp}\label{lb509}
-Let $f,g\in L^1(\Rbb^N,\mk)$. The \textbf{convolution} \index{00@Convolution}
-\begin{align*}
-(f*g)(x)=\int_{\Rbb^N}f(x-y)g(y)d\mk(y)\equiv \int_{\Rbb^N}f(y)g(x-y)d\mk(y)
-\end{align*}
-exists for almost every $x$. Moreover, we have $f*g\in L^1(\Rbb^N,\mk)$ and $\wht{f*g}=\wht f\cdot\wht g$.
-\end{pp}
-
-\begin{proof}
-Since $\int |f(x-y)g(y)|d\mk(x)d\mk(y)=\Vert f\Vert_{L^1}\cdot\Vert g\Vert_{L^1}<+\infty$, Fubini's theorem implies that $f*g$ can be defined a.e., that $f*g\in L^1(\Rbb^N,\mk)$. For each $t\in\Rbb^N$, using Fubini's theorem we compute that
-\begin{align*}
-&\wht{f*g}(t)=\int (f*g)(x)e^{\im tx}d\mk(x)=\int\int f(x-y)g(y)e^{\im tx}d\mk(y)d\mk(x)\\
-=&\int\int f(x-y)g(y)e^{\im tx}d\mk(x)d\mk(y)=\int\int f(u)g(y)e^{\im tu}e^{\im ty}d\mk(u)d\mk(y)
-\end{align*}
-where the RHS equals $\wht f(t)\wht g(t)$.
-\end{proof}
-
-
-\begin{co}
-The set
-\begin{align*}
-\wht C_c(\Rbb^N):=\{\wht f:f\in C_c(\Rbb^N)\}
-\end{align*}
-is an $l^\infty$-dense $*$-subalgebra of $C_0(\Rbb^N)$.
-\end{co}
-
-\begin{proof}
-Since $C_c(\Rbb^N)$ is closed under convolution, by Prop. \ref{lb509}, $\wht C_c(\Rbb^N)$ is closed under multiplication. By Prop. \ref{lb511}, $\wch C_c(\Rbb^N)$ is closed under taking conjugation. Therefore $\wht C_c(\Rbb^N)$ is a $*$-subalgebra of $C_0(\Rbb^N)$.
-
-For each $t\in\Rbb^N$, one can find $f\in C_c(\Rbb^N,\Rbb_{\geq0})$ supported in a neighborhood of $0$ with $\int fd\mk=1$ such that $\wht f(t)=\int f(x)e^{\im tx}d\mk(x)$ is close to $e^{\im t\cdot 0}=1$. Therefore, $\wht C_c(\Rbb^N)$ vanishes nowhere. For each $s,t\in\Rbb^N$ such that $s\neq t$, choose any $y\in\Rbb^N$ such that $e^{\im sy}\neq e^{\im ty}$. Again, one can find $f\in C_c(\Rbb^N,\Rbb_{\geq0})$ supported in a neighborhood of $y$ with $\int fd\mk=1$ such that $\wht f(t)$ is close to $e^{\im ty}$, and that $\wht f(s)$ is close to $e^{\im sy}$. In particular, one can find $f$ such that $\wht f(t)\neq \wht f(s)$. This proves that $\wht C_c(\Rbb^N)$ separates points of $\Rbb^N$. Therefore, by the Stone-Weierstrass Thm. \ref{lb360}, $\wht C_c(\Rbb^N)$ is dense in $C_0(\Rbb^N)$.
-\end{proof}
-
-
-
-
-
-
-
-
-\hypertarget{current}{}
 
 
 \subsection{Problems}
@@ -14819,7 +15002,7 @@ Since $\Rng(A)=\MH$, for each $\xi\in\Dom(A^*)$ there exists $\eta\in\Dom(A)$ su
 
 In this appendix section, we let $\MH,\MK$ be Hilbert spaces, and let $(X,\fk M,\mu)$ be a measure space.
 
-\subsubsection{A criterion for measurability}
+\subsubsection{Criteria for measurability}
 
 
 
@@ -14852,7 +15035,7 @@ Let $\xi_1,\xi_2,\dots$ be a dense sequence in the closed unit ball $\ovl B_V(0,
 is measurable, because each $\bk{\xi_n|f-v}$ is measurable. The inverse image of $[0,r)$ by the map $|f-v|$ is precisely $f^{-1}(B_V(v,r))$. Therefore $f^{-1}(B_V(v,r))$ is measurable.
 \end{proof}
 
-\begin{eg}
+\begin{eg}\label{lb515}
 Assume that $X$ is a $\sigma$-compact topological space. Then any continuous map $f:X\rightarrow \MH$ has separable range.
 \end{eg}
 
@@ -14952,7 +15135,7 @@ which shows that $T\circ f$ is weakly integrable with integral $T\xi$.
 \end{proof}
 
 
-\begin{pp}
+\begin{pp}\label{lb513}
 Let $f:X\rightarrow\MH$ be weakly integrable. Then $\int_Xfd\mu$ belongs to the closure of $\Span_\Cbb(f(X))$.
 \end{pp}
 
@@ -15047,6 +15230,33 @@ The preorder on $I\setminus\{t\}$ is defined such that larger elements are close
 =&|s-t|^{-1}\Big|\int_t^s \bk{\eta|\partial_If(x,u)}du\Big|\leq |s-t|^{-1} \int_{[s,t]}\Vert\eta\Vert\cdot g(x)du=\Vert\eta\Vert\cdot g(x)
 \end{align*}
 and hence $|\varphi_s|\leq g$. Therefore Thm. \ref{lb495} is applicable, which shows that $\lim_{s\rightarrow t}\int_X\varphi_sd\mu=\int_X\partial_If(-,t)d\mu$. This proves \eqref{eq250}.
+\end{proof}
+
+
+\begin{pp}\label{lb514}
+Assume that the measure $\mu$ is $\sigma$-finite. Let $f,g:X\rightarrow\MH$ be integrable with separable ranges. Then
+\begin{align*}
+\Bigbk{\int_Xfd\mu\Big|\int_Xgd\mu}=\int_X\int_X\bk{f(x)|g(y)}d\mu(x)d\mu(y)=\int_X\int_X\bk{f(x)|g(y)}d\mu(y)d\mu(x)
+\end{align*}
+\end{pp}
+
+\begin{proof}
+Let $V$ be the closure of $\Span(\Rng(f))+\Span(\Rng(g))$, which is separable. By Prop. \ref{lb513}, the vectors $\xi=\int_Xfd\mu$ and $\eta\in\int_X gd\mu$ belong to $V$. Let $(e_n)_{n\in\Zbb_+}$ be a countable orthonormal basis of $V$. Then
+\begin{align*}
+&\bk{\xi|\eta}=\sum_n\bk{\xi|e_n}\bk{e_n|\eta}=\sum_n\int\bk{\xi(x)|e_n}d\mu(x)\cdot \int\bk{e_i|\eta}d\mu(x)\\
+=&\sum_n\int\int \bk{\xi(x)|e_n}\bk{e_n|\eta(y)}d\mu(x)d\mu(y)
+\end{align*}
+Note that all the measures involved as $\sigma$-finite. Therefore, to invoke the Fubini's theorem, it suffices to check the integrability:
+\begin{align*}
+&\int\int\sum_n |\bk{\xi(x)|e_n}\bk{e_n|\eta(y)}|d\mu(x)d\mu(y)\\
+\leq&\int\int \sqrt{\sum_n |\bk{\xi(x)|e_n}|^2}\sqrt{\sum_n|\bk{e_n|\eta(y)}|^2}d\mu(x)d\mu(y)\\
+=&\int\int \Vert\xi(x)\Vert\cdot\Vert\eta(y)\Vert d\mu(x)d\mu(y)=\Vert\xi\Vert_{L^1}\Vert\eta\Vert_{L^1}<+\infty
+\end{align*}
+Therefore we have
+\begin{align*}
+\bk{\xi|\eta}=\int\int\sum_n\bk{\xi(x)|e_n}\bk{e_n|\eta(y)}d\mu(x)d\mu(y)=\int\int\bk{f(x)|g(y)}d\mu(x)d\mu(y)
+\end{align*}
+proving the first desired equality. The second can be proved in the same way.
 \end{proof}
 
 
