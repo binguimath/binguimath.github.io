@@ -15044,6 +15044,24 @@ Let $\MH$ be a Hilbert space. The primary goal of this section is to prove Thm. 
 \subsubsection{The main result}
 
 
+\begin{lm}\label{lb537}
+Let $T$ be a self-adjoint operator on $\MH$. Let $\Dom_0$ be a linear subspace of $\Dom(T)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $\Dom_0$ is a core for $T$.
+\item[(2)] $\Rng(\im+T|_{\Dom_0})$ is dense in $\MH$.
+\end{enumerate}
+\end{lm}
+
+\begin{proof}
+By Cor. \ref{lb420}, we have $\Rng(\im+T)=\MH$. Therefore, by \eqref{eq197}, we have a uniary map
+\begin{align*}
+\Phi:\SG(T)\rightarrow \MH\qquad \xi\oplus T\xi\mapsto (\im+T)\xi
+\end{align*}
+Thus, $\Dom_0$ is a core for $T$ iff $\SG(T|_{\Dom_0})$ is dense in $\SG(T)$ iff $\Phi(\SG(T|_{\Dom_0}))$ (which equals $\Rng(\im+T|_{\Dom_0})$) is dense in $\MH$.
+\end{proof}
+
+
+
 \begin{thm}\label{lb534}
 Let $U:\Rbb^N\rightarrow\fk L(\MH)$ be a strongly continuous unitary representation with generators $T_1,\dots,T_N$, and let $f\in\Bor(\Rbb^N,\Rbb)$. Suppose $\Dom_0$ is a dense linear subspace of $\Dom(f(T_\blt))$ (with respect to the inner product of $\MH$) such that 
 \begin{align}\label{eq260}
@@ -15057,11 +15075,10 @@ Note that by Thm. \ref{lb437}, $f(T_\blt)$ is a self-adjoint operator on $\MH$. 
 
 
 \begin{proof}
-Step 1. To prove that $f(T_\blt)$ is the closure of $f(T_\blt)|_{\Dom_0}$, by Thm. \ref{lb389}, it suffices to show that the domain $\Rng(\im+f(T_\blt)|_{\Dom_0})$ of the Cayley transform of $f(T_\blt)|_{\Dom_0}$ is dense in the domain of the Cayley transform of $f(T_\blt)$ (which is $\MH$ by Cor. \ref{lb420}). Therefore, by Cor. \ref{lb369}, it suffices to show that the closed linear subspace
+Step 1. To prove that $f(T_\blt)$ is the closure of $f(T_\blt)|_{\Dom_0}$, by Lem. \ref{lb537}, it suffices to show that $\Rng(\im+f(T_\blt)|_{\Dom_0})$ is dense in $\MH$. Therefore, by Cor. \ref{lb369}, it suffices to show that the following closed linear subspace is zero:
 \begin{align*}
 \MK:=\Rng(\im+f(T_\blt)|_{\Dom_0})^\perp=\{\xi\in\MH:\bk{\xi|(\im+f(T_\blt))\Dom_0}=0\}\}
 \end{align*}
-is zero.
 
 
 We first note that
@@ -15098,11 +15115,18 @@ g_n=\chi_{f^{-1}[-n,n]}
 \end{align*} 
 Then $g_n(T_\blt)$ is a projection because $g_n=\ovl{g_n}=g_n^2$.
 
-We now show that any $\xi\in\MK$ must zero. Since
+We now show that any $\xi\in\MK$ must be zero by showing:
+\begin{enumerate}
+\item[(a)] $\lim_ng_n(T_\blt)\xi$ converges to $\xi$.
+\item[(b)] For each $n$, we have $g_n(T_\blt)\xi\in\MK\cap\Dom(f(T_\blt))$, and thus $g_n(T_\blt)\xi=0$ by Step 1.
+\end{enumerate}
+Proof of (a): By DCT, we have
 \begin{align*}
 \lim_n\Vert \xi-g_n(T_\blt)\xi\Vert^2=\lim_n\bk{\xi|(\idt-g_n(T_\blt))^*(\idt-g_n(T_\blt))\xi}=\lim_n\int_{\Rbb^N} |1-g_n|^2d\mu_\xi=0
 \end{align*} 
-by DCT, it follows that $g_n(T_\blt)\xi$ converges to $\xi$. Since $g_n(T_\blt)\MK\subset\MK$, we have $g_n(T_\blt)\xi\in\MK$. Since $fg_n$ is bounded, by Lemma \ref{lb535} below we have $g_n(T_\blt)\xi\in\Dom(f(T_\blt))$. Therefore, $g_n(T_\blt)\xi=0$ by Step 1. Hence $\xi=\lim_ng_n(T_\blt)\xi=0$. This completes the proof.
+Proof of (b): Since $g_n(T_\blt)\MK\subset\MK$, we have $g_n(T_\blt)\xi\in\MK$. Since $fg_n$ is bounded, by Lemma \ref{lb535} below we have $g_n(T_\blt)\xi\in\Dom(f(T_\blt))$.
+
+The proof is now complete.
 \end{proof}
 
 
