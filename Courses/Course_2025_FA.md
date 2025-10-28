@@ -107,7 +107,7 @@
 
   讲义章节：4.5，5.1，5.2，5.3（部分）
 
-- 10/28 Radon测度的定义，Stone-Weierstrass定理的表述，抽象Hausdorff矩定理，Riesz谱定理的表述，星代数的酉表示，正酉表示，normal酉表示，universal L^2 convergence，有界Borel函数代数里的universal L^2-稠密星子代数，算子值抽象Hausdorff矩问题（几乎证完）
+- 10/28 Radon测度的定义，Stone-Weierstrass定理的表述，抽象Hausdorff矩定理，Riesz谱定理的表述，星代数的酉表示，正酉表示，normal酉表示，universal L^2 topology，有界Borel函数代数里的universal L^2-稠密星子代数，算子值抽象Hausdorff矩问题（几乎证完）
 
   讲义章节：5.3，5.4，5.5.1，5.5.2，5.5.3（部分）
 
