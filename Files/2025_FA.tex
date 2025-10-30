@@ -477,6 +477,11 @@
 \newcommand{\Frm}{{\mathrm F}}
 \newcommand{\Krm}{{\mathrm K}}
 \newcommand{\Cb}{C_{\mathrm b}}
+\newcommand{\FA}{\mathfrak A}
+
+
+
+
 
 
 
@@ -13686,6 +13691,29 @@ Let $(\MH_\alpha)_{\alpha\in\SA}$ be a family of Hilbert spaces. For each $\alph
 \end{prob}
 
 
+\begin{prob}\label{lb552}
+Let $T$ be a Hermitian operator on $\MH$. Suppose that $(\Dom_\alpha)_{\alpha\in\SA}$ is a family of linear subspaces of $\Dom(T)$ satisfying the following conditions:
+\begin{enumerate}
+\item[(a)] $\sum_\alpha\Dom_\alpha$ is dense in $\MH$.
+\item[(b)] $T\Dom_\alpha\subset\Dom_{\alpha}$ for each $\alpha$.
+\item[(c)] Let $T_\alpha$ be the Hermitian operator on $\MH_\alpha:=\ovl{\Dom_\alpha}$ defined by $\Dom(T_\alpha)=\Dom_\alpha$ and $T_\alpha=T|_{\Dom_\alpha}$. Then $T_\alpha$ is essentially self-adjoint. 
+\end{enumerate}
+Prove that $T$ is essentially self-adjoint.
+\end{prob}
+
+\begin{proof}[Hint]
+Show that $T+\im$ and $T-\im$ have dense ranges.
+\end{proof}
+
+
+\begin{prob}\label{lb553}
+Let $A,B$ be strongly-commuting self-adjoint operators on $\MH$. Prove that for each $\xi\in\Dom(AB)\cap\Dom(A)$, we have $\xi\in\Dom(BA)$ and $AB\xi=BA\xi$.
+\end{prob}
+
+\begin{proof}[Hint]
+View $A,B$ as multiplication operators.
+\end{proof}
+
 
 \begin{prob}
 Let $A,B$ be self-adjoint operators on $\MH$. Let $U\in\fk L(\MH)$ be unitary. For each $\lambda\in\Rbb$, let $E(\lambda)=\chi_{(-\infty,\lambda]}(A)$ and $F(\lambda):=\chi_{(-\infty,\lambda]}(B)$.
@@ -15351,7 +15379,7 @@ where the RHS equals zero by the assumption that $f\perp\Cbb[x_\blt]$. This prov
 \end{proof}
 
 
-\begin{exe}
+\begin{exe}\label{lb554}
 Let $(c_{n_\blt})_{n_1,\dots,n_N\in\Nbb}$ be a family in $\Cbb$. Show that the following are equivalent:
 \begin{enumerate}[label=(\arabic*)]
 \item There exists $r\in\Rbb_{>0}$ such that
@@ -15577,7 +15605,7 @@ By Prop. \ref{lb510}, the relation $\MF U(t)\MF^{-1}=\Mbf_{e_{-t}}$ holds on $\M
 
 
 
-\hypertarget{current}{}
+
 
 \subsection{Problems}
 
@@ -15721,7 +15749,7 @@ Let $X$ be a measurable space.  Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alph
 Let $\MH=L^2(\Rbb^N,m)$. Choose a polynomial $f\in\Rbb[x_1,\dots,x_N]$. Give direct solutions of the following problems without using Thm. \ref{lb534}.
 \begin{enumerate}
 \item Let $E_n=\ovl B_{\Rbb^N}(0,n)$ and $\Dom_0=\bigcup_n\Mbf_{\chi_{E_n}}\MH$. Prove that $C_c^\infty(\Rbb^N)$ is a core for $\Mbf_f|_{\Dom_0}$. Conclude from Pb. \ref{lb538} that $C_c^\infty(\Rbb^N)$ is a core for $\Mbf_f$.
-\item For each $1\leq j\leq N$, let $T_j=-\im\frac d{dx_j}$ with $\Dom(T_j)=\MS(\Rbb^N)$. Let $A=f(T_\blt)=f(T_1,\dots,T_N)$ with $\Dom(A)=\MS(\Rbb^N)$, where $f(T_\blt)$ is interpreted via the usual polynomial functional calculus of linear operators (rather than the Borel functional calculus). Use part 1 and the Fourier transform on $L^2(\Rbb^N,m)$ to show that $A$ is essentially self-adjoint. 
+\item For each $1\leq j\leq N$, let $T_j=-\im\frac d{dx_j}$ with $\Dom(T_j)=\MS(\Rbb^N)$. Let $A=f(T_\blt)=f(T_1,\dots,T_N)$ with $\Dom(A)=\MS(\Rbb^N)$, where $f(T_\blt)$ is interpreted via the usual polynomial functional calculus of linear operators (rather than the Borel functional calculus). Use part 1 and the Fourier transform on $\MS(\Rbb^N)$ (i.e. Thm. \ref{lb551} and Prop. \ref{lb546}) to show that $A$ is essentially self-adjoint. 
 \item Show that $C_c^\infty(\Rbb^N)$ is a core for $A$. (Equivalently, show that $A|_{C_c^\infty(\Rbb^N)}$ is essentially self-adjoint.)
 \end{enumerate}
 \end{prob}
@@ -15732,7 +15760,78 @@ Choose any $\varphi\in C_c^\infty(\Rbb^N)$ such that $0\leq\varphi\leq 1$, and t
 
 
 
+\subsubsection{Joint analytic vectors}
 
+\begin{df}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint on $\MH$. Let \index{C@$C^\infty(T_\blt)$}
+\begin{align*}
+\pmb{C^\infty(T_\blt)}=\bigcap_{k\in\Zbb_+}\bigcap_{1\leq i_1,\dots,i_k\leq N}\Dom(T_{i_1}\cdots T_{i_k})
+\end{align*}
+Note that $T_j C^\infty(T_\blt)\subset C^\infty(T_\blt)$, and
+\begin{align*}
+T_iT_j=T_jT_i\qquad\text{on } C^\infty(T_\blt)
+\end{align*}
+by Pb. \ref{lb553}. Elements of $C^\infty(T_\blt)$ are called \textbf{joint smooth vectors} \index{00@Joint smooth vectors} of $T_\blt$.
+\end{df}
+
+
+\begin{df}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$.
+An element $\xi\in C^\infty(T_\blt)$ is called a \textbf{joint analytic vector} \index{00@Joint analytic vectors} for $T_\blt$ if there exists $r\in\Rbb_{>0}$ such that
+\begin{subequations}\label{eq269}
+\begin{align}
+\sum_{n_1,\dots,n_N\in\Nbb}\frac{r^{n_1+\cdots+n_N}}{n_1!\cdots n_N!}\Vert T_1^{n_1}\cdots T_N^{n_N}\xi\Vert<+\infty
+\end{align}
+equivalently (cf. Exe. \ref{lb554}), if there exists $\rho\in\Rbb_{>0}$ such that
+\begin{align}
+\sup_{n_1,\dots,n_N\in\Nbb}\frac{\rho^{n_1+\cdots+n_N}}{n_1!\cdots n_N!}\Vert T_1^{n_1}\cdots T_N^{n_N}\xi\Vert<+\infty
+\end{align}
+\end{subequations}
+The set of joint analytic vectors for $T_\blt$ is denoted by $\pmb{\FA(T_\blt)}$.
+\end{df}
+
+
+\begin{prob}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$.
+\begin{enumerate}
+\item Prove that $T_j\FA(T_\blt)\subset\FA(T_\blt)$ for each $1\leq j\leq N$.
+\item Let $\xi\in\MH$. Let $\mu_\xi$ be the finite Borel measure on $\Rbb^N$ associated to $\xi$ and $T_\blt$ (cf. Thm. \ref{lb434}). Prove that $\xi\in\FA(T_\blt)$ iff $\mu_\xi$ satisfies the condition in Thm. \ref{lb547}, that is,
+\begin{align*}
+\int_{\Rbb^N}e^{r(|x_1|+\cdots+|x_N|)}d\mu_\xi(x)<+\infty
+\end{align*}
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Hint for part 2]
+$\frac{(2n)!}{(n!)^2}={2n\choose n}\leq\sum_{k=0}^{2n}{2n\choose k}=(1+1)^{2n}=4^n$.
+\end{proof}
+
+The following property is a variant of Prop. \ref{lb532}.
+
+\begin{prob}\label{lb555}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $\Dom_0$ be a linear subspace of $\FA(T_\blt)$ such that $T_j\Dom_0\subset\Dom_0$ for all $j$. Prove that the closure $\ovl{\Dom_0}$ satisfies $f(T_\blt)\ovl{\Dom_0}\subset\ovl{\Dom_0}$ for each $f\in\Borb(\Rbb^N)$.
+\end{prob}
+
+\begin{proof}[Hint]
+For each $\xi\in\Dom_0$, let $\MK$ be the closure of $\Borb(\Rbb^N)\xi$, where $\Borb(\Rbb^N)$ acts on $\MH$ via the Borel functional calculus of $T_\blt$. By Prop. \ref{lb332}, $\MK$ can be identified with $L^2(\Rbb^N,\mu)$. Use Thm. \ref{lb547} to show that vectors of the form $T_1^{n_1}\cdots T_N^{n_N}\xi$ span a dense subspace of $\MH$. 
+
+(This result can be viewed as an operator-theoretic interpretation of Thm. \ref{lb547}.)
+\end{proof}
+
+The following property can be viewed as a variant of Thm. \ref{lb534}.
+
+\begin{prob}
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $f\in\Rbb[x_1,\dots,x_N]$. Suppose that $\fk A(T_\blt)$ is dense in $\MH$. Prove that $\FA(T_\blt)$ is a core for $f(T_\blt)$.
+\end{prob}
+
+
+\begin{proof}[Hint]
+Use Pb. \ref{lb555}, and mimic the proof of Thm. \ref{lb534}.
+\end{proof}
+
+
+
+\hypertarget{current}{}
 
 
 \begin{subappendices}
