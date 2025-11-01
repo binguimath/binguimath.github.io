@@ -454,8 +454,11 @@
 \newcommand{\MB}{\mathcal B}
 \newcommand{\MG}{\mathcal G}
 \newcommand{\MD}{\mathcal D}
+\newcommand{\ME}{\mathcal E}
 \newcommand{\MF}{\mathcal F}
 \newcommand{\MH}{\mathcal H}
+\newcommand{\MI}{\mathcal I}
+\newcommand{\MJ}{\mathcal J}
 \newcommand{\MK}{\mathcal K}
 \newcommand{\ML}{\mathcal L}
 \newcommand{\MM}{\mathcal M}
@@ -12894,15 +12897,22 @@ A function $f\in L^2(I,m)$ belongs to $\Ker(T^*)=\Ker(T_0^*)$ iff $f$ is a.e. co
 
 
 \begin{proof}
-If $f$ is a constant $C$ in $L^2(I,m)$, then for each $g\in C_c^\infty(I)$, the obvious identity $\int g'=0$ implies that $\bk{f|T_0g}=0$. Hence $f\in\Dom(T_0^*)$ and $T_0^*f=0$.
-
-Conversely, assume that $f\in\Ker(T_0^*)$. Then for each $g\in C_c^\infty(I)$ we have $\bk{f|g'}=0$. Therefore, for each $h\in C_c^\infty(I)$ satisfying $\int_I h=0$, we have $f\perp h$.
-
-We now prove that $f\perp h$ for each $h\in L^2(I,m)$ satisfying $\int h=0$. By Thm. \ref{lb361}, there exists a sequence $(h_n)$ in $C_c^\infty(I)$ converging in $L^2$ to $h$. By Cauchy-Schwarz, $\lambda_n:=\int h_n$ converges to $\int h=0$. Fix $\varphi\in C_c^\infty(I)$ such that $\int\varphi=1$, and let $\wtd h_n=h_n-\lambda_n\varphi$. Then $\Vert\wtd h_n-h\Vert_{L^2}=|\lambda_n|\cdot \Vert\varphi\Vert_{L^2}$ converges to $0$, and hence $\wtd h_n$ converges in $L^2$ to $h$. Moreover, $\int \wtd h_n=0$. Thus $f\perp h_n$ for each $n$, and hence $f\perp h$.
-
-We have proved that $f$ is orthogonal to any element orthogonal to the constant function $1$. So $f\in \Span\{1\}^{\perp\perp}=\Span\{1\}$. Thus $f$ is a constant.
+If $f$ is a constant $C$ in $L^2(I,m)$, then for each $g\in C_c^\infty(I)$, the obvious identity $\int g'=0$ implies that $\bk{f|T_0g}=0$. Hence $f\in\Dom(T_0^*)$ and $T_0^*f=0$. The converse follows from the following more general Lem. \ref{lb566}.
 \end{proof}
 
+\begin{lm}\label{lb566}
+Let $\Lambda:C_c^\infty(I)\rightarrow\Cbb$ be a linear functional such that $\Lambda(g')=0$ for each $g\in C_c^\infty(I)$. Then there exists $c\in\Cbb$ such that $\Lambda(h)=c \int_I hdm$ for each $h\in C_c^\infty(I)$.
+\end{lm}
+
+Roughly speaking, this lemma says that any distribution with zero derivative must be a constant.
+
+
+\begin{proof}
+Define a linear functional $\Gamma:C_c^\infty(I)\rightarrow\Cbb$ by $\Gamma(h)=\int_I h$. Then $\Ker(\Gamma)\subset\Ker(\Lambda)$. Indeed, if $h\in C_c^\infty(I)$ and $\int_Ih=0$, then $h$ is the derivative of a function in $C_c^\infty(I)$, and hence $\Lambda(h)$.
+
+
+Write $V=C_c^\infty(I)$. Since $\Rng(\Gamma)=\Cbb$, by linear algebra, $\Gamma$ descends to a linear isomorphism $\Gamma':V/\Gamma\xrightarrow{\simeq}\Cbb$ (in particular $\dim V/\Gamma=1$), and $\Lambda$ descends to a linear map $\Lambda':V/\Ker(\Gamma)\rightarrow\Cbb$. Thus $\Lambda'=c\Gamma'$ for some $c\in\Cbb$, and hence $\Lambda=c\Gamma$.
+\end{proof}
 
 
 \begin{pp}\label{lb422}
@@ -12923,47 +12933,54 @@ This shows that $g\in\Dom(T^*)=\Dom(T_0^*)$ and $T^*g=e^x(T^*-\im)f$. Since $f\i
 \end{proof}
 
 
-\begin{thm}\label{lb423}
+\begin{co}\label{lb423}
 The Hilbert space $H^1(I)$ has an orthogonal decomposition into Hilbert subspaces
 \begin{align}\label{eq220}
 H^1(I)=H^1_0(I)\oplus \Span\{e^{-x}\}\oplus \Span\{e^x\}
 \end{align}
-Moreover, we have $T^*e^{-x}=\im e^{-x}$ and $T^*e^x=-\im e^x$, and we have
-\begin{align}\label{eq221}
-H_0^1(I)\subset C_0(I)\qquad H^1(I)\subset C(\ovl I)
-\end{align}
-\end{thm}
+Moreover, we have $T^*e^{-x}=\im e^{-x}$ and $T^*e^x=-\im e^x$.
+\end{co}
 
 
 
 \begin{proof}
-Eq. \ref{eq220} follows immediately from Prop. \ref{lb422} and Thm. \ref{lb415}. Since $e^{\pm x}\in C(\ovl I)$, to prove $H^1(I)\subset C(\ovl I)$, it suffices to prove $H_0^1(I)\subset C_0(I)$.
-
-We view $C_0(I)$ as the space of functions in $C(\ovl I)$ vanishing at $\partial I=\{a,b\}$. Choose any $f\in H_0^1(I)$. Then there exists a sequence $(f_n)$ in $C_c^\infty(I)$ such that $\Vert f-f_n\Vert_2\rightarrow0$ and $\Vert Tf-f_n'\Vert_2\rightarrow0$. Note that $\int_I f_n'=f_n(b)-f_n(a)=0$. That is, each $f_n'$ is orthogonal to $1$. Thus $Tf$ is also orthogonal to $1$. By Cauchy-Schwarz, we have $\Vert Tf-f'_n\Vert_1\rightarrow1$, and hence $f_n$ converges uniformly to $\wtd f\in C(\ovl I)$ defined by $\wtd f(x)=\int_a^xTf$. The fact that $Tf\perp 1$ implies that $\wtd f(b)=0$, and hence $\wtd f\in C_0(I)$. Since the uniform convergence implies $\Vert\wtd f-f_n\Vert_2\rightarrow0$, we conclude that $f=\wtd f$, and hence that $f\in C_0(I)$.
+This follows immediately from Prop. \ref{lb422} and Thm. \ref{lb415}. 
 \end{proof}
 
 Note that $e^{-x}$ and $e^x$ are orthogonal in the inner product of $H^1(I)$, rather than in the original one of $L^2(I,m)$.
 
-Readers unfamiliar with absolutely continuous functions can skip the following remark.
 
 
-\begin{rem}\label{lb463}
-Eq. \eqref{eq221} can be strengthened as follows. Let $AC(\ovl I)$ be the set of absolutely continuous functions $\ovl I\rightarrow\Cbb$. Then
+
+\begin{thm}\label{lb463}
+Let $\pmb{AC(\ovl I)}$ \index{AC@$AC(I)$} be the set of absolutely continuous functions $\ovl I\rightarrow\Cbb$. Then
 \begin{subequations}\label{eq222}
 \begin{gather}
 H^1_0(I)=\{f\in AC(\ovl I):f'\in L^2(I,m),f(a)=f(b)=0\}\label{eq222a}\\
 H^1(I)=\{f\in AC(\ovl I):f'\in L^2(I,m)\}\label{eq222b}
 \end{gather} 
 \end{subequations}
-Moreover, for each $f\in H^1(I)$ we have $T^*f=f'$.
-\end{rem}
+Moreover, for each $f\in H^1(I)$ we have $T^*f=-\im f'$ (a.e.).
+\end{thm}
+
+See Pb. \ref{lb567} for a slightly different proof strategy.
 
 \begin{proof}
-Let $\mc E$ and $\mc F$ be the RHS of \eqref{eq222a} and \eqref{eq222b} respectively. From the proof of Thm. \ref{lb423}, we see that if $f\in H^1_0(I)$, then $f$ is the antiderivative of $Tf$. Therefore, by the fundamental theorem of calculus, we conclude that $f\in AC(\ovl I)$ and $-\im f'=Tf$. Since $H^1_0(I)\subset C_0(I)$, we obtain $f(a)=f(b)=0$, and hence $f\in\mc E$. This proves $H^1_0(I)\subset\mc E$. By Eq. \eqref{eq220}, we have $H^1(I)\subset\mc F$.
+Step 1. Let $\mc E$ and $\mc F$ be the RHS of \eqref{eq222a} and \eqref{eq222b} respectively. In this step, we prove $H^1_0(I)\subset\mc E$.
 
-For each $f\in\mc F$, note that if $g\in C_c^\infty(I)$ then $\ovl fg\in AC(\ovl I)$, and $(\ovl fg)'=\ovl f'g+\ovl fg'$. The fundamental theorem of calculus implies $\bk{f|g'}=-\bk{f'|g}$. This shows that $f\in H^1(I)$ and $T^*f=-\im f'$. We have thus proved $H^1(I)\supset \mc F$. Therefore $H^1(I)=\mc F$.
+Choose any $f\in H_0^1(I)$. Define $\wtd f:\ovl I\rightarrow\Cbb$ by $\wtd f(x)=\int_a^x \im Tf$. Then $\wtd f\in AC(\ovl I)$, and $\wtd f(a)=0$. If we can prove $\wtd f(b)=0$ and $f=\wtd f$, then $f\in \ME$, and hence the proof of $H^1_0(I)\subset\mc E$ is finished.
 
-Finally, we need to prove $H^1_0(I)\supset\mc E$. Choose any $f\in\mc E$. Since $f\in H^1(I)$, by Thm. \ref{lb423}, we can write $f=f_1+f_2$ where $f_1\in H^1_0(I)$ and $f_2=c_-e^{-x}+c_+e^x$ for some $c_\pm\in\Cbb$. By the definition of $\mc E$, we have $f(a)=f(b)=0$. By Thm. \ref{lb423}, we have $f_1(a)=f_1(b)=0$. Hence $f_2(a)=f_2(b)=0$, which implies $c_-=c_+=0$. Therefore $f=f_1\in H^1_0(I)$. This finishes the proof of $H^1_0(I)\supset\mc E$.
+Since $T$ is the closure of $T_0$,  there exists a sequence $(f_n)$ in $C_c^\infty(I)$ such that $\Vert f-f_n\Vert_2\rightarrow0$ and $\Vert \im Tf-f_n'\Vert_2\rightarrow0$. Clearly $\int_a^b f_n'=0$. Since $\Vert \im Tf-f_n'\Vert_1\rightarrow 0$ (by Cauchy-Schwarz), we conclude that $\wtd f(b)=\int_a^b\im Tf=\lim_n\int_a^b f_n'=0$.
+
+The fact that $\Vert \im Tf-f_n'\Vert_1\rightarrow 0$ also implies that $\lim_n\int_a^x f_n'=\lim_nf_n(x)$ converges uniformly to $\int_a^x\im Tf=\wtd f(x)$ over $x\in I$. Therefore $\lim_n\Vert\wtd f-f_n\Vert_{L^2}=0$, and hence $f=\wtd f$.\\[-1ex]
+
+Step 2. In the above step, we see that $\wtd f=f$. By the fundamental theorem of algebra (for the Lebesgue integral), we have $\im Tf=\wtd f'$ a.e.. Thus $\im Tf=f'$ a.e.. This prove $\im T^*f=f'$ (a.e) for all $f\in H^1_0(I)$. Since this relation also holds for $f=e^{\pm x}$, it follows from Cor. \ref{lb423} that $\im T^*f=f'$ for all $f\in H^1(I)$.\\[-1ex]
+
+Step 3. In this step, we prove $H^1(I)=\MF$. The inclusion $H^1(I)\subset\MF$ follows from $H^1_0(I)\subset\ME$ and Cor. \ref{lb423}.
+
+For each $f\in\mc F$, note that if $g\in C_c^\infty(I)$ then $\ovl fg\in AC(\ovl I)$, and $(\ovl fg)'=\ovl f'g+\ovl fg'$. The fundamental theorem of calculus implies $\bk{f|g'}=-\bk{f'|g}$. This shows that $f\in H^1(I)$ and $\im T^*f=f'$. We have thus proved $H^1(I)\supset \mc F$. \\[-1ex]
+
+Step 4. Finally, we prove $H^1_0(I)\supset\mc E$. Choose any $f\in\mc E$. Since $f\in H^1(I)$ (because $\ME\subset\MF=H^1(I)$), by Cor. \ref{lb423}, we can write $f=f_1+f_2$ where $f_1\in H^1_0(I)$ and $f_2=c_-e^{-x}+c_+e^x$ for some $c_\pm\in\Cbb$. By the definition of $\mc E$, we have $f(a)=f(b)=0$. By Cor. \ref{lb423}, we have $f_1(a)=f_1(b)=0$. Hence $f_2(a)=f_2(b)=0$, which implies $c_-=c_+=0$. Therefore $f=f_1\in H^1_0(I)$. This finishes the proof of $H^1_0(I)\supset\mc E$.
 \end{proof}
 
 
@@ -13682,6 +13699,47 @@ Restrict $f\in\Dom(T^*)$ to bounded intervals, and apply the results in Sec. \re
 \end{proof}
 
 
+
+
+
+\begin{prob}\label{lb567}
+Let $-\infty<a<b<+\infty$ and $I=(a,b)$. Define the Hermitian operator $S=-\im\frac d{dx}$ on $\MH=L^2(I,m)$ with $\Dom(S)=C_c^\infty(I)$. Let $\nu\in\Zbb_+$. Let
+\begin{align*}
+\pmb{AC_0(\ovl I)}=\{f\in AC(\ovl I):f(a)=f(b)=0\}
+\end{align*}
+\begin{enumerate}
+\item Prove that $\Ker((S^\nu)^*)=\Span\{1,x,\dots,x^{\nu-1}\}$.
+\item Prove that
+\begin{gather}\label{eq270}
+\Dom((S^\nu)^*)=\{f\in AC(\ovl I):f',\dots,f^{(\nu-1)}\in AC(\ovl I), f^{(\nu)}\in L^2(I)\}
+\end{gather}
+and that $(S^\nu)^*f=(-\im)^\nu f^{(\nu)}$ a.e. for each $f\in\Dom((S^\nu)^*)$.
+\item Prove that
+\begin{align*}
+\Dom(\ovl{S^\nu})=\{f\in AC_0(\ovl I):f',\dots,f^{(\nu-1)}\in AC_0(\ovl I), f^{(\nu)}\in L^2(I)\}
+\end{align*}
+\end{enumerate}
+\end{prob}
+
+From the above results one easily deduces $\Dom((S^\nu)^*)=\Dom((S^*)^\nu)$ and $\Dom(\ovl{S^\nu})=\Dom(\ovl S^\nu)$.
+ 
+\begin{proof}[Hint]
+Part 1. Prove this by applying Lem. \ref{lb566} successively. (The same method will prove a more general statement: distributions whose $\nu$-th derivatives vanish are precisely linear combinations of $1,x,\dots,x^{\nu-1}$. )
+
+Part 2. Denote the RHS of \eqref{eq270} by $\MF$. Show that $(S^\nu)^*f=(-\im)^\nu f^{(\nu)}$ for each $f\in\MF$. Define $\MJ:L^2(I,m)\rightarrow L^2(I,m)$ by $(\MJ f)(x)=\im\int_a^x fdm$. To prove ``$\subset$'', choose any $f\in\Dom((S^\nu)^*)$, let $\wtd f=\MJ^\nu(S^\nu)^*f$, show that $\wtd f\in\MF$ and $(S^\nu)^*(f-\wtd f)=0$. Apply part 1. 
+\end{proof}
+
+
+\begin{prob}
+Let $-\infty<a<b<+\infty$ and $I=(a,b)$. Define the negative Laplacian $-\Delta=-\frac {d^2}{dx^2}$ with $\Dom(-\Delta)=C_c^\infty(I)$.
+\begin{enumerate}
+\item Prove that if $f\in\Dom(\Delta^*)$ and $-\Delta^* f=\lambda f$ for some $\lambda\in\Cbb$, then $f\in C^\infty(I)$.
+\item Find the deficiency indices of $-\Delta$. 
+\end{enumerate}
+\end{prob}
+
+
+
 \begin{prob}
 Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a collection of measures on $\fk M$. Let $f:X\rightarrow\Cbb$ be a measurable function. Let $\Mbf_f$ be the multiplication operator on $\MH:=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$ associated with $f$. Prove that
 \begin{align*}
@@ -14059,7 +14117,7 @@ Recall from Rem. \ref{lb464} that $\Dom(\ovl\nabla)=H^1_0(\Omega)$ consists of f
 
 
 \begin{eg}
-Assume that $\Omega$ is a bounded open interval $I=(a,b)$ in $\Rbb$. Let $T_0=-\im d/dx$ with domain $C_c^\infty(I)$. Recall Rem. \ref{lb463} for the description of $T:=\ovl {T_0}$ and $T^*$ in terms of absolutely continuous functions on $\ovl I=[a,b]$. In particular, $\Dom(T)=H_0^1(I)$ and $\Dom(T^*)=H^1(I)$ are described by \eqref{eq222}. Clearly
+Assume that $\Omega$ is a bounded open interval $I=(a,b)$ in $\Rbb$. Let $T_0=-\im d/dx$ with domain $C_c^\infty(I)$. Recall Thm. \ref{lb463} for the description of $T:=\ovl {T_0}$ and $T^*$ in terms of absolutely continuous functions on $\ovl I=[a,b]$. In particular, $\Dom(T)=H_0^1(I)$ and $\Dom(T^*)=H^1(I)$ are described by \eqref{eq222}. Clearly
 \begin{align*}
 \DD=-T^*T\qquad \DN=-TT^*
 \end{align*}
@@ -15209,7 +15267,7 @@ Conclude that $f(T_\blt)$ is closed, that $f(T_\blt)$ and $|f|(T_\blt)$ share th
 
 \subsubsection{Applications}
 
-\begin{eg}
+\begin{eg}\label{lb564}
 Let $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)$, where each $\mu_\alpha$ is a Borel measure on $\Rbb^N$. Let $(E_n)_{n\in\Zbb+}$ be an increasing sequence of bounded Borel subsets of $\Rbb^N$ such that $\Rbb^N = \bigcup_n E_n$. By DCT, the subspace
 \begin{align*}
 \Dom_0=\bigcup_{n\in\Zbb_+}\Mbf_{\chi_{E_n}}\MH
@@ -15421,7 +15479,43 @@ Let $h(x)=e^{-|x|^2/2}$ and $d\mu=hdm$. Then $L^2(\Rbb^N,m)\subset L^2(\Rbb^N,\m
 \end{proof}
 
 
-The topic of this section will be continued in Subsec. \ref{lb561}. In particular, Exp. \ref{lb560} of that subsection will show that $\MS_0(\Rbb^N)$ is a core for real polynomials of $\Mbf_{x_1},\dots,\Mbf_{x_N}$ and for those of (the closures of) $-\im\frac{d}{dx_1},\dots,-\im\frac \partial{\partial x_N}$.
+The topic of this section will be continued in Subsec. \ref{lb561}. In particular, Exp. \ref{lb560} of that subsection will show that $\MS_0(\Rbb^N)$ is a core for real polynomials of $\Mbf_{x_1},\dots,\Mbf_{x_N}$ and for those of (the closures of) $-\im\frac{d}{dx_1},\dots,-\im\frac \partial{\partial x_N}$. 
+
+\begin{eg}
+One important reason for studying $\MS_0(\Rbb^N)$ is that the Hamiltonian operator for the \textbf{quantum harmonic oscillator}
+\begin{align*}
+H=-\Delta+\Mbf_{|x|^2}\qquad \Dom(H)=\MS_0(\Rbb^N)
+\end{align*}
+is diagonalizable. Since $\MS_0(\Rbb^N)$ is dense, it follows from Exe. \ref{lb565} that $H$ is essentially self-adjoint.
+\end{eg}
+
+\begin{proof}
+We show that $H$ is diagonalizable. Define the \textbf{raising operator}
+\begin{align*}
+A_j=\Mbf_{x_j}-\frac{\partial}{\partial x_j}\qquad\Dom(A_j)=\MS_0(\Rbb^N).
+\end{align*}
+A direct computation shows that
+\begin{align*}
+[H,A_j]=2A_j.
+\end{align*}
+Thus, if $H\xi=\lambda\xi$ then $HA_j\xi=(\lambda+2)A\xi$. Therefore, since $He^{-|x|^2/2}=e^{-|x|^2/2}$, for each $n_1,\dots,n_N\in\Nbb$ we have
+\begin{align*}
+HA_\blt^{n_\blt}e^{-\frac{|x|^2}2}=(1+2n_1+\cdots+2n_N)A_\blt^{n_\blt}e^{-\frac{|x|^2}2}
+\end{align*}
+where $A_\blt^{n_\blt}$ abbreviates $A_1^{n_1}\cdots A_N^{n_N}$. Since $A_\blt^{n_\blt}e^{-\frac{|x|^2}2}$ is equal to $e^{-\frac{|x|^2}2}$ multiplied by a polynomial of $x_\blt$ with multi-degree $(n_1,\dots,n_N)$, it follows that
+\begin{align*}
+\MS_0(\Rbb^N)=\Span\{A_\blt^{n_\blt}e^{-\frac{|x|^2}2}:n_1,\dots,n_N\in\Nbb\}.
+\end{align*}
+Thus $\MS_0(\Rbb^N)$ is spanned by eigenvectors of $H$.
+\end{proof}
+
+\begin{exe}\label{lb565}
+Let $T$ be a Hermitian operator on $\MH$. Suppose there exists an orthonormal basis $(e_i)_{i\in I}$ of $\MH$ such that each $e_i$ belongs to $\Dom(T)$ and $Te_i=\lambda_ie_i$ with $\lambda_i\in\Rbb$. Prove that $T$ is essentially self-adjoint.
+\end{exe}
+
+\begin{proof}[Hint]
+Use $(e_i)_{i\in I}$ to identify $\MH$ with $\bigoplus_{i\in I}L^2(\Rbb,\delta_{\lambda_i})$. Show that $T$ equals $\Mbf_x$ when restricted to $\Dom_0:=\Span\{e_i:i\in I\}=\sum_{i\in I}L^2(\Rbb,\delta_{\{\lambda_i\}})$. Prove that $\Dom_0$ is a core for $\Mbf_x$ by using Exp. \ref{lb564} or Thm. \ref{lb534} (or by a direct argument).
+\end{proof}
 
 
 
