@@ -11410,7 +11410,7 @@ Following von Neumann's line of thought, we introduce in Sec. \ref{lb382} the fi
 \begin{align}\label{eq195}
 \Rng(T+\im)=\Rng(T-\im)=\MH
 \end{align}
-(See the beginning of Subsec. \ref{lb384}.) This is not yet the final definition of unbounded self-adjoint operators; indeed, in modern textbooks it often appears as a criterion for self-adjointness rather than a definition. Nevertheless, we will see that verifying condition \eqref{eq195} is frequently more convenient than checking self-adjointness directly, and that many central ideas in the theory of unbounded operators---such as the Cayley transform and the concept of closed operators---are more naturally understood in terms of this condition.
+(See the beginning of Subsec. \ref{lb384}.) This is not yet the final definition of unbounded self-adjoint operators; indeed, in modern textbooks it often appears as a criterion for self-adjointness rather than a definition. Nevertheless, we will see that verifying condition \eqref{eq195} is frequently more convenient than checking self-adjointness directly,\footnote{See the proofs of Thm. \ref{lb534} (which relies on Lem. \ref{lb537}), Stone's Thm. \ref{lb488}, and the Kato-Rellich Thm. \ref{lb572}.} and that many central ideas in the theory of unbounded operators---such as the Cayley transform and the concept of closed operators---are more naturally understood in terms of this condition.
 
 
 \subsection{Basic notions about unbounded operators}
@@ -11433,12 +11433,12 @@ Unless otherwise stated, we assume that the domain $\Dom(T)$ of an unbounded ope
 Note that every bounded linear operator is an unbounded operator in this sense. This is not contradictory: ``unbounded'' here simply means ``not necessarily bounded''.
 
 
-\hypertarget{proofread}{}
+
 
 \begin{df}\label{lb363}
 Let $S,T:\MH\rightarrow\MK$ be n.d.d. unbounded operators. The addition $\pmb{S+T}$ \index{00@Addition of unbounded operators} is defined to be
 \begin{align*}
-S+T:\Dom(S)+\Dom(T)\rightarrow\MK\qquad \xi\mapsto S\xi+T\xi
+S+T:\Dom(S)\cap\Dom(T)\rightarrow\MK\qquad \xi\mapsto S\xi+T\xi
 \end{align*} 
 which is an unbounded operator $\MH\rightarrow\MK$ whenever $\Dom(S+T):=\Dom(S)\cap\Dom(T)$ is dense in $\MH$.
 \end{df}
@@ -11485,7 +11485,7 @@ The only non-trivial part is the compare their domains:
 
 
 \begin{pp}\label{lb485}
-Let $A,B:\MK\rightarrow\ML$ and $C,D\in\MH\rightarrow\MK$ be n.d.d. unbounded operators. Then
+Let $A,B:\MK\rightarrow\ML$ and $C,D:\MH\rightarrow\MK$ be n.d.d. unbounded operators. Then
 \begin{gather}
 (A+B)C=AC+BC\qquad A(C+D)\supset AC+AD
 \end{gather}
@@ -11511,7 +11511,7 @@ Let $A$ be an unbounded operator on $\MH$ with $\Dom(A)\subsetneq\MH$. Let $C=\i
 
 
 \begin{df}
-Let $S,T$ be (not necessarily defined) unbounded operators $\MH\rightarrow\MT$. We say that $T$ is an \textbf{extension} \index{00@Extensions of unbounded operators} of $S$ and write $\pmb{S\subset T}$ if $\Dom(S)\subset \Dom(T)$, and if $S\xi=T\xi$ for each $\xi\in\Dom(S)$.
+Let $S,T$ be n.d.d. unbounded operators $\MH\rightarrow\MK$. We say that $T$ is an \textbf{extension} \index{00@Extensions of unbounded operators} of $S$ and write $\pmb{S\subset T}$ if $\Dom(S)\subset \Dom(T)$, and if $S\xi=T\xi$ for each $\xi\in\Dom(S)$.
 \end{df}
 
 
@@ -11554,8 +11554,8 @@ as functions of $x_2,\dots,x_N$. Hence
 \end{proof}
 
 
-\begin{eg}
-We work in the setting of Exp. \ref{lb362}. Let $f$ be a real polynomial with $N$ mutually-commuting variables. Define $f(\pbf_\blt)=f(\pbf_1,\dots,\pbf_N)$ in the obvious way, e.g., if $f=x_1x_3^2-2x_4^3x_5$ then $f(\pbf_\blt)=\pbf_1\pbf_3^2-2\pbf_4^3\pbf_5$. According to Def. \ref{lb363} and \ref{lb364}, $f(\pbf_\blt)$ has domain $C_c^\infty(\Omega)$. Using the fact that each $\pbf_j$ is Hermitian, one easily checks that $f(\pbf_\blt)$ is Hermitian. In particular, the \textbf{Laplacian} \index{00@Laplacian $\Delta$, with $\Dom(\Delta)=C_c^\infty(\Omega)$}
+\begin{eg}\label{lb568}
+We work in the setting of Exp. \ref{lb362}. Let $f$ be a real polynomial with $N$ mutually-commuting variables, i.e., $f\in\Rbb[x_1,\dots,x_N]$. Define the \textbf{polynomial functional calculus} \index{00@Polynomial functional calculus of commuting unbounded operators with common invariant domain} $f(\pbf_\blt)=f(\pbf_1,\dots,\pbf_N)$ in the obvious way, e.g., if $f=x_1x_3^2-2x_4^3x_5$ then $f(\pbf_\blt)=\pbf_1\pbf_3^2-2\pbf_4^3\pbf_5$. According to Def. \ref{lb363} and \ref{lb364}, $f(\pbf_\blt)$ has domain $C_c^\infty(\Omega)$. Using the fact that each $\pbf_j$ is Hermitian, one easily checks that $f(\pbf_\blt)$ is Hermitian. In particular, the \textbf{Laplacian} \index{00@Laplacian $\Delta$, with $\Dom(\Delta)=C_c^\infty(\Omega)$}
 \begin{gather*}
 \Delta=-\pbf_1^2-\cdots-\pbf_N^2=\partial_{x_1}^2+\cdots+\partial_{x_N}^2\\
 \Dom(\Delta)=C_c^\infty(\Omega)
@@ -11580,15 +11580,15 @@ If $f$ is real-valued, then $\Mbf_f$ is clearly Hermitian.
 \begin{proof}
 We need to prove that $\Dom(\Mbf_f)$ is dense. Let
 \begin{align*}
-V_n=\{\xi\in L^2(X,\mu):\xi\text{ vanishes outside $X_n$ and }\{x\in X:|f(x)|\leq n\}=0\}
+V_n=\{\xi\in L^2(X,\mu):\xi\text{ vanishes outside }\{x\in X:|f(x)|\leq n\}\}
 \end{align*}
-Then $\sum_{n\in\Zbb_+} V_n$ is dense in $L^2(X,\mu)$ (by DCT), and each $V_n$ is contained in $\Dom(\Mbf_f)$. Thus $\Dom(\Mbf_f)$ is dense because it contains $\sum_{n\in\Zbb_+} V_n$.
+Then $\sum_{n\in\Zbb_+} V_n$ is dense in $L^2(X,\mu)$ (by DCT), and each $V_n$ is contained in $\Dom(\Mbf_f)$. Thus $\Dom(\Mbf_f)$ is dense.
 \end{proof}
 
 
 
 \begin{df}\label{lb483}
-Let $(\MH_\alpha)_{\alpha\in\SI}$ and $(\MK_\alpha)_{\alpha\in\SI}$ collections of Hilbert spaces. For each $\alpha\in\SI$, let $T_\alpha:\MH_\alpha\rightarrow\MK_\alpha$ be an n.d.d. unbounded operators. Their \textbf{direct sum} \index{00@Direct sum of unbounded operators} $\pmb{\oplus_{\alpha\in\SI}T_\alpha}$ is an n.d.d. unbounded operator $\bigoplus_{\alpha\in\SI}\MH_\alpha\rightarrow \bigoplus_{\alpha\in\SI}\MK_\alpha$ defined by
+Let $(\MH_\alpha)_{\alpha\in\SI}$ and $(\MK_\alpha)_{\alpha\in\SI}$ be collections of Hilbert spaces. For each $\alpha\in\SI$, let $T_\alpha:\MH_\alpha\rightarrow\MK_\alpha$ be an n.d.d. unbounded operators. Their \textbf{direct sum} \index{00@Direct sum of unbounded operators} $\pmb{\oplus_{\alpha\in\SI}T_\alpha}$ is an n.d.d. unbounded operator $\bigoplus_{\alpha\in\SI}\MH_\alpha\rightarrow \bigoplus_{\alpha\in\SI}\MK_\alpha$ defined by
 \begin{gather*}
 \oplus_{\alpha\in\SI}T_\alpha:\Dom(\oplus_{\alpha\in\SI}T_\alpha)\rightarrow \bigoplus_{\alpha\in\SI}\MK_\alpha\qquad \oplus_{\alpha\in\SI}\xi_\alpha\mapsto \oplus_{\alpha\in\SI} T_\alpha\xi_\alpha
 \end{gather*}
@@ -11610,6 +11610,10 @@ Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a fa
 \begin{align*}
 \Dom(\oplus_{\alpha\in\SI}\Mbf_f)=\Big\{\oplus_\alpha\xi_\alpha\in \bigoplus_{\alpha\in\SI}\MH_\alpha: \oplus_\alpha f\xi_\alpha\in\bigoplus_{\alpha\in\SI}\MH_\alpha\Big\}
 \end{align*}
+In other words, $\Dom(\oplus_{\alpha\in\SI}\Mbf_f)$ consists precisely of those elements $(\xi_\alpha)_{\alpha\in\SI}$ in $\prod_{\alpha\in\SI}\MH_\alpha$ satisfying
+\begin{align*}
+\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty\qquad \sum_{\alpha\in\SI}\Vert f\xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty
+\end{align*}
 When no confusion arises, we
 \begin{align}
 \boxed{~\text{abbreviate $\oplus_\alpha\Mbf_f$ to $\Mbf_f$}~}
@@ -11619,33 +11623,56 @@ and also call \index{00@Multiplication operator $\Mbf_f$, unbounded} $\Mbf_f$ th
 
 
 \begin{proof}
-Similar to Def. \ref{lb365}, we need to check that $T:=\oplus_{\alpha\in\SI}\Mbf_f$ has dense domain in $\MH:=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Let $V$ be the set of all $\oplus_\alpha\xi_\alpha$ in $\MH$ satisfying the following conditions:
+Similar to Def. \ref{lb365}, we need to check that $\Mbf_f$ has dense domain in $\MH:=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Let $V$ be the set of all $\oplus_\alpha\xi_\alpha$ in $\MH$ satisfying the following conditions:
 \begin{itemize}
 \item There exists a finite set $I\subset\SI$ such that $\xi_\alpha=0$ for all $\alpha\notin I$.
-\item For each $\alpha\in I$, there exists $n_\alpha\in\Zbb_+$ such that the function $\xi_\alpha$ vanishes outside $\{x\in X:|f(x)|\leq n_\alpha\}$.
+\item There exists $n\in\Zbb_+$ such that for each $\alpha\in I$, the function $\xi_\alpha$ vanishes outside $\{x\in X:|f(x)|\leq n\}$.
 \end{itemize}
-Then $V$ is clearly a linear subspace of $\MH$.
+Then $V$ is clearly a dense linear subspace of $\MH$ contained in $\Dom(\Mbf_f)$.
 \end{proof}
-
-\begin{exe}
-Complete the above proof by showing that $V$ is dense in $\MH$, and that $V$ is contained in $\Dom(T)$.
-\end{exe}
 
 
 
 
 
 \begin{rem}\label{lb371}
-In Exp. \ref{lb366}, if $f,g:X\rightarrow\Cbb$ are both measurable, in general we only have
+In Exp. \ref{lb366}, if $f,g:X\rightarrow\Cbb$ are both measurable, then
 \begin{align*}
 \Mbf_f\Mbf_g\subset\Mbf_{fg}
 \end{align*}
-However, if $g$ is bounded (or more generally, if $\Vert g\Vert_{L^\infty(X,\mu_\alpha)}<+\infty$ for each $\alpha$), then
+Moreover, if $g$ is bounded (or more generally, if $\Vert g\Vert_{L^\infty(X,\mu_\alpha)}<+\infty$ for each $\alpha$), then
 \begin{align*}
 \Mbf_f\Mbf_g=\Mbf_{fg}
 \end{align*}
-since both sides have domain consisting of all $\oplus_\alpha\xi_\alpha\in\bigoplus_\alpha L^2(X,\mu_\alpha)$ satisfying $\sum_\alpha\Vert fg\xi_\alpha\Vert_{L^2}^2<+\infty$.
 \end{rem}
+
+\begin{proof}
+This follows immediately from the observation that $\Dom(\Mbf_f\Mbf_g)$ consists of vectors $(\xi_\alpha)_\alpha\in\prod_\alpha L^2(X,\mu_\alpha)$ satisfying
+\begin{subequations}
+\begin{align}
+\sum_\alpha\Vert \xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty\qquad \sum_\alpha\Vert g\xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty\qquad\sum_\alpha\Vert fg\xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty
+\end{align}
+whereas $\Dom(\Mbf_{fg})$ consists those satisfying
+\begin{align}
+\sum_\alpha\Vert \xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty\qquad\sum_\alpha\Vert fg\xi_\alpha\Vert_{L^2(\mu_\alpha)}^2<+\infty
+\end{align}
+\end{subequations}
+\end{proof}
+
+\begin{exe}\label{lb569}
+In the setting of Exp. \ref{lb366}, prove for each measurable function $f:X\rightarrow\Cbb$ and each $n\in\Nbb$ that
+\begin{align*}
+(\Mbf_f)^n=\Mbf_{f^n}
+\end{align*}
+\end{exe}
+
+\begin{exe}\label{lb570}
+In the setting of Exp. \ref{lb366}, let $f_1,\dots,f_N:X\rightarrow\Cbb$ be measurable functions. Let $\Dom_0$ be a linear subspace of $\MH$ such that $\Mbf_{f_j}\Dom_0\subset\Dom_0$ for each $j$. Let $p\in\Cbb[z_1,\dots,z_N]$. Prove that $\Dom_0\subset\Dom(\Mbf_{p\circ f_\blt})$ and
+\begin{align*}
+p(\Mbf_{f_1},\dots,\Mbf_{f_N})\big|_{\Dom_0}=\Mbf_{p\circ f_\blt}\big|_{\Dom_0}
+\end{align*}
+\end{exe}
+
 
 
 
@@ -11717,16 +11744,18 @@ We have
 \begin{gather*}
 \Dom(\Mbf_f)=\{\oplus_\alpha\xi_\alpha\in\MH:\oplus_\alpha f\xi_\alpha\in\MH\}\\
 \Rng(\Mbf_f)=\{\oplus_\alpha \eta_\alpha\in\MH:\oplus_\alpha \eta_\alpha=\oplus_\alpha f\xi_\alpha\text{ for some }\oplus_\alpha\xi_\alpha\in\MH\}\\
-\Dom(\Mbf_g)=\{\oplus_\alpha\eta_\alpha\in\MH:\oplus_\alpha g\xi_\alpha\in\MH\}\\
+\Dom(\Mbf_g)=\{\oplus_\alpha\eta_\alpha\in\MH:\oplus_\alpha g\eta_\alpha\in\MH\}\\
 \Rng(\Mbf_g)=\{\oplus_\alpha \xi_\alpha\in\MH:\oplus_\alpha \xi_\alpha=\oplus_\alpha g\eta_\alpha\text{ for some }\oplus_\alpha\eta_\alpha\in\MH\}
 \end{gather*}
 It follows immediately that 
 \begin{align*}
 \Dom(\Mbf_g)=\Rng(\Mbf_f)\qquad \Rng(\Mbf_g)=\Dom(\Mbf_f)
 \end{align*}
-that $\Mbf_f$ sends $\oplus_\alpha\xi_\alpha$ bijectively to $\oplus_\alpha\eta_\alpha$, and that $\Mbf_g$ sends $\oplus_\alpha\eta_\alpha$ bijectively to $\oplus_\alpha\xi_\alpha$. Thus $\Mbf_f:\Dom(\Mbf_f)\rightarrow\Rng(\Mbf_f)$ and $\Mbf_g:\Rng(\Mbf_f)\rightarrow\Dom(\Mbf_f)$ are inverses of each other. In particular, $\Mbf_g$ and $\Mbf_f$ are injective with dense ranges.
+that $\Mbf_f$ sends $\oplus_\alpha\xi_\alpha$ bijectively to $\oplus_\alpha\eta_\alpha$, and that $\Mbf_g$ sends $\oplus_\alpha\eta_\alpha$ bijectively to $\oplus_\alpha\xi_\alpha$. Thus $\Mbf_f:\Dom(\Mbf_f)\rightarrow\Rng(\Mbf_f)$ and $\Mbf_g:\Rng(\Mbf_f)\rightarrow\Dom(\Mbf_f)$ are inverses of each other. In particular, $\Mbf_g$ and $\Mbf_f$ are injective with dense range.
 \end{proof}
 
+
+\hypertarget{proofread}{}
 
 \subsubsection{Inverses of bounded operators}
 
@@ -11736,7 +11765,7 @@ Exp. \ref{lb373} shows that $\oplus_{\alpha\in\SI}\Mbf_f$ has dense range if it 
 
 
 \begin{df}\label{lb452}
-We say that an unbounded operator $T:\MH\rightarrow\MK$ has an \textbf{everywhere-defined bounded inverse} \index{00@Everywhere-defined bounded inverse} if $T=S^{-1}$ for some injective $S\in\fk L(\MK,\MH)$ with dense range. (Note that such $S$ must be unique, since $S=T^{-1}$.)
+We say that an unbounded operator $T:\MH\rightarrow\MK$ has an \textbf{everywhere-defined bounded inverse} \index{00@Everywhere-defined bounded inverse} if $T=S^{-1}$ for some injective $S\in\fk L(\MK,\MH)$ with dense range. (Note that such $S$ must be unique, since $S=T^{-1}$.) Equivalently, $T$ is injective, $\Rng(T)=\MK$, and the inverse linear map $T^{-1}:\MK\rightarrow \Dom(T)\subset\MH$ is bounded.
 \end{df}
 
 For bounded linear operators, injectivity and dense range are closely related:
@@ -12466,11 +12495,11 @@ Let $\eta\in\MK$. Then $\eta\in\Ker(T^*)$ iff the linear functional $\eta\in\Dom
 \end{proof}
 
 
-Inverses of bounded injective operators with dense ranges provide a large class of examples of closed operators. The following proposition shows that the adjoints of such closed operators can be computed in terms of the adjoints of the original bounded operators.
+Inverses of bounded injective operators with dense range provide a large class of examples of closed operators. The following proposition shows that the adjoints of such closed operators can be computed in terms of the adjoints of the original bounded operators.
 
 
 \begin{pp}\label{lb404}
-Let $T:\MH\rightarrow\MK$ be an injective closed operator with dense range. Then $T^{-1},T^*:\MK\rightarrow\MH$ are also injective closed operators with dense ranges, and
+Let $T:\MH\rightarrow\MK$ be an injective closed operator with dense range. Then $T^{-1},T^*:\MK\rightarrow\MH$ are also injective closed operators with dense range, and
 \begin{align}\label{eq204}
 (T^*)^{-1}=(T^{-1})^*
 \end{align}
@@ -13294,7 +13323,7 @@ whenever $\int_{\Rbb^N}|g|^2d\mu_\xi<+\infty$ (equivalently, $\xi\in\Dom(\Mbf_{g
 
 
 \begin{exe}\label{lb445}
-Let $T$ be a self-adjoint operator on $\MH$. Let $f(x)=x^n$ where $n\in\Nbb$. Show that $T^n=f(T)$ by viewing $T$ as a multiplication operator and apply Thm. \ref{lb435}.
+Let $T$ be a self-adjoint operator on $\MH$. Let $f(x)=x^n$ where $n\in\Nbb$. Show that $T^n=f(T)$ by viewing $T$ as a multiplication operator and apply Thm. \ref{lb435} and Exe. \ref{lb569}.
 \end{exe}
 
 
@@ -14012,7 +14041,7 @@ Conversely, if $\xi\in\Dom(\Psi^*\Psi)$, then for each $\eta\in\Dom(T)$ we have
 \end{align*}
 which shows that $T\xi\in\Dom(T^*)$, and hence $\xi\in\Dom(T^*T\xi)$. This finishes the proof of \eqref{eq238}.\\[-1ex]
 
-Step 2. Since $\Psi=\Pi^{-1}$, by Prop. \ref{lb404} we have $\Psi^*=(\Pi^*)^{-1}$ where $\Psi^*$ and $\Pi^*$ are injective with dense ranges. Therefore, \eqref{eq238} implies
+Step 2. Since $\Psi=\Pi^{-1}$, by Prop. \ref{lb404} we have $\Psi^*=(\Pi^*)^{-1}$ where $\Psi^*$ and $\Pi^*$ are injective with dense range. Therefore, \eqref{eq238} implies
 \begin{align}\label{eq239}
 \idt+T^*T=(\Pi^*)^{-1}\Pi^{-1}=(\Pi\cdot\Pi^*)^{-1}
 \end{align}
@@ -15302,7 +15331,7 @@ Choose a polynomial $f\in\Rbb[x_1,\dots,x_N]$. Then the Hermitian operator
 \begin{align*}
 A=f\Big(\im\frac\partial{\partial x_1},\dots,\im\frac\partial{\partial x_N}\Big)\qquad\Dom(A)=C_c^\infty(\Rbb^N)
 \end{align*}
-on $L^2(\Rbb^N,m)$, defined by the usual polynomial functional calculus of linear operators, is essentially self-adjoint.
+on $L^2(\Rbb^N,m)$, defined by the usual polynomial functional calculus of linear operators (cf. Exp. \ref{lb568}), is essentially self-adjoint.
 \end{co}
 
 It follows from Cor. \ref{lb462} that any Hermitian extension of $A$ is essentially self-adjoint with closure $\ovl A$. For example, if we define $B$ to be $f(\im\frac\partial{\partial x_1},\dots,\im\frac\partial{\partial x_N})$ with domain $\MS(\Rbb^N)$ (cf. Def. \ref{lb543}), then $\ovl A=\ovl B$.
@@ -15310,7 +15339,7 @@ It follows from Cor. \ref{lb462} that any Hermitian extension of $A$ is essentia
 \begin{proof}
 We use the notation in the proof of Cor. \ref{lb541}. Since $C_c^\infty(\Rbb^N)$ is $W$-invariant, by Thm. \ref{lb534}, $C_c^\infty(\Rbb^N)$ is a core for the self-adjoint operator $f(S_\blt)$ defined by the Borel functional calculus. Therefore $f(S_\blt)|_{C_c^\infty(\Rbb^N)}$ is essentially self-adjoint.
 
-By viewing $S_1,\dots,S_N$ as multiplication operators (so that $f(S_\blt)$ is also a multiplication operator, cf. Thm. \ref{lb435}), one easily checks that $f(S_\blt)|_{C_c^\infty(\Rbb^N)}$ equals $A$. Therefore $A$ is essentially self-adjoint.
+By viewing $S_1,\dots,S_N$ as multiplication operators (so that $f(S_\blt)$ is also a multiplication operator, cf. Thm. \ref{lb435}), one concludes from Exe. \ref{lb570} that $f(S_\blt)|_{C_c^\infty(\Rbb^N)}$ equals $A$. Therefore $A$ is essentially self-adjoint.
 \end{proof}
 
 
@@ -15479,7 +15508,6 @@ Let $h(x)=e^{-|x|^2/2}$ and $d\mu=hdm$. Then $L^2(\Rbb^N,m)\subset L^2(\Rbb^N,\m
 \end{proof}
 
 
-The topic of this section will be continued in Subsec. \ref{lb561}. In particular, Exp. \ref{lb560} of that subsection will show that $\MS_0(\Rbb^N)$ is a core for real polynomials of $\Mbf_{x_1},\dots,\Mbf_{x_N}$ and for those of (the closures of) $-\im\frac{d}{dx_1},\dots,-\im\frac \partial{\partial x_N}$. 
 
 \begin{eg}
 One important reason for studying $\MS_0(\Rbb^N)$ is that the Hamiltonian operator for the \textbf{quantum harmonic oscillator}
@@ -15514,10 +15542,12 @@ Let $T$ be a Hermitian operator on $\MH$. Suppose there exists an orthonormal ba
 \end{exe}
 
 \begin{proof}[Hint]
-Use $(e_i)_{i\in I}$ to identify $\MH$ with $\bigoplus_{i\in I}L^2(\Rbb,\delta_{\lambda_i})$. Show that $T$ equals $\Mbf_x$ when restricted to $\Dom_0:=\Span\{e_i:i\in I\}=\sum_{i\in I}L^2(\Rbb,\delta_{\{\lambda_i\}})$. Prove that $\Dom_0$ is a core for $\Mbf_x$ by using Exp. \ref{lb564} or Thm. \ref{lb534} (or by a direct argument).
+Use $(e_i)_{i\in I}$ to identify $\MH$ with $\bigoplus_{i\in I}L^2(\Rbb,\delta_{\lambda_i})$. Show that $T$ equals $\Mbf_x$ when restricted to $\Dom_0:=\Span\{e_i:i\in I\}=\sum_{i\in I}L^2(\Rbb,\delta_{\lambda_i})$. Prove that $\Dom_0$ is a core for $\Mbf_x$ by using Exp. \ref{lb564} or Thm. \ref{lb534} (or by a direct argument).
 \end{proof}
 
 
+
+The topic of this section will be continued in Subsec. \ref{lb561}. In particular, Exp. \ref{lb560} of that subsection will show that $\MS_0(\Rbb^N)$ is a core for real polynomials of $\Mbf_{x_1},\dots,\Mbf_{x_N}$ and for those of (the closures of) $-\im\frac{d}{dx_1},\dots,-\im\frac \partial{\partial x_N}$. 
 
 
 \subsection{Fourier transform as a spectral theorem for the regular representation of the group $\Rbb^N$}\label{lb525}
@@ -15701,6 +15731,126 @@ By Prop. \ref{lb510}, the relation $\MF U(t)\MF^{-1}=\Mbf_{e_{-t}}$ holds on $\M
 \begin{exe}
 Let $T_1,\dots,T_N$ be as in Thm. \ref{lb559}. Prove that $\MS(\Rbb^N)\subset\Dom(T_j)$, and that $T_jf=-\im\partial_{x_j}f$ for each $f\in\MS(\Rbb^N)$.
 \end{exe}
+
+
+\subsection{Perturbation of self-adjoint operators}
+
+
+
+Let $\MH$ be a Hilbert space.
+
+
+\begin{df}\label{lb571}
+Let $A,B$ be unbounded operators on $\MH$. We say that $B$ is \pmb{$A$}\textbf{-bounded} \index{00@$A$-bounded} if the following conditions hold:
+\begin{enumerate}
+\item[(a)] $\Dom(A)\subset\Dom(B)$.
+\item[(b)] There exist $\alpha,\beta\in\Rbb_{\geq0}$ such that for each $\xi\in\Dom(A)$ we have
+\begin{gather}\label{eq271}
+\Vert B\xi\Vert\leq \alpha\Vert A\xi\Vert+\beta\Vert\xi\Vert
+\end{gather}
+\end{enumerate}
+The number $\alpha$ is called \index{00@Bounding constant} a \textbf{bounding constant}.
+\end{df}
+
+
+\begin{pp}\label{lb575}
+Let $A,B$ be unbounded operators on $\MH$. Assume that $A$ has an everywhere-defined bounded inverse $A^{-1}\in\fk L(\MH)$. Assume also that $B$ satisfies conditions (a) and (b) of Def. \ref{lb571} with $0\leq\alpha<1$ and $\beta=0$. Then $A+B$ has an everywhere-defined bounded inverse.
+\end{pp}
+
+
+
+\begin{proof}
+Recall that $\Rng(A^{-1})=\Dom (A)$. Therefore, condition \eqref{eq271} (with $\beta=0$) can be equivalently described by
+\begin{align*}
+\Vert BA^{-1}\psi\Vert\leq\alpha\Vert\psi\Vert
+\end{align*}
+for each $\psi\in\MH$. Thus $BA^{-1}$ has operator norm no more than $\alpha$. In particular $BA^{-1}\in\fk L(\MH)$. Since $0\leq\alpha<1$, by Cor. \ref{lb233}, $1+BA^{-1}$ invertible in $\fk L(\MH)$. 
+
+By the distributive law (Prop. \ref{lb485}), we have
+\begin{align*}
+(1+BA^{-1})A=A+B\idt_{\Dom(A)}=A+B
+\end{align*}
+where the last identity is due to $\Dom(A)\subset\Dom(B)$. Therefore, Cor. \ref{lb455} implies that $A+B$ is injective, and
+\begin{align*}
+(A+B)^{-1}=A^{-1}(1+BA^{-1})^{-1}
+\end{align*} 
+as n.d.d. unbounded operators. Since both $A^{-1}$ and $(1+BA^{-1})^{-1}$ belong to $\fk L(\MH)$, we conclude that $(A+B)^{-1}\in\fk L(\MH)$.
+\end{proof}
+
+
+
+
+\begin{thm}[\textbf{Kato-Rellich theorem}]\index{00@Kato-Rellich theorem}\label{lb572}
+Let $A$ be a self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bounding constant $0\leq\alpha<1$. Then $A+B$ is a self-adjoint operator on $\MH$, and the unbounded operators $A$ and $A+B$ share the same cores.
+\end{thm}
+
+Note that since $\Dom(A)\subset\Dom(B)$, by Def. \ref{lb363} we have $\Dom(A)=\Dom(A+B)$.
+
+
+\begin{proof}
+Step 1. In this step, we show that $A+B$ is self-adjoint. 
+
+For each $y\in\Rbb_{>0}$, observe that $A+B$ is self-adjoint iff $y^{-1}(A+B)$ is self-adjoint. Therefore, by Cor. \ref{lb420}, it suffices to show that there exists $y\in\Rbb_{>0}$ such that $\Rng(A\pm y\im+B)=\MH$. We shall prove this by showing that $A\pm y\im$ and $B$ satisfy the assumptions in Prop. \ref{lb575}.
+
+Since $y^{-1}A$ is self-adjoint for each $y$, Cor. \ref{lb420} implies that $A+y\im$ is surjective. By \eqref{eq197}, we have
+\begin{align}\label{eq273}
+\Vert (A\pm y\im)\xi\Vert^2=\Vert A\xi\Vert^2+y^2\Vert\xi\Vert^2
+\end{align}
+and hence $\Vert A\xi+y\im\xi\Vert\geq y\Vert\xi\Vert$. We conclude that $A+y\im$ has an everywhere-defined bounded inverse $(A+y\im)^{-1}\in\fk L(\MH)$. (This also follows immediately from the representation of $A$ as a multiplication operator.)
+
+Note that $\Dom(B)\subset\Dom(A)=\Dom(A\pm y\im)$. By \eqref{eq271} and \eqref{eq273}, for each $\xi\in\Dom(A\pm y\im)$ we have
+\begin{align*}
+\Vert B\xi\Vert\leq\alpha\Vert A\xi\Vert+\beta\Vert\xi\Vert\leq \alpha\Vert (A\pm y\im)\xi\Vert+y^{-1}\beta\Vert (A\pm y\im)\xi\Vert
+\end{align*}
+Since $0\leq\alpha<1$, there exists $y\in\Rbb_{>0}$ such that $0\leq\alpha+y^{-1}\beta<1$. For such $y$, we conclude from Prop. \ref{lb575} that $\Rng(A\pm y\im+B)=\MH$. \\[-1ex]
+
+Step 2. To show that $A$ and $A+B$ share the same cores, it suffices to show that the graph inner products on $\Dom(A)$ given by $A$ and $A+B$ are equivalent (in the sense of Def. \ref{lb481}). This follows from the inequalities for each $\xi\in\Dom(A)$:
+\begin{align*}
+\Vert (A+B)\xi\Vert\leq \Vert(1+\alpha)A\xi\Vert+\beta\Vert\xi\Vert
+\end{align*}
+and
+\begin{align*}
+\Vert (A+B)\xi\Vert\geq \Vert A\xi\Vert-\Vert B\xi\Vert \geq (1-\alpha)\Vert A\xi\Vert-\beta\Vert\xi\Vert
+\end{align*}
+from which one deduces $\Vert A\xi\Vert\leq (1-\alpha)^{-1}(\Vert(A+B)\xi\Vert+\beta\Vert\xi\Vert)$.
+\end{proof}
+
+
+With the help of the following proposition, one can derive from Thm. \ref{lb572} a Kato-Rellich type criterion for essential self-adjointness. 
+
+
+
+\begin{pp}\label{lb573}
+Let $A,B$ be closed operators on $\MH$. Let $\alpha,\beta\in\Rbb_{\geq0}$. Suppose that $\Dom_0\subset\Dom(A)\cap\Dom(B)$ is a core for $A$, and that inequality \eqref{eq271} holds for all $\xi\in\Dom_0$. Then conditions (a) and (b) of Def. \ref{lb571} are satisfied.
+\end{pp}
+
+
+
+\begin{proof}
+Choose any $\xi\in\Dom(A)$. Since $\Dom_0$ is a core for $A$, there is a sequence $(\xi_n)$ in $\Dom_0$ converging to $\xi$ such that $(A\xi_n)$ converges to $A\xi$. Since \eqref{eq271} holds for $\xi_m-\xi_n$, the sequence $(B\xi_n)$ is Cauchy, and hence converges to some $\psi$. Since $B$ is closed and $\xi_n\rightarrow\xi$, we must have $\xi\in\Dom(B)$ (and hence $\Dom(A)\subset\Dom(B)$) and $\psi=B\xi$. Therefore $B\xi=\lim_n B\xi_n$, and hence
+\begin{align*}
+\Vert B\xi\Vert=\lim_n\Vert B\xi_n\Vert\leq\lim_n(\alpha\Vert A\xi_n\Vert+\beta\Vert\xi_n\Vert)=\alpha\Vert A\xi\Vert+\beta\Vert\xi\Vert
+\end{align*}
+\end{proof}
+
+
+\begin{co}[\textbf{Kato-Rellich}]\label{lb574}
+Let $A$ be an essentially self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bounding constant $0\leq\alpha<1$. Then $A+B$ is essentially self-adjoint. 
+\end{co}
+
+
+\begin{proof}
+Note that Hermitian operators are closable (Thm. \ref{lb389}). Since $\Dom(A)\subset\Dom(B)$, we have $\Dom(A)\subset\Dom(\ovl A)\cap\Dom(\ovl B)$, and $\Dom(A)$ is a core for $A$. Therefore, by Cor. \ref{lb573}, $\ovl B$ is $\ovl A$-bounded with bounding constant $\alpha$. Thus, by Thm. \ref{lb572}, $\ovl A+\ovl B$ is a self-adjoint operator with core $\Dom(A)$. It follows that $A+B$, being the restriction of $\ovl A+\ovl B$ to $\Dom(A)$, is essentially self-adjoint.
+\end{proof}
+
+
+
+
+
+
+\hypertarget{current}{}
+
+
 
 
 \subsection{Problems}
@@ -15921,10 +16071,6 @@ Choose any $\varphi\in C_c^\infty(\Rbb^N)$ such that $0\leq\varphi\leq 1$, and t
 
 
 
-\hypertarget{current}{}
-
-
-
 \subsubsection{Analytic vectors}\label{lb561}
 
 \begin{df}
@@ -16018,7 +16164,7 @@ Prove that $T$ is essentially self-adjoint.
 \end{prob}
 
 \begin{proof}[Hint]
-Show that $T+\im$ and $T-\im$ have dense ranges.
+Show that $T+\im$ and $T-\im$ have dense range.
 \end{proof}
 
 The following result is due to Nelson.
@@ -16130,7 +16276,7 @@ Write $X=\bigcup_{n\in\Zbb_+} K_n$ where each $K_n$ is compact. Then $f(K_n)$ is
 Given measurable functions $f,g:X\rightarrow \MH$ the sum $f+g$ is not necessarily measurable.\footnote{More generally, $f\vee g:x\in X\mapsto (f(x),g(x))\in \MH^2$ is not necessarily measurable. This is related to the fact that not all open subsets $\Omega\subset \MH^2$ can be written as a countable union $\bigcup_n A_n\times B_n$ where $A_n,B_n\subset \MH$ are open.} However, if $f(X),g(X)$ are separable, then $f+g$ is indeed measurable.
 
 \begin{co}\label{lb520}
-Let $f,g:X\rightarrow \MH$ be measurable functions with separable ranges. Let $\gamma:X\rightarrow\Cbb$ be measurable. Then the functions $f+g:X\rightarrow\MH$ and $\gamma f:X\rightarrow\MH$ and $\bk{f|g}:X\rightarrow\Cbb$ are measurable.
+Let $f,g:X\rightarrow \MH$ be measurable functions with separable range. Let $\gamma:X\rightarrow\Cbb$ be measurable. Then the functions $f+g:X\rightarrow\MH$ and $\gamma f:X\rightarrow\MH$ and $\bk{f|g}:X\rightarrow\Cbb$ are measurable.
 \end{co}
 
 
