@@ -481,7 +481,7 @@
 \newcommand{\Krm}{{\mathrm K}}
 \newcommand{\Cb}{C_{\mathrm b}}
 \newcommand{\FA}{\mathfrak A}
-
+\newcommand{\dist}{\mathrm{dist}}
 
 
 
@@ -699,6 +699,10 @@ For each $E\subset X$, we define the \textbf{diameter} \index{diam@$\diam(E)$} \
 \begin{align*}
 \diam(E)=\sup\{d(x,y):x,y\in E\}
 \end{align*}
+For each $E,F\subset X$, define \index{dist} the \textbf{distance} \index{00@Distance of two subsets}
+\begin{align}
+\dist(E,F)=\inf_{x\in E,y\in F}d(x,y)
+\end{align}
 \item If $X$ is a topological space, then $\mc T_X$ \index{TX@$\mc T_X$, the topology of $X$} denotes the topology of $X$, i.e.,
 \begin{align*}
 \mc T_X=\{\text{open subsets of }X\}
@@ -9893,7 +9897,7 @@ Replacing $g$ with $\ovl g$, and noting that $\ovl g(T)=g(T)^*$, we get $[f(T),g
 Fuglede's theorem states that two bounded normal operators on $\MH$ commute adjointly whenever they commute. We will not need the full result here and record only the following special case:
 
 \begin{eg}\label{lb429}
-Let $U\in\fk L(\MH)$ be unitary, and let $T\in\fk L(\MH)$ be normal. Then $U$ and $T$ commute iff they commute adjointly.
+Let $U\in\fk L(\MH)$ be unitary, and let $T\in\fk L(\MH)$. Then $U$ and $T$ commute iff they commute adjointly.
 \end{eg}
 
 
@@ -10280,7 +10284,7 @@ Let $\lambda\in\Cbb$. One easily sees that $\lambda$ is the only approximate eig
 \end{eg}
 
 \begin{pp}\label{lb313}
-Let $T\in\fk L(\MH)$. Then $T\geq0$ iff $\Sp(T)\subset\Rbb_{\geq0}$.
+Let $T\in\fk L(\MH)$ be normal. Then $T\geq0$ iff $\Sp(T)\subset\Rbb_{\geq0}$.
 \end{pp}
 
 \begin{proof}
@@ -10302,7 +10306,7 @@ for all $\xi\in\MH$, where $\mu_\xi$ is defined in Rem. \ref{lb297}. Thus $T\geq
 
 
 \begin{pp}\label{lb440}
-Let $T\in\fk L(\MH)$. Then $T$ is self-adjoint iff $\Sp(T)\subset\Rbb$.
+Let $T\in\fk L(\MH)$ be normal. Then $T$ is self-adjoint iff $\Sp(T)\subset\Rbb$.
 \end{pp}
 
 \begin{proof}
@@ -10928,7 +10932,7 @@ where $\Ess(f_\blt,\mu_\alpha)$ is the essential range (cf. Def. \ref{lb319}) of
 \end{exe}
 
 
-We encourage the reader to use the results from this subsection to provide alternative proofs for the basic properties of the Borel functional calculus and joint spectra, namely those in Sec. \ref{lb335}. I must confess, when I was proving certain propositions in Sec. \ref{lb335} (for example, Prop. \ref{lb317}), I often had in mind the concrete case of multiplication operators as in Thm. \ref{lb330}---sometimes even restricting to the situation where the index set $\SI$ consists of a single point---and then figured out the argument. This is my secret method for working with the Borel functional calculus.
+We encourage the reader to use the results from this subsection to provide alternative proofs for the basic properties of the Borel functional calculus and joint spectra, namely those in Sec. \ref{lb335}. I must confess, when I was proving certain propositions in Sec. \ref{lb335} (for example, Prop. \ref{lb317}), I often had in mind the concrete case of multiplication operators as in Thm. \ref{lb330}---sometimes even restricting to the situation where the index set $\SI$ consists of a single point, thanks to Prop. \ref{lb332}---and then figured out the argument. This is my secret method for working with the Borel functional calculus.
 
 
 
@@ -11765,7 +11769,10 @@ Exp. \ref{lb373} shows that $\oplus_{\alpha\in\SI}\Mbf_f$ has dense range if it 
 
 
 \begin{df}\label{lb452}
-We say that an unbounded operator $T:\MH\rightarrow\MK$ has an \textbf{everywhere-defined bounded inverse} \index{00@Everywhere-defined bounded inverse} if $T=S^{-1}$ for some injective $S\in\fk L(\MK,\MH)$ with dense range. (Note that such $S$ must be unique, since $S=T^{-1}$.) Equivalently, $T$ is injective, $\Rng(T)=\MK$, and the inverse linear map $T^{-1}:\MK\rightarrow \Dom(T)\subset\MH$ is bounded.
+We say that an unbounded operator $T:\MH\rightarrow\MK$ has an \textbf{everywhere-defined bounded inverse} \index{00@Everywhere-defined bounded inverse} if $T=S^{-1}$ for some injective $S\in\fk L(\MK,\MH)$ with dense range. (Note that such $S$ must be unique, since $S=T^{-1}$.) Equivalently, $T$ is injective, $\Rng(T)=\MK$, and the inverse linear map $T^{-1}:\MK\rightarrow \Dom(T)\subset\MH$ is bounded. We adopt the \index{00@$T^{-1}\in\fk L(\MK,\MH)$} notation:
+\begin{align}
+\pmb{T^{-1}\in\fk L(\MK,\MH)}\text{ means that $T$ has an everywhere-defined bounded inverse}
+\end{align}
 \end{df}
 
 For bounded linear operators, injectivity and dense range are closely related:
@@ -13482,6 +13489,9 @@ In other words, $\lambda_\blt\in\Cbb^N$ belongs to $\Sp(T_\blt)$ iff $\chi_U(T_\
 
 Note that $\Sp(T_\blt)$ is a closed subset of $\Rbb^N$, and hence is LCH.
 
+
+
+
 \begin{thm}\label{lb441}
 Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of \uwave{$\sigma$-finite} measures on $\fk M$. Let $f_1,\dots,f_N:X\rightarrow\Rbb$ be measurable. Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$. Let $T_1=\Mbf_{f_1},\dots,T_N=\Mbf_{f_N}$, which are strongly commuting self-adjoint operators by Exp. \ref{lb430}. Then
 \begin{align}\label{eq230}
@@ -13551,6 +13561,18 @@ Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators. Let $g_1,\dots
 \Sp(g_1(T_\blt),\dots,g_N(T_\blt))\subset\Rng(g_1,\dots,g_L)
 \end{align*}
 \end{exe}
+
+We close this section by noting a close connection between $\Sp(T)$ and everywhere-defined bounded inverses.
+
+\begin{rem}\label{lb582}
+Suppose that $T$ is a self-ajoint operator on $\MH$. Then for each $\lambda\in\Cbb$ outside $\Sp(T)$, we have $(\lambda-T)^{-1}\in\fk L(\MH)$ (cf. Def. \ref{lb452}). 
+\end{rem}
+
+\begin{proof}
+By the spectral Thm. \ref{lb436}, we may assume $\MH=\bigoplus_\alpha L^2(\Sp(T),\mu_\alpha)$ and $T=\Mbf_x$. Since the function $(\lambda-x)^{-1}$ is bounded on $\Sp(T)$, the multiplication operator $\Mbf_{1/(\lambda-x)}$ belongs to $\fk L(\MH)$ and is the inverse of $\lambda-T=\Mbf_{\lambda-x}$ due to Exp. \ref{lb373}.
+\end{proof}
+
+The converse of Rem. \ref{lb582} also holds: any $\lambda\in\Cbb$ satisfying $(\lambda-T)^{-1}\in\fk L(\MH)$ must lie outside $\Sp(T)$. This can be proved by first showing that $\Sp(T)$ equals the set of approximate eigenvalues of $T$; see Pb. \ref{lb579} and \ref{lb580}. We will not need this fact in the sequel.
 
 
 
@@ -13832,12 +13854,16 @@ Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. We sa
 \end{df}
 
 
-\begin{prob}
+\begin{prob}\label{lb579}
 Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $\lambda_\blt=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$. Prove that $\lambda_\blt\in\Sp(T_\blt)$ (in particular, $\lambda_\blt\in\Rbb^N$) iff $\lambda_\blt$ is a joint approximate eigenvalue of $T_1,\dots,T_N$.
 \end{prob}
 
-\begin{prob}
-Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\lambda\in\Sp(T)$ iff $\lambda-T$ has an everywhere defined bounded inverse (cf. Def. \ref{lb452}).
+\begin{prob}\label{lb580}
+Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\Sp(T)=\sigma(T)$ where \index{zz@$\sigma(T)$}
+\begin{align}
+\pmb{\sigma(T)}=\{\lambda\in\Cbb:(\lambda-T)^{-1}\notin\fk L(\MH)\}
+\end{align}
+(See Def. \ref{lb452} for the notation.)
 \end{prob}
 
 
@@ -13957,11 +13983,7 @@ Let $T$ be an unbounded operator on $\MH$. Let $\lambda\in\Rbb_{>0}$. The follow
 \begin{proof}
 $\neg$(2)$\Rightarrow$$\neg$(1): Assume that $T$ is self-adjoint and $\Sp(T)\nsubset\Rbb_{\geq0}$. By the spectral Thm. \ref{lb436}, one may assume that $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb,\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb$, and $T=\Mbf_x$. By Thm. \ref{lb441}, there exists $\alpha$ such that $\Supp(\mu_\alpha)\nsubset\Rbb_{\geq0}$ and hence $\mu_\alpha(\Rbb_{<0})\geq0$. Thus, viewing $\xi=\chi_{\Rbb_{<0}}$ as an element of $L^2(\Rbb,\mu_\alpha)$ (and hence an element of $\MH$), we have $\bk{\xi|T\xi}=\int_{\Rbb_{<0}}xd\mu_\alpha<0$. So $T$ is not positive.
 
-(2)$\Rightarrow$(3): By the spectral Thm. \ref{lb436} and Thm. \ref{lb441}, we may assume that $\MH=\bigoplus_{\alpha\in\SI}L^2(\Rbb_{\geq0},\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb_{\geq0}$, and $T=\Mbf_x$. Then $T$ is clearly positive. Since the function $1/(\lambda+x)$ is bounded, by Rem. \ref{lb371}, we have
-\begin{align*}
-(\lambda+T)\Mbf_{1/(\lambda+x)}=\Mbf_{\lambda+x}\Mbf_{1/(\lambda+x)}=\Mbf_1=\idt
-\end{align*} 
-Thus $\Rng(\lambda+T)=\MH$.
+(2)$\Rightarrow$(3): Since $-\lambda\notin\Rbb_{\geq0}$ and hence $-\lambda\notin\Sp(T)$, by Rem. \ref{lb582} we have $(\lambda+T)^{-1}\in\fk L(\MH)$, and hence $\Rng(\lambda+T)=\MH$.
 
 (3)$\Rightarrow$(1): Since $T$ is positive, we have
 \begin{align*}
@@ -14149,7 +14171,7 @@ for each $\xi,\eta\in C_c^\infty(\Omega)$. Moreover, integration by parts gives 
 where $\Delta$ is the usual Laplacian operator on $L^2(\Omega,m)$ with domain $\Dom(\Delta)=C_c^\infty(\Omega)$. Thus, both $-\DD$ and $-\DN$ are positive self-adjoint extensions of $-\Delta$.
 \end{rem}
 
-\begin{rem}
+\begin{rem}\label{lb586}
 Recall from Rem. \ref{lb464} that $\Dom(\ovl\nabla)=H^1_0(\Omega)$ consists of functions $f\in H^1(\Omega)$ ``vanishing on the boundary $\partial\Omega$''. Therefore, if $f\in\Dom(\DD)$, then $f\in H^1(\Omega)$ vanishes on $\partial\Omega$ (i.e., $f$ satisfies the Dirichlet boundary condition). If $f\in\Dom(\DN)$, then $\dive^* f$ belongs to $H^1_0(\Omega)$, and hence $(\partial_{x_1})^*f,\dots,(\partial_{x_N})^*f$ vanish on $\partial\Omega$ (i.e., $f$ satisfies the Neumann boundary condition). The description of $\Dom(\DD)$ and $\Dom(\DN)$ can be made explicit when $\Omega$ is a bounded open interval, as illustrated by the following example.
 \end{rem}
 
@@ -14407,7 +14429,7 @@ Let $V$ be a $\Cbb$-vector space. Two inner products $\omega_1,\omega_2$ on $V$ 
 
 Thanks to Prop. \ref{lb479}, the Friedrich extensions can be defined for a larger class of operators:
 
-\begin{df}
+\begin{df}\label{lb587}
 A Hermitian operator $A$ on $\MH$ is called \textbf{lower bounded} \index{00@Lower bounded Hermitian operator} if there exists $\lambda\geq0$ such that $A+\lambda$ is positive. The \textbf{Friedrichs extension} \index{00@Friedrichs extension for lower bounded Hermitian operators} of a lower bounded Hermitian operator $A$ is defined to be
 \begin{align*}
 \pmb{A_\Frm}:=(A+\lambda)_\Frm-\lambda
@@ -15748,6 +15770,42 @@ Let $T_1,\dots,T_N$ be as in Thm. \ref{lb559}. Prove that $\MS(\Rbb^N)\subset\Do
 
 Let $\MH$ be a Hilbert space.
 
+\subsubsection{Introduction}
+
+Consider the setting of quantum mechanics, where the Hamiltonian is given by $H=-\Delta+V$ on $L^2(\Rbb^N,m)$ with domain $\Dom(H)=C_c^\infty(\Rbb^N)$, and $V:\Rbb^N\rightarrow\Rbb$ is a potential function. By Thm. \ref{lb444}, $H$ admits at least one self-adjoint extension $\wht H$. Any such extension $\wht H$ satisfies the spectral theorem and therefore yields the unitary evolution $e^{-\im t\wht H}$ as the solution to the Schr\"odinger equation. However, there is no canonical self-adjoint extension, and thus no canonical solution to the Schr\"odinger equation. One must therefore identify the appropriate extension according to the physical context.
+
+The good news is that a physically meaningful Hamiltonian must be lower bounded. In this case, by the Friedrichs extension (cf. Def. \ref{lb583}), $H$ possesses a canonical lower-bounded self-adjoint extension $H_\Frm$. Nevertheless, determining the exact domain and cores of $H_\Frm$ is often difficult, unless if one can show that $H$, with its original domain $C_c^\infty(\Rbb^N)$, is essentially self-adjoint. If this holds, then by Cor. \ref{lb462}, the closure $\ovl H$ is the unique self-adjoint extension of $H$; in particular $H_\Frm=\ovl H$.
+
+
+In this section, we develop general methods for determining whether $H$ is essentially self-adjoint. Moreover, these methods will show that in favorable cases we indeed have $\Dom(\ovl H)=\Dom(-\ovl\Delta)$, noting that $\Dom(-\ovl\Delta)$ can be described via the Fourier transform (cf. Rem. \ref{lb588}).
+
+The basic idea is that in well-behaved cases (e.g., the hydrogen atom Hamiltonian; see Exp. \ref{lb589}), the potential $V$ (or more precisely, its multiplication operator $\Mbf_V$) is relatively small with respect to $-\ovl\Delta$. The rigorous meaning of ``relatively small'' will be made precise later in this section. In such cases, $-\ovl\Delta+V$ can be viewed as a perturbation of $-\ovl\Delta$. Using the fact that $\pm y\im-\ovl\Delta$ are surjetive for all $y\in\Rbb_{\geq0}$, one shows that $\pm\im y-\ovl\Delta+V$ are surjective when $y$ is sufficiently large. It then follows from  Cor. \ref{lb420} that $-\ovl\Delta+V$ is self-adjoint.
+
+
+Thus, the key to proving the self-adjointness of the Hamiltonian is to establish that, for each $g\in L^2(\Rbb^N,m)$, the partial differential equation
+\begin{align*}
+(\pm\im y-\ovl\Delta+V)f=g
+\end{align*}
+has a solution. A similar situation arises in the theory of differential equations (though unrelated to quantum mechanics): given an open set $\Omega\subset\Rbb^N$ and functions $a_1,\dots,a_N,b\in L^\infty(\Omega,m)$, one seeks, for each $g\in L^2(\Omega,m)$, a solution
+\begin{align*}
+\Big(\lambda-\Delta+\sum_{j=1}^N a_j\partial_{x_j}+b\Big)f=g
+\end{align*}
+where $\lambda\in\Rbb_{\geq0}$, subject to either the Dirichlet boundary condition $f|_{\partial\Omega}=0$ or the Neumann boundary condition $\nabla f|_{\partial\Omega}=0$. The same techniques used to establish the self-adjointness of Hamiltonians show that ``weak solutions'' exist for sufficiently large $\lambda$. In the next chapter, we will see that under slightly stronger assumptions, such solutions exist even for $\lambda=0$.
+
+
+In the following subsections, we first present a general result on the existence of (weak) solutions under perturbations of unbounded operators (Thm. \ref{lb575}). We then introduce the Kato-Rellich theorem (Thm. \ref{lb572}), which can be interpreted both as a self-adjointness criterion and as a statement on the existence of weak solutions to differential equations on $\Rbb^N$. We illustrate how this theorem applies to proving the self-adjointness of the hydrogen atom Hamiltonian (with core $C_c^\infty(\Rbb^3)$). Finally, we state Thm. \ref{lb583}, which, in the same spirit as the Kato-Rellich theorem, applies to differential equations on open subsets $\Omega\subset\Rbb^N$, not necessarily the entire Euclidean space $\Rbb^N$.
+
+
+
+
+
+
+
+
+
+
+
+\hypertarget{current}{}
 
 \subsubsection{$A$-boundedness}
 
@@ -15760,11 +15818,30 @@ Let $A,B$ be unbounded operators on $\MH$. We say that $B$ is \pmb{$A$}\textbf{-
 \Vert B\xi\Vert\leq \alpha\Vert A\xi\Vert+\beta\Vert\xi\Vert
 \end{gather}
 \end{enumerate}
-The number $\alpha$ is called \index{00@Bounding constant} a \textbf{bounding constant}.
+The number $\alpha$ is called \index{00@$A$-bound} an \textbf{$\pmb{A}$-bound} (or simply a \textbf{bound}). If (a) and (b) hold with $\beta=0$, we say that $B$ is \textbf{strictly \pmb{$A$}-bounded}.\index{00@Strictly $A$-bounded}
 \end{df}
 
+\begin{rem}\label{lb581}
+Let $A,B$ be unbounded operators on $\MH$ satisfying $\Dom(A)\subset\Dom(B)$. Let $a,b\in\Rbb_{\geq0}$. Suppose that each $\xi\in\Dom(A)$ satisfies
+\begin{align}\label{eq275}
+\Vert B\xi\Vert^2\leq a^2\Vert A\xi\Vert^2+b^2\Vert B\xi\Vert^2
+\end{align}
+Then $\xi$ clearly satisfies \eqref{eq271} with $\alpha=a$ and $\beta=b$. 
 
-Very often, to verify condition (2), it suffices to verify the inequality \eqref{eq271} for all $\xi$ in a core for $A$:
+Conversely, suppose that each $\xi\in\Dom(A)$ satisfies \eqref{eq271}. Then for each $a>\alpha$ there exists $b\in\Rbb_{\geq0}$ such that each $\xi\in\Dom(A)$ satisfies \eqref{eq271}.   \hqed
+\end{rem}
+
+
+\begin{proof}
+The first paragraph is clear. Let us prove the second paragraph. Assume that \eqref{eq271} holds for all $\xi\in\Dom(A)$. Then for each $\eps>0$, we have $2\Vert A\xi\Vert\cdot\Vert\xi\Vert=2\eps\Vert A\xi\Vert\cdot\eps^{-1}\Vert\xi\Vert\leq \eps^2\Vert A\xi\Vert^2+\eps^{-2}\Vert \xi\Vert^2$, and hence
+\begin{align*}
+\Vert B\xi\Vert^2\leq \alpha^2\Vert A\xi\Vert^2+2\alpha\beta\Vert A\xi\Vert\cdot\Vert\xi\Vert+\beta^2\Vert\xi\Vert^2\leq (\alpha^2+\eps^2)\Vert A\xi\Vert^2+(\beta^2+\eps^{-2})\Vert\xi\Vert^2
+\end{align*}
+The second paragraph follows easily.
+\end{proof}
+
+
+Very often, to verify \eqref{eq271} for all $\xi\in\Dom(A)$, it suffices to verify the inequality \eqref{eq271} for all $\xi$ in a core for $A$:
 
 
 \begin{pp}\label{lb573}
@@ -15781,11 +15858,18 @@ Choose any $\xi\in\Dom(A)$. Since $\Dom_0$ is a core for $A$, there is a sequenc
 \end{proof}
 
 
-\subsubsection{Perturbation of unbounded operators with bounded inverse}
+\subsubsection{Existence of solutions to linear equations under perturbation}
+
+
+
+Recall from Def. \ref{lb452} that $A^{-1}\in\fk L(\MH)$ means that $A$ has an everywhere-defined bounded inverse.
+
 
 \begin{thm}\label{lb575}
-Let $A,B$ be unbounded operators on $\MH$. Assume that $A$ has an everywhere-defined bounded inverse $A^{-1}\in\fk L(\MH)$. Assume also that $B$ satisfies conditions (a) and (b) of Def. \ref{lb571} with $0\leq\alpha<1$ and $\beta=0$. Then $A+B$ has an everywhere-defined bounded inverse.
+Let $A,B$ be unbounded operators on $\MH$. Assume that $A^{-1}\in\fk L(\MH)$. Assume also that $B$ is \uwave{strictly} $A$-bounded with bound $0\leq\alpha<1$. Then $(A+B)^{-1}\in\fk L(\MH)$.
 \end{thm}
+
+
 
 
 
@@ -15804,8 +15888,11 @@ where the last identity is due to $\Dom(A)\subset\Dom(B)$. Therefore, Cor. \ref{
 \begin{align*}
 (A+B)^{-1}=A^{-1}(1+BA^{-1})^{-1}
 \end{align*} 
-as n.d.d. unbounded operators. Since both $A^{-1}$ and $(1+BA^{-1})^{-1}$ belong to $\fk L(\MH)$, we conclude that $(A+B)^{-1}\in\fk L(\MH)$.
+as n.d.d. unbounded operators. Since both $A^{-1}$ and $(1+BA^{-1})^{-1}$ belong to $\fk L(\MH)$, we conclude that $(A+B)^{-1}\in\fk L(\MH)$. 
 \end{proof}
+
+
+
 
 
 \subsubsection{Self-adjointness of the perturbation}
@@ -15813,7 +15900,7 @@ as n.d.d. unbounded operators. Since both $A^{-1}$ and $(1+BA^{-1})^{-1}$ belong
 
 
 \begin{thm}[\textbf{Kato-Rellich theorem}]\index{00@Kato-Rellich theorem}\label{lb572}
-Let $A$ be a self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bounding constant $0\leq\alpha<1$. Then $A+B$ is a self-adjoint operator on $\MH$ having the same cores as $A$.
+Let $A$ be a self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bound $0\leq\alpha<1$. Then $A+B$ is a self-adjoint operator on $\MH$ having the same cores as $A$.
 \end{thm}
 
 Note that since $\Dom(A)\subset\Dom(B)$, by Def. \ref{lb363} we have $\Dom(A)=\Dom(A+B)$.
@@ -15822,25 +15909,19 @@ Note that since $\Dom(A)\subset\Dom(B)$, by Def. \ref{lb363} we have $\Dom(A)=\D
 \begin{proof}
 Step 1. In this step, we show that $A+B$ is self-adjoint. 
 
-For each $y\in\Rbb_{>0}$, observe that $A+B$ is self-adjoint iff $y^{-1}(A+B)$ is self-adjoint. Therefore, by Cor. \ref{lb420}, it suffices to show that there exists $y\in\Rbb_{>0}$ such that $\Rng(A\pm y\im+B)=\MH$. We shall prove this by showing that $A\pm y\im$ and $B$ satisfy the assumptions in Thm. \ref{lb575}.
+For each $y\in\Rbb_{>0}$, observe that $A+B$ is self-adjoint iff $y^{-1}(A+B)$ is self-adjoint. Therefore, by Cor. \ref{lb420}, it suffices to show that there exists $y\in\Rbb_{>0}$ such that $\Rng(A\pm y\im+B)=\MH$. 
 
-Since $y^{-1}A$ is self-adjoint for each $y$, Cor. \ref{lb420} implies that $A+y\im$ is surjective. By \eqref{eq197}, we have
-\begin{align}\label{eq273}
+Let $y>0$. By \eqref{eq197}, we have
+\begin{align}
 \Vert (A\pm y\im)\xi\Vert^2=\Vert A\xi\Vert^2+y^2\Vert\xi\Vert^2
 \end{align}
-and hence $\Vert A\xi+y\im\xi\Vert\geq y\Vert\xi\Vert$. We conclude that $A+y\im$ has an everywhere-defined bounded inverse $(A+y\im)^{-1}\in\fk L(\MH)$. (This also follows immediately from the representation of $A$ as a multiplication operator.)
+By Rem. \ref{lb581}, there exist $0\leq a<1$ and $b\geq0$ such that $\Vert B\xi\Vert^2\leq a^2\Vert A\xi\Vert^2+b^2\Vert\xi\Vert^2$ for each $\xi\in\Dom(A)$. Combining these two facts together, we see that for sufficiently large $y$, $B$ is strictly $(A\pm y\im)$-bounded with bound $<1$. Since $(A\pm y\im)^{-1}\in\fk L(\MH)$ (due to $\Sp(A)\subset\Rbb$ and Rem. \ref{lb582}), it follows from Thm. \ref{lb575} that for sufficiently large $y$ we have $(A\pm y\im+B)^{-1}\in\fk L(\MH)$, and hence $\Rng(A\pm y\im+B)=\MH$. \\[-1ex]
 
-Note that $\Dom(B)\subset\Dom(A)=\Dom(A\pm y\im)$. By \eqref{eq271} and \eqref{eq273}, for each $\xi\in\Dom(A\pm y\im)$ we have
-\begin{align*}
-\Vert B\xi\Vert\leq\alpha\Vert A\xi\Vert+\beta\Vert\xi\Vert\leq \alpha\Vert (A\pm y\im)\xi\Vert+y^{-1}\beta\Vert (A\pm y\im)\xi\Vert
-\end{align*}
-Since $0\leq\alpha<1$, there exists $y\in\Rbb_{>0}$ such that $0\leq\alpha+y^{-1}\beta<1$. For such $y$, we conclude from Thm. \ref{lb575} that $\Rng(A\pm y\im+B)=\MH$. \\[-1ex]
-
-Step 2. To show that $A$ and $A+B$ share the same cores, it suffices to show that the graph inner products on $\Dom(A)$ given by $A$ and $A+B$ are equivalent (in the sense of Def. \ref{lb481}). This follows from the inequalities for each $\xi\in\Dom(A)$:
+Step 2. To show that $A$ and $A+B$ share the same cores, it suffices to show that the graph inner products on $\Dom(A)$ given by $A$ and $A+B$ are equivalent (in the sense of Def. \ref{lb481}). This follows from Inequality \eqref{eq271} (with $0\leq\alpha<1$), which implies for each $\xi\in\Dom(A)$ that
 \begin{align*}
 \Vert (A+B)\xi\Vert\leq \Vert(1+\alpha)A\xi\Vert+\beta\Vert\xi\Vert
 \end{align*}
-and
+and that
 \begin{align*}
 \Vert (A+B)\xi\Vert\geq \Vert A\xi\Vert-\Vert B\xi\Vert \geq (1-\alpha)\Vert A\xi\Vert-\beta\Vert\xi\Vert
 \end{align*}
@@ -15853,17 +15934,18 @@ from which one deduces $\Vert A\xi\Vert\leq (1-\alpha)^{-1}(\Vert(A+B)\xi\Vert+\
 
 
 \begin{co}[\textbf{Kato-Rellich}]\label{lb574}
-Let $A$ be an essentially self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bounding constant $0\leq\alpha<1$. Then $A+B$ is essentially self-adjoint. 
+Let $A$ be an essentially self-adjoint operator on $\MH$, and let $B$ be a Hermitian operator on $\MH$. Suppose that $B$ is $A$-bounded with bound $0\leq\alpha<1$. Then $A+B$ is essentially self-adjoint. 
 \end{co}
 
 
 \begin{proof}
-Note that Hermitian operators are closable (Thm. \ref{lb389}). Since $\Dom(A)\subset\Dom(B)$, we have $\Dom(A)\subset\Dom(\ovl A)\cap\Dom(\ovl B)$, and $\Dom(A)$ is a core for $A$. Therefore, by Cor. \ref{lb573}, $\ovl B$ is $\ovl A$-bounded with bounding constant $\alpha$. Thus, by Thm. \ref{lb572}, $\ovl A+\ovl B$ is a self-adjoint operator with core $\Dom(A)$. It follows that $A+B$, being the restriction of $\ovl A+\ovl B$ to $\Dom(A)$, is essentially self-adjoint. 
+Note that Hermitian operators are closable (Thm. \ref{lb389}). Since $\Dom(A)\subset\Dom(B)$, we have $\Dom(A)\subset\Dom(\ovl A)\cap\Dom(\ovl B)$, and $\Dom(A)$ is a core for $A$. Therefore, by Cor. \ref{lb573}, $\ovl B$ is $\ovl A$-bounded with bound $\alpha$. Thus, by Thm. \ref{lb572}, $\ovl A+\ovl B$ is a self-adjoint operator with core $\Dom(A)$. It follows that $A+B$, being the restriction of $\ovl A+\ovl B$ to $\Dom(A)$, is essentially self-adjoint. 
 \end{proof}
 
 
 \subsubsection{Application to quantum mechanics}
 
+To show that the hydrogen atom Hamiltonian satisfies the assumption in the Kato-Rellich theorem, we need to following estimate.
 
 \begin{lm}[\textbf{Sobolev inequality}]\index{00@Sobolev inequality}\label{lb576}
 Assume that $N\in\{1,2,3\}$. Then for each $\alpha\in\Rbb_{>0}$, there exists $\beta\in\Rbb_{>0}$ such that for each $f\in\MS(\Rbb^N)$ we have
@@ -15905,17 +15987,17 @@ is self-adjoint with core $C_c^\infty(\Rbb^N)$.
 
 
 \begin{proof}
-Recall from Cor. \ref{lb544} that $\ovl\Delta$ is self-adjoint. Write $V=V_1+V_2$ where $V_1\in L^\infty$ and $V_2\in L^2$ are real-valued. Then $\Mbf_{V_1}$ is $\Delta$-bounded with bounding constant $0$. By Lem. \ref{lb576}, for each $\alpha>0$ there exists $\beta>0$ such that for any $f\in C_c^\infty(\Rbb^N)$ we have
+Recall from Cor. \ref{lb544} that $\ovl\Delta$ is self-adjoint. Write $V=V_1+V_2$ where $V_1\in L^\infty$ and $V_2\in L^2$ are real-valued. Then $\Mbf_{V_1}$ is $\Delta$-bounded with bound $0$. By Lem. \ref{lb576}, for each $\alpha>0$ there exists $\beta>0$ such that for any $f\in C_c^\infty(\Rbb^N)$ we have
 \begin{align*}
 \Vert V_2f\Vert_{L^2}=\Vert V_2\Vert_{L^2}\Vert f\Vert_{L^\infty}\leq \Vert V_2\Vert_{L^2}(\alpha\Vert \Delta f\Vert_{L^2}+\beta\Vert f\Vert_{L^2})
 \end{align*}
-Thus, $\Mbf_{V_2}$ is $\Delta$-bounded with arbitrarily small bounding constant. The same is true for $\Mbf_V$. Hence, by Prop. \ref{lb574}, $\Mbf_V$ is $\ovl\Delta$-bounded with arbitrarily small bounding constant. In particular, $\Dom(\ovl\Delta)\subset\Dom(\Mbf_V)$. By the Kato-Rellich Thm \ref{lb572}, $T$ is self-adjoint and shares the same cores with $\ovl\Delta$. In particular, $C_c^\infty(\Rbb^N)$ is a core for $T$.
+Thus, $\Mbf_{V_2}$ is $\Delta$-bounded with arbitrarily small bound. The same is true for $\Mbf_V$. Hence, by Prop. \ref{lb574}, $\Mbf_V$ is $\ovl\Delta$-bounded with arbitrarily small bound. In particular, $\Dom(\ovl\Delta)\subset\Dom(\Mbf_V)$. By the Kato-Rellich Thm \ref{lb572}, $T$ is self-adjoint and shares the same cores with $\ovl\Delta$. In particular, $C_c^\infty(\Rbb^N)$ is a core for $T$.
 \end{proof}
 
 
 The domain $\Dom(\ovl\Delta)$ can be described by the Fourier transform:
 
-\begin{rem}
+\begin{rem}\label{lb588}
 By Cor. \ref{lb542}, the operator $\ovl\Delta$ is equal to the Borel functional calculus $f(T_\blt)$ where $f(x)=-|x|^2$ and $T_j$ is the closure of $-\im\frac\partial{\partial x_j}$ with $\Dom(-\im\frac\partial{\partial x_j})=C_c^\infty(\Rbb^N)$. Therefore, Thm. \ref{lb559} implies
 \begin{align*}
 \MF\ovl\Delta\MF^{-1}=\Mbf_{-|x|^2}
@@ -15928,7 +16010,7 @@ where $\MF:L^2(\Rbb^N,\mk)\rightarrow L^2(\Rbb^N,\mk)$ is the Fourier transform 
 
 
 
-\begin{eg}
+\begin{eg}\label{lb589}
 On $\Rbb^3$, the function $V(x)=-e^2/|x|$ (where $e\in\Rbb$) belongs to $L^\infty+L^2$, since $V\chi_{\{|x|\geq1\}}$ belongs to $L^\infty$ and $V\chi_{|x|<1}$ belongs to $L^2$. Therefore, by Thm. \ref{lb577}, we have $\Dom(\ovl\Delta)\subset\Dom(\Mbf_{e^2/|x|})$, 
 \begin{align*}
 T:=-\ovl\Delta-\Mbf_{e^2/|x|}
@@ -15942,13 +16024,40 @@ is a self-adjoint operator with domain $\Dom(T)=\Dom(\ovl\Delta)$, and $C_c^\inf
 \subsubsection{Application to partial differential equations}
 
 
+The idea underlying the proof of the Kato-Rellich theorem leads immediately to the following result, Thm. \ref{lb583}, which will be used in this subsection to establish Thm. \ref{lb584} and \ref{lb585} on the existence of weak solutions to certain second-order linear differential equations.
+
+Our approach is operator-theoretic: we work directly with linear operators and their algebraic relations rather than with sesquilinear forms, which are more common in the PDE literature.
+For comparison, see Subsec. 6.2.1 and 6.2.2 of \cite{Eva}, where Thm. \ref{lb584} is proved via the method of sesquilinear forms, using the Lax-Milgram theorem in place of Thm. \ref{lb575}.
+
+
+
+
+\begin{thm}\label{lb583}
+Let $A,B$ be unbounded operators on $\MH$. Assume that $A$ is positive and self-adjoint, and that $B$ is $A$-bounded with bound $0\leq\alpha<1$. Then there exists $\lambda_0\in\Rbb_{\geq0}$ such that for each $\lambda\geq\lambda_0$, we have $(\lambda+A+B)^{-1}\in\fk L(\MH)$.
+\end{thm}
+
+
+\begin{proof}
+Let $\lambda>0$. For each $\xi\in\Dom(A)$, we have
+\begin{align*}
+\Vert (\lambda+A)\xi\Vert^2=\Vert A\xi\Vert^2+2\bk{\xi|A\xi}+\lambda^2\Vert\xi\Vert^2\geq\Vert A\xi\Vert^2+\lambda^2\Vert\xi\Vert^2
+\end{align*}
+By Rem. \ref{lb581}, there exist $0\leq a<1$ and $b\geq0$ such that $\Vert B\xi\Vert^2\leq a^2\Vert A\xi\Vert^2+b^2\Vert\xi\Vert^2$ for each $\xi\in\Dom(A)$. Therefore, $B$ is strictly $(\lambda+A)$-bounded with bound $<1$. Since $(\lambda+A)^{-1}\in\fk L(\MH)$ (due to $\Sp(A)\subset\Rbb_{\geq0}$ and Rem. \ref{lb582}), it follows from Thm. \ref{lb575} that we have $(\lambda+A+B)^{-1}\in\fk L(\MH)$ for sufficiently large $y$.
+\end{proof}
+
+
+We shall apply Thm. \ref{lb583} to the case that $A$ is the negative Laplacian and $B$ is a first-order differential operator. To establish the $A$-bounds in this situation, we need the following proposition.
+
+
+
+
 \begin{pp}\label{lb578}
-Let $A,B$ be unbounded operators on $\MH$. Assume that $A$ is positive and self-adjoint, and that $B$ is $\sqrt A$-bounded. Then for each $\alpha\in\Rbb_{>0}$, $B$ is $A$-bounded with bounding constant $\alpha$. 
+Let $A,B$ be unbounded operators on $\MH$. Assume that $A$ is positive and self-adjoint, and that $B$ is $\sqrt A$-bounded. Then for each $\alpha\in\Rbb_{>0}$, $B$ is $A$-bounded with bound $\alpha$. 
 \end{pp}
 
 
 \begin{proof}
-It suffices to show that $\sqrt A$ is $A$-bounded with arbitrarily small bounding constant. For each $\xi\in\Dom(A)$, we compute that
+It suffices to show that $\sqrt A$ is $A$-bounded with arbitrarily small bound. For each $\xi\in\Dom(A)$, we compute that
 \begin{align*}
 \Vert \sqrt A\xi\Vert^2=\bk{\xi|A\xi}\leq\Vert A\xi\Vert\cdot \Vert\xi\Vert=\eps\Vert A\xi\Vert\cdot\eps^{-1}\Vert\xi\Vert\leq \frac\eps 2\Vert A\xi\Vert^2+\frac 1{2\eps}\Vert\xi\Vert^2
 \end{align*}
@@ -15956,30 +16065,51 @@ for each $\eps>0$. Hence $\Vert \sqrt A\xi\Vert\leq \sqrt{\frac\eps 2}\Vert A\xi
 \end{proof}
 
 
-\begin{thm}
-Let $A,B$ be Hermitian operators on $\MH$. Assume that $A$ is positive and self-adjoint, and that $B$ is $\sqrt A$-bounded. Then $A+B$ is a lower-bounded self-adjoint operator on $\MH$ and shares the same cores with $A$.
+Recall Def. \ref{lb507} for the meanings of the Dirichlet Laplacian $\DD$ and the Neumann Laplacian $\DN$.
+
+\begin{thm}\label{lb584}
+Let $\Omega\subset\Rbb^N$ be open. Let $a_1,\dots,a_N,b\in L^\infty(\Omega,m)$. Let $X_j$ be the closure of $\partial_{x_j}$ with $\Dom(\partial_{x_j})=C_c^\infty(\Omega)$.\footnote{Note that $\im\partial_{x_j}$ is Hermitian, and hence is closable by Thm. \ref{lb389}.} Then $\Dom(\sqrt{-\DD})\subset\Dom(X_j)$ (and hence $\Dom(\DD)\subset\Dom(X_j)$). Moreover, if we define
+\begin{align*}
+T:=-\DD+\sum_{j=1}^N\Mbf_{a_j}X_j+\Mbf_b
+\end{align*}
+then $\Dom(T)=\Dom(\DD)$, and there exists $\lambda_0\in\Rbb_{\geq0}$ such that $(\lambda+T)^{-1}\in\fk L(L^2(\Omega,m))$ for each $\lambda\geq\lambda_0$.
 \end{thm}
 
+
 \begin{proof}
-By assumption, $\sqrt A$ and $B$ satisfy conditions (a) and (b) in Def. \ref{lb571} with $\alpha<1$. Therefore, for each $\xi\in\Dom(A)\subset\Dom(\sqrt B)\subset B$, we have
-\begin{align*}
-2|\bk{\xi|B\xi}|\leq 2\Vert B\xi\Vert\cdot\Vert\xi\Vert \leq\Vert B\xi\Vert^2+\Vert\xi\Vert^2\leq \alpha\Vert\sqrt A\xi\Vert^2+(1+\beta)\Vert\xi\Vert^2
-\end{align*}
-and hence
-\begin{align*}
-2\bk{\xi|(A+B)\xi}\geq& 2\bk{\xi|A\xi}-2|\bk{\xi|B\xi}|\\
-&\geq (2-\alpha)\bk{\xi|A\xi}-(1+\beta)\Vert\xi\Vert^2\geq -(1+\beta)\Vert\xi\Vert^2
-\end{align*}
-This proves that $A+B$ is lower-bounded.
- 
-By Prop. \ref{lb578}, $B$ is $A$ is bounded with arbitrarily small bounding constant. Therefore, by the Kato-Rellich Thm. \ref{lb572}, $A+B$ is self-adjoint and share the same cores with $A$. 
+Since $\partial_{x_j}$ is strictly $\nabla$-bounded, by Prop. \ref{lb573}, $X_j$ is strictly $\ovl\nabla$-bounded. Since $-\DD=\ovl\nabla^*\ovl\nabla$, by the polar decomposition for $\ovl\nabla$ (cf. Thm. \ref{lb472}), $X_j$ is strictly $\sqrt{-\DD}$-bounded. In particular, we have $\Dom(\sqrt{-\DD})\subset\Dom(X_j)$. Since $\Dom(\DD)\subset\Dom(\sqrt{-\DD})$, we conclude $\Dom(\DD)\subset\Dom(X_j)$, and hence $\Dom(T)=\Dom(\DD)$.
+
+By Prop. \ref{lb578}, $X_j$ is $-\DD$-bounded (and hence $(-\DD+\Mbf_b)$-bounded) with arbitrarily small bound. In particular, we have $\Dom(\DD)\subset\Dom(X_j)$, and hence $\Dom(T)=\Dom(\DD)$. It follows from Thm. \ref{lb583} that $(\lambda+T)^{-1}\in\fk L(L^2(\Omega,m))$ for large enough $\lambda\in\Rbb_{\geq0}$.
 \end{proof}
 
 
 
+\begin{thm}\label{lb585}
+In the setting of Thm. \ref{lb584}, if we define
+\begin{align*}
+S:=-\DN-\sum_{j=1}^N\Mbf_{a_j} X_j^*+\Mbf_b
+\end{align*}
+then $\Dom(S)=\Dom(\DN)$, and there exists $\lambda_0\in\Rbb_{\geq0}$ such that $(\lambda+S)^{-1}\in\fk L(L^2(\Omega,m))$ for each $\lambda\geq\lambda_0$.
+\end{thm}
+
+\begin{proof}
+It is clear that every $f\in\Dom(\dive^*)$ lies in $\Dom(X_j^*)$, and that $\dive^*f=(X_1^* f,\dots,X_N^*f)$. Therefore $X_j^*$ is $\dive^*$-bounded. Since $-\DN=\ovl\dive\cdot\dive^*$, we can apply the same reasoning as in Thm. \ref{lb584} to establish the present theorem.
+\end{proof}
 
 
-\hypertarget{current}{}
+\begin{rem}
+The surjectivity of $\lambda+T$ in Thm. \ref{lb584} (for sufficiently large $\lambda\geq0$) can be interpreted as follows: for every $g\in L^2(\Omega,m)$, the differential equation
+\begin{gather*}
+\Big(\lambda-\Delta+\sum_j a_j\partial_{x_j}+b\Big)f=g\qquad f|_{\partial\Omega}=0
+\end{gather*}
+admits a ``weak solution'' $f\in\Dom(\DD)$. In particular, each solution $f$ belongs to $\Dom(\sqrt{-\DD})=H^1_0(\Omega)$ (cf. Rem. \ref{lb521}). Similarly, the surjectivity of $\lambda+S$ in Thm. \ref{lb585} means that
+\begin{gather*}
+\Big(\lambda-\Delta+\sum_j a_j\partial_{x_j}+b\Big)f=g\qquad \nabla f|_{\partial\Omega}=0
+\end{gather*}
+has a ``weak solution'' $f$ in $H^1(\Omega)$. See Rem. \ref{lb586} for a discussion of how the various Laplacians correspond to their respective boundary conditions.
+\end{rem}
+
+
 
 
 
