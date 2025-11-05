@@ -14058,17 +14058,11 @@ We abbreviate $\Psi_T$ to $\Psi$ when no confusion arises. In this step, we prov
 \Psi_T^*\Psi_T=\idt+T^*T
 \end{align}
 
-If $\xi\in\Dom(T^*T)$, then for each $\eta\in\Dom(\Psi)$, we have
+Choose any $\xi\in\Dom(\Psi_T)=\Dom(T)$. Then for each $\eta\in\Dom(\Psi_T)=\Dom(T)$ we have
 \begin{align*}
-\bk{\Psi\eta|\Psi\xi}=\bk{\eta|\xi}+\bk{T\eta|T\xi}=\bk{\eta|(\idt+T^*T)\xi}
+\bk{\Psi\eta|\Psi\xi}=\bk{\eta|\xi}+\bk{T\eta|T\xi}
 \end{align*}
-which shows that $\Psi\xi\in\Dom(\Psi^*)$ (and hence $\xi\in\Dom(\Psi^*\Psi)$) and $\Psi^*\Psi\xi=\xi+T^*T\xi$.
-
-Conversely, if $\xi\in\Dom(\Psi^*\Psi)$, then for each $\eta\in\Dom(T)$ we have
-\begin{align*}
-\bk{T\eta|T\xi}=-\bk{\eta|\xi}+\bk{\Psi\eta|\Psi\xi}=-\bk{\eta|\xi}+\bk{\eta|\Psi^*\Psi\xi}
-\end{align*}
-which shows that $T\xi\in\Dom(T^*)$, and hence $\xi\in\Dom(T^*T\xi)$. This finishes the proof of \eqref{eq238}.\\[-1ex]
+If $\xi\in\Dom(T^*T)$, then $\bk{T\eta|T\xi}=\bk{\eta|T^*T\xi}$, and hence $\bk{\Psi\eta|\Psi\xi}=\bk{\eta|(\idt+T^*T)\xi}$, showing that $\Psi\xi\in\Dom(\Psi^*)$ and $\Psi^*\Psi\xi=\xi+T^*T\xi$. Similarly, if $\xi\in\Dom(\Psi^*\Psi)$, then $\xi\in\Dom(T^*T)$ and $T^*T\xi=\xi-\Psi^*\Psi\xi$. This proves \eqref{eq238}.\\[-1ex]
 
 Step 2. Since $\Psi=\Pi^{-1}$, by Prop. \ref{lb404} we have $\Psi^*=(\Pi^*)^{-1}$ where $\Psi^*$ and $\Pi^*$ are injective with dense range. Therefore, \eqref{eq238} implies
 \begin{align}\label{eq239}
@@ -14171,7 +14165,17 @@ where $\Delta$ is the usual Laplacian operator on $L^2(\Omega,m)$ with domain $\
 
 \begin{rem}\label{lb586}
 Recall from Rem. \ref{lb464} that $\Dom(\ovl\nabla)=H^1_0(\Omega)$ consists of functions $f\in H^1(\Omega)$ ``vanishing on the boundary $\partial\Omega$''. Therefore, if $f\in\Dom(\DD)$, then $f\in H^1(\Omega)$ vanishes on $\partial\Omega$ (i.e., $f$ satisfies the Dirichlet boundary condition). If $f\in\Dom(\DN)$, then $\dive^* f$ belongs to $H^1_0(\Omega)$, and hence $(\partial_{x_1})^*f,\dots,(\partial_{x_N})^*f$ vanish on $\partial\Omega$ (i.e., $f$ satisfies the Neumann boundary condition). The description of $\Dom(\DD)$ and $\Dom(\DN)$ can be made explicit when $\Omega$ is a bounded open interval, as illustrated by the following example.
+
+
+By Prop. \ref{lb456}, for each $\lambda\in\Rbb_{>0}$, the operators $\lambda-\DD$ and $\lambda-\DN$ have range $L^2(\Omega,m)$. Intuitively, this means that for each $g\in L^2(\Omega,m)$, the differential equation
+\begin{align*}
+(\lambda-\Delta)f=g
+\end{align*}
+subject to the Dirichlet boundary condition $f|_{\partial\Omega}=0$  (resp. the Neumann boundary condition $\nabla f|_{\partial\Omega}=0$) admits a weak solution, i.e. a solution $f\in H^1(\Omega)$.  \hqed
 \end{rem}
+
+
+We will return to the discussion in Rem. \ref{lb586} and develop more general results on the existence of weak solutions to differential equations in Subsec. \ref{lb591}.
 
 
 \begin{eg}
@@ -15762,7 +15766,7 @@ Let $T_1,\dots,T_N$ be as in Thm. \ref{lb559}. Prove that $\MS(\Rbb^N)\subset\Do
 \end{exe}
 
 
-\subsection{Perturbation of self-adjoint operators}
+\subsection{Perturbation of self-adjoint operators}\label{lb590}
 
 
 
@@ -15796,14 +15800,6 @@ In the following subsections, we first present a general result on the existence
 
 
 
-
-
-
-
-
-
-
-\hypertarget{current}{}
 
 \subsubsection{$A$-boundedness}
 
@@ -15917,7 +15913,7 @@ By Rem. \ref{lb581}, there exist $0\leq a<1$ and $b\geq0$ such that $\Vert B\xi\
 
 Step 2. To show that $A$ and $A+B$ share the same cores, it suffices to show that the graph inner products on $\Dom(A)$ given by $A$ and $A+B$ are equivalent (in the sense of Def. \ref{lb481}). This follows from Inequality \eqref{eq271} (with $0\leq\alpha<1$), which implies for each $\xi\in\Dom(A)$ that
 \begin{align*}
-\Vert (A+B)\xi\Vert\leq \Vert(1+\alpha)A\xi\Vert+\beta\Vert\xi\Vert
+\Vert (A+B)\xi\Vert\leq (1+\alpha)\Vert A\xi\Vert+\beta\Vert\xi\Vert
 \end{align*}
 and that
 \begin{align*}
@@ -15927,6 +15923,15 @@ from which one deduces $\Vert A\xi\Vert\leq (1-\alpha)^{-1}(\Vert(A+B)\xi\Vert+\
 \end{proof}
 
 
+\begin{rem}
+If two unbounded operators $S,T$ have the same domain and their graph inner products are equivalent, then by Def. \ref{lb480}-(2), $S$ is closable iff $T$ is closable. Therefore, from Step 2 of the proof of Thm. \ref{lb572}, we obtain the following general result:
+\end{rem}
+
+
+
+\begin{pp}\label{lb592}
+Let $A,B$ be unbounded operators on $\MH$. Assume that $B$ is $A$-bounded with bound $0\leq\alpha<1$. Then the graph inner products on $\Dom(A)=\Dom(A+B)$ defined by $A$ and $A+B$ are equivalent. Consequently, $A$ and $A+B$ have the same cores, and $A$ is closable iff $A+B$ is closable.
+\end{pp}
 
 
 
@@ -15947,9 +15952,9 @@ To show that the hydrogen atom Hamiltonian satisfies the assumption in the Kato-
 
 \begin{lm}[\textbf{Sobolev inequality}]\index{00@Sobolev inequality}\label{lb576}
 Assume that $N\in\{1,2,3\}$. Then for each $\alpha\in\Rbb_{>0}$, there exists $\beta\in\Rbb_{>0}$ such that for each $f\in\MS(\Rbb^N)$ we have
-\begin{align*}
+\begin{align}\label{eq273}
 \Vert f\Vert_{l^\infty}\leq \alpha\Vert \Delta f\Vert_{L^2(\Rbb^N,m)}+\beta\Vert f\Vert_{L^2(\Rbb^N,m)}
-\end{align*}
+\end{align}
 \end{lm}
 
 \begin{proof}
@@ -15971,6 +15976,17 @@ Since $\sqrt{a+b}\leq\sqrt a+\sqrt b$ for each $a,b\geq0$, we have
 \end{align*}
 The proof is finished by noting that $\lim_{r\rightarrow+\infty}C_r=0$ due to DCT.
 \end{proof}
+
+
+\begin{exe}
+Let $N\in\Zbb_+\setminus\{4\}$. Suppose that there exist $\alpha_0,\beta_0\in\Rbb_{>0}$ such that for every $f\in\MS(\Rbb^N)$, inequality \eqref{eq275} holds with $\alpha,\beta$ replaced by $\alpha_0,\beta_0$. Prove directly that for any $\alpha\in\Rbb_{>0}$, there exists $\beta\in\Rbb_{>0}$ such that for every $f\in\MS(\Rbb^N)$, inequality \eqref{eq275} holds.
+\end{exe}
+
+\begin{proof}[Hint]
+Consider $f_\lambda(x)=f(\lambda x)$ where $\lambda>0$.
+\end{proof}
+
+
 
 
 \begin{thm}\label{lb577}
@@ -16019,7 +16035,7 @@ is a self-adjoint operator with domain $\Dom(T)=\Dom(\ovl\Delta)$, and $C_c^\inf
 
 
 
-\subsubsection{Application to partial differential equations}
+\subsubsection{Application to partial differential equations}\label{lb591}
 
 
 The idea underlying the proof of the Kato-Rellich theorem leads immediately to the following result, Thm. \ref{lb583}, which will be used in this subsection to establish Thm. \ref{lb584} and \ref{lb585} on the existence of weak solutions to certain second-order linear differential equations.
@@ -16328,6 +16344,29 @@ Let $\MH=L^2(\Rbb^N,m)$. Choose a polynomial $f\in\Rbb[x_1,\dots,x_N]$. Give dir
 \begin{proof}[Hint for part 3]
 Choose any $\varphi\in C_c^\infty(\Rbb^N)$ such that $0\leq\varphi\leq 1$, and that $\varphi=1$ on a neighborhood of $0$. For each $\eps>0$, let $\varphi_\eps(x)=\varphi(\eps x)$. For each $f\in\MS(\Rbb^N)$, show that $\varphi_\eps f\rightarrow f$ and $A(\varphi_\eps f)\rightarrow Af$ as $\eps\rightarrow0$.
 \end{proof}
+
+
+Recall Def. \ref{lb571} for the meaning of $A$-boundedness.
+
+
+
+
+
+\begin{prob}
+Let $-\infty<a<b<+\infty$ and $I=(a,b)$. Let $c\in I$. Let $\MH:=L^2(I,m)$. Let $A,B$ be unbounded operators on $\MH$ with $\Dom(A)=\Dom(B)=C_c^\infty(I)$ defined by
+\begin{align*}
+Af=f(c)\qquad Bf=f'+f(c) 
+\end{align*}
+\begin{enumerate}
+\item Prove that $A$ is not closable.
+\item Prove that $B$ is closable and $\Dom(\ovl B)=H^1_0(I)$.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Hint for Part 2]
+Prove a Sobolev inequality for functions in $\MS(\Rbb)$ analogous to Lem. \ref{lb576}, with $\Delta$ replaced by $d/dx$. Then apply Prop. \ref{lb592}.
+\end{proof}
+
 
 
 
@@ -16785,6 +16824,16 @@ proving the first desired equality. The second can be proved in the same way.
 
 \section{From completely continuous forms to compact operators}\label{lb355}
 
+
+
+
+
+
+
+
+
+
+\hypertarget{current}{}
 
 \newpage
 
