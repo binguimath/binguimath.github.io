@@ -13574,8 +13574,7 @@ Suppose that $T$ is a self-ajoint operator on $\MH$. Then for each $\lambda\in\C
 By the spectral Thm. \ref{lb436}, we may assume $\MH=\bigoplus_\alpha L^2(\Sp(T),\mu_\alpha)$ and $T=\Mbf_x$. Since the function $(\lambda-x)^{-1}$ is bounded on $\Sp(T)$, the multiplication operator $\Mbf_{1/(\lambda-x)}$ belongs to $\fk L(\MH)$ and is the inverse of $\lambda-T=\Mbf_{\lambda-x}$ due to Exp. \ref{lb373}.
 \end{proof}
 
-The converse of Rem. \ref{lb582} also holds: any $\lambda\in\Cbb$ satisfying $(\lambda-T)^{-1}\in\fk L(\MH)$ must lie outside $\Sp(T)$. This can be proved by first showing that $\Sp(T)$ equals the set of approximate eigenvalues of $T$; see Pb. \ref{lb579} and \ref{lb580}. We will not need this fact in the sequel.
-
+The converse of Rem. \ref{lb582} also holds: any $\lambda\in\Cbb$ satisfying $(\lambda-T)^{-1}\in\fk L(\MH)$ must lie outside $\Sp(T)$. This can be proved by first showing that $\Sp(T)$ equals the set of approximate eigenvalues of $T$; see Thm. \ref{lb580}. 
 
 
 
@@ -13856,17 +13855,34 @@ Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. We sa
 \end{df}
 
 
-\begin{prob}\label{lb579}
+\begin{dprob}\label{lb579}
 Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Let $\lambda_\blt=(\lambda_1,\dots,\lambda_N)\in\Cbb^N$. Prove that $\lambda_\blt\in\Sp(T_\blt)$ (in particular, $\lambda_\blt\in\Rbb^N$) iff $\lambda_\blt$ is a joint approximate eigenvalue of $T_1,\dots,T_N$.
-\end{prob}
+\end{dprob}
 
-\begin{prob}\label{lb580}
-Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\Sp(T)=\sigma(T)$ where \index{zz@$\sigma(T)$}
+\begin{df}
+For each unbounded operator $T$ on $\MH$, \index{zz@$\sigma(T)$} define
 \begin{align}
 \pmb{\sigma(T)}=\{\lambda\in\Cbb:(\lambda-T)^{-1}\notin\fk L(\MH)\}
 \end{align}
-(See Def. \ref{lb452} for the notation.)
-\end{prob}
+That is, $\lambda\not\in\sigma(T)$ iff $\lambda-T$ has an everywhere-defined bounded inverse on $\MH$ (cf. Def. \ref{lb452}).
+\end{df}
+
+
+The following result will be used to establish the lower-boundedness of certain Hamiltonian operators, cf. Cor. \ref{lb594}.
+
+\begin{thm}\label{lb580}
+Let $T$ be a self-adjoint operator on $\MH$. Then
+\begin{align*}
+\Sp(T)=\sigma(T)
+\end{align*}
+\end{thm}
+
+
+
+\begin{proof}
+Let $\lambda\in\Cbb$. If $\lambda\notin\Sp(T)$, then Rem. \ref{lb582} implies $\lambda\notin\sigma(T)$. Conversely, if $\lambda\in\Sp(T)$, then Pb. \ref{lb579} implies that there is a sequence of unit vectors $(\xi_n)$ in $\Dom(T)$ such that $\lim_n(T-\lambda)\xi_n=0$. Therefore, for any $A\in\fk L(\MH)$, we have $\lim_n A(T-\lambda)\xi_n=0$, and hence $A(T-\lambda)$ cannot be $\idt$ on $\Dom(T)$. Therefore, $T-\lambda$ has no everywhere-defined bounded inverse.
+\end{proof}
+
 
 
 
@@ -16080,6 +16096,20 @@ Let $\lambda>0$. For each $\xi\in\Dom(A)$, we have
 \end{align*}
 By Rem. \ref{lb581}, there exist $0\leq a<1$ and $b\geq0$ such that $\Vert B\xi\Vert^2\leq a^2\Vert A\xi\Vert^2+b^2\Vert\xi\Vert^2$ for each $\xi\in\Dom(A)$. Therefore, $B$ is strictly $(\lambda+A)$-bounded with bound $<1$. Since $(\lambda+A)^{-1}\in\fk L(\MH)$ (due to $\Sp(A)\subset\Rbb_{\geq0}$ and Rem. \ref{lb582}), it follows from Thm. \ref{lb575} that we have $(\lambda+A+B)^{-1}\in\fk L(\MH)$ for sufficiently large $y$.
 \end{proof}
+
+
+\begin{co}\label{lb594}
+In Thm. \ref{lb583}, assume moreover that $B$ is Hermitian. Then $A+B$ is a lower-bounded self-adjoint operator.
+\end{co}
+
+Consequently, the hydrogen atom Hamiltonian is lower-bounded.
+
+\begin{proof}
+By the Kato-Rellich Thm. \ref{lb572}, $T:=A+B$ is self-adjoint. By Thm. \ref{lb583} and \ref{lb580}, there exists $\lambda_0\geq0$ such that $-\lambda\notin\Sp(T)$ for each $\lambda\geq\lambda_0$. Thus $\Sp(\lambda_0+T)$ is contained in $\Rbb_{\geq0}$. Hence $\lambda_0+T$ is positive by Prop. \ref{lb456}.
+\end{proof}
+
+
+
 
 
 We shall apply Thm. \ref{lb583} to the case that $A$ is the negative Laplacian and $B$ is a first-order differential operator. To establish the $A$-bounds in this situation, we need the following proposition.
