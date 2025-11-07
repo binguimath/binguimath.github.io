@@ -11668,7 +11668,10 @@ In the setting of Exp. \ref{lb366}, prove for each measurable function $f:X\righ
 \begin{align*}
 (\Mbf_f)^n=\Mbf_{f^n}
 \end{align*}
+(See Pb. \ref{lb596} for a related comment.)
 \end{exe}
+
+
 
 \begin{exe}\label{lb570}
 In the setting of Exp. \ref{lb366}, let $f_1,\dots,f_N:X\rightarrow\Cbb$ be measurable functions. Let $\Dom_0$ be a linear subspace of $\MH$ such that $\Mbf_{f_j}\Dom_0\subset\Dom_0$ for each $j$. Let $p\in\Cbb[z_1,\dots,z_N]$. Prove that $\Dom_0\subset\Dom(\Mbf_{p\circ f_\blt})$ and
@@ -13726,6 +13729,15 @@ A^{-1}+B^{-1}\supset A^{-1}(A+B)B^{-1}
 where the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and the RHS has domain $\Dom(A^{-1})\cap\Dom(AB^{-1})$. Conclude that the inclusion relation ``$\supset$'' in \eqref{eq232} becomes ``$=$'' if $A$ is everywhere defined on $\MH$.
 \end{prob}
 
+\begin{dprob}\label{lb596}
+Solve Exe. \ref{lb569}. 
+\end{dprob}
+
+\begin{proof}[Note]
+This result is not as obvious as it appears. You should handle the set $\{x\in X:|f(x)|\leq1\}$ and its complement separately.
+\end{proof}
+
+
 \begin{prob}
 Let $T$ be a Hermitian operator on $\MH$.
 \begin{enumerate}
@@ -15434,7 +15446,34 @@ By Cor. \ref{lb542}, $\Delta$ is essentially self-adjoint, and hence any Hermiti
 
 
 
-The results obtained in this subsection can also be proved directly via the Fourier transform, without invoking Thm. \ref{lb534}; see Pb. \ref{lb538} and \ref{lb539}. However, using Thm. \ref{lb534}, one can establish the following generalization of Cor. \ref{lb554}, which is difficult to prove by a direct Fourier transform approach: the Laplacian on a complete Riemannian manifold $M$ with domain $C_c^\infty(M)$ is essentially self-adjoint. See \cite[Sec. 8.2]{Tay-II} or \cite{Che73}.
+The results obtained so far in this subsection can also be proved directly via the Fourier transform, without invoking Thm. \ref{lb534}; see Pb. \ref{lb538} and \ref{lb539}. However, using Thm. \ref{lb534}, one can establish the following generalization of Cor. \ref{lb554}, which is difficult to prove by a direct Fourier transform approach: the Laplacian on a complete Riemannian manifold $M$ with domain $C_c^\infty(M)$ is essentially self-adjoint. See \cite[Sec. 8.2]{Tay-II} or \cite{Che73}. 
+
+In the following, we present a simple example whose solution via the Fourier transform is considerably more complicated than that obtained using Thm. \ref{lb534}.
+
+\begin{eg}\label{lb595}
+Let $x_0,x_1,\dots,x_N$ be the standard coordinates of $\Rbb\times\Rbb^N$. Let $\Omega$ be an open subset of $\Rbb^N$. Let $\mu$ be a Radon measure on $\Omega$. Let $\MH=L^2(\Rbb\times\Omega,m\times\mu)$. Then the Hermitian operator $\im\frac{\partial}{\partial x_0}$ on $\MH$ with domain $C_c^\infty(\Rbb\times\Omega)$ is essentially self-adjoint.
+\end{eg}
+
+Here, $m\times\mu$ is understood as the unique Radon measure such that $\int fd(m\times\mu)=\int_\Omega\int_\Rbb f(x_0,x_1,\dots,x_N)dx_0d\mu(x_1,\dots,x_N)$ holds for all $f\in C_c(\Rbb,\Omega)$, and the order of $\int_\Omega$ and $\int_\Rbb$ can be exchanged. For a general theory of products of Radon measures, see \cite[Ch. 26]{Gui-A}.
+
+
+\begin{proof}
+The map $U:\Rbb\rightarrow\fk L(\MH)$ defined by
+\begin{align*}
+(U(t)f)(x_0,x_1,\dots,x_N)=f(x_0-t,x_1,\dots,x_N)
+\end{align*}
+is a unitary representation of $\Rbb$ on $\MH$. Since $U$ is strongly continuous on the dense linear subspace $C_c(\Rbb\times\Omega)$, it is strongly continuous on $\MH$. Let $T$ be the generator of $U$. Then by Stone's Thm. \ref{lb488}, for each $f\in C_c^\infty(\Rbb\times\Omega)$ we have $f\in\Dom(T)$ and $\im Tf=\frac d{dt}U(t)=-\partial_{x_0}f$. This proves $T|_{C_c^\infty(\Rbb\times\Omega)}=\im\frac\partial{\partial x_0}$. Since $C_c^\infty(\Rbb\times\Omega)$ is dense in $\MH$ and $U$-variant, it follows from Thm. \ref{lb534} that $C_c^\infty(\Rbb\times\Omega)$ is a core for $T$. Therefore $\im\frac\partial{\partial x_0}$ is essentially self-adjoint.
+\end{proof}
+
+
+
+\begin{rem}
+Readers might think that Exp. \ref{lb595} can be solved using a ``partial Fourier transform'', although they may not readily find such a theory explicitly formulated in the literature. In fact, the theory of strongly continuous unitary representations $U:\Rbb^N\rightarrow\MH$ developed in this course is precisely a general framework for partial Fourier transforms, since $U$ can be viewed as parametrizing the Hilbert space $\MH$ (or its underlying geometric space) by $N$ real parameters!
+
+This general framework also enables us to address more intricate dynamical problems. For instance, suppose a smooth manifold $M$ endowed with a Radon measure $\mu$ admits a smooth flow $t\in\Rbb\mapsto\alpha_t$ that preserves $\mu$.\footnote{Here, each $\alpha_t$ is a diffeomorphism of $M$.} Then Thm. \ref{lb534} implies that the Hermitian operator $S$ on $L^2(M,\mu)$ with domain $\Dom(S)=C_c^\infty(M)$ defined by $Sf=\im\frac d{dt}(f\circ\alpha_t)\big|_{t=0}$ is essentially self-adjoint, since $C_c^\infty(M)$ is a core for the generator of the unitary representation $U:\Rbb\rightarrow\fk L(L^2(M,\mu))$ given by $U(t)f=f\circ\alpha_{-t}$. By the same reasoning, any real polynomial of $S$ is essentially self-adjoint.  \hqed
+\end{rem}
+
+
 
 
 
