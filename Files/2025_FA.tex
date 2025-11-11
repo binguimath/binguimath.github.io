@@ -11452,7 +11452,7 @@ Applying this interpretation to the spectral projections $E(\lambda)=\chi_{(-\in
 \begin{align*}
 E(\lambda,\lambda')=E(\lambda')-E(\lambda)
 \end{align*}
-for $\lambda\leq\lambda'$, then $\bk{\xi|E(\lambda,\lambda')\xi}$ is the probability that a measurement of $T$ in the state $\xi$ yields a value in the interval $(\lambda,\lambda']$.
+for $\lambda\leq\lambda'$, then $\bk{\xi|E(\lambda,\lambda')\xi}$ is the probability that a measurement of $T$ in the state $\xi$ yields a value in the interval $(\lambda,\lambda']$. Accordingly, the unit vectors in the range of $E(\lambda,\lambda')$ correspond precisely to the states in which the measurement outcomes of $T$ always lie within $(\lambda,\lambda']$.
 
 As in Def. \ref{lb358}, a number $\lambda\in\Rbb$ belongs to the spectrum of $T$ precisely when $E(\lambda-\eps,\lambda+\eps)\neq0$ for all $\eps>0$. For such $\lambda$, one can always choose a unit vector $\xi$ in $\Rng(E(\lambda-\eps,\lambda+\eps))$ so that $\bk{\xi|E(\lambda-\eps,\lambda+\eps)\xi}=1$. Therefore, in the state $\xi$, a measurement of $T$ is not guaranteed to yield exactly $\lambda$, but must lie within the interval $(\lambda-\eps,\lambda+\eps]$. This is the precise meaning of \textbf{measurement with arbitrarily prescribed accuracy}.
 
@@ -11574,7 +11574,7 @@ Let $S,T$ be n.d.d. unbounded operators $\MH\rightarrow\MK$. We say that $T$ is 
 
 
 \begin{df}
-An unbounded operator $T$ on $\MH$ is called a \textbf{Hermitian operator} \index{00@Hermitian operator, unbounded} if for each $\xi,\eta\in\Dom(T)$ we have
+An unbounded operator $T$ on $\MH$ is called a \textbf{Hermitian operator} \index{00@Hermitian operator, unbounded} (or a \textbf{symmetric operator}) \index{00@Symmetric operator} if for each $\xi,\eta\in\Dom(T)$ we have
 \begin{align*}
 \bk{\eta|T\xi}=\bk{T\eta|\xi}
 \end{align*} 
@@ -13770,7 +13770,7 @@ Let $A,B:\MH\rightarrow\MK$ and $C:\MM\rightarrow\MH$ be unbounded operators. As
 \begin{enumerate}
 \item Prove that as n.d.d. unbounded operators, we have
 \begin{align*}
-(A+B)^*\supset A^*+B^*\qquad (CA)^*\supset A^*C^*
+(A+B)^*\supset A^*+B^*\qquad (AC)^*\supset C^*A^*
 \end{align*}
 \item Prove that if $A\in\fk L(\MH,\MK)$, then $(A+B)^*=A^*+B^*$, and $(AC)^*=C^*A^*$. 
 \end{enumerate}
@@ -17054,16 +17054,84 @@ Although the three concepts above are equivalent in the setting of Hilbert space
 
 
 
-\subsubsection{The Dirichlet problem}
+\subsubsection{The modern approach to the Dirichlet problem}
 
-Another reason that the theory of compact operators looks obscure is that, especially in partial differential equations, the modern usage of compact operators differs quite a lot from the historical usage.
+Another reason the theory of compact operators may appear obscure is that its modern usage, particularly in partial differential equations, differs significantly from its historical application. To illustrate this, let us compare the two approaches using the Dirichlet problem. Let $\Omega$ be a bounded open subset of $\Rbb^N$ with smooth boundary $\partial\Omega$. Given $g\in C(\partial\Omega)$, the \textbf{Dirichlet problem} seeks a function $u\in C(\ovl\Omega)$ that is smooth on $\Omega$ and satisfies
+\begin{gather}\label{eq278}
+-\Delta u|_\Omega=0\qquad u|_{\partial\Omega}=g
+\end{gather}
 
-Let us explain the difference for the \textbf{Dirichlet problem}. Let $\Omega$ be a bounded open subset of $\Rbb^N$, and assume that $\Omega$ has smooth boundary. Given
+
+To explain the modern approach, assume for simplicity that $g\in C^\infty(\partial\Omega)$. Then $g$ can be extended to a function $\wtd g\in C_c^\infty(\Rbb^N)$. Set $\varphi=\Delta\wtd g|_\Omega$. Then $\xi:=u-\wtd g$ satisfies
+\begin{align}\label{eq277}
+-\Delta\xi|_\Omega=\varphi\qquad \xi|_{\partial\Omega}=0
+\end{align}
+Hence, solving the original problem \eqref{eq278} reduces to showing that for each $\varphi\in C^\infty(\ovl\Omega)$, there exists $\xi\in C^\infty(\ovl\Omega)$ satisfying \eqref{eq277}.
+
+
+Recall from Def. \ref{lb507} that the negative Dirichlet Laplacian $-\DD$ is a positive self-adjoint operator on $\MH:=L^2(\Omega,m)$. As we will see later in this chapter, the boundedness of $\Omega$ implies that $-\DD$ is strictly positive. By Prop. \ref{lb456}, it follows that $-\DD^{-1}\in\fk L(\MH)$, and hence for every $\varphi\in C^\infty(\ovl\Omega)$ there exists $\xi\in H^1_0(\Omega)$ such that $-\DD \xi=\varphi$. Regularity results in Sobolev spaces then imply that such $\xi$ actually lies in $C^\infty(\ovl\Omega)$ and satisfies $\xi|_{\partial\Omega}=0$. Details of this approach can be found in most modern PDE textbooks, e.g. \cite[Ch. 5,6]{Eva}, \cite[Ch. 4,5]{Tay-1}, or \cite{Yu}.
+
+
+The reader immediately notices that the modern approach to the Dirichlet problem described above does not rely on the theory of compact operators. Indeed, compact operators are used not in solving the harmonic equation \eqref{eq278} itself, but rather in showing that $-\DD$ is diagonalizable, thereby providing solutions to the \textbf{Helmholtz equation}
+\begin{align*}
+-\Delta\xi|_\Omega=\lambda\xi|_\Omega\qquad \xi|_{\partial\Omega}=0
+\end{align*}
+for $\lambda\in\Rbb_{\geq0}$. This is achieved by showing that the bounded positive operator \uwave{$(\idt-\DD)^{-1}$ (or simply $(-\DD)^{-1}$) is a compact operator on $\MH$}, which can then be diagonalized via the Hilbert-Schmidt theorem. Another application of Sobolev regularity theory shows that all eigenfunctions of $\DD$ are smooth and vanish on $\partial\Omega$.
+
+As we shall see in the next subsection, in the historical approach to the Dirichlet problem \eqref{eq278}, compact operators play a crucial and central role. In fact, the study of the Dirichlet problem was one of the main motivations for introducing completely continuous forms/operators and compact operators.
+
+
+
+
+\subsubsection{The historical approach to the Dirichlet problem}
+
+
+The historical approach to the Dirichlet problem \eqref{eq278} is to reduce it to the solution of the associated integral equation by using the method called \textbf{double layer potential}. In what follows we sketch this method.
+
+Recall that given $g\in C(\partial\Omega)$, we want to solve the equation \eqref{eq278} for $u\in C(\ovl\Omega)$ smooth on $\Omega$. Define the \textbf{fundamental solution} \index{00@Fundamental solution}
+\begin{align}
+\Phi(x)=\left\{
+\begin{array}{ll}
+\dps-\frac 1{2\pi}\log| x|&\text{ if }N=2\\
+\dps\frac 1{(N-2)\sigma_{N-1}\cdot| x|^{N-2}}&\text{ if }N\geq3
+\end{array}
+\right.
+\end{align}
+where $\sigma_{N-1}$ is the area of the $(N-1)$-dimensional sphere $\Sbb^{N-1}$. For each $f\in C(\partial\Omega)$, define a function $\MD f$ on $\ovl\Omega$ by
+\begin{align*}
+(\MD f)(x)=\int_{\partial\Omega}\partial_\nu\Phi(x-y)\cdot f(y)dy
+\end{align*}
+where $\partial_\nu\Phi$ is the outward directional derivative of $\Phi$ on $\partial\Omega$, that is,
+\begin{align*}
+\partial_\nu\Phi(x-y)=-\frac{\bk{x-y,\nbf_y}}{\sigma_{N-1}|x-y|^N}
+\end{align*}
+where $\nbf_y$ is the unit normal vector at $y\in\partial\Omega$ pointing outward. Then $\MD f$ is smooth and harmonic on $\Omega$, and has jumping discontinuity near $\partial\Omega$ by $\frac 12f$. That is, the function $u:\ovl\Omega\rightarrow\Cbb$ defined by
+\begin{align*}
+u(x)=\left\{
+\begin{array}{ll}
+(\mc Df)(x)&\text{ if }x\in\Omega\\
+\frac 12f(x)+(\mc Df)(x)&\text{ if }x\in\partial\Omega
+\end{array}
+\right.
+\end{align*}
+is continuous on the whole domain $\ovl\Omega$. Therefore, this function is a continuous function on $\ovl\Omega$, smooth on $\Omega$, and satisfying the differential equation \eqref{eq278} for the boundary condition $g=\frac12f+(\MD f)$.
+
+Consequently, the Dirichlet problem \eqref{eq278} is reduced to solving the integral equation
+\begin{gather}
+\frac 12f(x)+\int_{\partial\Omega} K(x,y)f(y)=g(x)\qquad\text{with }K(x,y)dy=\partial_\nu\Phi(x-y)
+\end{gather}
+for $f\in C(\partial\Omega)$.
+
+
+
+
+
+
+
+
 
 
 \subsection{Completely continuous sesquilinear forms}
-
-
 
 
 
@@ -17244,8 +17312,14 @@ Stieltjes, T. J. (1894). Recherches sur les fractions continues. Toulouse Ann. V
 \bibitem[Sti-C]{Sti-C}
 Stieltjes. {\OE}uvres compl{\`e}tes. {Collected} papers. Vol. II contains an English translation of \cite{Sti94}.
 
+\bibitem[Tay-1]{Tay-1}
+Taylor, Michael E., Partial differential equations I. Basic theory. 3rd corrected and expanded edition (2023).
+
+
 \bibitem[Tay-2]{Tay-2}
 Taylor, Michael E., Partial differential equations II. Qualitative studies of linear equations. 3rd corrected and expanded edition (2023).
+
+
 
 \bibitem[Xia]{Xia}
 
@@ -17260,6 +17334,11 @@ Young, W. H. On a new method in the theory of integration. Proc. Lond. Math. Soc
 \bibitem[You13]{You13}
 Young, W. H. On the new theory of integration.  Proc. R. Soc. Lond., Ser. A 88, 170--178 (1913).
 
+
+\bibitem[Yu]{Yu}
+\begin{CJK*}{UTF8}{gkai}
+于品~(2020). 数学分析之课程讲义. 2020.12.27版
+\end{CJK*}
 
 		
 \end{thebibliography}
