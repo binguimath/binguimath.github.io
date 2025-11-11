@@ -127,6 +127,8 @@
 
   讲义章节：6.1.5，6.1.6，6.2，6.3.1，6.3.2
 
+  注意：我们课上所说的Hermitian operator，很多数学教材里称为symmetric operator。我们选用Hermitian operator的称呼不只是为了和von Neumann本人的术语相匹配，也是为了和矩阵（对称矩阵 vs Hermite矩阵）以及form（symmetric bilinear form vs Hermitian form）的术语相匹配
+
 - 11/14
 
 - 11/18
