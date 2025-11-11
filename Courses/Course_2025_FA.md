@@ -127,8 +127,8 @@
 
   讲义章节：6.1.5，6.1.6，6.2，6.3.1，6.3.2
 
-  ***注意***：我们课上所说的Hermitian operator，很多数学教材里称为symmetric operator. 我们选用Hermitian operator这一称呼不只是为了和von Neumann本人的术语相匹配，也是为了和矩阵（对称矩阵 vs Hermite矩阵）以及form（symmetric bilinear form vs Hermitian form）的术语相匹配
-
+  ***注意***：我们课上所说的Hermitian operator，很多数学教材里称为symmetric operator. 我们选用Hermitian operator这一称呼不只是为了和von Neumann本人的术语相匹配，也是为了和矩阵（对称矩阵 vs Hermite矩阵）以及型（对称双线性型 vs Hermite型）的术语相匹配。在我看来，用symmetric这个词来指称涉及复数共轭的对称性，这种术语命名方式是非常糟糕的。
+  
 - 11/14
 
 - 11/18
