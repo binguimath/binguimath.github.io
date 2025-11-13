@@ -481,6 +481,7 @@
 \newcommand{\Krm}{{\mathrm K}}
 \newcommand{\Cb}{C_{\mathrm b}}
 \newcommand{\FA}{\mathfrak A}
+\newcommand{\FL}{\mathfrak L}
 \newcommand{\dist}{\mathrm{dist}}
 
 
@@ -5465,7 +5466,9 @@ Let $X$ be an LCH space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a net of finite Ra
 \end{enumerate}
 \end{prob}
 
-
+\begin{proof}[Hint for Part 3]
+Assume that $f$ is real-valued, and bound $f$ from above and below by semicontinuous functions.
+\end{proof}
 
 
 
@@ -5802,11 +5805,11 @@ Let $\omega:V\times W\rightarrow\Cbb$ be a sesquilinear form. The \textbf{norm} 
 \end{align*}
 Recalling the notation \eqref{eq26}, we let \index{Sesq@$\Ses(V\vert W)$ and $\Ses(V)$}
 \begin{align*}
-\Ses(V|W):=\fk L(V^\Co\times W,\Cbb)
+\pmb{\Ses(V|W)}:=\fk L(V^\Co\times W,\Cbb)
 \end{align*}
 which is the space of bounded sesquilinear forms $V\times W\rightarrow\Cbb$. We write
 \begin{align*}
-\Ses(V):=\Ses(V|V)
+\pmb{\Ses(V)}:=\Ses(V|V)
 \end{align*}
 The elements of $\Ses(V|W)$ (resp. $\Ses(V)$) are called \textbf{bounded sesquilinear forms} \index{00@Bounded sesquilinear forms} on $V\times W$ (resp. on $V$).
 \end{df}
@@ -6781,7 +6784,7 @@ Let $U,V,W$ be inner product spaces.
 \subsubsection{Convergence of vectors}
 
 
-\begin{df}
+\begin{df}\label{lb606}
 The \textbf{weak topology} on $V$ \index{00@Weak topology on inner product spaces} is defined to be the pullback of the weak-* topology on $(V^\Co)^*$ by the Riesz isometry $V\rightarrow (V^\Co)^*$. Therefore, a net $(\xi_\alpha)$ in $V$ converges weakly to $\xi \in V$ iff
 \begin{align}\label{eq75}
 \lim_\alpha\bk{\eta|\xi_\alpha}=\bk{\eta|\xi}
@@ -7088,6 +7091,13 @@ Let $\MH$ be the metric space completion of $V$. Define vector additions, scalar
 \end{proof}
 
 
+\begin{dprob}\label{lb605}
+Let $\MH$ be a Hilbert space. Prove that any two orthonormal bases of $\MH$ have the same cardinality. This cardinality is called the \textbf{dimension} of $\MH$. \index{00@Dimensions of Hilbert spaces}
+\end{dprob}
+
+\begin{proof}[Hint]
+If $E$ is an infinite set, then $E$ and $\Nbb\times E$ have the same cardinality.
+\end{proof}
 
 
 
@@ -12311,7 +12321,7 @@ Let $T$ be a Hermitian operator on $\MH$. Let
 \begin{align*}
 n_+=\dim \Rng(T+\im)^\perp\qquad n_-=\dim\Rng(T-\im)^\perp
 \end{align*}
-More precisely, $n_\pm$ is the cardinality of any orthonormal basis of $\Rng(T\pm\im)^\perp$. We call $(n_+,n_-)$ the (pair of) \textbf{deficiency indices} \index{00@Deficiency index} of $T$. 
+More precisely, $n_\pm$ is the cardinality of any orthonormal basis of $\Rng(T\pm\im)^\perp$ (cf. Pb. \ref{lb605}). We call $(n_+,n_-)$ the (pair of) \textbf{deficiency indices} \index{00@Deficiency index} of $T$. 
 \end{df}
 
 If $\MH$ is separable, the only infinite cardinality is that of $\Nbb$. In that case, it is unambiguous to denote this cardinality by $\infty$.
@@ -13756,7 +13766,7 @@ for each $f\in\Bor(\Rbb)$ satisfying $\Omega\in\Dom(f(\wtd T))$. Setting $f(x)=x
 
 
 
-\hypertarget{proofread}{}
+
 
 \subsection{Problems}
 
@@ -13781,7 +13791,7 @@ Let $A,B$ be n.d.d. injective unbounded operators on $\MH$. Prove that
 \begin{align}\label{eq232}
 A^{-1}+B^{-1}\supset A^{-1}(A+B)B^{-1}
 \end{align}
-where the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and the RHS has domain $\Dom(A^{-1})\cap\Dom(AB^{-1})$. Conclude that the inclusion relation ``$\supset$'' in \eqref{eq232} becomes ``$=$'' if $A$ is everywhere defined on $\MH$.
+that the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and that the RHS has domain $\Dom(A^{-1})\cap\Dom(AB^{-1})$. Conclude that the inclusion relation ``$\supset$'' in \eqref{eq232} becomes ``$=$'' if $A$ is everywhere defined on $\MH$.
 \end{prob}
 
 \begin{dprob}\label{lb596}
@@ -13793,16 +13803,42 @@ This result is not as obvious as it appears. You should handle the set $\{x\in X
 \end{proof}
 
 
+\begin{df}
+Let $\omega:\MH\times\MH\rightarrow\Cbb$ be a bounded Hermitian form. Define $n_\pm$ to be the largest dimension of closed linear subspaces $\MK\subset\MH$ such that $\pm\omega|_\MK$ is positive-definite (i.e. an inner product). The numbers $n_+$ and $n_-$ are called the \textbf{positive index of inertia} and \textbf{negative index of inertia} of $\omega$, respectively.
+\end{df}
+
+\begin{rem}
+The indices of inertia depend only on the equivalence class of the Hilbert space inner product. In other words, if one replaces the inner product on $\MH$ by any equivalent inner product (in the sense of Def. \ref{lb481}), then the indices of inertia of every bounded sesquilinear form $\omega$ remain unchanged.
+\end{rem}
+
 \begin{prob}
-Let $T$ be a Hermitian operator on $\MH$.
+Let $\omega$ be a bounded Hermitian form on $\MH$. Let $n_+,n_-$ be its indices of inertia.
 \begin{enumerate}
-\item Prove that
-\begin{gather*}
-\Dom(T)=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}=0\}\\
-\Dom(T)+\Rng(T+\im)^\perp=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}\geq0\}\\
-\Dom(T)+\Rng(T-\im)^\perp=\{\xi\in\Dom(T^*):\Imag\bk{\xi|T^*\xi}\leq0\}
-\end{gather*}
-\item Assume that $\MH$ is separable. Let $a,b\in\Rbb$ with $a\neq0$. Prove that $T$ and $aT+b$ have the same pair of deficiency indices.
+\item Prove that $\MH$ admits an orthogonal decomposition into Hilbert subspaces $\MH=\MH_0\oplus \MH_+\oplus \MH_-$ such that  $\omega|_{\MH_+}$ and $-\omega|_{\MH_-}$ are positive-definite, and that for each $\xi_0\in\MH_0,\xi_\pm\in\MH_\pm$ we have
+\begin{align*}
+\omega(\xi_0+\xi_++\xi_-|\xi_0+\xi_++\xi_-)=\omega(\xi_+|\xi_+)+\omega(\xi_-|\xi_-)
+\end{align*}
+\item For any decomposition as in Part 1, prove that $n_+=\dim\MH_+$ and $n_-=\dim\MH_-$ where $\dim\MH_\pm$ is understood as in Pb. \ref{lb605}.
+\end{enumerate}
+\end{prob}
+
+\begin{proof}[Hint]
+Part 1. Apply the spectral theorem to the bounded self-adjoint operator associated to $\omega$.
+
+Part 2. To prove $n_\pm\leq\dim \MH_\pm$, show that if $\MK$ is a closed linear subspace of $\MH$ such that $\pm\omega|_\MK$ is positive-definite, then the projection $\MH\rightarrow \MH_\pm$ restricts to an injective map $\MK\rightarrow \MH_\pm$.
+\end{proof}
+
+
+
+\begin{prob}
+Let $T$ be a closed Hermitian operator on $\MH$. Define a sesquilinear form $\omega$ on $\Dom(T^*)$ by $\omega=(\omega_{T^*}-(\omega_{T^*})^*)/{2\im}$, that is,
+\begin{align*}
+\omega(\xi|\eta)=\frac{\bk{\xi|T^*\eta}-\ovl{\bk{\eta|T^*\xi}}}{2\im}\qquad\text{for each }\xi,\eta\in\Dom(T^*)
+\end{align*}
+(In other words, $\omega$ is the unique sesquilinear form on $\Dom(T^*)$ such that $\omega(\xi|\xi)=\Imag\bk{\xi|T^*\xi}$ for each $\xi\in\Dom(T^*)$.) 
+\begin{enumerate}
+\item Show that $\omega$ is a bounded Hermitian form with respect to the graph inner product of $T^*$. Moreover, prove that the positive and negative indices of inertia $n_+$ and $n_-$ of $\omega$ coincide with the deficiency indices of $T$.
+\item Prove that if $a\in\Rbb_{>0}$ and $b\in\Rbb$, then $T$ and $aT+b$ have the same pair of deficiency indices.
 \end{enumerate}
 \end{prob}
 
@@ -13861,7 +13897,7 @@ From the above results one easily deduces $\Dom((S^\nu)^*)=\Dom((S^*)^\nu)$ and 
 \begin{proof}[Hint]
 Part 1. Prove this by applying Lem. \ref{lb566} successively. (The same method yields a more general statement: linear functionals on $C_c^\infty(I)$ whose $\nu$-th distributional derivatives vanish are precisely linear combinations of $1,x,\dots,x^{\nu-1}$. )
 
-Part 2. Denote the RHS of \eqref{eq270} by $\MF$. Show that $(S^\nu)^*f=(-\im)^\nu f^{(\nu)}$ for each $f\in\MF$. Define $\MJ:L^2(I,m)\rightarrow L^2(I,m)$ by $(\MJ f)(x)=\im\int_a^x fdm$. To prove ``$\subset$'', choose any $f\in\Dom((S^\nu)^*)$, let $\wtd f=\MJ^\nu(S^\nu)^*f$, show that $\wtd f\in\MF$ and $(S^\nu)^*(f-\wtd f)=0$. Apply part 1. 
+Part 2. Denote the RHS of \eqref{eq270} by $\MF$. Show that $\Dom((S^\nu)^*)\supset\MF$ and $(S^\nu)^*f=(-\im)^\nu f^{(\nu)}$ for each $f\in\MF$. Define $\MJ:L^2(I,m)\rightarrow L^2(I,m)$ by $(\MJ f)(x)=\im\int_a^x fdm$. To prove ``$\subset$'', choose any $f\in\Dom((S^\nu)^*)$, let $\wtd f=\MJ^\nu(S^\nu)^*f$, show that $\wtd f\in\MF$ and $(S^\nu)^*(f-\wtd f)=0$. Apply part 1. 
 
 Part 3. Use $\ovl{S^\nu}=(S^\nu)^{**}$ to prove one direction.
 \end{proof}
@@ -13884,6 +13920,7 @@ Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a co
 \end{align*} 
 \end{prob}
 
+\hypertarget{proofread}{}
 
 \begin{prob}\label{lb484}
 Let $(\MH_\alpha)_{\alpha\in\SA}$ be a family of Hilbert spaces. For each $\alpha\in\scr A$, let $(T_\alpha)$ be a Hermitian operator on $\MH_\alpha$. Prove that the direct sum operator $T:=\oplus_\alpha T_\alpha$ (cf. Def. \ref{lb483}) is self-adjoint iff each $T_\alpha$ is self-adjoint.
@@ -17219,6 +17256,72 @@ Interested readers may refer to \cite[Ch. 24]{Lax} for details. In the following
 
 
 \subsection{Completely continuous sesquilinear forms}
+
+
+Let $\MH,\MK$ be Hilbert spaces. Let $\MV,\MW$ be inner product spaces. Recall Def. \ref{lb606} for the notion of weak topology in inner product spaces.
+
+
+\begin{df}
+A bounded sesquilinear form $\omega:\MW\times\MV\rightarrow\Cbb$ is called \textbf{completely continuous} \index{00@Completely continuous sesquilinear forms} if its restriction to $\ovl B_\MW(0,1)\times\ovl B_\MV(0,1)\rightarrow\Cbb$ is weakly continuous, i.e., continuous with respect to the product topology of the weak topologies of $\ovl B_\MW(0,1)$ and $\ovl B_\MV(0,1)$.
+\end{df}
+
+
+\begin{rem}\label{lb607}
+A completely continuous form $\omega:\MW\times\MV\rightarrow\Cbb$ is clearly (norm-)continuous when restricted to $B_\MW(0,1)\times B_\MV(0,1)$, and hence is (norm-)continuous at $(0,0)$. Therefore, $\omega\in\Ses(\MW|\MV)$ by Prop. \ref{lb35}. 
+\end{rem}
+
+\begin{comment}
+To check that a multilinear map is bounded, it suffices to check the continuity at the origin. The same is true for complete continuity.
+
+\begin{pp}
+Let $\omega:\MW\times\MV\rightarrow\Cbb$ be a sesquilinear form. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $\omega$ is completely continuous.
+\item[(2)] For each bounded nets $(\xi_\alpha)_{\alpha\in I}$ in $\MV$ and $(\eta_\alpha)_{\alpha\in I}$ in $\MW$ both converging weakly to $0$, we have $\lim_\alpha\omega(\eta_\alpha|\xi_\alpha)=0$.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+(1)$\Rightarrow$(2): By sesquilinearity, if $\omega$ is completely continuous, then the restriction of $\omega$ to any bounded subsets of $\MW\times\MV$ is weakly continuous. Thus (2) follows.
+
+(2)$\Rightarrow$(1): Assume (2). Suppose that $(\xi_\alpha)_{\alpha\in I}$ and $(\eta_\alpha)_{\alpha\in I}$ are nets in $\ovl B_\MV(0,1)$ and $\ovl B_\MW(0,1)$ converging weakly to $\xi\in \ovl B_\MV(0,1)$ and $\eta\in\ovl B_\MW(0,1)$. Then
+\begin{align*}
+|\omega(\eta|\xi)-\omega(\eta_\alpha|\xi_\alpha)|=
+\end{align*}
+\end{proof}
+
+
+Any good property in functional analysis must be preserved when passing from a dense subspace to the whole space. This calls for the following property.
+
+
+
+\begin{pp}
+Let $\MV_0$ and $\MW_0$ be dense linear subspaces of $\MV$ and $\MW$ respectively. There there is a one-to-one correspondence between:
+\begin{enumerate}
+\item[(1)] A completely continuous sesquilinear form $\varpi:\MW\times\MV\rightarrow\Cbb$.
+\item[(2)] A completely continuous sesquilinear form $\omega:\MW_0\times\MV_0\rightarrow\Cbb$. 
+\end{enumerate}
+The correspondence is given by $\omega=\varpi|_{\MW_0\times\MV_0}$.
+\end{pp}
+
+
+\begin{proof}
+Any $\varpi$ in (1) clearly restricts to $\pi$ in (2). Moreover, since $\varpi\in\Ses(\MW|\MV)$ by Rem. \ref{lb607}, the restriction map is injective. Therefore, it remains to shows that any $\omega$ in (2) can be extended to a completely continuous sesquilinear form $\varpi$.
+
+Note that it suffices to show that $\omega$ can be extended to a completely continuous sesquilinear form on $\MW_0\times\MV$. Then a similar process provides the extension to $\MW\times\MV$. Therefore, in the following, it suffices to assume that $\MW=\MW_0$.
+
+Choose $\omega$ as in (2). By Rem. \ref{lb607}, $\omega\in\Ses(\MW|\MV_0)$. Therefore, by Thm. \ref{lb31}, $\omega$ can be extended to a unique $\varpi\in\Ses(\MW|\MV)$. To prove that $\varpi$ is completely continuous, we choose a net $(\xi_\alpha)_{\alpha\in I}$ in $\ovl B_\MV(0,1)$ converging weakly to $\xi\in\ovl B_\MV(0,1)$, and choose a net $(\eta_\alpha)_{\alpha\in I}$ in $\ovl B_\MW(0,1)$ converging weakly to $\eta\in\ovl B_\MW(0,1)$. We shall prove $\lim_\alpha \varpi(\eta_\alpha|\xi_\alpha)=\varpi(\eta|\xi)$.
+
+By Rem. \ref{lb29}, $\ovl B_{\MV_0}(0,1)$ is dense in $\ovl B_\MV(0,1)$ and $\ovl B_\MW(0,1)$ is dense in $\ovl B_\MW(0,1)$. Therefore, for each $n\in\Zbb_+$, we can choose $\xi_{\alpha,n}\in\ovl B_{\MV_0}(0,1)$ and $\eta_{\alpha,n}\in\ovl B_{\MW,0}(0,1)$ such that
+\begin{align*}
+\Vert \xi_\alpha-\xi_{\alpha,n}\Vert<\frac 1n\qquad \Vert\eta_\alpha-\xi_{\alpha,n}\Vert<\frac 1n
+\end{align*}
+Then $\lim_{\alpha,n}\xi_\alpha$ converges weakly to $\xi$, 
+\end{proof}
+\end{comment}
+
+
+
 
 
 
