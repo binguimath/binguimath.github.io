@@ -12106,7 +12106,7 @@ Let $T:\MH\rightarrow\MK$ be an n.d.d. unbounded operator. Then
 Let $\fk G$ be a linear subspace of $\MH\oplus\MK$. We say that $\fk G$ is an \textbf{operator graph} \index{00@Operator graph} if one of the following equivalent conditions hold:
 \begin{enumerate}[label=(\arabic*)]
 \item $\fk G=\SG(T)$ for some n.d.d. unbounded operator $T:\MH\rightarrow\MK$.
-\item $\fk G$ is an operator graph if for each $\xi\in\MH$ there exists at most one $\eta\in\MH$ such that $\xi\oplus\eta\in\fk G$.
+\item For each $\xi\in\MH$ there exists at most one $\eta\in\MH$ such that $\xi\oplus\eta\in\fk G$.
 \item Any element $\eta\in\MK$ satisfying $0\oplus\eta\in\fk G$ must be zero.
 \end{enumerate} 
 \end{df}
@@ -12185,7 +12185,7 @@ For example, if $T$ is closable, then $\Dom(T)$ is a core for $\ovl T$.
 \begin{df}
 If $\fk G\subset\MH\oplus\MK$ is a linear subspace, we call \index{G@$\fk G^{-1}$, the diagonal reflection of $\fk G\subset\MH\oplus\MK$}
 \begin{align*}
-\fk G^{-1}=\{\eta\oplus\xi:\xi\oplus\eta\in\MK\oplus\MH\}
+\fk G^{-1}=\{\eta\oplus\xi:\xi\oplus\eta\in\fk G\}
 \end{align*}
 the \textbf{diagonal reflection} of $\fk G$. In other words, $\fk G^{-1}$ is the image of $\fk G$ under the (clearly unitary) \textbf{diagonal reflection map} \index{00@Diagonal reflection map}
 \begin{align}\label{eq206}
@@ -12508,19 +12508,6 @@ Let $A,B:\MH\rightarrow\MK$ be unbounded operators satisfying $A\subset B$. Then
 
 
 
-\begin{eg}\label{lb409}
-Let $T$ be an unbounded operator on $\MH$. Then $T$ is Hermitian iff $T\subset T^*$.
-\end{eg}
-
-
-\begin{proof}
-If $T$ is Hermitian, then for each $\eta\in\Dom(T)$, we have $\bk{\eta|T\xi}=\bk{T\eta|\xi}$. Comparing this with \eqref{eq202}, we conclude that $\eta\in\Dom(T^*)$ and $T\eta=T^*\eta$. This proves $T\subset T^*$. 
-
-Conversely, assume that $T\subset T^*$. Then for each $\eta\in\Dom(T)$, we have $\eta\in\Dom(T^*)$ and $T^*\eta=T\eta$. It follows from \eqref{eq202} that $\bk{\eta|T\xi}=\bk{T\eta|\xi}$ for all $\xi\in\Dom(T)$. This proves that $T$ is Hermitian.
-\end{proof}
-
-
-
 
 
 
@@ -12542,8 +12529,22 @@ Moreover, if either (1) or (2) is true, then $T^*$ is a closed operator, and
 The equivalence of (1) and (2) is due to Cor. \ref{lb401}. If (1) or (2) is true, then $\ovl T=T^{**}$ by Thm. \ref{lb400}-1, and the closedness of $T^*$ is due to the closedness of $\SG(T^*)=(\Jbb\SG(T))^\perp$. (Note that any orthogonal complement is closed; cf. Rem. \ref{lb150}.) Applying adjoints to both sides of $\ovl T=T^{**}$ gives $(\ovl T)^*=T^{***}$. Replacing $T$ by $T^*$ in the relation $\ovl T=T^{**}$ gives $\ovl{T^*}=T^{***}$, and hence $T^*=T^{***}$ because $T^*$ is closed.\footnote{Alternatively, \eqref{eq205} also follows from the fact that for each linear subspace $V$ of a Hilbert space, the relations $\ovl V=V^{\perp\perp}$ and $\ovl V^\perp=V^\perp=V^{\perp\perp\perp}$ hold due to Rem. \ref{lb150} and Cor. \ref{lb151}.}
 \end{proof}
 
+A typical situation in which Thm. \ref{lb402} can be applied to prove closability is the following.
 
-Note that if $T$ is Hermitian, then $T^*$ is densely defined (since $T\subset T^*$), and hence $T$ is closable. This provides an alternative proof of the closability of Hermitian operators, in addition to Thm. \ref{lb389}.
+\begin{eg}\label{lb409}
+Let $T:\MH\rightarrow\MK$ and $S:\MK\rightarrow\MH$ be unbounded operators. Then the following statements are clearly equivalent:
+\begin{enumerate}
+\item[(1)] For each $\xi\in\Dom(T)$ and $\eta\in\Dom(S)$ we have $\bk{\eta|T\xi}=\bk{S\eta|\xi}$.
+\item[(2)] $S\subset T^*$.
+\item[(3)] $T\subset S^*$.
+\end{enumerate}
+Consequently, if (1) holds, then $T^*$ is densely-defined (since $\Dom(T^*)$ contains the dense subspace $\Dom(S)$), and hence $T$ is closable by Thm. \ref{lb402}.
+
+As a special case, if $T$ is an unbounded operator on $\MH$, then $T$ is Hermitian iff $T\subset T^*$.  \hqed
+\end{eg}
+
+
+%Note that if $T$ is Hermitian, then $T^*$ is densely defined (since $T\subset T^*$), and hence $T$ is closable. This provides an alternative proof of the closability of Hermitian operators, in addition to Thm. \ref{lb389}.
 
 
 
@@ -12635,7 +12636,7 @@ As in the proof of Exp. \ref{lb362},  integration by parts gives $\bk{f|\partial
 \begin{align*}
 \bk{f|\partial^\alpha g}=(-1)^{|\alpha|}\bk{\partial^\alpha f|g}\qquad \text{for each }f,g\in C_c^\infty(\Omega)
 \end{align*}
-This is equivalent to the relation $(\partial^\alpha)^*\supset (-1)^{|\alpha|}\partial^\alpha$. The other two inclusion relations in \eqref{eq207} follow by a similar argument. 
+This is equivalent to the relation $(\partial^\alpha)^*\supset (-1)^{|\alpha|}\partial^\alpha$, cf. Exp. \ref{lb409}. The other two inclusion relations in \eqref{eq207} follow by a similar argument. 
 
 Eq. \eqref{eq207} implies that the adjoints of $\partial^\alpha,\nabla,\dive$ are densely defined. Hence they are closable by Thm. \ref{lb402}.
 \end{proof}
