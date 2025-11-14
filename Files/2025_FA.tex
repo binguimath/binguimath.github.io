@@ -470,6 +470,7 @@
 \newcommand{\SI}{\mathscr I}
 \newcommand{\SJ}{\mathscr J}
 \newcommand{\SA}{\mathscr A}
+\newcommand{\SB}{\mathscr B}
 \newcommand{\SE}{\mathscr E}
 \newcommand{\SF}{\mathscr F}
 \newcommand{\SG}{\mathscr G}
@@ -5536,7 +5537,7 @@ Therefore, sesquilinear forms are determined by their associated quadratic forms
 
 
 
-\begin{df}
+\begin{df}\label{lb609}
 Let $\omega(\cdot|\cdot):V\times W\rightarrow\Cbb$ be a sesquilinear form. The \textbf{adjoint sesequilinear form $\pmb{\omega^*}$} \index{00@Adjoint sesquilinear form} \index{zz@$\omega^*$, the adjoint sesquilinear form of $\omega$} is defined to be
 \begin{align*}
 \omega^*:W\times V\rightarrow\Cbb\qquad \omega^*(\eta|\xi)=\ovl{\omega(\xi|\eta)}
@@ -17145,7 +17146,7 @@ where $\nbf_y$ is the unit normal vector at $y\in\partial\Omega$ pointing outwar
 \end{align*}
 From this relation, we conclude
 \begin{align}\label{eq283}
-\sup_{x\in\Rbb^N\setminus\{y\}}|x-y|^{2-N}|\bk{\nabla\Phi(x-y),\nbf_y}|<+\infty
+\sup_{x\in\Rbb^N\setminus\{y\}}|x-y|^{N-2}|\bk{\nabla\Phi(x-y),\nbf_y}|<+\infty
 \end{align}
 and hence the convergence of the integral in \eqref{eq281}.
 
@@ -17236,7 +17237,7 @@ The Fredholm alternative for compact operators on Banach spaces was established 
 
 
 In the early development of functional analysis, however, attention was focused on the simplest nontrivial case $N=2$, i.e. when $\dim\partial\Omega=1$. In this setting, by parametrizing the curve $\partial\Omega$, the integral operator can be expressed in the form
-\begin{gather}
+\begin{gather}\label{eq287}
 T_K:C(I)\rightarrow C(I)\qquad (T_Kf)(x)=\int_I K(x,y)f(y)dy
 \end{gather}
 where $I\subset\Rbb$ is a compact integral and $K\in C(I\times I)$.\footnote{The continuity of $K$ arising from the double layer potential for $N=2$ is due to \eqref{eq283}.} The Fredholm alternative was first established by Fredholm in \cite{Fre03} for this one-dimensional case.
@@ -17260,67 +17261,243 @@ Interested readers may refer to \cite[Ch. 24]{Lax} for details. In the following
 \subsection{Completely continuous sesquilinear forms}
 
 
-Let $\MH,\MK$ be Hilbert spaces. Let $\MV,\MW$ be inner product spaces. Recall Def. \ref{lb606} for the notion of weak topology in inner product spaces.
+Let $\MH,\MK$ be Hilbert spaces. Recall Def. \ref{lb606} for the notion of weak topology in inner product spaces.
 
+
+\subsubsection{The definition of completely continuous sesquilinear forms}
 
 \begin{df}
-A bounded sesquilinear form $\omega:\MW\times\MV\rightarrow\Cbb$ is called \textbf{completely continuous} \index{00@Completely continuous sesquilinear forms} if its restriction to $\ovl B_\MW(0,1)\times\ovl B_\MV(0,1)\rightarrow\Cbb$ is weakly continuous, i.e., continuous with respect to the product topology of the weak topologies of $\ovl B_\MW(0,1)$ and $\ovl B_\MV(0,1)$.
+A bounded sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is called \textbf{completely continuous} \index{00@Completely continuous sesquilinear forms} if its restriction to $\ovl B_\MK(0,1)\times\ovl B_\MH(0,1)\rightarrow\Cbb$ is weakly continuous, i.e., continuous with respect to the product topology of the weak topologies of $\ovl B_\MK(0,1)$ and $\ovl B_\MH(0,1)$.
 \end{df}
 
 
 \begin{rem}\label{lb607}
-A completely continuous form $\omega:\MW\times\MV\rightarrow\Cbb$ is clearly (norm-)continuous when restricted to $B_\MW(0,1)\times B_\MV(0,1)$, and hence is (norm-)continuous at $(0,0)$. Therefore, $\omega\in\Ses(\MW|\MV)$ by Prop. \ref{lb35}. 
+A completely continuous form $\omega:\MK\times\MH\rightarrow\Cbb$ is clearly (norm-)continuous when restricted to $B_\MK(0,1)\times B_\MH(0,1)$, and hence is (norm-)continuous at $(0,0)$. Therefore, $\omega\in\Ses(\MK|\MH)$ by Prop. \ref{lb35}. 
 \end{rem}
 
-\begin{comment}
-To check that a multilinear map is bounded, it suffices to check the continuity at the origin. The same is true for complete continuity.
-
 \begin{pp}
-Let $\omega:\MW\times\MV\rightarrow\Cbb$ be a sesquilinear form. Then the following are equivalent.
-\begin{enumerate}
-\item[(1)] $\omega$ is completely continuous.
-\item[(2)] For each bounded nets $(\xi_\alpha)_{\alpha\in I}$ in $\MV$ and $(\eta_\alpha)_{\alpha\in I}$ in $\MW$ both converging weakly to $0$, we have $\lim_\alpha\omega(\eta_\alpha|\xi_\alpha)=0$.
-\end{enumerate}
+Let $\omega:\MH\times\MK\rightarrow\Cbb$ be a completely continuous sesquilinear form. Then the adjoint form $\omega^*:\MK\times\MH\rightarrow\Cbb$ is completely continuous.\footnote{Recall from Def. \ref{lb609} that $\omega^*(\eta|\xi)=\ovl{\omega(\xi|\eta)}$}
 \end{pp}
 
 \begin{proof}
-(1)$\Rightarrow$(2): By sesquilinearity, if $\omega$ is completely continuous, then the restriction of $\omega$ to any bounded subsets of $\MW\times\MV$ is weakly continuous. Thus (2) follows.
-
-(2)$\Rightarrow$(1): Assume (2). Suppose that $(\xi_\alpha)_{\alpha\in I}$ and $(\eta_\alpha)_{\alpha\in I}$ are nets in $\ovl B_\MV(0,1)$ and $\ovl B_\MW(0,1)$ converging weakly to $\xi\in \ovl B_\MV(0,1)$ and $\eta\in\ovl B_\MW(0,1)$. Then
-\begin{align*}
-|\omega(\eta|\xi)-\omega(\eta_\alpha|\xi_\alpha)|=
-\end{align*}
+This is obvious.
 \end{proof}
 
 
-Any good property in functional analysis must be preserved when passing from a dense subspace to the whole space. This calls for the following property.
-
-
-
-\begin{pp}
-Let $\MV_0$ and $\MW_0$ be dense linear subspaces of $\MV$ and $\MW$ respectively. There there is a one-to-one correspondence between:
+To understand why complete continuity is a natural property, we must address two questions:
 \begin{enumerate}
-\item[(1)] A completely continuous sesquilinear form $\varpi:\MW\times\MV\rightarrow\Cbb$.
-\item[(2)] A completely continuous sesquilinear form $\omega:\MW_0\times\MV_0\rightarrow\Cbb$. 
+\item[(1)] In what situations can this property be easily verified?
+\item[(2)] What theorems can be proved under this assumption?
 \end{enumerate}
-The correspondence is given by $\omega=\varpi|_{\MW_0\times\MV_0}$.
+We answer the first question in this section, and defer the second to Sec. \ref{lb617}.
+
+
+
+\subsubsection{The infinite matrix perspective}
+
+In Exp.~\ref{lb397}, we observed that bounded matrices can be approximated in SOT by their finite-rank truncations. In this subsection, we shall see that completely continuous forms are precisely those that can be approximated \textit{in the operator norm} by their finite-rank truncations; see Thm. \ref{lb615}. Some preparation is needed to prove this result.
+
+
+
+\begin{df}\label{lb612}
+A sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is called \textbf{finite rank} if $\omega$ is a finite sum (equivalently, a finite linear combination) of sesquilinear forms of the form \index{zz@$\omega_{\psi,\phi}$}
+\begin{align}\label{eq285}
+\pmb{\omega_{\psi,\phi}}:\MK\times\MH\rightarrow\Cbb\qquad (\eta,\xi)\mapsto \bk{\eta|\psi}\bk{\phi|\xi}
+\end{align} 
+where $\psi\in\MK$ and $\phi\in \MH$.
+\end{df}
+
+
+\begin{pp}\label{lb610}
+Any finite rank sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is completely continuous.
 \end{pp}
 
 
 \begin{proof}
-Any $\varpi$ in (1) clearly restricts to $\pi$ in (2). Moreover, since $\varpi\in\Ses(\MW|\MV)$ by Rem. \ref{lb607}, the restriction map is injective. Therefore, it remains to shows that any $\omega$ in (2) can be extended to a completely continuous sesquilinear form $\varpi$.
-
-Note that it suffices to show that $\omega$ can be extended to a completely continuous sesquilinear form on $\MW_0\times\MV$. Then a similar process provides the extension to $\MW\times\MV$. Therefore, in the following, it suffices to assume that $\MW=\MW_0$.
-
-Choose $\omega$ as in (2). By Rem. \ref{lb607}, $\omega\in\Ses(\MW|\MV_0)$. Therefore, by Thm. \ref{lb31}, $\omega$ can be extended to a unique $\varpi\in\Ses(\MW|\MV)$. To prove that $\varpi$ is completely continuous, we choose a net $(\xi_\alpha)_{\alpha\in I}$ in $\ovl B_\MV(0,1)$ converging weakly to $\xi\in\ovl B_\MV(0,1)$, and choose a net $(\eta_\alpha)_{\alpha\in I}$ in $\ovl B_\MW(0,1)$ converging weakly to $\eta\in\ovl B_\MW(0,1)$. We shall prove $\lim_\alpha \varpi(\eta_\alpha|\xi_\alpha)=\varpi(\eta|\xi)$.
-
-By Rem. \ref{lb29}, $\ovl B_{\MV_0}(0,1)$ is dense in $\ovl B_\MV(0,1)$ and $\ovl B_\MW(0,1)$ is dense in $\ovl B_\MW(0,1)$. Therefore, for each $n\in\Zbb_+$, we can choose $\xi_{\alpha,n}\in\ovl B_{\MV_0}(0,1)$ and $\eta_{\alpha,n}\in\ovl B_{\MW,0}(0,1)$ such that
-\begin{align*}
-\Vert \xi_\alpha-\xi_{\alpha,n}\Vert<\frac 1n\qquad \Vert\eta_\alpha-\xi_{\alpha,n}\Vert<\frac 1n
-\end{align*}
-Then $\lim_{\alpha,n}\xi_\alpha$ converges weakly to $\xi$, 
+Assume that $\omega$ is of the form \eqref{eq285}. Since the linear functionals $\xi\in\MH\mapsto\bk{e|\xi}$ and $\eta\in\MK\mapsto\bk{f|\eta}$ are weakly continuous, $\omega$ is weakly continuous on the whole domain $\MK\times\MH$, and hence is completely continuous.
 \end{proof}
-\end{comment}
+
+
+
+
+
+\begin{thm}\label{lb611}
+Let $(\omega_\alpha)_{\alpha\in\SI}$ be a net of completely continuous sesquilinear forms $\MK\times\MH\rightarrow\Cbb$ converging in the operator norm to a sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$. Then $\omega$ is completely continuous.
+\end{thm}
+
+\begin{proof}
+By assumption, when restricted to $\ovl B_\MK(0,1)\times\ovl B_\MH(0,1)$, the net $(\omega_\alpha)$ converges uniformly to $\omega$. Since each $\omega_\alpha$ is weakly continuous on $\ovl B_\MK(0,1)\times\ovl B_\MH(0,1)$, and since the uniform limit of a net of continuous functions on a compact space $X$ is continuous (that is, $C(X)$ is a $l^\infty$-closed subset of $l^\infty(X)$), $\omega$ is weakly continuous on $\ovl B_\MK(0,1)\times\ovl B_\MH(0,1)$. Hence $\omega$ is completely continuous.
+\end{proof}
+
+\begin{df}
+A sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is called \textbf{approximable} \index{00@Approximable sesquilinear forms} there is a net (equivalently, a sequence)\footnote{The equivalence is due to the fact that the norm topology of $\Ses(\MK|\MK)$ is metrizable.} of completely continuous sesquilinear forms $\MK\times\MH\rightarrow\Cbb$ converging in norm to $\omega$.
+\end{df}
+
+
+\begin{co}\label{lb613}
+Every approximable sesquilinear form on $\MK\times\MH$ is completely continuous.
+\end{co}
+
+\begin{proof}
+This follows immediately from Prop. \ref{lb610} and Thm. \ref{lb611}.
+\end{proof}
+
+
+We are now ready to prove that a sesquilinear form is completely continuous iff it is the norm-limit of its finite-rank truncations.
+
+
+\begin{thm}\label{lb615}
+Let $\omega:\MK\times\MH\rightarrow\Cbb$ be a sesquilinear form. Let $(e_x)_{x\in X}$ and $(f_y)_{y\in Y}$ be orthonormal bases of $\MK$ and $\MH$ respectively. For each $I\subset\fin(2^X)$ and $J\in\fin(2^Y)$, define a finite-rank sesquilinear form on $\MK\times\MH$ by \footnote{Here, the sesquilinear form $\omega_{e_i,f_j}$ is defined as in \eqref{eq285}}
+\begin{align*}
+\omega_{I,J}=\sum_{i\in I,j\in J}\omega(e_i|f_j)\cdot\omega_{e_i,f_j}
+\end{align*}
+Then $\omega$ is completely continuous iff
+\begin{align}\label{eq286}
+\lim_{I\in\fin(2^X),J\in\fin(2^Y)}\Vert\omega-\omega_{I,J}\Vert=0
+\end{align}
+\end{thm}
+
+That condition \eqref{eq286} implies the complete continuity of $\omega$ follows immediately from Cor. \ref{lb613}. The converse direction is slightly more difficult to prove. Indeed, we will not use this harder implication logically in the course, although knowing the equivalence is helpful for motivation. Readers who prefer to skip the proof may safely omit the following subsection, except that Lem. \ref{lb616} will be needed in Sec. \ref{lb618} to establish the equivalence between completely continuous forms and operators.
+
+
+
+
+\subsubsection{Proof of Thm. \ref{lb615}}\label{lb619}
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb615}}]
+The direction ``$\Leftarrow$'' follows directly from Cor. \ref{lb613}. Assume that $\omega$ is completely continuous. Let $P_I\in\fk L(\MK)$ be the projection onto $\Span\{e_i:i\in I\}$. Let $Q_J\in\fk L(\MH)$ be the projection onto $\Span\{f_j:j\in J\}$. Then $\omega_{I,J}(\eta|\xi)=\omega(P_I\eta|Q_J\xi)$. By Exp. \ref{lb157}, we have $\lim_IP_I=\idt_\MK$ and $\lim_JQ_J=\idt_\MH$ in SOT. The convergence $\lim_{I,J}\Vert\omega-\omega_{I,J}\Vert=0$ follows from the following Lem. \ref{lb614}.
+\end{proof}
+
+
+\begin{lm}\label{lb614}
+Let $\omega:\MK\times\MH\rightarrow\Cbb$ be a completely continuous sesquilinear form. Let $A\in\fk L(\MK)$ and $B\in\fk L(\MH)$. Let $(A_\alpha)_{\alpha\in\SI}$ be a net in $\fk L(\MK)$ whose adjoint converges in SOT to $A^*$. Let $(B_\alpha)_{\alpha\in\SI}$ be a net in $\fk L(\MH)$ whose adjoint converges in SOT to $B^*$. Assume that $\sup_\alpha\Vert A_\alpha\Vert<+\infty$ and $\sup_\alpha\Vert B_\alpha\Vert<+\infty$. Let
+\begin{align*}
+\omega_\alpha:\MK\times\MH\rightarrow\Cbb\qquad \omega_\alpha(\eta|\xi)=\omega(A_\alpha\eta|B_\alpha\xi)
+\end{align*}
+Then $(\omega_\alpha)_{\alpha\in\SI}$ converges in norm to the sesquilinear form $\omega_0$ defined by
+\begin{align*}
+\omega_0:\MK\times\MH\rightarrow\Cbb\qquad \omega_0(\eta|\xi)=\omega(A\eta|B\xi)
+\end{align*}
+\end{lm}
+
+
+\begin{proof}
+Suppose that $(\omega_\alpha)$ does not converge in norm to $\omega_0$. Then there exists $\eps>0$ such that
+\begin{align*}
+I:=\{\alpha\in\SI:\Vert\omega_\alpha-\omega_0\Vert\geq 2\eps\}
+\end{align*}
+is a cofinal subset of $\SI$. For each $\alpha\in I$, choose $\xi_\alpha\in\ovl B_\MH(0,1)$ and $\eta_\alpha\in\ovl B_\MK(0,1)$ such that
+\begin{align*}
+|\omega(A_\alpha\eta_\alpha|B_\alpha\xi_\alpha)-\omega(A\eta_\alpha|B\xi_\alpha)|\geq\eps
+\end{align*}
+
+By Thm. \ref{lb494}, there exists a subnet $(\eta_\nu,\xi_\nu)$ of $(\eta_\alpha,\xi_\alpha)_{\alpha\in I}$ converging weakly to some $(\eta,\xi)\in\ovl B_\MK(0,1)\times \ovl B_\MH(0,1)$. Clearly $A\eta_\nu$ converges weakly to $A\eta$, and $B\xi_\nu$ converges weakly to $B\xi$. Therefore, by the complete continuity of $\omega$ we have
+\begin{align*}
+\lim_\nu \omega(A\eta_\nu|B\xi_\nu)=\omega(A\eta|B\xi)
+\end{align*}
+Suppose we can prove that net $(B_\nu\xi_\nu)$ (which is bounded by the assumption $\sup_\alpha\Vert B_\alpha\Vert<+\infty$) converges weakly to $B\xi$, and similarly, the bounded net $(A_\nu\eta_\nu)$ converges weakly to $A\eta$. Then
+\begin{align*}
+\lim_\nu \omega(A_\nu\eta_\nu|B_\nu\xi_\nu)=\omega(A\eta|B\xi)
+\end{align*}
+which contradicts the above inequality, and hence finishes the proof.
+
+The weak convergence $\lim_\nu B_\nu\xi_\nu=B\xi$ follows from the observation that for any $\phi\in\MH$ we have $\lim_\nu B_\nu^*\phi=B^*\phi$ (by the SOT convergence of $B_\nu^*$ to $B^*$), and hence
+\begin{align*}
+\lim_\nu\bk{\phi|B_\nu\xi_\nu}=\lim_\nu\bk{B_\nu^*\phi|\xi_\nu}\xlongequal{\text{Lem.\ref{lb616}}}\bk{B^*\phi|\xi}=\bk{\phi|B\xi}
+\end{align*}
+The weak convergence $\lim_\nu A_\nu\eta_\nu=A\eta$ is proved in the same way.
+\end{proof}
+
+The following lemma is used at the end of the proof of Lem. \ref{lb614} and will also be needed in Sec. \ref{lb618}.
+
+\begin{lm}\label{lb616}
+Let $(\phi_\alpha)_{\alpha\in I}$ be a net in $\ovl B_\MH(0,1)$ converging weakly to $\phi\in\ovl B_\MH(0,1)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $(\phi_\alpha)_{\alpha\in I}$ converges to $\phi$.
+\item[(2)] For each net $(\xi_\alpha)_{\alpha\in I}$ in $\ovl B_\MH(0,1)$ converging weakly to some $\xi\in\ovl B_\MH(0,1)$ we have $\lim_\alpha\bk{\phi_\alpha|\xi_\alpha}=\bk{\phi|\xi}$. 
+\end{enumerate}
+\end{lm}
+
+
+\begin{proof}
+Assume (1). Then
+\begin{align*}
+|\bk{\phi|\xi}-\bk{\phi_\alpha|\xi_\alpha}|\leq |\bk{\phi|\xi-\xi_\alpha}|+|\bk{\phi-\phi_\alpha|\xi_\alpha}|\leq |\bk{\phi|\xi-\xi_\alpha}|+\Vert\phi-\phi_\alpha\Vert
+\end{align*}
+where the RHS converges to $0$. This proves (2). Conversely, assume (2). Then $\lim_\alpha\bk{\xi_\alpha|\xi_\alpha}=\bk{\xi|\xi}$, and hence (1) holds by Prop. \ref{lb153}.
+\end{proof}
+
+
+\subsubsection{The $L^2$-kernel perspective}
+
+
+It is purely a matter of good fortune that the integral kernel $K:I\times I\rightarrow\Cbb$ in \eqref{eq287}, which arises from the Dirichlet problem in $\Rbb^2$, happens to be a continuous function (thanks to \eqref{eq283}), and hence $L^2$-integrable. The $L^2$-integrability fails for kernels arising from Dirichlet problems in dimensions $N\geq3$, where the function $|x-y|^{2-N}$ is not $L^2$-integrable on $M\times M$ for any (nonempty) hypersurfaces $M\subset\Rbb^N$. In these higher-dimensional settings, the associated integral operators $T_K$ remain compact when viewed as acting on spaces of continuous functions, as we will see in Pb. \ref{lb599}. However, for such non $L^2$-integrable kernels, it was far more difficult for early researchers such as Hilbert to recognize and formulate the notion of complete continuity.
+
+
+The advantage of the $L^2$-integrability of $K$ is that the matrix representation $[T_K]$ of $T_K$ is $l^2$-summable; in fact, by Prop. \ref{lb620}, the $L^2$-norm of $K$ coincides with the $l^2$-norm of $[T_K]$. It is not hard to show that the operator norm of any $l^2$-summable matrix is bounded by its $l^2$-norm. Consequently, the finite-rank truncations of $[T_K]$ converge in operator norm to $[T_K]$, proving that $T_K$ is completely continuous. In the following, we translate this argument to the setting of sesquilinear forms. See \cite[Sec. 22.2-22.4]{Gui-A} for a direct matrix-theoretic approach.
+
+
+In the remainder of this subsection, we assume that $X$ and $Y$ are LCH spaces, and that $\mu$ and $\nu$ are $\sigma$-finite Radon measures on the Borel $\sigma$-algebras of $X$ and $Y$, respectively. \footnote{For simplification, readers may assume that $X$ and $Y$ are closed or open subsets of Euclidean spaces, and $\mu,\nu$ are Lebesgue measures.} The $\sigma$-finiteness is need for the purpose of using the theorems of Tonelli and Fubini, cf. Subsec. \ref{lb597}. Recall Def. \ref{lb598} for the definition of $\mu\times\nu$. Here, we assume that $\mu\times\nu$ is defined on the Borel $\sigma$-algebra of $X\times Y$. 
+
+
+\begin{pp}\label{lb620}
+Let $(e_i)_{i\in \SA}$ be an orthonormal basis of $L^2(X,\mu)$, and let $(f_j)_{j\in \SB}$ be an orthonormal basis of $L^2(Y,\nu)$. Define
+\begin{align*}
+e_if_j:X\times Y\rightarrow\Cbb\qquad (x,y)\mapsto e_i(x)f_j(y)
+\end{align*}
+Then $(e_if_j)_{i\in \SA,j\in \SB}$ is an orthonormal basis of $L^2(X\times Y,\mu\times\nu)$.
+\end{pp}
+
+Since $e_i$ and $f_j$ are Borel functions on $X$ and $Y$ respectively, $e_if_j$ is a Borel function on $X\times Y$. 
+
+\begin{proof}
+It is easy to check that $(e_if_j)$ is an orthonormal family. Thus, it remains to show that this family spans a dense linear subspace of $L^2(X\times Y,\mu\times\nu)$. By Thm. \ref{lb14}, $C_c(X\times Y)$ is dense in $L^2(X\times Y,\mu\times\nu)$. Therefore, it suffices to show that each $\varphi\in C_c(X\times Y)$ can be $L^2$-approximated by linear combinations of $(e_if_j)$. 
+
+Since $\Supp(\varphi)$ is compact, its projections onto $X$ and $Y$ are both compact, and hence have finite measures. By the outer regularity of Radon measures (cf. Def. \ref{lb97}), there exist open subsets $U\subset X$ and $V\subset Y$ such that $\mu(U)<+\infty$, $\nu(V)<+\infty$, and $\Supp(\varphi)\subset U\times V$. By the Stone-Weierstrass Thm. \ref{lb360} (applied to $U\times V$), $\varphi$ can be approximated uniformly (and hence in $L^2(X\times Y,\mu\times\nu)$) by linear combinations of functions of the form $\alpha\beta$ where $\alpha\in C_c(U)$ and $\beta\in C_c(V)$. 
+
+Since $(e_i)$ is an orthonormal basis of $L^2(X,\mu)$, $\alpha$ can be $L^2$-approximated by linear combinations of $(e_i)$. Similarly, $\beta$ can be $L^2$-approximated by linear combinations of $(f_j)$. This completes the proof.
+\end{proof}
+
+
+
+\begin{thm}
+Let $K\in L^2(X\times Y,\mu\times\nu)$. Then the sesquilinear form
+\begin{gather}
+\begin{gathered}
+\omega: L^2(X,\mu)\times L^2(Y,\nu)\rightarrow\Cbb\\
+\omega(f|g)=\int_{X\times Y}\ovl{f(x)}K(x,y)g(y)d(\mu\times\nu)(x,y)
+\end{gathered}
+\end{gather}
+is completely continuous, and $\Vert\omega\Vert\leq\Vert K\Vert_{L^2}$.
+\end{thm}
+
+Note that by the theorems of Tonelli and Fubini, we have
+\begin{align*}
+\omega(f|g)=\int_X\int_Y \ovl fKgd\nu d\mu=\int_Y\int_X\ovl fKgd\mu d\nu
+\end{align*}
+
+\begin{proof}
+For each $f\in L^2(X,\mu)$ and $g\in L^2(Y,\nu)$, by Fubini-Tonelli we have
+\begin{align*}
+\int_{X\times Y}|f(x)g(y)|^2d(\mu\times\nu)=\int_X\int_Y |f(x)g(y)|^2d\nu d\mu=\Vert f\Vert_{L^2}^2\cdot \Vert g\Vert_{L^2}^2
+\end{align*}
+In particular, we have $fg\in L^2(X\times Y,\mu\times\nu)$, and hence the integral defining $\omega(f|g)$ makes sense. Moreover, by Cauchy Schwarz, we have
+\begin{align*}
+|\omega(f|g)|\leq \Vert f\Vert_{L^2}\cdot \Vert g\Vert_{L^2}\cdot \Vert K\Vert_{L^2}
+\end{align*}
+This proves $\Vert\omega\Vert\leq\Vert K\Vert_{L^2}$.
+
+Let $(e_i)_{i\in \SA}$ be an orthonormal basis of $L^2(X,\mu)$, and let $(f_j)_{j\in \SB}$ be an orthonormal basis of $L^2(Y,\nu)$. By Prop. \ref{lb620}, $(e_if_j)_{i\in\SA,j\in\SB}$ is an orthonormal basis of $L^2(X\times Y,\mu\times\nu)$. Therefore, Thm. \ref{lb123} implies
+\begin{align*}
+\lim_{I\in\fin(2^\SA),J\in\fin(2^\SB)}\Vert K-K_{I,J}\Vert_{L^2}^2=0
+\end{align*}
+where $K_{I,J}$ is the projection of $K$ onto the subspace of $L^2(X\times Y,\mu\times\nu)$ spanned by $(e_if_j)_{i\in I,f\in J}$. Let $\omega_{I,J}$ be the sesquilinear form defined by $K_{I,J}$ instead of $K$. Then, by the above paragraph, we have
+\begin{align*}
+\lim_{I,J}\Vert\omega-\omega_{I,J}\Vert\leq\lim_{I,J}\Vert K-K_{I,J}\Vert_{L^2}=0
+\end{align*}
+Since each $\omega_{I,J}$ has finite rank, by Cor. \ref{lb613}, $\omega$ is completely continuous.
+\end{proof}
+
 
 
 
@@ -17333,6 +17510,24 @@ Then $\lim_{\alpha,n}\xi_\alpha$ converges weakly to $\xi$,
 
 
 \hypertarget{current}{}
+
+
+\subsection{Hilbert-Schmidt theorem: the form perspective}\label{lb617}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Completely continuous operators and compact operators}\label{lb618}
+
 
 \subsection{Problems}
 
