@@ -464,6 +464,8 @@
 \newcommand{\MM}{\mathcal M}
 \newcommand{\MS}{\mathcal S}
 \newcommand{\MT}{\mathcal T}
+\newcommand{\MX}{\mathcal X}
+\newcommand{\MY}{\mathcal Y}
 \newcommand{\RM}{\mathcal {RM}}
 \newcommand{\Rp}{\mathbb R_{\geq0}}
 %\newcommand{\Ses}{\mathrm{Sesq}_{\mathrm b}}
@@ -1893,11 +1895,22 @@ C_c(U,\mc V)=\{f\in C_c(X,\mc V):\Supp_X(f)\subset U\}
 
 
 \begin{pp}\label{lb180}
-Assume that $X$ is a metric space, and let $A\subset X$. Then $A$ is precompact iff every sequence $(x_n)$ in $A$ has a subsequence converging to some $x\in X$. 
+Assume that $X$ is a metric space, and let $A\subset X$. The following are equivalent.
+\begin{enumerate}
+\item[(1)] $A$ is precompact.
+\item[(2)] Every net in $A$ has a cluster point in $X$.
+\item[(3)] Every sequence in $A$ has a cluster point in $X$. 
+\end{enumerate}
 \end{pp}
 
+Note that since $X$ is a metric space, Prop. \ref{lb218} implies that any cluster point of a sequence is not only the limit of a convergent subnet of that sequence, but also the limit of a convergent subsequence.
+
 \begin{proof}
-The direction ``$\Rightarrow$'' follows from the sequential compactness of $\ovl A$ (cf. Cor. \ref{lb354}). Conversely, assume that every sequence in $A$ has a subsequence convering in $X$. Let us prove that $\ovl A$ is sequentially compact. Let $(x_n)$ be a sequence in $\ovl A$. For each $n$, choose $y_n\in A$ such that $d(x_n,y_n)<1/n$. By assumption, $(y_n)$ has a subsequence $(y_{n_k})$ converging to some $x\in X$. One easily checks that $(x_{n_k})$ converges to $x$.
+(1)$\Rightarrow$(2): Since $\ovl A$ is compact, every net in $A$ has a cluster point in $\ovl A$ and hence in $X$.
+
+(2)$\Rightarrow$(3): This is obvious.
+
+(3)$\Rightarrow$(1): Assume (3). Let $(x_n)$ be a sequence in $\ovl A$. For each $n$, choose $y_n\in A$ such that $d(x_n,y_n)<1/n$. By assumption, $(y_n)$ has a subsequence $(y_{n_k})$ converging to some $x\in X$. One easily checks that $(x_{n_k})$ converges to $x$. This proves that $\ovl A$ is sequentially compact, and hence compact by Cor. \ref{lb354}.
 \end{proof}
 
 
@@ -6339,7 +6352,7 @@ In this section, we explore this relationship in the context of inner product sp
 \subsubsection{The Riesz-Fr\'echet representation theorem}
 
 
-\begin{df}
+\begin{df}\label{lb630}
 If $T\in\Lin(V,W)$, we let $\omega_T$ be the sesquilinear form \index{zz@$\omega_T$}
 \begin{gather*}
 \omega_T:W\times V\rightarrow\Cbb \qquad (w,v)\mapsto \bk{w|Tv}
@@ -14612,6 +14625,19 @@ Let $V$ be a $\Cbb$-vector space. Two inner products $\omega_1,\omega_2$ on $V$ 
 \end{align*}
 \end{df}
 
+More generally:
+
+\begin{df}\label{lb641}
+Two norms $\Vert\cdot\Vert_1$ and $\Vert\cdot\Vert_2$ on an $\Fbb$-vector space $V$ are called \textbf{equivalent} \index{00@Equivalent norms} if there exist $\alpha,\beta\in\Rbb_{>0}$ such that
+\begin{align*}
+\Vert\xi\Vert_1\leq \alpha\Vert\xi\Vert_2\leq\beta\Vert\xi\Vert\qquad \text{for each }\xi\in V
+\end{align*}
+Equivalently, the identity map
+\begin{align*}
+(V,\Vert\cdot\Vert_1)\rightarrow (V,\Vert\cdot\Vert_2)\qquad \xi\mapsto\xi
+\end{align*}
+is bounded, and so is its inverse.
+\end{df}
 
 
 Thanks to Prop. \ref{lb479}, the Friedrich extensions can be defined for a larger class of operators:
@@ -17109,7 +17135,7 @@ which proves the first desired equality. The second follows by the same argument
 
 
 
-\subsection{The historical context of compact operators}
+\subsection{The historical context of compact operators}\label{lb632}
 
 
 \subsubsection{From completely continuous forms to compact operators}
@@ -17128,7 +17154,7 @@ In fact, the more direct translation of completely continuous forms into operato
 \end{tikzcd}
 \end{equation*}
 
-Although the three concepts above are equivalent in the setting of Hilbert spaces, their definitions appear quite different. Consequently, the ways they are applied in proofs can differ significantly, even when proving the same theorem. It was through this process of conceptual evolution that the originally intuitive idea of a completely continuous form gradually transformed into the more abstract and technically intricate notion of a compact operator---a concept whose definition and interpretation have since become considerably less transparent.
+Although the three concepts above are equivalent in the setting of Hilbert spaces (cf. Thm. \ref{lb638}), their definitions appear quite different. Consequently, the ways they are applied in proofs can differ significantly, even when proving the same theorem. It was through this process of conceptual evolution that the originally intuitive idea of a completely continuous form gradually transformed into the more abstract and technically intricate notion of a compact operator---a concept whose definition and interpretation have since become considerably less transparent.
 
 
 
@@ -17314,7 +17340,7 @@ A bounded sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is called \text
 A completely continuous form $\omega:\MK\times\MH\rightarrow\Cbb$ is clearly (norm-)continuous when restricted to $B_\MK(0,1)\times B_\MH(0,1)$, and hence is (norm-)continuous at $(0,0)$. Therefore, $\omega\in\Ses(\MK|\MH)$ by Prop. \ref{lb35}. 
 \end{rem}
 
-\begin{pp}
+\begin{pp}\label{lb636}
 Let $\omega:\MH\times\MK\rightarrow\Cbb$ be a completely continuous sesquilinear form. Then the adjoint form $\omega^*:\MK\times\MH\rightarrow\Cbb$ is completely continuous.\footnote{Recall from Def. \ref{lb609} that $\omega^*(\eta|\xi)=\ovl{\omega(\xi|\eta)}$}
 \end{pp}
 
@@ -17332,7 +17358,7 @@ We answer the first question in this section, and defer the second to Sec. \ref{
 
 
 
-\subsubsection{The infinite matrix perspective}
+\subsubsection{The infinite matrix perspective}\label{lb637}
 
 In Exp.~\ref{lb397}, we observed that bounded matrices can be approximated in SOT by their finite-rank truncations. In this subsection, we shall see that completely continuous forms are precisely those that can be approximated \textit{in the operator norm} by their finite-rank truncations; see Thm. \ref{lb615}. Some preparation is needed to prove this result.
 
@@ -17347,9 +17373,9 @@ where $\psi\in\MK$ and $\phi\in \MH$.
 \end{df}
 
 
-\begin{pp}\label{lb610}
+\begin{thm}\label{lb610}
 Any finite rank sesquilinear form $\omega:\MK\times\MH\rightarrow\Cbb$ is completely continuous.
-\end{pp}
+\end{thm}
 
 
 \begin{proof}
@@ -17378,7 +17404,7 @@ Every approximable sesquilinear form on $\MK\times\MH$ is completely continuous.
 \end{co}
 
 \begin{proof}
-This follows immediately from Prop. \ref{lb610} and Thm. \ref{lb611}.
+This follows immediately from Thm. \ref{lb610} and \ref{lb611}.
 \end{proof}
 
 
@@ -17447,7 +17473,7 @@ The weak convergence $\lim_\nu B_\nu\xi_\nu=B\xi$ follows from the observation t
 The weak convergence $\lim_\nu A_\nu\eta_\nu=A\eta$ is proved in the same way.
 \end{proof}
 
-The following lemma is used at the end of the proof of Lem. \ref{lb614} and will also be needed in Sec. \ref{lb618}.
+The following lemma is used at the end of the proof of Lem. \ref{lb614} and will also be needed in the proof of Prop. \ref{lb631}.
 
 \begin{lm}\label{lb616}
 Let $(\phi_\alpha)_{\alpha\in I}$ be a net in $\ovl B_\MH(0,1)$ converging weakly to $\phi\in\ovl B_\MH(0,1)$. Then the following are equivalent.
@@ -17569,7 +17595,7 @@ in WOT, where $P_{e_n}$ denotes the projection onto $\Cbb e_n$.
 
 
 \begin{proof}
-Step 1. In this step, we assume (2), and prove (1) as well as the norm convergence of $\omega=\sum_{n=1}^\nu\lambda_n\cdot\omega_{e_n,e_n}$. If $\nu<\infty$, then $\omega$ is of finite rank, and hence completely continuous by Prop. \ref{lb610}.
+Step 1. In this step, we assume (2), and prove (1) as well as the norm convergence of $\omega=\sum_{n=1}^\nu\lambda_n\cdot\omega_{e_n,e_n}$. If $\nu<\infty$, then $\omega$ is of finite rank, and hence completely continuous by Thm. \ref{lb610}.
 
 Next, we assume that $\nu=+\infty$. For each $n<+\infty$, let $\omega_n=\sum_{k=1}^n\lambda_k\omega_{e_k,e_k}$. By assumption, $\lim_n\omega_n$ converges pointwise to $\omega$. For each $\xi\in\MH$, we compute
 \begin{align*}
@@ -17614,16 +17640,235 @@ By \eqref{eq290} and Prop. \ref{lb238}, we have $\Vert T|_{V_n}\Vert \leq \lambd
 
 \subsubsection{Comments on the proof}
 
-In the proof of the Hilbert–Schmidt theorem we made use of linear operators---primarily in Steps 3 and 4---to streamline the inductive construction of the sequence of eigenvectors arising from the argument in Step 2. Nevertheless, the essential heart of the proof lies in Step 2, where we apply the maximum–minimum method (a term used in the first quotation from von Neumann in Subsec. \ref{lb443}) to obtain an eigenvector corresponding to the largest eigenvalue. This method belongs to the paradigm of sesquilinear forms rather than linear operators, and indeed it is Hilbert's original method in \cite{Hil06}.
+In the proof of the Hilbert–Schmidt theorem we made use of linear operators---primarily in Steps 3 and 4---to streamline the inductive construction of the sequence of eigenvectors arising from the argument in Step 2. Nevertheless, the essential heart of the proof lies in Step 2, where we apply the \textbf{maximum-minimum method} \index{00@Maximum-minimum method} (a term used in the first quotation from von Neumann in Subsec. \ref{lb443}) to obtain an eigenvector corresponding to the largest eigenvalue. This method belongs to the paradigm of sesquilinear forms rather than linear operators, and indeed it is Hilbert's original method in \cite{Hil06}.
 
 This maximum-minimum method is particularly transparent, as it makes explicit how complete continuity enters the argument: combined with the weak compactness of $\ovl B_\MH(0,1)$, it ensures that the quadratic form
 \begin{align*}
 \ovl B_\MH(0,1)\rightarrow\Rbb_{\geq0}\qquad \xi\mapsto\omega(\xi|\xi)
 \end{align*}
-attains its maximum at some element $e_1$. It was precisely for the purpose of applying this maximum-minimum method that Hilbert introduced the notion of weak convergence in \cite{Hil06}, the first explicit appearance of weak convergence in the history of mathematics. In contrast, the proof we will see in Sec. \ref{lb626}, which relies solely on linear operator methods, is considerably less straightforward.
+attains its maximum at some element $e_1$. It was precisely for the purpose of applying this maximum-minimum method that Hilbert introduced the notion of weak convergence in \cite{Hil06}, the first explicit appearance of weak/weak-* convergence in the history of mathematics. In contrast, the proof we will see in Sec. \ref{lb626}, which relies solely on linear operator methods, is considerably less straightforward.
 
 Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to establish the diagonalization theorem for completely continuous Hermitian forms that are not necessarily positive. This is achieved by first finding $e_1$ corresponding to the maximal eigenvalue, then $e_2$ corresponding to the minimal eigenvalue, and iterating this process. Although the positive case is often sufficient in applications, we will treat the more general case of normal completely-continuous operators in Sec. \ref{lb626}, since the method there does not become significantly simpler when restricted to the positive or self-adjoint setting.
 
+
+
+\subsection{Completely continuous operators and compact operators}\label{lb618}
+
+Let $\MH,\MK$ be Hilbert spaces. Let $\MU,\MV,\MW,\MX$ be normed vector spaces over $\Fbb\in\{\Rbb,\Cbb\}$.
+
+
+In \cite{Rie10}, Riesz introduced the notion of completely continuous operators on Hilbert spaces, a concept that is equivalent to the completely continuous sesquilinear forms considered earlier by Hilbert. Riesz was an early and influential advocate of the operator viewpoint, and it was natural for him to reinterpret Hilbert's results in operator language, in accordance with his own mathematical inclinations. In Ch. \ref{lb181}, we already saw how Riesz's operator-theoretic interpretation of Hilbert's spectral theory for bounded bilinear forms had a profound and lasting influence on the development of functional analysis. In the following sections, we will see that Riesz's reinterpretation of Hilbert's theory of completely continuous forms was equally revolutionary.
+
+The operator perspective frees us from two significant limitations in Hilbert's original framework: the requirement that the form be Hermitian (which was essential for applying the maximum-minimum method in the proof of the Hilbert-Schmidt theorem), and the restriction to Hilbert spaces rather than more general Banach spaces. Riesz's proof of the Fredholm alternative for compact operators on Banach spaces in \cite{Rie18} stands as a landmark achievement that emerged from this paradigm shift.
+
+In this section, we aim to translate the notion of a completely continuous sesquilinear form into the corresponding operator-theoretic condition on normed vector spaces---namely, that of a compact operator. We will also compare the strategies used to establish key properties from the perspectives of forms and operators. We begin with the case of operators on Hilbert spaces, for which the natural notion is that of a completely continuous operator.
+
+
+\subsubsection{Completely continuous operators}
+
+
+\begin{df}
+A linear map $T:\MH\rightarrow\MK$ is called \textbf{completely continuous} \index{00@Completely continuous operators} if the restriction
+\begin{align*}
+T|_{\ovl B_\MH(0,1)}:\ovl B_\MH(0,1)\rightarrow\MK
+\end{align*}
+is continuous when $\ovl B_\MH(0,1)$ is equipped with the weak topology and $\MH$ is equipped with the norm topology. Similar to Rem. \ref{lb607}, any completely continuous map is bounded.
+\end{df}
+
+
+
+
+It is helpful to compare this definition with the following property.
+
+\begin{pp}\label{lb635}
+Let $T\in\fk L(\MH,\MK)$. Then $T:\MH\rightarrow\MK$ is continuous when both $\MH$ and $\MK$ are equipped with their weak topologies. 
+\end{pp}
+
+\begin{proof}
+Let $(\xi_\alpha)$ be a net in $\MH$ converging weakly to $\xi$. Then for each $\eta\in\MK$ we have
+\begin{align*}
+\lim_\alpha\bk{\eta|T\xi_\alpha}=\lim_\alpha\bk{T^*\eta|\xi_\alpha}=\bk{T^*\eta|\xi}=\bk{\eta|T\xi}
+\end{align*}
+Therefore $T\xi_\alpha$ converges weakly to $T\xi$.
+\end{proof}
+
+
+We now prove the equivalence between completely continuous forms and completely continuous operators.
+
+
+\begin{pp}\label{lb631}
+Let $T:\MH\rightarrow\MK$ be a linear map. Then $T$ is completely continuous if its associated sesquilinear form $\omega_T:\MK\times\MH\rightarrow\Cbb$ (cf. Def. \ref{lb630}) is completely continuous.
+\end{pp}
+
+\begin{proof}
+$T$ is completely continuous iff for each weak convergence $\xi_\alpha\rightarrow\xi$ in $\ovl B_\MH(0,1)$, the weak convergence $T\xi_\alpha\rightarrow T\xi$ (due to Prop. \ref{lb635}) must be a norm convergence. By Lem. \ref{lb616}, this is equivalent to $\bk{\eta_\alpha|T\xi_\alpha}\rightarrow\bk{\eta|T\xi}$ for each net $(\xi_\alpha)_{\alpha\in I}$ converging to $\xi$ in $\ovl B_\MH(0,1)$ and each net $(\eta_\alpha)_{\alpha\in I}$ converging to $\eta$ in $\ovl B_\MK(0,1)$, and hence equivalent to the complete continuity of $\omega_T$.
+\end{proof}
+
+
+\begin{co}
+If a linear map $T:\MH\rightarrow\MK$ is completely continuous, then so is its adjoint $T^*$.
+\end{co}
+
+\begin{proof}
+This follows immediately from Prop. \ref{lb631} and \ref{lb636}.
+\end{proof}
+
+Of course, completely continuous forms and completely continuous operators can be unified under the broader notion of a completely continuous multilinear map: a multilinear map $T:\MH_1\times\cdots\times\MH_N\rightarrow\MK$ (where each $\MH_j$ is a Hilbert space) is called \textbf{completely continuous} if its restriction to $\ovl B_{\MH_1}(0,1)\times\cdots\times\ovl B_{\MH_N}(0,1)\rightarrow\MK$ is continuous when the domain carries the weak topology and $\MK$ carries the norm topology. We refrain from adopting this general formulation, not only because such a notion will not be used later, but also because the following property does not hold for general completely continuous multilinear maps, not even for completely continuous bilinear/sesquilinear forms:
+
+\begin{pp}\label{lb633}
+Let $T:\MH\rightarrow\MK$ be a linear map. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $T$ is completely continuous.
+\item[(2)] The restriction $T|_{\ovl B_\MH(0,1)}:\ovl B_\MH(0,1)\rightarrow\MK$ is continuous at $0$ when $\ovl B_\MH(0,1)$ is equipped with the weak topology and $\MK$ is equipped with the norm topology.
+\end{enumerate}
+\end{pp}
+
+
+\begin{proof}
+The direction (1)$\Rightarrow$(2) is obvious. Assume (2). Let $(\xi_\alpha)$ be a net in $\ovl B_\MH(0,1)$ converging weakly to $\xi\in\ovl B_\MH(0,1)$. Then $(\xi-\xi_\alpha)$ is a net in $\ovl B_\MH(0,2)$ converging weakly to $0$. Therefore $T(\xi-\xi_\alpha)$ converges in norm to $0$, and hence $T\xi_\alpha\rightarrow T\xi$.
+\end{proof}
+
+
+
+
+
+\subsubsection{Compact operators}
+
+
+The notion of complete continuity can be extended to linear maps $T:\MV^*\rightarrow\MW$, meaning that the restriction
+\begin{align*}
+T|_{\ovl B_{\MV^*}(0,1)}:\ovl B_{\MV^*}(0,1)\rightarrow\MW
+\end{align*}
+is continuous when $\ovl B_{\MV^*}(0,1)$ is equipped with the weak-* topology and $\MW$ with the norm topology. However, even this generalization does not encompass linear operators acting on spaces of continuous functions on compact sets---operators that play a crucial role in solving the Dirichlet problem via double layer potentials (cf. Sec. \ref{lb632}). This motivates the need for the following definition.
+
+
+\begin{df}
+A linear map $T:\MV\rightarrow\MW$ is called a \textbf{compact operator} (or a \textbf{compact map}) \index{00@Compact operators/maps} if one of the following equivalent conditions hold:
+\begin{enumerate}
+\item[(1)] $T(\ovl B_\MV(0,1))$ is precompact in $\MW$ (with respect to the norm topology).
+\item[(2)] For each net $(\xi_\alpha)$ in $\MH$ satisfying $\sup_\alpha\Vert\xi_\alpha\Vert<+\infty$, the net $(T\xi_\alpha)$ has a subnet converging in $\MW$.
+\item[(3)] For each sequence $(\xi_n)$ in $\MH$ satisfying $\sup_n\Vert\xi_n\Vert<+\infty$, the sequence $(T\xi_n)$ has a subsequence converging in $\MW$.
+\end{enumerate}
+The equivalence is due to Prop. \ref{lb180}.
+\end{df}
+
+
+\begin{rem}\label{lb634}
+Since any compact subset of a metric space is bounded (since it can be covered by finitely many open balls), every compact operator must be bounded.
+\end{rem}
+
+
+
+\begin{thm}\label{lb638}
+Let $T:\MH\rightarrow\MK$ be a linear map. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item The associated sesquilinear form $\omega_T$ (cf. Def. \ref{lb630}) is completely continuous.
+\item $T$ is completely continuous.
+\item $T$ is compact.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+(1)$\Leftrightarrow$(2): By Prop. \ref{lb633}.
+
+(2)$\Rightarrow$(3): Let $(\xi_\alpha)$ be a bounded net in $\MH$. By Thm. \ref{lb494}, it has a subnet $(\xi_\nu)$ converging weakly to some $\xi\in\MH$. Since $T$ is completely continuous, the subnet $(T\xi_\nu)$ of $(T\xi_\alpha)$ converges (in norm) to $T\xi$. Thus $T$ is compact.
+
+(3)$\Rightarrow$(2). Let $X=\ovl B_\MH(0,1)$ and $Y=\ovl{T(X)}$. Since $T$ is compact, $Y$ is also compact. Let $(\xi_\alpha)$ be a net in $X$ converging weakly to $\xi\in X$. To show that $T\xi_\alpha$ converges to $T\xi$, by Thm. \ref{lb227}, it suffices to show that any cluster point $\psi$ of the net $(T\xi_\alpha)$ equals $T\xi$.
+
+Choose any subnet $(T\xi_\nu)$ converging to $\psi$. Then $(\xi_\nu)$ converges to $\lim_\alpha=\xi$. Since $T$ is bounded (Rem. \ref{lb634}), by Prop. \ref{lb635}, $(T\xi_\nu)$ converges weakly to $T\xi$. This proves $\psi=T\xi$.
+\end{proof}
+
+In the above proof, the direction (2)$\Rightarrow$(3) is considerably more straightforward than (3)$\Rightarrow$(2). Consequently, translating a proof about compact operators into one about completely continuous operators is typically easier than working in the opposite direction.
+
+
+\subsubsection{Criteria for compact operators}
+
+We now extend several results from Subsec. \ref{lb637}, originally proved for completely continuous sesquilinear forms, to the setting of compact operators. The first such result, generalizing Thm. \ref{lb610}, concerns finite-rank forms and operators.
+
+\begin{df}
+A linear map $T:\MV\rightarrow\MW$ is called of \textbf{finite rank} \index{00@Finite rank operator/map} if $T$ is bounded and $\dim\Rng(T)<+\infty$.
+\end{df}
+
+
+\begin{pp}\label{lb639}
+Let $T:\MH\rightarrow\MK$ be a linear map. The following are equivalent.
+\begin{enumerate}[label=(\arabic*)]
+\item The associated sesquilinear form $\omega_T$ has finite rank.
+\item There exist finitely many vectors $\phi_1,\dots,\phi_n\in\MH$ and $\psi_1,\dots,\psi_n\in\MK$ such that
+\begin{align}\label{eq293}
+T\xi=\sum_{j=1}^n \psi_j\cdot\bk{\phi_j|\xi}\qquad\text{for each }\xi\in\MH
+\end{align}
+\item $T$ has finite rank.
+\end{enumerate}
+\end{pp}
+
+\begin{proof}
+(1)$\Leftrightarrow$(2) and (2)$\Rightarrow$(3) are obvious.
+
+(3)$\Rightarrow$(2): Assume (3). Let $\psi_1,\dots,\psi_n$ be an orthonormal basis of the finite-dimensional Hilbert space $\Rng(T)$. Since $T$ is bounded, the linear functional $\xi\in\MH\mapsto\bk{\psi_j|T\xi}$ is also bounded, and hence can be written as $\bk{\phi_j|\xi}$ by the Riesz-Fr\'echet Thm. \ref{lb135}. Then \eqref{eq293} holds, since the two sides are equal when evaluated with each $\psi_j$.
+\end{proof}
+
+
+\begin{thm}
+Let $T:\MV\rightarrow\MW$ be a linear operator of finite-rank. Then $T$ is compact.
+\end{thm}
+
+\begin{proof}[First proof for Hilbert spaces]
+Assume that $\MV,\MW$ are Hilbert spaces. By Prop. \ref{lb639}, $\omega_T$ is of finite rank, and hence is completely continuous due to Thm. \ref{lb610}. (Alternatively, by \eqref{eq293}, $T$ is completely continuous.) Therefore, by Thm. \ref{lb638}, $T$ is compact.
+\end{proof}
+
+\begin{proof}[Second proof]
+Since $T$ is bounded, the set $T(\ovl B_\MV(0,1))$ is bounded. By the following Thm. \ref{lb640}, every bounded closed subset of $\Rng(T)$ is compact. Thus $T(\ovl B_\MV(0,1))$ is precompact, and hence $T$ is compact.
+\end{proof}
+
+
+
+
+\begin{thm}\label{lb640}
+Let $\MX$ be a finite-dimensional normed vector space. Then any two norms on $\MX$ are equivalent (cf. Def. \ref{lb641}). Consequently, any bounded closed subset of $\MX$ is compact.
+\end{thm}
+
+
+\begin{proof}
+Fix a linear bijection $\Phi:\Fbb^N\rightarrow\MX$ where $\Fbb^N$ is equipped with the Euclidean norm. If we show that both $\Phi$ and $\Phi^{-1}$ are bounded with respect to any norm of $\MX$, then every norm on $\MX$is equivalent to the pushforward of the Euclidean norm under $\Phi$; hence any two norms on $\MX$ are equivalent. The compactness statement then follows from the Heine-Borel theorem.
+
+We first note that $\Phi$ is bounded, since for each $a=(a_1,\dots,a_N)\in\Fbb^N$ we have
+\begin{align*}
+\Vert\Phi(a_1,\dots,a_N)\Vert=\Big\Vert\sum_{j=1}^N a_N\Phi(e_j)\Big\Vert\leq\Vert a\Vert\cdot \sum_j\Vert\Phi(e_j)\Vert
+\end{align*}
+where $e_1,\dots,e_N$ are the standard basis of $\Fbb^N$.
+
+Suppose that $\Phi^{-1}$ is not bounded. Then for each $n\in\Zbb_+$ there exists a nonzero $v_n\in\Fbb^N$ such that $\Vert\Phi(v_n)\Vert\geq n\Vert v_n\Vert$. By scaling each $v_n$ we assume $\Vert v_n\Vert=1$. Then no subsequence of $\Phi(v_n)$ converges, because $\Vert\Phi(v_n)\Vert\geq n$. However, by the Heine-Borel theorem, $(v_n)$ has a subsequence $(v_{n_k})$ converging to some $v\in\Fbb^N$, and hence $\Phi(v_{n_k})$ converges to $\Phi(v)$ by the boundedness of $\Phi$. This contradiction shows that $\Phi^{-1}$ must be bounded.
+\end{proof}
+
+
+We now generalize Thm. \ref{lb611} to compact operators.
+
+
+\begin{thm}
+Let $(T_\alpha)_{\alpha\in\SI}$ be a net of compact operators $\MV\rightarrow\MW$ converging in the operator norm to a linear map $T:\MV\rightarrow\MW$. Assume that $\MW$ is complete. Then $T$ is compact.
+\end{thm}
+
+\begin{proof}[First proof for Hilbert spaces]
+Assume that $\MV,\MW$ are Hilbert spaces. Then $\omega_T$ is the norm limit of the net $(\omega_{T_\alpha})$ of completely continuous forms, and hence is completely continuous by Thm. \ref{lb611}. Therefore, $T$ is compact.
+\end{proof}
+
+\begin{proof}[Second proof for Hilbert spaces]
+Assume that $\MV,\MW$ are Hilbert spaces. Let $X=\ovl B_\MH(0,1)$, equipped with the weak topology. By assumption, the net $(T_\alpha|_X)$ converges uniformly to $T|_X$. Since each $T_\alpha|_X$ is continuous, $T|_X$ must be continuous. Therefore $T$ is completely continuous, i.e. compact.
+\end{proof}
+
+
+\begin{proof}[Third proof]
+Since our task is equivalently to show that the set of compact operators is closed in the metric space $\fk L(\MV,\MW)$, Rem. \ref{lb221} allows us to restrict attention to the case where $(T_\alpha)$ is a sequence $(T_n)_{n\in\Zbb_+}$.
+
+Let $X=\ovl B_\MV(0,1)$ and $Y_n=\ovl{T_n(X)}$. Since $T_n$ is compact, each $Y_n$ is a compact metric space. Therefore, the product space $\prod_m Y_m$ is compact by the Tychonoff theorem (or simply by the diagonal method; cf. Rem. \ref{lb52}). Moreover, $\prod_m Y_m$ is metrizable by Prop. \ref{lb51}, and hence sequentially compact by Cor. \ref{lb354}.
+
+Let $(\xi_n)$ be a sequence in $X$. For each $n$, let
+\begin{align*}
+\fk y_n=(T_1\xi_n,T_2\xi_n,\dots)\qquad\in\prod_m Y_m
+\end{align*}
+Then the sequence $(\yk_n)$ has a convergent subsequence $(\yk_{n_k})$. Therefore, for each $m\in\Zbb_+$, the sequence $(T\xi_{n_k})_{k\in\Zbb_+}$ converges, and hence is a Cauchy sequence. From the convergence $\lim_m\Vert T_m-T\Vert=0$ one easily deduces that $(T\xi_{n_k})_{k\in\Zbb_+}$ is a Cauchy sequence, and hence converges by the completeness of $\MW$. We have thus proved that $(T\xi_n)$ admits a convergent subsequence. Therefore $T$ is compact.
+\end{proof}
 
 
 
@@ -17632,14 +17877,12 @@ Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to
 
 \hypertarget{current}{}
 
-\subsection{Completely continuous operators and compact operators}\label{lb618}
-
-
-
-
-
-
 \subsection{Hilbert-Schmidt theorem: the operator perspective}\label{lb626}
+
+
+
+\subsection{Fredholm alternative for compact operators on Banach spaces}\label{lb629}
+
 
 
 \subsection{Problems}
