@@ -2071,7 +2071,7 @@ Since $f_\alpha$ converges to $f$ at $x_1,\dots,x_n$, we conclude that
 for all $\eps>0$. Hence $\lim_\alpha\sup_{y\in X}\Vert f_\alpha(y)-f(y)\Vert=0$.
 \end{proof}
 
-\begin{thm}[\textbf{Arzel\`a-Ascoli theorem}]\index{00@Arzel\`a-Ascoli theorem}
+\begin{thm}[\textbf{Arzel\`a-Ascoli theorem}]\index{00@Arzel\`a-Ascoli theorem}\label{lb644}
 Assume that $X$ is LCH. Let $\scr F$ be an equicontinuous set of functions $X\rightarrow\Fbb$. If $X$ is non-compact, we assume that 
 \begin{align}
 \lim_{x\rightarrow\infty}\sup_{f\in\scr F}|f(x)|=0
@@ -10308,13 +10308,13 @@ and hence $(p,q)\notin\Sp(T_1,\dots,T_N)$. The latter case can be addressed in t
 To some extend, Prop. \ref{lb307} reduces the study of joint spectra to that of individual operators. The next proposition gives a particularly useful characterization of the spectrum of a single bounded normal operator.
 
 \begin{df}
-Let $T\in\fk L(\MH)$ be normal. The number $\lambda\in\Cbb$ is called an \textbf{approximate eigenvalue} \index{00@Approximate eigenvalue} of $T$ if one of the following (clearly) equivalent conditions holds:
+Let $T\in\fk L(\MV)$ where $\MV$ is a normed vector space. The number $\lambda\in\Cbb$ is called an \textbf{approximate eigenvalue} \index{00@Approximate eigenvalue} of $T$ if one of the following (clearly) equivalent conditions holds:
 \begin{enumerate}
-\item[(1)] For each $\eps>0$ there exists a non-zero vector $\xi\in\MH$ such that
+\item[(1)] For each $\eps>0$ there exists a non-zero vector $\xi\in\MV$ such that
 \begin{align*}
 \Vert (T-\lambda)\xi\Vert\leq\eps\Vert\xi\Vert
 \end{align*}
-\item[(2)] There exists a sequence $(\xi_n)_{n\in\Zbb_+}$ of unit vectors in $\MH$ such that
+\item[(2)] There exists a sequence $(\xi_n)_{n\in\Zbb_+}$ of unit vectors in $\MV$ such that
 \begin{align*}
 \lim_n (T-\lambda)\xi_n=0
 \end{align*}
@@ -13706,7 +13706,7 @@ What von Neumann meant by partial results (i.e., ``a fraction of what we attain'
 
 
 \begin{displayquote}
-By this method the author was able to treat the case of real Hermitian operators (cf. footnote 20), where the exceptional case indicated in VII had not yet appeared. However, the extension process for the Hermitian operators could not be as clearly understood as will be the case in Chapter VIII, for example, and the method was so non-constructive that, for instance, the well-ordering theorem had to be invoked (cf. the announcement in Jahresber. d. D. Math.-Ver. 37, 1–4 (1928), pp. 11–15); furthermore, the non-real Hermitian Operators could not be addressed in this way.
+By this method the author was able to treat the case of real Hermitian operators (cf. footnote 20), where the exceptional case indicated in VII had not yet appeared. However, the extension process for the Hermitian operators could not be as clearly understood as will be the case in Chapter VIII, for example, and the method was so non-constructive that, for instance, the well-ordering theorem had to be invoked (cf. the announcement in Jahresber. d. D. Math.-Ver. 37, 1-4 (1928), pp. 11-15); furthermore, the non-real Hermitian Operators could not be addressed in this way.
 \end{displayquote}
 
 
@@ -17643,7 +17643,7 @@ By \eqref{eq290} and Prop. \ref{lb238}, we have $\Vert T|_{V_n}\Vert \leq \lambd
 
 \subsubsection{Comments on the proof}
 
-In the proof of the Hilbert–Schmidt theorem we made use of linear operators---primarily in Steps 3 and 4---to streamline the inductive construction of the sequence of eigenvectors arising from the argument in Step 2. Nevertheless, the essential heart of the proof lies in Step 2, where we apply the \textbf{maximum-minimum method} \index{00@Maximum-minimum method} (a term used in the first quotation from von Neumann in Subsec. \ref{lb443}) to obtain an eigenvector corresponding to the largest eigenvalue. This method belongs to the paradigm of sesquilinear forms rather than linear operators, and indeed it is Hilbert's original method in \cite{Hil06}.
+In the proof of the Hilbert-Schmidt theorem we made use of linear operators---primarily in Steps 3 and 4---to streamline the inductive construction of the sequence of eigenvectors arising from the argument in Step 2. Nevertheless, the essential heart of the proof lies in Step 2, where we apply the \textbf{maximum-minimum method} \index{00@Maximum-minimum method} (a term used in the first quotation from von Neumann in Subsec. \ref{lb443}) to obtain an eigenvector corresponding to the largest eigenvalue. This method belongs to the paradigm of sesquilinear forms rather than linear operators, and indeed it is Hilbert's original method in \cite{Hil06}.
 
 This maximum-minimum method is particularly transparent, as it makes explicit how complete continuity enters the argument: combined with the weak compactness of $\ovl B_\MH(0,1)$, it ensures that the quadratic form
 \begin{align*}
@@ -17651,13 +17651,17 @@ This maximum-minimum method is particularly transparent, as it makes explicit ho
 \end{align*}
 attains its maximum at some element $e_1$. It was precisely for the purpose of applying this maximum-minimum method that Hilbert introduced the notion of weak convergence in \cite{Hil06}, the first explicit appearance of weak/weak-* convergence in the history of mathematics. In contrast, the proof we will see in Sec. \ref{lb626}, which relies solely on linear operator methods, is considerably less straightforward.
 
-Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to establish the diagonalization theorem for completely continuous Hermitian forms that are not necessarily positive. This is achieved by first finding $e_1$ corresponding to the maximal eigenvalue, then $e_2$ corresponding to the minimal eigenvalue, and iterating this process. Although the positive case is often sufficient in applications, we will treat the more general case of normal completely-continuous operators in Sec. \ref{lb626}, since the method there does not become significantly simpler when restricted to the positive or self-adjoint setting.
+Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to establish the diagonalization theorem for completely continuous Hermitian forms that are not necessarily positive. This is done by constructing the sequence of unit vectors $(e_n)$ as described in Step 3 of the proof of Thm. \ref{lb625}, with the only modification that \eqref{eq290} is replaced by
+\begin{align}
+|\bk{\xi|T\xi}|\leq |\lambda_n|\cdot\Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
+\end{align}
+Although the positive case is often sufficient in applications, we will treat the more general case of normal completely-continuous operators in Sec. \ref{lb626}, since the method there does not become significantly simpler when restricted to the positive or self-adjoint setting.
 
 
 
 \subsection{Completely continuous operators and compact operators}\label{lb618}
 
-Let $\MH,\MK$ be Hilbert spaces. Let $\MU,\MV,\MW,\MX$ be normed vector spaces over $\Fbb\in\{\Rbb,\Cbb\}$.
+Let $\MH,\MK$ be Hilbert spaces. Let $\MV,\MW$ be normed vector spaces over $\Fbb\in\{\Rbb,\Cbb\}$.
 
 
 In \cite{Rie10}, Riesz introduced the notion of completely continuous operators on Hilbert spaces, a concept that is equivalent to the completely continuous sesquilinear forms considered earlier by Hilbert. Riesz was an early and influential advocate of the operator viewpoint, and it was natural for him to reinterpret Hilbert's results in operator language, in accordance with his own mathematical inclinations. In Ch. \ref{lb181}, we already saw how Riesz's operator-theoretic interpretation of Hilbert's spectral theory for bounded bilinear forms had a profound and lasting influence on the development of functional analysis. In the following sections, we will see that Riesz's reinterpretation of Hilbert's theory of completely continuous forms was equally revolutionary.
@@ -17776,12 +17780,27 @@ Let $T:\MH\rightarrow\MK$ be a linear map. The following are equivalent.
 
 (2)$\Rightarrow$(3): Let $(\xi_\alpha)$ be a bounded net in $\MH$. By Thm. \ref{lb494}, it has a subnet $(\xi_\nu)$ converging weakly to some $\xi\in\MH$. Since $T$ is completely continuous, the subnet $(T\xi_\nu)$ of $(T\xi_\alpha)$ converges (in norm) to $T\xi$. Thus $T$ is compact.
 
-(3)$\Rightarrow$(2). Let $X=\ovl B_\MH(0,1)$ and $Y=\ovl{T(X)}$. Since $T$ is compact, $Y$ is also compact. Let $(\xi_\alpha)$ be a net in $X$ converging weakly to $\xi\in X$. To show that $T\xi_\alpha$ converges to $T\xi$, by Thm. \ref{lb227}, it suffices to show that any cluster point $\psi$ of the net $(T\xi_\alpha)$ equals $T\xi$.
+(3)$\Rightarrow$(2). Let $X=\ovl B_\MH(0,1)$. Let $(\xi_\alpha)$ be a net in $X$ converging weakly to $\xi\in X$. Since $T$ is bounded (Rem. \ref{lb634}), by Prop. \ref{lb635}, $(T\xi_\alpha)$ converges weakly to $T\xi$. Therefore, any subnet of $(T\xi_\alpha)$ converges weakly to $T\xi$. In particular, any norm-convergent subnet of $(T\xi_\alpha)$ converges weakly to $T\xi$, and hence converges in norm to $T\xi$. 
 
-Choose any subnet $(T\xi_\nu)$ converging to $\psi$. Then $(\xi_\nu)$ converges to $\lim_\alpha=\xi$. Since $T$ is bounded (Rem. \ref{lb634}), by Prop. \ref{lb635}, $(T\xi_\nu)$ converges weakly to $T\xi$. This proves $\psi=T\xi$.
+Since $Y:=\ovl{T(X)}$ is compact (because $T$ is compact) and contains the net $(T\xi_\alpha)$, it follows from Thm. \ref{lb227} that $(T\xi_\alpha)$ converges in norm to $T\xi$. This proves (2).
 \end{proof}
 
-In the above proof, the direction (2)$\Rightarrow$(3) is considerably more straightforward than (3)$\Rightarrow$(2). Consequently, translating a proof about compact operators into one about completely continuous operators is typically easier than working in the opposite direction.
+In the above proof, the direction (2)$\Rightarrow$(3) is more straightforward than (3)$\Rightarrow$(2). Consequently, translating a proof about compact operators into one about completely continuous operators is typically easier than working in the opposite direction.
+
+
+\subsubsection{Comments on the definition of compact operators}
+
+
+\begin{rem}
+The reader may notice a key difference between the notions of completely continuous forms/operators and compact operators. The former is purely a continuity condition and, by itself, has nothing to do with compactness. Compactness enters only through applications---for instance, in the proof of the Hilbert-Schmidt theorem, where the maximum-minimum method relies on compactness.
+
+In contrast, the notion of a compact operator is not a continuity condition but a compactness condition. This is natural to understand, since compact operators were introduced to extend the notion of complete continuity to normed vector spaces that lack a duality structure (and hence lack weak-* compactness). When the underlying spaces no longer provide compactness, compactness must instead be built into the definition of the operators themselves.   \hqed
+\end{rem}
+
+
+\begin{rem}
+The proof of (2)$\Rightarrow$(3) in Thm. \ref{lb638} actually shows that if $T:\MH\rightarrow\MK$ is completely continuous, then $T(\ovl B_\MH(0,1))$ is compact (rather than merely precompact). However, defining compact operators on Banach spaces by requiring the image of the closed unit ball to be compact would be too restrictive: important results such as Thm. \ref{lb643} could not be established under such a strong definition. In particular, one could not prove with this definition the crucial example (cf. Pb. \ref{lb645}) that every continuous kernel $K:I\times I\rightarrow\Cbb$ (where $I$ is a compact interval) defines a compact operator on $C(I)$.
+\end{rem}
 
 
 \subsubsection{Criteria for compact operators}
@@ -17812,7 +17831,7 @@ T\xi=\sum_{j=1}^n \psi_j\cdot\bk{\phi_j|\xi}\qquad\text{for each }\xi\in\MH
 \end{proof}
 
 
-\begin{thm}
+\begin{thm}\label{lb642}
 Let $T:\MV\rightarrow\MW$ be a linear operator of finite-rank. Then $T$ is compact.
 \end{thm}
 
@@ -17845,10 +17864,10 @@ Suppose that $\Phi^{-1}$ is not bounded. Then for each $n\in\Zbb_+$ there exists
 \end{proof}
 
 
-We now generalize Thm. \ref{lb611} to compact operators.
+The following generalization of Thm. \ref{lb611} is crucial for proving that the integral operator arising from the double layer potentials (cf. Subsec. \ref{lb602}) is compact; see Pb. \ref{lb599}.
 
 
-\begin{thm}
+\begin{thm}\label{lb643}
 Let $(T_\alpha)_{\alpha\in\SI}$ be a net of compact operators $\MV\rightarrow\MW$ converging in the operator norm to a linear map $T:\MV\rightarrow\MW$. Assume that $\MW$ is complete. Then $T$ is compact.
 \end{thm}
 
@@ -17874,21 +17893,164 @@ Then the sequence $(\yk_n)$ has a convergent subsequence $(\yk_{n_k})$. Therefor
 \end{proof}
 
 
+\begin{df}
+A linear map $T:\MV\rightarrow\MW$ is called \textbf{approximable} \index{00@Approximable operators} if it lies in the norm-closure of the set of finite-rank operators in $\fk L(\MV,\MW)$. Equivalently, $T$ is the limit of a norm convergent net/sequence of finite-rank operators.
+\end{df}
+
+\begin{co}
+Assume that $T:\MV\rightarrow\MW$ is an approximable linear map and $\MW$ is complete. Then $T$ is compact.
+\end{co}
+
+
+\begin{proof}
+This follows immediately from Thm. \ref{lb642} and \ref{lb643}.
+\end{proof}
+
+
+
+
+\subsection{Hilbert-Schmidt theorem: the operator perspective}\label{lb626}
+
+
+Let $\MH$ be a Hilbert space.
+
+In this section, following Riesz’s approach in \cite[$\S$14]{Rie10}, we translate Hilbert's proof of the Hilbert-Schmidt theorem---originally formulated in the language of sesquilinear forms and the maximum-minimum method---into the language of operators. From a historical perspective, Riesz's contribution here was transitional, serving as a reinterpretation of Hilbert's existing work. Moreover, its impact was less revolutionary than Riesz's operator-theoretic interpretation of Hilbert's spectral theorem for bounded symmetric bilinear forms, as presented and discussed in Ch. \ref{lb181}.
+
+Nevertheless, this contribution should not be underestimated. Many highly original advances in mathematics begin as reinterpretations of earlier ideas. Without understanding the techniques developed in such transitional works, one cannot fully appreciate the deeper innovations that followed---such as Riesz's proof of the Fredholm alternative for compact operators on arbitrary Banach spaces.
+
+\subsubsection{Riesz's method: achieving approximate eigenvalues}
+
+
+Let $T\in\fk L(\MH)$ be completely continuous and self-adjoint. As we saw Sec. \ref{lb617}, to find the unit eigenvector $e_1$ whose eigenvalue $\lambda_1$ has the largest absolute value $|\lambda_1|$, one chooses $e_1\in\ovl B_\MH(0,1)$ maximizing the quantity $|\bk{e_1|Te_1}|$; the associated eigenvalue is then $\lambda_1=\bk{e_1|Te_1}$. In the operator setting, the natural analogue would be to choose $e_1\in\ovl B_\MH(0,1)$ maximizing $\Vert Te_1\Vert$, so that $\Vert Te_1\Vert=\Vert T\Vert$. Unfortunately, such a vector need not be an eigenvector of $T$:
+
+\begin{eg}
+Let $T$ be the diagonal matrix on $\Cbb^2$ with diagonal entries $1$ and $-1$. Then $e_1=\frac 1{\sqrt 2}(1,1)$ is a vector in $\ovl B_\MH(0,1)$, and $\Vert Te_1\Vert=1=\Vert T\Vert$. However, $e_1$ is not an eigenvector of $T$.
+\end{eg}
+
+
+Instead of employing the maximum-minimum argument, Riesz worked with approximate eigenvalues. To motivate this approach, consider the following elementary fact:
+
+\begin{exe}
+Let $A\in\fk L(\MH)$ be normal. Use the spectral theorem to prove that
+\begin{align}
+\Vert A\Vert=\sup_{\lambda\in\Sp(A)}|\lambda|
+\end{align}
+(For example, view $A$ as a multiplication operator). Conclude that if $A^*=A$, then one of $\Vert A\Vert$ and $-\Vert A\Vert$ belongs to $\Sp(A)$.
+\end{exe}
+
+It then follows from Thm. \ref{lb312} and the above exercise that one of $\Vert A\Vert$ and $-\Vert A\Vert$ is an approximate eigenvalue $A$. Of course, Riesz's approach in \cite{Rie10} does not rely on the general spectral theorem for bounded self-adjoint operators or bounded Hermitian forms, since Hilbert's original proof of the Hilbert-Schmidt theorem did not. Riesz's proof of this fact is more elementary, though quite technical. We include his argument below, not with the expectation that the reader should master the detail; indeed, we discourage this. Rather, the purpose is to give a sense of how such a result can be obtained through elementary arguments.
+
+
+\begin{lm}
+Let $A\in\fk L(\MH)$ be self-adjoint. Then one of $\Vert A\Vert$ and $-\Vert A\Vert$ is an approximate eigenvalue $A$.
+\end{lm}
+
+\begin{proof}
+Assume WLOG that $\Vert A\Vert=1$. Suppose that neither $1$ nor $-1$ is an approximate eigenvalue of $A$. Then there exists $\eps\in\Rbb_{>0}$ such that
+\begin{align*}
+\Vert\xi-A\xi\Vert^2\geq \eps\Vert\xi\Vert^2\qquad \Vert\eta+A\eta\Vert^2\geq \eps\Vert\eta\Vert^2
+\end{align*}
+for all $\xi,\eta\in \MH$. Set $\eta=\xi-A\xi$. Then
+\begin{align*}
+\Vert\xi-A^2\xi\Vert^2=\Vert (\xi-A\xi)+A(\xi-A\xi)\Vert^2\geq\eps\Vert \xi-A\xi\Vert^2\geq\eps^2\Vert\xi\Vert^2
+\end{align*}
+Since $\Vert A\Vert=1$, we have $\Vert A^2\xi\Vert^2\leq\Vert\xi\Vert^2$, and there exists $\xi\in\MH$ such that
+\begin{align*}
+\Vert A\xi\Vert^2>\Big(1-\frac{\eps^2}2\Big)\Vert\xi\Vert^2
+\end{align*}
+For such a vector $\xi$, we compute
+\begin{align*}
+&\Vert\xi-A^2\xi\Vert^2=\Vert\xi\Vert^2-2\Real\bk{\xi|A^2\xi}+\Vert A^2\xi\Vert^2\xlongequal{A^*=A} \Vert\xi\Vert^2-2\Vert A\xi\Vert^2+\Vert A^2\xi\Vert^2\\
+<&\Vert\xi\Vert^2-(2-\eps^2)\Vert\xi\Vert^2+\Vert\xi\Vert^2=\eps^2\Vert\xi\Vert^2
+\end{align*}
+This contradicts the previously obtained inequality $\Vert\xi-A^2\xi\Vert^2\geq\eps^2\Vert\xi\Vert^2$.
+\end{proof}
+
+\subsubsection{Riesz's method: from approximate eigenvalues to genuine eigenvalues}
+
+
+Up to this point we have not used the assumption that $T$ is completely continuous. In \cite{Rie10}, Riesz exploits this assumption in a crucial way, and the same idea later becomes fundamental in his proof of the Fredholm alternative in \cite{Rie18}.
+
+\begin{thm}\label{lb646}
+Let $\MV$ be a normed $\Fbb$-vector space. Let $A:\MV\rightarrow\MV$ be a compact operator. Let $\lambda\in\Fbb\setminus\{0\}$. Then the following are equivalent.
+\begin{enumerate}
+\item[(1)] $\lambda$ is an eigenvalue of $A$.
+\item[(2)] $\lambda$ is an approximate eigenvalue of $A$. 
+\end{enumerate}
+\end{thm}
+
+We give two proofs below. The first applies only to Hilbert spaces, but is more straightforward.
+
+\begin{proof}[\textbf{First proof for Hilbert spaces}]
+Assume that $\MV$ is a Hilbert space. Then $A$ is completely continuous by Thm. \ref{lb638}. Let us prove (2)$\Rightarrow$(1), as the other direction is obvious.
+
+Assume (2). There there exists a net (indeed, a sequence) of unit vectors $(\xi_n)$ in $\MV$ such that 
+\begin{align}\label{eq294}
+\lim_n\Vert A\xi_n-\lambda\xi_n\Vert=0
+\end{align}
+Since $\ovl B_\MV(0,1)$ is weakly compact (cf. Thm. \ref{lb494}), by passing to a subnet we may assume that $(\xi_n)$ converges weakly to some $\xi\in\MH$. Then $(A-\lambda)\xi_n$ converges weakly to $(A-\lambda)\xi$ by Prop. \ref{lb635}. Together with \eqref{eq294}, this implies $(A-\lambda)\xi=0$. 
+
+To conclude (1), it remains to show that $\xi\neq0$. Here we use the fact that $A$ is completely continuous, which implies $\lim_n\Vert A\xi_n-A\xi\Vert=0$. Since \eqref{eq294} implies
+\begin{align*}
+\lim_n \Vert A\xi_n\Vert=|\lambda|
+\end{align*}
+we have $\Vert A\xi\Vert=|\lambda|\neq0$, and hence $\xi\neq0$.
+\end{proof}
+
+In the above proof, we observe that after passing to a subnet, we have $A\xi_n\rightarrow A\xi$ and $A\xi=\lambda\xi$, therefore $A\xi_n\rightarrow \lambda\xi$. This suggests that one can obtain the eigenvector $\xi$ by choosing a convergent subsequence/subnet of $(A\xi_n)$ without first selecting a weakly convergent subnet of $(\xi_n)$. This motivates the following proof in the general case.
+
+
+\begin{proof}[\textbf{Second proof of Thm. \ref{lb646}}]
+Let us prove the nontrivial direction (2)$\Rightarrow$(1). Assume (2). Then there exists a sequence of unit vectors $(\xi_n)$ in $\MV$ satisfying \eqref{eq294}. Unlike in the first proof, we cannot obtain a nonzero eigenvector by selecting a weakly convergent subnet of $(\xi_n)$. However, the compactness of $A$ implies that, after passing to a subsequence, we have
+\begin{align*}
+\lim_n\Vert A\xi_n-\lambda\xi\Vert=0
+\end{align*}
+for some $\xi\in\MV$ (here we use the fact that $\lambda\neq 0$).
+
+Combining this limit with \eqref{eq294}, we obtain $\lim_n\xi_n =\xi$; in particular, $\Vert\xi\Vert=\lim_n\Vert\xi_n\Vert=1\neq0$. Using $\lim_n\xi_n=\xi$ together with \eqref{eq294}, we conclude that $A\xi=\lambda\xi$. This proves (1). 
+\end{proof}
+
 
 
 
 
 \hypertarget{current}{}
 
-\subsection{Hilbert-Schmidt theorem: the operator perspective}\label{lb626}
-
-
-
 \subsection{Fredholm alternative for compact operators on Banach spaces}\label{lb629}
 
 
 
 \subsection{Problems}
+
+
+Let $\MU,\MV,\MW,\MX$ be normed vector spaces over $\Cbb$.
+
+
+
+\begin{prob}
+Let $T:\MV\rightarrow\MW$ be a compact operator. Let $A:\MW\rightarrow\MX$ and $B:\MU\rightarrow\MV$ be bounded linear map. Assume that $\MX$ is complete.
+\begin{enumerate}
+\item Prove that $ATB:\MU\rightarrow\MX$ is a compact operator.
+\item Assume that $\MU,\MV,\MW,\MX$ are Hilbert spaces. Use the complete continuity of $T$ to prove that $ATB$ is completely continuous.
+\end{enumerate}
+\end{prob}
+
+
+\begin{prob}\label{lb645}
+Let $X,Y$ be compact Hausdorff spaces. Let $\nu$ be a finite Borel measure on $Y$. Let $K\in C(X\times Y)$. Prove that there is a well-defined compact map
+\begin{align*}
+T:C(Y)\rightarrow C(X)\qquad (Tf)(x)=\int_X K(x,y)f(y)d\nu(y)
+\end{align*}
+(In particular, explain why $Tf$ belongs to $C(X)$.)
+\end{prob}
+
+
+\begin{proof}[Hint]
+Method 1: Show that $T$ is approximable by using the Stone-Weierstrass theorem to prove that $K$ lies in the closure of $\Span\{gh:g\in C(X),h\in C(Y)\}$.
+
+Method 2: Apply the Arzel\`a-Ascoli Thm. \ref{lb644}.
+\end{proof}
+
 
 The following result is known as \textbf{Schur's test}. \index{00@Schur's test}
 
@@ -17927,7 +18089,7 @@ Assume that $K:X\times X\rightarrow\Cbb$ is continuous outside the diagonal $\{(
 \end{prob}
 
 \begin{proof}[Hint]
-1. For each $\eps>0$, let $h_\eps:\Rbb_{\geq0}\rightarrow[0,1]$ be a continuous function satisying $h_\eps|_{[0,\eps]}=0$ and $h_\eps|_{[2\eps,+\infty)}=1$. Let $T_\eps:\MV\rightarrow\MV$ be defined by the integral kernel $K_\eps(x,y)=K(x,y)\cdot h_\eps(|x-y|)$. Explain why $T_\eps$ is a compact operator, and show that $\lim_{\eps\rightarrow0}T_\eps$ converges to $T$ in the norm operator topology.
+1. For each $\eps>0$, let $h_\eps:\Rbb_{\geq0}\rightarrow[0,1]$ be a continuous function satisying $h_\eps|_{[0,\eps]}=0$ and $h_\eps|_{[2\eps,+\infty)}=1$. Let $T_\eps:\MV\rightarrow\MV$ be defined by the integral kernel $K_\eps(x,y)=K(x,y)\cdot h_\eps(|x-y|)$, which is compact by Pb. \ref{lb645}. Show that $\lim_{\eps\rightarrow0}T_\eps$ converges to in norm to $T$ and apply Thm. \ref{lb643}.
 
 2. Adapt the argument in Part 1 and use Schur's test (cf. Pb. \ref{lb621}).
 \end{proof}
