@@ -10646,7 +10646,7 @@ due to \eqref{eq174}.   \hqed
 \end{eg}
 
 
-\begin{rem}
+\begin{rem}\label{lb650}
 In Exp. \ref{lb323}, let $P_\alpha\in\fk L(\MH)$ be the projection of $\MH$ onto $\MH_\alpha$. Note that by Cor. \ref{lb322}, for each $I\in\fin(2^\SI)$, the sum $\sum_{\alpha\in I}P_\alpha$ is the projection onto $\sum_{\alpha\in I}\MH_\alpha$. Therefore, 
 \begin{align*}
 \Big(\sum_{\alpha\in I}P_\alpha\Big)_{I\in\fin(2^\SI)}
@@ -13434,6 +13434,12 @@ whenever $\int_{\Rbb^N}|g|^2d\mu_\xi<+\infty$ (equivalently, $\xi\in\Dom(\Mbf_{g
 \begin{exe}\label{lb445}
 Let $T$ be a self-adjoint operator on $\MH$. Let $f(x)=x^n$ where $n\in\Nbb$. Show that $T^n=f(T)$ by viewing $T$ as a multiplication operator and applying Thm. \ref{lb435} and Exe. \ref{lb569}.
 \end{exe}
+
+\begin{comment}
+\begin{exe}
+Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\chi_{\{\lambda\}}(T)$ equals the projection of $\MH$ onto $\Ker(\lambda-T)$. (Compare with Exp. \ref{lb372}.)
+\end{exe}
+\end{comment}
 
 
 
@@ -17571,7 +17577,7 @@ Since each $\omega_{I,J}$ has finite rank, by Cor. \ref{lb613}, $\omega$ is comp
 \subsection{Hilbert-Schmidt theorem: the form perspective}\label{lb617}
 
 
-In this section, we address the second question posed in Sec. \ref{lb622} by proving that every positive completely continuous forms admits a diagonalization. Incidentally, this theorem also yields the spectral theorem for positive operators on finite-dimensional Hilbert spaces---and hence, by a simple shift, for all self-adjoint operators on finite-dimensional Hilbert spaces. This finite-dimensional result is in fact used in our proof of the spectral theorem for general bounded self-adjoint operators on Hilbert spaces; see the proof of Thm. \ref{lb283}.
+In this section, we address the second question posed in Sec. \ref{lb622} by proving that every completely continuous Hermitian form admits a diagonalization. Incidentally, this theorem also yields the spectral theorem for self-adjoint operators on finite-dimensional Hilbert spaces. This finite-dimensional result is in fact used in our proof of the spectral theorem for general bounded self-adjoint operators on Hilbert spaces; see the proof of Thm. \ref{lb283}.
 
 Fix a Hilbert space $\MH$. Recall Def. \ref{lb612} for the meaning of $\omega_{\psi,\phi}$.
 
@@ -17579,10 +17585,10 @@ Fix a Hilbert space $\MH$. Recall Def. \ref{lb612} for the meaning of $\omega_{\
 
 
 \begin{thm}[\textbf{Hilbert-Schmidt theorem}]\index{00@Hilbert-Schmidt theorem}\label{lb625}
-Let $\omega$ be a positive sesquilinear form on $\MH$. Then the  following statements are equivalent.
+Let $\omega$ be a Hermitian form on $\MH$. Then the  following statements are equivalent.
 \begin{enumerate}
 \item[(1)] $\omega$ is completely continuous.
-\item[(2)] There exists a (possibly finite) sequence of orthonormal vectors $(e_n)_{1\leq n\leq\nu}$ \footnote{This sequence is interpreted as empty if $\nu=0$.} (where $\nu\in\Nbb\cup\{+\infty\}$), together with a sequence $(\lambda_n)_{1\leq n\leq\nu}$ in $\Rbb_{\geq0}$ such that $\lim_{n\rightarrow\infty}\lambda_n=0$ if $\nu=+\infty$, and
+\item[(2)] There exists a (possibly finite) sequence of orthonormal vectors $(e_n)_{1\leq n\leq\nu}$ \footnote{This sequence is interpreted as empty if $\nu=0$.} (where $\nu\in\Nbb\cup\{+\infty\}$), together with a sequence $(\lambda_n)_{1\leq n\leq\nu}$ in $\Rbb$ such that $\lim_{n\rightarrow\infty}\lambda_n=0$ if $\nu=+\infty$, and
 \begin{align}\label{eq291}
 \omega(\eta|\xi)=\sum_{n=1}^\nu \lambda_n\cdot\omega_{e_n,e_n}(\eta|\xi)\qquad\text{for each }\eta,\xi\in\MH
 \end{align}
@@ -17594,7 +17600,7 @@ In operator language, condition (2) means that the linear operator $T\in\fk L(\M
 \begin{align}\label{eq289}
 T=\sum_{n=1}^\nu \lambda_n\cdot P_{e_n}
 \end{align}
-in WOT, where $P_{e_n}$ denotes the projection onto $\Cbb e_n$. 
+in WOT, where $P_{e_n}$ denotes the projection onto $\Cbb e_n$. The last sentence of Thm. \ref{lb625} then states that the convergence \eqref{eq289} in fact holds in operator norm.
 
 
 \begin{proof}
@@ -17602,34 +17608,38 @@ Step 1. In this step, we assume (2), and prove (1) as well as the norm convergen
 
 Next, we assume that $\nu=+\infty$. For each $n<+\infty$, let $\omega_n=\sum_{k=1}^n\lambda_k\omega_{e_k,e_k}$. By assumption, $\lim_n\omega_n$ converges pointwise to $\omega$. For each $\xi\in\MH$, we compute
 \begin{align*}
-|\omega(\xi|\xi)-\omega_n(\xi|\xi)|=\sum_{k=n+1}^\infty \lambda_k\omega_{e_n,e_n}(\xi|\xi)=\sum_{k=n+1}^\infty \lambda_k|\bk{e_k|\xi}|^2\leq \Vert\xi\Vert^2\cdot\sup_{k\geq n+1}\lambda_k
+|\omega(\xi|\xi)-\omega_n(\xi|\xi)|\leq\sum_{k=n+1}^\infty |\lambda_k|\omega_{e_n,e_n}(\xi|\xi)=\sum_{k=n+1}^\infty |\lambda_k|\cdot|\bk{e_k|\xi}|^2\leq \Vert\xi\Vert^2\cdot\sup_{k\geq n+1}|\lambda_k|
 \end{align*}
 Since $\lim_n \sup_{k\geq n+1}\lambda_k=0$, by Prop. \ref{lb238}, $\omega_n$ converges in norm to $\omega$. Therefore, $\omega$ is approximable, and hence completely continuous by Cor. \ref{lb613}.\\[-1ex]
 
 Step 2. In the following steps, we prove (1)$\Rightarrow$(2). We treat only the case in which $\MH$ is infinite-dimensional; the finite-dimensional case follows by a similar (and easier) method.
 
-Let $T\in\fk L(\MH)$ whose associated sesquilinear form $\omega$ is positive and completely continuous. In view of \eqref{eq289}, the vectors $e_1,e_2,\dots$ are unit eigenvectors of $T$. In this step, we find the unit eigenvector $e_1$ with the largest eigenvalue.
+Let $T\in\fk L(\MH)$ whose associated sesquilinear form $\omega$ is positive and completely continuous. In view of \eqref{eq289}, the vectors $e_1,e_2,\dots$ are unit eigenvectors of $T$. In this step, we find the unit eigenvector $e_1$ whose eigenvalue $\lambda_1$ has the largest absolute value $|\lambda_1|$.
 
-Since $\omega$ is completely continuous, the function $f:\ovl B_\MH(0,1)\rightarrow\Rbb_{\geq0}$ defined by
+Since $\omega$ is completely continuous, the function
 \begin{align*}
-f(\xi)=\omega(\xi|\xi)=\bk{\xi|T\xi}
+f:\ovl B_\MH(0,1)\rightarrow\Rbb\qquad f(\xi)=\omega(\xi|\xi)=\bk{\xi|T\xi}
 \end{align*}
-is weakly continuous. Since $\ovl B_\MH(0,1)$ is weakly compact (Thm. \ref{lb494}), $f$ attains its maximum at some $e_1\in\ovl B_\MH(0,1)$. Moreover, we may assume that $\Vert e_1\Vert=1$; otherwise, replacing $e_1$ with $e_1/\Vert e_1\Vert$ will enlarge the value of $f$.
+is weakly continuous. Since $\ovl B_\MH(0,1)$ is weakly compact (Thm. \ref{lb494}), $|f|$ attains its maximum at some $e_1\in\ovl B_\MH(0,1)$. Moreover, we may assume that $\Vert e_1\Vert=1$; otherwise, replacing $e_1$ with $e_1/\Vert e_1\Vert$ will enlarge the value of $|f|$.
 
-We now show that $e_1$ is an eigenvector of $T$ with eigenvalue $\lambda_1:=f(e_1)$. For each unit vector $\xi\in\MH$ we have
+We now show that $e_1$ is an eigenvector of $T$ with eigenvalue $\lambda_1:=f(e_1)$. In the case where $\lambda_1\geq0$, $f$ achieves its maximum at $\lambda_1$, and hence for each unit vector $\xi\in\MH$ we have
 \begin{align*}
 \bk{\xi|T\xi}\leq \lambda_1=\lambda_1\Vert\xi\Vert^2
 \end{align*}
-By sesquilinearity, the inequality $\bk{\xi|T\xi}\leq\lambda_1\Vert\xi\Vert^2$ holds for all $\xi\in\MH$. Therefore, the sesquilinear form $\omega_{\lambda_1-T}$ associated to $\lambda_1-T$ is positive. Moreover, since $f(e_1)=\lambda_1$, we have $\omega_{\lambda_1-T}(e_1|e_1)=0$. It follows from Cor. \ref{lb164} that for each $\xi\in\MH$ we have $\omega_{\lambda_1-T}(\xi|e_1)=0$, namely $\bk{\xi|(\lambda_1-T)e_1}=0$. Therefore $Te_1=\lambda_1e_1$.
-
-To summarize, for each positive $T\in\fk L(\MH)$ whose associated sesquilinear form is completely continuous, there exists a unit vector $e_1\in\MH$ satisfying $Te_1=\lambda_1e_1$ where $\lambda_1\in\Rbb_{\geq0}$, and
+By sesquilinearity, the inequality $\bk{\xi|T\xi}\leq\lambda_1\Vert\xi\Vert^2$ holds for all $\xi\in\MH$. Therefore, the sesquilinear form $\omega_{\lambda_1-T}$ associated to $\lambda_1-T$ is positive. Moreover, since $f(e_1)=\lambda_1$, we have
 \begin{align*}
-\bk{\xi|T\xi}\leq\lambda_1 \Vert\xi\Vert^2\qquad\text{for each }\xi\in\MH
+\omega_{\lambda_1-T}(e_1|e_1)=0
+\end{align*}
+It follows from Cor. \ref{lb164} that for each $\xi\in\MH$ we have $\omega_{\lambda_1-T}(\xi|e_1)=0$, namely $\bk{\xi|(\lambda_1-T)e_1}=0$. Therefore $Te_1=\lambda_1e_1$. In the case where $\lambda_1\leq 0$, replacing $T$ with $-T$ yields again the fact that $Te_1=\lambda_1e_1$.
+
+To summarize, for each self-adjoint $T\in\fk L(\MH)$ whose associated Hermitian form is completely continuous, there exists a unit vector $e_1\in\MH$ satisfying $Te_1=\lambda_1e_1$ where $\lambda_1\in\Rbb$, and
+\begin{align*}
+\bk{\xi|T\xi}\leq|\lambda_1|\cdot \Vert\xi\Vert^2\qquad\text{for each }\xi\in\MH
 \end{align*}
 
 Step 3. By repeating the process in Step 2, we obtain an orthonormal sesquence $(e_n)_{n\in\Zbb_+}$ in $\MH$ such that $Te_n=\lambda_ne_n$ for each $n$, that
 \begin{align}\label{eq290}
-\bk{\xi|T\xi}\leq \lambda_n\Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
+\bk{\xi|T\xi}\leq |\lambda_n|\cdot \Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
 \end{align}
 
 
@@ -17637,7 +17647,7 @@ Indeed, suppose $e_1,\dots,e_{n-1}$ have been constructed. Note that $V_{n-1}^\p
 
 Step 4. Since the infinite sequence $(e_n)$ is orthonormal, it converges weakly to $0$ by Exp. \ref{lb624}. Therefore, since $\lambda_n=\bk{e_n|Te_n}=\omega(e_n|e_n)$, and since $\omega$ is completely continuous, we obtain $\lim_n\lambda_n=0$.
 
-By \eqref{eq290} and Prop. \ref{lb238}, we have $\Vert T|_{V_n}\Vert \leq \lambda_{n+1}$, and hence $\lim_n \Vert T|_{V_n}\Vert=0$. But note that $T_n:=T-\sum_{k=1}^n\lambda_kP_{e_k}$ equals zero on $V_n^\perp$, and equals $T|_{V_n}$ on $V_n$. Therefore $T_n$ converges in norm to $T$. This proves \eqref{eq291}.
+By \eqref{eq290} and Prop. \ref{lb238}, we have $\Vert T|_{V_n}\Vert \leq |\lambda_{n+1}|$, and hence $\lim_n \Vert T|_{V_n}\Vert=0$. But note that $T_n:=T-\sum_{k=1}^n\lambda_kP_{e_k}$ equals zero on $V_n^\perp$, and equals $T|_{V_n}$ on $V_n$. Therefore $T_n$ converges in norm to $T$. This proves \eqref{eq291}.
 \end{proof}
 
 
@@ -17649,13 +17659,13 @@ This maximum-minimum method is particularly transparent, as it makes explicit ho
 \begin{align*}
 \ovl B_\MH(0,1)\rightarrow\Rbb_{\geq0}\qquad \xi\mapsto\omega(\xi|\xi)
 \end{align*}
-attains its maximum at some element $e_1$. It was precisely for the purpose of applying this maximum-minimum method that Hilbert introduced the notion of weak convergence in \cite{Hil06}, the first explicit appearance of weak/weak-* convergence in the history of mathematics. In contrast, the proof we will see in Sec. \ref{lb626}, which relies solely on linear operator methods, is considerably less straightforward.
+attains both its maximum and its minimum. It was precisely for the purpose of applying this maximum-minimum method that Hilbert introduced the notion of weak convergence in \cite{Hil06}, the first explicit appearance of weak/weak-* convergence in the history of mathematics. In contrast, the proof we will see in Sec. \ref{lb626}, which relies solely on linear operator methods, is considerably less straightforward.
 
-Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to establish the diagonalization theorem for completely continuous Hermitian forms that are not necessarily positive. This is done by constructing the sequence of unit vectors $(e_n)$ as described in Step 3 of the proof of Thm. \ref{lb625}, with the only modification that \eqref{eq290} is replaced by
-\begin{align}
-|\bk{\xi|T\xi}|\leq |\lambda_n|\cdot\Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
-\end{align}
-Although the positive case is often sufficient in applications, we will treat the more general case of normal completely-continuous operators in Sec. \ref{lb626}, since the method there does not become significantly simpler when restricted to the positive or self-adjoint setting.
+%Finally, we note that the proof in Subsec. \ref{lb627} can be readily adapted to establish the diagonalization theorem for completely continuous Hermitian forms that are not necessarily positive. This is done by constructing the orthonormal sequence  $(e_n)$ as described in Step 3 of the proof of Thm. \ref{lb625}, with the only modification that \eqref{eq290} is replaced by
+%\begin{align}
+%|\bk{\xi|T\xi}|\leq |\lambda_n|\cdot\Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
+%\end{align}
+%Although the positive case is often sufficient in applications, we will treat the more general case of normal completely-continuous operators in Sec. \ref{lb626}, since the method there does not become significantly simpler when restricted to the positive or self-adjoint setting.
 
 
 
@@ -17897,7 +17907,7 @@ Then the sequence $(\yk_n)$ has a convergent subsequence $(\yk_{n_k})$. Therefor
 A linear map $T:\MV\rightarrow\MW$ is called \textbf{approximable} \index{00@Approximable operators} if it lies in the norm-closure of the set of finite-rank operators in $\fk L(\MV,\MW)$. Equivalently, $T$ is the limit of a norm convergent net/sequence of finite-rank operators.
 \end{df}
 
-\begin{co}
+\begin{co}\label{lb648}
 Assume that $T:\MV\rightarrow\MW$ is an approximable linear map and $\MW$ is complete. Then $T$ is compact.
 \end{co}
 
@@ -17921,7 +17931,7 @@ Nevertheless, this contribution should not be underestimated. Many highly origin
 \subsubsection{Riesz's method: achieving approximate eigenvalues}
 
 
-Let $T\in\fk L(\MH)$ be completely continuous and self-adjoint. As we saw Sec. \ref{lb617}, to find the unit eigenvector $e_1$ whose eigenvalue $\lambda_1$ has the largest absolute value $|\lambda_1|$, one chooses $e_1\in\ovl B_\MH(0,1)$ maximizing the quantity $|\bk{e_1|Te_1}|$; the associated eigenvalue is then $\lambda_1=\bk{e_1|Te_1}$. In the operator setting, the natural analogue would be to choose $e_1\in\ovl B_\MH(0,1)$ maximizing $\Vert Te_1\Vert$, so that $\Vert Te_1\Vert=\Vert T\Vert$. Unfortunately, such a vector need not be an eigenvector of $T$:
+Let $T\in\fk L(\MH)$ be completely continuous and self-adjoint. As we saw in Sec. \ref{lb617}, to find the unit eigenvector $e_1$ whose eigenvalue $\lambda_1$ has the largest absolute value $|\lambda_1|$, one chooses $e_1\in\ovl B_\MH(0,1)$ maximizing the quantity $|\bk{e_1|Te_1}|$; the associated eigenvalue is then $\lambda_1=\bk{e_1|Te_1}$. In the operator setting, the natural analogue would be to choose $e_1\in\ovl B_\MH(0,1)$ maximizing $\Vert Te_1\Vert$, so that $\Vert Te_1\Vert=\Vert T\Vert$. Unfortunately, such a vector need not be an eigenvector of $T$:
 
 \begin{eg}
 Let $T$ be the diagonal matrix on $\Cbb^2$ with diagonal entries $1$ and $-1$. Then $e_1=\frac 1{\sqrt 2}(1,1)$ is a vector in $\ovl B_\MH(0,1)$, and $\Vert Te_1\Vert=1=\Vert T\Vert$. However, $e_1$ is not an eigenvector of $T$.
@@ -17941,7 +17951,7 @@ Let $A\in\fk L(\MH)$ be normal. Use the spectral theorem to prove that
 It then follows from Thm. \ref{lb312} and the above exercise that one of $\Vert A\Vert$ and $-\Vert A\Vert$ is an approximate eigenvalue $A$. Of course, Riesz's approach in \cite{Rie10} does not rely on the general spectral theorem for bounded self-adjoint operators or bounded Hermitian forms, since Hilbert's original proof of the Hilbert-Schmidt theorem did not. Riesz's proof of this fact is more elementary, though quite technical. We include his argument below, not with the expectation that the reader should master the detail; indeed, we discourage this. Rather, the purpose is to give a sense of how such a result can be obtained through elementary arguments.
 
 
-\begin{lm}
+\begin{lm}\label{lb647}
 Let $A\in\fk L(\MH)$ be self-adjoint. Then one of $\Vert A\Vert$ and $-\Vert A\Vert$ is an approximate eigenvalue $A$.
 \end{lm}
 
@@ -18009,6 +18019,123 @@ for some $\xi\in\MV$ (here we use the fact that $\lambda\neq 0$).
 
 Combining this limit with \eqref{eq294}, we obtain $\lim_n\xi_n =\xi$; in particular, $\Vert\xi\Vert=\lim_n\Vert\xi_n\Vert=1\neq0$. Using $\lim_n\xi_n=\xi$ together with \eqref{eq294}, we conclude that $A\xi=\lambda\xi$. This proves (1). 
 \end{proof}
+
+
+\subsubsection{Proof of the Hilbert-Schmidt theorem}
+
+
+We now return to the setting where $T\in\fk L(\MH)$ is completely continuous and self-adjoint, and explain how Riesz proceeded to prove the Hilbert-Schmidt theorem.
+
+Assume for simplicity that $\MH$ is infinite-dimensional. By Lem. \ref{lb647} and Thm. \ref{lb646}, $T$ has a unit eigenvector $e_1$ with eigenvalue $\lambda_1\in\{\Vert T\Vert,-\Vert T\Vert\}$. Applying the same method to $T|_{\Span(e_1)}$, to obtain the eigenvector we obtain another unit eigenvector $e_2$. Repeating this argument yields an orthonormal sequence $(e_n)$ in $\MH$ such that $Te_n=\lambda_ne_n$ where $\lambda_n\in\Rbb$, and 
+\begin{align}
+\Vert T\xi\Vert\leq |\lambda_n|\cdot\Vert\xi\Vert^2\qquad\text{for each }\xi\in V_{n-1}:=\Span\{e_1,\dots,e_{n-1}\}^\perp
+\end{align}
+Arguing as in the proof of Thm. \ref{lb625}, one shows  $\lim_n\lambda_n=0$ the norm convergence
+\begin{align*}
+T=\sum_n\lambda_n P_{e_n}
+\end{align*}
+where $P_{e_n}$ is the projection of $\MH$ onto $\Span\{e_n\}$. This finishes the proof.
+
+
+
+\subsubsection{Appendix: Hilbert-Schmidt theorem for compact normal operators}
+
+In what follows, we prove in Thm. \ref{lb652} the Hilbert-Schmidt theorem for completely continuous bounded normal operators using a slightly different argument which, while still relying essentially on Thm. \ref{lb646}, employs the spectral theorem for bounded self-adjoint operators to simplify part of the reasoning. Since in most applications it suffices to consider compact self-adjoint (rather than compact normal) operators, the reader may safely skip the proof of Thm. \ref{lb652}.
+
+
+We begin with the following easy observation:
+
+\begin{lm}\label{lb649}
+Let $T\in\fk L(\MH)$ be normal. Let $\lambda_1,\lambda_2\in\Cbb$ be distinct. Then $\Ker(\lambda_1-T)\perp\Ker(\lambda_2-T)$.
+\end{lm}
+
+\begin{proof}
+By Prop. \ref{lb317}, the projection onto $\Ker(\lambda_j-T)$ equals $\chi_{\{\lambda_j\}}(T)$. Since
+\begin{align*}
+\chi_{\{\lambda_1\}}(T)\chi_{\{\lambda_2\}}(T)=(\chi_{\{\lambda_1\}}\chi_{\{\lambda_2\}})(T)=0
+\end{align*}
+the two eigenspaces are orthogonal by Cor. \ref{lb322}.
+\end{proof}
+
+
+
+\begin{thm}[\textbf{Hilbert-Schmidt theorem}]\index{00@Hilbert-Schmidt theorem}\label{lb652}
+Let $T\in\fk L(\MH)$. Then the following conditions (1) and (2) are equivalent. 
+\begin{enumerate}
+\item[(1)] $T$ is a compact normal operator.
+\item[(2)] $\MH$ admits an orthonormal basis $(e_1,e_2,\dots)\cup(f_j)_{j\in J}$, where the countable family $(e_1,e_2,\dots)$ is possibly finite, such that:
+\begin{itemize}
+\item[(2a)] For each $n$, we have $Te_n=\lambda_n e_n$ for some $\lambda_n\in\Cbb\setminus\{0\}$, and $Tf_j=0$ for each $j$.
+\item[(2b)] If the sequence $(e_1,e_2,\dots)$ is infinite, then $\lim_{n\rightarrow\infty}\lambda_n=0$.
+\end{itemize}
+\end{enumerate}
+\end{thm}
+
+\begin{proof}[Proof of (2)$\Rightarrow$(1)]
+Assume (2). We treat the case where $(e_1,e_2,\dots)$ is infinite, as the finite case is similar and simpler. Define $T_n\in\fk L(\MH)$ by
+\begin{align*}
+T_n=\sum_{k=1}^n \lambda_k P_{e_k}
+\end{align*}
+where $P_{e_k}$ is the orthogonal projection onto $\Span\{e_k\}$. Then $T_n$ is clearly normal (since each $P_{e_k}$ is self-adjoint), and $\lim_n T_n\xi=T\xi$ for each $\xi$ in the union of $(e_1,e_2,\dots)$ and $(f_j)_{j\in J}$. Since $\sup_n\Vert T_n\Vert\leq\sup_n |\lambda_n|<+\infty$, Prop. \ref{lb73} implies that $(T_n)$ converges to $T$ in the SOT.
+
+The norm of
+\begin{align*}
+T-T_n=\sum_{k=n+1}^\infty\lambda_k P_{e_k}
+\end{align*}
+is bounded by $\sup_{k\geq n+1}|\lambda_k|$, and hence converges to zero as $n\rightarrow\infty$. We have thus proved that $(T_n)$ converges in norm to $T$. Therefore, since each $T_n$ is normal, $T$ is normal. Since $T_n$ has finite rank, $T$ is compact by Cor. \ref{lb648}. This proves (1).
+\end{proof}
+
+
+\begin{proof}[Proof of (1)$\Rightarrow$(2)]
+Step 1. Assume that $T$ is compact and normal. In this step, we show that $\Sp(T)\setminus\{0\}$ is a discrete set. 
+
+Suppose not. Then $\Sp(T)\setminus\{0\}$ has an accumulation point $\lambda$. Hence, then there exists a sequence $(\lambda_n)$ in $\Sp(T)\setminus\{0,\lambda\}$ converging to $\lambda$. By removing repetitions, we may assume that the numbers $\lambda_n$ are distinct. By Thm. \ref{lb312}, each $\lambda_n$ is an approximate eigenvalue of $T$, and hence is an eigenvalue by Thm. \ref{lb646} and the compactness of $T$. Choose a unit vector $\xi_n\in\Ker(T-\lambda_n)$. Then $(\xi_n)$ is an orthonormal sequence by Lem. \ref{lb649}, and hence converges weakly to zero by Exp. \ref{lb624}. Therefore $\lim_n T\xi_n=0$ by the complete continuity of $T$. But
+\begin{align*}
+\Vert T\xi_n\Vert=\Vert\lambda_n\xi_n\Vert=|\lambda_n|\rightarrow|\lambda|\neq0
+\end{align*}
+This gives a contradiction.\footnote{Alternatively, since $\omega_T$ is completely continuous, we have $\lambda_n=\bk{\xi_n|T\xi_n}\rightarrow0$, which is impossible.}\\[-1ex]
+
+Step 2. Since $\Sp(T)$ is a bounded set with no accumulation points outside $0$, we can write $\Sp(T)$ as $\{\kappa_1,\kappa_2,\dots\}$ where $(\kappa_n)$ is a possibly finite sequence of \textit{distinct} complex numbers converging to $0$ if the sequence is infinite.\footnote{In the original statement of the theorem, $\lambda_1,\lambda_2,\dots$ are not assumed to be distinct; hence we use $\kappa_n$ here.} Thus $1_{\Sp(T)}=\sum_n \chi_{\{\kappa_n\}}+\chi_{\{0\}}$, and hence the following identity holds in WOT
+\begin{align*}
+\idt_\MH=\sum_n P_n+Q\qquad\text{where }P_n=\chi_{\{\kappa_n\}}(T),Q=\chi_{\{0\}}(T)
+\end{align*}
+because the Borel functional calculus of $T$ is normal (cf. Thm. \ref{lb331}). 
+
+Since $P_1,P_2,\dots$ and $Q$ are mutually orthogonal, by Rem. \ref{lb650}, the sum $\sum_n P_n+Q$ converges in SOT to the projection onto $\bigoplus_n \Rng(P_n)\oplus \Rng(Q)$. Therefore, we have
+\begin{align*}
+\MH=\bigoplus_n \Rng(P_n)\oplus \Rng(Q)
+\end{align*}
+By Prop. \ref{lb317}, this relation is equivalent to the orthogonal decomposition
+\begin{align*}
+\MH=\bigoplus_n\Ker(T-\kappa_n)\oplus\Ker(T)
+\end{align*}
+Choosing an orthonormal basis for each $\Ker(T)$ and $\Ker(T-\kappa_n)$, we obtain an orthonormal basis of $\MH$. 
+
+By the following Lem. \ref{lb650}, each $\Ker(T-\kappa_n)$ is finite dimensional. Therefore, the proof of the theorem is completed by taking $(f_j)_{j\in J}$ to be an orthonormal basis of $\Ker(T)$, and letting $(e_1,e_2,\dots)$ be the union of the orthonormal bases of all $\Ker(T-\kappa_n)$.\footnote{In particular, $\lambda_n$ is the unique element in $\{\kappa_1,\kappa_2,\dots\}$ such that $e_n\in\Ker(T-\lambda_n)$.}
+\end{proof}
+
+
+\begin{lm}\label{lb651}
+Let $A\in\fk L(\MH)$ be a compact operator. Then $\Ker(\lambda-A)$ is finite dimensional for each $\lambda\in\Cbb\setminus\{0\}$. 
+\end{lm}
+
+
+\begin{proof}
+Assume that $\Ker(\lambda-A)$ is infinite dimensional. Then $\Ker(\lambda-A)$ has an (infinite) orthonormal sequence $(e_n)$, which converges weakly to $0$ by Exp. \ref{lb624}. Since $A$ is completely continuous, $\lambda e_n=Ae_n$ converges in norm to zero. This is impossible, since $\Vert\lambda e_n\Vert=|\lambda|\neq0$.
+\end{proof}
+
+\begin{exe}
+In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show that $T\geq0$ iff $\lambda_n\in\Rbb_{\geq0}$ for all $n$.
+\end{exe}
+
+
+
+\subsection{Compact triangular matrices}
+
+
+
+
+
 
 
 
