@@ -18038,96 +18038,6 @@ where $P_{e_n}$ is the projection of $\MH$ onto $\Span\{e_n\}$. This finishes th
 
 
 
-\subsubsection{Appendix: Hilbert-Schmidt theorem for compact normal operators}
-
-In what follows, we prove in Thm. \ref{lb652} the Hilbert-Schmidt theorem for completely continuous bounded normal operators using a slightly different argument which, while still relying essentially on Thm. \ref{lb646}, employs the spectral theorem for bounded self-adjoint operators to simplify part of the reasoning. Since in most applications it suffices to consider compact self-adjoint (rather than compact normal) operators, the reader may safely skip the proof of Thm. \ref{lb652}.
-
-
-We begin with the following easy observation:
-
-\begin{lm}\label{lb649}
-Let $T\in\fk L(\MH)$ be normal. Let $\lambda_1,\lambda_2\in\Cbb$ be distinct. Then $\Ker(\lambda_1-T)\perp\Ker(\lambda_2-T)$.
-\end{lm}
-
-\begin{proof}
-By Prop. \ref{lb317}, the projection onto $\Ker(\lambda_j-T)$ equals $\chi_{\{\lambda_j\}}(T)$. Since
-\begin{align*}
-\chi_{\{\lambda_1\}}(T)\chi_{\{\lambda_2\}}(T)=(\chi_{\{\lambda_1\}}\chi_{\{\lambda_2\}})(T)=0
-\end{align*}
-the two eigenspaces are orthogonal by Cor. \ref{lb322}.
-\end{proof}
-
-
-
-\begin{thm}[\textbf{Hilbert-Schmidt theorem}]\index{00@Hilbert-Schmidt theorem}\label{lb652}
-Let $T\in\fk L(\MH)$. Then the following conditions (1) and (2) are equivalent. 
-\begin{enumerate}
-\item[(1)] $T$ is a compact normal operator.
-\item[(2)] $\MH$ admits an orthonormal basis $(e_1,e_2,\dots)\cup(f_j)_{j\in J}$, where the countable family $(e_1,e_2,\dots)$ is possibly finite, such that:
-\begin{itemize}
-\item[(2a)] For each $n$, we have $Te_n=\lambda_n e_n$ for some $\lambda_n\in\Cbb\setminus\{0\}$, and $Tf_j=0$ for each $j$.
-\item[(2b)] If the sequence $(e_1,e_2,\dots)$ is infinite, then $\lim_{n\rightarrow\infty}\lambda_n=0$.
-\end{itemize}
-\end{enumerate}
-\end{thm}
-
-\begin{proof}[Proof of (2)$\Rightarrow$(1)]
-Assume (2). We treat the case where $(e_1,e_2,\dots)$ is infinite, as the finite case is similar and simpler. Define $T_n\in\fk L(\MH)$ by
-\begin{align*}
-T_n=\sum_{k=1}^n \lambda_k P_{e_k}
-\end{align*}
-where $P_{e_k}$ is the orthogonal projection onto $\Span\{e_k\}$. Then $T_n$ is clearly normal (since each $P_{e_k}$ is self-adjoint), and $\lim_n T_n\xi=T\xi$ for each $\xi$ in the union of $(e_1,e_2,\dots)$ and $(f_j)_{j\in J}$. Since $\sup_n\Vert T_n\Vert\leq\sup_n |\lambda_n|<+\infty$, Prop. \ref{lb73} implies that $(T_n)$ converges to $T$ in the SOT.
-
-The norm of
-\begin{align*}
-T-T_n=\sum_{k=n+1}^\infty\lambda_k P_{e_k}
-\end{align*}
-is bounded by $\sup_{k\geq n+1}|\lambda_k|$, and hence converges to zero as $n\rightarrow\infty$. We have thus proved that $(T_n)$ converges in norm to $T$. Therefore, since each $T_n$ is normal, $T$ is normal. Since $T_n$ has finite rank, $T$ is compact by Cor. \ref{lb648}. This proves (1).
-\end{proof}
-
-
-\begin{proof}[Proof of (1)$\Rightarrow$(2)]
-Step 1. Assume that $T$ is compact and normal. In this step, we show that $\Sp(T)\setminus\{0\}$ is a discrete set. 
-
-Suppose not. Then $\Sp(T)\setminus\{0\}$ has an accumulation point $\lambda$. Hence, then there exists a sequence $(\lambda_n)$ in $\Sp(T)\setminus\{0,\lambda\}$ converging to $\lambda$. By removing repetitions, we may assume that the numbers $\lambda_n$ are distinct. By Thm. \ref{lb312}, each $\lambda_n$ is an approximate eigenvalue of $T$, and hence is an eigenvalue by Thm. \ref{lb646} and the compactness of $T$. Choose a unit vector $\xi_n\in\Ker(T-\lambda_n)$. Then $(\xi_n)$ is an orthonormal sequence by Lem. \ref{lb649}, and hence converges weakly to zero by Exp. \ref{lb624}. Therefore $\lim_n T\xi_n=0$ by the complete continuity of $T$. But
-\begin{align*}
-\Vert T\xi_n\Vert=\Vert\lambda_n\xi_n\Vert=|\lambda_n|\rightarrow|\lambda|\neq0
-\end{align*}
-This gives a contradiction.\footnote{Alternatively, since $\omega_T$ is completely continuous, we have $\lambda_n=\bk{\xi_n|T\xi_n}\rightarrow0$, which is impossible.}\\[-1ex]
-
-Step 2. Since $\Sp(T)$ is a bounded set with no accumulation points outside $0$, we can write $\Sp(T)$ as $\{\kappa_1,\kappa_2,\dots\}$ where $(\kappa_n)$ is a possibly finite sequence of \textit{distinct} complex numbers converging to $0$ if the sequence is infinite.\footnote{In the original statement of the theorem, $\lambda_1,\lambda_2,\dots$ are not assumed to be distinct; hence we use $\kappa_n$ here.} Thus $1_{\Sp(T)}=\sum_n \chi_{\{\kappa_n\}}+\chi_{\{0\}}$, and hence the following identity holds in WOT
-\begin{align*}
-\idt_\MH=\sum_n P_n+Q\qquad\text{where }P_n=\chi_{\{\kappa_n\}}(T),Q=\chi_{\{0\}}(T)
-\end{align*}
-because the Borel functional calculus of $T$ is normal (cf. Thm. \ref{lb331}). 
-
-Since $P_1,P_2,\dots$ and $Q$ are mutually orthogonal, by Rem. \ref{lb650}, the sum $\sum_n P_n+Q$ converges in SOT to the projection onto $\bigoplus_n \Rng(P_n)\oplus \Rng(Q)$. Therefore, we have
-\begin{align*}
-\MH=\bigoplus_n \Rng(P_n)\oplus \Rng(Q)
-\end{align*}
-By Prop. \ref{lb317}, this relation is equivalent to the orthogonal decomposition
-\begin{align*}
-\MH=\bigoplus_n\Ker(T-\kappa_n)\oplus\Ker(T)
-\end{align*}
-Choosing an orthonormal basis for each $\Ker(T)$ and $\Ker(T-\kappa_n)$, we obtain an orthonormal basis of $\MH$. 
-
-By the following Lem. \ref{lb650}, each $\Ker(T-\kappa_n)$ is finite dimensional. Therefore, the proof of the theorem is completed by taking $(f_j)_{j\in J}$ to be an orthonormal basis of $\Ker(T)$, and letting $(e_1,e_2,\dots)$ be the union of the orthonormal bases of all $\Ker(T-\kappa_n)$.\footnote{In particular, $\lambda_n$ is the unique element in $\{\kappa_1,\kappa_2,\dots\}$ such that $e_n\in\Ker(T-\lambda_n)$.}
-\end{proof}
-
-
-\begin{lm}\label{lb651}
-Let $A\in\fk L(\MH)$ be a compact operator. Then $\Ker(\lambda-A)$ is finite dimensional for each $\lambda\in\Cbb\setminus\{0\}$. 
-\end{lm}
-
-
-\begin{proof}
-Assume that $\Ker(\lambda-A)$ is infinite dimensional. Then $\Ker(\lambda-A)$ has an (infinite) orthonormal sequence $(e_n)$, which converges weakly to $0$ by Exp. \ref{lb624}. Since $A$ is completely continuous, $\lambda e_n=Ae_n$ converges in norm to zero. This is impossible, since $\Vert\lambda e_n\Vert=|\lambda|\neq0$.
-\end{proof}
-
-\begin{exe}
-In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show that $T\geq0$ iff $\lambda_n\in\Rbb_{\geq0}$ for all $n$.
-\end{exe}
-
 
 
 \subsection{Compact triangular matrices}
@@ -18220,6 +18130,106 @@ Assume that $K:X\times X\rightarrow\Cbb$ is continuous outside the diagonal $\{(
 
 2. Adapt the argument in Part 1 and use Schur's test (cf. Pb. \ref{lb621}).
 \end{proof}
+
+
+
+\begin{subappendices}
+
+
+\subsection{Hilbert-Schmidt theorem for compact normal operators}
+
+%In what follows, we prove in Thm. \ref{lb652} the Hilbert-Schmidt theorem for completely continuous bounded normal operators using a slightly different argument which, while still relying essentially on Thm. \ref{lb646}, employs the spectral theorem for bounded self-adjoint operators to simplify part of the reasoning. Since in most applications it suffices to consider compact self-adjoint (rather than compact normal) operators, the reader may safely skip the proof of Thm. \ref{lb652}.
+
+Let $\MH$ be a Hilbert space. In this appendix section, we extend the Hilbert-Schmidt theorem to compact normal operators on $\MH$, primarily for the sake of completeness. Since in most applications it suffices to consider compact self-adjoint (rather than compact normal) operators, the reader may safely skip the proof of Thm. \ref{lb652}.
+
+
+We begin with the following easy observation:
+
+\begin{lm}\label{lb649}
+Let $T\in\fk L(\MH)$ be normal. Let $\lambda_1,\lambda_2\in\Cbb$ be distinct. Then $\Ker(\lambda_1-T)\perp\Ker(\lambda_2-T)$.
+\end{lm}
+
+\begin{proof}
+By Prop. \ref{lb317}, the projection onto $\Ker(\lambda_j-T)$ equals $\chi_{\{\lambda_j\}}(T)$. Since
+\begin{align*}
+\chi_{\{\lambda_1\}}(T)\chi_{\{\lambda_2\}}(T)=(\chi_{\{\lambda_1\}}\chi_{\{\lambda_2\}})(T)=0
+\end{align*}
+the two eigenspaces are orthogonal by Cor. \ref{lb322}.
+\end{proof}
+
+
+
+\begin{thm}[\textbf{Hilbert-Schmidt theorem}]\index{00@Hilbert-Schmidt theorem}\label{lb652}
+Let $T\in\fk L(\MH)$. Then the following conditions (1) and (2) are equivalent. 
+\begin{enumerate}
+\item[(1)] $T$ is a compact normal operator.
+\item[(2)] $\MH$ admits an orthonormal basis $(e_1,e_2,\dots)\cup(f_j)_{j\in J}$, where the countable family $(e_1,e_2,\dots)$ is possibly finite, such that:
+\begin{itemize}
+\item[(2a)] For each $n$, we have $Te_n=\lambda_n e_n$ for some $\lambda_n\in\Cbb\setminus\{0\}$, and $Tf_j=0$ for each $j$.
+\item[(2b)] If the sequence $(e_1,e_2,\dots)$ is infinite, then $\lim_{n\rightarrow\infty}\lambda_n=0$.
+\end{itemize}
+\end{enumerate}
+\end{thm}
+
+\begin{proof}[Proof of (2)$\Rightarrow$(1)]
+Assume (2). We treat the case where $(e_1,e_2,\dots)$ is infinite, as the finite case is similar and simpler. Define $T_n\in\fk L(\MH)$ by
+\begin{align*}
+T_n=\sum_{k=1}^n \lambda_k P_{e_k}
+\end{align*}
+where $P_{e_k}$ is the orthogonal projection onto $\Span\{e_k\}$. Then $T_n$ is clearly normal (since each $P_{e_k}$ is self-adjoint), and $\lim_n T_n\xi=T\xi$ for each $\xi$ in the union of $(e_1,e_2,\dots)$ and $(f_j)_{j\in J}$. Since $\sup_n\Vert T_n\Vert\leq\sup_n |\lambda_n|<+\infty$, Prop. \ref{lb73} implies that $(T_n)$ converges to $T$ in the SOT.
+
+The norm of
+\begin{align*}
+T-T_n=\sum_{k=n+1}^\infty\lambda_k P_{e_k}
+\end{align*}
+is bounded by $\sup_{k\geq n+1}|\lambda_k|$, and hence converges to zero as $n\rightarrow\infty$. We have thus proved that $(T_n)$ converges in norm to $T$. Therefore, since each $T_n$ is normal, $T$ is normal. Since $T_n$ has finite rank, $T$ is compact by Cor. \ref{lb648}. This proves (1).
+\end{proof}
+
+
+\begin{proof}[Proof of (1)$\Rightarrow$(2)]
+Step 1. Assume that $T$ is compact and normal. In this step, we show that $\Sp(T)\setminus\{0\}$ is a discrete set. 
+
+Suppose not. Then $\Sp(T)\setminus\{0\}$ has an accumulation point $\lambda$. Hence, then there exists a sequence $(\lambda_n)$ in $\Sp(T)\setminus\{0,\lambda\}$ converging to $\lambda$. By removing repetitions, we may assume that the numbers $\lambda_n$ are distinct. By Thm. \ref{lb312}, each $\lambda_n$ is an approximate eigenvalue of $T$, and hence is an eigenvalue by Thm. \ref{lb646} and the compactness of $T$. Choose a unit vector $\xi_n\in\Ker(T-\lambda_n)$. Then $(\xi_n)$ is an orthonormal sequence by Lem. \ref{lb649}, and hence converges weakly to zero by Exp. \ref{lb624}. Therefore $\lim_n T\xi_n=0$ by the complete continuity of $T$. But
+\begin{align*}
+\Vert T\xi_n\Vert=\Vert\lambda_n\xi_n\Vert=|\lambda_n|\rightarrow|\lambda|\neq0
+\end{align*}
+This gives a contradiction.\footnote{Alternatively, since $\omega_T$ is completely continuous, we have $\lambda_n=\bk{\xi_n|T\xi_n}\rightarrow0$, which is impossible.}\\[-1ex]
+
+Step 2. Since $\Sp(T)$ is a bounded set with no accumulation points outside $0$, we can write $\Sp(T)$ as $\{\kappa_1,\kappa_2,\dots\}$ where $(\kappa_n)$ is a possibly finite sequence of \textit{distinct} complex numbers converging to $0$ if the sequence is infinite.\footnote{In the original statement of the theorem, $\lambda_1,\lambda_2,\dots$ are not assumed to be distinct; hence we use $\kappa_n$ here.} Thus $1_{\Sp(T)}=\sum_n \chi_{\{\kappa_n\}}+\chi_{\{0\}}$, and hence the following identity holds in WOT
+\begin{align*}
+\idt_\MH=\sum_n P_n+Q\qquad\text{where }P_n=\chi_{\{\kappa_n\}}(T),Q=\chi_{\{0\}}(T)
+\end{align*}
+because the Borel functional calculus of $T$ is normal (cf. Thm. \ref{lb331}). 
+
+Since $P_1,P_2,\dots$ and $Q$ are mutually orthogonal, by Rem. \ref{lb650}, the sum $\sum_n P_n+Q$ converges in SOT to the projection onto $\bigoplus_n \Rng(P_n)\oplus \Rng(Q)$. Therefore, we have
+\begin{align*}
+\MH=\bigoplus_n \Rng(P_n)\oplus \Rng(Q)
+\end{align*}
+By Prop. \ref{lb317}, this relation is equivalent to the orthogonal decomposition
+\begin{align*}
+\MH=\bigoplus_n\Ker(T-\kappa_n)\oplus\Ker(T)
+\end{align*}
+Choosing an orthonormal basis for each $\Ker(T)$ and $\Ker(T-\kappa_n)$, we obtain an orthonormal basis of $\MH$. 
+
+By the following Lem. \ref{lb650}, each $\Ker(T-\kappa_n)$ is finite dimensional. Therefore, the proof of the theorem is completed by taking $(f_j)_{j\in J}$ to be an orthonormal basis of $\Ker(T)$, and letting $(e_1,e_2,\dots)$ be the union of the orthonormal bases of all $\Ker(T-\kappa_n)$.\footnote{In particular, $\lambda_n$ is the unique element in $\{\kappa_1,\kappa_2,\dots\}$ such that $e_n\in\Ker(T-\lambda_n)$.}
+\end{proof}
+
+
+\begin{lm}\label{lb651}
+Let $A\in\fk L(\MH)$ be a compact operator. Then $\Ker(\lambda-A)$ is finite dimensional for each $\lambda\in\Cbb\setminus\{0\}$. 
+\end{lm}
+
+
+\begin{proof}
+Assume that $\Ker(\lambda-A)$ is infinite dimensional. Then $\Ker(\lambda-A)$ has an (infinite) orthonormal sequence $(e_n)$, which converges weakly to $0$ by Exp. \ref{lb624}. Since $A$ is completely continuous, $\lambda e_n=Ae_n$ converges in norm to zero. This is impossible, since $\Vert\lambda e_n\Vert=|\lambda|\neq0$.
+\end{proof}
+
+\begin{exe}
+In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show that $T\geq0$ iff $\lambda_n\in\Rbb_{\geq0}$ for all $n$.
+\end{exe}
+
+
+\end{subappendices}
 
 
 
