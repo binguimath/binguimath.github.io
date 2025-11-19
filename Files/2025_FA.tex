@@ -18041,8 +18041,308 @@ where $P_{e_n}$ is the projection of $\MH$ onto $\Span\{e_n\}$. This finishes th
 
 
 
-
 \subsection{Compact triangular matrices}
+
+
+
+Let $\MH$ be a Hilbert space. Let $\MV$ be a normed $\Fbb$-vector space.
+
+
+The goal of this section is to discuss several basic features of compact operators in preparation for the proof of the Fredholm alternative in Sec. \ref{lb629}. We begin with the following observation.
+
+
+\subsubsection{An elementary example}
+
+\begin{eg}\label{lb653}
+Let $(e_n)_{n\in\Zbb_+}$ be an orthonormal sequence in $\MH$. Let $T:\MH\rightarrow\MH$ be a compact operator. Then for sequences $(m_k)_{k\in\Zbb_+}$ and $(n_k)_{k\in\Zbb_+}$ in $\Zbb_+$ converging to $\infty$, we have
+\begin{align}\label{eq301}
+\lim_{k\rightarrow\infty}\bk{e_{m_k}|Te_{n_k}}=0
+\end{align}
+This is because $(e_{m_k})_{k\in\Zbb_+}$ and $(e_{n_k})_{k\in\Zbb_+}$ converge weakly to $0$ (cf. Exp. \ref{lb624}), and the sesquilinear form $\omega_T$ is completely continuous.\footnote{In fact, it suffices to assume that one of $(m_k)_{k\in\Zbb_+}$ and $(n_k)_{k\in\Zbb_+}$, say $(n_k)_{k\in\Zbb_+}$, converges to $\infty$. Then $\lim_k\Vert Te_{n_k}\Vert=0$ by the complete continuity of $T$. Eq. \eqref{eq301} then follows from the inequality $|\bk{e_{m_k}|Te_{n_k}}|\leq\Vert Te_{n_k}\Vert$.}
+
+The matrix interpretation of this example is as follows. Let $A\in\Cbb^{\Zbb_+\times\Zbb_+}$ be the matrix representation of a compact operator on $l^2(\Zbb_+)$. Then
+\begin{align*}
+\lim_{k\rightarrow\infty}A(m_k,n_k)=0
+\end{align*}
+In particular, the diagonal entries of $A$ converge to $0$. \hqed
+\end{eg}
+
+We will be primarily interested in Exp. \ref{lb653} in the case where $A$ is an upper or lower triangular matrix, for two reasons. First, this special case implies that a compact operator $T\in\fk L(\MH)$ cannot have a Jordan block of infinite size, and that it cannot have infinite-dimensional eigenspaces corresponding to nonzero eigenvalues. Second, the triangular-matrix setting admits a natural generalization to compact operators on normed vector spaces. 
+
+To motivate this generalization, we begin the following subsection by presenting an alternative proof of Exp. \ref{lb653} for upper triangular matrices using operator language rather than completely continuous sesquilinear forms.
+
+
+
+\subsubsection{Compact upper triangular matrices}
+
+\begin{eg}\label{lb651}
+Let $A\in\Cbb^{\Zbb_+\times\Zbb_+}$ be the matrix representation of a compact operator on $l^2(\Zbb_+)$. Assume that $A$ is \textbf{upper triangular} with diagonal sequence $(\lambda_n)_{n\in\Zbb_+}$ in $\Cbb$, i.e., $A$ is of the form
+\begin{align*}
+A=\begin{pmatrix}
+\lambda_1&?&?&?&\cdots\\
+0&\lambda_2&?&?&\cdots\\
+0&0&\lambda_3&?&\cdots\\
+0&0&0&\lambda_4&\cdots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\end{align*}
+where each $?$ denotes a scalar. Then $\lim_n\lambda_n=0$.
+\end{eg}
+
+In the following proofs, we let $A$ be the matrix representation of $T\in\fk L(l^2(\Zbb_+))$ under the basis $(e_n)_{n\in\Zbb_+}$ where $e_n=\chi_{\{n\}}$. Then
+\begin{align}\label{eq295}
+Te_n=\lambda_ne_n+?e_{n-1}+\cdots+?e_1
+\end{align}
+
+
+\begin{proof}[First proof]
+Since $(e_n)$ converges weakly to zero and $T$ is completely continuous, we have $\Vert Te_n\Vert\rightarrow 0$. Since
+\begin{align*}
+\Vert Te_n\Vert^2=|\lambda_n|^2+|?|^2+\cdots+|?|^2\geq|\lambda_n|^2
+\end{align*}
+we must have $\lambda_n\rightarrow0$.
+\end{proof}
+
+\begin{proof}[Second proof]
+By \eqref{eq295}, for $m< n$ in $\Zbb_+$ we have
+\begin{align}\label{eq297}
+\Vert Te_n-Te_m\Vert^2=\Vert\lambda_ne_n+?e_{n-1}+\cdots+?e_1\Vert^2\geq\Vert\lambda_n\Vert^2
+\end{align}
+If $\lambda_n\nrightarrow0$, then there exists $\delta\in\Rbb_{>0}$ and a subsequence $(\lambda_{n_k})$ satisfying $|\lambda_{n_k}|\geq\delta$ for each $k$. Therefore
+\begin{align*}
+\Vert Te_{n_k}-Te_{n_l}\Vert^2\geq \delta^2
+\end{align*}
+for each $l<k$ in $\Zbb_+$. Thus $(Te_{n_k})_{k\in\Zbb_+}$ has no convergent subsequence, contradicting the compactness of $T$.
+\end{proof}
+
+
+We now formulate and generalize Exp.~\ref{lb651} in a basis-independent way.
+
+\begin{thm}\label{lb654}
+Let $T:\MV\rightarrow\MV$ be a compact operator. Suppose there exists a strictly increasing sequence
+\begin{align*}
+V_0\subsetneq V_1\subsetneq V_2\subsetneq V_3\subsetneq\cdots
+\end{align*}
+of closed linear subspaces of $\MV$, together with a sequence $(\lambda_n)$ in $\Fbb$, such that
+\begin{align*}
+(T-\lambda_n)V_n\subset V_{n-1}\qquad\text{for each }n\in\Zbb_+
+\end{align*}
+Then $\dps\lim_{n\rightarrow\infty}\lambda_n=0$.
+\end{thm}
+
+In the case where $\MV$ is a Hilbert space, the operator $T$, when restricted to $\ovl{\bigcup_n V_n}$, may be viewed as a block upper-triangular matrix with respect to the decomposition
+\begin{align*}
+V_0\oplus (V_1\ominus V_0)\oplus (V_2\ominus V_1)\oplus\cdots
+\end{align*}
+Thus, the following proofs are motivated by the those of Exp. \ref{lb651}.
+
+
+\begin{proof}[\textbf{First proof for Hilbert spaces}]
+Suppose $\MV$ is a Hilbert space. For each $n\in\Zbb_+$, choose a unit vector $e_n\in V_n$ orthogonal to $V_{n-1}$; such $e_n$ exists by the closedness of $V_{n-1}$ and $V_n$. Then
+\begin{align}\label{eq296}
+Te_n=\lambda_ne_n+\text{ a vector in }V_{n-1}
+\end{align}
+and hence $\Vert Te_n\Vert^2\geq|\lambda_n|^2$ by the Pythagorean identity. Since the sequence $(e_n)$ is orthonormal, it converges weakly to $0$ by Exp. \ref{lb624}. It follows from the complete continuity that $\Vert Te_n\Vert^2\rightarrow0$, and hence $\lambda_n\rightarrow0$.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Second proof for Hilbert space}]
+Suppose $\MV$ is a Hilbert space. Let $(e_n)$ be as in the first proof. Then for each $m<n$ in $\Zbb_+$, applying \eqref{eq296} to $Te_m$ gives
+\begin{align*}
+Te_m\in V_m\subset V_{n-1}
+\end{align*}
+Combining this relation with \eqref{eq296}, we obtain
+\begin{align}\label{eq299}
+Te_n-Te_m=\lambda_ne_n+\text{ a vector in }V_{n-1}
+\end{align}
+Therefore, by the Pythagorean identity, we have
+\begin{align}\label{eq298}
+\Vert Te_n-Te_m\Vert^2\geq\Vert\lambda_n\Vert^2  
+\end{align}
+which is analogous to \eqref{eq297}. Arguing as in the second proof of Exp. \ref{lb651}, we conclude that $\lambda_n\rightarrow0$.
+\end{proof}
+
+
+To generalize the above second proof to compact operators on normed vector spaces, we must select vectors $e_n\in V_n$ for which an inequality analogous to \eqref{eq298} holds. To achieve this, we first need an appropriate analogue of the notion of a vector orthogonal to a linear subspace:
+
+\begin{df}
+Let $V$ be a normed $\Fbb$-vector space with linear subspace $U$. Let $\eps\in\Rbb_{\geq0}$. A vector $\xi\in V$ is called \textbf{$\pmb\eps$-orthogonal} to $U$ \index{00@$\eps$-orthogonal} if
+\begin{align*}
+\Vert\xi-\eta\Vert\geq(1-\eps)\Vert\xi\Vert\qquad\text{for each }\eta\in\MU
+\end{align*}
+\end{df}
+
+
+In the case where $V$ is a Hilbert space with closed linear subspace $U$, $0$-orthogonality coincides with ordinary orthogonality.
+
+\begin{thm}[\textbf{Riesz lemma}]\index{00@Riesz lemma}\label{lb655}
+Let $\MU\subsetneq\MV$ be a proper closed linear subspace of $\MV$. Then for each $0<\eps<1$, there exists a non-zero $\xi\in\MV$ that is $\eps$-orthogonal to $\MU$.
+\end{thm}
+
+
+
+
+\begin{proof}
+Choose $\psi\in\MV\setminus\MU$. Since $\MU$ is closed, the distance $r=\dist(\psi,\MU)$ is strictly positive. Choose $\upsilon\in\MU$ such that $\xi:=\psi-\upsilon$ satisfies $\Vert\xi\Vert\leq r/(1-\eps)$. Then for each $\eta\in\MU$, we have
+\begin{align*}
+\Vert\xi-\eta\Vert=\Vert\psi-\upsilon-\eta\Vert\geq \dist(\psi,\MU)=r\geq(1-\eps)\Vert\xi\Vert
+\end{align*}
+\end{proof}
+
+
+\begin{proof}[\textbf{Third proof of Thm. \ref{lb654}}]
+Choose any $0<\eps<1$, for example $\eps=\frac 12$. Since each $V_{n-1}$ is closed in $V_n$, by the Riesz lemma (Thm. \ref{lb655}), there exists a unit vector $e_n\in V_n\setminus V_{n-1}$ satisfying
+\begin{align*}
+\Vert e_n-\text{ any vector in $V_{n-1}$}\Vert\geq 1-\eps
+\end{align*}
+For each $m<n$, since \eqref{eq299} holds, the above inequality implies
+\begin{align*}
+\Vert Te_n-Te_m\Vert\geq |\lambda_n|(1-\eps)
+\end{align*}
+Arguing as in the second proof of Exp. \ref{lb651}, we conclude that $\lambda_n\rightarrow0$.
+\end{proof}
+
+
+\subsubsection{Compact lower triangular matrices}
+
+We now discuss the analogous result for lower triangular matrices. 
+
+\begin{eg}
+Suppose that $T\in\fk L(l^2(\Zbb_+))$ is a compact operator whose matrix representation $B$ is \textbf{lower triangular} with diagonal sequence $(\lambda_n)$, that is,
+\begin{align*}
+B=\begin{pmatrix}
+\lambda_1&0&0&0&\cdots\\
+?&\lambda_2&0&0&\cdots\\
+?&?&\lambda_3&0&\cdots\\
+?&?&?&\lambda_4&\cdots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\end{align*}
+Then for each $m>n$ (rather than $m<n$) in $\Zbb_+$, we have
+\begin{align}
+\Vert Te_n-Te_m\Vert^2=\Vert\lambda_ne_n+?e_{n+1}+?e_{n+2}+\cdots\Vert^2\geq\Vert\lambda_n\Vert^2
+\end{align}
+Thus one can repeat the argument from the second proof of Exp. \ref{lb651} to conclude that $\lambda_n\rightarrow0$. This motivates the proof of the following theorem.
+\end{eg}
+
+
+\begin{thm}\label{lb656}
+Let $T:\MV\rightarrow\MV$ be a compact operator. Suppose there exists a strictly decreasing sequence
+\begin{align*}
+V_1\supsetneq V_2\supsetneq V_3\supsetneq V_4\supsetneq\cdots
+\end{align*}
+of closed linear subspaces of $\MV$, together with a sequence $(\lambda_n)$ in $\Fbb$, such that
+\begin{align*}
+(T-\lambda_n)V_n\subset V_{n+1}\qquad\text{for each }n\in\Zbb_+
+\end{align*}
+Then $\dps\lim_{n\rightarrow\infty}\lambda_n=0$.
+\end{thm}
+
+In the case where $\MV$ is a Hilbert space, $T|_{V_1}$ may be viewed as a block lower-triangular matrix with respect to the decomposition
+\begin{align*}
+(V_1\ominus V_2)\oplus(V_2\ominus V_3)\oplus\cdots\oplus V_\infty\quad\text{where }V_\infty=\bigcap_n V_n
+\end{align*}
+
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb656}}]
+Choose any $0<\eps<1$, for example $\eps=\frac 12$. Since each $V_{n+1}$ is closed in $V_n$, by the Riesz lemma (Thm. \ref{lb655}), there exists a unit vector $e_n\in V_n\setminus V_{n+1}$ satisfying
+\begin{align*}
+\Vert e_n-\text{ any vector in $V_{n+1}$}\Vert\geq 1-\eps
+\end{align*}
+
+By assumption, we have
+\begin{align}\label{eq300}
+Te_n=\lambda_ne_n+\text{ a vector in }V_{n+1}
+\end{align}
+For each $n<m$, applying \eqref{eq300} to $Te_m$ gives
+\begin{align*}
+Te_m\in V_m\subset V_{n+1}
+\end{align*}
+Combining this relation with \eqref{eq300}, we get
+\begin{align*}
+Te_n-Te_m=\lambda_ne_n+\text{ a vector in }V_{n+1}
+\end{align*}
+This relation, together with the above inequality, implies
+\begin{align*}
+\Vert Te_n-Te_m\Vert\geq |\lambda_n|(1-\eps)
+\end{align*}
+Arguing as in the second proof of Exp. \ref{lb651}, we conclude that $\lambda_n\rightarrow0$.
+\end{proof}
+
+
+\begin{rem}
+Assume that $\MV$ is a Hilbert space. Then Thm. \ref{lb656} can be proved using completely continuous operators, in a manner similar to the first proof of Thm. \ref{lb654}. We leave the details to the reader. 
+
+Alternatively, one may prove Thm. \ref{lb656} by applying Thm. \ref{lb654} to the adjoint operator $T^*$ (which is compact since $\omega_{T^*}$ is completely continuous by Prop. \ref{lb636}) and the increasing chain of subspaces $V_1^\perp\subsetneq V_2^\perp\subsetneq\cdots$.  \hqed
+\end{rem}
+
+
+\subsubsection{Conclusion}
+
+We conclude this section by restating Thm. \ref{lb654} and \ref{lb656} in a form that is more convenient for certain applications. In particular, we weaken the assumption that the chain of subspaces must be strictly increasing (or strictly decreasing).
+
+\begin{co}\label{lb657}
+Let $T:\MV\rightarrow\MV$ be a compact operator. Suppose that 
+\begin{align*}
+V_0\subset V_1\subset V_2\subset V_3\subset\cdots
+\end{align*}
+is a decreasing sequence of closed linear subspaces of $\MV$ satisfying
+\begin{align*}
+(T-\lambda_n)V_n\subset V_{n-1}\qquad\text{for each }n\in\Zbb_+
+\end{align*}
+where $\lambda_n\in\Fbb$. Suppose that
+\begin{align*}
+\liminf_{n\rightarrow\infty}|\lambda_n|>0
+\end{align*}
+Then there exists $n\in\Nbb$ such that $V_n=V_{n+1}=V_{n+2}=\cdots$.
+\end{co}
+
+\begin{proof}
+Suppose that the chain is not eventually stable, that is, for each $n$ there exists $m>n$ such that $V_n\subsetneq V_m$. Then there exists a strictly increasing sequence $(n_k)_{k\in\Nbb}$ in $\Nbb$ such that \footnote{Choose $n_0=0$. Having chosen $n_k$, let $n_{k+1}$ be the smallest integer $>n_k$ with $V_{n_k}\subsetneq V_{n_{k+1}}$.}
+\begin{align*}
+V_{n_0}\subsetneq V_{n_1}\subsetneq V_{n_2}\subsetneq V_{n_3}\subsetneq\cdots
+\end{align*}
+and that
+\begin{align*}
+(T-\lambda_{n_k})V_{n_k}\subset V_{n_{k-1}}\qquad\text{for each }k\in\Zbb_+
+\end{align*}
+Then $\lim_k\lambda_{n_k}=0$ by Thm. \ref{lb654}, contradicting $\liminf_{n\rightarrow\infty}|\lambda_n|>0$.
+\end{proof}
+
+
+\begin{co}\label{lb658}
+Let $T:\MV\rightarrow\MV$ be a compact operator. Suppose that 
+\begin{align*}
+V_1\supset V_2\supset V_3\supset V_4\supset\cdots
+\end{align*}
+is an increasing sequence of closed linear subspaces of $\MV$ satisfying
+\begin{align*}
+(T-\lambda_n)V_n\subset V_{n+1}\qquad\text{for each }n\in\Zbb_+
+\end{align*}
+where $\lambda_n\in\Fbb$. Suppose that
+\begin{align*}
+\liminf_{n\rightarrow\infty}|\lambda_n|>0
+\end{align*}
+Then there exists $n\in\Zbb_+$ such that $V_n=V_{n+1}=V_{n+2}=\cdots$.
+\end{co}
+
+\begin{proof}
+This follows from Thm. \ref{lb656} in the same way that Cor. \ref{lb657} follows from Thm. \ref{lb654}.
+\end{proof}
+
+
+
+\subsection{Application of compact triangular matrices: Fredholm alternative}\label{lb629}
+
+
+\begin{df}
+A complete normed $\Fbb$-vector space is called a \textbf{Banach $\pmb\Fbb$-space} (or \textbf{Banach space} over $\Fbb$). \index{00@Banach space} A \textbf{real Banach space} and a \textbf{complex Banach space} mean a Banach space over $\Rbb$ and $\Cbb$, respectively.
+\end{df}
+
+Fix a Banach space $\MV$ over $\Fbb\in\{\Rbb,\Cbb\}$. In this section we prove the Fredholm alternative for compact operators on $\MV$. When applied to the integral operator on $C(\partial\Omega)$ arising from the method of double layer potentials, this result yields the solvability of the Dirichlet problem on $\Omega\subset\Rbb^N$, as discussed in Subsec. \ref{lb602}-\ref{lb604}. We refer the reader to those subsections for a detailed account of the history of the Fredholm alternative. Here we make only one comment on the choice of function spaces.
+
 
 
 
@@ -18054,10 +18354,6 @@ where $P_{e_n}$ is the projection of $\MH$ onto $\Span\{e_n\}$. This finishes th
 
 
 \hypertarget{current}{}
-
-\subsection{Fredholm alternative for compact operators on Banach spaces}\label{lb629}
-
-
 
 \subsection{Problems}
 
@@ -18213,18 +18509,11 @@ By Prop. \ref{lb317}, this relation is equivalent to the orthogonal decompositio
 \end{align*}
 Choosing an orthonormal basis for each $\Ker(T)$ and $\Ker(T-\kappa_n)$, we obtain an orthonormal basis of $\MH$. 
 
-By the following Lem. \ref{lb650}, each $\Ker(T-\kappa_n)$ is finite dimensional. Therefore, the proof of the theorem is completed by taking $(f_j)_{j\in J}$ to be an orthonormal basis of $\Ker(T)$, and letting $(e_1,e_2,\dots)$ be the union of the orthonormal bases of all $\Ker(T-\kappa_n)$.\footnote{In particular, $\lambda_n$ is the unique element in $\{\kappa_1,\kappa_2,\dots\}$ such that $e_n\in\Ker(T-\lambda_n)$.}
+By Exp. \ref{lb653}, each $\Ker(T-\kappa_n)$ is finite dimensional. Therefore, the proof of the theorem is completed by taking $(f_j)_{j\in J}$ to be an orthonormal basis of $\Ker(T)$, and letting $(e_1,e_2,\dots)$ be the union of the orthonormal bases of all $\Ker(T-\kappa_n)$.\footnote{In particular, $\lambda_n$ is the unique element in $\{\kappa_1,\kappa_2,\dots\}$ such that $e_n\in\Ker(T-\lambda_n)$.}
 \end{proof}
 
 
-\begin{lm}\label{lb651}
-Let $A\in\fk L(\MH)$ be a compact operator. Then $\Ker(\lambda-A)$ is finite dimensional for each $\lambda\in\Cbb\setminus\{0\}$. 
-\end{lm}
 
-
-\begin{proof}
-Assume that $\Ker(\lambda-A)$ is infinite dimensional. Then $\Ker(\lambda-A)$ has an (infinite) orthonormal sequence $(e_n)$, which converges weakly to $0$ by Exp. \ref{lb624}. Since $A$ is completely continuous, $\lambda e_n=Ae_n$ converges in norm to zero. This is impossible, since $\Vert\lambda e_n\Vert=|\lambda|\neq0$.
-\end{proof}
 
 \begin{exe}
 In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show that $T\geq0$ iff $\lambda_n\in\Rbb_{\geq0}$ for all $n$.
