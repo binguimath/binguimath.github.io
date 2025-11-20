@@ -4133,7 +4133,7 @@ The more appropriate viewpoint is to regard the Lebesgue integral as arising fro
 \subsection{Bounded multilinear maps}
 
 
-\subsubsection{Seminorms, norms, and normed vector spaces}
+\subsubsection{Seminorms, norms, normed vector spaces, and Banach spaces}
 
 \begin{df}\label{lb45}
 If $V$ is an $\Fbb$-vector space, a function $\Vert\cdot\Vert:V\rightarrow\Rbb_{\geq0}$ is called a \textbf{seminorm} \index{00@Seminorm} if
@@ -4202,7 +4202,9 @@ If $u,v\in V$ and $a,b\in\Fbb$, then
 \end{align*}
 \end{proof}
 
-
+\begin{df}
+A complete normed $\Fbb$-vector space is called a \textbf{Banach $\pmb\Fbb$-space} (or \textbf{Banach space} over $\Fbb$). \index{00@Banach space} A \textbf{real Banach space} and a \textbf{complex Banach space} mean a Banach space over $\Rbb$ and $\Cbb$, respectively.
+\end{df}
 
 
 
@@ -14920,7 +14922,7 @@ Let $I\subset\Rbb$ be a proper interval. Let $\xi,\eta:I\rightarrow\MH$ be funct
 \end{exe}
 
 
-\hypertarget{proofread}{}
+
 
 \subsubsection{From unitary representations to self-adjoint operators: the general case}\label{lb504}
 
@@ -14948,7 +14950,7 @@ Let $T_1,T_2$ be self-adjoint operators on $\MH$. Then the following are equival
 \begin{enumerate}[label=(\arabic*)]
 \item $T_1$ and $T_2$ commute strongly.
 \item $e^{\im tT_1}T_2=T_2e^{\im tT_1}$ for each $t\in\Rbb$.
-\item $e^{\im tT_2}T_1=T_1e^{\im tT_2}$ for each $t\in\Rbb$.
+\item $e^{\im sT_2}T_1=T_1e^{\im sT_2}$ for each $s\in\Rbb$.
 \item $e^{\im tT_1}$ commutes with $e^{\im sT_2}$ for each $t,s\in\Rbb$.
 \end{enumerate}
 \end{thm}
@@ -14969,7 +14971,7 @@ By Lem. \ref{lb500} and \ref{lb497}, it remains to prove that the direction (1)$
 \begin{align*}
 U_j:\Rbb\rightarrow\fk L(\MH)\qquad t\mapsto U(te_j)
 \end{align*}
-is a strongly continuous unitary representation of $\Rbb$ on $\Mbb$, and hence can be written as $U_j=e^{\im tT_j}$ for some self-adjoint operator $T_j$ due to Thm. \ref{lb502}. Since
+is a strongly continuous unitary representation of $\Rbb$ on $\Mbb$, and hence can be written as $U_j(t)=e^{\im tT_j}$ for some self-adjoint operator $T_j$ due to Thm. \ref{lb502}. Since
 \begin{align*}
 e^{\im t_jT_j}e^{\im t_kT_k}=U_j(t_j)U_k(t_k)=U(t_je_j)U(t_ke_k)=U(t_je_j+t_ke_k)
 \end{align*}
@@ -15023,7 +15025,7 @@ For an LCH group $G$, we denote the group operation by addition, so that the pro
 
 There exists a unique (up to a positive scalar multiple) Borel measure $\mu$ on $G$ satisfying $\mu(E+x)=\mu(E)$ for all Borel $E\subset G$ and $x\in G$, called the \textbf{Haar measure} of $G$. The Haar measure is unimodular, meaning $\mu(-E)=\mu(E)$ for each Borel $E\subset G$. To be consistent with the convention for Lebesgue measure, we take the completion of $\mu$. Moreover, if $G$ is compact, we normalize $\mu$ so that $\mu(G)=1$. 
 
-A strongly continuous unitary representation $U:G\rightarrow\fk L(\MH)$ induces a unitary *-representation of the \textbf{convolution algebra} $L^1(G,\mu)$, whose multiplication is defined by the \textbf{convolution}
+A strongly continuous unitary representation $U:G\rightarrow\fk L(\MH)$ induces a unitary representation of the \textbf{convolution algebra} $L^1(G,\mu)$, whose multiplication is defined by the \textbf{convolution}
 \begin{align*}
 (f*g)(x)=\int_G f(x-y)g(y)d\mu(y)\equiv \int_G f(y)g(x-y)\mu(y)
 \end{align*}
@@ -15039,7 +15041,7 @@ U:L^1(G,\mu)\rightarrow\fk L(\MH)\qquad U(f)=\int_G f(x)U(x)d\mu(x)
 
 To understand intuitively why $U(f*g)=U(f)U(g)$, it is helpful to consider the simple case where $G$ is a finite abelian group. In that case,
 \begin{align*}
-U(f)=\sum_{x\in X}f(x)U(x)
+U(f)=\sum_{x\in G}f(x)U(x)
 \end{align*}
 and hence
 \begin{align*}
@@ -15053,7 +15055,7 @@ A central idea in harmonic analysis is that the Fourier transform converts the u
 \begin{align*}
 (\chi_1\chi_2)(x)=\chi_1(x)\chi_2(x)\qquad\text{for each $x\in G$ and $\chi_1,\chi_2\in\wht G$}
 \end{align*}
-Equipped with the subspace topology inherited from the product topology of $\Tbb^G$, $\wht G$ becomes an LCH group. Typical examples include:
+Endowed with the compact-open topology inherited from $C(G,\Tbb)$ (that is, the topology in which a net converges iff it converges uniformly on compact subsets of $G$), the dual group $\wht G$ becomes an LCH group. Typical examples include:
 \begin{itemize}
 \item The dual of $\Rbb$ is $\Rbb$, where each $t\in\Rbb$ is viewed as the character $x\in\Rbb\mapsto e^{\im tx}$.
 \item The dual of $\Tbb$ is $\Zbb$, where each $n\in\Zbb$ is viewed as the character $z\in\Tbb\mapsto z^n$.
@@ -15113,7 +15115,7 @@ In the remainder of this section, we provide rigorous proofs of all statements m
 
 Many of the results presented here are not logically required later in the course, though they are conceptually illuminating and part of the standard background knowledge. In fact, besides the easy inequality $\Vert\wht f\Vert_{L^\infty}\leq\Vert f\Vert_{L^1}$, the only theorem that will be used subsequently is that the Fourier transforms of functions in $C_c(\Rbb^N)$ form a dense subspace of $C_0(\Rbb^N)$, cf. Thm. \ref{lb509}. Hence, any result not needed later may be safely skipped on a first reading. 
 
-Accordingly, in Sec. \ref{lb524} we will restrict attention to integrals $U(f)=\int f(x)U(x)dx$ only for $f\in C_c(\Rbb^N)$. The theory for such integrals is simpler than for general $f\in L^1(\Rbb^N)$, since one may, for instance, define $U(f)\xi=\int f(x)U(x)\xi dx$ for $\xi\in\MH$ using Riemann integrals over bounded boxes in $\Rbb^N$, or equivalently, by iterated Riemann integrals over compact intervals.
+Accordingly, in Sec. \ref{lb524} we will restrict attention to integrals $U(f)=\int f(x)U(x)dx$ only for $f\in C_c(\Rbb^N)$. The theory for such integrals is simpler than for general $f\in L^1(\Rbb^N)$, since one may, for instance, define $U(f)\xi=\int f(x)U(x)\xi dx$ for $\xi\in\MH$ using Riemann integrals over bounded boxes in $\Rbb^N$. See Subsec. \ref{lb659} for a detailed discussion.
 
 
 In the following subsections, we present proofs of the results using arguments that also apply to general LCA groups.
@@ -15139,7 +15141,7 @@ Therefore, the convolution map $L^1(\Rbb^N,\mk)\times L^1(\Rbb^N,\mk)\rightarrow
 
 
 \begin{proof}
-If $f,g\in L^1(\Rbb^N,\mk)$, then since $\int\int |f(x-y)g(y)|dxdy=\Vert f\Vert_{L^1}\cdot\Vert g\Vert_{L^1}<+\infty$, Fubini's theorem implies that $f*g$ can be defined a.e., and that $f*g$ has $L^1$-norm $\leq \Vert f\Vert_{L^1}\Vert g\Vert_{L^1}$.
+If $f,g\in L^1(\Rbb^N,\mk)$, then since $\int\int |f(x-y)g(y)|dxdy=\Vert f\Vert_{L^1}\cdot\Vert g\Vert_{L^1}<+\infty$, the theorems of Tonelli and Fubini imply that $f*g$ can be defined a.e., and that $f*g$ has $L^1$-norm $\leq \Vert f\Vert_{L^1}\Vert g\Vert_{L^1}$.
 \end{proof}
 
 \begin{thm}\label{lb512}
@@ -15173,6 +15175,9 @@ This proves that $L^1(\Rbb^N,\mk)$ is a commutative *-algebra.
 
 Clearly $C_c(\Rbb^N)$ is closed under convolution and taking $\dagger$. Thus it is a *-subalgebra of $L^1(\Rbb^N,\mk)$.
 \end{proof}
+
+
+\hypertarget{proofread}{}
 
 The main reason for introducing the convolution algebra is that it turns a strongly continuous unitary representation of the group $\Rbb^N$ into a unitary representation of $L^1(\Rbb^N,\mk)$, as shown by the following theorem. For simplicity, when dealing with vector-valued integrals, readers may replace $L^1(\Rbb^N,\mk)$ by the more elementary space $C_c(\Rbb^N,\mk)$.
 
@@ -16818,7 +16823,7 @@ For the general case, reduce to this special case using Pb. \ref{lb552}.
 In this appendix section, we let $\MH,\MK$ be Hilbert spaces, and let $(X,\fk M,\mu)$ be a measure space.
 
 
-\subsubsection{Introduction}
+\subsubsection{Introduction}\label{lb659}
 
 In Sec. \ref{lb508}, \ref{lb527}, and \ref{lb524} we encountered integrals of the form $\int_{\Rbb^N}fdm$ where $f:\Rbb^N\rightarrow\MH$ is a measurable function satisfying $\int |f|dm<+\infty$. As mentioned in Subsec. \ref{lb528}, for our purposes in this course it suffices to consider the case $f\in C_c(\Rbb^N,\MH)$, in which the integral $\int fdm$ can be defined by the Riemann integral (as in Def. \ref{lb66})---specifically, as the limit of Riemann sums obtained by partitioning a bounded box in $\mathbb{R}^N$ containing $\Supp(f)$. In this setting, many useful properties follow directly from approximation by Riemann sums; for example, the inequality
 \begin{align}\label{eq259}
@@ -18337,9 +18342,7 @@ This follows from Thm. \ref{lb656} in the same way that Cor. \ref{lb657} follows
 \subsection{Application of compact triangular matrices: Fredholm alternative}\label{lb629}
 
 
-\begin{df}
-A complete normed $\Fbb$-vector space is called a \textbf{Banach $\pmb\Fbb$-space} (or \textbf{Banach space} over $\Fbb$). \index{00@Banach space} A \textbf{real Banach space} and a \textbf{complex Banach space} mean a Banach space over $\Rbb$ and $\Cbb$, respectively.
-\end{df}
+
 
 Fix a Banach space $\MV$ over $\Fbb\in\{\Rbb,\Cbb\}$. In this section we prove the Fredholm alternative for compact operators on $\MV$. When applied to the integral operator on $C(\partial\Omega)$ arising from the method of double layer potentials, this result yields the solvability of the Dirichlet problem on $\Omega\subset\Rbb^N$, as discussed in Subsec. \ref{lb602}-\ref{lb604}. We refer the reader to those subsections for a detailed account of the history of the Fredholm alternative. Here we make only one comment on the choice of function spaces.
 
