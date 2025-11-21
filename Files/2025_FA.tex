@@ -10418,7 +10418,7 @@ Conversely, assume that $\Sp(U)\subset\Sbb^1$. Then $z^*z|_{\Sp(\Sbb^1)}=1$, and
 \end{proof}
 
 
-\begin{exe}
+\begin{exe}\label{lb667}
 Let $T\in\fk L(\MH)$ be normal. Show that $\Sp(T)\subset\ovl B_\Cbb(0,\Vert T\Vert)$. Show that if $T^*=T$ then $\Sp(T)\subset[-\Vert T\Vert,\Vert T\Vert]$.
 \end{exe}
 
@@ -13245,7 +13245,7 @@ The fact that $\Gamma$ is an isometry follows from \eqref{eq224}. It is easy to 
 
 
 \begin{thm}\label{lb436}
-Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Then there exists a family $(\mu_\alpha)_{\alpha\in\SI}$ of finite Borel measures on $\Rbb$, together with a unitary map
+Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$. Then there exists a family $(\mu_\alpha)_{\alpha\in\SI}$ of finite Borel measures on $\Rbb^N$, together with a unitary map
 \begin{align*}
 \Phi:\MH\xlongrightarrow{\simeq}\bigoplus_{\alpha\in\SI}L^2(\Rbb^N,\mu_\alpha)
 \end{align*}
@@ -13445,12 +13445,23 @@ Let $T$ be a self-adjoint operator on $\MH$. Let $\lambda\in\Cbb$. Prove that $\
 
 
 
-\begin{co}\label{lb506}
-Let $T_1,\dots,T_N\in\fk L(\MH)$. Let $f\in\Borb(\Rbb^N)$. Then the operator $f(T_\blt)$ defined for adjointly-commuting bounded normal operators coincides with the one define for strongly-commuting self-adjoint operators.
-\end{co}
+\begin{pp}\label{lb506}
+Let $T_1,\dots,T_N\in\fk L(\MH)$ be self-adjoint. Then the following two conditions are equivalent.
+\begin{enumerate}
+\item[(1)] $T_1,\dots,T_N$ commute strongly.
+\item[(2)] $T_1,\dots,T_N$ commute.
+\end{enumerate}
+Moreover, if (1) and (2) hold and $f\in\Borb(\Rbb^N)$, then the operator $f(T_\blt)$ defined for strongly-commuting unbounded self-adjoint operators coincides with the one define for (adjointly) commuting bounded self-adjoint operators.
+\end{pp}
 
 \begin{proof}
-By Thm. \ref{lb330}, $T_1,\dots,T_N$ can be viewed as multiplication operators associated with bounded real-valued functions. In that case the two versions of $f(T_\blt)$ are equal due to Thm. \ref{lb334} and \ref{lb435}.
+Assume (1). Then by Thm. \ref{lb436}, we can view $\MH$ as $\bigoplus_\alpha L^2(\Rbb^N,\mu_\alpha)$ where each $\mu_\alpha$ is a finite Borel measure on $\Rbb^N$, and $T_j=\Mbf_{x_j}$. Let $R=\sqrt{\Vert T_1\Vert^2+\cdots+\Vert T_N\Vert^2}$. For each $\delta>0$ and each Borel set $A\subset\Rbb^N\setminus\ovl B_{\Rbb^N}(0,R+\delta)$, by viewing $\chi_A$ as an element of $L^2(\Rbb^N,\mu_\alpha)$, we have 
+\begin{align*}
+\Vert T_1\chi_A\Vert^2+\cdots+\Vert T_N\chi_A\Vert^2=\int_A (x_1^2+\cdots+x_N^2)d\mu_\alpha\geq (R+\delta)^2\mu(A)=(R+\delta)^2\Vert \chi_A\Vert^2
+\end{align*}
+which forces $\chi_A$ to be zero in $L^2(\Rbb^N,\mu_\alpha)$. Therefore, each $\mu_\alpha$ is supported in $X:=\ovl B_{\Rbb^N}(0,R)$, and hence $\MH=\bigoplus_\alpha L^2(X,\mu_\alpha)$. It follows that $T_1=\Mbf_{x_1},\dots,T_N=\Mbf_{x_N}$ are mutually commuting bounded self-adjoint operators. Moreover, by Thm. \ref{lb334} and \ref{lb435}, the two versions of $f(T_\blt)$ are both equal to $\Mbf_f$.
+
+Conversely, assume (2). Let $X=\Sp(T_1)\times\cdots\times\Sp(T_N)$, which is a compact subset of $\Rbb^N$ by Prop. \ref{lb440}. Then $\Sp(T_\blt)\subset X$ by Prop. \ref{lb307}. By Thm. \ref{lb330}, one can view $\MH$ as $\bigoplus_\alpha L^2(X,\mu_\alpha)$ and $T_j$ as $\Mbf_{x_j}$. Then the strong commutativity of $T_1,\dots,T_N$ follows from Exp. \ref{lb430}.
 \end{proof}
 
 
@@ -13540,17 +13551,7 @@ A similar relation holds for $f(T_2)$. By (4), the bounded self-adjoint operator
 \end{proof}
 
 
-\begin{co}
-Let $T_1,T_2\in\fk L(\MH)$ be self-adjoint. Then $T_1$ and $T_2$ commute iff they commute strongly. 
-\end{co}
 
-\begin{proof}
-Recall from Cor. \ref{lb506} the compatibility between the two versions of the Borel functional calculus for $T_1,T_2$. Suppose that $T_1$ and $T_2$ commutes. Then by Cor. \ref{lb308}, $f_1,f_2\in\Borb(\Rbb,\Rbb)$, both $f_1(T_1)$ and $f_2(T_2)$ can be viewed as Borel functional calculus of $T_\blt=(T_1,T_2)$. Therefore, by Thm. \ref{lb306}, these two bounded linear operators commute. (This can also be proved by Lem. \ref{lb295}.) Thus $T_1$ commutes strongly with $T_2$ by Thm. \ref{lb489}.
-
-
-
-Conversely, assume that $T_1$ and $T_2$ commute strongly. By Thm. \ref{lb306}, $(x\chi_K)(T_1)$ commutes with $(x\chi_K)(T_2)$ where $K:=\Sp(T_1)\cup\Sp(T_2)$. This means precisely that $T_1$ commutes with $T_2$.
-\end{proof}
 
 
 \begin{comment}
@@ -18376,7 +18377,7 @@ I hope these remarks help convey that the study of non-self-adjoint compact oper
 
 
 \begin{df}
-For each $T\in\fk L(\MV)$, define \index{zz@$\sigma(T)$, bounded linear operators} define
+For each $T\in\fk L(\MV)$, define \index{zz@$\sigma(T)$, bounded linear operators}
 \begin{align}
 \pmb{\sigma(T)}=\{\lambda\in\Fbb:T-\lambda\text{ is not invertible in $\fk L(\MV)$}\}
 \end{align}
