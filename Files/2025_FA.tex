@@ -1,4 +1,4 @@
-% !TeX spellcheck = en_US
+% !TeX spellcheck = <none>
 % !TEX program = pdflatex
 \documentclass[12pt,b5paper,notitlepage]{article}
 \usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
@@ -13,6 +13,9 @@
 %\usepackage{eufrak}  another template/font
 \usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
 \usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
+
+
+\usepackage{CJKutf8}  % pdfLaTex read chinese. Necessary for showing chinese in TOC
 
  
 
@@ -602,8 +605,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \normalsize
+\begin{CJK*}{UTF8}{gkai}
 \tableofcontents
-
+\end{CJK*}
 
 
 
@@ -895,7 +899,7 @@ x_\alpha\text{ frequently satisfies }P\land Q
 \end{rem}
 
 
-\subsubsection{Nets and topological spaces}
+\subsubsection{Nets and topological spaces}\label{lb696}
 
 Let $(X,\MT_X)$ and $(Y,\MT_Y)$ be topological spaces.
 
@@ -4696,7 +4700,7 @@ By Tychonoff's Thm. \ref{lb61}, $S$ is compact. Therefore, $(\varphi_\alpha)$ ha
 The above proof relies on Tychonoff's theorem, which in turn relies on Zorn's lemma. When $V$ is separable, one can prove the Banach-Alaoglu theorem without using Zorn's lemma:
 
 \begin{proof}[\textbf{Second proof assuming that $V$ is separable}]
-Let $E$ be a countable dense subset of $V$. Then
+Let $E$ be a densely-spanning subset of $V$. Then
 \begin{align*}
 \Phi:\ovl B_{V^*}(0,1)\rightarrow\Fbb^E\qquad\varphi\mapsto\varphi|_E
 \end{align*}
@@ -16625,7 +16629,7 @@ Assume WLOG that $T$ is closed. Use Thm. \ref{lb396} to show that any self-adjoi
 \end{proof}
 
 
-\hypertarget{proofread}{}
+
 
 The following result is also known as \index{00@Von Neumann's mean ergodic theorem, continuous version} \textbf{von Neumann's mean ergodic theorem}. 
 
@@ -16633,7 +16637,7 @@ The following result is also known as \index{00@Von Neumann's mean ergodic theor
 Let $U:\Rbb\rightarrow\fk L(\MH)$ be a strongly-continuous unitary representation of $\Rbb$ with generator $T$.
 \begin{enumerate}
 \item Let $\MK=\{\xi\in\MH:U(t)\xi=\xi\text{ for each }t\in\Rbb\}$. Prove that $\MK=\Ker T$.
-\item For each $\lambda\in\Rbb_{>0}$, define $f_\lambda:\Rbb\rightarrow\Rbb$ by
+\item For each $\lambda\in\Rbb_{>0}$, define $f_\lambda:\Rbb\rightarrow\Cbb$ by
 \begin{align*}
 f_\lambda(x)=\left\{
 \begin{array}{ll}
@@ -16695,7 +16699,7 @@ Adapt the method used to solve Pb. \ref{lb562} to the continuous setting. More p
 \begin{prob}\label{lb538}
 Let $X$ be a measurable space.  Let $\MH=\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$ where each $\mu_\alpha$ is a measure on $\fk M$. Let $f:X\rightarrow\Cbb$ be measurable. Let $(E_n)_{n\in\Zbb_+}$ be an increasing sequence of measurable subsets of $X$ such that $X=\bigcup_n E_n$, and that $f|_{E_n}$ is bounded for each $E_n$. Prove that $\Dom_0$ is a core for $\Mbf_f$, where
 \begin{align*}
-\Dom_0:=\bigcup_n \Mbf_{\chi_{E_n}}\MH
+\Dom_0:=\bigcup_n \Mbf_{\chi_{E_n}}\MH=\bigcup_n \bigoplus_{\alpha\in\SI} L^2(E_n,\mu_\alpha)
 \end{align*}
 \end{prob}
 
@@ -16736,7 +16740,7 @@ Prove a Sobolev inequality for functions in $\MS(\Rbb)$ analogous to Lem. \ref{l
 
 
 
-
+\hypertarget{proofread}{}
 
 \subsubsection{Analytic vectors}\label{lb561}
 
@@ -19315,6 +19319,224 @@ In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show 
 
 
 
+\newpage
+
+\begin{appendices}
+
+\begin{CJK}{UTF8}{gkai}
+\section{依赖于选择公理的证明是否值得信任？}
+
+
+\subsection*{1.}
+
+在本文中，我将从数学研究、数学教育、以及数学实践的立场（而非数学基础和数理逻辑的立场）出发，讨论如下问题：如果一个分析学定理的证明依赖于选择公理（或者它的等价形式：Zorn 引理），我们应当在何种程度上信任这个证明?
+
+
+我想，大多数的数学学习者和数学科研人员接受选择公理，其最主要的原因便是：目前的主流学术圈承认选择公理，并且积极地允许选择公理渗透到成熟数学理论中的许多重要结论的证明当中。作为后果，数学工作者无论是出于人情（希望被学术共同体接纳）还是出于理论（自己通过长期科班教育所建立起来的数学知识体系，会随着拒斥选择公理而被釜底抽薪），都离不开选择公理。实际上，“出于理论”其实也是出于学术共同体，因为我们的数学科班教育是通过学术共同体里的人完成的。
+
+
+这样看来，数学工作者接受选择公理的一个主要理由便是：他们和学术共同体之间的关系和纽带——或者说得更加冒犯一点，来自学术共同体的权威。我想，没有多少数学工作者认真钻研过选择公理背后的数理逻辑理由。实际上，数学的科班教育，本身是不鼓励学生在数学基础的层面花费太多精力的，因为其在实际科研上的回报率非常低。而“选择公理的表述本身看起来很自然”这一点也远远不是数学工作者接受选择公理的理由，因为许多数学证明诉诸的是Zorn引理这一选择公理的等价命题，而非选择公理本身——但Zorn引理却非常缺乏直观，更遑论由选择公理推出Zorn引理的证明。因为走通了选择公理推出Zorn引理的证明逻辑链，便相信选择公理/Zorn引理在数学证明中的合法性——这不过是尊崇“逻辑链”的权威。众所周知，走通逻辑链距离真正理解一个证明相差非常遥远；而一般数学家不从事数理逻辑研究，从而不和数理逻辑学家这一共同体享有相同的学术取向和学术旨趣，又如何能真正理解这一证明背后的渊源和直觉呢？
+
+
+
+既然学术共同体的传统和权威是让大部分数学工作者接受选择公理的原因，那我们便有了理由去拷问：是否我们应当满足于传统和权威？首先我应当亮明我的拷问策略——它和本讲义中处理泛函分析中的若干概念和证明方法的拷问是源于相同的旨趣。
+
+如读者所见，我们在本讲义中拷问过诸如紧算子、闭算子和算子闭包、无界自伴算子等一系列概念的合法性，我们也探讨过线性映射的几何视角、Cauchy完备性、Riesz表示定理作为谱定理证明之一环等等许多方法的合法性。特别地，我们展示了这一系列概念和方法在历史上的竞争对手——通过合适的呈现方式，这些竞争对手在现代的视角下仍然充满说服力。正是这种说服力，才有希望让读者明白：上述对概念和方法的拷问并不是没事找事和纯思辨性争论，也不是单纯地为反抗学术共同体权威而反抗——权威这个词本身是中性的，彻底地反抗权威只会让人们失去思考的立足点。
+
+
+
+因此，我接下来打算回顾一下选择公理在本讲义所呈现的诸多结论和证明中是如何被使用的。我希望这种呈现所带来的不安感也能让读者明白：操心选择公理的合法性并非是纯思辨或者没事找事。
+
+
+\subsection*{2.}
+
+我将本讲义中使用选择公理的方式分为三类：
+\begin{enumerate}
+\item 这一类证明直接运用的是选择公理（而非Zorn引理）；然而，通过简单的改动，我们便能给出不依赖于选择公理的证明。
+\item 这一类证明所探讨的对象是不假设可数性的（例如可分性、第二可数性、可度量性等等），对于这一类对象的证明必须依赖Zorn引理。然而，这一类对象的最重要的子类是具有可数性质的；对于这个子类，其证明可以规避Zorn引理（从而规避选择公理）。
+\item 这一类证明所探讨的对象看起来具有可数性，但证明实际上依赖于选择公理或Zorn引理，因此也依赖于某些不具有可数性质的拓扑结构。并且，该类对象没有任何非平凡的子对象，其证明可以规避选择公理或Zorn引理。
+\end{enumerate}
+
+
+
+许多利用网来处理的点集拓扑结论都属于\pmb{第一类}。例如在命题\ref{lb209}中，证明若~$A$ 是拓扑空间~$X$ 的子集，且~$x$ 是~$A$ 的闭包里的一个点，则存在~$A$ 中的网~$(x_\alpha)_{\alpha\in \SI}$ 收敛到~$x$. 我们的证明方法是：由假设，$x$ 的每个邻域~$U$ 都和~$A$  相交。因此，只需把指标集~$\SI$ 取成所有~$x$ 的邻域构成的集合~$\Nbh_X(x)$，并且对任何邻域~$U$ \pmb{选择}一个~$U\cap A$ 中的元素~$x_U$，则~$(x_U)_{U\in\SI}$ 是~$A$ 中的网、且收敛到~$x$.
+
+很容易把这一依赖于选择公理的证明改述成不依赖选择公理的形式——只需把指标集~$\SI$ 取成
+\begin{gather*}
+\{(U,y)\in\Nbh_X(x)\times A:y\in U\}\\
+(U_1,y_1)\leq(U_2,y_2)\quad\Longleftrightarrow\qquad U_1\supset U_2
+\end{gather*}
+并把网~$(x_{U,y})_{(U,y)\in\SI}$ 设成~$x_{U,y}=y$ 便能完成证明。之所以我们在正文中给出上一段的证明，是因为该证明和~$X$是第一可数空间（例如度量空间）时构造~$A$ 中收敛到~$x$ 的序列相比，在形式上完全一致，因此极易为读者接受。
+
+
+除了命题\ref{lb209}以外，同一小章节中的命题\ref{lb217}和定理\ref{lb210}的证明皆属此类。实际上，这第一类证明遍布于本讲义的各个角落，它们对选择公理的依赖是无关痛痒的——不仅可以轻松地被替换成不依赖于选择公理的证明，也能够在具有可数性质的时候，轻松地被改编成适用于序列的形式。鉴于序列的构造依赖于数学归纳法，在第一类证明中，选择公理对数学归纳法的继承是直截了当的；因此，前者对后者之法理的继承也是直截了当的。
+
+
+\pmb{第三类}结论的主要例子便是赋范线性空间~$l^1(\Zbb_+)$~和~$L^1([0,1],m)$~的非自反性。尽管这两个空间本身是可分的，但它们的对偶空间~$l^\infty(\Zbb_+)$~和~$L^\infty([0,1],m)$~不可分。非自反的证明依赖于~$l^\infty(\Zbb_+)$~和~$L^\infty([0,1],m)$~上的Hahn-Banach定理，而不可分空间的Hahn-Banach定理的证明依赖于选择公理。因此，$l^1(\Zbb_+)$~和~$L^1([0,1],m)$~的非自反性是依赖于选择公理的。
+
+有足够的理由认为：可分的赋范空间才有“实在”的意义，因为有充足的分析学语境的赋范空间都是可分的（见下面对 Banach Alaoglu 定理的讨论）；而不可分的赋范空间更适合当作人造的空间，其引进目的在于简化（以研究可分赋范空间为目标的）理论。因此，~$l^1(\Zbb_+)$ 和~$L^1([0,1],m)$ 的非自反性依赖于某些非常人为的数学构造，即它们的对偶空间的范数拓扑。\footnote{注意，我并非意在表明~$l^\infty(\Zbb_+)$~和~$L^\infty([0,1],m)$~这两个空间本身是人造的；我所针对的是它们的范数拓扑。实际上，这两个空间的单位闭球的弱*拓扑是第二可数的；见定理\ref{lb76}。因此，它们的单位闭球上的弱*拓扑是非人为的。}既然如此，拒绝“~$l^1(\Zbb_+)$ 和~$L^1([0,1],m)$ 是非自反的”这一结论便没有那么不可想象了。
+
+
+
+\subsection*{3.}
+
+我们接下来谈论\pmb{第二类}，情况最为微妙的类别，其典型例子包括：
+\begin{itemize}
+\item Banach-Alaoglu 定理~\ref{lb60} 的证明，其运用了（不可数乘积空间的）Tychonoff 定理\ref{lb61}，而后者依赖于~Zorn~引理。然而，当我们假设赋范空间是可分的话，证明只需要用到对角线法则这一可数版本的~Tychonoff 定理——见定理\ref{lb60}的第二个证明——从而只依赖于数学归纳法而非~Zorn 引理或选择公理。
+\item Arzel\`a-Ascoli~定理~\ref{lb644} 的证明运用了~Tychonoff 定理；而在空间$X$是可分的情况下只需要对角线法则，从而不依赖于 Zorn 引理或选择公理。
+\item Hahn-Banach 扩张定理的证明运用了~Zorn~引理；而在赋范空间是可分的时候，只需要数学归纳法即可。
+\end{itemize}
+我们以~Banach-Alaoglu 定理为例，来进行下面的讨论，因为该定理及其历史处于线性泛函分析的核心位置。
+
+
+Banach-Alaoglu~\ref{lb60} 定理说的是：若~$V$ 是数域~$\Fbb\in\{\Rbb,\Cbb\}$~赋范线性空间，$V^*$ 是其对偶空间，则~$V^*$ 的单位闭球
+\begin{align*}
+B=\{\varphi\in V^*:\Vert\varphi\Vert\leq 1\}
+\end{align*}
+在弱*拓扑下是紧的。我们在正文中已然见到的证明方法如下：任取~$B$ 中的一个网~$(\varphi_\alpha)$; 通过运用~Tychonoff 定理，并且把每一个~$\varphi_\alpha$ 是做~$V$~上的函数（把~$v\in V$ 映射到~$\varphi(v)$），可知存在子网~$(\varphi_{\alpha_\mu})$ 作为 一族~$V$ 上的函数逐点收敛到某个函数~$\varphi:V\rightarrow\Fbb$。不难验证~$\varphi$~的线性性和有界性，从而得知~$\varphi\in B$. 这证明了~$B$~中的任意网都有弱*收敛子网；故~$B$是弱*紧的。
+
+
+如正文中定理~\ref{lb60} 的第二个证明所示，在额外假设~$V$ 是可分的情况下，我们可以绕过~Tychonoff 定理，运用对\pmb{角线法}（见评论~\ref{lb52}）来证明~$B$ 的列紧性。\footnote{不难证明~$B$ 的弱*拓扑是可度量的，因此紧性和列紧性等价。见定理~\ref{lb60} 的第二个证明。在本文中，我们忽略这一差异。} 方法如下：任取~$V$~的一个可数子集~$E$，满足~$\Span(E)$~在$V$~中稠密。\footnote{实际上，这里只需把~$E$ 取成~$V$ 的可数稠密子集就行了。然而，为了和接下来的讨论对接，我们只要求~$\Span(E)$~是稠密的。} 任取~$B$~中的序列~$(\varphi_n)$。由对角线法，存在子列~$(\varphi_{n_k})$ ，其作为~$V$ 上的函数列限制在~$E$ 上时是逐点收敛的，从而在$\Span E$上是逐点收敛的。因此，由一致有界性
+\begin{align}\label{eq307}
+\sup_n\Vert\varphi_n\Vert<+\infty
+\end{align}
+可知，$(\varphi_{n_k})$ 在整个空间~$V$ 上逐点收敛（即弱*收敛）到某个有界线性泛函 $\varphi\in V^*$；见定理 \ref{lb32}。
+
+
+由如上的比较可知，相比于针对可分赋范空间的对角线法证明，针对一般赋范空间的 Tychonoff 定理证法少了重要一步：我们不需要定理 \ref{lb32}来保证稠密张成的子集 $E$ 上的收敛可以推出整个空间 $V$ 的收敛；Tychonoff 定理（以及它背后的 Zorn 引理）一开始便能提供给我们整个空间上的收敛，而不需要像对角线法那样，以可数的稠密张成子集作为跳板。
+
+
+到此，我们对依赖于选择公理的证明的拷问便有了立足点：用选择公理来换取证明中的一个关键的定理 \ref{lb32}（稠密张成子集上的收敛 + 一致有界条件 \eqref{eq307} $\Rightarrow$ 整个空间上的收敛）的省略——\pmb{这笔交易是否符合道德？}\footnote{这里的“道德”一词当然应该以修辞和比喻的角度理解，但它并不是通常说的学术道德，而是本文接下来要给出的理由。}
+
+
+\subsection*{4.}
+
+
+接下来，我会给出两个拒绝这笔交易的理由。\pmb{第一个理由}是：它会使我们对泛函分析的理解变得贫瘠和破碎。为了解释这一点，我需要回到第 \ref{lb41}节（它是本讲义真正意义上的开篇）中的一个论点：虽然（在满足一致有界 \eqref{eq307} 的情况下）弱*收敛和矩收敛等价，但矩收敛却为弱*收敛提供了经典分析学中的逼近论语境，从而为对偶空间的研究赋予了逼近论内涵。
+
+所谓矩收敛，便是一列向量在给定坐标系下，每个相应分量的收敛。在本文目前的语境下，一个可分赋范空间 $V$ 的一个可数的稠密张成子集 $E$ 便是一个坐标系，而每个线性泛函 $\varphi\in V^*$ 在 $E$ 上的取值便是它在这个坐标系下的坐标值，也就是 $\varphi$ 的\pmb{矩}。照此理解，\pmb{矩收敛}便是序列（或网）$(\varphi_n)$ 限制在 $E$ 上的逐点收敛。因此，\uwave{弱*收敛和矩收敛的等价性，其实就是上述交易所交换掉的定理 \ref{lb32} 所说的内容}。
+
+
+
+然而，泛函分析的早期发展以矩收敛而非弱*收敛为主导视角。这是因为矩收敛出现在各种各样的分析问题的语境下：
+\begin{itemize}
+\item 令 $V=L^2([-\pi,\pi],m)$，$E=\{e^{\im nx}:n\in\Zbb\}$。则坐标系 $E$ 中的矩便是 Fourier级数。因此，一列 $L^2$ 函数的矩收敛意味着其每一个Fourier系数的收敛。研究Fourier系数的收敛性和函数列的逐点收敛之间的联系，这是催生出以控制收敛定理为最大卖点的 Lebesgue 积分理论的最大推手。
+\item 令 $V=l^2(\Zbb)$，$E=\{\chi_{\{n\}}:n\in\Zbb\}$。则一列 $l^2$ 函数在坐标系 $E$ 下的矩收敛意味着它作为 $\Zbb$ 上的函数列的逐点收敛。Hilbert 便是在这个语境下发现了 Hilbert 空间 $l^2(\Zbb)$，意识到了 $l^2(\Zbb)$ 的单位球中的矩收敛可以用来得到全连续二次型的对角化定理（即 Hilbert-Schmidt 定理 \ref{lb625}）。特别地，Hilbert 所引入的“全连续二次型”这一概念的发现语境是非常自然的：它意味着二次型作为 $l^2(\Zbb)$ 中向量的二次函数，当向量列满足一致有界条件 \eqref{eq307}，且在 $\Zbb$ 上逐点收敛（而非 $l^2$ 收敛）时，二次型的取值收敛到相应的值。
+\item $V=C([a,b])$，$E=\{x^n:n\in\Nbb\}$. 则 $V$ 上的一列正线性泛函在坐标系 $E$ 下的矩（即\pmb{多项式矩}）的收敛对应了发散级数的系数收敛，从而也和连分数的收敛方式联系起来。（实际上，紧区间 $[a,b]$ 能够替换成任意有界或无界的闭区间。）这一矩收敛对于 Stieltjes 发现以他本人命名的积分、以及对于之后 Hilbert 发现有界双线性型的谱定理和连续谱的概念，都至关重要。第 \ref{lb114} 章和第 \ref{lb442} 节对此有详细的讨论。
+\end{itemize}
+
+
+
+那么，放弃以定理 \ref{lb32}——弱*收敛和矩收敛的等价性——来理解 Banach-Alaoglu 定理，意味着什么呢？这意味着我们错失了 Hilbert 发现 Hilbert 空间 $l^2(\Zbb)$ 的单位闭球的弱/弱*紧性的自然语境。我们也错失了 Hilbert 通过用有限矩阵逼近无限矩阵来发现连续谱的自然语境——一方面，来自于有限矩阵对角化的离散谱\pmb{弱*收敛}到连续谱\footnote{严格来说：$[a,b]$ 上的有限支集测度（见引理 \ref{lb163}）弱*收敛到有限 Borel 测度/Stieltjes 积分。}，相应地，有限矩阵的谱分解“收敛到”无限矩阵的谱分解；另一方面，有限矩阵的预解式（resolvent）收敛到无限矩阵的预解式，对应着连分数的收敛过程，即连分数所代表的发散级数（其系数便是多项式矩）的 P\'ade 收敛。仍见第 \ref{lb114} 章和第 \ref{lb442} 节的讨论。
+
+%而为了获得这一弱*收敛，我们必须利用 Helly 选择定理 \ref{lb94}  来选取收敛子列。\footnote{实际上，Hilbert 用的是一个和 Helly 选择定理精神相近的方法，并且依赖于 Arzel\`a-Ascoli 定理。见定理 \ref{lb239} 证明里的脚注。紧区间上Arzel\`a-Ascoli 定理的经典证法是通过对角线法完成的。}在这两个语境中，Banach-Alaoglu 定理的相应形式——前者是 $\Zbb$ 上的任意 $l^2$-有界序列存在逐点收敛子列这一事实，后者是 Helly 选择定理——都是通过对角线法得到证明的。
+
+
+
+放弃以定理 \ref{lb32} 来理解 Banach-Alaoglu 定理，也意味着将 Banach-Alaoglu 定理至于泛函分析的基本哲学之外。这个基本哲学便是：在算子范数（一致）有界的条件下，稠密线性子空间上的性质能够唯一扩张到整个空间上的性质。不仅定理 \ref{lb32} 是这一哲学的一个基本表现形式，该定理证明所依赖的一个基本事实——稠密线性子空间上的有界线性映射能够唯一地扩张为全空间上的有界线性映射（定理 \ref{lb31}）——则更是如此。定理 \ref{lb31} 的运用遍布泛函分析的每个角落，甚至无界算子的闭包概念都是由这一定理经过逆 Cayley 变换的翻译而得到的（见第 \ref{lb384} 小章节的讨论）。因此，放弃让定理 \ref{lb32} 进入 Banach-Alaoglu 定理的证明，便会使得 Banach-Alaoglu 定理的理解成为一座孤岛。
+
+
+\subsection*{5.}
+
+
+我要给出的拒绝交易的\pmb{第二个理由}是：在 Banach-Alaoglu 定理的两个证明中，第一个证明（即运用 Tychonoff 定理的一般情形证明）的\pmb{真实性依赖于第二个证明}（即结合对角线法与定理 \ref{lb32} 给出的可分空间证明）。
+
+
+这第二个理由听起来似乎更有冒犯性：难道选择公理不足以支撑 Banach-Alaoglu 定理的正确性吗？难道我们该怀疑选择公理本身的可靠性，不顾数理逻辑学家对公理系统所做出的诸多深刻的研究吗？G\"odel 证明了选择公理的不会导致矛盾（假设 Zermelo-Fraenkel 公理系统无矛盾），这不足以说服我们信任依赖于选择公理的数学证明的可靠性吗？
+
+
+
+读者应该注意到，我在措辞选择上区分了（数学证明语境下的）“正确性”和“真实性”。对于现代数学工作者而言，“一个数学证明是正确的”往往意味着证明里的逻辑链条是没有差错的，证明中从每一步推出下一步都是在逻辑上站得住脚的。而如果一个事先以为是正确的证明事后被发现是有错的，那么这种错误一定会作为逻辑链条里的某一步错误显现出来。而人们说服别人某个证明有错，最硬核的方式便是指出该证明里的哪一步在逻辑上犯了错。
+
+
+然而，无论是日常生活、自然科学、还是数学历史上的绝大多数时间段，“逻辑上不出错”的正确性和“真实”、“真理”都不是一回事。甚至连“事实”都和“真”不是一回事。“真”永远是有价值取向的，从而既不是价值中立的事实（其扮演的是证据的作用），也不是价值无关的逻辑正确。对于本文的主题而言，“真”的概念中最核心的一项价值便是\pmb{对现象的解释力}。
+
+
+对于物理和化学之类的典范自然科学而言，判断一套理论的真理性的主要依据便是对自然现象的解释力。尤其是当新理论还处在雏形阶段，没有成熟到给人类的实际生活带来应用的阶段，新理论和旧理论的论辩往往表现为针对同一物理/化学现象的解释力的较量。在自然科学之外，例如对于历史研究而言，解释力也是评判理论的核心考量——本讲义给出了关于泛函分析史的诸多观点；若读者能基于合适的历史文献，给出针对这些观点的更有解释力的反驳，那么读者给出的观点便是更为正确的。数学发展的大多数阶段亦是如此：在人们意识到欧几里得几何并不对应真实的物理时空之前，人们对几何学的要求都不只是一套自洽的模型，而是符合物理现实的“真实”的几何，是一套能够参与解释物理现象的几何。
+
+
+只有二十世纪以来，以集合论为各领域之共同基础的现代数学，才呈现出对“真”的别具一格的判断标准。现代数学的典型特征之一，便是划分出了评判数学工作的\pmb{两个世界}——\pmb{对错}的世界和\pmb{价值}的世界。在对错的世界里，人们谈论一项数学工作里的证明是否是正确的，是否有 gap；而在价值的世界里，人们谈论一项数学工作是否重要，它所采用的方法是否有趣、“自然”、“本质”。这种二分世界的最大优点在于，它圈出了一片领地，一片名为“对错的世界”的领地，意图把所有的争吵驱逐到领地外边去——二十世纪初的人们仍然对持续了几个世纪的微积分和函数论中的争吵记忆犹新，因此这种领地的划分便显得极为可贵。而在领地内，所有关于对错的争执，原则上都能通过使所有人都信服的流程得到判决。
+
+
+毫无疑问，就评判数学工作而言，“对数学现象的解释力”是属于价值的世界的。一项数学工作可以是正确而平凡的；也可以是有一些小错或不太小的错误，却是极为深刻和创新的、或是采用了更为触及本质的方法或思想的。一种数学观点或数学方法是否“自然”、“本质”，归根到底是要被算作“a matter of taste”的，因为不同（学派）的人会给出不同的评价。“A matter of taste”本来也只是现代数学家为了保持圈子和睦和避免争执而采用的措辞，而并非真的是纯主观的东西。说一个数学方法“自然”和“本质”，不过是在说：针对很多的数学现象，这个方法能给出一套系统地、干净地、各环节之间有机联系的、对后续工作有启发性的处理方式——这不正是在说，这个方法对诸多数学现象具有很强的解释力么？
+
+
+如果把现代数学和十八十九世纪的分析学状况相比，我们便会同意：就隔离出一片远离争执的净土这一目的而言，这种两个世界的划分是比较成功的。然而，这种成功也引起了人们的奢望——把数学工作和数学证明的真实性彻底封入对错的世界里，从而把“对数学现象的解释力”局限为只事关个人品味或学派风格的美学标准。然而，\pmb{价值的世界果真不会影响对错的世界吗？}%现代数学的发展过程中，对数学证明之对错的评价真的能够仅仅局限于对错的世界吗？
+
+
+\subsection*{6.}
+
+我想大家都会承认，如果一项数学工作是正确的，那它至少应当对正确的数学对象断言正确的结论。然而，判断所谈论之对象是否正确并非完全依据文章中给出的定义。实际上，数学发展的一个常见特征便是，在前沿领域中，不同的人或者不同的学派会给出表述完全不同的定义；而人们判断这些定义是否关乎相同的对象，往往不是靠给出两个定义等价的严格证明，而是靠判断：这两个数学工作中，是否涉及到\pmb{相同的数学现象}？
+
+为了说明这一点，我们考察本讲义第 \ref{lb181} 章所探讨过的谱理论的历史。“Hilbert 空间上的有界自伴算子的谱分解”这一定理往往被归功于 Hilbert。然而，Hilbert 对谱理论的表述（见定理 \ref{lb239}）远远不是现代谱理论的表现形式。甚至，它要比现代表述来的弱，因而实用性也远远不如他之后的 F. Riesz 给出的谱理论。对此，我在第 \ref{lb442} 和 \ref{lb258} 节有详细的论述。但这里我想说的重点在于：Hilbert 的谱定理 \ref{lb239} 在历史上的下一个改良版是 Riesz 的谱定理 \ref{lb267}；但这两个谱定理为何诉诸相同的对象，在当时是没有被严格证明的。因此，“Riesz 的谱定理推广了 Hilbert 的谱定理”这件事也是没有严格证明的。
+
+Hilbert 谱定理和 Riesz 谱定理的核心差异在于对\pmb{预解式}之理解的差异。Riesz 版本的谱定理以函数演算为核心，而一个有界自伴算子 $T$ 的预解式 $(\lambda-T)^{-1}$ 既可以通过逆算子来定义，也可以通过函数演算来表达。与之相对，Hilbert 的谱定理论述的不是函数演算，而是直接关于预解式的，其核心点在于给出预解式的 Stieltjes 积分表示——因此，Hilbert 谱定理所承上的是\uwave{连分数和发散级数的积分表示}。然而，Hilbert 对预解式的理解和 Riesz 的理解（也是我们现代人的理解）不同。Hilbert 采取的不是算子的视角，而是二次型和无穷矩阵的视角。相应的，Hilbert 并不把预解式理解为线性映射的逆，而是理解为有限矩阵的逆矩阵（通过行列式表达）在取极限之后的表达式；见 \ref{lb442} 节的讨论。
+
+
+Hilbert 的预解式不仅和后续 Riesz 的预解式不同，也和他之前的 Fredholm 的预解式不同。Fredholm 在积分方程的语境下引入预解式，他的预解式既不是矩阵或二次型，也不是线性映射，而是形如积分核 $\Delta(\lambda,x,y)/\Delta(\lambda)$ 的积分核，其中分母是原积分核的行列式，而分子是其余子式。见第 \ref{lb604} 小章节的讨论。
+
+那么，是什么让当时的学术共同体相信 Fredholm、Hilbert、以及 Riesz 在谱理论和预解式方面的工作具有继承关系的呢？这决不是靠严格证明各个定义之间的等价性来实现的。不只一百年前的数学不是这样，当今的数学仍然不是这样。无论什么年代，在一个数学方向中，不同的人或学派给出看起来截然不同的定义，却并不证明不同版本的定义之间的等价性，这都是极其常见的。判断不同的定义指涉相同的对象，其根本依据在于：不同的定义或者数学理论是否\pmb{涉及相同的数学现象}——所运用的方法、所能解决的问题、以及所遇到的瓶颈和限制……这些因素在不同的数学工作中是否有足够多的共性。就谱理论和预解式而言：积分方程以及其背后的 Dirichlet 问题、连分数与发散级数、矩问题……这些数学对象，关于这些对象的定理、研究方法、以及延伸出的抽象概念，共同构成了谱理论早期发展阶段中的数学现象。
+
+
+同样地，人们判断一项数学工作中的错误是否是容易修补的小错误，也是以数学现象为依据。在判断一个证明是否正确的时候，学术共同体中的检查者（审稿人）会问：这个证明是如何克服我在研究这类问题时遇到的难点的？为什么我的方法不行？前人的失败和该证明的成功是否有一个合乎常理的解释？该证明是否也可以解释该数学方向下的某些别的现象？这种解释多大程度地简化了前人的解释？该证明是否会导出不合常理的结论？……通过找到这些问题的回答，检查者拼出了所考察的数学证明的大致拼图。哪怕这个证明里有错，只要大致拼图能够和检查者对数学现象的理解相吻合，那么这个错误便会被当作非本质的小错误。
+
+
+我们已经看到，对于数学证明之正确性的评判标准中的两个重要要素
+\begin{itemize}
+\item 该定理是否关乎正确的数学对象；
+\item 该定理中的错误是小错误还是实质性的错误
+\end{itemize}
+都依赖于处在科研前线的数学工作者对数学现象的理解。并且，这种依赖是全局性的，不仅左右着检查者对该数学证明的整体框架之正确性的判断，也统筹支配着检查者对证明中的各项细节的检验——与此对照，对逻辑链条的验证往往是针对证明中的细节的，故而恰恰是局部的。在此，和理论物理的类比是有益的：量子场论中的数学推导向来都远未达到数学家对严格性的要求，却常能给出数学家没能发现的正确的数学预言。保证这种正确性的原因，同样是物理学家对相应的物理现象的深刻理解。
+
+在一个科学共同体中，以现象为立足点，考察一套理论在整体框架层面的正确性——\uwave{这不就是考察这套理论对现象的解释力么？}那么，一个运用Tychonoff定理来偷懒的 Banach-Alaoglu 定理证明，一个错失了和矩问题、傅里叶级数、积分方程、无限矩阵的谱分解、连分数、发散级数等等数学现象的联系的定理证明，还能有多少真实性？与此相反，只要我们知道 Cantor 对角线法在上述现象中所能证明的具体的紧性定理，知道这些紧性定理能够解决的具体问题，那么从这些语境中提炼出来的抽象紧性定理——它叫 Banach-Alaoglu 定理还是叫 Cantor-Arzel\`a-Ascoli-Hilbert-Helly 定理都无所谓——是\pmb{不可能有实质错误的，因为它在数学现象中的根基是牢固的}。哪怕一种抽象定理（或者它的证明）有错，调整一下表述形式和推广策略即可。
+
+
+
+
+\subsection*{7.}
+
+
+我在上文中给出了两个拒绝交易的理由，并非是要鼓励大家把选择公理挡在泛函分析的门外，而是想要表达：如果说数学学习者未曾理解一个教科书中的定理便直接接纳它，这么做并非天经地义，那么在泛函分析中接纳选择公理也需要足够的理由。
+
+在数学基础和数理逻辑的层面，人们对选择公理的正当性已有较多的讨论。本文意图从数学实践的立场来提供一个不一样的讨论角度。因此，我们也希望有一种来自于数学实践的理由来接纳选择公理。这样的理由会是什么呢？让我们来看看 G\"odel 在 \cite{God47} 中是怎么说的：
+
+\begin{displayquote}
+Furthermore, however, even disregarding the intrinsic necessity of some new axiom... a decision about its truth is possible also in another way...  that is, its fruitfulness in consequences and in particular in "verifiable" consequences, i.e., consequences demonstrable without the new axiom, whose proofs by means of the new axiom, however, are considerably simpler and easier to discover, and make it possible to condense into one proof many different proofs.
+\end{displayquote}
+
+对于泛函分析来说，选择公理恰恰起到的 G\"odel 所说的作用：它简化了许多特殊情形下的定理的证明，保障着泛函分析的理论体系不会随着系统化和抽象化而变得过于臃肿。这一点在对偶空间方面体现的尤为明显。赋范空间能典范嵌入它的二次对偶——光是这个依赖于选择公理的结论，便能给对偶空间理论带来极大的便利。$l^1(\Zbb)$ 的非自反性虽然没有现实意义，却是一个精简的对偶空间理论所必然导出的结论。
+
+而我们接受选择公理的这一理由，恰恰验证了我在上文中所说的第二个拒绝交易的理由：在泛函分析中，对于一个依赖于选择公理的定理证明，决定其真实性的—— 用上述引文的话来说就是 “a decision about its truth”——是不依赖于选择公理的定理证明。%因此，仅凭依赖于选择公理的 Banach-Alaoglu 定理证明，是不足与确立该定理的真实性的。
+
+可难道只有选择公理才面临过“一个证明还不够”的情形吗？或许，还有许多看起来无懈可击的证明，光凭自身也同样不足以确立定理的真实性？Hilbert 在引入 $l^2(\Zbb)$ 上的全连续二次型的对角化理论来研究积分方程之前，已经在积分方程的具体设定中（而非 $l^2(\Zbb)$ 这一更加代数的设定中）建立了对称核积分算子的对角化理论。用他在 \cite{Hil06} 中的说法，$l^2(\Zbb)$ 上的全连续二次型方法，是对之前结果的简化。或许，我们现代人已经当作典范的 Hilbert 空间方法，在当时仅凭自身也无法赋予对角化定理足够的正确性？如果没有 Fredholm 和 Hilbert 本人之前在更加具体的积分方程语境下的工作，如果 Hilbert 在一开始便用 $l^2(\Zbb)$ 上的全连续二次型来研究积分方程，那么这一方法的合法性或许得历经坎坷，才能为学术共同体所接受？
+
+数学中同一个定理被给予多个证明，是否只是为了更好地理解这一定理？如果没有多个证明的话，一个孤证是否足以建立起定理（以及该证明本身）的真实性？读者或许能看出我对这一问题的态度\footnote{读者若是有机会在科研工作中，用一个全新的办法证明一个结论；该方法和先前方法的共同起效范围如此之窄，以至于无论如何仔细地检查证明都无法获得安全感，除非能找到该结论主要情形的另一个证明……那么读者对这个问题或许会有一些特别的体会。}，但我想是时候结束这篇文章了。\\
+
+
+
+\hfill 2025 年 12 月于北京
+
+
+
+
+
+
+%数学最强大的特质便在于它的可接力性：许多数学结论能够被当作黑箱，后人不需要充分理解黑箱里的内容，便能利用它来发现新的数学知识，推动数学的进展——这种进展甚至能赋予黑箱知识以新的理解。然而，我想现在大部分人还是会赞同：教科书中的成熟数学知识，哪怕我们在学过了之后忘记了它的证明细节甚至证明思想，只是把它当作黑箱使用，我们还是应当至少曾经认真学习过证明的。对于泛函分析这门课程而言，许多依赖于 Zorn 引理的定理证明并不具有足够的启发性，Zorn 引理本身也不够
+
+
+
+
+
+
+
+
+
+
+
+
+\end{CJK}
+
+\end{appendices}
 
 
 
@@ -19368,6 +19590,8 @@ Fredholm, I. Sur une classe d'{\'e}quations fonctionnelles. Acta Math. 27, 365-3
 \bibitem[Fri34a]{Fri34a}
 Friedrichs, Kurt. (1934) Spektraltheorie halbbeschr{\"a}nkter {Operatoren} und {Anwendung} auf die {Spektralzerlegung} von {Differentialoperatoren}. {I}. Math. Ann. 109, 465-487 (1934)
 
+\bibitem[G\"od47]{God47}
+G\"odel, K. (1947). What is Cantor’s continuum problem?. The American Mathematical Monthly, 54(9), 515-525.
 
 \bibitem[Gray84]{Gray84}
 Gray, J. D. (1984). The shaping of the Riesz representation theorem: A chapter in the history of analysis. Archive for History of Exact Sciences, 31, 127-187.
@@ -19469,7 +19693,7 @@ Rudin, W. (1987). Real and complex analysis. 3rd ed.
 W. Rudin, Functional analysis. 2nd ed. (1991)
 
 \bibitem[Sch-U]{Sch-U}
-Schmüdgen, K. Unbounded self-adjoint operators on Hilbert space. Grad. Texts Math. 265. (2012)
+Schm\"udgen, K. Unbounded self-adjoint operators on Hilbert space. Grad. Texts Math. 265. (2012)
 
 \bibitem[Sim-O]{Sim-O}
 Simon, Barry (2015). Operator theory. A comprehensive course in analysis, part 4.
