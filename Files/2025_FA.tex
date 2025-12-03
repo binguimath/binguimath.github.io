@@ -19307,8 +19307,10 @@ In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show 
 
 \subsection{Indeterminate moment problems: the linear-extension approach}
 
+Let $\MV$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$.
 
-\subsubsection{Introduction}
+
+\subsubsection{Indeterminate moment problems of bounded type}
 
 
 Recall that in a moment problem, one is given a sequence of scalars $(c_n)$ and a sequence of functions $(\xi_n)$, and one asks for the existence (and sometimes uniqueness) of a function $f$ (or a measure) such that 
@@ -19333,6 +19335,7 @@ Once this task is resolved, and once the dual space $\MV^*$ is identified as a f
 
 
 A necessary condition for \eqref{eq308} to have a solution is the existence of some $M\in\Rbb_{\geq0}$ such that
+\begin{subequations}
 \begin{align}\label{eq309}
 \Big|\sum_n a_nc_n\Big|\leq M\Big\Vert \sum_n a_n\xi_n\Big\Vert\qquad\text{for each }(a_n)\in C_c(\Zbb_+,\Fbb)
 \end{align}
@@ -19340,26 +19343,114 @@ where $C_c(\Zbb_+,\Fbb)$ is understood as the set of functions $\Zbb_+\rightarro
 \begin{align*}
 \Big|\sum_n a_nc_n\Big|=\Big|\bigbk{\sum_n a_n\xi_n,\varphi}\Big|\leq\Vert\varphi\Vert\cdot \Big\Vert \sum_n a_n\xi_n\Big\Vert
 \end{align*}
-So \eqref{eq309} holds for any $M\geq\Vert\varphi\Vert$. The difficulty lies in the implication \eqref{eq309}$\Rightarrow$\eqref{eq308}.
+So \eqref{eq309} holds for any $M\geq\Vert\varphi\Vert$. 
+
+The difficulty lies in the implication \eqref{eq309}$\Rightarrow$\eqref{eq308}. From a modern perspective, \eqref{eq309} is equivalent to that the linear functional
+\begin{align}\label{eq311}
+\varphi:\MU\rightarrow\Fbb\qquad \sum_na_n\xi_n\mapsto \sum_n a_nc_n\qquad\text{is well-defined and bounded}
+\end{align}
+\end{subequations}
+Thus, solving \eqref{eq308} is equivalent to extending the linear functional $\varphi$ in \eqref{eq311} to a bounded linear functional on $\MV$. 
+
+By Cor. \ref{lb44}, $\varphi$ extends uniquely to a bounded functional on the closure $\ovl\MU$. Hence solutions of \eqref{eq308} exist and are unique precisely when $(\xi_n)$ spans a dense linear subspace of $\MV$; this is called the \textbf{determinate type}. When $(\xi_n)$ does not span densely, extensions of $\varphi\in\ovl\MU^*$ to $\MV\rightarrow\Fbb$ may fail to be unique, and the moment problem is then said to be of \textbf{indeterminate type}.
+
+
+
+When $\MV$ is a Hilbert space, the implication \eqref{eq311}$\Rightarrow$\eqref{eq308} is easy to verify. By the Riesz-Fr\'echet Thm. \ref{lb135}, the linear functional $\varphi\in\ovl U^*$ is represented by some $\ovl f\in\MH^\Co$, that is, $\varphi(u)=\bk{f|u}$ where $u\in\ovl\MU$. The extension $\varphi\in\MV^*$ is then given by $\varphi(v)=\bk{f|v}$ for $v\in\MV$. Thus, in the case of $L^2$-spaces, the moment problem \eqref{eq308} is completely solved. It was precisely in order to study moment problems in more general function spaces that Riesz, in \cite{Rie10}, introduced for the first time the now standard $L^p$-spaces $L^p([a,b],m)$, though only for $1<p<+\infty$.
+
+
+
+Although Riesz was a pioneer in applying the method of linear extensions to spectral theory in \cite{Rie13}, in his earlier work \cite{Rie10} (and similarly in \cite{Rie11}, where he studied the moment problem of bounded type for $\MV=C([a,b])$), he adopted the method of finite approximation. This aligns with the paradigm shift described in \eqref{eq147a}. Contrary to the chronological order, we will first study the linear-extension approach in this section and postpone the finite-approximation method to Sec. \ref{lb698}.
+
+
+
+\subsubsection{The Helly-Hahn-Banach theorem}
+
+
+The Hahn-Banach theorem provides a complete solution to the moment problem of finite type for any normed vector space $\MV$. Despite its name, the theorem was first proved by Helly in 1912 \cite{Hel12} for $C([a,b])$; in fact, Helly’s argument is almost identical to the proof of the general case.\footnote{The original paper \cite{Hel12} is difficult to locate online; see \cite{Hoc80} for an overview.} It was later rediscovered by Hahn in 1927 and again by Banach in 1929. Thus, although we follow the usual convention and call it the Hahn-Banach theorem, it would be more accurate to refer to it as the \textbf{Helly-Hahn-Banach} \index{00@Helly-Hahn-Banach theorem} theorem.
+
+
+
+
+\begin{thm}[\textbf{Hahn-Banach theorem}]\index{00@Hahn-Banach theorem}\label{lb700}
+Let $\MU$ be a linear subspace of $\MV$. Then the linear map
+\begin{align*}
+\MV^*\rightarrow\MU^*\qquad \varphi\mapsto\varphi|_\MU
+\end{align*}
+is surjective.
+\end{thm}
+
+
+The proof of Thm. \ref{lb700} for the case $\Fbb=\Rbb$ relies on the following crucial lemma discovered by Helly in \cite{Hel12}.
+
+\begin{lm}\label{lb699}
+Assume that $\Fbb=\Rbb$, and $\MU$ is a linear subspace of $\MV$. Let $\varphi\in \MU^*=\fk L(\MU,\Rbb)$ with operator norm $\Vert\varphi\Vert\leq 1$. Assume that $e\in \MV\setminus \MU$, and let $\wtd \MU=\MU+\Rbb e$. Then $\varphi$ can be extended to a linear functional $\wtd\varphi:\wtd \MU\rightarrow\Rbb$ such that $\Vert\wtd \varphi\Vert\leq 1$. 
+\end{lm}
+
+\begin{proof}
+Let $c\in\Rbb$ whose value will be determined later. Since any vector in $\wtd \MU$ can be written uniquely as  $\xi-\lambda e$ where $u\in \MU$ and $\lambda\in\Rbb$, we can define
+\begin{align*}
+\wtd\varphi:\wtd \MU\rightarrow\Rbb\qquad \wtd\varphi(u-\lambda e)=\varphi(u)-\lambda c
+\end{align*}
+It remains to prove $\Vert\wtd\varphi\Vert\leq 1$, that is, $|\wtd\varphi(\xi)|\leq \Vert\xi\Vert$ for each $\xi\in\wtd\MU$. It suffices to prove
+\begin{align*}
+\wtd\varphi(\xi)\leq\Vert \xi\Vert\qquad\text{for each }\xi\in\wtd\MU
+\end{align*}
+Then, we also have $\wtd\varphi(-\xi)\leq\Vert -\xi\Vert$, and hence $|\wtd\varphi(\xi)|\leq\Vert \xi\Vert$, finishing the proof.
+
+Now, our goal is to prove $\varphi(u)-\lambda c\leq \Vert u-\lambda e\Vert$ for all $u\in \MU,\lambda\in\Rbb$. Clearly this is true when $\lambda=0$. Thus, we may assume WLOG that $\lambda\neq 0$. Moreover, dividing both sides by $|\lambda|$, we see that it suffices to prove for each $u\in\MU$ that
+\begin{align*}
+\varphi(u)-c\leq\Vert u-e\Vert\qquad \varphi(u)+c\leq\Vert u+e\Vert
+\end{align*}
+Thus, the goal now is to prove that there exists $c\in\Rbb$ such that 
+\begin{align*}
+\varphi(u)-\Vert u-e\Vert\leq c\leq -\varphi(u)+\Vert u+e\Vert\qquad\text{for each }u\in\MU
+\end{align*}
+For that purpose, it suffices to prove
+\begin{align}
+\sup_{u\in \MV}\big(\varphi(u)-\Vert u-e\Vert\big)\leq \inf_{v\in \MV}\big(-\varphi(v)+\Vert v+e\Vert\big)
+\end{align}
+namely, to prove that $\varphi(u)-\Vert u-e\Vert\leq -\varphi(v)+\Vert v+e\Vert$ for all $u,v\in \MV$. Using $\Vert\varphi\Vert\leq1$, we compute
+\begin{align*}
+\varphi(u)+\varphi(v)=\varphi(u+v)\leq \Vert(u-e)+(v+e)\Vert\leq \Vert u-e\Vert+\Vert v-e\Vert
+\end{align*}
+This finishes the proof.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb700} for $\Fbb=\Rbb$}]
+Let us show that any $\varphi\in\MU^*$ can be extended to a linear functional $\Phi:\MV\rightarrow\Rbb$ with $\Vert\Phi\Vert=\Vert\varphi\Vert$. Assume WLOG that $\varphi\neq0$. By scaling $\varphi$, we assume further  $\Vert\varphi\Vert=1$. Let
+\begin{align*}
+\SF=\big\{(\MX,\Phi):&\MX\text{ is a linear subspace of }\MV\text{ and contains }\MU\\
+&\Phi\in\Rbb^\MX\text{ is linear and satisfies }\Phi|_\MU=\varphi,\Vert\Phi\Vert=1\big\}
+\end{align*}
+Then $\SF$ is nonempty since it contains $(\MU,\varphi)$. We view each $(\MX,\Phi)\in\SF$ as a subset of $\Rbb^\MV$ so that $\SF$ is a subset of $2^{\Rbb^\MV}$. Equip $\SF$ with the partial order $\subset$. Then every totally ordered subset $\scr P$ of $\SF$ has an upper bound in $\SF$, defined by taking the union of all $(\MX,\Phi)\in\scr P$. Therefore, Zorn's lemma is available, which implies that $\SF$ has a maximal element $(\MX,\Phi)$. 
+
+If $\MX\neq \MV$, we let $e\in \MV\setminus \MX$. Then by Lem. \ref{lb498}, $\Phi$ can be extended to $\wtd\Phi\in \wtd \MX^*$ where $\wtd \MX=\MX+\Rbb e$, and $\Vert\wtd\Phi\Vert=1$. So $(\wtd \MX,\wtd\Phi)$ belongs to $\SF$ and is strictly larger than $(\MX,\Phi)$, impossible. So $\MX=\MV$.
+\end{proof}
+
+
+
+
+\begin{rem}
+When $\MV$ is separable, Thm. \ref{lb700} can be proved using mathematical induction instead of Zorn's lemma. Indeed, as we will see in Subsec. \ref{lb701}, the reduction from the case $\Fbb=\Cbb$ to the case $\Fbb=\Rbb$ is fairly elementary and does not involve Zorn's lemma. Thus we may assume $\Fbb=\Rbb$.
+
+Fix $\varphi\in\MU^*$ with $\Vert\varphi\Vert=1$. Since $\MV$ is separable, there exists a sequence $(e_n)_{n\in\Zbb_+}$ in $\MV$ whose span is dense in $\MV$. Let $\MU_n=\MU+\Span\{e_1,\dots,e_n\}$. By repeatedly applying Lem. \ref{lb699}, we obtain a sequence $(\varphi_n)$ where each $\varphi_n:\MU_n\rightarrow\Rbb$ is a linear functional of norm $1$ extending $\varphi_{n-1}$ (with $\varphi_0=\varphi$). Hence $\varphi$ extends to a linear functional $\Phi:\MU_\infty\rightarrow\Rbb$ of norm $1$, where $\MU_\infty=\MU+\Span\{e_n:n\in\Zbb_+\}$. Since $\MU_\infty$ is dense in $\MV$, Cor. \ref{lb44} allows us to extend $\Phi$ further to a norm‑$1$ linear functional on all of $\MV$.
+\end{rem}
 
 
 
 
 
 
+\subsubsection{The case $\Fbb=\Cbb$}\label{lb701}
 
 
 
 
 
-
-
-
-
-
-
-
-\subsection{Indeterminate moment problems: the finite-approximation approach}
+\subsection{Indeterminate moment problems: the finite-approximation approach}\label{lb698}
 
 
 
@@ -19658,8 +19749,17 @@ Bin Gui, Spectral Theory for Strongly Commuting Normal Closed Operators. See the
 \bibitem[Haw-L]{Haw-L}
 Hawkins, T. (1979) Lebesgue's theory of integration: Its origins and development. Corrected reprint of the 2nd edition. 
 
+
+\bibitem[Hel12]{Hel12}
+
+E. Helly, \"Uber lineare Funktionaloperationen. Akademie der Wissenschaften in Wien, Mathematisch-Naturwissenschaftliche Klasse, Sitzungsberichte, Abteilung IIa, 121 (1912), pp. 265-297. 
+
+
 \bibitem[Hil06]{Hil06}
 Hilbert, D. (1906) Grundz\"uge einer allgemeinen Theorie der linearen Integralgleichungen. The fourth part (Vierter Abschnitt, Theorie der quadratischen Formen mit unendlich vielen Variablen).
+
+\bibitem[Hoc80]{Hoc80}
+Hochstadt, H. (1980). Eduard Helly, father of the Hahn-Banach theorem. The Mathematical Intelligencer, 2(3), 123-125.
 
 \bibitem[Jah]{Jah}
 Jahnke, H. N. (2003). A history of analysis (No. 24). American Mathematical Soc..
