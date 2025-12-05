@@ -18253,6 +18253,10 @@ To generalize the above second proof to compact operators on normed vector space
 \begin{df}\label{lb668}
 Let $V$ be a normed $\Fbb$-vector space with linear subspace $U$. Let $\eps\in\Rbb_{\geq0}$. A vector $\xi\in V$ is called \textbf{$\pmb\eps$-orthogonal} to $U$ \index{00@$\eps$-orthogonal} if
 \begin{align*}
+\dist(\xi,\MU)\geq(1-\eps)\Vert\xi\Vert
+\end{align*}
+that is, if
+\begin{align*}
 \Vert\xi-\eta\Vert\geq(1-\eps)\Vert\xi\Vert\qquad\text{for each }\eta\in\MU
 \end{align*}
 \end{df}
@@ -19538,7 +19542,32 @@ Assume $\Fbb=\Cbb$. We need to show that any $\varphi\in\MU^*$ can be extended t
 
 
 
-Let $\MV$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$. Let $1<p,q<+\infty$ with $p^{-1}+q^{-1}=1$.
+Let $\MV,\MW$ be normed vector spaces over $\Fbb\in\{\Rbb,\Cbb\}$. Let $1<p,q<+\infty$ with $p^{-1}+q^{-1}=1$.
+
+
+\begin{df}\label{lb706}
+The \textbf{canonical map}  \index{00@Canonical map $\MV\rightarrow\MV^{**}$} 
+\begin{gather*}
+\MV\rightarrow\MV^{**}\qquad v\mapsto v^\sharp
+\end{gather*}
+is defined by setting \index{v@$v^\sharp$}
+\begin{align*}
+\pmb{v^\sharp}:\MV^*\rightarrow\Fbb\qquad \varphi\mapsto \varphi(v)
+\end{align*}
+This linear map has operator norm $\leq 1$, that is $\Vert v^\sharp\Vert\leq\Vert v\Vert$.
+\end{df}
+
+\begin{proof}
+To see $\Vert v^\sharp\Vert\leq\Vert v\Vert$, we choose any $\varphi\in\MV^*$ satisfying $\Vert\varphi\Vert\leq1$, and compute that $|\bk{v^\sharp,\varphi}|=|\bk{v,\varphi}|\leq\Vert v\Vert$.
+\end{proof}
+
+
+
+
+
+
+\subsubsection{Introduction}
+
 
 In this section, we study the finite-approximation approach to the moment problem introduced in Subsec. \ref{lb704}. This method was applied by Riesz in \cite{Rie10} to the case $\MV=L^p([a,b],m)$, and later in \cite{Rie11} to the case $\MV=C([a,b])$. Although it applies in a less general setting than the method of linear extension discussed in Sec. \ref{lb705}, several key concepts---such as quotient normed spaces and separation of convex sets---arise naturally within this framework. For this reason, we consider it worthwhile to examine this approach in detail.
 
@@ -19554,7 +19583,7 @@ We have already encountered the finite-approximation method in our treatment of 
 If one can show that $(f_n)$ is uniformly bounded, then by a Banach-Alaoglu type argument the sequence $(f_n)$ admits a subsequence converging weak-* to a solution of the moment problem.
 
 
-The translation of the above argument into modern language is as follows. Let $\MU$ be a linear subspace of $\MV$. To simplify the discussion, we assume that $\MU$ is separable. Let $\varphi\in\MV^*$. Our goal is to show that $\varphi$ can be extended to a bounded linear functional on $\MV$. To that end, choose a sequence $(\xi_n)_{n\in\Zbb_+}$ whose span is dense in $\MU$, and for each $n\in\Zbb_+$, define
+The translation of the above argument into modern language is as follows. Let $\MU$ be a linear subspace of $\MV$. To simplify the discussion, we assume that $\MU$ is separable. Let $\varphi\in\MU^*$. Our goal is to show that $\varphi$ can be extended to a bounded linear functional on $\MV$. To that end, choose a sequence $(\xi_n)_{n\in\Zbb_+}$ whose span is dense in $\MU$, and for each $n\in\Zbb_+$, define
 \begin{align*}
 \MU_n=\Span\{\xi_1,\dots\xi_n\}
 \end{align*}
@@ -19569,6 +19598,232 @@ and $\Vert\varphi_n\Vert=\Vert\varphi|_{\MU_n}\Vert$, which in particular does n
 for each $n$, and hence $\wtd\varphi|_\MU=\varphi$ by the density of $\bigcup_n\MU_n$ in $\MU$. Thus $\wtd\varphi$ is a desired extension of $\varphi$. 
 
 
+The reader will immediately observe that the finite-approximation approach distinguishes between two kinds of moment problems: those of finite type and those of infinite type. In this framework, moment problems of finite type are straightforward to solve (at least when $\MV$ is a concrete function space such as $L^p(X,\mu)$ or $C(X)$), while moment problems of infinite type are obtained as weak-* limits of solutions to the finite type ones.
+
+As we shall see, the principal difficulty in the finite-approximation method lies in establishing an upper bound for the sequence $(\varphi_n)$ of approximate solutions. That is, the real difficulty, at least when $\MV$ is a common function space, lies in proving that any bounded linear functional defined on the finite-dimensional subspace $\MU_n$ can be extended to a functional on $\MV$ \textit{without increasing the operator norm except by an arbitrarily small positive amount}. This is precisely where convexity enters the picture.
+
+
+In the following subsections, we discuss, in turn, the existence of finite approximate solutions and the uniform boundedness of such solutions, within the abstract framework of normed vector spaces. However, we introduce one modification: we view the given sequence $(\xi_n)$ as a sequence $(\varphi_n)$ in the dual space $\MV^*$ rather than in $\MV$, and we look for solutions of the moment problem in $\MV^{**}$. The advantage of this setting is that $\MV^*$ already possesses a rich supply of bounded linear functionals, namely, those induced by the elements of $\MV$. 
+
+For example, if $(\xi_n)$ lies in $L^p(X,\mu)$ where $(X,\mu)$ is a $\sigma$-finite measure space, we take $\MV=L^q(X,\mu)$ so that $\MV^*=L^p(X,\mu)$ by Thm. \ref{lb13}. If $(\xi_n)$ lies in $C(X)$ for a compact Hausdorff space $X$, we take $\MV=C(X)^{**}$, since $C(X)$ embeds isometrically into $C(X)^{**}$, as the following observation shows:
+
+\begin{eg}
+The canonical map $C(X)\rightarrow C(X)^{**}$ is an isometry. Indeed, if $f\in C(X)$, then $\Vert f^\sharp\Vert\leq\Vert f\Vert$ by Def. \ref{lb706}. Choose $x\in X$ such that $|f(x)|=\Vert f\Vert$, and let $\varphi\in C(X)^*$ be defined by $\varphi(g)=g(x)$ for each $g\in C(X)$. Then $\Vert\varphi\Vert=1$, and hence
+\begin{align*}
+\Vert f^\sharp\Vert\geq|\bk{f^\sharp,\varphi}|=|\bk{f,\varphi}|=|f(x)|=\Vert f\Vert
+\end{align*}
+This proves $\Vert f^\sharp\Vert=f$.
+\end{eg}
+
+In the remainder of this section, the proofs will not rely on the Hahn-Banach theorem established in Sec. \ref{lb705}; in particular, they will not depend on the axiom of choice.
+
+
+
+\subsubsection{Quotient normed vector spaces and their dual spaces}
+
+
+To prepare for the finite-approximation approach to the moment problem in the general setting, we require several basic facts concerning quotient normed vector spaces.
+
+
+\begin{pp}
+Let $\MU$ be a closed linear subspace of $\MV$. Then, the quotient space $\MV/\MU$ has a norm defined by
+\begin{align}\label{eq314}
+\Vert \xi+\MU\Vert=\dist(\xi,\MU)\equiv\inf_{u\in\MU}\Vert\xi+u\Vert\qquad \text{for each }\xi\in\MV
+\end{align}
+\end{pp}
+
+The normed vector space $\MV/\MU$ is called the \textbf{quotient normed vector space} \index{00@Quotient normed vector space} (or simply \textbf{quotient space}) of $\MV$ by $\MU$.
+
+
+\begin{proof}
+For each $\xi,\eta\in\MV$, we compute that
+\begin{align*}
+\Vert \xi+\eta+\MU\Vert\leq \Vert \xi+\eta+u+v\Vert\leq\Vert\xi+u\Vert+\Vert\eta+v\Vert
+\end{align*}
+where $u,v\in\MU$. Taking $\inf$ over $u,v\in\MU$, we obtain $\Vert\xi+\eta+\MU\Vert\leq\Vert\xi+\MU\Vert+\Vert\eta+\MU\Vert$. Similarly, for each $a\in\Fbb$,
+\begin{align*}
+\Vert a\xi+\MU\Vert\leq\Vert a\xi+au\Vert=|a|\cdot\Vert\xi+u\Vert
+\end{align*}
+where $u\in\MU$. Taking $\inf$ over $u\in\MU$, we obtain $\Vert a\xi\Vert\leq|a|\cdot\Vert\xi\Vert$. In view of Rem. \ref{lb46}, we conclude that \eqref{eq314} defines a seminorm on $\MV/\MU$. 
+
+If $\Vert\xi+\MU\Vert=0$, then the distance of $\xi$ to $\MU$ is zero. Since $\MU$ is closed, we conclude that $\xi\in\MU$. Hence \eqref{eq314} is a norm on $\MV/\MU$.
+\end{proof}
+
+
+\begin{pp}\label{lb707}
+Let $\MU$ be a closed linear subspace of $\MV$. Then we have a linear isometry
+\begin{gather}\label{eq316}
+\fk L(\MV/\MU,\MW)\rightarrow\fk L(\MV,\MW)\qquad T\mapsto T\circ\pi_\MU
+\end{gather}
+where $\pi_\MU:\MV\rightarrow\MV/\MU$ is the quotient map $\xi\mapsto\xi+\MU$. Moreover, the range of \eqref{eq316} consists precisely of $S\in\fk L(\MV,\MW)$ satisfying $S|_\MU=0$.
+\end{pp}
+
+In particular, we have a linear isometry
+\begin{align}
+(\MV/\MU)^*\rightarrow\MV^*\qquad \psi\mapsto\psi\circ \pi_\MU
+\end{align}
+
+
+\begin{proof}
+Write $S=T\circ\pi_\MU$. Then, for each $\xi\in\MV$, we have
+\begin{align*}
+T(\xi+\MU)=S\xi
+\end{align*}
+Then the inequality $\Vert S\Vert\leq\Vert T\Vert$ follows from
+\begin{align*}
+\Vert S\xi\Vert=\Vert T(\xi+\MU)\Vert\leq \Vert T\Vert\cdot\Vert\xi+\MU\Vert\leq\Vert T\Vert\cdot\Vert\xi\Vert
+\end{align*}
+
+By the Riesz lemma (Thm. \ref{lb655}), for each $\gamma>1$, there exists $\xi'\in\xi+\MU$ such that $\Vert\xi'\Vert\leq\gamma\dist(\xi,\MU)\equiv\gamma\Vert\xi+\MU\Vert$, and hence 
+\begin{align*}
+\Vert T(\xi+\MU)\Vert=\Vert T(\xi'+\MU)\Vert=\Vert S\xi'\Vert\leq \Vert S\Vert\cdot\Vert\xi'\Vert=\gamma\Vert S\Vert\cdot\Vert\xi+\MU\Vert
+\end{align*}
+and hence $\Vert T\Vert\leq\gamma\Vert S\Vert$. Since $\gamma$ is arbitrary, we conclude $\Vert T\Vert=\Vert S\Vert$.
+
+
+Each linear map in the range of \eqref{eq316} clearly vanishes on $\MU$. Conversely, assume that $S\in\fk L(\MV,\MW)$ vanishes on $\MU$. Then $S$ descends to a linear map $T:\MV\rightarrow\MW$. The computation in the previous paragraph shows $\Vert T\Vert =\Vert S\Vert$; in particular, $T\in\fk L(\MV/\MU,\MW)$. This proves that $S$ belongs to the range of \eqref{eq316}.
+\end{proof}
+
+
+\begin{df}
+For each subset $E\subset\MV^*$, define \index{E@${}^\perp E$, the pre-annihilator of $E$} the \textbf{pre-annihilator} \index{00@Pre-annihilator ${}^\perp E$}
+\begin{align*}
+\pmb{{}^\perp E}=\{\xi\in \MV:\bk{\xi,\varphi}=0\text{ for each }\varphi\in E\}
+\end{align*}
+which is clearly a closed linear subspace of $\MV$.
+\end{df}
+
+\begin{co}\label{lb708}
+Let $\MX$ be a linear subspace of $\MV^*$. There we have a linear isometry
+\begin{gather}\label{eq317}
+\MX\rightarrow(\MV/{}^\perp\MX)^*\qquad \varphi\mapsto\bigg(
+\begin{array}{c}
+\MV/{}^\perp\MX\rightarrow\Fbb\\[0.5ex]
+\xi+{}^\perp\MX\mapsto \bk{\varphi,\xi}
+\end{array}\bigg)
+\end{gather}
+\end{co}
+
+\begin{proof}
+Since each $\varphi\in\MX$ vanishes on ${}^\perp\MX$, by Prop. \ref{lb707}, $\varphi:\MX\rightarrow\Fbb$ corresponds to a bounded linear map $\MV/{}^\perp\MX\rightarrow\Fbb$ with the same operator norm defined by the rightmost expression in \eqref{eq317}. This proves that \eqref{eq317} is a well-defined linear isometry.
+\end{proof}
+
+
+
+\subsubsection{Existence of finite approximate solutions to the moment problem}
+
+
+\begin{rem}\label{lb709}
+If $\dim\MV<+\infty$, then by Thm. \ref{lb640}, any linear isomorphism $\MV\rightarrow\Fbb^n$ is a homeomorphism. Therefore, every linear functional on $\MV$ is bounded, i.e., $\Lin(\MV,\Fbb)=\MV^*$.
+\end{rem}
+
+
+\begin{thm}\label{lb710}
+Let $\MX$ be a finite-dimensional linear subspace of $\MV^*$. Then we have a linear bijection
+\begin{gather}\label{eq315}
+\MV/{}^\perp\MX\longrightarrow\MX^*\qquad \xi+{}^\perp\MX\mapsto \xi^\sharp|_\MX
+\end{gather}
+where $\xi^\sharp|_\MX:\MX\rightarrow\Fbb$ is the restriction of $\xi^\sharp:\MV^*\rightarrow\Fbb$ to $\MX$.
+\end{thm}
+
+\begin{proof}
+The linear map $\MV\rightarrow\MX^*$ defined by $\xi\mapsto\xi^\sharp|_\MX$ has kernel ${}^\perp\MX$, and hence descends to \eqref{eq315}, which is an injective linear map. In particular, by Rem. \ref{lb709},
+\begin{align*}
+\dim\MV/{}^\perp\MX\leq\dim\MX^*=\dim\MX<+\infty
+\end{align*}
+By Cor. \ref{lb708} (and also Rem. \ref{lb709}), $\dim\MX\leq\dim\MV/{}^\perp\MX$. Therefore, the linear map \eqref{eq315} is bijective.
+\end{proof}
+
+
+
+\subsubsection{Bounded approximate solutions}
+
+
+Let us explain why the surjectivity of the map \eqref{eq315} ensures the existence of finite approximate solutions to the moment problem. Fix a sequence $(c_n)_{n\in\Zbb_+}$ in $\Fbb$ and a sequence $(\varphi_n)_{n\in\Zbb_+}$ in $\MV^*$ satisfying an analogue of \eqref{eq309}; that is, there exists $M\in\Rbb_{\geq0}$ such that
+\begin{align*}
+\Big|\sum_n a_nc_n\Big|\leq M\Big\Vert \sum_n a_n\varphi_n\Big\Vert\qquad\text{for each }(a_n)\in C_c(\Zbb_+,\Fbb)
+\end{align*}
+Let $\MX_n=\Span\{\varphi_1,\dots,\varphi_n\}$. Then we have a linear functional
+\begin{align*}
+\Xi_n:\MX_n\rightarrow\Fbb\qquad a_1\varphi_1+\cdots+a_n\varphi_n\mapsto a_1c_1+\cdots+a_nc_n
+\end{align*}
+with operator norm $\leq M$. By Thm. \ref{lb710}, there exists $\xi_n\in\MV$ such that
+\begin{align}\label{eq318}
+\xi_n^\sharp|_{\MX_n}=\Xi_n
+\end{align}
+Thus, $(\xi_n)$ may be regarded as a sequence of approximate solutions to the moment problem.
+
+
+However, we require the sequence $(\xi_n)$ to be bounded so that $(\xi_n^\sharp)$ is bounded in $\MV^{**}$. Therefore, by the Banach-Alaoglu Thm. \ref{lb60}, $(\xi_n^\sharp)$ admits a weak-* convergent subsequence with limit $\Xi\in\MV^{**}$, satisfying
+\begin{align*}
+\bk{\Xi,\varphi_n}=a_n\qquad\text{for each }n
+\end{align*}
+thus providing a solution of the moment problem.
+
+The existence of a bounded sequence $(\xi_n)$ follows from the fact that the linear isomorphism \eqref{eq315} is in fact an isometry (cf. Lem. \ref{lb711}). Indeed, this implies that for any $\xi_n$ satisfying \eqref{eq318}, we have $\Vert\xi_n+{}^\perp\MX\Vert=\Vert\Xi_n\Vert\leq M$, and thus for some such $\xi_n$ satisfying \eqref{eq318}, we have
+\begin{align*}
+\Vert\xi_n\Vert\leq M+1
+\end{align*}
+
+
+
+
+
+\begin{lm}\label{lb711}
+In Thm. \ref{lb710}, the linear isomorphism $\MV/{}^\perp\MX\rightarrow\MX^*$ (defined by \eqref{eq315}) is an isometry.
+\end{lm}
+
+
+
+\begin{proof}
+By comparing dimensions, we see that the injective linear map $\MX\rightarrow(\MV/{}^\perp\MX)^*$ in Cor. \ref{lb708} is bijective, and hence is a linear isometry. One easily checks that its transpose (which is also an isomorphism of normed vector spaces) satisfies
+\begin{align*}
+(\MV/{}^\perp\MX)^{**}\rightarrow\MX^*\qquad 
+(\xi+{}^\perp\MX)^\sharp \mapsto\xi^\sharp|_\MX
+\end{align*}
+for each $\xi\in\MV$. That is, the composition of $(\xi+{}^\perp\MX)^\sharp:(\MV/{}^\perp\MX)^*\rightarrow\Fbb$ with the map \eqref{eq315} is the map $\MX\rightarrow\Fbb$ sending each $\varphi$ to $\bk{\varphi,\xi}$ (and hence equals $\xi^\sharp|_\MX$). 
+
+This gives a commutative diagram
+\begin{equation*}
+\begin{tikzcd}[column sep=0cm]
+             & \MV/{}^\perp\MX \arrow[ld] \arrow[rd,"\eqref{eq315}"] &   \\
+(\MV/{}^\perp\MX)^{**} \arrow[rr,"\simeq"'] &                         & \MX^*
+\end{tikzcd}
+\qquad\begin{tikzcd}[column sep=0cm]
+             & \xi+{}^\perp\MX \arrow[ld,mapsto] \arrow[rd,mapsto] &   \\
+(\xi+{}^\perp\MX)^\sharp\arrow[rr, mapsto] &                         & \xi^\sharp|_\MX
+\end{tikzcd}
+\end{equation*}
+where the bottom map is an isomorphism of normed vector spaces. Therefore, to prove that \eqref{eq315} is an isometry, it is equivalent to show that the canonical map $\MV/{}^\perp\MX\rightarrow(\MV/{}^\perp\MX)^{**}$ is an isomtry, cf. Thm \ref{lb712}.
+\end{proof}
+
+
+
+\begin{thm}\label{lb712}
+Assume that $\dim\MV<+\infty$. Then the canonical map $\MV\rightarrow\MV^{**}$ is an isomorphism of normed vector spaces.
+\end{thm}
+
+We defer the proof of Thm. \ref{lb712} to Sec. \ref{lb713}. Note that since $\dim\MV<+\infty$, the canonical map $\MV\rightarrow\Lin(\Lin(V,\Fbb),\Fbb)$ is bijective by finite-dimensional linear algebra. Thus, the only nontrivial content of Thm. \ref{lb712} is that the canonical map $\MV\rightarrow\MV^{**}$ is an isometry.
+
+
+
+As we shall see in Sec. \ref{lb714}, Thm. \ref{lb712} follows easily from the Hahn-Banach Thm. \ref{lb700}. Indeed, the Hahn-Banach theorem proves a stronger statement: regardless of whether $\MV$ is finite-dimensional or not, the canonical map $\MV\rightarrow\MV^{**}$ is always an isometry. However, the linear-extension proof of Hahn-Banach obscures the geometric relationship between Thm. \ref{lb712} and the separation of convex sets, an aspect we will make explicit in Sec. \ref{lb713}.
+
+
+A final remark: in Riesz's treatment of moment problems for $L^p([a,b],m)$ and $C([a,b])$, Lem. \ref{lb711} was proved using concrete structural properties of these function spaces. For instance, when $\MV=L^p([a,b],m)$, the space $\MX$ is a finite-dimensional linear subspace of $\MV^*=L^q([a,b],m)$. In that context, for each $\Lambda\in\MX^*$, one can explicitly construct $\xi\in\MV$ with $\xi^\sharp|_\MX=\Lambda$, satisfying
+\begin{align*}
+\Vert \xi\Vert=\Vert\xi+{}^\perp\MX\Vert=\Vert\Lambda\Vert
+\end{align*}
+as follows (cf. \cite{Rie10}). An element $f\in L^q([a,b],m)$ in the unit sphere of $\MX$ can be chosen such that $\Lambda(f)=\Vert\Lambda\Vert$. Then
+\begin{align*}
+\xi=\Vert\Lambda\Vert\cdot |f|^{q-1}\ovl{\sgn f}
+\end{align*}
+where $\sgn f$ denotes $f/|f|$ wherever $f\neq0$, and $0$ otherwise. 
+
+
+
+
+\subsection{Separation of convex sets and the proof of Thm. \ref{lb712}}\label{lb713}
 
 
 
@@ -19577,6 +19832,8 @@ for each $n$, and hence $\wtd\varphi|_\MU=\varphi$ by the density of $\bigcup_n\
 
 
 \hypertarget{current}{}
+
+\subsection{Consequences of the Hahn-Banach theorem}\label{lb714}
 
 \newpage
 
