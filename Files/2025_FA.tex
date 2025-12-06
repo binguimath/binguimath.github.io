@@ -19719,13 +19719,15 @@ Since each $\varphi\in\MX$ vanishes on ${}^\perp\MX$, by Prop. \ref{lb707}, $\va
 
 
 
-\subsubsection{Existence of finite approximate solutions to the moment problem}
+\subsubsection{Existence of finite approximate solutions to moment problems}
 
 
 \begin{rem}\label{lb709}
 If $\dim\MV<+\infty$, then by Thm. \ref{lb640}, any linear isomorphism $\MV\rightarrow\Fbb^n$ is a homeomorphism. Therefore, every linear functional on $\MV$ is bounded, i.e., $\Lin(\MV,\Fbb)=\MV^*$.
 \end{rem}
 
+
+The following theorem, due to Helly \cite{Hel21}, establishes the existence of finite approximate solutions to the moment problem.
 
 \begin{thm}\label{lb710}
 Let $\MX$ be a finite-dimensional linear subspace of $\MV^*$. Then we have a linear bijection
@@ -19812,7 +19814,7 @@ where the bottom map is an isomorphism of normed vector spaces. Therefore, to pr
 Assume that $\dim\MV<+\infty$. Then the canonical map $\MV\rightarrow\MV^{**}$ is an isomorphism of normed vector spaces.
 \end{thm}
 
-We defer the proof of Thm. \ref{lb712} to Sec. \ref{lb713}. Note that since $\dim\MV<+\infty$, the canonical map $\MV\rightarrow\Lin(\Lin(V,\Fbb),\Fbb)$ is bijective by finite-dimensional linear algebra. Thus, the only nontrivial content of Thm. \ref{lb712} is that the canonical map $\MV\rightarrow\MV^{**}$ is an isometry.
+We defer the proof of Thm. \ref{lb712} to Subsec. \ref{lb720}. Observe that the only nontrivial assertion in Thm. \ref{lb712} is that the canonical map $\MV\rightarrow\MV^{**}$ is an isometry. Once this is known, the fact that $\dim\MV<+\infty$, together with the injectivity of a linear isometry, implies that the map $\MV\rightarrow\MV^{**}$ must be bijective.
 
 
 
@@ -19836,13 +19838,161 @@ where $\sgn f$ denotes $f/|f|$ wherever $f\neq0$, and $0$ otherwise.
 
 
 
+Let $\MV$ be a finite-dimensional normed $\Fbb$-vector space. The goal of this section is to prove Thm. \ref{lb712}: the canonical linear map
+\begin{align*}
+\MV\rightarrow\MV^{**}\qquad v\mapsto v^\sharp
+\end{align*}
+is an isometry. This is the most crucial step in the finite-approximation approach to moment problems of bounded type. With Prop. \ref{lb703}, the complex case reduces easily to the real one. Therefore, unless otherwise stated, we shall assume that $\MV$ is a normed $\Rbb$-vector space. 
+
+
+\subsubsection{Reduction to separation of convex sets}\label{lb718}
+
+Choose $v\in\MV$ with $\Vert v\Vert=1$. Our aim is to show that $\Vert v^\sharp\Vert=1$. By Def. \ref{lb706}, we already know that $\Vert v^\sharp\Vert\leq1$, so it remains to prove $\Vert v^\sharp\Vert\geq1$, i.e.,
+\begin{align*}
+\sup_{\varphi\in\ovl B_{\MV^*}(0,1)}|\varphi(v)|\geq1
+\end{align*}
+This would follow immediately if we can find $\varphi\in\Lin(\MV,\Rbb)$ such that 
+\begin{align*}
+\Vert\varphi\Vert\leq 1\qquad \varphi(v)=1
+\end{align*}
+The inequality $\Vert\varphi\Vert\leq 1$ may be reformulated in a more geometrically transparent way:
+
+
+\begin{lm}\label{lb717}
+Let $\MW$ be a normed $\Rbb$-vector space. Let $\varphi:\MW\rightarrow\Rbb$ be linear. Let $a,b\in\Rbb_{>0}$. Then \footnote{One may replace the open ball $B_\MW(0,a)$ with the closed ball $\ovl B_\MW(0,a)$. We use the open ball here because, in the infinite-dimensional setting, the corresponding geometric statement is most naturally formulated for open sets.}
+\begin{align*}
+\Vert\varphi\Vert\leq b/a\qquad\Longleftrightarrow\qquad B_\MW(0,a)\subset \varphi^{-1}(-\infty,b]
+\end{align*}
+\end{lm}
+
+
+\begin{proof}
+The direction $\Rightarrow$ is obvious. Assume $\varphi^{-1}(-\infty,b]$. Then for each $v\in\ovl B_\MW(0,1)$ and $0<a'<a$, we have $\varphi(a'v)\leq b$, and hence $\varphi(v)\leq b/a'$. Since $a'$ is arbitrary, we conclude $\varphi(v)\leq b/a$. Similarly $\varphi(-v)\leq b/a$, and hence $-b/a\leq\varphi(v)\leq b/a$. This proves $\Vert\varphi\Vert\leq b/a$.
+\end{proof}
+
+
+
+
+Thus our task reduces to finding $\varphi\in\Lin(\MV,\Rbb)$ such that $v\in\varphi^{-1}(1)$ and $B_\MV(0,1)\subset\varphi^{-1}(-\infty,1]$. Observe that there is a one-to-one correspondence between elements of $\varphi\in\MV^*$ and hyperplanes $H\subset\MV$ (that is, translates of linear subspaces of codimension $1$) given by
+\begin{align*}
+H=\varphi^{-1}(1)
+\end{align*}
+Therefore, it suffices to find a hyperplane $H$ passing through $v$ such that $B_\MV(0,1)$ lies entirely on one side of $H$, namely in the region $\{\varphi\leq 1\}$. It cannot lie completely in the region $\{\varphi\geq 1\}$, since $0$ does not belong to that side. 
+
+In this way, the proof that the canonical map $\MV\rightarrow\MV^{**}$ is an isometry is reduced to establishing the geometric fact that $B_\MV(0,1)$ and any point $v\in\MV$ with $\Vert v\Vert=1$ can be separated by a hyperplane. Since $B_\MV(0,1)$ is convex, we will establish a stronger statement: any convex open subset $\Omega\subset\MV$ and any point $v\in\MV\setminus\Omega$ can be separated by a hyperplane.
+
+
+\subsubsection{Proof of separation of convex sets}
+
+
+\begin{df}
+Let $W$ be an $\Fbb$-vector space (viewed as an $\Rbb$-vector space if $\Fbb=\Cbb$). For each $p,q\in W$, define the \textbf{intervals}
+\begin{align*}
+\pmb{[p,q]}\qquad \pmb{(p,q)}\qquad \pmb{(p,q]}\qquad\pmb{[p,q)}
+\end{align*}
+to be the image of the sets $[0,1]$, $(0,1)$, $(0,1]$, and $[0,1)$ under the map
+\begin{align*}
+t\mapsto (1-t)p+tq
+\end{align*}
+respectively. We also set
+\begin{align*}
+\pmb{[p,\infty_q)}=\{(1-t)p+tq:t\in\Rbb_{\geq0}\}
+\end{align*}
+We say that a subset $\Omega\subset W$ is \textbf{convex} \index{00@Convex sets} if $[p,q]\subset\Omega$ whenever $p,q\in\Omega$.
+\end{df}
+
+
+\begin{lm}\label{lb716}
+Let $\MW$ be a normed $\Fbb$-vector space. Let $\Omega$ be an open convex subset of $\MW$. Fix $p\in\Omega$. Suppose that $v\in\MW$ is not a boundary point of $[p,\infty_v)\cap\Omega$, that is,
+\begin{align*}
+[p,\infty_v]\cap\Omega=[p,p+r(v-p))\qquad \text{for some }0<r<1
+\end{align*}
+Then $v\notin\ovl\Omega$.
+\end{lm}
+
+
+\begin{proof}
+By a translation we assume WLOG that $p=0$. Choose $\eps>0$ such that $r(1+\eps)<1$. Then
+\begin{align*}
+v\notin[0,r(1+\eps)v)=(1+\eps)([0,\infty_v]\cap\Omega)
+\end{align*}
+and hence $v\notin(1+\eps)\Omega$. We claim that
+\begin{align*}
+v-\eps\Omega=\{v-\eps y:y\in\Omega\}
+\end{align*}
+which is a neighborhood of $v$, is disjoint from $\Omega$, proving that $v\notin\ovl\Omega$.
+
+Suppose that $v-\eps\Omega$ and $\Omega$ has an intersection point $x$. Then $v=x+\eps y$ with $x,y\in\Omega$. Since $\Omega$ is convex, we conclude that $(1+\eps)^{-1}v\in\Omega$, and hence $v\in (1+\eps)\Omega$. This gives a contradiction.
+\end{proof}
+
+
+We are now ready to prove the main result of this section. Recall that $\MV$ is a finite-dimensional normed $\Rbb$-vector space.
+
+
+\begin{thm}\label{lb719}
+Assume that $\Omega$ is an open convex subset of $\MV$ containing $0$. Let $v\in\MV\setminus\Omega$. Then there exists $\varphi\in\MV^*$ such that 
+\begin{align*}
+\Omega\subset\varphi^{-1}(-\infty,1)\qquad \varphi(v)=1
+\end{align*}
+\end{thm}
+
+
+\begin{proof}
+Step 1. We note that $\Omega\subset\varphi^{-1}(-\infty,1]$ implies $\Omega\subset\varphi^{-1}(-\infty,1)$. Indeed, if $\Omega\subset\varphi^{-1}(-\infty,1]$, and if there exists $q\in\Omega$ such that $\varphi(q)=1$, then $[0,\infty_q)\cap\Omega$ must contain a point slightly away from $q$ such that $\varphi$ takes value $>1$. This is impossible. Therefore, in the following, it suffices to prove the weaker condition that $\Omega\subset\varphi^{-1}(-\infty,1]$.\\[-1ex]
+
+Step 2. By Thm. \ref{lb640}, we may assume that $\MV$ is the Euclidean space $\Rbb^n$. Choose $0<r\leq 1$ such that
+\begin{align*}
+[0,\infty_v)\cap\Omega=[0,rv)
+\end{align*}
+In this step, we consider the case $r<1$. Then $v\notin\ovl\Omega$ by Lem. \ref{lb716}. Choose $p\in\ovl\Omega$ such that
+\begin{align*}
+\Vert v-p\Vert=\dist(v,\ovl\Omega)
+\end{align*}
+Let $H$ be the hyperplane passing through $v$ and perpendicular to $v-p$.\footnote{By saying $H$ is perpendicular to a vector $\xi$, we mean that $H-q\perp \xi$ for some (and hence for all) $q\in H$.} Let $\varphi\in\MV^*$ be the unique linear functional such that $\varphi^{-1}(1)=H$. 
+
+Let us prove $\varphi(\ovl\Omega)\subset(-\infty,1]$, noting that $\ovl\Omega$ is convex. It is easy to prove the following fact:\footnote{By an orthogonal transformation, we may assume that $u=0$, $H=\{(0,a_2,\dots,a_n):a_i\in\Rbb\}$, $x=(a,0,0,\dots)$, and $y=(b,?,\dots,?)$ where $a>0$ and $b<0$. Then the cosine of the angle from $[x,u]$ to $[x,y]$ is positive, and hence $\Vert u-z\Vert<\Vert u-x\Vert$ for any $z\in(x,y)$ close to $x$.}
+\begin{itemize}
+\item If $x,y\in\Rbb^n$ are lying on the two sides of $H$ (that is, one is in $\varphi^{-1}(-\infty,1)$, and the other one is in $\varphi^{-1}(1,+\infty)$), $u\in H$, and $u-x$ is perpendicular to $H$, then there exists $z\in[x,y]$ such that $\Vert u-z\Vert< \Vert u-x\Vert$.
+\end{itemize}
+Therefore $\varphi(p)\leq 1$; otherwise, setting $u=v,x=p,y=0$, we obtain a point of $[0,p]\subset\ovl\Omega$ whose distance to $v$ is smaller than $\Vert v-p\Vert$, impossible. Moreover, $\varphi(p)\neq 1$; otherwise, $p\in H$, and hence $v-p$ is simultaneously lying inside $H$ and perpendicular to $H$, impossible. We conclude $\varphi(p)<1$. 
+
+Consequently, for each $q\in\ovl\Omega$ we have $\varphi(q)\leq 1$; otherwise, setting $u=v,x=p,y=q$, we obtain a point of $[p,q]\subset\ovl\Omega$ whose distance to $v$ is smaller than $\Vert v-p\Vert$, impossible. This finishes the proof that $\varphi(\ovl\Omega)\subset(-\infty,1]$.\\[-1ex]
+
+
+Step 3. We treat the case $r=1$, that is, $[0,\infty_v]\cap\Omega=[0,v)$. Let $(v_k)$ be a sequence in $[0,\infty_v)\setminus [0,v]$ converging to $v$. By Step 2, there exists a sequence $(\varphi_k)$ in $\MV^*$ satisfying
+\begin{align*}
+\varphi_k(\Omega)\subset(-\infty,1]\qquad \varphi_k(v_k)=1
+\end{align*}
+By Lem. \ref{lb717}, $\sup_k\Vert\varphi_k\Vert \leq 1$. Therefore, by Heine-Borel (together with the fact that the norm on $\MV^*$ is equivalent to the Euclidean norm, cf. Thm. \ref{lb640}), $(\varphi_k)$ admits a subsequence converging to some $\varphi\in\MV^*$, which clearly satisfies $\Omega\subset\varphi^{-1}(-\infty,1]$ and $\varphi(v)=1$.
+\end{proof}
+
+
+\subsubsection{Proof of Thm. \ref{lb712}}\label{lb720}
+
+
+Let us prove Thm. \ref{lb712}, that is, if $\MV$ is a finite-dimensional normed $\Fbb$-vector space, then the canonical linear map $\MV\rightarrow\MV^{**}$ is an isomorphism of normed vector spaces.
+
+\begin{proof}[\textbf{Proof of Thm. \ref{lb712}}]
+It suffices to prove that $\MV\rightarrow\MV^{**}$ is an isometry, since this will imply the injectivity, and hence the surjectivity because $\dim\MV=\dim\MV^{**}<+\infty$ (cf. Rem. \ref{lb709}). Choose any $v\in\MV$. By the discussion at the beginning of Subsec. \ref{lb718}, it suffices to prove that for each $v\in\MV$ with $\Vert v\Vert=1$, there exists $\varphi\in\MV^*$ such that $\Vert\varphi\Vert\leq 1$ and $\varphi(v)=1$.
+
+In the case $\Fbb=\Rbb$, by Thm. \ref{lb719}, there exists $\varphi\in\MV^*$ such that $\varphi(\Omega)\subset(-\infty,1]$ (and hence $\Vert\varphi\Vert\leq 1$ by Lem. \ref{lb717}), finishing the proof. 
+
+In the case $\Fbb=\Cbb$, by viewing $\MV$ as a normed $\Rbb$-vector space, we obtain $\psi\in\fk L(\MV,\Rbb)$ such that $\Vert\psi\Vert\leq 1$ and $\psi(v)=1$. By Prop. \ref{lb713}, there exists $\varphi\in\MV^*$ such that $\Real\varphi=\psi$, $\Vert\varphi\Vert\leq 1$, and $\psi(v)=1$. 
+\end{proof}
+
+
+
+\subsection{Consequences of the Hahn-Banach theorem}\label{lb714}
+
+
+
+
+
 
 
 
 
 \hypertarget{current}{}
-
-\subsection{Consequences of the Hahn-Banach theorem}\label{lb714}
 
 \newpage
 
@@ -20139,6 +20289,10 @@ Hawkins, T. (1979) Lebesgue's theory of integration: Its origins and development
 \bibitem[Hel12]{Hel12}
 
 E. Helly, \"Uber lineare Funktionaloperationen. Akademie der Wissenschaften in Wien, Mathematisch-Naturwissenschaftliche Klasse, Sitzungsberichte, Abteilung IIa, 121 (1912), pp. 265-297. 
+
+\bibitem[Hel21]{Hel21}
+
+E. Helly, \"Uber Systeme linearer Gleichungen mit unendlich vielen Unbekannten. Monatsh. Math. Phys. 31, 60-91 (1921).
 
 
 \bibitem[Hil06]{Hil06}
