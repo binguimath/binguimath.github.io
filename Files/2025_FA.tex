@@ -13845,8 +13845,8 @@ that the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and that the RHS has dom
 Solve Exe. \ref{lb569}. 
 \end{dprob}
 
-\begin{proof}[Note]
-This result is not as obvious as it appears. You should handle the set $\{x\in X:|f(x)|\leq1\}$ and its complement separately.
+\begin{proof}[Hint]
+This result is not as obvious as it appears. Let $E=\{x\in X:|f(x)|\leq1\}$ and $F=X\setminus E$. For natural numbers $0\leq k\leq n$ and $\xi\in\bigoplus_\alpha L^2(X,\mu_\alpha)$, show that $\sum_\alpha\Vert f^k\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}\leq \sum_\alpha\Vert f^n\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}$ and $\sum_\alpha\Vert f^n\chi_E\xi\Vert^2_{L^2(\mu_\alpha)}<+\infty$. 
 \end{proof}
 
 Recall Pb. \ref{lb605} for the definition of Hilbert space dimensions.
@@ -16509,8 +16509,10 @@ Solve the following problems.
 \end{enumerate}
 \end{prob}
 
-\begin{proof}[Note]
-Recall Exp. \ref{lb593} for an explicit description of $\DD$ for $I$.
+\begin{proof}[Hint]
+1. See the hint of Pb. \ref{lb596} for a related estimate.
+
+3. Recall Exp. \ref{lb593} for an explicit description of $\DD$ for $I$.
 \end{proof}
 
 
@@ -19440,6 +19442,9 @@ This finishes the proof.
 
 
 
+
+
+
 \begin{proof}[\textbf{Proof of Thm. \ref{lb700} for $\Fbb=\Rbb$}]
 Let us show that any $\varphi\in\MU^*$ can be extended to a linear functional $\Phi:\MV\rightarrow\Rbb$ with $\Vert\Phi\Vert=\Vert\varphi\Vert$. Assume WLOG that $\varphi\neq0$. By scaling $\varphi$, we assume further  $\Vert\varphi\Vert=1$. Let
 \begin{align*}
@@ -19454,13 +19459,25 @@ If $\MX\neq \MV$, we let $e\in \MV\setminus \MX$. Then by Lem. \ref{lb498}, $\Ph
 
 
 
-\begin{rem}
+\begin{rem}\label{lb722}
 When $\MV$ is separable, Thm. \ref{lb700} can be proved using mathematical induction instead of Zorn's lemma. Indeed, as we will see in Subsec. \ref{lb701}, the reduction from the case $\Fbb=\Cbb$ to the case $\Fbb=\Rbb$ is fairly elementary and does not involve Zorn's lemma. Thus we may assume $\Fbb=\Rbb$.
 
 Fix $\varphi\in\MU^*$ with $\Vert\varphi\Vert=1$. Since $\MV$ is separable, there exists a sequence $(e_n)_{n\in\Zbb_+}$ in $\MV$ whose span is dense in $\MV$. Let $\MU_n=\MU+\Span\{e_1,\dots,e_n\}$. By repeatedly applying Lem. \ref{lb699}, we obtain a sequence $(\varphi_n)$ where each $\varphi_n:\MU_n\rightarrow\Rbb$ is a linear functional of norm $1$ extending $\varphi_{n-1}$ (with $\varphi_0=\varphi$). Hence $\varphi$ extends to a linear functional $\Phi:\MU_\infty\rightarrow\Rbb$ of norm $1$, where $\MU_\infty=\MU+\Span\{e_n:n\in\Zbb_+\}$. Since $\MU_\infty$ is dense in $\MV$, Cor. \ref{lb44} allows us to extend $\Phi$ further to a norm‑$1$ linear functional on all of $\MV$.
 \end{rem}
 
+\begin{rem}\label{lb723}
+The same argument used in the proof of the Hahn-Banach Thm. \ref{lb700} yields the following stronger form of the Hahn-Banach theorem; see the second proof of Thm. \ref{lb721} for an application.
 
+Let $V$ be an $\Rbb$-vector space, let $p:V\rightarrow\Rbb$ be a function satisfying
+\begin{align*}
+p(\lambda\xi)=\lambda p(\xi)\qquad p(\xi+\eta)\leq p(\xi)+p(\eta)
+\end{align*}
+for each $\xi,\eta\in V$ and $\lambda>0$. Let $U$ be a linear subspace of $V$. Suppose that $\varphi:U\rightarrow\Rbb$ is a linear functional satisfying
+\begin{align}\label{eq321}
+\varphi(\xi)\leq p(\xi)
+\end{align}
+for each $\xi\in U$. Then $\varphi$ can be extended to a linear functional $\varphi:V\rightarrow\Rbb$ satisfying \eqref{eq321} for each $\xi\in V$.  \hqed
+\end{rem}
 
 
 
@@ -19636,7 +19653,7 @@ In the remainder of this section, the proofs will not rely on the Hahn-Banach th
 To prepare for the finite-approximation approach to the moment problem in the general setting, we require several basic facts concerning quotient normed vector spaces.
 
 
-\begin{pp}
+\begin{pp}\label{lb726}
 Let $\MU$ be a closed linear subspace of $\MV$. Then, the quotient space $\MV/\MU$ has a norm defined by
 \begin{align}\label{eq314}
 \Vert \xi+\MU\Vert=\dist(\xi,\MU)\equiv\inf_{u\in\MU}\Vert\xi+u\Vert\qquad \text{for each }\xi\in\MV
@@ -19836,7 +19853,7 @@ where $\sgn f$ denotes $f/|f|$ wherever $f\neq0$, and $0$ otherwise.
 
 
 
-\subsection{Separation of convex sets and the proof of Thm. \ref{lb712}}\label{lb713}
+\subsection{Separation of convex sets: the finite-dimensional case}\label{lb713}
 
 
 
@@ -19861,7 +19878,7 @@ The inequality $\Vert\varphi\Vert\leq 1$ may be reformulated in a more geometric
 
 
 \begin{lm}\label{lb717}
-Let $\MW$ be a normed $\Rbb$-vector space. Let $\varphi:\MW\rightarrow\Rbb$ be linear. Let $a,b\in\Rbb_{>0}$. Then \footnote{One may replace the open ball $B_\MW(0,a)$ with the closed ball $\ovl B_\MW(0,a)$. We use the open ball here because, in the infinite-dimensional setting, the corresponding geometric statement is most naturally formulated for open sets.}
+Let $\MW$ be a normed $\Rbb$-vector space. Let $\varphi:\MW\rightarrow\Rbb$ be linear. Let $a,b\in\Rbb_{>0}$. Then \footnote{One may replace the open ball $B_\MW(0,a)$ with the closed ball $\ovl B_\MW(0,a)$. We use the open ball here because, in the infinite-dimensional setting, the corresponding geometric statement is most easily established for open sets; see the proof of Thm. \ref{lb721}.}
 \begin{align*}
 \Vert\varphi\Vert\leq b/a\qquad\Longleftrightarrow\qquad B_\MW(0,a)\subset \varphi^{-1}(-\infty,b]
 \end{align*}
@@ -19928,24 +19945,41 @@ Suppose that $v-\eps\Omega$ and $\Omega$ has an intersection point $x$. Then $v=
 \end{proof}
 
 
-We are now ready to prove the main result of this section. Recall that $\MV$ is a finite-dimensional normed $\Rbb$-vector space.
+
+\begin{lm}\label{lb727}
+Let $\MW$ be a normed $\Rbb$-vector space, and let $\varphi:\MW\rightarrow\Rbb$ be a non-zero bounded linear map. Then $\varphi$ is an open map.
+\end{lm}
+
+\begin{proof}
+Choose $e\in\MW$ with $\varphi(e)=1$. Then $\varphi(-e,e)=(-1,1)$. Set $r=\Vert e\Vert$. Then
+\begin{align*}
+\varphi(B_\MW(0,r))\supset (-1,1)
+\end{align*}
+Therefore, the image of any non-empty open ball $B_\MW(v,a)$ has $\varphi(v)$ as its interior point. It follows easily that $\varphi$ is open.
+\end{proof}
+
+
+
+
+
+We are now ready to prove the main result of this section.
 
 
 \begin{thm}\label{lb719}
-Assume that $\Omega$ is an open convex subset of $\MV$ containing $0$. Let $v\in\MV\setminus\Omega$. Then there exists $\varphi\in\MV^*$ such that 
+Let $\MV$ be a finite-dimensional normed $\Rbb$-vector space. Assume that $\Omega$ is an open convex subset of $\MV$ containing $0$. Let $v\in\MV\setminus\Omega$. Then there exists $\varphi\in\MV^*$ such that 
 \begin{align*}
-\Omega\subset\varphi^{-1}(-\infty,1)\qquad \varphi(v)=1
+\Omega\subset\varphi^{-1}(-\infty,1)\qquad v\in\varphi^{-1}\{1\}
 \end{align*}
 \end{thm}
 
 
 \begin{proof}
-Step 1. We note that $\Omega\subset\varphi^{-1}(-\infty,1]$ implies $\Omega\subset\varphi^{-1}(-\infty,1)$. Indeed, if $\Omega\subset\varphi^{-1}(-\infty,1]$, and if there exists $q\in\Omega$ such that $\varphi(q)=1$, then $[0,\infty_q)\cap\Omega$ must contain a point slightly away from $q$ such that $\varphi$ takes value $>1$. This is impossible. Therefore, in the following, it suffices to prove the weaker condition that $\Omega\subset\varphi^{-1}(-\infty,1]$.\\[-1ex]
-
-Step 2. By Thm. \ref{lb640}, we may assume that $\MV$ is the Euclidean space $\Rbb^n$. Choose $0<r\leq 1$ such that
+Step 1. By Lem. \ref{lb727}, it suffices to prove the weaker condition that $\Omega\subset\varphi^{-1}(-\infty,1]$. By Thm. \ref{lb640}, we may assume that $\MV$ is the Euclidean space $\Rbb^n$. Choose $0<r\leq 1$ such that
 \begin{align*}
 [0,\infty_v)\cap\Omega=[0,rv)
 \end{align*}
+
+
 In this step, we consider the case $r<1$. Then $v\notin\ovl\Omega$ by Lem. \ref{lb716}. Choose $p\in\ovl\Omega$ such that
 \begin{align*}
 \Vert v-p\Vert=\dist(v,\ovl\Omega)
@@ -19961,7 +19995,7 @@ Therefore $\varphi(p)\leq 1$; otherwise, setting $u=v,x=p,y=0$, we obtain a poin
 Consequently, for each $q\in\ovl\Omega$ we have $\varphi(q)\leq 1$; otherwise, setting $u=v,x=p,y=q$, we obtain a point of $[p,q]\subset\ovl\Omega$ whose distance to $v$ is smaller than $\Vert v-p\Vert$, impossible. This finishes the proof that $\varphi(\ovl\Omega)\subset(-\infty,1]$.\\[-1ex]
 
 
-Step 3. We treat the case $r=1$, that is, $[0,\infty_v]\cap\Omega=[0,v)$. Let $(v_k)$ be a sequence in $[0,\infty_v)\setminus [0,v]$ converging to $v$. By Step 2, there exists a sequence $(\varphi_k)$ in $\MV^*$ satisfying
+Step 2. We treat the case $r=1$, that is, $[0,\infty_v]\cap\Omega=[0,v)$. Let $(v_k)$ be a sequence in $[0,\infty_v)\setminus [0,v]$ converging to $v$. By Step 2, there exists a sequence $(\varphi_k)$ in $\MV^*$ satisfying
 \begin{align*}
 \varphi_k(\Omega)\subset(-\infty,1]\qquad \varphi_k(v_k)=1
 \end{align*}
@@ -19984,7 +20018,140 @@ In the case $\Fbb=\Cbb$, by viewing $\MV$ as a normed $\Rbb$-vector space, we ob
 
 
 
-\subsection{Consequences of the Hahn-Banach theorem}\label{lb714}
+\subsection{Separation of convex sets: the general case}\label{lb714}
+
+
+
+Let $\MV$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$. In this section, we extend Thm. \ref{lb719} to arbitrary normed vector spaces; see Thm. \ref{lb721}. This extension also generalizes Cor. \ref{lb151} and \ref{lb369} from the Hilbert space setting to the broader context of normed vector spaces.
+
+
+\subsubsection{Separation of a convex open set and a point}
+
+
+
+
+\begin{thm}\label{lb721}
+Assume that $\Omega$ is an open convex subset of $\MV$ containing $0$. Let $v\in\MV\setminus\Omega$. Then there exists $\varphi\in\MV^*$ such that 
+\begin{align*}
+\Omega\subset(\Real\varphi)^{-1}(-\infty,1)\qquad v\in(\Real\varphi)^{-1}\{1\}
+\end{align*}
+\end{thm}
+
+
+We present two proofs of Thm. \ref{lb721}. The first employs the method of finite approximation, reducing the general case to the finite-dimensional one (Thm. \ref{lb719}) via the Banach-Alaoglu theorem and the Hahn-Banach Thm. \ref{lb700}. The second proof, which is more standard in textbooks, gives a direct argument (without reduction to finite dimensions) by adapting the proof of the Hahn-Banach Thm. \ref{lb700}, replacing the norm of $\MV$ with the Minkowski functional. 
+
+Although the second proof is more elegant, its geometric picture is less transparent (especially in finite dimensions); indeed, it is somewhat unnatural to interpret the separation of convex sets in $\Rbb^n$ in terms of extending linear functionals. For this reason, we include both proofs.
+
+
+
+\begin{proof}[\textbf{First proof of Thm. \ref{lb721}}]
+By Prop. \ref{lb703}, it suffices to assume $\Fbb=\Rbb$. Moreover, by Lem. \ref{lb727}, it suffices to prove
+\begin{align}\label{eq319}
+\Omega\subset(\Real\varphi)^{-1}(-\infty,1]\qquad v\in(\Real\varphi)^{-1}\{1\}
+\end{align}
+
+
+Let $\SI$ be the directed set of finite-dimensional linear subspaces of $\MV$ ordered by the relation $\subset$. By Thm. \ref{lb719}, for each $U\in\SI$ there exists $\varphi_U\in U^*$ satisfying
+\begin{align*}
+\Omega\cap U\subset\varphi_U^{-1}(-\infty,1]\qquad v\in\varphi_U^{-1}\{1\}
+\end{align*}
+Choose $a>0$ such that $B_\MV(0,a)\subset\MV$. Then Lem. \ref{lb717} implies $\Vert\varphi_U\Vert\leq 1/a$. By the Hahn-Banach Thm. \ref{lb700}, $\varphi_U$ can be extended to a linear functional $\MV\rightarrow\Rbb$, still denoted by $\varphi_U$, such that $\Vert\varphi_U\Vert\leq 1/a$. In particular, $\sup_{U\in\SI}\Vert\varphi_U\Vert<+\infty$. By the Banach-Alaoglu Thm. \ref{lb60}, the net $(\varphi_U)_{U\in\SI}$ in $\MV^*$ admits a subnet converging weak-* to some $\varphi\in\MV$. Then $\varphi$ satisfies the required property.
+\end{proof}
+
+
+\begin{rem}
+When $\MV$ is separable, the above proof can be adapted so that it does not rely on the axiom of choice. Assume again that $\Fbb=\Rbb$. Choose a densely-spanning sequence $(v_n)$ in $\MV$. Let $U_n=\Span\{v_1,\dots,v_n\}$. As in the above proof, we have a sequence $(\varphi_n)$ in $U_n^*$ with $\Vert\varphi_n\Vert\leq 1/a<+\infty$ such that
+\begin{align*}
+\Omega\cap U_n\subset\varphi_n^{-1}(-\infty,1]\qquad v\in\varphi_n^{-1}\{1\}
+\end{align*}
+By Hahn-Banach (which in this separable case does not rely on the axiom of choice, cf. Rem. \ref{lb722}), each $\varphi_n$ can be extended to a linear functional on $\MV$ without increasing the operator norm. By the second proof of the Banach-Alaoglu Thm. \ref{lb60}, $(\varphi_n)$ admits a subsequence $(\varphi_{n_k})$ converging weak-* to some $\varphi\in\MV^*$. 
+
+Clearly we have $\varphi(v)=1$. For each $\xi\in\Omega$, choose a sequence $(\xi_n)$ in $U_\infty=\bigcup_n U_n$ converging to $\xi$. Since $\Omega$ is open, by passing to a subsequence we assume $\xi_n\in\Omega$ for each $n$, and hence $\varphi(\xi_n)\leq 1$. Therefore $\varphi(\xi)\leq 1$. This proves \eqref{eq319}. \hqed
+\end{rem}
+
+
+
+\begin{proof}[\textbf{Second proof of Thm. \ref{lb721}}]
+By Prop. \ref{lb703}, it suffices to assume $\Fbb=\Rbb$. Define the \textbf{Minkowski functional} \index{00@Minkowski functional}
+\begin{align*}
+p:\MV\rightarrow\Rbb_{\geq0}\qquad \xi\mapsto \inf\{r\in\Rbb_{\geq0}:\xi\in r\Omega\}
+\end{align*}
+Note that $p(\xi)<+\infty$ because by choosing $a>0$ such that $B_\MV(0,a)\subset\Omega$, we have
+\begin{align*}
+\xi\in (\Vert\xi\Vert+1)B_\MV(0,1)\subset a^{-1}(\Vert\xi\Vert+1)\Omega
+\end{align*}
+
+We claim that $p$ satisfies that for each $\xi,\eta\in\MV$ and $\lambda>0$,
+\begin{subequations}\label{eq320}
+\begin{gather}
+p(\lambda\xi)=\lambda p(\xi)\\
+p(\xi+\eta)\leq p(\xi)+p(\eta)\label{eq320b}
+\end{gather}
+\end{subequations}
+The first relation is easy to verify. To verify the second one, choose any $r>p(\xi)$ and $d>p(\eta)$. Then $\xi\in r\Omega$ and $\eta\in d\eta$, and hence
+\begin{align*}
+\xi+\eta\in r\Omega+d\Omega=(r+d)\cdot \Big(\frac r{r+d}\Omega+\frac d{r+d}\Omega\Big)\subset (r+d)\Omega
+\end{align*}
+where the last inclusion is due to the convexity of $\Omega$. Thus $p(\xi+\eta)\leq r+d$. Since $r,d$ are arbitrary, we obtain \eqref{eq320b}.
+
+Since \eqref{eq320} is true, and since $p(v)\geq 1$ (because $v\notin\Omega$), by Rem. \ref{lb723}, the linear functional $\varphi:\Rbb v\rightarrow\Rbb$ with $\varphi(v)=1$ can be extended to a linear functional $\varphi: \MV\rightarrow\Rbb$ satisfying
+\begin{align*}
+\varphi(\xi)\leq p(\xi)\qquad \text{for all }\xi\in\MV
+\end{align*} 
+In particular, for each $\xi\in\Omega$, we have $p(\xi)\leq 1$ and hence $\varphi(\xi)\leq 1$. This proves \eqref{eq319}, finishing the proof.
+\end{proof}
+
+
+\subsubsection{Separation of two convex sets}
+
+
+To apply Thm. \ref{lb721} to the study of weak topologies in Subsec. \ref{lb724}, we need the following adaption.
+
+\begin{thm}\label{lb725}
+Let $A,B$ be disjoint convex subsets of $\MV$, one of which is closed and the other one is compact. Then there exist $\varphi\in\MV^*$ and $-\infty<a<b<+\infty$ such that
+\begin{align}
+(\Real\varphi)^{-1}(A)\subset(-\infty,a]\qquad (\Real\varphi)^{-1}(B)\subset[b,+\infty)
+\end{align}
+\end{thm}
+
+In Subsec. \ref{lb724}, we will use Thm. \ref{lb725} only in the special case where one of the sets $A,B$ consists of a single point.
+
+
+\begin{proof}
+Assume WLOG that $A$ is closed and $B$ is compact, and that (by Prop. \ref{lb703}) $\Fbb=\Rbb$. Moreover, we may assume that $A,B$ are nonempty; otherwise, take $\varphi=0$.
+
+We first note that $\dist(A,B)>0$. Indeed, since $A$ is closed, $\dist(A,\xi)>0$ for each $v\in\MV\setminus A$; since $B$ is compact, the continuous function
+\begin{align*}
+B\rightarrow\Rbb_{>0} \qquad \xi\mapsto \dist(A,\xi)
+\end{align*}
+has a (strictly positive) minimum.
+
+Fix $0<\eps<\dist(A,B)$. Observe that if $C_1,C_2\subset\MV$ are convex, then $C_1+C_2$ and $C_1-C_2$ are convex. Therefore
+\begin{align*}
+C:=B+B_\MV(0,\eps)=\{\xi+\eta:\xi\in B,\eta\in\MV,\Vert\eta\Vert<\eps\}
+\end{align*}
+is a convex open set. Similarly, $A-C$ is a convex open set. Since $A\cap C=\emptyset$, we have $0\notin A-C$. Therefore, by Thm. \ref{lb721}, there exists a nonzero $\varphi\in\MV^*$ such that \footnote{Choose $-v\in A-C$. Then $0\in v+A-C$ and $v\notin v+A-C$. By Thm. \ref{lb721}, there exists $\varphi\in\MV^*$ such that $\varphi(v+A-C)<1$ and $\varphi(v)=1$. Hence $\varphi\neq0$ and $\varphi(A-C)<0$.}
+\begin{align*}
+\varphi(A-C)<0
+\end{align*}
+That is, $\varphi(x)<\varphi(y)$ for each $x\in A,y\in C$. Thus, any $\varphi(y)$ is an upper bound of $\varphi(A)$. Therefore
+\begin{align*}
+a:=\sup\varphi(A)
+\end{align*}
+is a finite real number, and we have $\varphi(C)\subset[a,+\infty)$, and hence $\varphi(C)\subset(a,+\infty)$ by Lem. \ref{lb727} and the fact that $\varphi\neq0$. Since $B$ is compact, the number
+\begin{align*}
+b:=\inf\varphi(B)
+\end{align*}
+lies in $\varphi(B)$, which implies $a<b$.
+\end{proof}
+
+
+
+
+
+
+\subsubsection{Strong and weak closures of convex sets}\label{lb724}
+
 
 
 
