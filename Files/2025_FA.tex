@@ -485,11 +485,12 @@
 \newcommand{\DN}{\Delta_{\mathrm N}}
 \newcommand{\Frm}{{\mathrm F}}
 \newcommand{\Krm}{{\mathrm K}}
+\newcommand{\wrm}{{\mathrm w}}
 \newcommand{\Cb}{C_{\mathrm b}}
 \newcommand{\FA}{\mathfrak A}
 \newcommand{\FL}{\mathfrak L}
 \newcommand{\dist}{\mathrm{dist}}
-
+\newcommand{\conv}{\mathrm{conv}}
 
 
 
@@ -7269,7 +7270,7 @@ The goal of this section is to give a complete solution of this problem; see Thm
 \begin{align*}
 f(z)=\int_I\frac{d\rho(x)}{z-x}
 \end{align*}
-represents the series $\sum_{n=0}^\infty c_nz^{-n-1}$ in the sense of Pad\'e approximation. That is, there is a sequence of rational functions $(f_n(z))_{n\in\Nbb}$ satisfying \eqref{eq97}, and a subsequence $(f_{n_k}(z))$ converging locally uniformly on $\Cbb\setminus I$ to $f(z)$. \footnote{When the solution to the moment problem is unique, the original sequence $(f_n)$ indeed converges locally uniformly to $f$. The uniqueness aspect of moment problems, however, will not be addressed in this course.} Thus, the problem of representing the (possibly divergent) series $\sum_{n=0}^\infty c_nz^{-n-1}$ for such $(c_n)$ is solved. See Thm. \ref{lb183}.
+represents the series $\sum_{n=0}^\infty c_nz^{-n-1}$ in the sense of Pad\'e approximation. That is, there is a sequence of rational functions $(f_n(z))_{n\in\Nbb}$ satisfying \eqref{eq97}, and a subsequence $(f_{n_k}(z))$ converging locally uniformly on $\Cbb\setminus I$ to $f(z)$. \footnote{When the solution to the moment problem is unique, the original sequence $(f_n)$ indeed converges locally uniformly to $f$. See Pb. \ref{lb734} for a criterion for the uniqueness of solutions to the moment problem.} Thus, the problem of representing the (possibly divergent) series $\sum_{n=0}^\infty c_nz^{-n-1}$ for such $(c_n)$ is solved. See Thm. \ref{lb183}.
 
 
 
@@ -15815,8 +15816,14 @@ Conclude that in Thm. \ref{lb547}, the existence of $r\in\Rbb_{>0}$ satisfying \
 \end{exe}
 
 
+
+
+
+
+
 \subsubsection{Application: density of $\MS_0(\Rbb^N)$ in $L^2(\Rbb^N,m)$}
 
+As an application of Thm. \ref{lb547}, we prove the density of $\MS_0(\Rbb^N)$ in $L^2(\Rbb^N,m)$. See Pb. \ref{lb734} for another application of Thm. \ref{lb547} to the uniqueness of solutions of the Hamburger moment problem.
 
 
 \begin{df}\label{lb549}
@@ -16749,6 +16756,26 @@ Prove a Sobolev inequality for functions in $\MS(\Rbb)$ analogous to Lem. \ref{l
 \end{proof}
 
 
+The following problem gives a sufficient condition for the uniqueness of solutions to the polynomial moment problem.
+
+\begin{prob}\label{lb734}
+Let $(c_n)_{n\in\Nbb}$ be a sequence in $\Rbb$ satisfying 
+\begin{align*}
+\sup_{n\in\Nbb}\frac{\rho^{2n}}{(2n)!}|c_{2n}|<+\infty
+\end{align*}
+for some $\rho>0$. Prove that there exists at most one finite Borel measure $\mu$ on $\Rbb$ satisfying for each $n\in\Nbb$ the condition
+\begin{align}\label{eq323}
+\int_\Rbb|x|^nd\mu<+\infty\qquad \int_\Rbb x^nd\mu=c_n
+\end{align}
+\end{prob}
+
+\begin{proof}[Hint]
+Suppose $\mu_1,\mu_2$ both satisfy \eqref{eq323}. Let $\mu=\mu_1+\mu_2$. Use the Radon-Nikodym Thm. \ref{lb27} to write $d\mu_j=f_jd\mu$ where $f_j:\Rbb\rightarrow[0,1]$ is Borel. Show that $f:=f_1-f_2$ belongs to $L^2(\Rbb,\mu)$ and is orthogonal to polynomials. Prove that $\mu$ satisfies the assumption in Thm. \ref{lb547}, noting Exe. \ref{lb554} and
+\begin{align}\label{eq324}
+\frac{(2n)!}{(n!)^2}={2n\choose n}\leq\sum_{k=0}^{2n}{2n\choose k}=(1+1)^{2n}=4^n
+\end{align}
+\end{proof}
+
 
 
 
@@ -16794,8 +16821,12 @@ Let $T_1,\dots,T_N$ be strongly commuting self-adjoint operators on $\MH$.
 \end{prob}
 
 \begin{proof}[Hint for part 2]
-Use Cauchy-Schwarz for one direction. Use $\frac{(2n)!}{(n!)^2}={2n\choose n}\leq\sum_{k=0}^{2n}{2n\choose k}=(1+1)^{2n}=4^n$ for the other direction.
+Use Cauchy-Schwarz for one direction. Use \eqref{eq324} for the other direction.
 \end{proof}
+
+
+
+
 
 The following property is a variant of Prop. \ref{lb532}.
 
@@ -19329,7 +19360,7 @@ In Thm. \ref{lb652}, show that $T=T^*$ iff $\lambda_n\in\Rbb$ for all $n$; show 
 
 \newpage
 
-\section{Separation of convex sets}
+\section{Weak topology and the separation of convex sets}
 
 
 \subsection{Indeterminate moment problems: the linear-extension approach}\label{lb705}
@@ -19983,7 +20014,7 @@ Step 1. By Lem. \ref{lb727}, it suffices to prove the weaker condition that $\Om
 \end{align*}
 
 
-In this step, we consider the case $r<1$. Then $v\notin\ovl\Omega$ by Lem. \ref{lb716}. Choose $p\in\ovl\Omega$ such that
+In this step, we consider the case $r<1$. Then $v\notin\ovl\Omega$ by Lem. \ref{lb716}. By Heine-Borel, there exists $p\in\ovl\Omega$ such that
 \begin{align*}
 \Vert v-p\Vert=\dist(v,\ovl\Omega)
 \end{align*}
@@ -20025,10 +20056,13 @@ In the case $\Fbb=\Cbb$, by viewing $\MV$ as a normed $\Rbb$-vector space, we ob
 
 
 
-Let $\MV$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$. In this section, we extend Thm. \ref{lb719} to arbitrary normed vector spaces; see Thm. \ref{lb721}. This extension also generalizes Cor. \ref{lb151} and \ref{lb369} from the Hilbert space setting to the broader context of normed vector spaces.
+Let $\MV$ be a normed vector space over $\Fbb\in\{\Rbb,\Cbb\}$. In this section, we extend Thm. \ref{lb719} to arbitrary normed vector spaces; see Thm. \ref{lb721}. In Sec. \ref{lb724}, we apply this extension to investigate the relationship between norm closure and weak closure.
 
 
-\subsubsection{Separation of a convex open set and a point}
+
+
+
+\subsubsection{Separation of an open convex set and a point}
 
 
 
@@ -20149,11 +20183,145 @@ lies in $\varphi(B)$, which implies $a<b$.
 \end{proof}
 
 
+\begin{rem}\label{lb730}
+When $\MV$ is a (complex) Hilbert space $\MH$ and one of the sets $A,B$ consists of a single point, Thm. \ref{lb725} can be proved directly by adapting the argument of Thm. \ref{lb719}.
+
+Indeed, by translation we may assume WLOG that $A=\{0\}$. By the following Thm. \ref{lb728}, there exists $p\in B$ such that $\Vert p\Vert=\dist(0,B)$. Using the convexity of $B$, it is not difficult to show that $\bk{\xi,p}_\Rbb\geq\bk{p,p}_\Rbb$ for each $\xi\in B$, where $\bk{\cdot,\cdot}_\Rbb=\Real\bk{\cdot|\cdot}$ is the real inner product associated with $\MH$. Thus Thm. \ref{lb725} follows by taking $\varphi=\bk{p|\cdot}$, $a=0$, and $b=\Vert p\Vert^2$.  \hqed
+\end{rem}
+
+
+In the above remark we used the existence part of the following property.
+
+\begin{thm}\label{lb728}
+Let $\MH$ be a Hilbert space, let $A$ be a closed convex subset of $\MH$, and let $v\in\MH\setminus A$. Then there exists a unique $\xi\in A$ such that $\Vert v-\xi\Vert=\dist(v,A)$.
+\end{thm}
+
+\begin{proof}
+The proof relies on the \textbf{parallelogram law} \index{00@parallelogram law}
+\begin{align}\label{eq322}
+2\Vert\xi\Vert^2+2\Vert\eta\Vert^2=\Vert\xi+\eta\Vert^2+\Vert\xi-\eta\Vert^2\qquad\text{for each }\xi,\eta\in\MH
+\end{align}
+which is easy to verify. 
+
+By translation, we assume WLOG $v=0$. Let $D=\dist(0,A)$. If $\xi,\eta\in A$ both satisfy $\Vert\xi\Vert=\Vert\eta\Vert=D$, then, since $\frac{\xi+\eta}2\in A$ (because $A$ is convex), we have $\Vert\xi+\eta\Vert^2\geq 4D^2$, and hence $\Vert\xi-\eta\Vert^2\leq 0$ by \eqref{eq322}. This proves the uniqueness.
+
+To prove the existence, choose a sequence $(\xi_n)$ in $A$ such that $\lim_n\Vert\xi_n\Vert=D$. For each $m,n\in\Zbb_+$, since $A$ is convex, we have $\frac{\xi_m+\xi_n}2\in A$ and hence $\Vert\xi_m+\xi_n\Vert^2\geq 4D^2$. Therefore, by \eqref{eq322},
+\begin{align*}
+\limsup_{m,n}\Vert\xi_m-\xi_n\Vert^2\leq \limsup_{m,n}2\Vert\xi_m\Vert^2+\limsup_{m,n}2\Vert\xi_n\Vert^2-4D^2\leq 0
+\end{align*}
+Therefore $(\xi_n)$ is a Cauchy sequence, and hence converges to a vector $\xi\in A$ satisfying $\Vert\xi\Vert=D$.
+\end{proof}
 
 
 
 
-\subsubsection{Strong and weak closures of convex sets}\label{lb724}
+
+
+\subsection{Strong and weak closures of convex sets}\label{lb724}
+
+
+Let $\MV$ be a normed $\Fbb$-vector space. In this section, we  generalize Cor. \ref{lb151} and \ref{lb369} from the Hilbert space setting to the broader context of normed vector spaces. 
+
+
+\begin{df}\label{lb729}
+The \textbf{weak topology} \index{00@Weak topology on normed vector spaces} on $\MV$ is defined to be the pullback of the weak-* topology of $\MV^{**}=(\MV^*)^*$ by the canonical map $\MV\rightarrow\MV^{**}$. Therefore, a net $(\xi_\alpha)$ in $\MV$ converges weakly to $\xi\in \MV$ iff
+\begin{align*}
+\lim_\alpha \bk{\varphi,\xi_\alpha}=\bk{\varphi,\xi}\qquad\text{for each }\varphi\in\MV^*
+\end{align*}
+\end{df}
+
+
+
+\begin{rem}
+In Def. \ref{lb606} we introduced a notion of weak topology for inner product spaces. \textit{That definition agrees with Def. \ref{lb729} when $\MV$ is a Hilbert space, or when $\MV$ is an inner product space and we restrict attention to bounded subsets of $\MV$.}
+
+To see this, we view the inner product space $\MV$ as a dense linear subspace of a Hilbert space $\MH$ (cf. Pb. \ref{lb350}). By the Riesz-Fr\'echet Thm. \ref{lb135} and the fact that $\MV^*=\MH^*$ (cf. Cor. \ref{lb55}), bounded linear functionals on $\MV$ are precisely pairings with elements of $\MH$. Therefore, if $(\xi_\alpha)$ is a net in $\MV$ and $\xi\in\MV$, then $(\xi_\alpha)$ converges weakly to $v$ in the sense of Def. \ref{lb729} iff
+\begin{align*}
+\lim_\alpha\bk{\eta|\xi_\alpha}=\bk{\eta|\xi}\qquad\text{for each }\eta\in\MH
+\end{align*}
+This is clearly equivalent to the weak convergence in Def. \ref{lb606} when $\MV$ is a Hilbert space (i.e. $\MV=\MH$), or---by Thm. \ref{lb80}---when $\sup_\alpha\Vert\xi_\alpha\Vert<+\infty$.
+
+If $\MV$ is incomplete and $\sup_\alpha\Vert\xi_\alpha\Vert=+\infty$, the two notions of weak convergence are indeed inequivalent. Fortunately, we have never used the notion of weak topology and weak convergence from Def. \ref{lb606} in such a situation. For the remainder of this course, the weak topology always refers to that of Def. \ref{lb729}.  \hqed
+\end{rem}
+
+
+
+We are now ready to state the consequence of separating convex sets in the weak topology.
+
+
+\begin{co}\label{lb731}
+Let $C$ be a convex subset of $\MV$. Then the norm closure $\ovl C$ and the weak closure $\pmb{\ovl C^\wrm}$ \index{C@$\ovl C^\wrm$, the weak closure of $C$} of $C$ coincide.
+\end{co}
+
+
+\begin{proof}
+If $\xi\in\ovl C$, there is a sequence $(\xi_n)$ in $C$ converging to $\xi$, and hence converging weakly to $\xi$. Thus $\xi\in\ovl C^\wrm$. 
+
+Conversely, suppose $\xi\notin\ovl C$. Since $\ovl C$ is convex, by Thm. \ref{lb727} (or Rem. \ref{lb730} when $\MV$ is a Hilbert space), there exist $\varphi\in\MV^*$ and real numbers $a<b$ such that $\Real\varphi(v)\leq a$ for all $v\in C$, and $\Real\varphi(\xi)\geq b$. Thus, every net $(\xi_\alpha)$ in $C$ must satisfy $\Real\varphi(\xi_\alpha)\leq a$, and hence cannot converge weakly to $\xi$ because $\lim_\alpha\Real\varphi(\xi_\alpha)\neq\Real\varphi(\xi)$. So $\xi\notin\ovl C^\wrm$.
+\end{proof}
+
+
+\begin{rem}\label{lb733}
+When $C$ is a linear subspace, Cor. \ref{lb731} also follows from the Hahn-Banach Thm. \ref{lb700} as follows. Suppose that $\xi\notin\ovl C$. Then $M:=\dist(\xi,C)>0$. Therefore, for each $\eta\in C$ and $a\in\Fbb$ we have
+\begin{align*}
+\Vert a\xi+\eta\Vert\geq |a|\dist(\xi,C)=|a|M
+\end{align*}
+and hence the linear functional
+\begin{align*}
+\varphi: \Fbb\xi+C\qquad a\xi+\eta\mapsto a
+\end{align*}
+is bounded with operator norm $\leq M^{-1}$. By Thm. \ref{lb700}, $\varphi$ can be extended to a linear functional on $\MV$. Since $\varphi(\xi)=1$ and $\varphi(C)=0$, $\xi$ does not lie in the weak closure $\ovl C^\wrm$.
+\end{rem}
+
+
+\begin{rem}
+In the case that $\MV$ is a Hilbert space and $C$ is a linear subspace, Cor. \ref{lb731} follows directly from the relation $\ovl C=C^{\perp\perp}$ (cf. Cor. \ref{lb151}). Indeed, since $C^{\perp\perp}$ is weakly closed, it contains the weak closure $\ovl C^\wrm$ of $C$. Since $\ovl C\subset\ovl C^\wrm$, we have
+\begin{align*}
+\ovl C\subset\ovl C^\wrm\subset C^{\perp\perp}=\ovl C
+\end{align*}
+and hence $\ovl C=\ovl C^\wrm$.
+\end{rem}
+
+
+\begin{co}\label{lb732}
+For each $E\subset \MV$, define the \index{conv@$\conv(E)$} \textbf{convex hull} \index{00@Convex hull $\conv(E)$}
+\begin{align*}
+\pmb{\conv(E)}=\Big\{\sum_{j=1}^na_j\xi_j:n\in\Zbb_+,a_j\in\Rbb_{\geq0},\xi_j\in E,\sum_j a_j=1\Big\}
+\end{align*}
+which is the smallest convex set containing $E$. Suppose that there is a net in $E$ converging weakly to $\xi\in\MV$. Then there is a sequence in $\conv(E)$ converging (in norm) to $\xi$.
+\end{co}
+
+Any element belonging to $\conv(E)$ is called a \textbf{convex combination} \index{00@Convex combination} of $E$.
+
+\begin{proof}
+By Cor. \ref{lb731}, we have $\xi\in\ovl E^\wrm\subset\ovl{\conv E}^\wrm=\ovl{\conv E}$.
+\end{proof}
+
+
+\begin{rem}
+Let $(\xi_n)$ be a sequence in $\MV$ converging weakly to $\xi$. By Cor. \ref{lb732}, there exists a sequence $(\eta_n)_{n\in\Zbb_+}$ of convex combinations of $(\xi_n)$ converging to $\xi$ in norm. In the case $\MV=L^p(X,\mu)$ where $(X,\mu)$ is a measure space and $1<p<+\infty$ (in particular, when $\MV$ is a Hilbert space), the sequence $(\eta_k)_{k\in\Zbb_+}$ can be chosen more explicit: of the form
+\begin{align*}
+\eta_k=\frac{\xi_{n_1}+\cdots+\xi_{n_k}}k
+\end{align*}
+for some subsequence $(\xi_{n_k})$ of $(\xi_n)$. This is known as the \index{00@Banach-Saks theorem} \textbf{Banach-Saks theorem}. See \cite[Sec. 8.4]{RF} or \cite[Sec. 38]{RN} for the case $p=2$, and the original paper of Banach and Saks \cite{BS30} for general $p$.
+\end{rem}
+
+The following corollary generalizes Cor. \ref{lb369}.
+
+\begin{co}
+Let $\MU$ be a linear subspace of $\MV$. Then $\MU$ is dense iff the only $\varphi\in\MV^*$ vanishing on $\MU$ is zero.
+\end{co}
+
+
+\begin{proof}
+The direction $\Rightarrow$ is obvious. Conversely, suppose $\ovl\MU\neq\MV$. By Thm. \ref{lb725}, there exist $\varphi\in\MV^*$ and $a\in\Rbb$ such that $\varphi\neq0$ and $\Real\varphi(\ovl\MU)\subset(-\infty,a]$. Since every non-zero real linear functional has range $\Rbb$, we obtain $\Real\varphi|_\MU=0$, and hence $\varphi|_\MU=0$ by Prop. \ref{lb703}.
+
+Alternatively, a nonzero $\varphi\in\MV^*$ vanishing on $\MU$ may be produced directly from the Hahn-Banach Thm. \ref{lb700}, following the argument in Rem. \ref{lb733}.
+\end{proof}
+
+
+\subsection{Reflexive spaces: where weak and weak-* topologies coincide}
+
 
 
 
@@ -20403,6 +20571,9 @@ Furthermore, however, even disregarding the intrinsic necessity of some new axio
 Apostol, T. M. (1974). Mathematical analysis. 2nd ed.
 
 
+\bibitem[BS30]{BS30}
+Banach, S. and Saks, S., Sur la convergence dans les champs $L^p$. Stud. Math. 2, 51-57 (1930).
+
 \bibitem[Che73]{Che73}
 Chernoff, Paul R., Essential self-adjointness of powers of generators of hyperbolic equations. J. Funct. Anal. 12, 401-414 (1973).
 
@@ -20512,6 +20683,9 @@ von Neumann, J. {\"U}ber adjungierte {Funktionaloperatoren}. Ann. Math. (2) 33, 
 
 \bibitem[Pes]{Pes}
 Pesin, I. N. (1970). Classical and modern integration theories.
+
+\bibitem[RF]{RF}
+H. Royden and H. Fitzpatrick, Real analysis. 4th ed. (2010)
 
 
 \bibitem[RN]{RN}
