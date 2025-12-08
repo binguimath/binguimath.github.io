@@ -16699,7 +16699,9 @@ Show that if $\gamma$ satisfies either (1) or (2), then $\gamma$ is continuous o
 \end{prob}
 
 \begin{proof}[Hint]
-Adapt the method used to solve Pb. \ref{lb562} to the continuous setting. More precisely, define a linear functional $\Lambda$ on $\SA=\Span\{e_t:t\in\Rbb^N\}$ by $\Lambda(e_t)=\gamma(-t)$. Apply the GNS construction to obtain a corresponding inner product space, take its Hilbert space completion, and construct a unitary representation $U$ of $\Rbb^N$ on this Hilbert space. To check the strong continuity of $U$, first verify continuity when $U$ acts on each $e_t$.
+Adapt the method used to solve Pb. \ref{lb562} to the continuous setting. More precisely, define a linear functional $\Lambda$ on $\SA=\Span\{e_t:t\in\Rbb^N\}$ by $\Lambda(e_t)=\gamma(-t)$. (You must justify that for distinct $t_1,\dots,t_n\in\Rbb^N$, the functions $e_{t_1},\dots,e_{t_n}$ are linearly independent. To see this, take $f\in\MS(\Rbb^N)$ whose Fourier transform vanishes at all but one of $-t_1,\dots,-t_n$.)
+
+Apply the GNS construction to obtain a corresponding inner product space, take its Hilbert space completion, and construct a unitary representation $U$ of $\Rbb^N$ on this Hilbert space. To check the strong continuity of $U$, first verify continuity when $U$ acts on each $e_t$.
 %For instance, let $\{\eps_t:t\in\Rbb^N\}$ be formal symbols satisfying $\eps_s\eps_t=\eps_{s+t}$. Define an appropriate positive Hermitian form on $V=\Span\{\eps_t:t\in\Rbb^N\}$, and show that there is a strongly continuous unitary representation $U$ of $\Rbb^N$ on the Hilbert space completion of $V/\scr N$ satisfying $U(t)\eps_s=\eps_{t+s}$. 
 \end{proof}
 
@@ -17795,13 +17797,13 @@ Let $(\xi_\alpha)$ be a net in $\MH$ converging weakly to $\xi$. Then for each $
 Therefore $T\xi_\alpha$ converges weakly to $T\xi$.
 \end{proof}
 
-\hypertarget{proofread}{}
+
 
 We now prove the equivalence between completely continuous forms and completely continuous operators.
 
 
 \begin{pp}\label{lb631}
-Let $T:\MH\rightarrow\MK$ be a linear map. Then $T$ is completely continuous if its associated sesquilinear form $\omega_T:\MK\times\MH\rightarrow\Cbb$ (cf. Def. \ref{lb630}) is completely continuous.
+Let $T:\MH\rightarrow\MK$ be a linear map. Then $T$ is completely continuous iff its associated sesquilinear form $\omega_T:\MK\times\MH\rightarrow\Cbb$ (cf. Def. \ref{lb630}) is completely continuous.
 \end{pp}
 
 \begin{proof}
@@ -17809,13 +17811,7 @@ $T$ is completely continuous iff for each weak convergence $\xi_\alpha\rightarro
 \end{proof}
 
 
-\begin{co}
-If a linear map $T:\MH\rightarrow\MK$ is completely continuous, then so is its adjoint $T^*$.
-\end{co}
 
-\begin{proof}
-This follows immediately from Prop. \ref{lb631} and \ref{lb636}.
-\end{proof}
 
 Of course, completely continuous forms and completely continuous operators can be unified under the broader notion of a completely continuous multilinear map: a multilinear map $T:\MH_1\times\cdots\times\MH_N\rightarrow\MK$ (where each $\MH_j$ is a Hilbert space) is called \textbf{completely continuous} if its restriction to $\ovl B_{\MH_1}(0,1)\times\cdots\times\ovl B_{\MH_N}(0,1)\rightarrow\MK$ is continuous when the domain carries the weak topology and $\MK$ carries the norm topology. We refrain from adopting this general formulation, since such a general notion will not be used later.
 
@@ -17935,7 +17931,11 @@ T\xi=\sum_{j=1}^n \psi_j\cdot\bk{\phi_j|\xi}\qquad\text{for each }\xi\in\MH
 \begin{proof}
 (1)$\Leftrightarrow$(2) and (2)$\Rightarrow$(3) are obvious.
 
-(3)$\Rightarrow$(2): Assume (3). Let $\psi_1,\dots,\psi_n$ be an orthonormal basis of the finite-dimensional Hilbert space $\Rng(T)$. Since $T$ is bounded, the linear functional $\xi\in\MH\mapsto\bk{\psi_j|T\xi}$ is also bounded, and hence can be written as $\bk{\phi_j|\xi}$ by the Riesz-Fr\'echet Thm. \ref{lb135}. Then \eqref{eq293} holds, since the two sides are equal when evaluated with each $\psi_j$.
+(3)$\Rightarrow$(2): Assume (3). Let $\psi_1,\dots,\psi_n$ be an orthonormal basis of the finite-dimensional Hilbert space $\Rng(T)$. By Thm. \ref{lb123},
+\begin{align*}
+T\xi=\sum_{j=1}^n\psi_j\cdot\bk{\psi_j|T\xi}=\sum_{j=1}^n\psi_j\cdot\bk{T^*\psi_j|\xi}
+\end{align*}
+Thus \eqref{eq293} holds with $\phi_j=T^*\psi_j$.
 \end{proof}
 
 
@@ -17965,7 +17965,7 @@ Fix a linear bijection $\Phi:\Fbb^N\rightarrow\MX$ where $\Fbb^N$ is equipped wi
 
 We first note that $\Phi$ is bounded, since for each $a=(a_1,\dots,a_N)\in\Fbb^N$ we have
 \begin{align*}
-\Vert\Phi(a_1,\dots,a_N)\Vert=\Big\Vert\sum_{j=1}^N a_N\Phi(e_j)\Big\Vert\leq\Vert a\Vert\cdot \sum_j\Vert\Phi(e_j)\Vert
+\Vert\Phi(a_1,\dots,a_N)\Vert=\Big\Vert\sum_{j=1}^N a_j\Phi(e_j)\Big\Vert\leq\Vert a\Vert_{l^\infty}\cdot \sum_j\Vert\Phi(e_j)\Vert\leq\Vert a\Vert_{l^2}\cdot \sum_j\Vert\Phi(e_j)\Vert
 \end{align*}
 where $e_1,\dots,e_N$ are the standard basis of $\Fbb^N$.
 
@@ -17992,13 +17992,13 @@ Assume that $\MV,\MW$ are Hilbert spaces. Let $X=\ovl B_\MH(0,1)$, equipped with
 \begin{proof}[Third proof]
 Since our task is equivalently to show that the set of compact operators is closed in the metric space $\fk L(\MV,\MW)$, Rem. \ref{lb221} allows us to restrict attention to the case where $(T_\alpha)$ is a sequence $(T_n)_{n\in\Zbb_+}$.
 
-Let $X=\ovl B_\MV(0,1)$ and $Y_n=\ovl{T_n(X)}$. Since $T_n$ is compact, each $Y_n$ is a compact metric space. Therefore, the product space $\prod_m Y_m$ is compact by the Tychonoff theorem (or simply by the diagonal method; cf. Rem. \ref{lb52}). Moreover, $\prod_m Y_m$ is metrizable by Prop. \ref{lb51}, and hence sequentially compact by Cor. \ref{lb354}.
+Let $X=\ovl B_\MV(0,1)$ and $Y_n=\ovl{T_n(X)}$. Since $T_n$ is compact, each $Y_n$ is a compact metric space. Therefore, by the diagonal method (cf. Rem. \ref{lb52}), the product space $\prod_m Y_m$ is sequentially compact.
 
 Let $(\xi_n)$ be a sequence in $X$. For each $n$, let
 \begin{align*}
 \fk y_n=(T_1\xi_n,T_2\xi_n,\dots)\qquad\in\prod_m Y_m
 \end{align*}
-Then the sequence $(\yk_n)$ has a convergent subsequence $(\yk_{n_k})$. Therefore, for each $m\in\Zbb_+$, the sequence $(T\xi_{n_k})_{k\in\Zbb_+}$ converges, and hence is a Cauchy sequence. From the convergence $\lim_m\Vert T_m-T\Vert=0$ one easily deduces that $(T\xi_{n_k})_{k\in\Zbb_+}$ is a Cauchy sequence, and hence converges by the completeness of $\MW$. We have thus proved that $(T\xi_n)$ admits a convergent subsequence. Therefore $T$ is compact.
+Then the sequence $(\yk_n)$ has a convergent subsequence $(\yk_{n_k})$. Therefore, for each $m\in\Zbb_+$, the sequence $(T_m\xi_{n_k})_{k\in\Zbb_+}$ converges, and hence is a Cauchy sequence. From the convergence $\lim_m\Vert T_m-T\Vert=0$ one easily deduces that $(T\xi_{n_k})_{k\in\Zbb_+}$ is a Cauchy sequence, and hence converges by the completeness of $\MW$. We have thus proved that $(T\xi_n)$ admits a convergent subsequence. Therefore $T$ is compact.
 \end{proof}
 
 
@@ -18026,6 +18026,9 @@ Let $\MH$ be a Hilbert space.
 In this section, following Riesz’s approach in \cite[$\S$14]{Rie10}, we translate Hilbert's proof of the Hilbert-Schmidt theorem---originally formulated in the language of sesquilinear forms and the maximum-minimum method---into the language of operators. From a historical perspective, Riesz's contribution here was transitional, serving as a reinterpretation of Hilbert's existing work. Moreover, its impact was less revolutionary than Riesz's operator-theoretic interpretation of Hilbert's spectral theorem for bounded symmetric bilinear forms, as presented and discussed in Ch. \ref{lb181}.
 
 Nevertheless, this contribution should not be underestimated. Many highly original advances in mathematics begin as reinterpretations of earlier ideas. Without understanding the techniques developed in such transitional works, one cannot fully appreciate the deeper innovations that followed---such as Riesz's proof of the Fredholm alternative for compact operators on arbitrary Banach spaces.
+
+
+\hypertarget{proofread}{}
 
 \subsubsection{Riesz's method: achieving approximate eigenvalues}
 
