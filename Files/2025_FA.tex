@@ -18309,19 +18309,19 @@ that is, if
 In the case where $V$ is a Hilbert space with closed linear subspace $U$, $0$-orthogonality coincides with ordinary orthogonality.
 
 
-\hypertarget{proofread}{}
+
 
 \begin{thm}[\textbf{Riesz lemma}]\index{00@Riesz lemma}\label{lb655}
-Let $\MU\subsetneq\MV$ be a proper closed linear subspace of $\MV$. Then for each $0<\eps<1$, there exists a non-zero $\xi\in\MV$ that is $\eps$-orthogonal to $\MU$.
+Let $\MU\subsetneq\MV$ be a proper closed linear subspace of $\MV$. Then for each $\psi\in\MV\setminus\MU$ and $0<\eps<1$, there exists a non-zero $\xi\in\psi+\MU$ that is $\eps$-orthogonal to $\MU$.
 \end{thm}
 
 
 
 
 \begin{proof}
-Choose $\psi\in\MV\setminus\MU$. Since $\MU$ is closed, the distance $r=\dist(\psi,\MU)$ is strictly positive. Choose $\upsilon\in\MU$ such that $\xi:=\psi-\upsilon$ satisfies $\Vert\xi\Vert\leq r/(1-\eps)$. Then for each $\eta\in\MU$, we have
+Since $\MU$ is closed, we have $\dist(\psi,\MU)>0$. Choose $u\in\MU$ such that $0<\Vert\psi-u\Vert\leq \dist(\psi,\MU)/(1-\eps)$. Then $\xi:=\psi-u$ satisfies
 \begin{align*}
-\Vert\xi-\eta\Vert=\Vert\psi-\upsilon-\eta\Vert\geq \dist(\psi,\MU)=r\geq(1-\eps)\Vert\xi\Vert
+\dist(\xi,\MU)=\dist(\psi,\MU)\geq(1-\eps)\Vert\xi\Vert
 \end{align*}
 \end{proof}
 
@@ -18427,15 +18427,14 @@ is a decreasing sequence of closed linear subspaces of $\MV$ satisfying
 \begin{align*}
 (T-\lambda_n)V_n\subset V_{n-1}\qquad\text{for each }n\in\Zbb_+
 \end{align*}
-where $\lambda_n\in\Fbb$. Suppose that
+where $\lambda_n\in\Fbb$. Suppose that $(V_n)$ is not eventually stable, that is, for each $n$ there exists $m>n$ such that $V_n\subsetneq V_m$. Then
 \begin{align*}
-\liminf_{n\rightarrow\infty}|\lambda_n|>0
+\liminf_{n\rightarrow\infty}|\lambda_n|=0
 \end{align*}
-Then there exists $n\in\Nbb$ such that $V_n=V_{n+1}=V_{n+2}=\cdots$.
 \end{co}
 
 \begin{proof}
-Suppose that the chain is not eventually stable, that is, for each $n$ there exists $m>n$ such that $V_n\subsetneq V_m$. Then there exists a strictly increasing sequence $(n_k)_{k\in\Nbb}$ in $\Nbb$ such that \footnote{Choose $n_0=0$. Having chosen $n_k$, let $n_{k+1}$ be the smallest integer $>n_k$ with $V_{n_k}\subsetneq V_{n_{k+1}}$.}
+Since $(V_n)$ is not eventually stable, there exists a strictly increasing sequence $(n_k)_{k\in\Nbb}$ in $\Nbb$ such that \footnote{Choose $n_0=0$. Having chosen $n_k$, let $n_{k+1}$ be the smallest integer $>n_k$ with $V_{n_k}\subsetneq V_{n_{k+1}}$.}
 \begin{align*}
 V_{n_0}\subsetneq V_{n_1}\subsetneq V_{n_2}\subsetneq V_{n_3}\subsetneq\cdots
 \end{align*}
@@ -18443,7 +18442,7 @@ and that
 \begin{align*}
 (T-\lambda_{n_k})V_{n_k}\subset V_{n_{k-1}}\qquad\text{for each }k\in\Zbb_+
 \end{align*}
-Then $\lim_k\lambda_{n_k}=0$ by Thm. \ref{lb654}, contradicting $\liminf_{n\rightarrow\infty}|\lambda_n|>0$.
+Then $\lim_k\lambda_{n_k}=0$ by Thm. \ref{lb654}, and hence $\liminf_{n\rightarrow\infty}|\lambda_n|=0$.
 \end{proof}
 
 
@@ -18456,11 +18455,10 @@ is an increasing sequence of closed linear subspaces of $\MV$ satisfying
 \begin{align*}
 (T-\lambda_n)V_n\subset V_{n+1}\qquad\text{for each }n\in\Zbb_+
 \end{align*}
-where $\lambda_n\in\Fbb$. Suppose that
+where $\lambda_n\in\Fbb$. Suppose that $(V_n)$ is not eventually stable, that is, for each $n$ there exists $m>n$ such that $V_n\supsetneq V_m$. Then
 \begin{align*}
-\liminf_{n\rightarrow\infty}|\lambda_n|>0
+\liminf_{n\rightarrow\infty}|\lambda_n|=0
 \end{align*}
-Then there exists $n\in\Zbb_+$ such that $V_n=V_{n+1}=V_{n+2}=\cdots$.
 \end{co}
 
 \begin{proof}
@@ -18491,7 +18489,7 @@ gives the solution of the Dirichlet problem \eqref{eq278}, as explained in the s
 Historically, the development of compact-operator theory concentrated on Hilbert spaces rather than on the space $C(\partial\Omega)$, with particular emphasis on compact self-adjoint operators---for instance, in the Hilbert-Schmidt theorem. In modern treatments of differential equations (cf. Subsec. \ref{lb660}), the compact operators $(-\DD)^{-1}$ and $(1-\DD)^{-1}$ are self-adjoint, and the Hilbert-Schmidt theorem applies directly. However, in the classical integral-equation approach, the operator $T_K$ on $L^2(\partial\Omega)$ is typically not self-adjoint unless $\Omega$ has a highly symmetric shape. Thus one must study compact operators that are not self-adjoint.
 
 
-A further limitation appears in the Hilbert-space setting when $N>2$: the kernel $K$ is not continuous, and hence a function $f\in L^2(\partial\Omega)$ satisfying \eqref{eq302} need not be continuous, and therefore may fail to provide a solution to the original Dirichlet problem. In fact, $K$ is not even in $L^2$. The situation improves dramatically when $N=2$, since in that case the kernel $K$ is continuous . Therefore, $T_Kf$ is automatically continuous for any $f\in L^2(\partial\Omega)$, and any $L^2$-solution of \eqref{eq302} must in fact belong to $C(\partial\Omega)$, thereby solving the original Dirichlet problem.
+A further limitation appears in the Hilbert-space setting when $N>2$: the kernel $K$ is not continuous, and hence a function $f\in L^2(\partial\Omega)$ satisfying \eqref{eq302} need not be continuous, and therefore may fail to provide a solution to the original Dirichlet problem. In fact, $K$ is not even in $L^2$. The situation improves dramatically when $N=2$, since in that case the kernel $K$ is continuous . Hence, $T_Kf$ is automatically continuous for any $f\in L^2(\partial\Omega)$, and any $L^2$-solution of \eqref{eq302} must therefore belong to $C(\partial\Omega)$, thereby solving the original Dirichlet problem.
 
 It is fortunate that the early study of the Dirichlet problem was restricted to the case $N=2$, the dimension in which the notion of Hilbert space first appeared in \cite{Hil06}. Had the initial investigations treated arbitrary $N$, the discovery of Hilbert spaces would likely have been significantly delayed---if not missed entirely.
 
@@ -18509,7 +18507,7 @@ For each $T\in\fk L(\MV)$, define \index{zz@$\sigma(T)$, bounded linear operator
 \begin{align}
 \pmb{\sigma(T)}=\{\lambda\in\Fbb:T-\lambda\text{ is not invertible in $\fk L(\MV)$}\}
 \end{align}
-That is, $\Fbb\setminus\sigma(T)$ is the set of all $\lambda\in\Fbb$ such that there exists $A\in\fk L(\MV)$ such that $A(T-\lambda)=(T-\lambda)A=\id_\MV$. 
+That is, $\Fbb\setminus\sigma(T)$ is the set of all $\lambda\in\Fbb$ such that there exists $A\in\fk L(\MV)$ satisfying $A(T-\lambda)=(T-\lambda)A=\id_\MV$. 
 \end{df}
 
 In other words, $\Fbb\setminus\sigma(T)$ is the set of all $\lambda\in\Fbb$ such that $T-\lambda:\MV\rightarrow\MV$ is bijective, and that its inverse $(T-\lambda)^{-1}:\MV\rightarrow\MV$ is bounded.
@@ -18530,6 +18528,7 @@ Assume that $\MV$ is complete and $T$ is a compact operator on $\MV$. Let $\lamb
 In its original meaning, the Fredholm alternative denotes the equivalence of (1) and (3). See Subsec. \ref{lb604} for more explanation of the terminology. 
 
 Note that the direction (1)$\Leftrightarrow$(2) asserts that the set of non-zero eigenvalues of $T$ coincides with $\sigma(T)\setminus\{0\}$.
+
 
 
 \begin{proof}
@@ -18582,6 +18581,7 @@ In the special case where $\MV$ is a Hilbert space and $T$ is a compact self-adj
 \end{exe}
 
 
+\hypertarget{proofread}{}
 
 \subsubsection{Supplementary results on compact operators}
 
