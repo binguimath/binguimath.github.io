@@ -19760,7 +19760,7 @@ Then ${}^\perp E$ and $F^\top$ are linear subspaces of $\MV$ and $\MV^*$, respec
 \begin{co}\label{lb749}
 Let $\MU$ be a closed linear subspace of $\MV$. Then we have an isomorphism of normed vector spaces
 \begin{align*}
-(\MV/\MU)^*\xlongrightarrow{\simeq}\MU^\perp\qquad \psi\mapsto\psi\circ\pi_\MU
+(\MV/\MU)^*\xlongrightarrow{\simeq}\MU^\top\qquad \psi\mapsto\psi\circ\pi_\MU
 \end{align*}
 where $\pi_\MU:\MV\rightarrow\MV/\MU$ is the quotient map $\xi\mapsto\xi+\MU$.
 \end{co}
@@ -19771,18 +19771,23 @@ By Thm. \ref{lb707}, the map $(\MV/\MU)^*\rightarrow\MV^*$ defined by $\psi\maps
 
 
 \begin{co}\label{lb708}
-Let $\MX$ be a linear subspace of $\MV^*$. There we have a linear isometry
+Let $\MX$ be a linear subspace of $\MV^*$. Let $\pi_{{}^\perp\MX}:\MV\rightarrow\MV/{}^\perp\MX$ be defined by $\xi\mapsto\xi+{}^\perp\MX$. There we have an isomorphism of normed vector spaces
 \begin{gather}\label{eq317}
-\MX\rightarrow(\MV/{}^\perp\MX)^*\qquad \varphi\mapsto\bigg(
-\begin{array}{c}
-\MV/{}^\perp\MX\rightarrow\Fbb\\[0.5ex]
-\xi+{}^\perp\MX\mapsto \bk{\varphi,\xi}
-\end{array}\bigg)
+(\MV/{}^\perp\MX)^*\xlongrightarrow{\simeq}({}^\perp\MX)^\top\qquad \psi\mapsto\psi\circ\pi_{{}^\perp\MX}
 \end{gather}
+where $({}^\perp\MX)^\top$ equals $\MX$ when $\dim\MX<+\infty$.
 \end{co}
 
 \begin{proof}
-Clearly $({}^\perp\MX)^\perp$ is a linear subspace of $\MV^*$ containing $\MX$. One checks easily that the inclusion map $\MX\hookrightarrow({}^\perp\MX)^\perp$, composed with the the inverse of the isomorphism $(\MV/{}^\perp\MX)^*\rightarrow({}^\perp\MX)^\perp$ defined as in Cor. \ref{lb749}, is the map \eqref{eq317}.
+By Cor. \ref{lb749}, \eqref{eq317} is an isomorphism of normed vector spaces. Clearly $\MX\subset({}^\perp\MX)^\top$. Let us assume $\dim\MX<+\infty$ and prove $({}^\perp\MX)^\top\subset\MX$.
+
+Let $\varphi_1,\dots,\varphi_n$ be a basis of $\MX$. Define a linear map
+\begin{align*}
+\Phi=(\varphi_1,\dots,\varphi_n):\MV\rightarrow\Fbb^n
+\end{align*}
+Then $\Ker(\Phi)={}^\perp\MX$. Moreover, $\Phi$ is surjective; otherwise, there exists a non-zero $(a_1,\dots,a_n)\in\Fbb^n$ orthogonal to $\Rng(\Phi)$, which implies $a_1\varphi_1+\cdots+a_n\varphi_n=0$, contrary to the linear independence of $\varphi_1,\dots,\varphi_n$.
+
+Now, let us prove that any $\psi\in ({}^\perp\MX)^\top$ belongs to $\MX$. Note that $\psi:\MV\rightarrow\Fbb$ is a linear functional vanishing on ${}^\perp\MX=\Ker(\Phi)$. Therefore, by the surjectivity of $\Phi$, there is a unique linear map $\alpha:\Fbb^n\rightarrow\Fbb$ satisfying $\alpha\circ\Phi=\psi$. Set $a_j=\alpha(e_j)$ where $e_j$ is the $j$-th standard coordinate of $\Fbb^n$. Then $\psi=a_1\varphi_1+\cdots+a_n\varphi_n$. This proves $\psi\in\MX$, and hence $({}^\perp\MX)^\top\subset\MX$.
 \end{proof}
 
 
@@ -19810,22 +19815,11 @@ The linear map $\MV\rightarrow\MX^*$ defined by $\xi\mapsto\xi^\sharp|_\MX$ has 
 \begin{align*}
 \dim\MV/{}^\perp\MX\leq\dim\MX^*=\dim\MX<+\infty
 \end{align*}
-By Cor. \ref{lb708} (and also Rem. \ref{lb709}), $\dim\MX\leq\dim\MV/{}^\perp\MX$. Therefore, the linear map \eqref{eq315} is bijective.
+By Cor. \ref{lb708} (and also Rem. \ref{lb709}), $\dim\MX=\dim\MV/{}^\perp\MX$. Therefore, the linear map \eqref{eq315} is bijective.
 \end{proof}
 
 
-\begin{rem}\label{lb756}
-From the results proved so far, we immediately obtain that if $\MX$ is a finite-dimensional linear subspace of $\MV^*$, then
-\begin{align*}
-\MX=({}^\perp\MX)^\perp
-\end{align*}
-We will use this fact in the proof of Thm. \ref{lb755}.
-\end{rem}
 
-
-\begin{proof}
-Clearly $\MX\subset({}^\perp\MX)^\perp$. By Thm. \ref{lb710}, we have $\dim\MV/{}^\perp\MX=\dim\MX<+\infty$. By Cor. \ref{lb749}, we have $\dim({}^\perp\MX)^\perp=\dim\MV/{}^\perp\MX$. So $\dim({}^\perp\MX)^\perp=\dim\MX$, and hence $\MX=({}^\perp\MX)^\perp$.
-\end{proof}
 
 
 
@@ -19864,31 +19858,41 @@ The existence of a bounded sequence $(\xi_n)$ follows from the fact that the lin
 
 
 \begin{lm}\label{lb711}
-In Thm. \ref{lb710}, the linear isomorphism $\MV/{}^\perp\MX\rightarrow\MX^*$ (defined by \eqref{eq315}) is an isometry.
+In Thm. \ref{lb710}, the linear bijection $\MV/{}^\perp\MX\rightarrow\MX^*$ (defined by \eqref{eq315}) is an isometry.
 \end{lm}
 
 
 
 \begin{proof}
-By comparing dimensions, we see that the injective linear map $\MX\rightarrow(\MV/{}^\perp\MX)^*$ in Cor. \ref{lb708} is bijective, and hence is a linear isometry. One easily checks that its transpose (which is also an isomorphism of normed vector spaces) satisfies
+Recall from Cor. \ref{lb708} the isomorphism of normed vector spaces
 \begin{align*}
-(\MV/{}^\perp\MX)^{**}\rightarrow\MX^*\qquad 
-(\xi+{}^\perp\MX)^\sharp \mapsto\xi^\sharp|_\MX
+\Phi:(\MV/{}^\perp\MX)^*\xlongrightarrow{\simeq}\MX \qquad \psi\mapsto\psi\circ\pi_{{}^\perp\MX}
 \end{align*}
-for each $\xi\in\MV$. That is, the composition of $(\xi+{}^\perp\MX)^\sharp:(\MV/{}^\perp\MX)^*\rightarrow\Fbb$ with the map \eqref{eq315} is the map $\MX\rightarrow\Fbb$ sending each $\varphi$ to $\bk{\varphi,\xi}$ (and hence equals $\xi^\sharp|_\MX$). 
+Therefore, its transpose is also an isomorphism of normed vector spaces
+\begin{align*}
+\Phi^\sharp:\MX^*\xlongrightarrow{\simeq}(\MV/{}^\perp\MX)^{**}\qquad \uptau\mapsto\uptau\circ\Phi
+\end{align*}
 
-This gives a commutative diagram
+For each $\xi\in\MX$, the restriction $\xi^\sharp|_\MX:\MX\rightarrow\Fbb$ sends each $\varphi\in\MX$ to $\bk{\psi,\xi}$. Thus 
+\begin{align*}
+\xi^\sharp|_\MX\circ \Phi:(\MV/{}^\perp\MX)^*\rightarrow\Fbb\qquad \psi\mapsto \bk{\psi\circ\pi_{{}^\perp\MX},\xi}
+\end{align*}
+Since $\bk{\psi\circ\pi_{{}^\perp\MX},\xi}=\bk{\psi,\xi+{}^\perp\MX}=\bk{\psi,(\xi+{}^\perp\MX)^\sharp}$, we conclude that
+\begin{align*}
+\xi^\sharp|_\MX\circ \Phi=(\xi+{}^\perp\MX)^\sharp
+\end{align*}
+Consequently, we obtain the commutative diagram
 \begin{equation*}
 \begin{tikzcd}[column sep=0cm]
-             & \MV/{}^\perp\MX \arrow[ld] \arrow[rd,"\eqref{eq315}"] &   \\
-(\MV/{}^\perp\MX)^{**} \arrow[rr,"\simeq"'] &                         & \MX^*
+             & \MV/{}^\perp\MX \arrow[ld,"\eqref{eq315}"'] \arrow[rd] &   \\
+\MX^* \arrow[rr,"\simeq"',"\Phi^\sharp"] &                         & (\MV/{}^\perp\MX)^{**}
 \end{tikzcd}
 \qquad\begin{tikzcd}[column sep=0cm]
              & \xi+{}^\perp\MX \arrow[ld,mapsto] \arrow[rd,mapsto] &   \\
-(\xi+{}^\perp\MX)^\sharp\arrow[rr, mapsto] &                         & \xi^\sharp|_\MX
+\xi^\sharp|_\MX\arrow[rr, mapsto] &                         & (\xi+{}^\perp\MX)^\sharp
 \end{tikzcd}
 \end{equation*}
-where the bottom map is an isomorphism of normed vector spaces. Therefore, to prove that \eqref{eq315} is an isometry, it is equivalent to show that the canonical map $\MV/{}^\perp\MX\rightarrow(\MV/{}^\perp\MX)^{**}$ is an isomtry, cf. Thm \ref{lb712}.
+Therefore, to prove that \eqref{eq315} is an isometry, it suffices to show that the canonical map $\MV/{}^\perp\MX\rightarrow(\MV/{}^\perp\MX)^{**}$ is an isomtry, cf. Thm \ref{lb712}.
 \end{proof}
 
 
@@ -19904,7 +19908,7 @@ We defer the proof of Thm. \ref{lb712} to Subsec. \ref{lb720}. Observe that the 
 As we shall see in Sec. \ref{lb714}, Thm. \ref{lb712} follows easily from the Hahn-Banach Thm. \ref{lb700}. Indeed, the Hahn-Banach theorem proves a stronger statement: regardless of whether $\MV$ is finite-dimensional or not, the canonical map $\MV\rightarrow\MV^{**}$ is always an isometry. However, the linear-extension proof of Hahn-Banach obscures the geometric relationship between Thm. \ref{lb712} and the separation of convex sets, an aspect we will make explicit in Sec. \ref{lb713}.
 
 
-A final remark: in Riesz's treatment of moment problems for $L^p([a,b],m)$ and $C([a,b])$, Lem. \ref{lb711} was proved using concrete structural properties of these function spaces. For instance, when $\MV=L^p([a,b],m)$, the space $\MX$ is a finite-dimensional linear subspace of $\MV^*=L^q([a,b],m)$. In that context, for each $\Lambda\in\MX^*$, one can explicitly construct $\xi\in\MV$ with $\xi^\sharp|_\MX=\Lambda$, satisfying
+A final remark: In Riesz's treatment of moment problems for $L^p([a,b],m)$ and $C([a,b])$, Lem. \ref{lb711} was proved using concrete structural properties of these function spaces. For instance, when $\MV=L^p([a,b],m)$, the space $\MX$ is a finite-dimensional linear subspace of $\MV^*=L^q([a,b],m)$. In that context, for each $\Lambda\in\MX^*$, one can explicitly construct $\xi\in\MV$ with $\xi^\sharp|_\MX=\Lambda$, satisfying
 \begin{align*}
 \Vert \xi\Vert=\Vert\xi+{}^\perp\MX\Vert=\Vert\Lambda\Vert
 \end{align*}
@@ -20617,7 +20621,7 @@ The following statements are equivalent.
 \begin{proof}
 (2)$\Rightarrow$(1): Assume (2). Replacing $\MX$ with $\ovl{\Span\MX}$, we assume that $\MX$ is a proper closed linear subspace of $\MV^*$. By Cor. \ref{lb736}, we have $\MX^\top\neq0$, that is, there exists a nonzero $\psi\in\MV^{**}$ vanishing on $\MX$. Then $\psi\notin\MV$; otherwise, the fact that $\MX$ separates points of $\MV$ yields the contradiction $\psi=0$. This proves (1).
 
-(1)$\Rightarrow$(2): Assume (1). Choose $\psi\in\MV^{**}\setminus\MV$. Let $\ML=\Fbb\psi$. Then ${}^\perp\ML$ is a closed linear subspace of $\MV^*$. By Rem. \ref{lb756}, we have $({}^\perp\ML)^\perp=\ML$, and hence $({}^\perp\ML)^\perp\cap\MV=0$. Thus $({}^\perp\ML)^\perp$ separates points of $\MV$.
+(1)$\Rightarrow$(2): Assume (1). Choose $\psi\in\MV^{**}\setminus\MV$. Let $\ML=\Fbb\psi$. Then ${}^\perp\ML$ is a closed linear subspace of $\MV^*$. By Cor. \ref{lb708}, we have $({}^\perp\ML)^\perp=\ML$, and hence $({}^\perp\ML)^\perp\cap\MV=0$. Thus $({}^\perp\ML)^\perp$ separates points of $\MV$.
 \end{proof}
 
 
