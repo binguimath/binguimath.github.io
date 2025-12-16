@@ -168,7 +168,9 @@
 
   讲义章节：7.9.3-7.9.7，8.1.1，8.1.2
 
-- 12/16
+- 12/16 从Dirichlet问题到积分方程，Fredholm alternative在积分方程中的意义，全连续sesquilinear form及其基本性质，L^2 kernel定义全连续sesquilinear form，Hilbert-Schmidt定理及其证明（form方法）
+
+  讲义章节：8.1.3-8.1.5，8.2，8.3
 
 - 12/19
 
