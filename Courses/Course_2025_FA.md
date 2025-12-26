@@ -184,7 +184,7 @@
 
 - 12/26 有紧预解式的无界算子，无界算子的Hilbert-Schmidt定理与Fredhol Alternative，有界开集上Dirichlet Laplacian有紧预解式，Fredholm Alternative在椭圆方程的用法，Poincare不等式，Hahn-Banach定理的矩问题背景与有限逼近解法
 
-- 讲义章节：8.8.2，8.8.3，8.9，9.1.1
+- 讲义章节：8.8.2，8.8.3，8.9，9.1.1，9.2.1
 
 - 12/30
 
