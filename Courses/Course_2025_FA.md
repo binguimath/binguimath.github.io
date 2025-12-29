@@ -24,9 +24,7 @@
 
 - [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf)
 
-  讲义已全部完成
-
-  讲义中靠后的内容未经校对，因此可能包含笔误和数学错误，也可能以后会有结构和内容上的调整。目前已经校对至：第10.1节结束
+  讲义撰写与校对已全部完成
 
 
 
