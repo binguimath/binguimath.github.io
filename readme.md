@@ -95,7 +95,9 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 2020 Unbounded Field Operators in Categorical Extensions of Conformal Nets. *First submitted in Oct. 2020, and later to another journal in Feb. 2025.* `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf)
 > This is the second paper studying the equivalence of representation tensor categories. I solved the conjecture that every unitary affine VOA (i.e. simply-connected WZW model) and its associated loop group conformal net have unitarily equivalent representation tensor categories.
 
-*Advice for young mathematicians: Don’t hesitate to submit your favorite work to a top journal--if you don’t mind the risk of losing your job because the paper gets rejected after more than four years of review.*
+<!--*Advice for young mathematicians: Don’t hesitate to submit your favorite work to a top journal--if you don’t mind the risk of losing your job because the paper gets rejected after more than four years of review.*-->
+
+
 
 
 2021 Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case, *To appear in* ***Commun. Contemp. Math.***,  `arXiv:2111.04662`  [Preprint](https://binguimath.github.io/Files/2021_Permutation.pdf)  [Slides](https://binguimath.github.io/Files/2022_BIMSA.pdf)
