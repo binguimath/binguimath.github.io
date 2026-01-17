@@ -33,7 +33,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Sewing and Propagation of Conformal Blocks, ***New York J. Math.***, 30 (2024) 187–230. `arXiv:2110.04774`  [Preprint](https://binguimath.github.io/Files/2021_Propagation.pdf)
 
-1. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case, To appear in ***Commun. Contemp. Math.***,  `arXiv:2111.04662`  [Preprint](https://binguimath.github.io/Files/2021_Permutation.pdf)  [Slides](https://binguimath.github.io/Files/2022_BIMSA.pdf)
+1. Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case, ***Commun. Contemp. Math.***,  Vol. 28, No. 02 (2026). `arXiv:2111.04662`  [Preprint](https://binguimath.github.io/Files/2021_Permutation.pdf)  [Slides](https://binguimath.github.io/Files/2022_BIMSA.pdf)
 
 1. On a Connes Fusion Approach to Finite Index Extensions of Conformal Nets. To appear in ***Rev. Math. Phys.***. `arXiv:2112.15396`  [Preprint](https://binguimath.github.io/Files/2021_Extensions.pdf)
 
