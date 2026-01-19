@@ -98,6 +98,8 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 <!--*Advice for young mathematicians: Don’t hesitate to submit your favorite work to a top journal--if you don’t mind the risk of losing your job because the paper gets rejected after more than four years of review.*-->
 
 
+*Note: Before submission to Inventiones, this paper had been under review at another journal for 52 months before being rejected. I hope this information is helpful for those considering submitting their papers to prestigious journals.*
+
 
 
 2021 Genus-zero Permutation-twisted Conformal Blocks for Tensor Product Vertex Operator Algebras: The Tensor-factorizable Case. ***Commun. Contemp. Math.***,  Vol. 28, No. 02 (2026). `arXiv:2111.04662`  [Preprint](https://binguimath.github.io/Files/2021_Permutation.pdf)  [Slides](https://binguimath.github.io/Files/2022_BIMSA.pdf)
