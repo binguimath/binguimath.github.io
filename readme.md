@@ -92,7 +92,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 > This is the first paper studying the equivalence of the representation tensor categories associated to unitary completely rational VOAs and their conformal nets. 
 
 
-2020 Unbounded Field Operators in Categorical Extensions of Conformal Nets. *First submitted in Oct. 2020, and later to another journal in Feb. 2025.* `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf)
+2020 Unbounded Field Operators in Categorical Extensions of Conformal Nets. *To appear in* ***Invent. Math.*** `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf)
 > This is the second paper studying the equivalence of representation tensor categories. I solved the conjecture that every unitary affine VOA (i.e. simply-connected WZW model) and its associated loop group conformal net have unitarily equivalent representation tensor categories.
 
 <!--*Advice for young mathematicians: Don’t hesitate to submit your favorite work to a top journal--if you don’t mind the risk of losing your job because the paper gets rejected after more than four years of review.*-->
