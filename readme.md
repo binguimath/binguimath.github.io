@@ -65,17 +65,9 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 
 
-## Courses 😪
+## Teaching 😪
 
-I have written LaTeX lecture notes for the following courses. See [this page](Courses/Other_Courses.md) for the courses I taught using my old lecture notes.
-
-- (2022 Spring) [Vertex Operator Algebras, Conformal Blocks, and Tensor Categories](Courses/Course_2022_VOA.md)
- 
-- (2023 Fall & 2024 Spring) [Analysis I & II](Courses/Course_2023_Analysis.md) for Qiuzhen college
-
-- (2024 Fall) [Topics in Operator Algebras: Algebraic Conformal Field Theory](Courses/Course_2024_ACFT.md)
-
-- (2025 Fall) [Functional Analysis](Courses/Course_2025_FA.md) for Qiuzhen college
+See [this page](https://binguimath.github.io/Courses/Courses.html)
 
 
 
