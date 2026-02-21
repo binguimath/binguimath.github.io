@@ -31,6 +31,36 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 <!--I view myself an analyst rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.-->
 
+## Notes 🥱
+
+<!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
+
+- [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf) 
+> These are the lecture notes for the [course](https://binguimath.github.io/Courses/Course_2025_FA.html)  ***Functional Analysis*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2025. 
+
+- [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html) 
+
+> These are the lecture notes for the [course](Courses/Course_2023_Analysis.html)  ***Analysis I & II*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024. 
+
+- [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
+
+> These are the lecture notes for my [course](Courses/Course_2024_ACFT.md) ***Topics in Operator Algebras: Algebraic Conformal Field Theory***  given at Yau Mathematical Sciences Center in 2024 Fall. 
+
+
+- [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
+
+> These are the lecture notes for my [course](Courses/Course_2022_VOA.md) ***Vertex Operator Algebras, Conformal Blocks, and Tensor Categories*** given at Yau Mathematical Sciences Center in 2022 Spring.
+
+
+- [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
+
+
+> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.  
+
+- [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
+
+
+> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note has been adapted to form the main body of my article *Convergence of Sewing Conformal Blocks*. The section on (multi) propagation of conformal blocks has been expanded and explained in more details in the article *Sewing and Propagation of Conformal Blocks*.
 
 
 
@@ -114,36 +144,6 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 
 
-## Notes 🥱
-
-<!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
-
-- [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Files/2025_FA.pdf) 
-> These are the lecture notes for the [course](https://binguimath.github.io/Courses/Course_2025_FA.html)  ***Functional Analysis*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2025. 
-
-- [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html) 
-
-> These are the lecture notes for the [course](Courses/Course_2023_Analysis.html)  ***Analysis I & II*** offered to undergraduates at Qiuzhen College (求真书院) of Tsinghua university in the fall of 2023 and the spring of 2024. 
-
-- [Topics in Operator Algebras: Algebraic Conformal Field Theory](https://binguimath.github.io/Files/2024_ACFT.pdf)
-
-> These are the lecture notes for my [course](Courses/Course_2024_ACFT.md) ***Topics in Operator Algebras: Algebraic Conformal Field Theory***  given at Yau Mathematical Sciences Center in 2024 Fall. 
-
-
-- [Lectures on Vertex Operator Algebras and Conformal Blocks](Files/2022_VOA_Lectures.pdf)
-
-> These are the lecture notes for my [course](Courses/Course_2022_VOA.md) ***Vertex Operator Algebras, Conformal Blocks, and Tensor Categories*** given at Yau Mathematical Sciences Center in 2022 Spring.
-
-
-- [Spectral Theory for Strongly Commuting Normal Closed Operators](Files/2021_Spectral.pdf) 
-
-
-> We give a detailed and self-contained exposition of the topics indicated in the title of this monograph. I origianally planned to give a course "Unbounded Operators in Conformal Field Theories" at Yau Mathematical Sciences Center in 2022 Spring, but have since changed the course topic to VOAs and conformal blocks. This monograph is the outcome of the preparation of that course.  
-
-- [Conformal Blocks: Vector Bundle Structures, Sewing, and Factorization](Files/2020_Conformal_Blocks.pdf) 
-
-
-> In this monograph we give a complex-analytic approach to the theory of conformal blocks for VOAs. Part of this note has been adapted to form the main body of my article *Convergence of Sewing Conformal Blocks*. The section on (multi) propagation of conformal blocks has been expanded and explained in more details in the article *Sewing and Propagation of Conformal Blocks*.
 
 
 
