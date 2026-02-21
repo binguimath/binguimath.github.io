@@ -31,6 +31,12 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 <!--I view myself an analyst rather than (say) an algebraist, a geometer, or a topologist. This means that I need less motivational background to study analysis than to study the other branches of mathematics, and that I tend to understand the other branches in an analytic way.-->
 
+## Teaching 😪
+
+See [this page](https://binguimath.github.io/Courses/Courses.html)
+
+
+
 ## Notes 🥱
 
 <!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
@@ -65,9 +71,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 
 
-## Teaching 😪
 
-See [this page](https://binguimath.github.io/Courses/Courses.html)
 
 
 
