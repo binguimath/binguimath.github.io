@@ -33,7 +33,7 @@ I am a mathematical analyst working on [vertex operator algebras](https://en.wik
 
 ## Teaching 😪
 
-See [this page](https://binguimath.github.io/Courses/Courses.html)
+See [this page](https://binguimath.github.io/Courses/Courses.html).
 
 
 
