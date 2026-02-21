@@ -10,4 +10,4 @@
 
 - (2025 Fall) [Functional Analysis](https://binguimath.github.io/Courses/Course_2025_FA.html) for Qiuzhen college
 
-
+- (2026 Spring) [Functional Analysis](https://binguimath.github.io/Courses/Course_2026S_FA.html) for Qiuzhen college
