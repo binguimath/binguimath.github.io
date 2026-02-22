@@ -31,7 +31,7 @@
 
 ## Schedule
 
-课程安排与25年秋季的泛函分析课程大致相当。想要提前了解计划进度的同学课查看该课程的[主页](https://binguimath.github.io/Courses/Course_2025_FA.html)。
+课程安排与25年秋季的泛函分析课程大致相当。想要提前了解计划进度的同学可查看该课的[课程主页](https://binguimath.github.io/Courses/Course_2025_FA.html)。
 
 
 - 2/26 
