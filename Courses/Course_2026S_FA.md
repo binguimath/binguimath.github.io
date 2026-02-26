@@ -24,7 +24,7 @@
 ## Lecture notes (in English)
 
 
-- [Qiuzhen Lectures on Functional Analysis](hhttps://binguimath.github.io/Pages/2025_FA.html)
+- [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Pages/2025_FA.html)
 
 
 
