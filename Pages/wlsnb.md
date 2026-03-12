@@ -1,9 +1,9 @@
-https://wd-cloud.net/
+<!---https://wd-cloud.net/
 这个是我自己找到的。我感觉最稳定的是日本节点和美国节点。香港节点日常也不错，用gpt的话偶尔会ip被block。
 
 https://paoluz.com/
 这个是春雨推荐给我的，我也经常用。注册账号需要邀请码：n3a2
 
-<!---The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
+The following notes are not listed in chronological order of writing, but are order by the level of recommendation.--->
 
 
