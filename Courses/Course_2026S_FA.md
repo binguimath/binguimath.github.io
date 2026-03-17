@@ -61,9 +61,9 @@
 
   讲义章节：3.1.1，3.1.2，3.2，3.3.1-3.3.4，3.3.4（讲完 Thm. 3.3.24），1.2.5（主要是Def. 1.2.40，Prop. 1.2.46，Exp. 1.2.47）
 
-7) 3/17 Parseval等式，Hilbert空间的等价刻画，Hilbert空间关于闭线性子空间存在投影算子，线性子空间的二次正交补等于闭包，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随矩阵，乘法运算L(V)×L(V)–>L(V)的算子范数⩽1，有界sesquilinear form的乘法，乘法结合律涉及的极限交换问题，有界矩阵与有界sesquilinear form的等价性
+7) 3/17 Parseval等式，Hilbert空间的等价刻画，无序和收敛的Cauchy判别法，Hilbert空间关于闭线性子空间存在投影算子，线性子空间的二次正交补等于闭包，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随矩阵，乘法运算L(V)×L(V)–>L(V)的算子范数⩽1，有界sesquilinear form的乘法，乘法结合律涉及的极限交换问题，有界矩阵与有界sesquilinear form的等价性
 
-  讲义章节：3.3.4，3.4，3.5（3.5.4节关于resolvent的内容忘记讲了，下次课讲），3.6（讲完 Thm. 3.6.3）
+  讲义章节：3.3.4，3.4，1.2.5（Rem. 1.2.41），3.5（3.5.4节关于resolvent的内容忘记讲了，下次课讲），3.6（讲完 Thm. 3.6.3）
   
 - 3/19
 
