@@ -7568,14 +7568,19 @@ c_3&c_4&c_5&c_6&\cdots\\
 \vdots&\vdots&\vdots&\vdots&\ddots
 \end{pmatrix}
 \end{align*}
-Equivalently, the associated sesquilinear form is determined by
+The Hankel matrix can be interpreted as follows. Let $\Lambda:\Cbb[x]\rightarrow\Cbb$ be the unique linear functional satisfying 
 \begin{subequations}\label{eq80}
 \begin{gather}
-\bigbk{f\big|g}=\bigbk{1\big|\ovl fg}\qquad\text{for each }f,g\in\Cbb[x]\label{eq80a}\\
-\bigbk{1\big|x^n}=c_n\qquad\text{for each }n\in\Nbb\label{eq80b}
+\Lambda(x^n)=c_n\qquad\text{for each }n\in\Nbb
 \end{gather}
+and let $\bk{\cdot|\cdot}$ be the sesquilinear form on $\Cbb[x]$ defined by 
+\begin{align}
+\bk{f|g}=\Lambda(\ovl fg)\qquad\text{for each }f,g\in\Cbb[x]
+\end{align}
 \end{subequations}
-Since each $c_n$ is real, $H$ is Hermitian.
+Then $H$ is the matrix representation of $\bk{\cdot|\cdot}$ under the basis $(x^n)_{n\in\Nbb}$, that is, $H(m,n)=\bk{x^m|x^n}$ for each $m,n\in\Nbb$. \footnote{Proof: $H(m,n)=c_{m+n}=\Lambda(x^{m+n})=\bk{x^m|x^n}$.}
+
+Since each $c_n$ is real, $H$ is a Hermitian matrix, and hence $\bk{\cdot|\cdot}$ is Hermitian.
 
 We also let $H'\in\Rbb^{\Nbb\times \Nbb}$ be the defined by $H'(m,n)=c_{m+n+1}$, that is,
 \begin{align*}
@@ -7591,7 +7596,7 @@ In other words, its associated sesquilinear form is
 \begin{align}\label{eq81}
 \Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|xg}
 \end{align}
-Since $c_n\in\Rbb$, $H'$ is also Hermitian. It follows that
+Since $c_n\in\Rbb$, by Prop. \ref{lb113}, $H'$ is also Hermitian. It follows that
 \begin{align}\label{eq82}
 \Cbb[x]\times\Cbb[x]\rightarrow\Cbb\qquad (f,g)\mapsto \bk{f|(1-x)g}
 \end{align}
@@ -7599,11 +7604,15 @@ is the (Hermitian) sesquilinear form associated to $H-H'$. \hqed
 \end{df}
 
 \begin{rem}\label{lb166}
-Note that by \eqref{eq80a}, for each $f,g,h\in\Cbb[x]$ we have
-\begin{align}
+Since $H'$ is Hermitian, the sesquilinear form \eqref{eq81} equals its adjoint (cf. Def. \ref{lb609}), i.e., for each $f,g\in\Cbb[x]$ we have $\bk{f|xg}=\ovl{\bk{g|xf}}$, and hence
+\begin{align*}
+\bk{f|xg}=\bk{xf|g}
+\end{align*}
+In fact, we have the more general identity (which will not be used later) that for all $f,g,h\in\Cbb[x]$,
+\begin{align*}
 \bigbk{f\big|hg}=\bigbk{\ovl hf\big|g}
-\end{align}
-since $\bk{f|hg}=\bk{1|\ovl fhg}=\bk{1|\ovl{\ovl hf}g}=\bk{\ovl hf|g}$.
+\end{align*}
+since (by \eqref{eq80}) $\bk{f|hg}=\Lambda(\ovl fhg)=\Lambda(\ovl{\ovl hf}g)=\bk{\ovl hf|g}$.
 \end{rem}
 
 
@@ -7611,7 +7620,7 @@ The construction of $H$ and $H'$ can be understood in a more general context; se
 
 
 
-In the rest of this section, we always let $H$ denote the Hankel matrix of $(c_n)_{n\in\Nbb}$, and equip $\Cbb[x]$ with the sesquilinear form associated to $H$.
+In the rest of this section, we always let $H$ denote the Hankel matrix of $(c_n)_{n\in\Nbb}$, and equip $\Cbb[x]$ with the sesquilinear form associated to $H$, i.e., the one defined by \eqref{eq80}.
 
 
 \begin{pp}\label{lb168}
@@ -7623,13 +7632,18 @@ Suppose that Pb. \ref{lb162} has a solution $\rho$. Then $H$ must be positive, a
 Moreover, if $I=[0,+\infty)$, then $H'$ is positve; if $I=[0,1]$, then both $H'$ and $H-H'$ are positive.
 \end{pp}
 
+The equivalence of (1) and (2) is important in the literature of moment problems, but it will not be used in this course, and hence can be safely skipped.
 
 \begin{proof}
-Let $\rho$ be a solution of Pb. \ref{lb162}. Then for each $f,g\in\Cbb[x]$, we have
+Let $\rho$ be a solution of Pb. \ref{lb162}. Then the linear functional $\Lambda:\Cbb[x]\rightarrow\Cbb$ in \eqref{eq80} is given by
+\begin{align*}
+\Lambda(f)=\int_I fd\rho\qquad\text{for each }f\in\Cbb[x]
+\end{align*}
+Therefore, for each $f,g\in\Cbb[x]$, we have
 \begin{align}\label{eq101}
 \bk{f|g}= \int_I \ovl f gd\rho
 \end{align}
-since this is clearly true when $f=x^m,g=x^n$. Thus $\bk{f|f}=\int_I |f|^2d\rho\geq0$. 
+since $\bk{f|g}=\Lambda(\ovl fg)=\int_I\ovl fgd\rho$. Thus $\bk{f|f}=\int_I |f|^2d\rho\geq0$. 
 
 If $H$ is not non-degenerated, then there exists $0\neq f\in\Cbb[x]$ such that $\bk{f|f}=0$, and hence $\int_I|f|^2d\rho=0$. From this, one easily checks that $\Supp(\rho)$ is a subset of the finite set $f^{-1}(0)$. Conversely, if $\mu_\rho$ is supported in a finite set $E\subset I$, we choose a non-zero $f\in\Cbb[x]$ such that $f|_E=0$. Then $\bk{f|f}=\int_I|f|^2d\mu_\rho=0$. This shows that $H$ is not non-degenerate. This proves the equivalence of (1) and (2).
 
@@ -8547,9 +8561,9 @@ Clearly, any increasing function $\rho:I\rightarrow\Rbb_{\geq0}$ defines a posit
 \begin{align*}
 c_n=\Lambda(x^n)
 \end{align*}
-Then, in view of Def. \ref{lb203}, the Hankel matrix $H$ of $(c_n)$ determines the sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$ satisfying $\bk{1|f}=\Lambda(f)$ for all $f\in\Cbb[x]$, and hence
+By Def. \ref{lb203}, the Hankel matrix $H$ of $(c_n)$ determines the sesquilinear form $\bk{\cdot|\cdot}$ on $\Cbb[x]$ satisfying 
 \begin{align*}
-\bk{f|g}=\bk{1|f^*g}=\Lambda(f^*g)
+\bk{f|g}=\Lambda(f^*g)
 \end{align*}
 for all $f,g\in\Cbb[x]$. Therefore, the positivity of $\Lambda$ implies that $\bk{\cdot|\cdot}$ is positive. Moreover, for each $f\in\Cbb[x]$ we have
 \begin{align*}
