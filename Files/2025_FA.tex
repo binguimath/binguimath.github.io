@@ -11232,7 +11232,7 @@ d\mu_\xi=\sum_{\alpha\in\SI}\Vert\xi_\alpha\Vert^2d\mu_\alpha
 The joint spectra can also be described explicitly:
 
 
-\begin{exe}
+\begin{exe}\label{lb797}
 In the setting of Thm. \ref{lb334}, assume that each $\mu_\alpha$ is $\sigma$-finite. Prove that
 \begin{align}
 \Sp(T_\blt)= \Cl_{\Cbb^N}\Big(\bigcup_{\alpha\in\SI}\Ess(f_\blt,\mu_\alpha)\Big)
@@ -11242,6 +11242,20 @@ where $\Ess(f_\blt,\mu_\alpha)$ is the essential range (cf. Def. \ref{lb319}) of
 \Sp(T_\blt)= \Cl_{\Cbb^N}\Big(\bigcup_{\alpha\in\SI}\Supp(\mu_\alpha)\Big)
 \end{align}
 \end{exe}
+
+\begin{eg}
+Let $x$ be the coordinate function of $\Rbb$. Let $T=\Mbf_x$ on 
+\begin{align*}
+\MH=L^2\big([0,3),m_1+\delta_2\big)\oplus L^2\big((2,4),m_1\big)
+\end{align*}
+where $m_1$ denotes the $1$-dimensional Lebesgue measure, and $\delta_2$ denotes the Dirac measure at $2$. Then Exe. \ref{lb797} implies
+\begin{align*}
+\Sp(T)=[0,3]\cup[2,4]=[0,4]
+\end{align*}
+By Thm. \ref{lb334}, for each $\lambda\in\Cbb$ we have $\Mbf_{\chi_{\{\lambda\}}}=\chi_{\{\lambda\}}(T)$. Since $\chi_{\{\lambda\}}(T)$ is the projection onto $\Ker(T-\lambda)$ (cf. Prop. \ref{lb317}), the only eigenvalue of $T$ is $2$, and the corresponding eigenspace is spanned by $\chi_{\{2\}}\oplus 0$.
+\end{eg}
+
+
 
 
 We encourage the reader to use the results from this subsection to provide alternative proofs for the basic properties of the Borel functional calculus and joint spectra, namely those in Sec. \ref{lb335}. I must confess, when I was proving certain propositions in Sec. \ref{lb335} (for example, Prop. \ref{lb317}), I often had in mind the concrete case of multiplication operators as in Thm. \ref{lb330}---sometimes even restricting to the situation where the index set $\SI$ consists of a single point, thanks to Prop. \ref{lb332}---and then figured out the argument. This is my secret method for working with the Borel functional calculus.
@@ -11932,7 +11946,7 @@ where
 
 
 \begin{eg}\label{lb366}
-Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $f:X\rightarrow\Cbb$ be measurable. Then $\oplus_{\alpha\in\SI}\Mbf_f$ is an unbounded operator on $\bigoplus_{\alpha\in\SI}L^2(X,\mu_\alpha)$ with domain
+Let $(X,\fk M)$ be a measurable space. Let $(\mu_\alpha)_{\alpha\in\SI}$ be a family of measures on $\fk M$. Let $f:X\rightarrow\Cbb$ be measurable. Let $\MH_\alpha=L^2(X,\mu_\alpha)$. Then $\oplus_{\alpha\in\SI}\Mbf_f$ is an unbounded operator on $\bigoplus_{\alpha\in\SI}\MH_\alpha$ with domain
 \begin{align*}
 \Dom(\oplus_{\alpha\in\SI}\Mbf_f)=\Big\{\oplus_\alpha\xi_\alpha\in \bigoplus_{\alpha\in\SI}\MH_\alpha: \oplus_\alpha f\xi_\alpha\in\bigoplus_{\alpha\in\SI}\MH_\alpha\Big\}
 \end{align*}
@@ -11985,13 +11999,43 @@ whereas $\Dom(\Mbf_{fg})$ consists those satisfying
 \end{subequations}
 \end{proof}
 
-\begin{exe}\label{lb569}
-In the setting of Exp. \ref{lb366}, prove for each measurable function $f:X\rightarrow\Cbb$ and each $n\in\Nbb$ that
+
+The following proposition will be used later to relate integer powers of self-adjoint operators to the Borel functional calculus, as we shall see in the important Exe. \ref{lb445}.
+
+\begin{pp}\label{lb569}
+In the setting of Exp. \ref{lb366}, for each measurable function $f:X\rightarrow\Cbb$ and each $n\in\Nbb$, we have
 \begin{align*}
 (\Mbf_f)^n=\Mbf_{f^n}
 \end{align*}
-(See Pb. \ref{lb596} for a related comment.)
-\end{exe}
+\end{pp}
+
+\begin{proof}
+The only nontrivial part is $\Dom(\Mbf_f^n)=\Dom(\Mbf_{f^n})$. One checks easily that
+\begin{subequations}\label{eq345}
+\begin{gather}
+\Dom(\Mbf_f^n)=\Big\{\oplus_\alpha\xi_\alpha\in\bigoplus_\alpha\MH_\alpha:\sum_\alpha \Vert f^k\xi_\alpha\Vert^2_2<+\infty\text{ for each }1\leq k\leq n\Big\}\\
+\Dom(\Mbf_{f^n})=\Big\{\oplus_\alpha\xi_\alpha\in\bigoplus_\alpha\MH_\alpha:\sum_\alpha \Vert f^n\xi_\alpha\Vert^2_2<+\infty\Big\}\label{eq345b}
+\end{gather}
+\end{subequations}
+and hence
+\begin{align*}
+\Dom(\Mbf_f^n)=\bigcap_{1\leq k\leq n}\Dom(\Mbf_{f^k})
+\end{align*}
+Therefore, it suffices to show 
+\begin{align}\label{eq334}
+\Dom(\Mbf_{f^k})\supset\Dom(\Mbf_{f^n})\qquad\text{for each integer }1\leq k\leq n
+\end{align}
+
+Let $E=\{x\in X:|f(x)|\leq 1\}$ and $F=X\setminus E$. Let $\xi=\oplus_\alpha\xi_\alpha\in\bigoplus_\alpha\MH_\alpha$. Since $\sum_\alpha\Vert\xi_\alpha\Vert^2<+\infty$, for each $k$ we have
+\begin{align*}
+\sum_\alpha\Vert f^k\chi_E\xi_\alpha\Vert^2<+\infty
+\end{align*}
+Therefore, $\xi$ belongs to $\Dom(\Mbf_{f^k})$ iff $\sum_\alpha\Vert f^k\chi_F\xi_\alpha\Vert^2<+\infty$. Since $|f^k|\leq|f^n|$ on $F$, we have 
+\begin{align*}
+\sum_\alpha\Vert f^k\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}\leq \sum_\alpha\Vert f^n\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}
+\end{align*}
+Together with \eqref{eq345b}, this implies \eqref{eq334}.
+\end{proof}
 
 
 
@@ -13680,7 +13724,7 @@ Let $T$ be a self-adjoint operator on $\MH$. Let $n\in\Nbb$. Show that
 \begin{align*}
 T^n=f(T)\qquad\text{where }f(x)=x^n
 \end{align*}
-by viewing $T$ as a multiplication operator and applying Thm. \ref{lb435} and Exe. \ref{lb569}.
+by viewing $T$ as a multiplication operator and applying Thm. \ref{lb435} and Prop. \ref{lb569}.
 \end{exe}
 
 \begin{comment}
@@ -14069,13 +14113,9 @@ A^{-1}+B^{-1}\supset A^{-1}(A+B)B^{-1}
 that the LHS has domain $\Dom(A^{-1})\cap\Dom(B^{-1})$, and that the RHS has domain $\Dom(A^{-1})\cap\Dom(AB^{-1})$. Conclude that the inclusion relation ``$\supset$'' in \eqref{eq232} becomes ``$=$'' if $A$ is everywhere defined on $\MH$.
 \end{prob}
 
-\begin{dprob}\label{lb596}
-Solve Exe. \ref{lb569}. 
-\end{dprob}
 
-\begin{proof}[Hint]
-This result is not as obvious as it appears. Let $E=\{x\in X:|f(x)|\leq1\}$ and $F=X\setminus E$. For natural numbers $0\leq k\leq n$ and $\xi\in\bigoplus_\alpha L^2(X,\mu_\alpha)$, show that $\sum_\alpha\Vert f^k\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}\leq \sum_\alpha\Vert f^n\chi_F\xi\Vert^2_{L^2(\mu_\alpha)}$ and $\sum_\alpha\Vert f^n\chi_E\xi\Vert^2_{L^2(\mu_\alpha)}<+\infty$. 
-\end{proof}
+
+
 
 Recall Pb. \ref{lb605} for the definition of Hilbert space dimensions.
 
@@ -16744,7 +16784,7 @@ Solve the following problems.
 \end{prob}
 
 \begin{proof}[Hint]
-1. See the hint of Pb. \ref{lb596} for a related estimate.
+1. See the proof of Prop. \ref{lb569} for a related estimate.
 
 3. Recall Exp. \ref{lb593} for an explicit description of $\DD$ for $I$.
 \end{proof}
