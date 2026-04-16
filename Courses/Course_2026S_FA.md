@@ -1,3 +1,14 @@
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
 # 2026 春季, 泛函分析
 
 
@@ -97,9 +108,9 @@
 
 - 4/14 不上课，调课至3/26和4/2
 
-16) 4/16
+16) 4/16 无界算子的四则运算，Hermite算子的基本例子，乘法算子，无界算子的逆算子，处处可定义的有界逆，Cayley变换及其逆变换
 
-- 4/21
+17) 4/21
 
 - 4/23
 
