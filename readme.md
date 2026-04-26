@@ -84,7 +84,7 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 
 ### Recent papers
 
-2023 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products, *submitted*,  `arXiv:2305.10180`  [Preprint](https://binguimath.github.io/Files/2023_CB1.pdf) [Slides](https://binguimath.github.io/Files/2023_SJTU.pdf)
+2023 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) Analytic Conformal Blocks of C2-cofinite Vertex Operator Algebras I: Propagation and Dual Fusion Products, To appear in ***New York J. Math.***,  `arXiv:2305.10180`  [Preprint](https://binguimath.github.io/Files/2023_CB1.pdf) [Slides](https://binguimath.github.io/Files/2023_SJTU.pdf)
 
 
 
