@@ -1,0 +1,1444 @@
+
+% !TeX spellcheck = en_US
+% !TEX program = pdflatex
+\documentclass[12pt,b5paper,notitlepage]{article}
+\usepackage[b5paper, margin={0.5in,0.65in}]{geometry}
+%\usepackage{fullpage}
+\usepackage{amsmath,amscd,amssymb,amsthm,mathrsfs,amsfonts,layout,indentfirst,graphicx,caption,mathabx, stmaryrd,appendix,calc,imakeidx,upgreek} % mathabx for \wtidecheck
+%\usepackage{ulem} %wave underline
+\usepackage[dvipsnames]{xcolor}
+\usepackage{palatino}  %template
+\usepackage{slashed} % Dirac operator
+\usepackage{mathrsfs} % Enable using \mathscr
+%\usepackage{eufrak}  another template/font
+\usepackage{extarrows} % long equal sign, \xlongequal{blablabla}
+\usepackage{enumitem} % enumerate label change e.g. [label=(\alph*)]  shows (a) (b) 
+
+
+
+
+\usepackage{csquotes} % \begin{displayquote}   \begin{displaycquote}  for quotation
+\usepackage{epigraph}   %\epigraph{}{}  for quotation
+%\pmb  mandatory math bold 
+
+\usepackage{fancyhdr} % date in footer
+
+%\usepackage{soul}  %\ul underline break line automatically
+
+\usepackage{ulem}  % \uline  underline break line   also    \uwave
+
+\usepackage{relsize} % use \mathlarger \larger \text{\larger[2]$...$} to enlarge the size of math symbols
+
+\usepackage{verbatim}  % comment environment
+
+
+\usepackage{halloweenmath} % Interesting halloween math symbols
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+% box around equations   \tcboxmath
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% circled colon and thick colon \hcolondel and \colondel
+
+\usepackage{pdfrender}
+
+\newcommand*{\hollowcolon}{%
+	\textpdfrender{
+		TextRenderingMode=Stroke,
+		LineWidth=.1bp,
+	}{:}%
+}
+
+\newcommand{\hcolondel}[1]{%
+	\mathopen{\hollowcolon}#1\mathclose{\hollowcolon}%
+}
+\newcommand{\colondel}[1]{%
+	\mathopen{:}#1\mathclose{:}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+\usepackage{tikz-cd}
+\usepackage[nottoc]{tocbibind}   % Add  reference to ToC
+
+
+\makeindex
+
+
+% The following set up the line spaces between items in \thebibliography
+\usepackage{lipsum}  
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+	\OLDthebibliography{#1}
+	\setlength{\parskip}{0pt}
+	\setlength{\itemsep}{2pt} 
+}
+
+
+%\hyperref{page.10}{...}
+
+\allowdisplaybreaks  %allow aligns to break between pages
+\usepackage{latexsym}
+\usepackage{chngcntr}
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=blue, linktocpage,
+%pagebackref
+]{hyperref}
+\hypersetup{ urlcolor=cyan,
+	citecolor=[rgb]{0,0.5,0}}
+
+
+\setcounter{tocdepth}{2}	 %hide subsections in the content
+
+
+\counterwithin{figure}{section}
+
+\pagestyle{plain}
+
+\captionsetup[figure]
+{
+	labelsep=none	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{df}{Definition}[section]
+\newtheorem{eg}[df]{Example}
+\newtheorem{exe}[df]{Exercise}
+\newtheorem{rem}[df]{Remark}
+\newtheorem{obs}[df]{Observation}
+\newtheorem{ass}[df]{Assumption}
+\newtheorem{cv}[df]{Convention}
+\newtheorem{prin}[df]{Principle}
+\newtheorem{nota}[df]{Notation}
+\newtheorem*{axiom}{Axiom}
+\newtheorem{sett}[df]{Setting}
+\newtheorem{coa}[df]{Theorem}
+\newtheorem{srem}[df]{$\star$ Remark}
+\newtheorem{seg}[df]{$\star$ Example}
+\newtheorem{sexe}[df]{$\star$ Exercise}
+\newtheorem{sdf}[df]{$\star$ Definition}
+
+
+
+
+\newtheorem{prob}{\color{red}Problem}[section]
+%\renewcommand*{\theprob}{{\color{red}\arabic{section}.\arabic{prob}}}
+\newtheorem{sprob}[prob]{\color{red}$\star$ Problem}
+%\renewcommand*{\thesprob}{{\color{red}\arabic{section}.\arabic{sprob}}}
+% \newtheorem{ssprob}[prob]{$\star\star$ Problem}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}[df]{Theorem}
+\newtheorem{ccl}[df]{Conclusion}
+\newtheorem{thd}[df]{Theorem-Definition}
+\newtheorem{pp}[df]{Proposition}
+\newtheorem{co}[df]{Corollary}
+\newtheorem{lm}[df]{Lemma}
+\newtheorem{sthm}[df]{$\star$ Theorem}
+
+\newtheorem{cond}{Condition}
+\newtheorem{Mthm}{Main Theorem}
+\renewcommand{\thecond}{\Alph{cond}} % "letter-numbered" theorems
+\renewcommand{\theMthm}{\Alph{Mthm}} % "letter-numbered" theorems
+
+
+%\substack   multiple lines under sum
+%\underset{b}{a}   b is under a
+
+
+% Remind: \overline{L_0}
+
+
+
+\usepackage{calligra}
+\DeclareMathOperator{\shom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\DeclareMathOperator{\sext}{\mathscr{E}\text{\kern -3pt {\calligra\large xt}}\,}
+\DeclareMathOperator{\Rel}{\mathscr{R}\text{\kern -3pt {\calligra\large el}~}\,}
+\DeclareMathOperator{\sann}{\mathscr{A}\text{\kern -3pt {\calligra\large nn}}\,}
+\DeclareMathOperator{\send}{\mathscr{E}\text{\kern -3pt {\calligra\large nd}}\,}
+\DeclareMathOperator{\stor}{\mathscr{T}\text{\kern -3pt {\calligra\large or}}\,}
+
+\usepackage{aurical}
+\DeclareMathOperator{\VVir}{\text{\Fontlukas V}\text{\kern -0pt {\Fontlukas\large ir}}\,}
+
+
+
+
+
+
+\newcommand{\fk}{\mathfrak}
+\newcommand{\mc}{\mathcal}
+\newcommand{\wtd}{\widetilde}
+\newcommand{\wht}{\widehat}
+\newcommand{\wch}{\widecheck}
+\newcommand{\ovl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\tr}{\mathrm{t}} %transpose
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\End}{\mathrm{End}} %endomorphism
+\newcommand{\idt}{\mathbf{1}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Conf}{\mathrm{Conf}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\res}{\mathrm{res}}
+\newcommand{\KZ}{\mathrm{KZ}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\coev}{\mathrm{coev}}
+\newcommand{\opp}{\mathrm{opp}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\Repf}{\mathrm{Rep}^{\mathrm f}}
+\newcommand{\RepGA}{\mathrm{Rep}^G(\mathcal A)}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Dom}{\scr D}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\con}{\mathrm{c}}
+\newcommand{\uni}{\mathrm{u}}
+\newcommand{\ssp}{\mathrm{ss}}
+\newcommand{\di}{\slashed d}
+\newcommand{\Diffp}{\mathrm{Diff}^+}
+\newcommand{\DiffS}{\mathrm{Diff}^+(\mathbb S^1)}
+\newcommand{\PSU}{\mathrm{PSU}(1,1)}
+\newcommand{\Vir}{\mathrm{Vir}}
+\newcommand{\Witt}{\mathscr W}
+\newcommand{\Span}{\mathrm{Span}}
+\newcommand{\pri}{\mathrm{p}}
+\newcommand{\ER}{E^1(V)_{\mathbb R}}
+\newcommand{\prth}[1]{( {#1})}
+\newcommand{\bk}[1]{\langle {#1}\rangle}
+\newcommand{\bigbk}[1]{\big\langle {#1}\big\rangle}
+\newcommand{\Bigbk}[1]{\Big\langle {#1}\Big\rangle}
+\newcommand{\biggbk}[1]{\bigg\langle {#1}\bigg\rangle}
+\newcommand{\Biggbk}[1]{\Bigg\langle {#1}\Bigg\rangle}
+\newcommand{\GA}{\mathscr G_{\mathcal A}}
+\newcommand{\vs}{\varsigma}
+\newcommand{\Vect}{\mathrm{Vec}}
+\newcommand{\Vectc}{\mathrm{Vec}^{\mathbb C}}
+\newcommand{\scr}{\mathscr}
+\newcommand{\sjs}{\subset\joinrel\subset}
+\newcommand{\Jtd}{\widetilde{\mathcal J}}
+\newcommand{\gk}{\mathfrak g}
+\newcommand{\hk}{\mathfrak h}
+\newcommand{\xk}{\mathfrak x}
+\newcommand{\yk}{\mathfrak y}
+\newcommand{\zk}{\mathfrak z}
+\newcommand{\pk}{\mathfrak p}
+\newcommand{\hr}{\mathfrak h_{\mathbb R}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\DHR}{\mathrm{DHR}_{I_0}}
+\newcommand{\Repi}{\mathrm{Rep}_{\wtd I_0}}
+\newcommand{\im}{\mathbf{i}}
+\newcommand{\Co}{\complement}
+%\newcommand{\Cu}{\mathcal C^{\mathrm u}}
+\newcommand{\RepV}{{\mathrm{Rep}^\uni(V)}}
+\newcommand{\RepA}{\mathrm{Rep}(\mathcal A)}
+\newcommand{\RepN}{\mathrm{Rep}(\mathcal N)}
+\newcommand{\RepfA}{\mathrm{Rep}^{\mathrm f}(\mathcal A)}
+\newcommand{\RepAU}{\mathrm{Rep}^\uni(A_U)}
+\newcommand{\RepU}{\mathrm{Rep}^\uni(U)}
+\newcommand{\RepL}{\mathrm{Rep}^{\mathrm{L}}}
+\newcommand{\HomL}{\mathrm{Hom}^{\mathrm{L}}}
+\newcommand{\EndL}{\mathrm{End}^{\mathrm{L}}}
+\newcommand{\Bim}{\mathrm{Bim}}
+\newcommand{\BimA}{\mathrm{Bim}^\uni(A)}
+%\newcommand{\shom}{\scr Hom}
+\newcommand{\divi}{\mathrm{div}}
+\newcommand{\sgm}{\varsigma}
+\newcommand{\SX}{{S_{\fk X}}}
+\newcommand{\DX}{D_{\fk X}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mbf}{\mathbf}
+\newcommand{\bsb}{\boldsymbol}
+\newcommand{\blt}{\bullet}
+\newcommand{\Vbb}{\mathbb V}
+\newcommand{\Ubb}{\mathbb U}
+\newcommand{\Xbb}{\mathbb X}
+\newcommand{\Kbb}{\mathbb K}
+\newcommand{\Abb}{\mathbb A}
+\newcommand{\Wbb}{\mathbb W}
+\newcommand{\Mbb}{\mathbb M}
+\newcommand{\Gbb}{\mathbb G}
+\newcommand{\Cbb}{\mathbb C}
+\newcommand{\Nbb}{\mathbb N}
+\newcommand{\Zbb}{\mathbb Z}
+\newcommand{\Qbb}{\mathbb Q}
+\newcommand{\Pbb}{\mathbb P}
+\newcommand{\Rbb}{\mathbb R}
+\newcommand{\Ebb}{\mathbb E}
+\newcommand{\Dbb}{\mathbb D}
+\newcommand{\Hbb}{\mathbb H}
+\renewcommand{\Bbb}{\mathbb B}
+\newcommand{\cbf}{\mathbf c}
+\newcommand{\Rbf}{\mathbf R}
+\newcommand{\wt}{\mathrm{wt}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\btl}{\blacktriangleleft}
+\newcommand{\btr}{\blacktriangleright}
+\newcommand{\svir}{\mathcal V\!\mathit{ir}}
+\newcommand{\Ker}{\mathrm{Ker}}
+\newcommand{\Cok}{\mathrm{Coker}}
+\newcommand{\Sbf}{\mathbf{S}}
+\newcommand{\low}{\mathrm{low}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Rng}{\mathrm{Rng}}
+\newcommand{\vN}{\mathrm{vN}}
+\newcommand{\Ebf}{\mathbf E}
+\newcommand{\Nbf}{\mathbf N}
+\newcommand{\Stb}{\mathrm {Stb}}
+\newcommand{\SXb}{{S_{\fk X_b}}}
+\newcommand{\pr}{\mathrm {pr}}
+\newcommand{\SXtd}{S_{\wtd{\fk X}}}
+\newcommand{\univ}{\mathrm {univ}}
+\newcommand{\vbf}{\mathbf v}
+\newcommand{\ubf}{\mathbf u}
+\newcommand{\wbf}{\mathbf w}
+\newcommand{\CB}{\mathrm{CB}}
+\newcommand{\Perm}{\mathrm{Perm}}
+\newcommand{\Orb}{\mathrm{Orb}}
+\newcommand{\Lss}{{L_{0,\mathrm{s}}}}
+\newcommand{\Lni}{{L_{0,\mathrm{n}}}}
+\newcommand{\UPSU}{\widetilde{\mathrm{PSU}}(1,1)}
+\newcommand{\Sbb}{{\mathbb S}}
+\newcommand{\Gc}{\mathscr G_c}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\bpr}{{}^\backprime}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Real}{\mathrm{Re}}
+\newcommand{\Imag}{\mathrm{Im}}
+%\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\Ind}{\mathrm{Ind}}
+\newcommand{\Supp}{\mathrm{Supp}}
+\newcommand{\Specan}{\mathrm{Specan}}
+\newcommand{\red}{\mathrm{red}}
+\newcommand{\uph}{\upharpoonright}
+\newcommand{\Mor}{\mathrm{Mor}}
+\newcommand{\pre}{\mathrm{pre}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\emb}{\mathrm{emb}}
+\newcommand{\Sg}{\mathrm{Sg}}
+\newcommand{\Nzd}{\mathrm{Nzd}}
+\newcommand{\Owht}{\widehat{\scr O}}
+\newcommand{\Ext}{\mathrm{Ext}}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\Com}{\mathrm{Com}}
+\newcommand{\Mod}{\mathrm{Mod}}
+\newcommand{\nk}{\mathfrak n}
+\newcommand{\mk}{\mathfrak m}
+\newcommand{\Ass}{\mathrm{Ass}}
+\newcommand{\depth}{\mathrm{depth}}
+\newcommand{\Coh}{\mathrm{Coh}}
+\newcommand{\Gode}{\mathrm{Gode}}
+\newcommand{\Fbb}{\mathbb F}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Modf}{\mathrm{Mod}^{\mathrm f}}
+\newcommand{\codim}{\mathrm{codim}}
+\newcommand{\card}{\mathrm{card}}
+\newcommand{\dps}{\displaystyle}
+\newcommand{\Int}{\mathrm{Int}}
+\newcommand{\Nbh}{\mathrm{Nbh}}
+\newcommand{\Pnbh}{\mathrm{PNbh}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\MA}{\mathcal A}
+\newcommand{\MH}{\mathcal H}
+\newcommand{\MJ}{\mathcal J}
+\newcommand{\MU}{\mathcal U}
+\newcommand{\SG}{\mathscr G}
+
+
+
+
+
+
+
+\newcommand{\hqed}{\hfill\qedsymbol}
+
+
+\usepackage{tipa} % wierd symboles e.g. \textturnh
+\newcommand{\tipar}{\text{\textrtailr}}
+\newcommand{\tipaz}{\text{\textctyogh}}
+\newcommand{\tipaomega}{\text{\textcloseomega}}
+\newcommand{\tipae}{\text{\textrhookschwa}}
+\newcommand{\tipaee}{\text{\textreve}}
+\newcommand{\tipak}{\text{\texthtk}}
+\newcommand{\tipab}{\text{\texthtb}}
+
+
+
+
+\usepackage{tipx}
+\newcommand{\tipxgamma}{\text{\textfrtailgamma}}
+\newcommand{\tipxcc}{\text{\textctstretchc}}
+\newcommand{\tipxphi}{\text{\textqplig}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\numberwithin{equation}{section}
+
+
+
+
+\title{Algebraic open/closed conformal field theory possibly without vacuum: the Cardy case}
+\author{{\sc Bin Gui}
+	%\\
+	%{\small Department of Mathematics, Rutgers university}\\
+	%{\small bin.gui@rutgers.edu}
+}
+\date{}
+\begin{document}\sloppy % avoid stretch into margins
+	\pagenumbering{arabic}
+	%\pagenumbering{gobble}
+	%\setcounter{page}{1}
+	%\setcounter{section}{-1}
+	%\setcounter{equation}{6}
+	
+
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+	\maketitle
+
+
+%\thispagestyle{empty}	 %remove page number of this page
+
+
+%Contents hyperlinks: \hyperlink{page.2}{Page 2}, \hyperlink{page.3}{Page 3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   conceal the title ``Contents" of the tableofcontents
+%\vspace{-0.5cm}  
+\begin{comment}
+\makeatletter
+\newcommand*{\toccontents}{\@starttoc{toc}}
+\makeatother
+\toccontents
+\end{comment}
+
+
+	\hyperlink{beforeindex}{Last page before index}
+   
+
+\tableofcontents
+
+
+\section{Preliminaries on conformal nets}
+
+\subsection{Conformal nets}
+
+For each Hilbert spaces $\MH_1,\MH_2$, we let $\fk L(\MH_1,\MH_2)$ denote the set of bounded linear operators $\MH_1\rightarrow\MH_2$, and abbreviate $\fk L(\MH,\MH)$ as $\fk L(\MH)$. Similarly, we let $\MU(\MH_1,\MH_2)$ be the set of unitary maps $\MH_1\rightarrow\MH_2$ and write $\MU(\MH,\MH)$ as $\MU(\MH)$. For each Hilbert space $\MH$, we understand its inner product $\bk{\cdot|\cdot}$ to be linear on the right variable $|\cdot\rangle$ and antilinear on the left variable $\langle\cdot|$.
+
+Let $\DiffS$ be the orientation-preserving diffeomorphism group of the unit circle $\Sbb^1$. Let $\MJ$ be the set of (non-empty non-dense open) intervals in $\Sbb^1$. If $I\in\Sbb^1$, we let $I'$ be the interior of $\Sbb^1\setminus I$. We let $\Diffp_I(\Sbb^1)$ be the subgroup consisting of all $g\in\DiffS$ fixing points in the closure of $I'$. 
+
+Let $\PSU$ be the subgroup of M\"obious transforms preserving $\Sbb^1$, i.e., $\PSU$ consists of $g\in\DiffS$ of the form
+\begin{align*}
+z\in\Sbb^1\mapsto\frac{az+b}{\ovl bz+\ovl a}
+\end{align*}
+where $a,b\in\Cbb,|a|^2-|b|^2=1$. Let
+\begin{align}\label{eq3}
+\varrho:\Rbb\rightarrow\DiffS\qquad \varrho(t)z=e^{\im t}z
+\end{align}
+(where $z\in\Sbb^1$) be the one-parameter rotation group.
+
+
+In this paper, all conformal nets are assumed to be irreducible, defined as follows.
+
+\begin{df}\label{lb2}
+An (irreducible) \textbf{conformal net} denotes a pair $(\MA,\MH_0,U_0,\Omega)$ (abbreviated to $(\MA,\MH)$ or simply $\MA$) where $\MH_0$ is a separable Hilbert space, and $\MA$ is a map sending each $I\in\MH$ to a von Neumann algebra $\MA(I)$ on $\MH$ satisfying the following conditions.
+\begin{enumerate}[label=(\alph*)]
+\item (\textbf{Isotony}) If $I_1\subset I_2\in\MJ$, then $\MA(I_1)$ is a von Neumann subalgebra of $\MA(I_2)$.
+\item (\textbf{Locality}) If $I_1,I_2\in\MJ$ are disjoint, then $[\MA(I_1),\MA(I_2)]=0$.
+\item (\textbf{Conformal covariance}) $U_0$ is a strongly-continuous projectively unitary representation of $\DiffS$ on $\MH_0$ is equipped such that the relations
+\begin{align*}
+V\MA(I)V^*=\MA(gI)
+\end{align*}
+hold for any $g\in\DiffS$, any $I\in\MJ$, any unitary $V\in\MU_0(\MH_0)$ representing $U_0(g)$. Moreover, if $g\in\Diffp_I(\Sbb^1)$ and $V$ represents $U_0(g)$, then $V\in\MA(I)$.
+\item $\Omega\in\MH_0$, called the \textbf{vacuum vector}, is the unique (up to scalar multiplication) unit vector such that $V\Omega\in\Cbb\Omega$ for each $V\in\MU(\MH)$ representing some $g\in\PSU$. (In particular, $U_0$ restricts to a strongly-continuous unitary representation $U_0$ of $\PSU$ on $\MH$ satisfying $U_0(g)\Omega=\Omega$ for each $g\in\PSU$.) Moreover, $\Omega$ is cyclic under the action of $\bigvee_{I\in\MJ}\MA(I)$. 
+\item (Positive energy) The self-adjoint generator of the one-parameter unitary group $U_0\circ\varrho$ has spectrum in $\Rbb_{\geq0}$.
+\end{enumerate}
+\end{df}
+
+\begin{rem}\label{lb1}
+A conformal net $\MA$ satisfies the following properties, cf. \cite{GL96} and the reference therein.
+\begin{enumerate}[label=(\arabic*)]
+\item (\textbf{Additivity}) $\MA(I)=\bigvee_{\alpha}\MA(I_\alpha)$ if $(I_\alpha)$ is a collection in $\MJ$ whose union is $I\in\MJ$.
+\item (\textbf{Haag duality}) $\MA(I)'=\MA(I')$ for each $I\in\MJ$.
+\item (\textbf{Reeh--Schlieder property}) $\MA(I)\Omega$ is dense in $\MH_0$ for each $I\in\MJ$.
+\item (\textbf{Irreducibility}) $\bigvee_{I\in\MJ}\MA(I)=\fk L(\MH_0)$.
+\item Each $\MA(I)$ is a type III factor.
+\end{enumerate}
+Moreover, by \cite{MTW18}, $\MA$ satisfies the \textbf{split property}, which means that for any $I_1,I_2\in\MJ$ with disjoint closures, there is a unitary map $\Phi:\MH_0\rightarrow\MH_0\otimes\MH_0$ such that
+\begin{align*}
+\Phi\MA(I_1)\Phi^{-1}=\MA(I_1)\otimes \Cbb\qquad \Phi\MA(I_2)\Phi^{-1}=\Cbb\otimes\MA(I_2)
+\end{align*}
+By the Haag duality (applied to $I=I_1$ and $J=I_2'$), this is equivalent to the statement that for each $I,J\in\MJ$ with $I\Subset J$, there is a type I factor between $\MA(I)$ and $\MA(J)$.
+\end{rem}
+
+
+Next, we review some useful extensions of $\DiffS$ and $\Diffp_I(\Sbb^1)$. Let
+\begin{align}\label{eq1}
+\pmb{\SG}=\wtd\DiffS\rightarrow\DiffS
+\end{align}
+be the universal cover of $\DiffS$. Viewing $\Sbb^1$ as $\Rbb/2\pi\Zbb$, the group $\SG$ consists of smooth functions $F:\Rbb\rightarrow\Rbb$ satisfying for each $x\in\Rbb$ that
+\begin{align}\label{eq2}
+F(x+2\pi)=F(x)+2\pi\qquad F'(x)>0
+\end{align}
+For each $I\in\MJ$, let $\pmb{\SG(I)}$ be the identity component of the preimage of $\Diffp_I(\Sbb^1)$ under the map \eqref{eq1}. In other words, $\SG(I)$ consists of smooth functions $\wtd f:\Rbb\rightarrow\Rbb$ satisfying \eqref{eq2} and fixing the points outside the preimage of $I$ under the covering map $\Rbb\rightarrow\Rbb/2\pi\Zbb$.
+
+
+Lift the rotation group \eqref{eq3} to a one-parameter group
+\begin{align*}
+\pmb{\varrho}:\Rbb\rightarrow\SG
+\end{align*}
+Thus, for each $t\in\Rbb$, the function $\varrho(t):\Rbb\rightarrow\Rbb$ sends $x$ to $x+t$.
+
+
+The \textbf{central extension of $\SG$ associated to $\MA$} is defined to be the topological group
+\begin{align*}
+\pmb{\GA}=\{(g,V)\in\SG\times\MU(\MH_0):V\text{ represents }U_0(g)\}
+\end{align*}
+or more precisely, the surjective group homomorphism $\GA\rightarrow\SG$ defined by the projection $\SG\times\MU(\MH_0)\rightarrow\SG$. The kernel of this homomorphism is $1\times\Sbb^1\simeq\Sbb^1$. 
+
+
+\begin{rem}
+The topological group $\GA$ depends only on the central charge of $\MA$. Indeed, the net $\Vir_\MA:I\in\MJ\mapsto U_0(\Diffp_I(\Sbb^1))''$ acting on $\ovl{\Vir_\MA\Omega}$ is a conformal subnet of $\MA$. Therefore, by the irreducibility in Rem. \ref{lb1}, $\ovl{\Vir_\MA\Omega}$ is irreducible as a strongly-continuous projectively-unitary positive-energy representation of $\DiffS$, and hence is integrated from the unitary module $L(c,0)$ (for some $c\geq0$, called the \textbf{central charge} of $\MA$) of the Virasoro algebra, cf. \cite[Thm. A.1]{Car04}. Thus $\Vir_\MA$ can be identified with the Virasoro net $\Vir_c$ with central charge $c$. Set
+\begin{align*}
+\pmb{\Gc}:=\SG_{\Vir_c}
+\end{align*}
+Viewing $L(c,0)$ as the Hilbert space for $\Vir_c$ and identifying it with $\ovl{\Vir_\MA\Omega}$, the map
+\begin{align*}
+\GA\xlongrightarrow{\simeq}\Gc \qquad (g,V)\mapsto (g,V|_{L(c,0)})
+\end{align*}
+defines an isomorphism of topological groups $\GA\simeq\Gc$. We will freely identify $\GA$ and $\Gc$ throughout the rest of this paper.
+\end{rem}
+
+
+\begin{df}
+If $\wtd g=(g,V)\in\GA$, we write $V\in\MU(\MH_0)$ as $\pmb{U_0(\wtd g)}$, that is,
+\begin{align*}
+\wtd g=(g,U_0(\wtd g))
+\end{align*}
+Then $U_0$ is a strongly-continuous unitary representation of $\GA\simeq\Gc$ on $\MH_0$. 
+\end{df}
+
+
+For each $I\in\MJ$, we let $\pmb{\GA(I)}$ be the preimage of $\SG(I)$ under the map $\GA\rightarrow\SG$. In particular, we let $\pmb{\Gc(I)}=\SG_{\Vir_c}(I)$. By the conformal covariance in Def. \ref{lb2}, we have
+\begin{align*}
+U_0(\GA(I))\subset\MA(I)
+\end{align*}
+
+
+%Then the isomorphism $\GA\simeq\Gc$ restricts to an isomorphism $\GA(I)\simeq\Gc(I)$.
+
+
+\begin{rem}
+From the definition of conformal nets, we have a unitary representation $U_0$ of $\PSU$ rather than merely a projectively unitary one. Thus, we have a one parameter unitary group
+\begin{align*}
+\pmb{\varrho_\MA}:\Rbb\rightarrow\GA\qquad \varrho_\MA(t)=(\varrho(t),U_0(\varrho(t)))
+\end{align*}
+called the \textbf{rotation group in $\GA$}. We let $\pmb{\varrho_c}$ denote the rotation group $\varrho_{\Vir_c}$ of $\Vir_c$. The isomorphism $\GA\simeq\Gc$ clearly identifies $\varrho_\MA$ with $\varrho_c$.
+\end{rem}
+
+
+
+\subsection{Twisted modules of conformal nets}
+
+Fix a conformal net $\MA$. An \textbf{automorphism} of $\MA$ denotes a unitary operator $\Phi\in\MU(\MH_0)$ fixing $\Omega$ and satisfying $\Phi\MA(I)\Phi^{-1}=\MA(I)$ for each $I\in\MJ$. 
+
+We fix a group homomorphism $G\rightarrow\Aut(\MA)$ where $G$ is a discrete group, and $\Aut(\MA)$ is the group of automorphisms of $\MA$. We view each $\phi\in G$ as a unitary operator on $\MH_0$. Then
+\begin{align*}
+\phi\MA(I)\phi^{-1}=\MA(I)
+\end{align*}
+Hence $G$ gives rise to a group of automorphisms of each $\MA(I)$.
+
+For each $I\in\MJ$, an \textbf{arg function} denotes a continuous function $\pmb{\arg_I}:I\rightarrow\Rbb$ such that $z=e^{\im\arg_I(z)}$ for all $z\in I$. An \textbf{arg-valued interval} denotes a pair
+\begin{align*}
+\wtd I=(I,\arg_I)
+\end{align*} 
+where $I\in\MJ$, and $\arg_I$ is an arg function of $I$. The set of arg-valued intervals is denoted by $\pmb{\Jtd}$.
+
+Equivalently, $\wtd I$ is a connected component of the preimage of $I$ under the covering map $\Rbb\rightarrow \Rbb/2\pi\Zbb\simeq\Sbb^1$. Therefore, since the universal cover $\SG$ acts on $\Rbb$ (cf. \eqref{eq2}), it also acts on $\Jtd$. Through the quotient homomorphism $\GA\rightarrow\SG$, the group $\GA\simeq\Gc$ also acts on $\Sbb^1$, $\Rbb$, and $\Jtd$.
+
+
+
+If $\wtd I,\wtd J\in\Jtd$, we write $\pmb{\wtd I\subset\wtd J}$ if $I\subset J$ and $\arg_J|_I=\arg_I$. We say that $\wtd I$ and $\wtd J$ are \textbf{disjoint} if $I\cap J=\emptyset$. (Note that this is not the same as saying that $\wtd I$ and $\wtd J$ are disjoint as subsets of $\Rbb$.) We say that $\wtd J$ is \textbf{clockwise} to $\wtd I$ (equivalently, that $\wtd I$ is \textbf{anticlockwise} to $\wtd I$) if
+\begin{align*}
+\arg \zeta<\arg z<\arg\zeta+2\pi\qquad\text{for each }z\in I,\zeta\in J
+\end{align*}
+
+\begin{df}\label{lb8}
+The \textbf{clockwise complement $\pmb{\wtd I'}$} (resp. the \textbf{anticlockwise complement $\pmb{\bpr\wtd I}$}) of $\wtd I\in\Jtd$ is defined to be the interval $I'$ together with the arg function so that $\wtd I'$ is clockwise to $\wtd I$ (resp. (resp. $\bpr\wtd I$ is clockwise to $\wtd I$).
+\end{df}
+
+
+\begin{df}\label{lb3}
+Let $\phi\in G$. A \textbf{$\phi$-twisted $\MA$-module} denotes a pair $(\MH_i,\pi_i)$ (or simply $\MH_i$) where $\MH_i$ is a separable Hilbert space, and $\pi_i$ associates to each $\wtd I\in\Jtd$ a normal unitary representation $\pi_{i,\wtd I}$ of $\MA(I)$ on $\MH$ satisfying the following properties.
+\begin{enumerate}[label=(\alph*)]
+\item If $\wtd I,\wtd J\in\Jtd$ and $\wtd I\subset\wtd J$, then $\pi_{i,\wtd I}(x)=\pi_{i,\wtd J}(x)$ for each $x\in\MA(I)$.
+\item For each $\wtd I\in\Jtd$ and $x\in\MA(I)$, we have
+\begin{align}\label{eq8}
+\pi_{i,\varrho(2\pi)\wtd I}(\phi x\phi^{-1})=\pi_{i,\wtd I}(x)
+\end{align}
+\end{enumerate}
+If condition (b) is dropped, we say that $(\MH_i,\pi_i)$ is a \textbf{solitonic $\MA$-module}.
+\end{df}
+
+\begin{df}
+We let $\pmb{\Rep^\phi(\MA)}$ be the $W^*$-category of $\phi$-twisted $\MA$-modules. For the identity element $e$ of $G$ we write $\Rep^e(\MA)$ as $\pmb{\Rep(\MA)}$. Objects in $\Rep(\MA)$ are called \textbf{untwisted $\MA$-modules}, or simply \textbf{$\MA$-modules}. 
+\end{df}
+
+
+\begin{eg}
+The action of $\MA$ on $\MH_0$ is clearly an untwisted $\MA$-module, called the \textbf{vacuum module} and is denoted by $\pmb{(\MH_0,\pi_0)}$ or simply by $\MH_0$.
+\end{eg}
+
+
+\begin{rem}\label{lb11}
+Suppose that $x\in\MA(I)$ commutes with $\phi\in G$. Then by Def. \ref{lb3}-(b), $\pi_{i,\wtd I}(x)$ is independent of $\arg_I$. We thus write $\pi_{i,\wtd I}(x)$ as $\pmb{\pi_I(x)}$ in this case.
+
+For example, if $g\in\GA$, then $U_0(g)$ commutes with any $\phi\in G$; cf. \cite[Sec. 3.5]{MS26}. Hence, if $g\in\GA(I)$, we can 
+\begin{align*}
+\text{write $\pi_{i,\wtd I}(U_0(g))$ as $\pi_{i,I}(U_0(g))$}
+\end{align*}
+As another example, if $(\MH,\pi)\in\Rep(\MA)$, then $\pi_{i,\wtd I}(x)$ can be written as $\pi_{i,I}(x)$ for each $x\in\MA(I)$. \hqed
+\end{rem}
+
+
+\begin{thm}\label{lb12}
+Any $\phi$-twisted $\MA$-module $(\MH_i,\pi_i)$ is \textbf{conformal covariant}, which means that there is a unique strongly-continuous unitary representation $\pmb{U_i}$ of $\GA\simeq\Gc$ on $\MH_i$ satisfying for each $\wtd I\in\Jtd,g\in\GA(I)$ the relation
+\begin{align}
+U_i(g)=\pi_{i,I}(U_0(g))
+\end{align}
+\end{thm}
+
+
+\begin{proof}
+This follows from \cite{Hen19}, as explained in \cite[Thm. 2.2]{Gui21} (applied to the untwisted $\Vir_c$-module $(\MH_i,\pi_i|_{\Vir_c})$) or in \cite[Sec. 3.5]{MS26}. In particular, the uniqueness follows from the following fact.
+\end{proof}
+
+\begin{lm}\label{lb14}
+Let $\mc I$ be a collection of intervals covering $\Sbb^1$. Then $\bigcup_{I\in\mc I}\scr G(I)$ generates algebraically the group $\scr G$. Consequently, $\bigcup_{I\in\mc I}\GA(I)$ generates algebraically the group $\GA$.
+\end{lm}
+
+\begin{proof}
+This is due to \cite[Lem. 17]{Hen19}.
+\end{proof}
+
+
+We abbreviate $U_i(g)$ to $U(g)$ or even $g$ when no confusion arises.
+
+
+
+\begin{co}
+For each $\MH_i\in\RepGA$, $\wtd I\in\Jtd$, $x\in\MA(I)$, and $g\in\GA$, we have
+\begin{align}\label{eq9}
+U_i(g)\pi_{i,\wtd I}(x)U_i(g)^{-1}=\pi_{i,g\wtd I}(U_0(g)xU_0(g)^{-1})
+\end{align}
+\end{co}
+
+\begin{proof}
+See \cite[Sec. 3.5]{MS26}. The idea is to check \eqref{eq9} using Thm. \ref{lb12} when $g$ is supported in any interval whose union with $I$ is not dense, and then conclude the general case by using Lem. \ref{lb14}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\subsection{The category $\RepGA$ and the $G$-action}
+
+
+Fix a conformal net $\MA$ with central charge $c$, a discrete group $G$, and a group homomorphism $G\rightarrow\Aut(\MA)$. Let
+\begin{align*}
+\pmb{\Rep^G(\MA)}=\bigoplus_{\phi\in G}\Rep^\phi(\MA)
+\end{align*}
+be the $W^*$-category whose objects are finite (orthogonal) direct sums of the form $\bigoplus_i \MH_i$ where each $\MH_i\in\Rep^{\omega_i}(\MH)$ for some $\omega_i\in G$. Objects in $\RepGA$ are called \pmb{$G$-twisted $\MA$-modules}.
+
+\begin{cv}\label{lb4}
+In this paper, objects of $\RepGA$ are denoted by symbols such as $\MH_i,\MH_j,\MH_k$, etc. We abbreviate $\pi_{\wtd I,i}$ to $\pmb{\pi_{\wtd I}}$ when no confusion arises. 
+\end{cv}
+
+\begin{df}
+If $\MH_i,\MH_j\in\MA$, we let $\pmb{\Hom_\MA(\MH_i,\MH_j)}$ denote $G$-twisted $\MA$-module morphisms from $\MH_i$ to $\MH_j$, that is, elements $T\in\fk L(\MH_i,\MH_j)$ satisfying
+\begin{align*}
+T\pi_{\wtd I,i}(x)=\pi_{\wtd I,j}(x)T
+\end{align*}
+for each $\wtd I\in\Jtd,x\in\MA(I)$. Elements of $\Hom_\MA(\MH_i,\MH_j)$ are called \textbf{(homo)morphisms of $G$-twisted $\MA$-modules} from $\MH_i$ to $\MH_j$.
+\end{df}
+
+\begin{df}
+For each $\phi\in G$ and each $G$-twisted $\MA$-module $(\MH_i,\pi_i)$, we define a $G$-twisted $\MA$-module
+\begin{align*}
+\pmb{(\MH_{\phi i},\pi_{\phi i})}
+\end{align*}
+abbreviated to $\pmb{\MH_{\phi i}}$, where $\MH_{\phi i}$ is an abstract Hilbert space unitarily equivalent to $\MH_i$ via a prescribed unitary map
+\begin{align*}
+\pmb{\Gamma_\phi|_{\MH_i}}:\MH_i\xlongrightarrow{\simeq} \MH_{\phi i}
+\end{align*}
+and $\pi_{\phi i}$ is defined such that for each $\wtd I\in\Jtd,x\in\MA(I)$, we have
+\begin{align*}
+\Gamma_\phi|_{\MH_i}\circ \pi_{\wtd I,i}(x)=\pi_{\wtd I,\phi i}(\phi x\phi^{-1})\circ\Gamma_\phi|_{\MH_i}
+\end{align*}
+We abbreviate $\Gamma_\phi|_{\MH_i}$ to $\pmb{\Gamma_\phi}$ when no confusion arises. Then the above relation can be abbreviated to
+\begin{align}\label{eq4}
+\Gamma_\phi\circ\pi_{\wtd I}(x)=\pi_{\wtd I}(\phi x\phi^{-1})\circ\Gamma_\phi
+\end{align}
+For each $\omega\in G$, it is clear that $\MH_i\in\Rep^\omega(\MA)$ implies $\MH_{\phi i}\in\Rep^{\phi\omega\phi^{-1}}(\MA)$.
+\end{df}
+
+
+\begin{rem}
+It is obvious that the pair $(\MH_{\phi i},\Gamma_\phi|_{\MH_i})$ is uniquely determined by $\MH_i$ and $\phi$ up to unique unitary maps. That is, if $(\wtd\MH_{\phi i},\wtd\Gamma_\phi|_{\MH_i})$ satisfies the same property, then there is a unique unitary map (indeed, a unique $G$-twisted $\MA$-module morphism) $\Psi:\wtd\MH_{\phi i}\rightarrow\MH_{\phi i}$ such that $\Gamma_\phi|_{\MH_i}=\Psi\circ\wtd\Gamma_\phi|_{\MH_i}$. We call $\Psi$ the (unique) \textbf{unitary morphism $(\wtd\MH_{\phi i},\wtd\Gamma_\phi|_{\MH_i})\rightarrow(\MH_{\phi i},\Gamma_\phi|_{\MH_i})$}. 
+\end{rem}
+
+
+
+\begin{eg}\label{lb6}
+For the vacuum module $\MH_0$, one can choose $(\wtd\MH_{\phi 0},\wtd\Gamma_\phi|_{\MH_0})$ to be $(\MH_0,\phi)$ where $\phi$ is understood as in $\MU(\MH_0)$. The unitary morphism $(\MH_0,\phi)\rightarrow(\MH_{\phi0},\Gamma_\phi|_{\MH_0})$ is given by $\Gamma_\phi|_{\MH_0}\circ \phi^{-1}$.
+\end{eg}
+
+
+\begin{rem}
+Recall from Rem. \ref{lb11} that $\Ad_\phi$ fixes $U_0(g)$ for each $I\in\MJ$ and $g\in\GA(I)$. Therefore, by \eqref{eq4}, $\Ad_{\Gamma_\phi}$ sends $\pi_{i,I}(U_0(g))$ to $\pi_{\phi i,I}(U_0(g))$. Thus, by the uniqueness in Thm. \ref{lb12}, we have
+\begin{align}
+\Gamma_\phi\circ U_i(g)=U_{\phi i}(g)\circ\Gamma_\phi
+\end{align}
+for each $\MH_i\in\RepGA$ and $g\in\GA$.
+\end{rem}
+
+
+\begin{df}
+For each $\phi\in G$, define a $*$-functor $\pmb{\fk T_\phi}:\RepGA\rightarrow\RepGA$ such that
+\begin{align*}
+\fk T_\phi(\MH_i)=\MH_{\phi i}\qquad \fk T_\phi(S)=(\Gamma_\phi|_{\MH_i})\circ S\circ (\Gamma_\phi|_{\MH_i})^{-1}
+\end{align*}
+for each $S\in\Hom_\MA(\MH_i,\MH_j)$. This functor is denoted by $T_\phi$ in \cite{MS26}.
+\end{df}
+
+The following theorem is proved in \cite[Sec. 3]{MS26}.
+
+\begin{thm}\label{lb5}
+The $W^*$-category $\RepGA$ with grading $\bigoplus_{\phi\in G}\Rep^\phi(\MA)$ is canonically a $G$-crossed balanced $W^*$-tensor category defined by Connes fusion, where the action of $G$ on $\RepGA$ is defined by $\phi\in G\mapsto \fk T_\phi$, and the balance $\vartheta$ is defined by
+\begin{align*}
+\vartheta_i=\Gamma_\phi\circ U_i(\varrho_\MA(2\pi)):\MH_i\rightarrow\MH_{\phi i}
+\end{align*}
+for each $\MH_i\in\Rep^\phi(\MA)$.
+\end{thm}
+
+
+\begin{cv}\label{lb9}
+Let $\boxtimes$ denote the tensor product bifunctor of $\RepGA$, and call it the \textbf{fusion product} bifunctor. For each $\MH_i,\MH_j\in\RepGA$, we write $\pmb{\MH_{i\boxtimes j}}:=\MH_i\boxtimes\MH_j$. According to the definition of $G$-crossed tensor categories, we have
+\begin{align}\label{eq10}
+\MH_i\in\Rep^\phi(\MA),\MH_j\in\Rep^\omega(\MA)\qquad\Longrightarrow\qquad\MH_i\boxtimes\MH_j\in\Rep^{\phi\omega}(\MA)
+\end{align}
+The braiding operation is denoted by  $\pmb{\Bbb}$. More precisely, for each $\MH_i\in\Rep^\phi(\MA)$ and $\MH_j\in\RepGA$, the braiding operator (which is a unitary equivalence of $G$-twisted $\MA$-modules) is denoted by
+\begin{align*}
+\pmb{\Bbb_{i,j}}:\MH_i\boxtimes\MH_j\rightarrow\MH_{\phi j}\boxtimes\MH_i
+\end{align*}
+
+By the coherence conditions for the $W^*$-tensor category $\RepGA$, we make the identification
+\begin{align*}
+(\MH_i\boxtimes\MH_j)\boxtimes\MH_k=\MH_i\boxtimes(\MH_j\boxtimes\MH_k)
+\end{align*}
+via the associator, and denote them by $\MH_i\boxtimes\MH_j\boxtimes\MH_k\equiv\MH_{i\boxtimes j\boxtimes k}$; we identify
+\begin{align*}
+\MH_0\boxtimes\MH_i=\MH_i=\MH_i\boxtimes\MH_0
+\end{align*}
+using the unitors. In other words, we treat $\RepGA$ as if it is strict.  \hqed
+\end{cv}
+
+
+
+\begin{rem}\label{lb7}
+We describe more explicitly the action of $G$ on $\RepGA$, which contains the following data besides the association $\phi\mapsto\fk T_\phi$. 
+\begin{enumerate}[label=(\alph*)]
+\item A unitary natural equivalence $\mbf A_i:\MH_i\simeq\MH_{ei}$ where $e\in G$ is the group identity. This is given by the unique unitary morphism $(\MH_i,\id)\rightarrow(\MH_{ei},\Gamma_e|_{\MH_i})$. So
+\begin{align*}
+\mbf A_i=\Gamma_e|_{\MH_i}
+\end{align*}
+The naturality means the commutativity of
+\begin{equation*}
+\begin{tikzcd}
+\MH_i \arrow[r,"T"] \arrow[d,"\mbf A_i"'] & \MH_j \arrow[d,"\mbf A_j"] \\
+\MH_{ei} \arrow[r,"\fk T_e(T)"]           & \MH_{ej}       
+\end{tikzcd}
+\end{equation*}
+for each $T\in\Hom_\MA(\MH_i,\MH_j)$, which is straightforward to check.
+\item A unitary isomorphism $\mbf B_\phi:\MH_0\rightarrow\MH_{\phi0}$ for each $\phi\in G$, which is given by the unique unitary morphism $(\MH_0,\phi)\rightarrow(\MH_{\phi0},\Gamma_\phi|_{\MH_0})$ discussed in Exp. \ref{lb5}. So
+\begin{align*}
+\mbf B_\phi=\Gamma_\phi\circ\phi^{-1}|_{\MH_0}
+\end{align*}
+\item A unitary $W^*$-tensor natural isomorphism $\fk T_\phi\circ\fk T_\psi\rightarrow\fk T_{\phi\circ\psi}$ for $\phi,\psi\in G$, where, for each $\MH_i\in\RepGA$, the unitary equivalence 
+\begin{align*}
+\mbf C_{\phi,\psi,i}:\MH_{\phi(\psi i)}\rightarrow \MH_{(\phi\psi)i}\qquad \mbf C_{\phi,\psi,i}=\Gamma_{\phi\psi}\Gamma_\psi^{-1}\Gamma_\phi^{-1}|_{\MH_{\phi(\psi i)}}
+\end{align*}
+is given by the unique unitary morphism $(\MH_{\phi(\psi i)},\Gamma_\phi\circ\Gamma_\psi|_{\MH_i})\rightarrow (\MH_{(\phi\psi)i},\Gamma_{\phi\psi}|_{\MH_i})$.
+
+
+Unraveling the phrase ``$W^*$-tensor natural isomorphism'' gives the following commutative diagrams, where $T\in\Hom_\MA(\MH_i,\MH_j)$.
+\begin{subequations}
+\begin{gather}
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_{\phi(\psi i)} \arrow[r,"\fk T_\phi\circ\fk T_\psi(T)"] \arrow[d,"\mbf C_{\phi,\psi,i}"'] \& \MH_{\phi(\psi j)} \arrow[d,"\mbf C_{\phi,\psi,j}"] \\
+\MH_{(\phi\psi)i} \arrow[r,"\fk T_{\phi\psi}(T)"]           \& \MH_{(\phi\psi)j}       
+\end{tikzcd}\\
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_{\phi(\psi(\omega i))} \arrow[r,"\fk T_\phi(\mbf C_{\psi,\omega, i})"] \arrow[d,"\mbf C_{\phi,\psi,\omega i}"'] \& \MH_{\phi((\psi\omega)i)} \arrow[d,"\mbf C_{\phi,\psi\omega,i}"] \\
+\MH_{(\phi\psi)(\omega i)} \arrow[r,"\mbf C_{\phi\psi,\omega,i}"]           \& \MH_{(\phi\psi\omega)i}       
+\end{tikzcd}\\
+\begin{tikzcd}[column sep=large,ampersand replacement=\&]
+\MH_{e(\phi i)} \arrow[r, bend left,"\mbf C_{e,\phi,i}"] \& \MH_{\phi i} \arrow[l, bend left,"\mbf A_{\phi i}"]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large,ampersand replacement=\&]
+\MH_{\phi(ei)} \arrow[r, bend left,"\mbf C_{\phi,e,i}"] \& \MH_{\phi i} \arrow[l, bend left,"\fk T_\phi(\mbf A_i)"]
+\end{tikzcd}
+\end{gather}
+\end{subequations}
+The commutativity of these diagrams is easy to check.\footnote{In particular, in the first two diagrams, going from the upper-left corner to the lower-right corner along either path yields, respectively, $\Gamma_{\phi\psi}T\Gamma_\psi^{-1}\Gamma_\phi^{-1}$ and $\Gamma_{\phi\psi\omega}\Gamma_\omega^{-1}\Gamma_\psi^{-1}\Gamma_\phi^{-1}$.} 
+\item A unitary tensorator $\fk T_\phi(-)\boxtimes \fk T_\phi(-)\rightarrow \fk T_\phi(-\boxtimes-)$ for each $\phi\in G$, where, for each $\MH_i,\MH_j\in\RepGA$, the unitary equivalence
+\begin{align*}
+\mbf D_{\phi,i,j}:\MH_{\phi i}\boxtimes\MH_{\phi j}\rightarrow \MH_{\phi(i\boxtimes j)} 
+\end{align*}
+will be described in Def. \ref{lb16}.
+
+Unraveling the phrase ``tensorator'' gives the following commutative diagrams, where $S\in\Hom_\MA(\MH_i,\MH_{\wtd i})$ and $T\in\Hom_\MA(\MH_j,\MH_{\wtd j})$, and $\fk u_{0,\phi i}:\MH_0\boxtimes\MH_{\phi i}\rightarrow\MH_{\phi i}$, $\fk u_{0,i}:\MH_0\boxtimes\MH_i\rightarrow\MH_i$, $\fk u_{\phi i,0}:\MH_{\phi i}\boxtimes \MH_0\rightarrow\MH_{\phi i}$, and $\fk u_{i,0}:\MH_i\boxtimes\MH_0\rightarrow\MH_i$ are the unitors.
+\begin{subequations}\label{eq12}
+\begin{gather}
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_{\phi i}\boxtimes\MH_{\phi j} \arrow[r,"\fk T_\phi(S)\boxtimes\fk T_\phi(T)"] \arrow[d,"\mbf D_{\phi,i,j}"'] \& \MH_{\phi \wtd i}\boxtimes\MH_{\phi \wtd j} \arrow[d,"\mbf D_{\phi,\wtd i,\wtd j}"] \\
+\MH_{\phi(i\boxtimes j)}  \arrow[r,"\fk T_\phi(S\boxtimes T)"]           \& \MH_{\phi(\wtd i\boxtimes \wtd j)}        
+\end{tikzcd}\label{eq12a}\\
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_{\phi i}\boxtimes\MH_{\phi j}\boxtimes\MH_{\phi k} \arrow[r,"\idt\boxtimes \mbf D_{\phi,j,k}"] \arrow[d,"\mbf D_{\phi,i,j}\boxtimes\idt"'] \& \MH_{\phi i}\boxtimes\MH_{\phi (j\boxtimes k)} \arrow[d,"\mbf D_{\phi,i,j\boxtimes k}"] \\
+\MH_{\phi(i\boxtimes j)}\boxtimes\MH_{\phi k}  \arrow[r,"\mbf D_{\phi,i\boxtimes j,k}"]           \& \MH_{\phi(i\boxtimes j\boxtimes k)}        
+\end{tikzcd}\label{eq12b}\\
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_0\boxtimes\MH_{\phi i} \arrow[r,"\fk u_{0,\phi i}"] \arrow[d,"\mbf B_\phi\boxtimes\idt"'] \& \MH_{\phi i}  \\
+\MH_{\phi 0}\boxtimes\MH_{\phi i}  \arrow[r,"\mbf D_{\phi,0,i}"]           \& \MH_{\phi(0\boxtimes i)}        \arrow[u,"\fk T_\phi(\fk u_{0,i})"']
+\end{tikzcd}\label{eq12c}\\
+\begin{tikzcd}[column sep=huge,row sep=large,ampersand replacement=\&]
+\MH_{\phi i} \boxtimes\MH_0\arrow[r,"\fk u_{\phi i,0}"] \arrow[d,"\idt\boxtimes\mbf B_\phi"'] \& \MH_{\phi i}  \\
+\MH_{\phi i}\boxtimes\MH_{\phi 0}  \arrow[r,"\mbf D_{\phi,i,0}"]           \& \MH_{\phi(i\boxtimes 0)}        \arrow[u,"\fk T_\phi(\fk u_{i,0})"']
+\end{tikzcd}\label{eq12d}
+\end{gather}
+\end{subequations}
+\end{enumerate}
+\end{rem}
+
+The above compatibility conditions allow the $G$-action to be treated as strict, in the following sense.
+
+\begin{cv}\label{lb10}
+Unless otherwise stated, for $\MH_i,\MH_j\in\RepGA$ and $\phi,\psi\in G$, we make the identifications
+\begin{subequations}\label{eq5}
+\begin{gather}
+\MH_i=\MH_{ei}\qquad \MH_0=\MH_{\phi 0}\qquad \MH_{\phi(\psi i)}=\MH_{(\phi\psi) i}\label{eq5a}\\
+\MH_{\phi i\boxtimes\phi j}=\MH_{\phi(i\boxtimes j)} \label{eq5b}
+\end{gather}
+\end{subequations}
+using the unitary isomorphisms $\mbf A,\mbf B,\mbf C,\mbf D$ mentioned in Rem \ref{lb5}. Thus, for $\phi_1,\dots,\phi_n\in G$, we interpret $\MH_{\phi_1\cdots\phi_n i}$ with parentheses inserted arbitrarily. Under these identifications, by (a,b,c) of Rem. \ref{lb7}, we have
+\begin{align*}
+\Gamma_e|_{\MH_i}=\id_{\MH_i}\qquad \Gamma_\phi|_{\MH_0}=\phi\qquad \Gamma_{\phi\psi}|_{\MH_i}=\Gamma_\phi\circ\Gamma_\psi|_{\MH_i}
+\end{align*}
+which we abbreviate as
+\begin{align}\label{eq6}
+\Gamma_e=\id\qquad\Gamma_\phi|_{\MH_0}=\phi\qquad  \Gamma_{\phi\psi}=\Gamma_\phi\circ\Gamma_\psi
+\end{align}
+In other words, the assignment $\phi\in G\mapsto \Gamma_\phi$ defines a ``categorical group representation'' $G\curvearrowright\RepGA$ extending $G\curvearrowright\MH_0$.
+\end{cv}
+
+As a consequence of \eqref{eq6}, we have
+\begin{align}\label{eq7}
+\Gamma_\phi^{-1}=\Gamma_{\phi^{-1}}
+\end{align}
+as unitary maps from each $\MH_i$ to $\MH_{\phi^{-1}i}$.
+
+
+\subsection{$G$-crossed categorical extensions}
+
+Let $\MA$ be a conformal net and $G\rightarrow\Aut(\MA)$ a group homomorphism. In this section, we recall the $G$-crossed categorical extension for $\MA$ established in \cite{MS26}. Recall Def. \ref{lb8} for the clockwise and anticlockwise complements $\wtd I'$ and $\bpr\wtd I$.
+
+\begin{df}
+For each $\MH_i,\MH_j\in\RepGA$ and $\wtd I\in\Jtd$, let
+\begin{gather*}
+\pmb{\Hom_{\MA(\wtd I)}(\MH_i,\MH_j)}=\big\{T\in\fk L(\MH_i,\MH_j):T\pi_{i,\wtd I}(x)=\pi_{j,\wtd I}(x)T\text{ for each }x\in\MA(I)\big\}\\
+\pmb{\MH_j(I)}=\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)\cdot\Omega
+\end{gather*}
+where $\MH_j(I)$ is independent of $\arg_I$. Note that the Reeh-Schlieder property implies that $\MH_j(I)$ is dense in $\MH_j$.
+\end{df}
+
+Note that Haag duality implies $\MH_0(I)=\MA(I)\Omega$.
+
+\begin{proof}[Explanation]
+We need to explain why $\MH_j(I)$ is independent of $\arg_I$. It suffices to show that for each $\wtd I\in\Jtd$, the space $\MH_j(I)$ defined by $\wtd I$ is coincides with the one defined by $\varrho(2\pi)\wtd I$, that is,
+\begin{align*}
+\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)\Omega=\Hom_{\MA(\bpr\wtd I)}(\MH_0,\MH_j)\Omega
+\end{align*}
+Assume without loss of generality that $\MH_j\in\Rep^\phi(\MA)$. Then the above relation follows from the following lemma and the fact that $\phi\Omega=\Omega$.
+\end{proof}
+
+
+
+
+\begin{lm}\label{lb17}
+Assume that $\phi\in G$ and $\MH_j\in\Rep^\phi(\MA)$. Let $T\in\Hom_{\MA(\bpr\wtd I)}(\MH_0,\MH_j)$. Then $T\phi\in\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)$.
+\end{lm}
+
+Consequently, if $\xi\in\MH_j(I)$, and if $S\in\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)$ and $T\in\Hom_{\MA(\bpr\wtd I)}(\MH_0,\MH_j)$ are the unique maps such that $S\Omega=\xi=T\Omega$, then $S=T\phi$. (The uniqueness is due to the Reeh-Schlieder property for $\MA$.)
+
+\begin{proof}
+By \eqref{eq8}, for each $x\in\MA(I')$ we have
+\begin{align*}
+\pi_{j,\wtd I'}(x)T\phi=\pi_{j,\bpr\wtd I}(\phi x\phi^{-1})T\phi=T\phi x\phi^{-1}\phi=T\phi x
+\end{align*}
+Thus $T\phi\in\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)$. 
+\end{proof}
+
+
+\begin{rem}\label{lb13}
+By \eqref{eq4}, we have
+\begin{align}
+\Gamma_\phi\Hom_{\MA(\wtd I)}(\MH_i,\MH_j)\Gamma_\phi^{-1}=\Hom_{\MA(\wtd I)}(\MH_{\phi i},\MH_{\phi j})
+\end{align}
+In particular, noting that $\Gamma_\phi^{-1}|_{\MH_0}$ equals $\phi^{-1}$ (due to \eqref{eq6}) and hence fixes $\Omega$, we obtain
+\begin{align}
+\Gamma_\phi\big(\MH_j(I)\big)=\MH_{\phi j}(I)
+\end{align}
+\end{rem}
+
+
+\begin{df}
+Let $A:\mc P\rightarrow\mc R$, $B:\mc Q\rightarrow\mc S$, $C:\mc P\rightarrow \mc Q$, $D:\mc R\rightarrow\mc S$ be bounded linear operators between Hilbert spaces. We say that the diagram
+\begin{equation*}
+\begin{tikzcd}
+\mc P \arrow[r,"C"] \arrow[d,"A"'] & \mc Q \arrow[d,"B"] \\
+\mc R \arrow[r,"D"]           & \mc S        
+\end{tikzcd}
+\end{equation*}
+\textbf{commutes adjointly} if $DA=BC$ and $D^*B=AC^*$.
+\end{df}
+
+
+
+The following theorem continues to assume Conv. \ref{lb9} and \ref{lb10}, except that the identification \eqref{eq5b} is imposed only at the end.
+
+\begin{thm}\label{lb15}
+For each $\wtd I\in\Jtd$, $\MH_i\in\RepGA$,  $\xi\in\MH_i I)$, we have bounded linear operators
+\begin{gather}
+\begin{gathered}
+L(\xi,\wtd I)\big|_{\MH_k}\in\Hom_{\MA(\wtd I')}(\MH_k,\MH_i\boxtimes\MH_k)\\
+R(\xi,\wtd I)\big|_{\MH_k}\in\Hom_{\MA(\bpr\wtd I)}(\MH_k,\MH_k\boxtimes\MH_j)
+\end{gathered}
+\end{gather}
+associated to each $\MH_k\in\RepGA$, called the \textbf{L operators} and the \textbf{R operators} and abbreviated to $L(\xi,\wtd I),R(\xi,\wtd I)$ when no confusion arises, satisfying the following conditions:
+\begin{enumerate}[label=(\arabic*)]
+\item (Naturality) If $\MH_k,\MH_{k'}\in\RepGA$,  $T\in\Hom_{\MA}(\MH_k,\MH_{k'})$,  $\xi\in\MH_i(I)$, and $\chi\in\MH_k$, then
+\begin{align}
+	(\idt_i\boxtimes T)L(\xi,\wtd I)\chi=L(\xi,\wtd I)T\chi\qquad (T\boxtimes \idt_i)R(\xi,\wtd I)\chi=R(\xi,\wtd I)T\chi
+\end{align}
+\item (State-field correspondence) If $\xi\in\MH_i(I)$, then (under the identifications $\MH_i=\MH_0\boxtimes\MH_i=\MH_i\boxtimes\MH_0$) we have
+\begin{align}
+	L(\xi,\wtd I)\Omega=R(\xi,\wtd I)\Omega=\xi
+\end{align}
+\item (Density of fusion products) The sets 
+\begin{align*}
+L(\MH_i(I),\wtd I)\MH_k\qquad  R(\MH_i(I),\wtd I)\MH_k
+\end{align*}
+span dense subspaces of $\MH_i\boxtimes\MH_k$ and $\MH_k\boxtimes\MH_i$, respectively.\footnote{Indeed, they are equal to the full space $\MH_i\boxtimes\MH_k$ and $\MH_k\boxtimes\MH_i$ respectively by the fact that $\MA(I)$ is a type III factor.}
+\item (Locality) For any $\MH_k\in\RepGA$, any $\wtd I,\wtd J\in\Jtd$ with $\wtd J$ clockwise to $\wtd I$, and any $\xi\in\MH_i(I),\eta\in\MH_j(J)$, the following diagram commutes adjointly.
+\begin{equation}
+\begin{tikzcd}
+\quad \MH_k\quad \arrow[rr,"{R(\eta,\wtd J)}"] \arrow[d, "{L(\xi,\wtd I)}"'] &&\quad \MH_k\boxtimes\MH_j\quad \arrow[d, "{L(\xi,\wtd I)}"]\\
+\MH_i\boxtimes\MH_k\arrow[rr,"{R(\eta,\wtd J)}"] &&\MH_i\boxtimes\MH_k\boxtimes\MH_j
+\end{tikzcd}
+\end{equation}
+\item (Braiding) If $\phi\in G$ and $\MH_i\in\Rep^\phi(\MA)$, the unitary isomorphism $\Bbb_{i,j}:\MH_i\boxtimes\MH_j\rightarrow\MH_{\phi j}\boxtimes \MH_i$ satisfies
+\begin{align}
+\Bbb_{i,j} L(\xi,\wtd I)\eta=R(\xi,\wtd I)\Gamma_\phi\eta
+\end{align}
+whenever $\xi\in\MH_i(I)$ and $\eta\in\MH_j$.
+\item (Conformal covariance) If $g\in\GA$ and $\xi\in\MH_i(I)$, there exists a (necessarily unique) element denoted by $g\xi g^{-1}\in\MH_i(gI)$ satisfying
+\begin{align}
+L(g\xi g^{-1},g\wtd I)=gL(\xi,\wtd I)g^{-1}\qquad R(g\xi g^{-1},g\wtd I)=gR(\xi,\wtd I)g^{-1}
+\end{align}
+when acting on any $\MH_j\in\RepGA$.
+\end{enumerate}
+Moreover, assuming the identification \eqref{eq5b}, we also have:
+\begin{enumerate}
+\item[(7)] ($G$-covariance) For each $\xi\in\MH_i(I)$ and $\phi\in G$, noting that $\Gamma_\phi\xi\in\MH_{\phi i}(I)$ (cf. Rem. \ref{lb13}), we have
+\begin{align}
+\Gamma_\phi L(\xi,\wtd I)=L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\qquad \Gamma_\phi R(\xi,\wtd I)=R(\Gamma_\phi\xi,\wtd I)\Gamma_\phi
+\end{align}
+when acting on any $\MH_j\in\RepGA$ (with targets in $\MH_{\phi(i\boxtimes j)}=\MH_{\phi i\boxtimes\phi j}$ and $\MH_{\phi(j\boxtimes i)}=\MH_{\phi j\boxtimes\phi i}$, respectively).
+\end{enumerate}
+\end{thm}
+
+When we wish to emphasize the dependence on $\MA$, we write the operations $L,R$ as $L^\MA,R^\MA$. 
+
+
+
+\begin{rem}
+For each $g\in\GA$, the uniqueness of $g\xi g^{-1}$ in the conformal covariance is due to the state-field correspondence, which implies
+\begin{align}
+g\xi g^{-1}=gL(\xi,\wtd I)g^{-1}\Omega=gR(\xi,\wtd I)g^{-1}\Omega
+\end{align}
+Applying the state-field correspondence again, we obtain
+\begin{align*}
+g\xi g^{-1}=g\xi\qquad\text{if }g^{-1}\Omega=\Omega
+\end{align*}
+For example, by the definition of conformal nets, for each $t\in\Rbb$ we have $U_0(\varrho_\MA(t))\Omega=\Omega$, and hence the \textbf{rotation covariance} property: We have
+\begin{align}
+\varrho_\MA(t)\MH_i(I)=\MH_i(\varrho(t)I)
+\end{align}
+and for each $\xi\in\MH_i(I)$ we have
+\begin{subequations}
+\begin{gather}
+\varrho_\MA(t)L(\xi,\wtd I)=L(\varrho_\MA(t)\xi,\varrho(t)\wtd I)\varrho_\MA(t)\\
+\varrho_\MA(t)R(\xi,\wtd I)=R(\varrho_\MA(t)\xi,\varrho(t)\wtd I)\varrho_\MA(t)
+\end{gather}
+\end{subequations}
+\end{rem}
+
+We are now ready to describe the unitary isomorphism  mentioned in Rem. \ref{lb7}-(d).
+
+\begin{df}\label{lb16}
+The linear map $\mbf D_{\phi,i,j}:\MH_{\phi i}\boxtimes\MH_{\phi j}\rightarrow \MH_{\phi(i\boxtimes j)}$ is the unique unitary map (indeed, the unique unitary isomorphism of $G$-twisted $\MA$-modules) such that
+\begin{align}\label{eq11}
+\Gamma_\phi L(\xi,\wtd I)\eta=\mbf D_{\phi,i,j}\circ L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta\qquad \Gamma_\phi R(\eta,\wtd J)\xi=\mbf D_{\phi,i,j}\circ R(\Gamma_\phi\eta,\wtd J)\Gamma_\phi\xi
+\end{align} 
+holds for each $\wtd I,\wtd J\in\Jtd$ with $\wtd J$ clockwise to $\wtd I$, and each $\xi\in\MH_i(I),\eta\in\MH_j(J)$. The uniqueness follows from the density of fusion products in Thm. \ref{lb15}.
+\end{df}
+
+
+The existence of such a unitary isomorphism, as well as the compatibility conditions in Rem. \ref{lb7}(d), will be explained in Subsec. \ref{lb24} and \ref{lb25}, respectively. The $G$-covariance property in Thm. \ref{lb15} would then follow automatically.
+
+
+\subsection{Calculus in $G$-crossed categorical extensions}
+
+
+We continue to fix a group homomorphism $G\rightarrow\Aut(\MA)$ for a conformal net $\MA$. In this section, we do not assume the identification \eqref{eq5b}.
+
+
+
+\subsubsection{Conditions (2)-(4) of Thm. \ref{lb15} imply $\Rep^\phi(\MA)\boxtimes\Rep^\omega(\MA)\subset\Rep^{\phi\omega}(\MA)$}
+
+
+In \cite{MS26}, the fusion product of two objects in $\RepGA$ is first constructed as a solitonic $\MA$-module using operators $Z^+,Z^-$ and path continuations. For each $\MH_i,\MH_j\in\RepGA$, $\wtd I,\wtd J\in\Jtd$, and $\xi\in\MH_i(I),\eta\in\MH_j(J)$, the operators
+\begin{gather*}
+L(\xi,\wtd I)\big|_{\MH_0}\in\Hom_{\MA(\wtd I')}(\MH_0,\MH_i)\qquad L(\xi,\wtd I)|_{\MH_j}\in\Hom_{\MA(\wtd I')}(\MH_j,\MH_i\boxtimes\MH_j)\\
+R(\eta,\wtd J)\big|_{\MH_0}\in\Hom_{\MA(\bpr\wtd J)}(\MH_0,\MH_j)\qquad R(\eta,\wtd J)|_{\MH_i}\in\Hom_{\MA(\bpr\wtd J)}(\MH_i,\MH_i\boxtimes\MH_j)
+\end{gather*}
+are likewise constructed using $Z^+(\xi,\wtd I),Z^-(\eta,\wtd J)$ and path continuations. The following properties are readily verified:
+\begin{enumerate}
+\item[(2)] $L(\xi,\wtd I)\Omega=\xi$ and $R(\eta,\wtd J)\Omega=\eta$. 
+\item[(3)] Both $L(\MH_i(I),\wtd I)\MH_j$ and $R(\MH_j(J),\wtd J)\MH_j$ span dense subspaces of $\MH_i\boxtimes\MH_j$.
+\item[(4)] If $\wtd J$ is clockwise to $\wtd I$, the following diagram commutes adjointly.
+\begin{equation*}
+\begin{tikzcd}
+\quad \MH_0\quad \arrow[rr,"{R(\eta,\wtd J)|_{\MH_0}}"] \arrow[d, "{L(\xi,\wtd I)|_{\MH_0}}"'] &&\quad \MH_j\quad \arrow[d, "{L(\xi,\wtd I)|_{\MH_j}}"]\\
+\MH_i\arrow[rr,"{R(\eta,\wtd J)|_{\MH_i}}"] &&\MH_i\boxtimes\MH_j
+\end{tikzcd}
+\end{equation*}
+\end{enumerate}
+
+These constructions and properties are, of course, part of those stated in Thm. \ref{lb15}. In what follows, we show that they already suffice to imply \eqref{eq10}.
+
+
+
+
+
+
+
+\begin{lm}\label{lb19}
+If $\MH_i\in\Rep^\phi(\MA)$ and $\MH_j\in\Rep^\omega(\MA)$, and if $\wtd J$ is clockwise to $\wtd I$, then for each $\xi\in\MH_i(I),\eta\in\MH_j(J)$ and each $x\in\MA(I),y\in\MA(J)$, we have
+\begin{gather*}
+R(\xi,\wtd I)y\big|_{\MH_0}=\pi_{\wtd J}(\phi^{-1}y\phi)R(\xi,\wtd I)\big|_{\MH_0}\\
+L(\eta,\wtd J)x\big|_{\MH_0}=\pi_{\wtd I}(\omega x\omega^{-1})L(\eta,\wtd J)\big|_{\MH_0}
+\end{gather*}
+\end{lm}
+
+\begin{proof}
+Since $\wtd I$ is clockwise to $\varrho(2\pi)\wtd J$, we have
+\begin{align*}
+R(\xi,\wtd I)y\big|_{\MH_0}=\pi_{i,\varrho(2\pi)\wtd J}(y)R(\xi,\wtd I)\big|_{\MH_0}=\pi_{i,\wtd J}(\phi^{-1}y\phi)R(\xi,\wtd I)\big|_{\MH_0}
+\end{align*}
+where the last identity is due to the fact that $\MH_i$ is $\phi$-twisted. This proves the first identity. The second one follows from a similar argument, using the relation $\pi_{j,\varrho(-2\pi)\wtd I}(x)=\pi_{j,\wtd I}(\omega x\omega^{-1})$.
+\end{proof}
+
+
+
+
+\begin{thm}
+If $\MH_i\in\Rep^\phi(\MA)$ and $\MH_j\in\Rep^\omega(\MA)$, then the solitonic $\MA$-module $\MH_i\boxtimes\MH_j$ is $\phi\omega$-twisted.
+\end{thm}
+
+\begin{proof}
+Choose any $\wtd K^+\in\Jtd$, and let $\wtd K^-=\varrho(-2\pi)\wtd K^+$. Choose $\wtd I,\wtd J\in\Jtd$ such that $\wtd J$ is clockwise to $\wtd I$, and $\wtd I$ is clockwise to $\wtd K^+$.\footnote{For example, if $\wtd K^+$ is a small neighborhood of $e^{\im\pi}$, one can choose $\wtd I$ to be a small neighborhood of $e^{\im\pi/2}$, and $\wtd J$ a small neighborhood of $e^{-\im\pi/2}$. Then $\wtd K^-$ is a small neighborhood of $e^{-\im\pi}$.}
+
+Choose any $x\in\MA(K),\xi\in\MH_i(I),\eta\in\MH_j(J)$. By Lem. \ref{lb19}, we have
+\begin{align*}
+L(\xi,\wtd I)R(\eta,\wtd J)x\Omega=L(\xi,\wtd I)\pi_{\wtd K^-}(\omega^{-1}x\omega)R(\eta,\wtd J)\Omega=\pi_{\wtd K^-}(\omega^{-1}x\omega)L(\xi,\wtd I)R(\eta,\wtd J)\Omega
+\end{align*}
+and
+\begin{align*}
+R(\eta,\wtd J)L(\xi,\wtd I)x\Omega=R(\eta,\wtd J)\pi_{\wtd K^+}(\phi x\phi^{-1})L(\xi,\wtd I)\Omega=\pi_{\wtd K^+}(\phi x\phi^{-1})R(\eta,\wtd J)L(\xi,\wtd I)\Omega
+\end{align*}
+Therefore, by (4), the operators $\pi_{\wtd K^-}(\omega^{-1}x\omega)$ and $\pi_{\wtd K^+}(\phi x\phi^{-1})$ are equal when acting on vectors of the form $L(\xi,\wtd I)R(\eta,\wtd J)\Omega$ (which equals $L(\xi,\wtd I)\eta$ by (2)). Thus (3) implies $\pi_{\wtd K^-}(\omega^{-1}x\omega)=\pi_{\wtd K^+}(\phi x\phi^{-1})$ and hence
+\begin{align*}
+\pi_{\wtd K^-}(x)=\pi_{\wtd K^+}(\phi\omega x\omega^{-1}\phi^{-1})
+\end{align*}
+when acting on $\MH_i\boxtimes\MH_j$. Thus $\MH_i\boxtimes\MH_j$ is $\phi\omega$-twisted.
+\end{proof}
+
+
+
+
+
+
+
+\subsubsection{Consequences of (1)-(4) of Thm. \ref{lb15}}
+
+
+
+
+\begin{pp}\label{lb20}
+Let $\wtd J$ be clockwise to $\wtd I$, and let $\MH_i,\MH_j\in\RepGA$, $\xi\in\MH_i(I)$, $\eta\in\MH_j(J)$. Then
+\begin{align*}
+L(\xi,\wtd I)\eta=R(\eta,\wtd J)\xi
+\end{align*}
+\end{pp}
+
+\begin{proof}
+By the state-field correspondence and the locality in Thm. \ref{lb15}, we have
+\begin{align*}
+L(\xi,\wtd I)\eta=L(\xi,\wtd I)R(\eta,\wtd J)\Omega=R(\eta,\wtd J)L(\xi,\wtd I)\Omega=R(\eta,\wtd J)\xi
+\end{align*}
+\end{proof}
+
+\begin{co}[\textbf{Isotony}]
+If $\wtd I_1\subset\wtd I_2\in\Jtd$, and $\xi\in\MH_i(I_1)$, then 
+\begin{align*}
+L(\xi,\wtd I_1)=L(\xi,\wtd I_2)\qquad R(\xi,\wtd I_1)=R(\xi,\wtd I_2)
+\end{align*}
+when acting on any  $\MH_j\in\RepGA$.
+\end{co}
+
+\begin{proof}
+Choose $\wtd J\in\Jtd$ clockwise to $\wtd I_2$. By Prop. \ref{lb20}, for each $\eta\in\MH_j(J)$ we have
+\begin{align*}
+L(\xi,\wtd I_1)\eta=R(\eta,\wtd J)\xi=L(\xi,\wtd I_2)\eta
+\end{align*}
+The second identity follows from a similar argument.
+\end{proof}
+
+
+\begin{pp}\label{lb22}
+Let $\wtd I\in\Jtd$ and $x\in\MA(I)$. Then, when acting on any $\MH_j\in\RepGA$, we have (recalling $\MH_0(I)=\MA(I)\Omega$)
+\begin{align*}
+L(x\Omega,\wtd I)=R(x\Omega,\wtd I)=\pi_{\wtd I}(x)
+\end{align*}
+\end{pp}
+
+\begin{proof}
+Choose $\wtd J$ clockwise to $\wtd I$. For each $\eta\in\MH_j(J)$, we compute that
+\begin{align*}
+&L(x\Omega,\wtd I)\eta=L(x\Omega,\wtd I)R(\eta,\wtd J)\Omega=R(\eta,\wtd J)L(x\Omega,\wtd I)\Omega=R(\eta,\wtd J)x\Omega\\
+=&\pi_{\wtd I}(x)R(\eta,\wtd J)\Omega=\pi_{\wtd I}(x)\eta
+\end{align*}
+where the locality and the state-field correspondence in Thm. \ref{lb15} have been used. This proves $L(x\Omega,\wtd I)=\pi_{\wtd I}(x)$. The second relation follows from a similar argument.
+\end{proof}
+
+
+\begin{pp}\label{lb26}
+If $S\in\Hom_\MA(\MH_i,\MH_{i'})$ and $T\in\Hom_\MA(\MH_j,\MH_{j'})$ are morphisms in $\RepGA$, then for each $\xi\in\MH_i(I)$ and $\eta\in\MH_j$, we have
+\begin{align*}
+(S\boxtimes T)L(\xi,\wtd I)\eta=L(S\xi,\wtd I)T\eta\qquad (T\boxtimes S)R(\xi,\wtd I)\eta=R(S\xi,\wtd I)T\eta
+\end{align*}
+\end{pp}
+
+
+
+
+\begin{proof}
+We prove the second relation, as the first one can be proved in a similar way. It suffices to assume that $\eta\in\MH_j(K)$ where $\wtd K$ is anticlockwise to $\wtd I$. By the naturality in Thm. \ref{lb15}, we have
+\begin{align*}
+(T\boxtimes S)R(\xi,\wtd I)\eta=(\idt\boxtimes S)(T\boxtimes\idt)R(\xi,\wtd I)\eta=(\idt\boxtimes S)R(\xi,\wtd I)T\eta
+\end{align*}
+By Prop. \ref{lb20}, the above expression equals
+\begin{align*}
+(\idt\boxtimes S)L(T\eta,\wtd K)\xi=L(T\eta,\wtd K)S\xi=R(S\xi,\wtd I)T\eta
+\end{align*}
+\end{proof}
+
+
+We also note the useful fact that, as $\boxtimes$ is a $*$-bifunctor, we have
+\begin{align}
+(S\boxtimes T)^*=S^*\boxtimes T^*
+\end{align}
+
+
+\begin{pp}\label{lb21}
+Let $\mc H_i,\mc H_j,\mc H_k\in\RepGA$, $\wtd I\in\Jtd$, and $\xi\in\mc H_i(I)$. The following are true.
+\begin{enumerate}[label=(\alph*)]
+\item If $\eta\in\mc H_j(I)$, then $L(\xi,\wtd I)\eta\in(\mc H_i\boxtimes\mc H_j)(I)$, $R(\xi,\wtd I)\eta\in(\mc H_j\boxtimes\mc H_i)(I)$, and
+\begin{gather*}
+L(\xi,\wtd I)L(\eta,\wtd I)|_{\mc H_k}=L(L(\xi,\wtd I)\eta,\wtd I)|_{\mc H_k}\\
+R(\xi,\wtd I)R(\eta,\wtd I)|_{\mc H_k}=R(R(\xi,\wtd I)\eta,\wtd I)|_{\mc H_k}
+\end{gather*}
+\item If $\psi\in(\mc H_i\boxtimes H_j)(I)$ and $\eta\in (\mc H_j\boxtimes H_i)(I)$, then $L(\xi,\wtd I)^*\psi\in\mc H_j(I)$, $R(\xi,\wtd I)^*\eta\in\mc H_j(I)$, and
+\begin{gather*}
+L(\xi,\wtd I)^*L(\psi,\wtd I)|_{\mc H_k}=L(L(\xi,\wtd I)^*\psi,\wtd I)|_{\mc H_k}\\
+ R(\xi,\wtd I)^*R(\eta,\wtd I)|_{\mc H_k}=R(R(\xi,\wtd I)^*\eta,\wtd I)|_{\mc H_k}
+\end{gather*}
+\end{enumerate} 
+\end{pp}
+
+\begin{proof}
+We prove the first of (b); part (a) and the second of (b) follows from a similar argument. Part (a) follows as in \cite[Prop. 3.6]{Gui21}.
+
+By the state-field correspondence, we have $L(\xi,\wtd I)^*\psi=L(\xi,\wtd I)^*L(\psi,\wtd I)\Omega$. This implies, noticing $L(\xi,\wtd I)^*L(\psi,\wtd I)\in\Hom_{\MA(\wtd I')}(\MH_0,\MH_j)$, that $L(\xi,\wtd I)^*\psi\in\mc H_j(I)$. Choose $\wtd J$ clockwise to $\wtd I$ and $\chi\in\mc H_k(J)$. Then
+\begin{align*}
+&L(\xi,\wtd I)^*L(\psi,\wtd I)\chi=L(\xi,\wtd I)^*L(\psi,\wtd I)R(\chi,\wtd J)\Omega=R(\chi,\wtd J)L(\xi,\wtd I)^*L(\psi,\wtd I)\Omega\\
+=&R(\chi,\wtd J)L(\xi,\wtd I)^*\psi=R(\chi,\wtd J)L(L(\xi,\wtd I)^*\psi,\wtd I)\Omega=L(L(\xi,\wtd I)^*\psi,\wtd I)R(\chi,\wtd J)\Omega\\
+=&L(L(\xi,\wtd I)^*\psi,\wtd I)\chi
+\end{align*}
+where the locality and the state-field correspondence in Thm. \ref{lb15} are used.
+\end{proof}
+
+
+
+\begin{lm}\label{lb18}
+Suppose that $\MH_i\in\Rep^\phi(\MA)$. Then for each $\wtd I\in\Jtd$ and $\xi\in\MH_i(I)$, we have
+\begin{align*}
+L(\xi,\wtd I)\big|_{\MH_0}=R(\xi,\wtd I)\phi\big|_{\MH_0}
+\end{align*}
+\end{lm}
+
+\begin{proof}
+This is a direct reformulation of Lem. \ref{lb17}.
+\end{proof}
+
+
+\subsubsection{$G$-covariance follows from (1)-(4) of Thm. \ref{lb15}}\label{lb24}
+
+
+We begin the proof of the $G$-covariance by proving the following special case:
+
+\begin{lm}\label{lb23}
+Let $\MH_i\in\RepGA$ and $\phi\in G$. Then for each $\wtd I\in\Jtd$ and $\xi\in\MH_i(I)$, the following identities holds as bounded linear operators $\MH_0\rightarrow\MH_{\phi i}$.
+\begin{align}\label{eq13}
+\Gamma_\phi L(\xi,\wtd I)\big|_{\MH_0}=L(\Gamma_\phi\xi,\wtd I)\phi\big|_{\MH_0}\qquad \Gamma_\phi R(\xi,\wtd I)\big|_{\MH_0}=R(\Gamma_\phi\xi,\wtd I)\phi\big|_{\MH_0}
+\end{align}
+\end{lm}
+
+\begin{proof}
+By Rem. \ref{lb13}, the operator $\Gamma_\phi L(\xi,\wtd I)\phi^{-1}|_{\MH_0}$ belongs to $\Hom_{\MA(\wtd I')}(\MH_0,\MH_i)$, and hence is the unique element in that set sending $\Omega$ to
+\begin{align*}
+\Gamma_\phi L(\xi,\wtd I)\phi^{-1}\Omega=\Gamma_\phi L(\xi,\wtd I)\Omega=\Gamma_\phi\xi
+\end{align*}
+So it equals $L(\Gamma_\phi\xi,\wtd I)|_{\MH_0}$. The second identity can be proved in the same way.
+\end{proof}
+
+\begin{rem}
+In Lem. \ref{lb23}, the operators $\Gamma_\phi L(\xi,\wtd I)\big|_{\MH_0}$ and $L(\Gamma_\phi\xi,\wtd I)\phi\big|_{\MH_0}$ original have codomains $\MH_{\phi(i\boxtimes 0)}$ and $\MH_{\phi i}\boxtimes\MH_0$, respectively. To ensure that the first identity in \eqref{eq13} holds, we identify $\MH_{\phi(i\boxtimes 0)}\simeq\MH_{\phi i}\simeq\MH_{\phi i\boxtimes0}$ using the unitors in \eqref{eq12d}. Similarly, to obtain the second identity in \eqref{eq13}, we identify $\MH_{\phi(0\boxtimes i)}\simeq\MH_{\phi i}\simeq\MH_{0\boxtimes\phi i}$ using the unitors in \eqref{eq12c}. This observation will be needed in the proofs of \eqref{eq12c} and \eqref{eq12d} in Subsec. \ref{lb25}.
+\end{rem}
+
+
+
+\begin{thm}
+For each $\MH_i,\MH_j\in\RepGA$ and $\phi\in G$, there is a (necessarily unique) unitary isomorphism of $G$-twisted $\MA$-modules
+\begin{align*}
+\mbf D_{\phi,i,j}:\MH_{\phi i}\boxtimes\MH_{\phi j}\rightarrow \MH_{\phi(i\boxtimes j)}
+\end{align*}
+satisfying Def. \ref{lb16}.
+\end{thm}
+
+\begin{proof}
+Step 1. It suffices to construct $\mbf D_{\phi,i,j}$ satisfying the first relation of \eqref{eq11}, since the second one will follow immediately from Prop. \ref{lb20}.  
+
+For each $\xi_1,\xi_2\in\MH_i(\wtd I)$ and $\eta_1,\eta_2\in\MH_j$, by Prop. \ref{lb21},
+\begin{align*}
+&\bk{L(\Gamma_\phi\xi_2,\wtd I)\Gamma_\phi\eta_2|L(\Gamma_\phi\xi_1,\wtd I)\Gamma_\phi\eta_1}=\bk{\Gamma_\phi\eta_2|L(\Gamma_\phi\xi_2,\wtd I)^*L(\Gamma_\phi\xi_1,\wtd I)\Gamma_\phi\eta_1}\\
+=&\bk{\Gamma_\phi\eta_2|L(L(\Gamma_\phi\xi_2,\wtd I)^*\Gamma_\phi\xi_1,\wtd I)\Gamma_\phi\eta_1}
+\end{align*}
+Set $x=L(\Gamma_\phi\xi_2,\wtd I)^*L(\Gamma_\phi\xi_1,\wtd I)|_{\MH_0}$, which belongs to $\MA(I)$. Then the above expression equals
+\begin{align*}
+\bk{\eta_2|\Gamma_\phi^{-1}L(x\Omega,\wtd I)\Gamma_\phi\eta_1}=\bk{\eta_2|\Gamma_\phi^{-1}\pi_{\wtd I}(x)\Gamma_\phi\eta_1}=\bk{\eta_2|\pi_{\wtd I}(\phi^{-1}x\phi)\eta_1}
+\end{align*}
+where Prop. \ref{lb22} and \eqref{eq4} are used. By Lem. \ref{lb23},
+\begin{align*}
+\phi^{-1}x\phi=(L(\Gamma_\phi\xi_2,\wtd I)\phi|_{\MH_0})^*(L(\Gamma_\phi\xi_1,\wtd I)\phi|_{\MH_0})=L(\xi_2,\wtd I)^*L(\xi_1,\wtd I)|_{\MH_0}
+\end{align*}
+Thus
+\begin{align*}
+\bk{L(\Gamma_\phi\xi_2,\wtd I)\Gamma_\phi\eta_2|L(\Gamma_\phi\xi_1,\wtd I)\Gamma_\phi\eta_1}=\bk{\eta_2|\pi_{\wtd I}(L(\xi_2,\wtd I)^*L(\xi_1,\wtd I)|_{\MH_0})\eta_1}
+\end{align*}
+A similar (and indeed simpler) computation shows
+\begin{align*}
+\bk{L(\xi_2,\wtd I)\eta_2|L(\xi_1,\wtd I)\eta_1}=\bk{\eta_2|\pi_{\wtd I}(L(\xi_2,\wtd I)^*L(\xi_1,\wtd I)|_{\MH_0})\eta_1}
+\end{align*}
+Thus, by the density of fusion products in Thm. \ref{lb15}, there is a unitary map
+\begin{gather*}
+\mbf D^{\wtd I}_{\phi,i,j}:\MH_{\phi i}\boxtimes\MH_{\phi j}\rightarrow \MH_{\phi(i\boxtimes j)}\qquad L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta\mapsto \Gamma_\phi L(\xi,\wtd I)\eta
+\end{gather*}
+for each $\xi\in\MH_i(\wtd I),\eta\in\MH_j$.\\[-1ex]
+
+Step 2. If $\wtd I_1,\wtd I_2\in\Jtd$ are close in the sense that there exists $\wtd I_0\in\Jtd$ satisfying $\wtd I_0\subset\wtd I_1$ and $\wtd I_0\subset\wtd I_2$, then $\mbf D^{\wtd I_1}_{\phi,i,j}$ and $\mbf D^{\wtd I_2}_{\phi,i,j}$ agree on vectors of the form $L(\MH_{\phi i}(I_0),\wtd I_0)\MH_{\phi j}$, and hence agree on $\MH_{\phi i}\boxtimes\MH_{\phi j}$ by the density of fusion products. If $\wtd I_1$ and $\wtd I_2$ are not close, one can connect them by a chain of arg-valued intervals such that each interval in the chain is close to the preceding one. It follows that $\mbf D^{\wtd I_1}_{\phi,i,j}$ and $\mbf D^{\wtd I_2}_{\phi,i,j}$ also agree in this general case. We have thus proved that $\mbf D^{\wtd I}_{\phi,i,j}$ is independent of the choice of $\wtd I$, and hence can be denoted by $\mbf D_{\phi,i,j}$.\\[-1ex]
+
+Step 3. For each $\wtd J\in\Jtd$ and $y\in\MA(y)$, and for each $\wtd I$ anticlockwise to $\wtd J$ and each $\xi\in\MH_i(I),\eta\in\MH_j$, we compute using \eqref{eq4} that
+\begin{align*}
+&\mbf D_{\phi,i,j}\pi_{\wtd J}(y)L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta=\mbf D_{\phi,i,j}L(\Gamma_\phi\xi,\wtd I)\pi_{\wtd J}(y)\Gamma_\phi\eta\\
+=&\mbf D_{\phi,i,j}L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\pi_{\wtd J}(\phi^{-1}y\phi)\eta=\Gamma_\phi L(\xi,\wtd I)\pi_{\wtd J}(\phi^{-1}y\phi)\eta\\
+=&\Gamma_\phi \pi_{\wtd J}(\phi^{-1}y\phi)L(\xi,\wtd I)\eta=\pi_{\wtd J}(y)\Gamma_\phi L(\xi,\wtd I)\eta=\pi_{\wtd J}(y)\mbf D_{\phi,i,j}L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta
+\end{align*}
+This proves that $\mbf D_{\phi,i,j}$ is a morphism of $G$-twisted $\MA$-modules.
+\end{proof}
+
+
+\subsubsection{The compatibility conditions in Rem. \ref{lb7}-(d) follow from (1)-(4) of Thm. \ref{lb15}}\label{lb25}
+
+
+\begin{proof}[\textbf{Proof of \eqref{eq12a}}]
+Choose any $\wtd I\in\Jtd,\xi\in\MH_i(I),\eta\in\MH_j$, we have
+\begin{align*}
+&(\fk T_\phi(S)\boxtimes\fk T_\phi(T))L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta=(\Gamma_\phi S\Gamma_\phi^{-1}\boxtimes\Gamma_\phi T\Gamma_\phi^{-1})L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta\\
+=&L(\Gamma_\phi S\xi,\wtd I)\Gamma_\phi T\eta
+\end{align*}
+where Prop. \ref{lb26} is used. Thus, by Def. \ref{lb16},
+\begin{align*}
+\mbf D_{\phi,\wtd i,\wtd j}(\fk T_\phi(S)\boxtimes\fk T_\phi(T))L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta=\Gamma_\phi L(S\xi,\wtd I)T\eta
+\end{align*}
+Def. \ref{lb16} and Prop. \ref{lb26} also imply
+\begin{align*}
+&\fk T_\phi(S\boxtimes T)\mbf D_{\phi,i,j}L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\eta=\Gamma_\phi (S\boxtimes T)\Gamma_\phi^{-1}\cdot\Gamma_\phi L(\xi,\wtd I)\eta\\
+=&\Gamma_\phi L(S\xi,\wtd I)T\eta
+\end{align*}
+This proves \eqref{eq12a}, thanks to the density of fusion products.
+\end{proof}
+
+
+
+\begin{proof}[\textbf{Proof of \eqref{eq12b}}]
+Choose any $\wtd I,\wtd J\in\Jtd$ with $\wtd J$ clockwise to $\wtd I$. Then for each $\xi\in\MH_i(I),\eta\in\MH_j(J),\chi\in\MH_k$,
+\begin{align*}
+&\mbf D_{\phi,i,j\boxtimes k}(\idt\boxtimes\mbf D_{\phi,j,k})L(\Gamma_\phi\xi,\wtd I)R(\Gamma_\phi\eta,\wtd J)\Gamma_\phi\chi\\
+=&\mbf D_{\phi,i,j\boxtimes k}L(\Gamma_\phi\xi,\wtd I)\mbf D_{\phi,j,k}R(\Gamma_\phi\eta,\wtd J)\Gamma_\phi\chi\\
+=&\mbf D_{\phi,i,j\boxtimes k}L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi R(\eta,\wtd J)\chi=\Gamma_\phi L(\xi,\wtd I)R(\eta,\wtd J)\chi
+\end{align*}
+where the naturality in Thm. \ref{lb15} is used. Similarly,
+\begin{align*}
+&\mbf D_{\phi,i\boxtimes j,k}(\mbf D_{\phi,i,j}\boxtimes \idt)R(\Gamma_\phi\eta,\wtd J)L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\chi\\
+=&\mbf D_{\phi,i\boxtimes j,k}R(\Gamma_\phi\eta,\wtd J)\mbf D_{\phi,i,j}L(\Gamma_\phi\xi,\wtd I)\Gamma_\phi\chi\\
+=&\mbf D_{\phi,i\boxtimes j,k}R(\Gamma_\phi\eta,\wtd J)\Gamma_\phi L(\xi,\wtd I)\chi=\Gamma_\phi R(\eta,\wtd J)L(\xi,\wtd I)\chi
+\end{align*}
+This finishes the proof, thanks to the locality and the density of fusion products in Thm. \ref{lb15}.
+\end{proof}
+
+
+
+
+
+
+
+\hypertarget{beforeindex}{}
+
+
+	\begin{thebibliography}{999999}
+		\footnotesize	
+
+\bibitem[Car04]{Car04}
+S. Carpi. On the representation theory of Virasoro Nets. Comm. Math. Phys. 244 (2004), 261--284.
+
+\bibitem[GL96]{GL96}
+D.~Guido and R.~Longo. The Conformal Spin and Statistics Theorem.
+Comm. Math. Phys. 181 (1996), 11--36.
+
+\bibitem[Hen19]{Hen19}
+A. Henriques. Loop groups and diffeomorphism groups of the circle as colimits. Comm. Math. Phys. 366 (2019), no. 2, 537--565.
+
+
+\bibitem[MTW18]{MTW18}
+V. Morinelli, Y. Tanimoto, and M. Weiner. Conformal covariance and the split property. Comm. Math. Phys. 357 (2018), no. 1, 379--406.
+
+\bibitem[Gui21]{Gui21}
+B. Gui. Categorical extensions of conformal nets.  Comm. Math. Phys. 383 (2021), 763--839.
+
+\bibitem[Gui26]{Gui26}
+B. Gui. Unbounded field operators in categorical extensions of conformal nets,
+Invent. Math. (2026),
+\href{https://doi.org/10.1007/s00222-026-01407-7}{doi:10.1007/s00222-026-01407-7}.
+
+
+\bibitem[MS26]{MS26}
+
+A. Mar\'in-Salvador. Twisted representations of conformal nets and orbifolds.
+
+
+
+		
+\end{thebibliography}
+
+\noindent {\small \sc Yau Mathematical Sciences Center, Tsinghua University, Beijing, China.}
+
+\noindent {\textit{E-mail}}: binguimath@gmail.com\qquad bingui@tsinghua.edu.cn
+\end{document}
+
+
+
+
+
+
+
+
+
