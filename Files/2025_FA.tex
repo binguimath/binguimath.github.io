@@ -14556,7 +14556,7 @@ We abbreviate $\Pi_T$ to $\Pi$ when no confusion arises.
 The following theorem was proved by von Neumann in \cite{vN32b}.
 
 \begin{thm}\label{lb458}
-Let $T:\MH\rightarrow\MK$ be a closed operator. Then $T^*T$ is a positive self-adjoint operator on $\MH$, $\Dom(T^*T)$ is a core for $T$, and $\Pi_T\Pi^*_T:\MH\rightarrow\MH$ is the everywhere-defined bounded inverse of $\idt+T^*T$.
+Let $T:\MH\rightarrow\MK$ be a closed operator. Then $T^*T$ is a positive self-adjoint operator on $\MH$, and $\Dom(T^*T)$ is a core for $T$. %and $\Pi_T\Pi^*_T:\MH\rightarrow\MH$ is the everywhere-defined bounded inverse of $\idt+T^*T$.
 \end{thm}
 
 Note that since $T$ is closed, the graph $\SG(T)$ is a Hilbert space. Thus $\Pi_T$ is a bounded linear map between Hilbert spaces. Hence, its adjoint $\Pi_T^*$ belongs to $\fk L(\MH,\SG(T))$. 
@@ -14653,19 +14653,23 @@ We call \eqref{eq241} the \textbf{(left) polar decomposition} of $T$, \index{00@
 According to this theorem, the closed operator $T$ and the positive self-adjoint operator $\sqrt{T^*T}$ share the same domain and the same graph inner product. This implies, for example, that $H^1_0(\Omega)=\Dom(\sqrt{-\DD})$ (cf. Rem. \ref{lb521}).
 
 \begin{proof}
-Let $H=\sqrt{T^*T}$. Then $H$ is clearly positive and self-adjoint, and hence $H^*H=H^2=T^*T$. (Recall Rem. \ref{lb467} for why we have $H^2=T^*T$.) Therefore, by Thm. \ref{lb458}, $\Dom(T^*T)$ is a common core for $H$ and $T$. Thus, $H\Dom(T^*T)$ is dense in $\Rng(H)$. Therefore, any bounded linear operator $\MH\rightarrow\MK$ is uniquely determined by its values on $H\Dom(T^*T)$ and on $\Rng(H^\perp)$. Thus, the elements $U\in\fk L(\MH,\MK)$ satisfying $T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}$ and vanishing on $\Rng(H)^\perp$ are unique.
+The uniqueness is obvious, since \eqref{eq241} shows that the value of $U$ is uniquely determined when restricted to $\Rng(\sqrt{T^*T})$, and since $U$ vanishes on $\Rng(\sqrt{T^*T})^\perp$. Let us prove the existence. 
 
-Let us prove the existence part. For each $\xi\in\Dom(T^*T)=\Dom(H^*H)$, we have
+Let $H=\sqrt{T^*T}$. Then $H$ is clearly positive and self-adjoint, and hence $H^*H=H^2=T^*T$. (Recall Rem. \ref{lb467} for why we have $H^2=T^*T$.) Therefore, by Thm. \ref{lb458}, $\Dom(T^*T)$ is a common core for $H$ and $T$. In particular, the range of $H|_{\Dom(T^*T)}$ is dense in $\Rng(H)$. 
+
+For each $\xi,\eta\in\Dom(T^*T)=\Dom(H^*H)$, we have
 \begin{align*}
-\bk{H\xi|H\xi}=\bk{\xi|H^*H\xi}=\bk{\xi|T^*T\xi}=\bk{T\xi|T\xi}
+\bk{H\xi|H\eta}=\bk{\xi|H^*H\eta}=\bk{\xi|T^*T\eta}=\bk{T\xi|T\eta}
 \end{align*}
-Therefore, by Lem. \ref{lb368}, there exits a linear isometry $U$ from the closure of $H\Dom(T^*T)$ (which equals $\ovl{\Rng(H)}$ due to the first paragraph) to $\MK$ satisfying $T\xi=UH\xi$ for each $\xi\in\Dom(T^*T)$. By zero extension, the map $U$ is extended to a partial isometry $U\in\fk L(\MH,\MK)$ with source space $\ovl{\Rng(H)}$ satisfying
+Therefore, by Lem. \ref{lb368}, there exits a linear isometry $U$ from the closure of $H\Dom(T^*T)$ (which equals $\ovl{\Rng(H)}$ due to the previous paragraph) to $\MK$ satisfying $T\xi=UH\xi$ for each $\xi\in\Dom(T^*T)$. By zero extension, the map $U$ is extended to a partial isometry $U\in\fk L(\MH,\MK)$ with source space $\ovl{\Rng(H)}$ satisfying
 \begin{align*}
 T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}
 \end{align*}
 Since $\Dom(T^*T)$ is a core for $T$ and $H$, using \eqref{eq245} one easily checks that the closures of the two sides above are equal to $T$ and $UH$ respectively. This proves \eqref{eq241}. 
 \end{proof}
 
+
+%Thus, $H\Dom(T^*T)$ is dense in $\Rng(H)$. Therefore, any bounded linear operator $\MH\rightarrow\MK$ is uniquely determined by its values on $H\Dom(T^*T)$ and on $\Rng(H^\perp)$. Thus, the elements $U\in\fk L(\MH,\MK)$ satisfying $T|_{\Dom(T^*T)}=UH|_{\Dom(T^*T)}$ and vanishing on $\Rng(H)^\perp$ are unique.
 
 \subsubsection{The Dirichlet and Neumann Laplacians}\label{lb460}
 
@@ -14796,7 +14800,9 @@ Let $A$ be a positive unbounded operator on $\MH$. Let $T:\MH\rightarrow\MK$ be 
 \end{lm}
 
 \begin{proof}
-If $A=T^*T$, then $\bk{\xi|A\eta}=\bk{\xi|T^*T\eta}=\bk{T\xi|T\eta}$ for each $\xi,\eta\in\Dom(A)=\Dom(T)$. Conversely, if \eqref{eq244} holds, then for each $\eta\in\Dom(A)$, since \eqref{eq244} holds for all $\xi\in\Dom(T)$, the definition of adjoint operators shows that $T\eta\in\Dom(T^*)$ and $T^*T\eta=A\eta$. Therefore $A=T^*T$.
+If $A=T^*T$, then $\bk{\xi|A\eta}=\bk{\xi|T^*T\eta}=\bk{T\xi|T\eta}$ for each $\xi,\eta\in\Dom(A)=\Dom(T)$. 
+
+Conversely, if \eqref{eq244} holds, then for each $\eta\in\Dom(A)$, since \eqref{eq244} holds for all $\xi\in\Dom(T)$, the definition of adjoint operators shows that $T\eta\in\Dom(T^*)$ and $T^*T\eta=A\eta$. This, together with the fact $\Dom(T^*T)\subset\Dom(T)=\Dom(A)$, implies $A=T^*T$.
 \end{proof}
 
 
