@@ -135,7 +135,9 @@ window.MathJax = {
 
 注：Sp(T)与σ(T)的关系（Rem. 6.10.13）忘记讲了，下次课讲。强交换判定法则（Prop. 6.10.7和6.10.8）留到以后讲。
 
-- 5/12
+21) 5/12 Sp(T)与$(\lambda-T)^{-1}\in\mathfrak L(H)$ 的关系，正自伴算子，$T^\star T$ 是正自伴算子， $\mathscr D(T^\star T)$ 是T的核，闭算子的极分解，Dirichlet Laplacian与Neumann Laplacian，抽象梯度算子，Friedrichs扩张
+
+讲义章节：
 
 - 5/14
 
