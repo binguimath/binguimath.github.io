@@ -137,7 +137,9 @@ window.MathJax = {
 
 21) 5/12 Sp(T)与$(\lambda-T)^{-1}\in\mathfrak L(H)$ 的关系，正自伴算子，$T^\star T$ 是正自伴算子， $\mathscr D(T^\star T)$ 是T的核，闭算子的极分解，Dirichlet Laplacian与Neumann Laplacian，抽象梯度算子，Friedrichs扩张
 
-讲义章节：
+讲义章节：6.10里的Remark 6.10.13，7.1，7.2.1
+
+注：关于Friedrichs扩张，我们只提了如何用抽象梯度算子构造。唯一性（例如Prop. 7.2.4，以及Thm. 7.2.5中的唯一性部分）以及更多的基本性质（7.2.2小节里从Thm. 7.2.9开始的部分）不做要求。
 
 - 5/14
 
