@@ -5,7 +5,7 @@ I am now an assistant professor at Tsinghua University, Yau Mathematical Science
 
 My name in Chinese: 归斌/歸斌
 
-Email : <br>
+Email: <br>
 binguimath(at)gmail(dot)com  &nbsp;&nbsp;&nbsp;&nbsp;(preferred) <br>  bingui(at)tsinghua(dot)edu(dot)cn
 
 
