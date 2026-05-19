@@ -147,7 +147,7 @@ window.MathJax = {
 
 注：讲义7.A中对于向量值函数积分的处理比较一般，实际上这门课会遇到的积分都是紧支集连续函数的积分，因此可以用黎曼积分来理解。所以基本上只需要看7.A.1中的内容就行了。课上用到的 $$\langle \eta\vert\int fdt\rangle=\int \langle \eta\vert f\rangle dt$$ 可以用黎曼和逼近来证明。
   
-23) 5/19 酉算子与自伴算子交换=酉算子与Cayley变换交换=酉算子与单参数酉群交换（Prop. 6.10.7, 7.3.12），Stone定理证明完成，$\mathbb R^N$的强连续酉表示转化为卷积代数$C_c(\mathbb R^N)$的酉表示，Fourier变换的L1理论，$\mathbb R^N$卷积代数酉表示=Fourier变换的Borel函数演算
+23) 5/19 酉算子与自伴算子交换=酉算子与Cayley变换交换=酉算子与单参数酉群交换（Prop. 6.10.7, 7.3.12），Stone定理证明完成，$\mathbb R^N$的强连续酉表示转化为卷积代数$C_c(\mathbb R^N)$的酉表示，Fourier变换的L1理论，$\mathbb R^N$卷积代数酉表示=Fourier变换的Borel函数演算（即$\int f(t)e^{-i T_\bullet}dt=\widehat f(T_\blt)$）
 
 讲义章节：6.10.2（主要是Prop. 6.10.7），7.3.4，7.4.1，7.4.3，7.4.4，7.5.1
 
