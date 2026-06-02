@@ -165,7 +165,9 @@ window.MathJax = {
 
 讲义章节：7.9.6，7.9.7，8.1
 
-- 6/2
+- 6/2 全连续sesquilinear form及其基本性质，L^2 kernel定义全连续sesquilinear form，Hilbert-Schmidt定理及其证明（form方法）
+
+讲义章节：8.2（除8.2.3），8.3
 
 - 6/4
 
