@@ -100,7 +100,6 @@ See [this page](https://binguimath.github.io/Pages/Publications.html) for the fu
 2025 (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) How are pseudo-q-traces related to (co)ends? `arXiv:2508.04532` [Preprint](https://binguimath.github.io/Files/2025_Pseudotraces.pdf)
 
 
-2026 Minkowskian open/closed conformal field theory possibly without vacuum: the Cardy case. In preparation.
 
 ### Earlier representative works
 
