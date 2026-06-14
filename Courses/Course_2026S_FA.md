@@ -179,7 +179,9 @@ window.MathJax = {
 
 注：我们课上没时间将Prop. 8.7.8 了（紧算子特征值收敛到0），请大家自行阅读讲义。
 
-- 6/11
+30) 6/11 紧图投影的无界算子，紧图投影的基本判定方法，有紧预解式的无界算子，无界算子的Hilbert-Schmidt定理与Fredhol Alternative，有界开集上Dirichlet Laplacian有紧预解式，Fredholm Alternative在椭圆方程的用法，Poincare不等式（只提了结论）
+
+讲义章节：8.8，8.9
 
 
 
