@@ -156,19 +156,11 @@
 \newtheorem*{axiom}{Axiom}
 \newtheorem{sett}[df]{Setting}
 \newtheorem{coa}[df]{Theorem}
-\newtheorem{srem}[df]{$\star$ Remark}
-\newtheorem{seg}[df]{$\star$ Example}
-\newtheorem{sexe}[df]{$\star$ Exercise}
-\newtheorem{sdf}[df]{$\star$ Definition}
 \newtheorem{que}[df]{Question}
+\newtheorem{prob}[df]{Problem}
 
 
 
-\newtheorem{prob}{\color{red}Problem}[section]
-%\renewcommand*{\theprob}{{\color{red}\arabic{section}.\arabic{prob}}}
-\newtheorem{sprob}[prob]{\color{red}$\star$ Problem}
-%\renewcommand*{\thesprob}{{\color{red}\arabic{section}.\arabic{sprob}}}
-% \newtheorem{ssprob}[prob]{$\star\star$ Problem}
 
 
 
@@ -180,6 +172,9 @@
 \newtheorem{co}[df]{Corollary}
 \newtheorem{lm}[df]{Lemma}
 \newtheorem{sthm}[df]{$\star$ Theorem}
+\newtheorem{mrs}[df]{Main Result}
+
+
 
 \newtheorem{cond}{Condition}
 \newtheorem{Mthm}{Main Theorem}
@@ -542,7 +537,7 @@ For any conformal net, not necessarily rational, we construct the associated Car
 
 One of the ultimate goals in the mathematical study of two-dimensional conformal field theory (CFT) is the rigorous construction of the theory describing both open and closed strings, known as an \textbf{open/closed CFT} or \textbf{full/boundary CFT}. Like ordinary quantum field theories, a CFT can be formulated either on Euclidean or on Minkowskian spacetimes.  
 
-In the Euclidean setting, the theory is defined on compact Riemann surfaces with physical boundaries, together with parametrized boundary circles and intervals, and is required to satisfy Segal's axioms (cf. \cite{Seg88,Seg04}). In the Minkowskian setting, particularly in the framework of algebraic quantum field theory (AQFT), the theory is defined on the Minkowski spacetimes $\Rcl=(\Rbb/2\pi\Zbb)\times\Rbb$ and $\Rop=[0,\pi]\times\Rbb$ and is required to satisfy e.g. the axioms of a Haag--Kastler net in \cite{Haag96}.
+In the Euclidean setting, the theory is defined on compact Riemann surfaces with physical boundaries, together with parametrized boundary circles and intervals, and is required to satisfy Segal's axioms (cf. \cite{Seg88,Seg04}). In the Minkowskian setting, particularly in the framework of algebraic quantum field theory (AQFT), the theory is defined on the Minkowski spacetimes $\Rcl=(\Rbb/2\pi\Zbb)\times\Rbb$ and $\Rop=[0,\pi]\times\Rbb$ and is required to satisfy e.g. the axioms of a Haag--Kastler net in \cite{Haag96}.\footnote{In the standard AQFT literature, the spacetime for the open CFT is usually taken to be the half-plane $[0,+\infty)\times\Rbb$ rather the strip $[0,\pi]\times\Rbb$ . We will discuss this difference in more detail in Sec. \ref{lb159}.}
 
 
 
@@ -560,9 +555,9 @@ However, the frameworks developed in the previously mentioned approaches do not 
 where $(X,\mu)$ is a measure space and $\MH_x,\MK_x$ are (irreducible) representations of the chiral and antichiral algebras. The most prominent example is Liouville CFT, which has recently been constructed rigorously in the Euclidean setting using probabilistic methods; see \cite{KRV20,GKRV24,GKRV21} for the closed theory, and \cite{RZ22,ARS25,ARSZ23,GRW24} for the open theory (whose construction is still being completed).
 
 Liouville CFT is regarded as a Cardy-type open/closed CFT associated with the chiral algebra $\Vir_c$, the unitary Virasoro algebra (or Virasoro conformal net) with central charge $c=1+6Q^2$ where $Q=b+b^{-1}$ (and hence $c\geq 25$). Its closed-string state space decomposes, as a $\Vir_c\otimes\Vir_c$-module, as
-\begin{align*}
+\begin{align}\label{eq83}
 \Hcl\simeq\int_{\Rbb_{\geq0}}^\oplus \MH_{\frac{Q^2}4+P^2}\otimes\ovl{\MH_{\frac{Q^2}4+P^2}}~dP
-\end{align*}
+\end{align}
 where, for each $h\geq0$, $\MH_h$ denotes the Hilbert-space completion of the irreducible positive-energy representation of $\Vir_c$ with lowest weight $h$. Besides its continuous spectrum, a remarkable feature of Liouville CFT is that \uwave{the vacuum vector does not belong to the state space $\Hcl$}. In fact, the vacuum vector (which has conformal weight $0$)  does not even exist as a distributional state in $\Hcl$, since the lowest weight of $\Hcl$ is strictly positive. 
 
 
@@ -577,7 +572,7 @@ Using either the theory of conformal nets or VOAs, and in either the Minkowskian
 
 
 
-\subsection{A general framework for Minkowskian open/closed CFT}
+\subsection{A general framework for Minkowskian open/closed CFT}\label{lb163}
 
 
 The goal of the present paper is to provide a positive answer to Question \ref{lb152} for Minkowskian CFTs using the conformal net method, at least for Cardy-type CFTs. See \cite{HT26} for an approach to Euclidean CFTs of Cardy-type, also based on conformal nets. We expect that, by extending the results for conformal nets to nonlocal chiral (i.e. one-dimensional) nets, the framework developed here can eventually be generalized to non-Cardy-type Minkowskian CFTs.
@@ -600,7 +595,7 @@ The left action of $\Bopi$ and the right action of $\Bopj$ on $\Hopij$ are, in a
 
 
 If $\ovl{\Hopij}$ denotes the conjugate of $\Hopij$, one expects a canonical equivalence
-\begin{subequations}
+\begin{subequations}\label{eq80}
 \begin{align}
 \Hopji\simeq\ovl{\Hopij}
 \end{align}
@@ -670,6 +665,134 @@ The interpretations of the three forms of Haag duality discussed above are summa
 
 
 
+We now consider the case where the CFT is of \textbf{Cardy-type}, meaning that there exists a boundary condition, denoted by $0$, such that, upon setting
+\begin{align*}
+\MA:=\Bop{0}\qquad\MH_0:=\Hop{0,0}
+\end{align*}
+$\MA$ is a local chiral net (i.e. a conformal net) with vacuum module $\MH_0$ containing a vacuum vector $\Omega$. Each boundary condition $i$ then determines a right $\MA$-module (also called solitonic $\MA$-module)
+\begin{align*}
+\MH_i:=\Hop{i,0}
+\end{align*}
+As in \cite{FFFS02}, we restrict for simplicity to those boundary conditions $i$ for which $\MH_i$ is a local $\MA$-module, simply called an $\MA$-module. Then \eqref{eq80} implies $\Hop{0,j}\simeq\ovl{\MH_j}$, and hence
+\begin{align}\label{eq81}
+\Hopij\simeq\MH_i\boxtimes_\MA\ovl{\MH_j}
+\end{align}
+
+
+The main results of this paper are summarized as follows:
+
+\begin{mrs}\label{lb157}
+Let $\MA$ be any conformal net with vacuum module $\MH_0$. 
+\begin{enumerate}[label=(\arabic*)]
+\item We construct the closed-string state space $\Hcl$ as an $\Maa$-module. See Def. \ref{lb155}. Moreover, we construct the net $\Bcl$ on the spacetime $\Rcl$, acting on the Hilbert space $\Hcl$. See Def. \ref{lb64} and \ref{lb74}. 
+\item We prove that the pair $(\Bcl,\Hcl)$ satisfies the usual properties required of a Haag--Kastler net, except for the existence of a vacuum. See Thm. \ref{lb72}.
+\item We prove that $\Bcl$ satisfies the bulk-bulk Haag duality. See Thm. \ref{lb115}.
+\end{enumerate}
+\end{mrs}
+
+\begin{mrs}\label{lb158}
+For each pair of $\MA$-modules $\MH_i,\MH_j$, define the $\MA$-module $\Hopij$ by \eqref{eq81}, i.e., $\Hopij:=\MH_i\boxtimes_\MA\ovl{\MH_j}$.
+\begin{enumerate}[label=(\arabic*)]
+\item We construct the non-local chiral net $\Bopi$ on the spacetime $\Rbb$, acting on the state space $\Hop{i,i}$. See Def. \ref{lb112}. We prove that the pair $(\Bopi,\Hopii)$ satisfies the usual properties required of a Haag--Kastler net, except for the existence of a vacuum. See Thm. \ref{lb114}.
+
+\item We construct the left and right actions of $\Bopi$ and $\Bopj$ on $\Hopij$. See Def. \ref{lb118}. We prove that these actions satisfy the usual requirements for representations of Haag--Kastler nets, and we prove the boundary-boundary Haag duality. See Thm. \ref{lb119}.
+
+\item We construct the action of $\Bcl$ (restricted to the spacetime $\Int\Rcl$) on $\Hopij$. See Def. \ref{lb120} and Thm. \ref{lb149}. We show that the joint actions of $\Bopi$, $\Bopj$, and $\Bcl$ on $\Hopij$ satisfy the usual requirements for representations of Haag--Kastler nets, and we prove the bulk-boundary Haag duality. See Thm. \ref{lb149} and \ref{lb153}.
+\end{enumerate}
+\end{mrs}
+
+Moreover, a brief discussion of the nets of algebroids of boundary operators changing boundary conditions is given in Sec. \ref{lb156}.
+
+
+\subsection{Proof strategies}\label{lb159}
+
+
+Since Main Result \ref{lb158} is relatively easier to obtain than Main Result \ref{lb157}, we focus here on the main idea behind the proof of Main Result \ref{lb157}, namely, the construction of the closed CFT. We also explain why the existing techniques from operator algebras and AQFT cannot be applied directly, and how we overcome the resulting difficulties.
+
+
+Adapting the construction of \cite{LR04}, it is not difficult to construct the action of the bulk net $\Bcl$ (restricted to $\Int\Rop$) on $\Hop{00}=\MH_0$ in terms of relative commutants. Indeed, this construction is simply a reformulation of the bulk-boundary Haag duality for the left and right actions of $\Bop{0}=\MA$ together with the action of $\Bcl$ on $\Hop{0,0}$. 
+
+Already at this stage, however, an important difference emerges between our approach and those taken in most of the AQFT literature. In almost all previous AQFT works, the spacetime for the open-string theory is taken to be $[0,+\infty)\times\Rbb$. In other words, the open string is modeled by the interval $[0,+\infty)$, which has a single boundary component $\{0\}$, rather than by the interval $[0,\pi]$, which has two boundary components. There are several reasons for adopting the latter viewpoint.
+
+First, it is more compatible with the techniques developed in this paper, in particular the theory of crossed categorical extensions of conformal nets. Second, it is consistent with the Euclidean CFT literature \cite{FFFS02,FRS02,FRS05,FFRS06,HK07,Kong07,Kong08a,Kong08b}, where open strings are likewise modeled by intervals with two boundary components. Third, only by working with strings having two boundary components can one formulate the Morita equivalence of non-local nets in terms of boundary-boundary Haag duality, thereby avoiding the machinery of Q-systems/Frobenius algebras.
+
+
+This brings us to a fundamental difficulty encountered by previous AQFT approaches when moving beyond discrete-type CFTs. Those approaches rely heavily on Q-systems, which work perfectly for rational CFTs, and in some cases also for irrational discrete-type CFTs or QFTs (see, for example, \cite{Mas00,DVG18}). In particular, the bulk net $\Bcl$ on the entire spacetime $\Rcl$, together with the state space $\Hcl$, was constructed in \cite{LR04} using the Longo--Rehren Q-system introduced in \cite{LR95} and later generalized in \cite{Reh00}. Even the construction of $\Bcl$ and $\Hcl$ in \cite{LR09}, which does not explicitly use Q-systems, still relies on the existence of a conditional expectation between a pair of subfactors. However, since the closed-string state space of a general CFT need not contain a vacuum vector, there is no reason to expect such a conditional expectation to exist.
+
+
+Our approach in this paper is based on the following simple observation. Let $\fk H$ be a faithful right $\MN$-module where $\MN$ is a von Neumann algebras. Let $\mc N'$ denote the commutant of $\MN$, acting on the left of $\fk H$. By \cite[Sec. IX.3]{Tak03}, the Hilbert space $\fk H\boxtimes_\MN\ovl{\fk H}$ carries a canonical structure of $\MN'$-$\MN'$ bimodule that is unitarily equivalent to $L^2(\MN')$. Moreover, although not stated explicitly there, this unitary equivalence pulls back the modular conjugation on $L^2(\MN')$ to an involutive antiunitary operator $\Theta$ on $\fk H\boxtimes_\MN\ovl{\fk H}$, which, roughly speaking, sends $\xi\boxtimes\ovl\eta$ to $\eta\boxtimes\ovl\xi$. It follows from the Tomita--Takesaki theory that the left and right actions of $\MN'$ on $\fk H\boxtimes_\MN\ovl{\fk H}$ are mutual commutants, and that $\Ad_\Theta$ interchanges the left and right actions.
+
+
+The construction of the bulk net $\Bcl$ on $\Hcl$ from the action of the bulk net (restricted to the interior of $\Rop$) on $\Hop{0,0}$ resembles the construction of the $\MN'$-$\MN'$ bimodule $\fk H\boxtimes_\MN\ovl{\fk H}$ from the $\MN'$-$\MN$ bimodule $\fk H$. This analogy can be made precise by taking $\MN=\Maa(\wtd I)$ and $\fk H=\MH_\sqz$. Here, $\wtd I$ is an arg-valued interval (cf. Def. \ref{lb160}), and $\MH_\sqz$ is the canonical permutation-twisted $\Maa$-module associated with the $\MA$-module $\MH_0$ (cf. Def. \ref{lb52}), whose sector-theoretic counterpart was first introduced in \cite{LX04}. A crucial difficulty, however, is that $\Hcl$ should be independent of the choice of $\wtd I$, and the action of $\Bcl$ on $\Hcl$ must be compatible with the underlying geometry of both $\Sbb^1$ and $\Rcl$.
+
+
+This is precisely why, unlike previous approaches in the AQFT literature, we work within the framework of \textbf{categorical extensions of conformal nets}, first introduced in \cite{Gui21a} and later generalized to the twisted setting in \cite{MS26a,MS26b}. This framework is particularly well suited to handling the geometry of $\Sbb^1$, whereas the sector-theoretic approach often requires removing a point from $\Sbb^1$, which is inconvenient in the present context.
+
+
+However, even with the geometric flexibility provided by the (crossed) categorical extensions of conformal nets, the resulting net $\Bcl$ is initially defined only on $(-\pi,\pi)\times\Rbb$, and the corresponding action of $\Bcl$ on $\Hcl$ satisfies only some local versions of conformal covariance on $(-\pi,\pi)\times\Rbb$, see Sec. \ref{lb144}. The most nontrivial part of the proof of Main Result \ref{lb157}, carried out in Sec. \ref{lb161} and \ref{lb100}, is to extend this construction to a net $\Bcl$ on  the entire spacetime $\Rcl$, acting on $\Hcl$ and satisfying global conformal covariance. In particular, if $O$ is a double cone contained in $(-\pi,\pi)\times\Rbb$, and if, for each $s\in\Rbb$, we let $\Ucl(\varrho_c(s),\varrho_c(-s))$ denote the unitary operator on $\Hcl$ implementing translation by $s$ units along the $x$-direction (as in the main body of this paper), then we should have
+\begin{align}\label{eq82}
+\Ad_{\Ucl(\varrho_c(2\pi),\varrho_c(-2\pi))}\big(\Bcl(O)\big)=\Bcl(O)
+\end{align}
+
+
+In the AQFT literature, when dealing with rational conformal nets, global conformal covariance such as \eqref{eq82} is established by first obtaining a concrete irreducible decomposition of the $\Maa$-module $\Hcl$, and then verifying $\Ucl(\varrho_c(2\pi),\varrho_c(-2\pi))=1$ componentwise. In our approach, we are not able to prove this, and so we leave this as a problem to be solved:
+
+\begin{prob}\label{lb162}
+Let $\MA$ be any conformal net. Prove that  $\Ucl(\varrho_c(2\pi),\varrho_c(-2\pi))$, the unitary operator on $\Hcl$ implementing translation by $2\pi$ along the $x$-axis, is the identity.
+\end{prob}
+
+
+Although we are unable to solve Problem \ref{lb162}, we can nevertheless prove \eqref{eq82} by exploiting the Tomita--Takesaki-type result for $\Theta$ mentioned above, together with the relationship between $\Theta$ and the translation group. In fact, \eqref{eq82} arises as a byproduct of our proof of the PCT symmetry and Haag duality for the double cone $O_\rightarrow$ and its spacelike complement $O_\leftarrow$, illustrated in Fig. \ref{fig2}. The proof, given in Sec. \ref{lb161}, of the PCT symmetry and Haag duality for $O_\rightarrow$ and $O_\leftarrow$, together with the resulting implication that these regions satisfy \eqref{eq82} (cf. Lem.~\ref{lb92}), is, in our view, the most novel part of the construction of open/closed CFT presented in this paper, although it is by no means the most technical.
+
+
+
+Having established the results in Sec. \ref{lb161} and proving the global conformal covariance on $\Rcl$, one can readily deduce the bulk-bulk Haag duality for a single double-cone (and its causal complement). Once this case is established, the extension to multi-double-cones follows straightforwardly from the split property of $\MA$, see Sec. \ref{lb145}. In other words, the main difficulty in proving bulk-bulk Haag duality for closed CFT lies in the case of a single double cone. For rational closed CFTs, this single-double-cone duality can still be proved even without modular invariance, because the state space contains a vacuum vector and hence the Bisognano--Wichmann theorem can be applied. In our setting, however, the state space $\Hcl$ does not in general admit a vacuum vector, so the Bisognano--Wichmann theorem is not available. Therefore, the crucial argument in Sec. \ref{lb161} is indispensable.
+
+
+
+\subsection{Future directions}
+
+
+It is, of course, desirable to generalize the constructions in this paper to Minkowskian open/closed CFTs that are not of Cardy type. To achieve this, one needs to develop a theory of Connes fusion for modules over non-local chiral nets, together with the corresponding theory of categorical extensions. However, unlike the case of conformal nets, the vacuum module of a non-local net (for example, $\Hopii$ for $\Bopi$) generally does not contain a vacuum vector, just as the closed state space does not. It is therefore far from clear how to develop a theory of Connes fusion that is compatible with the geometry of the circle, as was accomplished for conformal nets in \cite{Gui21a,MS26a,MS26b}.
+
+
+In addition, one should show that Connes fusion defined using Morita equivalent non-local nets yields equivalent theories. This expectation is suggested by the discussion in Sec. \ref{lb163}, where $\Bopi$ and $\Bopj$ are Morita equivalent via the bimodule $\Hopij$, and hence
+\begin{align*}
+\Hop{k,i}\boxtimes_{\Bopi}\Hop{i,l}\simeq \Hop{k,l}\simeq \Hop{k,j}\boxtimes_{\Bopj}\Hop{j,l}
+\end{align*}
+This suggests that the corresponding Connes fusion theories should be equivalent, with the equivalence implemented by
+\begin{gather*}
+\Hop{k,i}\mapsto\Hop{k,j}\qquad \Hop{i,l}\mapsto\Hop{j,l}
+\end{gather*}
+that is, implemented by
+\begin{gather*}
+\Hop{k,i}\mapsto\Hop{k,i}\boxtimes_{\Bopi}\Hopij\qquad \Hop{i,l}\mapsto \Hopji\boxtimes_{\Bopi}\Hop{i,l}
+\end{gather*}
+
+
+Moreover, one should establish that two non-local nets are Morita equivalent (in the sense of satisfying boundary-boundary Haag duality) if and only if the closed CFTs generated by them are equivalent. This would generalize the result that two (special symmetric) Frobenius algebras in a modular fusion category are Morita equivalent if and only if their centers are equivalent; cf. \cite{KR08}. In fact, the theory of Minkowskian open/closed CFT should be viewed as a highly infinite analogue of the theory of Q-systems or Frobenius algebras, much as measure theory is a highly infinite generalization of finite-dimensional commutative algebras. Just as, in the latter setting, one must distinguish between the roles of $L^\infty$ and $L^2$, in the former one should distinguish between nets of algebras and Hilbert spaces.
+
+
+
+Returning to Cardy-type CFT, another future direction is to relate the construction in this paper to those arising from the probabilistic approach. For example, one should show that when $\MA$ is the Virasoro net with central charge $c=1+6Q^2$, where $Q=b+b^{-1}$, the $\Maa$-module $\Hcl$ decomposes as in \eqref{eq83}. This would identify the closed-string state space constructed in this paper with the one appearing in the literature on Liouville CFT.
+
+Moreover, as suggested by \eqref{eq81}, determining the open-string state space $\Hopij$ requires computing the Connes fusion $\MH_i\boxtimes_\MA\MH_{\ovl j}$ for Virasoro modules $\MH_i,\MH_j$, a problem proposed and studied in \cite{Tes01,Tes09}. Note also that, since $\Hcl$ is defined in this paper as the Connes fusion of the twisted $\Maa$-modules $\MH_\sqz\boxtimes\MH_{\ovl\sqz}$, proving \eqref{eq83} may itself be viewed as a problem of computing Connes fusion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -683,7 +806,7 @@ The interpretations of the three forms of Haag duality discussed above are summa
 \subsubsection*{Acknowledgment}
 
 
-I want to thank Andr\'e Henriques for encouraging me to think about understanding Liouville CFT from an operator-algebraic perspective, and for many inspiring discussions related to the topics of this paper. I am also grateful to Yi-Zhi Huang, Liang Kong, Adri\`a Mar\'in-Salvador, Xin Sun, J\"org Teschner, and Baojun Wu for many helpful discussions. This work was supported by NSFC Grant 12401159.
+I would like to thank Andr\'e Henriques for encouraging me to think about understanding Liouville CFT from an operator-algebraic perspective, and for many inspiring discussions related to the topics of this paper. I am also grateful to Yi-Zhi Huang, Liang Kong, Adri\`a Mar\'in-Salvador, Xin Sun, J\"org Teschner, and Baojun Wu for many helpful discussions. This work was supported by NSFC Grant 12401159.
 
 
 
@@ -838,11 +961,14 @@ We fix a group homomorphism $G\rightarrow\Aut(\MA)$ where $G$ is a discrete grou
 \end{align*}
 Hence $G$ gives rise to a group of automorphisms of each $\MA(I)$.
 
+\begin{df}\label{lb160}
 For each $I\in\MJ$, an \textbf{arg function} denotes a continuous function $\pmb{\arg_I}:I\rightarrow\Rbb$ such that $z=e^{\im\arg_I(z)}$ for all $z\in I$. An \textbf{arg-valued interval} denotes a pair
 \begin{align*}
 \wtd I=(I,\arg_I)
 \end{align*} 
 where $I\in\MJ$, and $\arg_I$ is an arg function of $I$. The set of arg-valued intervals is denoted by $\pmb{\Jtd}$.
+\end{df}
+
 
 Equivalently, $\wtd I$ is a connected component of the preimage of $I$ under the covering map $\Rbb\rightarrow \Rbb/2\pi\Zbb\simeq\Sbb^1$. Therefore, since the universal cover $\SG$ acts on $\Rbb$ (cf. \eqref{eq2}), it also acts on $\Jtd$. Through the quotient homomorphism $\GA\rightarrow\SG$, the group $\GA\simeq\Gc$ also acts on $\Sbb^1$, $\Rbb$, and $\Jtd$.
 
@@ -2360,7 +2486,7 @@ A similar argument proves the second identity.
 
 
 
-\begin{df}
+\begin{df}\label{lb155}
 Let $\Zbb_2\leq\Aut(\Maa)$ be generated by $\sigma$. Using the fusion product in $\Rep^{\Zbb_2}(\Maa)$, we define the untwisted $\Maa$-module
 \begin{align*}
 \pmb{\MHcl}:=\MH_{\sqz}\boxtimes\MH_{\ovl\sqz}
@@ -3025,7 +3151,7 @@ This is obvious.
 
 
 
-\subsection{PCT symmetry and Haag duality for $O_\leftarrow$ and $O_\rightarrow$}
+\subsection{PCT symmetry and Haag duality for $O_\leftarrow$ and $O_\rightarrow$}\label{lb161}
 
 
 
@@ -3919,7 +4045,7 @@ for each $g\in\Gc$ and $A\in\Bopi(\wtd I)$, noting that $\Theta_{i,\ovl i}A\Thet
 \end{thm}
 
 
-The Haag duality in this theorem admits an interpretation analogous to that in Rem. \ref{lb117}. Moreover, as a consequence of the isotony and the Haag duality, we obtain the \textbf{boundary-boundary locality}: if $\wtd J$ is clockwise to $\wtd I$, then
+The Haag duality in this theorem admits an interpretation analogous to that in Rem. \ref{lb117} and Fig. \ref{fig4}. Moreover, as a consequence of the isotony and the Haag duality, we obtain the \textbf{boundary-boundary locality}: if $\wtd J$ is clockwise to $\wtd I$, then
 \begin{align*}
 \big[\varpi^L_{\wtd I}\big(\Bopi(\wtd I)\big),\varpi^R_{\wtd J}\big(\Bopj'(\wtd J)\big)\big]=0
 \end{align*}
@@ -4391,7 +4517,7 @@ This follows from the faithfulness of the normal representation $\varpi_{ O}$, t
 
 
 
-\subsection{Nets of boundary algebroids changing the boundary conditions}
+\subsection{Nets of boundary algebroids changing the boundary conditions}\label{lb156}
 
 
 For each $\MH_i\in\RepA$, in Sec. \ref{lb131} and \ref{lb130}, we have considered the nets $\Bopi,\Bopi'$ of (left and right) boundary operators preserving the boundary condition $i$. From Def. \ref{lb112}, for each $\wtd I\in\Jtd$ we have isomorphisms
@@ -4875,22 +5001,20 @@ V. Benedetti, H. Casini, Y. Kawahigashi, R. Longo, and J. M. Magan.
 Modular invariance as completeness.
 Phys. Rev. D 110 (2024), no. 12, 125004.
 
-\bibitem[BE98]{BE98}
-J. B\"ockenhauer and D. E. Evans.
-Modular invariants, graphs and $\alpha$-induction for nets of subfactors I.
-Comm. Math. Phys. 197 (1998), no. 2, 361--386.
+%\bibitem[BE98]{BE98}
+%J. B\"ockenhauer and D. E. Evans. Modular invariants, graphs and $\alpha$-induction for nets of subfactors I. Comm. Math. Phys. 197 (1998), no. 2, 361--386.
 
 
-\bibitem[BE99a]{BE99a}
-J. B\"ockenhauer and D. E. Evans.
-Modular invariants, graphs and $\alpha$-induction for nets of subfactors. II.
-Comm. Math. Phys. 200 (1999), no. 1, 57--103.
+%\bibitem[BE99a]{BE99a}
+%J. B\"ockenhauer and D. E. Evans.
+%Modular invariants, graphs and $\alpha$-induction for nets of subfactors. II.
+%Comm. Math. Phys. 200 (1999), no. 1, 57--103.
 
 
-\bibitem[BE99b]{BE99b}
-J. B\"ockenhauer and D. E. Evans.
-Modular invariants, graphs and $\alpha$-induction for nets of subfactors. III.
-Comm. Math. Phys. 205 (1999), no. 1, 183--228.
+%\bibitem[BE99b]{BE99b}
+%J. B\"ockenhauer and D. E. Evans.
+%Modular invariants, graphs and $\alpha$-induction for nets of subfactors. III.
+%Comm. Math. Phys. 205 (1999), no. 1, 183--228.
 
 \bibitem[BKL15]{BKL15}
 M. Bischoff, Y. Kawahigashi, and R. Longo.
@@ -4909,6 +5033,11 @@ Comm. Math. Phys. 322 (2013), no. 1, 149--166.
 
 \bibitem[Car04]{Car04}
 S. Carpi. On the representation theory of Virasoro Nets. Comm. Math. Phys. 244 (2004), 261--284.
+
+\bibitem[DVG18]{DVG18}
+S. Del Vecchio and L. Giorgetti.
+Infinite index extensions of local nets and defects.
+Rev. Math. Phys. 30 (2018), 1850002.
 
 \bibitem[Eps70]{Eps70}
 D. B. A. Epstein.
@@ -5101,8 +5230,16 @@ A. Mar\'in-Salvador. Balanced tensor categories of representations of fixed-poin
 
 
 
+
 \bibitem[MTW18]{MTW18}
 V. Morinelli, Y. Tanimoto, and M. Weiner. Conformal covariance and the split property. Comm. Math. Phys. 357 (2018), no. 1, 379--406.
+
+
+
+\bibitem[Mas00]{Mas00}
+T. Masuda.
+Generalization of Longo--Rehren construction to subfactors of infinite depth and amenability of fusion algebras.
+J. Funct. Anal. 171 (2000), no. 1, 53--77.
 
 
 \bibitem[Mor20]{Mor20}
@@ -5120,6 +5257,11 @@ Adv. Math. 427 (2023), 109125.
 G. Remy and T. Zhu.
 Integrability of boundary Liouville conformal field theory.
 Comm. Math. Phys. 395 (2022), no. 1, 179--268.
+
+\bibitem[Reh00]{Reh00}
+K.-H. Rehren.
+Canonical tensor product subfactors.
+Comm. Math. Phys. 211 (2000), 395--406.
 
 \bibitem[Seg88]{Seg88}
 G. B. Segal.
@@ -5140,6 +5282,19 @@ Cambridge Univ. Press, Cambridge, 2004.
 
 \bibitem[Tak03]{Tak03}
 M. Takesaki. Theory of Operator Algebras II. Encyclopaedia Math. Sci., 125. Springer, Berlin, 2003.
+
+\bibitem[Tes01]{Tes01}
+J. Teschner.
+Liouville theory revisited.
+Class. Quantum Grav. 18 (2001), R153--R222.
+
+
+\bibitem[Tes09]{Tes09}
+J. Teschner.
+Nonrational conformal field theory.
+In New Trends in Mathematical Physics, 697--739.
+Springer, Dordrecht, 2009.
+
 
 
 \bibitem[Thu74]{Thu74}
