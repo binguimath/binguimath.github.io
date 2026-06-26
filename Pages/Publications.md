@@ -50,4 +50,4 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. (Joint with [Hao Zhang](https://zhanghao1999math.github.io/homepage/)) How are pseudo-q-traces related to (co)ends? `arXiv:2508.04532` [Preprint](https://binguimath.github.io/Files/2025_Pseudotraces.pdf)
 
-1. Minkowskian open/closed conformal field theory possibly without vacuum: the Cardy case. To appear on arXiv. [Preprint](https://binguimath.github.io/Files/2026_2d_ACFT.pdf).
+1. Minkowskian open/closed conformal field theory possibly without vacuum: the Cardy case. To appear on arXiv. [Preprint](https://binguimath.github.io/Files/2026_2d_ACFT.pdf)
