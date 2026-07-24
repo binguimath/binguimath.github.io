@@ -13,7 +13,7 @@ window.MathJax = {
 # Classical Mathematical Literature
 
 
-Below are some LaTeX and PDF files that I had ChatGPT create from early mathematical works that interest me. For works originally written in languages other than English, I also had ChatGPT translate them.
+Below are some LaTeX and PDF files that I had ChatGPT create from early mathematical works that interest me. For works originally written in languages other than English, I also had ChatGPT translate them into English.
 
 
 - 1936 Murray, von Neumann_On rings of operators
