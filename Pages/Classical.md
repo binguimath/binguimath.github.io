@@ -21,4 +21,9 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
 
 
+- 1936 von Neumann. On rings of operators, reduction theory.
+[tex](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.pdf)
+
+
 
