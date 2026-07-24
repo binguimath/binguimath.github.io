@@ -15,5 +15,9 @@ window.MathJax = {
 
 Below are some LaTeX and PDF files that I had ChatGPT create from early mathematical works that interest me. For works originally written in languages other than English, I also had ChatGPT translate them.
 
-- [Newest version](https://binguimath.github.io/Files/2025_FA.pdf)
+
+- 1936 Murray, von Neumann_On rings of operators
+[pdf](https://binguimath.github.io/Pages/Classical/1936 Murray, von Neumann_On rings of operators_GPT.pdf)
+
+
 
