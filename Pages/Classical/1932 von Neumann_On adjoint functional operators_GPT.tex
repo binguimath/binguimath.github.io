@@ -1,0 +1,1669 @@
+\documentclass[fontsize=13pt,paper=b5,leqno,bookmarkpackage=false]{scrartcl}
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman,english]{babel}
+\usepackage{newpxtext,newpxmath}
+\setkomafont{disposition}{\normalcolor\rmfamily\bfseries}
+\setkomafont{descriptionlabel}{\normalcolor\rmfamily\bfseries}
+\usepackage[
+  b5paper,
+  left=0.7cm,
+  right=0.7cm,
+  top=1.0cm,
+  bottom=1.0cm,
+  footskip=0.55cm
+]{geometry}
+\linespread{1.1}
+
+\usepackage{microtype}
+\usepackage{amsmath,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage[hang,flushmargin,multiple]{footmisc}
+\usepackage{manyfoot}
+\usepackage{xcolor}
+
+\definecolor{VNLinkBlue}{HTML}{1F4E79}
+\definecolor{VNCiteGreen}{HTML}{2E6B4E}
+\definecolor{VNUrlRed}{HTML}{9A3E45}
+\definecolor{VNTranslatorPurple}{HTML}{6A3D8E}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=VNLinkBlue,
+  citecolor=VNCiteGreen,
+  urlcolor=VNUrlRed,
+  filecolor=VNTranslatorPurple,
+  pdfauthor={J. von Neumann},
+  pdftitle={Über adjungierte Funktionaloperatoren / On Adjoint Functional Operators},
+  pdfsubject={Faithful English translation of the 1932 paper},
+  pdfkeywords={von Neumann, adjoint operators, unbounded operators, polar decomposition},
+  bookmarksopen=true,
+  bookmarksnumbered=true,
+  pdfstartpage=1,
+  unicode=true
+}
+\DeclareNewFootnote{T}
+\renewcommand{\thefootnoteT}{T\arabic{footnoteT}}
+\makeatletter
+\newcommand{\translatornotetarget}{%
+  \Hy@raisedlink{%
+    \hyper@anchorstart{\Hy@footnote@currentHref}\hyper@anchorend
+  }%
+}
+\makeatother
+\newcommand{\translatornote}[1]{%
+  \footnoteT{\translatornotetarget
+    \textcolor{VNTranslatorPurple}{\textit{Translator's note.}} #1}%
+}
+\newcommand{\translatornotemark}{\footnotemarkT}
+\newcommand{\translatornotetext}[1]{%
+  \footnotetextT{\translatornotetarget
+    \textcolor{VNTranslatorPurple}{\textit{Translator's note.}} #1}%
+}
+\newcommand{\fnref}[1]{\hyperref[fn:#1]{note~\ref*{fn:#1}}}
+\newcommand{\fnmarkref}[1]{%
+  \textsuperscript{\hyperref[fn:#1]{\ref*{fn:#1}}}%
+}
+\newcommand{\sourcepage}[1]{\par\phantomsection\label{src:#1}}
+
+\setlength{\parindent}{1.35em}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{4pt plus 2pt}
+\setlength{\belowdisplayshortskip}{4pt plus 2pt}
+\setlist{nosep,leftmargin=2.2em}
+\emergencystretch=1.5em
+\allowdisplaybreaks[2]
+
+\begin{document}
+\selectlanguage{english}
+\pdfbookmark[0]{Über adjungierte Funktionaloperatoren / On Adjoint Functional Operators}{bm:title}
+
+% --- Begin inlined translation_pages_01_06.tex ---
+% ======================================================================
+% Source page 294 (PDF page 1)
+% ======================================================================
+
+\phantomsection
+\label{article:on-adjoint-functional-operators}
+\begingroup
+\renewcommand{\thefootnote}{*}
+\begin{center}
+  {\Large\bfseries Über adjungierte Funktionaloperatoren\footnotemark[0]\par}
+  \vspace{0.35em}
+  {\Large\bfseries On Adjoint Functional Operators\par}
+  \vspace{0.75em}
+  {\scshape J. v. Neumann, Princeton\par}
+\end{center}
+\footnotetext[0]{Received December 9, 1931.}
+\endgroup
+
+\section*{Introduction}
+\label{sec:introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+\phantomsection
+\label{intro:1}
+\noindent\textbf{1.}
+Like several earlier papers,\footnote{\label{fn:1}%
+\hypertarget{bib:E}{\href{https://doi.org/10.1007/BF01782338}{%
+\emph{Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren}}}
+[\emph{General Eigenvalue Theory of Hermitian Functional Operators}],
+\emph{Math. Annalen} \textbf{102}, no.~1 (1929), pp.~49--131;
+\hypertarget{bib:A}{\href{https://doi.org/10.1007/BF01782352}{%
+\emph{Zur Algebra der Funktionaloperationen und Theorie
+der normalen Funktionaloperatoren}}} [\emph{On the Algebra of Functional Operations and
+the Theory of Normal Functional Operators}], \emph{Math. Annalen}
+\textbf{102}, no.~3 (1929), pp.~370--427;
+\hypertarget{bib:M}{\href{https://doi.org/10.1515/crll.1929.161.208}{%
+\emph{Zur Theorie der unbeschränkten Matrizen}}}
+[\emph{On the Theory of Unbounded Matrices}], \emph{Journal für Math.}
+\textbf{161}, no.~4 (1929), pp.~208--236;
+\hypertarget{bib:F}{\href{https://doi.org/10.2307/1968185}{%
+\emph{Über Funktionen von Funktionaloperatoren}}}
+[\emph{On Functions of Functional Operators}], \emph{Annals of Math.}
+\textbf{32}, no.~2 (1931), pp.~191--226. These papers will be cited
+repeatedly below, abbreviated respectively as E., A., M., and F.}
+this paper is devoted to operators on Hilbert space. The notation and
+concept formation follow the author's papers cited in
+\hyperref[fn:1]{note~\ref*{fn:1}}; in particular, the terminology to be
+used is developed in \hyperlink{bib:E}{E.}, pp.~63--78. Accordingly, an
+operator \(A\) is a
+function defined on a subset of the Hilbert space \(\mathfrak H\), with
+values in \(\mathfrak H\). In general, nothing further is required of an
+operator.
+
+The following definitions are essential (cf.\ the work just cited):
+
+\begin{description}
+\item[\textbf{I.}]
+An operator \(A\) is \emph{defined everywhere} if its domain is all of
+\(\mathfrak H\).
+
+\item[\textbf{II.}]
+\(A\) is an \emph{extension} of \(B\) if the domain of \(B\) is a subset
+of the domain of \(A\), and \(A\) and \(B\) agree on the former; that is,
+\(Af=Bf\) there. If their domains are equal, then \(A=B\); otherwise,
+\(A\) is a \emph{proper extension} of \(B\).
+
+\item[\textbf{III.}]
+\(A\) is \emph{linear} if, together with \(f_1,\ldots,f_n\), all
+\(a_1f_1+\cdots+a_nf_n\) belong to its domain,\footnote{\label{fn:2}%
+That is, the domain is a linear manifold.} and
+\[
+  A(a_1f_1+\cdots+a_nf_n)
+  =a_1Af_1+\cdots+a_nAf_n .
+\]
+
+\item[\textbf{IV.}]
+\(A\) is \emph{closed} if, for every sequence \(f_1,f_2,\ldots\) in its
+domain such that \(f_n\) converges to some \(f\) and \(Af_n\) converges
+to some \(f^*\) as \(n\to\infty\), the element \(f\) also belongs to the
+domain,\footnote{\label{fn:3}%
+The conclusion that the domain is a closed set would follow from this
+only if \(A\) were continuous. Conversely, continuity would follow from
+closedness only if \(\mathfrak H\) were compact, which it is not.
+(Cf.\ \hyperlink{bib:E}{E.}, p.~70, especially n.~29.)} and \(Af=f^*\).
+\end{description}
+
+The operators to be considered will in general not be defined
+everywhere. A certain minimum extent of the domain will, however, be
+desirable, namely the following:
+
+% ======================================================================
+% Source page 295 (PDF page 2)
+% ======================================================================
+
+\begin{description}
+\item[\textbf{V.}]
+\(A\) is a \emph{\(*\)-operator} if the closed linear manifold spanned by
+its domain is \(\mathfrak H\),\footnote{\label{fn:4}%
+This was required in \hyperlink{bib:E}{E.}, p.~70, Definition~6, for
+Hermitian operators, and in \hyperlink{bib:A}{A.}, pp.~405--406,
+Definitions~5 and~6, for normal operators.}
+that is, if no \(f\ne0\) is orthogonal to its domain.
+\end{description}
+
+We now consider the condition
+\begin{equation}
+  (f,Ag)=(f^*,g),
+  \tag*{\(*\)}\label{eq:intro-adjoint-condition}
+\end{equation}
+where \(f\) and \(f^*\) are regarded as fixed and \(g\) ranges over the
+entire domain of \(A\). For a given \(f\), there need not be an \(f^*\)
+satisfying \hyperref[eq:intro-adjoint-condition]{\(*\)}; for certain \(f\), however,
+there is one, for example \(f=0,\ f^*=0\). The fact that, whenever
+\hyperref[eq:intro-adjoint-condition]{\(*\)} is solvable, it has only one solution
+\(f^*\) is characteristic of \(*\)-operators.\footnote{\label{fn:5}%
+For from one solution \(f^*\) one obtains all the others as \(f^*+h\),
+where \(h\) ranges over all elements of \(\mathfrak H\) orthogonal to the
+domain of \(A\).} For these, and only for these, the following definition
+can therefore be made:
+
+\begin{description}
+\item[\textbf{VI.}]
+If \(A\) is a \(*\)-operator, then \(A^*\) is the following operator: its
+domain consists of those \(f\) for which
+\hyperref[eq:intro-adjoint-condition]{\(*\)} is solvable, and in that case
+\(A^*f=f^*\).
+\end{description}
+
+It is immediately apparent that \(A^*\), which, following the usual
+notion that it generalizes,\footnote{\label{fn:6}%
+Cf.\ \hyperlink{bib:E}{E.}, pp.~111--112, especially n.~64;
+\hyperlink{bib:A}{A.}, p.~372, n.~12, and p.~405, Definition~5.}
+is called the \emph{adjoint} of \(A\), is linear
+and closed. In general, however, we do not know whether it is defined
+anywhere other than at \(0\), still less whether it is a
+\(*\)-operator. It is evident that \(A^{**}\), if it can be formed
+(that is, if \(A^*\) is a \(*\)-operator), is an extension of \(A\).
+
+These notions permit a simpler description of certain concepts from
+\hyperlink{bib:E}{E.}:
+a Hermitian operator \(A\) is a \(*\)-operator for which \(A^*\) is an
+extension of \(A\); a hypermaximal operator is one for which \(A^*=A\)
+(\hyperlink{bib:E}{E.}, p.~70, Definition~6, and p.~72,
+Definitions~8 and~9).\footnote{%
+\label{fn:7}The equation \(A^*=A\) agrees with the term ``self-adjoint''
+used by \hypertarget{bib:Stone1930}{\href{https://doi.org/10.1073/pnas.16.2.172}{%
+M.~Stone, \emph{Proc. Nat. Acad.} \textbf{16} (1930), pp.~173--174}},
+for hypermaximal operators.}
+
+\phantomsection
+\label{intro:2}
+\noindent\textbf{2.}
+We shall show that a \(*\)-operator \(A\) can be extended to a closed
+linear operator \(B\) if and only if \(A^*\) is also a
+\(*\)-operator. Among all such \(B\) there is then a smallest one,
+that is, one of which every other is an extension; denote it by
+\(\widetilde A\). We have
+\[
+  \widetilde A^{\,*}=A^*,
+  \qquad
+  \widetilde A=A^{**}.
+\]
+Another criterion is as follows. Suppose there is a sequence of linear
+aggregates
+\[
+  a_1^{(\nu)}f_1^{(\nu)}+\cdots+
+  a_{n_\nu}^{(\nu)}f_{n_\nu}^{(\nu)}
+  \qquad
+  \bigl(\nu=1,2,\ldots;\ 
+  f_1^{(\nu)},\ldots,f_{n_\nu}^{(\nu)}
+  \text{ in the domain}\bigr)
+\]
+such that the aggregates themselves
+% ======================================================================
+% Source page 296 (PDF page 3)
+% ======================================================================
+tend to \(0\), while
+\[
+  a_1^{(\nu)}Af_1^{(\nu)}+\cdots+
+  a_{n_\nu}^{(\nu)}Af_{n_\nu}^{(\nu)}
+  \longrightarrow f^*
+  \qquad(\nu\to\infty).
+\]
+Then \(f^*=0\). If \(A\) is linear, this has the simpler form: if
+\(f_1,f_2,\ldots\) lie in the domain, \(f_n\to0\), and
+\(Af_n\to f^*\) as \(n\to\infty\), then \(f^*=0\).\footnote{%
+\label{fn:8}Continuity does not follow from this, because the existence
+of the limit \(f^*\) was assumed. Cf.\ \hyperref[fn:3]{note~\ref*{fn:3}}.}
+
+These operators are of particular interest:
+
+\begin{description}
+\item[\textbf{VII.}]
+\(A\) is a \emph{\(**\)-operator} if both \(A\) and \(A^*\) are
+\(*\)-operators.
+\end{description}
+
+If \(A\) is a \(**\)-operator, then \(\widetilde A\), since it extends
+\(A\) and \(\widetilde A^{\,*}=A^*\), is likewise a \(*\)-operator.
+Thus \(\widetilde A\) is linear and closed, is a \(**\)-operator, extends
+\(A\), and has the same adjoint as \(A\). We therefore obtain a complete
+survey of all \(**\)-operators by considering only the closed linear
+ones among them. By what was just said, these in turn are identical with
+the closed linear \(*\)-operators.
+
+Henceforth we shall therefore always consider closed linear
+\(*\)-operators. If \(A\) is such an operator, then, by the foregoing,
+\(A^*\) is one as well, and
+\[
+  A^{**}=A
+  \qquad\bigl(\text{since }\widetilde A=A\bigr).
+\]
+
+Now consider the operator \(A^*A\), defined as follows: if \(f\) lies in
+the domain of \(A\) and \(Af\) lies in the domain of \(A^*\), then
+\(A^*Af\) is defined and is equal to \(A^*(Af)\).
+
+From the definition it is clear that \(A^*A0\) is defined and equals
+\(0\), and also that \(A^*A\) is linear; its closedness is likewise easy
+to prove.\footnote{\label{fn:9}%
+From \(f_n\to f\) and \(A^*Af_n\to f^*\) it follows that, for
+\(m,n\to\infty\), \(A^*Af_m-A^*Af_n\to0\), and hence
+\[
+ \begin{aligned}
+ &(A^*Af_m-A^*Af_n,f_m-f_n)\\
+ &\qquad=(Af_m-Af_n,Af_m-Af_n)
+ =\lVert Af_m-Af_n\rVert^2\longrightarrow0 .
+ \end{aligned}
+\]
+Thus \(Af_m\) has a limit, say \(f'\). Since \(A\) is closed, \(Af\) is
+defined and equals \(f'\); since \(A^*\) is closed, \(A^*f'\) is defined
+and equals \(f^*\) (put \(Af_n=f'_n\)). Consequently \(A^*Af\) is
+defined and equals \(f^*\).}
+If \(A^*A\) is a \(*\)-operator, it is plainly Hermitian and
+definite.\footnote{\label{fn:10}%
+\((A^*Af,f)=(Af,Af)=\lVert Af\rVert^2\) is real and nonnegative;
+cf.\ \hyperlink{bib:E}{E.}, p.~70, Definition~6, and p.~74,
+Definition~10.}
+For the moment, however, there is no way to see whether the domain of
+\(A^*A\) contains any elements other than \(0\), or even whether it is a
+\(*\)-operator. This would be clear only if \(A\) and \(A^*\) were
+defined everywhere; but, as we shall show by adapting a familiar
+theorem of Toeplitz, that happens only when \(A\) and \(A^*\) are
+continuous.
+
+Nevertheless, we shall succeed in proving in full generality that
+\(A^*A\) is a \(*\)-operator, indeed a hypermaximal one. Replacing \(A\)
+by \(A^*\) shows that the same holds for \(AA^*\).
+
+It is useful to illustrate these relations by some examples. Realize
+Hilbert space as the space of all measurable
+% ======================================================================
+% Source page 297 (PDF page 4)
+% ======================================================================
+functions \(f(x)\) on the interval \(0\leq x\leq1\) for which
+\[
+  \int_0^1 |f(x)|^2\,dx<\infty
+\]
+(cf., for example, \hyperlink{bib:E}{E.}, pp.~108--109). Let
+\(\mathfrak A\) be the set of
+all continuous differentiable functions \(f(x)\) for which
+\[
+  \int_0^1 |f'(x)|^2\,dx<\infty,
+\]
+and which satisfy certain boundary conditions to be specified
+immediately; define \(A\) on \(\mathfrak A\) by \(Af=if'\). We allow the
+following boundary conditions:
+\begin{enumerate}
+\item No boundary conditions.
+\item \(f(1):f(0)=C\), where \(C\) is a prescribed number.
+\item \(f(1)=f(0)=0\).
+\end{enumerate}
+Correspondingly, we speak of
+\[
+  \mathfrak A_1,A_1;\qquad
+  \mathfrak A_{2,C},A_{2,C};\qquad
+  \mathfrak A_3,A_3.
+\]
+The operators \(A_1,A_{2,C},A_3\) are linear, nonclosed
+\(*\)-operators; \(A_1\) extends \(A_{2,C}\), and the latter extends
+\(A_3\).\translatornote{The source states the two extension relations in
+the opposite direction.  The domains just listed give
+\(\mathfrak A_3\subset\mathfrak A_{2,C}\subset\mathfrak A_1\), so the
+direction used here follows Definition~II.} No \(A_{2,C}\) is
+extended by any other \(A_{2,D}\). From
+\phantomsection
+\label{eq:intro-integration-by-parts}
+\begin{equation*}
+ \begin{aligned}
+ (Af,g)-(f,Ag)
+   &=i\int_0^1
+      \left(f'(x)\overline{g(x)}
+      +f(x)\overline{g'(x)}\right)\,dx\\
+   &=i\bigl(f(x)\overline{g(x)}\bigr)_0^1\\
+   &=i\left(f(1)\overline{g(1)}
+      -f(0)\overline{g(0)}\right)
+ \end{aligned}
+\end{equation*}
+it follows that \(A_1^*\) is an extension of \(A_3\), likewise
+\(A_{2,C}^*\) of \(A_{2,1/\overline C}\), and \(A_3^*\) of \(A_1\).
+Thus these three adjoints are \(*\)-operators, and hence
+\(A_1,A_{2,C},A_3\) are \(**\)-operators. Consequently,
+\phantomsection
+\label{eq:intro-differential-examples}
+\[
+  A_1^*=\widetilde A_1^{\,*},\qquad
+  A_{2,C}^*=\widetilde A_{2,C}^{\,*},\qquad
+  A_3^*=\widetilde A_3^{\,*}
+\]
+extend, respectively,
+\[
+  \widetilde A_3,\qquad
+  \widetilde A_{2,1/\overline C},\qquad
+  \widetilde A_1.
+\]
+It is not difficult to show--though we shall not enter into the matter
+more closely here--that the respective operators are in fact equal.
+It follows that \(\widetilde A_3\) is Hermitian but not hypermaximal;
+\(\widetilde A_{2,C}\) is Hermitian only when
+\(C=1/\overline C\), that is, \(|C|=1\), but is then also hypermaximal;
+\(\widetilde A_1\) is not Hermitian.\translatornote{The source interchanges
+the subscripts \(1\) and \(3\) in this sentence.  The adjoint relations
+immediately above, together with the boundary conditions, give the
+corrected order used here.} On the other hand, the three
+operators
+\[
+ \begin{aligned}
+ D_1
+   &=\widetilde A_1^{\,*}\widetilde A_1
+     =\widetilde A_3\widetilde A_1,\\
+ D_{2,C}
+   &=\widetilde A_{2,C}^{\,*}\widetilde A_{2,C}
+     =\widetilde A_{2,1/\overline C}\widetilde A_{2,C},\\
+ D_3
+   &=\widetilde A_3^{\,*}\widetilde A_3
+     =\widetilde A_1\widetilde A_3
+ \end{aligned}
+\]
+are all hypermaximal. For all three,\translatornote{The source prints
+\(Af=-f''\) here; the three operators under discussion are
+\(D_1,D_{2,C},D_3\), so \(D_jf=-f''\) is intended.}
+\(D_jf=-f''\) \((j=1,2,3)\); only the
+domains differ, their boundary conditions being:
+\begin{enumerate}
+\item For \(D_1\): \(f'(1)=f'(0)=0\).
+\item For \(D_{2,C}\):
+  \(f(1):f(0)=C,\quad f'(1):f'(0)=1/\overline C\).
+\item For \(D_3\): \(f(1)=f(0)=0\).
+\end{enumerate}
+These are indeed all admissible boundary conditions for the eigenvalue
+problem
+\[
+  -f''=\lambda f,
+\]
+which is equivalent to hypermaximality (cf.\
+\hyperlink{bib:E}{E.}, p.~49, n.~2, and p.~61).
+
+More general or more complicated examples (Sturm--Liouville problems,
+partial differential equations, and so forth) exhibit the same
+behavior.
+
+\phantomsection
+\label{intro:3}
+\noindent\textbf{3.}
+Since \(A^*A\) and \(AA^*\) are Hermitian, definite, and hypermaximal,
+there exists (as will be shown) one and only one Hermitian, definite,
+hypermaximal
+% ======================================================================
+% Source page 298 (PDF page 5)
+% ======================================================================
+operator \(B\), respectively \(C\), such that
+\[
+  B^2=A^*A,\qquad C^2=AA^*.
+\]
+It will be shown that \(B\) has the same domain as \(A\) and that always
+\(\lVert Bf\rVert=\lVert Af\rVert\); the same relation holds between
+\(C\) and \(A^*\). One can then construct an operator \(W\) which is
+essentially length-preserving (cf.\ below) and for which
+\phantomsection
+\label{eq:intro-polar-relations}
+\begin{equation*}
+ \begin{gathered}
+   A=WB=CW,\qquad
+   A^*=BW^*=W^*C,\\
+   C=WBW^*,\qquad
+   B=W^*CW .
+ \end{gathered}
+\end{equation*}
+As one sees, this is a decomposition of \(A\) and \(A^*\) analogous to
+the decomposition of a complex number \(z\) and its conjugate into a
+real factor \(\geq0\) (the absolute value) and a factor of absolute
+value \(1\). Indeed, in many respects the hypermaximal operators \(B\)
+and \(C\) behave like real numbers; definiteness corresponds to
+\(\geq0\), and length preservation to absolute value \(1\). The only
+striking point is that two different operators, \(B\) and \(C\),
+represent the absolute value; they are, however, carried into one
+another by the length-preserving mapping \(W\).\footnote{\label{fn:11}%
+For completely continuous operators,
+\hypertarget{bib:Schmidt1907}{\href{https://doi.org/10.1007/BF01449770}{%
+E.~Schmidt}} investigated the eigenvalue problems belonging to \(B\) and
+\(C\); cf.\ \emph{Math. Ann.} \textbf{63} (1907), pp.~433--476,
+\S\S~14--16.}
+
+For operators \(A,A^*\) defined everywhere (and hence continuous; cf.\
+above), this decomposition into \(B,C,W\) is trivial. It is noteworthy,
+however, that it persists for every closed linear \(*\)-operator \(A\),
+and that \(B\) and \(C\) always turn out to be hypermaximal. Thus, for
+example, if \(A\) is Hermitian and definite but not maximal, so that
+\(A^*\) is a proper extension of \(A\), and hence
+\(A^*A=B^2\) is an extension of \(A^2\), \(B\) is nevertheless
+hypermaximal. Thus \(B\ne A\), nor is \(B\) an extension of \(A\), since
+it has the same domain!
+
+On the basis of these results it is easy to show that \(B=C\) is
+characteristic of the normal operators \(A\), that is, of those
+admitting a complex eigenvalue representation
+(cf.\ \hyperlink{bib:A}{A.}, p.~406,
+Definition~6, and pp.~410--416, Theorems~17--19). Equivalently,
+\phantomsection
+\label{eq:intro-normality-condition}
+\[
+  B^2=C^2,
+  \qquad\text{or}\qquad
+  A^*A=AA^*.
+\]
+It is well known that this condition characterizes normality in
+finite-dimensional space\footnote{\label{fn:12}%
+\hypertarget{bib:Frobenius1877}{\href{https://doi.org/10.1515/crelle-1878-18788403}{%
+Frobenius, \emph{Journ. f. Math.} \textbf{84} (1877), pp.~51--54}}.}
+and for completely continuous operators on Hilbert
+space.\footnote{\label{fn:13}%
+\hypertarget{bib:HellingerToeplitz}{\href{https://doi.org/10.1007/978-3-663-15917-9}{%
+Hellinger and Toeplitz, \emph{Enzykl. d. Math. Wiss.}, II.C.13,
+pp.~1562--1563}}.}
+The author further showed that, in Hilbert space, it characterizes all
+continuous operators (\hyperlink{bib:E}{E.}, pp.~115--116;
+\hyperlink{bib:A}{A.}, p.~406; and the work cited
+above), but for general \(A\) he obtained there a condition of a
+different form. We now recognize \(A^*A=AA^*\) as characteristic in
+general; indeed, it is enough that \(A^*A\) be an extension of \(AA^*\),
+or conversely, since both operators are hypermaximal.
+
+\phantomsection
+\label{intro:4}
+\noindent\textbf{4.}
+If \(A\) is any linear operator, then on its domain \(\mathfrak A\) we
+can introduce a new metric by defining
+\[
+  \lVert f\rVert_A=\lVert Af\rVert.
+\]
+
+% ======================================================================
+% Source page 299 (PDF page 6)
+% ======================================================================
+
+For \(\mathfrak A\) to be dense in \(\mathfrak H\), \(A\) must be a
+\(*\)-operator; for it to be topologically complete in the new metric
+(at least relative to \(\mathfrak H\)),\footnote{\label{fn:14}%
+That is, \(\lVert f_m-f_n\rVert_A\to0\) as \(m,n\to\infty\) is to imply
+the existence in \(\mathfrak A\) of a
+\(\lVert\,\cdot\,\rVert_A\)-limit of \(f_1,f_2,\ldots\), insofar as a
+\(\lVert\,\cdot\,\rVert\)-limit exists in \(\mathfrak H\). If
+\(\lVert Af\rVert\geq\varepsilon\lVert f\rVert\) always holds for some
+fixed \(\varepsilon>0\), the latter restriction is superfluous.}
+\(A\) must be closed.\footnote{\label{fn:15}%
+This consideration of different metrizations in \(\mathfrak H\), as
+well as of topological completeness, was suggested by Mr.~K.~Friedrichs
+in a lecture that he gave to the Göttingen Mathematical Society in
+June 1931.}
+Thus we are led back to our class of operators: linear, closed, and
+\(*\).
+
+Two operators \(A_1,A_2\) determine the same metric if they have the
+same domain and
+\(\lVert A_1f\rVert=\lVert A_2f\rVert\) there. We then call them
+\emph{metrically equal} and write
+\[
+  A_1\underset{m}{=}A_2.
+\]
+If the domain of \(A_1\) is a subset of that of \(A_2\), and
+\(\lVert A_1f\rVert=\lVert A_2f\rVert\) on the former, then \(A_2\) is
+called a \emph{metric extension} of \(A_1\). If the domains are equal,
+then \(A_1\underset{m}{=}A_2\); otherwise, \(A_2\) is a \emph{proper
+metric extension} of \(A_1\).
+
+As we have seen, every \(A\) is metrically equal to a Hermitian,
+definite, hypermaximal \(B\), and one easily shows that \(B\) is uniquely
+determined by this property (cf.\ below).
+
+On the other hand, we shall show that every discontinuous operator \(A\)
+has proper metric extensions, even when it is unextendible in the
+ordinary sense, that is, maximal. Thus there is no maximality here!
+
+\phantomsection
+\label{intro:5}
+\noindent\textbf{5.}
+Our method will rest essentially on considering the space of all pairs
+\(\{f,g\}\), where \(f,g\) are arbitrary elements of \(\mathfrak H\).
+If we define
+\phantomsection
+\label{eq:intro-pair-space}
+\begin{equation*}
+ \begin{gathered}
+   a\{f,g\}=\{af,ag\},\\
+   \{f,g\}+\{h,k\}=\{f+h,g+k\},\\
+   \left(\!\left(\{f,g\},\{h,k\}\right)\!\right)
+      =(f,h)+(g,k),
+ \end{gathered}
+\end{equation*}
+so that
+\[
+  \lVert\{f,g\}\rVert^2=\lVert f\rVert^2+\lVert g\rVert^2,
+\]
+this is a Hilbert space, for the characteristic conditions A--E from
+\hyperlink{bib:E}{E.}, pp.~64--66, hold for it just as they do for
+\(\mathfrak H\). It
+stands in approximately the same relation to \(\mathfrak H\) as the
+plane does to the line; we shall denote it by \(H\). Every operator \(A\)
+on \(\mathfrak H\) can be represented in \(H\) by the set of all pairs
+\(\{f,Af\}\). This is the analogue of graphically representing, in the
+plane, functions defined on the real line. We shall call this set the
+\emph{image} of \(A\), and denote it by \(B_A\).
+
+It is immediately apparent that \(A=B\) means \(B_A=B_B\); that \(A\)
+is an extension of \(B\) means that \(B_A\), as a set, contains \(B_B\);
+that \(A\) is linear means that \(B_A\) is a linear manifold; and that
+\(A\) is closed means that \(B_A\), as a set, is closed.
+
+% --- End inlined translation_pages_01_06.tex ---
+% --- Begin inlined translation_pages_07_12.tex ---
+% --- Source page 300 (PDF page 7) ---
+
+We shall obtain our results by studying the graphs \(B_A\) in \(H\).
+Indeed, the whole theory of operators could be developed in \(H\) much more
+systematically than is done here; we shall not, however, pursue this point.
+
+\section*{I. The Operators \(A\), \(A^*\), \(A^*A\).}
+\label{sec:operators-aaastara}
+\addcontentsline{toc}{section}{\texorpdfstring{I. The Operators \(A\), \(A^*\),
+\(A^*A\)}{I. The Operators A, A*, A*A}}
+
+\phantomsection
+\label{subsec:I.1}
+\noindent\textbf{1.}
+As explained in \hyperref[intro:4]{Introduction~4}, we study the Hilbert
+space \(H\) and the graphs \(B_A\) in \(H\), in place of the operators \(A\)
+in \(\mathfrak H\).  We introduce in \(H\) the further operator
+\[
+  U\{f,g\}=\{ig,-if\}.
+\]
+It is Hermitian and unitary, that is,
+\(U=U^*=U^{-1}\) (and hence \(U^2=1\)).  Since
+\((f,Ag)=(f^*,g)\) can be written as
+\[
+  \left(\!\left(\{f,f^*\},U\{g,Ag\}\right)\!\right)=0,
+\]
+the relation \(A^*f=f^*\) says that \(\{f,f^*\}\) is orthogonal to
+\(UB_A\).  Thus \(B_{A^*}\) is the set of all elements of \(H\) orthogonal
+to \(UB_A\); it is therefore a closed linear manifold, and \(A^*\) is
+linear and closed.
+
+The existence of closed linear extensions of \(A\) means that there are
+closed linear manifolds \(B_B\) containing \(B_A\).  Now a subset of \(H\)
+can be a graph \(B_B\) provided that it never contains two elements
+\(\{f,f_1^*\}\), \(\{f,f_2^*\}\) with \(f_1^*\ne f_2^*\); equivalently,
+since the subsets in question are linear manifolds, provided that it never
+contains an element \(\{0,f^*\}\) with \(f^*\ne0\).  Hence one need only
+require that the smallest closed linear manifold containing \(B_A\), namely
+the closed linear manifold spanned by \(B_A\), contain no \(\{0,f^*\}\)
+with \(f^*\ne0\).  Replacing these notions by their definitions gives:
+
+\par\smallskip
+\phantomsection
+\label{thm:1}
+\noindent\textbf{Theorem 1.}
+\textit{The \(*\)-operator \(A\), with domain \(\mathfrak A\), has a closed
+linear extension \(B\) if and only if the following condition holds.  If
+all}
+\[
+  f_1^{(n)},\ldots,f_{\nu_n}^{(n)}
+  \qquad (n=1,2,\ldots)
+\]
+\textit{belong to \(\mathfrak A\), and if}
+\[
+  a_1^{(n)}f_1^{(n)}+\cdots+
+  a_{\nu_n}^{(n)}f_{\nu_n}^{(n)}\longrightarrow0,
+  \qquad
+  a_1^{(n)}Af_1^{(n)}+\cdots+
+  a_{\nu_n}^{(n)}Af_{\nu_n}^{(n)}
+  \longrightarrow f^*
+  \quad(n\to\infty),
+\]
+\textit{then \(f^*=0\).\footnote{\label{fn:16}The strong convergence used
+throughout here could equally well be replaced by weak convergence (see,
+for example, \hyperlink{bib:A}{A.}, pp.~378--381), since for linear
+manifolds (in this case \(B_A\) and \(B_B\)) strong closedness and weak
+closedness are equivalent, as
+\hypertarget{bib:Schmidt1908}{\href{https://doi.org/10.1007/BF03029116}{%
+E.~Schmidt}} showed in \emph{Rendiconti del Circolo Matematico di Palermo},
+\textbf{25} (1908), pp.~57--73.}  Moreover, among all such \(B\) there is a
+smallest one, of which all the others are extensions: namely, the operator
+for which \(B_B\) is the closed linear manifold spanned by \(B_A\).}
+
+Another criterion is obtained as follows.  If \(A^*\) is also a
+\(*\)-operator, then \(A^{**}\) exists; it is linear and closed and is
+plainly an extension of \(A\), so that \(\widetilde A\) exists.  Conversely,
+if \(\widetilde A\) exists, then \(B_{\widetilde A}\) is the closed linear
+manifold spanned by \(B_A\); correspondingly, \(UB_{\widetilde A}\) and
+\(UB_A\)
+% --- Source page 301 (PDF page 8) ---
+have the same orthogonal elements in \(H\), and hence
+\(\widetilde A^{\,*}=A^*\).  Furthermore,
+\(B_{\widetilde A^{\,*}}=B_{A^*}\) is the orthogonal complement of
+\(UB_{\widetilde A}\).  Here two closed linear manifolds are involved; see
+\hyperlink{bib:E}{E.}, p.~74.  Since \(U\) is unitary, \(U^2=1\), and
+orthogonal complementarity is a symmetric relation, \(B_{\widetilde A}\)
+is therefore the orthogonal complement of \(UB_{A^*}\).  In the terminology
+of \hyperref[intro:1]{Introduction~1}, this says that Definition~VI there,
+applied to \(A^{**}\), yields a unique operator, namely \(\widetilde A\).
+Thus \(A^*\) is itself a \(*\)-operator and
+\(A^{**}=\widetilde A\).  We have proved:
+
+\par\smallskip
+\phantomsection
+\label{thm:2}
+\noindent\textbf{Theorem 2.}
+\textit{The following condition is also necessary and sufficient for the
+existence of \(\widetilde A\): \(A^*\) is itself a \(*\)-operator
+(\(A\) was already assumed to be one).  In that case}
+\[
+  \widetilde A^{\,*}=A^*,
+  \qquad
+  \widetilde A=A^{**}.
+\]
+
+It should be noted that no relation whatever between the domains of \(A\)
+and \(A^*\) has been required or asserted.
+
+\par\smallskip
+\phantomsection
+\label{subsec:I.2}
+\noindent\textbf{2.}
+Let \(A\) now be a closed linear \(*\)-operator.  By
+\hyperref[thm:2]{Theorem~2}, \(A^*\) is one as well.  Since \(UB_A\) and
+\(B_{A^*}\) are orthogonal complements in \(H\), every element of \(H\)
+can be represented, in one and only one way, as the sum of an element of
+\(UB_A\) and an element of \(B_{A^*}\) (see, for example,
+\hyperlink{bib:E}{E.}, p.~74, Theorem~13).  Choose the element of \(H\) to
+be \(\{0,-if\}\).  Then
+\[
+  \{0,-if\}=\{iAg,-ig\}+\{h,A^*h\}
+\]
+has a unique solution, with \(g\) in the domain of \(A\) and \(h\) in that
+of \(A^*\).  Thus
+\[
+  iAg+h=0,
+  \qquad
+  -ig+A^*h=-if.
+\]
+It follows\translatornote{The
+source prints \(Ag=-ih\).  The first displayed equation gives
+\(h=-iAg\), which is also the sign used in the following calculation.}
+that \(h=-iAg\), equivalently \(Ag=ih\), so \(Ag\) also belongs to the domain of
+\(A^*\), and consequently
+\[
+  -if=-ig+A^*h=-i(g+A^*Ag)=-i(A^*A+1)g,
+  \qquad
+  (A^*A+1)g=f.
+\]
+The operator \(A^*A+1\) is therefore defined for sufficiently many \(g\)
+that its range is the whole Hilbert space.
+
+Its inverse \(D\), defined by \(Df=g\), is thus linear and everywhere
+defined.  Moreover,
+\[
+\begin{aligned}
+  (f,Df)
+    &=(A^*Ag+g,g)\\
+    &=(A^*Ag,g)+(g,g)\\
+    &=(Ag,Ag)+(g,g)
+     =\lVert Ag\rVert^2+\lVert g\rVert^2.
+\end{aligned}
+\]
+First, this quantity is real, so \(D\) is Hermitian.  Second, it is
+nonnegative and vanishes only when \(\lVert g\rVert^2=0\), that is, when
+\(g=0\) and \(f=(A^*A+1)g=0\); hence \(D\) is definite, and \(Df\ne0\)
+when \(f\ne0\).  Third, it is at least
+\(\lVert g\rVert^2=\lVert Df\rVert^2\), and therefore
+\[
+  \lVert Df\rVert^2
+  \le (f,Df)
+  \le \lVert f\rVert\,\lVert Df\rVert,
+  \qquad
+  \lVert Df\rVert\le\lVert f\rVert.
+\]
+Thus \(D\) is continuous.  To summarize: \(D\) is a Hermitian, definite,
+continuous operator; \(Df\ne0\) whenever \(f\ne0\); its entire spectrum
+lies
+% --- Source page 302 (PDF page 9) ---
+between \(0\) and \(1\),\footnote{\label{fn:17}The last assertion follows
+from
+\[
+  0\le(f,Df)\le\lVert f\rVert^2,
+\]
+by calculations similar to those in \hyperlink{bib:A}{A.}, p.~418.}
+and
+\[
+  A^*A+1=D^{-1}.
+\]
+It is now easy to infer the hypermaximality of \(A^*A+1\).  For example,
+if \(f\) is orthogonal to every \(Dk\), then \(Df\) is orthogonal to every
+\(k\), because \(D\) is Hermitian and everywhere defined.  Hence
+\(Df=0\) and \(f=0\).  Thus the orthogonal complement of the closed linear
+manifold spanned by the range of \(D\), in \(\mathfrak H\), is \((0)\);
+that closed linear manifold is consequently all of \(\mathfrak H\).
+The range of \(D\) is the domain of \(A^*A+1\), and hence also the domain
+of \(A^*A\), so \(A^*A\) is a \(*\)-operator.  By
+\hyperref[intro:2]{Introduction~2}, especially
+\fnref{10}, \(A^*A\) is Hermitian and definite, and
+therefore so is \(A^*A+1\).  Since \(A^*A+1\) assumes every value in
+\(\mathfrak H\), \hyperlink{bib:E}{E.}, p.~102, Theorem~41, applies:
+\(A^*A+1\) is hypermaximal, and consequently \(A^*A\) is hypermaximal as
+well.  Thus:
+
+\par\smallskip
+\phantomsection
+\label{thm:3}
+\noindent\textbf{Theorem 3.}
+\textit{Let \(A\) be a closed linear \(*\)-operator.  Then \(A^*\) is also
+a closed linear \(*\)-operator, and \(A^*A\) is Hermitian, definite, and
+hypermaximal.}
+
+\par\smallskip
+\phantomsection
+\label{subsec:I.3}
+\noindent\textbf{3.}
+The domain \(\mathfrak A_1\) of \(A^*A\) is contained in the domain
+\(\mathfrak A\) of \(A\).  Denote by \(A_1\) the restriction of \(A\) to
+\(\mathfrak A_1\).  Plainly, \(A_1\) is linear and a \(*\)-operator, but
+need not be closed.  Since \(A\) is an extension of \(A_1\), \(A_1^*\) is
+an extension of \(A^*\), and is therefore also a \(*\)-operator; hence
+\(A_1\) is even a \(**\)-operator.  We shall prove that
+\(\widetilde A_1=A\), that is, that \(B_A\) is the closed linear manifold
+spanned by \(B_{A_1}\) in \(H\).
+
+Equivalently, the difference between \(B_A\) and the closed linear
+manifold spanned by \(B_{A_1}\) is \((0)\).  In other words, the only
+element of \(B_A\) orthogonal to that manifold---or, equivalently, to
+\(B_{A_1}\)---is \(0\); see \hyperlink{bib:E}{E.}, p.~74,
+Definition~11.  An element of \(B_A\) has the form \(\{k,Ak\}\).  If it is
+orthogonal to \(B_{A_1}\), then in particular it is orthogonal to the
+elements \(\{g,Ag\}\) constructed at the beginning of
+\hyperref[subsec:I.2]{I.2}.  Hence \(\{iAk,-ik\}\) is orthogonal to
+\(\{iAg,-ig\}\); here \(A^*Ag\) was defined because
+\(g\in\mathfrak A_1\).  The element \(\{iAk,-ik\}\), which belongs to
+\(UB_A\), is all the more orthogonal to the element \(\{h,A^*h\}\) used
+there, since the latter belongs to \(B_{A^*}\).  It is therefore
+orthogonal to their sum, \(\{0,-if\}\).  The orthogonality in \(H\) of
+\(\{iAk,-ik\}\) and \(\{0,-if\}\) means that \(k\) and \(f\) are
+orthogonal in \(\mathfrak H\).  Since this holds for every \(f\), we have
+\(k=0\) and \(\{k,Ak\}=\{0,0\}\).  This proves the assertion:
+
+\begin{samepage}
+\par\smallskip
+\phantomsection
+\label{thm:4}
+\noindent\textbf{Theorem 4.}
+\textit{Let the domain of \(A\) be \(\mathfrak A\), and let the domain of
+\(A^*A\) be \(\mathfrak A_1\subset\mathfrak A\).  Denote by \(A_1\) the
+restriction of \(A\) to \(\mathfrak A_1\).  Then \(A_1\) is a linear
+\(**\)-operator, though it need not be closed.  Nevertheless,}
+\[
+  \widetilde A_1=A.
+\]
+\end{samepage}
+
+\par\smallskip
+\phantomsection
+\label{subsec:I.4}
+\noindent\textbf{4.}
+If \(B\) is a Hermitian hypermaximal operator, it has an associated
+resolution of the identity \(E(\lambda)\), by \hyperlink{bib:E}{E.},
+p.~91, Definition~17, and p.~92, Theorem~36.  If \(E(\lambda)\) is
+constant, and hence equal to \(0\), for \(\lambda<0\), the formulas there
+give \((Bf,f)\ge0\) for every \(f\); thus \(B\) is definite.  If, on the
+other hand, \(E(\lambda)\ne0\) for some \(\lambda<0\), then for some such
+\(\lambda=\lambda_0<0\) there is an \(f\ne0\) with
+\(E(\lambda_0)f=f\),
+% --- Source page 303 (PDF page 10) ---
+and therefore \(E(\lambda)f=f\) for \(\lambda\ge\lambda_0\), since
+\(E(\lambda_0)\) is contained in \(E(\lambda)\); compare the discussion
+of projection operators in \hyperlink{bib:E}{E.}  From the same formulas
+one then obtains
+\[
+  (Bf,f)\le\lambda_0\lVert f\rVert^2<0,
+\]
+so \(B\) is not definite.  Thus \(B\) is definite if and only if
+\(E(\lambda)\) is constant, and hence \(0\), for \(\lambda<0\).
+
+Now consider the family\translatornotemark
+\[
+  F(\mu)=
+  \begin{cases}
+    0, & \mu<0,\\
+    E(\sqrt{\mu}), & \mu\ge0.
+  \end{cases}
+\]
+\translatornotetext{The source prints \(E(\sqrt{\lambda})\) here; the subsequent
+calculation and the definition as a function of \(\mu\) require
+\(E(\sqrt{\mu})\), used above.}
+It too is plainly a resolution of the identity, and its associated
+Hermitian hypermaximal operator \(B'\) is definite.  If \(B'f\) is
+defined, then, by definition,
+\[
+  \int \mu^2\,d\lVert F(\mu)f\rVert^2
+  =
+  \int \mu^2\,d\lVert E(\sqrt{\mu})f\rVert^2
+  =
+  \int \lambda^4\,d\lVert E(\lambda)f\rVert^2
+\]
+is finite.  Hence
+\(\int\lambda^2\,d\lVert E(\lambda)f\rVert^2\) is finite as well, for
+\(\int d\lVert E(\lambda)f\rVert^2\) is also finite and
+\[
+  \lambda^2\le \tfrac12+\tfrac12\lambda^4.
+\]
+Thus \(Bf\) is defined.  The same calculation carried out in
+\hyperlink{bib:F}{F.}, p.~206, to prove formula~e) there shows that
+\[
+  \int\lambda^2\,d\lVert E(\lambda)Bf\rVert^2
+  =
+  \int\lambda^4\,d\lVert E(\lambda)f\rVert^2.
+\]
+This is finite, so \(B(Bf)\), and hence \(B^2f\), is defined.  One more
+calculation of the same kind gives
+\[
+\begin{aligned}
+  (B^2f,g)
+    &=(B(Bf),g)
+      =\int\lambda\,d(E(\lambda)Bf,g)
+      =\int\lambda^2\,d(E(\lambda)f,g)\\
+    &=\int\mu\,d(E(\sqrt{\mu})f,g)
+      =\int\mu\,d(F(\mu)f,g)
+      =(B'f,g).
+\end{aligned}
+\]
+Thus \(B^2f=B'f\).  Hence \(B^2\) is an extension of the hypermaximal
+operator \(B'\), and therefore \(B^2=B'\).
+
+Rearranging the statement slightly, we may formulate it as follows:
+
+\par\smallskip
+\phantomsection
+\label{thm:5}
+\noindent\textbf{Theorem 5.}
+\textit{Let \(B\) and \(B'\) be Hermitian, hypermaximal, definite
+operators, and let \(E(\lambda)\) and \(F(\lambda)\), respectively, be
+their resolutions of the identity; thus
+\(E(\lambda)=F(\lambda)=0\) for \(\lambda<0\).  Then}
+\[
+  B^2=B'
+\]
+\textit{is equivalent to}
+\[
+  E(\lambda)=F(\lambda^2)
+  \qquad\textit{for every }\lambda\ge0.
+\]
+
+Consequently, if \(B'\) is given and \(B\) is not, the equation
+\(B^2=B'\) has exactly one solution \(B\) of this kind; it will be denoted
+by \(\sqrt{B'}\).
+
+We now apply \hyperref[thm:5]{Theorem~5} to \(B'=A^*A\), and set
+\[
+  B=\sqrt{A^*A}.
+\]
+The domain of \(B^2=A^*A\) was denoted by \(\mathfrak A_1\); let \(A_1\)
+be the restriction of \(A\) to this domain,
+% --- Source page 304 (PDF page 11) ---
+and let \(B_1\) be the restriction of \(B\) to it.  The domain of \(B\)
+contains that of \(B^2\), namely \(\mathfrak A_1\).  By
+\hyperref[thm:4]{Theorem~4},\translatornote{The source prints
+``Theorem~3'' here, but the assertion \(\widetilde A_1=A\) is
+\hyperref[thm:4]{Theorem~4}, which is plainly intended.}
+\(\widetilde A_1=A\); replacing \(A\) there
+by \(B\), and using \(B^*=B\) by hypermaximality, gives
+\(\widetilde B_1=B\).
+
+The operators \(A_1\) and \(B_1\) have the same domain, and on that domain
+\[
+\begin{aligned}
+  \lVert A_1f\rVert^2
+    &=(A_1f,A_1f)=(Af,Af)=(A^*Af,f),\\
+  \lVert B_1f\rVert^2
+    &=(B_1f,B_1f)=(Bf,Bf)=(B^2f,f).
+\end{aligned}
+\]
+Thus \(\lVert A_1f\rVert=\lVert B_1f\rVert\).  Hence \(A_1\) and \(B_1\)
+are metrically equal (see \hyperref[intro:4]{Introduction~4}), and it
+follows that their closures \(\widetilde A_1\) and
+\(\widetilde B_1\)\footnote{\label{fn:18}Let \(C\) be a linear
+\(**\)-operator (by \hyperref[thm:4]{Theorem~4}, \(A_1\) and \(B_1\) are
+such operators).  Then \(B_C\) is a linear manifold and
+\(B_{\widetilde C}\) is its closure.  In other words, \(\widetilde C\) is
+defined as follows: if \(f_1,f_2,\ldots\) belong to the domain of \(C\),
+if \(f_n\to f\) as \(n\to\infty\), and if the \(Cf_n\) also have a limit,
+that is,
+\[
+  \lVert C(f_m-f_n)\rVert\longrightarrow0
+  \qquad(m,n\to\infty),
+\]
+then \(f\) belongs to the domain of \(\widetilde C\), and
+\(\widetilde Cf\) is the limit of the \(Cf_n\).  This formulation makes
+it clear that, when \(C\) is replaced by a metrically equal operator,
+\(\widetilde C\) is likewise replaced by a metrically equal operator.}
+are metrically equal as well; that is, \(A\) and \(B\) are metrically
+equal.  Substitution into the definition of metric equality yields:
+
+\par\smallskip
+\phantomsection
+\label{thm:6}
+\noindent\textbf{Theorem 6.}
+\textit{Let \(A\) be as in \hyperref[thm:2]{Theorems~2} and
+\hyperref[thm:3]{3}, and let}
+\[
+  B=\sqrt{A^*A}
+  \qquad\textit{(see \hyperref[thm:5]{Theorem~5})}.
+\]
+\textit{Thus \(B\) is Hermitian, definite, and hypermaximal.  Then \(A\)
+and \(B\) are metrically equal: they have the same domain
+\(\mathfrak A\), and throughout that domain}
+\[
+  \lVert Af\rVert=\lVert Bf\rVert.
+\]
+
+\par\smallskip
+\phantomsection
+\label{subsec:I.5}
+\noindent\textbf{5.}
+Denote the range of \(A\) by \(\mathfrak W\), and denote the closures of
+the linear manifolds \(\mathfrak A\) and \(\mathfrak W\), respectively,
+by
+\[
+  \overline{\mathfrak A}=\mathfrak H,
+  \qquad
+  \overline{\mathfrak W}.
+\]
+Further, let \(\mathfrak N\) be the set of all \(f\) such that \(Af=0\).
+It is contained in \(\mathfrak A\), and hence in
+\(\overline{\mathfrak A}\), and, since \(A\) is linear and closed, it is
+a closed linear manifold (all these sets being in \(\mathfrak H\)).
+For \(A^*\), denote the corresponding sets by
+\[
+  \mathfrak A',\quad
+  \mathfrak W',\quad
+  \overline{\mathfrak A}'=\mathfrak H,\quad
+  \overline{\mathfrak W}',\quad
+  \mathfrak N'.
+\]
+
+For \(f\) to be orthogonal to \(\overline{\mathfrak W}\) is the same as
+for \(f\) to be orthogonal to \(\mathfrak W\), that is, to every \(Ag\).
+Thus \((f,Ag)=0\) for every \(g\), which says precisely that \(A^*f\) is
+defined and equal to \(0\), or that \(f\in\mathfrak N'\).  Therefore
+\(\mathfrak N'=\mathfrak H-\overline{\mathfrak W}\).  Similarly,
+\(\mathfrak N=\mathfrak H-\overline{\mathfrak W}'\).  In summary,
+\[
+  \mathfrak N\subset\mathfrak A,
+  \qquad
+  \mathfrak N=\mathfrak H-\overline{\mathfrak W}',
+  \qquad
+  \mathfrak N'\subset\mathfrak A',
+  \qquad
+  \mathfrak N'=\mathfrak H-\overline{\mathfrak W}.
+\]
+
+By \hyperref[thm:6]{Theorem~6},\translatornote{The source prints
+``Theorem~4'' here; the equality of the two null sets follows from the
+metric equality asserted in \hyperref[thm:6]{Theorem~6}.} the set on which
+\(Af=0\) is identical
+with the set on which \(Bf=0\); hence \(\mathfrak N\) is also the
+corresponding set for \(B\).  Let \(\mathfrak B\) be the range of \(B\),
+a linear manifold, and let \(\overline{\mathfrak B}\) be its closure, a
+closed linear manifold.  The same argument gives
+\[
+  \mathfrak N=\mathfrak H-\overline{\mathfrak B},
+\]
+because \(B^*=B\) by hypermaximality.  Consequently,
+\[
+  \overline{\mathfrak B}=\overline{\mathfrak W}'.
+\]
+
+Replace \(A\) by \(A^*\), and hence \(A^*\) by \(A^{**}=A\).
+By \hyperref[thm:5]{Theorem~5} and \hyperref[thm:6]{Theorem~6}, this
+produces the Hermitian, definite, hypermaximal operators \(AA^*\) and
+\[
+  C=\sqrt{AA^*}.
+\]
+By \hyperref[thm:6]{Theorem~6}, \(A^*\) and \(C\) are metrically equal:
+they have the same domain \(\mathfrak A'\), and on it
+\[
+  \lVert A^*f\rVert=\lVert Cf\rVert.
+\]
+
+% --- Source page 305 (PDF page 12) ---
+
+For \(C\), let \(\mathfrak B'\) be its range and
+\(\overline{\mathfrak B}'\) its closure.  Then
+\[
+  \overline{\mathfrak B}'=\overline{\mathfrak W}.
+\]
+By \hyperref[thm:6]{Theorem~6},\translatornote{The source again prints
+``Theorem~4'' here; the isometry of the correspondence is the conclusion
+of \hyperref[thm:6]{Theorem~6}.} the correspondence
+\[
+  Bf\Longleftrightarrow Af
+\]
+maps \(\mathfrak B\) one-to-one, linearly, and isometrically onto
+\(\mathfrak W\).  It can therefore be extended, again one-to-one,
+linearly, and isometrically, to the closures
+\[
+  \overline{\mathfrak B}=\overline{\mathfrak W}'
+  \quad\hbox{and}\quad
+  \overline{\mathfrak W},
+\]
+that is, from
+\(\mathfrak H-\mathfrak N\) onto
+\(\mathfrak H-\mathfrak N'\).  Denote the operator of this isometric
+mapping by \(V\).  Its domain is
+\(\mathfrak H-\mathfrak N\), and its range is
+\(\mathfrak H-\mathfrak N'\); compare
+\hyperlink{bib:E}{E.}, p.~70, Definition~6, and p.~71, Theorem~10.
+
+Similarly,
+\[
+  Cf\Longleftrightarrow A^*f
+\]
+is a mapping of \(\mathfrak B'\) onto \(\mathfrak W'\), and it can be
+extended to \(\overline{\mathfrak B}'=\overline{\mathfrak W}\) and
+\(\overline{\mathfrak W}'\), that is, from
+\(\mathfrak H-\mathfrak N'\) onto
+\(\mathfrak H-\mathfrak N\).  Denote its isometric operator by
+\(V'\); its domain is \(\mathfrak H-\mathfrak N'\), and its range
+is \(\mathfrak H-\mathfrak N\).  By the definitions of \(V\) and
+\(V'\),
+\[
+  A=VB,
+  \qquad
+  A^*=V'C.
+\]
+
+The way in which \(V\), respectively \(V'\), is defined outside the range
+of \(B\), respectively \(C\), that is, outside
+\(\mathfrak H-\mathfrak N\), respectively
+\(\mathfrak H-\mathfrak N'\), is immaterial.  We may therefore
+extend them to everywhere-defined linear operators \(W\), respectively
+\(W'\), which vanish on \(\mathfrak N\), respectively \(\mathfrak N'\).
+Then again
+\[
+  A=WB,
+  \qquad
+  A^*=W'C.
+\]
+
+Let \(E\), respectively \(E'\), denote the projection operators onto
+\(\mathfrak H-\mathfrak N\), respectively
+\(\mathfrak H-\mathfrak N'\).  Then
+\[
+  W=VE,
+  \qquad
+  W'=V'E',
+\]
+and therefore immediately
+\[
+  \lVert Wf\rVert=\lVert Ef\rVert,
+  \qquad
+  \lVert W'f\rVert=\lVert E'f\rVert.
+\]
+This proves that \(W\) and \(W'\) are continuous.  It also gives
+\begin{equation}
+  \tag*{\(\circledcirc\)}
+  \label{eq:WstarW}
+  W^*W=E,
+  \qquad
+  W'^{*}W'=E'.\footnotemark
+\end{equation}
+\footnotetext{\label{fn:19}Indeed,
+  \[
+    \lVert Wf\rVert^2=(Wf,Wf)=(W^*Wf,f),
+    \qquad
+    \lVert Ef\rVert^2=(Ef,f),
+  \]
+  and hence \(W^*W=E\); similarly \(W'^{*}W'=E'\).}
+
+Since \(W\) maps\translatornote{The source prints \(W'\) here.  The mapping
+described is \(W\), as required by \(W^*W=E\) and by the domain and range
+stated in the same sentence.}
+\(\mathfrak H-\mathfrak N\) onto
+\(\mathfrak H-\mathfrak N'\), while \(W^*W=E\) is the identity
+mapping of \(\mathfrak H-\mathfrak N\) onto itself, \(W^*\) effects
+the inverse, likewise isometric, mapping from
+\(\mathfrak H-\mathfrak N'\) onto
+\(\mathfrak H-\mathfrak N\).  Hence
+\(\lVert W^*f\rVert=\lVert f\rVert\) on
+\(\mathfrak H-\mathfrak N'\).  On \(\mathfrak N'\), since it is
+orthogonal to the range \(\mathfrak H-\mathfrak N'\) of \(W\), one
+has \(W^*f=0\).  Thus, in general, \(W^*E'f=W^*f\), and therefore
+\[
+  \lVert W^*f\rVert=\lVert E'f\rVert.
+\]
+It follows (compare \fnref{19}) that
+\begin{equation}
+  \tag*{\(\circledcirc\)}
+  \label{eq:WWstar}
+  WW^*=E',
+\end{equation}
+
+% --- End of source page 305; the argument continues on source page 306. ---
+
+% --- End inlined translation_pages_07_12.tex ---
+% --- Begin inlined root_pages_13_14_backup.tex ---
+% --- Source page 306 (PDF page 13) ---
+
+and likewise
+\begin{equation}
+  \tag*{\(\circledcirc\)}
+  \label{eq:WpWpstar}
+  W'W'^{*}=E.
+\end{equation}
+
+Left multiplication of \(A=WB\) by \(W^*\) gives, since \(EB=B\)
+(the values of \(B\) lie in \(\mathfrak H-\mathfrak N\)),
+\begin{equation}
+  \tag*{\(*\)}
+  \label{eq:star-B}
+  B=W^*A.
+\end{equation}
+Likewise, left multiplication of \(A^*=W'C\) by \(W'^{*}\) gives
+\begin{equation}
+  \tag*{\(*\)}
+  \label{eq:star-C}
+  C=W'^{*}A^*.
+\end{equation}
+Taking adjoints in these four relations yields, after a simple
+discussion,
+\begin{equation}
+  \tag*{\(\#\)}
+  \label{eq:hash-adjoints}
+  A^*=BW^*,
+  \qquad
+  A=CW'^{*},
+\end{equation}
+\begin{equation}
+  \tag*{\(\#\)}
+  \label{eq:hash-converses}
+  B=A^*W,
+  \qquad
+  C=AW'.
+\end{equation}
+
+We now form the operator \(WBW^*\).\footnote{\label{fn:20}%
+Operator products are consistently understood as follows: \(RSf\) is
+defined when \(Sf\) and \(R(Sf)\) are defined, and it is equal to
+\(R(Sf)\); correspondingly for \(QRS,PQRS,\ldots\).  This multiplication
+is plainly associative.}
+Since \(W\) is defined everywhere, this product is defined whenever
+\(W^*f\) belongs to \(\mathfrak A\).  Since
+\(\mathfrak N\subset\mathfrak A\), the projection onto \(\mathfrak N\)
+of every element of \(\mathfrak A\) belongs to \(\mathfrak A\), and so
+does its projection onto \(\mathfrak H-\mathfrak N\).  Thus the part of
+\(\mathfrak A\) lying in \(\mathfrak H-\mathfrak N\) is everywhere
+dense there; equivalently, the part of \(\mathfrak A\) lying in the
+range of \(W^*\), which is \(\mathfrak H-\mathfrak N\), is everywhere
+dense there.  Since \(W^*\) maps
+\(\mathfrak H-\mathfrak N'\) one-to-one and isometrically onto
+\(\mathfrak H-\mathfrak N\), those \(f\) in
+\(\mathfrak H-\mathfrak N'\) for which \(W^*f\in\mathfrak A\) are
+everywhere dense in that subspace.  For \(f\in\mathfrak N'\) one has
+\(W^*f=0\), which also belongs to \(\mathfrak A\).  Hence the \(f\) just
+described are everywhere dense in \(\mathfrak H\), and \(WBW^*\) is a
+\(*\)-operator.
+
+It is Hermitian and definite just as \(B\) is.  It is also hypermaximal.
+Indeed, suppose that, for every \(g\) for which the expression is
+defined,
+\[
+  (f,WBW^*g)=(f^*,g),
+\]
+or equivalently
+\[
+  (W^*f,BW^*g)=(f^*,g).
+\]
+Put \(g=Wh\), where \(h\in\mathfrak H-\mathfrak N\) and \(Bh\) is
+defined.  Then \(W^*g=W^*Wh=h\), and therefore
+\[
+  (W^*f,Bh)=(f^*,Wh)=(W^*f^*,h).
+\]
+For every \(h\in\mathfrak N\), \(Bh\) is defined and equals \(0\); the
+right-hand side also vanishes because \(W^*f^*\) belongs to
+\(\mathfrak H-\mathfrak N\).  Consequently,
+\[
+  (W^*f,Bh)=(W^*f^*,h)
+\]
+holds for every \(h\) in the domain of \(B\).
+
+% --- Source page 307 (PDF page 14) ---
+
+Since \(B\) is hypermaximal, \(BW^*f\) is defined and equals \(W^*f^*\).
+Thus \(WBW^*f=WW^*f^*=f^*\), provided
+\(f^*\in\mathfrak H-\mathfrak N'\).\translatornote{The source prints
+\(f^*\in\mathfrak N'\); the argument immediately following shows that
+\(f^*\) is orthogonal to \(\mathfrak N'\), hence belongs to
+\(\mathfrak H-\mathfrak N'\).} This last condition follows from
+the original equation: for every \(g\in\mathfrak N'\), \(W^*g=0\), so
+its left-hand side is \(0\), and hence \((f^*,g)=0\).
+
+Now, using the
+\hyperref[eq:star-B]{\(*\)},
+\hyperref[eq:WstarW]{\(\circledcirc\)}, and
+\hyperref[eq:hash-adjoints]{\(\#\)} formulas\fnmarkref{20}, one obtains
+\phantomsection
+\label{eq:WBWstar-square}
+\[
+\begin{aligned}
+  (WBW^*)^2
+    &=WBW^*\cdot WBW^*
+      =WB\cdot W^*W\cdot BW^*\\
+    &=WB\cdot E\cdot BW^*
+      =WB\cdot EB\cdot W^*\\
+    &=WB\cdot BW^*
+      =A\cdot A^*
+      =C^2.
+\end{aligned}
+\]
+Therefore, by \hyperref[thm:5]{Theorem~5},\translatornote{The source
+prints ``Theorem~4'' both here and in the parenthetical reference in
+\hyperref[thm:7]{Theorem~7}.  Here the intended result is plainly
+\hyperref[thm:5]{Theorem~5}, the uniqueness of the definite hypermaximal
+square root; in Theorem~7 the intended result is
+\hyperref[thm:6]{Theorem~6}, applied to \(A\) and \(A^*\).}
+\[
+  WBW^*=C.
+\]
+By \hyperref[eq:hash-adjoints]{\(\#\)}, this says \(WA^*=C\), while
+\hyperref[eq:star-C]{\(*\)} says \(W'^{*}A^*=C\).  Thus
+\(Wf=W'^{*}f\) throughout the range \(\mathfrak W'\) of \(A^*\), and
+hence also throughout
+\(\overline{\mathfrak W}'=\mathfrak H-\mathfrak N\).  On
+\(\mathfrak N\) the equality holds as well, since both sides vanish.
+Consequently \(W=W'^{*}\); taking adjoints gives \(W^*=W'\).
+
+We may summarize the results as follows.
+
+\par\smallskip
+\phantomsection
+\label{thm:7}
+\noindent\textbf{Theorem 7.}
+\textit{Let \(A\) be as in \hyperref[thm:2]{Theorems~2} and
+\hyperref[thm:3]{3}, and set}
+\[
+  B=\sqrt{A^*A},
+  \qquad
+  C=\sqrt{AA^*}.
+\]
+\textit{(Compare \hyperref[thm:6]{Theorem~6}, applied to \(A\) and to
+\(A^*\).)}
+\textit{Thus \(B\) and \(C\) are Hermitian, definite, and hypermaximal.
+Let the domains of \(A,A^*,B,C\) be, respectively, the linear manifolds}
+\[
+  \mathfrak A,\quad \mathfrak A',\quad
+  \mathfrak A,\quad \mathfrak A',
+\]
+\textit{and let their ranges be, respectively,}
+\[
+  \mathfrak W,\quad \mathfrak W',\quad
+  \mathfrak B,\quad \mathfrak B',
+\]
+\textit{with an overline denoting closure.  Let the respective sets
+(closed linear manifolds) on which \(Af=0,A^*f=0,Bf=0,Cf=0\) be}
+\[
+  \mathfrak N,\quad \mathfrak N',\quad
+  \mathfrak N,\quad \mathfrak N'.
+\]
+\textit{Then}
+\[
+\begin{gathered}
+  \mathfrak N\subset\mathfrak A\subset
+  \overline{\mathfrak A}=\mathfrak H,
+  \qquad
+  \mathfrak N'\subset\mathfrak A'\subset
+  \overline{\mathfrak A}'=\mathfrak H,\\
+  \overline{\mathfrak W}'=\overline{\mathfrak B}
+    =\mathfrak H-\mathfrak N,
+  \qquad
+  \overline{\mathfrak W}=\overline{\mathfrak B}'
+    =\mathfrak H-\mathfrak N'.
+\end{gathered}
+\]
+\textit{Let \(E,E'\) be the projection operators onto
+\(\mathfrak H-\mathfrak N\) and
+\(\mathfrak H-\mathfrak N'\), respectively.  There exists an
+everywhere-defined continuous operator \(W\) which maps
+\(\mathfrak B\) one-to-one, linearly, and isometrically onto
+\(\mathfrak W\), and therefore maps
+\(\overline{\mathfrak B}=\mathfrak H-\mathfrak N\) onto
+\(\overline{\mathfrak W}=\mathfrak H-\mathfrak N'\).
+Likewise \(W^*\) maps \(\mathfrak B'\) onto \(\mathfrak W'\), and
+therefore maps
+\(\overline{\mathfrak B}'=\mathfrak H-\mathfrak N'\) onto
+\(\overline{\mathfrak W}'=\mathfrak H-\mathfrak N\); on these latter
+subspaces \(W^*\) and \(W\) are inverse to one another.  The operator
+\(W\) vanishes on \(\mathfrak N\), and \(W^*\) on
+\(\mathfrak N'\).  Moreover,}
+\[
+  W^*W=E,
+  \qquad
+  WW^*=E'.
+\]
+\textit{The following relations hold\fnmarkref{20}:}
+\phantomsection
+\label{eq:theorem7-relations}
+\[
+\begin{gathered}
+  A=WB=CW,
+  \qquad
+  A^*=BW^*=W^*C,\\
+  B=W^*A=A^*W,
+  \qquad
+  C=AW^*=WA^*,
+\end{gathered}
+\]
+\textit{and consequently}
+\[
+  C=WBW^*,
+  \qquad
+  B=W^*CW.
+\]
+
+% --- End inlined root_pages_13_14_backup.tex ---
+% --- Begin inlined translation_pages_15_17_backup.tex ---
+% --- Source page 308 (PDF page 15) ---
+
+It should be noted that \(B\) vanishes on \(\mathfrak N\), and \(C\) on
+\(\mathfrak N'\), so that they are of interest only on
+\(\mathfrak H-\mathfrak N\) and \(\mathfrak H-\mathfrak N'\),
+respectively.  On these subspaces, however, they pass into one another
+under the mutually inverse isometric mappings between
+\(\mathfrak H-\mathfrak N\) and \(\mathfrak H-\mathfrak N'\) effected by
+\(W\) and \(W^*\).  This is the generalization of E.~Schmidt's theorem
+mentioned in \hyperref[intro:3]{Introduction~3} and \fnref{11},
+respectively.
+
+If \(0\) is a (point-)eigenvalue of neither \(A\) nor \(A^*\), that is, if
+\(Af=0\) and \(A^*f=0\) each imply \(f=0\), then
+\[
+  \mathfrak N=\mathfrak N'=(0),
+  \qquad
+  E=E'=1,
+\]
+and hence \(W^*W=WW^*=1\); that is, \(W\) is unitary and
+\(W^*=W^{-1}\).  In this case the formulas of
+\hyperref[thm:7]{Theorem~7} are still more transparent.
+
+\section*{II. Applications.}
+\label{sec:applications}
+\addcontentsline{toc}{section}{II. Applications}
+
+\phantomsection
+\label{subsec:II.1}
+\noindent\textbf{1.}
+If \(A^*A=AA^*\), that is, if \(B=C\), then
+\hyperref[thm:7]{Theorem~7} gives
+\[
+  A=WB=BW,
+  \qquad
+  A^*=BW^*=W^*B,
+\]
+\begin{samepage}
+and also\translatornotemark
+\[
+  \mathfrak N=\mathfrak N',
+  \qquad
+  E=E',
+  \qquad
+  W^*W=WW^*=E.
+\]
+\translatornotetext{The source prints \(E=F\); in the notation of
+\hyperref[thm:7]{Theorem~7}, \(E'\) is intended.}
+\end{samepage}
+Thus all the operators \(B,W,W^*\) commute with one another.  From this
+the normality of \(A\) (compare \hyperref[intro:3]{Introduction~3}) may be
+deduced in various ways.  For example, by the methods of
+\hyperlink{bib:E}{E.}, p.~115 (before Theorem~11*), one could give a
+simultaneous spectral representation for \(B,W,W^*\), and hence for
+\(A,A^*\).  We prefer to use the definition in \hyperlink{bib:A}{A.},
+p.~116, Definition~6, and argue as follows.  The operators \(A,A^*\) have
+the same domains as \(B,C\), respectively, and hence the same domain as
+one another; thus, in the sense of \hyperlink{bib:A}{A.}, p.~405,
+Definition~5, they form a conjugate pair.  In the notation used there,
+if \(E(\lambda)\) also denotes the resolution of the identity belonging
+to \(B\), then
+\[
+  (A)''=(WB)''
+  \subseteq (W,B)''
+  =\bigl(W,W^*,\text{all }E(\lambda)\bigr)''.
+\]
+This set is Abelian, since it is the set generated by
+\(W,W^*,E(\lambda)\); compare \hyperlink{bib:A}{A.}, p.~389, above.
+Indeed, \(W,W^*\) commute with \(B\), and therefore with all
+\(E(\lambda)\), by \hyperlink{bib:A}{A.}, p.~408, Theorem~13.
+
+Conversely, suppose that \(A\) is normal.  Then the closed operators
+\(A,A^*\) have the same domain (\hyperlink{bib:A}{A.}, p.~416,
+Theorem~21).  If \(A^*Af\) and \(AA^*g\) are defined, then
+\[
+  (f,AA^*g)
+  =(A^*f,A^*g)\footnotemark
+  =(Af,Ag)
+  =(A^*Af,g).
+\]
+\footnotetext{\label{fn:21}According to \hyperlink{bib:A}{A.}, at the
+place just cited, whenever \(Ah\) is defined,
+\(\lVert Ah\rVert=\lVert A^*h\rVert\), and hence
+\((Ah,Ah)=(A^*h,A^*h)\).  From this one concludes, whenever \(Af\) and
+\(Ag\) are defined, by considering
+\(\frac{f\pm g}{2}\) and \(\frac{f\pm ig}{2}\), that
+\((Af,Ag)=(A^*f,A^*g)\) as well.}
+By the hypermaximality of \(AA^*\), it follows that \(AA^*f\) is defined
+and equal to \(A^*Af\).  Thus \(AA^*\) is an extension of \(A^*A\); but
+the latter too is hypermaximal, and consequently
+\(A^*A=AA^*\).  Thus:
+
+\par\smallskip
+\phantomsection
+\label{thm:8}
+\noindent\textbf{Theorem 8.}
+\textit{Let \(A\) be as in \hyperref[thm:2]{Theorems~2} and
+\hyperref[thm:3]{3}, and let}
+\[
+  B=\sqrt{A^*A},
+  \qquad
+  C=\sqrt{AA^*}.
+\]
+\textit{For \(A\) to be normal it is necessary and sufficient that}
+\[
+  A^*A=AA^*,
+\]
+\textit{or, equivalently, that \(B=C\).  Since \(A^*A\) and \(AA^*\) are
+both hypermaximal, it even suffices that one be an extension of the
+other.}
+
+% --- Source page 309 (PDF page 16) ---
+
+Suppose that \(A,A^*\) have the same domain and that
+\(\lVert Af\rVert=\lVert A^*f\rVert\) throughout it.  The same then holds
+for \(B,C\).  The correspondence
+\[
+  Bf\Longleftrightarrow Cf
+\]
+maps \(\mathfrak B\) one-to-one, linearly, and isometrically onto
+\(\mathfrak B'\).  It may therefore be extended in the same way to
+\[
+  \overline{\mathfrak B}=\mathfrak H-\mathfrak N,
+  \qquad
+  \overline{\mathfrak B}'=\mathfrak H-\mathfrak N';
+\]
+but \(\mathfrak N=\mathfrak N'\), and consequently
+\(\overline{\mathfrak B}=\overline{\mathfrak B}'\).  Denote this operator
+by \(V_0\).  It therefore maps
+\(\overline{\mathfrak B}=\overline{\mathfrak B}'
+=\mathfrak H-\mathfrak N\) onto itself.  Extend it to a linear operator
+\(W_0\) which vanishes on \(\mathfrak N\).  As in
+\hyperref[thm:6]{Theorem~6},
+\[
+  C=V_0B=W_0B,
+  \qquad
+  W_0^*W_0=W_0W_0^*=E.
+\]
+
+Taking adjoints gives \(C=BW_0^*\).  Thus \(W_0^*\), within
+\(\mathfrak H-\mathfrak N\), carries the domain of \(C\) into that of
+\(B\), that is, carries the domain of \(B\) into itself.  The same is true
+of its inverse \(W_0\) on \(\mathfrak H-\mathfrak N\).  Hence \(Bf\) and
+\(Cf=W_0Bf\), both of which lie in \(\mathfrak H-\mathfrak N\), belong
+simultaneously to the common domain of \(B,C\).  In other words, \(B^2\)
+and \(C^2\) have the same domain.
+
+On that domain one always has
+\[
+  (B^2f,f)=(Bf,Bf)=\lVert Bf\rVert^2,
+  \qquad
+  (C^2f,f)=(Cf,Cf)=\lVert Cf\rVert^2.
+\]
+Since \((B^2f,f)=(C^2f,f)\), it follows that \(B^2=C^2\), and therefore
+\(B=C\).  Thus:
+
+\par\smallskip
+\phantomsection
+\label{thm:9}
+\noindent\textbf{Theorem 9.}
+\textit{The following is also a necessary and sufficient condition for
+the normality of \(A\): \(A\) and \(A^*\) have the same domain, and
+throughout it}
+\[
+  \lVert Af\rVert=\lVert A^*f\rVert.\footnotemark
+\]
+\footnotetext{\label{fn:22}In \hyperlink{bib:A}{A.}, p.~423, above, it
+was shown that it is not sufficient for this equality to hold merely on
+some everywhere dense set.}
+
+\phantomsection
+\label{subsec:II.2}
+\noindent\textbf{2.}
+We now turn to the notions of metric equality and metric extension of
+operators defined in \hyperref[intro:4]{Introduction~4}.
+
+From \hyperref[thm:6]{Theorem~6}, together with the argument used in the
+proof of \hyperref[thm:9]{Theorem~9}, which shows that any two Hermitian,
+definite, hypermaximal operators \(B,C\) that are metrically equal must
+actually be equal (for the relation of \(B,C\) to \(A,A^*\) was not used
+there), we immediately obtain:
+
+\par\smallskip
+\phantomsection
+\label{thm:10}
+\noindent\textbf{Theorem 10.}
+\textit{Every closed linear \(*\)-operator \(A\) is metrically equal to
+one and only one Hermitian, definite, hypermaximal operator \(B\), namely
+the operator \(B\) of \hyperref[thm:6]{Theorem~6}:}
+\[
+  B=\sqrt{A^*A}.
+\]
+
+Every discontinuous \(A\) has proper metric extensions.  By
+\hyperref[thm:10]{Theorem~10}, we may assume \(A\) to be Hermitian,
+definite, and hypermaximal.  By \hyperlink{bib:E}{E.}, p.~108,
+Theorem~49, \(A\) is a proper extension of a closed linear Hermitian
+operator \(A'\), which can in fact be chosen in continuum-many distinct
+ways.  Consequently \(A'^{*}\), which is a \(*\)-operator because \(A'\)
+is a \(**\)-operator, is a proper extension of \(A\).  Thus:
+
+% --- Source page 310 (PDF page 17) ---
+
+\par\smallskip
+\phantomsection
+\label{thm:11}
+\noindent\textbf{Theorem 11.}
+\textit{Let \(A\) be as in \hyperref[thm:10]{Theorem~10}.  If \(A\) is
+discontinuous, then it has proper metric extensions (indeed,
+continuum-many distinct ones).}
+
+If \(A\) is continuous, then its domain is closed; since it must be
+everywhere dense, the domain is then equal to \(\mathfrak H\).  From this
+and \hyperref[thm:11]{Theorem~11} it follows that:
+
+\par\smallskip
+\phantomsection
+\label{thm:12}
+\noindent\textbf{Theorem 12.}
+\textit{Let \(A\) be as in \hyperref[thm:10]{Theorem~10}.  Then \(A\) is
+continuous if and only if it is defined everywhere.}
+
+As noted in \hyperref[intro:2]{Introduction~2}, this generalizes
+Toeplitz's theorem%
+\footnote{\label{fn:23}%
+\hypertarget{bib:HellingerToeplitz1910}{%
+\href{https://eudml.org/doc/158468}{E.~Hellinger and O.~Toeplitz,
+``Grundlagen f\"ur eine Theorie der unendlichen Matrizen,''
+\emph{Mathematische Annalen}, \textbf{69} (1910), pp.~289--330,
+especially p.~321}}; compare also \hyperlink{bib:E}{E.}, pp.~107--108,
+Theorem~48, \(\gamma\).}%
+\translatornote{Source note~23 prints the year as 1911; the cited volume
+and article were published in 1910.}.  This theorem can incidentally also
+be proved directly.
+
+There are also very general theorems on the simultaneous metric extension
+of several operators, for example of operators whose domains have no
+points in common (compare \hyperlink{bib:M}{M.}, p.~232, Theorem~18).
+The author intends to discuss these shortly.
+
+% --- End inlined translation_pages_15_17_backup.tex ---
+
+\end{document}
