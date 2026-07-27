@@ -17,12 +17,12 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 
 - 1929 von Neumann. Zur Algebra der Funktionaloperationen und Theorie der normalen Operatoren. (On the Algebra of Functional Operations and the Theory of Normal Operators.) 
 [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_On%20the%20Algebra%20of%20Functional%20Operations%20and%20the%20Theory%20of%20Normal%20Operators_GPT.tex)
-[pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.pdf)
+[pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_On%20the%20Algebra%20of%20Functional%20Operations%20and%20the%20Theory%20of%20Normal%20Operators_GPT.pdf)
 
 
 - 1932 von Neumann. Über adjungierte Funktionaloperatoren. (On adjoint functional operators.) 
 [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.tex)
-[pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_On%20the%20Algebra%20of%20Functional%20Operations%20and%20the%20Theory%20of%20Normal%20Operators_GPT.pdf)
+[pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.pdf)
 
 
 - 1936 Murray, von Neumann. On rings of operators.
