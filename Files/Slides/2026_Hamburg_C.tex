@@ -1,0 +1,736 @@
+\documentclass[xcolor={dvipsnames}]{beamer}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathrsfs,graphicx,setspace,calligra}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+
+\usetheme{Madrid}
+\definecolor{myteal}{cmyk}{0.5,0,0.15,0}
+\definecolor{deepblue}{RGB}{0,36,96}
+\usecolortheme[named=myteal]{structure}
+\usefonttheme{professionalfonts}
+\useoutertheme{infolines}
+
+\setbeamersize{text margin left=0.45cm,text margin right=0.45cm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{block title}{size=\normalsize}
+\setbeamerfont{block body}{size=\small}
+\setbeamercolor{frametitle}{fg=deepblue,bg=myteal}
+\setbeamercolor{title}{fg=deepblue}
+\setbeamercolor{date in head/foot}{fg=deepblue,bg=myteal}
+\setbeamercovered{transparent}
+\newcommand{\focus}[1]{%
+  \begingroup\setlength{\fboxsep}{1.5pt}%
+  \colorbox{myteal!18}{\textcolor{deepblue}{\bfseries #1}}%
+  \endgroup}
+
+\theoremstyle{definition}
+\newtheorem{df}{Definition}
+\newtheorem{eg}[df]{Example}
+\newtheorem{ques}[df]{Question}
+\newtheorem{re}[df]{Remark}
+\theoremstyle{plain}
+\newtheorem{thm}[df]{Theorem}
+\newtheorem{pp}[df]{Proposition}
+\newtheorem{co}[df]{Corollary}
+
+\newcommand{\MS}{\mathcal{S}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MH}{\mathcal{H}}
+\newcommand{\MJ}{\mathcal{J}}
+\newcommand{\MG}{\mathscr{G}}
+\newcommand{\Rbb}{\mathbb{R}}
+\newcommand{\Zbb}{\mathbb{Z}}
+\newcommand{\Cbb}{\mathbb{C}}
+\newcommand{\cl}{\mathrm{cl}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\Rep}{\mathrm{Rep}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\Cf}{\mathrm{Cf}}
+\newcommand{\Mob}{\mathrm{Mob}}
+\newcommand{\Vir}{\mathrm{Vir}}
+\newcommand{\Ad}{\mathrm{Ad}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\rint}{\mathrm{Int}}
+\newcommand{\Rcl}{\mathbb R^{1,1}_{\cl}}
+\newcommand{\Rop}{\mathbb R^{1,1}_{\op}}
+\newcommand{\Bcl}{\MB_{\cl}}
+\newcommand{\Hcl}{\MH_{\cl}}
+\newcommand{\Hop}{\MH_{\op}}
+\newcommand{\Hopij}[2]{\MH_{\op(#1,#2)}}
+\newcommand{\Bopi}[1]{\MB_{\op(#1)}}
+\newcommand{\Jt}{\widetilde{\MJ}}
+\newcommand{\Gc}{\MG_c}
+\newcommand{\Hsqrt}[1]{\MH_{\sqrt{#1}}}
+\newcommand{\bA}{\boxtimes_{\MA}}
+\newcommand{\bAtwo}{\boxtimes_{\MA^{\otimes 2}}}
+
+\newcommand{\ClosedOpenSpaces}{%
+  \includegraphics[width=\linewidth]{figures/crops/fig_spaces.png}}
+\newcommand{\BoundaryHaagPicture}{%
+  \includegraphics[width=.4\linewidth]{figures/crops/fig1d.pdf}}
+\newcommand{\ClosedCylinderPicture}{%
+  \includegraphics[height=.22\textheight]{figures/crops/fig_closed_cyl_O.png}}
+\newcommand{\SpacelikePicture}{%
+  \includegraphics[width=.82\textwidth]{figures/crops/fig_spacelike_locality.png}}
+\newcommand{\ClosedHaagPicture}{%
+  \includegraphics[width=.52\linewidth]{figures/crops/fig_closed_multi.png}}
+\newcommand{\BulkBoundaryPicture}{%
+  \includegraphics[width=.78\linewidth]{figures/crops/fig_bulk_boundary.png}}
+\newcommand{\PartFrame}[2]{%
+\begin{frame}
+\vfill
+\begin{center}
+{\large\textcolor{myteal!70!black}{Part #1}}\\[.35cm]
+{\LARGE\textcolor{deepblue}{#2}}
+\end{center}
+\vfill
+\end{frame}}
+
+\title[Open/closed CFT]{Minkowskian open/closed conformal field theory\\possibly without vacuum: the Cardy case}
+\author[Bin Gui]{\texorpdfstring{Bin Gui\\Tsinghua University}{Bin Gui, Tsinghua University}}
+\date[arXiv:2606.30928]{ZMP Colloquium, Universit\"at Hamburg\\July 2026\\arXiv:2606.30928 with the same title}
+
+\begin{document}
+\begin{spacing}{1.04}
+
+\frame{\titlepage}
+
+\begin{frame}[t]{Outline}
+\vspace{.45cm}
+\begin{center}
+\begin{minipage}{.86\textwidth}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{@{}p{.9cm}@{\hspace{.35cm}}p{8.95cm}@{}}
+{\Large\textcolor{myteal!70!black}{I}} &
+{\large\textcolor{deepblue}{Geometric setup}}\\[-.03cm]
+\multicolumn{2}{@{}c@{}}{\textcolor{myteal!45}{\rule{\linewidth}{.35pt}}}\\[-.05cm]
+{\Large\textcolor{myteal!70!black}{II}} &
+{\large\textcolor{deepblue}{Boundary fields and open string state spaces}}\\[-.03cm]
+\multicolumn{2}{@{}c@{}}{\textcolor{myteal!45}{\rule{\linewidth}{.35pt}}}\\[-.05cm]
+{\Large\textcolor{myteal!70!black}{III}} &
+{\large\textcolor{deepblue}{Bulk fields and closed string state space}}\\[-.03cm]
+\multicolumn{2}{@{}c@{}}{\textcolor{myteal!45}{\rule{\linewidth}{.35pt}}}\\[-.05cm]
+{\Large\textcolor{myteal!70!black}{IV}} &
+{\large\textcolor{deepblue}{Bulk fields acting on open string state spaces}}
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{frame}
+
+\PartFrame{I}{Geometric Setup}
+
+\begin{frame}[t]{Closed and Open Strings}
+\footnotesize
+\begin{block}{Closed and open strings}
+2D CFT studies the propagation and interaction of closed strings
+\[
+  S^1\simeq \Rbb/2\pi\Zbb
+\]
+and open strings
+\[
+  [0,\pi].
+\]
+The corresponding Minkowski space-times are
+\[
+  \Rcl=S^1\times\Rbb,\qquad
+  \Rop=[0,\pi]\times\Rbb .
+\]
+\end{block}
+
+\begin{columns}[T,onlytextwidth]
+\column{.5\textwidth}
+\begin{align*}
+  &(x,t)\in \Rcl\ \hbox{or}\ \Rop,\\
+  &(ds)^2=(dt)^2-(dx)^2,\\
+  &u^+=t+x,\qquad u^-=t-x,\\
+  &(ds)^2=du^+du^- .
+\end{align*}
+\column{.47\textwidth}
+\begin{center}
+\ClosedOpenSpaces
+\end{center}
+\end{columns}
+\end{frame}
+
+\begin{frame}[t]{Conformal Diffeomorphisms}
+\footnotesize
+Let $\Diff_+(S^1)$ be the group of orientation-preserving diffeomorphisms of $S^1$, and let
+\[
+  \MG=\widetilde{\Diff_+(S^1)}
+\]
+be its universal cover.
+Here
+\[
+  \Cf^+(\Rcl),\ \Cf^+(\Rop)
+\]
+denote orientation-preserving, time-direction-preserving conformal diffeomorphism groups.
+Elements $F\in \MG$ can be viewed as smooth functions $F:\Rbb\to\Rbb$ such that
+\[
+  F(x+2\pi)=F(x)+2\pi,\qquad F'(x)>0 .
+\]
+
+In light-cone coordinates, the relevant actions are
+\[
+  (g_1,g_2)(u^+,u^-)=(g_1u^+,g_2u^-)
+  \quad\hbox{on }\Rcl,
+\]
+\[
+  g(u^+,u^-)=(gu^+,gu^-)
+  \quad\hbox{on }\Rop.
+\]
+
+Both actions are well-defined.
+This allows us to classify $\Cf^+(\Rcl)$ and $\Cf^+(\Rop)$.
+\end{frame}
+
+\begin{frame}[t]{$\Cf^+(\Rcl)$}
+\small
+The action of $\MG\times \MG$ on $\Rcl$ gives the covering exact sequence
+\[
+  1\longrightarrow \Zbb\longrightarrow
+  \MG\times \MG\longrightarrow \Cf^+(\Rcl)\longrightarrow 1.
+\]
+
+\begin{block}{Kernel}
+The subgroup $\Zbb$ is generated by
+\[
+  \bigl(\rho(2\pi),\rho(-2\pi)\bigr)\in \MG\times \MG,
+\]
+where
+\[
+  \rho:\Rbb\longrightarrow \MG
+\]
+is the one-parameter rotation subgroup.
+\end{block}
+
+\end{frame}
+
+\begin{frame}[t]{$\Cf^+(\Rop)$}
+\small
+Let $\MG$ act on $\Rop$ by
+\[
+  g(u^+,u^-)=(gu^+,gu^-).
+\]
+
+\begin{block}{Classification}
+The action is well-defined and gives
+\[
+  \MG\simeq \Cf^+(\Rop).
+\]
+\end{block}
+
+\begin{itemize}
+  \item Closed CFT uses $\MG\times \MG$.
+  \item Open CFT uses $\MG$.
+  \item With central charge $c$, we use the central extension $\Gc$.
+\end{itemize}
+\end{frame}
+
+\PartFrame{II}{Boundary Fields and Open String State Spaces}
+
+\begin{frame}[t]{Adapting Fuchs--Schweigert--Runkel}
+\footnotesize
+Adapting Fuchs--Schweigert--Runkel to the operator algebraic approach of CFT, we expect a 2D open/closed CFT with central charge $c$ as follows.
+
+\begin{itemize}
+  \item Boundary conditions are labeled by indices
+  \[
+    i,j,k,\ldots .
+  \]
+  \item The open-string state space with left and right boundary conditions $i,j$ is
+  \[
+    \Hopij{i}{j}.
+  \]
+  \item Boundary operators preserving a boundary condition $i$ form a generally non-local net
+  \[
+    \Bopi{i}:\ \widetilde I\in\Jt\longmapsto
+    \Bopi{i}(\widetilde I)\subset \mathfrak L(\Hopij{i}{i}).
+  \]
+where $\Bopi{i}(\widetilde I)$ is a von Neumann algebra (i.e. a $*$-subalgebra closed under strong operator topology).
+\end{itemize}
+
+\begin{block}{Arg-valued intervals}
+\[
+  \Jt=\{\widetilde I:\ \widetilde I
+  \hbox{ is a component over } I\subset S^1\}
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{$\Jt$}
+\small
+Let
+\[
+  \MJ=\{I\subset S^1:\ I\hbox{ is non-empty, open, non-dense, and connected}\}.
+\]
+Let
+\[
+  \Jt=\{\widetilde I:\ \widetilde I
+  \hbox{ is a component of } I
+  \hbox{ in } \Rbb\to\Rbb/2\pi\Zbb=S^1\}.
+\]
+Equivalently,
+\[
+  \Jt=\{\hbox{open intervals in }\Rbb\hbox{ of length }0<|\widetilde I|<2\pi\}.
+\]
+
+\begin{block}{Non-local boundary net}
+For a boundary condition $i$,
+\[
+  \Bopi{i}:\widetilde I\in\Jt\longmapsto
+  \Bopi{i}(\widetilde I)\subset \mathfrak L(\Hopij{i}{i})
+\]
+where $ \Bopi{i}(\widetilde I)$ is a von Neumann algebra.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Conformal Covariance}
+\small
+The boundary net is conformally covariant.  Let $\Gc$ be the central extension of $\MG$ with central charge $c$.
+
+\begin{block}{Covariance}
+There is a strongly continuous unitary representation of $\Gc$ on $\Hopij{i}{i}$, indeed on $\Hopij{i}{j}$, such that
+\[
+  g\,\Bopi{i}(\widetilde I)\,g^{-1}
+  =
+  \Bopi{i}(g\widetilde I),
+  \qquad \widetilde I\in\Jt .
+\]
+\end{block}
+
+The same convention applies to the right action of $\Bopi{i}$.
+\end{frame}
+
+\begin{frame}[t]{Left and Right Actions}
+\small
+On the open-string state space $\Hopij{i}{j}$, we have a left action of $\Bopi{i}$ and a right action of $\Bopi{j}$:
+\[
+  \Bopi{i}(\widetilde I)
+  \curvearrowright
+  \Hopij{i}{j}
+  \curvearrowleft
+  \Bopi{j}(\widetilde J),
+\]
+where the first one is the left action and the second one is the right action.
+
+\begin{block}{Boundary-boundary locality}
+If $\widetilde J$ is clockwise to $\widetilde I$, i.e. $0<\arg z-\arg\zeta<2\pi$ for each $z\in\widetilde I$ and $\zeta\in \widetilde J$, then
+\[
+  \bigl[
+    \Bopi{i}(\widetilde I),
+    \Bopi{j}(\widetilde J)
+  \bigr]=0.
+\]
+\end{block}
+
+
+\end{frame}
+
+\begin{frame}[t]{Boundary-Boundary Haag Duality}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.48\textwidth}
+\begin{center}
+\BoundaryHaagPicture
+\end{center}
+
+\column{.5\textwidth}
+For $\Hopij{i}{j}$, the nets $\Bopi{i}$ and $\Bopi{j}$ act on the left and right boundaries.
+
+\begin{block}{Boundary-boundary Haag duality}
+The following von Neumann algebras are commutants of each other:
+\[
+  \Bopi{i}(\widetilde I),
+  \qquad
+  \Bopi{j}(\widetilde I').
+\]
+This is called the \focus{boundary-boundary Haag duality}.
+\end{block}
+\end{columns}
+
+\vspace{.1cm}
+Here, $\widetilde I'$ is the largest element in $\widetilde{\mathcal J}$ clockwise to $\widetilde I$. In particular, if $\widetilde J$ is clockwise to $\widetilde I$, then
+\[
+  \bigl[
+  \Bopi{i}(\widetilde I),
+  \Bopi{j}(\widetilde J)
+  \bigr]=0 .
+\]
+\end{frame}
+
+\begin{frame}[t]{Morita Equivalent Boundary Conditions}
+\small
+That $\Bopi{i}$ and $\Bopi{j}$ are commutants of each other on $\Hopij{i}{j}$ implies that $\Bopi{i}$ and $\Bopi{j}$ are \focus{Morita equivalent}.
+
+This would imply that they produce the same closed CFT. This still needs to be proved in the operator algebra framework.
+
+\begin{block}{Conjugation}
+\[
+  \overline{\Hopij{i}{j}}=\Hopij{j}{i}.
+\]
+\end{block}
+
+\begin{block}{Composition of open strings}
+\[
+  \Hopij{i}{j}\boxtimes_{\Bopi{j}}\Hopij{j}{k}
+  \simeq
+  \Hopij{i}{k}.
+\]
+Here $\boxtimes$ denotes the Connes fusion.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Cardy-Type CFT}
+\small
+We say that the CFT is of Cardy type if there is a boundary condition $0$ such that
+\[
+  \bigl(\Bopi{0},\Hopij{0}{0}\bigr)
+\]
+is a local conformal net
+\[
+  (\MA,\MH_0).
+\]
+This means $(\MA,\MH_0)$ is a non-local net satisfying the following conditions:
+
+\begin{enumerate}
+  \item single-valuedness on $S^1$;
+  \item locality:
+  \[
+    I\cap J=\emptyset\quad\Rightarrow\quad
+    [\MA(I),\MA(J)]=0;
+  \]
+  \item a vacuum vector $\Omega\in\MH_0$ fixed by the Mobius group;
+  \item and some other properties.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{The Local Conformal Net $(\MA,\MH_0)$}
+\scriptsize
+\vspace{-.15cm}
+The pair $(\MA,\MH_0)$ is a non-local net satisfying the following extra conditions.
+
+\begin{block}{Single-valuedness}
+If $\widetilde I_1,\widetilde I_2\in\Jt$ project to the same interval $I\in\MJ$, then
+\[
+  \MA(\widetilde I_1)=\MA(\widetilde I_2).
+\]
+Thus we write
+\[
+  I\in\MJ\longmapsto \MA(I)\subset\mathfrak L(\MH_0).
+\]
+\end{block}
+
+\begin{block}{Locality and vacuum}
+\[
+  I\cap J=\emptyset \quad\Rightarrow\quad [\MA(I),\MA(J)]=0.
+\]
+There is a vacuum vector $\Omega\in\MH_0$ fixed by the action of
+\[
+  \Mob\subset \MG,
+\]
+the subgroup of linear fractional transformations preserving $S^1$.
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{The Cardy-type CFT}
+\small
+Now restrict to the Cardy-type CFT.  Set
+\[
+  \MH_i:=\Hopij{i}{0}.
+\]
+Then $\MH_i$ is a right $\MA$-module. %Thus boundary conditions are labeled by right $\MA$-modules, also called solitonic $\MA$-modules; for this talk we take local $\MA$-modules.
+
+\begin{block}{Open-string state space}
+Since one expects
+\[
+  \Hopij{i}{j}
+  =
+  \Hopij{i}{0}\boxtimes_{\Bopi{0}}\Hopij{0}{j}
+  =
+  \Hopij{i}{0}\boxtimes_{\Bopi{0}}\overline{\Hopij{j}{0}},
+\]
+we have
+\[
+  \Hopij{i}{j}
+  =
+  \MH_i\bA\overline{\MH_j}.
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Boundary Conditions Labeled by $\MA$-Modules}
+\small
+The boundary conditions in the Cardy case are labeled by right $\MA$-modules, equivalently solitonic $\MA$-modules.
+
+\begin{block}{Local modules}
+For simplicity, in this talk we restrict to local $\MA$-modules:
+\[
+  \hbox{left action}=\hbox{right action}.
+\]
+We simply call them $\MA$-modules.
+\end{block}
+
+\begin{block}{Example}
+If $\MA$ is the Virasoro conformal net, then $\MA$-modules correspond to unitary representations of the Virasoro algebra.
+\end{block}
+\end{frame}
+
+\PartFrame{III}{Bulk Fields and Closed String State Space}
+
+\begin{frame}[t]{Closed CFT}
+\footnotesize
+For each local $\MA$-module $\MH_i$, there is a canonical $\sigma$-twisted $\MA^{\otimes 2}$-module structure on the same Hilbert space, where
+\[
+  \sigma\in\Aut(\MA^{\otimes 2})
+\]
+is the permutation of the two tensor factors.
+
+\begin{block}{Longo--Xu}
+We denote this twisted module by
+\[
+  \Hsqrt{i}.
+\]
+This is the Longo--Xu result (04); a vertex-algebra version appeared in Barron--Dong--Mason (02).
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{The State Space for the Closed CFT}
+\footnotesize
+The state space for the closed CFT is
+\[
+  \Hcl
+  =
+  \Hsqrt{0}\bAtwo\overline{\Hsqrt{0}},
+\]
+as an untwisted $\MA^{\otimes 2}$-module.
+
+\begin{columns}[T,onlytextwidth]
+\begin{column}{.70\textwidth}
+\begin{block}{Bulk net}
+We have a net of von Neumann algebras
+\[
+  \Bcl:\ O\longmapsto \Bcl(O)\subset\mathfrak L(\Hcl),
+\]
+where $O$ is a double cone in $\Rcl$.
+\end{block}
+\end{column}
+\begin{column}{.27\textwidth}
+\begin{center}
+\vspace{.15cm}
+\ClosedCylinderPicture
+\end{center}
+\end{column}
+\end{columns}
+\vspace{.25cm}
+
+The net satisfies properties such as
+\[
+  \Gc\times\Gc\hbox{-covariance},\qquad
+  \hbox{locality},\qquad
+  \hbox{\focus{bulk-bulk Haag duality}}.
+\]
+\end{frame}
+
+\begin{frame}[t]{Bulk-Bulk Haag Duality}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+\column{.43\textwidth}
+\begin{center}
+\includegraphics[width=.88\linewidth]{figures/crops/fig_bulk_haag.png}
+\end{center}
+
+\column{.55\textwidth}
+\begin{block}{Single double cone}
+If $O'$ is the spacelike complement of $O$, then
+\[
+  \Bcl(O)'=\Bcl(O').
+\]
+\end{block}
+\end{columns}
+
+\vspace{.08cm}
+\begin{block}{Multi double-cones}
+If $O_1,\ldots,O_n$ are mutually spacelike separated and
+\[
+  (O_1\cup\cdots\cup O_n)'=D_1\cup\cdots\cup D_n,
+\]
+then
+\[
+  \bigl(\Bcl(O_1)\vee\cdots\vee\Bcl(O_n)\bigr)'
+  =
+  \Bcl(D_1)\vee\cdots\vee\Bcl(D_n).
+\]
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Two and Multi Double-Cones}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+\column{.45\textwidth}
+\begin{center}
+\vspace{.25cm}
+\includegraphics[width=\linewidth]{figures/crops/fig1c.pdf}
+\end{center}
+
+\column{.53\textwidth}
+\begin{block}{Two double-cones version}
+In the configuration shown on the left,
+\[
+  (O_1\cup O_2)'=D_1\cup D_2,
+\]
+and
+\[
+\begin{aligned}
+  &\bigl(\Bcl(O_1)\vee\Bcl(O_2)\bigr)'\\
+  &\qquad =\Bcl(D_1)\vee\Bcl(D_2).
+\end{aligned}
+\]
+\end{block}
+\end{columns}
+
+\vspace{.15cm}
+The same statement holds for multi double-cones.
+\end{frame}
+
+\begin{frame}[t]{Modular Invariance}
+\small
+\begin{columns}[T,onlytextwidth]
+\column{.46\textwidth}
+\begin{center}
+\includegraphics[width=\linewidth]{figures/crops/fig1c.pdf}
+\end{center}
+
+\column{.50\textwidth}
+In Euclidean CFT, this version of Haag duality corresponds to \focus{modular invariance}.
+\end{columns}
+
+\vspace{.45cm}
+Multi double-cone version also holds.
+\end{frame}
+
+\PartFrame{IV}{Bulk Fields Acting on Open String State Spaces}
+
+\begin{frame}[t]{$\Bcl$ Acts on $\Hopij{i}{j}$}
+\small
+The closed net restricts to the open-string state space
+\[
+  \Hopij{i}{j}=\MH_i\bA\overline{\MH_j}.
+\]
+Thus, for each double cone $O\subset \rint\Rop=(0,\pi)\times\Rbb$, we get an action
+\[
+  \Bcl(O)\curvearrowright\Hopij{i}{j}.
+\]
+
+The action satisfies, among other things, the \focus{bulk-boundary Haag duality}.
+\end{frame}
+
+\begin{frame}[t]{Bulk-Boundary Haag Duality}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+\column{.43\textwidth}
+\begin{center}
+\includegraphics[width=.72\linewidth]{figures/crops/fig1e.pdf}
+\end{center}
+
+\column{.55\textwidth}
+Let $\widetilde E_+$ and $\widetilde E_-$ be the two boundary intervals in the spacelike complement of the bulk double cone $O$, as in the picture.
+
+\begin{block}{Bulk-boundary Haag duality}
+\scriptsize
+\[
+  \Bcl(O)
+  \quad\hbox{and}\quad
+  \Bopi{i}(\widetilde E_+)\vee\Bopi{j}(\widetilde E_-)
+\]
+are commutants of each other.
+\end{block}
+\end{columns}
+
+\vspace{.1cm}
+This corresponds to the \focus{Cardy consistency condition} in Euclidean CFT.
+\end{frame}
+
+\begin{frame}[t]{Multi Double-Cones in the Strip}
+\small
+\begin{center}
+\includegraphics[width=.38\linewidth]{figures/crops/fig1f.pdf}
+\end{center}
+
+\vspace{.2cm}
+The multi double-cone version holds.
+\end{frame}
+
+\begin{frame}[t]{Theorem}
+\small
+\vspace{.35cm}
+\begin{center}
+\begin{minipage}{.92\textwidth}
+\begin{block}{Theorem}
+For any conformal net $\MA$, there exists the open/closed CFT satisfying the previously mentioned properties, whose boundary conditions are labeled by local $\MA$-modules.
+\end{block}
+\end{minipage}
+\end{center}
+
+\vspace{.45cm}
+\begin{minipage}{.92\textwidth}
+\footnotesize
+\textcolor{deepblue}{\textbf{Expectations.}}\quad
+We expect the construction to generalize to:
+\begin{itemize}
+  \item non-local $\MA$-modules;
+  \item or even general non-local nets.
+\end{itemize}
+
+\vspace{.05cm}
+We expect that the open/closed CFT for $\MA=$ Virasoro conformal net of $c\geq 25$ is the Minkowskian open/closed Liouville CFT.
+
+\smallskip
+More generally, Toda CFTs are expected to be Cardy-type CFTs associated with principal $\mathcal W(\mathfrak g)$ conformal nets at Toda central charge.
+\end{minipage}
+\end{frame}
+
+\begin{frame}[t]{Three Haag Dualities}
+\footnotesize
+\vspace{-.05cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Haag duality} & \textbf{Spacetime} & \textbf{Interpretation}\\
+\hline
+Bulk-bulk & $\Rcl$ & \begin{tabular}[c]{@{}l@{}}Modular invariance\\in Euclidean spacetimes\end{tabular}\\
+\hline
+Boundary-boundary & $\Rop$ & Morita equivalence of boundary nets\\
+\hline
+Bulk-boundary & $\Rop$ & \begin{tabular}[c]{@{}l@{}}Cardy consistency condition\\in Euclidean spacetimes\end{tabular}\\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{.12cm}
+\begin{columns}[T,onlytextwidth]
+\column{.34\textwidth}
+\centering
+\includegraphics[height=.22\textheight,width=.98\linewidth,keepaspectratio]{figures/crops/fig1c.pdf}\\[-.05cm]
+\scriptsize Bulk-bulk
+
+\column{.31\textwidth}
+\centering
+\includegraphics[height=.22\textheight,width=.98\linewidth,keepaspectratio]{figures/crops/fig1d.pdf}\\[-.05cm]
+\scriptsize Boundary-boundary
+
+\column{.31\textwidth}
+\centering
+\includegraphics[height=.22\textheight,width=.98\linewidth,keepaspectratio]{figures/crops/fig1e.pdf}\\[-.05cm]
+\scriptsize Bulk-boundary
+\end{columns}
+\end{frame}
+
+\end{spacing}
+\end{document}
