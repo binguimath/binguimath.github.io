@@ -1,0 +1,4319 @@
+\documentclass[b5paper,twoside]{article}
+\usepackage[fontsize=13pt]{scrextend}
+\usepackage[
+  paperwidth=176mm,
+  paperheight=250mm,
+  left=7mm,
+  right=7mm,
+  top=9.1mm,
+  bottom=9.1mm,
+  includehead,
+  ignorefoot,
+  headheight=18pt,
+  headsep=4pt
+]{geometry}
+
+\usepackage{amsmath}
+\usepackage{newpxtext}
+\usepackage[amsthm]{newpxmath}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\allowdisplaybreaks
+\linespread{1.1}
+\setlength{\emergencystretch}{2em}
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+
+\fancyhf{}
+\fancyhead[LE]{\thepage}
+\fancyhead[RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+
+\definecolor{InternalLink}{HTML}{1A4D8F}
+\definecolor{CitationLink}{HTML}{2C6E49}
+\definecolor{ExternalLink}{HTML}{8A2C5A}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=InternalLink,
+  citecolor=CitationLink,
+  urlcolor=ExternalLink,
+  filecolor=ExternalLink,
+  pdfborder={0 0 0},
+  unicode=true,
+  bookmarksopen=true,
+  bookmarksnumbered=false,
+  pdftitle={Grundzuege einer allgemeinen Theorie der linearen Integralgleichungen. Vierte Mitteilung / Fundamentals of a General Theory of Linear Integral Equations. Fourth Communication},
+  pdfauthor={David Hilbert},
+  pdfsubject={English translation of the 1906 Fourth Communication}
+}
+
+\makeatletter
+\newcommand{\hilbertstatementname}[2]{%
+  \textbf{#1\if\relax\detokenize{#2}\relax\else\ #2\fi.}%
+}
+\newenvironment{theorem}[1][]{%
+  \par\addvspace{.7\baselineskip}%
+  \phantomsection
+  \protected@edef\@currentlabel{#1}%
+  \noindent\hilbertstatementname{Theorem}{#1}\ \itshape\ignorespaces
+}{%
+  \par\addvspace{.7\baselineskip}%
+}
+\newenvironment{lemma}[1][]{%
+  \par\addvspace{.7\baselineskip}%
+  \phantomsection
+  \protected@edef\@currentlabel{#1}%
+  \noindent\hilbertstatementname{Lemma}{#1}\ \itshape\ignorespaces
+}{%
+  \par\addvspace{.7\baselineskip}%
+}
+\newenvironment{definition}[1][]{%
+  \par\addvspace{.5\baselineskip}%
+  \phantomsection
+  \protected@edef\@currentlabel{#1}%
+  \noindent\hilbertstatementname{Definition}{#1}\ \normalfont\ignorespaces
+}{%
+  \par\addvspace{.5\baselineskip}%
+}
+\renewcommand{\proofname}{\textit{Proof}}
+\makeatother
+
+\newcommand{\originalpage}[1]{\phantomsection\label{origpage:#1}}
+
+\begin{document}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+\begin{center}
+  {\LARGE\bfseries Grundz\"uge einer allgemeinen Theorie der linearen
+  Integralgleichungen.\par}
+  \vspace{0.35\baselineskip}
+  {\Large\bfseries (Vierte Mitteilung).\par}
+  \vspace{0.8\baselineskip}
+  {\LARGE\bfseries Fundamentals of a General Theory of Linear Integral
+  Equations\par}
+  \vspace{0.35\baselineskip}
+  {\Large\bfseries (Fourth Communication).\par}
+  \vspace{0.8\baselineskip}
+  {\large By David Hilbert.\par}
+  \vspace{0.35\baselineskip}
+  {Presented at the session of 3 March 1906.\par}
+\end{center}
+\vspace{0.6\baselineskip}
+
+\originalpage{157}
+In the introduction to my first communication I announced a new method for
+the treatment of integral equations; it rests upon a theory of quadratic
+forms in infinitely many variables, which I shall develop in the present
+communication.
+
+The systematic treatment of quadratic forms in infinitely many variables is
+also of great importance in itself and appears to me to be an essential
+completion of the familiar theory of quadratic forms in a finite number of
+variables.  The applications of the theory of quadratic forms in infinitely
+many variables are not confined to integral equations: this theory will come
+into contact no less with Stieltjes's beautiful theory of continued
+fractions\footnote{\hyperref[bib:Stieltjes1894]{\emph{Recherches sur les
+fractions continues}, Ann. de Toulouse VIII (1894).}} than, on the other hand, with the
+question of solving systems of infinitely many linear equations, whose study
+Hill, Poincar\'e, H.~von Koch, and others have successfully undertaken.  There
+is also, from the methodological point of view, a close relation to
+Minkowski's investigations of volume and surface area.  Above all, however,
+the theory of quadratic forms in infinitely many variables
+opens\originalpage{158} a new path
+to the most general expansions of arbitrary functions in infinite series of
+Fourier type, as will be indicated at the end of
+\hyperref[sec:XI]{Section XI} of this communication.
+
+In a fifth communication I shall show not only how extraordinarily simply all
+the results on integral equations of the second kind obtained in my first
+communication can now be proved and substantially extended, but also how the
+method of quadratic forms in infinitely many variables permits these results
+to be \mbox{transferred} to integral equations of the first kind and to certain
+integral equations of a new ``third'' kind, and how, by the new method,
+integral equations whose kernel exhibits higher singularities likewise become
+amenable to successful treatment.
+
+\section*{XI. Theory of the Orthogonal Transformation of a\\
+Quadratic Form in Infinitely Many Variables}
+\addcontentsline{toc}{section}{XI. Theory of the Orthogonal Transformation of a Quadratic Form in Infinitely Many Variables}
+\label{sec:XI}
+
+Let
+\[
+  k_{pq}=k_{qp},
+\]
+where each of the two indices $p,q$ runs through the sequence of all positive
+integers $1,2,\ldots$, be arbitrarily given real constants.  Then
+\[
+  K(x)=\sum_{p,q=1,2,\ldots} k_{pq}x_p x_q
+\]
+represents a \emph{quadratic form} in the infinitely many variables
+$x_1,x_2,\ldots$; the constants $k_{pq}$ are called the coefficients of this
+quadratic form.  An expression
+\[
+  A(x,y)=\sum_{p,q=1,2,\ldots} a_{pq}x_p y_q
+\]
+with arbitrary coefficients $a_{pq}$ is called a \emph{bilinear expression}
+or a \emph{bilinear form} in the infinitely many variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$.  The expression
+\[
+  K(x,y)=\sum_{p,q=1,2,\ldots} k_{pq}x_p y_q
+\]
+is called the bilinear form belonging to $K(x)$.  It is a form in the
+infinitely many variables $x_1,x_2,\ldots$ and $y_1,y_2,\ldots$.
+
+If we allow the indices $p,q$ to run only through the values $1,\ldots,n$,
+where $n$ denotes a finite number, there arise\originalpage{159} the forms
+with the finite number $n$ of variables as follows:
+\[
+  K_n(x)=\sum_{p,q=1,\ldots,n}k_{pq}x_p x_q,
+  \qquad
+  K_n(x,y)=\sum_{p,q=1,\ldots,n}k_{pq}x_p y_q.
+\]
+These forms $K_n(x)$ and $K_n(x,y)$ shall be called the \emph{truncations} of
+the forms $K(x)$ and $K(x,y)$, respectively, and shall also be denoted by
+$[K]$, sometimes without explicitly appending the index $n$.
+
+If any bilinear expression with a finite number of variables,
+\[
+  A_n(x,y)=\sum_{p,q=1,\ldots,n}a_{pq}x_p y_q,
+\]
+is given, the sum of all the coefficients of the terms $x_p y_p$ shall be
+called the \emph{convolution} of the expression $A_n(x,y)$ and shall be
+denoted by $A_n(\mathord{\cdot},\mathord{\cdot})$; thus\footnote{Translator's
+note: In this displayed formula the original edition omits the subscript $n$
+from $A_n(\mathord{\cdot},\mathord{\cdot})$; it has been supplied here in
+accordance with the preceding definition.}
+\[
+  A_n(\mathord{\cdot},\mathord{\cdot})
+  =\sum_{p=1,\ldots,n}a_{pp},
+\]
+and in particular
+\[
+  K_n(\mathord{\cdot},\mathord{\cdot})
+  =k_{11}+\cdots+k_{nn}.
+\]
+
+Besides the general quadratic forms $K,K_n$, we shall also consider the
+special quadratic forms
+\[
+  (x,x)=x_1^2+x_2^2+\cdots,
+  \qquad
+  (x,x)_n=x_1^2+\cdots+x_n^2,
+\]
+and the special bilinear forms
+\[
+  (x,y)=x_1y_1+x_2y_2+\cdots,
+  \qquad
+  (x,y)_n=x_1y_1+\cdots+x_ny_n.
+\]
+
+The discriminant of the form
+\[
+  (x,x)_n-\lambda K_n(x),
+\]
+that is, the determinant
+\begin{equation}
+\tag{1}\label{eq:1}
+  D_n(\lambda)=
+  \begin{vmatrix}
+    1-\lambda k_{11} & -\lambda k_{12} & \cdots & -\lambda k_{1n}\\
+    -\lambda k_{21} & 1-\lambda k_{22} & \cdots & -\lambda k_{2n}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    -\lambda k_{n1} & -\lambda k_{n2} & \cdots & 1-\lambda k_{nn}
+  \end{vmatrix},
+\end{equation}
+is, as is well known, a polynomial of degree $n$ in $\lambda$, all of whose
+zeros are real.  Let these be denoted by
+\[
+  \lambda_1^{(n)},\lambda_2^{(n)},\ldots,\lambda_n^{(n)}
+\]
+\originalpage{160}and called the \emph{eigenvalues} of the form $K_n$; the totality of these
+$n$ eigenvalues shall be called the \emph{spectrum} of the form $K_n$.  If a
+real value $\lambda$ is such that, at that value or in every neighborhood of
+it, eigenvalues of $K_n$ occur for infinitely many $n$, this value $\lambda$
+shall be called a \emph{condensation value} of $K$. If the greatest absolute
+values among the eigenvalues of $K_n$ increase beyond every bound as $n$
+increases, the value $\lambda=\infty$ shall likewise
+be counted as a condensation value of the form $K$.
+
+We now border the determinant in \eqref{eq:1}, obtaining
+\[
+  D_n(\lambda;x,y)=
+  \begin{vmatrix}
+    1-\lambda k_{11} & \cdots & -\lambda k_{1n} & x_1\\
+    \vdots & & \vdots & \vdots\\
+    -\lambda k_{n1} & \cdots & 1-\lambda k_{nn} & x_n\\
+    y_1 & \cdots & y_n & 0
+  \end{vmatrix},
+\]
+and call the quotient
+\[
+  K_n(\lambda;x,y)=-\frac{D_n(\lambda;x,y)}{D_n(\lambda)},
+  \qquad
+  K_n(\lambda;x)=K_n(\lambda;x,x),
+\]
+the \emph{resolvent of the quadratic form} $K_n$, with the second notation
+being the special case $y=x$. If
+$\lambda$ is not an eigenvalue, the coefficients of $x_1,\ldots,x_n$ in
+$K_n(\lambda;x,y)$ give the solution of the linear equations
+\[
+  x_p-\lambda(k_{p1}x_1+\cdots+k_{pn}x_n)=y_p,
+  \qquad (p=1,\ldots,n);
+\]
+we express this by the identity
+\[
+  K_n(\lambda;x,y)
+  -\lambda K_n(x,\mathord{\cdot})K_n(\lambda;\mathord{\cdot},y)
+  =(x,y)_n.
+\]
+It is evident that
+\begin{equation}
+\tag{2}\label{eq:2}
+\begin{aligned}
+  K_n(\lambda;x,y)
+  &=(x,y)_n+\lambda K_n(x,y)+\lambda^2K_nK_n(x,y)\\
+  &\quad+\lambda^3K_nK_nK_n(x,y)+\cdots,
+\end{aligned}
+\end{equation}
+where $K_nK_n,K_nK_nK_n,\ldots$ denote the forms arising from $K_n$
+by repeated convolutions,
+\begin{align*}
+  K_nK_n(x,y)
+    &=K_n(x,\mathord{\cdot})K_n(\mathord{\cdot},y)
+      =\sum_{p,q,r=1,\ldots,n}k_{pr}k_{rq}x_p y_q,\\
+  K_nK_nK_n(x,y)
+    &=K_n(x,\mathord{\cdot})K_nK_n(\mathord{\cdot},y)
+      =\sum_{p,q,r,s=1,\ldots,n}k_{pr}k_{rs}k_{sq}x_p y_q,
+\end{align*}
+and so on.  For the resolvent $K_n$ the partial-fraction representation
+\originalpage{161}
+\begin{equation}
+\tag{3}\label{eq:3}
+  K_n(\lambda;x,y)
+  =\frac{L_1^{(n)}(x)L_1^{(n)}(y)}{1-\lambda/\lambda_1^{(n)}}
+   +\cdots+
+   \frac{L_n^{(n)}(x)L_n^{(n)}(y)}{1-\lambda/\lambda_n^{(n)}}
+\end{equation}
+holds, where $L_1^{(n)},\ldots,L_n^{(n)}$ denote certain linear forms in
+the variables with real coefficients.  In particular, therefore, the
+following formulas hold:
+\begin{equation}
+\tag{4}\label{eq:4}
+\begin{aligned}
+  (x,y)_n
+    &=x_1y_1+\cdots+x_ny_n
+      =L_1^{(n)}(x)L_1^{(n)}(y)+\cdots+L_n^{(n)}(x)L_n^{(n)}(y),\\
+  K_n(x,y)
+    &=\frac{L_1^{(n)}(x)L_1^{(n)}(y)}{\lambda_1^{(n)}}
+      +\cdots+
+      \frac{L_n^{(n)}(x)L_n^{(n)}(y)}{\lambda_n^{(n)}};
+\end{aligned}
+\end{equation}
+\begin{equation}
+\tag{5}\label{eq:5}
+\begin{aligned}
+  (x,x)_n
+    &=x_1^2+\cdots+x_n^2
+      =(L_1^{(n)}(x))^2+\cdots+(L_n^{(n)}(x))^2,\\
+  K_n(x)
+    &=\frac{(L_1^{(n)}(x))^2}{\lambda_1^{(n)}}
+      +\cdots+
+      \frac{(L_n^{(n)}(x))^2}{\lambda_n^{(n)}},\\
+  K_nK_n(x)
+    &=\frac{(L_1^{(n)}(x))^2}{(\lambda_1^{(n)})^2}
+      +\cdots+
+      \frac{(L_n^{(n)}(x))^2}{(\lambda_n^{(n)})^2},\\
+  K_nK_nK_n(x)
+    &=\frac{(L_1^{(n)}(x))^2}{(\lambda_1^{(n)})^3}
+      +\cdots+
+      \frac{(L_n^{(n)}(x))^2}{(\lambda_n^{(n)})^3},
+      \qquad\ldots
+\end{aligned}
+\end{equation}
+From \eqref{eq:4} follow the orthogonality properties of the linear forms
+$L_1^{(n)},\ldots,L_n^{(n)}$,
+\[
+  L_p^{(n)}(\mathord{\cdot})L_q^{(n)}(\mathord{\cdot})=0
+  \quad(p\ne q),
+  \qquad
+  L_p^{(n)}(\mathord{\cdot})L_p^{(n)}(\mathord{\cdot})=1,
+\]
+where $L_p^{(n)}(\mathord{\cdot})L_q^{(n)}(\mathord{\cdot})$ denotes the
+convolution of the bilinear form $L_p^{(n)}(x)L_q^{(n)}(y)$; and then,
+again by convolution, one obtains
+\begin{equation}
+\tag{6}\label{eq:6}
+\begin{aligned}
+  K_n(\mathord{\cdot},\mathord{\cdot})
+    &=\sum_{p=1,\ldots,n}k_{pp}
+      =\frac1{\lambda_1^{(n)}}+\cdots+\frac1{\lambda_n^{(n)}},\\
+  K_nK_n(\mathord{\cdot},\mathord{\cdot})
+    &=\sum_{p,r=1,\ldots,n}k_{pr}k_{rp}
+      =\frac1{(\lambda_1^{(n)})^2}+\cdots
+       +\frac1{(\lambda_n^{(n)})^2},\\
+  K_nK_nK_n(\mathord{\cdot},\mathord{\cdot})
+    &=\sum_{p,r,s=1,\ldots,n}k_{pr}k_{rs}k_{sp}
+      =\frac1{(\lambda_1^{(n)})^3}+\cdots
+       +\frac1{(\lambda_n^{(n)})^3},
+       \qquad\ldots
+\end{aligned}
+\end{equation}
+
+Our first important task is to transfer the concept of the resolvent of the
+form $K_n$ to the form $K$, and to seek, for the form $K$ in infinitely many
+variables, the analogue of the partial-fraction representation
+\eqref{eq:3}.
+
+For this purpose we use a general lemma from the domain of continuous
+(uniform) convergence,\originalpage{162} which I have already applied in a more special form in
+my investigations on Dirichlet's principle.\footnote{\hyperref[bib:Hilbert1904Dirichlet]{
+\emph{Math. Ann.}, vol.~59 (1904).}}
+
+\begin{lemma}[1]\label{lem:1}
+Let $J$ be an interval lying wholly in the finite part of the line for the
+variable $s$, and let
+\begin{equation}
+\tag{7}\label{eq:7}
+  f_1(s),f_2(s),f_3(s),\ldots
+\end{equation}
+be an infinite sequence of functions of the variable $s$ that are continuous
+in $J$, whose absolute values remain below a finite bound, and all of whose
+difference quotients remain below a finite bound, so that for all $s,t$ in
+$J$ and all $h$ one always has
+\[
+  \left|\frac{f_h(s)-f_h(t)}{s-t}\right|\le E,
+\]
+where $E$ denotes a finite quantity independent of $h$ and of the choice of
+the arguments $s,t$.
+
+Then infinitely many functions
+\[
+  f_1^*(s),f_2^*(s),f_3^*(s),\ldots
+\]
+can be selected from this very sequence of functions \eqref{eq:7} in such a
+way that the sequence of these functions converges at every point
+of $J$ to a finite limiting value, and does so continuously (hence also
+uniformly); it follows that the limit
+\[
+  \mathop{\mathrm{L}}\limits_{p=\infty}f_p^*(s)
+\]
+represents a function of $s$ continuous in $J$.
+\end{lemma}
+
+\begin{proof}
+In the manner used in \S5 of my cited paper on Dirichlet's principle, select
+from the sequence \eqref{eq:7} a sequence of functions
+$f_1^*(s),f_2^*(s),\ldots$ such that, at every point of a countable point set
+$P^*$ everywhere dense in $J$, the sequence of these functions converges to a
+finite limiting value.  We now show that the functions so selected have the
+property required in the lemma.
+
+Indeed, let $s_1,s_2,\ldots$ denote any infinite sequence of points of $J$
+converging to a definite point $s$.  If $\varepsilon$ denotes an arbitrarily
+small positive quantity, first choose a point $s^*$ of the point set
+\originalpage{163}$P^*$ so that
+\begin{equation}
+\tag{8}\label{eq:8}
+  |s^*-s|<\frac{\varepsilon}{8E}.
+\end{equation}
+Because the sequence of values
+\[
+  f_1^*(s^*),f_2^*(s^*),\ldots
+\]
+converges, a number $N$ can then certainly be found such that, for all
+indices $p,q$ exceeding $N$,
+\begin{equation}
+\tag{9}\label{eq:9}
+  |f_p^*(s^*)-f_q^*(s^*)|<\frac{\varepsilon}{2}.
+\end{equation}
+Because the sequence of points $s_1,s_2,\ldots$ converges, this integer $N$
+may at the same time be chosen so large that, for all indices $p,q$ exceeding
+$N$,
+\[
+  |s-s_p|<\frac{\varepsilon}{8E},
+  \qquad
+  |s-s_q|<\frac{\varepsilon}{8E}.
+\]
+With the aid of \eqref{eq:8}, it follows that, for all indices $p,q$
+exceeding $N$,
+\begin{equation}
+\tag{10}\label{eq:10}
+  |s^*-s_p|<\frac{\varepsilon}{4E},
+  \qquad
+  |s^*-s_q|<\frac{\varepsilon}{4E}.
+\end{equation}
+On the other hand, by the hypothesis of our lemma,
+\[
+  \left|\frac{f_p^*(s^*)-f_p^*(s_p)}{s^*-s_p}\right|<E,
+  \qquad
+  \left|\frac{f_q^*(s^*)-f_q^*(s_q)}{s^*-s_q}\right|<E,
+\]
+and consequently, with the aid of \eqref{eq:10},
+\[
+  |f_p^*(s^*)-f_p^*(s_p)|<\frac{\varepsilon}{4},
+  \qquad
+  |f_q^*(s^*)-f_q^*(s_q)|<\frac{\varepsilon}{4}.
+\]
+Adding these inequalities to \eqref{eq:9}, we obtain, for all indices $p,q$
+exceeding $N$,
+\[
+\begin{aligned}
+  &|f_p^*(s^*)-f_q^*(s^*)|
+   +|f_p^*(s^*)-f_p^*(s_p)|
+   +|f_q^*(s^*)-f_q^*(s_q)|<\varepsilon,
+\end{aligned}
+\]
+and all the more
+\[
+  |f_p^*(s_p)-f_q^*(s_q)|<\varepsilon.
+\]
+Since $\varepsilon$ was arbitrarily small, it follows that the sequence of
+values
+\[
+  f_1^*(s_1),f_2^*(s_2),\ldots
+\]
+converges to a finite limiting value; that is, the sequence of functions
+\[
+  f_1^*(s),f_2^*(s),\ldots
+\]
+\originalpage{164}converges continuously at every point $s$ of the interval $J$.  This proves
+the lemma completely.
+\end{proof}
+
+We return to the theory of quadratic forms, and in what follows we first
+assume that $\lambda=\infty$ is not a condensation value of $K$; that is,
+$K$ is to be a form such that all eigenvalues of $K_n$, for every $n$, lie in
+the finite interval $J$.  We then define certain functions of the variable
+$\lambda$ belonging to $K_n$ as follows: in general let
+\begin{equation}
+\tag{11}\label{eq:11}
+\left.
+\begin{aligned}
+  \chi_p^{(n)}(\lambda)&=0
+    &&\text{for }\lambda\le\lambda_p^{(n)},\\
+  \chi_p^{(n)}(\lambda)&=(L_p^{(n)}(x))^2
+      (\lambda-\lambda_p^{(n)})
+    &&\text{for }\lambda>\lambda_p^{(n)},
+\end{aligned}
+\right\}
+\qquad p=1,\ldots,n,
+\end{equation}
+and put
+\[
+  \chi^{(n)}(\lambda)
+  =\chi_1^{(n)}(\lambda)+\cdots+\chi_n^{(n)}(\lambda).
+\]
+Then the $\chi_p^{(n)}$, and consequently also $\chi^{(n)}$, are continuous
+functions of $\lambda$ which are nowhere negative and never decrease when
+the argument $\lambda$ increases while $n$ is held fixed.  The difference
+quotients of these functions, namely
+\[
+  \frac{\chi_p^{(n)}(\lambda)-\chi_p^{(n)}(\mu)}{\lambda-\mu},
+  \qquad
+  \frac{\chi^{(n)}(\lambda)-\chi^{(n)}(\mu)}{\lambda-\mu},
+\]
+are likewise, as we see at once, nowhere negative and never decrease if one
+of the arguments $\lambda,\mu$ is held fixed while the other increases.  More
+precisely, the equations
+\[
+  \frac{\chi_p^{(n)}(\lambda)-\chi_p^{(n)}(\mu)}{\lambda-\mu}
+  =\pi_p(L_p^{(n)}(x))^2
+\]
+and consequently
+\[
+  \frac{\chi^{(n)}(\lambda)-\chi^{(n)}(\mu)}{\lambda-\mu}
+  =\pi_1(L_1^{(n)}(x))^2+\cdots+\pi_n(L_n^{(n)}(x))^2
+\]
+hold, where $\pi_1,\ldots,\pi_n$ denote quantities depending on
+$\lambda,\mu$ and lying between $0$ and $1$.  This equation immediately
+implies
+\[
+  \left|
+  \frac{\chi^{(n)}(\lambda)-\chi^{(n)}(\mu)}{\lambda-\mu}
+  \right|
+  \le (L_1^{(n)}(x))^2+\cdots+(L_n^{(n)}(x))^2,
+\]
+or, by \eqref{eq:5},
+\begin{equation}
+\tag{12}\label{eq:12}
+  \left|
+  \frac{\chi^{(n)}(\lambda)-\chi^{(n)}(\mu)}{\lambda-\mu}
+  \right|
+  \le x_1^2+\cdots+x_n^2.
+\end{equation}
+
+\originalpage{165}
+Finally, we observe that on every interval containing none of the eigenvalues
+$\lambda_p^{(n)}$ of $K_n$, the functions $\chi_p^{(n)}(\lambda)$, and hence
+also $\chi^{(n)}(\lambda)$, are linear functions of $\lambda$.  For every
+$\lambda$ lying outside $J$ on its negative side,
+$\chi^{(n)}(\lambda)$ is identically zero; hence, with regard to
+\eqref{eq:12}, one always has
+\[
+  \chi^{(n)}(\lambda)\le (x_1^2+\cdots+x_n^2)J,
+\]
+where $J$ denotes the length of the interval $J$.  On the positive side
+outside $J$,
+\[
+  \chi^{(n)}(\lambda)
+  =\lambda(x_1^2+\cdots+x_n^2)+C(x),
+\]
+where $C(x)$ denotes a form independent of $\lambda$.  With respect to
+$x_1,\ldots,x_n$, the expression $\chi^{(n)}$ is a quadratic form.
+
+Now let infinitely many variables $x_1,x_2,\ldots$ be given.  We consider
+those special systems of values which arise when any one of these variables
+is set equal to $1$ and all the others equal to $0$, or when any two of these
+variables are set equal to $1/\sqrt2$ and all the others equal to $0$.  We
+imagine all these special systems of values of the infinitely many variables
+$x_1,x_2,\ldots$ arranged in a definite sequence, and call them, in this
+order, the first, second, third, and so on, special system of values of the
+infinitely many variables $x_1,x_2,\ldots$.  By \eqref{eq:12}, for all these
+special systems of values the inequality
+\begin{equation}
+\tag{13}\label{eq:13}
+  \left|
+  \frac{\chi^{(n)}(\lambda)-\chi^{(n)}(\mu)}{\lambda-\mu}
+  \right|\le 1
+\end{equation}
+holds.
+
+We now consider the sequence of forms
+\begin{equation}
+\tag{14}\label{eq:14}
+  \chi^{(1)}(\lambda),\quad
+  \chi^{(2)}(\lambda),\quad
+  \chi^{(3)}(\lambda),\quad\ldots
+\end{equation}
+and apply \hyperref[lem:1]{Lemma 1}, with the first special system of values
+understood to have been substituted for the variables $x_1,x_2,\ldots$.
+We see that, in the interval $J$, the values of all the forms in the sequence
+\eqref{eq:14} must lie below a finite bound, and that by \eqref{eq:13} the
+remaining hypothesis of our lemma is also fulfilled.  By that lemma, an
+infinite sequence of forms
+\begin{equation}
+\tag{15}\label{eq:15}
+  \chi^{(1^*)}(\lambda),\quad
+  \chi^{(2^*)}(\lambda),\quad
+  \chi^{(3^*)}(\lambda),\quad\ldots
+\end{equation}
+can therefore certainly be selected from \eqref{eq:14} such that, when the
+first special system of values is substituted therein for the variables
+$x_1,x_2,\ldots$, it converges uniformly in the interval $J$ to a certain
+continuous function of $\lambda$.
+
+\originalpage{166}
+We next apply our lemma to the sequence of forms \eqref{eq:15}.  According to
+the lemma, there can certainly be selected from that sequence an infinite
+sequence
+\begin{equation}
+\tag{16}\label{eq:16}
+  \chi^{(1^{**})}(\lambda),\quad
+  \chi^{(2^{**})}(\lambda),\quad
+  \chi^{(3^{**})}(\lambda),\quad\ldots
+\end{equation}
+which, when the second special system of values is substituted therein for
+the variables $x_1,x_2,\ldots$, converges uniformly to a certain continuous
+function of $\lambda$.  Applying our lemma further to the sequence of
+functions \eqref{eq:16}, we arrive by selection at a sequence of functions
+\[
+  \chi^{(1^{***})}(\lambda),\quad
+  \chi^{(2^{***})}(\lambda),\quad
+  \chi^{(3^{***})}(\lambda),\quad\ldots,
+\]
+which, after substitution of the third special system of values, converges
+uniformly to a certain continuous function of $\lambda$.
+
+Finally, imagining the procedure continued without limit, we consider the
+sequence of forms
+\begin{equation}
+\tag{17}\label{eq:17}
+  \chi^{(1^*)}(\lambda),\quad
+  \chi^{(2^{**})}(\lambda),\quad
+  \chi^{(3^{***})}(\lambda),\quad\ldots;
+\end{equation}
+it converges uniformly in $\lambda$ when the first, the second, the third,
+and so on, special system of values is substituted therein for the variables
+$x_1,x_2,\ldots$.  But the coefficient of $x_p x_q$ in a quadratic form can
+in general be expressed as a linear combination of the values that the
+quadratic form assumes for
+\[
+  x_p,x_q=1,0;\qquad 0,1;\qquad
+  \frac1{\sqrt2},\frac1{\sqrt2},
+\]
+respectively, all other variables being set equal to zero.  It follows that,
+in general, the coefficient of $x_p x_q$ in the sequence of forms
+\eqref{eq:17} also converges to a certain function
+$\chi_{pq}(\lambda)$ continuous in $\lambda$.  We put
+\[
+  \chi(\lambda)
+  =\sum_{p,q=1,2,\ldots}\chi_{pq}(\lambda)x_p x_q,
+\]
+so that $\chi(\lambda)$ denotes a quadratic form in the infinitely many
+variables $x_1,x_2,\ldots$, whose coefficients are continuous functions of
+$\lambda$.  These functions of $\lambda$ are initially defined only within
+$J$; but since, in place of $J$, we may choose an arbitrarily large interval
+containing $J$, the definition of these functions is thereby given for all
+finite values of $\lambda$.
+
+The values of any truncation of a quadratic form in infinitely many variables
+can be represented as linear combinations of the values which the quadratic
+form assumes for our special systems of values.  It follows that if,
+\originalpage{167}in the forms of the sequence \eqref{eq:17}, we leave
+$x_1,\ldots,x_n$ arbitrary and set all the remaining variables
+$x_{n+1},x_{n+2},\ldots$ equal to zero---that is, take the same truncation of
+every form in \eqref{eq:17}---the resulting sequence of truncations likewise
+converges uniformly, and indeed to the value assumed by the corresponding
+truncation of $\chi(\lambda)$.  If we also put
+\[
+  1^*=m_1,\qquad 2^{**}=m_2,\qquad 3^{***}=m_3,\quad\ldots,
+\]
+then the equation
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}
+  [\chi^{(m_h)}(\lambda)]=[\chi(\lambda)]
+\]
+holds.
+
+For brevity and clarity, in what follows we shall omit square brackets in an
+equation or inequality.  Thus, according to this convention, an equation or
+inequality between forms in infinitely many variables is always to be
+understood as holding identically for all the variables when the same
+truncations of the forms are taken on both sides of the formula.  The last
+equation then reads
+\begin{equation}
+\tag{18}\label{eq:18}
+  \mathop{\mathrm{L}}\limits_{h=\infty}
+  \chi^{(m_h)}(\lambda)=\chi(\lambda).
+\end{equation}
+
+At the same time we observe that the properties named above of the functions
+$\chi^{(n)}(\lambda)$, regarded as functions of $\lambda$, carry over at once
+to an arbitrary truncation $[\chi(\lambda)]$ of the form $\chi(\lambda)$ when
+we regard this truncation as a function of $\lambda$.  We thus see that the
+function $[\chi(\lambda)]$ is likewise nowhere negative and never decreases
+as the argument $\lambda$ increases.  Further, the difference quotient of
+this function, that is, the expression
+\[
+  \frac{[\chi(\lambda)]-[\chi(\mu)]}{\lambda-\mu},
+\]
+is again nowhere negative and, if one of the arguments $\lambda,\mu$ remains
+fixed while the other increases, never decreases.  By \eqref{eq:12}, the
+inequality
+\begin{equation}
+\tag{19}\label{eq:19}
+  \frac{\chi(\lambda)-\chi(\mu)}{\lambda-\mu}\le(x,x)
+\end{equation}
+holds for this difference quotient.  Within an interval containing no
+condensation value of the form $K$, $[\chi(\lambda)]$ becomes a linear
+function of $\lambda$.  Outside $J$,\originalpage{168} on the negative side,
+$[\chi(\lambda)]$ is identically zero, and on the positive side it equals
+$\lambda[(x,x)]+C(x)$.
+
+We now imagine the first special system of values substituted in the form
+$\chi(\lambda)$, and denote the resulting function of $\lambda$ by
+$\chi(\lambda)_1$.  According to the foregoing discussion, if $\lambda$ is
+held fixed and $\mu$ is assigned a value exceeding $\lambda$, the difference
+quotient of $\chi(\lambda)_1$ certainly will not increase as $\mu$ decreases
+toward $\lambda$, and hence, as $\mu$ falls to $\lambda$, will tend to a
+limiting value.  Thus $\chi(\lambda)_1$ certainly possesses a forward
+derivative at every $\lambda$; denote it by
+$\mathfrak f^{(+)}(\lambda)_1$.  In the same way it is shown that
+$\chi(\lambda)_1$ possesses a backward derivative at every $\lambda$; denote
+it by $\mathfrak f^{(-)}(\lambda)_1$.
+
+From the facts stated above concerning the difference quotients of
+$\chi(\lambda)_1$, it follows at the same time that both
+$\mathfrak f^{(+)}(\lambda)_1$ and $\mathfrak f^{(-)}(\lambda)_1$ are
+functions of $\lambda$ which are nowhere negative and do not decrease as the
+argument $\lambda$ increases, and for which, moreover, one always has
+\begin{equation}
+\tag{20}\label{eq:20}
+\begin{aligned}
+  \mathfrak f^{(-)}(\lambda)_1
+    &\le\mathfrak f^{(+)}(\mu)_1 &&\text{for }\lambda\le\mu,\\
+  \mathfrak f^{(+)}(\lambda)_1
+    &\le\mathfrak f^{(-)}(\mu)_1 &&\text{for }\lambda<\mu.
+\end{aligned}
+\end{equation}
+
+Furthermore, since by \eqref{eq:13} the derivatives
+$\mathfrak f^{(+)}(\lambda)_1$ and $\mathfrak f^{(-)}(\lambda)_1$ cannot
+exceed the value $1$, the same is true all the more of the difference between
+the forward and backward derivatives at the same point $\lambda$.  Hence, if
+$m$ denotes any integer, there are at most $m$ points $\lambda$ for which
+\[
+  \mathfrak f^{(+)}(\lambda)_1-
+  \mathfrak f^{(-)}(\lambda)_1\ge\frac1m.
+\]
+It follows that the set of values $\lambda$ for which the forward and
+backward derivatives differ is necessarily countable.
+
+We now imagine the second special system of values substituted in
+$\chi(\lambda)$, proceed with the resulting function $\chi(\lambda)_2$ as we
+did above with $\chi(\lambda)_1$, and seek the set of points $\lambda$ at
+which the forward and backward derivatives differ.  This set of points is
+again certainly countable.  By using the third special system of values we
+obtain correspondingly a countable set of points $\lambda$, and so on.  The
+totality of all such
+\originalpage{169}points is again countable; let them be called the
+\emph{eigenvalues} of the form $K$ and be denoted by
+$\lambda_1,\lambda_2,\ldots$.  The points $\lambda_1,\lambda_2,\ldots$ and
+their condensation points are certainly condensation values of the form
+$K$, since $\chi(\lambda)_1,\chi(\lambda)_2,\ldots$ are linear functions of
+$\lambda$ outside the condensation values, and consequently the forward and
+backward derivatives there are equal.  The totality of the points
+$\lambda_1,\lambda_2,\ldots$ shall be called the \emph{point spectrum} or the
+\emph{discontinuous spectrum} of the form $K$.
+
+Since the coefficients of a quadratic form can be composed linearly from the
+values which the quadratic form assumes on the sequence of special systems of
+values of the variables, we conclude that all the coefficients
+$\chi_{pq}$ of the form $\chi(\lambda)$ likewise possess both forward and
+backward derivatives, and that these are equal at every point except the
+points $\lambda_1,\lambda_2,\ldots$.  Let the forward and backward derivatives
+of $\chi_{pq}$ be denoted by $\mathfrak f_{pq}^{(+)}$ and
+$\mathfrak f_{pq}^{(-)}$, respectively.  At every point $\lambda$ distinct
+from $\lambda_1,\lambda_2,\ldots$, these two derivatives agree; there we put
+\[
+  \mathfrak f_{pq}=\mathfrak f_{pq}^{(+)}=\mathfrak f_{pq}^{(-)}.
+\]
+Let the quadratic forms with coefficients $\mathfrak f_{pq}^{(+)}$ and
+$\mathfrak f_{pq}^{(-)}$ be denoted by $\mathfrak f^{(+)}(\lambda)$ and
+$\mathfrak f^{(-)}(\lambda)$, respectively.  At every point distinct from
+$\lambda_1,\lambda_2,\ldots$, we put
+\[
+  \mathfrak f(\lambda)
+  =\mathfrak f^{(+)}(\lambda)=\mathfrak f^{(-)}(\lambda).
+\]
+
+For the point $\lambda_h$, form the difference
+$\mathfrak f_{pq}^{(+)}-\mathfrak f_{pq}^{(-)}$ and take this difference as
+the coefficient of $x_p x_q$.  The resulting quadratic form in infinitely
+many variables, whose coefficients certainly do not all vanish, shall be
+called the \emph{quadratic eigenform of $K$ belonging to the eigenvalue
+$\lambda_h$}, and shall be denoted by $E_h$.  Evidently, for every eigenvalue
+$\lambda_p$,
+\begin{equation}
+\tag{21}\label{eq:21}
+  \mathfrak f^{(+)}(\lambda_p)
+  -\mathfrak f^{(-)}(\lambda_p)=E_p,
+\end{equation}
+and since, analogously to \eqref{eq:20}, one must also have
+\begin{equation}
+\tag{22}\label{eq:22}
+\begin{aligned}
+  \mathfrak f^{(-)}(\lambda)&\le\mathfrak f^{(+)}(\mu)
+    &&\text{for }\lambda\le\mu,\\
+  \mathfrak f^{(+)}(\lambda)&\le\mathfrak f^{(-)}(\mu)
+    &&\text{for }\lambda<\mu,
+\end{aligned}
+\end{equation}
+it certainly follows that
+\begin{equation}
+\tag{23}\label{eq:23}
+  E_p\ge0.
+\end{equation}
+
+\originalpage{170}
+On the other hand, it follows from \eqref{eq:19}, if we choose for $\mu$ a
+value exceeding $\lambda$ and let it converge to $\lambda$, that
+\begin{equation}
+\tag{24}\label{eq:24}
+  \mathfrak f^{(+)}(\lambda)\le(x,x).
+\end{equation}
+
+We now consider any $m$ eigenvalues of the form $K$, arranged in increasing
+order, say
+\[
+  \lambda_{p_1},\ldots,\lambda_{p_m},
+\]
+and the eigenforms belonging to them,
+\[
+  E_{p_1},\ldots,E_{p_m}.
+\]
+By \eqref{eq:21} we have
+\begin{equation}
+\tag{25}\label{eq:25}
+  \mathfrak f^{(+)}(\lambda_{p_h})
+  -\mathfrak f^{(-)}(\lambda_{p_h})=E_{p_h},
+  \qquad(h=1,2,\ldots,m),
+\end{equation}
+and by \eqref{eq:22},
+\begin{equation}
+\tag{26}\label{eq:26}
+\begin{aligned}
+  \mathfrak f^{(-)}(\lambda_{p_2})
+    -\mathfrak f^{(+)}(\lambda_{p_1})&\ge0,\\
+  &\ \vdots\\
+  \mathfrak f^{(-)}(\lambda_{p_m})
+    -\mathfrak f^{(+)}(\lambda_{p_{m-1}})&\ge0.
+\end{aligned}
+\end{equation}
+Adding \eqref{eq:25} and \eqref{eq:26} gives
+\begin{equation}
+\tag{27}\label{eq:27}
+  \mathfrak f^{(+)}(\lambda_{p_m})
+  -\mathfrak f^{(-)}(\lambda_{p_1})
+  \ge E_{p_1}+\cdots+E_{p_m},
+\end{equation}
+and, since $[\mathfrak f^{(-)}(\lambda)]$ is nowhere negative, this inequality,
+together with \eqref{eq:24}, yields the further inequality
+\begin{equation}
+\tag{28}\label{eq:28}
+  E_{p_1}+\cdots+E_{p_m}\le(x,x).
+\end{equation}
+
+From \eqref{eq:23} and \eqref{eq:28} we see that the sum
+$\sum_{(p)}[E_p]$, extended over all indices $p$, converges, and indeed to a
+quadratic form in the $n$ variables $x_1,\ldots,x_n$ that is at most
+$x_1^2+\cdots+x_n^2$; that is,
+\[
+  \sum_{(p)}E_p\le(x,x).
+\]
+We now define the following forms in the infinitely many variables
+$x_1,x_2,\ldots$:
+\[
+  e(\lambda)=\sum_{(\lambda_p<\lambda)}E_p,
+  \qquad
+  \eta(\lambda)=\sum_{(\lambda_p<\lambda)}E_p(\lambda-\lambda_p),
+\]
+where the sums on the right are to be extended over all indices $p$ for which
+$\lambda_p<\lambda$.  The coefficients of
+\originalpage{171}$\eta(\lambda)$ are continuous functions of $\lambda$.
+The truncations $[e(\lambda)]$ and $[\eta(\lambda)]$ of these forms are
+functions of $\lambda$ which, as follows without difficulty from
+\eqref{eq:23} and the convergence of $\sum_{(p)}[E_p]$, possess the following
+properties.
+
+$[e(\lambda)]$ is nowhere negative and never decreases as $\lambda$
+increases; outside $J$ it is zero on the negative side, and on the positive
+side it is equal to $\sum_{(p)}[E_p]$.
+
+$[e(\lambda)]$ is continuous at every point that is not an eigenvalue; at the
+eigenvalue $\lambda_p$ it has a finite jump, and for positive $\tau$
+decreasing to zero one has
+\[
+  \mathop{\mathrm{L}}\limits_{\tau=0}e(\lambda_p-\tau)=e(\lambda_p),
+  \qquad
+  \mathop{\mathrm{L}}\limits_{\tau=0}e(\lambda_p+\tau)
+  =e(\lambda_p)+E_p.
+\]
+
+$[\eta(\lambda)]$ has both a forward and a backward derivative; these agree
+at every point that is not an eigenvalue and have the value $[e(\lambda)]$.
+At the eigenvalue $\lambda_p$ the backward derivative is $[e(\lambda_p)]$ and
+the forward derivative is $[e(\lambda_p)]+[E_p]$, so that the excess of the
+forward derivative over the backward derivative amounts to $[E_p]$.
+
+From \eqref{eq:27} it follows, if $\lambda'$ and $\lambda''$, with
+$\lambda''>\lambda'$, are not eigenvalues, that
+\[
+  \mathfrak f(\lambda'')-\mathfrak f(\lambda')
+  \ge\sum_{(\lambda'<\lambda_p<\lambda'')}E_p;
+\]
+but
+\[
+  \sum_{(\lambda'<\lambda_p<\lambda'')}E_p
+  =e(\lambda'')-e(\lambda'),
+\]
+and consequently also
+\begin{equation}
+\tag{29}\label{eq:29}
+  \mathfrak f(\lambda'')-\mathfrak f(\lambda')
+  \ge e(\lambda'')-e(\lambda').
+\end{equation}
+If one of the quantities $\lambda',\lambda''$ is an eigenvalue, or if both
+are eigenvalues of $K$, a corresponding inequality follows in the same way
+in place of \eqref{eq:29}.  Now put
+\[
+  \varrho(\lambda)=\chi(\lambda)-\eta(\lambda).
+\]
+Then, with regard to \eqref{eq:21}, the function $[\varrho(\lambda)]$ has
+forward and backward derivatives which agree at every point $\lambda$; this
+derivative is moreover, as follows from \eqref{eq:29} or the corresponding
+inequality, a function of $\lambda$ that does not decrease as the argument
+increases.  This derivative therefore represents a function which is
+continuous in $\lambda$.  \originalpage{172}Thus, if we put
+\begin{equation}
+\tag{30}\label{eq:30}
+  \sigma(\lambda)=\sum\sigma_{pq}x_p x_q
+  =\frac{d\varrho(\lambda)}{d\lambda}
+  =\mathfrak f(\lambda)-e(\lambda),
+\end{equation}
+then every truncation of the form $\sigma(\lambda)$ is a continuous,
+nonnegative function of $\lambda$ that does not decrease as $\lambda$
+increases.  The form $\sigma(\lambda)$ in the infinitely many variables,
+whose coefficients $\sigma_{pq}$ are continuous functions of $\lambda$, shall
+be called the \emph{spectral form} of $K$.
+
+By \eqref{eq:24}, the inequality
+\begin{equation}
+\tag{31}\label{eq:31}
+  \sigma(\lambda)+e(\lambda)\le(x,x)
+\end{equation}
+holds.
+
+For all values $\lambda$ lying outside $J$ on its negative side, the forms
+$\mathfrak f(\lambda),e(\lambda),\sigma(\lambda)$ become identically zero; on
+the positive side they pass into certain forms independent of $\lambda$,
+which we shall denote respectively by
+$\mathfrak f(+\infty),e(+\infty),\sigma(+\infty)$.  By \eqref{eq:30} we have
+\begin{equation}
+\tag{32}\label{eq:32}
+  \sigma(+\infty)=\mathfrak f(+\infty)-e(+\infty).
+\end{equation}
+Since $[\chi(\lambda)]$ passes, to the right of $J$, into
+$\lambda[(x,x)]+C(x)$, we have
+\begin{equation}
+\tag{33}\label{eq:33}
+  \mathfrak f(+\infty)=(x,x),
+\end{equation}
+and, as observed earlier,
+\[
+  e(+\infty)=\sum_p E_p.
+\]
+
+We now select those real values $\lambda$ in every neighborhood of which
+there still exist points $\lambda'$ for which
+\[
+  \sigma(\lambda)=\sigma(\lambda')
+\]
+does not hold identically in all the variables $x_1,x_2,\ldots$. The set $s$
+of all such points $\lambda$ is perfect (closed and dense in itself); it shall
+be called the \emph{interval spectrum} or the \emph{continuous spectrum} of
+the form $K$.  Outside the condensation values of $K$, all coefficients of
+$\chi(\lambda)$ are linear in $\lambda$, those of $e(\lambda)$ are constant,
+and consequently the coefficients of $\sigma(\lambda)$ likewise become
+constant; thus the interval spectrum certainly lies within the condensation
+values of the form $K$.  The point spectrum together with the accumulation
+points of the eigenvalues, and the interval spectrum, taken together, shall
+be called the \emph{spectrum} of the form $K$.
+
+If we now put
+\[
+  \sigma(+\infty)
+  =\int_{-\infty}^{+\infty}d\sigma(\lambda)
+  =\int_{(s)}d\sigma(\lambda),
+\]
+\originalpage{173}then from \eqref{eq:32} and \eqref{eq:33} we obtain
+\[
+  (x,x)=e(+\infty)+\int_{(s)}d\sigma(\lambda),
+\]
+or
+\begin{equation}
+\tag{34}\label{eq:34}
+  (x,x)=\sum_{(p)}E_p+\int_{(s)}d\sigma(\lambda),
+\end{equation}
+where the sum is to be extended over all $p$.
+
+We now return to the quadratic form $K_n$ with the finite number $n$ of
+variables.  If $\lambda$ denotes a complex quantity, or a real quantity
+different from every eigenvalue $\lambda_p^{(n)}$ of the form $K_n$, then
+from the definition \eqref{eq:11} of the function $\chi_p^{(n)}$ we obtain at
+once
+\[
+\begin{aligned}
+  \int_{-\infty}^{+\infty}
+    \frac{\chi_p^{(n)}(\mu)}{(\mu-\lambda)^3}\,d\mu
+  &=(L_p^{(n)}(x))^2
+    \int_{\lambda_p^{(n)}}^{+\infty}
+    \frac{\mu-\lambda_p^{(n)}}{(\mu-\lambda)^3}\,d\mu\\
+  &=\frac12\frac{(L_p^{(n)}(x))^2}{\lambda_p^{(n)}-\lambda}.
+\end{aligned}
+\]
+Here the integration is to be carried out along the real axis from
+$\mu=-\infty$ to $\mu=+\infty$; when $\lambda$ is real, however, the point
+$\lambda$ is to be bypassed by a short detour in the complex $\mu$-plane,
+with the observation that, in a neighborhood of the point $\lambda$,
+$\chi_p^{(n)}(\mu)$, being a linear function, is defined also for complex
+$\mu$.  Summing over $p=1,\ldots,n$, we find
+\begin{equation}
+\tag{35}\label{eq:35}
+  \int_{-\infty}^{+\infty}
+    \frac{\chi^{(n)}(\mu)}{(\mu-\lambda)^3}\,d\mu
+  =\frac12\left\{
+    \frac{(L_1^{(n)}(x))^2}{\lambda_1^{(n)}-\lambda}
+    +\cdots+
+    \frac{(L_n^{(n)}(x))^2}{\lambda_n^{(n)}-\lambda}
+  \right\},
+\end{equation}
+where the integration is to be carried out as above.  On the other hand,
+from \eqref{eq:3} and \eqref{eq:5} it follows that
+\begin{equation}
+\tag{36}\label{eq:36}
+  \frac{K_n(\lambda,x)-(x,x)_n}{\lambda}
+  =\frac{(L_1^{(n)}(x))^2}{\lambda_1^{(n)}-\lambda}
+   +\cdots+
+   \frac{(L_n^{(n)}(x))^2}{\lambda_n^{(n)}-\lambda}.
+\end{equation}
+
+If in \eqref{eq:35} and \eqref{eq:36} we put for $n$ the special numbers
+$m_1,m_2,\ldots$ and take a fixed truncation on both sides, and if further
+$\lambda$ is understood to be any complex quantity or a real quantity that
+does not belong to the spectrum of the form $K$, then by \eqref{eq:18}, on
+passing to the limit, we obtain the formula
+\begin{equation}
+\tag{37}\label{eq:37}
+  \mathop{\mathrm{L}}\limits_{h=\infty}
+  \frac{[K_{m_h}(\lambda,x)]-[(x,x)_{m_h}]}{\lambda}
+  =2\int_{-\infty}^{+\infty}
+    \frac{[\chi(\mu)]}{(\mu-\lambda)^3}\,d\mu.
+\end{equation}
+Here again the integration is along the real axis from $\mu=-\infty$ to
+$\mu=+\infty$; when $\lambda$ is real, however, the point $\lambda$ is to be
+bypassed by a short detour in the complex $\mu$-plane, with the observation
+that, in a neighborhood of the point $\lambda$, $\chi(\mu)$, being a linear
+function, is defined also\originalpage{174} for complex $\mu$.  Consequently,
+the integral on the right represents a function of $\lambda$ which has a
+regular analytic character with respect to $\lambda$ for all complex
+$\lambda$ and for all real $\lambda$ not belonging to the spectrum of $K$.
+
+We put
+\begin{equation}
+\tag{38}\label{eq:38}
+  K(\lambda,x)=(x,x)+2\lambda
+  \int_{-\infty}^{+\infty}
+    \frac{\chi(\mu)}{(\mu-\lambda)^3}\,d\mu
+\end{equation}
+and call this expression the \emph{resolvent of the form $K$}.  Every
+coefficient or truncation of it is likewise regular analytic for all complex
+$\lambda$ and for the finite real values of $\lambda$ not belonging to the
+spectrum of $K$; one also sees that it is regular analytic at
+$\lambda=\infty$.
+
+The equation \eqref{eq:37} found above becomes
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda,x)=K(\lambda,x).
+\]
+From the definition of the form $\eta(\lambda)$ we obtain the equation
+\begin{equation}
+\tag{39}\label{eq:39}
+\begin{aligned}
+  \int_{-\infty}^{+\infty}
+    \frac{\eta(\mu)}{(\mu-\lambda)^3}\,d\mu
+  &=\sum_{(p)}E_p
+    \int_{\lambda_p}^{+\infty}
+    \frac{\mu-\lambda_p}{(\mu-\lambda)^3}\,d\mu\\
+  &=\frac12\sum_{(p)}\frac{E_p}{\lambda_p-\lambda},
+\end{aligned}
+\end{equation}
+where $\lambda$ is to be understood as any complex quantity, or as a real
+quantity not belonging to the spectrum of the form $K$; when $\lambda$ is
+real, the integration with respect to $\mu$ is to be carried out with a short
+detour around the point $\lambda$ in the complex $\mu$-plane.
+
+Since
+\[
+  \varrho(\lambda)=\chi(\lambda)-\eta(\lambda),
+  \qquad
+  \sigma(\lambda)=\frac{d\varrho(\lambda)}{d\lambda},
+\]
+we obtain
+\[
+\begin{aligned}
+  &\int_{-\infty}^{+\infty}
+    \frac{\chi(\mu)}{(\mu-\lambda)^3}\,d\mu
+  -\int_{-\infty}^{+\infty}
+    \frac{\eta(\mu)}{(\mu-\lambda)^3}\,d\mu\\
+  &\qquad=\int_{-\infty}^{+\infty}
+    \frac{\varrho(\mu)}{(\mu-\lambda)^3}\,d\mu
+  =\frac12\int_{-\infty}^{+\infty}
+    \frac{\sigma(\mu)}{(\mu-\lambda)^2}\,d\mu
+  =\frac12\int_{(s)}\frac{d\sigma(\mu)}{\mu-\lambda}.
+\end{aligned}
+\]
+From \eqref{eq:38} and \eqref{eq:39} it follows that
+\begin{equation}
+\tag{40}\label{eq:40}
+  K(\lambda,x)
+  =(x,x)+\lambda\sum_{(p)}\frac{E_p}{\lambda_p-\lambda}
+  +\lambda\int_{(s)}\frac{d\sigma(\mu)}{\mu-\lambda},
+\end{equation}
+\originalpage{175}and hence, with regard to \eqref{eq:34},
+\[
+  K(\lambda,x)
+  =\sum_{(p)}\frac{E_p}{1-\lambda/\lambda_p}
+  +\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}.
+\]
+
+This formula is the sought analogue of the partial-fraction representation
+\eqref{eq:3} of the resolvent $K_n(\lambda,x)$ of the form $K_n$ with the
+finite number $n$ of variables.
+
+We summarize the results obtained as follows.
+
+\begin{theorem}[I]\label{thm:I}
+The resolvent of a quadratic form $K$ for which $\lambda=\infty$ is not a
+condensation value is a quadratic form in infinitely many variables,
+\[
+  K(\lambda,x)=\sum_{p,q}K_{pq}x_p x_q,
+\]
+whose coefficients are regular analytic functions of the argument $\lambda$
+for all arguments $\lambda$ lying outside the spectrum of the form $K$.
+
+If $m_1,m_2,\ldots$ is a certain sequence of integers increasing to infinity,
+then for every truncation of the resolvent the equation
+\begin{equation}
+\tag{41}\label{eq:41}
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda,x)=K(\lambda,x)
+\end{equation}
+holds, where $K_{m_h}$ denotes the resolvent of the form $K_{m_h}$.
+
+The resolvent $K$ admits the following representation (for every truncation):
+\begin{equation}
+\tag{42}\label{eq:42}
+  K(\lambda,x)
+  =\sum_{(p)}\frac{E_p}{1-\lambda/\lambda_p}
+  +\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}.
+\end{equation}
+Here the sum is to be extended over the entire point spectrum of $K$, that
+is, over all eigenvalues of $K$; $E_p$ denotes in general the quadratic
+eigenform belonging to $\lambda_p$.  It is a form whose truncations are not
+negative for any values of the variables $x_1,x_2,\ldots$.  The integral is
+to be extended over the interval spectrum of $K$.  The spectral form
+$\sigma(\lambda)$ is a form whose coefficients are continuous functions of
+$\lambda$, and whose truncations, as the argument $\lambda$ increases within
+the interval spectrum $s$, are nondecreasing functions of $\lambda$ that are
+not all constant, but in every interval lying outside $s$ are all constant.
+Finally, the equation (for every truncation)
+\begin{equation}
+\tag{43}\label{eq:43}
+  (x,x)=\sum_{(p)}E_p+\int_{(s)}d\sigma(\lambda)
+\end{equation}
+holds.
+\end{theorem}
+
+\originalpage{176}
+If the absolute values of all truncations of a quadratic or bilinear form in
+infinitely many variables $x_1,x_2,\ldots,y_1,y_2,\ldots$ lie below a finite
+bound independent of the choice of truncation whenever the variables are
+subjected to the conditions
+\begin{equation}
+\tag{44}\label{eq:44}
+  (x,x)\le1,\qquad(y,y)\le1,
+\end{equation}
+then the quadratic or bilinear form, respectively, shall be called a
+\emph{bounded form}.
+
+The bilinear form belonging to a bounded quadratic form is likewise a bounded
+form.
+
+For example, by \eqref{eq:23} and \eqref{eq:28} the eigenforms $E_p$ are
+always bounded forms; and since by \eqref{eq:31} the inequality
+\[
+  \sigma(\lambda)+e(\lambda)\le(x,x)
+\]
+holds, the spectral form $\sigma(\lambda)$, as well as the forms
+$\mathfrak f(\lambda)$ and $e(\lambda)$, are bounded forms.  Finally, if
+$\lambda$ denotes a value lying outside the spectrum of $K(x)$, the resolvent
+$K(\lambda,x)$ is a bounded form; indeed, the sum component and the integral
+component of $K(\lambda,x)$ are separately bounded forms.
+
+The concepts ``truncation'' and ``bounded'' can evidently be applied in the
+same sense also to linear forms in infinitely many variables.  A linear form
+\[
+  L(x)=l_1x_1+l_2x_2+\cdots
+\]
+is a bounded form if and only if the sum of the squares of its coefficients,
+\[
+  l_1^2+l_2^2+\cdots,
+\]
+is finite.
+
+The truth of this is easily seen with the aid of the following two facts.
+
+\textup{I.} If $u_1,u_2,\ldots$ and $v_1,v_2,\ldots$ are arbitrary
+quantities, then the inequality
+\[
+  (u,v)^2\le(u,u)(v,v)
+\]
+always holds.
+
+\textup{II.} If $u_1,u_2,\ldots$ are arbitrary quantities, $M$ is a finite
+positive number, and moreover the inequality
+\[
+  (u,x)\le M
+\]
+holds for all values $x_1,x_2,\ldots$ satisfying condition \eqref{eq:44},
+then always
+\[
+  (u,u)\le M^2.
+\]
+
+\originalpage{177}
+Henceforth we shall throughout consider only such systems of values of the
+infinitely many variables $x_1,x_2,\ldots,y_1,y_2,\ldots$, and so on, as
+satisfy condition \eqref{eq:44}.  If $a_1,a_2,\ldots$ is such a system of
+values, then, when $L(x)$ is a bounded linear form, the limit of its $n$th
+truncation $[L(a)]_n$ certainly exists as $n\to\infty$; we put
+\[
+  L(a)=\mathop{\mathrm{L}}\limits_{n=\infty}[L(a)]_n.
+\]
+We have thus seen that a bounded linear form in the infinitely many variables
+$x_1,x_2,\ldots$ assumes a definite finite value for every system of values
+of these variables under consideration, and consequently represents a
+\emph{function} of the infinitely many variables $x_1,x_2,\ldots$.
+
+In general, a function $F(x_1,x_2,\ldots)$ of the infinitely many variables
+$x_1,x_2,\ldots$ shall be called \emph{continuous} at the point
+$a_1,a_2,\ldots$ if the value of
+$F(a_1+\varepsilon_1,a_2+\varepsilon_2,\ldots)$ converges to the value of
+$F(a_1,a_2,\ldots)$ as the sum of the squares of
+$\varepsilon_1,\varepsilon_2,\ldots$ decreases to zero; that is, if
+\[
+  \mathop{\mathrm{L}}\limits_{(\varepsilon_1^2+\varepsilon_2^2+\cdots=0)}
+  F(a_1+\varepsilon_1,a_2+\varepsilon_2,\ldots)
+  =F(a_1,a_2,\ldots).
+\]
+We see at once that the bounded linear form $L(x)$ represents a continuous
+function of the infinitely many variables.
+
+The corresponding statements also hold for a bounded bilinear form.  To see
+this, let $A(x,y)$ denote a bounded bilinear form and let
+$a_1,a_2,\ldots$ and $b_1,b_2,\ldots$ be particular systems of values of the
+infinitely many variables.  We then put
+\begin{align*}
+  x_1&=a_1,\ldots,x_n=a_n,
+    \quad x_{n+1}=0,\quad x_{n+2}=0,\ldots,\\
+  x'_1&=0,\ldots,x'_n=0,\\
+  x'_{n+1}&=\frac{a_{n+1}}{\alpha_{nm}},
+    \quad x'_{n+2}=\frac{a_{n+2}}{\alpha_{nm}},\ldots,
+    \quad x'_m=\frac{a_m}{\alpha_{nm}},\\
+  x'_{m+1}&=0,\quad x'_{m+2}=0,\ldots,\\
+  y_1&=b_1,\ldots,y_n=b_n,
+    \quad y_{n+1}=0,\quad y_{n+2}=0,\ldots,\\
+  y'_1&=0,\ldots,y'_n=0,\\
+  y'_{n+1}&=\frac{b_{n+1}}{\beta_{nm}},
+    \quad y'_{n+2}=\frac{b_{n+2}}{\beta_{nm}},\ldots,
+    \quad y'_m=\frac{b_m}{\beta_{nm}},\\
+  y'_{m+1}&=0,\quad y'_{m+2}=0,\ldots,
+\end{align*}
+where
+\[
+  \alpha_{nm}=\sqrt{a_{n+1}^2+a_{n+2}^2+\cdots+a_m^2},
+  \qquad
+  \beta_{nm}=\sqrt{b_{n+1}^2+b_{n+2}^2+\cdots+b_m^2},
+\]
+and where $n$ and $m>n$ denote arbitrary integers.  If $[A]_m$ and $[A]_n$
+denote the corresponding truncations of $A$, then
+\originalpage{178}
+\[
+\begin{aligned}
+  \relax[A(a,b)]_m
+    &=A(x+\alpha_{nm}x',y+\beta_{nm}y')\\
+    &=A(x,y)+\alpha_{nm}A(x',y)+\beta_{nm}A(x,y')
+      +\alpha_{nm}\beta_{nm}A(x',y')\\
+    &=[A(a,b)]_n+\alpha_{nm}A(x',y)+\beta_{nm}A(x,y')
+      +\alpha_{nm}\beta_{nm}A(x',y').
+\end{aligned}
+\]
+Since the absolute values of $A(x',y),A(x,y'),A(x',y')$ remain below a bound
+independent of $n,m$, while moreover $\alpha_{nm},\beta_{nm}$ vanish as
+$n,m$ increase, it follows that $[A(a,b)]_n$ must converge to a limiting
+value as $n$ increases; denote this value briefly by $A(a,b)$.  In an
+analogous manner it follows that the function of the infinitely many
+variables $x_1,x_2,\ldots$ and $y_1,y_2,\ldots$ represented by $A(x,y)$ is
+continuous.
+
+In particular, we conclude that a bounded quadratic form in infinitely many
+variables $x_1,x_2,\ldots$ always represents a continuous function of them.
+
+From the statements just proved we further infer the following fact.  If on
+both sides of a formula there stand a finite number of bounded quadratic or
+bilinear forms in infinitely many variables, and the equation or inequality
+represented by the formula is valid for all truncations of both sides, then
+it is valid in general for all systems of values of the infinitely many
+variables---where only those systems of values satisfying conditions
+\eqref{eq:44} are always meant.
+
+If, in the bounded bilinear form $A(x,y)$, all the variables
+$y_1,y_2,\ldots$ are set equal to zero with the sole exception of the one
+variable $y_p$, which is assigned the value $1$, there results a bounded
+linear form in the variables $x_1,x_2,\ldots$; denote it by
+\[
+  \frac{\partial A(x,y)}{\partial y_p}.
+\]
+Since $A(x,y)$ is bounded, it also follows that
+\[
+  y_1\frac{\partial[A(x,y)]_n}{\partial y_1}
+  +\cdots+
+  y_m\frac{\partial[A(x,y)]_n}{\partial y_m}
+\]
+lies in absolute value below a finite bound independent of $n$ and $m$; and,
+with regard to fact II above, therefore also
+\[
+  \left(\frac{\partial[A(x,y)]_n}{\partial y_1}\right)^2
+  +\cdots+
+  \left(\frac{\partial[A(x,y)]_n}{\partial y_m}\right)^2
+\]
+lies below a bound independent of $n$ and $m$.  Taking first $n\to\infty$ and
+then $m\to\infty$, we see that the
+\originalpage{179}sum of squares
+\[
+  \left(\frac{\partial A(x,y)}{\partial y_1}\right)^2
+  +\left(\frac{\partial A(x,y)}{\partial y_2}\right)^2+\cdots
+\]
+converges to a finite quantity.  If $B(x,y)$ is likewise a bounded bilinear
+form, then the sum of squares
+\[
+  \left(\frac{\partial B(x,y)}{\partial x_1}\right)^2
+  +\left(\frac{\partial B(x,y)}{\partial x_2}\right)^2+\cdots
+\]
+also remains below a finite bound; and consequently, with regard to fact I
+above, the infinite series
+\[
+  \frac{\partial A(x,y)}{\partial y_1}
+  \frac{\partial B(x,y)}{\partial x_1}
+  +\frac{\partial A(x,y)}{\partial y_2}
+  \frac{\partial B(x,y)}{\partial x_2}+\cdots
+\]
+must converge absolutely.  It then necessarily represents once more a
+bilinear form in the variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$, which we denote by
+\[
+  A(x,\mathord{\cdot})B(\mathord{\cdot},y)
+\]
+and call the \emph{convolution} of the bilinear forms $A,B$.
+
+The convolution is certainly a bounded bilinear form; with regard to facts I
+and II above, the preceding discussion establishes the following lemma.
+
+\begin{lemma}[2]\label{lem:2}
+If $M,N$ denote two positive constants such that, for all
+$x_1,x_2,\ldots$ and $y_1,y_2,\ldots$,
+\[
+  |A(x,y)|\le M,
+  \qquad
+  |B(x,y)|\le N,
+\]
+then the convolution necessarily satisfies the inequality
+\[
+  |A(x,\mathord{\cdot})B(\mathord{\cdot},y)|\le MN.
+\]
+\end{lemma}
+
+At the same time we state the following lemmas, whose truth is immediately
+evident.
+
+\begin{lemma}[3]\label{lem:3}
+For every truncation of the convolution of two bounded bilinear forms $A,B$,
+\[
+  [A(x,\mathord{\cdot})B(\mathord{\cdot},y)]_m
+  =\mathop{\mathrm{L}}\limits_{n=\infty}
+   [A_n(x,\mathord{\cdot})B_n(\mathord{\cdot},y)]_m,
+\]
+where on the right the expression under the limit is the $m$th truncation of
+the convolution of the $n$th truncations of $A,B$.  The value of the
+convolution is consequently
+\[
+  A(x,\mathord{\cdot})B(\mathord{\cdot},y)
+  =\mathop{\mathrm{L}}\limits_{m=\infty}
+   \mathop{\mathrm{L}}\limits_{n=\infty}
+   [A_n(x,\mathord{\cdot})B_n(\mathord{\cdot},y)]_m.
+\]
+It follows in particular that
+\[
+  A(x,\mathord{\cdot})(\mathord{\cdot},y)=A(x,y),
+\]
+
+\originalpage{180}
+i.e. every bilinear form reproduces itself by convolution with $(x,y)$; we
+may therefore also represent the value of the bilinear form as
+\[
+  A(x,y)
+  =y_1\frac{\partial A}{\partial y_1}
+   +y_2\frac{\partial A}{\partial y_2}+\cdots
+  =x_1\frac{\partial A}{\partial x_1}
+   +x_2\frac{\partial A}{\partial x_2}+\cdots,
+\]
+\end{lemma}
+
+\begin{lemma}[4]\label{lem:4}
+If $A,B,C,\ldots$ are bounded bilinear forms and the process of convolution
+is repeatedly carried out with them, then the result is independent of the
+order of the individual convolutions; for example,
+\[
+  \bigl(A(x,\mathord{\cdot})B(\mathord{\cdot},\mathord{\cdot})\bigr)
+  C(\mathord{\cdot},y)
+  =A(x,\mathord{\cdot})
+  \bigl(B(\mathord{\cdot},\mathord{\cdot})C(\mathord{\cdot},y)\bigr).
+\]
+\end{lemma}
+
+We now develop the simplest concepts and facts concerning orthogonal
+transformations of infinitely many variables.  Let
+\[
+  o_{pq}\qquad(p,q=1,2,\ldots)
+\]
+be an arbitrary doubly indexed family of constants satisfying the relations
+\[
+  \sum_{q=1,2,\ldots}o_{pq}^{\,2}=1,
+  \qquad
+  \sum_{r=1,2,\ldots}o_{pr}o_{qr}=0\quad(p\ne q),
+\]
+and
+\[
+  \sum_{p=1,2,\ldots}o_{pq}^{\,2}=1,
+  \qquad
+  \sum_{r=1,2,\ldots}o_{rp}o_{rq}=0\quad(p\ne q).
+\]
+\begin{samepage}
+Then the formulas
+\begin{equation}
+\tag{45}\label{eq:45}
+\begin{aligned}
+  x_1&=o_{11}x'_1+o_{12}x'_2+\cdots,\\
+  x_2&=o_{21}x'_1+o_{22}x'_2+\cdots,\\
+     &\ \vdots
+\end{aligned}
+\end{equation}
+and
+\[
+\begin{aligned}
+  x'_1&=o_{11}x_1+o_{21}x_2+\cdots,\\
+  x'_2&=o_{12}x_1+o_{22}x_2+\cdots,\\
+      &\ \vdots
+\end{aligned}
+\]
+\end{samepage}
+each define an orthogonal transformation; the latter transformation is the
+inverse of the former.  The expressions on the right are bounded linear forms
+in the infinitely many variables $x'_1,x'_2,\ldots$ and
+$x_1,x_2,\ldots$, respectively.
+
+The bilinear form
+\[
+  O(x,x')=\sum_{p,q=1,2,\ldots}o_{pq}x_p x'_q
+\]
+shall be called the bilinear form belonging to the orthogonal transformation
+\eqref{eq:45}; as one readily sees from \originalpage{181}Fact I stated above,
+it is certainly a bounded form.  By \hyperref[lem:3]{Lemma 3} one has
+\begin{equation}
+\tag{46}\label{eq:46}
+  O(x,\mathord{\cdot})O(y,\mathord{\cdot})=(x,y);
+\end{equation}
+in particular,
+\[
+\begin{aligned}
+  \sum_{p=1,2,\ldots}
+  \bigl(o_{p1}x'_1+o_{p2}x'_2+\cdots\bigr)^2&=(x',x'),\\
+  \sum_{p=1,2,\ldots}
+  \bigl(o_{1p}x_1+o_{2p}x_2+\cdots\bigr)^2&=(x,x).
+\end{aligned}
+\]
+
+If we apply the orthogonal transformation \eqref{eq:45} to any bounded
+linear form $L(x)$, there results the linear form
+\[
+  L'(x')=L(\mathord{\cdot})O(\mathord{\cdot},x');
+\]
+consequently, if we subject both sets of variables of any bounded bilinear
+form $A(x,y)$ to that transformation, there results the bilinear form
+\[
+  A'(x',y')
+  =A(\mathord{\cdot},\mathord{\cdot})
+   O(\mathord{\cdot},x')O(\mathord{\cdot},y').
+\]
+Let $A(x,y),B(x,y)$ be any two bounded bilinear forms, put
+\[
+  C(x,y)=A(x,\mathord{\cdot})B(\mathord{\cdot},y),
+\]
+and calculate the orthogonally transformed forms
+\[
+\begin{aligned}
+  A'(x',y')
+    &=A(\mathord{\cdot},\mathord{\cdot})
+      O(\mathord{\cdot},x')O(\mathord{\cdot},y'),\\
+  B'(x',y')
+    &=B(\mathord{\circ},*)O(\mathord{\circ},x')O(*,y'),\\
+  C'(x',y')
+    &=C(\mathord{\cdot},\mathord{\cdot})
+      O(\mathord{\cdot},x')O(\mathord{\cdot},y').
+\end{aligned}
+\]
+As the convolution of the transformed forms we then find
+\[
+\begin{aligned}
+  A'(x,\mathord{\circ})B'(\mathord{\circ},y)
+  ={}&A(\mathord{\cdot},\mathord{\cdot})
+      O(\mathord{\cdot},x)O(\mathord{\cdot},\mathord{\circ})\\
+     &\quad{}B(*,*)O(*,\mathord{\circ})O(*,y),
+\end{aligned}
+\]
+and, using \hyperref[lem:3]{Lemmas 3}, \hyperref[lem:4]{4}, and formula
+\eqref{eq:46},
+\[
+\begin{aligned}
+  A'(x,\mathord{\circ})B'(\mathord{\circ},y)
+  &=A(\mathord{\cdot},\mathord{\circ})B(\mathord{\circ},*)
+    O(\mathord{\cdot},x)O(*,y)\\
+  &=C(\mathord{\cdot},*)O(\mathord{\cdot},x)O(*,y),
+\end{aligned}
+\]
+and hence
+\begin{equation}
+\tag{47}\label{eq:47}
+  A'(x,\mathord{\cdot})B'(\mathord{\cdot},y)=C'(x,y);
+\end{equation}
+i.e. the convolution of two bilinear forms is a covariant under an
+orthogonal transformation.
+
+If the sum of the coefficients of $x_p y_p$ in a bilinear form $A(x,y)$
+converges, we denote this sum generally, as for finite forms, by
+$A(\mathord{\cdot},\mathord{\cdot})$.
+
+\originalpage{182}
+We mention here the following fact, which is likewise easy to prove.
+
+\begin{lemma}[5]\label{lem:5}
+If
+\[
+  Q(x)=\sum_{p,q=1,2,\ldots}c_{pq}x_p x_q
+\]
+is a quadratic form of such a kind that
+\[
+  Q(\mathord{\cdot},\mathord{\cdot})
+  Q(\mathord{\cdot},\mathord{\cdot})
+  =\sum_{p,q=1,2,\ldots}c_{pq}^{\,2}
+\]
+converges to a finite limit, then this limit is an invariant under an
+orthogonal transformation of $Q(x)$; i.e. that limit agrees with
+\[
+  Q'(\mathord{\cdot},\mathord{\cdot})
+  Q'(\mathord{\cdot},\mathord{\cdot})
+  =\sum_{p,q=1,2,\ldots}{c'_{pq}}^{\,2},
+\]
+where
+\[
+  Q'(x')=\sum_{p,q=1,2,\ldots}c'_{pq}x'_p x'_q
+\]
+denotes the quadratic form obtained from $Q(x)$ by orthogonal
+transformation.
+\end{lemma}
+
+We now return to the theory developed above for the quadratic form $K(x)$,
+and assume that this quadratic form $K(x)$ is a bounded form.
+
+If, as before,
+\[
+  K_n(x)=[K(x)]_n
+\]
+denotes the $n$th truncation of $K(x)$, then the greatest value assumed by
+$K_n(x)$ in absolute value is equal to
+$1/\lvert\lambda_1^{(n)}\rvert$, where $\lambda_1^{(n)}$ denotes the
+absolutely smallest of the $n$ eigenvalues of $K_n(x)$.  Since $K(x)$ is to
+be a bounded form, there is a positive constant $M$ such that, for all $n$
+and every system of values of the variables,
+\[
+  \lvert K_n(x)\rvert\le M,
+\]
+and hence also
+\[
+  \left\lvert\frac{1}{\lambda_1^{(n)}}\right\rvert\le M,
+  \qquad\text{or}\qquad
+  \lvert\lambda_1^{(n)}\rvert\ge\frac1M;
+\]
+i.e. the absolute values of the eigenvalues of $K_n(x)$ all remain above a
+positive quantity different from zero, and thus $\lambda=0$ certainly does
+not belong to the spectrum of $K(x)$.  Conversely, take a quadratic form
+$K(x)$\originalpage{183} and suppose that $\lambda=0$ does not belong to its
+spectrum.  Then, from some $n$ onward, all eigenvalues
+$\lambda_p^{(n)}$ of its truncations $K_n(x)$ must remain, in absolute
+value, above a positive bound $m$ different from zero.  It follows in turn
+that the maxima $1/\lvert\lambda_1^{(n)}\rvert$ of the absolute values of the
+truncations $K_n(x)$ must remain below the bound $1/m$; i.e. the form $K(x)$
+is necessarily bounded.
+
+Thus the assumption just made, and retained throughout what follows, that
+$K(x)$ is a bounded form is completely equivalent to the statement that
+$\lambda=0$ does not belong to the spectrum of $K(x)$, whereas the absolute
+values of the eigenvalues of $K(x)$ may very well grow beyond every bound.
+
+We now choose a quantity $\alpha$ so small that $\lambda=\alpha$ likewise
+does not belong to the spectrum of $K(x)$.  Since the zeros of the
+discriminants of the truncations of
+\[
+  (x,x)-\lambda K(x)
+\]
+then do not accumulate at $\lambda=\alpha$, those of the truncations of
+\[
+  (x,x)-\lambda\bigl\{(x,x)-\alpha K(x)\bigr\}
+\]
+do not, in absolute value, grow beyond every bound; i.e. the quadratic form
+\[
+  K^*(x)=(x,x)-\alpha K(x)
+\]
+does not have $\lambda=\infty$ as a condensation value; it is also bounded.
+If $K_n(\lambda;x,y)$ denotes the resolvent of $K_n(x)$ and
+$K_n^*(\lambda;x,y)$ that of $K_n^*(x)$, the definition of the resolvent
+immediately gives
+\begin{equation}
+\tag{48}\label{eq:48}
+  K_n(\lambda;x,y)
+  =\frac{1}{1-\lambda/\alpha}
+   K_n^*\!\left(\frac{\lambda}{\lambda-\alpha};x,y\right).
+\end{equation}
+
+We now apply \hyperref[thm:I]{Theorem I} to the form $K^*(x)$ and denote the
+eigenvalues, eigenforms, interval spectrum, and spectral form of $K^*(x)$,
+respectively, by
+\[
+  \lambda_1^*,\lambda_2^*,\ldots,
+  \qquad E_1^*,E_2^*,\ldots,
+  \qquad s^*,\sigma^*.
+\]
+Then, for all values of $\lambda^*$ lying outside the spectrum of $K^*$,
+there results the equation, valid for every truncation,
+\begin{equation}
+\tag{49}\label{eq:49}
+  \mathop{\mathrm{L}}\limits_{h=\infty}
+  K_{m_h}^*(\lambda^*;x)
+  =\sum_{(p)}\frac{E_p^*}{1-\lambda^*/\lambda_p^*}
+   +\int_{(s^*)}\frac{d\sigma^*(\mu^*)}{1-\lambda^*/\mu^*},
+\end{equation}
+\originalpage{184}and likewise
+\[
+  (x,x)=\sum_{(p)}E_p^*+\int_{(s^*)}d\sigma^*(\lambda^*).
+\]
+In \eqref{eq:49} put
+\[
+  \lambda^*=\frac{\lambda}{\lambda-\alpha},
+  \qquad
+  \lambda_p^*=\frac{\lambda_p}{\lambda_p-\alpha},
+  \qquad
+  \mu^*=\frac{\mu}{\mu-\alpha},
+\]
+where
+\[
+  \frac{1}{1-\lambda^*/\lambda_p^*}
+  =\frac{1-\lambda/\alpha}{1-\lambda/\lambda_p},
+  \qquad
+  \frac{1}{1-\lambda^*/\mu^*}
+  =\frac{1-\lambda/\alpha}{1-\lambda/\mu}.
+\]
+If $s$ denotes the set of points $\mu$ corresponding to the set $s^*$ of
+points $\mu^*$, then, in view of \eqref{eq:48}, we obtain the equation valid
+for every truncation
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda;x)
+  =\sum_{(p,\infty)}\frac{E_p}{1-\lambda/\lambda_p}
+   +\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}.
+\]
+Here the $\lambda_p$ are to be called the eigenvalues,
+$E_p=E_p^*$ the corresponding eigenforms, $s$ the interval spectrum, and
+$\sigma(\mu)=\sigma^*(\mu^*)$ the spectral form of $K(x)$; moreover,
+$\lambda=\infty$ is to be included as an eigenvalue and $E_\infty$ as its
+corresponding eigenfunction if $\lambda^*=1$ was an eigenvalue of $K^*(x)$.
+From the formula above for $(x,x)$ we obtain
+\begin{equation}
+\tag{50}\label{eq:50}
+  (x,x)=\sum_{(p,\infty)}E_p+\int_{(s)}d\sigma(\lambda).
+\end{equation}
+
+The last two formulas agree with \eqref{eq:42} and \eqref{eq:43} when
+$K(x)$ does not have $\lambda=\infty$ as a condensation value.  Indeed, it
+then follows from the definition of $K^*(x)$ that $\lambda^*=1$ is not a
+condensation value, and therefore also not an eigenvalue, of $K^*$; hence
+$\lambda=\infty$ is certainly not an eigenvalue of $K(x)$.
+
+If $K(x,y)$ remains in absolute value below the finite bound $M$ for all
+variables $x$, then from \eqref{eq:2} and \hyperref[lem:2]{Lemma 2} we infer
+that, for every $m$,
+\[
+\begin{aligned}
+  K_m(\lambda;x,y)
+  ={}&(x,y)_m+\lambda K_m(x,y)+\lambda^2K_mK_m(x,y)+\cdots\\
+     &+\lambda^nK_mK_m\cdots K_m(x,y)
+      +\frac{\vartheta_n(\lambda M)^{n+1}}{1-\lambda M},
+\end{aligned}
+\]
+\originalpage{185}where
+\[
+  n<m,\qquad \lvert\lambda\rvert<\frac1M,
+  \qquad -1<\vartheta_n<+1.
+\]
+In view of \hyperref[lem:3]{Lemma 3}, if for $x,y$ we take fixed values all
+of which vanish from some finite index onward, then, on putting $m=m_h$ and
+passing to the limit $h\to\infty$, we obtain
+\begin{equation}
+\tag{51}\label{eq:51}
+\begin{aligned}
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda;x,y)
+  ={}&(x,y)+\lambda K(x,y)+\lambda^2KK(x,y)+\cdots\\
+     &+\lambda^nKK\cdots K(x,y)
+       +\frac{\vartheta_n(\lambda M)^{n+1}}{1-\lambda M},
+\end{aligned}
+\end{equation}
+and from this, on letting $n\to\infty$,
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda;x,y)
+  =(x,y)+\lambda K(x,y)+\lambda^2KK(x,y)+\cdots.
+\]
+The formula thus obtained, together with the fact that every truncation of
+the resolvent is regular analytic in $\lambda$ outside the spectrum, shows
+that the resolvent
+\[
+  K(\lambda;x,y)
+  =\mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda;x,y)
+\]
+of the form $K(x,y)$ is determined uniquely by $K(x)$.  Returning to the
+proof of the existence of the limit
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}K_{m_h}(\lambda;x,y),
+\]
+it follows in turn that, in general, the limit
+\[
+  \mathop{\mathrm{L}}\limits_{m=\infty}K_m(\lambda;x,y)
+\]
+also exists and must equal the preceding limit.  The last formulas always
+hold for every truncation of the forms under consideration.
+
+From \eqref{eq:51} we conclude that the difference
+\begin{equation}
+\tag{52}\label{eq:52}
+\begin{aligned}
+  K(\lambda;x,y)-\bigl\{&(x,y)+\lambda K(x,y)+\lambda^2KK(x,y)+\cdots\\
+  &{}+\lambda^nKK\cdots K(x,y)\bigr\}
+\end{aligned}
+\end{equation}
+is a form for which, when $\lvert\lambda\rvert<1/M$, the absolute value of
+every truncation remains below
+\[
+  \frac{\lvert\lambda M\rvert^{n+1}}{1-\lvert\lambda M\rvert}.
+\]
+By convolving the expression \eqref{eq:52} with $K(x,y)$, it follows from
+\hyperref[lem:2]{Lemma 2} that the expression
+\begin{equation}
+\tag{53}\label{eq:53}
+\begin{aligned}
+  K(x,\mathord{\cdot})K(\lambda;\mathord{\cdot},y)
+  -\bigl\{&K(x,y)+\lambda KK(x,y)+\lambda^2KKK(x,y)+\cdots\\
+           &{}+\lambda^nKKK\cdots K(x,y)\bigr\}
+\end{aligned}
+\end{equation}
+
+\originalpage{186}
+remains in absolute value, in the same sense, below
+\[
+  M\frac{\lvert\lambda M\rvert^{n+1}}
+          {1-\lvert\lambda M\rvert}.
+\]
+If in \eqref{eq:52} we replace $n$ by $n+1$ and then subtract from it
+$\lambda$ times expression \eqref{eq:53}, there results the expression
+\[
+  K(\lambda;x,y)
+  -\lambda K(x,\mathord{\cdot})K(\lambda;\mathord{\cdot},y)-(x,y),
+\]
+and this expression therefore remains in absolute value below
+\[
+  \frac{2\lvert\lambda M\rvert^{n+2}}
+       {1-\lvert\lambda M\rvert}.
+\]
+Since this quantity tends to zero as $n\to\infty$, we have thereby proved
+the validity of the equation
+\begin{equation}
+\tag{54}\label{eq:54}
+  K(\lambda;x,y)
+  -\lambda K(x,\mathord{\cdot})K(\lambda;\mathord{\cdot},y)
+  =(x,y)
+\end{equation}
+for $\lvert\lambda\rvert<1/M$ and for every truncation, and consequently,
+by a remark made above (\hyperref[origpage:177]{p.~177}), also for arbitrary
+values of the infinitely many variables.
+
+We arrived above at the equation
+\begin{equation}
+\tag{55}\label{eq:55}
+  K(\lambda;x,y)
+  =(x,y)+\lambda K(x,y)+\lambda^2KK(x,y)+\cdots
+\end{equation}
+and recognized its validity for every truncation and for
+$\lvert\lambda\rvert<1/M$.  From this circumstance in turn we conclude that,
+for arbitrary values of the variables and $\lvert\lambda\rvert<1/M$, every
+truncation of
+\begin{equation}
+\tag{56}\label{eq:56}
+\begin{aligned}
+  K(\lambda;x,y)-\bigl\{&(x,y)+\lambda K(x,y)+\cdots\\
+  &{}+\lambda^nKK\cdots K(x,y)\bigr\}
+\end{aligned}
+\end{equation}
+is smaller in absolute value than
+\begin{equation}
+\tag{57}\label{eq:57}
+  \frac{\lvert\lambda M\rvert^{n+1}}
+       {1-\lvert\lambda M\rvert}.
+\end{equation}
+Hence, by a remark made above (\hyperref[origpage:177]{p.~177}), expression
+\eqref{eq:56} itself must, for arbitrary values of the infinitely many
+variables, remain in absolute value less than or equal to the quantity
+\eqref{eq:57}.  Letting $n$ increase without limit, we conclude that equation
+\eqref{eq:55} is valid for arbitrary values of the infinitely many variables
+$x_1,x_2,\ldots$ and $y_1,y_2,\ldots$, and for
+$\lvert\lambda\rvert<1/M$.
+
+\originalpage{187}
+The equation
+\[
+  K(\lambda,x)
+  =\sum_{(p,\infty)}\frac{E_p}{1-\lambda/\lambda_p}
+   +\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}
+\]
+was recognized above---as was \eqref{eq:50}---only as being valid in the
+sense that the same truncations are understood to be taken on both sides.
+We shall now show that this equation is valid for arbitrary values of the
+infinitely many variables, provided that $\lambda$ denotes a value lying
+outside the spectrum of $K$.
+
+Let $a_1,a_2,\ldots$ be a fixed system of values of the infinitely many
+variables $x_1,x_2,\ldots$; then let
+\[
+  E_p(a),\qquad [E_p(a)]_n,\qquad [E_p(a)]_m
+\]
+denote the values assumed, for that fixed system, by $E_p$ and by the $n$th
+and $m$th truncations of $E_p$, respectively.  By \eqref{eq:50},
+\[
+  \sum_{(p=1,\ldots,P)}[E_p(a)]_n
+\]
+lies below a finite bound independent of $n$ and $P$.  We put
+\[
+  \sum_{(p=P+1,P+2,\ldots)}[E_p(a)]_n=\varepsilon(n,P),
+\]
+where $\varepsilon(n,P)$ is a quantity which, for fixed $n$, tends to zero as
+$P\to\infty$.  Since, for fixed $\lambda$, the quantities
+\[
+  \left\lvert\frac{1}{1-\lambda/\lambda_p}\right\rvert
+\]
+all possess a finite upper bound $G$, the quantity $\eta(n,P)$ defined by
+\[
+  \sum_{(p=P+1,P+2,\ldots)}
+  \frac{[E_p(a)]_n}{1-\lambda/\lambda_p}=\eta(n,P)
+\]
+likewise tends to zero as $P\to\infty$ for fixed $n$.
+
+On the other hand,
+\[
+  \sum_{(p=1,\ldots,P)}\frac{E_p}{1-\lambda/\lambda_p}
+\]
+is a bounded form, and indeed one for which the absolute values of all its
+values remain below a bound $G'$ independent of $P$.  It follows from our
+earlier considerations\originalpage{188}
+(\hyperref[origpage:178]{p.~178}) that
+\[
+\begin{aligned}
+  &\sum_{(p=1,\ldots,P)}
+    \frac{[E_p(a)]_m}{1-\lambda/\lambda_p}
+  -\sum_{(p=1,\ldots,P)}
+    \frac{[E_p(a)]_n}{1-\lambda/\lambda_p}\\
+  &\hspace{5em}
+    =(G)\sqrt{a_{n+1}^2+a_{n+2}^2+\cdots+a_m^2},
+    \qquad(m>n),
+\end{aligned}
+\]
+where $(G)$ denotes a quantity lying between finite bounds independent of
+$n,m,P$.
+
+From the last two equations we obtain
+\[
+\begin{aligned}
+  \sum_{(p=1,\ldots,P)}
+    \frac{[E_p(a)]_m}{1-\lambda/\lambda_p}
+  ={}&\sum_{(p=1,2,\ldots)}
+    \frac{[E_p(a)]_n}{1-\lambda/\lambda_p}\\
+  &+(G)\sqrt{a_{n+1}^2+a_{n+2}^2+\cdots+a_m^2}
+    +\eta(n,P).
+\end{aligned}
+\]
+If here we first let $m\to\infty$, then $P\to\infty$, and finally
+$n\to\infty$, we obtain
+\[
+  \sum_{(p=1,2,\ldots)}\frac{E_p(a)}{1-\lambda/\lambda_p}
+  =\mathop{\mathrm{L}}\limits_{n=\infty}
+   \sum_{(p=1,2,\ldots)}
+   \frac{[E_p(a)]_n}{1-\lambda/\lambda_p}.
+\]
+
+On the other hand, we apply to the bilinear form $\sigma(\mu;x,y)$ the same
+argument given above (\hyperref[origpage:178]{p.~178}) to prove the
+convergence of $A(a,b)$.  Since, in view of \eqref{eq:31},
+\[
+  [\sigma(\mu;x,y)]_n\le1,
+\]
+and hence, for every $\mu$ and arbitrary $x_1,x_2,\ldots$ and
+$y_1,y_2,\ldots$,
+\[
+  \sigma(\mu;x,y)\le1,
+\]
+that argument also proves that $[\sigma(\mu;x,y)]_n$ converges to
+$\sigma(\mu;x,y)$ uniformly in $\mu$.  Thus, for every
+system of values of the infinitely many variables $x_1,x_2,\ldots$ and
+$y_1,y_2,\ldots$, the bilinear form $\sigma(\mu;x,y)$ represents a continuous
+function of $\mu$, and it follows in turn that
+\[
+  \int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}
+  =\mathop{\mathrm{L}}\limits_{n=\infty}
+   \left[\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}\right]_n.
+\]
+The last two limit equations prove our assertion, i.e. extend the validity of
+the partial-fraction representation of $K(\lambda;x)$ to arbitrary values of
+the infinitely many variables.
+
+The partial-fraction representation of $K(\lambda;x)$ just proved to hold in
+general shows at the same time that the value of the resolvent
+\originalpage{189}$K(\lambda;x)$, for any system of the infinitely
+many variables $x_1,x_2,\ldots$, is a regular analytic function of $\lambda$
+outside the spectrum.
+
+If, in $K(\lambda;x,y)$, we substitute generally for $x_p$ the expression
+$\partial K(x,y)/\partial y_p$, there results the convolution
+\[
+  K(x,\mathord{\cdot})K(\lambda;\mathord{\cdot},y),
+\]
+and hence this too, for every system of values of the infinitely many
+variables $x_1,x_2,\ldots$ and $y_1,y_2,\ldots$, represents a regular analytic
+function of $\lambda$ outside the spectrum.
+
+From these facts we infer the validity of equation \eqref{eq:54}, not only
+for arbitrary systems of values of the infinitely many variables
+$x_1,x_2,\ldots$ and $y_1,y_2,\ldots$, but also for all values of $\lambda$
+lying outside the spectrum.
+
+We summarize the most important of the results obtained as follows.
+
+\begin{theorem}[II]\label{thm:II}
+Let $K(x)$ be a bounded quadratic form in the infinitely many variables
+$x_1,x_2,\ldots$.  The resolvent $K(\lambda,x)$ of $K(x)$ is a uniquely
+determined quadratic form in these same variables,
+\[
+  K(\lambda,x)=\sum_{(p,q)}K_{pq}(\lambda)x_p x_q,
+\]
+whose coefficients $K_{pq}(\lambda)$ are regular analytic functions of
+$\lambda$ for all values of $\lambda$ lying outside the spectrum of $K$.
+
+When $\lambda$ denotes a value lying outside the spectrum of $K$, the
+resolvent $K(\lambda,x)$ is a bounded form; for any system of
+values of the infinitely many variables $x_1,x_2,\ldots$, it represents an
+analytic function of $\lambda$.
+
+For arbitrary values of the infinitely many variables $x_1,x_2,\ldots$ and
+for sufficiently small values of $\lambda$, the resolvent $K(\lambda,x)$
+admits the power-series expansion
+\begin{equation}
+\tag{59}\label{eq:59}
+  K(\lambda,x)=(x,x)+\lambda K(x)+\lambda^2KK(x)+\cdots,
+\end{equation}
+and, likewise for arbitrary values of the infinitely many variables and for
+all values of $\lambda$ lying outside the spectrum of $K$, the
+partial-fraction representation
+\begin{equation}
+\tag{60}\label{eq:60}
+  K(\lambda,x)
+  =\sum_{(p,\infty)}\frac{E_p}{1-\lambda/\lambda_p}
+   +\int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}.
+\end{equation}
+Here the sum is to be \originalpage{190}extended over the entire point
+spectrum of $K$, i.e. over all eigenvalues, possibly including the eigenvalue
+$\infty$; $E_p$ denotes in general the quadratic eigenform belonging
+to $\lambda_p$.  It is a bounded form which is nonnegative for every system
+of values of the variables $x_1,x_2,\ldots$.  The integral is to be extended
+over the interval spectrum of $K$.  The spectral form $\sigma(\lambda)$ is a
+bounded form in the infinitely many variables $x_1,x_2,\ldots$; for each
+system of their values it represents, as a function of $\lambda$, a function
+which is continuous and, within the interval spectrum $s$, increases with
+$\lambda$---apart from special values of $x_1,x_2,\ldots$---but remains
+constant in every interval lying outside $s$.
+
+In particular, the equations
+\begin{equation}
+\tag{61}\label{eq:61}
+  (x,x)=\sum_{(p,\infty)}E_p+\int_{(s)}d\sigma(\lambda),
+\end{equation}
+\begin{equation}
+\tag{62}\label{eq:62}
+  K(x)=\sum_{(p)}\frac{E_p}{\lambda_p}
+       +\int_{(s)}\frac{d\sigma(\mu)}{\mu}
+\end{equation}
+hold.  The resolvent $K(\lambda,x)$ is connected with $K(x)$ by the relation
+\begin{equation}
+\tag{63}\label{eq:63}
+  K(\lambda;x,y)
+  -\lambda K(x,\mathord{\cdot})K(\lambda;\mathord{\cdot},y)
+  =(x,y),
+\end{equation}
+which is valid for all values of $\lambda$ lying outside the spectrum of
+$K$.
+\end{theorem}
+
+Put
+\[
+  K(\lambda;x,y)=\alpha_1x_1+\alpha_2x_2+\cdots,
+\]
+where $\alpha_1,\alpha_2,\ldots$ are certain linear functions of
+$y_1,y_2,\ldots$ with convergent sum of squares.  Then, by equating the
+coefficients of $x_p$ in \eqref{eq:63}, we obtain
+\[
+  \alpha_p-\lambda\sum_{(q)}k_{pq}\alpha_q=y_p,
+  \qquad(p=1,2,\ldots).
+\]
+Thus $\alpha_1,\alpha_2,\ldots$ solve these infinitely many inhomogeneous
+equations arising from the quadratic form $(x,x)-\lambda K(x)$ (where
+$\lambda$ lies outside the spectrum), whenever $y_1,y_2,\ldots$ are any
+quantities with convergent sum of squares; they are the unique solution with
+convergent sum of squares.
+
+We shall now investigate the behavior of the resolvent $K(\lambda,x)$ for a
+value of $\lambda$ lying within the spectrum of $K$.
+
+For this purpose put
+\[
+  \lambda=\nu+i\nu',
+\]
+where $\nu,\nu'$ are real numbers, and ask whether the product
+\[
+  (\nu-\lambda)
+  \left\{
+    \sum_{(p)}\frac{E_p}{\lambda_p-\lambda}
+    +\int_{(s)}\frac{d\sigma(\mu)}{\mu-\lambda}
+  \right\}
+\]
+tends to a limit as $\nu'\to0$.
+
+\originalpage{191}
+First let $\nu$ be a condensation point of the eigenvalues of $K(x)$, but not
+equal to an eigenvalue of $K(x)$.  Put
+\[
+  \sum_{(p)}E_p=E_1+\cdots+E_m+R_m,
+\]
+and denote by $\nu_m$ that one among the eigenvalues
+$\lambda_1,\ldots,\lambda_m$ which lies nearest to $\nu$.  Choose $m$ so
+large that
+\[
+  \nu'\le(\nu-\nu_m)^2
+\]
+still holds.
+Then
+\[
+  \text{for }p\le m,\qquad
+  \left\lvert\frac{\nu-\lambda}{\lambda_p-\lambda}\right\rvert
+  \le\left\lvert\frac{\nu'}{\lambda_p-\nu}\right\rvert
+  \le\frac{\nu'}{\lvert\nu_m-\nu\rvert}
+  \le\sqrt{\nu'},
+\]
+and, for $p\ge m$, certainly
+\[
+  \left\lvert\frac{\nu-\lambda}{\lambda_p-\lambda}\right\rvert\le1;
+\]
+hence also
+\[
+  \left\lvert
+    (\nu-\lambda)\sum_{(p)}\frac{E_p}{\lambda_p-\lambda}
+  \right\rvert
+  \le\sqrt{\nu'}(E_1+\cdots+E_m)+R_m
+  \le\sqrt{\nu'}+R_m.
+\]
+Since, as $\nu'\to0$, $m$ necessarily grows beyond every bound and hence
+$R_m$ tends to zero, it follows that
+\begin{equation}
+\tag{64}\label{eq:64}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  \left\{(\nu-\lambda)
+  \sum_{(p)}\frac{E_p}{\lambda_p-\lambda}\right\}=0.
+\end{equation}
+The last limit equation certainly also holds if $\nu$ is neither a
+condensation point of the eigenvalues of $K(x)$ nor itself equal to an
+eigenvalue.
+
+From these facts we infer, on the other hand, that if $\nu$ equals the
+eigenvalue $\lambda_p$, then necessarily
+\begin{equation}
+\tag{65}\label{eq:65}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  \left\{(\lambda_p-\lambda)
+  \sum_{(p)}\frac{E_p}{\lambda_p-\lambda}\right\}=E_p.
+\end{equation}
+
+Now let $\nu$ be a point of the interval spectrum $s$, and let $\mu'$ be a
+real number greater than $\nu$.  If we put
+\[
+  \nu'=(\nu-\mu')^2,
+\]
+then, by a similar estimate of the integral extending up to $\mu'$, we obtain
+\begin{equation}
+\tag{66}\label{eq:66}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  \left\{(\nu-\lambda)
+  \int_{\sigma(\nu)}^{\sigma(+\infty)}
+  \frac{d\sigma(\mu)}{\mu-\lambda}\right\}=0.
+\end{equation}
+Likewise,
+\begin{equation}
+\tag{67}\label{eq:67}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  \left\{(\nu-\lambda)
+  \int_{\sigma(-\infty)}^{\sigma(\nu)}
+  \frac{d\sigma(\mu)}{\mu-\lambda}\right\}=0.
+\end{equation}
+
+\originalpage{192}
+Since
+\[
+  K(\lambda,x)=(x,x)+\lambda
+  \left\{
+    \sum_{(p,\infty)}\frac{E_p}{\lambda_p-\lambda}
+    +\int_{(s)}\frac{d\sigma(\mu)}{\mu-\lambda}
+  \right\},
+\]
+it follows from \eqref{eq:64}, \eqref{eq:65}, \eqref{eq:66}, and
+\eqref{eq:67} that
+\begin{equation}
+\tag{68}\label{eq:68}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  (\nu-\lambda)K(\lambda,x)
+  =\begin{cases}
+     0, & \text{if $\nu$ is none of the eigenvalues of $K(x)$},\\
+     \lambda_pE_p, & \text{if $\nu$ equals the eigenvalue $\lambda_p$}.
+   \end{cases}
+\end{equation}
+As a supplement to this, if
+\[
+  \lambda=i\nu',
+\]
+we have the limit equation
+\begin{equation}
+\tag{69}\label{eq:69}
+  \mathop{\mathrm{L}}\limits_{\nu'=\infty}K(\lambda,x)
+  =\begin{cases}
+     0, & \text{if $\lambda=\infty$ is not an eigenvalue},\\
+     E_\infty, & \text{if it must be counted as one}.
+   \end{cases}
+\end{equation}
+To see this, the analogous considerations to those above suffice: in
+examining the sum, choose $m$ so large that $\nu'>\nu_m^2$ still holds, where
+$\nu_m$ denotes the eigenvalue of greatest absolute value among
+$\lambda_1,\ldots,\lambda_m$, and in examining the integral put
+$\nu'=\mu'^2$.
+
+If $\mu$ denotes any value lying outside the spectrum of $K$, then
+convolution of \eqref{eq:63} with $K(\mu;x,y)$ gives
+\[
+\begin{aligned}
+  &\lambda K(\mathord{\cdot},\mathord{\cdot})
+  K(\lambda;\mathord{\cdot},x)K(\mu;\mathord{\cdot},y)\\
+  &\qquad
+  =K(\lambda;\mathord{\cdot},x)K(\mu;\mathord{\cdot},y)-K(\mu;x,y).
+\end{aligned}
+\]
+From this formula and the one obtained from it by simultaneously
+interchanging $\lambda;x_1,x_2,\ldots$ with
+$\mu;y_1,y_2,\ldots$, we find
+\begin{equation}
+\tag{70}\label{eq:70}
+  (\lambda-\mu)K(\lambda;x,\mathord{\cdot})
+  K(\mu;y,\mathord{\cdot})
+  =\lambda K(\lambda;x,y)-\mu K(\mu;x,y).
+\end{equation}
+
+Now recall that the convolution
+\[
+  K(\lambda;x,\mathord{\cdot})K(\mu;y,\mathord{\cdot})
+\]
+means the expression obtained when, in $K(\lambda;x,y)$, we substitute for
+the variables $y_1,y_2,\ldots$, respectively, the values
+\[
+  \frac{\partial K(\mu;x,y)}{\partial y_1},
+  \quad
+  \frac{\partial K(\mu;x,y)}{\partial y_2},\ldots.
+\]
+It follows from \eqref{eq:68} that, with $\mu$ held fixed and
+\originalpage{193}for $\lambda=\lambda_p+i\nu'$, the limit equation
+\begin{equation}
+\tag{71}\label{eq:71}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  (\lambda_p-\lambda)
+  K(\lambda;x,\mathord{\cdot})K(\mu;y,\mathord{\cdot})
+  =\lambda_pE_p(x,\mathord{\cdot})K(\mu;y,\mathord{\cdot})
+\end{equation}
+must hold.  On the other hand, again in view of \eqref{eq:68}, in the same
+sense
+\begin{equation}
+\tag{72}\label{eq:72}
+\begin{aligned}
+  \mathop{\mathrm{L}}\limits_{\nu'=0}
+  (\lambda_p-\lambda)
+  \bigl\{\lambda K(\lambda;x,y)-\mu K(\mu;x,y)\bigr\}
+  =\lambda_p^2E_p(x,y).
+\end{aligned}
+\end{equation}
+It therefore follows from \eqref{eq:71}, \eqref{eq:72}, and
+\eqref{eq:70}, writing $\lambda$ in place of $\mu$, that
+\begin{equation}
+\tag{73}\label{eq:73}
+  E_p(x,\mathord{\cdot})K(\lambda;y,\mathord{\cdot})
+  =\frac{\lambda_p}{\lambda_p-\lambda}E_p(x,y).
+\end{equation}
+If in this equation we again put $\lambda=\lambda_p+i\nu'$, then
+multiplication by $\lambda_p-\lambda$ and application of \eqref{eq:68} give
+\begin{equation}
+\tag{74}\label{eq:74}
+  E_p(x,\mathord{\cdot})E_p(\mathord{\cdot},y)=E_p(x,y).
+\end{equation}
+If, however, in \eqref{eq:73} we first replace $p$ by an index $q$ different
+from $p$ and then proceed in the same way, we obtain
+\begin{equation}
+\tag{75}\label{eq:75}
+  E_p(x,\mathord{\cdot})E_q(\mathord{\cdot},y)=0,
+  \qquad(p\ne q).
+\end{equation}
+Using \eqref{eq:69}, we see in the same way that \eqref{eq:74} and
+\eqref{eq:75} are also valid when the eigenform $E_\infty$ that may belong to
+$\lambda=\infty$ is put in place of $E_p$.
+
+If the value of $K(\lambda;x,y)$ from \eqref{eq:60} is substituted in
+\eqref{eq:73}, then \eqref{eq:74} and \eqref{eq:75} show that, identically in
+$\lambda$,
+\begin{equation}
+\tag{76}\label{eq:76}
+  E_p(x,\mathord{\cdot})
+  \int_{(s)}\frac{d\sigma(\mu;\mathord{\cdot},y)}{1-\lambda/\mu}=0;
+\end{equation}
+the same equation also holds, when applicable, for the eigenform $E_\infty$.
+
+In the discussion that follows, by an \emph{elementary form} we understand in
+general a bounded quadratic form $E$ whose point spectrum in the finite plane
+consists only of the single point $1$ and which has no interval spectrum.
+Applying representation \eqref{eq:62} to the elementary form $E$, we find
+that $E$ itself is the eigenform belonging to the eigenvalue $1$, and hence,
+    by \eqref{eq:74}, \originalpage{194}it must satisfy
+\begin{equation}
+\tag{77}\label{eq:77}
+  E(x,\mathord{\cdot})E(\mathord{\cdot},y)=E(x,y).
+\end{equation}
+Conversely, if a bounded quadratic form $E$ satisfies relation
+\eqref{eq:77}, then application of formula \eqref{eq:59} gives for its
+resolvent the expression
+\[
+  (x,x)+\lambda E+\lambda^2E+\cdots
+  =(x,x)-E+\frac{E}{1-\lambda}.
+\]
+From this, in view of \eqref{eq:68} and \eqref{eq:69}, we see that $E$ has
+only the one finite eigenvalue $1$; it follows further that there is no
+interval spectrum.  Thus $E$ is an elementary form.
+
+Let
+\[
+\begin{aligned}
+  L_1(x)&=l_{11}x_1+l_{12}x_2+\cdots,\\
+  L_2(x)&=l_{21}x_1+l_{22}x_2+\cdots,\\
+        &\ \vdots
+\end{aligned}
+\]
+be any finite or infinite number of linear forms whose coefficients satisfy
+\[
+  L_p(\mathord{\cdot})L_p(\mathord{\cdot})
+  =\sum_{(r)}l_{pr}^{\,2}=1,
+  \qquad
+  L_p(\mathord{\cdot})L_q(\mathord{\cdot})
+  =\sum_{(r)}l_{pr}l_{qr}=0.
+\]
+Such a system of forms shall be called a \emph{system of orthogonal linear
+forms}, or briefly an \emph{orthogonal system}.
+
+The close connection between the concept just defined and that of an
+elementary form is exhibited by the following theorem.
+
+\begin{theorem}
+Every elementary form can be represented as a sum of squares of the linear
+forms of an orthogonal system; conversely, the sum of the squares of the
+linear forms of an orthogonal system always represents an elementary form.
+\end{theorem}
+
+\begin{proof}
+For the first assertion, observe that the elementary form $E$, since it is
+itself its eigenform, is necessarily nonnegative.  Thus, if the variable
+$x_1$ occurs at all in $E$, then the coefficient of $x_1^2$ in $E$---denote
+it by $e_{11}$---is certainly positive.  Put
+\[
+  L_1(x)=\frac{1}{\sqrt{e_{11}}}
+  \frac{\partial E(x,y)}{\partial y_1}.
+\]
+Then \eqref{eq:77} gives
+\[
+  L_1(\mathord{\cdot})E(x,\mathord{\cdot})=L_1(x),
+  \qquad
+  L_1(\mathord{\cdot})L_1(\mathord{\cdot})=1.
+\]
+Consequently, if we form
+\begin{equation}
+\tag{78}\label{eq:78}
+  E_1(x)=E(x)-L_1^2(x),
+\end{equation}
+\originalpage{195}we obtain
+\begin{equation}
+\tag{79}\label{eq:79}
+\begin{aligned}
+  L_1(\mathord{\cdot})E_1(x,\mathord{\cdot})&=0,\\
+  E_1(x,\mathord{\cdot})E_1(\mathord{\cdot},y)&=E_1(x,y).
+\end{aligned}
+\end{equation}
+Thus $E_1$ is likewise an elementary form.  Since, as such, $E_1$ is a
+nonnegative form, and since by \eqref{eq:78} the coefficient of $x_1^2$ in
+$E_1$ has the value zero, the variable $x_1$ does not occur at all in $E_1$.
+
+Applying the same procedure to $E_1$ instead of $E$, we arrive at a linear
+form $L_2$ and at the elementary form
+\[
+  E_2(x)=E_1(x)-L_2^2(x)=E(x)-L_1^2(x)-L_2^2(x),
+\]
+which does not contain the variables $x_1,x_2$; at the same time,
+\eqref{eq:79} gives
+\[
+  L_1(\mathord{\cdot})L_2(\mathord{\cdot})=0.
+\]
+Finally, the expression
+\[
+  E(x)-L_1^2(x)-L_2^2(x)-\cdots
+\]
+is a bounded nonnegative form which contains none of the variables
+$x_1,x_2,\ldots$ and is therefore identically zero; i.e.
+\[
+  E(x)=L_1^2(x)+L_2^2(x)+\cdots.
+\]
+
+To prove the converse assertion of the theorem, first form, from the first
+$m$ linear forms $L_1,\ldots,L_m$ of the given orthogonal system, the
+expression linear in $x_1,x_2,\ldots$
+\[
+  M(x)=(x,y)-L_1(x)L_1(y)-\cdots-L_m(x)L_m(y).
+\]
+Since the sum of the squares of the coefficients of $M(x)$ is
+\[
+  M(\mathord{\cdot})M(\mathord{\cdot})
+  =(y,y)-L_1^2(y)-\cdots-L_m^2(y),
+\]
+the right-hand side here is nonnegative.  Consequently, the finite, or
+infinitely continued, series of forms
+\[
+  L_1^2(y)+L_2^2(y)+\cdots
+\]
+also represents a bounded quadratic form; and from the orthogonality
+properties of the linear forms $L_1,L_2,\ldots$ it then follows that this
+form satisfies relation \eqref{eq:77}.
+\end{proof}
+
+The elementary form $(x,x)$, and only this one, also does not have
+$\lambda=\infty$ as an eigenvalue.
+
+We now apply the preceding results to the eigenforms of the quadratic form
+$K(x)$.  If we regard all the eigenforms $E_p$, or $E_p,E_\infty$, of $K(x)$,
+which are elementary forms by \eqref{eq:74}, as represented by sums of
+squares of orthogonal linear\originalpage{196} forms
+$x'_1,x'_2,\ldots$, we arrive in the following way at an orthogonal
+substitution of the variables $x_1,x_2,\ldots$.
+
+First form
+\[
+  (x,x)-{x'_1}^{\,2}-{x'_2}^{\,2}-\cdots;
+\]
+it satisfies relation \eqref{eq:77} and is therefore an elementary form in
+the variables $x_1,x_2,\ldots$.  If we put it in the form
+\[
+  \xi_1^2+\xi_2^2+\cdots,
+\]
+where $\xi_1,\xi_2,\ldots$ likewise denote an orthogonal system of linear
+forms which are also orthogonal to $x'_1,x'_2,\ldots$, then
+\[
+  (x,x)={x'_1}^{\,2}+{x'_2}^{\,2}+\cdots+\xi_1^2+\xi_2^2+\cdots,
+\]
+and hence the linear forms $x'_1,x'_2,\ldots,\xi_1,\xi_2,\ldots$, taken
+together, define an orthogonal substitution of the variables
+$x_1,x_2,\ldots$.
+
+Since equation \eqref{eq:76} certainly holds for all values of $\lambda$ in
+a sufficiently small neighborhood of $\lambda=0$, and since every continuous
+function $w(\mu)$ on the interval $s$, which does not contain $0$, can be
+uniformly approximated by linear aggregates of the functions\footnote{Translator's
+note: The original edition prints $1-\lambda/\mu$ at this point; equation
+\eqref{eq:76} and the ensuing approximation argument require the reciprocal
+shown here.}
+\[
+  \frac{1}{1-\lambda/\mu}\mkern6mu,
+\]
+we conclude that, for every continuous function $w(\mu)$,
+\[
+  E_p(x,\mathord{\cdot})
+  \int_{(s)}w(\mu)\,d\sigma(\mu;\mathord{\cdot},y)=0,
+\]
+and consequently, for every $\mu$,
+\begin{equation}
+\tag{80}\label{eq:80}
+  E_p(x,\mathord{\cdot})\sigma(\mu;\mathord{\cdot},y)=0.
+\end{equation}
+If in this equation we imagine the variables
+$x'_1,x'_2,\ldots,\xi_1,\xi_2,\ldots$ introduced in place of
+$x_1,x_2,\ldots$, then \eqref{eq:80}, in view of the covariance of
+convolution under orthogonal transformation and the nonnegative character of
+$\sigma(\mu;x)$, shows that the spectral form so transformed is free of the
+variables $x'_1,x'_2,\ldots$; we denote it by $\xi(\mu;\xi)$.  Formula
+\eqref{eq:60} then takes the form
+\begin{equation}
+\tag{81}\label{eq:81}
+  K(\lambda,x)
+  =\sum_{(k=1,2,\ldots)}\frac{{x'_k}^{\,2}}{1-k_k\lambda}
+   +\int_{(s)}\frac{d\xi(\mu;\xi)}{1-\lambda/\mu}\mkern6mu,
+\end{equation}
+where $k_1,k_2,\ldots$ denote the corresponding reciprocal eigenvalues,
+after they have been arranged in a simply infinite sequence.
+
+To find the characteristic properties of the spectral form $\xi(\mu;\xi)$,
+we substitute in \eqref{eq:70} \originalpage{197}the expression
+\eqref{eq:81} just found for the resolvent. We obtain
+\[
+\begin{aligned}
+  &(\lambda-\mu)
+  \int_{(s)}\frac{d\xi(\rho;\xi,\mathord{\cdot})}{1-\lambda/\rho}
+  \int_{(s)}\frac{d\xi(\rho;\eta,\mathord{\cdot})}{1-\mu/\rho}\\
+  &\qquad
+  =\lambda\int_{(s)}\frac{d\xi(\rho;\xi,\eta)}{1-\lambda/\rho}
+   -\mu\int_{(s)}\frac{d\xi(\rho;\xi,\eta)}{1-\mu/\rho}.
+\end{aligned}
+\]
+In view of the identity
+\[
+  \frac{
+    \dfrac{\lambda}{1-\lambda/\rho}
+    -\dfrac{\mu}{1-\mu/\rho}
+  }{\lambda-\mu}
+  =\frac{1}{1-\lambda/\rho}\frac{1}{1-\mu/\rho},
+\]
+it follows that
+\[
+\begin{aligned}
+  &\int_{(s)}\frac{d\xi(\rho;\xi,\mathord{\cdot})}{1-\lambda/\rho}
+   \int_{(s)}\frac{d\xi(\rho;\eta,\mathord{\cdot})}{1-\mu/\rho}\\
+  &\qquad
+   =\int_{(s)}
+    \frac{1}{1-\lambda/\rho}\frac{1}{1-\mu/\rho}
+    \,d\xi(\rho;\xi,\eta).
+\end{aligned}
+\]
+Since this equation is to hold for all values of $\lambda,\mu$, we conclude,
+as above, that for arbitrary continuous functions $u(\rho),v(\rho)$,
+\[
+\begin{aligned}
+  &\int_{(s)}u(\rho)\,d\xi(\rho;\xi,\mathord{\cdot})
+   \int_{(s)}v(\rho)\,d\xi(\rho;\eta,\mathord{\cdot})\\
+  &\qquad
+   =\int_{(s)}u(\rho)v(\rho)\,d\xi(\rho;\xi,\eta).
+\end{aligned}
+\]
+For $u(\rho)=v(\rho)$ and $\xi=\eta$, this relation takes the form
+\[
+  \int_{(s)}\bigl(u(\rho)\bigr)^2\,d\xi(\rho;\xi)
+  =\int_{(s)}u(\rho)\,d\xi(\rho;\xi,\mathord{\cdot})
+   \int_{(s)}u(\rho)\,d\xi(\rho;\xi,\mathord{\cdot}).
+\]
+Furthermore, \eqref{eq:81} with $\lambda=0$ gives
+\[
+  (\xi,\xi)=\int_{(s)}d\xi(\mu;\xi).
+\]
+
+Conversely, the preceding relations, and hence ultimately \eqref{eq:70}, can
+be inferred from the penultimate relation, while \eqref{eq:63} can then be
+inferred from \eqref{eq:70} with the aid of the last equation.  Thus we see
+that the two conditions just found are also sufficient to characterize the
+spectral form $\xi$.  From \eqref{eq:68}, \eqref{eq:69}, and \eqref{eq:74}
+follows the unique determination of $\lambda_p,E_p$; and, on the other hand,
+we conclude that the spectral form is also uniquely determined by the above
+relations characteristic of it and by the requirement that $K$ admit
+representation \eqref{eq:62}.  For the mode of reasoning just indicated,
+starting from the properties of the spectral form,
+\originalpage{198}shows that the resolvent is represented by \eqref{eq:60},
+and hence, because of its unique determination, that
+\[
+  \int_{(s)}\frac{d\sigma(\mu)}{1-\lambda/\mu}
+\]
+is uniquely determined for every $\lambda$, and therefore so is the spectral
+form itself.
+
+We summarize the results obtained as follows.
+
+\begin{theorem}[III]\label{thm:III}
+Every bounded quadratic form $K$ in infinitely many variables can always,
+and in only one way, be brought by an orthogonal substitution into the form
+\[
+  K=k_1x_1^2+k_2x_2^2+\cdots
+    +\int_{(s)}\frac{d\sigma(\mu;\xi)}{\mu},
+\]
+where $k_1,k_2,\ldots$ denote certain quantities lying in absolute value
+below a finite bound (the reciprocal eigenvalues), and the spectral form
+$\sigma(\mu;\xi)$ satisfies the relations sufficient for its characterization
+\begin{equation}
+\tag{82}\label{eq:82}
+\begin{aligned}
+  \int_{(s)}\bigl(u(\mu)\bigr)^2\,d\sigma(\mu;\xi)
+    &=\int_{(s)}u(\mu)\,d\sigma(\mu;\xi,\mathord{\cdot})
+      \int_{(s)}u(\mu)\,d\sigma(\mu;\xi,\mathord{\cdot}),\\
+  (\xi,\xi)&=\int_{(s)}d\sigma(\mu;\xi),
+\end{aligned}
+\end{equation}
+identically for all continuous functions $u(\mu)$.
+\end{theorem}
+
+Put $\lambda=\lambda_p+i\nu'$ in \eqref{eq:63}.  After multiplication by
+$\lambda_p-\lambda$ and taking the limit $\nu'\to0$, it follows from
+\eqref{eq:68} that
+\[
+  E_p(x,y)-\lambda_pK(x,\mathord{\cdot})
+  E_p(\mathord{\cdot},y)=0.
+\]
+If we represent $E_p$ as a sum of squares of an orthogonal system,
+\[
+  E_p=\sum_{(h)}\bigl(L_{ph}(x)\bigr)^2,
+\]
+then convolution with $L_{ph}(y)$ gives
+\[
+  L_{ph}(x)-\lambda_pK(x,\mathord{\cdot})
+  L_{ph}(\mathord{\cdot})=0.
+\]
+Thus the equation
+\[
+  \lambda L(\mathord{\cdot})K(x,\mathord{\cdot})=L(x)
+\]
+can certainly be satisfied identically in $x_1,x_2,\ldots$ by a bounded
+linear form $L$ whenever $\lambda$ is one of the eigenvalues of $K$.
+Likewise, it follows from \eqref{eq:69} that
+\[
+  L(\mathord{\cdot})K(x,\mathord{\cdot})=0
+\]
+can certainly be satisfied when $\lambda=\infty$ is an eigenvalue.
+
+We can now also establish conversely that the preceding equation is solvable
+by a bounded linear form only in this case.  In view of
+\hyperref[thm:III]{Theorem III}, it is necessary only
+\originalpage{199}to prove that, if $L$ is a bounded linear form in the
+variables $\xi_1,\xi_2,\ldots$, the relation
+\[
+  \lambda L(\mathord{\cdot})
+  \int_{(s)}\frac{d\sigma(\mu;\xi,\mathord{\cdot})}{\mu}=L(\xi)
+\]
+cannot hold for any value of $\lambda$.  Denote the coefficients of $L$ by
+$l$; the latter relation then takes the form
+\[
+  \lambda\int_{(s)}\frac{d\sigma(\mu;\xi,l)}{\mu}=(\xi,l).
+\]
+From this we subtract the relation
+\[
+  \int_{(s)}d\sigma(\mu;\xi,l)=(\xi,l)
+\]
+and obtain
+\[
+  \int_{(s)}\left(1-\frac{\lambda}{\mu}\right)
+  d\sigma(\mu;\xi,l)=0,
+\]
+which would likewise be satisfied identically in $\xi_1,\xi_2,\ldots$.
+Taking
+\[
+  u(\mu)=1-\frac{\lambda}{\mu}
+\]
+in \eqref{eq:82}, we infer that
+\[
+  \int_{(s)}\left(1-\frac{\lambda}{\mu}\right)^2
+  d\sigma(\mu;l)=0.
+\]
+In view of
+\[
+  \int_{(s)}d\sigma(\mu;l)=(l,l),
+\]
+and because $\sigma$ never decreases, this is possible only when
+$(l,l)=0$.  We thus obtain the following fact.
+
+\begin{theorem}[IV]\label{thm:IV}
+If $K$ is any bounded quadratic form, then the relation
+\[
+  \lambda L(\mathord{\cdot})K(x,\mathord{\cdot})=L(x)
+\]
+is solvable by a bounded linear form $L$ if and only if $\lambda$ is an
+eigenvalue of $K$.
+\end{theorem}
+
+In particular, the equation
+\[
+  L(\mathord{\cdot})K(x,\mathord{\cdot})=0
+\]
+is solvable if and only if $\lambda=\infty$ is an eigenvalue of $K$.  If
+$\lambda=\infty$ is not an eigenvalue, and this equation is therefore not
+solvable, the quadratic form shall be called \emph{closed}.
+
+\originalpage{200}
+In the remainder of this \hyperref[sec:XI]{Section XI} we shall concern
+ourselves in greater detail with two particular cases of
+\hyperref[thm:III]{Theorem III}.
+
+We call a function $F(x_1,x_2,\ldots)$ of infinitely many variables
+$x_1,x_2,\ldots$ \emph{completely continuous} at a fixed system of their
+values if the values of $F(x_1+\varepsilon_1,x_2+\varepsilon_2,\ldots)$
+converge to $F(x_1,x_2,\ldots)$ whenever each $\varepsilon_j$ tends to zero,
+independently of how this happens; that is, if
+\[
+  \mathop{\mathrm{L}}\limits_{\varepsilon_1=0,\,
+    \varepsilon_2=0,\ldots}
+  F(x_1+\varepsilon_1,x_2+\varepsilon_2,\ldots)
+  =F(x_1,x_2,\ldots)
+\]
+for every sequence of systems
+$\varepsilon_1^{(h)},\varepsilon_2^{(h)},\ldots$ whose individual coordinates
+tend to zero, so that
+\[
+  \mathop{\mathrm{L}}\limits_{h=\infty}\varepsilon_1^{(h)}=0,
+  \qquad
+  \mathop{\mathrm{L}}\limits_{h=\infty}\varepsilon_2^{(h)}=0,
+  \quad\ldots.
+\]
+If a function is completely continuous for every system of values of the
+variables, it shall simply be called \emph{completely continuous}.  The
+following conclusions attach immediately to the concept of complete
+continuity.
+
+If a completely continuous function $F$ has the property of remaining in
+absolute value below a finite quantity for all values of the variables, then
+$F$ possesses a maximum, as can readily be proved by applying the familiar
+procedure for a finite number of variables.  If, furthermore,
+$L_1(x),\ldots,L_m(x)$ denote $m$ further completely continuous functions of
+the variables $x_1,x_2,\ldots$, and only those systems of values of these
+variables are admitted which satisfy
+\[
+  L_1(x)=0,\quad\ldots,\quad L_m(x)=0,
+\]
+then $F$ possesses a relative maximum; here the variables are always subject
+to the inequality
+\[
+  (x,x)\le1.
+\]
+
+A bounded linear form in the variables $x_1,x_2,\ldots$ is, as is seen at
+once, also completely continuous in these variables.  From this we readily
+conclude that a completely continuous function of the variables
+$x_1,x_2,\ldots$ is again a completely continuous function of the new
+variables after an orthogonal transformation.
+
+If a bounded quadratic form $K$ is completely continuous, it is evident that
+its eigenvalues do not accumulate in the finite plane; at the same time it
+can be shown that an interval spectrum cannot be present at all.  From
+\hyperref[thm:III]{Theorem III} we therefore obtain the following result.
+
+\originalpage{201}
+\begin{theorem}[V]\label{thm:V}
+If a bounded form $K$ is completely continuous, it can always be brought by
+an orthogonal substitution into the form
+\begin{equation}
+\tag{83}\label{eq:83}
+  K(x)=k_1x_1^2+k_2x_2^2+\cdots;
+\end{equation}
+the quantities $k_1,k_2,\ldots$ are the reciprocal eigenvalues of $K$ and,
+if infinitely many of them occur, have zero as their only condensation point.
+\end{theorem}
+
+Because of the many and important applications of this theorem, I give here
+a very simple proof of it which is independent of the preceding theory.
+
+\begin{proof}
+First suppose that $K$ is a positive definite form.  Let
+\[
+  x_1=l_{11},\qquad x_2=l_{12},\qquad\ldots
+\]
+be values of the variables for which $K(x)$ attains the maximum $k_1$.
+Clearly the sum of the squares of these values must equal $1$, since
+otherwise we could increase the value of the form without violating the
+condition $(x,x)\le1$.
+
+Put
+\[
+  L_1(x)=l_{11}x_1+l_{12}x_2+\cdots
+\]
+and, now imposing on the variables the condition
+\[
+  L_1(x)=0,
+\]
+determine the relative maximum $k_2$ of $K(x)$.  Let it be attained for the
+values
+\[
+  x_1=l_{21},\qquad x_2=l_{22},\qquad\ldots,
+\]
+whose sum of squares must again equal $1$.  Further put
+\[
+  L_2(x)=l_{21}x_1+l_{22}x_2+\cdots
+\]
+and, imposing on the variables the conditions
+\[
+  L_1(x)=0,\qquad L_2(x)=0,
+\]
+determine the relative maximum $k_3$ of $K(x)$.  Let it be attained for
+\[
+  x_1=l_{31},\qquad x_2=l_{32},\qquad\ldots.
+\]
+We then put
+\[
+  L_3(x)=l_{31}x_1+l_{32}x_2+\cdots.
+\]
+Continuing this procedure, we obtain a system of linear forms
+$L_1,L_2,L_3,\ldots$ with the orthogonality properties
+\[
+  L_p(\mathord{\cdot})L_p(\mathord{\cdot})=1,
+  \qquad
+  L_p(\mathord{\cdot})L_q(\mathord{\cdot})=0\quad(p\ne q).
+\]
+
+\originalpage{202}
+On the basis of the earlier considerations
+(\hyperref[origpage:196]{p.~196}), complete these linear forms by a system of
+linear forms
+\[
+  M_1(x),M_2(x),\ldots
+\]
+such that
+\[
+\begin{aligned}
+  x'_1&=L_1(x),\\
+  x'_2&=L_2(x),\\
+      &\ \vdots\\
+  y_1&=M_1(x),\\
+  y_2&=M_2(x),\\
+     &\ \vdots
+\end{aligned}
+\]
+form an orthogonal substitution of the variables $x_1,x_2,\ldots$.  Denote
+the form $K(x)$ transformed by this orthogonal substitution by $K(x'y)$.
+The coefficient of ${x'_1}^{\,2}$ in $K(x'y)$ must plainly equal $k_1$.
+On the other hand, no further terms containing $x'_1$ may occur in $K(x'y)$,
+since the difference
+\[
+\begin{aligned}
+  &K(x'y)-k_1\bigl({x'_1}^{\,2}+{x'_2}^{\,2}+\cdots
+                   +y_1^2+y_2^2+\cdots\bigr)\\
+  &\qquad=K(x)-k_1(x,x)
+\end{aligned}
+\]
+is to be negative or zero for all values of the variables
+$x'_1,x'_2,\ldots,y_1,y_2,\ldots$.  Since the same considerations apply to
+$x'_2,x'_3,\ldots$, we have
+\[
+  K(x'y)=k_1{x'_1}^{\,2}+k_2{x'_2}^{\,2}+\cdots+R(y),
+\]
+where $R(y)$ denotes a quadratic form containing only the variables
+$y_1,y_2,\ldots$.
+
+Since $K$ is completely continuous, the same is true of the form
+\[
+  K(x'0)=k_1{x'_1}^{\,2}+k_2{x'_2}^{\,2}+\cdots;
+\]
+hence, if infinitely many of the quantities $k_1,k_2,\ldots$ occur, they must
+converge to zero.  For otherwise there would be a sequence of values of
+$K(x'0)$ converging to a value different from zero, while each of the
+arguments $x'_1,x'_2,\ldots$ separately converged to zero.
+
+Suppose now that there were a system of values
+$y_1=m_1,y_2=m_2,\ldots$ for which $R(m)>0$.  We could then choose $q$ so
+that $R(m)>k_q$.  For
+\[
+  x'_1=0,\quad x'_2=0,\quad\ldots,
+  \qquad y_1=m_1,\quad y_2=m_2,\quad\ldots,
+\]
+we would also have $K>k_q$.  The equations
+\[
+  L_1(x)=0,\quad L_2(x)=0,\quad\ldots,
+  \qquad M_1(x)=m_1,\quad M_2(x)=m_2,\quad\ldots
+\]
+would therefore determine a system of values of the variables
+$x_1,x_2,\ldots$\originalpage{203} for which, in particular, the conditions
+\[
+  L_1(x)=0,\quad\ldots,\quad L_{q-1}(x)=0
+\]
+are satisfied and at the same time $K>k_q$.  This contradicts the manner in
+which $k_q$ was determined; hence $R(y)$ cannot assume positive values.
+
+Since
+\[
+  K(0y)=R(y),
+\]
+$R(y)$ certainly cannot assume negative values either, and consequently
+$R(y)$ is identically zero; i.e.
+\[
+  K(x)=k_1L_1^2(x)+k_2L_2^2(x)+\cdots.
+\]
+
+If $K(x)$ is not assumed to be a definite form, the same reasoning leads to
+the representation
+\[
+  K(x)=k_1L_1^2(x)+k_2L_2^2(x)+\cdots+R(y),
+\]
+where $R(y)$ cannot assume positive values.  Since $-R(y)$, as a positive
+definite form, admits a representation of the same kind, we finally obtain
+for $K$ also a representation by squares of orthogonal linear forms, and the
+proof of \hyperref[thm:V]{Theorem V} is thereby complete.
+\end{proof}
+
+A sufficient criterion for the complete continuity of a form is provided by
+the following theorem.
+
+\begin{theorem}[VI]\label{thm:VI}
+If, for a quadratic form $K$, one of the sums
+\[
+\begin{aligned}
+  s_2&=\sum_{(p,q)}k_{pq}k_{qp}
+      =\sum_{(p,q)}k_{pq}^{\,2},\\
+  s_4&=\sum_{(p,q,r,s)}k_{pq}k_{qr}k_{rs}k_{sp},\\
+     &\ \vdots
+\end{aligned}
+\]
+remains finite, or if, for a definite quadratic form $K$, one of the sums
+\[
+\begin{aligned}
+  s_1&=\sum_{(p)}k_{pp},\\
+  s_3&=\sum_{(p,q,r)}k_{pq}k_{qr}k_{rp},\\
+     &\ \vdots
+\end{aligned}
+\]
+remains finite, then $K$ is a bounded, completely continuous form.
+\end{theorem}
+
+\begin{proof}
+Indeed, if $K$ is a quadratic form whose coefficients have a finite sum of
+squares, then, because
+\[
+\begin{aligned}
+  \left\lvert
+    x_1\frac{\partial K(x,y)}{\partial y_1}
+    +x_2\frac{\partial K(x,y)}{\partial y_2}+\cdots
+  \right\rvert^2
+  &\le
+  \left(\frac{\partial K(x,y)}{\partial y_1}\right)^2
+  +\left(\frac{\partial K(x,y)}{\partial y_2}\right)^2+\cdots,\\[0.4em]
+  \left(\frac{\partial K(x,y)}{\partial y_p}\right)^2
+  &\le k_{p1}^2+k_{p2}^2+\cdots.
+\end{aligned}
+\]
+\begin{samepage}
+we necessarily have\originalpage{204}
+\[
+  \lvert K(x)\rvert
+  \le\sqrt{\sum_{(p,q)}k_{pq}^{\,2}}.
+\]
+\end{samepage}
+Applying this fact to the quadratic form
+\[
+  K(x)-K_n(x)=\sum_{(p,q)}^{(n)}k_{pq}x_p x_q,
+\]
+where on the right $(p,q)$ runs through all pairs of integral values except
+those for which both $p\le n$ and $q\le n$, we find
+\[
+  \lvert K(x)-K_n(x)\rvert
+  \le\sqrt{\sum_{(p,q)}^{(n)}k_{pq}^{\,2}}.
+\]
+Since
+\[
+  \mathop{\mathrm{L}}\limits_{n=\infty}
+  \sqrt{\sum_{(p,q)}^{(n)}k_{pq}^{\,2}}=0,
+\]
+the required complete continuity of $K(x)$ follows.
+
+If $K$ is a definite form, then
+\[
+  k_{pq}^2\le k_{pp}k_{qq},
+\]
+and hence
+\[
+  \sum_{(p,q)}k_{pq}^2\le\left(\sum_{(p)}k_{pp}\right)^2.
+\]
+Thus, if $\sum_{(p)}k_{pp}$ remains finite for a definite form, its
+coefficients certainly also have a finite sum of squares, and, by the
+preceding consideration, the form is again a completely continuous function
+of the variables.
+
+We now readily recognize, one after another, the following facts.
+
+\noindent 1. If a bounded quadratic form $K$ is not completely continuous,
+then it is also not completely continuous at the particular system of values
+$0,0,\ldots$.  This assertion follows by applying the formula
+\[
+  K(x+a)=K(x)+2K(x,a)+K(a),
+\]
+with a system of values chosen for $a_1,a_2,\ldots$ at which $K$ is not
+completely continuous, taking account of the fact that $K(x,a)$, as a bounded
+linear form, is certainly completely continuous.
+
+\noindent 2. If $K$ is a completely continuous quadratic form, then so is
+the form $KK$; this follows immediately from \hyperref[thm:V]{Theorem V}.
+
+\noindent 3. If $K$ is completely continuous, $K^*$ is any quadratic form,
+and for all systems of values $x_1,x_2,\ldots$ the inequality
+\[
+  \lvert K^*(x)\rvert\le\lvert K(x)\rvert
+\]
+
+\originalpage{205}
+holds, then $K^*$ is also completely continuous; for from this inequality
+complete continuity for the system of values $0,0,\ldots$ follows.
+
+4. If $K$ is completely continuous and $K^*$ is bounded, then the
+convolution of $K$ and $K^*$ is completely continuous; for
+\[
+  \lvert K(x,\mathord{\cdot})K^*(x,\mathord{\cdot})\rvert
+  \leq \sqrt{\bigl(KK(x)\bigr)\bigl(K^*K^*(x)\bigr)},
+\]
+this convolution is certainly completely continuous at the system of values
+$0,0,\ldots$, since the form $KK$ is completely continuous by 2.
+
+5. If the convolution $KK$ of a quadratic form $K$ is completely
+continuous, then the form $K$ itself is also completely continuous; this
+follows likewise, by virtue of 1, from the inequality
+\[
+  \lvert K(x)\rvert\leq\sqrt{KK(x)}.
+\]
+
+6. If one of the forms which have arisen by repeated convolution from the
+bounded form $K$,
+\[
+  K^{(3)}=KKK,\qquad K^{(4)}=KKKK,\qquad
+  K^{(5)}=KKKKK,\ldots.
+\]
+is completely continuous, then $K$ is also completely continuous. For if,
+say, $K^{(f)}$ is completely continuous, then, by 4, the forms
+$K^{(f+1)},K^{(f+2)},\ldots$ are also completely continuous. Among these we
+choose a form for which the number of convolutions is a power of $2$, say
+$K^{(2^g)}$; then, by applying 5 $g$ times, we conclude that $K$ is
+completely continuous.
+
+7. If the bounded quadratic form $K$ is definite, then the convolutions
+$K^{(3)},K^{(5)},\ldots$ are likewise definite; for example, $K^{(3)}(x)$
+arises from $K(x)$ when $x_p$ is replaced by
+$\partial K(x,y)/\partial y_p$. Since, in general, $s_f$ is nothing other than
+the invariant $K^{(f)}(\mathord{\cdot},\mathord{\cdot})$, namely the sum
+of the coefficients of $x_p^2$ in $K^{(f)}$, it follows from 6 and 7, and
+from the fact that the case $f=1$ has already been disposed of above, that
+\hyperref[thm:VI]{Theorem VI} is valid in general.
+\end{proof}
+
+From \hyperref[thm:V]{Theorems V} and \hyperref[thm:VI]{VI} we obtain the
+following fact:
+
+\begin{theorem}[VII]\label{thm:VII}
+A quadratic form $K$ satisfying one of the assumptions made in
+\hyperref[thm:VI]{Theorem VI} can be transformed, by an orthogonal
+transformation \eqref{eq:83}, into a sum of squares.
+\end{theorem}
+
+The counterpart to the case treated in \hyperref[thm:V]{Theorems V}--
+\hyperref[thm:VII]{VII} is the assumption that $K$ has no point spectrum,
+but only an interval spectrum. In order to consider only the simplest, yet
+typical, case, we further make the assumptions
+\originalpage{206}
+that the interval spectrum $(s)$ consists of a finite number of intervals,
+that the coefficients of the spectral form $\sigma(\mu,x)$ are continuously
+differentiable with respect to $\mu$, and finally, when
+\[
+  \frac{d\sigma(\mu,x)}{d\mu}=\psi(\mu,x)
+  =\sum_{p,q=1,2,\ldots}\psi_{pq}(\mu)x_px_q,
+\]
+that $\psi_{11}(\mu)$ is nowhere zero within $(s)$ and, on putting, for
+brevity,
+\[
+  \psi_1(\mu)=\frac{\psi_{11}(\mu)}{\sqrt{\psi_{11}(\mu)}},
+  \qquad
+  \psi_2(\mu)=\frac{\psi_{12}(\mu)}{\sqrt{\psi_{11}(\mu)}},\ldots,
+\]
+the functions $\psi_1(\mu),\psi_2(\mu),\ldots$ are linearly independent in
+the sense that, for an arbitrary function $u(\mu)$, there is no linear
+relation among the integrals
+\begin{equation}
+  \int_{(s)}u(\mu)\psi_1(\mu)\,d\mu,\quad
+  \int_{(s)}u(\mu)\psi_2(\mu)\,d\mu,\quad\ldots,
+  \tag{84}\label{eq:84}
+\end{equation}
+whose coefficients are constants having a finite sum of squares.
+
+If we insert our assumptions into relation \eqref{eq:82}, put
+$\xi_1=1$, $\xi_2=0$, $\xi_3=0,\ldots$, and replace $u(\mu)$ by
+$u(\mu)/\sqrt{\psi_{11}(\mu)}$, we obtain
+\begin{equation}
+  \int_{(s)}\bigl(u(\mu)\bigr)^2\,d\mu
+  =\sum_{p=1,2,\ldots}
+  \left\{\int_{(s)}u(\mu)\psi_p(\mu)\,d\mu\right\}^{\!2}.
+  \tag{85}\label{eq:85}
+\end{equation}
+Consequently, for arbitrary functions $u(\mu)$ and $v(\mu)$,
+\begin{equation}
+  \int_{(s)}u(\mu)v(\mu)\,d\mu
+  =\sum_{p=1}^{\infty}
+  \int_{(s)}u(\mu)\psi_p(\mu)\,d\mu
+  \int_{(s)}v(\mu)\psi_p(\mu)\,d\mu.
+  \tag{86}\label{eq:86}
+\end{equation}
+If we take $v(\mu)=\psi_q(\mu)$ here, then
+\begin{equation}
+  \int_{(s)}u(\mu)\psi_q(\mu)\,d\mu
+  =\sum_{p=1}^{\infty}
+  \int_{(s)}\psi_p(\mu)\psi_q(\mu)\,d\mu
+  \int_{(s)}\psi_p(\mu)u(\mu)\,d\mu.
+  \tag{87}\label{eq:87}
+\end{equation}
+In view of the linear independence expressed in \eqref{eq:84}, relation
+\eqref{eq:87} can hold identically for every $u(\mu)$ only when
+\originalpage{207}
+\begin{align}
+  \int_{(s)}\bigl(\psi_p(\mu)\bigr)^2\,d\mu&=1,
+  \nonumber\\
+  \int_{(s)}\psi_p(\mu)\psi_q(\mu)\,d\mu&=0\qquad(p\ne q).
+  \tag{88}\label{eq:88}
+\end{align}
+Now, from the positive definite character of the form $\psi(\mu,\xi)$,
+\[
+  \bigl(\psi_{11}\xi_1+\psi_{12}\xi_2+\cdots\bigr)^2
+  \leq \psi(\mu,\xi)\psi_{11},
+\]
+or
+\begin{equation}
+  \bigl(\psi_1\xi_1+\psi_2\xi_2+\cdots\bigr)^2
+  \leq \psi(\mu,\xi).
+  \tag{89}\label{eq:89}
+\end{equation}
+On the other hand, by \eqref{eq:88},
+\[
+  \int_{(s)}
+  \bigl(\psi_1\xi_1+\psi_2\xi_2+\cdots\bigr)^2\,d\mu
+  =(\xi,\xi),
+\]
+and since
+\[
+  \int_{(s)}\psi(\mu,\xi)\,d\mu=(\xi,\xi),
+\]
+it follows that
+\[
+  \int_{(s)}
+  \left\{
+    \psi(\mu,\xi)
+    -\bigl(\psi_1\xi_1+\psi_2\xi_2+\cdots\bigr)^2
+  \right\}\,d\mu=0.
+\]
+But the expression under the integral sign is nowhere negative, by
+\eqref{eq:89}; hence
+\[
+  \psi(\mu,\xi)
+  =\bigl(\psi_1(\mu)\xi_1+\psi_2(\mu)\xi_2+\cdots\bigr)^2.
+\]
+
+Thus, under the assumptions made, the characteristic property of the
+spectral form $\sigma(\mu,\xi)$ consists in the fact that its derivative with
+respect to $\mu$ is the square of a linear form whose coefficients satisfy
+the orthogonality relations \eqref{eq:85} and \eqref{eq:88}. Conversely,
+since a form of this kind satisfies all the characteristic properties of a
+spectral form, it is now easy to construct a quadratic form $K$ having any
+prescribed interval spectrum $(s)$: we choose a complete orthogonal system of functions
+$\psi_1(\mu),\psi_2(\mu),\ldots$ satisfying the relations \eqref{eq:85} and
+\eqref{eq:88}, and put
+\[
+  K(\xi)=\int_{(s)}
+  \frac{\bigl(\psi_1(\mu)\xi_1+\psi_2(\mu)\xi_2+\cdots\bigr)^2}{\mu}
+  \,d\mu.
+\]
+The simplest example of this kind is the quadratic form
+\begin{equation}
+  K(x)=x_1x_2+x_2x_3+x_3x_4+\cdots;
+  \tag{90}\label{eq:90}
+\end{equation}
+it has no point spectrum, while its interval spectrum
+\originalpage{208}
+consists of the two intervals from $\lambda=-\infty$ to $-1$ and from
+$+1$ to $+\infty$. Here
+\[
+  \psi_p(\mu)=\sqrt{\frac{2}{\pi}}\,
+  \frac{\cos t}{\sqrt{\sin t}}\sin pt,
+\]
+where $t$, lying between $0$ and $\pi$, is determined by
+$\cos t=1/\mu$. We then have
+\[
+  \int_{\substack{(-\infty\cdots-1)\\(+1\cdots+\infty)}}
+  \bigl(\psi_1(\mu)x_1+\psi_2(\mu)x_2+\cdots\bigr)^2\,d\mu
+  =(x,x),
+\]
+and
+\[
+  K(x)=
+  \int_{\substack{(-\infty\cdots-1)\\(+1\cdots+\infty)}}
+  \frac{\bigl(\psi_1(\mu)x_1+\psi_2(\mu)x_2+\cdots\bigr)^2}{\mu}
+  \,d\mu.
+\]
+In confirmation of \hyperref[thm:IV]{Theorem IV}, we note that the equations
+\begin{align*}
+  x_1-\frac{\lambda}{2}x_2&=0,\\
+  x_2-\frac{\lambda}{2}(x_1+x_3)&=0,\\
+  x_3-\frac{\lambda}{2}(x_2+x_4)&=0,\\
+  &\ \vdots
+\end{align*}
+have, for no value of $\lambda$, solutions
+$x_1,x_2,\ldots$ with finite sum of squares.
+
+Another example with the same interval spectrum is the quadratic form
+\begin{equation}
+  \frac{2}{\sqrt{2^2-1}}x_1x_2
+  +\frac{4}{\sqrt{4^2-1}}x_2x_3
+  +\frac{6}{\sqrt{6^2-1}}x_3x_4+\cdots.
+  \tag{91}\label{eq:91}
+\end{equation}
+For this form we find
+\[
+  \psi_p(\mu)=\sqrt{\frac{2p-1}{2}}\,\frac{1}{\mu}
+  P^{(p-1)}\!\left(\frac{1}{\mu}\right),
+\]
+where $P^{(p-1)}(x)$ denotes the Legendre polynomial of degree $p-1$.
+If we put
+\[
+  \chi_p(\mu)=\sqrt{\frac{2p-1}{2}}\,\frac{1}{\mu}
+  Q^{(p-1)}\!\left(\frac{1}{\mu}\right),
+\]
+where $Q^{(p-1)}(x)$ denotes the associated spherical function of the
+second kind, then
+\originalpage{209}
+the resolvent of the form \eqref{eq:91} has the form
+\[
+  K(\lambda,x)
+  =\sum_{(p,\,q\geq p)}4\lambda\psi_p(\lambda)\chi_q(\lambda)x_px_q.
+\]
+The two forms \eqref{eq:90} and \eqref{eq:91} can be transformed into one
+another by an orthogonal substitution, as is immediately seen from their
+spectral forms. If we drop the assumption of linear independence made
+above, the derivative of the spectral form is not the square of a single
+linear form, but rather the sum of squares of linear forms.
+
+\section*{XII. Simultaneous System of Quadratic Forms,\\
+the Hermitian Form, the Skew-Symmetric Form,\\
+and the Bilinear Form with Infinitely Many Variables}
+\addcontentsline{toc}{section}{XII. Simultaneous System of Quadratic Forms, the Hermitian Form, the Skew-Symmetric Form, and the Bilinear Form with Infinitely Many Variables}
+\label{sec:XII}
+
+The methods and results developed in \hyperref[sec:XI]{Section XI} can be
+extended, without any difficulty of principle, to more general forms with
+infinitely many variables. We first consider the case of a simultaneous
+system of two quadratic forms, one of which has definite character, while
+the other is presented as an aggregate of positive and negative squares of
+the variables. With the aid of my method of passage to the limit, starting
+from forms with a finite number of variables, we can easily develop the
+corresponding theory; we single out only the following result:
+
+\begin{theorem}[VIII]\label{thm:VIII}
+Let $K(x)$ be a positive definite, completely continuous, closed quadratic
+form, and let
+\[
+  V(x)=v_1x_1^2+v_2x_2^2+\cdots,
+\]
+where each of the quantities $v_1,v_2,\ldots$ is either $+1$ or $-1$. Then
+there exists an infinite sequence of quantities different from zero,
+$\varkappa_1,\varkappa_2,\ldots$, having respectively the signs of
+$v_1,v_2,\ldots$ and tending to zero. Their reciprocals are called the
+eigenvalues of $K$ relative to $V$. There also exists an infinite sequence
+of bounded linear forms $L_1(x),L_2(x),\ldots$, called the corresponding
+eigenforms, such that the polar relations
+\[
+  L_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  L_p(\mathord{\cdot})=v_p,
+  \qquad
+  L_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  L_q(\mathord{\cdot})=0\quad(p\ne q)
+\]
+hold and
+\originalpage{210}
+\[
+  K(x)=\lvert\varkappa_1\rvert\bigl(L_1(x)\bigr)^2
+      +\lvert\varkappa_2\rvert\bigl(L_2(x)\bigr)^2+\cdots.
+\]
+\end{theorem}
+
+This \hyperref[thm:VIII]{Theorem VIII} can also be proved, without passage
+from a finite to an infinite number of variables, solely on the basis of
+\hyperref[thm:V]{Theorem V}, with no new convergence considerations.
+
+\begin{proof}
+For this purpose we first suppose that the given form $K(x)$ is closed. We
+then bring this form $K(x)$, by \hyperref[thm:V]{Theorem V}, through an
+orthogonal transformation of the variables $x_1,x_2,\ldots$ into the form
+of a sum of squares; we denote the new variables by $x'_1,x'_2,\ldots$ and
+find
+\[
+  K(x)=k_1{x'_1}^{2}+k_2{x'_2}^{2}+\cdots,
+\]
+where $k_1,k_2,\ldots$ are all positive quantities converging to zero. We
+further denote by $V'(x')$ the quadratic form in the variables
+$x'_1,x'_2,\ldots$ which arises from $V(x)$ through that orthogonal
+transformation, and finally by $V'(\sqrt{k}\,\xi)$ the quadratic form in the
+variables $\xi_1,\xi_2,\ldots$ which arises from $V'(x')$ when
+$\sqrt{k_1}\xi_1,\sqrt{k_2}\xi_2,\ldots$ are substituted in it for
+$x'_1,x'_2,\ldots$.
+
+We can now easily show that $V'(\sqrt{k}\,\xi)$ is a completely continuous
+form in the variables $\xi_1,\xi_2,\ldots$. Indeed, as is readily seen,
+$V'(x')$ can be represented as the difference of two elementary forms
+$E_1(x')$ and $E_2(x')$; as such, they satisfy the inequalities
+\[
+  E_1(x')\leq(x',x'),\qquad E_2(x')\leq(x',x').
+\]
+Substituting $\sqrt{k_1}\xi_1,\sqrt{k_2}\xi_2,\ldots$ again for
+$x'_1,x'_2,\ldots$, these inequalities become
+\[
+  E_1(\sqrt{k}\,\xi)\leq k_1\xi_1^2+k_2\xi_2^2+\cdots,
+\]
+\[
+  E_2(\sqrt{k}\,\xi)\leq k_1\xi_1^2+k_2\xi_2^2+\cdots.
+\]
+If these elementary forms were not completely continuous in the variables
+$\xi_1,\xi_2,\ldots$, there would have to exist systems of values
+$\alpha_1^{(n)},\alpha_2^{(n)},\ldots$ for which
+\[
+  \lim_{n=\infty}\alpha_1^{(n)}=0,\qquad
+  \lim_{n=\infty}\alpha_2^{(n)}=0,\ldots,
+\]
+while the elementary forms, which are positive definite, would have to
+assume, for
+\[
+  \xi_1=\alpha_1^{(n)},\qquad \xi_2=\alpha_2^{(n)},\ldots,
+\]
+values remaining above a positive quantity independent of $n$;
+\originalpage{211}
+but this would contradict the foregoing inequalities, since $K(x)$ is
+completely continuous. Since, accordingly,
+$E_1(\sqrt{k}\,\xi)$ and $E_2(\sqrt{k}\,\xi)$ are completely continuous in
+$\xi_1,\xi_2,\ldots$, so too is $V'(\sqrt{k}\,\xi)$. The complete continuity
+of $E_1(\sqrt{k}\,\xi)$ and $E_2(\sqrt{k}\,\xi)$ in the variables
+$\xi_1,\xi_2,\ldots$ also follows directly from
+\hyperref[origpage:205]{4 on p.~205}.
+
+We now transform, by \hyperref[thm:V]{Theorem V}, the variables
+$\xi_1,\xi_2,\ldots$ orthogonally into the new variables
+$\xi'_1,\xi'_2,\ldots$ in such a way that the form
+$V'(\sqrt{k}\,\xi)$ assumes the form
+\[
+  V'(\sqrt{k}\,\xi)
+  =\varkappa_1{\xi'_1}^{2}+\varkappa_2{\xi'_2}^{2}+\cdots,
+\]
+where $\varkappa_1,\varkappa_2,\ldots$ are certain real quantities
+converging to zero. Let the linear forms in $x'_1,x'_2,\ldots$ which arise
+from the forms $\xi'_p(\xi)$ when
+$\sqrt{k_1}x'_1,\sqrt{k_2}x'_2,\ldots$ are substituted for
+$\xi_1,\xi_2,\ldots$ be denoted by $\xi'_p(\sqrt{k}\,x')$. Since the former
+forms constitute an orthogonal transformation, we then have
+\begin{align*}
+  K(x)
+  &=\bigl(\sqrt{k_1}x'_1\bigr)^2
+    +\bigl(\sqrt{k_2}x'_2\bigr)^2+\cdots\\
+  &=\bigl(\xi'_1(\sqrt{k}\,x')\bigr)^2
+    +\bigl(\xi'_2(\sqrt{k}\,x')\bigr)^2+\cdots;
+\end{align*}
+furthermore,
+\begin{align*}
+ &\xi'_p(\mathord{\cdot})
+ V'(\sqrt{k}\,\xi,\sqrt{k}\,\mathord{\cdot}) \\
+ &\quad=\frac{\partial\xi'_p(\xi)}{\partial\xi_1}
+ \frac{\partial V'(\sqrt{k}\,\xi,\sqrt{k}\,\eta)}{\partial\eta_1}
+ +\frac{\partial\xi'_p(\xi)}{\partial\xi_2}
+ \frac{\partial V'(\sqrt{k}\,\xi,\sqrt{k}\,\eta)}{\partial\eta_2}
+ +\cdots\\
+ &\quad=\xi'_p(\sqrt{k}\,\mathord{\cdot})
+ V'(\sqrt{k}\,\xi,\mathord{\cdot}),
+\end{align*}
+and consequently
+\[
+  \xi'_p(\sqrt{k}\,\mathord{\cdot})
+  V'(\sqrt{k}\,\xi,\mathord{\cdot})
+  =\varkappa_p\xi'_p(\xi).
+\]
+From this formula we infer in the same way
+\[
+  \xi'_p(\sqrt{k}\,\mathord{\cdot})V'(\mathord{\cdot},\mathord{\cdot})
+  \xi'_q(\sqrt{k}\,\mathord{\cdot})
+  =\varkappa_p\xi'_p(\mathord{\cdot})\xi'_q(\mathord{\cdot}).
+\]
+If we now return to the variables $x_1,x_2,\ldots$, and denote generally by
+$\Lambda_p(x)$ the linear form in $x_1,x_2,\ldots$ which thereby arises from
+$\xi'_p(\sqrt{k}\,x')$, we obtain
+\[
+  \Lambda_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  \Lambda_q(\mathord{\cdot})
+  =\varkappa_p\xi'_p(\mathord{\cdot})\xi'_q(\mathord{\cdot}),
+\]
+and, by the orthogonality of the forms $\xi'_p(\xi)$, this is equal to
+$\varkappa_p$ when $p=q$, and equal to zero when $p\ne q$; on the other hand,
+\[
+  K(x)=\Lambda_1^2(x)+\Lambda_2^2(x)+\cdots.
+\]
+If $\varkappa_p=0$, then for all $x_1,x_2,\ldots$ we should have
+\[
+  \Lambda_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  K(\mathord{\cdot},x)=0,
+\]
+which would contradict the closedness of $K$ and of $V$;
+\originalpage{212}
+consequently $\varkappa_1,\varkappa_2,\ldots$ are all different from zero.
+
+We may now think of the terms
+$\varkappa_1{\xi'_1}^{2},\varkappa_2{\xi'_2}^{2},\ldots$ in the above
+representation of $V'(\sqrt{k}\,\xi)$ as arranged so that, in general,
+$\varkappa_p$ has the sign of $v_p$. Indeed, such an arrangement of those
+terms would fail to be possible only if either the number of negative
+(respectively, positive) units in the sequence $v_1,v_2,\ldots$ were finite
+and at the same time the number of negative (respectively, positive)
+quantities occurring in the sequence
+$\varkappa_1,\varkappa_2,\ldots$ were greater than the former number, or if
+the number of negative (respectively, positive) quantities in the sequence
+$\varkappa_1,\varkappa_2,\ldots$ were finite and at the same time the number
+of negative (respectively, positive) units in the sequence
+$v_1,v_2,\ldots$ were greater than the former number.
+
+If we denote by
+$x_1(\sqrt{k}\,\xi),x_2(\sqrt{k}\,\xi),\ldots$ the linear forms in
+$\xi_1,\xi_2,\ldots$ which arise from $x_1(x'),x_2(x'),\ldots$ upon
+substituting $\sqrt{k_1}\xi_1,\sqrt{k_2}\xi_2,\ldots$ for
+$x'_1,x'_2,\ldots$, then, identically in $\xi_1,\xi_2,\ldots$,
+\[
+  v_1\bigl(x_1(\sqrt{k}\,\xi)\bigr)^2
+  +v_2\bigl(x_2(\sqrt{k}\,\xi)\bigr)^2+\cdots
+  =\varkappa_1\bigl(\xi'_1(\xi)\bigr)^2
+  +\varkappa_2\bigl(\xi'_2(\xi)\bigr)^2+\cdots,
+\]
+because both sides of this equation represent $V'(\sqrt{k}\,\xi)$.
+
+In accordance with the first case, suppose that $v_1,\ldots,v_e$ are
+negative (respectively, positive), while
+$v_{e+1},v_{e+2},\ldots$ are all positive (respectively, negative), and that
+$\varkappa_1,\ldots,\varkappa_{e+1}$ are negative (respectively, positive).
+Since the forms $\xi'_1(\xi),\xi'_2(\xi),\ldots$ determine an orthogonal
+substitution, that is, form a \emph{complete orthogonal system of linear
+forms}--as we shall say--every bounded linear form in
+$\xi_1,\xi_2,\ldots$ can be represented as a linear combination of the
+forms $\xi'_1(\xi),\xi'_2(\xi),\ldots$. In particular, we put
+\begin{align*}
+  x_1(\sqrt{k}\,\xi)
+    &=a_{11}\xi'_1(\xi)+a_{12}\xi'_2(\xi)+\cdots,\\
+  &\ \vdots\\
+  x_e(\sqrt{k}\,\xi)
+    &=a_{e1}\xi'_1(\xi)+a_{e2}\xi'_2(\xi)+\cdots,
+\end{align*}
+where $a_{11},a_{12},\ldots,a_{e1},a_{e2},\ldots$ denote certain
+coefficients. We then choose quantities
+$\alpha_1,\ldots,\alpha_{e+1}$, not all zero, which satisfy the $e$ equations
+\begin{align*}
+  a_{11}\alpha_1+\cdots+a_{1,e+1}\alpha_{e+1}&=0,\\
+  &\ \vdots\\
+  a_{e1}\alpha_1+\cdots+a_{e,e+1}\alpha_{e+1}&=0,
+\end{align*}
+and form the equations
+\originalpage{213}
+\begin{align*}
+  \xi'_1(\xi)&=\alpha_1,\\
+  &\ \vdots\\
+  \xi'_{e+1}(\xi)&=\alpha_{e+1},\\
+  \xi'_{e+2}(\xi)&=0,\\
+  \xi'_{e+3}(\xi)&=0,\\
+  &\ \vdots
+\end{align*}
+The values of $\xi_1,\xi_2,\ldots$ obtained by solving these equations would
+give a contradiction, since, when inserted into the identity set up above,
+\[
+  v_1\bigl(x_1(\sqrt{k}\,\xi)\bigr)^2
+  +v_2\bigl(x_2(\sqrt{k}\,\xi)\bigr)^2+\cdots
+  =\varkappa_1\bigl(\xi'_1(\xi)\bigr)^2
+  +\varkappa_2\bigl(\xi'_2(\xi)\bigr)^2+\cdots,
+\]
+they would give the left-hand side a nonnegative (respectively,
+nonpositive) value, but the right-hand side certainly a negative
+(respectively, positive) value.
+
+To treat the second of the cases named above, we start from the equation,
+identical in $x'_1,x'_2,\ldots$,
+\[
+  v_1\bigl(x_1(x')\bigr)^2+v_2\bigl(x_2(x')\bigr)^2+\cdots
+  =\varkappa_1\left(\xi'_1\!\left(\frac{x'}{\sqrt{k}}\right)\right)^2
+  +\varkappa_2\left(\xi'_2\!\left(\frac{x'}{\sqrt{k}}\right)\right)^2
+  +\cdots,
+\]
+where
+$\xi'_1(x'/\sqrt{k}),\xi'_2(x'/\sqrt{k}),\ldots$ denote the linear forms
+in $x'_1,x'_2,\ldots$ which arise from
+$\xi'_1(\xi),\xi'_2(\xi),\ldots$ upon substituting
+$x'_1/\sqrt{k_1},x'_2/\sqrt{k_2},\ldots$ for
+$\xi_1,\xi_2,\ldots$. Since, however, the linear forms
+$\xi'_1(x'/\sqrt{k}),\xi'_2(x'/\sqrt{k}),\ldots$ do not necessarily become
+bounded linear forms in $x'_1,x'_2,\ldots$, the above identity has meaning
+only as an identity of truncations, and the procedure used in the first case
+requires the following modification.
+
+Suppose that $\varkappa_1,\ldots,\varkappa_e$ are negative (respectively,
+positive). Suppose further that $\varkappa_{e+1},\varkappa_{e+2},\ldots$ are
+all positive (respectively, negative), and that $v_1,\ldots,v_{e+1}$ are
+negative (respectively, positive). We then put
+\begin{align*}
+  \xi'_1\!\left(\frac{x'}{\sqrt{k}}\right)
+    &=\alpha_{11}x'_1+\alpha_{12}x'_2+\cdots,\\
+  &\ \vdots\\
+  \xi'_e\!\left(\frac{x'}{\sqrt{k}}\right)
+    &=\alpha_{e1}x'_1+\alpha_{e2}x'_2+\cdots.
+\end{align*}
+Further, we think of the equations
+\[
+  x_1(x')=a_1,\ldots,x_{e+1}(x')=a_{e+1},\quad
+  x_{e+2}(x')=0,\quad x_{e+3}(x')=0,\ldots
+\]
+as solved for $x'_1,x'_2,\ldots$, and represent the solutions as functions
+\originalpage{214}
+of $a_1,\ldots,a_{e+1}$ as follows:
+\begin{align*}
+  x'_1&=o_{11}a_1+\cdots+o_{1,e+1}a_{e+1},\\
+  x'_2&=o_{12}a_1+\cdots+o_{2,e+1}a_{e+1},\\
+  &\ \vdots
+\end{align*}
+Finally, for each $n$ we determine $e+1$ quantities
+$a_1^{(n)},\ldots,a_{e+1}^{(n)}$ such that, after these values of
+$x'_1,x'_2,\ldots$ have been inserted, the $e+1$ equations
+\begin{align*}
+  \alpha_{11}x'_1+\cdots+\alpha_{1n}x'_n&=0,\\
+  &\ \vdots\\
+  \alpha_{e1}x'_1+\cdots+\alpha_{en}x'_n&=0,\\
+  a_1^2+\cdots+a_{e+1}^2&=1
+\end{align*}
+are satisfied for
+\[
+  a_1=a_1^{(n)},\ldots,a_{e+1}=a_{e+1}^{(n)}.
+\]
+We now select integers $n=n_h$ such that the limits of
+$a_1^{(n_h)},\ldots,a_{e+1}^{(n_h)}$ exist as $h\to\infty$, and insert the
+quantities $x'_1,\ldots,x'_{n_h}$ determined by these values
+$a_1^{(n_h)},\ldots,a_{e+1}^{(n_h)}$ into the $n_h$th truncation of the above
+identity
+\[
+  v_1\bigl(x_1(x')\bigr)^2+v_2\bigl(x_2(x')\bigr)^2+\cdots
+  =\varkappa_1\left(\xi'_1\!\left(\frac{x'}{\sqrt{k}}\right)\right)^2
+  +\varkappa_2\left(\xi'_2\!\left(\frac{x'}{\sqrt{k}}\right)\right)^2
+  +\cdots.
+\]
+We then see that the left-hand side of this identity, since it represents a
+bounded form in the variables $x'_1,x'_2,\ldots$ and, as such, is continuous
+in these variables by \hyperref[origpage:178]{p.~178}, tends to the value
+$-1$ as $h\to\infty$, whereas the right-hand side is always $\geq0$.
+
+Both cases have thus been recognized as impossible, and we may therefore
+assume from the outset, in general, that $\varkappa_p$ has the same sign as
+$v_p$. If we now put
+\[
+  L_p(x)=\frac{\Lambda_p(x)}{\sqrt{\lvert\varkappa_p\rvert}},
+\]
+the linear forms $L_1(x),L_2(x),\ldots$ have the properties required in
+\hyperref[thm:VIII]{Theorem VIII}.
+
+The same mode of inference permits the treatment of a form $K$ which is not
+closed. To see this, we again bring the form $K$, by
+\hyperref[thm:V]{Theorem V}, through an orthogonal transformation of the
+variables $x_1,
+\originalpage{215}
+x_2,\ldots$ into the form of a sum of squares. We put
+\[
+  K(x)=k_1{x'_1}^{2}+k_2{x'_2}^{2}+\cdots,
+\]
+where $k_1,k_2,\ldots$ are quantities of which some are positive and some
+vanish. We again denote by $V'(x')$ the quadratic form in the variables
+$x'_1,x'_2,\ldots$ arising from $V(x)$ through that orthogonal
+transformation, and finally by $V'(\sqrt{k}\,\xi)$ the quadratic form in the
+variables $\xi_1,\xi_2,\ldots$ which arises from $V'(x')$ when
+$\sqrt{k_1}\xi_1,\sqrt{k_2}\xi_2,\ldots$ are substituted for
+$x'_1,x'_2,\ldots$. Since $V'(\sqrt{k}\,\xi)$ is a completely continuous
+form in $\xi_1,\xi_2,\ldots$, we may, by \hyperref[thm:V]{Theorem V},
+transform the variables $\xi_1,\xi_2,\ldots$ orthogonally into the new
+variables $\xi'_1,\xi'_2,\ldots$ in such a way that
+\[
+  V'(\sqrt{k}\,\xi)
+  =\varkappa_1{\xi'_1}^{2}+\varkappa_2{\xi'_2}^{2}+\cdots,
+\]
+where $\varkappa_1,\varkappa_2,\ldots$ are certain quantities, each positive,
+negative, or zero, which, if infinitely many occur, converge to zero. Finally,
+forming as before the expressions $\xi'_p(\sqrt{k}\,x')$, and denoting
+generally by $\Lambda_p(x)$ the linear form
+which arises from $\xi'_p(\sqrt{k}\,x')$ when the original variables
+$x_1,x_2,\ldots$ are reintroduced in place of the variables
+$x'_1,x'_2,\ldots$, we obtain, as before,
+\[
+  K(x)=\Lambda_1^2(x)+\Lambda_2^2(x)+\cdots,
+\]
+\[
+  \Lambda_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  \Lambda_q(\mathord{\cdot})
+  =\begin{cases}
+     0, & p\ne q,\\
+     \varkappa_p, & p=q.
+   \end{cases}
+\]
+\end{proof}
+
+We state this result, which supplements \hyperref[thm:VIII]{Theorem VIII},
+as follows:
+
+\begin{theorem}[VIII*]\label{thm:VIIIstar}
+Let a positive definite, completely continuous quadratic form $K(x)$, and
+also a quadratic form of the shape
+\[
+  V(x)=v_1x_1^2+v_2x_2^2+\cdots,
+\]
+be given, where $v_1,v_2,\ldots$ have prescribed values $+1$ or $-1$. Then
+there always exists a sequence of quantities
+$\varkappa_1,\varkappa_2,\ldots$, each positive, negative, or zero and tending
+to zero if infinitely many occur, together with associated bounded linear
+forms $\Lambda_1(x),\Lambda_2(x),\ldots$, such that the
+polar relations
+\[
+  \Lambda_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  \Lambda_p(\mathord{\cdot})=\varkappa_p,
+\]
+\[
+  \Lambda_p(\mathord{\cdot})V(\mathord{\cdot},\mathord{\cdot})
+  \Lambda_q(\mathord{\cdot})=0\qquad(p\ne q)
+\]
+hold, and such that, moreover, the given quadratic form permits the
+representation
+\[
+  K(x)=\Lambda_1^2(x)+\Lambda_2^2(x)+\cdots.
+\]
+\end{theorem}
+
+\begin{center}
+  \rule{0.22\linewidth}{0.4pt}
+\end{center}
+
+\originalpage{216}
+By a \emph{Hermitian form} in the infinitely many variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$ we understand a bilinear form in these
+variables of the shape
+\[
+  H(x,y)=\sum_{p,q}h_{pq}x_py_q,
+\]
+whose coefficients $h_{pq}$ are complex quantities satisfying the condition
+\[
+  h_{pq}=k_{pq}+is_{pq}=\overline{h}_{qp}=k_{qp}-is_{qp}.
+\]
+If both the real and the imaginary parts of $H(x,y)$ are completely
+continuous functions of the real variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$, then real values
+$\lambda_1,\lambda_2,\ldots$ having no finite condensation point--the
+eigenvalues of $H$--and corresponding linear forms with complex coefficients
+$L_1(x),L_2(x),\ldots$--the eigenforms of $H$--can be found such that
+\[
+  (x,y)=L_1(x)\overline{L}_1(y)+L_2(x)\overline{L}_2(y)+\cdots,
+\]
+\[
+  H(x,y)=\frac{L_1(x)\overline{L}_1(y)}{\lambda_1}
+         +\frac{L_2(x)\overline{L}_2(y)}{\lambda_2}+\cdots,
+\]
+and such that the orthogonality properties
+\[
+  L_p(\mathord{\cdot})\overline{L}_p(\mathord{\cdot})=1,
+  \qquad
+  L_p(\mathord{\cdot})\overline{L}_q(\mathord{\cdot})=0
+  \quad(p\ne q)
+\]
+are satisfied; the horizontal bars indicate the interchange of $i$ with
+$-i$. The proof of this fact can be conducted analogously to the proof,
+given below, of the more special \hyperref[thm:IX]{Theorem IX}.
+
+\begin{center}
+  \rule{0.22\linewidth}{0.4pt}
+\end{center}
+
+If we assume the coefficients of the Hermitian form to be purely imaginary
+and then suppress the factor $i$, the skew-symmetric form results. By a
+\emph{skew-symmetric form} we therefore understand a bilinear form in the
+variables $x_1,x_2,\ldots,y_1,y_2,\ldots$ of the shape
+\[
+  S(x,y)=\sum_{p,q}s_{pq}x_py_q,
+\]
+whose coefficients are real quantities satisfying the conditions
+\[
+  s_{pq}=-s_{qp},\qquad s_{pp}=0.
+\]
+The fact stated above for a Hermitian form is expressed, for the special case
+of the skew-symmetric form, as follows:
+
+\begin{theorem}[IX]\label{thm:IX}
+If the skew-symmetric form $S(x,y)$ is completely continuous, then there is
+an orthogonal transformation of the variables
+\[
+  x_1,x_2,x_3,x_4,\ldots
+\]
+\originalpage{217}
+into the new variables
+\[
+  \xi_1,\xi'_1,\xi_2,\xi'_2,\ldots,
+\]
+such that, when the variables $y_1,y_2,y_3,y_4,\ldots$ are simultaneously
+transformed by the same orthogonal transformation into the variables
+$\eta_1,\eta'_1,\eta_2,\eta'_2,\ldots$, the form $S$ assumes the shape
+\[
+  S(x,y)=k_1(\xi_1\eta'_1-\xi'_1\eta_1)
+        +k_2(\xi_2\eta'_2-\xi'_2\eta_2)+\cdots;
+\]
+here $k_1,k_2,\ldots$ are quantities which, if infinitely many occur, have
+zero as their sole condensation value.
+\end{theorem}
+
+\begin{proof}
+We regard $2S(x,y)$ as a quadratic form in the infinitely many variables
+$x_1,y_1,x_2,y_2,\ldots$. From \hyperref[thm:V]{Theorem V} we then infer the
+existence of quantities $k_1,k_2,\ldots$ and corresponding linear forms
+$L_1(x,y),L_2(x,y),\ldots$ in those variables, such that
+\[
+  2S(x,y)=k_1\bigl(L_1(x,y)\bigr)^2
+          +k_2\bigl(L_2(x,y)\bigr)^2+\cdots
+\]
+and
+\[
+  (x,x)+(y,y)=\bigl(L_1(x,y)\bigr)^2
+              +\bigl(L_2(x,y)\bigr)^2+\cdots.
+\]
+In view of the properties of the skew-symmetric form
+\[
+  S(x,y)=-S(y,x),
+  \qquad
+  S(x,y)=-S(-x,y),
+\]
+it follows easily that, in the above representation of $2S(x,y)$, for every
+$k_p,L_p$ there must also occur the eigenvalues and corresponding linear
+forms
+\begin{align*}
+  k_{p'}&=-k_p,
+  &L_{p'}(x,y)&=L_p(y,x),\\
+  k_{p''}&=-k_p,
+  &L_{p''}(x,y)&=L_p(-x,y),\\
+  k_{p'''}&=-k_{p'}=k_p,
+  &L_{p'''}(x,y)&=L_{p'}(-x,y)=L_p(y,-x).
+\end{align*}
+Their union contributes to the representation of $2S(x,y)$ the terms
+\[
+  k_p\left\{
+    \bigl(L_p(x,y)\bigr)^2-\bigl(L_p(y,x)\bigr)^2
+    -\bigl(L_p(-x,y)\bigr)^2+\bigl(L_p(y,-x)\bigr)^2
+  \right\},
+\]
+and to the representation of $(x,x)+(y,y)$ the terms
+\[
+  \bigl(L_p(x,y)\bigr)^2+\bigl(L_p(y,x)\bigr)^2
+  +\bigl(L_p(-x,y)\bigr)^2+\bigl(L_p(y,-x)\bigr)^2.
+\]
+If we now put
+\[
+  L_p(x,y)=\frac{1}{\sqrt2}\bigl(O_p(x)+O'_p(y)\bigr),
+\]
+where $O_p(x)$ is a linear form in $x_1,x_2,\ldots$ and $O'_p(y)$ a linear
+form in $y_1,y_2,\ldots$, the above representations become
+\[
+  S(x,y)=\sum_p k_p\bigl(O_p(x)O'_p(y)-O'_p(x)O_p(y)\bigr),
+\]
+\[
+  (x,x)+(y,y)=\sum_p\left\{
+    \bigl(O_p(x)\bigr)^2+\bigl(O'_p(x)\bigr)^2
+    +\bigl(O_p(y)\bigr)^2+\bigl(O'_p(y)\bigr)^2
+  \right\},
+\]
+\originalpage{218}
+and, since $L_1(x,y),L_2(x,y),\ldots$ are mutually orthogonal, the
+orthogonality of the forms $O_1,O_2,\ldots$ follows readily as well. Thus
+\[
+  \xi_p=O_p(x),\qquad \xi'_p=O'_p(x)
+\]
+determine an orthogonal transformation of the required kind.
+\end{proof}
+
+From this representation it follows, by a simple consideration of the kind
+that will be made similarly below on \hyperref[origpage:224]{p.~224}, that
+the inhomogeneous equations arising from
+$(x,y)-\lambda S(x,y)$ are uniquely solvable except when
+\[
+  \lambda=\frac{i}{k_1},\frac{i}{k_2},\ldots.
+\]
+For these purely imaginary eigenvalues of the form $S(x,y)$, the homogeneous
+equations have a solution not identically zero, and the number of linearly
+independent solutions is always finite.
+
+\begin{center}
+  \rule{0.22\linewidth}{0.4pt}
+\end{center}
+
+As regards, finally, the theory of the bilinear form, we first perceive the
+following facts without difficulty. If the bilinear form $A(x,y)$ is a
+completely continuous function of the infinitely many variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$, then, if $A_n$ denotes the $n$th truncation
+of the bilinear form $A$, for every system of values of the infinitely many
+variables
+\[
+  \lim_{n=\infty}
+  A_n(\mathord{\cdot},x)A_n(\mathord{\cdot},x)
+  =A(\mathord{\cdot},x)A(\mathord{\cdot},x),
+\]
+and indeed in the sense of uniform convergence; that is,
+\begin{equation}
+  \left\lvert
+  A(\mathord{\cdot},x)A(\mathord{\cdot},x)
+  -A_n(\mathord{\cdot},x)A_n(\mathord{\cdot},x)
+  \right\rvert\leq\varepsilon_n,
+  \tag{92}\label{eq:92}
+\end{equation}
+where $\varepsilon_n$ are certain quantities independent of the variables
+$x_1,x_2,\ldots$ and tending to zero as $n$ increases indefinitely. It
+follows that the quadratic form
+$A(\mathord{\cdot},x)A(\mathord{\cdot},x)$ is always completely continuous
+when the bilinear form $A(x,y)$ is completely continuous.
+
+A bilinear form $A(x,y)$ is always completely continuous if the quadratic
+form $A(\mathord{\cdot},x)A(\mathord{\cdot},x)$ is completely continuous;
+thus this is certainly the case, for example, when the sum of the squares of
+the coefficients of $A$ remains finite. Indeed, if we regard $A(x,y)$ as a
+quadratic form in the variables $x_1,x_2,\ldots,y_1,y_2,\ldots$, then from
+the inequality
+\[
+  \lvert A(x,y)\rvert
+  \leq\sqrt{A(\mathord{\cdot},x)A(\mathord{\cdot},x)},
+\]
+it follows, by the reasoning employed in 4 and 5 on
+\hyperref[origpage:205]{p.~205}, that $A(x,y)$ is completely continuous.
+
+I should like to close this communication with the development of a theorem
+which--as I shall show in the following communication--
+\originalpage{219}
+can be used in the simplest manner for solving integral equations of the
+second kind with a nonsymmetric kernel. It reads:
+
+\begin{theorem}[X]\label{thm:X}
+If
+\[
+  A(x,y)=\sum_{p,q}a_{pq}x_py_q
+\]
+is a completely continuous bilinear form in the infinitely many variables
+$x_1,x_2,\ldots$ and $y_1,y_2,\ldots$, then certainly either the infinitely many
+equations
+\begin{equation}
+  \begin{aligned}
+    (1+a_{11})x_1+a_{12}x_2+\cdots&=a_1,\\
+    a_{21}x_1+(1+a_{22})x_2+\cdots&=a_2,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{93}\label{eq:93}
+\end{equation}
+have, for all possible quantities $a_1,a_2,\ldots$ with convergent sum of
+squares, a uniquely determined solution $x_1,x_2,\ldots$ with convergent sum
+of squares--or the corresponding homogeneous equations
+\begin{equation}
+  \begin{aligned}
+    (1+a_{11})x_1+a_{12}x_2+\cdots&=0,\\
+    a_{21}x_1+(1+a_{22})x_2+\cdots&=0,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{94}\label{eq:94}
+\end{equation}
+admit a solution $x_1,x_2,\ldots$ having sum of squares $1$.
+\end{theorem}
+
+\begin{proof}
+We first consider any system of $n$ linear equations in $n$ unknowns, with
+nonvanishing determinant, of the form
+\begin{align*}
+  b_{11}x_1+\cdots+b_{1n}x_n&=b_1,\\
+  &\ \vdots\\
+  b_{n1}x_1+\cdots+b_{nn}x_n&=b_n.
+\end{align*}
+If $\beta_1,\ldots,\beta_n$ denote the solutions of these equations, then
+certainly
+\begin{align*}
+ &(b_{11}\beta_1+\cdots+b_{1n}\beta_n)^2+\cdots
+ +(b_{n1}\beta_1+\cdots+b_{nn}\beta_n)^2\\
+ &\quad=b_1(b_{11}\beta_1+\cdots+b_{1n}\beta_n)+\cdots
+ +b_n(b_{n1}\beta_1+\cdots+b_{nn}\beta_n),
+\end{align*}
+and consequently
+\begin{multline*}
+ (b_{11}\beta_1+\cdots+b_{1n}\beta_n)^2+\cdots
+ +(b_{n1}\beta_1+\cdots+b_{nn}\beta_n)^2\\
+ \leq\sqrt{(\beta_1^2+\cdots+\beta_n^2)
+ \left\{
+ (b_{11}b_1+\cdots+b_{n1}b_n)^2+\cdots
+ +(b_{1n}b_1+\cdots+b_{nn}b_n)^2
+ \right\}}.
+\end{multline*}
+Let $m$ now be the minimum of the quadratic form
+\[
+  (b_{11}x_1+\cdots+b_{1n}x_n)^2+\cdots
+  +(b_{n1}x_1+\cdots+b_{nn}x_n)^2
+\]
+subject to the subsidiary condition
+\begin{equation}
+  x_1^2+\cdots+x_n^2=1,
+  \tag{95}\label{eq:95}
+\end{equation}
+\originalpage{220}
+and let $M$ be the maximum of the quadratic form
+\[
+  (b_{11}x_1+\cdots+b_{n1}x_n)^2+\cdots
+  +(b_{1n}x_1+\cdots+b_{nn}x_n)^2
+\]
+under the same subsidiary condition. The preceding inequality then implies
+the inequality
+\begin{equation}
+  \beta_1^2+\cdots+\beta_n^2
+  \leq(b_1^2+\cdots+b_n^2)\frac{M}{m^2}.
+  \tag{96}\label{eq:96}
+\end{equation}
+
+We apply this result to the equations
+\begin{equation}
+  \begin{aligned}
+    (1+a_{11})x_1+\cdots+a_{1n}x_n&=a_1,\\
+    &\ \vdots\\
+    a_{n1}x_1+\cdots+(1+a_{nn})x_n&=a_n,
+  \end{aligned}
+  \tag{97}\label{eq:97}
+\end{equation}
+and, for this purpose, denote by $m_n$ the minimum of the quadratic form
+\[
+  \bigl((1+a_{11})x_1+\cdots+a_{1n}x_n\bigr)^2+\cdots
+  +\bigl(a_{n1}x_1+\cdots+(1+a_{nn})x_n\bigr)^2
+\]
+subject to the subsidiary condition \eqref{eq:95}, and by $M_n$ the maximum
+of the quadratic form
+\[
+  \bigl((1+a_{11})x_1+\cdots+a_{n1}x_n\bigr)^2+\cdots
+  +\bigl(a_{1n}x_1+\cdots+(1+a_{nn})x_n\bigr)^2
+\]
+under the same subsidiary condition.
+
+Because of the assumed complete continuity of the bilinear form $A(x,y)$,
+the form in the infinitely many variables $x_1,x_2,\ldots$
+\[
+  \bigl((1+a_{11})x_1+a_{21}x_2+\cdots\bigr)^2
+  +\bigl(a_{12}x_1+(1+a_{22})x_2+\cdots\bigr)^2+\cdots
+\]
+is certainly a bounded form, and from this we see that the maxima $M_n$ also
+remain below a finite quantity $M$ independent of $n$.
+
+As regards the minima $m_n$, two cases must be distinguished.
+
+First, suppose that $m_n>m>0$ for infinitely many indices $n$. Then, for each
+such $n$, equations
+\eqref{eq:97} are soluble, and it follows from \eqref{eq:96} that the sum of
+squares of their solutions lies below the finite quantity, independent of
+$n$,
+\begin{equation}
+  (a,a)\frac{M}{m^2}.
+  \tag{98}\label{eq:98}
+\end{equation}
+If, for such $n$, we denote the solutions of \eqref{eq:97} by
+\[
+  \alpha_1^{(n)},\ldots,\alpha_n^{(n)},
+\]
+then, by an often-used procedure, we can select from those $n$ integers
+$n_1,n_2,\ldots$ such
+\originalpage{221}
+that the limits
+\[
+  \alpha_1=\lim_{h=\infty}\alpha_1^{(n_h)},\qquad
+  \alpha_2=\lim_{h=\infty}\alpha_2^{(n_h)},\ldots
+\]
+exist. The quantities $\alpha_1,\alpha_2,\ldots$ have a sum of squares which
+likewise lies below the bound \eqref{eq:98}, and, because of the complete
+continuity of the linear forms
+\[
+  a_{p1}x_1+a_{p2}x_2+\cdots,
+\]
+they must certainly satisfy every equation of the given system
+\eqref{eq:93}.
+
+Second, let the minima $m_1,m_2,\ldots$ converge to zero; let the values of
+the variables, with sum of squares $1$, at which these minima occur be
+\[
+  \mu_1^{(n)},\ldots,\mu_n^{(n)}.
+\]
+\begin{samepage}
+For these values,
+\begin{align*}
+ &\bigl((1+a_{11})x_1+\cdots+a_{1n}x_n\bigr)^2+\cdots
+ +\bigl(a_{n1}x_1+\cdots+(1+a_{nn})x_n\bigr)^2\\
+ &\qquad=A_n(\mathord{\cdot},x)A_n(\mathord{\cdot},x)
+ +2A_n(x,x)+(x,x)_n,
+\end{align*}
+\end{samepage}
+and consequently
+\begin{equation}
+  A_n(\mathord{\cdot},\mu^{(n)})A_n(\mathord{\cdot},\mu^{(n)})
+  +2A_n(\mu^{(n)},\mu^{(n)})+1=m_n.
+  \tag{99}\label{eq:99}
+\end{equation}
+We again select a sequence of integers $n_1,n_2,\ldots$ such that the limits
+\[
+  \mu_1=\lim_{h=\infty}\mu_1^{(n_h)},\qquad
+  \mu_2=\lim_{h=\infty}\mu_2^{(n_h)},\ldots
+\]
+exist. The quantities $\mu_1,\mu_2,\ldots$ then satisfy the condition
+\begin{equation}
+  (\mu,\mu)\leq1.
+  \tag{100}\label{eq:100}
+\end{equation}
+In view of \eqref{eq:92}, and because of the complete continuity of the
+quadratic form $A(x,x)$, it follows from \eqref{eq:99}, upon putting $n_h$
+in place of $n$ and passing to the limit $h\to\infty$, that
+\begin{equation}
+  A(\mathord{\cdot},\mu)A(\mathord{\cdot},\mu)
+  +2A(\mu,\mu)+1=0.
+  \tag{101}\label{eq:101}
+\end{equation}
+We now consider the quadratic form
+\begin{equation}
+  \begin{aligned}
+   &\bigl((1+a_{11})x_1+a_{12}x_2+\cdots\bigr)^2
+   +\bigl(a_{21}x_1+(1+a_{22})x_2+\cdots\bigr)^2+\cdots\\
+   &\qquad=A(\mathord{\cdot},x)A(\mathord{\cdot},x)
+   +2A(x,x)+(x,x);
+  \end{aligned}
+  \tag{102}\label{eq:102}
+\end{equation}
+since it is positive definite, it follows in particular that
+\begin{equation}
+  A(\mathord{\cdot},\mu)A(\mathord{\cdot},\mu)
+  +2A(\mu,\mu)+(\mu,\mu)\geq0.
+  \tag{103}\label{eq:103}
+\end{equation}
+From this, in view of \eqref{eq:101}, we obtain
+\[
+  (\mu,\mu)\geq1;
+\]
+\originalpage{222}
+hence, by \eqref{eq:100},
+\[
+  (\mu,\mu)=1.
+\]
+We now see from \eqref{eq:101} that also
+\[
+  A(\mathord{\cdot},\mu)A(\mathord{\cdot},\mu)
+  +2A(\mu,\mu)+(\mu,\mu)=0;
+\]
+that is, in view of \eqref{eq:102}, the quantities
+$\mu_1,\mu_2,\ldots$ satisfy the homogeneous equations \eqref{eq:94}. It has
+therefore been shown that at least one of the cases distinguished in
+\hyperref[thm:X]{Theorem X} always occurs.
+
+If the homogeneous equations \eqref{eq:94} possess a solution with sum of
+squares $1$, then the inhomogeneous equations obtained by transposition,
+\begin{equation}
+  \begin{aligned}
+    (1+a_{11})x_1+a_{21}x_2+\cdots&=a_1,\\
+    a_{12}x_1+(1+a_{22})x_2+\cdots&=a_2,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{104}\label{eq:104}
+\end{equation}
+certainly cannot, for all $a_1,a_2,\ldots$ with finite sum of squares,
+possess a solution of finite sum of squares, since a linear identity exists
+among their left-hand sides. By what has just been proved, therefore, the
+transposed homogeneous equations
+\begin{equation}
+  \begin{aligned}
+    (1+a_{11})x_1+a_{21}x_2+\cdots&=0,\\
+    a_{12}x_1+(1+a_{22})x_2+\cdots&=0,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{105}\label{eq:105}
+\end{equation}
+must then admit a solution with sum of squares $1$. Thus the inhomogeneous
+equations \eqref{eq:93} certainly cannot possess a solution of finite sum of
+squares for all $a_1,a_2,\ldots$. The two cases in
+\hyperref[thm:X]{Theorem X} are therefore indeed mutually exclusive, and the
+solution in the first case is unique. The proof of our theorem is thereby
+fully completed.
+\end{proof}
+
+To determine the multiplicity of the solutions of the homogeneous equations
+\eqref{eq:94}, we need only apply to the form \eqref{eq:102} the theory of
+the orthogonal transformation of quadratic forms developed in
+\hyperref[sec:XI]{Section XI}. Since
+$A(\mathord{\cdot},x)A(\mathord{\cdot},x)$ and $A(x,x)$ are completely
+continuous quadratic forms, so too is the form
+\[
+  A(\mathord{\cdot},x)A(\mathord{\cdot},x)+2A(x,x);
+\]
+the latter therefore possesses the value $-1$ at most as an eigenvalue of
+finite multiplicity. Consequently, the quadratic form \eqref{eq:102}
+possesses the value $\infty$ only as an eigenvalue of finite multiplicity;
+that is, there is an orthogonal transformation of the variables
+\originalpage{223}
+$x_1,x_2,\ldots$ into $x'_1,x'_2,\ldots$ such that the quadratic form
+\eqref{eq:102} assumes the shape
+\[
+  k_e{x'_e}^{2}+k_{e+1}{x'_{e+1}}^{2}+\cdots,
+\]
+where $k_e,k_{e+1},\ldots$ are all positive, nonzero quantities converging
+to $1$, and $e$ denotes a finite integer. The solutions of the homogeneous
+equations \eqref{eq:94} are obtained from
+\[
+  x'_1=u_1,\ldots,x'_{e-1}=u_{e-1},\qquad
+  x'_e=0,\quad x'_{e+1}=0,\ldots,
+\]
+where $u_1,\ldots,u_{e-1}$ are arbitrary constants; hence we see that there
+are only finitely many, namely exactly $e-1$, linearly independent solutions
+of \eqref{eq:94}.
+
+Thus, under the assumption that $A(x,y)$ is a completely continuous bilinear
+form, the system of equations \eqref{eq:93} has all the essential properties
+of a system of finitely many equations in equally many unknowns.
+
+In conclusion, it remains to show with what surprising elegance and
+simplicity \hyperref[thm:X]{Theorem X} can be proved, without any new
+convergence consideration, by making use of \hyperref[thm:V]{Theorems V}
+and \hyperref[thm:IX]{IX}. Indeed, from \hyperref[thm:IX]{Theorem IX} we
+immediately derive the following fact:
+
+\begin{lemma}[6]\label{lem:6}
+If $\varkappa_1,\varkappa_2,\ldots$ is an infinite sequence of positive
+quantities converging to $1$, and
+\[
+  S(x,y)=\sum_{p,q}s_{pq}x_py_q
+\]
+denotes a completely continuous skew-symmetric form in the infinitely many
+variables $x_1,x_2,\ldots,y_1,y_2,\ldots$, then there always exists a
+completely continuous bilinear form $T(x,y)$ in the same variables such that
+\begin{equation}
+  \bigl\{\varkappa(x,\mathord{\cdot})+S(x,\mathord{\cdot})\bigr\}
+  \bigl\{(\mathord{\cdot},y)+T(\mathord{\cdot},y)\bigr\}
+  =(x,y),
+  \tag{106}\label{eq:106}
+\end{equation}
+where $\varkappa(x)$ denotes the quadratic form
+\[
+  \varkappa(x)=\varkappa_1x_1^2+\varkappa_2x_2^2+\cdots.
+\]
+Relation \eqref{eq:106} is equivalent to saying that the system of equations
+\begin{equation}
+  \begin{aligned}
+    \varkappa_1x_1+s_{12}x_2+s_{13}x_3+\cdots&=y_1,\\
+    s_{21}x_1+\varkappa_2x_2+s_{23}x_3+\cdots&=y_2,\\
+    s_{31}x_1+s_{32}x_2+\varkappa_3x_3+\cdots&=y_3,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{107}\label{eq:107}
+\end{equation}
+has the solutions
+\originalpage{224}
+\[
+  x_1=y_1+\frac{\partial T(x,y)}{\partial x_1},
+  \qquad
+  x_2=y_2+\frac{\partial T(x,y)}{\partial x_2},\ldots.
+\]
+\end{lemma}
+
+\begin{proof}
+In $S(x,y)$ we put
+\[
+  x_1=\frac{1}{\sqrt{\varkappa_1}}x'_1,
+  \qquad
+  x_2=\frac{1}{\sqrt{\varkappa_2}}x'_2,\ldots,
+\]
+and
+\[
+  y_1=\frac{1}{\sqrt{\varkappa_1}}y'_1,
+  \qquad
+  y_2=\frac{1}{\sqrt{\varkappa_2}}y'_2,\ldots.
+\]
+We then obtain a completely continuous skew-symmetric form $S'(x',y')$,
+while $\varkappa(x)$ passes into $(x',x')$. System \eqref{eq:107} becomes
+a system of equations of the following shape:
+\begin{equation}
+  \begin{aligned}
+    x'_1+s'_{12}x'_2+s'_{13}x'_3+\cdots&=y_1^*,\\
+    s'_{21}x'_1+x'_2+s'_{23}x'_3+\cdots&=y_2^*,\\
+    s'_{31}x'_1+s'_{32}x'_2+x'_3+\cdots&=y_3^*,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{108}\label{eq:108}
+\end{equation}
+If we now apply to $S'$ the orthogonal transformation of
+\hyperref[thm:IX]{Theorem IX}, the system \eqref{eq:108} belonging to $S'$
+passes into a system of equations of the following shape:
+\begin{align*}
+  \xi_1+k_1\xi'_1&=\eta_1,\\
+  -k_1\xi_1+\xi'_1&=\eta'_1,\\
+  \xi_2+k_2\xi'_2&=\eta_2,\\
+  -k_2\xi_2+\xi'_2&=\eta'_2,\\
+  &\ \vdots
+\end{align*}
+As is readily seen, this system has the solutions
+\begin{align*}
+  \xi_1&=\eta_1+
+  \frac{\partial \mathsf T(\xi\xi',\eta\eta')}{\partial\xi_1},\\
+  \xi'_1&=\eta'_1+
+  \frac{\partial \mathsf T(\xi\xi',\eta\eta')}{\partial\xi'_1},\\
+  \xi_2&=\eta_2+
+  \frac{\partial \mathsf T(\xi\xi',\eta\eta')}{\partial\xi_2},\\
+  \xi'_2&=\eta'_2+
+  \frac{\partial \mathsf T(\xi\xi',\eta\eta')}{\partial\xi'_2},\\
+  &\ \vdots
+\end{align*}
+\originalpage{225}
+provided that
+\begin{align*}
+  \mathsf T(\xi\xi',\eta\eta')
+  ={}&-\frac{k_1^2}{1+k_1^2}(\xi_1\eta_1+\xi'_1\eta'_1)
+      -\frac{k_2^2}{1+k_2^2}(\xi_2\eta_2+\xi'_2\eta'_2)-\cdots\\
+    &-\frac{k_1}{1+k_1^2}(\xi_1\eta'_1-\xi'_1\eta_1)
+      -\frac{k_2}{1+k_2^2}(\xi_2\eta'_2-\xi'_2\eta_2)-\cdots
+\end{align*}
+is put. Since the quantities $k_1,k_2,\ldots$ converge to zero, $\mathsf T$ is a
+completely continuous form. Returning to the variables
+$x'_1,x'_2,\ldots,y'_1,y'_2,\ldots$, and from these to the original variables
+$x_1,x_2,\ldots,y_1,y_2,\ldots$, whereby the form $T$ arises from
+$\mathsf T$, proves the lemma.
+\end{proof}
+
+\begin{proof}[Second proof of Theorem X]
+We note that the system of equations \eqref{eq:93} in
+\hyperref[thm:X]{Theorem X} retains its form if we apply any orthogonal
+transformation to the variables $x_1,x_2,\ldots$ and, at the same time,
+orthogonally combine the left-hand sides of those equations in the
+corresponding way, since this amounts to a simultaneous orthogonal
+transformation of both sequences of variables in $A(x,y)$. For simplicity,
+we suppose that such an orthogonal transformation of the bilinear form
+$A(x,y)$ has already been carried out so that the completely continuous
+quadratic form $A(x,x)$ arising from $A(x,y)$ contains only the squares of
+the variables, and thus appears in the shape
+\[
+  A(x,x)=\alpha_1x_1^2+\alpha_2x_2^2+\cdots,
+\]
+or
+\begin{equation}
+  A(x,y)+A(y,x)=2(\alpha_1x_1y_1+\alpha_2x_2y_2+\cdots).
+  \tag{109}\label{eq:109}
+\end{equation}
+Since $\alpha_1,\alpha_2,\ldots$ are quantities converging to zero, there
+are certainly only finitely many among them which are $\leq-1$. Let $e$ be
+an integer such that
+\begin{equation}
+  \alpha_{e+p}>-1\qquad(p=1,2,\ldots).
+  \tag{110}\label{eq:110}
+\end{equation}
+We now separate off the first $e$ equations of \eqref{eq:93} in
+\hyperref[thm:X]{Theorem X}, and write the remaining equations in the form
+\begin{equation}
+  \begin{aligned}
+    (a_{e+1,e+1}+1)x_{e+1}+a_{e+1,e+2}x_{e+2}+\cdots&=y_{e+1},\\
+    a_{e+2,e+1}x_{e+1}+(a_{e+2,e+2}+1)x_{e+2}+\cdots&=y_{e+2},\\
+    &\ \vdots
+  \end{aligned}
+  \tag{111}\label{eq:111}
+\end{equation}
+where, for brevity, we have put
+\begin{equation}
+  \begin{aligned}
+    y_{e+1}&=a_{e+1}-a_{e+1,1}x_1-\cdots-a_{e+1,e}x_e,\\
+    y_{e+2}&=a_{e+2}-a_{e+2,1}x_1-\cdots-a_{e+2,e}x_e,\\
+    &\ \vdots
+  \end{aligned}
+  \tag{112}\label{eq:112}
+\end{equation}
+\originalpage{226}
+These equations \eqref{eq:111}, since by \eqref{eq:109}
+\[
+  a_{pq}+a_{qp}=0\quad(p\ne q),
+  \qquad
+  a_{pp}=\alpha_p,
+\]
+are, in view of \eqref{eq:110}, of the form \eqref{eq:107}, and therefore
+permit the application of the lemma just proved. According to that lemma,
+there is a completely continuous bilinear form $T(x,y)$ in the variables
+$x_{e+1},x_{e+2},\ldots,y_{e+1},y_{e+2},\ldots$ such that equations
+\eqref{eq:111} have the solutions
+\begin{equation}
+  \begin{aligned}
+    x_{e+1}&=y_{e+1}+\frac{\partial T}{\partial x_{e+1}},\\
+    x_{e+2}&=y_{e+2}+\frac{\partial T}{\partial x_{e+2}},\\
+    &\ \vdots
+  \end{aligned}
+  \tag{113}\label{eq:113}
+\end{equation}
+If, with due regard to the values \eqref{eq:112} of
+$y_{e+1},y_{e+2},\ldots$, we insert these solutions into the first $e$
+equations, separated off above, of the given system \eqref{eq:93}, there
+arises a system of $e$ equations in the $e$ unknowns $x_1,\ldots,x_e$, as
+follows:
+\begin{equation}
+  \begin{aligned}
+    E_{11}x_1+\cdots+E_{1e}x_e&=E_1,\\
+    &\ \vdots\\
+    E_{e1}x_1+\cdots+E_{ee}x_e&=E_e,
+  \end{aligned}
+  \tag{114}\label{eq:114}
+\end{equation}
+where $E_1,\ldots,E_e$ are homogeneous linear forms in
+$a_1,a_2,\ldots$, while $E_{11},\ldots,E_{ee}$ are expressed in a known way
+in terms of the coefficients of $A(x,y)$.
+
+If these equations have solutions $x_1,\ldots,x_e$, then the values
+$x_{e+1},x_{e+2},\ldots$ are calculated from them by means of
+\eqref{eq:112} and \eqref{eq:113}, and we thus arrive at the solutions of the
+originally given system of equations \eqref{eq:93}. In the other case, the
+homogeneous equations
+\begin{align*}
+  E_{11}x_1+\cdots+E_{1e}x_e&=0,\\
+  &\ \vdots\\
+  E_{e1}x_1+\cdots+E_{ee}x_e&=0
+\end{align*}
+can certainly be satisfied by values $x_1,\ldots,x_e$ not all zero. We then
+put zero everywhere in place of $a_1,a_2,\ldots$, whereby in fact
+\[
+  E_1=0,\ldots,E_e=0,
+\]
+and by means of \eqref{eq:112} and \eqref{eq:113} we arrive at values
+$x_{e+1},x_{e+2},\ldots$ which, together with the values
+$x_1,\ldots,x_e$ found above, form a
+\originalpage{227}
+solution system of the homogeneous equations \eqref{eq:94} in
+\hyperref[thm:X]{Theorem X}. Thus \hyperref[thm:X]{Theorem X} is completely
+proved.
+\end{proof}
+
+Since \hyperref[thm:IX]{Theorem IX} on skew-symmetric forms was also proved
+above solely with the aid of \hyperref[thm:V]{Theorem V} on the orthogonal
+transformation of completely continuous quadratic forms, without any new
+convergence consideration, it follows that the theory of equations of the
+form \eqref{eq:93}, and hence the theory of the completely continuous
+bilinear form in general, can likewise be founded solely upon the theory of
+the orthogonal transformation of completely continuous quadratic forms,
+without new convergence considerations--a remarkable fact which lends to
+the theory of completely continuous forms in infinitely many variables a
+wonderful transparency and unity.
+
+
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{9}
+
+\bibitem{Stieltjes1894}\label{bib:Stieltjes1894}
+T.-J. Stieltjes,
+``Recherches sur les fractions continues,''
+\emph{Annales de la Facult\'e des Sciences de Toulouse}, vol.~8 (1894),
+J1--J122.
+\href{https://www.numdam.org/item/AFST_1894_1_8_4_J1_0/}{Digital edition}.
+
+\bibitem{Hilbert1904Dirichlet}\label{bib:Hilbert1904Dirichlet}
+David Hilbert,
+``\"Uber das Dirichletsche Prinzip,''
+\emph{Mathematische Annalen}, vol.~59 (1904), pp.~161--186.
+\href{https://doi.org/10.1007/BF01444753}{doi:10.1007/BF01444753}.
+
+\end{thebibliography}
+
+\end{document}
+
