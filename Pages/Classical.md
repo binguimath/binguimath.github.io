@@ -20,7 +20,7 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
 
-- 1913 Hilbert. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
+- 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
 with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.pdf)
 
