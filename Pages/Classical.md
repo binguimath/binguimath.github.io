@@ -33,7 +33,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
 
 
-> The spectral theory for unbounded Hermitian operators was established. In my opinion, this is THE most important mathematical paper by von Neumann.
+> The spectral theory for unbounded Hermitian operators was developed. In my opinion, this is THE most important mathematical paper by von Neumann.
 
 - 1929 von Neumann. Zur Algebra der Funktionaloperationen und Theorie der normalen Operatoren. (On the Algebra of Functional Operations and the Theory of Normal Operators.) 
 [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_On%20the%20Algebra%20of%20Functional%20Operations%20and%20the%20Theory%20of%20Normal%20Operators_GPT.tex)
