@@ -27,7 +27,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.pdf)
 
 
-> Hilbert's spectral theorem was reinterpreted using functional calculus, and hence was closer to its modern form. This monograph (especially Ch. 4 and 5) is in my opinion the most important piece of literature on spectral theory in Hilbert spaces.
+> Hilbert's spectral theorem was reinterpreted using functional calculus, and hence was broght closer to its modern form. This monograph (especially Ch. 4 and 5) is in my opinion the most important piece of literature on spectral theory in Hilbert spaces.
 
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
