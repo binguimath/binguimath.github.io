@@ -56,4 +56,4 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [tex](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.pdf)
 
-> The theory of direct integrals for von Neumann algebras was established.
+> The theory of direct integrals for VN algebras was established.
