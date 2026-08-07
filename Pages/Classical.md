@@ -9,6 +9,15 @@ window.MathJax = {
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<!-- 显示LaTex -->
+
+
+<style>
+blockquote { font-size: 0.85em; }
+</style>
+
+<!-- 调整quote大小 -->
+
 
 # Classical Mathematical Literature
 
