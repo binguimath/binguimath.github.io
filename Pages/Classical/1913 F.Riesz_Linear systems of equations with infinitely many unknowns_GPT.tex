@@ -12,7 +12,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{amsmath,amsthm,mathtools}
+\usepackage{amsmath,amsthm,amsfonts,mathtools}
 \usepackage{xcolor}
 \usepackage{newpxtext}
 \usepackage{newpxmath}
@@ -77,14 +77,17 @@
 \setkomafont{section}{\normalfont\rmfamily\bfseries\large}
 \setkomafont{subsection}{\normalfont\rmfamily\bfseries\normalsize}
 
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{vonkochtheorem}{von Koch's Theorem}
+\newtheorem*{landautheorem}{Landau's Theorem}
+\newtheorem*{selectionprinciple}{Selection Principle}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{criterion}{Criterion}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{remark}{Remark}
 
 \newcommand{\numberedparagraph}[1]{%
   \par\medskip\phantomsection\label{sec:#1}%
@@ -92,11 +95,20 @@
 }
 \newcommand{\literature}[2]{\href{#1}{#2}}
 \newcounter{translatornote}
+\makeatletter
+\newcommand{\translatornotealpha}{%
+  \ifnum\value{translatornote}>26
+    a\@alph{\numexpr\value{translatornote}-26\relax}%
+  \else
+    \@alph{\value{translatornote}}%
+  \fi
+}
+\makeatother
 \newcommand{\translatornote}[1]{%
   \stepcounter{translatornote}%
   \begingroup
     \edef\savedfootnotenumber{\number\value{footnote}}%
-    \renewcommand{\thefootnote}{\alph{translatornote}}%
+    \renewcommand{\thefootnote}{\translatornotealpha}%
     \footnote{\emph{Translator's note:} #1}%
     \setcounter{footnote}{\savedfootnotenumber}%
   \endgroup
@@ -165,7 +177,6 @@
 \vspace*{\fill}
 
 \chapter*{Preface}
-\phantomsection
 \addcontentsline{toc}{chapter}{Preface}
 
 In this volume I should like to give a rapid account of the fundamental ideas,
@@ -240,7 +251,6 @@ where $m$ denotes an arbitrary real number. On choosing $m$ positive, integral, 
   v(x,y)=\sum_{m=1}^{\infty}a_m e^{-(2m-1)x}\cos(2m-1)y;
 \]
 it remains only to determine the coefficients $a_m$ so that, for $x=0$, the sum $v(x,y)$ of the series reduces to $1$. This amounts, he says, to requiring
-
 % [Source printed page 3]
 \begin{equation}
   1=\sum_{m=1}^{\infty}a_m\cos(2m-1)y.
@@ -347,9 +357,8 @@ This interpretation of system~\eqref{eq:3:4} is entirely in accord with the prob
   \sum\frac{(-1)^{m-1}}{(2m-1)^{2k+1}}
 \]
 is summable by arithmetic means of order $2k$, and this procedure likewise gives the sum $0$ for $k>0$.} Indeed, the values found for the $a_m$
-
 % [Source printed page 6]
-satisfy system~\eqref{eq:6:6}, and this fact is connected with the holomorphy, for $z=1$, of the function $f(z)$ defined above.
+satisfy system~\eqref{eq:6:6}, and this fact is connected with the holomorphy at $z=1$ of the function $f(z)$ defined above.
 
 \numberedparagraph{7}
 Fourier also applies his method to a more general problem: to expand in a trigonometric series an odd function given by its Taylor series
@@ -370,7 +379,6 @@ To deduce the final result, Fourier observes that the series
 \[
   s(x)=f(x)-\frac1{m^2}f''(x)+\frac1{m^4}f^{\mathrm{IV}}(x)-\cdots
 \]
-
 % [Source printed page 7]
 satisfies the differential equation
 \[
@@ -382,7 +390,7 @@ The general integral of this equation is
   +m\sin mx\int_0^x f(t)\cos mt\,dt\\
   &{}-m\cos mx\int_0^x f(t)\sin mt\,dt.
 \end{align*}
-Since $s(x)$ is odd together with $f(x)$, one has
+Since $s(x)$, like $f(x)$, is odd, one has
 \[
   C_1=s(0)=0;
 \]
@@ -399,7 +407,6 @@ This principle, whose legitimacy can be justified under broad hypotheses, will p
 
 \numberedparagraph{9}
 We have just examined the principle of sections from the point of
-
 % [Source printed page 8]
 view of Fourier's use of it. Let us now consider the same principle starting from a classical theorem in the Theory of Functions. According to Weierstrass, given an infinite sequence of quantities $a_i$ such that $|a_i|\to\infty$, there exists an entire function
 \[
@@ -423,7 +430,6 @@ Weierstrass's method consists in adjoining exponential factors to the products a
 
 \numberedparagraph{10}
 Although Fourier's \emph{Analytical Theory} has always remained the source of numerous investigations, the portions just recalled have fallen almost entirely into oblivion. For more than half a century, the authors who dealt with our subject were led to it independently of Fourier and without referring to one another. Only in a memoir by G.~Piola
-
 % [Source printed page 9]
 do we find Fourier's investigations cited; that author applied the same principle of sections to a particular problem.\footnote{Piola, \emph{Sulla teoria delle funzioni discontinue}, \emph{Memorie della Societ\`a Italiana delle Scienze}, vol.~XX, pp.~573--639. We cite this memoir from the reference supplied by G.~Loria, \emph{Supplemento ai Rendiconti}, Palermo, 1907, p.~34.}
 
@@ -456,7 +462,6 @@ To derive an expression for $x_1$, he applies the principle of sections. He obta
 where $\Delta_n$ is the determinant formed from the coefficients of $x_1,\ldots,x_n$ in the first $n$ equations.
 
 When there is only one root of least absolute value and this root is simple, it is given by expression~\eqref{eq:11:10}. F\"urstenau's memoir proves this result with complete rigor, but by a rather laborious calculation. According to an observation of H.~Naegelsbach, moreover, everything reduces to the fact that the function
-
 % [Source printed page 10]
 \[
   R(x)=\frac1{c_0+c_1x+\cdots+c_mx^m}
@@ -494,7 +499,6 @@ F\"urstenau's method extends immediately to transcendental equations. Observe al
 \[
   R(x)=a_0+a_1x+a_2x^2+\cdots,
 \]
-
 % [Source printed page 11]
 our result becomes
 \[
@@ -529,7 +533,6 @@ This reduction is effected by an entirely elementary calculation. Suppose, in fa
   |a_{ik}|_2=a_{11}a_{22}-a_{12}a_{21},\qquad\ldots
 \]
 do not vanish; then, to obtain the corresponding system~\eqref{eq:12:12},
-
 % [Source printed page 12]
 one need only put $b_{1k}=a_{1k}$, $\beta_1=\alpha_1$, and, for $n>1$,
 \[
@@ -598,7 +601,7 @@ or, after simplification,
 \]
 
 % [Source printed page 14]
-Since the quotient of the odd functions $\theta_1$ and $\theta$ is even, $\Lambda_{-\mu}=\Lambda_\mu$; consequently the system reduces to
+Since the quotient $\theta_1/\theta$ is even, $\Lambda_{-\mu}=\Lambda_\mu$; consequently the system reduces to\translatornote{The French text calls both $\theta_1$ and $\theta$ odd.  The displayed bilateral series show that each is even; only the evenness of their quotient is used here.}
 \[
  (-1)^n=\Lambda_0+
  \sum_{\mu=1}^{\infty}(-1)^\mu q^{\mu^2}
@@ -684,7 +687,6 @@ His method rests entirely on the elements of the Theory of Functions. Form the e
  F(z)=\prod_{k=1}^{\infty}\left(1-\frac z{a_k}\right).
 \]
 Let $C_1,C_2,\ldots,C_k,\ldots$ be infinitely many circles centered at the origin, such that $C_k$ separates the points $z=a_k$
-
 % [Source printed page 16]
 and $z=a_{k+1}$. Suppose that
 \begin{equation}
@@ -718,11 +720,11 @@ and the $b_m$ increase indefinitely. Let us calculate $F(z)$. We have
   F(z)=\prod_{m=1}^{\infty}\left[1-\frac z{(2m-1)^2}\right]
       =\cos\frac\pi2\sqrt z.
 \]
-The residues of $1/F(z)$ are\translatornote{The printed text gives the factor $\pi/4$ in both places. Direct differentiation of $F(z)=\cos((\pi/2)\sqrt z)$ instead gives the factor $4/\pi$ in both places.}
+The residues of $1/F(z)$ are\translatornote{The French original prints the factor $\pi/4$ in both places; it is corrected here to $4/\pi$, as follows by differentiating $F(z)=\cos((\pi/2)\sqrt z)$.}
 \[
  B_m=\frac1{F'(b_m)}
- =\frac{-\frac{\pi}{4}\sqrt{b_m}}{\sin(\frac\pi2\sqrt{b_m})}
- =\pm\frac{\pi}{4}(2m-1).
+ =-\frac4\pi\frac{\sqrt{b_m}}{\sin(\frac\pi2\sqrt{b_m})}
+ =\pm\frac4\pi(2m-1).
 \]
 Thus, apart from a factor, they represent Fourier's solution.
 
@@ -781,7 +783,7 @@ The equations treated by Appell do not belong to the type just considered, but t
 \]
 where $|a_k|$ increases toward $\infty$ as $k\to\infty$ and decreases toward $0$ as $k\to-\infty$. To treat this type, Poincar\'e uses a method analogous to that of \hyperref[sec:14]{no.~14}; the principal difference is that the function $F(z)$ having the $a_k$ as zeros is no longer an entire function, since the origin, being a limit point of the $a_k$, is necessarily an essential singular point.
 
-The detailed study of Poincar\'e's note and of the supplementary remarks that followed it in a second note\footnote{Poincar\'e, ``Sur les d\'eterminants d'ordre infini,'' \emph{Bulletin de la Soci\'et\'e math\'ematique de France}, vol.~XIV (1886), pp.~77--90.} would require us to penetrate still further into the Theory of Functions. Besides, the matter there is not one of methods in the strict sense; rather, these are ideas still awaiting development.\footnote{The only progress in this direction is due to Borel. He was led to it by the following problem treated in his thesis, ``Sur quelques points de la Th\'eorie des fonctions,'' \emph{Annales de l'\'Ecole Normale sup\'erieure}, 3rd series, vol.~XII (1895), pp.~9--55: determine an entire series $f(z)=\sum b_nz^n$ convergent for $z=1$ together with its derivatives, prescribed values $f^{(n)}(1)=F_n$ being given for the series and its derivatives at $z=1$. The essential idea of Borel's reasoning is this: to solve the equations $f^{(n)}(1)=F_n$, it is enough to know how to solve them with a certain approximation. Suppose an entire series $g(z)=\sum b_nz^n$ has been found such that $|g^{(n)}(1)-F_n|<C$ for all $n$. Put $g^{(n)}(1)-F_n=c_n$; then $\sum(c_n/n!)(z-1)^n$ defines an entire function $h(z)$ and $f(z)=g(z)-h(z)$. Thus everything reduces to solving $f^{(n)}(1)=F_n$ with the stated approximation. Put $b_0=0$, $b_k=\pm1/k$ for $k=1,2,\ldots,n$, choosing the signs and $n$ so that $|b_1+\cdots+b_n-F_0|<1$. Next put $b_k=\pm1/k^2$ for $k=n+1,\ldots,n'$, choosing the signs and $n'$ so that $|b_1+2b_2+\cdots+n'b_{n'}-F_1|<1$. Then put $b_k=\pm1/k^3$ for $k=n'+1,\ldots,n''$, so that
+The detailed study of Poincar\'e's note and of the supplementary remarks that followed it in a second note\footnote{Poincar\'e, ``Sur les d\'eterminants d'ordre infini,'' \emph{Bulletin de la Soci\'et\'e math\'ematique de France}, vol.~XIV (1886), pp.~77--90.} would require us to penetrate still further into the Theory of Functions. Besides, the matter there is not one of methods in the strict sense; rather, these are ideas still awaiting development.\footnote{The only progress in this direction is due to Borel. He was led to it by the following problem treated in his thesis, ``Sur quelques points de la Th\'eorie des fonctions,'' \emph{Annales de l'\'Ecole Normale sup\'erieure}, 3rd series, vol.~XII (1895), pp.~9--55: determine a power series $f(z)=\sum b_nz^n$ convergent for $z=1$ together with its derivatives, prescribed values $f^{(n)}(1)=F_n$ being given for the series and its derivatives at $z=1$. The essential idea of Borel's reasoning is this: to solve the equations $f^{(n)}(1)=F_n$, it is enough to know how to solve them with a certain approximation. Suppose a power series $g(z)=\sum b_nz^n$ has been found such that $|g^{(n)}(1)-F_n|<C$ for all $n$. Put $g^{(n)}(1)-F_n=c_n$; then $\sum(c_n/n!)(z-1)^n$ defines an entire function $h(z)$ and $f(z)=g(z)-h(z)$. Thus everything reduces to solving $f^{(n)}(1)=F_n$ with the stated approximation. Put $b_0=0$, $b_k=\pm1/k$ for $k=1,2,\ldots,n$, choosing the signs and $n$ so that $|b_1+\cdots+b_n-F_0|<1$. Next put $b_k=\pm1/k^2$ for $k=n+1,\ldots,n'$, choosing the signs and $n'$ so that $|b_1+2b_2+\cdots+n'b_{n'}-F_1|<1$. Then put $b_k=\pm1/k^3$ for $k=n'+1,\ldots,n''$, so that
 \[
  |2b_2+2\cdot3b_3+\cdots+(n''-1)n''b_{n''}-F_2|<1.
 \]
@@ -853,7 +855,6 @@ Consider the system
   \tag{4}\label{eq:19:4}
 \end{equation}
 and suppose that the principle of sections may legitimately be applied to it. Suppose further that, for all sufficiently large $n$,
-
 % [Source printed page 23]
 \[
   \Delta_n=
@@ -875,7 +876,6 @@ where $\Delta_n^{(k)}$ denotes the result of replacing the terms of column $k$ o
 This, however, is only the simplest case; the homogeneous system~\eqref{eq:18:3} does not belong to it and requires a more delicate discussion. To approach that system by infinite determinants, these determinants must be studied somewhat more closely. It should also be observed that even in the simpler case just considered we assumed \emph{a priori} that the principle of sections applies. This is not self-evident and may in fact fail; the limits $\Delta\ne0$ and $\Delta^{(k)}$ $(k=1,2,\ldots)$ may exist without the values $x_k=\Delta^{(k)}/\Delta$ satisfying system~\eqref{eq:19:4}. For example, if $a_{ik}=0$ for $k<i$ and $a_{ik}=1$ for $k\geq i$, while $c_i=(-1)^i$, then $\Delta=1$ and $\Delta^{(k)}=2(-1)^k$, which gives $x_k=2(-1)^k$; when these values are substituted in equations~\eqref{eq:19:4}, the left-hand sides diverge.\footnote{Cazzaniga gave a series of examples of this kind, showing the care required with infinite determinants: ``Sui determinanti d'ordine infinito,'' \emph{Annali di Matematica}, 2nd series, vol.~XXVI (1897), pp.~143--218; ``Intorno ad un tipo di determinanti nulli d'ordine infinito,'' ibid., 3rd series, vol.~I (1898), pp.~83--94.}
 
 These remarks suffice to show that, if one wishes to base
-
 % [Source printed page 24]
 a theory of infinite systems of equations on the study of infinite determinants, the conditions under which one is working must first be clearly specified. Well-chosen hypotheses will make it possible to extend to infinite determinants the ordinary rules for determinants of finite order and consequently to apply them to the theory with which we are concerned.
 
@@ -895,11 +895,11 @@ Consider the doubly indexed array
 \]
 and suppose that the doubly infinite series $\sum_{i,k=1}^{\infty}|a_{ik}|$ converges. Put
 \[
-  A_k=\sum_{i=1}^{\infty}|a_{ik}|;
+  \Lambda_k=\sum_{i=1}^{\infty}|a_{ik}|;
 \]
-by hypothesis $\sum_{k=1}^{\infty}A_k$ converges. A well-known convergence rule then implies that the products
+by hypothesis $\sum_{k=1}^{\infty}\Lambda_k$ converges. A well-known convergence rule then implies that the products
 \[
-  \Pi_n=\prod_{k=1}^{n}(1+A_k)
+  \Pi_n=\prod_{k=1}^{n}(1+\Lambda_k)
 \]
 tend, as $n\to\infty$, to a limit $\Pi$.
 
@@ -934,7 +934,7 @@ consequently the series
 converges absolutely to a quantity $\Delta=\lim\Delta_n$ such that $|\Delta|\leq\Pi$.
 
 \numberedparagraph{21}
-Replace in our array the elements of column $k$ by quantities $c_i$, assumed bounded as a whole, that is, bounded in absolute value by some quantity $C$. Let $n>k$, and denote by $\Delta_n^{(k)}$ the result of applying the indicated modification to $\Delta_n$, and by $\Pi_n^{(k)}$ the result of suppressing the factor $1+A_k$ from $\Pi_n$. The terms of $\Delta_n^{(k)}$ and of $\Delta_{n+p}^{(k)}-\Delta_n^{(k)}$ occur, in absolute value and apart from a factor $|c_i|$, in the expansions of $\Pi_n^{(k)}$ and $\Pi_{n+p}^{(k)}-\Pi_n^{(k)}$. Hence
+Replace in our array the elements of column $k$ by quantities $c_i$, assumed bounded as a whole, that is, bounded in absolute value by some quantity $C$. Let $n>k$, and denote by $\Delta_n^{(k)}$ the result of applying the indicated modification to $\Delta_n$, and by $\Pi_n^{(k)}$ the result of suppressing the factor $1+\Lambda_k$ from $\Pi_n$. The terms of $\Delta_n^{(k)}$ and of $\Delta_{n+p}^{(k)}-\Delta_n^{(k)}$ occur, in absolute value and apart from a factor $|c_i|$, in the expansions of $\Pi_n^{(k)}$ and $\Pi_{n+p}^{(k)}-\Pi_n^{(k)}$. Hence
 \[
  |\Delta_n^{(k)}|\leq C\Pi_n^{(k)},\qquad
  |\Delta_{n+p}^{(k)}-\Delta_n^{(k)}|
@@ -943,13 +943,12 @@ Replace in our array the elements of column $k$ by quantities $c_i$, assumed bou
 Thus the determinant $\Delta^{(k)}=\lim\Delta_n^{(k)}$ converges and $|\Delta^{(k)}|\leq C\Pi$.
 
 In particular, put $c_i=1$ and $c_j=0$ for $j\ne i$; $\Delta^{(k)}$ then becomes what is called the minor
-
 % [Source printed page 26]
-$\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of the determinant $\Delta$. Similarly we shall call $\Delta^{(k)}$ the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of $\Delta$. It follows at once from the analogous fact for finite determinants that the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ is unchanged if the elements of row $i$, except the $k$th, are replaced by zeros or by arbitrary quantities. This observation shows that rows and columns play the same role in forming minors.
+$\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of the determinant $\Delta_n$. Similarly, we shall call $\Delta^{(k)}$ the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of $\Delta$. It follows at once from the analogous fact for finite determinants that the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ is unchanged if the elements of row $i$, except the $k$th, are replaced by zeros or by arbitrary quantities. This observation shows that rows and columns play the same role in forming minors.
 
 We shall prove the following theorem, whose first part is the familiar Laplace rule.
 
-\begin{theorem}\label{thm:21:laplace}
+\begin{theorem}
 Whatever the quantities $c_i$, provided they are bounded as a whole,
 \begin{equation}
   \Delta^{(k)}=\sum_{i=1}^{\infty}
@@ -974,7 +973,6 @@ Absolute convergence of the series on the right of~\eqref{eq:21:5} follows immed
 where $\operatorname{sgn}^{*}z$ denotes $0$ when $z=0$ and $|z|/z$ otherwise.\footnote{Thus, if $z=re^{i\varphi}$, then $\operatorname{sgn}^{*}z=e^{-i\varphi}$. For real positive or negative $z$, $\operatorname{sgn}^{*}z=\pm1$, according to the sign of $z$.} Then $C=1$, and $\Delta^{(k)}$ is the sum of the first $n$ terms of~\eqref{eq:21:6}; the inequality $|\Delta^{(k)}|\leq C\Pi$ therefore shows that this sum cannot exceed $\Pi$.
 
 It remains to verify identity~\eqref{eq:21:5}. The sum $s_n$ of the
-
 % [Source printed page 27]
 first $n$ terms of the series on the right is the result of replacing by zeros in $\Delta^{(k)}$ the $c_i$ beginning with $c_{n+1}$. Hence the difference $\Delta^{(k)}-s_n$ is what $\Delta^{(k)}$ becomes after its first $n$ quantities $c_i$ have been set equal to zero. Denote this last determinant by $\Delta^{(k,n)}$, and let $\Delta_n^{(k,n)}$ be the finite determinant formed from its first $n^2$ elements. Then
 \[
@@ -1014,7 +1012,6 @@ Throughout the preceding discussion, rows and columns may exchange their roles. 
 
 \numberedparagraph{22}
 Infinite determinants $\Delta$ of the type just considered are called \emph{normal determinants}. Historically, Poincar\'e studied the determinants $\Delta$ and $\Delta^{(k)}$ under the additional restrictive condition $a_{ii}=0$ for all $i$. It is nearly evident that the type considered here is easily reduced to that more special type. For example, when $a_{ii}\ne-1$, one need only divide column $i$ by $1+a_{ii}$. Such a reduction is unnecessary, however; von Koch observed that Poincar\'e's method,
-
 % [Source printed page 28]
 with only slight modifications, extends to all normal determinants, and this is precisely the method we have just presented.
 
@@ -1036,19 +1033,18 @@ After these preliminaries, consider the system of equations
 \end{equation}
 where the $x$ are the unknowns and the $a$ and $c$ are given quantities.
 
-We suppose that $\sum_{i,k}|a_{ik}|=\sum_kA_k=A$ converges, and ask whether system~\eqref{eq:23:10} can be satisfied by quantities $x_k$ that in addition remain bounded in absolute value. Under these conditions the left-hand sides of equations~\eqref{eq:23:10} are absolutely convergent series.
+We suppose that $\sum_{i,k}|a_{ik}|=\sum_k\Lambda_k=\Lambda$ converges, and ask whether system~\eqref{eq:23:10} can be satisfied by quantities $x_k$ that in addition remain bounded in absolute value. Under these conditions the left-hand sides of equations~\eqref{eq:23:10} are absolutely convergent series.
 
 A necessary condition is supplied by
 \[
  |c_i|\leq|x_i|+\sum_{k=1}^{\infty}|a_{ik}x_k|
- \leq(1+A)\sup_k|x_k|.
+ \leq(1+\Lambda)\sup_k|x_k|.
 \]
 It says that the quantities $|c_i|$ must likewise remain below some finite bound $C$. Assume this condition satisfied.
 
 We must distinguish two cases according as the determinant of the system vanishes or does not vanish.
 
 \emph{First case: $\Delta\ne0$.} Under the conditions stated,
-
 % [Source printed page 29]
 the system has the solution
 \begin{equation}
@@ -1111,7 +1107,6 @@ so $x_j=0$ for every $j$.
  x_2=\left(\begin{matrix}i\\2\end{matrix}\right),\qquad\ldots,
  \tag{13}\label{eq:23:13}
 \end{equation}
-
 % [Source printed page 30]
 where $i$ is any index. This is an immediate consequence of formulas~\eqref{eq:21:9}.
 
@@ -1136,26 +1131,26 @@ It may happen, however, that all the minors $\left(\begin{smallmatrix}i\\k\end{s
 \]
 of order $r$. By this we mean the result of replacing in $\Delta$ the $r$ elements lying simultaneously in row $i_p$ and column $k_p$ $(p=1,\ldots,r)$ by $1$, and all other elements of these rows (or, equivalently, of these columns) by zero. Our general convergence rule applies also to these new determinants.
 
-\begin{theorem}[von Koch]\label{thm:24:koch}
+\begin{vonkochtheorem}
 There is always a minor of $\Delta$ of some finite order that does not vanish. In particular, if $m$ is sufficiently large, the minor
 \[
  \left(\begin{matrix}1,\ldots,m\\1,\ldots,m\end{matrix}\right)
 \]
 is certainly nonzero.
-\end{theorem}
+\end{vonkochtheorem}
 
 \begin{proof}
 Choose $m$ such that
 \[
-  R_m=\sum_{i=m+1}^{\infty}A_i<\frac12.
+  R_m=\sum_{i=m+1}^{\infty}\Lambda_i<\frac12.
 \]
 Then
 \[
  \left|
  \left(\begin{matrix}1,\ldots,m\\1,\ldots,m\end{matrix}\right)
  \right|
- \geq1-\sum_{i=m+1}^{\infty}A_i
-       -\sum_{i,k=m+1}^{\infty}A_iA_k-\cdots
+  \geq1-\sum_{i=m+1}^{\infty}\Lambda_i
+       -\sum_{i,k=m+1}^{\infty}\Lambda_i\Lambda_k-\cdots
  \geq1-R_m-R_m^2-\cdots
  =\frac{1-2R_m}{1-R_m}>0.
 \]
@@ -1201,7 +1196,6 @@ of order $r$ with respect to $\Delta$, are at the same time first-order minors o
  k_1,\ldots,k_{p-1},k_{p+1},\ldots,k_r\end{matrix}\right)=0,
 \end{align*}
 where $i$ and the summation indices are first assumed distinct from the fixed indices. The summation may be extended to all $k$, and the formula is valid for all $i$, if by definition one sets
-
 % [Source printed page 32]
 \[
  \left(\begin{matrix}i_1,\ldots,i_r\\k_1,\ldots,k_r\end{matrix}\right)=0
@@ -1219,7 +1213,6 @@ Now consider the nonhomogeneous system~\eqref{eq:23:10} and suppose that it has 
 It remains, then, to determine a solution $(x_k)$ of~\eqref{eq:23:10} with $x_{k_1}=\cdots=x_{k_r}=0$. The other unknowns then satisfy the system obtained from~\eqref{eq:23:10} by suppressing the equations numbered $i_1,\ldots,i_r$ and the unknowns $x_{k_1},\ldots,x_{k_r}$. The determinant of this modified system is $D\ne0$, so it has exactly one solution. Hence~\eqref{eq:23:10} is solvable if and only if the values $x_{k_1}=\cdots=x_{k_r}=0$, together with the values of the remaining $x_k$ furnished by the modified system, satisfy the equations of ranks $i_1,\ldots,i_r$. This gives $r$ relations among the right-hand sides of~\eqref{eq:23:10}; these relations express the necessary and sufficient condition for solvability.
 
 This condition can be put into several forms analogous to
-
 % [Source printed page 33]
 those known for ordinary finite systems. We shall not dwell on them. The essential fact resulting from the preceding considerations is that the classical theory of determinants extends to normal infinite determinants and to the corresponding systems of equations.
 
@@ -1232,7 +1225,6 @@ Let a doubly indexed array $(A_{ik})$ be given, and suppose the product $P$ of a
 
 \numberedparagraph{27}
 Put $a_{ii}=A_{ii}-1$ and $a_{ik}=A_{ik}$ for $i\ne k$. Expanding $P,P'$ in products of the quantities $a$, von Koch's hypothesis plainly amounts to absolute convergence of the sum of all these products. Since the terms
-
 % [Source printed page 34]
 of an absolutely convergent sum may be arranged arbitrarily, $\Delta$ admits the expansions
 \[
@@ -1271,7 +1263,6 @@ These results make it easy to see that the determinant method applies to infinit
 
 \numberedparagraph{28}
 Von Koch gave a necessary and sufficient condition for absolute convergence of $\Delta$. Consider the
-
 % [Source printed page 35]
 cyclic products of the quantities $a_{ik}$; by a cyclic product of order $r$ we mean any product of the form
 \[
@@ -1279,7 +1270,7 @@ cyclic products of the quantities $a_{ik}$; by a cyclic product of order $r$ we 
 \]
 where $i_1,\ldots,i_r$ are distinct. By a cyclic product of first order we mean a quantity $a_{ii}$. Since every cyclic product occurs in the expansion of $\Delta$, absolute convergence of the series formed from all cyclic products is necessary for absolute convergence of $\Delta$. This necessary condition is also sufficient. Indeed, form the infinite product $\prod(1+|p|)$ over all cyclic products $p$. Its expansion contains in absolute value every term in the expansion of $\Delta$. If $\sum|p|$ converges, then $\prod(1+|p|)$ converges also, and consequently $\Delta$ converges absolutely.
 
-\begin{theorem}\label{thm:28:cycles}
+\begin{theorem}
 The infinite determinant $\Delta$ converges absolutely if and only if the series formed from the cyclic products of the quantities $a_{ik}$ converges absolutely.
 \end{theorem}
 
@@ -1288,23 +1279,23 @@ It is almost evident that normal determinants converge absolutely, as do the det
 
 In seeking more general rules, von Koch constructed a succession of increasingly precise criteria for absolute convergence of $\Delta$ and all its minors. We shall give only one of the simplest, which is important for applications to integral equations.\footnote{Von Koch, ``Sur la convergence des d\'eterminants infinis,'' \emph{Rendiconti del Circolo matematico di Palermo}, vol.~XXVIII (1909), pp.~255--266.}
 
-\begin{theorem}\label{thm:29:squares}
+\begin{theorem}
 For $\Delta$ and all its minors to converge absolutely, it is sufficient that the two series
 \[
   \sum_{i=1}^{\infty}|a_{ii}|,
   \qquad
   \sum_{i,k=1}^{\infty}|a_{ik}|^2
 \]
-converge.
-\end{theorem}
-
+  converge
 % [Source printed page 36]
+  absolutely.
+\end{theorem}
 \begin{proof}
-The minors belong to the same type as $\Delta$, so it suffices to prove absolute convergence of $\Delta$. By Theorem~\ref{thm:28:cycles}, it is enough to prove convergence of the sum of the moduli of the cyclic products. Those of first order have been covered explicitly by the hypothesis; below we consider only orders greater than $1$.
+The minors belong to the same type as $\Delta$, so it suffices to prove absolute convergence of $\Delta$. By \hyperref[sec:28]{the theorem just established}, it is enough to prove convergence of the sum of the moduli of the cyclic products. Those of first order have been covered explicitly by the hypothesis; below we consider only orders greater than $1$.
 
-Following von Koch's proof, put, in the notation of the original,
+Following von Koch's proof, define \(\sigma\) by the following formula.\translatornote{The French original prints \(\sigma^2\) on the left.  The estimates that follow require \(\sigma=(\sum_{i\ne k}|a_{ik}|^2)^{1/2}\), equivalently \(\sigma^2=\sum_{i\ne k}|a_{ik}|^2\).}
 \[
-  \sigma^2=\left(\sum_{i\ne k}|a_{ik}|^2\right)^{1/2}.
+  \sigma=\left(\sum_{i\ne k}|a_{ik}|^2\right)^{1/2}.
 \]
 Denote by $|i_1,i_2,\ldots,i_r|$ the absolute value of the cyclic product $a_{i_1i_2}a_{i_2i_3}\cdots a_{i_ri_1}$, and by $|i_1,i_2,\ldots,i_r;i_{r+1}|$ that of $a_{i_1i_2}a_{i_2i_3}\cdots a_{i_ri_{r+1}}$. The indices are required to be distinct; whenever this condition fails, both symbols are defined to be zero.
 
@@ -1354,6 +1345,11 @@ and
 hold for $n=2$. Suppose they hold for a given $n$. Then
 \begin{align*}
  \sum_{i_1,\ldots,i_{n+1}}|i_1,\ldots,i_{n+1}|
+ &=\sum_{i_1,i_{n+1}}
+ \left(
+   |i_{n+1},i_1|
+   \sum_{i_2,\ldots,i_n}|i_1,\ldots,i_n;i_{n+1}|
+ \right)\\
  &\leq
  \sum_{i_1}
  \left[
@@ -1361,19 +1357,33 @@ hold for $n=2$. Suppose they hold for a given $n$. Then
    \sum_{i_{n+1}}
    \left(\sum_{i_2,\ldots,i_n}|i_1,\ldots,i_n;i_{n+1}|\right)^2
  \right]^{1/2}\\
+ &\leq
+ \left(
+   \sum_{i_1,i_{n+1}}|i_{n+1},i_1|^2\,
+   \sigma^{2n-2}
+   \sum_{i_1,i_{n+1}}|i_1,i_{n+1}|^2
+ \right)^{1/2}\\
  &\leq\sigma^{n+1}.
 \end{align*}
-
 % [Source printed page 38]
 Similarly,
 \begin{align*}
  &\sum_j\left(\sum_{i_2,\ldots,i_{n+1}}
  |i_1,\ldots,i_{n+1};j|\right)^2\\
+ &=\sum_j\left[
+   \sum_{i_2}\left(
+     |i_1,i_2|
+     \sum_{i_3,\ldots,i_{n+1}}|i_2,\ldots,i_{n+1};j|
+   \right)
+ \right]^2\\
  &\quad\leq
  \sum_{i_2}|i_1,i_2|^2
  \sum_{j,i_2}\left(\sum_{i_3,\ldots,i_{n+1}}
  |i_2,\ldots,i_{n+1};j|\right)^2\\
- &\quad\leq\sigma^{2n}\sum_k|i_1,k|^2.
+ &\quad\leq
+ \sum_{i_2}|i_1,i_2|^2\,
+ \sigma^{2n-2}\sum_{i_2,j}|i_2,j|^2\\
+ &=\sigma^{2n}\sum_k|i_1,k|^2.
 \end{align*}
 Thus, if~\eqref{eq:29:16} and~\eqref{eq:29:17} hold for $n$, they hold for $n+1$; since they hold for $n=2$, they hold for all $n$.
 
@@ -1387,7 +1397,7 @@ We assumed $\sigma<1$. The general case reduces to this special one. When $\sum_
 \[
  \sum_{i=m+1}^{\infty}\sum_{k=1}^{\infty}|a_{ik}|^2<\frac12,
 \]
-and then choose a sufficiently small positive $t$ so that
+and then choose a sufficiently small positive $t$ so that\footnote{Compare, in addition to von Koch's memoir, the Hungarian thesis of Sz\'asz, \emph{A v\'egtelen determin\'ansok elm\'elet\'ehez}, Budapest, 1911, where these systems and their determinants are studied independently of the general theory of absolutely convergent determinants.}
 \[
  t^2\sum_{i=1}^{m}\sum_{k=1}^{\infty}|a_{ik}|^2<\frac12.
 \]
@@ -1402,7 +1412,7 @@ The preceding considerations show that the results obtained for systems~\eqref{e
  \sum_k|x_k|^2,\qquad \sum_i|a_{ii}|,\qquad
  \sum_{i,k}|a_{ik}|^2,\qquad \sum_i|c_i|^2
 \]
-converge.\footnote{Compare, in addition to von Koch's memoir, the Hungarian thesis of Sz\'asz, \emph{A v\'egtelen determin\'ansok elm\'elet\'ehez}, Budapest, 1911, where these systems and their determinants are studied independently of the general theory of absolutely convergent determinants.} The most important application of such systems is to integral equations. We shall discuss it later and shall see that all the present conditions arise quite naturally except convergence of $\sum|a_{ii}|$. This last condition can be removed by multiplying the equations of the system by suitable factors.
+ converge. The most important application of such systems is to integral equations. We shall discuss it later and shall see that all the present conditions arise quite naturally except convergence of $\sum|a_{ii}|$. This last condition can be removed by multiplying the equations of the system by suitable factors.
 
 Indeed, suppose $\sum_i|c_i|^2$ and $\sum_{i,k}|a_{ik}|^2$, and hence in particular $\sum_i|a_{ii}|^2$, converge. Applying the inequality
 \[
@@ -1421,7 +1431,6 @@ Thus, if each equation is multiplied by the corresponding quantity $e^{-a_{ii}}$
 
 \numberedparagraph{31}
 Finally, suppose the data $a_{ik}$ are functions $a_{ik}(\lambda)$ of a parameter $\lambda$, holomorphic in a domain $D$, and that the conditions imposed above are satisfied uniformly with respect to $\lambda$. For example, for normal determinants we assume that $\sum_{i,k}|a_{ik}(\lambda)|$ converges uniformly. The expansions given for $\Delta$
-
 % [Source printed page 40]
 then converge uniformly, and the function $\Delta(\lambda)$ so defined is holomorphic in $\lambda$.
 
@@ -1443,7 +1452,6 @@ converges uniformly in $D$. Then the expansion of $\Delta(\lambda)$ converges ab
  \tag{18}\label{eq:31:18}
 \end{equation}
 converges absolutely. The minors too may be expanded in products of the functions $a_{ik}(\lambda)$; even after every term is replaced by its absolute value, the resulting minors remain bounded as a whole. Thus, on expanding~\eqref{eq:31:18} in products of $a_{ik}(\lambda)$ and $d a_{ik}(\lambda)/d\lambda$, the resulting series converges absolutely. Its terms may therefore be rearranged, in particular so as to give the series obtained by differentiating the expansion of $\Delta(\lambda)$ term by term. Consequently, series~\eqref{eq:31:18} represents
-
 % [Source printed page 41]
 $d\Delta(\lambda)/d\lambda$. Finally, if
 \[
@@ -1463,8 +1471,7 @@ then $dA_{ik}(\lambda)/d\lambda=da_{ik}(\lambda)/d\lambda$. Replacing the latter
 \numberedparagraph{32}
 To apply the classical method of determinants to infinite systems, it was necessary to impose more or less restrictive conditions on the data; and it must be admitted that these restrictions were required by the method, not by the problem. In what follows we shall adopt a much more general point of view, due in principle to E.~Schmidt.\footnote{E.~Schmidt, ``Ueber die Aufl\"osung linearer Gleichungen mit abz\"ahlbar unendlich vielen Unbekannten,'' \emph{Rendiconti del Circolo Matematico di Palermo}, vol.~XXV (1908), pp.~53--77.} We shall begin by specifying the nature of the admissible solutions $(x_k)$; as for the data, our sole hypothesis will be that, for every admissible system $(x_k)$, the series occurring on the left-hand sides of the equations must converge. The principal question will be the \emph{existence of solutions}; only secondarily shall we be concerned with the apparatus that produces them.
 
-The most important case from the standpoint of applications is that in which one requires $\sum_k |x_k|^2$ to converge. To treat it by the method of determinants, we had to suppose that the double series $\sum_{i,k}|a_{ik}|^2$ and the series $\sum_i|c_i|^2$ converge. As we shall see, Schmidt's theory assumes only the convergence of the simply infinite series $\sum_k|a_{ik}|^2$. An intermediate theory was based by Hilbert on the study of quadratic forms and bilinear forms
-
+The most important case from the standpoint of applications is that in which one requires $\sum_k |x_k|^2$ to converge. To treat it by the method of determinants, we had to suppose that the double series $\sum_{i,k}|a_{ik}|^2$ and the series $\sum_i|c_i|^2$ converge. As we shall see, Schmidt's theory assumes only the convergence of the singly indexed series $\sum_k|a_{ik}|^2$. An intermediate theory was based by Hilbert on the study of quadratic forms and bilinear forms
 % [Source printed page 43]
 in infinitely many variables.\footnote{Hilbert, ``Grundz\"uge einer allgemeinen Theorie der linearen Integralgleichungen, 4.~Mitteilung,'' \emph{Nachrichten von der K\"oniglichen Gesellschaft der Wissenschaften zu G\"ottingen} (1906), pp.~157--227. Hilbert's six memoirs on integral equations have just been collected in a volume (Leipzig, 1912). Cf. also Hilbert, ``Wesen und Ziele einer Analysis der unendlichvielen unabh\"angigen Variabeln,'' \emph{Rendiconti del Circolo Matematico di Palermo}, vol.~XXVII (1909), pp.~59--74.} It is much more effective than the method of determinants, but less general than Schmidt's. As regards historical order, it should be observed that Hilbert's theory predates Schmidt's; it also predates the study of determinants for which $\sum_{i,k}|a_{ik}|^2$ converges, but it is later than the general theory of infinite and absolutely convergent determinants.
 
@@ -1485,7 +1492,6 @@ We shall have occasion to start from the inequality
 which concerns arbitrary quantities $a_k,b_k$, real or complex. Already established and used by Cauchy for $p=2$,\footnote{Cf. \hyperref[sec:29]{no.~29}.} it was extended by H\"older to all $p>1$.\footnote{H\"older, ``Ueber einen Mittelwertsatz,'' \emph{Nachrichten von der K\"oniglichen Gesellschaft der Wissenschaften zu G\"ottingen} (1889), pp.~38--47.}
 
 It is enough to prove inequality~\eqref{eq:33:1} for positive quantities $a_k,b_k$; it will then hold, \emph{a fortiori}, for arbitrary $a$ and $b$. We may also suppose the $a$'s and $b$'s strictly positive, regarding the cases in which one or another of these quantities vanishes as limiting cases. Finally, we may suppose $n=2$, for once the inequality has been proved in this particular case, it extends to every $n$ by induction. It therefore remains to prove the inequality
-
 % [Source printed page 44]
 \begin{equation}
  a_1b_1+a_2b_2
@@ -1519,7 +1525,6 @@ Inequality~\eqref{eq:33:1} extends immediately to infinite series. Indeed, suppo
  \qquad B=\sum|b_k|^p
 \]
 converge. Then, by~\eqref{eq:33:1}, the partial sums of the series $\sum|a_kb_k|$ do not exceed the bound $A^{(p-1)/p}B^{1/p}$. Consequently,
-
 % [Source printed page 45]
 the series $\sum a_kb_k$ converges absolutely, and
 \begin{equation}
@@ -1619,7 +1624,7 @@ Given a number $p>1$, chosen arbitrarily once and for all, we propose to determi
 \end{equation}
 converges.
 
-As for the data, we make only one hypothesis. Under this hypothesis the equations~\eqref{eq:35:8} must have a meaning. But before carrying out the solution, we know nothing about the quantities $x_k$. We are therefore led to suppose that the left-hand sides of~\eqref{eq:35:8} converge for every system $(x_k)$ for which~\eqref{eq:35:9} exists. This is equivalent to assuming that, for every $i$, the sums
+As for the data, we make only one hypothesis. Under this hypothesis the equations~\eqref{eq:35:8} must have a meaning. But before carrying out the solution, we know nothing about the quantities $x_k$. We are therefore led to suppose that the left-hand sides of~\eqref{eq:35:8} converge for every system $(x_k)$ for which the series~\eqref{eq:35:9} converges. This is equivalent to assuming that, for every $i$, the sums
 \[
  \sum_{k=1}^{\infty}|a_{ik}|^{\frac{p}{p-1}}
 \]
@@ -1628,19 +1633,18 @@ converge. Indeed, Hellinger and Toeplitz proved for $p=2$,\footnote{Hellinger an
  \sum_{k=1}^{\infty}a_kx_k
  \tag{10}\label{eq:35:10}
 \end{equation}
-cannot converge for every system $(x_k)$ for which~\eqref{eq:35:9} exists unless
+cannot converge for every system $(x_k)$ for which the series~\eqref{eq:35:9} converges unless
 \begin{equation}
  \sum_{k=1}^{\infty}|a_k|^{\frac{p}{p-1}}
  \tag{11}\label{eq:35:11}
 \end{equation}
 converges. Conversely, when this last condition is fulfilled, inequality~\eqref{eq:33:1} establishes the absolute convergence of the series~\eqref{eq:35:10}.
 
-\begin{theorem}[Landau]
-If the series~\eqref{eq:35:10} converges for every system $(x_k)$ for which~\eqref{eq:35:9} exists, then the series~\eqref{eq:35:11} converges.
-\end{theorem}
+\begin{landautheorem}
+If the series~\eqref{eq:35:10} converges for every system $(x_k)$ for which the series~\eqref{eq:35:9} converges, then the series~\eqref{eq:35:11} converges.
+\end{landautheorem}
 \begin{proof}
 Suppose that the latter series diverges. We shall define a system $(x_k)$ for which~\eqref{eq:35:9}
-
 % [Source printed page 48]
 converges and~\eqref{eq:35:10} diverges. Put
 \[
@@ -1782,7 +1786,6 @@ Differentiate the series defining $A(\mu_1,\ldots,\mu_n)$ term by term with resp
  \left(\sum_{k=1}^{\infty}|a_{ik}|^{\frac{p}{p-1}}\right)^{\frac{p-1}{p}}
 \end{align*}
 is a majorant for the differentiated series. Since the majorant converges uniformly in every bounded domain of the $\mu$'s, the differentiated series does likewise. It follows from a well-known theorem on differentiation of series that the
-
 % [Source printed page 51]
 function $A(\mu_1,\ldots,\mu_n)$ has continuous partial derivatives obtained by differentiating term by term. Hence
 \begin{equation}
@@ -1893,7 +1896,6 @@ It remains to remove the restriction that the left-hand sides of equations~\eqre
 
 \numberedparagraph{39}
 In the foregoing, we connected the solution of system~\eqref{eq:37:15} with another problem: to maximize the expression $C$ while the $\mu$'s vary under the condition $A=1$. I shall try in a few
-
 % [Source printed page 54]
 words to explain the order of ideas leading from the first problem to the second. Let us forget for a moment the preceding developments and suppose only that system~\eqref{eq:37:15} admits solutions for which $\sum|x_k|^p$ converges, and that among these solutions there is one which makes this sum a minimum; that is, suppose there is a system $(x_k^{(n)})$ which minimizes the function $\sum|x_k|^p$ of the variables $x_k$, the $x$'s varying in accordance with conditions~\eqref{eq:37:15}. The classical method of differential calculus shows that this particular solution $x_k^{(n)}$ must have the form~\eqref{eq:38:21}, the values of the $\mu$'s still remaining to be determined. Equations for the unknowns $\mu$ are obtained by substituting expressions~\eqref{eq:38:21} in equations~\eqref{eq:37:15}.
 
@@ -1904,7 +1906,7 @@ The resulting equations are linear when $p=2$; we shall return later to this par
  \frac{C(\mu_1^{(n)},\ldots,\mu_n^{(n)})}
       {A(\mu_1^{(n)},\ldots,\mu_n^{(n)})},
 \]
-whatever the values $\mu_1,\ldots,\mu_n$. Since, on the other hand, by~\eqref{eq:37:15},
+whatever the values $\mu_1,\ldots,\mu_n$. Since, on the other hand, by~\eqref{eq:38:20},\translatornote{The French original refers here to equation~(15); the asserted equality is equation~(20).}
 \[
  A(\mu_1^{(n)},\ldots,\mu_n^{(n)})=1,
 \]
@@ -1918,7 +1920,6 @@ Let us add that, when $c_1=1$ and the other $c$'s vanish, our method is approxim
  \right)^{\frac{p-1}{p}}.
 \]
 The minimum value of this expression permits an interesting geometric interpretation. It may be regarded
-
 % [Source printed page 55]
 in infinite-dimensional space as the distance from the point with coordinates $a_{1k}$ $(k=1,2,\ldots)$ to the linear variety determined by the $n-1$ points $(a_{2k}),\ldots,(a_{nk})$, the distance between two points $(b_k)$ and $(c_k)$ being measured by
 \[
@@ -1955,7 +1956,6 @@ Now consider the series
  \sum_{k=1}^{\infty}a_ky_k;
  \tag{25}\label{eq:40:25}
 \end{equation}
-
 % [Source printed page 56]
 we have already seen that, when the series $\sum|a_k|^{p/(p-1)}$ and $\sum|y_k|^p$ converge, series~\eqref{eq:40:25} converges absolutely. Moreover, series~\eqref{eq:40:25} converges \emph{uniformly} over the set of systems $(y_k)$ such that
 \begin{equation}
@@ -2008,15 +2008,15 @@ then
 \numberedparagraph{41}
 Besides inequality~\eqref{eq:40:24} and equality~\eqref{eq:40:28}, which we shall use below, we shall also need a \emph{selection principle}. For the sequences of systems $(y_k^{(n)})$ which we shall have to consider, it will allow us to infer the existence of subsequences tending to limiting systems.\footnote{For the history of this principle and its role in analysis, see Fr\'echet, \emph{Sur quelques points du Calcul fonctionnel}, thesis, Paris, 1906 (also printed in the \emph{Rendiconti del Circolo Matematico di Palermo}, vol.~XXII, 1906), Chapters IV--VII.}
 
-\begin{theorem}[Selection principle]
+\begin{selectionprinciple}
 Given an infinite sequence of systems $(y_k^{(n)})$ satisfying inequality~\eqref{eq:40:26}, one can extract from it a subsequence of systems
 \[
  (y_k^{(n_1)}),(y_k^{(n_2)}),\ldots
 \]
 which tends to a system $(y_k^*)$.
-\end{theorem}
+\end{selectionprinciple}
 \begin{proof}
-Consider the sequence of quantities $y_1^{(n)}$ $(n=1,2,\ldots)$. Their absolute values remain at most $G$. Hence, by Weierstrass's theorem, the sequence has one or more limiting values. Let $y_1^*$ be any one of them, for example the least of these limits, and let $n_1',n_2',\ldots$ be a sequence of indices such that
+Consider the sequence of quantities $y_1^{(n)}$ $(n=1,2,\ldots)$. Their absolute values remain at most $G$. Hence, by Weierstrass's theorem, the sequence has one or more limiting values. Choose one of them and call it $y_1^*$, and let $n_1',n_2',\ldots$ be a sequence of indices such that\translatornote{The French text says to choose ``the least'' limiting value, although the quantities may be complex and hence are not ordered.  Any limiting value suffices.}
 \[
  y_1^{(n_1')},y_1^{(n_2')},\ldots
 \]
@@ -2041,7 +2041,6 @@ as was to be proved.
 
 \numberedparagraph{42}
 In certain cases our selection principle allows us to conclude that the sequence $(y_k^{(n)})$ itself already tends to a limiting system $(y_k^*)$. This always occurs when the system $(y_k^*)$ is uniquely
-
 % [Source printed page 58]
 determined by the problem from which one started. Indeed, suppose that for some $k$, say $k=k_1$, one did not have
 \[
@@ -2115,7 +2114,6 @@ since only finitely many terms are involved, each tending to zero. Consequently,
  <(2\varepsilon)^p;
 \]
 and since the left-hand side does not depend on the value of $\varepsilon$, it must be zero.\footnote{Conversely, if equation~\eqref{eq:43:33} holds, it plainly entails the term-by-term convergence of the $y_k^{(n)}$ to the $y_k^*$; it also entails relation~\eqref{eq:43:32}, as follows immediately from inequality~\eqref{eq:34:7}. Let us add that, for $p=2$, this type of convergence (\emph{strong convergence}) was introduced by Hilbert (loc.~cit., 4th Communication, p.~177); it is also precisely the type used by Schmidt in his investigations. Let us state two further theorems concerning strong convergence; both follow readily from the preceding arguments. The first was established for $p=2$ by Schmidt, and the second,
-
 % [Source printed page 60]
 for the same case, by Fr\'echet (\emph{Comptes rendus}, June~24, 1907). Here is the first: \emph{Given the sequence $(y_k^{(n)})$, in order that there exist a system $(y_k^*)$ such that the systems $(y_k^{(n)})$ tend strongly to $(y_k^*)$, it is necessary and sufficient that
 \[
@@ -2157,7 +2155,6 @@ But there is more. System~\eqref{eq:35:8} has only one extremal solution. We hav
 % End inlined .parts/pages_001_060.tex
 % Begin inlined .parts/pages_061_120.tex
 % Translation of source printed pages 61--120.
-
 % [Source printed page 61]
 The same reasoning applies in the general case. Now, $(x_k^*)$ is such an
 extremal solution; and the same would be true of every other system obtained,
@@ -2246,7 +2243,6 @@ of integral equations is studied from the same point of view; by analogy it
 corresponds to the case $p=1$, which we shall consider later. It should also
 be observed that, when the data are real---as is also the case in the note
 just cited---the circles may be replaced by segments of the real axis, and
-
 % [Source printed page 63]
 the necessary geometric considerations become much simpler.
 
@@ -2287,7 +2283,6 @@ case with the case $p=2$. I shall spare the reader this comparison; we shall
 return below to the case $p=2$. In any event, one can formulate a kind of
 rule which displays all the solutions; this rule is purely theoretical in
 the general case, but
-
 % [Source printed page 64]
 it lends itself well to effective calculation when $p=2$. Consider system
 \eqref{eq:35:8}, keep the $a_{ik}$ fixed, and vary the $c_i$; the number $M^*$ may be
@@ -2322,7 +2317,7 @@ from $x_1=x_2=\cdots=0$. In every case, the totality of the solutions of
 We now pass to the most important special case, $p=2$, and see what can be
 deduced for it from our general results.\footnote{Besides the works of
 Hilbert and Schmidt already cited, see G. Kowalewski, \emph{Einf\"uhrung in
-die Determinantentheorie}, Leipzig, 1909, pp.~407--455; B\"ocher and Brand,
+  die Determinantentheorie}, Leipzig, 1909, pp.~407--455; B\^ocher and Brand,
 ``On linear equations with an infinite number of variables,'' \emph{Annals
 of Mathematics}, second series, vol.~XIII (1912), pp.~167--186.}
 
@@ -2397,10 +2392,12 @@ $\nu_i$, one obtains
  \end{vmatrix}}.
  \tag{41}\label{eq:47:41}
 \end{equation}
-Now the Hermitian form
+Now the Hermitian form\translatornote{The French original omits the conjugation
+on \(a_{ik}\) in the sum on the right; it is inserted here so that the displayed
+identity agrees with the definition of \(\alpha_{ij}\).}
 \[
   \sum_{i,j=1}^{n}\alpha_{ij}\nu_i\overline{\nu_j}
-  =\sum_{k=1}^{\infty}\left|\sum_{i=1}^{n}a_{ik}\nu_i\right|^2
+  =\sum_{k=1}^{\infty}\left|\sum_{i=1}^{n}\overline{a_{ik}}\nu_i\right|^2
 \]
 is manifestly positive; hence the determinant in the denominator is real
 and positive. It is understood that the left-hand sides of equations~\eqref{eq:37:15}
@@ -2439,7 +2436,6 @@ value, finite or infinite, denoted by $M^*$. Thus the formula
  \end{vmatrix}}\right\}^{1/2}
  \tag{42}\label{eq:47:42}
 \end{equation}
-
 % [Source printed page 67]
 defines a function of infinitely many variables $c_i$. Accordingly, the
 necessary and sufficient condition for system~\eqref{eq:35:8} to possess a solution
@@ -2491,7 +2487,6 @@ For every system of values $(x_k)$, the Hermitian form
 \eqref{eq:48:44} remains at most $\sum|x_k|^2$. Equality holds only when
 $(x_k)$ is the extremal solution of a system such as~\eqref{eq:35:8}. The solutions of
 the homogeneous
-
 % [Source printed page 68]
 system
 \[
@@ -2539,7 +2534,6 @@ solution
 \]
 where $\Lambda_{jk}^{(n)}$ denotes the $n$th approximate value of
 $\Lambda_{jk}$ occurring
-
 % [Source printed page 69]
 in \eqref{eq:48:45}. But
 $x_1=\Lambda_{j1}^{(n)}=\overline{\Lambda_{1j}^{(n)}}$,
@@ -2565,7 +2559,9 @@ system, choose $\xi_k=-x_k^0$; then \eqref{eq:48:47} becomes homogeneous,
 has $x_1=x_2=\cdots=0$ as its extremal solution, and the preceding procedure
 gives $(x_k^0)$.
 
-Thus the formulas
+Thus the formulas\translatornote{The printed formula has \(+\xi_k\), but the
+source copy carries a handwritten correction to \(-\xi_k\), as required by the
+preceding choice \(\xi_k=-x_k^0\).}
 \[
   x_k=-\xi_k+\sum_{j=1}^{\infty}\Lambda_{jk}\xi_j
   \qquad(k=1,2,\ldots)
@@ -2584,7 +2580,6 @@ All these calculations simplify greatly in the special case in which
   =\begin{cases}1,&i=j,\\0,&i\neq j,\end{cases}
 \]
 which Hilbert and
-
 % [Source printed page 70]
 Schmidt express by saying that the linear forms
 \[
@@ -2622,7 +2617,6 @@ other than $x_1=x_2=\cdots=0$, we say that the system of left-hand sides is
 form orthogonal to all the left-hand sides at once. As we have seen, this
 holds if and only if $\Lambda_{jk}=1$ for $j=k$ and $0$ for $j\neq k$.
 In view of \eqref{eq:49:48}, this condition may be stated by saying that
-
 % [Source printed page 71]
 the transposed forms
 \[
@@ -2657,7 +2651,6 @@ of equations~\eqref{eq:35:8}, and, on the other hand, form an orthogonal and nor
 system. More precisely, the $n$th equation in \eqref{eq:50:49} is a linear
 combination of the first $n$ equations in~\eqref{eq:35:8}. For such a reduction to be
 possible, equations~\eqref{eq:35:8} (or rather every finite number of them) must
-
 % [Source printed page 72]
 be linearly independent; but we have seen that this restriction is only
 apparent. The multipliers, and hence the quantities $b_{ik}$ and $d_i$, are
@@ -2721,7 +2714,6 @@ $b$ and $d$ in terms of $a$ and $c$ recovers the formulas established above
 by another method.
 
 But this is only the principal idea of Schmidt's work
-
 % [Source printed page 73]
 which we have just described; for the details we must refer the reader to
 the original memoir. One of its most interesting features is that it sees
@@ -2761,7 +2753,6 @@ The reason is as follows. If the series
   \sum_{k=1}^{\infty}a_kx_k
   \tag{52}\label{eq:51:52}
 \end{equation}
-
 % [Source printed page 74]
 were merely required to converge for every system $(x_k)$ for which
 \eqref{eq:51:51} exists, it would suffice to suppose the quantities
@@ -2826,7 +2817,8 @@ Indeed, if \eqref{eq:52:55} has a solution $(x_k)$ such that
 then, putting $x_{m+1}=x_{m+2}=\cdots=0$, we obtain a solution of the
 original system satisfying \eqref{eq:52:53}. By the stated property of
 $m$, condition \eqref{eq:52:54} holds for the reduced system
-\eqref{eq:52:55}. On the other hand, for every $p>1$,
+\eqref{eq:52:55}.\translatornote{The French text refers here to system~(56),
+evidently a misprint for the reduced system~(55).} On the other hand, for every $p>1$,
 \[
  \operatorname*{sup}_{k=1,\ldots,m}
  \left|\sum_{i=1}^{n}\mu_i a_{ik}\right|
@@ -2851,7 +2843,6 @@ solution $(x_k^{(p)})$ such that
   \tag{56}\label{eq:52:56}
 \end{equation}
 Thus, for each $p>1$, there exists a solution
-
 % [Source printed page 76]
 $(x_k^{(p)})$ satisfying \eqref{eq:52:56}; for definiteness one may take,
 for example, the extremal solutions.
@@ -2896,7 +2887,6 @@ the same as in the other cases, it is enough to study $n$ equations.
 The condition is plainly necessary. To prove sufficiency, suppose that it
 holds and also suppose (as we know this entails no loss of generality) that
 there is no linear relation among the left-hand sides of the equations.
-
 % [Source printed page 77]
 Then the ratio
 \[
@@ -2975,12 +2965,14 @@ finite constant $M$ such that
   \leq M^2\sum_{k=1}^{\infty}|x_k|^2.
   \tag{1}\label{eq:55:1}
 \end{equation}
-Indeed, if no such constant existed, one could choose a sequence of
-elements for which the quotient of the left-hand side by the right-hand
-side tends to infinity. After multiplying the successive elements by
-suitable constants and applying the selection procedure of
-\hyperref[sec:41]{no.~41}, one would obtain a sequence tending to zero whose
-transforms do not tend to zero, contrary to continuity.
+Indeed, otherwise there would be a sequence of elements $(x_k^{(n)})$ and the
+corresponding sequence $(x_k^{(n)\prime})$ such that
+$\sum_k|x_k^{(n)}|^2$ remained bounded, while
+$\sum_k|x_k^{(n)\prime}|^2$ increased beyond every bound as $n\to\infty$.
+By the selection principle of \hyperref[sec:41]{no.~41}, one could extract
+from the former a subsequence converging to an element; the corresponding
+sequence, lacking property~\(2^\circ\), could converge to no element.
+Continuity would therefore fail.
 
 The least admissible value of $M$ will be called the \emph{bound} of the
 substitution $A$ and will be denoted by $M_A$.
@@ -2993,7 +2985,6 @@ We shall say that $(x_k^{(n)})$ tends \emph{strongly} to $(x_k)$ if
 \end{equation}
 Since a linear substitution is distributive, the element corresponding to
 $(x_k-x_k^{(n)})$ is $(x'_k-x_k^{(n)\prime})$; hence
-
 % [Source printed page 80]
 \[
   \sum_{k=1}^{\infty}|x'_k-x_k^{(n)\prime}|^2
@@ -3007,7 +2998,9 @@ The reduced elements
 \]
 tend strongly to $(x_k)$. If $(a_{ik})_{i=1}^{\infty}$ denotes the element
 corresponding to the element whose $k$th coordinate is $1$ and whose other
-coordinates vanish, distributivity and the preceding observation give
+coordinates vanish,\translatornote{The French text says that the $j$th
+coordinate is $1$ when $j=i$; the column $(a_{ik})_i$ and formula~(4) show
+that $j=k$ is intended.} distributivity and the preceding observation give
 \begin{equation}
   \sum_{i=1}^{\infty}
   \left|x'_i-\sum_{k=1}^{n}a_{ik}x_k\right|^2\longrightarrow0,
@@ -3139,7 +3132,6 @@ equivalent, the notion itself remains completely unaltered.
 The theory of matrices $(a_{ik})$ of the kind considered here is due to
 Hilbert. His formal point of departure differs from ours. He considers the
 infinite bilinear form
-
 % [Source printed page 83]
 \begin{equation}
   A(x,y)=\sum_{i,k=1}^{\infty}a_{ik}x_k y_i,
@@ -3163,7 +3155,6 @@ of departure is adopted, every linear substitution leads, by the analysis
 of \hyperref[sec:56]{no.~56}, to a uniquely determined matrix $(a_{ik})$;
 inequality \eqref{eq:56:5}, together with the Cauchy--Lagrange inequality,
 places us under Hilbert's hypothesis.
-
 % [Source printed page 84]
 These two inequalities assure at the same time the convergence of
 \[
@@ -3259,7 +3250,6 @@ $A^{-1}$, satisfying
 When it exists, $A^{-1}$ is uniquely determined by \eqref{eq:60:12}; in
 fact either one of the two relations alone already determines it, provided
 an inverse is known to exist.
-
 % [Source printed page 86]
 For if $D A=E$, then
 $D=DE=DAA^{-1}=EA^{-1}=A^{-1}$. Suppose therefore that $A^{-1}$ exists,
@@ -3289,15 +3279,21 @@ maps $(x_k)$ to $(x'_i)$ and $\mathfrak A$ maps $(y_i)$ to $(y''_k)$, then
   \tag{14}\label{eq:60:14}
 \end{equation}
 These inequalities give a necessary condition for the existence of
-$A^{-1}$: the two quotients displayed in \eqref{eq:60:13} and
-\eqref{eq:60:14} must remain above some fixed number $m^2>0$. We shall show
-that this condition is also sufficient.
+$A^{-1}$: the two quotients
+\[
+  \frac{\displaystyle\sum_i\left|\sum_k a_{ik}x_k\right|^2}
+       {\displaystyle\sum_k|x_k|^2},
+  \qquad
+  \frac{\displaystyle\sum_k\left|\sum_i a_{ik}y_i\right|^2}
+       {\displaystyle\sum_i|y_i|^2}
+\]
+must remain above some fixed number $m^2>0$. We shall show that this condition
+is also sufficient.
 
 Suppose it is satisfied, and consider systems \eqref{eq:56:4} and
 \eqref{eq:58:10}, regarding $a_{ik}$, $x'_i$, and $y''_k$ as given. In
 \eqref{eq:58:11} put $\mu_1,\ldots,\mu_n,0,0,\ldots$ in place of the
 $y_i$. Applying the Cauchy--Lagrange inequality gives
-
 % [Source printed page 87]
 \[
  \left|\sum_{i=1}^{n}\mu_i x'_i\right|^2
@@ -3338,7 +3334,6 @@ The entries $a_{ik}^{(-1)}$ of the matrix corresponding to $A^{-1}$ and
 $\mathfrak A^{-1}$ may be calculated from system \eqref{eq:56:4} (or from
 \eqref{eq:58:10}): $a_{ik}^{(-1)}$ is the value of $x_k$ obtained after
 putting $x'_i=1$ and $x'_j=0$ for $j\neq i$.
-
 % [Source printed page 88]
 Once the $a_{ik}^{(-1)}$ have been found in this way, $A^{-1}$ and
 $\mathfrak A^{-1}$ are represented by
@@ -3348,17 +3343,21 @@ $\mathfrak A^{-1}$ are represented by
   y_i=\sum_{k=1}^{\infty}a_{ik}^{(-1)}y''_k.
 \]
 Formula~\eqref{eq:47:40} of the \hyperref[chap:3]{preceding chapter} gives
+\translatornote{In the French original the row involving \(a_{ik}\) is placed
+last, its entries carry \(i\) instead of \(k\), and the quotient has a prefixed
+minus sign.  Expanding formula~\eqref{eq:47:40} gives the corrected row position, index,
+and sign used here.}
 \[
- a_{ik}^{(-1)}=-\lim_{n\to\infty}
+ a_{ik}^{(-1)}=\lim_{n\to\infty}
  \frac{
  \begin{vmatrix}
  \alpha_{11}&\cdots&\alpha_{n1}\\
  \vdots&&\vdots\\
  \alpha_{1,i-1}&\cdots&\alpha_{n,i-1}\\
+ \overline{a_{1k}}&\cdots&\overline{a_{nk}}\\
  \alpha_{1,i+1}&\cdots&\alpha_{n,i+1}\\
  \vdots&&\vdots\\
- \alpha_{1n}&\cdots&\alpha_{nn}\\
- \overline{a_{1k}}&\cdots&\overline{a_{nk}}
+ \alpha_{1n}&\cdots&\alpha_{nn}
  \end{vmatrix}}
  {\begin{vmatrix}
  \alpha_{11}&\cdots&\alpha_{n1}\\
@@ -3476,8 +3475,8 @@ $B_n^{-1}$. Its bound is $1/J_n$.\footnote{For the purpose at hand it is
 enough to know that this bound does not exceed $1/J_n$, since we need only
 show that the upper bound does not increase without limit with $n$. If one
 is content with this inequality rather than exact equality, the
-Cauchy--Lagrange inequality gives, with
-$x'_i=\sum_{k=1}^{n}b_{ik}x_k$,
+ Cauchy--Lagrange inequality gives, with
+ $x'_i=\sum_{k=1}^{n}b_{ik}\overline{x_k}$,
 \[
  J_n^2\left(\sum_{i=1}^{n}|x_i|^2\right)^2
  \leq\left(\sum_{i,k=1}^{n}b_{ik}x_i\overline{x_k}\right)^2
@@ -3516,7 +3515,6 @@ those of $D^{-1}$.
 
 There is another problem requiring only finite algorithms: decompose the
 substitution
-
 % [Source printed page 92]
 $B$ in the form
 \[
@@ -3536,13 +3534,15 @@ Toeplitz calculates the coefficients of $D^{-1}$ by decomposing the
 $B_n^{-1}$ rather than the $B_n$. Let $\Delta_n$ be the determinant of the
 first $n$ rows and columns of $(b_{ik})$, and let
 $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)_n$ denote its
-first-order minors. Put
+first-order minors. Put\translatornote{The French original gives the condition
+\(i\ge k>1\), which omits every \(d_{i1}^{(-1)}\) with \(i>1\).  The identity
+immediately below requires the corrected condition \(i>1\), \(1\le k\le i\).}
 \[
  d_{11}^{(-1)}=\frac1{\sqrt{b_{11}}},\qquad
  d_{ik}^{(-1)}=
  \frac{\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)_i}
       {\sqrt{\Delta_{i-1}\Delta_i}}
- \quad(i\geq k>1),
+ \quad(i>1,\ 1\leq k\leq i),
  \qquad d_{ik}^{(-1)}=0\quad(i<k).
 \]
 If $D_1^{-1},D_2^{-1},\ldots$ are the substitutions in
@@ -3567,7 +3567,6 @@ based on the study of the series
   E+A+A^2+A^3+\cdots,
   \tag{21}\label{eq:63:21}
 \end{equation}
-
 % [Source printed page 93]
 where $A^2,A^3,\ldots$ denote the iterated substitutions
 \[
@@ -3692,7 +3691,6 @@ has no inverse. Yet its two homogeneous systems are
 \]
 which are not of the same type: in the first $x_1$ is arbitrary, whereas
 the second has only the trivial solution.
-
 % [Source printed page 96]
 The substitution $x'_k=x_k/k$ also has no inverse, since an inverse would
 map $x'_k=1/k$ to $x_k=1$, which is not an element of Hilbert space; but
@@ -3790,7 +3788,6 @@ $x_1^{(n)}=\cdots=x_n^{(n)}=0$ and $\sum_k|x_k^{(n)}|^2=1$, for which
  \left|\sum_{k=n+1}^{\infty}a_{ik}x_k^{(n)}\right|^2
 \]
 comes within $1/n$ of its upper bound $M_{R_n}^2$.
-
 % [Source printed page 99]
 The sequence $(x_k^{(n)})$ tends ordinarily to zero; therefore its images
 under $A$ tend strongly to zero:
@@ -3830,7 +3827,6 @@ $E=(E+B)(E-R_n)$ by $P_n$ gives
   P_n=P_n(E+B)(E-R_n).
 \]
 Adding $E_n-A_n-P_n-P_n(E+B)Q_n$ to both sides yields
-
 % [Source printed page 100]
 \begin{equation}
  E_n-A_n-P_n(E+B)Q_n
@@ -3869,7 +3865,6 @@ Solving for $x_{n+1},x_{n+2},\ldots$ gives
 \]
 Substitution in the equations set aside eliminates the remaining infinite
 tail and gives
-
 % [Source printed page 101]
 \begin{equation}
  \sum_{k=1}^{n}c_{ik}x_k
@@ -3906,7 +3901,6 @@ finite substitution $C_n$ has an inverse $C_n^{-1}$, regarded also as an
 infinite substitution by filling missing coefficients with zeros. Applying
 $C_n^{-1}D$ to $(x'_i)$ yields the true values of $x_1,\ldots,x_n$ and
 zeros for the remaining coordinates.
-
 % [Source printed page 102]
 Substituting those first $n$ values in the preceding expression for the
 tail shows that
@@ -3971,7 +3965,6 @@ solution is obtained by applying
  E_n+(E+B)Q_n
 \]
 to a corresponding finite solution.
-
 % [Source printed page 104]
 This is precisely the substitution whose matrix is $(d'_{ik})$; hence the
 general infinite solution is
@@ -4005,7 +3998,6 @@ But $(x_j^0)$ is the general solution of the infinite homogeneous system
 \]
 for every solution $(x_k^0)$ of the homogeneous system
 \eqref{eq:68:23}.
-
 % [Source printed page 105]
 Whenever $(x''_k)$ is so chosen, \eqref{eq:68:25} has several solutions;
 the general solution is obtained from any particular solution by adding an
@@ -4050,7 +4042,6 @@ with the coefficients of $G$ holomorphic at $\lambda_0$. Finally,
  +\lambda B(\lambda)Q_nC_n^{-1}(\lambda)D(\lambda).
 \end{split}
 \]
-
 % [Source printed page 106]
 This proves the same assertions for $(E-\lambda A)^{-1}$: in brief, the
 inverse is a meromorphic function of $\lambda$. The conclusion holds for
@@ -4089,7 +4080,6 @@ that
   M_A\leq M.
   \tag{29}\label{eq:71:29}
 \end{equation}
-
 % [Source printed page 107]
 Indeed, for every choice of the integers $l,m$ and the quantities
 $x_1,\ldots,x_m$,
@@ -4132,7 +4122,6 @@ The two hypotheses of \hyperref[sec:71]{no.~71} then hold, since
   |a_{ik}-a_{ik}^{(n)}|\leq M_{A-A_n}.
 \]
 Consequently $A_n$ tends to $A$ also in the earlier sense.
-
 % [Source printed page 108]
 In particular, $A_n(x_k)$ tends ordinarily to $A(x_k)$. More is true:
 \[
@@ -4174,7 +4163,6 @@ show that $M_{A_n}$ and every $a_{ik}^{(n)}$ have limits $M$ and $a_{ik}$.
 Thus the hypotheses of \hyperref[sec:71]{no.~71} hold and $(a_{ik})$
 defines a substitution $A$ to which $A_n$ tends. Likewise, for fixed $m$,
 $A_n-A_m$ tends to $A-A_m$.
-
 % [Source printed page 109]
 Given $\varepsilon>0$, choose $m$ so large that
 $M_{A_n-A_m}<\varepsilon$ for every $n>m$. By \eqref{eq:71:29},
@@ -4187,7 +4175,10 @@ $M_{A_n-A_m}\to0$ as $m,n\to\infty$ independently.
 
 \numberedparagraph{73}
 For the partial sums of \eqref{eq:63:21} this condition is fulfilled. Put
-$S_n=E+A+\cdots+A^{n-1}$ and suppose $n>m$. Then
+$S_n=E+A+\cdots+A^{n-1}$ and suppose $n>m$.\translatornote{The French text
+reverses the two terms in the numerator of the final fraction below.  Their
+order is corrected so that the estimate is positive for $n>m$ and $M_A<1$.}
+Then
 \[
  S_n-S_m=A^m+A^{m+1}+\cdots+A^{n-1},
 \]
@@ -4266,7 +4257,6 @@ zero every entry for which at least one index exceeds $n$. In general these
 reductions do not converge uniformly to $A$; that occurs only when $A$ is
 completely continuous. But the reductions possess an essential special
 property.
-
 % [Source printed page 111]
 Formula \eqref{eq:56:3} shows that their successive application to any
 element $(x_k)$ produces elements tending strongly to $(x'_k)$. We
@@ -4310,7 +4300,6 @@ reductions.
 
 First suppose the bounds $M_{A_n^{-1}}$ remain bounded. Then
 $A_n^{-1}$ converges uniformly and its limit is $A^{-1}$. Indeed,
-
 % [Source printed page 112]
 \[
  A_n^{-1}-A_m^{-1}=A_n^{-1}(A_m-A_n)A_m^{-1},
@@ -4379,6 +4368,9 @@ continuous. It also covers the condition $M_{R_n}\to0$ of
 continuous, and $M_{R_n}\to0$ says that these substitutions converge
 uniformly to $A$. Consequently, together with \hyperref[sec:67]{no.~67}, $M_{R_n}\to0$ is a
 necessary and sufficient condition for complete continuity of $A$.}
+\nobreak\hspace{0.12em}\translatornote{In this footnote the French original prints
+\(A_n-P_n+Q_n\) instead of \(A_n+P_n+Q_n\), and concludes with \(B\) instead
+of \(A\); both misprints are corrected above.}
 Therefore $E-A_n$ converges uniformly to $E-A$. If $(E-A)^{-1}$ exists,
 then from some index onward $(E-A_n)^{-1}$ exists and converges uniformly to
 $(E-A)^{-1}$. Thus, for completely continuous $A$, whenever $(E-A)^{-1}$
@@ -4391,7 +4383,6 @@ of \texorpdfstring{\(\lambda\)}{lambda}}\label{sec:resolvent-function}
 \numberedparagraph{78}
 Let $\lambda$ be a complex parameter and study $E-\lambda A$ from the
 standpoint of inversion.
-
 % [Source printed page 114]
 One advantage of this study is that it presents within a single object the
 two principal cases. In general there are two classes of values of
@@ -4434,7 +4425,6 @@ Let $\lambda$ and $\mu$ be ordinary values. From \eqref{eq:79:32},
 \]
 Multiplying on the left by $E+\lambda A_\lambda$ and on the right by
 $E+\mu A_\mu$ gives
-
 % [Source printed page 115]
 \[
  (\mu-\lambda)(E+\lambda A_\lambda)(E+\mu A_\mu)
@@ -4487,7 +4477,6 @@ identity gives
   \leq|\lambda_n-\lambda_m|M^2.
 \]
 Hence
-
 % [Source printed page 116]
 $A_{\lambda_n}$ converges uniformly to a substitution $A^*$. Then
 $E+\lambda_nA_{\lambda_n}$ converges uniformly to
@@ -4531,7 +4520,6 @@ $\lambda$ satisfying
   |\lambda-\mu|<\frac1{M_{A_\mu}}
 \]
 is ordinary.
-
 % [Source printed page 117]
 For
 \begin{align*}
@@ -4619,7 +4607,6 @@ Hence every value ordinary for $A$ is ordinary for $A^{(1)}$, with inverse
 \]
 An analogous calculation shows that $\lambda$ is ordinary for
 $A-A^{(1)}$ and that the corresponding inverse is
-
 % [Source printed page 119]
 \[
  E+\lambda A_\lambda-\lambda A^{(0)}A_\lambda
@@ -4678,7 +4665,6 @@ relations
  \qquad
  E-\lambda A=(E-\lambda C)(E-\lambda B)
 \]
-
 % [Source printed page 120]
 show that the two systems have exactly the same solutions. These solutions
 also satisfy the homogeneous system corresponding to $E-A^{(0)}$, since
@@ -4719,7 +4705,7 @@ But $A^{(0)}$ is completely continuous.
 % Begin inlined .parts/pages_121_180.tex
 % [Source printed page 121]
 If a completely continuous substitution is applied to Hilbert space, the
-resulting elements are linear expressions in a finite number of those elements.
+resulting elements can be expressed as linear combinations of finitely many of them.
 Thus the study of the one-to-one
 correspondence defined by \(A\) on the set of principal elements---and hence the
 study of \(A_\lambda\) in a neighborhood of \(\lambda_0\)---reduces to that of a
@@ -4736,7 +4722,7 @@ discussion.  A reader versed in the theory of integral equations will have
 recognized from the very beginning the parallelism between our arguments and
 certain more or less recent investigations belonging to that theory.\footnote{Cf.,
 for example, E.~Goursat, ``Recherches sur les équations intégrales linéaires,''
-\emph{Annales de la Faculté des Sciences de Toulouse}, vol.~XI (1908), pp.~5--98.}
+\emph{Annales de la Faculté des Sciences de Toulouse}, vol.~X (1908), pp.~5--98.}
 This parallelism is immediately explained by observing that the two theories,
 that of integral equations and that of linear substitutions in infinitely many
 variables, are special cases of a much more general theory, namely the theory of
@@ -4854,7 +4840,7 @@ infinitely many variables?  Yes.  In the memoir already mentioned many times,
 Hilbert proved that every real bounded quadratic form in infinitely many
 variables can be decomposed in a manner analogous to \eqref{eq:84:2} and
 \eqref{eq:84:3}; only, in general, finite sums must be replaced by two kinds of
-unlimited process.  On the one hand, one must sum a countable infinity of terms
+infinite processes.  On the one hand, one must sum a countable infinity of terms
 analogous to those in \eqref{eq:84:2} and \eqref{eq:84:3}; on the other, one
 must integrate with respect to a continuous parameter.  I observed elsewhere
 that these two procedures may be united by using the notion of the Stieltjes
@@ -4897,7 +4883,7 @@ quantities \(\mu_j\) are respectively equal to the minimum \(m\) and maximum
 \(\sum_{k=1}^{n}x_k^2=1\); this follows immediately from our decomposition
 formulas.  Consequently, \emph{the set of values of the form
 \eqref{eq:85:5}, varied under the same condition, lies entirely between the two
-extreme values of \(f(\mu)\) on the interval \((m,M)\).}
+ extreme values of \(f(\mu)\) on the interval \([m,M]\).\translatornote{The French source uses \((m,M)\), here and throughout this chapter, for an interval including its endpoints.  Modern bracket notation is used in the translation.}}
 
 \section{Quadratic Forms in Infinitely Many Variables. Symbolic Sequences and Products}
 
@@ -5077,9 +5063,9 @@ to the limit and using \eqref{eq:88:9}, we see that:
 
 \emph{The set of values of the form \(f(A)\), varied subject to \(E=1\), lies
 between the two extreme values of \(f(\mu)\), with \(\mu\) ranging over the
-interval \((m,M)\).}
+ interval \([m,M]\).}
 
-In particular, if \(f(\mu)>0\) throughout the interval \((m,M)\), then \(f(A)\)
+In particular, if \(f(\mu)>0\) throughout the interval \([m,M]\), then \(f(A)\)
 is a positive quadratic form.
 
 \numberedparagraph{89}
@@ -5100,7 +5086,7 @@ We shall see that the correspondence may be extended to a much wider field of
 functions in such a way that all three stated properties remain valid.
 
 The passage from polynomials to continuous functions is immediate.  By the
-well-known theorem of Weierstrass, every function continuous on \((m,M)\) can be
+well-known theorem of Weierstrass, every function continuous on \([m,M]\) can be
 uniformly approximated there by a sequence of polynomials.  Every such sequence
 corresponds to a sequence of quadratic forms; by what precedes, this sequence
 also converges uniformly.  It therefore has a limiting form, which we make
@@ -5126,11 +5112,11 @@ on the contrary, discontinuous functions are essential.}
 
 \numberedparagraph{90}
 Consider a sequence of polynomials \([f_n(\mu)]\).  Suppose that
-\(f_1(\mu)\le f_2(\mu)\le f_3(\mu)\le\cdots\) on the interval \((m,M)\); we
+\(f_1(\mu)\le f_2(\mu)\le f_3(\mu)\le\cdots\) on the interval \([m,M]\); we
 express this by saying that the sequence is increasing.  Suppose also that it is
 bounded.  Then the sequence tends
 % [Source printed page 131]
-on \((m,M)\) to a bounded function \(f(\mu)\).  On the other hand, by I and II,
+on \([m,M]\) to a bounded function \(f(\mu)\).  On the other hand, by I and II,
 the forms \(f_n(A)\) also constitute an increasing bounded sequence; they remain
 \(\le E\) times the upper bound of \(f(\mu)\).  Consequently, the \(f_n(A)\)
 tend to a limiting form, which also remains \(\le E\) times that upper bound.
@@ -5156,10 +5142,10 @@ be arbitrary.  Hold \(m\) and \(\varepsilon\) fixed and run through the sequence
 \]
 would form a sequence of closed sets, each containing those that follow, and at
 least one point \(\mu^*\) would belong to all of them.  Then
-\(f(\mu^*)\ge f_m(\mu^*)-\varepsilon\ge g(\mu^*)\), contrary to the hypothesis.
+\(f(\mu^*)>f_m(\mu^*)-\varepsilon\ge g(\mu^*)\), contrary to the hypothesis.
 Thus for all sufficiently large \(n\), \(f_m-\varepsilon<g_n\), and therefore
 \(f_m(A)-\varepsilon E<g_n(A)\).  This implies
-\(f_m(A)-\varepsilon E\le g(A)\), and since \(m\) and \(\varepsilon\) are
+\(f_m(A)-\varepsilon E<g(A)\), and since \(m\) and \(\varepsilon\) are
 arbitrary, \(f(A)\le g(A)\), as was to be proved.
 
 The fact that the limiting form depends only on the limiting function is the
@@ -5309,8 +5295,8 @@ The correspondence between the functions \(f(\mu)\) and the quadratic forms
 \(\lambda E-A\), and also other related quadratic forms called \emph{spectral
 forms}.
 
-Indeed, let \(\lambda\) be a real number outside the interval \((m,M)\).  The
-function \(f(\mu)=1/(\lambda-\mu)\) is continuous on \((m,M)\), and hence a form
+Indeed, let \(\lambda\) be a real number outside the interval \([m,M]\).  The
+function \(f(\mu)=1/(\lambda-\mu)\) is continuous on \([m,M]\), and hence a form
 \(f(A)\) corresponds to it.  The function \(g(\mu)=\lambda-\mu\) corresponds to
 the form \(\lambda E-A\), and the product \(f(\mu)g(\mu)=1\) corresponds to the
 form \(E\).  Consequently,
@@ -5343,12 +5329,12 @@ in accordance with \hyperref[sec:73]{no.~73}.
 The use of discontinuous functions will enable us to carry the study of our
 correspondence farther.  Let \(f(\mu)\)
 % [Source printed page 136]
-be continuous on the interval \((m,M)\), endpoints included.  We may suppose it
+be continuous on the interval \([m,M]\), endpoints included.  We may suppose it
 defined from \(-\infty\) to \(+\infty\), completing the definition, for example,
 by putting \(f(\mu)=f(m)\) for \(\mu<m\) and \(f(\mu)=f(M)\) for \(\mu>M\).
-One could remain within \((m,M)\), but the notation would then have certain
+One could remain within \([m,M]\), but the notation would then have certain
 disadvantages.  In any event it would suffice to use, in place of
-\(( -\infty,+\infty)\), a finite interval \((m-\varepsilon,M+\varepsilon)\),
+\(( -\infty,+\infty)\), a finite interval \([m-\varepsilon,M+\varepsilon]\),
 where \(\varepsilon>0\) is arbitrary.  For definiteness we shall use
 \(( -\infty,+\infty)\).
 
@@ -5357,9 +5343,13 @@ ranging from \(-\infty\) to \(+\infty\), so that the oscillation of \(f(\mu)\)
 on each interval is at most \(\omega\).  Let \(\mu_k\) be an arbitrary point of
 \(I_k\).  Define the discontinuous function \(f'\) by setting
 \(f'=f(\mu_k)\) in the interior and at the left endpoint \(\xi_k\) of \(I_k\),
-for every \(k\).  Since \(f'\) is the limit of an increasing sequence of
-continuous functions, the established correspondence attaches to it a uniquely
-determined form \(f'(A)\).  Introduce also the functions \(f_\xi(\mu)\), one for
+for every \(k\).  Since \(f'\) is the difference of two functions, each of
+which is the limit of an increasing sequence of continuous functions, the
+extended correspondence attaches to it a uniquely determined form
+\(f'(A)\).\translatornote{The French original says that \(f'\) itself is the
+limit of an increasing sequence of continuous functions.  That need not hold
+at an upward jump; the difference-of-two statement is the one justified by the
+preceding extension of the correspondence.}  Introduce also the functions \(f_\xi(\mu)\), one for
 each point \(\xi\), defined by \(f_\xi(\mu)=1\) for \(\mu<\xi\), and
 \(f_\xi(\mu)=0\) for \(\mu\ge\xi\).  To simplify the notation put
 \(f_\xi(A)=A_\xi\).  For \(\xi\le m\), \(A_\xi=0\); for \(\xi>M\),
@@ -5382,7 +5372,6 @@ In other words, the right-hand side of \eqref{eq:94:13} is an approximation to
 \(f(A)\), with error at most \(\omega E\).  Now \(\omega\) may be made
 arbitrarily small by choosing the lengths of the intervals \(I_k\) sufficiently
 small.  Passing to the limit gives
-
 % [Source printed page 137]
 \begin{equation}
   f(A)=\int_{-\infty}^{+\infty}f(\xi)\,dA_\xi.
@@ -5432,14 +5421,16 @@ fonctionnelles,'' \emph{Comptes rendus}, February 9, 1903, and which I succeeded
 in expressing by a single integral by using the Stieltjes integral, ``Sur les
 opérations fonctionnelles linéaires,'' \emph{Comptes rendus}, November 29, 1909.
 Cf. also the more detailed memoir, ``Sur certains systèmes singuliers d'équations
-intégrales,'' \emph{Annales de l'École Normale} (1911), pp.~31--62, and, in
+intégrales,'' \emph{Annales de l'École Normale} (1911), pp.~33--62, and, in
 particular for the correspondence considered here, my note cited on p.~124.
 
 Formula \eqref{eq:94:14} could easily be extended to forms corresponding to
 discontinuous functions; one need only modify Stieltjes's definition to a
 greater or lesser extent.  Cf. also H.~Lebesgue, ``Sur les intégrales de
 Stieltjes et les opérations fonctionnelles linéaires,'' \emph{Comptes rendus},
-January 12, 1910.}  In particular, putting
+January 12, 1910.}\nobreak\hspace{0.12em}\translatornote{The French original prints pp.~31--62 for
+Riesz's ``Sur certains systèmes singuliers d'équations intégrales''; the
+article begins on p.~33.}  In particular, putting
 \(f(\mu)=1/(\lambda-\mu)\), we obtain
 \begin{equation}
   (\lambda E-A)^{-1}=\int_{-\infty}^{\infty}
@@ -5454,14 +5445,13 @@ ordinary value, that is, every value for which the inverse
 which \(A_{\xi_{k+1}}-A_{\xi_k}\) vanishes.  For functions \(f(\mu)\) which do
 not become infinite, the meaning of the integral is unchanged.  With this
 convention, it is first easy to see that \eqref{eq:95:15} applies for every
-\(\lambda\) outside \((m,M)\): near \(\xi=\lambda\), \(A_\xi\) remains constant.
+\(\lambda\) outside \([m,M]\): near \(\xi=\lambda\), \(A_\xi\) remains constant.
 I assert that \eqref{eq:95:15} holds for every ordinary value of \(\lambda\).
 Suppose, indeed, that the nondecreasing function \(A_\xi\) does not remain
 constant on any interval containing \(\lambda\); in particular it will not be
 constant on \(I=(\lambda-h,\lambda+h)\).  Put \(f(\mu)=1\) in the interior and
 at the left endpoint of \(I\), and zero elsewhere.  Plainly \(f^2(\mu)=f(\mu)\),
 and hence
-
 % [Source printed page 139]
 \(f(A)f(A)=f(A)\).  By hypothesis, the nonnegative form
 \(f(A)=A_{\lambda+h}-A_{\lambda-h}\) does not vanish identically; that is, it is
@@ -5498,7 +5488,7 @@ spectrum, \(A^{-1}\) exists and
   A^{-1}=\int_{-\infty}^{\infty}\frac{dA_\xi}{\xi}.
 \]
 
-The spectrum is contained in the closed interval \((m,M)\).  Moreover,
+The spectrum is contained in the closed interval \([m,M]\).  Moreover,
 \emph{the two endpoints \(m\) and \(M\) always belong to the spectrum}.  Indeed,
 by its definition the spectrum is a closed set;
 % [Source printed page 140]
@@ -5518,7 +5508,7 @@ Since \(A_\xi\) is monotone, these formulas imply
   m'E\le A\le M'E.
 \]
 Thus \(m'\le m\) and \(M'\ge M\).  But there are no singular values outside
-\((m,M)\); consequently \(m'=m\) and \(M'=M\).
+\([m,M]\); consequently \(m'=m\) and \(M'=M\).
 
 \numberedparagraph{96}
 To carry the study of the spectrum farther, introduce alongside \(A_\xi\) another
@@ -5582,35 +5572,35 @@ orthogonal to one another.}
 \numberedparagraph{97}
 There is a very intimate relation between the forms \(A_\xi\) and \(P_\xi\),
 which we shall now establish.  To display it clearly, introduce also the form
-\(A_\xi^+(x,x)\); by this we mean the form corresponding to the function
+\(A_\xi^{\pm}(x,x)\); by this we mean the form corresponding to the function
 \(f(\mu)=1\) for \(\mu\le\xi\) and \(f(\mu)=0\) for \(\mu>\xi\).  Plainly,
 \[
-  P_\xi=A_\xi^+-A_\xi.
+  P_\xi=A_\xi^{\pm}-A_\xi.
 \]
-Regard \(A_\xi\) and \(A_\xi^+\) as functions of \(\xi\).  They are monotone:
+Regard \(A_\xi\) and \(A_\xi^{\pm}\) as functions of \(\xi\).  They are monotone:
 as \(\xi\) increases, they too increase, or at least do not decrease.  Thus
 the four limits
-\(A_{\xi-0},A_{\xi+0},A^+_{\xi-0},A^+_{\xi+0}\) exist.  Moreover, since
-\(A_\xi^+\ge A_\xi\) always, while for \(\varepsilon>0\)
+\(A_{\xi-0},A_{\xi+0},A^{\pm}_{\xi-0},A^{\pm}_{\xi+0}\) exist.  Moreover, since
+\(A_\xi^{\pm}\ge A_\xi\) always, while for \(\varepsilon>0\)
 \[
-  A^+_{\xi-\varepsilon}\le A_\xi,
-  \qquad A_{\xi+\varepsilon}\ge A_\xi^+,
+  A^{\pm}_{\xi-\varepsilon}\le A_\xi,
+  \qquad A_{\xi+\varepsilon}\ge A_\xi^{\pm},
 \]
 we have
 \[
-  A_{\xi-0}\le A^+_{\xi-0}\le A_\xi,
+  A_{\xi-0}\le A^{\pm}_{\xi-0}\le A_\xi,
   \qquad
-  A^+_{\xi+0}\ge A_{\xi+0}\ge A_\xi^+.
+  A^{\pm}_{\xi+0}\ge A_{\xi+0}\ge A_\xi^{\pm}.
 \]
 Finally, the proposition stated at the end of
 \hyperref[sec:91]{no.~91} gives
-\(A_{\xi-0}=A_\xi\) and \(A^+_{\xi+0}=A_\xi^+\).  Consequently,
+\(A_{\xi-0}=A_\xi\) and \(A^{\pm}_{\xi+0}=A_\xi^{\pm}\).  Consequently,
 \[
-  A_{\xi-0}=A^+_{\xi-0}=A_\xi,
+  A_{\xi-0}=A^{\pm}_{\xi-0}=A_\xi,
   \qquad
-  A_{\xi+0}=A^+_{\xi+0}=A_\xi^+.
+  A_{\xi+0}=A^{\pm}_{\xi+0}=A_\xi^{\pm}.
 \]
-In other words, the forms \(A_\xi\) and \(A_\xi^+\), considered as functions
+In other words, the forms \(A_\xi\) and \(A_\xi^{\pm}\), considered as functions
 % [Source printed page 142]
 of \(\xi\), are continuous and equal to one another at every \(\xi\) which
 does not belong to the point spectrum.  At points \(\xi\) of the point
@@ -5620,8 +5610,8 @@ spectrum they are distinct and remain continuous only when
 
 Let us add, as is almost evident, that in most of the preceding arguments---for
 example in formula \eqref{eq:94:14}---one may replace \(A_\xi\) by
-\(A_\xi^+\), or, for symmetry, by
-\(\tfrac12(A_\xi+A_\xi^+)\).
+\(A_\xi^{\pm}\), or, for symmetry, by
+\(\tfrac12(A_\xi+A_\xi^{\pm})\).
 
 \numberedparagraph{98}
 The preceding considerations allow us, following Hilbert, to decompose the
@@ -5661,9 +5651,9 @@ It follows that
   AP(A-PA)=(A-AP)PA=APA-AP^2A=APA-APA=0.
 \]
 Thus, on putting \(AP=PA=B\) and \(A-B=C\), we have \(BC=CB=0\).
+% [Source printed page 143]
 The forms \(B\) and \(C\) are orthogonal, and their sum is \(A\).
 
-% [Source printed page 143]
 Let us calculate \(f(B)\) and \(f(C)\).  I assert that
 \begin{equation}
   f(B)=\sum_\xi f(\xi)P_\xi+f(0)(E-P).
@@ -5787,7 +5777,6 @@ Moreover, since \(C\) is strongly continuous,
 \(E(x^*,x^*)=1\), so that \(\xi E-C=0\) would possess a nonzero solution.
 Consequently no point \(\xi\ne0\) belongs to the spectrum, and the form
 \(C_\xi\), regarded as a function of \(\xi\),
-
 % [Source printed page 146]
 must be constant for \(\xi<0\) and also for \(\xi>0\).  Thus
 \[
@@ -5828,7 +5817,6 @@ the condition \(E(x,x)=1\), attains its maximum \(M\) at an element
 elements satisfy respectively the homogeneous systems \(ME-A=0\) and
 \(mE-A=0\).  Further, if \(A(x,x)\) is varied while the \((x_k)\) are also
 required to be orthogonal to certain
-
 % [Source printed page 147]
 elements satisfying systems of the same type \(\mu E-A=0\), the extremal
 elements satisfy systems of that type as well.  This fact permits one to
@@ -5908,7 +5896,6 @@ Applying \(O\) to Hilbert space replaces the forms \(A\) by
 \(f(OAO^{-1})=Of(A)O^{-1}\); thus the correspondence between \(A\) and
 \(f(A)\) is unchanged.}
 The existence
-
 % [Source printed page 149]
 of an admissible solution of \eqref{eq:96:17} for a given \(\lambda\) is such
 an invariant; indeed, admissible solutions correspond under the same
@@ -5960,7 +5947,6 @@ that the functions \(\rho_k\) satisfy \eqref{eq:101:24}.
 
 Differential solutions share, \emph{mutatis mutandis}, all the essential
 properties of admissible solutions of
-
 % [Source printed page 150]
 \eqref{eq:96:17}; all this amounts to saying that their variation over small
 intervals behaves approximately like exact solutions of
@@ -6001,9 +5987,9 @@ whose square is integrable, the integral
 \[
   \int_a^b\left[f(\mu)-\sum_{k=1}^{n}c_k\varphi_k(\mu)\right]^2d\mu
 \]
-can be made arbitrarily small by a suitable choice of \(n\) and the \(c_k\).
-
+can be made arbitrarily small
 % [Source printed page 151]
+by a suitable choice of \(n\) and the \(c_k\).
 This last property is expressed by saying that the system
 \([\varphi_k(\mu)]\) is \emph{complete}.\footnote{As an example of a
 normalized, complete orthogonal system on \((-\pi,\pi)\), take
@@ -6045,7 +6031,6 @@ It follows that, as \(n\to\infty\),
   \longrightarrow0;
 \]
 that is,
-
 % [Source printed page 152]
 \[
   \int_a^b[f(\mu)]^2d\mu=\sum_{k=1}^{\infty}f_k^2.
@@ -6096,17 +6081,17 @@ It follows that the coefficients of \(f(A)\) are
   \int_a^b f[u(\mu)]\varphi_i(\mu)\varphi_k(\mu)\,d\mu.
 \]
 This expression immediately opens the way to the study of the spectrum and
-the spectral forms.  Let \(\mathcal G_\xi,\mathcal G_\xi^+,\mathcal G'_\xi\)
+the spectral forms.  Let \(\mathfrak E_\xi,\mathfrak E_\xi^{\pm},\mathfrak E'_\xi\)
 denote the sets of values \(\mu\) for which, respectively,
 \(u(\mu)<\xi\), \(u(\mu)\le\xi\), and \(u(\mu)=\xi\).  The coefficients of
-\(A_\xi,A_\xi^+,P_\xi\) are given by
+\(A_\xi,A_\xi^{\pm},P_\xi\) are given by
 \[
   \int \varphi_i(\mu)\varphi_k(\mu)\,d\mu,
 \]
-where the integral extends over \(\mathcal G_\xi,\mathcal G_\xi^+\), and
-\(\mathcal G'_\xi\), respectively.  If, for example, \(u(\mu)\) is continuous
+where the integral extends over \(\mathfrak E_\xi,\mathfrak E_\xi^{\pm}\), and
+\(\mathfrak E'_\xi\), respectively.  If, for example, \(u(\mu)\) is continuous
 and has \(m\) and \(M\) as its extreme values, the spectrum is the interval
-\((m,M)\).  If it takes neither the value \(\xi\) nor neighboring values,
+\([m,M]\).  If it takes neither the value \(\xi\) nor neighboring values,
 then \(\xi\) and its neighborhood do not belong to the spectrum.  Finally, if
 it takes the value \(\xi\) throughout an interval, then \(\xi\) belongs to the
 point spectrum.
@@ -6135,7 +6120,6 @@ the form
 \[
   A(x,x)=\sum_{i,k=-\infty}^{+\infty}a_{ik}x_ix_k,
 \]
-
 % [Source printed page 154]
 where
 \begin{align*}
@@ -6153,11 +6137,11 @@ Then \(A(x,x)\) is the sum of the two forms
 \]
 The form \(A^{(1)}\) corresponds to the even function
 \[
-  u_1(\mu)=\frac{u(\mu)+u(-\mu)}2,
+  u^{(1)}(\mu)=\frac{u(\mu)+u(-\mu)}2,
 \]
 and \(A^{(2)}\) to the odd function
 \[
-  u_2(\mu)=\frac{u(\mu)-u(-\mu)}2.
+  u^{(2)}(\mu)=\frac{u(\mu)-u(-\mu)}2.
 \]
 These forms belong to two very special types.  The first, corresponding to
 even functions, was first considered by Toeplitz; we shall discuss it in the
@@ -6175,10 +6159,10 @@ The preceding integrals give
   \qquad a_{ik}=0\quad(i+k=0).
 \]
 
-The extreme values of \(u(\mu)=\mu\) on \((-\pi,\pi)\) are \(-\pi\) and
-\(\pi\)\translatornote{The printed text writes \(u(\mu)=\mu\) here, although
-the function just chosen is the preceding piecewise function.  Both functions
-have lower and upper bounds \(-\pi\) and \(\pi\).}; hence these are also the
+The lower and upper bounds of the piecewise-defined function \(u(\mu)\) on
+\((-\pi,\pi)\) are \(-\pi\) and \(\pi\)\translatornote{The French text
+mistakenly writes \(u(\mu)=\mu\) here; the statement concerns the piecewise
+function just defined.}; hence these are also the
 lower and upper bounds of \(A(x,x)\), and therefore, by
 \hyperref[sec:85]{no.~85}, of the corresponding bilinear form
 \(A(x,y)\).  These forms include, in particular, the two forms considered by
@@ -6190,7 +6174,6 @@ Hilbert:
 \]
 The first is obtained from \(A(x,x)\) by putting
 \(x_0=x_{-1}=x_{-2}=\cdots=0\); the second
-
 % [Source printed page 155]
 is obtained from \(A(x,y)\) by putting
 \(x_0=x_{-1}=x_{-2}=\cdots=0\),
@@ -6200,16 +6183,22 @@ between \(-\pi\) and \(\pi\).
 
 The special interest of these forms lies in the fact that they stand, so to
 speak, on the boundary of the class of bounded forms.  Indeed, very similar
-expressions fail to represent bounded forms.  Consider, for example,
+expressions fail to represent bounded forms.  Consider, for example, the
+following expression.\translatornote{The French proof treats all \(\alpha<1\)
+with the first estimate below, which directly applies only when
+\(0\le\alpha<1\).  The omitted case \(\alpha<0\) is supplied separately.}
 \[
   \sum_{i,k=1}^{\infty}\frac{x_ix_k}{(i+k)^\alpha},
-  \qquad 0<\alpha<1.
+  \qquad \alpha<1.
 \]
 Put \(x_1=x_2=\cdots=x_n=1/\sqrt n\) and
-\(x_{n+1}=x_{n+2}=\cdots=0\), consistently with \(E(x,x)=1\).  All terms for
-which \(i+k\le n+1\) are at least \(1/[n(n+1)^\alpha]\), and there are more
-than \(n(n+1)/2\) of them; thus the value of the expression exceeds
-\(\tfrac12(n+1)^{1-\alpha}\), and grows without bound with \(n\).  Likewise,
+\(x_{n+1}=x_{n+2}=\cdots=0\), consistently with \(E(x,x)=1\).  If
+\(0\le\alpha<1\), all terms for which \(i+k\le n+1\) are at least
+\(1/[n(n+1)^\alpha]\), and there are
+\(1+2+\cdots+n=n(n+1)/2\) of them; thus the value of the expression is at least
+\(\tfrac12(n+1)^{1-\alpha}\), and grows without bound with \(n\).  If
+\(\alpha<0\), all \(n^2\) nonzero terms are at least \(2^{-\alpha}/n\), so
+their sum is at least \(2^{-\alpha}n\) and is again unbounded.  Likewise,
 making the same choice in
 \[
   \mathop{\sum_{i,k=1}^{\infty}}_{i\ne k}\frac{x_ix_k}{|i-k|}
@@ -6266,7 +6255,6 @@ where the coefficients \(P_1(z),\ldots,P_n(z)\) have Laurent expansions
   P_m(z)=\sum_{k=-\infty}^{+\infty}a_{mk}z^k,
   \tag{3}\label{eq:104:3}
 \end{equation}
-
 % [Source printed page 157]
 convergent in the circular annulus \(r<|z|<R\).  From the investigations of
 Fuchs it is known that there exists at least one integral of the form
@@ -6317,7 +6305,6 @@ To put \eqref{eq:105:4} into the form
   \qquad i=-\infty,\ldots,+\infty,
   \tag{5}\label{eq:105:5}
 \end{equation}
-
 % [Source printed page 158]
 with \(\psi_{ii}=1\) for every \(i\), put
 \[
@@ -6363,7 +6350,6 @@ By the hypothesis on \(D\), there is a constant \(C_1\) such that
 \[
   \frac1{|\varphi_0(\rho+i)|}<\frac{C_1}{(1+|i|)^n},
 \]
-
 % [Source printed page 159]
 and a constant \(C_2\) such that
 \(|\rho+i|<C_2(1+|i|)\).  Consequently,
@@ -6408,7 +6394,6 @@ and \(R(0)=R(\infty)=1\).  The poles of \(R\) necessarily have the form
 \]
 where \(P\) is a polynomial.  Let
 \(\omega^{(1)},\omega^{(2)},\ldots\)
-
 % [Source printed page 160]
 be the roots of \(P\), and write
 \[
@@ -6509,14 +6494,15 @@ factor, equations \eqref{eq:105:4} have the unique solution
   \sum_{k=-\infty}^{+\infty}M_{ik}(\rho')z^k
   =\Delta_i(\rho',z)
 \]
-converges whenever \(r<|z|<R\).  Therefore
+converges
+% [Source printed page 162]
+whenever \(r<|z|<R\).  Therefore
 \[
   z^{\rho'}\Delta_i(\rho',z)
 \]
 is the required solution \(u(z)\) for \(\rho=\rho'\), and it is unique up to
 a constant factor.
 
-% [Source printed page 162]
 We have supposed that for \(\rho=\rho'\) there is a minor
 \(M_{ik}(\rho')\ne0\).  This is always so when \(\rho'\) is a simple root of
 \(\Delta(\rho)\).  Indeed, the formula
@@ -6552,9 +6538,10 @@ the original memoir.\footnote{H.~von Koch, ``Sur les intégrales régulières de
 
 \numberedparagraph{108}
 The reader is doubtless aware of the special importance recently attached to
-the theory of integral equations.
-
+the theory of
 % [Source printed page 163]
+integral equations.
+
 The fundamental principles of this young theory have already been set forth in
 excellent treatises, and I may confine myself to the questions most closely
 connected with our subject.
@@ -6571,7 +6558,8 @@ vol.~LXVI (1908), pp.~273--324; M.~Plancherel, ``Note sur les équations
 intégrales singulières,'' \emph{Rivista di Fisica, Matematica e Scienze
 Naturali} (Pavia, 1909), pp.~37--53; A.~J.~Pell, ``Biorthogonal Systems of
 Functions,'' \emph{Transactions of the American Mathematical Society},
-vol.~XIX (1911), pp.~135--164.}
+vol.~XII (1911), pp.~135--164.}\nobreak\hspace{0.12em}\translatornote{The French original prints
+``vol.~XIX''; the article appeared in vol.~XII.}
 
 The relations between the two theories are not limited to a formal analogy;
 their objects can be put into an actual correspondence.  The germ of this
@@ -6723,7 +6711,6 @@ summable.
 
 \numberedparagraph{110}
 Consider the integral equation \eqref{eq:108:7}.  To begin with a simple
-
 % [Source printed page 167]
 case, suppose that \(H(s,t)\) and \(f(s)\) are continuous.  Using a normalized,
 complete orthogonal system of real functions \(\alpha_k(s)\), the passage from
@@ -6755,7 +6742,7 @@ which, by means of the orthogonal system \([\alpha_k(s)]\), becomes
 in the unknowns \(\psi_k\).  Every solution \((\varphi_k)\) of
 \eqref{eq:108:8} for which \(\sum_k|\varphi_k|^2\) converges corresponds to a
 summable function \(\varphi(s)\) with summable \(|\varphi(s)|^2\); the same is
-true of every admissible solution \((\psi_k)\) of \eqref{eq:110:14}.  The
+true of every admissible solution \((\psi_k)\) of \eqref{eq:110:14}.\translatornote{The French original refers here to equation~(15); equation~(14) is meant.}  The
 function
 \[
   \varphi(s)-\int_a^bH(s,t)\varphi(t)\,dt,
@@ -6763,14 +6750,18 @@ function
 whose coordinates are
 \(\varphi_i-\sum_{k=1}^{\infty}h_{ik}\varphi_k=f_i\), equals \(f(s)\), except
 perhaps on a set of measure zero.  But the coordinates determine
-\(\varphi(s)\) only up to the addition of a function whose integral is zero.
+\(\varphi(s)\) only up to the addition of a function that vanishes almost
+everywhere.\translatornote{The French original says ``a function whose integral
+is zero.''  Completeness of the orthogonal system instead implies that the
+difference has squared modulus with integral zero, hence vanishes almost
+everywhere.}
 This indeterminacy can be used to obtain an exact solution of
 \eqref{eq:108:7}: the equation itself makes the necessary correction.  Indeed,
 \[
   \varphi^*(s)=f(s)+\int_a^bH(s,t)\varphi(t)\,dt
 \]
 is continuous, has the same coordinates as \(\varphi(s)\), and hence satisfies
-\eqref{eq:108:7} completely.
+\eqref{eq:108:7} exactly.
 
 % [Source printed page 168]
 The same argument applies to \eqref{eq:110:13}.
@@ -6820,7 +6811,6 @@ function \(f'(s)\) of the same kind, in such a way that
   \qquad cf'=(cf)',
 \]
 and suppose in addition that there is a constant \(M^2\) such that, for
-
 % [Source printed page 169]
 every function \(f(s)\),
 \begin{equation}
@@ -6863,7 +6853,6 @@ in the next paragraph.
 
 \numberedparagraph{112}
 The study of a linear substitution \(A\) brings in
-
 % [Source printed page 170]
 other related substitutions: recall its transpose \(\mathfrak A\), its
 iterates \(A^k\), the inverses \(A^{-1}\) and \((E-A)^{-1}\), the substitutions
@@ -6903,14 +6892,13 @@ It shows that, to calculate \(G(s,t)\), one need only apply to \(H(s,t)\),
 regarded as a function of \(s\), the linear transformation corresponding to
 \((E-A)^{-1}\).  The legitimacy of this procedure is evident when, for
 example,
-
 % [Source printed page 171]
 the kernel is continuous; it also applies when the kernel has high
 singularities.  Everything plainly reduces to proving that the order of
 certain passages to the limit may be interchanged.
 
 The same reasoning applies to all substitutions \(f(A)\) which can be put in
-the form \(cE+K(A)A\).  I cannot enter into details without going deeply into
+the form \(cE+f_1(A)A\).  I cannot enter into details without going deeply into
 the theory of integration; readers familiar with that theory will readily
 supply the necessary arguments.
 
@@ -6923,12 +6911,12 @@ suited to the data of the problem.
 \section{Trigonometric Series}
 
 \numberedparagraph{113}
-Given a sequence extending indefinitely in both directions \((a_i)\), attach
-to it a matrix \((a_{ik})\) by putting \(a_{ik}=a_{k-i}\).  This matrix belongs
+Given a sequence extending indefinitely in both directions \((\alpha_k)\), attach
+to it a matrix \((a_{ik})\) by putting \(a_{ik}=\alpha_{k-i}\).  This matrix belongs
 to a special type which we shall call the \emph{Laurent type}, because of its
 relation to the series
 \[
-  \sum_{k=-\infty}^{+\infty}a_kz^k.
+  \sum_{k=-\infty}^{+\infty}\alpha_kz^k.
 \]
 The theory of Laurent substitutions and forms corresponding to these special
 matrices is due to Toeplitz.\footnote{O.~Toeplitz, ``Zur Transformation der
@@ -6943,7 +6931,6 @@ pp.~351--376.}
 The problem which leads most immediately to Laurent matrices is the following.
 If one seeks the Laurent expansion of the quotient of two functions given by
 their Laurent expansions, the method of undetermined coefficients
-
 % [Source printed page 172]
 plainly leads to a system of linear equations in infinitely many unknowns;
 the coefficients of these equations form the Laurent matrix corresponding to
@@ -6978,7 +6965,6 @@ The coordinates of a function \(f(s)\) relative to this system are
 \[
   f_k=\int_{-1/2}^{1/2}f(s)\overline{\varphi_k(s)}\,ds.
 \]
-
 % [Source printed page 173]
 All the results concerning orthogonal systems of real functions in
 \hyperref[sec:102]{nos.~102} and \hyperref[sec:109]{109} apply, with evident
@@ -7018,16 +7004,15 @@ with the substitution \(A=(\alpha_{k-i})\) the functional transformation
   \le M_A^2\int_{-1/2}^{1/2}|x(s)|^2ds.
   \tag{19}\label{eq:114:19}
 \end{equation}
-Let \(\mathcal C\) be the set of values \(s\) for which
+Let \(\mathfrak E\) be the set of values \(s\) for which
 \(|\alpha(-s)|>M_A\), and put \(x(s)=1\) on this set and zero elsewhere.
 Inequality \eqref{eq:114:19} gives
 \[
-  \int_{\mathcal C}|\alpha(-s)|^2ds\le M_A^2\int_{\mathcal C}ds.
+  \int_{\mathfrak E}|\alpha(-s)|^2ds\le M_A^2\int_{\mathfrak E}ds.
 \]
-Since \(|\alpha(-s)|>M_A\) on \(\mathcal C\), the set \(\mathcal C\) must
+Since \(|\alpha(-s)|>M_A\) on \(\mathfrak E\), the set \(\mathfrak E\) must
 have measure zero.  The function \(\alpha(s)\) may be modified arbitrarily
 there
-
 % [Source printed page 174]
 without changing its coordinates; consequently, we may suppose that
 \(|\alpha(s)|\le M_A\) everywhere.
@@ -7108,7 +7093,6 @@ its values plainly remain between \(m\) and \(M\).  Conversely, let
 \(\alpha(s)>M-\varepsilon\) has a nonzero measure \(\mu\); put
 \(x(s)=1/\sqrt\mu\) on this set and zero elsewhere.  The coordinates of this
 function satisfy
-
 % [Source printed page 176]
 \eqref{eq:115:22}, and \eqref{eq:115:21} gives
 \[
@@ -7135,7 +7119,10 @@ formulas\translatornote{In the printed display, the sine term in
 \eqref{eq:116:23} has \(b\) instead of \(b_k\), and the coefficient formulas
 use \(\alpha(2\pi s)\) while integrating from \(-\pi\) to \(\pi\).  The
 evident typographical errors have been corrected by writing \(b_k\) and using
-the dummy variable \(t\) in the standard coefficient formulas.}
+the dummy variable \(t\) in the standard coefficient formulas.  The printed
+identifications of \(\alpha_k\) and \(\alpha_{-k}\) also reverse the signs of
+\(ib_k\); since \(\varphi_k(s)=e^{2\pi iks}\), those signs, and the
+corresponding signs in the determinant below, are corrected here.}
 \[
   a_k=\frac1\pi\int_{-\pi}^{\pi}\alpha(t)\cos kt\,dt,
   \qquad
@@ -7148,9 +7135,9 @@ relative to \([\varphi_k(s)]\) are obtained by putting
 \[
   \alpha_0=\frac12a_0,
   \qquad
-  \alpha_k=\frac12(a_k+ib_k),
+  \alpha_k=\frac12(a_k-ib_k),
   \qquad
-  \alpha_{-k}=\overline{\alpha_k}=\frac12(a_k-ib_k).
+  \alpha_{-k}=\overline{\alpha_k}=\frac12(a_k+ib_k).
 \]
 To determine the bounds of \(\alpha(2\pi s)\), we therefore consider the
 Hermitian form \eqref{eq:115:21} formed with these quantities \(\alpha_k\).
@@ -7160,7 +7147,6 @@ Let \(m_n\) and \(M_n\) denote the bounds of the section
   [A(x,x)]_n=\sum_{i,k=0}^{n}\alpha_{k-i}x_i\overline{x_k},
   \tag{24}\label{eq:116:24}
 \end{equation}
-
 % [Source printed page 177]
 where the \(x_k\) vary subject to
 \[
@@ -7187,13 +7173,18 @@ put
   \quad(k=-n,-n+1,\ldots,n),
 \]
 with \(x_k^{(n)}=0\) for all other indices.  The relation
+\translatornote{The French original uses the subscript \(n\) here and in the
+next inequality, although \(x^{(n)}\) is supported on the indices
+\(-n,\ldots,n\).  The section is therefore \([A]_{-n,n}\), whose upper bound
+is \(M_{2n}\).}
 \[
-  \lim_{n\to\infty}[A(x^{(n)},x^{(n)})]_n=A(x,x)
+  \lim_{n\to\infty}[A(x^{(n)},x^{(n)})]_{-n,n}=A(x,x)
 \]
 shows that, for sufficiently large \(n\),
-\([A(x^{(n)},x^{(n)})]_n>M-2\varepsilon\).  Consequently
-\(M_{n-l}\) increases to \(M\) as \(n-l\to\infty\).  Similarly,
-\(m_{n-l}\to m\), or equivalently
+\([A(x^{(n)},x^{(n)})]_{-n,n}>M-2\varepsilon\).  Hence
+\(M_{2n}>M-2\varepsilon\); since \(M_n\) is nondecreasing and never exceeds
+\(M\), it follows that \(M_n\to M\).  The analogous argument gives
+\(m_n\to m\), or equivalently
 \[
   m_n\longrightarrow m,
   \qquad M_n\longrightarrow M.
@@ -7219,10 +7210,10 @@ of the function \(\alpha(2\pi s)\) having expansion \eqref{eq:116:23} are,
 as \(n\to\infty\), the limits of the largest and smallest roots of}
 \[
   \det\!\begin{pmatrix}
-    a_0-2x&a_1+ib_1&\cdots&a_n+ib_n\\
-    a_1-ib_1&a_0-2x&\cdots&a_{n-1}+ib_{n-1}\\
+    a_0-2x&a_1-ib_1&\cdots&a_n-ib_n\\
+    a_1+ib_1&a_0-2x&\cdots&a_{n-1}-ib_{n-1}\\
     \vdots&\vdots&&\vdots\\
-    a_n-ib_n&a_{n-1}-ib_{n-1}&\cdots&a_0-2x
+    a_n+ib_n&a_{n-1}+ib_{n-1}&\cdots&a_0-2x
   \end{pmatrix}=0.
 \]
 
@@ -7256,7 +7247,6 @@ problems with the following one.  The first \(n+1\) terms of the power series
   \tag{25}\label{eq:117:25}
 \end{equation}
 are given;
-
 % [Source printed page 179]
 can the remaining terms be chosen so that the series converges throughout the
 disk \(|z|<1\) and the real part of the function it represents is everywhere
