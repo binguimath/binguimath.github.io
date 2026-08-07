@@ -19,7 +19,7 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
-> The Hilbert space $l^2$ was introduced. The spectral theorem for bounded symmetric bilinear forms was proved. The Hilbert-Schmidt theorem was proved.
+> The Hilbert space $l^2$ was introduced. The spectral theorem for bounded symmetric bilinear forms was proved. The Hilbert--Schmidt theorem was proved.
 
 
 - 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
