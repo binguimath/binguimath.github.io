@@ -13,7 +13,7 @@ window.MathJax = {
 
 
 <style>
-blockquote { font-size: 0.2em; }
+blockquote { font-size: 0.85em; }
 </style>
 
 <!-- 调整quote大小 -->
