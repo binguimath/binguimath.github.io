@@ -46,6 +46,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.pdf)
 
 > Adjoints of unbounded operators were introduced. Basic properties, as well as the polar decomposition, were obtained.
+
 - 1936 Murray, von Neumann. On rings of operators.
 [tex](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
