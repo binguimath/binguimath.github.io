@@ -41,6 +41,12 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 > VN algebras and the bicommutant theorem were introduced. Abelian VN algebras were proved to be singly generated. Applications to unbounded operators (e.g. strong commutativity, unbounded normal operators) were provided.
 
+
+- 1931 von Neumann. Über Funktionen von Funktionaloperatoren. (On Functions of Functional Operators_GPT.) 
+[tex](https://binguimath.github.io/Pages/Classical/1931%20von%20Neumann_On%20Functions%20of%20Functional%20Operators_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1931%20von%20Neumann_On%20Functions%20of%20Functional%20Operators_GPT.pdf)
+
+
 - 1932 von Neumann. Über adjungierte Funktionaloperatoren. (On adjoint functional operators.) 
 [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.pdf)
