@@ -22,12 +22,12 @@ blockquote { font-size: 0.85em; }
 .literature-controls {
   display: flex;
   gap: 0.6rem;
-  margin: 0rem 0 2rem 0;
+  margin: 1rem 0 2rem 0;
 }
   </style>
 
 
-<!-- Expand all与Collapse all按键与下面的距离设为2rem -->
+<!-- Expand all与Collapse all按键与上面和下面的距离设为1rem和2rem -->
 
 
 <style>
