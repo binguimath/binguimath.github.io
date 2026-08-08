@@ -25,6 +25,17 @@ blockquote { font-size: 0.85em; }
 Below are some LaTeX and PDF files that I had ChatGPT create from early mathematical works that interest me. For works originally written in languages other than English, I also had ChatGPT translate them into English. 
 
 
+<div class="literature-controls">
+  <button type="button" onclick="toggleAllLiterature(true)">Expand all</button>
+  <button type="button" onclick="toggleAllLiterature(false)">Collapse all</button>
+</div>
+
+<!-- 一键展开和折叠 -->
+
+
+<details class="year-group" markdown="1">
+<summary><strong>1901–1920</strong></summary>
+
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
@@ -37,6 +48,14 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 
 > Hilbert's spectral theorem was reinterpreted (in Ch. 4 and 5) using functional calculus and extensions of positive linear functionals, thereby bringing it closer to its modern form. In my opinion, this monograph is the most important work in the literature on spectral theory in Hilbert spaces, and perhaps even the most important work in functional analysis. No amount of praise for this work would be excessive.
+
+
+</details>
+
+<!-- 此处是默认折叠。若要默认展开则<details open>  -->
+
+<details class="year-group" markdown="1">
+<summary><strong>1921–1940</strong></summary>
 
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
@@ -68,6 +87,8 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 - 1936 Murray, von Neumann. On rings of operators.
 [tex](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
+
+</details>
 
 
 - 1938 von Neumann. On rings of operators, reduction theory.
