@@ -65,6 +65,7 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 - 1896 Stieltjes. Recherches sur les fractions continues. (Researches on Continued Fractions.) [tex](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.pdf)
 
+> The Stieltjes integral, a key language for describing continuous spectra and hence central to 20th century spectral theory, was introduced with the motivation of studying continued fractions and the associated moment problem.
 
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
