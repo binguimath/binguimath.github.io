@@ -71,7 +71,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 </details>
 
-<!-- 此处是默认折叠。若要默认展开则<details open>  -->
+<!-- </details> 默认折叠，<details open> 默认展开  -->
 
 <details class="year-group" markdown="1">
 <summary><strong>1921–1940</strong></summary>
