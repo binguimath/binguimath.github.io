@@ -21,12 +21,12 @@ blockquote { font-size: 0.85em; }
 <style>
 .literature-controls {
   display: flex;
-  gap: 0.6rem;
+  gap: 2rem;
   margin: 1.5rem 0 2rem 0;
 }
 
 .literature-controls button {
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
 }
   </style>
