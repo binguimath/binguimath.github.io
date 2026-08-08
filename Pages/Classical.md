@@ -27,13 +27,13 @@ blockquote { font-size: 0.85em; }
 
 .literature-controls button {
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
 }
   </style>
 
 
 <!-- Expand all与Collapse all按键之间的距离设为2rem，与上面和下面的距离设为1.5rem和2rem 
-按钮调大，字体设为1rem。控制按钮内部留白上下各 0.5rem，左右各 1rem
+按钮调大，字体设为1rem。控制按钮内部留白上下各 0.25rem，左右各 0.5rem
 -->
 
 
