@@ -1,0 +1,3156 @@
+\documentclass[twoside,leqno]{article}
+
+% --------------------------------------------------------------------------
+% USER-ADJUSTABLE SETTINGS
+% Change the values in this one block to retune the page and type area.  The
+% subordinate font sizes and their leading scale automatically with the body
+% size; no page-specific breaks or fixed vertical fillers are used below.
+\providecommand{\DocumentPaperWidth}{176mm}  % ISO B5
+\providecommand{\DocumentPaperHeight}{250mm}
+\providecommand{\DocumentLeftMargin}{0.7cm}
+\providecommand{\DocumentRightMargin}{0.7cm}
+\providecommand{\DocumentTopMargin}{0.91cm}  % includes the running page number
+\providecommand{\DocumentBottomMargin}{0.91cm}
+\providecommand{\DocumentHeaderHeight}{16pt}
+\providecommand{\DocumentHeaderSeparation}{4pt}
+\providecommand{\DocumentBodyPointSize}{13}  % numerical value, in pt
+\providecommand{\DocumentLineSpread}{1.1}
+\providecommand{\DocumentEmergencyStretch}{5em} % flexible line-breaking reserve
+\providecommand{\DocumentChapterBeforeSkip}{0.6\baselineskip}
+\providecommand{\DocumentChapterAfterSkip}{\smallskipamount}
+\providecommand{\DocumentTitleToBySkip}{0.6ex}
+\providecommand{\DocumentByToAuthorSkip}{0.2ex}
+\providecommand{\DocumentTitleBlockAfterSkip}{0.7\baselineskip}
+% --------------------------------------------------------------------------
+
+\usepackage{xfp}
+\usepackage{geometry}
+\geometry{
+  paperwidth=\DocumentPaperWidth,
+  paperheight=\DocumentPaperHeight,
+  left=\DocumentLeftMargin,
+  right=\DocumentRightMargin,
+  top=\DocumentTopMargin,
+  bottom=\DocumentBottomMargin,
+  includehead,
+  headheight=\DocumentHeaderHeight,
+  headsep=\DocumentHeaderSeparation
+}
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+\usepackage{amsmath,mathtools}
+\usepackage{bm}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[unicode,pdfencoding=auto,psdextra]{hyperref}
+
+\definecolor{LinkBlue}{HTML}{1C4E80}
+\definecolor{CiteViolet}{HTML}{6A3D9A}
+\definecolor{UrlTeal}{HTML}{00796B}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=LinkBlue,
+  citecolor=CiteViolet,
+  urlcolor=UrlTeal,
+  pdfborder={0 0 0},
+  pdftitle={On Rings of Operators. II},
+  pdfauthor={F. J. Murray and J. von Neumann},
+  pdfsubject={Faithful LaTeX transcription of the 1937 paper},
+  pdfdisplaydoctitle=true
+}
+\urlstyle{same}
+
+% A genuine body face at \DocumentBodyPointSize, with proportionally scaled
+% auxiliary sizes.  newpxtext and newpxmath should be changed as a pair if a
+% user substitutes another text/math family.
+\newcommand{\ScaledFontPoint}[1]{\fpeval{\DocumentBodyPointSize*(#1)}pt}
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{\ScaledFontPoint{1}}{\ScaledFontPoint{6/5}}%
+  \abovedisplayskip \ScaledFontPoint{10/13} plus \ScaledFontPoint{2/13} minus \ScaledFontPoint{5/13}%
+  \abovedisplayshortskip 0pt plus \ScaledFontPoint{3/13}%
+  \belowdisplayshortskip \ScaledFontPoint{6/13} plus \ScaledFontPoint{3/13} minus \ScaledFontPoint{3/13}%
+  \belowdisplayskip \abovedisplayskip
+  \let\@listi\@listI}
+\renewcommand\small{\@setfontsize\small{\ScaledFontPoint{23/26}}{\ScaledFontPoint{69/65}}}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{\ScaledFontPoint{10/13}}{\ScaledFontPoint{12/13}}}
+\renewcommand\scriptsize{\@setfontsize\scriptsize{\ScaledFontPoint{9/13}}{\ScaledFontPoint{54/65}}}
+\renewcommand\tiny{\@setfontsize\tiny{\ScaledFontPoint{8/13}}{\ScaledFontPoint{48/65}}}
+\renewcommand\large{\@setfontsize\large{\ScaledFontPoint{15/13}}{\ScaledFontPoint{18/13}}}
+\renewcommand\Large{\@setfontsize\Large{\ScaledFontPoint{17/13}}{\ScaledFontPoint{102/65}}}
+\renewcommand\LARGE{\@setfontsize\LARGE{\ScaledFontPoint{20/13}}{\ScaledFontPoint{24/13}}}
+\makeatother
+\linespread{\DocumentLineSpread}
+\AtBeginDocument{\normalsize}
+
+\setlength{\parindent}{1.45em}
+\setlength{\parskip}{0pt}
+\setlist{nosep,leftmargin=2em}
+\setcounter{secnumdepth}{0}
+\emergencystretch=\DocumentEmergencyStretch
+
+% Long aligned displays may break when genuinely needed; short displays normally move intact.
+\allowdisplaybreaks[1]
+% Keep vertical spacing intrinsic instead of stretching it to fill each page.
+\raggedbottom
+
+% Outer-corner page numbers; the first page is suppressed below.
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Semantic helpers used throughout the transcription.
+% The source sets both letters of Tr in mathematical italic, not as an upright
+% operator name; keep that distinction visible throughout.
+\newcommand{\Tr}{Tr}
+\newcommand{\TrM}{Tr_M}
+\newcommand{\TrMp}{Tr_{M'}}
+\newcommand{\DM}{D_{M}}
+\newcommand{\DMp}{D_{M'}}
+\newcommand{\cH}{\mathfrak{H}}
+\newcommand{\Q}{\mathcal{Q}}
+% The source distinguishes this three-stroke operator bound from the ordinary
+% two-stroke vector norm.  Negative kerns make the strokes merge in newpx.
+\newcommand{\opnorm}[1]{\lvert\lvert\lvert#1\rvert\rvert\rvert}
+\newcommand{\RO}{\href{https://doi.org/10.2307/1968693}{R.O.}}
+\makeatletter
+\expandafter\def\csname ROlink@4\endcsname#1{\href{https://doi.org/10.1007/978-3-663-15768-7}{#1}}
+\expandafter\def\csname ROlink@15\endcsname#1{\href{https://doi.org/10.1090/coll/015}{#1}}
+\expandafter\def\csname ROlink@16\endcsname#1{\href{https://doi.org/10.1007/BF01782338}{#1}}
+\expandafter\def\csname ROlink@18\endcsname#1{\href{https://doi.org/10.1007/BF01782352}{#1}}
+\expandafter\def\csname ROlink@19\endcsname#1{\href{https://gdz.sub.uni-goettingen.de/download/pdf/PPN379400774/PPN379400774.pdf}{#1}}
+\expandafter\def\csname ROlink@22\endcsname#1{\href{https://doi.org/10.2307/1968692}{#1}}
+\newcommand{\ROcite}[1]{%
+  \@ifundefined{ROlink@#1}
+    {\href{https://doi.org/10.2307/1968693}{(#1)}}
+    {\csname ROlink@#1\endcsname{(#1)}}% 
+}
+\makeatother
+\newcommand{\SectionTarget}[1]{\phantomsection\hypertarget{sec:#1}{}}
+\newcommand{\SectionStart}[1]{%
+  \par\noindent\SectionTarget{#1}\hspace*{\parindent}\ignorespaces
+}
+\newcommand{\SectionRef}[1]{\hyperlink{sec:#1}{\S#1}}
+\newcommand{\ChapterTarget}[1]{\phantomsection\hypertarget{chap:#1}{}}
+\newcommand{\ChapterRef}[1]{\hyperlink{chap:#1}{Chapter~#1}}
+\newcommand{\StatementTarget}[1]{\phantomsection\hypertarget{stmt:#1}{}}
+\newcommand{\StatementRef}[2]{\hyperlink{stmt:#1}{#2}}
+\newcommand{\EquationTarget}[1]{\hypertarget{eq:#1}{}}
+\newcommand{\EquationRef}[2]{\hyperlink{eq:#1}{#2}}
+\newenvironment{statement}[2]{%
+  \par\medskip
+  \noindent\StatementTarget{#1}\hspace*{\parindent}\textbf{#2.}\ \itshape\ignorespaces
+}{\par}
+\newcommand{\proofhead}{\par\smallskip\noindent\textit{Proof.}\ \ignorespaces}
+\newcommand{\chapterhead}[2]{%
+  \par\addvspace{\DocumentChapterBeforeSkip}\noindent\ChapterTarget{#1}%
+  \makebox[\linewidth][c]{\bfseries\MakeUppercase{Chapter #1. #2}}%
+  \par\addvspace{\DocumentChapterAfterSkip}
+}
+\newcommand{\appendixhead}{%
+  \par\addvspace{\DocumentChapterBeforeSkip}\noindent\ChapterTarget{Appendix}%
+  \makebox[\linewidth][c]{\bfseries APPENDIX}%
+  \par\addvspace{\DocumentChapterAfterSkip}
+}
+
+\begin{document}
+\setcounter{page}{1}
+\thispagestyle{empty}
+\hypertarget{doc-start}{}
+
+\begingroup
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\par\noindent
+{\centering
+  {\Large\bfseries ON RINGS OF OPERATORS. II\footnotemark[1]}\\[\DocumentTitleToBySkip]
+  {\small BY}\\[\DocumentByToAuthorSkip]
+  {\bfseries F. J. MURRAY\footnotemark[2] AND J. von NEUMANN}\par}
+\footnotetext[1]{Presented to the Society, October 31, 1936; received by the editors July 28, 1936.}
+\footnotetext[2]{National Research Fellow.}
+\endgroup
+\vspace{\DocumentTitleBlockAfterSkip}
+
+\par\noindent\hypertarget{sec:introduction}{}\hspace*{\parindent}%
+\textbf{Introduction.} This paper is a continuation of one by the same authors:
+\href{https://doi.org/10.2307/1968693}{\textit{On rings of operators}},
+Annals of Mathematics, (2), vol.~37 (1936), pp.~116--229.
+% Editorial note: source prints the apparently superfluous comma in which, were; retained verbatim.
+It contains the solution of certain problems which, were left open there. We
+will prove the general additivity of trace $\TrM(A)$, its weak continuity, and
+certain isomorphisms between $\cH$, $M$, and $M'$ (cf. the remarks (i)--(iv) at the
+end of the above quoted paper). All these considerations refer to ``Case (II)''
+for $M$ (cf. Theorem VIII, loc. cit.).
+
+The properties of $\TrM(A)$ are established by obtaining for it a representation
+\[
+  \TrM(A)=\sum_{i=1}^{m}(Ag_i,g_i)
+\]
+(with a fixed, finite $m=1,2,\cdots$, and fixed $g_1,\cdots,g_m\in\cH$). This representation
+is remarkable, because it is obviously a close analogue of the representation
+of $\TrM(A)$ as a trace, that is, as the arithmetic mean of the diagonal
+matrix-elements of $A$ in the cases $(\mathrm I_n)$, $n=1,2,\cdots$, when $M$ is essentially
+% Editorial note: the unusual source wording ``n-(finite-) dimensional'' is retained verbatim.
+the full matrix ring of an $n$-(finite-) dimensional Euclidean space.
+
+For certain cases (with the help of which the others are then mastered)
+we have even $m=1$.
+
+In \hyperlink{chap:I}{Part I} the above representation of $\TrM(A)$ is obtained approximately.
+The technically interested reader may find it worth observing that the exhaustion
+method we use there (\hyperlink{sec:1.2}{\S\S1.2} and \hyperlink{sec:1.3}{1.3}) is analogous to certain procedures
+which can be used advantageously in the theories of measures and integration too.
+On this basis we establish the main properties of $\TrM(A)$ in \hyperlink{chap:II}{Part II},
+and then obtain the exact representation of $\TrM(A)$ in \hyperlink{chap:III}{Part III}.
+Here two maximum-problems, called (A) and (B), which seem to possess some
+independent interest too, play a decisive role.
+
+\hyperlink{chap:IV}{Part IV} is devoted to establishing an isomorphism between $\cH$, $M$, and $M'$.
+It turns out that a certain algebraic-topological extension $\Q(M)$ of $M$ is
+isomorphic to $\cH$ and that $M$ and $M'$ play in it the role of right- and
+left-multiplication. This leads to an interesting and entirely new type of infinite
+hypercomplex systems, which are at the same time Hilbert spaces. A subsequent
+paper will be devoted to their independent study.
+
+The appendix deals with the possibility of considering $M$ (in the case
+$(\mathrm{II}_1)$) as a system of matrices with continuously spread rows and columns.
+
+We will use the notations, definitions, and results of our paper
+\href{https://doi.org/10.2307/1968693}{\textit{On rings of operators}}, quoted
+above, throughout this paper. We will quote it, whenever
+necessary, as \RO{} All other quotations follow the bibliography of \RO{}
+(pp.~125--126, Nos.~(1)--(22)).
+
+The isomorphism problems of different rings $M$ of class $(\mathrm{II}_1)$ (cf. the
+remark (v) at the end of \RO{}) are not discussed here. They will be dealt with
+in a subsequent publication.
+
+Since the appearance of \RO{} the second-named author has succeeded in
+finding new representations of case $(\mathrm{II}_1)$ in terms of infinite direct products,
+which throw new light on $(\mathrm{II}_1)$ as a limiting case of the $(\mathrm I_n)$, $n=1,2,\cdots$,
+as well as a way of applying the present theory to quantum-mechanics. These
+subjects too will be discussed in papers which will follow soon.
+
+\begin{center}
+  \textsc{Contents}
+\end{center}
+\noindent\hyperlink{sec:introduction}{Introduction.}\\
+\hyperlink{chap:I}{Chapter I. Approximate form of $\TrM(A)$ (for $\alpha\geq1$).}\\
+\hspace*{2em}\hyperlink{sec:1.1}{1.1. The normalization.}\\
+\hspace*{2em}\hyperlink{sec:1.2}{1.2. The notions $E\geq\lambda$, $E\leq\lambda$ and
+$E\mathrel{\underset p\geq}\lambda$, $E\mathrel{\underset p\leq}\lambda$.}\\
+\hspace*{2em}\hyperlink{sec:1.3}{1.3. Selection of an approximately homogeneous piece.}\\
+\hspace*{2em}\hyperlink{sec:1.4}{1.4. Properties of such a piece.}\\
+\hspace*{2em}\hyperlink{sec:1.5}{1.5. Extension of the approximately homogeneous piece.}\\
+\hspace*{2em}\hyperlink{sec:1.6}{1.6. Properties of the extension.}\\
+\hspace*{2em}\hyperlink{sec:1.7}{1.7. Formulation of the result. Theorem I.}\\
+\hyperlink{chap:II}{Chapter II. Immediate consequences.}\\
+\hspace*{2em}\hyperlink{sec:2.1}{2.1. Additivity and restricted weak continuity of $\TrM(A)$. Properties I, II.}\\
+\hspace*{2em}\hyperlink{sec:2.2}{2.2. Definition of $\TrM(A)$ for all (not necessarily Hermitian) $A\in M$.}\\
+\hspace*{4em}Uniqueness. Properties III, IV.\\
+\hyperlink{chap:III}{Chapter III. The exact form of $\TrM(A)$ (for $\alpha\geq1$).}\\
+\hspace*{2em}\hyperlink{sec:3.1}{3.1. The spectral form $\int_0^1\phi(\lambda)\,dE(\lambda)$ with $\DM(E(\lambda))=\lambda$.}\\
+\hspace*{2em}\hyperlink{sec:3.2}{3.2. The maximum problems (A) and (B).}\\
+\hspace*{2em}\hyperlink{sec:3.3}{3.3. Reducibility of a $g\in\cH$ by an $E\in M$.}\\
+\hspace*{2em}\hyperlink{sec:3.4}{3.4. Decomposition of a $g$ from Theorem I.}\\
+\hspace*{2em}\hyperlink{sec:3.5}{3.5. Construction of an exact $g$ for $\TrM(A)$. Removal of the condition}\\
+\hspace*{4em}$\alpha\geq1$. Unrestricted weak continuity of $\TrM(A)$. Theorems II, III, IV.\\
+\hyperlink{chap:IV}{Chapter IV. The isomorphism of $M$, $M'$, and $\cH$ (for $\alpha=1$).}\\
+\hspace*{2em}\hyperlink{sec:4.1}{4.1. The isomorphism of $\cH$ and $\Q(M)$ with the help of a u.d.f.}\\
+\hspace*{2em}\hyperlink{sec:4.2}{4.2. The correspondences of $\cH$, $\Q(M)$, and $\Q(M')$. Criteria for u.d.}\\
+\hspace*{4em}Equivalence of u.d. for $M$ and for $M'$. Isomorphism properties of\\
+\hspace*{4em}these correspondences. Theorems V, VI.\\
+\hspace*{2em}\hyperlink{sec:4.3}{4.3. Analysis of $\Q(M)$, $\Q(M')$; their Hilbert-space character. Theorems}\\
+\hspace*{4em}VII, VIII, IX.\\
+\hspace*{2em}\hyperlink{sec:4.4}{4.4. Algebraic properties of $\Q(M)$. Roles of $M$, $M'$ in it. Properties}\\
+\hspace*{4em}$\mathrm I^0$, $\mathrm{II}^0$, $\mathrm{III}^0$, $\mathrm{IV}^0$, $\mathrm V^0$. Theorem X.\\
+\hspace*{2em}\hyperlink{sec:4.5}{4.5. Implication of a spatial isomorphism by an algebraic ring-isomorphism.}\\
+\hspace*{4em}Theorem XI.\\
+\hspace*{2em}\hyperlink{sec:4.6}{4.6. Description of further results.}\\
+\hyperlink{chap:Appendix}{Appendix. The matrix-aspect of the $M$ of class $(\mathrm{II}_1)$.}
+
+\chapterhead{I}{Approximate form of $\TrM(A)$ (for $\alpha\geq1$)}
+
+\SectionStart{1.1}
+1.1. We assume that we have given a factor $M$ in case $\mathrm{II}_1$. Now we normalize
+$\DM$ and $\DMp$ so that $C=1$ (cf. \RO{}, pp.~179--182). This means (\RO{},
+loc. cit.) that for every $f\in\cH$, $\DM(\mathfrak M_f^{M'})=\DMp(\mathfrak M_f^M)$ and that the range of $\DM$
+is the interval $0\leq x\leq1$. Let the range of $\DMp$ be the interval $0\leq x\leq\alpha$, where
+$0<\alpha\leq\infty$. In this part, we assume that $\alpha\geq1$.
+
+Now $M'$ is a factor of class $\mathrm{II}_1$ or $\mathrm{II}_{\infty}$, by \RO{}, Theorem X. In the first case
+the range of $\DMp$ is in the normalization (loc. cit.) the interval, $0\leq x\leq1$, and
+$C=1/\alpha$ (since $\DMp=1/\alpha$ times its value in the previous paragraph). Since
+$C\leq1$, we have in both cases by the discussion on page 182 of \RO{}, that
+$\Delta_0=\Delta$. By \RO{}, Definition 10.1.1, this implies that there exists an $f$ such
+that $\DM(\mathfrak M_f^{M'})=1$. Since we can pass from the normalization of this paragraph
+to that of the previous paragraph by multiplying $\DMp$ by $\alpha$ and leaving
+$\DM$ unchanged, we see that this holds even with our previous normalization.
+
+Thus we have an $f$ such that $\DM(E_f^{M'})=1=\DM(1)$ or $\DM(1-E_f^{M'})=0$
+which implies $1-E_f^{M'}=0$; that is, $E_f^{M'}=1$. We now assume that such an $f$
+has been chosen and is held fixed for the following discussion.
+
+\SectionStart{1.2}
+1.2. With respect to this fixed $f$, we now define certain relations concerning
+a projection $E\in M$.
+
+\begin{statement}{definition:1.2.1}{Definition 1.2.1}
+Let $E\ne0$ be a projection, $\in M$, $\theta$ a real number $\geq0$. The
+relation $E>\theta$ ($E\geq\theta$, $E<\theta$, $E\leq\theta$) is said to hold if
+$(Ef,f)>\theta\DM(E)$ ($(Ef,f)\geq\theta\DM(E)$, $(Ef,f)<\theta\DM(E)$,
+$(Ef,f)\leq\theta\DM(E)$ respectively).
+
+The relation $E\mathrel{\underset p\geq}\lambda$ ($E\mathrel{\underset p\leq}\lambda$) is said to hold for a projection $E\ne0$ if for every
+$F\in M$ such that $F\leq E$, $F\ne0$, we have $F\geq\lambda$ ($F\leq\lambda$).
+\end{statement}
+
+\begin{statement}{lemma:1.2.1}{Lemma 1.2.1}
+Let $\{E_i\}$ be a sequence of projections (finite or infinite) with
+$E_i\in M$, $E_iE_j=\delta_j^iE_i$. Then if for every $i$, $E_i\leq\lambda$
+($E_i\geq\lambda$), and if for some $i$, say $i_0$, $E_{i_0}<\lambda$
+($E_{i_0}>\lambda$) we have $\sum_iE_i<\lambda$ ($\sum_iE_i>\lambda$).
+\end{statement}
+
+We have, for every $i$, $\lambda D(E_i)\leq(E_if,f)$, hence
+$\lambda\sum_{i\ne i_0}D(E_i)\leq\sum_{i\ne i_0}(E_if,f)$ and
+$\lambda D(E_{i_0})<(E_{i_0}f,f)$. These imply
+$\lambda\sum_iD(E_i)<\sum_i(E_if,f)$ or
+$\lambda D(\sum_iE_i)<(\sum_iE_if,f)$, which was to be shown.
+
+\begin{statement}{lemma:1.2.2}{Lemma 1.2.2}
+If $E\geq\lambda$ ($E\leq\lambda$), then there exists an $F$ such that
+$E\geq F$, $F\mathrel{\underset p\geq}\lambda$ ($F\mathrel{\underset p\leq}\lambda$).
+\end{statement}
+
+By \StatementRef{definition:1.2.1}{Definition 1.2.1} we have $E\ne0$. Suppose there is no such $F$. Then there
+must be an $E_1$, such that $E\geq E_1$, and $E_1<\lambda$. (Otherwise $E$ itself would be
+such an $F$.) Now let $\Omega$ be the first ordinal number which belongs to a cardinal
+number $\aleph>\aleph_0$. Let $\alpha$ be an ordinal number such that $\alpha<\Omega$. Let us suppose
+that for all $\beta<\alpha$ an $E_\beta$ has been defined in such a way that $E_\beta\ne0$, $E_\beta\leq E$,
+$E_\beta<\lambda$, $E_{\beta_1}E_{\beta_2}=\delta_{\beta_1,\beta_2}E_{\beta_1}$. Now if
+$E-\sum_{\beta<\alpha}E_\beta=0$, let $E_{\alpha'}$ be undefined for $\alpha'\geq\alpha$. If, however,
+$E-\sum_{\beta<\alpha}E_\beta\ne0$, by hypothesis, $E-\sum_{\beta<\alpha}E_\beta$ is not
+$\mathrel{\underset p\geq}\lambda$, hence there exists an $E_0$, with $E_0\ne0$,
+$E-\sum_{\beta<\alpha}E_\beta\geq E_0$, $E_0<\lambda$,
+$E\geq E-\sum_{\beta<\alpha}E_\beta\geq E_0$. Thus if we let $E_\alpha=E_0$, we have, if
+$E-\sum_{\beta<\alpha}E_\beta\ne0$, an $E_\alpha$ which is orthogonal to all previous $E_\beta$ and $E_\alpha<\lambda$.
+
+Now $D(E)\geq\sum_{\beta<\alpha}D(E_\beta)$ for every $\alpha$. Since $D(E_\beta)>0$, this implies that
+% Editorial note: the source's grammatically unusual singular construction is retained verbatim.
+there is only denumerably many of the numbers $D(E_\beta)$. Hence for some
+$\alpha<\Omega$, $E-\sum_{\beta<\alpha}E_\beta=0$. Inasmuch as $\alpha<\Omega$, we can re-index the $E_\beta$'s into a
+finite or a simply infinite sequence. Now $E_1<\lambda$, $E_i\leq\lambda$, and since $E=\sum_iE_i$,
+% Editorial note: source reads ``Lemma 1.1'' although the cited result is Lemma 1.2.1; wording retained verbatim and hyperlink targets the latter.
+\StatementRef{lemma:1.2.1}{Lemma 1.1} implies that $E<\lambda$, a contradiction.
+
+\begin{statement}{lemma:1.2.3}{Lemma 1.2.3}
+If $E\mathrel{\underset p\geq}\lambda$ ($E\mathrel{\underset p\leq}\lambda$), then if $E\geq F$, $F\ne0$, $F\in M$, we have
+$F\mathrel{\underset p\geq}\lambda$ ($F\mathrel{\underset p\leq}\lambda$).
+\end{statement}
+
+If $F_1$ is such that $F\geq F_1$, $F_1\ne0$ then $E\geq F\geq F_1$ and hence by
+\StatementRef{definition:1.2.1}{Definition 1.2.1}, $F_1\geq\lambda$. This statement implies that $F\mathrel{\underset p\geq}\lambda$.
+
+\SectionStart{1.3}
+1.3. Now $(1f,f)=\lVert f\rVert^2=\lVert f\rVert^2D(1)$. Now let
+$\theta_0=\lVert f\rVert^2$ which is of course not zero for $\mathfrak M_f^M=\cH$ and this precludes
+$f=0$. Thus 1 (the projection, not the number) is $\geq\theta_0$. By
+\StatementRef{lemma:1.2.2}{Lemma 1.2.2}, there exists an $E\in M$, such that
+$E\mathrel{\underset p\geq}\theta_0$. Now let $\lambda$ be the least upper bound of the numbers $\theta$ such that
+$E\mathrel{\underset p\geq}\theta$. $\lambda$ must be less than $(Ef,f)/\DM(E)$ and since $\DM(E)>0$, it must be finite.
+Let $\epsilon$ be any number $>0$. $E$ is not $\mathrel{\underset p\geq}\lambda+\epsilon$. Hence there is an $E_1$, such that
+$E\geq E_1$, and $E_1\leq\lambda+\epsilon$. \StatementRef{lemma:1.2.2}{Lemma 1.2.2} now implies that there is an $E_2$ with
+$E_1\geq E_2$ and $E_2\mathrel{\underset p\leq}\lambda+\epsilon$.
+
+Now if $F$ is such that $E\geq F$, $F\in M$, $F\ne0$, we have $F\geq\theta$ for all $\theta<\lambda$, which
+means of course that $F\geq\lambda$ and $E\mathrel{\underset p\geq}\lambda$. Now since $E\geq E_1\geq E_2$,
+\StatementRef{lemma:1.2.3}{Lemma 1.2.3} implies that $E_2\mathrel{\underset p\geq}\lambda$. Thus for some fixed $\lambda>0$, given any $\epsilon>0$, we can find a
+non-zero $E_2\in M$, such that for all $F\in M$ with the property $E_2\geq F$, we have
+\[
+  (\lambda+\epsilon)\DM(F)\geq(Ff,f)\geq\lambda\DM(F).
+\]
+
+% Editorial note: source reads $\lambda^{1/2}f$; retained verbatim despite the apparent scaling misprint.
+Now if we let $f$ be $\lambda^{1/2}f$ above, $\epsilon=\lambda(K-1)$, $E_2=E$, we see that
+
+\begin{statement}{lemma:1.3.1}{Lemma 1.3.1}
+To every $K>1$ there exists an $f$ and $E\in M$, $E\ne0$, such that
+for every $F\in M$ with the property $E\geq F$,
+\[
+  K\DM(F)\geq(Ff,f)\geq\DM(F).
+\]
+\end{statement}
+
+\SectionStart{1.4}
+1.4. We can now show
+
+\begin{statement}{lemma:1.4.1}{Lemma 1.4.1}
+Let $K$, $f$, and $E$ be as in \StatementRef{lemma:1.3.1}{Lemma 1.3.1}. Let $A\in M$ be a positive
+definite self-adjoint operator such that $EA=AE=A$. Then
+\[
+  K\TrM(A)\geq(Af,f)\geq\TrM(A).
+\]
+\end{statement}
+
+Let $c$ be the bound of $A$, $E(\lambda)$ the resolution of the identity corresponding
+to $A$. Now by \RO{}, pp.~212--213,
+\[
+  \TrM(A)=\int_0^c\lambda\,dD(E(\lambda));
+  \qquad
+  (Af,f)=\int_0^c\lambda\,d(E(\lambda)f,f).
+\]
+
+Now since $AE=A$, $E(0)\geq1-E$, and since $A$ commutes with $E$, $E$ commutes
+with all $E(\lambda)$ (cf. \ROcite{15}, Theorem~8.2). Now
+$E(\lambda)=E(\lambda)E+E(\lambda)(1-E)$. Since $E(\lambda)$ and $E$ commute,
+$E(\lambda)E=F(\lambda)$ is a projection and similarly $E(\lambda)(1-E)$ is a projection.
+For $\lambda\geq0$, we have $E(\lambda)(1-E)\leq1-E$ and also
+$E(\lambda)(1-E)\geq E(0)(1-E)\geq(1-E)^2=1-E$ and thus
+$E(\lambda)(1-E)=1-E$. So for $\lambda\geq0$, $E(\lambda)=F(\lambda)+(1-E)$.
+Now $F(\lambda)(1-E)=E(\lambda)E(1-E)=0$, hence by \RO{}, Definition 8.2.1,
+$D(E(\lambda))=D(F(\lambda))+D(1-E)$.
+Thus we have
+\begin{align*}
+  \TrM(A)
+   &=\int_0^c\lambda\,dD(E(\lambda))
+    =\int_0^c\lambda\,dD(F(\lambda))
+      +\int_0^c\lambda\,dD(1-E) \\
+   &=\int_0^c\lambda\,dD(F(\lambda))
+\end{align*}
+and
+\begin{align*}
+  (Af,f)
+   &=\int_0^c\lambda\,d(E(\lambda)f,f) \\
+   &=\int_0^c\lambda\,d(F(\lambda)f,f)
+     +\int_0^c\lambda\,d((1-E)f,f) \\
+   &=\int_0^c\lambda\,d(F(\lambda)f,f).
+\end{align*}
+
+But \StatementRef{lemma:1.3.1}{Lemma 1.3.1} now implies that if $0\leq\alpha<\beta\leq c$, then
+\[
+  K\DM(F(\beta)-F(\alpha))\geq((F(\beta)-F(\alpha))f,f)\geq\DM(F(\beta)-F(\alpha))
+\]
+which by the definition of the Riemann-Stieltjes integral yields that
+\[
+  K\TrM(A)\geq(Af,f)\geq\TrM(A).
+\]
+
+\begin{statement}{lemma:1.4.2}{Lemma 1.4.2}
+For a projection $E\ne0$, $E\mathrel{\underset p\geq}\theta$
+($E\mathrel{\underset p\leq}\theta$) is equivalent to the statement that for all positive definite $A\in M$
+such that $EA=AE=A$,
+\[
+  (Af,f)\geq\theta\TrM(A)\quad(\leq\theta\TrM(A)).
+\]
+\end{statement}
+
+Since $\TrM(F)=\DM(F)$, $F$ a projection, the last statement implies the
+first. The converse is shown by a proof similar to that of
+\StatementRef{lemma:1.4.1}{Lemma 1.4.1}.
+
+\begin{statement}{lemma:1.4.3}{Lemma 1.4.3}
+Let $A\in M$ be such that $EA=AE=A$, then
+$\lVert A^*f\rVert^2\leq K\lVert Af\rVert^2$, if $E$, $f$, $K$ are as in
+\StatementRef{lemma:1.3.1}{Lemma 1.3.1}.
+\end{statement}
+
+$A^*A$ is positive definite and $\in M$. Furthermore $AE=EA=A$ implies
+$EA^*=A^*E=A^*$, and thus $EA^*A=A^*A=A^*AE$. Hence
+\StatementRef{lemma:1.4.1}{Lemma 1.4.1} applies to $A^*A$ and we have
+\EquationTarget{alpha}
+\begin{equation*}
+  K\TrM(A^*A)\geq(A^*Af,f)\geq\TrM(A^*A). \tag{$\alpha$}
+\end{equation*}
+Using the canonical decomposition (\RO{}, Definition 4.4.1) for $A^*$ we have
+$A^*=UB$, where $U$ may be taken as unitary. (In the finite cases, we see
+(cf. \RO{}, Lemma 16.1.1) that there exists a partially isometric $V$ with initial
+set $(f;A^*f=0)$ and final set $(f;Af=0)$. Now if $W$ is as in \RO{}, Definition
+4.4.1, for $A=A^*$, let $U=W+V$.) $B$ is self-adjoint and equals $(AA^*)^{1/2}$. Now
+$A=BU^*=BU^{-1}$ and hence $A^*A=UBBU^{-1}=UB^2U^{-1}=UAA^*U^{-1}$. Hence
+\EquationTarget{beta}
+\begin{equation*}
+  \TrM(A^*A)=\TrM(UAA^*U^{-1})=\TrM(AA^*). \tag{$\beta$}
+\end{equation*}
+
+Substituting $A^*$ for $A$ in our previous result we have
+\EquationTarget{gamma}
+\begin{equation*}
+  K\TrM(AA^*)\geq(AA^*f,f)\geq\TrM(AA^*). \tag{$\gamma$}
+\end{equation*}
+% Editorial note: source cites $(\phi)$ here although the preceding displayed formula is labelled $(\gamma)$; retained verbatim and hyperlink targets $(\gamma)$.
+Combining \EquationRef{alpha}{$(\alpha)$}, \EquationRef{beta}{$(\beta)$}, and
+\EquationRef{gamma}{$(\phi)$}, we obtain
+\[
+  K(A^*Af,f)\geq K\TrM(A^*A)=K\TrM(AA^*)\geq(AA^*f,f).
+\]
+Since $(A^*Af,f)=(Af,Af)=\lVert Af\rVert^2$,
+$(AA^*f,f)=(A^*f,A^*f)=\lVert A^*f\rVert^2$; this is the desired inequality.
+
+\SectionStart{1.5}
+1.5. Now if $E$ is as in \StatementRef{lemma:1.3.1}{Lemma 1.3.1}, let $n$ be the smallest integer such
+that $1/n\leq\DM(E)$. Then if $E^0\leq E$ is such that $\DM(E^0)=1/n$,
+\StatementRef{lemma:1.3.1}{Lemma 1.3.1} will hold with $E^0$ in place of $E$. Now $f$ was chosen in such a manner that
+$\mathfrak M_f^{M'}=\cH$. This implies that $\mathfrak M_{E^0f}^{M'}$ is the range of $E^0$, because since the set
+$(A'f;A'\in M')$ is dense in $\cH$, the set $(E^0A'f;A'\in M')=(A'E^0f;A'\in M')$ must be
+dense in the range of $E^0$, or $E^0=E_{E^0f}^{M'}$. Since $C=1$,
+$\DMp(E_{E^0f}^{M})=\DM(E_{E^0f}^{M'})=\DM(E^0)=1/n$.
+
+Now let $E^0=E_1$, $E_{E^0f}^{M}=E_1'$. Since $\DM(E_1)=1/n$, $\DM(1)=1$, we can find $n$
+projections $\{E_j\}$, $j=1,\cdots,n$ with the first equal to $E_1$ such that $E_j\in M$,
+$\sum_{j=1}^nE_j=1$, $E_iE_j=0$ if $i\ne j$, $\DM(E_j)=1/n$. Since
+$\DMp(E_1')=1/n$, $\DMp(1)=\alpha\geq1$, there exist $n$ projections $E_j'\in M'$,
+$j=1,\cdots,n$, with the first equal to $E_1'$ and such that $E_i'E_j'=0$ if $i\ne j$ and
+$\DMp(E_j')=1/n$. Since $\DM(E_1)=\DM(E_j)$, there is a partially isometric
+operator $W_j\in M$ with initial set the range of $E_1$ and final set the range of
+$E_j$ (cf. \RO{}, Definition 4.3.1). Similarly we have a $W_j'\in M'$ with initial
+set the range of $E_1'$ and final set $E_j'$. The relations
+$W_j^*W_j=E_1$, $W_jW_j^*=E_j$, $W_j'^*W_j'=E_1'$ and
+$W_j'W_j'^*=E_j'$ hold, also $W_jE_1=W_j$, $E_jW_j=W_j$,
+$E_1W_j^*=W_j^*$, $W_j^*E_j=W_j^*$, $W_j'E_1'=W_j'$,
+$E_j'W_j'=W_j'$, $E_1'W_j'^*=W_j'^*$, $W_j'^*E_j'=W_j'^*$
+(cf. \RO{}, Lemma 4.3.1).
+
+Let $W_j'W_jE_1f=f_j$, $E_1f=f_1$. Then
+$E_jf_j=E_jW_j'W_jE_1f=W_j'E_jW_jE_1f=W_j'W_jE_1f=f_j$ and
+$E_j'f_j=E_j'W_j'W_jE_1f=W_j'W_jE_1f=f_j$. Thus
+$E_jf_j=f_j=E_j'f_j$.
+
+Let $g=\sum_{j=1}^nf_j$, then
+$E_ig=E_i\sum_{j=1}^nf_j=E_i\sum_{j=1}^nE_jf_j
+=\sum_{j=1}^nE_iE_jf_j=E_if_i=f_i$.
+Similarly $E_i'g=f_i$. Now for any $A\in M$ if either $i\ne j$ or $k\ne l$, then
+$E_iAE_kg$ is orthogonal to $E_jAE_lg$. For inasmuch as $E_kg=f_k=E_k'g$, we have,
+\begin{align*}
+ (E_iAE_kg,E_jAE_lg)
+  &=(E_jE_iAE_kg,AE_lg)
+    =\delta_j^i(E_iAE_kg,AE_lg)\\
+  &=\delta_j^i(E_iAE_k'g,AE_l'g)
+    =\delta_j^i(E_k'E_iAg,E_l'Ag)\\
+  &=\delta_j^i(E_l'E_k'E_iAg,Ag)
+    =\delta_j^i\delta_l^k(E_k'E_iAg,Ag).
+\end{align*}
+
+These results imply that if $A\in M$, then
+\begin{align*}
+ \lVert Ag\rVert^2
+ &=\left\lVert\left(\sum_{i=1}^nE_i\right)
+        A\left(\sum_{j=1}^nE_j\right)g\right\rVert^2\\
+ &=\left\lVert\sum_{i=1}^n\sum_{j=1}^nE_iAE_jg\right\rVert^2
+  =\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jg\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jE_jg\rVert^2
+  =\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jf_j\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jW_j'W_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_j'E_iAE_jW_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_j'E_1'E_iAE_jW_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert E_1'E_iAE_jW_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jW_jE_1'f_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert E_iAE_jW_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_i^*E_iAE_jW_jf_1\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_i^*E_iAE_jW_jE_1f\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_i^*E_iAE_jW_jf\rVert^2,
+\end{align*}
+remembering that $W_j'$ is isometric on the range of $E_1'$, $W_i^*$ on the range of $E_i$
+and $W_jE_1=W_j$. Substituting $A^*$ for $A$ and interchanging $i$ and $j$ we also have
+\begin{align*}
+ \lVert A^*g\rVert^2
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert W_j^*E_jA^*E_iW_if\rVert^2\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lVert(W_i^*E_iAE_jW_j)^*f\rVert^2.
+\end{align*}
+
+But recalling the properties of $W_j$ and $W_i^*$ we have
+\[
+ E_1W_i^*E_iAE_jW_j=W_i^*E_iAE_jW_j=W_i^*E_iAE_jW_jE_1.
+\]
+Thus \StatementRef{lemma:1.4.3}{Lemma 1.4.3} with $A=W_i^*E_iAE_jW_j$ yields
+$\lVert(W_i^*E_iAE_jW_j)^*f\rVert^2
+\allowbreak\leq K\lVert W_i^*E_iAE_jW_jf\rVert^2$
+and with this, we obtain from the above equations for $\lVert Ag\rVert^2$ and
+$\lVert A^*g\rVert^2$ that $\lVert A^*g\rVert^2\leq K\lVert Ag\rVert^2$.
+
+This result may be stated as follows.
+
+\begin{statement}{lemma:1.5.1}{Lemma 1.5.1}
+If $K$ is any number $>1$, there exists a $g\in\cH$, $g\ne0$ such that for
+every $A\in M$, $\lVert A^*g\rVert^2\leq K\lVert Ag\rVert^2$. Obviously we may assume that
+$\lVert g\rVert=1$.
+\end{statement}
+
+\SectionStart{1.6}
+1.6. We now have
+
+\begin{statement}{lemma:1.6.1}{Lemma 1.6.1}
+Let $K$ and $g$ be as in \StatementRef{lemma:1.5.1}{Lemma 1.5.1}. Then if $E$ and $F$, $\in M$, are
+two projections such that $\DM(E)=\DM(F)$, then
+$K^{-1}(Fg,g)\leq(Eg,g)\leq K(Fg,g)$.
+\end{statement}
+
+Inasmuch as $\DM(E)=\DM(F)$, there exists a partially isometric operator
+$W$ such that $W^*W=F$, $WW^*=E$, $W\in M$ (cf. \RO{}, Definition 8.2.1, Definition
+6.1.1, and Lemma 4.3.1). Now
+$(Fg,g)=(W^*Wg,g)=(Wg,Wg)=\lVert Wg\rVert^2$,
+$(Eg,g)=(WW^*g,g)=(W^*g,W^*g)=\lVert W^*g\rVert^2$.
+\StatementRef{lemma:1.5.1}{Lemma 1.5.1} with $A=W$ implies $(Eg,g)\leq K(Fg,g)$.
+With $A=W^*$, the same lemma implies $(Fg,g)\leq K(Eg,g)$ or
+$K^{-1}(Fg,g)\leq(Eg,g)$. We have now shown our lemma.
+
+Suppose $E\in M$ is such that $\DM(E)=1/m$, where $m$ is an integer. Then
+there exist $m-1$ projections $E_2,\cdots,E_m$, such that when we let $E_1=E$, we
+have $\sum_{j=1}^mE_j=1$, $E_iE_j=0$, for $i\ne j$, $E_j\in M$, $\DM(E_j)=1/m$.
+Now returning to the $g$ of \StatementRef{lemma:1.5.1}{Lemmas 1.5.1} and
+\StatementRef{lemma:1.6.1}{1.6.1}, we have
+\[
+ 1=\lVert g\rVert^2=(g,g)=\left(\sum_{j=1}^mE_jg,g\right)
+   =\sum_{j=1}^m(E_jg,g).
+\]
+Let $(E_1g,g)=\alpha$. Then \StatementRef{lemma:1.6.1}{Lemma 1.6.1} implies that
+$K\alpha\geq(E_jg,g)\geq K^{-1}\alpha$, for every $j$. Summing over $j$, gives
+$Km\alpha\geq1\geq K^{-1}m\alpha$ or $K\alpha\geq1/m\geq K^{-1}\alpha$ which is the same as
+\EquationTarget{plus}
+\begin{equation*}
+ K(Eg,g)\geq\DM(E)\geq K^{-1}(Eg,g), \tag{$+$}
+\end{equation*}
+since $\DM(E)=1/m$.
+
+Let us study the class $\Sigma$ of $E$'s in $M$ which satisfy the equation
+\EquationRef{plus}{$(+)$}. Now if $F_1,\cdots,F_q$ or $F_1,F_2,\cdots$ satisfy
+\EquationRef{plus}{$(+)$} and $F_iF_j=0$, $i\ne j$, then
+$\sum_{j=1}^qF_j$ or $\sum_{j=1}^{\infty}F_j$ also satisfies
+\EquationRef{plus}{$(+)$}. But if $F\in M$ is such that $\DM(F)=q/p$,
+$F=\sum_{j=1}^qF_j$ for mutually orthogonal $F_j$'s $\in M$ with
+$\DM(F_j)=1/p$ and hence satisfying \EquationRef{plus}{$(+)$}. Thus if
+$\DM(F)=q/p$, $F$ satisfies \EquationRef{plus}{$(+)$}.
+
+Let $E$ be any projection of $M$, $\DM(E)=\alpha$. Let $\{\alpha_i\}$, $\alpha_i\geq0$ be a sequence
+of rational numbers, $\sum_{i=1}^{\infty}\alpha_i=\alpha$. Then there exists a set of mutually orthogonal
+projections $\{E_i\}$ such that $E_i\leq E$, $E_i\in M$, $\DM(E_i)=\alpha_i$. To show this,
+suppose $E_1,\cdots,E_{i-1}$ have been chosen with these properties. Then
+$\DM\left(E-\sum_{j=1}^{i-1}E_j\right)=\sum_{j=i}^{\infty}\alpha_j\geq\alpha_i$.
+Hence an $E_i$ can be chosen in such a way that $E_i\in M$ is
+$\leq E-\sum_{j=1}^{i-1}E_j$ with $\DM(E_i)=\alpha_i$. Now
+$\DM\left(E-\sum_{i=1}^{\infty}E_i\right)
+=\alpha-\sum_{i=1}^{\infty}\alpha_i=0$
+or $E=\sum_{i=1}^{\infty}E_i$. Since each $E_i$ satisfies
+\EquationRef{plus}{$(+)$}, $E$ does too. Since $E$ is arbitrary we have
+
+\begin{statement}{lemma:1.6.2}{Lemma 1.6.2}
+Let $K$ and $g$ be as in \StatementRef{lemma:1.5.1}{Lemma 1.5.1}, then for every $E\in M$
+\[
+ K(Eg,g)\geq\DM(E)\geq K^{-1}(Eg,g).
+\]
+\end{statement}
+
+\SectionStart{1.7}
+1.7. From \StatementRef{lemma:1.6.2}{Lemma 1.6.2} we can conclude, using
+\StatementRef{lemma:1.4.2}{Lemma 1.4.2}, that if $A\in M$ is positive definite, then
+\[
+ K(Ag,g)\geq\TrM(A)\geq K^{-1}(Ag,g).
+\]
+
+We can state our result as follows.
+
+\begin{statement}{theorem:I}{Theorem I}
+Let $M$ be a factor in case $\mathrm{II}_1$. Let $M$ and $M'$ be such that
+when $\DM$ and $\DMp$ are normalized in such a way that the range of $\DM$ is the
+interval $(0,1)$ and $C=1$ (cf. \SectionRef{1.1}), then the range of $\DMp$ is an interval $(0,\alpha)$
+% Editorial note: the source's consecutive ``then ... Then'' construction is retained verbatim.
+with $0<\alpha\leq\infty$, then $\alpha\geq1$. Then to every $K>1$, there exists a $g\in\cH$ such that for
+every positive definite $A\in M$,
+\[
+ K(Ag,g)\geq\TrM(A)\geq K^{-1}(Ag,g).
+\]
+\end{statement}
+
+\chapterhead{II}{Immediate consequences}
+
+\SectionStart{2.1}
+2.1. We are now able to show that $\TrM$ has the following two properties
+when $M$ is in a finite case (cf. \RO{}, Theorem VIII); that is, when $M$ is in a
+case $\mathrm I_n$ ($n=1,2,\cdots$) or $\mathrm{II}_1$.
+
+\begin{statement}{property:I}{Property I}
+For all Hermitian $A$ and $B\in M$
+\[
+ \TrM(A+B)=\TrM(A)+\TrM(B).
+\]
+\end{statement}
+
+\begin{statement}{property:II}{Property II}
+$\TrM(A)$ is weakly continuous if $A$ is subject to either of these conditions:
+\begin{enumerate}[label=(\roman*)]
+ \item $A$ is uniformly bounded (that is, $\opnorm{A}\leq D$ for some fixed $D$);
+ \item $A$ is definite.
+\end{enumerate}
+\end{statement}
+
+These properties are obviously independent of the normalization of $\DM(E)$
+and $\TrM(A)$.
+
+If $M$ is in cases $\mathrm I_n$, $n=1,2,\cdots$, these are of course well known results
+about $\TrM(A)$ (cf. \RO{}, p.~220). So we may assume $M$ to be in case $\mathrm{II}_1$.
+
+Then we have in the normalization of \RO{}, Theorem VIII, three possibilities
+for the factorization $M$, $M'$: $\mathrm{II}_1$, $\mathrm{II}_{\infty}$; $\mathrm{II}_1$, $\mathrm{II}_1$ with $C\leq1$;
+$\mathrm{II}_1$, $\mathrm{II}_1$ with $C\geq1$. The two first ones correspond to $\alpha\geq1$ in the normalization of
+\SectionRef{1.1}, and since we shall only use \StatementRef{theorem:I}{Theorem I}, from \SectionRef{1.1}, we may treat these two
+cases together.
+
+We therefore consider first the conditions under which \StatementRef{theorem:I}{Theorem I} holds:
+the normalization of \SectionRef{1.1}, and $\alpha\geq1$. We obtain an equivalent statement of
+\StatementRef{theorem:I}{Theorem I} with $A\in M$, Hermitian and not necessarily definite.
+
+Let $K$, $g$ be as in \StatementRef{theorem:I}{Theorem I}, then
+$K^{-1}(g,g)=K^{-1}\lVert g\rVert^2\leq\TrM(1)=1$ or
+$\lVert g\rVert^2\leq K$. Furthermore if $A\in M$ is Hermitian, then $A=A_1-A_2$, where $A_1$ and $A_2$
+are both positive definite and $A_1A_2=0=A_2A_1$. (Take
+$A_1=\tfrac12(A+\lvert A\rvert)$, $A_2=\tfrac12(\lvert A\rvert-A)$
+(cf. \ROcite{15}, Chapter VI, or \ROcite{19}, p.~203 ff.).) Since $A_1$ and $A_2$
+commute, $\TrM(A)=\TrM(A_1)-\TrM(A_2)$ by \RO{}, Lemma 15.3.4. It is a consequence
+% Editorial note: source prints the Arabic numeral in Theorem 1 here; retained verbatim.
+of \StatementRef{theorem:I}{Theorem 1} that, if $\epsilon=K-1$,
+\[
+ \lvert\TrM(A_1)-(A_1g,g)\rvert\leq\epsilon(A_1g,g);
+ \qquad
+ \lvert\TrM(A_2)-(A_2g,g)\rvert\leq\epsilon(A_2g,g).
+\]
+These with the above equation for $\TrM(A)$ imply
+\[
+ \lvert\TrM(A)-(Ag,g)\rvert
+ \leq\epsilon\bigl((A_1g,g)+(A_2g,g)\bigr).
+\]
+But the bounds of $A_1$ and $A_2$ are each not more than that of $A$. Also
+$\lVert g\rVert^2\leq1+\epsilon$. So if $A$ has the bound $D$, we have
+% Editorial note: source refers to this as (1) below but prints no visible tag here;
+% the target is intentionally hidden while preserving a working link.
+\EquationTarget{1}
+\[
+ \lvert\TrM(A)-(Ag,g)\rvert\leq2\epsilon(1+\epsilon)D.
+\]
+
+Let $A$, $B$, $A+B$ have the respective bounds $D_1$, $D_2$, $D_3$. Substituting in
+\EquationRef{1}{(1)} each of these operators, inasmuch as
+$((A+B)g,g)=(Ag,g)+(Bg,g)$, we get
+\[
+ \lvert\TrM(A+B)-\TrM(A)-\TrM(B)\rvert
+ \leq2\epsilon(1+\epsilon)(D_1+D_2+D_3),
+\]
+which since $\epsilon$ may be taken arbitrarily small, implies
+\StatementRef{property:I}{Property I}.
+
+We turn our attention to \StatementRef{property:II}{Property II}, (i). Consider the set $\Sigma$ of all
+Hermitian $A\in M$, with a bound less than or equal to a fixed $D$. We will
+show that to every $A\in\Sigma$ and to every $\eta>0$, there exists a weak neighborhood
+of $A$, $U(A;g;g;\eta/3)$ such that for all $B\in\Sigma$ and
+$B\in U(A;g;g;\eta/3)$ (i.e., $\lvert((B-A)g,g)\rvert<\eta/3$) we have
+$\lvert\TrM(B)-\TrM(A)\rvert<\eta$. Letting $\epsilon$ be such that
+$\epsilon(1+\epsilon)D\leq\eta/3$, as above we can find a $g$ such that for $A$ and every $B\in\Sigma$,
+$\lvert\TrM(A)-(Ag,g)\rvert\leq\epsilon(1+\epsilon)D\leq\eta/3$,
+$\lvert\TrM(B)-(Bg,g)\rvert\leq\eta/3$.
+In particular for $B\in U(A;g;g;\eta/3)$ (cf. above) which means that we also have
+$\lvert((B-A)g,g)\rvert<\eta/3$, these inequalities imply that
+$\lvert\TrM(A)-\TrM(B)\rvert<\eta$.
+
+Thus we have shown the weak neighborhood continuity of $\TrM(A)$ with
+of course a restriction. From this the sequential continuity follows immediately.
+(If $A_n\to A$, then the $A_n$ are uniformly bounded and for any $\eta>0$,
+almost all the $A_n$ must be in the above given neighborhood.) In this situation
+the two kinds of continuity are equivalent (cf. \ROcite{18}, pp.~383--384), but we
+will use only the sequential.
+
+$\TrM(A)$ is also weakly continuous when considered only for the positive
+definite $A\in M$. For suppose $A$ is such and an $\epsilon>0$ is given. Let the $K$ of
+\StatementRef{theorem:I}{Theorem I} be chosen in such a way that $1<K\leq2$, and
+$(K-1)\TrM(A)<\epsilon/5$, and let $g$ correspond to this $K$ as there. Let $\eta$ be chosen in such a way
+that $\eta\leq\epsilon/5$. Then if a positive definite $B\in M$ is in $U(A;g;g;\eta)$, we have
+$\lvert\TrM(A)-\TrM(B)\rvert<\epsilon$ (because
+$\lvert((B-A)g,g)\rvert<\eta\leq\epsilon/5$,
+$\lvert\TrM(A)-(Ag,g)\rvert\leq(K-1)\TrM(A)<\epsilon/5$, and, in addition,
+$\lvert\TrM(B)-(Bg,g)\rvert\leq(K-1)(Bg,g)
+\leq(K-1)((Ag,g)+\eta)
+\leq(K-1)(\TrM(A)+\epsilon/5+\eta)\leq3\epsilon/5$).
+
+Thus we have settled the factorizations $\mathrm{II}_1$, $\mathrm{II}_{\infty}$ and
+$\mathrm{II}_1$, $\mathrm{II}_1$ with $C\leq1$. But we still must consider the case $\mathrm{II}_1$, $\mathrm{II}_1$ with $C>1$.
+% Editorial note: the source joins these clauses with a comma and omits a finite verb before $E_m$; retained verbatim.
+Let $m$ be an integer such that $C/m\leq1$, $E_m$ an $m$-dimensional unitary space.
+Form $E_m\otimes\cH$ (cf. \RO{}, Theorem I). Let $N$ be the ring of operators on $E_m$,
+$N'$ the corresponding set of operators on $E_m\otimes\cH$ (cf. \RO{}, Lemma 2.3.1 and
+Lemma 2.3.2), $B$ the set of all operators in $\cH$, $B^{(2)}$ the corresponding set in
+$E_m\otimes\cH$.
+
+Under the above correspondence of $B$ and $B^{(2)}$, $M\sim M^{(2)}$,
+$M'\sim M'^{(2)}$. The first and hence each of the others is a full ring isomorphism
+(\RO{}, Lemma 2.3.4 and \ROcite{22}, \S4). Thus $M^{(2)}$ and $M'^{(2)}$ are in case
+$\mathrm{II}_1$ (\RO{}, Theorem IX). Now let $\phi_1,\cdots,\phi_m$ be a complete orthonormal
+set in $E_m$ and let us think of the set up of \RO{}, \S2.4. By \RO{}, Lemma 2.4.5, we
+have $M^{(2)\prime}=R(N^{(1)},M'^{(2)})$ and by \RO{}, Lemma 11.5.2,
+$R(N^{(1)},M'^{(2)})$ is in case $\mathrm{II}_1$ since as we have mentioned before,
+$M'^{(2)}$ is in this case.
+
+Thus the coupled factorization, $M^{(2)}$, $M^{(2)\prime}$, is in case $\mathrm{II}_1$, $\mathrm{II}_1$ and
+$M^{(2)}$ is fully ring isomorphic to $M$. Furthermore such an isomorphism preserves
+$\DM$ in the standard normalization (\RO{}, Theorem IX) and hence the trace. Now
+suppose we have shown that for $M^{(2)}$, $M^{(2)\prime}$ we have $C^{(2)}\leq1$. Then
+$M^{(2)}$ has \StatementRef{property:I}{Properties I} and
+% Editorial note: the source's grammatically irregular wording is retained verbatim.
+\StatementRef{property:II}{II}, by the above and $M$ must have them to be the
+isomorphism. (As $m$ is finite, even weak operator topology is conserved under
+the mapping $B\sim B^{(2)}$.)
+
+Therefore it remains to show that $C^{(2)}\leq1$. Consider the closed linear manifold,
+$(\phi_1\otimes f;f\in\cH)=\text{(say) }\mathfrak M$, in $E_m\otimes\cH$. The correspondence of
+$\mathfrak M$ and $\cH$ given by $\phi_1\otimes f\sim f$ is unitary. Under it,
+$M_{\mathfrak M}^{(2)}$ and $R(N^{(1)},M'^{(2)})_{\mathfrak M}$ (cf. \RO{}, Definition 11.3.1)
+are unitarily equivalent to $M$ and $M'$ (cf. \RO{}, \S2.4). Thus the $C$ for $M$, $M'$
+is the same as that of $M_{\mathfrak M}^{(2)}$ and $R(N^{(1)},M'^{(2)})_{\mathfrak M}$.
+Then from the proof of Lemma 11.4.3, we can conclude that
+$C=(D_{M^{(2)}}(\cH)/D_{M^{(2)\prime}}(\mathfrak M))C^{(2)}
+=mC^{(2)}$
+or $C^{(2)}=C/m\leq1$.
+
+\SectionStart{2.2}
+2.2. Previously $\TrM(A)$ has only been considered for Hermitian $A\in M$. We
+now define it for all $A\in M$.
+
+\begin{statement}{definition:2.2.1}{Definition 2.2.1}
+If $A\in M$, then $A=B+iC$, where
+$B=\tfrac12(A+A^*)$, $C=-\tfrac{1}{2}i(A-A^*)$ are Hermitian, and we define
+$\TrM(A)=\TrM(B)+i\TrM(C)$.
+\end{statement}
+
+$\TrM(A)$ has the following property.
+
+\begin{statement}{property:III}{Property III}
+$(*)$ $\TrM(A)$ agrees with the previous definition of $\TrM(A)$ if $A$ is Hermitian.
+
+$(*\,*)$ For uniformly bounded or for definite $A$'s, $\TrM(A)$ is weakly continuous.
+\begin{enumerate}[label=(\roman*)]
+ \item $\TrM(1)=1$;
+ \item $\TrM(\rho A)=\rho\TrM(A)$, $\rho$ complex;
+ \item $\TrM(A+B)=\TrM(A)+\TrM(B)$;
+ \item $\TrM(A)\geq0$, if $A$ is definite;
+ \item[(iv)$'$] If $A$ is definite and $\ne0$, $\TrM(A)>0$;
+ \item $\TrM(A^*)=\overline{\TrM(A)}$;
+ \item $\TrM(AB)=\TrM(BA)$;
+ \item[(vi)$'$] $\TrM(U^{-1}AU)=\TrM(A)$, if $U$ is unitary.
+\end{enumerate}
+\end{statement}
+
+Now, $(*)$ and (v) are immediate consequences of the definition. (i), (iv),
+and (iv)$'$ follow from $(*)$ and \RO{}, Theorem XIII. $A^*$ is a weakly continuous
+additive function of $A$. Thus $B$ and $C$ are too, and we may infer (iii) and
+$(*\,*)$ from \StatementRef{property:I}{Properties I} and
+\StatementRef{property:II}{II} respectively. To show (ii) we first note that
+if $A$ is Hermitian by \StatementRef{definition:2.2.1}{Definition 2.2.1},
+$\TrM(iA)=i\TrM(A)$ and if $a$ is real by $(*)$ $\TrM(aA)=a\TrM(A)$. Then (ii)
+can be shown by a calculation involving (iii).
+
+To show (vi) suppose $A$ and $B\in M$ are Hermitian. Let $C=A+iB$,
+$C^*=A-iB$. Then $\TrM(CC^*)=\TrM(C^*C)$ (by $(*)$, cf. proof of
+\StatementRef{lemma:1.4.3}{Lemma 1.4.3}, equation \EquationRef{beta}{$(\beta)$}).
+Substituting for $C$, expanding the products according to the distributive law
+and collecting terms, we get
+$2i(\TrM(AB)-\TrM(BA))=0$ or $\TrM(AB)=\TrM(BA)$. From this we can show
+(vi) in general by using \StatementRef{definition:2.2.1}{Definition 2.2.1},
+(ii) and (iii). (vi)$'$ follows from (vi) by letting $A=U^{-1}A$, $B=U$ and
+using the associative law.
+
+\begin{statement}{property:IV}{Property IV}
+(i)--(iv), (v), (vi)$'$ of \StatementRef{property:III}{Property III} characterize
+$\TrM(A)$ uniquely.
+\end{statement}
+
+Let $\Tr'(A)$ have the listed properties. Then if $A$ is Hermitian, $\Tr'(A)$
+is real by (v). This and (i)--(iv), (vi)$'$ imply that for $A\in M$ and Hermitian
+$\Tr'(A)=\TrM(A)$ (\RO{}, Theorem XIII). By (ii) and (iii), we then have that
+for an arbitrary $C\in M$, $C=A+iB$, $A$ and $B$ Hermitian,
+$\Tr'(C)=\Tr'(A+iB)=\Tr'(A)+\Tr'(iB)=\Tr'(A)+i\Tr'(B)
+=\TrM(A)+i\TrM(B)=\TrM(A+iB)=\TrM(C)$
+or $\Tr'(C)=\TrM(C)$.
+
+\chapterhead{III}{The exact form of $\TrM(A)$ (for $\alpha\geq1$)}
+
+\SectionStart{3.1}
+3.1. We again assume $M$ in case $\mathrm{II}_1$. Some lemmas about families of
+projections and spectral forms in $M$ are needed. Of these the two last ones
+have some interest of their own.
+
+\begin{statement}{lemma:3.1.1}{Lemma 3.1.1}
+For any two projections $E$, $F\in M$ with $E\leq F$, and any
+$\alpha\geq\DM(E)$, $\leq\DM(F)$, a projection $G\in M$ with
+$E\leq G\leq F$, $\DM(G)=\alpha$ exists.
+\end{statement}
+
+$F-E$ is a projection, and
+$0\leq\alpha-\DM(E)\leq\DM(F)-\DM(E)=\DM(F-E)\leq1$.
+Thus a projection $G'\in M$ with $\DM(G')=\alpha-\DM(E)$ exists (because $M$ is
+in case $\mathrm{II}_1$). So $\DM(G')\leq\DM(F-E)$ and therefore a projection
+$G''\in M$ with $G''\leq F-E$, $\DM(G'')=\DM(G')=\alpha-\DM(E)$ exists.
+$G''$ is thus orthogonal to $E$, and therefore $G''+E$ is a projection and
+$\DM(G''+E)=\DM(G'')+\DM(E)=\alpha$. Besides, $G''+E\geq E$ and
+$G''+E\leq(F-E)+E=F$. So $G=G''+E$ has the desired properties.
+
+\begin{statement}{lemma:3.1.2}{Lemma 3.1.2}
+For any two projections $E$, $F\in M$ with $E\leq F$ a family of projections
+$G(\alpha)\in M$ defined for all $\alpha$ with $\DM(E)\leq\alpha\leq\DM(F)$ exists,
+which possesses the following properties:
+\begin{enumerate}[label=(\roman*)]
+ \item $G(\alpha)=E$ or $F$ if $\alpha=\DM(E)$ or $\DM(F)$ respectively.
+ \item $\alpha\leq\beta$ implies $G(\alpha)\leq G(\beta)$.
+ \item $\DM(G(\alpha))=\alpha$.
+\end{enumerate}
+\end{statement}
+
+Choose a sequence $\rho_1,\rho_2,\cdots$ which lies and is dense in the interval
+$\DM(E)\leq\alpha\leq\DM(F)$, with $\rho_1=\DM(E)$, $\rho_2=\DM(F)$.
+
+We will now define a sequence of projections $G(\rho_1),G(\rho_2),\cdots$, $\in M$, so
+that (i)--(iii) hold for $\alpha=\rho_1,\rho_2,\cdots$. Put first $G(\rho_1)=E$,
+$G(\rho_2)=F$; then (i)--(iii) hold for $\alpha=\rho_1$, $\rho_2$. Assume now that for a
+$j=3,4,\cdots$ the $G(\rho_1),\cdots,G(\rho_{j-1})$ are already defined, so that
+% Editorial note: the source uses the singular verb ``holds'' here; retained verbatim.
+(i)--(iii) holds for $\alpha=\rho_1,\cdots,\rho_{j-1}$, we will now define
+$G(\rho_j)$ without violating (i)--(iii).
+
+Consider the $\rho_i$, $i=1,\cdots,j-1$, with $\rho_i\leq\rho_j$ (they exist:
+$\rho_1=\DM(E)\leq\rho_j$); let $\rho_{i'}$ be the greatest one. Consider the $\rho_i$,
+$i=1,\cdots,j-1$, with $\rho_i\geq\rho_j$ (they exist:
+$\rho_2=\DM(F)\geq\rho_j$); let $\rho_{i''}$ be the smallest one. Thus
+$\rho_{i'}\leq\rho_{i''}$, and so $G(\rho_{i'})\leq G(\rho_{i''})$. Besides
+$\DM(G(\rho_{i'}))=\rho_{i'}\leq\rho_j\leq\rho_{i''}=\DM(G(\rho_{i''}))$.
+So \StatementRef{lemma:3.1.1}{Lemma 3.1.1} can be applied to
+$E=G(\rho_{i'})$, $F=G(\rho_{i''})$, $\alpha=\rho_j$, and we define $G(\rho_j)=G$.
+
+Thus $G(\rho_{i'})\leq G(\rho_j)\leq G(\rho_{i''})$, therefore
+$\rho_i\leq\rho_j$, $i=1,\cdots,j-1$, implies
+$\rho_i\leq\rho_{i'}$, $G(\rho_i)\leq G(\rho_{i'})\leq G(\rho_j)$ and
+$\rho_i\geq\rho_j$, $i=1,\cdots,j-1$, implies
+$\rho_i\geq\rho_{i''}$, $G(\rho_i)\geq G(\rho_{i''})\geq G(\rho_j)$.
+Besides $\DM(G(\rho_j))=\rho_j$. So (i)--(iii) hold for
+$\alpha=\rho_1,\cdots,\rho_{j-1},\rho_j$, too.
+
+Thus all $G(\rho_1),G(\rho_2),\cdots$ are defined. Owing to (ii),
+$\lim_{\rho_i\to\alpha,\,\rho_i\geq\alpha}G(\rho_i)$ exists for all $\alpha$ with
+$\DM(E)=\rho_1\leq\alpha\leq\rho_2=\DM(F)$. If $\alpha$ is equal to a $\rho_j$, then this
+limit is meant to denote the value at $\rho_j$. So we can extend the definition of
+$G(\alpha)$ to all above $\alpha$ by defining
+\[
+ G(\alpha)=\lim_{\rho_i\to\alpha,\,\rho_i\geq\alpha}G(\rho_i).
+\]
+
+Now (i) remains true, and (ii), (iii) extend by continuity to all above $\alpha$.
+
+\begin{statement}{lemma:3.1.3}{Lemma 3.1.3}
+Let $A\in M$ be a definite operator with bound $\leq1$. Then there
+exists a monotonous non-decreasing and right semi-continuous function $\phi(\alpha)$ for
+$0\leq\alpha\leq1$ with $0\leq\phi(\alpha)\leq1$ and a resolution of identity $E(\alpha)\in M$
+(cf. \ROcite{16}, p.~92, or \RO{}, Definition 15.1.1) with the following properties:
+\begin{enumerate}[label=(\roman*)]
+ \item $E(0)=0$, $E(1)=1$,
+ \item $\DM(E(\alpha))=\alpha$,
+ \item $(Af,g)=\int_0^1\phi(\alpha)\,d(E(\alpha)f,g)$ for any $f$, $g$, or symbolically,
+ \[
+   A=\int_0^1\phi(\alpha)\,dE(\alpha).
+ \]
+\end{enumerate}
+\end{statement}
+
+Let $F(\lambda)$ be the resolution of identity corresponding to $A$. As $A$ is definite,
+so $F(0)=0$; as the bound of $A$ is $\leq1$, so $F(1)=1$.
+
+Consider now the two following functions:
+\[
+ \psi(\lambda)=\DM(F(\lambda)),
+ \qquad
+ \phi(\alpha)=\operatorname*{l.u.b.}_{\substack{0\leq\lambda\leq1\\ \psi(\lambda)\leq\alpha}}\lambda.
+\]
+$\psi(\lambda)$ is monotonous non-decreasing and right semi-continuous in
+$0\leq\lambda\leq1$, because $F(\lambda)$ is a resolution of identity, and besides
+$\psi(0)=0$, $\psi(1)=1$. Thus $\phi(\alpha)$ is monotonous non-decreasing and right
+semi-continuous in $0\leq\alpha\leq1$, and its values are all in $0\leq\lambda\leq1$.
+One verifies these facts, as well as those which follow, easily; besides, their
+discussion may be found in \ROcite{19} (numbers in parentheses refer to the bibliography
+% Editorial note: the source's singular verb ``corresponds'' with a compound subject is retained verbatim.
+in \RO{}, pp.~125--126) on p.~193. (Our $\psi(\lambda)$, $\phi(\alpha)$ corresponds to the
+$\phi(a)$, $\psi(b)$ there, thus they are both ``$m$-functions,'' and $\phi(\alpha)$ is the
+``measure function'' of $\psi(\lambda)$.) The relation between $\phi(\alpha)$ and
+$\psi(\lambda)$ is symmetric (cf. loc. cit., $\psi(\lambda)$ is the ``measure function''
+of $\phi(\alpha)$, we must define for the empty set in $0\leq\lambda\leq1$ the l.u.b.~0);
+that is,
+\[
+ \psi(\lambda)=\operatorname*{l.u.b.}_{0\leq\alpha\leq1}(\phi(\alpha)\leq\lambda).
+\]
+Finally (cf. loc. cit.)
+\EquationTarget{star}
+\begin{equation*}
+ \psi(\phi(\psi(\lambda)))=\psi(\lambda). \tag{$*$}
+\end{equation*}
+That is, $\DM(F(\phi(\psi(\lambda))))=\DM(F(\lambda))$. But
+$F(\phi(\psi(\lambda)))\geq F(\lambda)$, and therefore this implies
+\EquationTarget{starstar}
+\begin{equation*}
+ F(\phi(\psi(\lambda)))=F(\lambda). \tag{$*\,*$}
+\end{equation*}
+
+If $\phi(\alpha)<1$, then choose $\mu$ with $\phi(\alpha)<\mu\leq1$, and let
+$\mu\to\phi(\alpha)$. Under these conditions the definition of $\phi(\alpha)$
+implies $\DM(F(\mu))>\alpha$, so $\DM(F(\phi(\alpha)))\geq\alpha$. For $\phi(\alpha)=1$
+this holds, too: $\DM(F(\phi(\alpha)))=\DM(F(1))=\DM(1)=1\geq\alpha$. On the other hand,
+if $\phi(\alpha)>0$, then a sequence of $\mu$ with $0\leq\mu\leq\phi(\alpha)$,
+$\mu\to\phi(\alpha)$ and $\DM(F(\mu))\leq\alpha$ exists, so
+$\DM(F(\phi(\alpha)-0))\leq\alpha$.
+% Editorial note: source prints phi(0)=0 here (rather than phi(alpha)=0); retained verbatim.
+This holds for $\phi(0)=0$, too, if we identify
+$F(0-0)$ with $F(0)=0$: $\DM(F(0-0))=\DM(0)=0\leq\alpha$. So we have
+\EquationTarget{hash}
+\begin{equation*}
+ \DM(F(\phi(\alpha)-0))\leq\alpha\leq\DM(F(\phi(\alpha))). \tag{$\#$}
+\end{equation*}
+
+
+
+Form now for every $0\leq\lambda\leq1$, $E=F(\lambda-0)$,
+$F=F(\lambda)$ and apply \StatementRef{lemma:3.1.2}{Lemma~3.1.2}.
+A family of projections $G(\alpha)\in M$,
+$D_M(F(\lambda-0))\leq\alpha\leq D_M(F(\lambda))$, results. Choose for
+every $0\leq\lambda\leq1$ such a family, and hold it
+fixed: $G(\lambda,\alpha)$. (If $F(\lambda-0)=F(\lambda)$, then necessarily
+$\alpha=D_M(F(\lambda))$, and $G(\lambda,\alpha)=F(\lambda)$. So only the
+$\lambda$ with $F(\lambda-0)\ne F(\lambda)$, the point-proper values of $A$,
+are important. Their set is finite or enumerably infinite.)
+
+Now define for every $0\leq\alpha\leq1$
+\[
+ \EquationTarget{3.1.section}(\S)\qquad
+ E(\alpha)=G(\phi(\alpha),\alpha)
+\]
+(this expression has a meaning owing to \EquationRef{hash}{(\#)}).
+
+We have now by definition $D_M(E(\alpha))=\alpha$, so condition (ii) is
+satisfied. For $\alpha=0,1$, this gives $E(0)=0$, $E(1)=1$, so condition (i)
+is satisfied, too. If $\alpha\leq\beta$, then
+$\phi(\alpha)\leq\phi(\beta)$. The relation
+$\phi(\alpha)=\phi(\beta)$ gives
+\[
+ E(\alpha)=G(\phi(\alpha),\alpha)
+ =G(\phi(\beta),\alpha)
+ \leq G(\phi(\beta),\beta)=E(\beta),
+\]
+while $\phi(\alpha)<\phi(\beta)$ gives
+\[
+ E(\alpha)=G(\phi(\alpha),\alpha)
+ \leq F(\phi(\alpha))
+ \leq F(\phi(\beta)-0)
+ \leq G(\phi(\beta),\beta)=E(\beta).
+\]
+So we see that
+\[
+ \EquationTarget{3.1.bullet}(\mathord{\cdot})\qquad
+ \alpha\leq\beta\quad\hbox{implies}\quad E(\alpha)\leq E(\beta).
+\]
+Furthermore $\beta>\alpha$ gives
+\[
+ D_M(E(\beta)-E(\alpha))
+ =D_M(E(\beta))-D_M(E(\alpha))=\beta-\alpha,
+\]
+so
+$\lim_{\substack{\beta\to\alpha\\\beta>\alpha}}
+D_M(E(\beta)-E(\alpha))=0$. But
+\[
+ \lim_{\substack{\beta\to\alpha\\\beta>\alpha}}
+ D_M(E(\beta)-E(\alpha))
+ =D_M\left(\lim_{\substack{\beta\to\alpha\\\beta>\alpha}}E(\beta)
+ -E(\alpha)\right)
+ =D_M(E(\alpha+0)-E(\alpha)),
+\]
+so $D_M(E(\alpha+0)-E(\alpha))=0$, $E(\alpha+0)=E(\alpha)$, or
+\[
+ \EquationTarget{3.1.doublebullet}(\mathord{\cdot}\mathord{\cdot})\qquad
+ \lim_{\substack{\beta\to\alpha\\\beta>\alpha}}E(\beta)=E(\alpha).
+\]
+
+(i), \EquationRef{3.1.bullet}{$(\mathord{\cdot})$},
+\EquationRef{3.1.doublebullet}{$(\mathord{\cdot}\mathord{\cdot})$} state
+that $E(\alpha)$ is a resolution of unity.
+
+It remains for us to prove (iii).
+
+Consider the expression
+$\int_0^1\phi(\alpha)\,d(\lVert E(\alpha)f\rVert^2)$.
+$\phi(\alpha)$ and $\lVert E(\alpha)f\rVert^2$ are both monotonous
+non-decreasing functions of $\alpha$; if $\alpha$ increases from 0 to 1,
+then these functions increase from $\phi(0)$ to $\phi(1)=1$ and from 0 to
+$\lVert f\rVert^2$ respectively. Thus our integral is, by partial
+integration, equal to
+$\lVert f\rVert^2-\int_0^1\lVert E(\alpha)f\rVert^2\,d\phi(\alpha)$.
+We may now introduce a new variable of integration: $\lambda=\phi(\alpha)$.
+Then we have (cf. loc. cit., p.~198)
+$\int_0^1\lVert E(\alpha)f\rVert^2\,d\phi(\alpha)
+=\int_0^1\lVert E(\psi(\lambda))f\rVert^2\,d\lambda$.
+But by \EquationRef{3.1.section}{(\S)},
+$E(\psi(\lambda))=G(\phi(\psi(\lambda)),\psi(\lambda))$, and by
+\EquationRef{star}{(*)},
+$\psi(\phi(\psi(\lambda)))=D_M(F(\phi(\psi(\lambda))))$. So the definition
+of $G(\mu,\alpha)$ gives
+$G(\phi(\psi(\lambda)),\psi(\lambda))
+=F(\phi(\psi(\lambda)))$.
+By \EquationRef{starstar}{(**)} this is $F(\lambda)$, so we have
+$E(\psi(\lambda))=F(\lambda)$. Thus our original expression is equal to
+$\lVert f\rVert^2-\int_0^1\lVert F(\lambda)f\rVert^2\,d\lambda$,
+and this becomes by another partial integration
+$\int_0^1\lambda\,d\lVert F(\lambda)f\rVert^2$, that is, $(Af,f)$.
+Thus we have proved:
+\[
+ (Af,f)=\int_0^1\phi(\alpha)\,d\lVert E(\alpha)f\rVert^2.
+\]
+
+Replacing herein $f$ by $f\pm g/2$, and subtracting, gives the real part of
+(iii). Now replacing $f,g$ by $if,g$ gives the imaginary part of (iii).
+Thus the proof is completed.
+
+Finally we need the following lemma.
+
+\begin{statement}{lemma:3.1.4}{Lemma 3.1.4}
+Let $E(\alpha)\in M$ be a resolution of unity in $a\leq\alpha\leq b$,
+$E(a)=0$, $E(b)=1$. Then a bounded Hermitian operator $B\in M$ with
+$(Bf,g)=\int_a^b\lambda\,d(E(\lambda)f,g)$,
+symbolically $B=\int_a^b\lambda\,dE(\lambda)$, exists. For every bounded
+Baire function $\psi(\alpha)$ an operator $C=\psi(B)\in M$ with
+$(Cf,g)=\int_a^b\psi(\lambda)\,d(E(\lambda)f,g)$,
+symbolically $C=\int_a^b\psi(\lambda)\,dE(\lambda)$ exists. If
+$0\leq\psi(\lambda)\leq1$, then $C$ is Hermitian, definite, and of bound 1.
+For all $\psi(\lambda)$
+\[
+ \TrM(C)=\int_a^b\psi(\lambda)\,dD_M(E(\lambda)).
+\]
+\end{statement}
+
+The existence of the bounded $B$ is a well known fact about spectral forms,
+as all $E(\lambda)\in M$ so $B\in M$ (see \ROcite{18}, p.~389,
+Theorem~1). $C=\psi(B)$ exists and is bounded (\ROcite{19}, p.~205), and
+$B\in M$ implies $C\in M$ (\ROcite{19}, p.~213, Theorem~6).
+$0\leq\psi(\alpha)\leq1$ implies the Hermitian, definite character of $C$
+and $1-C$ (\ROcite{19}, p.~205) ($C$ Hermitian: by Property b; $C$ and
+$1-C$ definite: by Property e), with $F(x)=\psi(x)$ or $1-\psi(x)$ and
+$G(x)=H(x)=(F(x))^{1/2}$. Thus the bound of $C$ is $\leq1$.
+(Alternatively \ROcite{16}, p.~113, Theorem~4*, could be used.)
+
+It remains to prove the final formula for the trace. If it holds for
+$\psi_1(\lambda),\psi_2(\lambda),\cdots$, and the $\psi_n(\lambda)$,
+$n=1,2,\cdots$ are uniformly bounded and everywhere convergent in
+$a\leq\lambda\leq b$, then it holds for
+$\psi(\lambda)=\lim_{n\to\infty}\psi_n(\lambda)$ too:
+$\psi(B)=\mathop{\mathrm{strong}\lim}_{n\to\infty}\psi_n(B)$,
+the $\psi_n(B)$ being uniformly bounded, by \ROcite{19}, p.~205,
+Property h), and $\TrM$ is continuous for strong (even for
+weak) convergence by Property III, (**). Thus our relation holds for all
+bounded Baire functions $\psi(\lambda)$ if it holds for all continuous
+functions $\psi(\lambda)$. And it holds for these, if it holds for all
+intervalwise constant functions $\psi(\lambda)$. But these are linear
+% Editorial note: source has no punctuation between d and ``=0 otherwise''; retained verbatim.
+aggregates of functions $\psi_{c,d}(\lambda)=1$ for $c<\lambda\leq d$
+$=0$ otherwise, where $a\leq c\leq d\leq b$. So it suffices to consider
+these. Now clearly
+\begin{align*}
+ \psi_{c,d}(B)&=E(d)-E(c),\\
+ \TrM(\psi_{c,d}(B))
+ &=D_M(E(d)-E(c))=D_M(E(d))-D_M(E(c)),
+\end{align*}
+and
+\[
+ \int_a^b\psi_{c,d}(\alpha)\,dD_M(E(\alpha))
+ =D_M(E(d))-D_M(E(c)),
+\]
+completing the proof.
+
+\SectionStart{3.2}3.2. We return now to the normalization of
+\SectionRef{1.1}, and assume that an $M$ in case $\mathrm{II}_1$
+is given with $\alpha\geq1$.
+
+Consider a $g$ and $K$ which are related as in
+\StatementRef{theorem:I}{Theorem~I}. Our objective is to prove
+\StatementRef{theorem:II}{Theorem~II} below, but we begin by considering
+these two maximum problems.
+
+\indent\ignorespaces
+(A) For a given $\lambda$ with $0\leq\lambda\leq1$ consider all projections
+$F\in M$ with $D_M(F)=\lambda$, and the corresponding values of $(Fg,g)$.
+Prove that these $(Fg,g)$ possess a maximum $m_a$ which they assume for a
+certain $F=F_0$ from the above class.
+
+\indent\ignorespaces
+(B) For a given $\lambda$ with $0\leq\lambda\leq1$ consider all definite
+operators $B\in M$ of bound $\leq1$ with $\TrM(B)=\lambda$,
+and the corresponding values of $(Bg,g)$. Prove that these $(Bg,g)$ possess
+a maximum $m_b$ which they assume for a certain $B=B_0$ from the above
+class.
+
+\begin{statement}{lemma:3.2.1}{Lemma 3.2.1}
+Problem (B) possesses a solution $B=B_0$, the maximum $m_b$ fulfills
+$\lambda K^{-1}\leq m_b\leq\lambda K$.
+\end{statement}
+
+For the $B$ of the class described in Problem (B) we have by
+\StatementRef{theorem:I}{Theorem~I},
+$\lambda K^{-1}\leq(Bg,g)\leq\lambda K$.
+So these $(Bg,g)$ possess a l.u.b. $m_b'$ and
+$\lambda K^{-1}\leq m_b'\leq\lambda K$.
+
+Select now a sequence $B_1,B_2,\cdots$ from this class, so that
+$\lim_{n\to\infty}(B_ng,g)=m_b'$. As the $B_1,B_2,\cdots$ are uniformly
+bounded, there exists a subsequence $B_{n_1},B_{n_2},\cdots$
+($n_1<n_2<\cdots$) such that
+$B_0=\mathop{\mathrm{weak}\lim}_{i\to\infty}B_{n_i}$
+exists. As all $B_{n_i}$ are in $M$, definite, and of bound $\leq1$, the
+same is true for $B_0$. As all $\TrM(B_{n_i})=\lambda$, so
+Property II or III, (**), gives $\TrM(B_0)=\lambda$.
+Finally
+$(B_0g,g)=\lim_{i\to\infty}(B_{n_i}g,g)
+=\lim_{n\to\infty}(B_ng,g)=m_b'$.
+
+Thus $B_0$ belongs to our class, and $(B_0g,g)=m_b'$. Therefore the l.u.b.
+$m_b'$ is a maximum: $m_b'=m_b$, and
+$\lambda K^{-1}\leq m_b\leq\lambda K$. So the proof is completed.
+
+\begin{statement}{lemma:3.2.2}{Lemma 3.2.2}
+The $B_0$ of \StatementRef{lemma:3.2.1}{Lemma~3.2.1} can be chosen as a
+projection.
+\end{statement}
+
+Consider the $B_0$ of \StatementRef{lemma:3.2.1}{Lemma~3.2.1}. By
+\StatementRef{lemma:3.1.3}{Lemmas~3.1.3} and
+\StatementRef{lemma:3.1.4}{3.1.4} we have $B_0=\phi(B)$, where
+$B=\int_0^1\alpha\,dE(\alpha)$ (symbolically),
+$E(\alpha)$ being a resolution of unity with $E(\alpha)\in M$,
+$D_M(E(\alpha))=\alpha$, and $\phi(\alpha)$ a monotonous non-decreasing and
+right semi-continuous function.
+
+Consider any Baire function $\psi(\alpha)$, $0\leq\alpha\leq1$, with
+$0\leq\psi(\alpha)\leq1$. Form
+$\psi(B)=\int_0^1\psi(\alpha)\,dE(\alpha)$ (symbolically),
+using \StatementRef{lemma:3.1.4}{Lemma~3.1.4}. Then $\psi(B)$ is in $M$,
+definite, and of bound $\leq1$, and
+\[
+ \TrM(\psi(B))
+ =\int_0^1\psi(\alpha)\,dD_M(E(\alpha))
+ =\int_0^1\psi(\alpha)\,d\alpha.
+\]
+
+Thus $\psi(B)$ belongs to the class of Problem (B) if and only if
+$\int_0^1\psi(\alpha)\,d\alpha=\lambda$. Besides
+$(\psi(B)g,g)=\int_0^1\psi(\alpha)\,d(\lVert E(\alpha)g\rVert^2)$.
+
+Apply this to $\psi(\alpha)=\phi(\alpha)$,
+$\psi(B)=\phi(B)=B_0$. We get
+$\int_0^1\phi(\alpha)\,d\alpha=\lambda$,
+$\int_0^1\phi(\alpha)\,d(\lVert E(\alpha)g\rVert^2)=m_b$.
+And the maximum property of $B_0$ gives the following. For every Baire
+function $\psi(\alpha)$, $0\leq\alpha\leq1$, with
+$0\leq\psi(\alpha)\leq1$ the equation
+$\int_0^1\psi(\alpha)\,d\alpha=\lambda$ implies
+$\int_0^1\psi(\alpha)\,d\lVert E(\alpha)g\rVert^2\leq m_b$.
+
+If we had $\phi(1-\lambda)=0$, then the monotony of $\phi(\alpha)$ would
+give $\phi(\alpha)=0$ for $0\leq\alpha\leq1-\lambda$, and the right
+semi-continuity $\phi(\alpha)\leq\tfrac12$ for
+$1-\lambda<\alpha\leq1-\lambda+\epsilon'$ for a suitable $\epsilon'>0$.
+Besides $\phi(\alpha)$ is always $\leq1$. Thus
+\[
+ \int_0^1\phi(\alpha)\,d\alpha
+ \leq0(1-\lambda)+\tfrac12\epsilon'+(\lambda-\epsilon')1
+ =\lambda-\tfrac12\epsilon'<\lambda,
+\]
+contradicting $\int_0^1\phi(\alpha)\,d\alpha=\lambda$. Therefore
+$\phi(1-\lambda)>0$.
+
+If we had $\phi(1-\lambda-0)=1$, then the monotony of $\phi(\alpha)$ would
+give $\phi(\alpha)=1$ for $1-\lambda\leq\alpha\leq1$ and the definition of
+$\phi(1-\lambda-0)$, $\phi(\alpha)\geq\tfrac12$ for
+$1-\lambda-\epsilon'\leq\alpha<1-\lambda$, for a suitable $\epsilon'>0$.
+Besides $\phi(\alpha)$ is always $\geq0$. Thus
+\[
+ \int_0^1\phi(\alpha)\,d\alpha
+ \geq(1-\lambda-\epsilon')\cdot0+\frac{\epsilon'}2+\lambda\cdot1
+ =\lambda+\frac{\epsilon'}2>\lambda,
+\]
+contradicting $\int_0^1\phi(\alpha)\,d\alpha=\lambda$. Therefore
+$\phi(1-\lambda-0)<1$.
+
+So we can choose a $\delta$, $0<\delta<1$, with
+$\phi(1-\lambda)>\delta$, $\phi(1-\lambda-0)<1-\delta$.
+Thus $1-\lambda\leq\alpha\leq1$ implies
+$(\phi(\alpha)-\delta)/(1-\delta)
+\geq(\phi(1-\lambda)-\delta)/(1-\delta)\geq0$ and
+$\leq(1-\delta)/(1-\delta)=1$,
+% Editorial note: the source uses \leq at \alpha=1-\lambda in both adjoining
+% cases (and again in the definition of \phi_1), so the cases overlap;
+% retained verbatim.
+and $0\leq\alpha\leq1-\lambda$ implies
+$\phi(\alpha)/(1-\delta)\geq0$ and $\leq(1-\delta)/(1-\delta)=1$.
+Now put $\phi_1(\alpha)=1$ for $1-\lambda\leq\alpha\leq1$ and
+$\phi_1(\alpha)=0$ for $0\leq\alpha\leq1-\lambda$. Then we have
+$0\leq\phi_1(\alpha)\leq1$ for all $0\leq\alpha\leq1$; and also, for
+$\phi_2(\alpha)=(\phi(\alpha)-\delta\phi_1(\alpha))/(1-\delta)$,
+$0\leq\phi_2(\alpha)\leq1$ for all $0\leq\alpha\leq1$ (we proved this
+above separately for $1-\lambda\leq\alpha\leq1$ and for
+$0\leq\alpha\leq1-\lambda$). Besides
+\[
+ \EquationTarget{3.2.star}(*)\qquad
+ \phi(\alpha)=\delta\phi_1(\alpha)+(1-\delta)\phi_2(\alpha).
+\]
+
+Now clearly $\int_0^1\phi_1(\alpha)\,d\alpha=\lambda$. This and
+$\int_0^1\phi(\alpha)\,d\alpha=\lambda$ and
+\EquationRef{3.2.star}{(*)} give
+$\int_0^1\phi_2(\alpha)\,d\alpha=\lambda$. Therefore
+$\int_0^1\phi_1(\alpha)\,d\lVert E(\alpha)g\rVert^2\leq m_b$,
+$\int_0^1\phi_2(\alpha)\,d\lVert E(\alpha)g\rVert^2\leq m_b$.
+But \EquationRef{3.2.star}{(*)} gives
+\begin{align*}
+ &\delta\int_0^1\phi_1(\alpha)\,d\lVert E(\alpha)g\rVert^2
+ +(1-\delta)\int_0^1\phi_2(\alpha)\,d\lVert E(\alpha)g\rVert^2\\
+ &\qquad=
+ \int_0^1\phi(\alpha)\,d\lVert E(\alpha)g\rVert^2=m_b.
+\end{align*}
+Therefore necessarily
+$\int_0^1\phi_1(\alpha)\,d\lVert E(\alpha)g\rVert^2=m_b$.
+In other words, for $B_1=\phi_1(B)$ which belongs to the class of Problem
+(B), we have $(B_1g,g)=m_b$.
+
+% Editorial note: the source prints B_1=\phi_1(B)=1-E(\lambda), although the
+% preceding cutoff defining \phi_1 is 1-\lambda; retained verbatim.
+Thus $B_1=\phi_1(B)$ is a solution of Problem (B), too. But one verifies
+easily that $B_1=\phi_1(B)=1-E(\lambda)$, and so $B_1$ is a projection.
+
+Therefore replacement of $B_0$ by $B_1$ completes the proof.
+
+\begin{statement}{lemma:3.2.3}{Lemma 3.2.3}
+Problems (A) and (B) possess a common solution $E_0=B_0$, and for the
+maxima we have $m_a=m_b$.
+\end{statement}
+
+The class of the $E$ in Problem (A) is obviously a subclass of the $B$ in
+Problem (B): It consists of all projections of the latter class. (This is so,
+because for projections $E$, $D_M(E)=\TrM(E)$
+(cf. \RO{}, Lemma~15.3.1).) Now
+\StatementRef{lemma:3.2.2}{Lemma~3.2.2} states, that a solution of Problem
+(B) exists, which is a projection and thus belongs to the class of Problem
+(A). Therefore it is a solution of Problem (A) too, and $m_a=m_b$.
+
+Problems (A) and (B) can be modified, when a projection
+$G=P_{\mathfrak N}\in M$ is given, in the following sense: Replace
+$\mathfrak H,M$ by $\mathfrak N,M_{(\mathfrak N)}$
+(cf. \RO{}, \S11.3). Then $D_M(E)$ must be replaced by
+$D_M(E)/D_M(G)$, in order to conserve the standard normalization and so
+the normalization of \SectionRef{1.1} requires replacing of
+% Editorial note: source reads the slightly awkward ``This alpha''; retained verbatim.
+$D_{M'}(E')$ by $D_{M'}(E')/D_M(G)$. This $\alpha$ is replaced by
+$\alpha/D_M(G)$ and so $\alpha\geq1$ remains true.
+\StatementRef{lemma:3.2.3}{Lemma~3.2.3} is modified, in so far as
+$\lambda$ is replaced by $\lambda/D_M(G)$ and $M$ in Problems (A) and (B)
+is to be replaced by $M_{(\mathfrak N)}$. This means that projections
+$F\in M$ must be $\leq G$, and operators $B\in M$ must fulfill
+$BG=GB=B$.
+
+Combining this and the corresponding changes in
+\StatementRef{lemma:3.2.1}{Lemma~3.2.1} (observe that
+$(B_0g,g)=(E_0g,g)=\lVert E_0g\rVert^2$), we have
+
+\begin{statement}{corollary:3.2.3}{Corollary}
+Let a projection $G\in M$ be given. Replace Problems (A) and (B) by
+Problems $(\mathrm A_G)$ and $(\mathrm B_G)$, which arise by imposing these
+further restrictions: In $(\mathrm A_G)$ the projections $F\in M$ are
+$F\leq G$. In $(\mathrm B_G)$ the operators $B\in M$ fulfill $BG=GB=B$.
+Assume $0\leq\lambda\leq D_M(G)$. Then Problems $(\mathrm A_G)$ and
+$(\mathrm B_G)$ possess a common solution $E_0=B_0$, and we have for the
+maxima
+$K^{-1}\lVert E_0g\rVert^2\leq m_a=m_b\leq K\lVert E_0g\rVert^2$.
+\end{statement}
+
+\SectionStart{3.3}3.3. We hold $g$ fixed, and make the following
+
+\begin{statement}{definition:3.3.1}{Definition 3.3.1}
+Let $E,G$ be two projections in $M$, $E\leq G$. We say that $E$ reduces
+$g$ with respect to $G$ if for every $A\in M$ with $AG=GA=A$
+\[
+ (AEg,g)=(EAg,g).
+\]
+
+If $G$ may be taken $=1$, we say that $E$ reduces $g$.
+\end{statement}
+
+\begin{statement}{lemma:3.3.1}{Lemma 3.3.1}
+Let $G$ be a projection in $M$, $E_0$ a solution of Problem
+$(\mathrm A_G)$ (cf. the corollary to
+\StatementRef{lemma:3.2.3}{Lemma~3.2.3}). Then $E_0$ reduces $g$ with
+respect to $G$.
+\end{statement}
+
+If $U$ is unitary, in $M$, and commutes with $G$, then $U^{-1}E_0U$ is a
+projection in $M$, it is $\leq U^{-1}GU=G$, and
+$D_M(U^{-1}E_0U)=D_M(E_0)=\lambda$. So
+$(U^{-1}E_0Ug,g)\leq(E_0g,g)$.
+Now
+$(U^{-1}E_0Ug,g)=(U^*E_0Ug,g)=(E_0Ug,Ug)$.
+So $(E_0g,g)-(E_0Ug,Ug)\geq0$.
+
+% Editorial note: source reads \epsilon\gtrless0 and
+% \psi_\epsilon(\alpha)=-\alpha^2/(1-i\epsilon\alpha); retained verbatim.
+Let $A$ be Hermitian, in $M$, and commute with $G$. Put for some
+$\epsilon\gtrless0$, $\phi_\epsilon(\alpha)=(1+i\epsilon\alpha)/(1-i\epsilon\alpha)$.
+As $|\phi_\epsilon(\alpha)|=1$, so $U_\epsilon=\phi_\epsilon(A)$ is
+unitary, and it is in $M$ and commutes with $G$ along with $A$. Further
+$\phi_\epsilon(\alpha)=1+2i\epsilon\alpha+\epsilon^2\psi_\epsilon(\alpha)$,
+where $\psi_\epsilon(\alpha)=-\alpha^2/(1-i\epsilon\alpha)$.
+So $|\psi_\epsilon(\alpha)|\leq D^2$ if $|\alpha|\leq D$, and therefore
+$\opnorm{\psi_\epsilon(A)}\leq\opnorm{A}^2$
+(cf., for instance, \ROcite{16}, p.~113, Theorem~4*). Now
+\begin{align*}
+ 0&\leq(E_0g,g)-(E_0U_\epsilon g,U_\epsilon g)=(E_0g,g)\\
+ &\quad-(E_0(1+2i\epsilon A+\epsilon^2\psi_\epsilon(A))g,
+ (1+2i\epsilon A+\epsilon^2\psi_\epsilon(A))g)\\
+ &=2\epsilon(i(AE_0-E_0A)g,g)+O(\epsilon^2).
+\end{align*}
+So we have
+\[
+ 2\epsilon i((AE_0-E_0A)g,g)+O(\epsilon^2)\geq0.
+\]
+
+As $\epsilon\gtrless0$, this necessitates
+$((AE_0-E_0A)g,g)=0$, that is,
+\[
+ (AE_0g,g)=(E_0Ag,g).
+\]
+This equation extends from the Hermitian $A\in M$ to all $A\in M$, which
+commute with $G$. Put for such an $A$,
+$A_1=\tfrac12(A+A^*)$, $A_2=-\tfrac12i(A-A^*)$,
+then it holds for $A_1,A_2$ and so for $A=A_1+iA_2$. Thus we have
+established that $E_0$ reduces $g$ with respect to $G$.
+
+\begin{statement}{lemma:3.3.2}{Lemma 3.3.2}
+If $E$ reduces $g$ relatively to $G$ and $G$ reduces $g$, then $E$ reduces
+$g$.
+\end{statement}
+
+We must show that for every $A\in M$, $(AEg,g)=(EAg,g)$. Now
+\begin{align*}
+ (EAg,g)&=(GEAg,g)=(G(EA)g,g)=((EA)Gg,g)=(EGAGg,g)\\
+ &=(GAGEg,g)=(GAEg,g)=((AE)Gg,g)=(AEg,g).
+\end{align*}
+
+\begin{statement}{lemma:3.3.3}{Lemma 3.3.3}
+If $\{E_i\}$ is a sequence of projections $E_i\in M$ each of which reduce
+$g$ and $E_i\cdot E_j=0$ if $i\ne j$, then $\sum_{i=1}^\infty E_i$ reduces $g$.
+If $E_1$ and $E_2$ reduce $g$ and $E_1\geq E_2$ then $E_1-E_2$ reduces
+$g$.
+\end{statement}
+
+This is immediate for $A\in M$ implies $A$ is bounded.
+
+\begin{statement}{lemma:3.3.4}{Lemma 3.3.4}
+Let $\{E_i\}$ be a sequence with the same properties as in
+\StatementRef{lemma:3.3.3}{Lemma~3.3.3}. Let
+$E=\sum_{i=1}^\infty E_i$. Then for $A\in M$,
+\[
+ (EAg,g)=(AEg,g)=(EAEg,g)=\sum_{i=1}^\infty(E_iAE_ig,g).
+\]
+Also if $E$ reduces $g$, $EF=0$, $F\in M$, then
+$(EAFg,g)=(FAEg,g)=0$.
+\end{statement}
+
+We have
+$(EAg,g)=(E(EA)g,g)=(EAEg,g)=(E(AE)g,g)=((AE)Eg,g)=(AEg,g)$.
+Hence we have
+$(EAg,g)=\left(\left(\sum_{i=1}^\infty E_i\right)Ag,g\right)
+=\sum_{i=1}^\infty(E_iAg,g)=\sum_{i=1}^\infty(E_iAE_ig,g)$.
+Also
+$(EAFg,g)=(E(AF)g,g)=((AF)Eg,g)=(A(FE)g,g)=0
+=((EF)Ag,g)=(E(FA)g,g)=((FA)Eg,g)=(FAEg,g)$.
+
+\begin{statement}{lemma:3.3.5}{Lemma 3.3.5}
+Let $\{E_i\}$ be a sequence of mutually orthogonal projections. If
+$E=\sum_{i=1}^\infty E_i$ and $A$ and $E_i\in M$,
+\[
+ \TrM(EAE)=\sum_{i=1}^\infty\TrM(E_iAE_i).
+\]
+\end{statement}
+
+By Property III, (vi),
+\(\TrM(EAE)=\TrM(AE\cdot E)=\TrM(AE)\).
+Similarly $\TrM(E_iAE_i)=\TrM(AE_i)$.
+By Property III, (**), and (iii)
+\(\TrM(AE)=\TrM\left(\sum_{i=1}^\infty AE_i\right)
+\allowbreak=\sum_{i=1}^\infty\TrM(AE_i)\).
+Thus
+$\TrM(EAE)=\sum_{i=1}^\infty\TrM(E_iAE_i)$.
+Note that we have also demonstrated the convergence of
+$\sum_{i=1}^\infty\TrM(E_iAE_i)$.
+
+\begin{statement}{lemma:3.3.6}{Lemma 3.3.6}
+Let $\{E_i\}$ be a sequence of projections each
+$E_i\mathrel{\underset p{\geq}}\lambda$
+($\mathrel{\underset p{\leq}}\lambda$) for $g$. Furthermore let us suppose
+that each $E_i$ reduces $g$ and $E_i\cdot E_j=0$ if $i\ne j$. Then
+\(E=\sum_{i=1}^\infty E_i\mathrel{\underset p{\geq}}\lambda
+(\mathrel{\underset p{\leq}}\lambda)\).
+\end{statement}
+
+Let $A$ be positive definite, in $M$ and such that $EA=AE=A$. Then by
+\StatementRef{lemma:3.3.4}{Lemma~3.3.4}
+\[
+ (Ag,g)=(EAg,g)=\sum_{i=1}^\infty(E_iAE_ig,g).
+\]
+Now $E_iAE_i$ is positive definite and is unchanged by left- or
+right-multiplication with $E_i$. Hence
+\StatementRef{lemma:1.4.2}{Lemma~1.4.2} yields
+\((E_iAE_ig,g)\geq\lambda\TrM(E_iAE_i)\).
+% Editorial note: source cites the apparently nonexistent Lemma 3.2.6;
+% retained verbatim.
+Thus by Lemma~3.2.6
+\[
+ (Ag,g)=\sum_{i=1}^\infty(E_iAE_ig,g)
+ \geq\lambda\sum_{i=1}^\infty\TrM(E_iAE_i)
+ =\lambda\TrM(A).
+\]
+\StatementRef{lemma:1.4.2}{Lemma~1.4.2} now implies
+$E\mathrel{\underset p{\geq}}\lambda$.
+
+\SectionStart{3.4}3.4. We still suppose that $g$ is held fixed.
+
+\begin{statement}{lemma:3.4.1}{Lemma 3.4.1}
+Let $E\ne0$ be a projection, in $M$, and such that
+$a\mathrel{\underset p{\leq}}E\mathrel{\underset p{\leq}}b$. Let a
+$\lambda$ with $0<\lambda<D_M(E)$ be given. Then there exists a projection
+$E_0\in M$ with the following properties: (i) $E_0\leq E$;
+(ii) $D_M(E_0)=\lambda$; (iii) $E_0$ reduces $g$ with respect to $E$; and
+(iv) there exists a $\xi_0$ with
+\(a\mathrel{\underset p{\leq}}E-E_0
+\mathrel{\underset p{\leq}}\xi_0
+\mathrel{\underset p{\leq}}E_0
+\mathrel{\underset p{\leq}}b\).
+\end{statement}
+
+Consider the solution $E_0$ of Problem $(\mathrm A_G)$ with $G=E$, in the
+corollary to \StatementRef{lemma:3.2.3}{Lemma~3.2.3}. This $E_0$ is a
+projection in $M$ and fulfills (i), (ii) by definition, and it fulfills (iii)
+by \StatementRef{lemma:3.3.1}{Lemma~3.3.1}. As to (iv), both $E_0$ and
+$E-E_0$ are $\mathrel{\underset p{\geq}}a$ and
+$\mathrel{\underset p{\leq}}b$ along with $E$, by
+\StatementRef{lemma:1.2.3}{Lemma~1.2.3}.
+
+So we must only find a $\xi$ with
+$E-E_0\mathrel{\underset p{\leq}}\xi
+\mathrel{\underset p{\leq}}E_0$. Let $\Gamma'$ be the set of all $\eta$'s,
+for which there exists an $F\leq E_0$ with
+$F<\eta$; and let $\Gamma''$ be
+the set of all $\eta$'s for which there exists an $F\leq E-E_0$ with
+$F>\eta$. $\Gamma'$ and $\Gamma''$ are open
+intervals, and clearly every
+$\eta>b$ belongs to $\Gamma'$, and every $\eta<a$ belongs to $\Gamma''$.
+So there exists either a $\xi_0$ such that every $\eta$ in $\Gamma'$ is
+$\geq\xi_0$ and every $\eta$ in $\Gamma''$ is $\leq\xi_0$, or $\Gamma'$
+and $\Gamma''$ have a common element $\xi_1$.
+
+If the former holds, then $F\leq E_0$ implies
+$F\geq\eta$ for all $\eta<\xi_0$, and so
+$F\geq\xi_0$, that is,
+$E_0\mathrel{\underset p{\geq}}\xi_0$. Similarly
+$E-E_0\mathrel{\underset p{\leq}}\xi_0$. So in this case the rest of (iv)
+is proved, too.
+
+If the latter holds, then we have even a $\xi_1-\delta$ in $\Gamma'$ and
+$\xi_1+\delta$ in $\Gamma''$ for some suitable $\delta>0$. So an
+$F_1\leq E_0$ with $F_1<\xi_1-\delta$ exists, and an
+$F_2\leq E-E_0$ with $F_2>\xi_1+\delta$. By
+Lemma~1.2 there exist two $F_3$ and $F_4$ (both
+$\ne0$), with $F_3\leq F_1$, $F_4\leq F_2$ and
+\(F_3\mathrel{\underset p{\leq}}\xi_1-\delta\),
+\(F_4\mathrel{\underset p{\geq}}\xi_1+\delta\).
+We may assume that $D_M(F_3)=D_M(F_4)$, since otherwise we may replace
+$F_3,F_4$ by two $F_3'\leq F_3$, $F_4'\leq F_4$ with
+\(D_M(F_3')=D_M(F_4')=\min(D_M(F_3),D_M(F_4))\)
+(remembering \StatementRef{lemma:1.2.3}{Lemma~1.2.3}).
+
+Now as $F_3\leq E_0$, $F_4\leq E-E_0$, so $E_0-F_3+F_4$ is a projection
+$\leq E$, and
+\[
+ D_M(E_0-F_3+F_4)
+ =D_M(E_0)-D_M(F_3)+D_M(F_4)=D_M(E_0)=\lambda,
+\]
+while
+\begin{align*}
+ ((E_0-F_3+F_4)g,g)
+ &=(E_0g,g)-(F_3g,g)+(F_4g,g)\\
+ &\geq m_a-(\xi_1-\delta)D_M(F_3)+(\xi_1+\delta)D_M(F_4)\\
+ &\geq m_a-(\xi_1-\delta)D_M(F_3)+(\xi_1+\delta)D_M(F_3)\\
+ &=m_a+2\delta D_M(F_3)>m_a,
+\end{align*}
+contradicting the maximum property of $m_a$. So this case cannot arise.
+
+The proof is therefore completed.
+
+\begin{statement}{lemma:3.4.2}{Lemma 3.4.2}
+We can define for all $0\leq\alpha\leq1$ a family of projections $E(\alpha)$
+and a function $\xi(\alpha)$ with the following properties:
+\begin{align*}
+ \text{(i)}\quad&E(0)=0,\quad E(1)=1,
+ &\text{(ii)}\quad&\alpha\leq\beta\text{ implies }E(\alpha)\leq E(\beta),\\
+ \text{(iii)}\quad&\xi(0)=K,\quad\xi(1)=K^{-1},
+ &\text{(iv)}\quad&\alpha\leq\beta\text{ implies }\xi(\alpha)\geq\xi(\beta),\\
+ \text{(v)}\quad&D_M(E(\alpha))=\alpha,
+ &\text{(vi)}\quad&E(\alpha)\text{ reduces }g,
+\end{align*}
+\[
+ \text{(vii)}\qquad
+ \alpha<\beta\text{ implies }
+ \xi(\beta-0)\mathrel{\underset p{\leq}}E(\beta)-E(\alpha)
+ \mathrel{\underset p{\leq}}\xi(\alpha+0).
+\]
+\end{statement}
+
+Choose a sequence $\rho_1,\rho_2,\cdots$ which lies and is everywhere dense
+in $0\leq\alpha\leq1$, with $\rho_1=0$, $\rho_2=1$. We will define
+$E(\alpha)$ and $\xi(\alpha)$ for $\alpha=\rho_1,\rho_2,\cdots$ so that
+they fulfill (i)--(vi) and
+\[
+ \text{(vii)$'$}\qquad
+ E(\alpha)\mathrel{\underset p{\geq}}\xi(\alpha),
+ \qquad 1-E(\alpha)\mathrel{\underset p{\leq}}\xi(\alpha),
+\]
+for all $\alpha=\rho_1,\rho_2,\cdots$.
+
+Put first $E(0)=0$, $E(1)=1$, $\xi(0)=K$, $\xi(1)=K^{-1}$. Then
+$\alpha=\rho_1,\rho_2$ are taken care of, and (i)--(vi) as well as
+(vii)$'$ hold for $\rho_1,\rho_2$. Assume now that for a
+$j=3,4,\cdots$ the $E(\alpha)$, $\xi(\alpha)$ for
+$\alpha=\rho_1,\cdots,\rho_{j-1}$ are already defined, so that (i)--(vi),
+(vii)$'$ hold for $\alpha=\rho_1,\cdots,\rho_{j-1}$; we will now define
+$E(\rho_j)$, $\xi(\rho_j)$ without violating (i)--(vi), (vii)$'$.
+
+Consider the $\rho_i$, $i=1,\cdots,j-1$ with $\rho_i\leq\rho_j$ (they
+exist: $\rho_1=0\leq\rho_j$); let $\rho_{i'}$ be the greatest one. Consider
+the $\rho_i$, $i=1,\cdots,j-1$, with $\rho_i\geq\rho_j$ (they exist:
+$\rho_2=1\geq\rho_j$); let $\rho_{i''}$ be the smallest one. As
+$\rho_{i'},\rho_{i''}\ne\rho_j$, so we have
+$\rho_{i'}<\rho_j<\rho_{i''}$. So (ii) gives
+$E(\rho_{i'})\leq E(\rho_{i''})$, and (v) gives
+\(D_M(E(\rho_{i''})-E(\rho_{i'}))
+=\rho_{i''}-\rho_{i'}>\rho_j-\rho_{i'}>0\).
+
+Apply now \StatementRef{lemma:3.4.1}{Lemma~3.4.1} to
+\(E=E(\rho_{i''})-E(\rho_{i'})\),
+\(\lambda=\rho_j-\rho_{i'}\),
+with $a=\xi(\rho_{i''})$, $b=\xi(\rho_{i'})$. Owing to (vii)$'$ and
+\StatementRef{lemma:1.2.3}{Lemma~1.2.3} we have
+$E(\rho_{i''})-E(\rho_{i'})\leq E(\rho_{i''})$ and therefore
+$\mathrel{\underset p{\geq}}\xi(\rho_{i''})$, and
+$E(\rho_{i''})-E(\rho_{i'})\leq1-E(\rho_{i'})$ and therefore
+$\mathrel{\underset p{\leq}}\xi(\rho_{i'})$. That is,
+$a\mathrel{\underset p{\leq}}E\mathrel{\underset p{\leq}}b$. An
+$E_0\leq E(\rho_{i''})-E(\rho_{i'})$ and a $\xi_0$ result; put
+\(E(\rho_j)=E(\rho_{i'})+E_0\) (this is a projection in $M$) and
+\(\xi(\rho_j)=\xi_0\).
+Let us now consider (i)--(vi), (vii)$'$ for
+$\alpha=\rho_1,\cdots,\rho_{j-1},\rho_j$.
+
+(i), (iii) are unaffected.
+
+In (ii), (iv) the only new possibilities are
+$\alpha=\rho_i\leq\rho_j=\beta$ and
+$\alpha=\rho_j\leq\rho_i=\beta$, where $i=1,\cdots,j-1$. In the first case
+$\rho_i\leq\rho_{i'}$, so
+\(E(\alpha)=E(\rho_i)\leq E(\rho_{i'})
+\leq E(\rho_{i'})+E_0=E(\rho_j)=E(\beta)\), and
+\(\xi(\alpha)=\xi(\rho_i)\geq\xi(\rho_{i'})=b
+\geq\xi_0=\xi(\rho_j)=\xi(\beta)\).
+In the second case $\rho_i\geq\rho_{i''}$, so
+\(E(\beta)=E(\rho_i)\geq E(\rho_{i''})
+=E(\rho_{i'})+E(\rho_{i''})-E(\rho_{i'})
+\geq E(\rho_{i'})+E_0=E(\rho_j)=E(\alpha)\), and
+\(\xi(\beta)=\xi(\rho_i)\leq\xi(\rho_{i''})=a
+\leq\xi_0=\xi(\rho_j)=\xi(\alpha)\).
+So (ii), (iv) remain true.
+
+In (v) we need only $D_M(E(\rho_j))=\rho_j$. Now
+\(D_M(E(\rho_j))=D_M(E(\rho_{i'})+E_0)
+=D_M(E(\rho_{i'}))+D_M(E_0)
+=\rho_{i'}+(\rho_j-\rho_{i'})=\rho_j\).
+
+In (vi) we need only that $E(\rho_j)$ reduces $g$. As
+$E(\rho_j)=E(\rho_{i'})+E_0$, and $E(\rho_{i'})$ reduces $g$, we must only
+show that $E_0$ reduces $g$ (use
+\StatementRef{lemma:3.3.3}{Lemma~3.3.3}). But $E_0$ reduces $g$ with
+respect to $E=E(\rho_{i''})-E(\rho_{i'})$ by
+\StatementRef{lemma:3.4.1}{Lemma~3.4.1}, (iii), and
+$E(\rho_{i''})-E(\rho_{i'})$ reduces $g$ because $E(\rho_{i''})$ and
+$E(\rho_{i'})$ do (again use
+\StatementRef{lemma:3.3.3}{Lemma~3.3.3}), therefore $E_0$ reduces $g$ by
+\StatementRef{lemma:3.3.2}{Lemma~3.3.2}. So the property (vi) remains true.
+
+In (vii)$'$ we need only
+\(E(\rho_j)\mathrel{\underset p{\geq}}\xi(\rho_j)\),
+\(1-E(\rho_j)\mathrel{\underset p{\leq}}\xi(\rho_j)\).
+Now $E(\rho_j)=E(\rho_{i'})+E_0$, and
+\(E(\rho_{i'})\mathrel{\underset p{\geq}}\xi(\rho_{i'})
+\geq\xi(\rho_j)\),
+\(E_0\mathrel{\underset p{\geq}}\xi_0=\xi(\rho_j)\)
+by \StatementRef{lemma:3.4.1}{Lemma~3.4.1}, (iv), so
+$E(\rho_j)\mathrel{\underset p{\geq}}\xi(\rho_j)$ by
+\StatementRef{lemma:3.3.6}{Lemma~3.3.6}.
+On the other hand
+\(1-E(\rho_j)=1-E(\rho_{i''})
++\bigl((E(\rho_{i''})-E(\rho_{i'}))-E_0\bigr)\)
+and by \StatementRef{lemma:3.4.1}{Lemma~3.4.1}, (iv),
+\(1-E(\rho_{i''})\mathrel{\underset p{\leq}}\xi(\rho_{i''})
+\leq\xi(\rho_j)\),
+\((E(\rho_{i''})-E(\rho_{i'}))-E_0
+=E-E_0\mathrel{\underset p{\leq}}\xi_0=\xi(\rho_j)\),
+so that $1-E(\rho_j)\mathrel{\underset p{\leq}}\xi(\rho_j)$ by
+\StatementRef{lemma:3.3.6}{Lemma~3.3.6}. Therefore (vii)$'$ remains true.
+
+Thus we have verified (i)--(vi), (vii)$'$ for
+$\alpha=\rho_1,\cdots,\rho_{j-1},\rho_j$. Therefore all
+$\alpha=\rho_1,\rho_2,\cdots$ are taken care of, and (i)--(vi), (vii)$'$
+hold for all of them. Owing to (ii) and (iv)
+\(\lim_{\substack{\rho_i\to\alpha\\\rho_i\geq\alpha}}E(\rho_i)\) and
+\(\lim_{\substack{\rho_i\to\alpha\\\rho_i\geq\alpha}}\xi(\rho_i)\)
+exist for all $\alpha$ with $0\leq\alpha\leq1$. If $\alpha$ is equal to a
+$\rho_j$, then this limit is meant to denote the value at $\rho_j$. So we
+can extend the definitions of $E(\alpha)$ and $\xi(\alpha)$ to all above
+$\alpha$ by defining
+\[
+ E(\alpha)=\lim_{\substack{\rho_i\to\alpha\\\rho_i\geq\alpha}}E(\rho_i),
+ \qquad
+ \xi(\alpha)=\lim_{\substack{\rho_i\to\alpha\\\rho_i\geq\alpha}}\xi(\rho_i).
+\]
+
+The statements (i), (iii) are unaffected by this extension, while (ii),
+(iv)--(vi) extend by continuity to all $0\leq\alpha\leq1$.
+
+Let us now consider (vii). Assume $\alpha<\beta$. Choose a sequence
+$\rho_{i_n}$, $n=0,\mathord\pm1,\mathord\pm2,\cdots$, with
+\(\alpha<\cdots<\rho_{i_{-2}}<\rho_{i_{-1}}<\rho_{i_0}
+<\rho_{i_1}<\rho_{i_2}<\cdots<\beta\)
+and
+\(\lim_{n\to-\infty}\rho_{i_n}=\alpha\),
+\(\lim_{n\to\infty}\rho_{i_n}=\beta\).
+We have $\rho_{i_{-1}}>\rho_{i_{-2}}>\cdots>\alpha$, so that
+\(E(\rho_{i_{-1}})\geq E(\rho_{i_{-2}})\geq\cdots\geq E(\alpha)\).
+Therefore $\lim_{n\to-\infty}E(\rho_{i_n})$ exists, and is
+$\geq E(\alpha)$. Now we have
+\begin{align*}
+ D_M\left(\lim_{n\to-\infty}E(\rho_{i_n})-E(\alpha)\right)
+ &=\lim_{n\to-\infty}D_M(E(\rho_{i_n}))-D_M(E(\alpha))\\
+ &=\lim_{n\to-\infty}\rho_{i_n}-\alpha=\alpha-\alpha=0,\\
+ \lim_{n\to-\infty}E(\rho_{i_n})&=E(\alpha).
+\end{align*}
+Similarly
+\[
+ \lim_{n\to\infty}E(\rho_{i_n})=E(\beta).
+\]
+Therefore
+\begin{align*}
+ \sum_{m=-\infty}^{\infty}
+ \bigl(E(\rho_{i_{m+1}})-E(\rho_{i_m})\bigr)
+ &=\lim_{n\to\infty}\sum_{m=-n}^{n-1}
+ \bigl(E(\rho_{i_{m+1}})-E(\rho_{i_m})\bigr)\\
+ &=\lim_{n\to\infty}\bigl(E(\rho_{i_n})-E(\rho_{i_{-n}})\bigr)
+ =E(\beta)-E(\alpha).
+\end{align*}
+
+We have
+$E(\rho_{i_{m+1}})-E(\rho_{i_m})\leq E(\rho_{i_{m+1}})$, therefore
+(vii)$'$ (for $\alpha=\rho_{i_{m+1}}$) and
+\StatementRef{lemma:1.2.3}{Lemma~1.2.3} give
+\(E(\rho_{i_{m+1}})-E(\rho_{i_m})
+\mathrel{\underset p{\geq}}\xi(\rho_{i_{m+1}})
+\geq\xi(\beta-0)\).
+Then \StatementRef{lemma:3.3.6}{Lemma~3.3.6} gives
+\(E(\beta)-E(\alpha)\mathrel{\underset p{\geq}}\xi(\beta-0)\).
+On the other hand we have
+$E(\rho_{i_{m+1}})-E(\rho_{i_m})\leq1-E(\rho_{i_m})$; therefore
+(vii)$'$ (for $\alpha=\rho_{i_m}$) and
+\StatementRef{lemma:1.2.3}{Lemma~1.2.3} give
+\(E(\rho_{i_{m+1}})-E(\rho_{i_m})
+\mathrel{\underset p{\leq}}\xi(\rho_{i_m})
+\leq\xi(\alpha+0)\).
+Then \StatementRef{lemma:3.3.6}{Lemma~3.3.6} gives
+\(E(\beta)-E(\alpha)\mathrel{\underset p{\leq}}\xi(\alpha+0)\).
+Thus we have proved
+\[
+ \xi(\beta-0)\mathrel{\underset p{\leq}}E(\beta)-E(\alpha)
+ \mathrel{\underset p{\leq}}\xi(\alpha+0),
+\]
+that is, (vii).
+
+We have established (i)--(vii) for all $0\leq\alpha\leq1$, and so the
+proof is completed.
+
+\begin{statement}{lemma:3.4.3}{Lemma 3.4.3}
+Let $\alpha_i$, $i=0,1,\cdots,n$ be a set of numbers such that
+$0=\alpha_0\leq\alpha_1\leq\cdots\leq\alpha_{n-1}\leq\alpha_n=1$
+and let $\lambda_i$, $i=1,\cdots,n$ be a set of positive real numbers. Put
+(with the $E(\alpha)$, $\xi(\alpha)$ of
+\StatementRef{lemma:3.4.2}{Lemma~3.4.2})
+\[
+ g'=\sum_{i=1}^n\lambda_i(E(\alpha_i)-E(\alpha_{i-1}))g,
+\]
+\[
+ C_1=\max_{i=1,\cdots,n}\lambda_i^2\xi(\alpha_{i-1}+0),
+ \qquad
+ C_2=\min_{i=1,\cdots,n}\lambda_i^2\xi(\alpha_i-0).
+\]
+Then for all definite $A\in M$
+\[
+ C_1\TrM(A)\geq(Ag',g')\geq C_2\TrM(A).
+\]
+\end{statement}
+
+We have
+\begin{align*}
+ (Ag',g')
+ &=\left(A\sum_{i=1}^n\lambda_i(E(\alpha_i)-E(\alpha_{i-1}))g,
+ \sum_{j=1}^n\lambda_j(E(\alpha_j)-E(\alpha_{j-1}))g\right)\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lambda_i\lambda_j
+ \bigl(A(E(\alpha_i)-E(\alpha_{i-1}))g,
+ (E(\alpha_j)-E(\alpha_{j-1}))g\bigr)\\
+ &=\sum_{i=1}^n\sum_{j=1}^n\lambda_i\lambda_j
+  \bigl((E(\alpha_j)-E(\alpha_{j-1}))A
+  (E(\alpha_i)-E(\alpha_{i-1}))g,g\bigr).
+\end{align*}
+As every $E(\alpha_k)-E(\alpha_{k-1})$ reduces $g$ (by
+\StatementRef{lemma:3.4.2}{Lemma~3.4.2}, (vi), and
+\StatementRef{lemma:3.3.3}{Lemma~3.3.3}) and as
+$
+ (E(\alpha_j)-E(\alpha_{j-1}))\cdot
+ (E(\alpha_i)-E(\alpha_{i-1}))=0
+$ for $j\ne i$,
+\StatementRef{lemma:3.3.4}{Lemma~3.3.4} permits us to drop all terms with
+$i\ne j$ from the above sum $\sum_{i,j=1}^n$. Therefore it becomes
+$
+ \sum_{i=1}^n\lambda_i^2
+ \bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))g,g\bigr).
+$
+
+Now
+$
+ E(\alpha_i)-E(\alpha_{i-1})
+ \mathrel{\underset p{\leq}}\xi(\alpha_{i-1}+0)
+$
+by \StatementRef{lemma:3.4.2}{Lemma~3.4.2}, (vii). Therefore it is evident
+from \StatementRef{lemma:1.4.1}{Lemma~1.4.1} that
+$\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))g,g\bigr)
+ \leq\xi(\alpha_{i-1}+0)
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)$. So
+\begin{align*}
+ (Ag',g')
+ &\leq\sum_{i=1}^n\lambda_i^2\xi(\alpha_{i-1}+0)
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)\\
+ &\leq C_1\sum_{i=1}^n
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)\\
+ &\leq C_1\TrM(A)
+\end{align*}
+(use \StatementRef{lemma:3.3.5}{Lemma~3.3.5}). Similarly
+$E(\alpha_i)-E(\alpha_{i-1})
+\mathrel{\underset p{\geq}}\xi(\alpha_i-0)$
+by \StatementRef{lemma:3.4.2}{Lemma~3.4.2}, (vii). Therefore
+\StatementRef{lemma:1.4.1}{Lemma~1.4.1} gives
+$\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))g,g\bigr)
+ \geq\xi(\alpha_i-0)
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)$. So
+\begin{align*}
+ (Ag',g')
+ &\geq\sum_{i=1}^n\lambda_i^2\xi(\alpha_i-0)
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)\\
+ &\geq C_2\sum_{i=1}^n
+ \TrM\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
+ (E(\alpha_i)-E(\alpha_{i-1}))\bigr)
+ =C_2\TrM(A)
+\end{align*}
+(use \StatementRef{lemma:3.3.5}{Lemma~3.3.5}). Thus the proof is
+completed.
+
+\SectionStart{3.5}3.5. We can now take the decisive step.
+
+\begin{statement}{lemma:3.5.1}{Lemma 3.5.1}
+Let $g$ and $K$ be as in \StatementRef{theorem:I}{Theorem~I}. Let $K'$ be
+any number such that $1<K'\leq K$. Then there is a $g'$ which is related to
+$K'$ as $g$ is to $K$ in \StatementRef{theorem:I}{Theorem~I}, and such
+that
+\[
+ \lVert g'-g\rVert\leq(K-1)K^{1/2}.
+\]
+\end{statement}
+
+Let $n$ be the smallest positive integer with $(K')^n\geq K$. Put
+$\theta=K^{1/n}$, so
+$1<\theta\leq K'$. Choose the $\alpha_i$, $i=0,1,\cdots,n$ with
+$0=\alpha_0\leq\alpha_1\leq\cdots\leq\alpha_{n-1}\leq\alpha_n=1$, so that
+$\xi(\alpha_i+0)\leq\theta^{n-2i}\leq\xi(\alpha_i-0)$.
+(For $i=0$, $\theta^{n-2i}=\theta^n=K$; for $i=n$,
+$\theta^{n-2i}=\theta^{-n}=K^{-1}$.) Put
+$\lambda_i=\theta^{i-(n+1)/2}$. Now apply
+\StatementRef{lemma:3.4.3}{Lemma~3.4.3}. We have
+$
+ \lambda_i^2\xi(\alpha_{i-1}+0)
+ \leq\theta^{2i-(n+1)}\theta^{n-2(i-1)}
+ =\theta\leq K'
+$ and
+$
+ \lambda_i^2\xi(\alpha_i-0)
+ \geq\theta^{2i-(n+1)}\cdot\theta^{n-2i}
+ \geq\theta^{-1}\geq(K')^{-1},
+$
+so $C_1\leq K'$ and $C_2\geq(K')^{-1}$.
+Therefore the $g'$ of that lemma gives for every definite $A\in M$:
+$
+ K'\TrM(A)\geq(Ag',g')
+ \geq(K')^{-1}\TrM(A)$; that is,
+$
+ K'(Ag',g')\geq\TrM(A)\geq(K')^{-1}(Ag',g').
+$
+So it is related to $K'$ as $g$ and $K$ are in
+\StatementRef{theorem:I}{Theorem~I}.
+
+Compute now $\lVert g'-g\rVert$. The projections
+$E(\alpha_i)-E(\alpha_{i-1})$, $i=1,\cdots,n$, are mutually orthogonal,
+therefore the $(E(\alpha_i)-E(\alpha_{i-1}))g$, $i=1,\cdots,n$ are
+mutually orthogonal too. Now we have
+\begin{align*}
+ \lVert g'-g\rVert^2
+ &=\left\lVert
+ \sum_{i=1}^n\lambda_i(E(\alpha_i)-E(\alpha_{i-1}))g
+ -\sum_{i=1}^n(E(\alpha_i)-E(\alpha_{i-1}))g
+ \right\rVert^2\\
+ &=\left\lVert\sum_{i=1}^n(\lambda_i-1)
+ (E(\alpha_i)-E(\alpha_{i-1}))g\right\rVert^2\\
+ &=\sum_{i=1}^n(\lambda_i-1)^2
+ \lVert(E(\alpha_i)-E(\alpha_{i-1}))g\rVert^2\\
+ &\leq\max_{i=1,\cdots,n}(\lambda_i-1)^2
+ \sum_{i=1}^n\lVert(E(\alpha_i)-E(\alpha_{i-1}))g\rVert^2\\
+ &=\max_{i=1,\cdots,n}(\lambda_i-1)^2\lVert g\rVert^2.
+\end{align*}
+% Editorial note: source prints exponent (n+1)/2 here, despite the preceding
+% definition of \lambda_i; retained verbatim.
+Now clearly
+\[
+ \max_{i=1,\cdots,n}(\lambda_i-1)^2
+ =(\lambda_n-1)^2
+ =\bigl(\theta^{(n+1)/2}-1\bigr)^2
+ \leq(\theta^n-1)^2=(K-1)^2,
+\]
+so that $\lVert g'-g\rVert\leq(K-1)\lVert g\rVert$.
+
+But $A=1$ in \StatementRef{theorem:I}{Theorem~I} gives
+\[
+ \lVert g\rVert^2=(g,g)\leq K\TrM(1)=K,
+ \qquad \lVert g\rVert\leq K^{1/2}.
+\]
+Therefore $\lVert g'-g\rVert\leq(K-1)K^{1/2}$. Thus the proof is
+completed.
+
+% Editorial note: source reads lowercase k in ``as g is to k''; retained
+% verbatim.
+Let $K_i=1+2^{-(i+2)}$, $i=0,1,2,\cdots$. We define inductively a sequence
+of elements $g_i$, $i=0,1,2,\cdots$. Let $g_0$ be related to $K_0$ as $g$
+is to $k$ in \StatementRef{theorem:I}{Theorem~I}. Suppose $g_i$ has been
+defined and is related to $K_i$ as in \StatementRef{theorem:I}{Theorem~I}.
+Then in \StatementRef{lemma:3.5.1}{Lemma~3.5.1} let
+$g=g_i$, $K=K_i$, $K'=K_{i+1}$. We then define $g_{i+1}$ as $g'$. Then
+$g_{i+1}$ and $K_{i+1}$ are related as $g$ and $K$ in
+\StatementRef{theorem:I}{Theorem~I} and we also have
+\[
+ \lVert g_{i+1}-g_i\rVert
+ \leq(K_i-1)K_i^{1/2}
+ =\frac1{2^{i+2}}K_i^{1/2}
+ \leq\frac1{2^{i+1}}.
+\]
+
+Then for $p>0$
+\begin{align*}
+ \lVert g_{n+p}-g_n\rVert
+ &=\left\lVert\sum_{i=n}^{n+p-1}(g_{i+1}-g_i)\right\rVert
+ \leq\sum_{i=n}^{n+p-1}\lVert g_{i+1}-g_i\rVert\\
+ &\leq\sum_{i=n}^{n+p-1}\frac1{2^{i+1}}
+ \leq\sum_{i=n}^{\infty}\frac1{2^{i+1}}=\frac1{2^n}.
+\end{align*}
+This implies that the $g_i$'s satisfy the Cauchy condition. Let $g$ be
+their limit, and let $A$ again be definite and in $M$. Then, since $A$ is
+bounded,
+\[
+ (Ag,g)=\lim_{i\to\infty}K_i(Ag_i,g_i)
+ \geq\TrM(A)
+ \geq\lim_{i\to\infty}K_i^{-1}(Ag_i,g_i)=(Ag,g).
+\]
+Thus, if $A\in M$ is definite, $(Ag,g)=\TrM(A)$.
+
+For $A\in M$, Hermitian, we have as in \SectionRef{2.1}, under
+Property II, $A=A_1-A_2$, $A_1$ and $A_2$, in $M$ and positive definite.
+Property I of \SectionRef{2.1} then yields
+$(Ag,g)=\TrM(A)$. If $A$ is merely in $M$, then
+\StatementRef{definition:2.2.1}{Definition~2.2.1} now implies that
+$(Ag,g)=\TrM(A)$. We have thus demonstrated
+
+\begin{statement}{theorem:II}{Theorem II}
+Let $M$ be a factor in case II, with $\alpha\geq1$. (In the normalization of
+\SectionRef{1.1}. In the normalization of \RO{}, Theorem~VIII
+this means $M,M'$ are either in case $\mathrm{II}_1,\mathrm{II}_\infty$ or
+in case $\mathrm{II}_1,\mathrm{II}_1$ with $C\leq1$, standard
+normalization.) Then there exists a $g\in\mathfrak H$ such that
+\[
+ (Ag,g)=\TrM(A).
+\]
+\end{statement}
+
+We now drop the restriction that $\alpha\geq1$. Let $M,M'$ be in case
+$\mathrm{II}_1,\mathrm{II}_1$, $\alpha<1$, and let $m$ be an integer such
+that $m\alpha\geq1$ or in the standard normalization of \RO{}, Theorem~X,
+$C/m\leq1$. Let $E_1,E_2,\cdots,E_m$ be $m$ projections each of which is
+in $M$, $D_M(E_i)=1/m$, $E_iE_j=0$ if $i\ne j$. Let the range of $E_i$ be
+$\mathfrak M_i$. Let us recall \RO{}, \S11.3 using $\mathfrak M_i$ for
+$\mathfrak M$.
+
+Consider the $M_{(\mathfrak M_i)}=M_i$ and
+$M'_{(\mathfrak M_i)}=M_i'$ of Definition~11.3.1. By Lemma~11.3.2, these
+constitute a factorization in $\mathfrak M_i$. Now we can take for $A\in M$
+and such that $E_iA=AE_i=A$,
+$D_{M_i}(AE_i)=D_M(A)$,
+% Editorial note: after A'\in M', the source prints AE_i (without a prime)
+% on the left while retaining A' on the right; retained verbatim.
+and for $A'\in M'$,
+$D_{M_i'}(AE_i)=D_{M'}(A')$,
+$D_{M_i}$ and $D_{M_i'}$ are dimension functions for $M_i$ and $M_i'$ 
+respectively (Lemma~11.3.6).
+
+The ranges of $D_{M_{(\mathfrak M)}}$ and $D_{M'_{(\mathfrak M)}}$ are by
+Lemma~11.3.7, the intervals $(0,1/m)$, $(0,\alpha)$ respectively. So we can
+obtain the standard normalization of \RO{}, Theorem~X by multiplying by
+$m$ and $1/\alpha$ respectively. But in this latter normalization, by
+Lemma~11.4.3,
+$C=\bigl(D_M(E_i)/D_{M'}(1)\bigr)C_0=C_0/m\leq1$,
+where $D_M$ and $D_{M'}$ refer to the standard normalization for $M$ and
+$M'$ as in \RO{}, Theorem~X.
+
+By \StatementRef{theorem:II}{Theorem~II} above this implies that there is a
+$g_i^0\in\mathfrak M_i$ such that, if $A_0\in M_i$, then
+$Tr_{M_i}(A_0)=(A_0g_i^0,g_i^0)$. 
+But now if $A\in M$ is such that $E_iA=AE_i=A$, let $A_0=AE_i$. From the
+above it will be seen that
+$\TrM(A)=\frac1mTr_{M_i}(A_0)=\frac1m(A_0g_i^0,g_i^0)
+=\frac1m(Ag_i^0,g_i^0)=(Ag_i,g_i)$, if $g_i=(1/m)^{1/2}g_i^0$.
+
+% Editorial note: source again cites the apparently nonexistent Lemma 3.2.6;
+% retained verbatim.
+Now if $A\in M$, we have by Lemma~3.2.6
+\begin{align*}
+ \TrM(A)
+ &=\sum_{i=1}^m\TrM(E_iAE_i)
+ =\sum_{i=1}^m(E_iAE_ig_i,g_i)\\
+ &=\sum_{i=1}^m(AE_ig_i,E_ig_i)
+ =\sum_{i=1}^m(Ag_i,g_i).
+\end{align*}
+
+If $M,M'$ is in case $\mathrm I_m,\mathrm I_{m'}$, $m<\infty$, we may
+proceed as follows. By \RO{}, Lemma~8.6.1,
+$\mathfrak H=E_m\otimes\mathfrak H_2$, where $E_m$ is an $m$-dimensional
+euclidean space. Let $\phi_1,\cdots,\phi_m$ be a complete orthonormal set in
+$E_m$ and $f\in\mathfrak H_2$ with $\lVert f\rVert=1$. Then if we let
+$g_i=\phi_i\otimes f$, we easily verify that the above formula for
+$\TrM$ holds. Thus we have
+
+\begin{statement}{theorem:III}{Theorem III}
+If $M$ is a factor in a finite case, then there exists a finite number of
+elements $g_i\in\mathfrak H$ such that
+\[
+ \TrM(A)=\sum_{i=1}^m(Ag_i,g_i).
+\]
+\end{statement}
+
+Suppose that $A\in M$ is held fixed. Then consider the weak neighborhood
+$U=U(A;g_1,\cdots,g_m;g_1,\cdots,g_m;\epsilon/m)$.
+$X\in U$ implies $|((X-A)g_i,g_i)|<\epsilon/m$
+for $i=1,\cdots,m$. Hence if $X$ is also in $M$,
+\StatementRef{theorem:III}{Theorem~III} implies
+$|\TrM(X)-\TrM(A)|<\epsilon$. This proves
+
+\begin{statement}{theorem:IV}{Theorem IV}
+If $M$ is a factor in a finite case, $\TrM(A)$ is weakly
+continuous.
+\end{statement}
+
+\chapterhead{IV}{The isomorphism of $M$, $M'$ and $\mathfrak H$
+(for $\alpha=1$)}
+
+\SectionStart{4.1}4.1. We assume that $M,M'$ is in case
+$\mathrm{II}_1,\mathrm{II}_1$ and $\alpha=1$ or what is the same thing that
+$C=1$ and we have the standard normalization. We know by the discussion of
+\RO{}, \S\S11.3 and 11.4 how all other cases II can be reduced to this case.
+
+As $\alpha=1$, \StatementRef{theorem:II}{Theorem~II} holds. We define
+
+\begin{statement}{definition:4.1.1}{Definition 4.1.1}
+A $g$ which satisfies \StatementRef{theorem:II}{Theorem~II} is uniformly
+distributed with respect to $M$; abbreviated $g$ u.d.r. $M$.
+\end{statement}
+
+\begin{statement}{lemma:4.1.1}{Lemma 4.1.1}
+If $g$ is u.d.r. $M$, then (i) $\lVert g\rVert=1$,
+(ii) $E_g^{M'}=1$, (iii) $E_g^M=1$ (cf. \RO{}, Definition~5.1.1).
+\end{statement}
+
+To prove (i), in \StatementRef{theorem:II}{Theorem~II} take $A$ as 1. Then
+$1=\TrM(1)=(g,g)=\lVert g\rVert^2$.
+
+To prove (ii), in \StatementRef{theorem:II}{Theorem~II} take $A$ as
+$E_g^{M'}$. Then
+\[
+ 1=\lVert g\rVert^2=(E_g^{M'}g,g)
+ =\TrM(E_g^{M'})=D_M(E_g^{M'})
+\]
+or $D_M(E_g^{M'})=1$ which in our normalization implies $E_g^{M'}=1$.
+
+
+
+% PDF p. 29; journal p. 236
+Consider (iii). Since we have the standard normalization and \(C=1\),
+$D_{M'}(E_g^M)=D_M(E_g^{M'})=1$.
+This implies \(E_g^M=1\).
+
+\begin{statement}{def:4.1.2}{Definition 4.1.2}
+Let \(g\) be \(\in\cH\). Let \(\Q_g(M)\) consist of all operators \(Z\in U(M)\),
+i.e., \(Z\) is linear closed \(\eta M\) and with a dense domain
+(cf. \RO, Definition 4.2.1), for which \(Zg\) exists.
+\end{statement}
+
+Now consider any \(f\in\cH\) such that \(E_f^{M'}=E_f^M=1\). By \RO,
+Lemma 9.2.1, if \(h\in\cH\), then \(h=XYf\), where \(X\) and \(Y\) are
+% Editorial note: source has no comma after case II_1 here; retained verbatim.
+\(\in U(M)\). But if \(M\) is in case \(\mathrm{II}_1\) by \RO, Theorem XV,
+\(Z=[XY]\) is \(\in U(M)\), and, since \(Z\supseteq XY\), \(Zf\) exists, and
+we also have \(h=XYf=Zf\); i.e., every \(h\in\cH\) is in the form \(Zf\),
+where \(Z\) is \(\in U(M)\).
+
+Furthermore this \(Z\) is uniquely determined by \(h\). For suppose \(Z_1\)
+and \(Z_2\in U(M)\) are such that \(Z_1f=Z_2f\) or
+\((Z_1-Z_2)f=0\). Then \([Z_1-Z_2]\) is by \RO, Theorem XV, \(\in U(M)\)
+and since \([Z_1-Z_2]\supseteq Z_1-Z_2\), \([Z_1-Z_2]f\) exists and is zero.
+Let \(A'\) be \(\in M'\). Then since
+\(A'[Z_1-Z_2]\subseteq[Z_1-Z_2]A'\),
+$[Z_1-Z_2]A'f=A'[Z_1-Z_2]f=0$.
+% Editorial note: source prints A'\in M here (without the prime on M); retained verbatim.
+Thus \([Z_1-Z_2]\) is zero on the set of \(A'f\), \(A'\in M\). But since
+\(E_f^{M'}=1\), this latter set is everywhere dense in \(\cH\). Thus
+\([Z_1-Z_2]\) is zero on a dense set and since it is closed it must be zero.
+\RO, Theorem XV, then yields
+\[
+ Z_1=[Z_1-0]=[Z_1-[Z_1-Z_2]]
+     =[[Z_1-Z_1]+Z_2]=[0+Z_2]=Z_2.
+\]
+So we have proved
+
+\begin{statement}{lem:4.1.2}{Lemma 4.1.2}
+If \(f\) is such that \(E_f^{M'}=E_f^M=1\) (in particular, if \(f\) is
+u.d.r.\ \(M\)), then \(h=Zf\) defines a one-to-one correspondence of
+\(\cH\) and the set of all \(Z\in U(M)\) for which \(Zf\) exists
+(i.e., between \(\cH\) and \(\Q_f(M)\)).
+\end{statement}
+
+Since our assumptions on \(f\) are symmetric in \(M\) and \(M'\), we also
+have
+
+\begin{statement}{lem:4.1.3}{Lemma 4.1.3}
+Let \(f\) be as in \StatementRef{lem:4.1.2}{Lemma 4.1.2}. Then \(h=Z'f\)
+defines a one-to-one correspondence of \(\cH\) and the set of all
+\(Z'\in U(M')\) for which \(Z'f\) exists (i.e., between \(\cH\) and
+\(\Q_f(M')\)).
+\end{statement}
+
+Thus for \(h\in\cH\) we have three correspondences defined by the equations
+\(Zf=h=Z'f\), if \(f\) is u.d.r.\ \(M\): (1) the correspondence
+\(\mathfrak I_M\) of \(\cH\) and \(\Q_f(M)\), (2) the correspondence
+\(\mathfrak I_{M'}\) of \(\cH\) and \(\Q_f(M')\), and (3) the correspondence
+\(\mathfrak I_{M,M'}\) of \(\Q_f(M)\) and \(\Q_f(M')\).
+
+\SectionStart{4.2}4.2.\quad
+We now investigate these three correspondences. We know that they are
+one-to-one. They are obviously linear and of course along with \(\cH\) the
+sets \(\Q_f(M)\) and \(\Q_f(M')\) are linear. But inasmuch as
+\(\mathfrak I_{M,M'}\) is a correspondence of operators, we would like to
+know the algebraic properties of this correspondence as well as certain
+properties of \(\Q_f(M)\) and \(\Q_f(M')\). In particular we would like to
+know:
+\begin{enumerate}[label=(\roman*),leftmargin=2.6em]
+\item To what extent can the operation \([XY]\) be performed in
+      \(\Q_f(M)\) (or \(\Q_f(M')\))?
+\item To what extent can the operation \(X^*\) be performed in
+      \(\Q_f(M)\) (or \(\Q_f(M')\))?
+\item Is the property of being bounded invariant under
+      \(\mathfrak I_{M,M'}\); i.e., since \(M\subset\Q_f(M)\),
+      \(M'\subset\Q_f(M')\), is \(M\) mapped on \(M'\) by
+      \(\mathfrak I_{M,M'}\)?
+\item Are the properties of being Hermitian, definite, or unitary invariant
+      under \(\mathfrak I_{M,M'}\)?
+\end{enumerate}
+
+% PDF p. 30; journal p. 237
+\begin{statement}{lem:4.2.1}{Lemma 4.2.1}
+If \(f\) is u.d.r.\ \(M\), then every \(Uf\), \(U\in M\) and unitary, is
+u.d.r.\ \(M\) also.
+\end{statement}
+
+If \(A\in M\), then
+\[
+ (AUf,Uf)=(U^{-1}AUf,f)=\Tr_M(U^{-1}AU)=\Tr_M(A).
+\]
+
+\begin{statement}{lem:4.2.2}{Lemma 4.2.2}
+If \(f\) and \(g\) are each u.d.r.\ \(M\), then there exists a
+\(U'\in M'\) and unitary with \(g=U'f\).
+\end{statement}
+
+If \(h=Af\), \(A\in M\), define \(h^*\) as \(Ag\). The correspondence
+\(h\rightleftarrows h^*\) is linear, and, since
+\begin{align*}
+ \lVert h^*\rVert^2
+ &=\lVert Ag\rVert^2=(Ag,Ag)=(A^*Ag,g)=\Tr_M(A^*A)=(A^*Af,f)\\
+ &=(Af,Af)=\lVert Af\rVert^2=\lVert h\rVert^2,
+\end{align*}
+it is isometric. Thus the equation \(Wh=h^*\) defines a linear isometric and
+hence one-valued operator \(W\). Since \(E_f^M=E_g^M=1\), both domain and
+range of \(W\) are everywhere dense and hence its closure \(\widetilde W\)
+is unitary.
+
+Now if \(h\) is in the domain of \(W\), \(h=Af\), \(A\in M\). Then, for every
+\(B\in M\),
+$BWh=Bh^*=BAg=WBAf=WBh$
+or \(BW\subseteq WB\). This implies that \([BW]\subseteq[WB]\). But
+\(B\widetilde W=\widetilde{BW}\subseteq[BW]\), while since \(B\) is bounded
+\([WB]=\widetilde WB\). Hence \(B\widetilde W\subseteq\widetilde WB\). If in
+particular \(B\) is unitary, \RO, Lemma 4.2.2 now yields that
+\(\widetilde W\) is \(\eta M'\) and \RO, Lemma 4.2.1 implies that
+\(\widetilde W\) is \(\in M'\).
+
+Letting \(A=1\) in the definition of \(W\), we get
+\(g=Wf=\widetilde Wf\).
+
+\begin{statement}{lem:4.2.3}{Lemma 4.2.3}
+If \(f\) and \(g\) are u.d.r.\ \(M\), then there exists a \(U\in M\) and
+unitary such that \(g=Uf\).
+\end{statement}
+
+By \StatementRef{lem:4.1.2}{Lemma 4.1.2}, \(g=Zf\) where \(Z\) is
+\(\in U(M)\). Using the canonical decomposition for \(Z\), \(Z=BW\), where
+\(B\) is self-adjoint and definite and \(W\) is partially isometric and as
+indicated in the proof of \StatementRef{lemma:1.4.3}{Lemma 1.4.3} may be taken as unitary; that is,
+\(g=BWf\), where \(W\) is unitary and \(B\) definite and self-adjoint. We
+must show that \(B=1\).
+
+By \StatementRef{lem:4.2.1}{Lemma 4.2.1}, \(f_0=Wf\) is u.d.r.\ \(M\).
+Hence we must show that if \(f_0\) and \(g\) are u.d.r.\ \(M\) and
+\(g=Bf_0\), where \(B\) is definite and self-adjoint, then \(B=1\).
+% PDF p. 31; journal p. 238
+Let \(E(\lambda)\) be the resolution of the identity corresponding to \(B\).
+If \(E(\lambda)=0\) for \(\lambda<1\) and \(E(\lambda)=1\) for
+\(\lambda>1\), then \(B=1\). Thus if \(B\) is not \(1\), either there exists
+a \(\lambda_1<1\) for which \(E(\lambda_1)\ne0\) or a \(\lambda_2>1\) for
+which \(E(\lambda_2)\ne1\). In the first case we have
+$
+ \lVert E(\lambda_1)f_0\rVert^2
+  =(E(\lambda_1)f_0,E(\lambda_1)f_0)
+    =(E(\lambda_1)f_0,f_0)=\Tr_M(E(\lambda_1))
+  =(E(\lambda_1)g,g)=\lVert E(\lambda_1)g\rVert^2
+    =\lVert E(\lambda_1)Bf_0\rVert^2
+    =\lVert BE(\lambda_1)f_0\rVert^2
+  \leq \lambda_1^2\lVert E(\lambda_1)f_0\rVert^2
+$ or
+$(1-\lambda_1^2)\lVert E(\lambda_1)f_0\rVert^2\leq0$.
+This implies
+$
+ 0=\lVert E(\lambda_1)f_0\rVert^2
+   =(E(\lambda_1)f_0,f_0)=\Tr_M(E(\lambda_1))
+   =D_M(E(\lambda_1))
+$
+or \(E(\lambda_1)=0\), a contradiction. In the second case a similar type
+of calculation yields that
+$
+ \lVert(1-E(\lambda_2))f_0\rVert^2
+ =\lVert B(1-E(\lambda_2))f_0\rVert^2
+ \geq\lambda_2^2\lVert(1-E(\lambda_2))f_0\rVert^2,
+$
+which again implies that \(1-E(\lambda_2)=0\), a contradiction. Thus \(B\)
+must be \(1\) and our lemma is proved.
+
+\begin{statement}{lem:4.2.4}{Lemma 4.2.4}
+If \(f\) is u.d.r.\ \(M\), and \(U'\in M'\) and unitary, then \(U'f\) is
+u.d.r.\ \(M\).
+\end{statement}
+
+If \(A\) is \(\in M\),
+\[
+ (AU'f,U'f)=(U'^{-1}AU'f,f)=(AU'^{-1}U'f,f)=(Af,f)=\Tr_M(A).
+\]
+
+\begin{statement}{lem:4.2.5}{Lemma 4.2.5}
+Unitary operators correspond to unitary operators under
+\(\mathfrak I_{M,M'}\); i.e., if \(f\) is u.d.r.\ \(M\), \(U\in M\),
+\(U'\in M'\) and \(Uf=U'f\), then if either \(U\) or \(U'\) is unitary the
+other is too.
+\end{statement}
+
+Let \(U\in M\) be unitary, then by \StatementRef{lem:4.2.1}{Lemma 4.2.1}
+\(Uf\) is u.d.r.\ \(M\). Then \StatementRef{lem:4.2.2}{Lemma 4.2.2} yields
+% Editorial note: source reads U'\in M here; retained verbatim.
+that there is a unitary \(U'\in M\), such that \(U'f=Uf\). Thus
+\(U\sim U'\) under \(\mathfrak I_{M,M'}\). Similarly
+\StatementRef{lem:4.2.4}{Lemmas 4.2.4} and
+\StatementRef{lem:4.2.3}{4.2.3} yield that to every unitary
+% Editorial note: source reads U'\in M here; retained verbatim.
+\(U'\in M\),
+there exists a unitary \(U\in M\) such that \(U'f=Uf\).
+
+\begin{statement}{lem:4.2.6}{Lemma 4.2.6}
+\(f\) u.d.r.\ \(M\) is equivalent to \(f\) u.d.r.\ \(M'\).
+\end{statement}
+
+% Editorial note: source reads A'\in M here; retained verbatim.
+Let \(f\) be u.d.r.\ \(M\) and \(A'\in M\). Then consider
+$T_0(A')=(A'f,f)$.
+It is linear in \(A'\). By \StatementRef{lemma:4.1.1}{Lemma 4.1.1}, (i) \(T_0(1)=1\). If \(A'\) is
+% Editorial note: source abruptly uses f_0 here instead of f; retained verbatim.
+definite, then \(T_0(A')=(A'f_0,f_0)\geq0\). Furthermore we have
+$
+ T_0(A'^*)=(A'^*f,f)=(f,A'f)
+ =\overline{(A'f,f)}
+% Editorial note: source reads \overline{T_0(A)} here; retained verbatim.
+ =\overline{T_0(A)}.
+$
+Therefore \(T_0(A')\) satisfies (i)--(iv) and (v) of
+\StatementRef{property:III}{Property III} with
+\(M'\) instead of \(M\).
+
+We would like to verify next (vi)\('\) of the same property for \(T_0(A')\).
+By \StatementRef{lem:4.2.5}{Lemma 4.2.5} we have for any unitary
+% Editorial note: source reads U'\in M here; retained verbatim.
+\(U'\in M\)
+\begin{align*}
+ T_0(U'^{-1}A'U')
+  &=(U'^{-1}A'U'f,f)=(A'U'f,U'f)=(A'Uf,Uf)\\
+  &=(U^{-1}A'Uf,f)=(A'(U^{-1}U)f,f)=(A'f,f)=T_0(A').
+\end{align*}
+Thus (vi)\('\) holds. \StatementRef{property:IV}{Property IV} of
+\SectionRef{2.2} now implies that
+\(T_0(A')=\Tr_{M'}(A')\) and hence \(f\) is u.d.r.\ \(M'\).
+
+Replacing \(M\) by \(M'\) in the above argument yields the converse.
+
+We note that the above argument also proves
+
+\begin{statement}{lem:4.2.7}{Lemma 4.2.7}
+If \(f\in\cH\) is such that (i) \(\lVert f\rVert=1\) and (ii) if to every
+unitary \(U\in M\) there exists a unitary \(U'\in M'\) such that \(Uf=U'f\),
+then \(f\) is u.d.r.\ \(M\).
+\end{statement}
+
+% PDF p. 32; journal p. 239
+\begin{statement}{thm:V}{Theorem V}
+Let \(f\in\cH\) be such that \(\lVert f\rVert=1\) and let \(M,M'\) be in
+case \(\mathrm{II}_1,\mathrm{II}_1\) with \(C=1\). Then the following
+statements are equivalent:
+\begin{enumerate}[label={},leftmargin=2.4em]
+\item[\((\alpha)\)] \(f\) is u.d.r.\ \(M\).
+\item[\((\beta)\)] \(f\) is u.d.r.\ \(M'\).
+\item[\((\gamma)\)] If \(U\) is unitary and \(\in M\), then there exists a unitary
+      \(U'\in M'\) such that \(Uf=U'f\).
+\item[\((\delta)\)] If \(U'\) is unitary and \(\in M'\), then there exists a unitary
+      \(U\in M\) such that \(U'f=Uf\).
+\end{enumerate}
+
+Furthermore either \((\alpha)\), \((\beta)\), \((\gamma)\), or
+\((\delta)\) implies \(E_f^M=E_f^{M'}=1\).
+\end{statement}
+
+\((\alpha)\) is equivalent to \((\beta)\) by
+\StatementRef{lem:4.2.6}{Lemma 4.2.6}. \((\alpha)\) and \((\gamma)\) are
+equivalent by \StatementRef{lem:4.2.5}{Lemmas 4.2.5} and
+\StatementRef{lem:4.2.7}{4.2.7}. Replacing \(M\) by \(M'\), the last
+mentioned lemmas also show \((\beta)\) and \((\delta)\) to be equivalent.
+This and \StatementRef{lemma:4.1.1}{Lemma 4.1.1} prove the last statement
+of the theorem.
+
+In view of \StatementRef{thm:V}{Theorem V}, we will say that \(f\) is
+uniformly distributed (abbreviated u.d.) if \(f\) is u.d.r.\ \(M\).
+
+\begin{statement}{cor:V}{Corollary}
+If \(f\) is u.d., \(\mathfrak I_{M,M'}\) maps
+\(M(\subseteq\Q_f(M))\) on \(M'(\subseteq\Q_f(M'))\); that is, the property
+of being bounded is invariant under \(\mathfrak I_{M,M'}\).
+\end{statement}
+
+By \StatementRef{thm:V}{Theorem V}, the property of being unitary is
+invariant under \(\mathfrak I_{M,M'}\). This and the linearity of
+\(\mathfrak I_{M,M'}\) imply together that the property of having the form
+\(A=\sum_{\nu=1}^{n}a_\nu U_\nu\)
+\((n=1,2,\cdots;\ a_\nu\) complex, \(U_\nu\) unitary and in \(M\) or \(M'\)
+along with \(A)\) is invariant under \(\mathfrak I_{M,M'}\).
+
+We will show that \(A\in\Q_f(M)\) (or \(\Q_f(M')\)) is bounded if and only
+if it is in this form. Now if \(A\) is in this form, it is obviously bounded
+so we must only show that every bounded \(A\) is in this form. Since
+\(A=A_1+iA_2\), \(A_1\) and \(A_2\) Hermitian, it will be sufficient if this
+is shown for Hermitian \(A\)'s. Since if \(A\) is in this form, \(cA\) is
+also, we may assume that the bound of \(A\) is \(\leq1\). Then \(1-A^2\)
+is definite and \((1-A^2)^{1/2}\) exists. Letting
+\(U=A+i(1-A^2)^{1/2}\),
+then \(U^*=A-i(1-A^2)^{1/2}\) and \(U\) is unitary. Furthermore
+\(A=\frac12(U+U^*)\).
+
+Now since the form \(\sum_{\nu=1}^{n}a_\nu U_\nu\) is invariant under
+\(\mathfrak I_{M,M'}\), boundedness must be also.
+
+\begin{statement}{thm:VI}{Theorem VI}
+Assume that \(f_0\) is u.d. Then \(\mathfrak I_{M,M'}\) is an
+anti-isomorphism of \(M\) and \(M'\). That is, if \(A\sim A'\),
+\(B\sim B'\), then (i) \(\alpha A\sim\alpha A'\); (ii)
+\(A^*\sim A'^*\); (iii) \(A+B\sim A'+B'\); (iv) \(AB\sim B'A'\);
+(v) if \(A\) (or \(A'\)) is Hermitian, then \(A'\) (or \(A\)) is also.
+\end{statement}
+
+(i) and (iii) are obvious.
+
+Consider (iv). We have
+\(ABf_0=AB'f_0=B'Af_0=B'A'f_0\),
+so that \(AB\sim B'A'\). To prove (v), let \(U\) be unitary,
+\(U\sim U'\). Then \(U'\) is unitary also by
+\StatementRef{thm:V}{Theorem V}. Similarly inasmuch as \(U^{-1}\) is
+unitary, if \(U^{-1}\sim V'\), \(V'\) is unitary. As
+% PDF p. 33; journal p. 240
+\(UU^{-1}=U^{-1}U=1\) by (iv) we have \(U'V'=V'U'=1\), and hence
+\(V'=(U')^{-1}\). So \(U^{-1}\sim(U')^{-1}\) and
+\(\alpha(U+U^{-1})\sim\alpha(U'+(U')^{-1})\)
+by (iii). If \(\alpha\) is \(>0\), the right side is Hermitian and the left
+side is any Hermitian element of \(M\) (cf. the proof of the
+\StatementRef{cor:V}{corollary} of
+\StatementRef{thm:V}{Theorem V}). This proves (v).
+
+We now prove (ii). If \(A\) is \(\in M\), then
+\(A=B+iC\), \(A^*=B-iC\), \(B,C\) are Hermitian and \(\in M\). If
+\(A\sim A'\), \(B\sim B'\), \(C\sim C'\), then \(B',C'\) are Hermitian and
+\(A\sim B'+iC'=A'\), \(A^*\sim B'-iC'=A'^*\),
+proving (ii).
+
+\begin{statement}{cor:VI}{Corollary}
+The properties of being Hermitian, being definite, being a projection, as
+well as the numerical quantities
+\(\opnorm{A}\) (the bound of \(A\)) and
+\(\Tr_M(A)\) (or \(\Tr_{M'}(A')\)), all within \(M\) (or \(M'\)), are
+invariant under \(\mathfrak I_{M,M'}\).
+\end{statement}
+
+\(A\) Hermitian means \(A=A^*\); \(A\) a projection means
+\(A=A^*=A^2\); \(A\) definite means that there exists an Hermitian \(B\)
+with \(A=B^2\). So all these properties are invariant under
+\(\mathfrak I_{M,M'}\). \(1\) is invariant
+\((1\in M\) and \(1\in M'\), \(1f_0=1f_0)\).
+\(\opnorm{A}\) is the smallest \(\alpha\geq0\) such
+that \(\alpha^2\cdot1-A^*A\) is definite, so
+\(\opnorm{A}\) is invariant. If \(A\sim A'\), then
+\(Af_0=A'f_0\) and
+% Editorial note: source reads \Tr_M(A') here; retained verbatim.
+\(\Tr_M(A)=(Af_0,f_0)=(A'f_0,f_0)=\Tr_M(A')\)
+by \StatementRef{thm:V}{Theorem V}.
+
+\SectionStart{4.3}4.3.\quad
+In what follows \(f_0\) will always be assumed to be u.d. The discussion
+which follows could be based on an extension of the notion of \(\Tr_M(A)\)
+(and of \(\Tr_{M'}(A')\)) to unbounded \(A\,\eta M\) (or \(A'\,\eta M'\))
+but we prefer an approach which avoids this.
+
+\begin{statement}{thm:VII}{Theorem VII}
+The sets \(\Q_{f_0}(M)\) and \(\Q_{f_0}(M')\) are independent of the choice
+% Editorial note: source reads "choice of of"; retained verbatim.
+of of u.d.\ \(f_0\). We will therefore denote them by \(\Q(M)\) and
+\(\Q(M')\), respectively. Furthermore the values of
+\(\lVert Zf_0\rVert\), \((Xf_0,Yf_0)\), where \(X,Y,Z\in\Q(M)\), or
+\(\Q(M')\), are independent of the choice of the u.d.\ \(f_0\).
+\end{statement}
+
+Owing to the symmetry between \(M\) and \(M'\) it suffices to prove the
+statements concerning \(M\); i.e., let \(f_0\) and \(g_0\) be u.d., then for
+\(A\in U(M)\), \(Af_0\) is defined if and only if \(Ag_0\) is defined and
+\(\lVert Af_0\rVert=\lVert Ag_0\rVert\). Owing to the symmetry in \(f_0\)
+and \(g_0\) it will be sufficient to show that \(Ag_0\) is defined if
+\(Af_0\) is and \(\lVert Af_0\rVert=\lVert Ag_0\rVert\).
+
+By \StatementRef{lem:4.2.2}{Lemma 4.2.2}, there exists a unitary
+\(U'\in M'\) such that \(g_0=U'f_0\). Since \(A\) is \(\in U(M)\),
+\(A=U'^{-1}AU'\). Hence since \(Af_0\) exists
+\(Af_0=U'^{-1}AU'f_0=U'^{-1}Ag_0\)
+exists. This implies that \(Ag_0\) exists and since \(Ag_0=U'Af_0\),
+\(\lVert Ag_0\rVert=\lVert Af_0\rVert\). Also if
+\(B\in\Q_{f_0}(M)\), then \(Bg_0=U'Bf_0\) and
+\((Ag_0,Bg_0)=(U'Af_0,U'Bf_0)=(Af_0,Bf_0)\).
+
+So we must have these mappings:
+\[
+ \tag{I}\EquationTarget{map:I}
+ \mathfrak I_M:\cH\sim\Q(M);\qquad
+ \mathfrak I_{M'}:\cH\sim\Q(M');\qquad
+ \mathfrak I_{M,M'}:\Q(M)\sim\Q(M').
+\]
+By the \StatementRef{cor:V}{corollary} to \StatementRef{thm:V}{Theorem V},
+\(\mathfrak I_{M,M'}\) maps \(M\) on \(M'\). So \(\mathfrak I_M\) maps
+\(M\) and \(\mathfrak I_{M'}\) maps \(M'\) on the same subset
+\(\mathfrak A\) of \(\cH\) and we have the further mappings
+\[
+ \tag{II}\EquationTarget{map:II}
+ \mathfrak I_M:\mathfrak A\sim M;\qquad
+ \mathfrak I_{M'}:\mathfrak A\sim M';\qquad
+ \mathfrak I_{M,M'}:M\sim M'.
+\]
+\EquationRef{map:II}{(II)} is part of \EquationRef{map:I}{(I)}.
+
+% PDF p. 34; journal p. 241
+We now prove
+
+\begin{statement}{lem:4.3.1}{Lemma 4.3.1}
+\(\mathfrak A\) is a linear set, dense in \(\cH\).
+\end{statement}
+
+Inasmuch as \(M\) is linear, \(\mathfrak A\) is too.
+
+Consider an \(f\in\cH\), \(f=Zf_0\), \(Z\in\Q(M)\). Now \(Z=BU\), \(B\)
+self-adjoint and definite, \(B\in U(M)\), \(U\) unitary and \(\in M\).
+Write \(B\) in its spectral form
+\[
+ B=\int_0^\infty \lambda\,dE(\lambda),\qquad E(\lambda)\in M.
+\]
+Then we have
+\[
+ [E(\mu)B]=\int_0^\mu \lambda\,dE(\lambda);
+\]
+and therefore (i) \([E(\mu)B]\in M\) and (ii) if \(Bg\) is defined then we
+have
+\(\mathop{\mathrm{strong}\ \lim}_{\mu\to\infty}\allowbreak[E(\mu)B]g\allowbreak=Bg\).
+Thus \([E(\mu)B]U\in M\) and
+\(\mathop{\mathrm{strong}\ \lim}_{\mu\to\infty}\allowbreak[E(\mu)B]Uf_0
+\allowbreak=BUf_0\allowbreak=Zf_0\allowbreak=f\).
+Since \([E(\mu)B]Uf_0\in\mathfrak A\), \(f\) is a condensation point of
+\(\mathfrak A\). As this is true for any \(f\in\cH\), \(\mathfrak A\) is
+dense in \(\cH\).
+
+\begin{statement}{def:4.3.1}{Definition 4.3.1}
+If \(f=Xf_0=X'f_0\), \(g=Yf_0=Y'f_0\), \(X\) and \(Y\in\Q(M)\), \(X'\)
+and \(Y'\in\Q(M')\), let
+\([\![X]\!]=[\![X']\!]=\lVert f\rVert\),
+\(\langle\!\langle X,Y\rangle\!\rangle
+=\langle\!\langle X',Y'\rangle\!\rangle=(f,g)\).
+\end{statement}
+
+\StatementRef{thm:VII}{Theorem VII} shows that the values of
+\([\![X]\!]\), \([\![X']\!]\),
+\(\langle\!\langle X',Y'\rangle\!\rangle\),
+\(\langle\!\langle X,Y\rangle\!\rangle\) are independent of the choice of
+the u.d.\ \(f_0\).
+
+\begin{statement}{lem:4.3.2}{Lemma 4.3.2}
+If \(X\) and \(Y\) are \(\in M\), then
+\([\![X]\!]=(\Tr_M(X^*X))^{1/2}=(\Tr_M(XX^*))^{1/2}\),
+\(\langle\!\langle X,Y\rangle\!\rangle
+=\Tr_M(Y^*X)=\Tr_M(XY^*)\).
+\end{statement}
+
+As
+\([\![X]\!]=\bigl(\langle\!\langle X,X\rangle\!\rangle\bigr)^{1/2}\),
+the second statement implies the first. Now clearly
+\[
+\langle\!\langle X,Y\rangle\!\rangle
+ =(Xf_0,Yf_0)=(Y^*Xf_0,f_0)=\Tr_M(Y^*X)
+\]
+% Editorial note: source writes f here instead of the standing f_0; retained verbatim.
+since \(f\) is u.d. We also have \(\Tr_M(Y^*X)=\Tr_M(XY^*)\) by
+\SectionRef{2.2}, \StatementRef{property:III}{Property III}, (vi). So
+\(\langle\!\langle X,Y\rangle\!\rangle
+=\Tr_M(Y^*X)=\Tr_M(XY^*)\).
+
+\begin{statement}{lem:4.3.3}{Lemma 4.3.3}
+If \(X'\), \(Y'\in M'\), then
+\([\![X']\!]=(\Tr_{M'}(X'^*X'))^{1/2}
+=(\Tr_{M'}(X'X'^*))^{1/2}\),
+\(\langle\!\langle X',Y'\rangle\!\rangle=\Tr_{M'}(Y'^*X')
+% Editorial note: source reads \Tr_M(X'Y'^*) here; retained verbatim.
+=\Tr_M(X'Y'^*)\).
+\end{statement}
+
+Replace \(M\) by \(M'\) in the proof of
+\StatementRef{lem:4.3.2}{Lemma 4.3.2}.
+
+\begin{statement}{thm:VIII}{Theorem VIII}
+If we use the definitions
+\begin{align*}
+ \langle\!\langle X,Y\rangle\!\rangle
+   &=\Tr_M(Y^*X)=\Tr_M(XY^*),\\
+ [\![X]\!]
+   &=\bigl(\langle\!\langle X,X\rangle\!\rangle\bigr)^{1/2}
+     =(\Tr_M(X^*X))^{1/2}=(\Tr_M(XX^*))^{1/2},
+\end{align*}
+then \(M\) is an incomplete Hilbert space. Its completion in the usual
+(Cantor) way gives a Hilbert space \(\widetilde M\) which may be identified
+with \(\Q(M)\).
+\end{statement}
+
+% PDF p. 35; journal p. 242
+This is clear by the isomorphisms \EquationRef{map:I}{(I)} and
+\EquationRef{map:II}{(II)} and \StatementRef{lem:4.3.1}{Lemmas 4.3.1} and
+\StatementRef{lem:4.3.2}{4.3.2}. \(M\) and \(\widetilde M\), that is,
+\(\Q(M)\), are isomorphic to \(\mathfrak A\) and \(\cH\) respectively,
+using the isomorphism \(\mathfrak I_M\).
+
+The corresponding facts hold for \(M'\); their formulation is obvious.
+
+\begin{statement}{thm:IX}{Theorem IX}
+\(X\in\Q(M)\) implies \(X^*\in\Q(M)\) and
+\([\![X]\!]=[\![X^*]\!]\).
+\end{statement}
+
+Assume \(X\in\Q(M)\), i.e., \(X\in U(M)\); \(Xf_0\) is defined. Write
+\(X=BU\), \(B\) self-adjoint and \(\eta M\), \(U\) unitary and \(\in M\).
+Thus \(BUf_0\) is defined. Now \(Uf_0\) is u.d.\
+(\StatementRef{lem:4.2.1}{Lemma 4.2.1}), hence the existence of \(BUf_0\)
+implies \(B\in\Q(M)\) (\StatementRef{thm:VII}{Theorem VII}). This in turn
+implies the existence of \(Bf_0\) and with it
+\(X^*f_0=U^{-1}Bf_0\). So \(X^*\in\Q(M)\).
+
+As \(f_0\) and \(Uf_0\) are both u.d.\
+(\StatementRef{lem:4.2.1}{Lemma 4.2.1}) we have by
+\StatementRef{def:4.3.1}{Definition 4.3.1},
+$
+ [\![X]\!]=\lVert Xf_0\rVert=\lVert BUf_0\rVert
+ =[\![B]\!]=\lVert Bf_0\rVert=\lVert U^{-1}Bf_0\rVert
+ =\lVert X^*f_0\rVert=[\![X^*]\!].
+$
+
+\begin{statement}{cor:IX}{Corollary}
+\(X\sim X^*\) is an involutory conjugate anti-isomorphism of \(\Q(M)\)
+and isometric.
+\end{statement}
+
+\(X\sim X^*\) maps \(\Q(M)\) on part of itself by
+\StatementRef{thm:IX}{Theorem IX}. This and \(X^{**}=X\) show that
+\(X\sim X^*\) is a one-to-one and involutory mapping of \(\Q(M)\) on
+itself. It is isometric by \StatementRef{thm:IX}{Theorem IX};
+\([\![X]\!]=[\![X^*]\!]\) and it is obviously a conjugate
+anti-isomorphism.
+
+The corresponding facts hold for \(M'\); the formulation is obvious.
+
+\SectionStart{4.4}4.4.\quad
+We next discuss the algebra of \(\Q(M)\).
+
+\begin{statement}{prop:I0}{Property \(\mathrm{I}^{0}\)}
+\(A,B\in\Q(M)\) imply \(\alpha A,A^*,[A+B]\in\Q(M)\). If also either
+\(A\) or \(B\) is \(\in M\), then \([AB]\) is \(\in\Q(M)\).
+\end{statement}
+
+\(\alpha A\), \([A+B]\) are \(\in\Q(M)\) since \(\Q(M)\) is linear
+(along with \(\cH\)). \(A^*\) is \(\in\Q(M)\) by
+\StatementRef{thm:IX}{Theorem IX}.
+
+Assume now that \(A\in M\), \(B\in\Q(M)\). Then \(Bf_0\) is defined and so
+is
+\(ABf_0=[AB]f_0\).
+Thus \([AB]\in\Q(M)\). If \(A\in\Q(M)\), \(B\in M\), then \(B^*\in M\),
+\(A^*\in\Q(M)\), so \([B^*A^*]\in\Q(M)\). Since
+\([B^*A^*]^*=[AB]\) (\RO, Theorem XV), \([AB]\) is \(\in\Q(M)\).
+
+\begin{statement}{prop:II0}{Property \(\mathrm{II}^{0}\)}
+(i) \([\![\alpha A]\!]=|\alpha|\cdot[\![A]\!]\); (ii)
+\([\![A^*]\!]=[\![A]\!]\); (iii)
+\([\![A+B]\!]\leq[\![A]\!]+[\![B]\!]\); (iv)
+% Editorial note: source omits a second comparison sign after "and";
+% the printed formula is retained verbatim.
+\([\![[AB]]\!]\leq\opnorm{A}\cdot[\![B]\!]\) and
+\([\![A]\!]\cdot\opnorm{B}\).
+\end{statement}
+
+(i) and (iii) hold because \(\Q(M)\) is isomorphic to \(\cH\). (ii) holds
+by \StatementRef{thm:IX}{Theorem IX}.
+
+Consider (iv). We have
+\[
+ [\![[AB]]\!]=\lVert[AB]f_0\rVert=\lVert ABf_0\rVert
+ \leq\opnorm{A}\cdot\lVert Bf_0\rVert
+ =\opnorm{A}\cdot[\![B]\!]
+\]
+% PDF p. 36; journal p. 243
+proving the first inequality. The second follows from this, by using (ii)
+\[
+ [\![[AB]]\!]=[\![[AB]^*]\!]=[\![[B^*A^*]]\!]
+ \leq\opnorm{B^*}\cdot[\![A^*]\!]
+ =\opnorm{B}\cdot[\![A]\!].
+\]
+
+We have \(\cH\sim\Q(M)\). Neither \(\cH\) nor \(\Q(M)\) depends on the
+choice of the u.d.\ \(f_0\) but \(\mathfrak I_M\) does. This dependence is
+as follows.
+
+\begin{statement}{prop:III0}{Property \(\mathrm{III}^{0}\)}
+Let us replace the u.d.\ \(f_0\) by a u.d.\ \(g_0\) and let
+\(\widetilde{\mathfrak I}_M\) denote the resulting correspondence. Let
+\(U\) be unitary and \(\in M\) and such that \(Uf_0=g_0\)
+% Editorial note: the source cites Lemma 4.2.1 here, though Lemma 4.2.3
+% supplies the stated unitary for the given f_0 and g_0; retained verbatim.
+(cf. \StatementRef{lem:4.2.1}{Lemma 4.2.1}). Then if \(X=YU\), \(X\) and
+\(Y\in\Q(M)\), we have
+\[
+ \mathfrak I_M:f\sim X;\qquad
+ \widetilde{\mathfrak I}_M:f\sim Y
+\]
+if \(f=Xf_0\).
+\end{statement}
+
+This is clear since \(f=Xf_0=YUf_0=Yg_0\).
+
+We can now determine another notion which does not depend on the choice of
+the u.d.\ \(f_0\).
+
+\begin{statement}{prop:IV0}{Property \(\mathrm{IV}^{0}\)}
+The linear set \(\mathfrak A\) (cf. \SectionRef{4.3}, the correspondences
+\EquationRef{map:II}{(II)}) does not depend on the choice of the u.d.\
+\(f_0\).
+\end{statement}
+
+This follows from the definition of \(\mathfrak A\) and the fact that if
+\(X=YU\), \(U\) unitary and either \(X\) or \(Y\) is bounded, then both
+\(X\) and \(Y\) are bounded.
+
+Now \(\Q(M)\sim\Q(M')\) under \(\mathfrak I_{M,M'}\) and while neither
+\(\Q(M)\) nor \(\Q(M')\) depends on the choice of the u.d.\ \(f_0\) yet
+\(\mathfrak I_{M,M'}\) does. We now obtain this dependence.
+
+\begin{statement}{prop:V0}{Property \(\mathrm{V}^{0}\)}
+Let the u.d.\ \(f_0\) be replaced by the u.d.\ \(g_0\) and let the resulting
+correspondence between \(\Q(M)\) and \(\Q(M')\) be denoted by
+\(\widetilde{\mathfrak I}_{M,M'}\). Then if \(U\in M\) is unitary and such
+that \(g_0=Uf_0\), and \(X=U^{-1}YU\), \(X\) and \(Y\in\Q(M)\), then
+\[
+ \mathfrak I_{M,M'}:X'\sim X;\qquad
+ \widetilde{\mathfrak I}_{M,M'}:X'\sim Y
+\]
+if \(X'f_0=Xf_0\), \(X'\in\Q(M')\).
+\end{statement}
+
+Let \(X'f_0=Xf_0\), then
+\(X'g_0=X'Uf_0=UX'f_0=UXf_0=UXU^{-1}g_0\).
+
+\begin{statement}{def:4.4.1}{Definition 4.4.1}
+The isomorphism \(\cH\sim\Q(M)\) makes correspond to every operator \(P\)
+in \(\cH\) an operator \(P^0\) in \(\Q(M)\).
+\end{statement}
+
+Observe that inasmuch as the elements of \(\Q(M)\) are operators in
+\(\cH\), \(P^0\) is an operator on the operators of \(\cH\).
+
+\begin{statement}{thm:X}{Theorem X}
+\((i)\) If \(A\in M\), then
+\[
+ A^0Z=[AZ];
+\]
+
+\((ii)\) if \(A'\in M'\) and \(A'\sim A\in M\) under
+\(\mathfrak I_{M,M'}\), then
+\[
+ % Editorial note: source omits the argument Z on the left; the proof below
+ % prints A'{}^0Z; the theorem is retained verbatim.
+ A'{}^0=[ZA].
+\]
+\end{statement}
+
+% PDF p. 37; journal p. 244
+\(P^0\) is defined as follows. If \(g=Xf_0\), \(h=Pg\), \(h=Yf_0\),
+\(X\) and \(Y\in\Q(M)\), then \(P^0X=Y\). Thus to prove (i), we have
+\((A^0Z)f_0=A(Zf_0)=[AZ]f_0\)
+and to show (ii)
+\((A'{}^0Z)f_0=A'Zf_0=ZA'f_0=ZAf_0=[ZA]f_0\).
+
+\begin{statement}{cor:X:1}{Corollary 1}
+Let \(M^0\) be the set of all operators \(L_A\) in \(\Q(M)\), \(A\in M\),
+where \(L_AZ=[AZ]\), and \(M_0\) the set of all operators \(R_A\) in
+\(\Q(M)\), \(A\in M\), where \(R_AZ=[ZA]\). Then \(\mathfrak I_M\) carries
+\(M\) into \(M^0\) and \(M'\) into \(M_0\).
+\end{statement}
+
+This is obvious by \StatementRef{thm:X}{Theorem X}.
+
+\begin{statement}{cor:X:2}{Corollary 2}
+\(M^0,M_0\) are rings and \(M^{0\prime}=M_0\) (all in \(\Q(M)\)). They are
+factors of class \((\mathrm{II}_1,\mathrm{II}_1)\) with \(C=1\).
+\end{statement}
+
+Since \(\mathfrak I_M\) is a spatial isomorphism of \(\cH\) and \(\Q(M)\)
+which takes \(M,M'\) into \(M^0,M_0\) respectively, these properties hold.
+
+We have now characterized \(\cH,M,M'\) by the situation in
+\(\Q(M),M^0,M_0\) to which they are spatially isomorphic. The spatial
+isomorphism is \(\mathfrak I_M\) which depends on an arbitrary u.d.\
+\(f_0\), while \(\Q(M),M^0,M_0\) themselves do not. All the influence of
+the choice of \(f_0\) is however a further transformation \(R_U\),
+\(X=YU\) (\(U\in M\), \(U\) unitary so \(R_U\in M_0\)).
+\(\mathfrak I_M\) always carries the totality of u.d.\ elements \(g_0\) of
+\(\cH\) into the totality of unitary elements \(U\in\Q(M)\), \(f_0\) being
+that element which corresponds to \(1\).
+
+\SectionStart{4.5}4.5.\quad
+The following important isomorphism theorem can now be proved.
+
+\begin{statement}{thm:XI}{Theorem XI}
+Let \(\cH_1\) and \(\cH_2\) be two Hilbert spaces and \(M_1,M_1'\) and
+\(M_2,M_2'\) respectively be factor pairs in them, both of class
+\((\mathrm{II}_1,\mathrm{II}_1)\) and with \(C=1\) in the standard
+normalization. Then an algebraic ring isomorphism of \(M_1\) and \(M_2\)
+is a necessary and sufficient condition for the existence of a spatial
+isomorphism of \(\cH_1\) and \(\cH_2\) which takes \(M_1,M_1'\) into
+\(M_2,M_2'\).
+\end{statement}
+
+The necessity is obvious and so we prove the sufficiency. Let
+\(\mathfrak F\) be the algebraic ring isomorphism of \(M_1\) and \(M_2\).
+By \SectionRef{2.2}, \StatementRef{property:IV}{Property IV},
+\(\Tr_{M_1}(A_1)=\Tr_{M_2}(A_2)\) if \(A_1\sim A_2\) under
+\(\mathfrak F\). So
+\([\![A_1]\!]=[\![A_2]\!]\),
+\(\langle\!\langle A_1,B_1\rangle\!\rangle
+=\langle\!\langle A_2,B_2\rangle\!\rangle\),
+% Editorial note: source reads B_2\sim B_2 here; retained verbatim.
+if \(A_1\sim A_2\), \(B_2\sim B_2\) under \(\mathfrak F\). Thus
+\(\mathfrak F\) is an isometric mapping of \(M_1\) on \(M_2\) and therefore
+% Editorial note: source reads Q(M) on Q(M') here; retained verbatim.
+extends by continuity in a unique way to a linear and isometric mapping of
+\(\Q(M)\) on \(\Q(M')\) which we call \(\mathfrak F\) again.
+\(A_1\sim A_2\), \(B_1\sim B_2\) under \(\mathfrak F\) imply
+\(A_1B_1\sim A_2B_2\) under \(\mathfrak F\) if \(A_1,B_1\in M_1\) (and
+thus \(A_2,B_2\in M_2\)). By continuity this will even hold, if one of
+\(A_1,B_1\) is in \(M_1\) and the other merely in \(\Q(M_1)\) (and one of
+\(A_2,B_2\) in \(M_2\), and the other merely in \(\Q(M_2)\)). So
+\(\mathfrak F\) is a spatial isomorphism of \(\Q(M_1)\) and \(\Q(M_2)\)
+which carries \(M_1^0,M_{1,0}\) into \(M_2^0,M_{2,0}\) (by
+\StatementRef{cor:X:1}{Corollary 1} to
+% Editorial note: the preceding source citation reads Theorem XI, although
+% the numbered corollary appears under Theorem X; retained verbatim.
+\StatementRef{thm:XI}{Theorem XI}). Now (by the same
+\StatementRef{cor:X:1}{corollary})
+\(\mathfrak I_{M_2}\mathfrak F\mathfrak I_{M_1}^{-1}\) is a spatial
+isomorphism of \(\cH_1\) and \(\cH_2\) which carries \(M_1,M_1'\) into
+\(M_2,M_2'\).
+
+\SectionStart{4.6}\StatementRef{thm:XI}{Theorem XI} could be extended to cover cases
+\((\mathrm{II}_1,\mathrm{II}_1)\), where
+\(C\mathrel{\substack{\geq\\<}}1\) in the standard
+normalization as well as other combinations of \(\mathrm{II}_1\) and
+\(\mathrm{II}_\infty\). In all
+% PDF p. 38; journal p. 245
+cases a reduction of the spatial-isomorphism questions of \(\cH_{\!1}\) and
+% Editorial note: source says algebraic-isomorphism questions of H_1 and H_2,
+% rather than of M_1 and M_2; retained verbatim.
+\(\cH_{\!2}\) to algebraic-isomorphism questions of \(\cH_{\!1}\) and
+\(\cH_{\!2}\)
+(plus the behavior of \(C\)) results. We will discuss these questions in
+detail in later publications.
+
+\appendixhead
+
+\SectionStart{A.1}1.\quad
+Consider a ring \(M\) of class \(\mathrm{II}_1\) in \(\cH\). Then \(M'\) is
+of class \(\mathrm{II}_1\) or \(\mathrm{II}_\infty\). Normalize \(D_M\) and
+\(D_{M'}\), so as to have \(D_M(\cH)=1\) and \(C=1\), so
+\(D_{M'}(\cH)=\alpha\) (cf. \SectionRef{1.1}). By choosing an
+\(n=1,2,\cdots\) with \(1/n\leq\alpha\) and then an
+\(\mathfrak M'\,\eta\,M'\) with \(D_{M'}(\mathfrak M')=1/n\), apply \RO,
+\S11.3, to form \(M_{(\mathfrak M')}\), \(M'_{(\mathfrak M')}\) in
+\(\mathfrak M'\). Then \(M_{(\mathfrak M')}\) is
+algebraically-ring-isomorphic to \(M\), and
+\(D_{M_{(\mathfrak M')}}(\mathfrak M')=D_M(\cH)=1\)
+(cf. \RO, Lemmas 11.3.3 and 11.3.6). So if we are interested in the
+algebraical properties of \(M\) only, we may assume without any loss in
+generality that \(M,M'\) are in case \(\mathrm{II}_1,\mathrm{II}_1\) and
+that \(\alpha=1/n\), \(n=1,2,\cdots\). Or, in standard normalization
+\(C=n\), \(n=1,2,\cdots\) (cf. \RO, Theorem X).
+
+Now form the direct product of \(\cH\) with an \(n\)-dimensional Euclidean
+space \(E_n\oplus\cH\) as in \SectionRef{2.1}, for the case \(C>1\), and
+consider \(M^{(2)}\) in \(E_n\oplus\cH\). The argument used in
+\SectionRef{2.1} shows that
+% Editorial note: source repeats M^{(2)\prime} on both sides; retained verbatim.
+\(M^{(2)\prime}=R(N^{(1)},M^{(2)\prime})\) and \(C^{(2)}=C/n=1\)
+% Editorial note: source prints ``is.ring'' with the intervening period; retained verbatim.
+and \(M^{(2)}\) is.ring isomorphic to \(M\).
+
+So we have for \(M^{(2)},M^{(2)\prime}\) in the standard normalization
+\(C=1\). If we are therefore interested in the algebraical properties of
+\(M\) only, we may even assume without any loss in generality that \(C=1\)
+in standard normalization; that is, \(\alpha=1\) in the normalization of
+\SectionRef{1.1}. We will assume this in what follows.
+
+It may be noticed concerning subrings that the metric of \(\Q(M)\)
+(cf. \StatementRef{def:4.3.1}{Definition 4.3.1}) is determined by the
+algebra of \(M\) (cf. \SectionRef{2.2}). A subring demands closure in the
+weak operator topology, but it will be shown elsewhere that for subrings of
+\(M\) weak, relative closure in \(M\) for the \([\![X-Y]\!]\) metric is
+equivalent to closure in the weak topology.
+
+\SectionStart{A.2}2.\quad
+Under these conditions there is an analogy between \(M\) and the matrices
+of a Euclidean space \(E_n\), described by an interesting
+Lebesgue-Stieltjes-Radon measure in the plane.
+
+We can use the results of \hyperlink{sec:4.2}{\(\S\S\)4.2--4.4}, and thus we may form the
+Hilbert-space \(\Q(M)\) which is isomorphic to \(\cH\), and in which
+\(M,M'\) are located by \StatementRef{thm:X}{Theorem X}.
+
+Let \(E(\lambda)\), \(a<\lambda<b\), be a resolution of unity, all
+\(E(\lambda)\in M\). Put
+\(A=\int_{-\infty}^{\infty}\lambda\,dE(\lambda)\)
+(in the well known symbolic sense). For any Borel-set of real numbers \(S\)
+form
+\[
+ e_S(\lambda)=
+ \begin{cases}
+  1&\text{for }\lambda\in S,\\
+  0&\text{for }\lambda\notin S,
+ \end{cases}
+\]
+and
+\[
+ E(S)=e_S(A)=\int_{-\infty}^{\infty}e_S(\lambda)\,dE(\lambda)
+             =\int_S dE(\lambda)
+\]
+% PDF p. 39; journal p. 246
+(symbolically). As
+$\overline{e_S(\lambda)}=e_S(\lambda)=(e_S(\lambda))^2$,
+so \(e_S(A)=e_S(A)^*=(e_S(A))^2\); that is, \(E(S)=e_S(A)\in M\) is a
+projection. (Cf. also Maeda, \textit{Journal of Science, Hiroshima
+University}, Ser.\ A, vol.\ 4 (1934), pp.\ 57--91.)
+
+Consider now point sets in the \(\lambda,\mu\)-plane \(P\) and in
+particular sets of the form \(S_1\otimes S_2\):
+\[
+ (\lambda,\mu)\in S_1\otimes S_2
+ \quad\hbox{means}\quad
+ \lambda\in S_1,\ \mu\in S_2,
+\]
+\(S_1,S_2\) being two Borel-sets of real numbers. Define for any \(X\in M\)
+(or even \(X\in\Q(M)\)),
+\[
+ X_{S_1\times S_2}=E(S_1)XE(S_2)
+\]
+and
+\begin{align*}
+ \omega(X;S_1\otimes S_2)
+  &=[\![X_{S_1\times S_2}]\!]^2
+    =\Tr\bigl((X_{S_1\times S_2})^*X_{S_1\times S_2}\bigr)\\
+  &=\Tr\bigl(E(S_2)X^*E(S_1)\cdot E(S_1)XE(S_2)\bigr)\\
+  &=\Tr\bigl(E(S_2)X^*\cdot E(S_1)XE(S_2)\bigr)\\
+  &=\Tr\bigl(E(S_1)XE(S_2)\cdot E(S_2)X^*\bigr)\\
+  &=\Tr\bigl(E(S_1)XE(S_2)X^*\bigr).
+\end{align*}
+
+The first expression for \(\omega(X,S_1\otimes S_2)\) shows, that it is
+always \(\geq0\), the last one, that it is a totally additive set-function
+of \(S_1\) and of \(S_2\).
+
+Denote the set of all \(\lambda\) by \(\Lambda\), then the above facts imply:
+\begin{align*}
+ \omega(X;S_1\otimes S_2)
+ &\leq\omega(X;S_1\otimes S_2)
+       +\omega(X;(\Lambda-S_1)\otimes S_2)\\
+ &=\omega(X;\Lambda\otimes S_2)\\
+ &\leq\omega(X;\Lambda\otimes S_2)
+       +\omega(X;\Lambda\otimes(\Lambda-S_2))\\
+ &=\omega(X;\Lambda\otimes\Lambda)
+   =[\![X_{\Lambda\times\Lambda}]\!]^2\\
+ &=[\![1\cdot X\cdot1]\!]^2=[\![X]\!]^2.
+\end{align*}
+
+So we have
+
+\begin{statement}{lem:A}{Lemma A}
+\((i)\) \(\omega(X;S_1\otimes S_2)\) is defined for all linear Borel-sets
+\(S_1,S_2\). \((ii)\) It is totally additive in \(S_1\) as well as in
+\(S_2\). \((iii)\) We have always
+\[
+ 0\leq\omega(X;S_1\otimes S_2)\leq[\![X]\!]^2=\Tr(X^*X).
+\]
+\end{statement}
+
+\SectionStart{A.3}3.\quad
+We can use \StatementRef{lem:A}{Lemma A} to define a
+Lebesgue-Stieltjes-Radon measure \(\mu(X;T)\) for all plane Borel-sets
+\(T(\subset P)\) with the help of \(\omega(X;S_1\otimes S_2)\).
+
+\begin{statement}{def:A}{Definition A}
+If \(T\) is a plane Borel-set (\(T\subset P\)), then consider all sequences
+of linear Borel-set \(S_1^{(i)},S_2^{(i)}\), \(i=1,2,\cdots\) (all
+\(S_1^{(i)},S_2^{(i)}\subset\Lambda\)) for which
+\[
+ \tag{*}\EquationTarget{app:eq:cover}
+ T\subset\sum_{i=1}^{\infty}S_1^{(i)}\otimes S_2^{(i)}.
+\]
+For every such sequence form the (numerical) sum
+\[
+ \tag{**}\EquationTarget{app:eq:sum}
+ \sum_{i=1}^{\infty}\omega(X;S_1^{(i)}\otimes S_2^{(i)}).
+\]
+Denote the g.l.b.\ of all numbers \EquationRef{app:eq:sum}{(**)} by
+\(\mu(X;T)\).
+\end{statement}
+
+% PDF p. 40; journal p. 247
+We prove now
+
+\begin{statement}{lem:B}{Lemma B}
+\((i)\) \(\mu(X;T)\) is defined for all plane Borel-sets \(T\subset P\).
+
+\((ii)\) It is totally additive in \(T\).
+
+\((iii)\) We have always
+\[
+ 0\leq\mu(X;T)\leq[\![X]\!]^2=\Tr(X^*X).
+\]
+
+\((iv)\) In particular
+\[
+ \mu(X;S_1\otimes S_2)=\omega(X;S_1\otimes S_2)
+\]
+and especially
+\[
+ \mu(X,P)=[\![X]\!]^2=\Tr(X^*X).
+\]
+\end{statement}
+
+(i) is obvious. To prove (ii), observe first that our
+\StatementRef{def:A}{Definition A} makes
+\[
+ \mu(X;T_1+T_2+\cdots)
+ \leq\mu(X;T_1)+\mu(X;T_2)+\cdots
+\]
+obvious, so we need to prove
+\[
+ \mu(X;T_1+T_2+\cdots)
+ \geq\mu(X;T_1)+\mu(X;T_2)+\cdots
+\]
+only when \(T_i\cdot T_j=0\) for \(i\ne j\).
+
+Even \(\mu(X;T_1+T_2)\geq\mu(X;T_1)+\mu(X;T_2)\) suffices. Then
+finite induction gives
+\(\mu(X;T_1+T_2+\cdots+T_n)
+\geq\mu(X;T_1)+\mu(X;T_2)+\cdots+\mu(X;T_n)\), and so
+\(\mu(X;T_1+T_2+\cdots)
+\geq\mu(X;T_1+\cdots+T_n)
+\geq\mu(X;T_1)+\cdots+\mu(X;T_n)\), and as this holds for all
+\(n=1,2,\cdots\), it implies
+\(\mu(X;T_1+T_2+\cdots)
+\geq\mu(X;T_1)+\mu(X;T_2)+\cdots\).
+
+We will prove
+\[
+ \tag{\S}\EquationTarget{app:eq:caratheodory}
+ \mu(X;T)=\mu(X;TU)+\mu(X;T-TU)
+\]
+for all \(T,U\) this gives our above inequality if \(T=T_1+T_2\),
+\(U=T_1\). Call a \(U\), for which
+\EquationRef{app:eq:caratheodory}{(\S)} holds for all plane Borel-sets
+\(T\), following Carath\'eodory (cf. \ROcite{4}, pp.\ 246--252), measurable.
+We must show that all \(U\) are measurable.
+
+If \(U=S_1\otimes S_2\), then
+\(T\subset\sum_{i=1}^{\infty}S_1^{(i)}\otimes S_2^{(i)}\) implies
+\(TU\subset\sum_{i=1}^{\infty}
+S_1^{(i)}S_1\otimes S_2^{(i)}S_2\),
+\(T-TU\subset\sum_{i=1}^{\infty}
+S_1^{(i)}S_1\otimes\bigl(S_2^{(i)}-S_2^{(i)}S_2\bigr)
++\sum_{i=1}^{\infty}
+\bigl(S_1^{(i)}-S_1^{(i)}S_1\bigr)\otimes S_2^{(i)}\).
+Thus our \StatementRef{def:A}{Definition A} gives immediately
+\EquationRef{app:eq:caratheodory}{(\S)} with \(\geq\) in it, and as
+\(\leq\) is obvious (cf. above) it proves
+\EquationRef{app:eq:caratheodory}{(\S)}. So all \(U=S_1\otimes S_2\) are
+measurable, and therefore in particular all plane intervals
+\((=\text{rectangles})\).
+
+% PDF p. 41; journal p. 248
+Now the measurable sets \(U\) form a Borel-ring (cf., for instance,
+\ROcite{4}, loc.\ cit.). These considerations apply literally to the
+present case. Thus every plane Borel-set \(U\) is measurable. This completes
+the proof.
+
+We now prove (iii). \(\mu(X;T)\geq0\) because all expressions
+\EquationRef{app:eq:sum}{(**)} in \StatementRef{def:A}{Definition A} are
+\(\geq0\). The relation
+\(\mu(X;T)\leq[\![X]\!]^2=\Tr(X^*X)\) results by putting
+\(S_1^{(1)}=S_2^{(1)}=\Lambda\) and all other
+\(S_1^{(i)}=S_2^{(i)}=0\).
+
+To prove (iv), put \(S_1^{(1)}=S_1\), \(S_2^{(1)}=S_2\) and all other
+\(S_1^{(i)}=S_2^{(i)}=0\). This gives
+\(\mu(X;S_1\otimes S_2)\leq\omega(X;S_1\otimes S_2)\). So we must
+prove \(\geq\) only; that is,
+\[
+ S_1\otimes S_2
+ \subset\sum_{i=1}^{\infty}S_1^{(i)}\otimes S_2^{(i)}
+ \quad\hbox{implies}\quad
+ \omega(X;S_1\otimes S_2)
+ \leq\sum_{i=1}^{\infty}
+ \omega(X;S_1^{(i)}\otimes S_2^{(i)}).
+\]
+
+Considering the properties of \(\omega(X;S_1\otimes S_2)\) given in
+\StatementRef{lem:A}{Lemma A}, this implication follows literally as in
+the paper of
+\href{https://doi.org/10.4064/fm-23-1-237-278}{\L omnicki and Ulam}
+(\textit{Fundamenta Mathematicae}, vol.\ 23 (1934), pp.\ 237--278; cf.\
+also the lecture notes of the second-named author for the year 1934--1935).
+
+So we have proved
+\(\mu(X;S_1\otimes S_2)=\omega(X;S_1\otimes S_2)\). Put now
+\(S_1=S_2=\Lambda\); then
+\[
+ \mu(X;P)=\mu(X;\Lambda\otimes\Lambda)
+ =\omega(X;\Lambda\otimes\Lambda)
+ =[\![X]\!]^2=\Tr(X^*X).
+\]
+results.
+
+\SectionStart{A.4}4.\quad
+The plane measure \(\mu(X;T)\) may be used to \lq\lq locate\rq\rq\ the
+\lq\lq position\rq\rq\ of \(X\) in the \(\lambda,\mu\)-plane \(P\). It
+gives the entire plane a total \lq\lq measure\rq\rq\ or
+\lq\lq weight\rq\rq\ \([\![X]\!]^2\) (which is \(>0\) if \(X\ne0\)), and
+any part \(T\) of it correspondingly a \(\mu(X;T)\) (\(\geq0\)). It plays
+the same role, as the sum of the absolute-value-squares of all
+matrix-elements in a certain area \(T\) in the matrix-scheme (which may be
+looked at as a region in the plane) for the matrices of a
+finite-dimensional Euclidean space \(E_n\) (that is, \(M\) in a case
+\((\mathrm{I}_n)\), \(n=1,2,\cdots\)).
+
+We will analyse it more thoroughly in subsequent publications.
+
+\begin{center}
+\textsc{Princeton University and The Institute for Advanced Study,}\\
+\textsc{Princeton, N.\ J.}
+\end{center}
+
+
+
+\end{document}
