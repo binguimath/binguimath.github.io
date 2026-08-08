@@ -122,6 +122,8 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
 
 
+> 懂得都懂
+
 
 - 1938 von Neumann. On rings of operators, reduction theory.
 [tex](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.tex)
