@@ -26,7 +26,17 @@ blockquote { font-size: 0.85em; }
 }
   </style>
 
+
 <!-- Expand all与Collapse all按键与下面的距离设为2rem -->
+
+
+<style>
+details.year-group {
+  margin: 0 0 1.25rem 0;
+}
+</style>
+
+<!-- 年份按键之间的距离设为1.25rem -->
 
 # Classical Mathematical Literature
 
