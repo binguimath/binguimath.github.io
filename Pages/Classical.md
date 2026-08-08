@@ -62,7 +62,7 @@ Below are some LaTeX and PDF files that I had ChatGPT create from early mathemat
 <details class="year-group" markdown="1">
 <summary><strong>1890–1919</strong></summary>
 
-- 1896 Stieltjes. Recherches sur les fractions continues. (Researches on Continued Fractions.) [tex](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.tex)
+- 1894 Stieltjes. Recherches sur les fractions continues. (Researches on Continued Fractions.) [tex](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.pdf)
 
 > The Stieltjes integral, the key language for describing continuous spectra and hence central to 20th century spectral theory, was introduced with the motivation of studying continued fractions and the associated moment problem.
