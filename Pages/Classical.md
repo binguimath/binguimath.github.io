@@ -98,3 +98,14 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 
 </details>
+
+
+<script>
+function toggleAllLiterature(openState) {
+  document.querySelectorAll('details.year-group').forEach(function(section) {
+    section.open = openState;
+  });
+}
+</script>
+
+<!-- 一键展开和折叠，续 -->
