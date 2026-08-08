@@ -21,7 +21,7 @@ blockquote { font-size: 0.85em; }
 <style>
 .literature-controls {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   margin: 1.5rem 0 2rem 0;
 }
 
