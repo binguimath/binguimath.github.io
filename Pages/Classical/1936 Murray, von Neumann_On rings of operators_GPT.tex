@@ -6,10 +6,11 @@
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{newpxmath}
 \usepackage{bm}
-\usepackage[b5paper,left=0.7cm,right=0.7cm,top=1.15cm,bottom=1.30cm,
+\usepackage[b5paper,left=0.7cm,right=0.7cm,top=0.91cm,bottom=0.91cm,
   includehead,includefoot,headheight=15pt,headsep=5pt,footskip=18pt]{geometry}
 \usepackage{microtype}
 \usepackage{enumitem}
+\usepackage{needspace}
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -48,13 +49,25 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{firstpage}{%
   \fancyhf{}%
-  \fancyfoot[C]{\thepage}%
+  \fancyfoot[C]{\raisebox{1.3mm}{\thepage}}%
   \renewcommand{\headrulewidth}{0pt}%
 }
 
 \makeatletter
-\renewcommand{\@cite}[2]{(#1\if@tempswa, #2\fi)}
+\renewcommand{\@cite}[2]{(#1)\if@tempswa, #2\fi}
 \renewcommand{\@biblabel}[1]{(#1)}
+\newcommand{\solidotimes}{\mathbin{\mathpalette\solidotimes@\relax}}
+\newcommand{\solidotimes@}[2]{%
+  \begingroup
+  \setbox\z@=\hbox{$\m@th#1\bm{\otimes}$}%
+  \@tempdima=.04\wd\z@
+  \@tempdimb=.04\ht\z@
+  \rlap{\kern-\@tempdima\copy\z@}%
+  \rlap{\kern\@tempdima\copy\z@}%
+  \rlap{\raise\@tempdimb\copy\z@}%
+  \rlap{\lower\@tempdimb\copy\z@}%
+  \box\z@
+  \endgroup}
 \makeatother
 
 \newcommand{\Hspace}{\mathfrak H}
@@ -212,7 +225,7 @@ we carry out these identifications. We choose to make $R(\M,\N)$ correspond
 to addition and $\M\cdot\N$ to multiplication.
 
 In this notation the rings $\M$ (and similarly the rings with $1\in\M$) form
-a lattice. (Cf. \cite{ref1,ref9,ref12a}.) We use the terminology of
+a lattice. (Cf. \cite{ref1}, \cite{ref9}, \cite{ref12a}.) We use the terminology of
 \cite{ref9}, and therefore write in this \hyperref[intro:2]{\S}\
 $\M\cup\N$ for $R(\M,\N)$
 and $\M\cap\N$ for $\M\cdot\N$. One verifies immediately the lattice
@@ -255,7 +268,7 @@ $M$: the set $(0)$ consisting of $0$ alone; $1$ is the greatest element of $M$:
 $\Hspace$. (We use these notations in this \hyperref[intro:2]{\S}\ only.)
 Then we may define
 $\mathfrak M'$ as the set of all elements of $\Hspace$ which are orthogonal to
-all elements of $\mathfrak M$: $\Hspace\ominus\mathfrak M$
+all elements of $\mathfrak M$: $\Hspace-\mathfrak M$
 (cf. \cite[p.~74]{ref16}). One verifies again the lattice postulates I--IV
 (cf. \cite[p.~422]{ref1}) for $M$, while the distributive law (postulate VI,
 eod., p.~453) does not hold in general. (Postulate V, eod., p.~445, holds,
@@ -315,14 +328,14 @@ degree $p$. The same is true for their linear aggregates, the elements of $\M$.
 The matrices which occur in the $q$ first diagonal minors form an irreducible
 system, inequivalent to those which occur in the $r-q$ other diagonal minors.
 So the theorems of Burnside, Frobenius, and I. Schur
-(cf. \cite{ref3,ref8}; or \cite[p.~412]{ref14}) apply. Therefore these matrices
+(cf. \cite{ref3}, \cite{ref8}; or \cite[p.~412]{ref14}) apply. Therefore these matrices
 are perfectly arbitrary, and independent of the $r-q$ other ones. Thus we can
 prescribe the $q$ first ones to be equal to the unit matrix, and the $r-q$ others
 to vanish. So an element $E_0$ of $\M$ results, which commutes obviously with
 all elements of $\M$; thus $E_0\in\M\cdot\M'$. As
 $\M\cdot\M'=(\alpha1)$, we have $E_0=\alpha1$. This clearly necessitates
 $\alpha=1$, and so the $r-q$ vanishing diagonal minors in $E_0$ cannot be
-present. Therefore $r-q=0$, $q=r$, $n=p_1+\cdots+p_q=pq$.
+present. Therefore $r-q=0$, $q=r$, $n=p_1+\cdots+p_q=p\cdot q$.
 
 If we write the general element $A$ of $\M$ as a matrix:
 $A=\{a_{\mu,\nu}\}$, $\mu,\nu=1,\ldots,n$, then our discussions have
@@ -496,13 +509,13 @@ trace (cf. \secref{15.4}--\secref{15.5}), and there exists only one such functio
 $T(A)$. In the cases $(\mathrm I_n)$, where the operators $A\in\M$ correspond
 to matrices $\{a_{\mu,\nu}\}_{\mu,\nu=1,\ldots,n}$, obviously
 \[
- T(A)=\frac1n\sum_{\mu=1}^n a_{\mu,\mu}
+ T(A)=\frac1n\sum_{1}^{n} a_{\mu,\mu}
 \]
 (the ``normalising factor'' $1/n$ is necessary, because we require $T(1)=1$),
 and it is well known, that in case $(\mathrm I_\infty)$ (that is: for all bounded
 infinite matrices $\{a_{\mu,\nu}\}_{\mu,\nu=1,2,\ldots}$) no such function
 $T(A)$ can be defined. (The expression which is formed in analogy to
-$(1/n)\sum_{\mu=1}^n a_{\mu,\mu}$ will not converge in general.) Now we
+$(1/n)\sum_{1}^{n} a_{\mu,\mu}$ will not converge in general.) Now we
 proved, as mentioned above, that the only further case where such a $T(A)$
 exists and is unique, is $(\mathrm{II}_1)$.
 
@@ -529,19 +542,19 @@ equation $Af=0$ where $A\in\M$ is the ``coefficient matrix,'' and $f\in\Hspace$
 represents the variables) has a rank. In case $(\mathrm I_n)$ this is a number
 $0,1,\ldots,n-1,n$, but we replace it by its $n$-th part:
 $0,1/n,\ldots,(n-1)/n,1$. Now in case $(\mathrm{II}_1)$ it is any number
-$\alpha$, $0\leq\alpha\leq1$. Two adjoint systems of equations $Af=0$ and
+$\geq0,\leq1$. Two adjoint systems of equations $Af=0$ and
 $A^*f=0$ (cf. \secref{16.1}) have the same rank. (Observe the analogy with
 $(\mathrm I_n)$, and the contrast with $(\mathrm I_\infty)$!) Similarly a
 dimensionality for subspaces of $\Hspace$ (linear, closed sets) can be defined,
 which has the values $0,1/n,\ldots,(n-1)/n,1$ (in the customary normalisation
 $0,1,\ldots,n-1,n$) in case $(\mathrm I_n)$, and all values
-$\alpha$, $0\leq\alpha\leq1$ in case $(\mathrm{II}_1)$.
+$\geq0,\leq1$ in case $(\mathrm{II}_1)$.
 
 With this notion of dimensionality even the ``minimax principle''
 (cf. \cite[pp.~26--29]{ref5}) can be proved, which thus labels the proper values
 of all Hermitian operators (in $\M$), even in continuous spectra! So it makes
 sense to speak about the ``proper value No. $\alpha$ of the operator $A$ (from
-below)'' for any $\alpha\geq0$, $\alpha\leq1$, even for irrational ones!
+below)'' for any $\alpha\geq0,\leq1$, even for irrational ones!
 (Cf. \secref{15.2}.)
 
 \IntroStart{6}{\texorpdfstring{Unbounded operators derived from a case
@@ -594,20 +607,19 @@ text. (Cf. also note at the end of this paper.)
 
 Here however we would like to mention that very similar methods to those used
 in this paper permit us to discuss the corresponding problems in the
-non-separable analogues of Hilbert space (cf. \cite{ref11,ref13}). The analogy
+non-separable analogues of Hilbert space (cf. \cite{ref11}, \cite{ref13}). The analogy
 to Cantor's theory of alephs, which we stress in
 \hyperref[chap:6]{Chapters VI} and \hyperref[chap:7]{VII}, becomes
 then even more apparent. This subject, too, will be treated at a later occasion.
 % --- End of parts/01-introduction.tex ---
 
-\clearpage
 \phantomsection
-\addcontentsline{toc}{section}{Contents}
+\pdfbookmark[1]{Contents}{bookmark:contents}
 \renewcommand{\contentsname}{Contents}
 \tableofcontents
 
 \phantomsection
-\addcontentsline{toc}{section}{Bibliography}
+\pdfbookmark[1]{Bibliography}{bookmark:bibliography}
 \renewcommand{\refname}{Bibliography}
 \begin{thebibliography}{12a}
 \bibitem[1]{ref1} G. Birkhoff: \emph{On Combinations of Sub-Algebras}. Proc. Cambridge Phil. Soc. Vol. 29, pp. 441--464, (1933).
@@ -636,6 +648,7 @@ then even more apparent. This subject, too, will be treated at a later occasion.
 \bibitem[22]{ref22} J. v. Neumann: \emph{On a certain topology for rings of operators}. Annals of Math. Vol. 37 preceding immediately, (1936).
 \end{thebibliography}
 
+\Needspace{10\baselineskip}
 \PartHeading{I}{Preparatory Considerations}
 
 \ChapterHeading{1}{I}{Notations}
@@ -643,9 +656,9 @@ then even more apparent. This subject, too, will be treated at a later occasion.
 \SectionStart{1.1}{Notations}
 In what follows we will have to assume that the reader is familiar with
 the unitary--orthogonal--geometrical discussion of the elementary properties
-of Hilbert space, as contained in the treatise \cite[particularly
-pp.~63--78]{ref16} or in the remarkable exposition of the subject in
-\cite[Chapter~I]{ref15}. Besides we will have to make frequent use of some
+of Hilbert space, as contained in the treatise \cite{ref16} (particularly
+pp.~63--78) or in the remarkable exposition of the subject in
+\cite{ref15} Chapter~I. Besides we will have to make frequent use of some
 other papers of one of us, namely \cite{ref18}, \cite{ref21} and \cite{ref22},
 which is a variant to a theorem of \cite{ref18}.
 
@@ -668,14 +681,16 @@ of $x\in S$, will be defined in \secref{4.2}, \defref{4.2.1}.
 complete, will be denoted by $\Hspace$. (We will use affixes and suffixes if
 more than one such space occurs.) In other words: $\Hspace$ is a space in
 which operations $\alpha\cdot f$, $f+g$, $(f,g)$ satisfying the conditions
-A, B, C, E, of \cite[pp.~64--66]{ref16} are given. Condition D (loc. cit.) is
+A, B, C, E, of \cite{ref16} p.~64--66 are given. Condition D (loc. cit.) is
 explicitly excepted. Thus $\Hspace$ is either a Hilbert space or a finite
 dimensional Euclidean space accordingly as D is fulfilled or not. We only
 consider $1,2,\ldots$, dimensional Euclidean spaces, excluding explicitly the
 0-dimensional case where $\Hspace=(0)$.
 
 \noindent (c) We denote complex or real numbers by
-$\alpha,\epsilon,a,x,C,D$; integers by $i,j,k,m,n,p,q,\allowbreak s,t,u,v$ and $N$.
+$\alpha,\epsilon,a,x,C,D$; integers by
+$i,\allowbreak j,\allowbreak k,\allowbreak m,\allowbreak n,\allowbreak
+p,\allowbreak q,\allowbreak s,\allowbreak t,\allowbreak u,\allowbreak v$ and $N$.
 Elements of $\Hspace$ are denoted by $f,g,\varphi,\psi$, sometimes (in direct
 products) by $\Phi,\Psi$.
 
@@ -750,14 +765,14 @@ and have complex values, and which are conjugate linear in each $f_i$:
  \Phi(\ldots,f_i+g_i,\ldots)
    &=\Phi(\ldots,f_i,\ldots)+\Phi(\ldots,g_i,\ldots).
 \end{align*}
-Call their set $\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$.
+Call their set $\prod_{i=1}^{n}\solidotimes\Hspace_i$.
 
 \Definition{2.1.2}
 If a system $f_i^0\in\Hspace_i$, $i=1,\ldots,n$, is given, form the functional
 \[
  \Phi(f_1,\ldots,f_n)=\prod_{i=1}^{n}(f_i^0,f_i).
 \]
-Clearly $\Phi\in\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$. Define
+Clearly $\Phi\in\prod_{i=1}^{n}\solidotimes\Hspace_i$. Define
 \[
  \overline{\Phi}=\prod_{i=1}^{n}\otimes f_i^0
       =f_1^0\otimes\cdots\otimes f_n^0.
@@ -775,6 +790,7 @@ $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i
  \subset\prod_{i=1}^{n}\otimes\Hspace_i$.)
 
 \Lemma{2.1.1}
+{\itshape
 If $\overline{\Phi},\overline{\Psi}\in
 \mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$, that is
 \[
@@ -789,7 +805,7 @@ then form
               \prod_{i=1}^{n}(f_{i,\nu}^0,g_{i,\mu}^0).
 \]
 This expression depends on $\overline{\Phi},\overline{\Psi}$ only, but not on the particular
-decomposition used.
+decomposition used.}
 
 \Proof Owing to the linearity it suffices to consider the case when
 $\overline{\Phi}=0$ or $\overline{\Psi}=0$; and owing to the symmetry in
@@ -803,9 +819,10 @@ vanishes separately. Indeed:
 \]
 
 \Lemma{2.1.2}
+{\itshape
 If $\overline{\Phi}\in\mathop{\prod\nolimits'}_{i=1}^{n}
 \otimes\Hspace_i$, then
-$(\overline{\Phi},\overline{\Phi})>0$ for $\overline{\Phi}\ne0$.
+$(\overline{\Phi},\overline{\Phi})>0$ for $\overline{\Phi}\ne0$.}
 
 \Proof Consider first any
 $\overline{\Phi}\in\mathop{\prod\nolimits'}_{i=1}^{n}
@@ -857,6 +874,7 @@ and so $\overline{\Phi}=0$. Thus $\overline{\Phi}\ne0$ implies
 $(\overline{\Phi},\overline{\Phi})>0$.
 
 \Lemma{2.1.3}
+{\itshape
 With the above definition of $(\overline{\Phi},\overline{\Psi})$,
 $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ is a linear space with
 an inner product, that is, it satisfies the conditions A, B, in
@@ -867,13 +885,14 @@ an inner product, that is, it satisfies the conditions A, B, in
  \qquad\text{where}\qquad
  \lVert\overline{\Phi}\rVert
  =\sqrt{(\overline{\Phi},\overline{\Phi})}.
-\]
+\]}
 
 \Proof This follows immediately from Lemmas
 \hyperref[lem:2.1.1]{2.1.1} and \hyperref[lem:2.1.2]{2.1.2}, remembering
 \cite[pp.~64--65]{ref16}.
 
 \Lemma{2.1.4}
+{\itshape
 We have
 \[
  \left\lVert\prod_{i=1}^{n}\otimes f_i\right\rVert
@@ -888,7 +907,7 @@ and for every $\overline{\Phi}\in\mathop{\prod\nolimits'}_{i=1}^{n}
  |\overline{\Phi}(f_1,\ldots,f_n)|
    \leq\lVert\overline{\Phi}\rVert\cdot
    \prod_{i=1}^{n}\lVert f_i\rVert.
-\]
+\]}
 
 \Proof The first equation follows directly from the definition of
 $\lVert\cdots\rVert$ in
@@ -904,7 +923,7 @@ obvious, and the third results from Schwarz's inequality:
 
 \Definition{2.1.4}
 Consider those functionals
-$\Phi\in\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$, for which a sequence
+$\Phi\in\prod_{i=1}^{n}\solidotimes\Hspace_i$, for which a sequence
 $\overline{\Phi}_1,\overline{\Phi}_2,\ldots\in
 \mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ exists, so that
 \begin{align*}
@@ -925,6 +944,7 @@ $\Phi\sim(\overline{\Phi}_1,\overline{\Phi}_2,\ldots)$. Call their set
 the \emph{direct product} of $\Hspace_1,\ldots,\Hspace_n$.
 
 \Lemma{2.1.5}
+{\itshape
 Every sequence $\overline{\Phi}_1,\overline{\Phi}_2,\ldots$ from
 $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ satisfying (ii) in
 \defref{2.1.4} belongs to precisely one
@@ -933,7 +953,7 @@ $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$ in the sense of (i), (ii) eod.
 If $\Phi\sim(\overline{\Phi}_1,\overline{\Phi}_2,\ldots)$, then all other
 sequences with $\Phi\sim(\overline{\Psi}_1,\overline{\Psi}_2,\ldots)$ are
 characterised by
-$\lim_{r\to\infty}\lVert\overline{\Phi}_r-\overline{\Psi}_r\rVert=0$.
+$\lim_{r\to\infty}\lVert\overline{\Phi}_r-\overline{\Psi}_r\rVert=0$.}
 
 \Proof We have (by \lemref{2.1.4})
 \[
@@ -947,7 +967,7 @@ $\lim_{r,s\to\infty}|\overline{\Phi}_r(f_1,\ldots,f_n)-
 \overline{\Phi}_s(f_1,\ldots,f_n)|=0$, so
 $\lim_{r\to\infty}\overline{\Phi}_r(f_1,\ldots,f_n)$ exists. Call it
 $\Phi(f_1,\ldots,f_n)$. Clearly
-$\Phi\in\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$. Thus (i), (ii) hold; therefore
+$\Phi\in\prod_{i=1}^{n}\solidotimes\Hspace_i$. Thus (i), (ii) hold; therefore
 $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$;
 $\Phi\sim(\overline{\Phi}_1,\overline{\Phi}_2,\ldots)$.
 $\Phi$ is unique by (i).
@@ -995,6 +1015,7 @@ contradicting
 $\lim_{r\to\infty}(\overline{\Psi}_r,\overline{\Psi}_{r_0})=0$.
 
 \Lemma{2.1.6}
+{\itshape
 If $\Phi,\Psi\in\prod_{i=1}^{n}\otimes\Hspace_i$, that is
 \[
  \Phi\sim(\overline{\Phi}_1,\overline{\Phi}_2,\ldots),\qquad
@@ -1008,7 +1029,7 @@ $(\Phi,\Psi)$. This quantity depends on $\Phi,\Psi$ only, and not on the
 particular representation used. If
 $\overline{\Phi},\overline{\Psi}\in
 \mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$, it agrees
-with the previous definition.
+with the previous definition.}
 
 \Proof
 $\lim_{r,s\to\infty}\lVert\overline{\Phi}_r-\overline{\Phi}_s\rVert=0$,
@@ -1037,8 +1058,9 @@ $\Psi\sim(\overline{\Psi},\overline{\Psi},\ldots)$ show that the
 new $(\Phi,\Psi)$ agrees with the old one.
 
 \Lemma{2.1.7}
+{\itshape
 If $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$, then $(\Phi,\Phi)>0$ for
-$\Phi\ne0$.
+$\Phi\ne0$.}
 
 \Proof $(\Phi,\Phi)\geq0$ follows by continuity from \lemref{2.1.2}. If
 $(\Phi,\Phi)=0$, then for
@@ -1053,6 +1075,7 @@ and thus by \lemref{2.1.5} $\Phi=0$. So $\Phi\ne0$ implies
 $(\Phi,\Phi)>0$.
 
 \Lemma{2.1.8}
+{\itshape
 With the above definition of $(\Phi,\Psi)$,
 $\prod_{i=1}^{n}\otimes\Hspace_i$ is a linear space with an inner product,
 that is it satisfies the conditions A, B in \cite[p.~64]{ref16}. Thus it can
@@ -1061,16 +1084,17 @@ be metrized by defining.
  \operatorname{Distance}(\Phi,\Psi)=\lVert\Phi-\Psi\rVert,
  \qquad\text{where}\qquad
  \lVert\Phi\rVert=(\Phi,\Phi)^{\frac12}.
-\]
+\]}
 
 \Proof This follows immediately from Lemmas
 \hyperref[lem:2.1.6]{2.1.6} and \hyperref[lem:2.1.7]{2.1.7}, remembering
-\cite[pp.~64--65]{ref16}.
+\cite{ref16} pp.~64--65.
 
 \Lemma{2.1.9}
+{\itshape
 $\prod_{i=1}^{n}\otimes f_i$ is a continuous function of the
 $f_i\in\Hspace_i$. (We use now the metric, strong, topology in all these
-spaces.)
+spaces.)}
 
 \Proof Put $a=\max_{i=1,\ldots,n}\lVert f_i^0\rVert$, and assume that all
 $\lVert f_i-f_i^0\rVert\leq\epsilon$ for an $\epsilon>0$. Then
@@ -1096,12 +1120,14 @@ $\lVert f_i-f_i^0\rVert\leq\epsilon$ for an $\epsilon>0$. Then
 \end{align*}
 
 \Lemma{2.1.10}
+{\itshape
 \lemref{2.1.4} holds for
-$\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$ too.
+$\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$ too.}
 
 \Proof Follows by continuity.
 
 \Lemma{2.1.11}
+{\itshape
 If $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$,
 $\overline{\Phi}_1,\overline{\Phi}_2,\ldots\in
 \mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ then
@@ -1109,7 +1135,7 @@ $\overline{\Phi}_1,\overline{\Phi}_2,\ldots\in
  \Phi\sim(\overline{\Phi}_1,\overline{\Phi}_2,\ldots)
 \]
 is equivalent to
-$\lim_{r\to\infty}\lVert\Phi-\overline{\Phi}_r\rVert=0$.
+$\lim_{r\to\infty}\lVert\Phi-\overline{\Phi}_r\rVert=0$.}
 
 \Proof If
 $\lim_{r\to\infty}\lVert\Phi-\overline{\Phi}_r\rVert=0$, then
@@ -1126,9 +1152,10 @@ $\lim_{r,s\to\infty}\lVert\overline{\Phi}_r-
 $\lim_{s\to\infty}\lVert\Phi-\overline{\Phi}_s\rVert=0$.
 
 \Lemma{2.1.12}
+{\itshape
 $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$,
 $\prod_{i=1}^{n}\otimes\Hspace_i$ are both separable spaces, that is they
-satisfy condition D in \cite[p.~65]{ref16}.
+satisfy condition D in \cite[p.~65]{ref16}.}
 
 \Proof
 $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ is dense in
@@ -1140,8 +1167,9 @@ by \lemref{2.1.9} from the separability of the spaces
 $\Hspace_1,\ldots,\Hspace_n$.
 
 \Lemma{2.1.13}
+{\itshape
 $\prod_{i=1}^{n}\otimes\Hspace_i$ is topologically complete, that is it
-satisfies condition E in \cite[p.~65]{ref16}.
+satisfies condition E in \cite[p.~65]{ref16}.}
 
 \Proof Assume
 $\Phi_1,\Phi_2,\ldots\in\prod_{i=1}^{n}\otimes\Hspace_i$,
@@ -1160,6 +1188,7 @@ thus $\lim_{r\to\infty}\lVert\Phi-\Phi_r\rVert=0$, too.
 This discussion can be summed up as follows:
 
 \MainTheorem{I}
+{\itshape
 The direct product of $\Hspace_1,\ldots,\Hspace_n$,
 $\prod_{i=1}^{n}\otimes\Hspace_i$, arises by the topological completion of
 the set $\mathop{\prod\nolimits'}_{i=1}^{n}\otimes\Hspace_i$ of all finite
@@ -1168,13 +1197,13 @@ $f_i^0\in\Hspace_i$. It is a set of functionals
 $\Phi=\Phi(f_1,\ldots,f_n)$ in the sense of \defref{2.1.1}, thus
 \[
  \prod_{i=1}^{n}\otimes\Hspace_i
- \subset\prod_{i=1}^{n}\bm{\otimes}\Hspace_i
+ \subset\prod_{i=1}^{n}\solidotimes\Hspace_i
 \]
 and it is a space satisfying conditions A, B, C, E of
 \cite[pp.~64--65]{ref16} (cf. our \secref{1.1}, (b)). Further essential
 properties are given in Lemmas \hyperref[lem:2.1.1]{2.1.1},
 \hyperref[lem:2.1.4]{2.1.4}, \hyperref[lem:2.1.9]{2.1.9},
-\hyperref[lem:2.1.10]{2.1.10}, \hyperref[lem:2.1.11]{2.1.11}.
+\hyperref[lem:2.1.10]{2.1.10}, \hyperref[lem:2.1.11]{2.1.11}.}
 
 If $n=1$, $\prod_{i=1}^{n}\otimes\Hspace_i$ coincides not only in our
 notation with $\Hspace_1$, but in reality too.
@@ -1208,12 +1237,13 @@ $\prod_{i=1}^{n}\otimes\Hspace_i$ and a set of complete normalised orthogonal
 sets in each $\Hspace_i$.
 
 \Lemma{2.2.1}
+{\itshape
 Let a complete normalised orthogonal set
 $\varphi_{i,1},\varphi_{i,2},\ldots$ be given in each $\Hspace_i$,
 $i=1,\ldots,n$. Then the
 $\prod_{i=1}^{n}\otimes\varphi_{i,t_i}$,
 $t_1,t_2,\ldots,t_n=1,2,\ldots$ form a complete normalised orthogonal set in
-$\prod_{i=1}^{n}\otimes\Hspace_i$.
+$\prod_{i=1}^{n}\otimes\Hspace_i$.}
 
 \Proof By definition
 \[
@@ -1230,8 +1260,9 @@ and therefore in $\prod_{i=1}^{n}\otimes\Hspace_i$. This proves the
 completeness too.
 
 \Lemma{2.2.2}
+{\itshape
 In order that an $n$-variable functional
-$\Phi\in\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$ (cf. \defref{2.1.1}) should belong to
+$\Phi\in\prod_{i=1}^{n}\solidotimes\Hspace_i$ (cf. \defref{2.1.1}) should belong to
 $\prod_{i=1}^{n}\otimes\Hspace_i$
 \[
  |\Phi(f_1,\ldots,f_n)|\leq C\prod_{i=1}^{n}\lVert f_i\rVert
@@ -1247,7 +1278,7 @@ $\sum_{t_1,\ldots,t_n=1}^{\infty}|a_{t_1,\ldots,t_n}|^2$ is then
 characteristic for $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$. With this
 restriction the $a_{t_1,\ldots,t_n}$ can even be prescribed arbitrarily, and
 a $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$ with these
-$a_{t_1,\ldots,t_n}$ will exist.
+$a_{t_1,\ldots,t_n}$ will exist.}
 
 \Proof The necessity of the first condition follows from \lemref{2.1.10}. It
 implies, owing to the linearity, that $\Phi(f_1,\ldots,f_n)$ is continuous in
@@ -1298,6 +1329,7 @@ because with $\varphi_{1,t}=\varphi_{2,t}$ we obtain
 $a_{t_1,t_2}=\delta_{t_1,t_2}$.
 
 \Lemma{2.2.3}
+{\itshape
 If in the notation of \lemref{2.2.2}
 $\Phi,\Psi\in\prod_{i=1}^{n}\otimes\Hspace_i$ corresponds to
 $a_{t_1,\ldots,t_n}$ resp. $b_{t_1,\ldots,t_n}$, then
@@ -1305,7 +1337,7 @@ $a_{t_1,\ldots,t_n}$ resp. $b_{t_1,\ldots,t_n}$, then
  (\Phi,\Psi)=\sum_{t_1,\ldots,t_n=1}^{\infty}
  a_{t_1,\ldots,t_n}\overline{b_{t_1,\ldots,t_n}},
 \]
-the series being absolutely convergent.
+the series being absolutely convergent.}
 
 \Proof The last formula of the proof of \lemref{2.2.2}, together with
 \lemref{2.2.1} and \cite[p.~66]{ref16}, give this.
@@ -1326,6 +1358,7 @@ $\prod_{i=1}^{n}\otimes\Hspace_i$ by $\B\otimes$. (Cf.
 \cite[p.~370]{ref17}.)
 
 \Lemma{2.3.1}
+{\itshape
 If an operator $A_i\in\B_i$ and a
 $\Phi\in\prod_{i=1}^{n}\otimes\Hspace_i$ is given, then a unique
 $\Phi^*\in\prod_{i=1}^{n}\otimes\Hspace_i$ with
@@ -1335,10 +1368,10 @@ $\Phi^*\in\prod_{i=1}^{n}\otimes\Hspace_i$ with
 \]
 exists. ($A_i^*$ is the adjoint of $A_i$). If
 $\lVert A_if_i\rVert\leq D\lVert f_i\rVert$ for all $f_i\in\Hspace_i$, then
-$\lVert\Phi^*\rVert\leq D\lVert\Phi\rVert$.
+$\lVert\Phi^*\rVert\leq D\lVert\Phi\rVert$.}
 
 \Proof We may assume $i=n$. The uniqueness of $\Phi^*$ and its existence in
-$\prod_{i=1}^{n}\bm{\otimes}\Hspace_i$ are obvious.
+$\prod_{i=1}^{n}\solidotimes\Hspace_i$ are obvious.
 
 A $C$ with
 $|\Phi(f_1,\ldots,f_n)|^2\leq C^2\prod_{i=1}^{n}\lVert f_i\rVert^2$ exists,
@@ -1385,8 +1418,9 @@ $\Phi^*\in\prod_{i=1}^{n}\otimes\Hspace_i$ (by \lemref{2.2.2}), and we
 have $\lVert\Phi^*\rVert\leq D\lVert\Phi\rVert$ (by \lemref{2.2.3}).
 
 \Lemma{2.3.2}
+{\itshape
 If we define an operator $A_i^{(i)}$ by $A_i^{(i)}\Phi=\Phi^*$ in the sense
-of \lemref{2.3.1}, then $A_i^{(i)}\in\B\otimes$.
+of \lemref{2.3.1}, then $A_i^{(i)}\in\B\otimes$.}
 
 \Proof $A_i^{(i)}$ is everywhere defined and linear by \lemref{2.3.1}; and
 if we choose $D$ with $\lVert A_if\rVert\leq D\lVert f\rVert$, then
@@ -1394,17 +1428,19 @@ $\lVert A_i^{(i)}\Phi\rVert\leq D\lVert\Phi\rVert$ by the same Lemma. Thus
 $A_i^{(i)}$ is bounded and therefore it is closed, too.
 
 \Lemma{2.3.3}
+{\itshape
 \[
  A_i^{(i)}\prod_{j=1}^{n}\otimes f_j
  =\prod_{j=1}^{i-1}\otimes f_j\otimes A_if_i\otimes
   \prod_{j=i+1}^{n}\otimes f_j.
-\]
+\]}
 
 \Proof Follows immediately from the definition.
 
 \Lemma{2.3.4}
+{\itshape
 The correspondence $A_i\sim A_i^{(i)}$ is a (one to one) isomorphism for the
-operations $\alpha A_i,A_i^*,A_i+B_i$, and $A_iB_i$.
+operations $\alpha A_i,A_i^*,A_i+B_i$, and $A_iB_i$.}
 
 \Proof This is obvious for $\alpha A_i$ and $A_i+B_i$; for $A_i^*$ and
 $A_iB_i$ it follows by applying these operators to the
@@ -1420,11 +1456,12 @@ Call the set of all $A_i^{(i)}$ if $A_i$ runs over all $\B_i$,
 $\B_i^{(i)}$.
 
 \Lemma{2.3.5}
+{\itshape
 \[
  \B_i^{(i)}=(\B_j^{(j)}; j\ne i)';
 \]
 that is: $\B_i^{(i)}$ is the set of all operators in $\B\otimes$ which
-commute with all elements of all $\B_j^{(j)}$'s $j\ne i$.
+commute with all elements of all $\B_j^{(j)}$'s $j\ne i$.}
 
 \Proof It is obvious that for $j\ne i$,
 $A_i^{(i)}A_j^{(j)}\Phi=A_j^{(j)}A_i^{(i)}\Phi$ if
@@ -1480,15 +1517,17 @@ This proves $\B_i^{(i)}\supset(\B_j^{(j)}; j\ne i)'$, completing the proof
 of $\B_i^{(i)}=(\B_j^{(j)}; j\ne i)'$.
 
 \Lemma{2.3.6}
-$\B_i^{(i)}$ is a ring and contains the operator 1.
+{\itshape
+$\B_i^{(i)}$ is a ring and contains the operator 1.}
 
 \Proof This follows from \cite[p.~397]{ref18}, because $\B_i^{(i)}$ has the
 form $S'$ (by \lemref{2.3.5}).
 
 \Lemma{2.3.7}
+{\itshape
 Let $S_i$ be a set $\subset\B_i$, and $S_i^{(i)}$ the set of all
 $A_i^{(i)}$, $A_i\in S_i$, $S_i^{(i)}\subset\B\otimes$. Then $S_i$ is a
-ring if and only if $S_i^{(i)}$ is one.
+ring if and only if $S_i^{(i)}$ is one.}
 
 \Proof Define a ring by its characteristics established in
 \cite[\S3]{ref22}. The only notions entering there are the operations
@@ -1501,9 +1540,10 @@ in $\B\otimes$ is the same thing, because $\B_i^{(i)}$ is a ring by
 strongest sense. This completes the proof.
 
 \Lemma{2.3.8}
+{\itshape
 \[
  R(\B_1^{(1)},\ldots,\B_n^{(n)})=\B\otimes.
-\]
+\]}
 
 \Proof We could prove this by a direct construction, but the following
 indirect proof is quicker: The same considerations as the ones we made in the
@@ -1528,6 +1568,7 @@ references will therefore be made to it.
 The results of the foregone discussion can be summed up as follows:
 
 \MainTheorem{II}
+{\itshape
 The sets $\B_i^{(i)}$, $i=1,\ldots,n$, defined in \defref{2.3.1}, are rings
 which contain 1; $\B_i^{(i)}$ being isomorphic to $\B_i$. Any two
 $\B_i^{(i)}$ commute, and
@@ -1535,7 +1576,7 @@ $\B_i^{(i)}$ commute, and
  R(\B_1^{(1)},\ldots,\B_n^{(n)})=\B\otimes.
 \]
 Further essential properties are given in Lemmas
-\hyperref[lem:2.3.5]{2.3.5}, and \hyperref[lem:2.3.7]{2.3.7}.
+\hyperref[lem:2.3.5]{2.3.5}, and \hyperref[lem:2.3.7]{2.3.7}.}
 
 \SectionStart{2.4}{\texorpdfstring{$n\otimes\Hspace=
 \Hspace\oplus\Hspace\oplus\cdots\oplus\Hspace$ ($n$-times).
@@ -1556,6 +1597,7 @@ $f^0(\varphi_t)\in\Hspace_2$, $t=1,2,\ldots$ as in the proof of
 \]
 
 \Lemma{2.4.1}
+{\itshape
 The $f^{(t)}$, $t=1,2,\ldots$ determine
 $\Phi\sim\langle f^{(1)},f^{(2)},\ldots\rangle$ uniquely. If dimension
 $\Hspace_1$ is finite, the $f^{(t)}$ can be prescribed arbitrarily; if it is
@@ -1565,7 +1607,7 @@ $\sum_{t=1}^{\infty}\lVert f^{(t)}\rVert^2$ must be finite.
 If $\Phi\sim\langle f^{(1)},f^{(2)},\ldots\rangle$,
 $\Psi\sim\langle g^{(1)},g^{(2)},\ldots\rangle$, then
 $(\Phi,\Psi)=\sum_t(f^{(t)},g^{(t)})$. The sum is absolutely convergent, if
-infinite at all.
+infinite at all.}
 
 \Proof Let $\psi_1,\psi_2,\ldots$ be a complete normalised orthogonal system
 in $\Hspace_2$; form, as in \lemref{2.2.2},
@@ -1612,9 +1654,10 @@ $f_s^*=A_{t,s}f_t$. Write
 \]
 
 \Lemma{2.4.2}
+{\itshape
 All $A_{t,s}$ belong to $\B_2$ (for $\Hspace_2$), they determine $A^0$
 uniquely. If dimension of $\Hspace_1$ is finite, the $A_{t,s}$ can be
-prescribed arbitrarily; if it is infinite, they cannot.
+prescribed arbitrarily; if it is infinite, they cannot.}
 
 \Proof $A_{t,s}$ is clearly everywhere defined and linear. $A^0$ is bounded,
 so a $C$ with $\lVert A^0\Phi\rVert\leq C\lVert\Phi\rVert$ exists. Then
@@ -1626,7 +1669,8 @@ so a $C$ with $\lVert A^0\Phi\rVert\leq C\lVert\Phi\rVert$ exists. Then
   =C^2\lVert f\rVert^2,
  \qquad \lVert A_{t,s}f\rVert\leq C\lVert f\rVert.
 \end{align*}
-Thus $A_{t,s}$ is bounded and closed too. It is clear from \defref{2.4.2},
+Thus $A_{t,s}$ is bounded and closed too. It is clear from
+\hyperref[def:2.4.2]{Definition 2.4.3},
 that the $A_{t,s}$ determine $A^0$ uniquely for all
 $\Phi=\langle0,\ldots,0,f,0,\ldots\rangle$, and therefore for all $\Phi$.
 
@@ -1663,6 +1707,7 @@ $A^0\sim\langle A_{t,s}\rangle_{t,s=1,2,\ldots}$ are very similar to those of
 common matrix-algebra.
 
 \Lemma{2.4.3}
+{\itshape
 If $A^0,B^0,C^0\in\B\otimes$, and
 $A^0\sim\langle A_{t,s}\rangle_{t,s=1,2,\ldots}$,
 $B^0\sim\langle B_{t,s}\rangle_{t,s=1,2,\ldots}$,
@@ -1677,7 +1722,7 @@ computation hold:
   $\sum_{n=1}^{\infty}$ converges in the sense of the strong topology of
   $\B_2$, irrespectively of the order in which the $n=1,2,\ldots$ are gone
   through.
-\end{enumerate}
+\end{enumerate}}
 
 \Proof (i), (iii) are obvious. Denoting
 $\langle0,\ldots,0,f,0,\ldots\rangle$ (the $f$ stands in place no. $t$) by
@@ -1716,10 +1761,11 @@ $C_{t,s}=\sum_{n=1}^{\infty}A_{n,s}B_{t,n}$. We now investigate the
 correspondences $A_i\sim A_i^{(i)}$.
 
 \Lemma{2.4.4}
+{\itshape
 If $A\in\B_2$, then $A^{(2)}\in\B\otimes$ is
 \[
  A^{(2)}\sim\langle\delta_{t,s}A\rangle_{t,s=1,2,\ldots}.
-\]
+\]}
 
 \Proof Obviously
 $\varphi_t\otimes f\sim\langle0,\ldots,0,f,0,\ldots\rangle$ ($f$ in place
@@ -1732,11 +1778,12 @@ Thus $A_{t,s}=0$ if $s\ne t$ and $=A$ if $s=t$, in other words
 $A_{t,s}=\delta_{t,s}A$.
 
 \Lemma{2.4.5}
+{\itshape
 If $S$ is a set $\subset\B_2$, then the set $S^{(2)}$ of all $A^{(2)}$,
 $A^{(2)}\in S$, consists of all
 $A^0\sim\langle\delta_{t,s}A\rangle_{t,s=1,2,\ldots}$, $A\in S$ (every
 $A\in S$ generates an $A^0$!); and the set $S^{(2)'}$ consists of all
-$A^0\sim\langle A_{t,s}\rangle_{t,s=1,2,\ldots}$, $A_{t,s}\in S'$.
+$A^0\sim\langle A_{t,s}\rangle_{t,s=1,2,\ldots}$, $A_{t,s}\in S'$.}
 
 \Proof The first statement follows immediately from \lemref{2.4.4}. As to
 the second, observe that
@@ -1754,11 +1801,12 @@ facts together establish the equivalence of
 $\langle A_{t,s}\rangle\in S^{(2)'}$ and of all $A_{t,s}\in S'$.
 
 \Lemma{2.4.6}
+{\itshape
 $\B_2^{(2)}$ is the set of all
 $A^0\sim\langle\delta_{t,s}A\rangle_{t,s=1,2,\ldots}$,
 $A\in\B_2$ (every $A\in\B_2$ generates an $A^0$!);
 $\B_1^{(1)}$ is the set of all
-$A^0\sim\langle\alpha_{t,s}1\rangle_{t,s=1,2,\ldots}$.
+$A^0\sim\langle\alpha_{t,s}1\rangle_{t,s=1,2,\ldots}$.}
 
 \Proof Follows from \lemref{2.4.5} by putting $S=\B_2$, considering that
 $\B_2^{(2)'}=\B_1^{(1)}$ (by \lemref{2.3.5}).
@@ -1920,9 +1968,9 @@ $\Hspace=\Hspace_1\otimes\Hspace_2$, $\M_1=\B_1^{(1)}$. Now
 $\M_2\subset\M_1'=(\B_1^{(1)})'=\B_2^{(2)}$. Besides
 \[
  \M_2'\cdot\B_2^{(2)}=\M_2'\cdot\M_1'
- =(\M_1,\M_2)'=(R(\M_1,\M_2))'=\B'=(\alpha1).
+ =(\M_1,\M_2)'=(R(\M_1,\M_2))'={\B\otimes}'=(\alpha1).
 \]
-Now consider the mapping $A^{(2)}\leftrightarrow A_2$ of $\B_2^{(2)}$ on
+Now consider the mapping $A_2^{(2)}\leftrightarrow A_2$ of $\B_2^{(2)}$ on
 $\B_2$ (belonging to $\Hspace_2$). It carries the ring
 $\M_2\subset\B_2^{(2)}$ into a ring $\N\subset\B_2$ by \lemref{2.3.4}
 and the ring $\M_2'\cdot\B_2^{(2)}$ into $\N'$ by \lemref{2.3.7}. So
@@ -2221,7 +2269,7 @@ $U_i$ by $U_i^*$, we see that the final set is
 
 \SectionStart{4.4}{\texorpdfstring{The canonical decomposition $A=WB$}
 {The canonical decomposition A=WB}}
-A construction which is described in \cite[Theorem 7, p.~307]{ref21}, will be
+A construction which is described in \cite[p.~307, Theorem~7]{ref21}, will be
 of importance in all our discussions. This Theorem applies to all linear,
 closed operators $A$ with an everywhere dense domain, and leads to some
 operators of which we will consider $B$ and $W$. $B$ is self adjoint, and
@@ -2378,20 +2426,22 @@ orthogonal, this would imply $f=0$, contradicting our original assumption.
 Assume now conversely that $\mathfrak M_f^{\M'}$ is minimal. As
 $\mathfrak M_f^{\M'}\neq(0)$, we have at any rate $f\neq0$.
 
-Put $E=E_f^{\M'}$, $E_f^{\M}=E'$. As $E\in\M$, $E'\in\M'$, therefore
+Put $E=P_{\mathfrak M_f^{\M'}}$, $P_{\mathfrak M_f^{\M}}=E'$. As
+$E\in\M$, $E'\in\M'$, therefore
 $E,E'$ commute; therefore the $E$-image of $\mathfrak M_f^{\M}$ is
 $\mathfrak M_f^{\M'}\cdot\mathfrak M_f^{\M}$. Thus (remember $Ef=f$!)
 \begin{align*}
  \mathfrak M_f^{\M'}\cdot\mathfrak M_f^{\M}
  &=[EAf,A\in\M]=[EAEf,A\in\M]\\
- &=[Bf,B\in\overline\M],
+ &=[Bf,B\in\overline{\M}],
 \end{align*}
-where $\overline\M$ is the set of all $B\in\M$ with $EB=BE=B$
-($\overline\M$ is obviously a ring, thus
-$\overline\M=R(\overline\M^p)$ (cf. \cite[p.~392]{ref18})).
-$F'\in\overline\M^p$ means: $F'$ is a projection, and $\in\M$, and so
+where $\overline{\M}$ is the set of all $B\in\M$ with $EB=BE=B$
+($\overline{\M}$ is obviously a ring, thus
+$\overline{\M}=R(\overline{\M}^P)$ (cf. \cite[p.~392]{ref18})).
+$F'\in\overline{\M}^P$ means: $F'$ is a projection, and
+$\in\overline{\M}$, and so
 $EF'=F'E=F'$, $F'\in\M$. So $F'\in\M$, $F'\leq E$, and as $E$ is minimal,
-$F'=0$ or $E$. So $\overline\M=R(0,E)=(\alpha E)$. Therefore
+$F'=0$ or $E$. So $\overline{\M}=R(0,E)=(\alpha E)$. Therefore
 \[
  \mathfrak M_f^{\M'}\cdot\mathfrak M_f^{\M}
  =[Bf,B\in(\alpha E)]=[\alpha Ef]=[\alpha f]=(\alpha f).
@@ -2517,18 +2567,19 @@ We begin now to discuss the sufficiency of these conditions.
 $\mathfrak M\mathrel\eta\M$, $\mathfrak M\neq0$, contains a minimal $f$ with
 $\lVert f\rVert=1$.}
 
-\Proof A minimal $f_0$ exists, of course $f_0\neq0$. Thus
-$E_{f_0}^{\M}\neq0$; besides $E_{f_0}^{\M}\in\M'$. Now
+\Proof A minimal $f^0$ exists, of course $f^0\neq0$. Thus
+$E_{f^0}^{\M}\neq0$; besides $E_{f^0}^{\M}\in\M'$. Now
 $P_{\mathfrak M}\neq0$, $P_{\mathfrak M}\in\M$, so by the Corollary of
 \thmref{III},
 \[
- P_{\mathfrak M}\cdot E_{f_0}^{\M}\neq0,
+ P_{\mathfrak M_{f^0}^{\M}\cdot\mathfrak M}
+ =P_{\mathfrak M}\cdot E_{f^0}^{\M}\neq0,
  \qquad
- \mathfrak M_{f_0}^{\M}\cdot\mathfrak M\neq(0).
+ \mathfrak M_{f^0}^{\M}\cdot\mathfrak M\neq(0).
 \]
-Thus an $f\in\mathfrak M_{f_0}^{\M}\cdot\mathfrak M$ with $f\neq0$ exists,
+Thus an $f\in\mathfrak M_{f^0}^{\M}\cdot\mathfrak M$ with $f\neq0$ exists,
 multiplying it with $1/\lVert f\rVert$ makes $\lVert f\rVert=1$.
-As $f\in\mathfrak M_{f_0}^{\M}$, $f\neq0$ this $f$ is minimal by
+As $f\in\mathfrak M_{f^0}^{\M}$, $f\neq0$ this $f$ is minimal by
 \lemref{5.1.5}; and besides $f\in\mathfrak M$.
 
 \Lemma{5.3.4}
@@ -2857,7 +2908,7 @@ So we have proved
 a direct factor.}
 
 \Proof Consider the $f_{m,n}$ and the $U_{m,p}$ of \lemref{5.3.7}; $m,p$
-have the same finite or infinite range, $n$ has another finite or infinite
+have the same finite or infinite range, $n$ has another finite of infinite
 range. Take two spaces $\Hspace_1$ and $\Hspace_2$ with the same dimensions as
 there are elements in the resp. ranges of $m$ and $n$; and let
 $\varphi_m^0$, $m=1,2,\ldots$, and $\psi_n^0$, $n=1,2,\ldots$, be complete,
@@ -2879,7 +2930,7 @@ Then (cf. \lemref{2.3.3})
  =\varphi_p^0\otimes\varphi_r^0,
 \]
 \[
- V_{m,p}^{(1)}\varphi_r^0\otimes\varphi_q^0=0
+ V_{m,p}^{(1)}\varphi_r^0\otimes\varphi_r^0=0
  \quad\text{if }r\neq m.
 \]
 Thus the above spatial isomorphism, of $\Hspace_1\otimes\Hspace_2$ and
@@ -2920,7 +2971,7 @@ give together:
 conditions of \lemref{5.3.1}.}
 
 The condition (i) in \lemref{5.3.1} gives, together with Lemmas
-\lemref{5.2.1} and \lemref{5.2.2}, the
+\hyperref[lem:5.2.1]{5.2.1} and \hyperref[lem:5.2.2]{5.2.2}, the
 
 \MainTheorem{V}
 \emph{Every algebraic ring-isomorphism leaves invariant the notions of a
@@ -2953,7 +3004,7 @@ Then $\Hspace$ is isomorphic to $\Hspace_1\otimes\Hspace_2$, so that $\M_1$
 becomes $\B_1^{(1)}$. Let $\M_2,\ldots,\M_n$ become
 $\N_2,\ldots,\N_n$. If $j\neq1$, then $\M_j\subset\M_1'$ so
 $\N_j\subset(\B_1^{(1)})'=\B_2^{(2)}$. The correspondence
-$A^{(2)}\leftrightarrow A$ maps therefore the $\N_j$'s on rings
+$A^{(2)}\longrightarrow A$ maps therefore the $\N_j$'s on rings
 $\N_j^0\subset\B_2$ (cf. \lemref{2.3.7}). The $\N_j$'s are algebraically
 (even fully) ring-isomorphic to the resp. $\N_j^0$ (cf. \lemref{2.3.4}, resp.
 \cite[\S4]{ref22}). Now all $\M_2,\ldots,\M_n$ are factors, and at least
@@ -3144,8 +3195,8 @@ It gives \(\mathfrak M^{(0)}\sim\mathfrak M^{(1)}\), that is
 \(\mathfrak M\sim\mathfrak N\).
 
 \SectionStartTOC{6.2}
-{\texorpdfstring{$[\operatorname{Range}X]\sim[\operatorname{Range}X^*]$}{[Range X] similar to [Range X*]}. Comparability theorem}
-{\texorpdfstring{$(\operatorname{Range}X)\sim(\operatorname{Range}X^*)$}{(Range X) similar to (Range X*)}. Comparability theorem}
+ {}
+ {\texorpdfstring{$(\operatorname{Range}X)\sim(\operatorname{Range}X^*)$}{(Range X) similar to (Range X*)}. Comparability theorem}
 The following Lemma is an important means of establishing equality of
 relative dimension.
 
@@ -3172,8 +3223,8 @@ We now prove in two steps the analogue of the ``comparability theorem'' of
 general set-theory.
 
 \Lemma{6.2.2} {\itshape
-If \(\mathfrak M,\mathfrak N\mathbin{\eta}\M\) and \(\ne(0)\), then two
-\(\mathfrak P,\mathfrak Q\ne(0)\),
+If \(\mathfrak M,\mathfrak N\mathbin{\eta}\M\) and \(\ne0\), then two
+\(\mathfrak P,\mathfrak Q\ne0\),
 \(\mathfrak P\subset\mathfrak M\), \(\mathfrak Q\subset\mathfrak N\),
 with \(\mathfrak P\sim\mathfrak Q\) exist.
 }
@@ -3418,16 +3469,18 @@ Ad (iii): By \lemref{6.2.3} we have
 \(\mathfrak M\sim\mathfrak M\). So precisely one of the three relations
 holds.
 
-Summing up \lemref{6.1.1} and \lemref{6.3.1} we have:
+Summing up Lemmas \hyperref[lem:6.1.1]{6.1.1} and
+\hyperref[lem:6.3.1]{6.3.1} we have:
 
 \MainTheorem{VI} {\itshape
 The notions \(\mathfrak M\sim\mathfrak N\) and
 \(\mathfrak M<\mathfrak N\) (that is \(\mathfrak N>\mathfrak M\)) for
 \(\mathfrak M,\mathfrak N\mathbin{\eta}\M\) (cf. \defref{6.1.1} and
-\defref{6.3.1}) have the properties of an equivalence and of a complete
+\hyperref[def:6.3.1]{6.3.1}) have the properties of an equivalence and of a complete
 ordering.
 
-Further essential properties are given in \lemref{6.1.2} and \lemref{6.3.1}.
+Further essential properties are given in Lemmas
+\hyperref[lem:6.1.2]{6.1.2} and \hyperref[lem:6.3.1]{6.3.1}.
 }
 
 Some immediate consequences:
@@ -4094,12 +4147,13 @@ use the abbreviated notation
 If $\mathfrak D=(0)$, we omit it.
 
 \Lemma{8.1.1}
+{\itshape
 If $\mathfrak M\mathbin\eta\M$, finite, $\ne(0)$, and not minimal, then an
 $\mathfrak N\mathbin\eta\M$, finite, $\ne(0)$, with
 \[
  \reldiv{\mathfrak M}{\mathfrak N}\geq2
 \]
-exists.
+exists.}
 
 \Proof As $\mathfrak M$ is not minimal, an $\mathfrak N\mathbin\eta\M$,
 $\mathfrak N\subset\mathfrak M$, $\mathfrak N\ne(0),\mathfrak M$ exists. So
@@ -4131,7 +4185,8 @@ Then
 and so $\reldiv{\mathfrak M}{\mathfrak N}=2+p\geq2$.
 
 \Lemma{8.1.2}
-Every minimal $\mathfrak M\mathbin\eta\M$ is finite and $\ne(0)$.
+{\itshape
+Every minimal $\mathfrak M\mathbin\eta\M$ is finite and $\ne(0)$.}
 
 \Proof $\mathfrak M\ne(0)$ is part of the definition. $\mathfrak M$ infinite
 would imply $\mathfrak M\sim\mathfrak N\subsetneqq\mathfrak M$,
@@ -4157,8 +4212,9 @@ elements which are $\mathbin\eta\M$, finite, $\ne(0)$, will be called
 \end{enumerate}
 
 \Lemma{8.1.3}
+{\itshape
 If sets $\mathfrak M\mathbin\eta\M$ which are finite and $\ne(0)$ do exist at
-all, then there exists at least one fundamental sequence.
+all, then there exists at least one fundamental sequence.}
 
 \Proof If a minimal $\mathfrak M\mathbin\eta\M$ exists, put
 $\overline{\mathfrak M}_1=\mathfrak M$. By \lemref{8.1.2} this meets the
@@ -4171,6 +4227,7 @@ $\overline{\mathfrak M}_{i+1}$ from $\overline{\mathfrak M}_i$ by means of
 We now prove two important evaluations.
 
 \Lemma{8.1.4}
+{\itshape
 Assume $\mathfrak M,\mathfrak N,\mathfrak P\mathbin\eta\M$ finite, and
 $\ne(0)$. Then
 \[
@@ -4187,7 +4244,7 @@ and, if $\mathfrak N,\mathfrak P$ are orthogonal,
  \leq\reldiv{[\mathfrak N,\mathfrak P]}{\mathfrak M}
  \leq\reldiv{\mathfrak N}{\mathfrak M}
  +\reldiv{\mathfrak P}{\mathfrak M}+1.
-\]
+\]}
 
 \Proof First put
 \[
@@ -4277,7 +4334,7 @@ $[\mathfrak N,\mathfrak P]=[\overline{\mathfrak N},
 $\overline{\mathfrak N},\overline{\mathfrak P},\mathfrak M^{\mathrm{VII}}$
 are mutually orthogonal, and
 $\overline{\mathfrak N}\simeq(m+1)\odot\mathfrak M$,
-$\overline{\mathfrak P}\simeq(p+1)\odot\mathfrak M$. This implies
+$\overline{\mathfrak P}\simeq(n+1)\odot\mathfrak M$. This implies
 $\mathfrak N\sim\overline{\mathfrak N}^{\circ}
 \subsetneqq\overline{\mathfrak N}$,
 $\mathfrak P\sim\overline{\mathfrak P}^{\circ}
@@ -4291,7 +4348,7 @@ $\mathfrak P\sim\overline{\mathfrak P}^{\circ}
 \]
 contradicting the finiteness of $[\mathfrak N,\mathfrak P]$, which follows from
 the finiteness of $\mathfrak N$ and of $\mathfrak P$ (by \lemref{7.3.3} or
-\lemref{7.3.5}). So
+\hyperref[lem:7.3.5]{7.3.5}). So
 $\reldiv{[\mathfrak N,\mathfrak P]}{\mathfrak M}<m+p+2$ and therefore
 \[
  m+p\leq\reldiv{[\mathfrak N,\mathfrak P]}{\mathfrak M}\leq m+p+1,
@@ -4302,6 +4359,7 @@ These evaluations put us in position to establish the quantitative ratios of
 relative dimensionalities as follows.
 
 \Lemma{8.1.5}
+{\itshape
 If $\mathfrak S=(\overline{\mathfrak M}_1,\overline{\mathfrak M}_2,\ldots)$
 is a fundamental sequence, and $\mathfrak M,\mathfrak N\mathbin\eta\M$ are
 finite and $\ne(0)$, then
@@ -4313,7 +4371,7 @@ finite and $\ne(0)$, then
  =\left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}
 \end{equation*}
 exists. (In case (I) we mean by $\lim$ the value at $i=1$, in case (II) we mean
-by it $\lim_{i\to\infty}$.) It is a finite and positive real number.
+by it $\lim_{i\to\infty}$.) It is a finite and positive real number.}
 
 \Proof In case (I) we must only prove that
 $\reldiv{\mathfrak N}{\overline{\mathfrak M}_1}$,
@@ -4354,7 +4412,8 @@ $\overline{\mathfrak M}_1\simeq2^{i-1}\odot\overline{\mathfrak M}_i
 \mathbin{\#}\mathfrak M_i'$, and \emph{a fortiori}
 $\overline{\mathfrak M}_1\simeq2^{i-1}\odot\mathfrak N
 \mathbin{\#}\mathfrak N_i'$. This would imply, as we frequently concluded in
-the proofs of \lemref{8.1.1} and \lemref{8.1.4},
+the proofs of Lemmas \hyperref[lem:8.1.1]{8.1.1} and
+\hyperref[lem:8.1.4]{8.1.4},
 $\reldiv{\overline{\mathfrak M}_1}{\mathfrak N}\geq2^{i-1}$ for all
 $i=1,2,\ldots$, which is impossible. So we have proved
 \[
@@ -4426,11 +4485,16 @@ $\lim_{i\to\infty}\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}=\infty$,
  \frac{\reldiv{\mathfrak N}{\overline{\mathfrak M}_i}}
       {\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}}.
 \]
-Thus the \hyperref[eq:8.1.1]{limit} exists and is finite. It is non negative by
+Thus \hyperref[eq:8.1.1]{\(\displaystyle
+\lim_{i\to\infty}
+\frac{\reldiv{\mathfrak N}{\overline{\mathfrak M}_i}}
+     {\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}}\)}
+exists and is finite. It is non negative by
 its nature, and interchanging $\mathfrak M,\mathfrak N$ proves that it cannot
 be $0$. This completes the proof.
 
 \Lemma{8.1.6}
+{\itshape
 If $\mathfrak S=(\overline{\mathfrak M}_1,\overline{\mathfrak M}_2,\ldots)$
 is a fundamental sequence, and $\mathfrak M,\mathfrak N,\mathfrak P
 \mathbin\eta\M$ are finite and $\ne(0)$, then the following statements hold:
@@ -4446,15 +4510,15 @@ is a fundamental sequence, and $\mathfrak M,\mathfrak N,\mathfrak P
  $\left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}
  =\dfrac{1}{\left(\frac{\mathfrak M}{\mathfrak N}\right)_{\mathfrak S}}$;
  $\left(\frac{\mathfrak P}{\mathfrak M}\right)_{\mathfrak S}
- =\left(\frac{\mathfrak P}{\mathfrak N}\right)_{\mathfrak S}
-  \left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}$.
+ =\left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}
+  \cdot\left(\frac{\mathfrak P}{\mathfrak N}\right)_{\mathfrak S}$.
 \item If $\mathfrak N,\mathfrak P$ are orthogonal, then
 \[
  \left(\frac{[\mathfrak N,\mathfrak P]}{\mathfrak M}\right)_{\mathfrak S}
  =\left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}
  +\left(\frac{\mathfrak P}{\mathfrak M}\right)_{\mathfrak S}.
 \]
-\end{enumerate}
+\end{enumerate}}
 
 \Proof We prove these statements in a somewhat changed order:
 
@@ -4581,7 +4645,8 @@ The results of \secref{8.1} make it possible to deal exhaustively with the
 existence question.
 
 \Lemma{8.2.1}
-There always exists at least one relative dimension function $D(\mathfrak M)$.
+{\itshape
+There always exists at least one relative dimension function $D(\mathfrak M)$.}
 
 \Proof If no finite $\mathfrak M\mathbin\eta\M$, $\mathfrak M\ne(0)$,
 exists, put
@@ -4605,11 +4670,13 @@ choose a fundamental sequence $\mathfrak S$ by \lemref{8.1.3}. Now define
  \end{cases}
 \]
 Remember that $[\mathfrak M,\mathfrak N]$ is infinite if and only if
-$\mathfrak M$ or $\mathfrak N$ is infinite, by \lemref{7.1.1}, (i), and
-\lemref{7.3.3} or \lemref{7.3.5}. Now (i) is obviously fulfilled, and (ii),
+$\mathfrak M$ or $\mathfrak N$ is infinite, by Lemmas
+\hyperref[lem:7.1.1]{7.1.1}, (i), and \hyperref[lem:7.3.3]{7.3.3} or
+\hyperref[lem:7.3.5]{7.3.5}. Now (i) is obviously fulfilled, and (ii),
 (iii) follow from \lemref{8.1.6}, (i), (iv), resp.
 
 \Lemma{8.2.2}
+{\itshape
 If $D(\mathfrak M)$ is a relative dimension function and $\mathfrak S$ a
 fundamental sequence, then we have, whenever
 $\mathfrak M,\mathfrak N\mathbin\eta\M$, finite and $\ne(0)$ the relation
@@ -4617,7 +4684,7 @@ $\mathfrak M,\mathfrak N\mathbin\eta\M$, finite and $\ne(0)$ the relation
  \phantomsection\label{eq:8.2.1}
  \frac{D(\mathfrak N)}{D(\mathfrak M)}
  =\left(\frac{\mathfrak N}{\mathfrak M}\right)_{\mathfrak S}.
-\end{equation*}
+\end{equation*}}
 
 \Proof Distinguish the two cases $(\alpha)$ and $(\beta)$ of \defref{8.1.2}.
 
@@ -4648,33 +4715,33 @@ and $D(\overline{\mathfrak M}_1)$ finite and positive, so
 In the case $(\beta)$ we have
 \[
  \mathfrak N\simeq\reldiv{\mathfrak N}{\overline{\mathfrak M}_i}
- \odot\overline{\mathfrak M}_i\mathbin{\#}\mathfrak N_i',
- \quad \mathfrak N_i'\prec\overline{\mathfrak M}_i;
+ \odot\overline{\mathfrak M}_i\mathbin{\#}\mathfrak M_i',
+ \quad \mathfrak M_i'\prec\overline{\mathfrak M}_i;
 \]
 \[
  \mathfrak M\simeq\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}
- \odot\overline{\mathfrak M}_i\mathbin{\#}\mathfrak M_i',
- \quad \mathfrak M_i'\prec\overline{\mathfrak M}_i.
+ \odot\overline{\mathfrak M}_i\mathbin{\#}\mathfrak M_i'',
+ \quad \mathfrak M_i''\prec\overline{\mathfrak M}_i.
 \]
-So $\mathfrak N_i'\sim\mathfrak N_i''\subset\overline{\mathfrak M}_i$,
+So $\mathfrak M_i'\sim\mathfrak M_i'''\subset\overline{\mathfrak M}_i$,
 implying (using \defref{8.2.1} here and below as we did above)
 \[
  D(\overline{\mathfrak M}_i)
- =D(\mathfrak N_i'')+D(\overline{\mathfrak M}_i-\mathfrak N_i'')
- \geq D(\mathfrak N_i'')=D(\mathfrak N_i').
+ =D(\mathfrak M_i''')+D(\overline{\mathfrak M}_i-\mathfrak M_i''')
+ \geq D(\mathfrak M_i''')=D(\mathfrak M_i').
 \]
 Therefore
 \[
  D(\mathfrak N)
  =\reldiv{\mathfrak N}{\overline{\mathfrak M}_i}
-   D(\overline{\mathfrak M}_i)+D(\mathfrak N_i')
+   D(\overline{\mathfrak M}_i)+D(\mathfrak M_i')
  \leq\left(\reldiv{\mathfrak N}{\overline{\mathfrak M}_i}+1\right)
    D(\overline{\mathfrak M}_i),
 \]
 \[
  D(\mathfrak M)
  =\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}
-   D(\overline{\mathfrak M}_i)+D(\mathfrak M_i')
+   D(\overline{\mathfrak M}_i)+D(\mathfrak M_i'')
  \geq\reldiv{\mathfrak M}{\overline{\mathfrak M}_i}
    D(\overline{\mathfrak M}_i),
 \]
@@ -4699,9 +4766,10 @@ Interchanging $\mathfrak M,\mathfrak N$ gives, considering \lemref{8.1.6},
 (iii), that $\geq$ holds too; so we have equality again.
 
 \Lemma{8.2.3}
+{\itshape
 All relative dimension functions $D(\mathfrak M)$ are obtained by taking one
 of them, say $D_0(\mathfrak M)$, and forming all $aD_0(\mathfrak M)$, for all
-finite and positive constants $a$.
+finite and positive constants $a$.}
 
 \Proof It is clear, that every $aD_0(\mathfrak M)$ is a relative dimension
 function, along with $D_0(\mathfrak M)$.
@@ -4746,12 +4814,13 @@ The connection between the ordering and the relative dimension functions is
 given by this Lemma.
 
 \Lemma{8.3.1}
+{\itshape
 If $D(\mathfrak M)$ is a relative dimension function and
 $\mathfrak M,\mathfrak N\mathbin\eta\M$, then the relations
 $\mathfrak M\sim\mathfrak N$, $\mathfrak M\prec\mathfrak N$,
 $\mathfrak M\succ\mathfrak N$ are equivalent to
 $D(\mathfrak M)=D(\mathfrak N)$, $D(\mathfrak M)<D(\mathfrak N)$,
-$D(\mathfrak M)>D(\mathfrak N)$, respectively.
+ $D(\mathfrak M)>D(\mathfrak N)$, resp.}
 
 \Proof $\mathfrak M\sim\mathfrak N$ implies
 $D(\mathfrak M)=D(\mathfrak N)$ by \defref{8.2.1}, (ii). Consider now
@@ -4772,9 +4841,11 @@ shows that $\mathfrak M\succ\mathfrak N$ implies
 $D(\mathfrak M)>D(\mathfrak N)$. As we have complete disjunctions on both
 sides, the converse is true too.
 
-Summing up \lemref{8.2.1}, \lemref{8.2.3}, and \lemref{8.3.1}, we have:
+Summing up Lemmas \hyperref[lem:8.2.1]{8.2.1},
+\hyperref[lem:8.2.3]{8.2.3}, and \hyperref[lem:8.3.1]{8.3.1}, we have:
 
 \MainTheorem{VII}
+{\itshape
 A relative dimension function $D(\mathfrak M)$ as characterized by
 \defref{8.2.1}, does always exist, and it is unique, except for an arbitrary
 constant (real, finite, and positive) factor $a$. A particular choice of
@@ -4784,19 +4855,20 @@ If $\mathfrak M,\mathfrak N\mathbin\eta\M$ then the relations
 $\mathfrak M\sim\mathfrak N$, $\mathfrak M\prec\mathfrak N$,
 $\mathfrak M\succ\mathfrak N$ are equivalent to
 $D(\mathfrak M)=D(\mathfrak N)$, $D(\mathfrak M)<D(\mathfrak N)$,
-$D(\mathfrak M)>D(\mathfrak N)$, respectively.
+ $D(\mathfrak M)>D(\mathfrak N)$, resp.}
 
 We will use $D(\mathfrak M)$ to obtain a detailed characterization of $\M$
 itself. But first we establish some continuity properties of $D(\mathfrak M)$.
 
 \Lemma{8.3.2}
+{\itshape
 Let $\mathfrak M_1,\mathfrak M_2,\ldots$ be a (finite or infinite) sequence,
 all $\mathfrak M_i\mathbin\eta\M$ and mutually orthogonal. Then
 \begin{equation*}
  \phantomsection\label{eq:8.3.1}
  D([\mathfrak M_1,\mathfrak M_2,\ldots])
  =\sum_iD(\mathfrak M_i).
-\end{equation*}
+\end{equation*}}
 
 \Proof Those $\mathfrak M_i$ which are $=(0)$ have no effect on either side
 of this equation, and we can omit them. So we may assume that all
@@ -4881,10 +4953,14 @@ $\mathfrak N_1,\ldots,\mathfrak N_{i-1}$ have already been constructed
 fulfilling these conditions, then we construct $\mathfrak N_i$ as follows.
 $D(\mathfrak N_j)=D(\mathfrak M_j)$, $j=1,\ldots,i-1$, is finite, so
 \[
+\begin{aligned}
  D(\mathfrak N-[\mathfrak N_1,\ldots,\mathfrak N_{i-1}])
- =D(\mathfrak N)-\sum_{j=1}^{i-1}D(\mathfrak N_j)
- \geq\sum_{j=i}^\infty D(\mathfrak M_j)
+ &=D(\mathfrak N)-\sum_{j=1}^{i-1}D(\mathfrak N_j)\\
+ &\geq\sum_{j=1}^\infty D(\mathfrak M_j)
+       -\sum_{j=1}^{i-1}D(\mathfrak N_j)\\
+ &=\sum_{j=i}^\infty D(\mathfrak M_j)
  \geq D(\mathfrak M_i).
+\end{aligned}
 \]
 Thus
 $\mathfrak M_i\precsim
@@ -4913,13 +4989,14 @@ wrong, and there must be for the original sequence
 This completes the proof.
 
 \Lemma{8.3.3}
+{\itshape
 Let $\mathfrak M_1,\mathfrak M_2,\ldots$ be an infinite sequence, all
 $\mathfrak M_i\mathbin\eta\M$ and
 $\mathfrak M_1\subset\mathfrak M_2\subset\cdots$. Then
 \[
  \lim_{i\to\infty}D(\mathfrak M_i)
  =D([\mathfrak M_1,\mathfrak M_2,\ldots]).
-\]
+\]}
 
 \Proof Put $\mathfrak N_1=\mathfrak M_1$,
 $\mathfrak N_i=\mathfrak M_i-\mathfrak M_{i-1}$ for $i=2,3,\ldots$. Then all
@@ -4943,6 +5020,7 @@ $\lim_{i\to\infty}D(\mathfrak M_i)=
 D([\mathfrak M_1,\mathfrak M_2,\ldots])$.
 
 \Lemma{8.3.4}
+{\itshape
 Let $\mathfrak M_1,\mathfrak M_2,\ldots$ be an infinite sequence, all
 $\mathfrak M_i\mathbin\eta\M$ and
 $\mathfrak M_1\supset\mathfrak M_2\supset\cdots$. If not all $\mathfrak M_i$
@@ -4950,7 +5028,7 @@ are infinite, then
 \[
  \lim_{i\to\infty}D(\mathfrak M_i)
  =D(\mathfrak M_1\cdot\mathfrak M_2\cdot\mathfrak M_3\cdots).
-\]
+\]}
 
 \Proof Assume that $\mathfrak M_{i_0}$ is finite. Put
 $\mathfrak M_i'=\mathfrak M_{i_0}-\mathfrak M_{i_0+i}$. Then all
@@ -4993,11 +5071,12 @@ condition for relative dimension functions which makes no explicit use of the
 notions of finiteness and infiniteness for sets $\mathfrak M\mathbin\eta\M$.
 
 \Lemma{8.3.5}
+{\itshape
 If a real-valued function $D'(\mathfrak M)$ which is defined for all linear,
 closed sets $\mathfrak M\mathbin\eta\M$ assumes only values
 $\geq0$, $\leq\infty$ and if some of its values are actually $\ne0,\infty$ then
 the conditions (ii), (iii) in \defref{8.2.1} are sufficient in order that
-$D'(\mathfrak M)$ be a relative dimension function.
+$D'(\mathfrak M)$ be a relative dimension function.}
 
 \Proof We must derive (i) in \defref{8.2.1} from these conditions. Choose an
 $\overline{\mathfrak M}\mathbin\eta\M$ with
@@ -5045,6 +5124,7 @@ We now undertake to find invariant characteristics of $\M$ in terms of its
 relative dimension functions $D(\mathfrak M)$.
 
 \Lemma{8.4.1}
+{\itshape
 The range $\Delta$ of $D(\mathfrak M)$ (that is the set of all values of a given
 $D(\mathfrak M)$ for all $\mathfrak M\mathbin\eta\M$) has these properties:
 \begin{enumerate}[label=(\roman*)]
@@ -5055,7 +5135,7 @@ $D(\mathfrak M)$ for all $\mathfrak M\mathbin\eta\M$) has these properties:
 \item $\alpha_1,\alpha_2,\ldots\in\Delta$ and
   $\sum_{i=1}^{\infty}\alpha_i\leq\overline\alpha$ imply
   $\sum_{i=1}^{\infty}\alpha_i\in\Delta$.
-\end{enumerate}
+\end{enumerate}}
 
 \Proof Ad (i): Obvious.
 
@@ -5071,9 +5151,9 @@ $D(\mathfrak N')=D(\mathfrak N)=\beta$ finite and so
 $D(\mathfrak M-\mathfrak N')=D(\mathfrak M)-D(\mathfrak N')
 =\alpha-\beta$.
 
-Ad (iv): If any $\alpha_i=\infty$ then
+Ad (iv): If any $\alpha_j=\infty$ then
 $\sum_{i=1}^{\infty}\alpha_i=\infty$, so
-$\sum_{i=1}^{\infty}\alpha_i=\alpha_i\in\Delta$, so we may assume that all
+$\sum_{i=1}^{\infty}\alpha_i=\alpha_j\in\Delta$, so we may assume that all
 $\alpha_i$ are finite. Define a sequence $\mathfrak M_1,\mathfrak M_2,\ldots$
 of mutually orthogonal sets $\mathfrak M_i\mathbin\eta\M$,
 $D(\mathfrak M_i)=\alpha_i$ by induction. Assume that for an
@@ -5084,7 +5164,8 @@ follows.
  D(\Hspace-[\mathfrak M_1,\ldots,\mathfrak M_{i-1}])
  &=D(\Hspace)-\sum_{j=1}^{i-1}D(\mathfrak M_j)\\
  &=\overline\alpha-\sum_{j=1}^{i-1}\alpha_j
- \geq\sum_{j=i}^{\infty}\alpha_j\geq\alpha_i.
+ \geq\sum_{j=1}^{\infty}\alpha_j-\sum_{j=1}^{i-1}\alpha_j
+ =\sum_{j=i}^{\infty}\alpha_j\geq\alpha_i.
 \end{align*}
 Choose an $\mathfrak M_i'\mathbin\eta\M$ with
 $D(\mathfrak M_i')=\alpha_i$; then
@@ -5099,43 +5180,45 @@ $\mathfrak M_i$ meets all requirements. Now by \lemref{8.3.2}
 \]
 
 \Lemma{8.4.2}
+{\itshape
 The only sets $\Delta$ which fulfill the requirements (i)--(iv) of
-\lemref{8.4.1} are the following ones ($\epsilon,\overline\alpha$ are finite):
+\lemref{8.4.1} are the following ones ($\bar\epsilon,\overline\alpha$ are finite):
 \begin{description}[style=multiline,leftmargin=4.4em]
-\item[$(\mathrm I_n)$] $\epsilon>0$, $n=1,2,\ldots$;
-  $\Delta$ consists of all $i\epsilon$, $i=0,1,\ldots,n$.
-\item[$(\mathrm I_\infty)$] $\epsilon>0$;
-  $\Delta$ consists of all $i\epsilon$, $i=0,1,\ldots,\infty$.
+\item[$(\mathrm I_n)$] $\bar\epsilon>0$, $n=1,2,\ldots$;
+  $\Delta$ consists of all $i\bar\epsilon$, $i=0,1,\ldots,n$.
+\item[$(\mathrm I_\infty)$] $\bar\epsilon>0$;
+  $\Delta$ consists of all $i\bar\epsilon$, $i=0,1,\ldots,\infty$.
 \item[$(\mathrm{II}_1)$] $\overline\alpha>0$;
   $\Delta$ consists of all $\alpha$, $0\leq\alpha\leq\overline\alpha$.
 \item[$(\mathrm{II}_\infty)$] $\Delta$ consists of all $\alpha$,
   $0\leq\alpha\leq\infty$.
 \item[$(\mathrm{III}_\infty)$] $\Delta$ consists of $0,\infty$.
-\end{description}
+\end{description}}
 
 \Proof $\Delta$ contains $0$ by (ii) and some element $>0$ by (i), (ii). If it
 contains no element $>0$, $<\infty$ then it consists of $0,\infty$ which is
 precisely case $(\mathrm{III}_\infty)$. Assume now that it does contain
 elements $>0$, $<\infty$.
 
-Assume first, that this set contains a smallest element $\epsilon$. If
+Assume first, that this set contains a smallest element $\bar\epsilon$. If
 $\alpha\in\Delta$ and finite, then there exists an $i=0,1,2,\ldots$ with
-$i\epsilon\leq\alpha<(i+1)\epsilon$. If $i\epsilon\ne\alpha$ then by (iii) all
-$\alpha,\alpha-\epsilon,\ldots,\alpha-i\epsilon$ belong to $\Delta$. But
-$0<\alpha-i\epsilon<\epsilon$, which is impossible. So
-$\alpha=i\epsilon$. In particular
-$\overline\alpha=n\epsilon$, $n=0,1,2,\ldots$ if it is finite, and as
+$i\bar\epsilon\leq\alpha<(i+1)\bar\epsilon$. If
+$i\bar\epsilon\ne\alpha$ then by (iii) all
+$\alpha,\alpha-\bar\epsilon,\ldots,\alpha-i\bar\epsilon$ belong to $\Delta$.
+But $0<\alpha-i\bar\epsilon<\bar\epsilon$, which is impossible. So
+$\alpha=i\bar\epsilon$. In particular
+$\overline\alpha=n\bar\epsilon$, $n=0,1,2,\ldots$ if it is finite, and as
 $\overline\alpha>0$, $n\ne0$. If $\overline\alpha$ is infinite we may write
-$\overline\alpha=\infty\epsilon$, so at any rate
-$\overline\alpha=n\epsilon$, $n=1,2,\ldots,\infty$.
+$\overline\alpha=\infty\bar\epsilon$, so at any rate
+$\overline\alpha=n\bar\epsilon$, $n=1,2,\ldots,\infty$.
 
 For all other $\alpha\in\Delta$, $\alpha<\overline\alpha$ so $\alpha$ finite,
-$\alpha=i\epsilon$ and as $\alpha<\overline\alpha$, $i<n$,
+$\alpha=i\bar\epsilon$ and as $\alpha<\overline\alpha$, $i<n$,
 $i=0,1,2,\ldots,n-1$. Conversely, if $i=0,1,\ldots,n-1$, then
-$i\epsilon<n\epsilon=\overline\alpha$ and (iv) with
-$\alpha_1=\cdots=\alpha_i=\epsilon$,
-$\alpha_{i+1}=\alpha_{i+2}=\cdots=0$ gives $i\epsilon\in\Delta$. Thus
-$\Delta$ consists of all $i\epsilon$, $i=0,1,\ldots,n$, which is case
+$i\bar\epsilon<n\bar\epsilon=\overline\alpha$ and (iv) with
+$\alpha_1=\cdots=\alpha_i=\bar\epsilon$,
+$\alpha_{i+1}=\alpha_{i+2}=\cdots=0$ gives $i\bar\epsilon\in\Delta$. Thus
+$\Delta$ consists of all $i\bar\epsilon$, $i=0,1,\ldots,n$, which is case
 $(\mathrm I_n)$ if $n=1,2,\ldots$, and case $(\mathrm I_\infty)$ if
 $n=\infty$.
 
@@ -5149,7 +5232,7 @@ $\beta>\epsilon'$. So $\alpha,\beta\in\Delta$, $\alpha>\beta$ and by (iii)
 $\alpha-\beta\in\Delta$, but $\alpha-\beta>0$,
 $\alpha-\beta<2\epsilon'-\epsilon'=\epsilon'$ which is impossible. Thus
 $\epsilon'=0$ and so for every $\epsilon>0$ an $\alpha\in\Delta$,
-$0<\alpha<\epsilon$ exists.
+$0<\alpha<\epsilon$ with $0<\alpha<\epsilon$ exists.
 
 Now assume $0\leq\beta_1<\beta_2\leq\overline\alpha$. Choose an
 $\alpha\in\Delta$ with $0<\alpha<\beta_2-\beta_1$. Then an
@@ -5178,12 +5261,14 @@ $0\leq\alpha\leq\overline\alpha$ which is case $(\mathrm{II}_1)$ if
 $\overline\alpha$ is finite, and case $(\mathrm{II}_\infty)$ if
 $\overline\alpha=\infty$. These considerations exhaust all possibilities.
 
-We now apply \lemref{8.4.1} and \lemref{8.4.2} simultaneously, remembering
-that we can normalise $D(\mathfrak M)$ so as to make $\epsilon=1$ (cases
+We now apply Lemmas \hyperref[lem:8.4.1]{8.4.1} and
+\hyperref[lem:8.4.2]{8.4.2} simultaneously, remembering
+that we can normalise $D(\mathfrak M)$ so as to make $\bar\epsilon=1$ (cases
 $(\mathrm I_n)$ and $(\mathrm I_\infty)$) resp. $\overline\alpha=1$ (case
 $(\mathrm{II}_1)$). Then we have:
 
 \MainTheorem{VIII}
+{\itshape
 The range of $D(\mathfrak M)$ (that is the set of all values of a given
 $D(\mathfrak M)$ for all $\mathfrak M\mathbin\eta\M$) is one of the following
 sets:
@@ -5194,7 +5279,7 @@ sets:
 \item[$(\mathrm{II}_\infty)$] The set of all $\alpha$,
   $0\leq\alpha\leq\infty$.
 \item[$(\mathrm{III}_\infty)$] The set $0,\infty$.
-\end{description}
+\end{description}}
 
 In the cases $(\mathrm I_n)$, $(\mathrm I_\infty)$, $(\mathrm{II}_1)$ we have
 included a normalisation of $D(\mathfrak M)$, the \emph{standard
@@ -5236,12 +5321,14 @@ We establish the invariance of the subjects of the last
 ring-isomorphisms.
 
 \Lemma{8.5.1}
+{\itshape
 Replace the $\mathfrak M,\mathfrak N\mathbin\eta\M$ by their
 $E=P_{\mathfrak M}$, $F=P_{\mathfrak N}$ which are $\in\M$
-(cf. \defref{6.1.1}, \defref{7.1.1}, and \defref{8.2.1}). The notions
+(Cf. Definitions \hyperref[def:6.1.1]{6.1.1},
+\hyperref[def:7.1.1]{7.1.1}, and \hyperref[def:8.2.1]{8.2.1}). The notions
 $E\sim F$ $(\cdots\M)$, finiteness and infiniteness of an $E$ with respect to
 $\M$, $D_{\M}(E)$ (apart from its normalisation) are invariant under algebraic
-ring-isomorphisms.
+ring-isomorphisms.}
 
 \Proof $E\sim F$ means that a $U\in\M$ with
 $UU^*U=U$, $U^*U=E$, $UU^*=F$ exists. $E$ is infinite, if an $F\in\M$ with
@@ -5253,23 +5340,25 @@ under algebraic ring-isomorphisms.
 Now we can state, combining \lemref{8.5.1} and \thmref{VIII}:
 
 \MainTheorem{IX}
+{\itshape
 The cases $(\mathrm I_n)$--$(\mathrm{III}_\infty)$ of \thmref{VIII} are
 invariant under algebraic ring-isomorphisms. So is $D_{\M}(E)$ (we write
 $E=P_{\mathfrak M}\in\M$ for $\mathfrak M\mathbin\eta\M$), apart from its
 normalisation, and even the standard normalisation (in the cases
-$(\mathrm I_n)$--$(\mathrm{II}_1)$).
+$(\mathrm I_n)$--$(\mathrm{II}_1)$).}
 
 \SectionStart{8.6}{The discrete cases}
 We now locate the direct factors in this classification.
 
 \Lemma{8.6.1}
+{\itshape
 $\M$ is a direct factor if and only if it belongs to the discrete cases:
 $(\mathrm I_n)$ or $(\mathrm I_\infty)$. If we then use the spatial isomorphism
 of $\Hspace$ with $\Hspace_1\otimes\cdots\otimes\Hspace_m$ where $\M$ becomes
 $\B_i^{(i)}$ then the corresponding $\Hspace_i$ will be an $n$-dimensional
 Euclidean space resp. a Hilbert space. If $E_i=P_{\mathfrak M_i}$ is a
 projection in $\Hspace_i$ then $D_{\M}(E_i^{(i)})$ is, in the standard
-normalisation, simply the common notion of dimension of $\mathfrak M_i$.
+normalisation, simply the common notion of dimension of $\mathfrak M_i$.}
 
 \Proof In the cases (I) an $\mathfrak M\mathbin\eta\M$ with
 $D(\mathfrak M)=1$ exists. If $\mathfrak N\mathbin\eta\M$,
@@ -5303,7 +5392,8 @@ space, it has the range $0,1,\ldots,\infty$. This proves that $\M$ is in the
 cases $(\mathrm I_n)$ resp. $(\mathrm I_\infty)$, and that this normalisation of
 $D_{\B}(\mathfrak M)$ is the standard one. This completes the proof.
 
-\lemref{8.6.1} makes it possible to solve \probref{3}--\probref{7} in the
+\lemref{8.6.1} makes it possible to solve Problems
+\hyperref[prob:3]{3}--\hyperref[prob:7]{7} in the
 discrete cases (that is for direct factors). The details are these:
 
 The discrete cases $(\mathrm I_n)$, for every $n=1,2,\ldots$ and
@@ -5332,8 +5422,8 @@ isomorphism.
 
 \ChapterHeadingTOC{9}{IX}{Qualitative Comparison of
 $\mathfrak M_f^{\M'}$ and $\mathfrak M_f^{\M}$}
-{\texorpdfstring{Qualitive comparison of $\mathfrak M_f^{\M'}$ and
-$\mathfrak M_f^{\M}$}{Qualitive comparison of two cyclic subspaces}}
+{\texorpdfstring{Qualitative comparison of $\mathfrak M_f^{\M'}$ and
+ $\mathfrak M_f^{\M}$}{Qualitative comparison of two cyclic subspaces}}
 
 \SectionStart{9.1}{\texorpdfstring{Definite series
 $\sum_{i=0}^{\infty}A_i$. The operator $B^{1/2}$}{Definite series. The
@@ -5350,7 +5440,7 @@ $i=1,2,\ldots$ an $\alpha_i$ exists, so that we have identically
 \[
  0\leq(A_if,f)\leq\alpha_i\lVert f\rVert^2
 \]
-for all $f\in\Hspace$ (cf. \cite[pp.~73--74]{ref16}).
+for all $f\in\Hspace$ (Cf. \hyperlink{cite.ref16}{(16)} pp.~73--74).
 
 Put $A_0=1$. Define $\mathfrak A$ as the set of $f\in\Hspace$ for which
 $\sum_{i=0}^{\infty}(A_if,f)$ is finite. For any two $f,g\in\Hspace$ for
@@ -5358,10 +5448,12 @@ which $\sum_{i=0}^{\infty}(A_if,g)$ is absolutely convergent, call this
 $Q(f,g)$.
 
 \Lemma{9.1.1}
+{\itshape
 $\mathfrak A$ is a linear set. If $f,g\in\mathfrak A$ then $Q(f,g)$ is
 defined. With $\alpha f,f+g$ as linear operations and $Q(f,g)$ as inner
 product $\mathfrak A$ fulfills the conditions A, B, E of
-\cite[pp.~64--66]{ref16}. (We may however have $\mathfrak A=(0)$.)
+\hyperlink{cite.ref16}{(16)} pp.~64--66. (We may however have
+$\mathfrak A=(0)$.)}
 
 \Proof As $(A_i\alpha f,\alpha f)=|\alpha|^2(A_if,f)$ therefore
 $f\in\mathfrak A$ implies $\alpha f\in\mathfrak A$. As
@@ -5421,9 +5513,10 @@ $Q(f_m-f,f_m-f)\leq\epsilon$. So we have $f\in\mathfrak A$ and
 $\lim_{m\to\infty}Q(f_m-f,f_m-f)=0$. This completes the proof.
 
 \Lemma{9.1.2}
+{\itshape
 For every $f\in\Hspace$ there exists one and only one $f^*\in\mathfrak A$ so
 that $(f,g)=Q(f^*,g)$ for every $g\in\mathfrak A$. We have
-$\lVert f^*\rVert\leq\lVert f\rVert$.
+$\lVert f^*\rVert\leq\lVert f\rVert$.}
 
 \Proof Consider $L(g)=(f,g)$ for $g\in\mathfrak A$ as a functional in
 $\mathfrak A$. We have obviously 1) $L(\alpha g)=\overline\alpha L(g)$,
@@ -5448,8 +5541,9 @@ $\lVert f^*\rVert\leq\lVert f\rVert$.
 Define an operator $B$ by $Bf=f^*$, in the sense of \lemref{9.1.2}.
 
 \Lemma{9.1.3}
+{\itshape
 $B$ is everywhere defined, bounded, Hermitian, (semi-) definite (in
-$\Hspace$); and $\operatorname{Range}B\subset\mathfrak A$.
+$\Hspace$); and $\operatorname{Range}B\subset\mathfrak A$.}
 
 \Proof $B$ is obviously everywhere defined.
 $(Bf,f)=(f^*,f)=Q(f^*,f^*)$ and
@@ -5461,11 +5555,12 @@ thus $B$ is bounded, Hermitian, and (semi-) definite. As
 $Bf=f^*\in\mathfrak A$ we have $\operatorname{Range}B\subset\mathfrak A$.
 
 \Lemma{9.1.4}
+{\itshape
 Form $B^{1/2}$ in the sense of F. Riesz (cf. in the proof). $B^{1/2}$ is
 everywhere defined, bounded, Hermitean, (semi-) definite.
 $\operatorname{Range}B^{1/2}=\mathfrak A$. For
 $f\in\Hspace-[\mathfrak A]$, $B^{1/2}f=0$, while for
-$f,g\in[\mathfrak A]$, $(f,g)=Q(B^{1/2}f,B^{1/2}g)$.
+$f,g\in[\mathfrak A]$, $(f,g)=Q(B^{1/2}f,B^{1/2}g)$.}
 
 \Proof As to the definition and character of $B^{1/2}$ cf. for instance
 \cite[p.~113]{ref16}.
@@ -5554,8 +5649,9 @@ Thus we have proved all statements of our Lemma.
 Another essential property of $B^{1/2}$ is this:
 
 \Lemma{9.1.5}
+{\itshape
 Let $\M$ be a ring which contains 1. If the above $A_1,A_2,\ldots$ are
-elements of $\M$ then $B^{1/2}\in\M$.
+elements of $\M$ then $B^{1/2}\in\M$.}
 
 \Proof $A_n\in\M$, $A_n\mathbin\eta\M$ so $A_n$ is invariant under every
 unitary $U'\in\M'$. Therefore $\mathfrak A$ and $Q(f,g)$ are invariant under
@@ -5568,11 +5664,12 @@ $\mathfrak M_{f_0}^{\M'}$}{Application to a cyclic subspace}}
 Consider now the sets $\mathfrak M_{f_0}^{\M'}$ of \defref{5.1.1}.
 
 \Lemma{9.2.1}
+{\itshape
 Let $\M$ be a ring which contains 1. If
 $g_0\in\mathfrak M_{f_0}^{\M'}$ then two linear, closed operators
 $X',Y'\mathbin\eta\M'$ with everywhere dense domains can be found such that
 $g_0=X'Y'f_0$. (Of course $f_0\in\operatorname{Domain}Y'$,
-$Y'f_0\in\operatorname{Domain}X'$. $X'$ is even bounded.)
+$Y'f_0\in\operatorname{Domain}X'$. $X'$ is even bounded.)}
 
 \Proof $g_0$ is a condensation point of the set of all $A'f_0$,
 $A'\in\M'$. So we can find for every $n=1,2,\ldots$ an $A_n'\in\M'$ with
@@ -5582,11 +5679,15 @@ $\lVert A_n'f_0-g_0\rVert\leq 1/2^n$. Thus
  \leq 1/2^{n+1}+1/2^n=3/2^{n+1},
 \]
 and so
-\begin{align*}
+\[
+\begin{aligned}
  &\bigl(2^n(A_{n+1}'-A_n')^*(A_{n+1}'-A_n')f_0,f_0\bigr)\\
+ &\qquad=2^n\bigl((A_{n+1}'-A_n')f_0,
+                  (A_{n+1}'-A_n')f_0\bigr)\\
  &\qquad=2^n\lVert(A_{n+1}'-A_n')f_0\rVert^2
  \leq 2^n(3/2^{n+1})^2=9/2^{n+2}.
-\end{align*}
+\end{aligned}
+\]
 We now perform the construction of \defref{9.1.1} with
 $2^n(A_{n+1}'-A_n')^*(A_{n+1}'-A_n')$ in place of $A_n$,
 $n=1,2,\ldots$. We thus obtain $\mathfrak A$ and $Q(f,g)$, and the
@@ -5595,7 +5696,7 @@ $B',B'^{1/2}$. \lemref{9.1.5} gives $B'^{1/2}\in\M'$. Note that our
 above evaluation secures $f_0\in\mathfrak A$.
 
 $B'^{1/2}$ is a one-to-one mapping of $[\mathfrak A]$ on $\mathfrak A$
-(even isomorphic! cf. \lemref{9.1.4}). Denote its inverse (in
+(even isomorphic!, cf. \lemref{9.1.4}). Denote its inverse (in
 $\mathfrak A$ only!) by $Y_0'$. As $B'^{1/2}\in\M'$ we have
 $\mathfrak A=\operatorname{Range}B'^{1/2}\mathbin\eta\M$ and so
 $Y_0'\mathbin\eta\M'$; by its very nature $Y_0'$ is linear and closed. But
@@ -5609,6 +5710,10 @@ $Q(B'^{1/2}f,B'^{1/2}f)=\lVert P_{[\mathfrak A]}f\rVert^2\leq\lVert f\rVert^2$.
 But
 \begin{align*}
  Q(B'^{1/2}f,B'^{1/2}f)
+ &=\bigl(B'^{1/2}f,B'^{1/2}f\bigr)\\
+ &\quad+\sum_{n=1}^{\infty}
+   \bigl(2^n(A_{n+1}'-A_n')^*(A_{n+1}'-A_n')B'^{1/2}f,
+         B'^{1/2}f\bigr)\\
  &=\lVert B'^{1/2}f\rVert^2
    +\sum_{n=1}^{\infty}2^n
      \lVert(A_{n+1}'-A_n')B'^{1/2}f\rVert^2\\
@@ -5624,19 +5729,22 @@ Therefore
  \lVert(A_{n+p}'-A_n')B'^{1/2}f\rVert
  &\leq\left(\frac1{\sqrt{2^n}}+\cdots+
               \frac1{\sqrt{2^{n+p-1}}}\right)\lVert f\rVert\\
- &\leq\frac{2+\sqrt2}{\sqrt{2^n}}\lVert f\rVert,
+ &\leq\frac1{\sqrt{2^n}}
+       \left(\frac1{1-\frac1{\sqrt2}}\right)\lVert f\rVert
+  =\frac{2+\sqrt2}{\sqrt{2^n}}\lVert f\rVert,
 \end{align*}
 or, which is the same thing,
 \[
  \lVert(A_m'-A_n')B'^{1/2}f\rVert
  \leq\frac{2+\sqrt2}{\sqrt{2^{\min(m,n)}}}\lVert f\rVert.
 \]
+\begingroup\rightskip=0pt plus .8em
 Thus $\lim_{m,n\to\infty}\lVert(A_m'-A_n')B'^{1/2}f\rVert=0$ and
 therefore a unique $f^*$ with
 $\lim_{n\to\infty}\lVert A_n'B'^{1/2}f-f^*\rVert=0$ exists. We define an
 operator $X'$ by $X'f=f^*$; then $X'$ is clearly the uniform limit of the
 sequence $A_1'B'^{1/2},A_2'B'^{1/2},\ldots$ (cf.
-\cite[p.~384]{ref18}), thus bounded and $\in\M'$ too.
+\cite[p.~384]{ref18}), thus bounded and $\in\M'$ too.\par\endgroup
 
 Now $f_0\in\mathfrak A$, therefore $Y'f_0=Y_0'f_0\in[\mathfrak A]$ and
 $B'^{1/2}Y'f_0=f_0$; $g_0$ is the limit of the sequence
@@ -5645,7 +5753,7 @@ $A_n'f_0=A_n'B'^{1/2}Y'f_0$, so $g_0=X'Y'f_0$. This completes the proof.
 Note that we cannot make much use of the operator-product $X'Y'$ itself.
 It is not closed in general, and it is uncertain whether it possesses a
 single valued closure (cf. \cite[p.~300]{ref21}). We will see in
-\hyperref[sec:16.3]{\S\S16.3}--\hyperref[sec:16.4]{16.4} how the notion of finiteness helps to bridge this gap; for
+\hyperref[sec:16.3]{\S16.3}--\hyperref[sec:16.4]{16.4} how the notion of finiteness helps to bridge this gap; for
 the moment this is unimportant, because we are able to deal with the
 $X',Y'$ separately.
 
@@ -5657,12 +5765,13 @@ We will compare the $\mathfrak M_f^{\M'}$ and the $\mathfrak M_f^{\M}$.
 From now on we assume that $\M$ is a factor.
 
 \Lemma{9.3.1}
+{\itshape
 If $g_0=X'f_0$ where $X'\mathbin\eta\M'$ is a linear, closed operator with
 an everywhere dense domain, then
 \[
  \mathfrak M_{g_0}^{\M}\precsim\mathfrak M_{f_0}^{\M}
  \quad(\cdots\M').
-\]
+\]}
 
 \Proof $X'\mathbin\eta\M'$ means that $X'$ commutes with all unitary
 $U\in\M''=\M$, that is with all elements of $\M^{(U)}$ (cf.
@@ -5681,8 +5790,8 @@ $[\operatorname{Domain}X'\cdot\mathfrak M_{f_0}^{\M}]=\mathfrak N'$;
 clearly $\mathfrak N'\subset\mathfrak M_{f_0}^{\M}$ and
 $X'\mathbin\eta\M'$, $\mathfrak M_{f_0}^{\M}\mathbin\eta\M'$ imply
 $\mathfrak N'\mathbin\eta\M'$. It is clear that
-$X'P_{\mathfrak N'}$ is a linear, closed operator with an everywhere dense
-domain, and $\mathbin\eta\M'$. Our above relation proves
+$X'\cdot P_{\mathfrak N'}$ is a linear, closed operator with an everywhere
+dense domain, and $\mathbin\eta\M$. Our above relation proves
 \[
  \mathfrak M_{g_0}^{\M}\subset
  [\operatorname{Range}(X'P_{\mathfrak N'})].
@@ -5707,10 +5816,11 @@ $\mathfrak M_{g_0}^{\M}\precsim\mathfrak M_{f_0}^{\M}
 (\cdots\M')$.
 
 \Lemma{9.3.2}
+{\itshape
 $\mathfrak M_{g_0}^{\M'}\precsim\mathfrak M_{f_0}^{\M'}
 (\cdots\M)$ implies
 $\mathfrak M_{g_0}^{\M}\precsim\mathfrak M_{f_0}^{\M}
-(\cdots\M')$.
+(\M')$.}
 
 \Proof $\mathfrak M_{g_0}^{\M'}\precsim\mathfrak M_{f_0}^{\M'}
 (\cdots\M)$ means
@@ -5741,10 +5851,11 @@ $\mathfrak M_{g_0}^{\M}\precsim\mathfrak M_{f_0}^{\M}
 (\cdots\M')$.
 
 \Lemma{9.3.3}
+{\itshape
 $\mathfrak M_{f_0}^{\M'}\gtreqless\mathfrak M_{g_0}^{\M'}
 (\cdots\M)$ is equivalent to
 $\mathfrak M_{f_0}^{\M}\gtreqless\mathfrak M_{g_0}^{\M}
-(\cdots\M')$, respectively.
+ (\cdots\M')$, resp.}
 
 \Proof
 $\mathfrak M_{f_0}^{\M'}\succsim\mathfrak M_{g_0}^{\M'}
@@ -5774,8 +5885,8 @@ $D_{\M}(\mathfrak M_f^{\M'})$ and $D_{\M'}(\mathfrak M_f^{\M})$}
 The last \S\S\ give the basis for a quantitative comparison of
 $\mathfrak M_f^{\M'}$ with $\mathfrak M_f^{\M}$. $\M,\M'$ will again be
 factors; $D_{\M}(\mathfrak M)$, $D_{\M'}(\mathfrak M')$ arbitrarily
-normalised relative dimension functions of $\M,\M'$ respectively;
-$\Delta,\Delta'$ their respective ranges. We define:
+ normalised relative dimension functions of $\M,\M'$ resp.;
+ $\Delta,\Delta'$ their resp. ranges. We define:
 
 \Definition{10.1.1}
 Denote the range of $D_{\M}(\mathfrak M_f^{\M'})$ (for all
@@ -5783,11 +5894,12 @@ $f\in\Hspace$) by $\Delta_0$ and the range of
 $D_{\M'}(\mathfrak M_f^{\M})$ (for all $f\in\Hspace$) by $\Delta_0'$.
 
 \Lemma{10.1.1}
+{\itshape
 If we let $D_{\M'}(\mathfrak M_f^{\M})$ correspond to
 $D_{\M}(\mathfrak M_f^{\M'})$ a one-to-one mapping of $\Delta_0$ on
 $\Delta_0'$ results. Describe this mapping by
 $\alpha'=\phi(\alpha)$, $\alpha\in\Delta_0$, $\alpha'\in\Delta_0'$.
-$\phi(\alpha)$ is a monotone increasing function of $\alpha$.
+$\phi(\alpha)$ is a monotone increasing function of $\alpha$.}
 
 \Proof \lemref{9.3.3} can be formulated like this:
 \[
@@ -5797,14 +5909,15 @@ $\phi(\alpha)$ is a monotone increasing function of $\alpha$.
  D_{\M'}(\mathfrak M_f^{\M})\gtreqless
  D_{\M'}(\mathfrak M_g^{\M}),
 \]
-respectively. This implies all parts of our Lemma.
+ resp. This implies all parts of our Lemma.
 
 We will now determine $\Delta_0,\Delta_0',\phi(\alpha)$ and the set of all
 pairs $\mathfrak M_f^{\M'},\mathfrak M_f^{\M}$.
 
 \Lemma{10.1.2}
+{\itshape
 If $A\in\M$, then
-$[Ag;g\in\mathfrak M_f^{\M'}]=\mathfrak M_{Af}^{\M'}$.
+$[Ag;g\in\mathfrak M_f^{\M'}]=\mathfrak M_{Af}^{\M'}$.}
 
 \Proof We have
 \begin{align*}
@@ -5816,12 +5929,13 @@ $[Ag;g\in\mathfrak M_f^{\M'}]=\mathfrak M_{Af}^{\M'}$.
 \end{align*}
 
 \Lemma{10.1.3}
+{\itshape
 The necessary and sufficient conditions for the existence of an
 $f\in\Hspace$ with
 $\mathfrak M_f^{\M'}=\mathfrak M$, $\mathfrak M_f^{\M}=\mathfrak N$ are
 these: $\mathfrak M\mathbin\eta\M$, $\mathfrak N\mathbin\eta\M'$,
 $D_{\M}(\mathfrak M)\in\Delta_0$,
-$D_{\M'}(\mathfrak N)=\phi(D_{\M}(\mathfrak M))$.
+$D_{\M'}(\mathfrak N)=\phi(D_{\M}(\mathfrak M))$.}
 
 \Proof The necessity being obvious, let us consider the sufficiency. Our
 assumptions imply the existence of a $g$ with
@@ -5847,6 +5961,7 @@ Similarly $\mathfrak M_{U'Ug}^{\M}=\mathfrak N$. Thus
 $f=UU'g=U'Ug$ meets all our requirements.
 
 \Lemma{10.1.4}
+{\itshape
 $\alpha_1,\alpha_2,\ldots\in\Delta_0$,
 $\sum_{i=1}^{\infty}\alpha_i\in\Delta$,
 $\sum_{i=1}^{\infty}\phi(\alpha_i)\in\Delta'$ imply
@@ -5855,7 +5970,7 @@ $\sum_{i=1}^{\infty}\phi(\alpha_i)\in\Delta'$ imply
  \qquad
  \sum_{i=1}^{\infty}\phi(\alpha_i)
  =\phi\left(\sum_{i=1}^{\infty}\alpha_i\right).
-\]
+\]}
 
 \Proof We wish to construct a sequence of mutually orthogonal
 \[
@@ -5956,9 +6071,10 @@ $\sum_{i=1}^{\infty}\phi(\alpha_i)
 =\phi(\sum_{i=1}^{\infty}\alpha_i)$.
 
 \Lemma{10.1.5}
+{\itshape
 $0\in\Delta_0$; an $\alpha\in\Delta_0$ with $\alpha>0$ exists; if
 $\alpha\in\Delta$, $\alpha\leq\beta\in\Delta_0$ then
-$\alpha\in\Delta_0$.
+$\alpha\in\Delta_0$.}
 
 \Proof For $f=0$,
 $D_{\M}(\mathfrak M_f^{\M'})=D_{\M}((0))=0$; for $f\ne0$,
@@ -5979,11 +6095,8 @@ so
 $D_{\M}(\mathfrak M_{P_{\mathfrak N'}f}^{\M'})
 =D_{\M}(\mathfrak N)=\alpha$.
 
-\SectionStartTOC{10.2}{\texorpdfstring{Proof of
-$D_{\M'}(\mathfrak M_f^{\M})=C D_{\M}(\mathfrak M_f^{\M'})$ and of
-$\Delta_0=\Delta$ or $\Delta_0'=\Delta'$. Theorem X}{Proof of the ratio formula
-and of the range alternatives. Theorem X}}
-{Proof of the ratio formula and of the range alternatives. Theorem X}
+\SectionStartTOC{10.2}{}
+{Proof of the ratio formula and of the range alternatives. Theorem X}%
 With the help of Lemmas \hyperref[lem:10.1.4]{10.1.4},
 \hyperref[lem:10.1.5]{10.1.5} the discussion
 of $\Delta_0,\Delta_0'$ and $\phi(\alpha)$ can now be completed. We will use
@@ -6040,7 +6153,7 @@ $\phi(\infty)=\infty$. So we have again $\phi(\alpha)=\alpha$, but now
 $\Delta_0=\Delta$ and $\Delta_0'=\Delta'$.
 
 Assume finally case (II) for $\M$. The above arguments exclude cases (I)
-and (III) for $\M'$ (interchange $\M,\M'$!), so we have case (II) for
+and (III) for $\M'$ (interchange $\M$, $\M'$,!), so we have case (II) for
 $\M'$ too. We have four possibilities: $\M$ in a case
 $(\mathrm{II}_{m'})$ and $\M'$ in a case $(\mathrm{II}_{n'})$ with
 $m',n'=1,\infty$.
@@ -6093,8 +6206,8 @@ $\alpha\in\Delta_0$, $\alpha\ne0$ and of course for $\alpha=0$ too.
 Let the l.u.b. of $\Delta_0$ be $m''$, and that of $\Delta_0'$, $n''$. We
 have $0<m''\leq m'$, $0<n''\leq n'$, and of course $n''=Cm''$.
 $m''$ belongs to $\Delta_0$: Choose $\alpha_1,\alpha_2,\ldots$ with
-$\alpha_i\geq0$, $\sum_1^i\alpha_i<m''$,
-$\sum_{1}^{\infty}\alpha_i=m''$ (for instance
+$\alpha_i\geq0$, $\sum_1^i\alpha_j<m''$,
+$\sum_{1}^{\infty}\alpha_j=m''$ (for instance
 $\alpha_i=m''/2^i$ if $m''$ is finite, and $\alpha_i=1$ if $m''$ is
 infinite), and apply \lemref{10.1.4}. Similarly $n''$ belongs to
 $\Delta_0'$.
@@ -6131,6 +6244,7 @@ All these results together with those of Lemmas
 \hyperref[lem:10.1.1]{10.1.1} and \hyperref[lem:10.1.3]{10.1.3} give the
 
 \MainTheorem{X}
+{\itshape
 In a factorisation $\M,\M'$ the factors $\M,\M'$ must both belong to class
 (I), or both to class (II), or both to class (III).
 
@@ -6153,7 +6267,7 @@ $\mathfrak M\mathbin\eta\M$, $\mathfrak N\mathbin\eta\M'$ and if
 $D_{\M}(\mathfrak M)\in\Delta_0$,
 $D_{\M'}(\mathfrak N)\in\Delta_0'$,
 $D_{\M'}(\mathfrak N)=CD_{\M}(\mathfrak M)$. (Owing to the last condition
-each one of the two preceding conditions implies the other.)
+each one of the two preceding conditions implies the other.)}
 
 This Theorem brings us nearer to the answers of \hyperref[prob:4]{Problems 4} and \hyperref[prob:7]{7}: It
 excludes certain combinations of cases for $\M,\M'$ and it shows that
@@ -6170,16 +6284,18 @@ and besides get further information on all these points in
 A natural question to ask is this:
 
 \Problem{8}
+{\itshape
 Under what conditions can two given $\M,\N$ belong both to one
-factorisation $\M_1,\ldots,\M_n$?
+factorisation $\M_1,\ldots,\M_n$?}
 
 The following Lemma gives a necessary and sufficient condition but thereby
 raises a new problem.
 
 \Lemma{11.1.1}
+{\itshape
 $\M,\N$ belong both to one (suitably chosen) factorisation if and only if
 (i) $\M,\N$ are factors, (ii) $\M,\N$ commute (that is: $\M\subset\N'$),
-(iii) $\mathrm R(\M,\N)$ is a factor.
+(iii) $\mathrm R(\M,\N)$ is a factor.}
 
 \Proof If $\M,\N$ belong to a factorisation
 $\M_1,\ldots,\M_n$, then $\M=\M_i$, $\N=\M_j$, $i\ne j$. Thus (i) is
@@ -6204,9 +6320,10 @@ Thus our condition is sufficient.
 The new problem therefore is:
 
 \Problem{9}
+{\itshape
 If $\M,\N$ are two factors which commute, under what conditions will then
 $\mathrm R(\M,\N)$ be a factor? How does the class of $\mathrm R(\M,\N)$
-(in the sense of \thmref{VIII}) connect with the classes of $\M$ and $\N$?
+(in the sense of \thmref{VIII}) connect with the classes of $\M$ and $\N$?}
 
 We will only succeed in giving a partial answer. This answer could be
 obtained by using somewhat less formal machinery than we are going to use.
@@ -6225,11 +6342,12 @@ coincides for $\P=\B$. As the decisive property of $\M'$ is $\M''=\M$
 (cf. \cite[p.~397]{ref18}), it is reasonable to define:
 
 \Definition{11.1.2}
-$\P$ is normal, if $\M\subset\P$ implies $\M_{\P}''=\M$.
+$\P$ is normal, if $\M\subset\P$ implies $\M_{\P\P}''=\M$.
 
 \Lemma{11.1.2}
+{\itshape
 If $\P$ is normal, then it is a factor; and every factorisation
-$\Q,\P'$ is a coupled one.
+$\Q,\P'$ is a coupled one.}
 
 \Proof Put $\M=(\alpha1)$. Then $\M\subset\P$ so
 $\M_{\P\P}''=\M$; now
@@ -6250,12 +6368,13 @@ present.
 The connection with \probref{9} is established by the following Lemma:
 
 \Lemma{11.1.3}
+{\itshape
 The factors $\M,\N$ are commutative and $\mathrm R(\M,\N)$ is a factor too
 (that is: the conditions of \lemref{11.1.1} are fulfilled), if a $\P$ with
 $\M\subset\P$, $\N\subset\P'$ exists, so that $\P,\P'$ are both normal.
 
 This is in particular the case, if $\M,\N$ commute, and besides
-$\M,\M'$ or $\N,\N'$ are both normal.
+$\M,\M'$ or $\N,\N'$ are both normal.}
 
 \Proof $\M\subset\P\subset\N'$ shows that $\M,\N$ commute. We have
 \[
@@ -6289,21 +6408,23 @@ $\mathrm R(\M_{\P}',\N_{\P'}')$ commutes with $\mathrm R(\M,\N)$.
 Thus $\mathrm R(\M,\N)$, $\mathrm R(\M_{\P}',\N_{\P'}')$ is a
 factorisation, and so (by \lemref{3.1.1}) $\mathrm R(\M,\N)$ is a factor.
 
-The second half of our Lemma obtains by putting $\P=\M$ respectively
+ The second half of our Lemma obtains by putting $\P=\M$ resp.
 $\P=\N'$.
 
 \SectionStart{11.2}{Properties of normalcy. Problem 10}
 We derive some properties of normalcy.
 
 \Lemma{11.2.1}
+{\itshape
 The operation $\M_{\P}'$ (for $\M\subset\P$) and the normalcy of $\P$ are
-invariants under $(A^*,AB)$-ring-isomorphisms of $\P$.
+invariants under $(A^*,AB)$-ring-isomorphisms of $\P$.}
 
 \Proof The first statement is obvious, the second follows immediately
 from the first one.
 
 \Lemma{11.2.2}
-If $\P$ is a factor of class (I), then $\P,\P'$ are both normal.
+{\itshape
+If $\P$ is a factor of class (I), then $\P,\P'$ are both normal.}
 
 \Proof As $\P'$ is of class (I) too (by Lemmas
 \hyperref[lem:3.2.4]{3.2.4} and \hyperref[lem:8.6.1]{8.6.1}, or by
@@ -6318,9 +6439,9 @@ But then $\M_{\P}'$ becomes $\M_{\B}'=\M'$ and as $\M''=\M$ (cf.
 Note that Lemmas \hyperref[lem:11.1.2]{11.1.2} and
 \hyperref[lem:11.2.2]{11.2.2} give together the
 statement of \lemref{3.2.4} again: Every direct factorisation $\M,\N$ is
-coupled (let $\M,\N$ correspond to $\Q,\P'$ respectively).
+ coupled (let $\M,\N$ correspond to $\Q,\P'$ resp.).
 
-As we will find non-coupled factorisations of class (II) (cf.
+As we will find non-coupled factorisations of class (II) (Cf.
 \secref{13.4}), \lemref{11.1.2} implies that non-normal factors of class
 (II) do exist. We did not succeed however in showing that no factor of
 class (II) is normal. Nevertheless the only non-normal $\P$'s we know are
@@ -6329,7 +6450,7 @@ of class (II).
 Thus the following question is only partially answered:
 
 \Problem{10}
-Which factors are normal?
+{\itshape Which factors are normal?}
 
 The second half of \probref{9} remains to be discussed: Determining the
 class of $\mathrm R(\M,\N)$ in terms of the classes of $\M$ and $\N$. If
@@ -6343,10 +6464,11 @@ We will now consider an operation which is in a certain sense inverse to
 the ``composition'' $\mathrm R(\M,\N)$. It is based on the following Lemma:
 
 \Lemma{11.3.1}
+{\itshape
 Let $\M$ be a ring which contains 1, $E$ a projection $\in\M$. If
 $A'\in\M'$ then form $EA'=A'E=A_E'$. Then these $A_E'$ are identical with
 those (bounded) operators $\bar A$ for which
-$E\bar A=\bar AE=\bar A$ and which commute with all $EBE$, $B\in\M$.
+$E\bar A=\bar AE=\bar A$ and which commute with all $EBE$, $B\in\M$.}
 
 \Proof The necessity is clear: If $A'\in\M'$ then $A'$ commutes with
 $E\in\M$ so we can define
@@ -6411,7 +6533,7 @@ that $\overline{\overline A}$ is continuous. Therefore we can form the
 closure of $\overline{\overline A}$, $\widetilde{\bar A}$. This will be
 one-valued, again fulfilling
 $\lVert\widetilde{\bar A}f\rVert\leq\alpha\lVert f\rVert$ and
-$\operatorname{Domain}\widetilde{\bar A}
+ $\operatorname{Domain}\widetilde{\bar A}'
 =[\operatorname{Domain}\overline{\overline A}]$. (All this results by
 direct application of the criterium of \cite[p.~300]{ref21}.)
 
@@ -6456,10 +6578,11 @@ Denote the set of all these $A_{(\mathfrak M)}$ ($A\in\M$ and reduced by
 $\mathfrak M$) by $\M_{(\mathfrak M)}$.
 
 \Lemma{11.3.2}
+{\itshape
 Let $\M$ be a ring which contains 1 and $\mathfrak M$ a closed linear set
 $\ne(0)$, $\mathfrak M\mathbin\eta\M$, $E=P_{\mathfrak M}$. Then
 $(\M_{(\mathfrak M)})'=\M'_{(\mathfrak M)}$. (These are rings of
-operators in the space $\mathfrak M$.)
+operators in the space $\mathfrak M$.)}
 
 \Proof An operator $A_0$ in $\mathfrak M$ is at the same time an operator
 in $\Hspace$ but its domain is $\subset\mathfrak M$. If $A_0$ is bounded,
@@ -6467,7 +6590,7 @@ then $A_0E$ is everywhere defined in $\Hspace$ and so (being bounded)
 $\in\B$. As its range is $\subset\mathfrak M$,
 $E(A_0E)=A_0E$. Obviously $(A_0E)E=A_0E$ so $A_0E$ commutes with
 $E=P_{\mathfrak M}$ and is reduced by $\mathfrak M$. Its parts in
-$\mathfrak M$, $\Hspace-\mathfrak M$ are $A_0,0$ respectively.
+ $\mathfrak M$, $\Hspace-\mathfrak M$ are $A_0,0$ resp.
 
 Thus $A_0,B_0$ (in $\mathfrak M$) commute if and only if $A_0E,B_0E$ (in
 $\Hspace$) commute. $A_0\in(\M_{(\mathfrak M)})'$ means therefore, that
@@ -6478,7 +6601,7 @@ The statement on $B_0$ means $B_0=B_{(\mathfrak M)}$, $B\in\M$ but then
  EBE=EB=BE=B_0E.
 \]
 (Note, that $B_0E$ differs in general from $EB_0=B_0$, their domains being
-$\Hspace$ respectively $\mathfrak M$.) So $A_0E$ must commute with every
+ $\Hspace$ resp. $\mathfrak M$.) So $A_0E$ must commute with every
 $EBE$ where $B\in\M$, $B$ commutes with $E$. Replacing $B$ by $EBE$
 (which commutes with $E$ and leaves $EBE$ unaltered) shows that any
 $B\in\M$ will do. Now \lemref{11.3.1} applies to $A_0E$:
@@ -6495,6 +6618,7 @@ $A_0\in(\M_{(\mathfrak M)})'$. So we have completely proved
 $(\M_{(\mathfrak M)})'=\M'_{(\mathfrak M)}$.
 
 \Lemma{11.3.3}
+{\itshape
 Let $\M,\mathfrak M,E$ be as above. Consider the correspondence
 $X\longleftrightarrow X_{(\mathfrak M)}$. This is a one-to-one mapping and
 even algebraic ring-isomorphism of the following rings on each other:
@@ -6503,7 +6627,7 @@ even algebraic ring-isomorphism of the following rings on each other:
 $\M_{(\mathfrak M)}$.
 
 (ii) If $\M$ is a factor, of all $\M'$ on all
-$\M'_{(\mathfrak M)}$.
+$\M'_{(\mathfrak M)}$.}
 
 \Proof The invariance of $\alpha A,A^*,A+B,AB$ is obvious, only the one to
 one character must therefore be proved.
@@ -6521,8 +6645,9 @@ $f\in\mathfrak M$, that is for all $f=Eg$ so $A'E=B'E$. By the corollary
 to \thmref{III} this implies $A'=B'$ as $E\ne0$. This completes the proof.
 
 \Lemma{11.3.4}
+{\itshape
 Let $\M,\mathfrak M,E$ be as above. If $\M$ is a factor then
-$\M_{(\mathfrak M)}$ is one too.
+$\M_{(\mathfrak M)}$ is one too.}
 
 \Proof Apply \lemref{11.3.2}:
 \[
@@ -6534,6 +6659,7 @@ $\M_{(\mathfrak M)}$ is one too.
 and $1_{(\mathfrak M)}$ is the unity operator in $\mathfrak M$.
 
 \Lemma{11.3.5}
+{\itshape
 Let $\M$ be a factor, $\mathfrak M,E$ as above. Then we have:
 
 (i) If $F$ runs over all projections $F\in\M$, $F\leq E$ (cf.
@@ -6548,7 +6674,7 @@ $F'_{(\mathfrak M)}$ runs over all projections
 $\in\M'_{(\mathfrak M)}$.
 $F'_{(\mathfrak M)}\sim G'_{(\mathfrak M)}
 (\cdots\M'_{(\mathfrak M)})$, ($F',G'\in\M'$), is equivalent to
-$F'\sim G'\ (\cdots\M')$.
+$F'\sim G'\ (\cdots\M')$.}
 
 \Proof Ad (i): The first part is a restatement of \lemref{11.3.3}, (i) as
 $EF=FE=F$ means $F\leq E$ (cf. \cite[p.~76]{ref16}). As to the second
@@ -6573,21 +6699,23 @@ Ad (ii): This follows immediately from \lemref{8.5.1} as $\M'$ and
 $\M'_{(\mathfrak M)}$ are algebraically ring-isomorphic.
 
 \Lemma{11.3.6}
+{\itshape
 Let $\M$ be a factor, $\mathfrak M,E$ as above. Let
-$D_{\M}(F)$, $D_{\M'}(F')$ ($F\in\M$ respectively $F'\in\M'$) be relative
-dimension functions in $\M$ respectively $\M'$. Then
+ $D_{\M}(F)$, $D_{\M'}(F')$ ($F\in\M$ resp. $F'\in\M'$) be relative
+ dimension functions in $\M$ resp. $\M'$. Then
 \[
  D_{\M}^{(\mathfrak M)}(F_{(\mathfrak M)})=D_{\M}(F)
  \quad\hbox{and}\quad
  D_{\M'}^{(\mathfrak M)}(F'_{(\mathfrak M)})=D_{\M'}(F')
 \]
-are relative dimension functions in $\M_{(\mathfrak M)}$ respectively
-$\M'_{(\mathfrak M)}$.
+ are relative dimension functions in $\M_{(\mathfrak M)}$ resp.
+$\M'_{(\mathfrak M)}$.}
 
 \Proof Owing to \defref{9.1.1} this follows immediately from
 \lemref{11.3.5}.
 
 \Lemma{11.3.7}
+{\itshape
 Let $\M$ be a factor, $\mathfrak M,E$ as above. Let
 \[
  D_{\M}(F),\quad D_{\M'}(F'),\quad
@@ -6595,9 +6723,9 @@ Let $\M$ be a factor, $\mathfrak M,E$ as above. Let
 \]
 be the relative dimension functions of \lemref{11.3.6} and
 $\Delta,\Delta',\Delta_{(\mathfrak M)},\Delta'_{(\mathfrak M)}$ their
-respective ranges. Then $\Delta_{(\mathfrak M)}$ is the set of all
+ resp. ranges. Then $\Delta_{(\mathfrak M)}$ is the set of all
 $\alpha\in\Delta$, $\alpha\leq D_{\M}(E)$ while
-$\Delta'_{(\mathfrak M)}=\Delta'$.
+$\Delta'_{(\mathfrak M)}=\Delta'$.}
 
 \Proof $\Delta_{(\mathfrak M)}$ is by \lemref{11.3.5}, (i) and
 \lemref{11.3.6}, the set of all $D_{\M}(F)$, $F\leq E$, that is the set of
@@ -6625,6 +6753,7 @@ $\mathfrak M\mathbin\eta\M$ and an
 $\mathfrak M'\mathbin\eta\M'$ and applying the preceding Lemmas twice.
 
 \Lemma{11.4.1}
+{\itshape
 Let $\M$ be a factor; $\mathfrak M,\mathfrak M'$ closed linear sets both
 $\ne(0)$; $\mathfrak M\mathbin\eta\M$,
 $\mathfrak M'\mathbin\eta\M'$, $E=P_{\mathfrak M}$,
@@ -6647,7 +6776,7 @@ Besides we have
 $\M_{(\mathfrak M\cdot\mathfrak M')}$ being a factor.
 
 (These are rings of operators in the space
-$\mathfrak M\cdot\mathfrak M'\ne(0)$.)
+$\mathfrak M\cdot\mathfrak M'\ne(0)$.)}
 
 \Proof As $E\in\M$, $E'\in\M'$ therefore $E,E'$ commute, and so
 $EE'=P_{\mathfrak M\cdot\mathfrak M'}$. The corollary to \thmref{III}
@@ -6669,6 +6798,7 @@ $\M'_{(\mathfrak M)},\M_{(\mathfrak M)},
 \mathfrak M\cdot\mathfrak M'$.
 
 \Lemma{11.4.2}
+{\itshape
 Let $\M,\mathfrak M,\mathfrak M',E,E'$ be as above. Then we have:
 
 (i) If $F$ runs over all projections $F\in\M$, $F\leq E$ then
@@ -6680,7 +6810,7 @@ dimension function in $\M$ then
  (F_{(\mathfrak M\cdot\mathfrak M')})=D_{\M}(F)
 \]
 is one in $\M_{(\mathfrak M\cdot\mathfrak M')}$. Denote their ranges by
-$\Delta$ respectively $\Delta_{(\mathfrak M\cdot\mathfrak M')}$, then
+ $\Delta$ resp. $\Delta_{(\mathfrak M\cdot\mathfrak M')}$, then
 $\Delta_{(\mathfrak M\cdot\mathfrak M')}$ is the set of all
 $\alpha\in\Delta$, $\alpha\leq D_{\M}(E)$.
 
@@ -6693,12 +6823,12 @@ relative dimension function in $\M'$, then
  (F'_{(\mathfrak M\cdot\mathfrak M')})=D_{\M'}(F')
 \]
 is one in $\M'_{(\mathfrak M\cdot\mathfrak M')}$. Denote their ranges by
-$\Delta'$ respectively $\Delta'_{(\mathfrak M\cdot\mathfrak M')}$, then
+ $\Delta'$ resp. $\Delta'_{(\mathfrak M\cdot\mathfrak M')}$, then
 $\Delta'_{(\mathfrak M\cdot\mathfrak M')}$ is the set of all
-$\alpha'\in\Delta'$, $\alpha'\leq D_{\M'}(E')$.
+$\alpha'\in\Delta'$, $\alpha'\leq D_{\M'}(E')$.}
 
 \Proof (i) results by applying Lemmas \hyperref[lem:11.3.5]{11.3.5} (i)
-respectively (ii), \hyperref[lem:11.3.6]{11.3.6} and
+ resp. (ii), \hyperref[lem:11.3.6]{11.3.6} and
 \hyperref[lem:11.3.7]{11.3.7} first to
 $\M,\M',\mathfrak M$ and then to
 $\M'_{(\mathfrak M)},\M_{(\mathfrak M)},
@@ -6714,6 +6844,7 @@ means to determine the classes of the latter factors in terms of those of
 the former ones.
 
 \Lemma{11.4.3}
+{\itshape
 Let $\M,\M',\mathfrak M,\mathfrak M',E,E'$ be as above. Then
 $\M_{(\mathfrak M\cdot\mathfrak M')}$,
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$ belong to the same ones of the
@@ -6727,22 +6858,22 @@ $D_{\M}^{(\mathfrak M\cdot\mathfrak M')}
 $D_{\M'}^{(\mathfrak M\cdot\mathfrak M')}
 (F'_{(\mathfrak M\cdot\mathfrak M')})$. We have class
 $(\mathrm I_n)$ or $(\mathrm I_\infty)$ for
-$\M_{(\mathfrak M\cdot\mathfrak M')}$ (respectively
+ $\M_{(\mathfrak M\cdot\mathfrak M')}$ (resp.
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$) corresponding to whether
-$\mathfrak M$ (respectively $\mathfrak M'$) is finite-$n$-dimensional or
+ $\mathfrak M$ (resp. $\mathfrak M'$) is finite-$n$-dimensional or
 infinite-dimensional.
 
 (ii) If $\M,\M'$ are in class (II), then
-$\M_{(\mathfrak M\cdot\mathfrak M')}$ (respectively
+ $\M_{(\mathfrak M\cdot\mathfrak M')}$ (resp.
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$) are in class
 $(\mathrm{II}_1)$ or $(\mathrm{II}_\infty)$ corresponding to whether
-$\mathfrak M$ (respectively $\mathfrak M'$) is finite or infinite. So if
+ $\mathfrak M$ (resp. $\mathfrak M'$) is finite or infinite. So if
 $\mathfrak M,\mathfrak M'$ are both finite, the $C$ of \thmref{X}
 (referred to the standard normalisations) has an invariant meaning. If we
 then vary $\mathfrak M,\mathfrak M'$ then $C$ will be proportional to
 $D_{\M}(\mathfrak M)/D_{\M'}(\mathfrak M')$.
 
-(iii) If $\M,\M'$ are in class (III), no further comment is necessary.
+(iii) If $\M,\M'$ are in class (III), no further comment is necessary.}
 
 \Proof Let first $\M,\M'$ be in class (I). Let $D_{\M}(F)$,
 $D_{\M'}(F')$ be in standard normalisation. Put
@@ -6752,7 +6883,7 @@ $D_{\M}^{(\mathfrak M\cdot\mathfrak M')}
 (F_{(\mathfrak M\cdot\mathfrak M')})$ and
 $D_{\M'}^{(\mathfrak M\cdot\mathfrak M')}
 (F'_{(\mathfrak M\cdot\mathfrak M')})$ are
-$0,1,\ldots,m$ respectively $0,1,\ldots,n$. Thus
+ $0,1,\ldots,m$ resp. $0,1,\ldots,n$. Thus
 $\M_{(\mathfrak M\cdot\mathfrak M')}$,
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$ belong to class (I), and (i) is
 true.
@@ -6765,7 +6896,7 @@ $D_{\M}^{(\mathfrak M\cdot\mathfrak M')}
 (F_{(\mathfrak M\cdot\mathfrak M')})$ and
 $D_{\M'}^{(\mathfrak M\cdot\mathfrak M')}
 (F'_{(\mathfrak M\cdot\mathfrak M')})$ consist of all $\alpha$ with
-$0\leq\alpha\leq\alpha_0$ respectively of all $\alpha'$ with
+ $0\leq\alpha\leq\alpha_0$ resp. of all $\alpha'$ with
 $0\leq\alpha'\leq\alpha_0'$. Thus
 $\M_{(\mathfrak M\cdot\mathfrak M')}$,
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$ belong to class (II), and all
@@ -6820,7 +6951,7 @@ must pass to the standard normalisations, that is divide by
  (1_{(\mathfrak M\cdot\mathfrak M')})
  &=D_{\M}^{(\mathfrak M\cdot\mathfrak M')}
  (E_{(\mathfrak M\cdot\mathfrak M')})
- =D_{\M}(E)=D_{\M}(\mathfrak M),\\
+  =D_{\M}(E)=D_{\M}(\mathfrak M),\quad\text{resp.}\\
  D_{\M'}^{(\mathfrak M\cdot\mathfrak M')}
  (1_{(\mathfrak M\cdot\mathfrak M')})
  &=D_{\M'}^{(\mathfrak M\cdot\mathfrak M')}
@@ -6842,11 +6973,11 @@ is, $\M_{(\mathfrak M\cdot\mathfrak M')}$,
 $\M'_{(\mathfrak M\cdot\mathfrak M')}$ are in class (III). (iii) is
 void.
 
-\lemref{11.4.3} shows that if case (II) occurs at all, then combinations
+\lemref{11.4.3} show that if case (II) occurs at all, then combinations
 $\M,\M'$ of two cases $(\mathrm{II}_1)$ with an arbitrarily prescribed
 $C$ (cf. \thmref{X}) exist. In fact: Choose $\M$ of class (II), then
 $\M'$ is of class (II) too. Choose $D_{\M}(\mathfrak M)$,
-$D_{\M'}(\mathfrak N)$ in such a normalisation that
+$D_{\M'}(\mathfrak M')$ in such a normalisation that
 $D_{\M}(\Hspace)\geq1$, $D_{\M'}(\Hspace)\geq1$. Then
 $\mathfrak M\mathbin\eta\M$, $\mathfrak M'\mathbin\eta\M'$ can be chosen
 with arbitrarily prescribed
@@ -6865,6 +6996,7 @@ will determine the class of $\mathrm R(\M,\N)$ if $\M,\N$ are two factors
 which commute, $\N$ being of class (I).
 
 \Lemma{11.5.1}
+{\itshape
 Let $\M,\N$ be two factors which commute, form the factor
 $\mathrm R(\M,\N)$. Let $\varphi$ be minimal with respect to $\N$ (cf.
 \defref{5.1.3}). Then
@@ -6874,7 +7006,7 @@ $\mathbin\eta\mathrm R(\M,\N)$, and
  X\longleftrightarrow X_{(\mathfrak M_{\varphi}^{\N'})}
 \]
 is an algebraic ring-isomorphism of $\M$ and
-$(\mathrm R(\M,\N))_{(\mathfrak M_{\varphi}^{\N'})}$.
+$(\mathrm R(\M,\N))_{(\mathfrak M_{\varphi}^{\N'})}$.}
 
 \Proof $\mathfrak M_{\varphi}^{\N'}\mathbin\eta\N$ is obvious; as
 $\N\subset\mathrm R(\M,\N)$,
@@ -6954,6 +7086,7 @@ $\P\supset\M$ and $\N$, and so $\P\supset\mathrm R(\M,\N)$. Application
 to $Y_0\in\mathrm R(\M,\N)$, $A=B=1$ completes the proof.
 
 \Lemma{11.5.2}
+{\itshape
 Let $\M,\N$ be two factors which commute, $\N$ being of class (I). Then
 $\mathrm R(\M,\N)$ belongs to the same class (I), (II), (III) as $\M$.
 In particular:
@@ -6968,7 +7101,7 @@ class $(\mathrm I_n)$, $n=1,2,\ldots,\infty$ then
 $\mathrm R(\M,\N)$ is in class $(\mathrm{II}_p)$, where $p=1$ if $m,n$
 are both finite, and $p=\infty$ if $m$ or $n$ is infinite.
 
-(iii) If $\M$ is in class (III), no further comment is necessary.
+(iii) If $\M$ is in class (III), no further comment is necessary.}
 
 \Proof As $\N$ is of class (I), minimal $\varphi$'s (with respect to
 $\N$) exist by \thmref{IV}. Choose one, and put
@@ -7030,6 +7163,7 @@ in an \(\Hspace_1\), any \(\N_0\) of case \((\mathrm I_\infty)\) in an
 \((\mathrm{II}_\infty)\). But all this will be settled exhaustively in
 \hyperref[chap:13]{Chapter XIII}.
 % --- End of parts/04-part-iii.tex ---
+\Needspace{10\baselineskip}
 \PartHeadingTOC{IV}{Examples of case (II)}{Examples of Case II}
 
 \ChapterHeading{12}{XII}{\texorpdfstring{Construction of $\M,\M'$}
@@ -7043,7 +7177,7 @@ of all cases $(\mathrm I_n)$, $(\mathrm I_\infty)$ and of all their
 combinations for factors $\M$ resp. coupled factorisation $\M,\M'$. We are
 going to do now the same for the cases $(\mathrm{II}_1)$,
 $(\mathrm{II}_\infty)$. We will thus answer a great part of the questions
-raised by \probref{3} and \probref{4}.
+raised by Problems \hyperref[prob:3]{3} and \hyperref[prob:4]{4}.
 
 Our first objective is to construct certain coupled factorisations $\M,\M'$
 which belong to the classes $(\mathrm{II}_1),(\mathrm{II}_1)$ (the $C$ of
@@ -7073,8 +7207,8 @@ $\mu^*(T)\geq0$, $\leq\infty$ is given, with the following properties:
 \item $T_1\subset T_2$ implies $\mu^*(T_1)\leq\mu^*(T_2)$.
 \item For every (finite or infinite) sequence $T_1,T_2,\ldots$
   \[
-    \mu^*(T_1\mathbin{\dot+}T_2\mathbin{\dot+}\cdots)
-    \leq\mu^*(T_1)+\mu^*(T_2)+\cdots.
+    \mu_1^*(T_1\mathbin{\dot+}T_2\mathbin{\dot+}\cdots)
+    \leq\mu_1^*(T_1)+\mu_2^*(T_2)+\cdots.
   \]
 \end{enumerate}
 We now define measurability following Carath\'eodory
@@ -7083,7 +7217,7 @@ We now define measurability following Carath\'eodory
 \noindent$(*)$ A subset $T$ of $S$ is \emph{measurable}, if and only if, for
 every subset $T'$ of $S$,
 \[
- \mu^*(T')=\mu^*(T\cdot T')+\mu^*(T'-T\cdot T').
+ \mu^*(T')=\mu^*(TT')+\mu^*(T'-TT').
 \]
 We then write $\mu(T)$ for $\mu^*(T)$ and call it the \emph{measure} of $T$.
 
@@ -7099,7 +7233,7 @@ We now continue the enumeration of our postulates.
 
 Observe the following consequences of \defref{12.1.2}: $\mu^*(T)\geq0$,
 $\leq\infty$ and conditions (i)--(ii) correspond to Carath\'eodory's
-conditions (I)--(III), without (IV), (cf. \cite[pp.~238--239]{ref4}). This
+conditions (I)--(III), without (IV), (Cf. \cite[pp.~238--239]{ref4}). This
 omission however is natural, because (IV) makes explicit use of the notion of
 distance, whereas we did not require that a distance (or any sort of a topology)
 be defined in $S$. (iii) is, (remembering (i)) equivalent to Carath\'eodory's
@@ -7123,7 +7257,7 @@ topological notion) while they are now the sets
 $T^{(1)},T^{(2)},\ldots$ from (iv).
 
 In fact, this is essentially the meaning of (iv), which is the only one of our
-postulates without an analogue on Carath\'eodory's list: It serves to replace
+postulates without an analogue on Carath\'eodory's list.: It serves to replace
 the (absent or ignored) topology in $S$, and in particular the ``topological
 separability'' of $S$.
 
@@ -7133,7 +7267,7 @@ Let us mention the following obvious examples of spaces $S$:
 $S=(x_1,x_2,\ldots)$. Let a corresponding sequence of real numbers
 $\bar\alpha_n\geq0$, $<\infty$ be given. Define
 \[
- \mu^*(T)=\sum_{x_n\in T}\bar\alpha_n.
+ \mu^*(T)\equiv\sum_{x_n\in T}\bar\alpha_n.
 \]
 Then (i), (ii) are obviously fulfilled; (iii) is fulfilled because all sets
 $T\subset S$ are measurable; (iv) is fulfilled, because we may choose for
@@ -7153,7 +7287,7 @@ A complex valued function $f(x)$, defined for all $x\in S$ is called
 \emph{measurable} if the sets
 $(x;\Re(f(x))<\alpha)$, $(x;\Im(f(x))<\alpha)$
 ($\Re=$ real part, $\Im=$ imaginary part) are measurable for every real
-$\alpha$. The notions of summability and of the (Lebesgue) integral
+$\alpha$. The notions of summability and of the (Legesgue) integral
 $\int_Sf(x)\,dx$ of a measurable function $f(x)$ are then defined in any of the
 several equivalent customary ways. (The procedure of Carath\'eodory,
 \cite[pp.~418--427]{ref4}, which coincides with Lebesgue's ``geometrical''
@@ -7338,14 +7472,14 @@ So $L_{\varphi(x)}$ too is bounded.
 
 \Lemma{12.2.2}
 \emph{Let $\mathfrak G$ be an $m$-group in $S$. Let $L$ be the set of all
-operators $L_{\varphi(x)}$ from \lemref{12.2.1}, (ii). Then $L$ is a ring and
+operators $L_{\varphi(x)}$ from \lemref{12.2.1}, (iii). Then $L$ is a ring and
 $L=L'$.}
 
 \Proof As $L'$ is necessarily a ring, it suffices to prove $L=L'$. As
 \[
  (L_{\varphi(x)})^*=L_{\overline{\varphi(x)}},
  \qquad
- L_{\varphi(x)}L_{\psi(x)}=L_{\varphi(x)\psi(x)}
+ L_{\varphi(x)}\mathbin{\cdot}L_{\psi(x)}=L_{\varphi(x)\psi(x)}
 \]
 therefore every $L_{\psi(x)}$ commutes with every $L_{\varphi(x)}$ and
 $(L_{\varphi(x)})^*$ thus $L_{\psi(x)}\in L'$ and so $L\subset L'$. So we
@@ -7588,7 +7722,7 @@ direct computation.
 $\overline U_{a_0}$ and all $\overline L_{\varphi(x)}$ and $J$ the set of all
 $\overline V_{a_0}$ and all $\overline M_{\varphi(x)}$
 (cf. \lemref{12.3.1}). Form for each bounded operator $\overline A$ in
-$\Hspace_{S\mathfrak G}$ ($A\in\B_{S\mathfrak G}$) the decomposition from
+$\Hspace_{S\mathfrak G}$ ($\overline A\in\B_{S\mathfrak G}$) the decomposition from
 \defref{2.4.2},}
 \[
  \overline A\sim\langle A_{a,b}\rangle_{a,b\in\mathfrak G}
@@ -7628,7 +7762,8 @@ Then the definitions of $\overline U_{a_0}$,
 $\overline L_{\varphi(x)}$ and $\overline W$ give: If
 $\overline A=\langle A_{a,b}\rangle_{a,b\in\mathfrak G}$, then
 \begin{align*}
- \overline U_{a_0}^{-1}\overline A\overline U_{a_0}
+ \overline U_{a_0}^{-1}\mathbin{\cdot}\overline A
+ \mathbin{\cdot}\overline U_{a_0}
  &=\left\langle
  U_{a_0}^{-1}A_{aa_0^{-1},ba_0^{-1}}U_{a_0}
  \right\rangle_{a,b\in\mathfrak G},\\
@@ -7647,7 +7782,7 @@ $((L_{\varphi(x)})^*=L_{\overline{\varphi(x)}})$ and all
 $\overline U_{a_0}$,
 $((\overline U_{a_0})^*=(\overline U_{a_0})^{-1}
 =\overline U_{a_0^{-1}})$. This means $A_{a,b}\in L'$ that is
-$A_{a,b}\in L$ (by \lemref{12.2.2}), and
+$A_{a,b}\in L$ (by \lemref{12.2.1}), and
 \[
  U_{a_0}^{-1}A_{aa_0^{-1},ba_0^{-1}}U_{a_0}=A_{a,b}.
 \]
@@ -7781,7 +7916,7 @@ From now on we assume that $\mathfrak G$ is ergodic in $S$.
 \[
  \overline A\cong[[\chi_c(x)]]_{x\in S,c\in\mathfrak G}
 \]
-\emph{if $A\sim\langle A_{a,b}\rangle_{a,b\in\mathfrak G}$ and}
+\emph{if $\overline A\sim\langle A_{a,b}\rangle_{a,b\in\mathfrak G}$ and}
 \[
  A_{a,b}=L_{\chi_{ab^{-1}}(x)}U_{b^{-1}a}\quad\text{resp.}\quad
  A_{a,b}=L_{\chi_{ab^{-1}}(xb^{-1})}
@@ -8122,6 +8257,7 @@ $\overline E=\overline L_{e_T(x)}\in\M$ and
 $\overline E'=\overline M_{e_T(x)}\in\M'$ this:
 $D_\M(\overline E)$ resp. $D_{\M'}(\overline E')=\mu(T)$.}
 
+\Needspace{8\baselineskip}
 \ChapterHeading{13}{XIII}{\texorpdfstring{Properties of $\M,\M'$}
 {Properties of M and M-prime}}
 
@@ -8223,7 +8359,8 @@ $\mathfrak G$ in $S$ (cf. \defref{12.1.5}, (iv)) requires
 $\mu(S_1)=0$ or $\mu(S-S_1)=0$. But
 $\mu(S_1)\geq\mu((x))=\epsilon>0$ so $\mu(S-S_1)=0$. Omit the set $S-S_1$
 from $S$, then we have $S_1=S$, that is $S=(xa;a\in\mathfrak G)$. So we
-have for every $x_0\in S$, $\mu((x_0))=\epsilon$. By \defref{12.1.5} (iii),
+ have for every $x_0\in S$, $\mu((x_0))=\epsilon$.
+ By \hyperref[def:12.1.5]{Def.~12.1.5} (iii),
 $a\neq1$ implies $x_0\neq x_0a$, so $a\neq b$ implies $x_0a\neq x_0b$.
 Thus all statements of the second section of our Lemma are established for
 this case.
@@ -8466,7 +8603,8 @@ in case $(\mathrm{III})$ exist, a problem as yet unsolved. All other
 combinations of classes do not exist.}
 
 This answers \probref{2}, negatively (considering \lemref{8.6.1}), and
-answers \probref{3}, \probref{4} as completely as it is possible at the
+answers Problems \hyperref[prob:3]{3}, \hyperref[prob:4]{4} as completely
+as it is possible at the
 present state of our knowledge.
 
 \SectionStart{13.4}{Non-coupled factors}
@@ -8495,8 +8633,9 @@ therefore $\overline V_{a_0}\in\N$ if and only if
 $a_0\in\mathfrak G^0$, so $\mathfrak G^0\varsubsetneqq\mathfrak G$ implies
 $\N\varsubsetneqq\M'$.
 
-The computation rules of \lemref{12.4.1} show that $A,B\in\N$ imply
-$\alpha A,A^*,A+B,AB\in\N$. So we must only prove that $\N$ is weakly
+The computation rules of \lemref{12.4.1} show that $\overline A,\overline B\in\N$ imply
+$\alpha\overline A,\overline A^*,\overline A+\overline B,
+\overline A\overline B\in\N$. So we must only prove that $\N$ is weakly
 closed in order to show that it is a ring. As $\M'$ is weakly closed (being
 a ring) even relative weak closure of $\N$ in $\M'$ suffices.
 
@@ -8578,7 +8717,8 @@ therefore $\M,\N$ is a factorisation. As $\N\varsubsetneqq\M'$ they are
 not coupled.
 
 It is easy to give examples of groups $\mathfrak G,\mathfrak G^0$ as
-required by \lemref{13.4.1} and \lemref{13.4.2}: We use the examples
+required by Lemmas \hyperref[lem:13.4.1]{13.4.1} and
+\hyperref[lem:13.4.2]{13.4.2}: We use the examples
 $(\alpha)$--$(\gamma)$
 at the end of \secref{13.1}. So
 $\mathfrak G=\mathfrak G_\theta$,
@@ -8605,6 +8745,7 @@ $\mathfrak G=\mathfrak G_{{\rm rat.},p}$, $p$ power of a prime, are normal.
 
 This is the extent to which we can answer \probref{10}.
 % --- End of parts/05-part-iv.tex ---
+\Needspace{10\baselineskip}
 \PartHeadingTOC{V}{The finite cases}{The Finite Cases}
 
 \ChapterHeading{14}{XIV}{\texorpdfstring{The Generalised additivity of
@@ -8758,7 +8899,7 @@ D_{\M}([\mathfrak M,\mathfrak N])
 =D_{\M}([\mathfrak M_1,\mathfrak N])
 =D_{\M}(\mathfrak M_1)+D_{\M}(\mathfrak N).
 \]
-Adding \(D_{\M}(\mathfrak M\cdot\mathfrak N)\) to both sides gives,
+Adding \(D(\mathfrak M\cdot\mathfrak N)\) to both sides gives,
 considering our previous equation, the desired formula.
 
 \Lemma{14.2.5}
@@ -8807,18 +8948,27 @@ D_{\M}([\mathfrak M_1,\ldots,\mathfrak M_i])
 with an equality if (ii) holds; therefore
 \[
 D_{\M}([\mathfrak M_1,\ldots,\mathfrak M_i])
-\leq\sum_{j=1}^{i}D_{\M}(\mathfrak M_j),
+ \leq\sum_{j=1}^{i}D_{\M}(\mathfrak M_j),
+\]
+and passing to the limit
+\[
+D_{\M}([\mathfrak M_1,\mathfrak M_2,\ldots])
+ \leq\sum_{i=1}^{\infty}D_{\M}(\mathfrak M_i),
 \]
 again with an equality if (ii) holds. So we have proved the relation with
-\(\leq\) in general, and the sufficiency of (ii) for the equality. (i) too
+ \(\leq\) in general, and the sufficience of (ii) for the equality. (i) too
 implies equality, because if
 \(D_{\M}([\mathfrak M_1,\mathfrak M_2,\ldots])\) is infinite, then
-\(\sum_iD_{\M}(\mathfrak M_i)\) is infinite too.
+\[
+\sum_{i=1}^{\infty}D_{\M}(\mathfrak M_i)
+ \geq D([\mathfrak M_1,\mathfrak M_2,\ldots])
+\]
+is infinite too.
 
 The necessity of (i) or (ii) means that if
 \[
 D_{\M}([\mathfrak M_1,\mathfrak M_2,\ldots])
-=\sum_iD_{\M}(\mathfrak M_i)
+=\sum_1^\infty D_{\M}(\mathfrak M_i)
 \]
 and is finite, then (ii) holds. We prove that in this case
 \[
@@ -8859,10 +9009,19 @@ and so by \lemref{14.2.4}
 \end{aligned}
 \]
 As \(D_{\M}([\mathfrak M_1,\mathfrak M_2,\ldots])\) is finite by
-assumption, this implies that the dimension of the intersection is \(\leq0\),
-so it is \(0\), and therefore the intersection is \((0)\). This completes
-the proof.
+assumption, this implies
+\[
+D_{\M}([\mathfrak M_{m_1},\mathfrak M_{m_2},\ldots]
+ \cdot[\mathfrak M_{n_1},\mathfrak M_{n_2},\ldots])\leq0,
+\]
+so \(=0\), and therefore
+\[
+[\mathfrak M_{m_1},\mathfrak M_{m_2},\ldots]
+ \cdot[\mathfrak M_{n_1},\mathfrak M_{n_2},\ldots]=(0).
+\]
+This completes the proof.
 
+\Needspace{8\baselineskip}
 \ChapterHeading{15}{XV}{The Relative Trace}
 
 \SectionStart{15.1}{Definition of the relative trace}
@@ -9345,18 +9504,18 @@ D_{\M}(\Hspace-\mathfrak M)
 \]
 (this step is possible because \(D_{\M}(\Hspace)=1\) is finite), and so
 \(\Hspace-\mathfrak M\sim\Hspace-\mathfrak N\). Let \(U_1,U_2\) be
-\(\in\M\), partially isometric, and have the respective initial sets
-\(\mathfrak M,\Hspace-\mathfrak M\) and the respective final sets
+ \(\in\M\), partially isometric, and have the resp. initial sets
+ \(\mathfrak M,\Hspace-\mathfrak M\) and the resp. final sets
 \(\mathfrak N,\Hspace-\mathfrak N\). One verifies easily that
 \(V=U_1+U_2\in\M\) is unitary, and that it maps \(\mathfrak M\) on
-\(\mathfrak N\). \(\mathfrak M,\mathfrak N\mathbin\eta\M\) is obvious.
+\(\mathfrak N\). \(\mathfrak M\mathbin\eta\M\) is obvious.
 
 This proof was based on the finiteness of \(D_{\M}(\Hspace)\), that is, of
 \(\Hspace\) (with respect to \(\M\)). In fact the finiteness of \(\Hspace\)
 is necessary and sufficient for the Lemma itself: Because if \(\Hspace\) is
 infinite, then \(\Hspace\sim\mathfrak M\ (\mathbin\eta\M)\) for some
 \(\mathfrak M\subsetneqq\Hspace\), and no unitary \(U\) maps \(\Hspace\) on
-an \(\mathfrak M\ne\Hspace\).
+an \(\mathfrak M\subsetneqq\Hspace\).
 
 We now state the essential invariance property of \(T_{\M}(A)\):
 
@@ -9381,7 +9540,7 @@ We are now able to characterise the relative trace by inner properties:
 
 \Lemma{15.4.3}
 {\itshape Assume that a (real and finite) numerical function \(T'(A)\) is
-defined for Hermitian \(A\in\M\), and that it has the following properties:
+defined for all Hermitian \(A\in\M\), and that it has the following properties:
 \begin{enumerate}[label=(\roman*)]
 \item \(T'(1)=1\).
 \item \(T'(aA)=aT'(A)\) if \(a\) is real.
@@ -9390,10 +9549,12 @@ defined for Hermitian \(A\in\M\), and that it has the following properties:
 \item \(T'(U^{-1}AU)=T'(A)\) if \(U\in\M\) is unitary.
 \end{enumerate}
 This is the case if and only if \(T'(A)\) is relative trace:
-\(T'(A)=T_{\M}(A)\) for Hermitian \(A\in\M\).}
+\(T'(A)=T_{\M}(A)\) for all Hermitian \(A\in\M\).}
 
-\Proof \(T_{\M}(A)\) has the properties (i)--(v) by \lemref{15.3.2},
-\lemref{15.3.4}, \lemref{15.2.3}, and \lemref{15.4.2}. Therefore only the
+\Proof \(T_{\M}(A)\) has the properties (i)--(v) by Lemmas
+\hyperref[lem:15.3.2]{15.3.2}, \hyperref[lem:15.3.4]{15.3.4},
+\hyperref[lem:15.2.3]{15.2.3}, and \hyperref[lem:15.4.2]{15.4.2}.
+Therefore only the
 converse problem remains: to determine \(T'(A)\) if it fulfills (i)--(v).
 Assume therefore that such a \(T'(A)\) is given.
 
@@ -9435,7 +9596,7 @@ Now form the operators mentioned in
 \cite[pp.~390--391, in particular footnote~43]{ref18}: They were denoted by
 \[
 A^{K\epsilon}=\sum_{\nu=1}^n\lambda_\nu
-   \bigl(E(\lambda_\nu)-E(\lambda_{\nu-1})\bigr).
+   \bigl(E(\lambda_\nu)-\bigl(E(\lambda_{\nu-1})\bigr)\bigr).
 \]
 As we pointed out there, they are uniformly convergent with the limit \(A\);
 and as all \(E(\lambda)\) commute with each other and with \(A\), the same is
@@ -9460,8 +9621,9 @@ one (real and finite) numerical function \(T'(A)\), defined for all Hermitian
 \item \(T'(U^{-1}AU)=T'(A)\) if \(U\in\M\) is unitary.
 \end{enumerate}
 This unique \(T'(A)\) is the relative trace of \(A\), \(T_{\M}(A)\).
-Further essential properties of this \(T'(A)\) are given in
-\lemref{15.2.3}, \lemref{15.3.1}, and \lemref{15.3.3}. Equivalent
+Further essential properties of this \(T'(A)\) are given in Lemmas
+\hyperref[lem:15.2.3]{15.2.3}, \hyperref[lem:15.3.1]{15.3.1}, and
+\hyperref[lem:15.3.3]{15.3.3}. Equivalent
 definitions are contained in \defref{15.1.1} and in \lemref{15.2.2}.
 
 In particular we have (this follows from \lemref{15.3.1}, so from (i)--(v)):
@@ -9472,7 +9634,8 @@ In particular we have (this follows from \lemref{15.3.1}, so from (i)--(v)):
 In case \((\mathrm I_n)\) we obtain by this unicity theorem an easy
 determination of \(T_{\M}(A)\): \(\M\) in case \((\mathrm I_n)\) means
 \(\Hspace=\Hspace_1\otimes\Hspace_2\), \(\M=\B_1^{(1)}\),
-\(\Hspace_1\) has dimension \(n\). Now \lemref{2.4.6} shows that, using the
+ \(\Hspace_1\) has dimension \(n\). Now
+ \hyperref[lem:2.4.6]{Lemma 2.4.6} show, that using the
 symbolism
 \[
 A^0\sim\langle A_{t,s}\rangle_{t,s=1,\ldots,n}
@@ -9511,7 +9674,7 @@ As to (iv) observe, that every definite operator \(\bar A\) has the form
 
 (v) is proved as follows: As
 \[
-A=\tfrac12(A+A^*)+i\,\tfrac1{2i}(A-A^*),
+A=\tfrac12(A+A^*)+i\mathbin{\cdot}\tfrac1{2i}(A-A^*),
 \]
 it suffices to consider Hermitian operators \(A\); and as
 \[
@@ -9841,12 +10004,13 @@ We know that \(\mathfrak M(1)\subset\mathfrak M(2)\subset\cdots\), and as
 \([\mathfrak M(1),\mathfrak M(2),\allowbreak\ldots]=\Hspace\). Thus by
 \lemref{8.3.3},
 \[
-\lim_{i\to\infty}D_{\M}(\mathfrak M(i))=D_{\M}(\Hspace)=1,
-\]
-\[
+\begin{aligned}
+\lim_{i\to\infty}D_{\M}(\mathfrak M(i))
+ &=D_{\M}(\Hspace)=1,\\
 \lim_{i\to\infty}D_{\M}(\Hspace-\mathfrak M(i))
-=\lim_{i\to\infty}
- \bigl(D_{\M}(\Hspace)-D_{\M}(\mathfrak M(i))\bigr)=0.
+ &=\lim_{i\to\infty}
+   \bigl(D_{\M}(\Hspace)-D_{\M}(\mathfrak M(i))\bigr)=0.
+\end{aligned}
 \]
 
 Choose next the sequence \(\mathfrak M_1,\mathfrak M_2,\ldots\) from
@@ -9912,7 +10076,8 @@ D_{\M}((f;P_{\Hspace-\mathfrak M_i}WBE(i)f=0))
 D_{\M}(\Hspace-(f;P_{\Hspace-\mathfrak M_i}WBE(i)f=0))
 \leq D_{\M}(\Hspace-\mathfrak M_i).
 \]
-Now we obtain, using \lemref{14.2.3}, or \lemref{14.2.5}, this:
+Now we obtain, using \lemref{14.2.3}, or
+\hyperref[lem:14.2.5]{14.2.5}, this:
 \[
 \begin{aligned}
 D_{\M}(\Hspace-\mathfrak M^{(i)})
@@ -10094,12 +10259,12 @@ there of course the value \(0\). Thus the same is true for
 \((0)\), while \(\clos{{}^{(r)}p(X_1,X_2)}\) has the domain \(\Hspace\), and
 so they are different.
 
-Another ``pathological'' possibility is that \((X_1X_2)^*\) may not be
-\(X_2^*X_1^*\). In fact it can happen that \(X_1X_2\) has no closure at all,
+Another ``pathological'' possibility is that \((X_1\mathbin{\cdot}X_2)^*\) may not be
+\(X_2^*\mathbin{\cdot}X_1^*\). In fact it can happen that \(X_1X_2\) has no closure at all,
 and therefore no adjoint with an everywhere dense domain (cf.
 \cite[pp.~296 and 300]{ref21}; our statement means that \(X_1X_2\) is not a
 \(^{**}\)-operator, cf. loc. cit.); or again \((X_1X_2)^*\) may exist and be
-a proper extension of \(X_2^*X_1^*\). We will not go presently into the
+a proper extension of \(X_2^*\mathbin{\cdot}X_1^*\). We will not go presently into the
 details of this matter.
 
 For \(X_1,X_2,\ldots\mathbin\eta\M\), where \(\M\) is a factor in one of
@@ -10182,8 +10347,9 @@ operators.
 \Lemma{16.4.3}
 {\itshape Let \(X_1,X_2,\ldots\) be a (finite or infinite) sequence of
 linear, closed operators, each one having an everywhere dense domain. Assume
-that all \(X_i\mathbin\eta\M\). Let \(\mathfrak D\mathfrak P\) be the common
-part of the domains of the operators
+that all \(X_i\mathbin\eta\M\). Let
+\(\mathfrak D\mathfrak P=\mathfrak D\mathfrak P(X_1,X_2,\ldots)\) be the
+common part of the domains of the operators
 \(p(X_1,X_1^*,X_2,X_2^*,\ldots)\), where
 \(p(x_1,y_1,x_2,y_2,\ldots)\) runs over all (non-commutative) polynomials of
 \(x_1,y_1,x_2,y_2,\ldots\). Then \(\mathfrak D\mathfrak P\) is essentially
@@ -10376,20 +10542,14 @@ These operations satisfy all customary laws of matrix algebra:
 \]
 
 More generally: The (non-commutative) polynomials
-\[
-\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}
-\]
-(cf. \defref{16.3.1} and
-\defref{16.3.2}) are \(\in U(\M)\) again;
-\[
-\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}
-\]
+\(\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}\)
+(cf. Definitions \hyperref[def:16.3.1]{16.3.1}, and
+\hyperref[def:16.3.2]{16.3.2}) are \(\in U(\M)\) again;
+\(\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}\)
 depends only on the reduced form
 \({}^{(r)}p(x_1,y_1,x_2,y_2,\ldots)\) of
 \(p(x_1,y_1,x_2,y_2,\ldots)\), and the laws of matrix algebra hold for the
-\[
-\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}
-\]
+\(\clos{p(X_1,X_1^*,X_2,X_2^*,\ldots)}\)
 (cf. \lemref{16.4.4}(iii)--(vi)).
 
 Every Hermitian \(X\in U(\M)\) is maximal and self adjoint, and thus it has
@@ -10412,7 +10572,7 @@ in establishing the following further facts concerning the finite cases:
 \item In the same case certain isomorphisms between \(\M,\M'\), and
   \(\Hspace\) exist.
 \item Several examples of Case II, thus \((\alpha)\)--\((\gamma)\) on page
-  \pageref{examples:13.2}, are spacially
+  \hyperref[examples:13.2]{208}, are spacially
   isomorphic. (This answers the question at the end of \secref{13.4}.) The
   proofs will appear in a subsequent paper.
 \end{enumerate}
