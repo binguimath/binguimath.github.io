@@ -3,23 +3,41 @@
 % 13pt by the explicit \normalsize definition below.
 \documentclass[b5paper,12pt,twoside]{article}
 
+% ============================================================================
+% USER-CUSTOMIZABLE TYPOGRAPHY AND PAGE LAYOUT
+% Change only the values in this block to personalize the document.  They are
+% \providecommand's so a wrapper file may override them before \input'ing this
+% file.  The defaults below reproduce the requested 13pt B5 layout exactly.
+\providecommand{\UserBodyFontSize}{13pt}
+% The baseline skip tracks the font size automatically (6/5 of the body size).
+% It may still be overridden independently before this file is input.
+\providecommand{\UserBodyBaselineSkip}{\dimexpr\UserBodyFontSize*6/5\relax}
+\providecommand{\UserLineSpread}{1.1}
+\providecommand{\UserLeftMargin}{0.7cm}
+\providecommand{\UserRightMargin}{0.7cm}
+\providecommand{\UserTopMargin}{0.91cm}
+\providecommand{\UserBottomMargin}{0.91cm}
+\providecommand{\UserHeaderHeight}{13.6pt}
+\providecommand{\UserHeaderSeparation}{0.25cm}
+% ============================================================================
+
 \usepackage{fix-cm}
 \usepackage[T1]{fontenc}
 \usepackage{newpxtext}
 \usepackage[
   b5paper,
-  includeheadfoot,
-  left=0.7cm,
-  right=0.7cm,
-  top=1.0cm,
-  bottom=1.0cm,
-  headheight=16pt,
-  headsep=0.35cm,
-  footskip=0.65cm
+  includehead,
+  left=\UserLeftMargin,
+  right=\UserRightMargin,
+  top=\UserTopMargin,
+  bottom=\UserBottomMargin,
+  headheight=\UserHeaderHeight,
+  headsep=\UserHeaderSeparation
 ]{geometry}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{newpxmath}
+\allowdisplaybreaks
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage[numbers,sort&compress]{natbib}
@@ -49,13 +67,13 @@
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.}
 \makeatother
-\linespread{1.1}
+\linespread{\UserLineSpread}
 \makeatletter
 \renewcommand{\normalsize}{%
-  \@setfontsize\normalsize{13pt}{15.6pt}%
-  \abovedisplayskip 12pt plus 3pt minus 7pt%
-  \abovedisplayshortskip 0pt plus 3pt%
-  \belowdisplayshortskip 7pt plus 3pt minus 4pt%
+  \@setfontsize\normalsize{\UserBodyFontSize}{\UserBodyBaselineSkip}%
+  \abovedisplayskip .70\baselineskip plus .18\baselineskip minus .40\baselineskip%
+  \abovedisplayshortskip 0pt plus .18\baselineskip%
+  \belowdisplayshortskip .40\baselineskip plus .18\baselineskip minus .23\baselineskip%
   \belowdisplayskip \abovedisplayskip%
   \let\@listi\@listI
 }
@@ -70,7 +88,7 @@
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{4em}
 \setlist{nosep,leftmargin=2.2em}
-\allowdisplaybreaks[1]
+\raggedbottom
 \numberwithin{equation}{section}
 
 \pagestyle{fancy}
@@ -81,8 +99,10 @@
 \renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{%
   \fancyhf{}
-  \fancyfoot[C]{\raisebox{1.2mm}[0pt][0pt]{\thepage}}
+  \fancyhead[CE,CO]{\small\textsc{On Rings of Operators. Reduction Theory}}%
+  \fancyhead[LE,RO]{\small\thepage}%
   \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
 }
 
 \newtheoremstyle{vnplain}
@@ -104,17 +124,21 @@
 
 \newcommand{\secref}[1]{\hyperref[#1]{\S\ref*{#1}}}
 \newcommand{\tocsec}[1]{\hyperref[sec:#1]{\S#1}}
+\makeatletter
+\newcommand\vnpartheading{\@startsection{vnpartheading}{0}{0pt}%
+  {1.2\baselineskip plus 0.25\baselineskip minus 0.15\baselineskip}%
+  {0.35\baselineskip}%
+  {\centering\normalfont\large\bfseries\scshape}}
 \newcommand{\vnpart}[2]{%
-  \par\addvspace{1.2\baselineskip}%
   \phantomsection\label{part:#1}%
   \addcontentsline{toc}{part}{Part #1: #2}%
-  \begin{center}\large\bfseries\textsc{Part #1: #2}\end{center}%
-  \nobreak\vspace{0.35\baselineskip}%
+  \vnpartheading*{Part #1: #2}%
 }
-\newcommand{\partref}[1]{\hyperref[part:#1]{Part~#1}}
-\newcommand{\defref}[1]{\hyperref[#1]{Definition~\ref*{#1}}}
-\newcommand{\lemref}[1]{\hyperref[#1]{Lemma~\ref*{#1}}}
-\newcommand{\thmref}[1]{\hyperref[#1]{Theorem~\ref*{#1}}}
+\makeatother
+\newcommand{\partref}[1]{\hyperref[part:#1]{\mbox{Part~#1}}}
+\newcommand{\defref}[1]{\hyperref[#1]{\mbox{Definition~\ref*{#1}}}}
+\newcommand{\lemref}[1]{\hyperref[#1]{\mbox{Lemma~\ref*{#1}}}}
+\newcommand{\thmref}[1]{\hyperref[#1]{\mbox{Theorem~\ref*{#1}}}}
 \newcommand{\origpage}[1]{\phantomsection\label{origpage:#1}}
 \newcommand{\esssup}{\operatorname*{ess\,sup}}
 \newcommand{\essinf}{\operatorname*{ess\,inf}}
@@ -130,16 +154,16 @@
 
 % PDF pages 1--28 (original journal pages 400--427).
 
-\thispagestyle{plain}
-% With includeheadfoot the running header is part of the 1 cm top margin.
-% The first page has no running header, so reclaim that reserved space here.
-\vspace*{-0.67cm}
+\thispagestyle{empty}
+% The title page has no running header.  Reclaim exactly the header area rather
+% than a fixed distance, so this remains correct after layout customization.
+\vspace*{-\dimexpr\headheight+\headsep\relax}
 \noindent
 {\fontsize{9pt}{10.5pt}\selectfont
   \textsc{\bfseries Annals of Mathematics}\par
   \noindent\textbf{Vol. 50, No. 2, April, 1949}\par
 }
-\vspace{0.15cm}
+\vspace{0.25\baselineskip}
 
 \begin{center}
   {\normalsize\bfseries ON RINGS OF OPERATORS.\enspace REDUCTION THEORY\par}
@@ -560,7 +584,7 @@ If $\varphi_1,\varphi_2,\ldots$ is a complete, normalized, orthogonal set in
 $\mathfrak H$, and $K$ a Borel set with
 $\mu_{\rho_{\varphi_n}(\lambda)}(K)=0$ for $n=1,2,\ldots$, then
 $\mu_{\rho_f(\lambda)}(K)=0$ for every $f$, by
-\cite[p. 227, Theorem 6.3]{ref11}. Therefore all $\rho_f(\lambda)$ are
+\mbox{\cite[p. 227, Theorem 6.3]{ref11}}. Therefore all $\rho_f(\lambda)$ are
 $\sigma(\lambda)$-totally-continuous, if the
 $\rho_{\varphi_n}(\lambda)$, $n=1,2,\ldots$, are such. In other words:
 
@@ -745,15 +769,13 @@ $\mathfrak S$ (cf. footnote 4), and orthogonal to all elements of
 $\mathfrak S$, thus they are orthogonal to all linear aggregates from
 $\mathfrak S$ too---therefore to themselves, and so they must both vanish. So
 we have proved:
-\[
+\begin{gather*}
 \int_{-}\alpha f(\lambda)\sqrt{d\sigma(\lambda)}
- =\alpha\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)},
-\]
-\[
+ =\alpha\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)},\\[0.18\baselineskip]
 \int_{-}(f(\lambda)+g(\lambda))\sqrt{d\sigma(\lambda)}
  =\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}
   +\int_{-}g(\lambda)\sqrt{d\sigma(\lambda)}.
-\]
+\end{gather*}
 
 \medskip\noindent\phantomsection\label{rem:3.3}\textbf{Remark 3.}
 Put in the formula of (ii) $f(\lambda)=g(\lambda)$, and then replace
@@ -766,7 +788,8 @@ $f(\lambda)$ by $f(\lambda)-g(\lambda)$, using the formula of
 \right\rVert^2
 =\int\lVert f(\lambda)-g(\lambda)\rVert^2\,d\sigma(\lambda)
 \]
-results. This proves: We have
+results.
+This proves: We have
 \[
 \int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}
 =\int_{-}g(\lambda)\sqrt{d\sigma(\lambda)}
@@ -902,7 +925,7 @@ $f^{(m)}\in\mathfrak H^{(\lambda_m)}$, and define:
 \begin{equation}\label{eq:4.3}
 f(\lambda_n)=
 \begin{cases}
-\dfrac{1}{\sqrt{a_m}}f^{(m)},&n=m,\\[4pt]
+\dfrac{1}{\sqrt{a_m}}f^{(m)},&n=m,\\[0.23\baselineskip]
 0,&n\ne m.
 \end{cases}
 \end{equation}
@@ -944,8 +967,8 @@ Thus it is a one-to-one isomorphic mapping of a subset $\mathfrak H_1$ of
 $\mathfrak H$ on another one $\mathfrak H_2$. By (iii)
 $\mathfrak H_1=\mathfrak H$; and as
 $[f(\lambda_n)]_n\in\mathfrak H_n^*$,
-$\mathfrak H_2\subset[\mathfrak H_1^*,\mathfrak H_2^*,\ldots]=$ the linear,
-closed set determined by $\mathfrak H_1^*,\mathfrak H_2^*,\ldots$. Now the two
+$\mathfrak H_2\subset[\mathfrak H_1^*,\mathfrak H_2^*,\ldots]$
+$=$ the linear, closed set determined by $\mathfrak H_1^*,\mathfrak H_2^*,\ldots$. Now the two
 sides of this correspondence are clearly equal, if $f(\lambda)$ is the
 expression from \eqref{eq:4.3}. Thus the correspondence is identical in each
 $\mathfrak H_m^*$, therefore in
@@ -1048,7 +1071,7 @@ $\lim_{r\to\infty}g_{p_r}(\lambda)=g(\lambda)$ (in the metric, ``strong'',
 topology of $\mathfrak H^{(\lambda)}$) for all $\lambda>-\infty$,
 $<+\infty$, except perhaps for a $\lambda$-set of $\sigma(\lambda)$-measure 0.
 
-\textup{(I)} determines $g(\lambda)$ uniquely, except for an arbitrary
+\noindent\textup{(I)} determines $g(\lambda)$ uniquely, except for an arbitrary
 $\lambda$-set of $\sigma(\lambda)$-measure 0, irrespective of what the sequence
 $p_1,p_2,\ldots$ happened to be. This $g(\lambda)$ is
 $\sigma(\lambda)$-summable and
@@ -1215,12 +1238,12 @@ and $(f(\lambda),g(\lambda))$, $(f(\lambda),h(\lambda))$ are
 $\sigma(\lambda)$-measurable. From this
 $\alpha g=\int_{-}\alpha g(\lambda)\sqrt{d\sigma(\lambda)}$,
 $g+h=\int_{-}(g(\lambda)+h(\lambda))\sqrt{d\sigma(\lambda)}$ follow, and
-\[
+\begin{align*}
 (f(\lambda),\alpha g(\lambda))
-=\overline\alpha(f(\lambda),g(\lambda)),\qquad
+  &=\overline\alpha(f(\lambda),g(\lambda)),\\
 (f(\lambda),g(\lambda)+h(\lambda))
-=(f(\lambda),g(\lambda))+(f(\lambda),h(\lambda))
-\]
+  &=(f(\lambda),g(\lambda))+(f(\lambda),h(\lambda))
+\end{align*}
 are $\sigma(\lambda)$-measurable. Thus $\alpha g,g+h\in\mathfrak S'$, and so
 $\mathfrak S'$ is a linear set.
 
@@ -1241,8 +1264,8 @@ for $(f(\lambda),g(\lambda))$ too. Therefore $g\in\mathfrak S'$. Thus
 $\mathfrak S'$ is closed too.
 \end{proof}
 
-\section{Measurable families and existence and uniqueness of generalized
-direct sums}\label{sec:6}
+\section{Measurable families and existence and uniqueness of generalized direct
+sums}\label{sec:6}
 
 As the linear, closed set character of $\mathfrak S$ is established, we can be
 satisfied concerning the observations of footnote 4, and we will use from now
@@ -1297,7 +1320,8 @@ $\leq p$, thus of $\psi_1(\lambda),\ldots,\psi_l(\lambda)$
  (\varphi_p(\lambda),\psi_r(\lambda))\psi_r(\lambda).
 \]
 Replacing $\sum_{1}^{l}$ by $\sum_{1}^{p}$ adds only vanishing terms, so we
-may do it. Now we have
+may do it.
+Now we have
 \[
 (f(\lambda),\varphi_p(\lambda))
 =\sum_{r=1}^{p}(f(\lambda),\psi_r(\lambda))
@@ -1522,23 +1546,22 @@ $\sigma(\lambda)$-measurable. Therefore the sets $\Delta_n,H_n$ are such, too.
 
 Consider all complex-valued functions $x_m(\lambda)$ of the two variables
 $m=1,2,\ldots$, $\lambda>-\infty$, $<+\infty$, which fulfill the conditions
-($\alpha$), ($\gamma$), ($\delta$) of \hyperref[def:2]{Definition 2}. Defining for
+($\alpha$), ($\gamma$), ($\delta$) of \hyperref[def:2]{Definition 2}.
+Defining for
 $x\equiv x_m(\lambda)$, $y\equiv y_m(\lambda)$
-\[
+\begin{gather*}
 \alpha x\equiv\alpha x_m(\lambda),\qquad
-x+y\equiv x_m(\lambda)+y_m(\lambda),
-\]
-\[
+x+y\equiv x_m(\lambda)+y_m(\lambda),\\
 (x,y)=\sum_{m=1}^{\infty}\int_{H_m}
- x_m(\lambda)\overline{y_m(\lambda)}\,d\sigma(\lambda),
-\]
+ x_m(\lambda)\overline{y_m(\lambda)}\,d\sigma(\lambda)
+\end{gather*}
 we obtain a unitary space $\mathfrak H$\footnote{Cf.
 \cite[pp. 23--32]{ref11} or \cite[pp. 108--111]{ref1}. The most convenient
 way to look at this $\mathfrak H$ is, to consider the $x_m(\lambda)$ as
 functions in the $m,\lambda$-space defined by $m\leq k(\lambda)$, that is by
 $\lambda\in H_m$, in which
 $\sum_{m=1}^{\infty}\int_{H_m}\cdots\,d\sigma(\lambda)$ plays the role of the
-Lebesgue-(Stieltjes) integral.}.
+Lebesgue-(Stieltjes) integral.}
 
 If a function $f(\lambda)$ of $\lambda>-\infty$, $<+\infty$,
 $f(\lambda)\in\mathfrak H^{(\lambda)}$ is given, define $x_m(\lambda)$ by
@@ -1803,7 +1826,7 @@ simple by Theorem 7.9, quoted above. In each $\mathfrak M_m$ we apply Theorem
 $\mathfrak M_m=\mathfrak M(f_m)$ for a suitable $f_m\in\mathfrak M_m$, and
 $\mathfrak M_m$ is isomorphic to the unitary space $\mathfrak H_m^*$ which is
 defined as follows: $\rho_m(\lambda)=\rho_{f_m}(\lambda)
-=\lVert E(\lambda)f_m\rVert^2$ is an $N$-function, consider all
+ =\lVert E(\lambda)f_m\rVert^2$ is an $N$-function, consider all
 $\rho_m(\lambda)$-measurable (complex-valued) functions $\xi(\lambda)$, for
 which $\int|\xi(\lambda)|^2\,d\rho_m(\lambda)$ is finite, and define for
 $\xi\equiv\xi(\lambda)$, $\eta\equiv\eta(\lambda)$
@@ -1980,7 +2003,8 @@ but $E(\lambda)$ is $\tau(\lambda)$-totally-continuous and equivalent to
 $\sigma(\lambda)$ (cf. loc. cit.), so $\sigma(\lambda)$ is
 $\tau(\lambda)$-totally-continuous, and therefore
 $\mu_{\sigma(\lambda)}(N)=0$. Thus $k_0(\lambda)=0$ occurs only on a set of
-$\sigma(\lambda)$-measure 0, and therefore it can be neglected. (We can add
+$\sigma(\lambda)$-measure 0,
+and therefore it can be neglected. (We can add
 $N$ to $H_1$ without changing anything essential, and nevertheless excluding
 $k_0(\lambda)=0$.)
 
@@ -2039,8 +2063,8 @@ and so
 [(f'(\lambda),g'(\lambda))-(f''(\lambda),g''(\lambda))]
 \,d\sigma(\lambda)=0
 \]
-for every $\mu>-\infty$, $<+\infty$. Thus
-$(f'(\lambda),g'(\lambda))=(f''(\lambda),g''(\lambda))$ except perhaps for a
+for every $\mu>-\infty$, $<+\infty$.
+Thus $(f'(\lambda),g'(\lambda))=(f''(\lambda),g''(\lambda))$ except perhaps for a
 $\lambda$-set of $\sigma(\lambda)$-measure 0\footnote{Put
 \[
 \nu(\mu)=\int_{\lambda\leq\mu}
@@ -2079,8 +2103,8 @@ f_m'(\lambda)=
 \end{cases}
 \]
 this function $f_m'(\lambda)$ is clearly $'\sigma(\lambda)$-summable ($m$
-fixed!), let the corresponding $''$-function be $f_m''(\lambda)$. Define
-similarly
+fixed!), let the corresponding $''$-function be $f_m''(\lambda)$.
+Define similarly
 \[
 g_n''(\lambda)=
 \begin{cases}
@@ -2089,7 +2113,8 @@ g_n''(\lambda)=
 \end{cases}
 \]
 this function $g_n''(\lambda)$ is clearly $''\sigma(\lambda)$-summable ($n$
-fixed!), let the corresponding $'$-function be $g_n'(\lambda)$. Then we have:
+fixed!), let the corresponding $'$-function be $g_n'(\lambda)$.
+Then we have:
 \begin{align*}
 \tag{1}\label{eq:7.1}
 (f_m''(\lambda),f_p''(\lambda))
@@ -2147,10 +2172,12 @@ $u_{mn}(\lambda)=(f_m'(\lambda),g_n'(\lambda))$ in \eqref{eq:7.3} leads to
 $=\sum_{m,n}|u_{mn}(\lambda)|^2$) and that the matrix
 $\{u_{mn}(\lambda)\}_{m,n=1,2,\ldots}$
 ($m,n\leq k'(\lambda)=k''(\lambda)$) is unitary. This holds for all
-$\lambda\notin N$. As $N$ has the $\sigma(\lambda)$-measure 0, we can change
+$\lambda\notin N$.
+As $N$ has the $\sigma(\lambda)$-measure 0, we can change
 the $\mathfrak H'^{(\lambda)}$, $\lambda\in N$, arbitrarily. We make use of
  this liberty by replacing these $\mathfrak H'^{(\lambda)}$ by the corresponding
- $\mathfrak H''^{(\lambda)}$, so that $k'(\lambda)=k''(\lambda)$, and choose
+ $\mathfrak H''^{(\lambda)}$, so that $k'(\lambda)=k''(\lambda)$,
+and choose
  \[
  f_m'(\lambda)=f_m''(\lambda)=g_m'(\lambda)=g_m''(\lambda)=
  \begin{cases}
@@ -2158,7 +2185,7 @@ the $\mathfrak H'^{(\lambda)}$, $\lambda\in N$, arbitrarily. We make use of
  0,&m>k'(\lambda),
  \end{cases}
  \]
- so that
+so that
 \[
 u_{mn}(\lambda)=
 \begin{cases}
@@ -2234,8 +2261,8 @@ unity, and $\sigma_1(\lambda),\sigma_2(\lambda)$ two $N$-functions, both
 equivalent to $E(\lambda)$. Then $\sigma_2(\lambda)$ is
 $\sigma_1(\lambda)$-totally-continuous and conversely, therefore we can form
 $d\sigma_2(\lambda)/d\sigma_1(\lambda)$ and
-$d\sigma_1(\lambda)/d\sigma_2(\lambda)$ by \secref{sec:2}, ($\gamma$). Now
-we have by \cite{ref11},
+$d\sigma_1(\lambda)/d\sigma_2(\lambda)$ by \secref{sec:2}, ($\gamma$).
+Now we have by \cite{ref11},
 \[
 \frac{d\sigma_2(\lambda)}{d\sigma_1(\lambda)}
 \frac{d\sigma_1(\lambda)}{d\sigma_2(\lambda)}=1,
@@ -2264,14 +2291,13 @@ is $\sigma_1(\lambda)$-summable, and then (again by definition!)
 \]
 One verifies easily that $\mathfrak H$ is the generalized direct sum of the
 $\mathfrak H^{(\lambda)}$ with the weight-function $\sigma_2(\lambda)$ using
-these definitions, because it is the generalized direct
-
+these definitions, because it is the generalized direct sum of the
 % pp. 428--455 of the original journal pagination.
 % This portion begins in the final paragraph of Section 8.
-
 % p. 428
-sum of the $\mathfrak H^{(\lambda)}$ with the weight-function $\sigma _1(\lambda)$
-using the original definitions.  The essential fact to be used, in order to
+$\mathfrak H^{(\lambda)}$ with the weight-function $\sigma _1(\lambda)$
+using the original definitions.
+The essential fact to be used, in order to
 establish this, is
 \begin{align*}
  &\int\left(
@@ -2282,6 +2308,7 @@ establish this, is
        \frac{d\sigma _2(\lambda)}{d\sigma _1(\lambda)}d\sigma _1(\lambda)\\
  &\qquad=\int (f(\lambda),g(\lambda))d\sigma _2(\lambda).
 \end{align*}
+
 Denoting the resolution of unity which belongs to the
 $\sigma _2(\lambda)$-decomposition of $\mathfrak H$ by $E'(\lambda)$ we see that
 we have again
@@ -2300,11 +2327,12 @@ where
 because the factor
 $\sqrt{d\sigma _2(\lambda)/d\sigma _1(\lambda)}$ does not affect the
 corresponding rule which holds for the $\sigma _1(\lambda)$-decomposition.
-Thus $E'(\mu)=E(\mu)$.  In other words: With the new definitions $\mathfrak H$
+Thus $E'(\mu)=E(\mu)$.
+In other words: With the new definitions $\mathfrak H$
 is the generalized direct sum of the $\mathfrak H^{(\lambda)}$ with the
 weight-function $\sigma _2(\lambda)$ and the resolution of unity $E(\lambda)$.
 
-Remembering Theorem~\ref{thm:III}, we can therefore state:
+Remembering Theorem \ref{thm:III}, we can therefore state:
 
 \emph{Let $E(\lambda)$ be a resolution of unity, and $\sigma _1(\lambda)$,
 $\sigma _2(\lambda)$ two $N$-functions equivalent to $E(\lambda)$.  Let
@@ -2370,7 +2398,8 @@ properties:
   isomorphism
   $\mathfrak H_1^{(\lambda)}\rightleftarrows
    \mathfrak H_2^{(m(\lambda))}$ by $g^{(\lambda)}$.
-\item $f_2(\lambda)$ ($\in\mathfrak H_2^{(\lambda)}$) is
+\item
+$f_2(\lambda)$ ($\in\mathfrak H_2^{(\lambda)}$) is
   $\sigma _2(\lambda)$-summable if and only if
   \[
     f_1(\lambda)=\gamma(\lambda)(g^{(\lambda)})^{-1}f_2(m(\lambda))
@@ -2398,8 +2427,11 @@ $\varphi _{2m}(\lambda)$ in $\mathfrak H_2^{(\lambda)}$, and define
  \end{cases}
 \]
 This $f_2(\lambda)$ is clearly $\sigma _2(\lambda)$-summable; therefore
-$f_1(\lambda)=\gamma(\lambda)(g^{(\lambda)})^{-1}f_2(m(\lambda))$ is
-$\sigma _1(\lambda)$-summable.  Thus the function
+\[
+f_1(\lambda)=\gamma(\lambda)(g^{(\lambda)})^{-1}f_2(m(\lambda))
+\]
+is $\sigma _1(\lambda)$-summable.
+Thus the function
 \[
  \lVert f_1(\lambda)\rVert
   =\gamma(\lambda)\lVert f_2(m(\lambda))\rVert
@@ -2410,7 +2442,8 @@ $\sigma _1(\lambda)$-summable.  Thus the function
 \]
 (we now disregard sets of $\sigma _1(\lambda)$-measure $0$) is
 $\sigma _1(\lambda)$-measurable, and so is the set of all $\lambda$ with
-$\lVert f_1(\lambda)\rVert\ne0$: $K_1$.  Conversely: If $K_1$ is
+$\lVert f_1(\lambda)\rVert\ne0$: $K_1$.
+Conversely: If $K_1$ is
 $\sigma _1(\lambda)$-measurable, then $K_2$ is
 $\sigma _2(\lambda)$-measurable, because the inverse $m^{-1}(\lambda)$ of
 $m(\lambda)$ (define $m^{-1}(\lambda)$ as the inverse of $m(\lambda)$ in the
@@ -2485,9 +2518,9 @@ weight-function $\sigma _1(\lambda)$ is changed into $\sigma _2(\lambda)$.}
 (cf. \texorpdfstring{\hyperref[sec:4]{\S4}}{Section 4})}
 \label{sec:10}
 
-We repeat the procedure of \secref{sec:4} after Definition~\ref{def:1}: Before
+We repeat the procedure of \secref{sec:4} after Definition \ref{def:1}: Before
 we continue the systematic investigation we first discuss the meaning of the
-new notion (now it is the equivalence, introduced by Definition~\ref{def:3}) for
+new notion (now it is the equivalence, introduced by Definition \ref{def:3}) for
 totally discontinuous $\sigma(\lambda)$'s, that is for the case in which our
 generalized direct sum becomes a common direct sum (cf. \secref{sec:4}).
 
@@ -2496,8 +2529,8 @@ $\mathfrak H_1^{(\lambda)},\sigma _1(\lambda)$ and
 $\mathfrak H_2^{(\lambda)},\sigma _2(\lambda)$.  Assume that
 $\sigma _1(\lambda)$ is totally discontinuous.  Let, as in \secref{sec:4},
 $\lambda _1,\lambda _2,\ldots$ be the (finite or infinite) sequence of all
-points $\lambda$ with a $\sigma _1(\lambda)$-measure $\ne0$.  Apply now
-Definition~\ref{def:3}.  As $\mu_{\sigma _1(\lambda)}(N_1)=0$, no $\lambda_n$
+points $\lambda$ with a $\sigma _1(\lambda)$-measure $\ne0$.
+Apply now \defref{def:3}.  As $\mu_{\sigma _1(\lambda)}(N_1)=0$, no $\lambda_n$
 can belong to $N_1$.  Thus the $\lambda _1,\lambda _2,\ldots$ have distinct
 $\lambda\rightleftarrows m(\lambda)$-images
 $\mu _1,\mu _2,\ldots$, $\mu_n=m(\lambda_n)$.  By \hyperref[rem:9.1]{Remark 1} in
@@ -2511,10 +2544,9 @@ $\sigma _2(\lambda)$, too, is totally discontinuous.
 
 Forming the
 $a_n=\mu_{\sigma _1(\lambda)}(\lambda_n)>0$ and the
-$b_n=\mu_{\sigma _2(\lambda)}(\mu_n)>0$, as in \secref{sec:4}, the
-
+$b_n=\mu_{\sigma _2(\lambda)}(\mu_n)>0$, as in \secref{sec:4},
 % p. 431
-\hyperref[rem:9.2]{Remark 2} of \secref{sec:9} gives for the sets
+the \hyperref[rem:9.2]{Remark 2} of \secref{sec:9} gives for the sets
 $K_1=(\lambda_n)$, $K_2=(\mu_n)$ that
 $a_n=(\gamma(\lambda_n))^2b_n$.  That is:
 \[
@@ -2583,8 +2615,9 @@ constant function.  Now by (d) in \secref{sec:7} every continuous function
 $\alpha(\lambda)$ is such, as it is a (uniform) limit of the above functions.
 Renewed application of (d) in \secref{sec:7} extends this to all
 Baire-functions $\alpha(\lambda)$ and (b) in \secref{sec:7} to all
-$\sigma(\lambda)$-measurable $\alpha(\lambda)$'s.  So we see: The ring $P$
-contains all $\alpha(\Lambda)$'s.  Conversely: If a ring contains all
+$\sigma(\lambda)$-measurable $\alpha(\lambda)$'s.
+So we see: The ring $P$ contains all $\alpha(\Lambda)$'s.
+Conversely: If a ring contains all
 $\alpha(\Lambda)$'s, then it contains all $e_\mu(\Lambda)=E(\mu)$ and therefore
 $P$ must be a subset of it.  Thus $P$ is the ring generated by all
 $\alpha(\Lambda)$'s.
@@ -2592,7 +2625,6 @@ $\alpha(\Lambda)$'s.
 Consider now two equivalent representations of $\mathfrak H$:
 $\mathfrak H_1^{(\lambda)},\sigma _1(\lambda)$ and
 $\mathfrak H_2^{(\lambda)},\sigma _2(\lambda)$.
-
 % p. 432
 Denote their rings by $P_1$ and $P_2$ respectively and their
 $\alpha(\Lambda)$'s by $\alpha(\Lambda_1)$ and $\beta(\Lambda_2)$ respectively.
@@ -2665,7 +2697,6 @@ and then
 
 Clearly $\mathfrak H$ is the generalized direct sum of the
 $\mathfrak H'^{(\lambda)}$ with the weight-function
-
 % p. 433
 $\sigma'(\lambda)$ because it is so for $\mathfrak H^{(\lambda)}$ and
 $\sigma(\lambda)$.  And these two representations are equivalent if we use the
@@ -2755,7 +2786,6 @@ $1$, and $\mathfrak H_1^{(\lambda)}$ a representation of $\mathfrak H$ as a
 generalized direct sum with the weight function $\sigma _1(\lambda)$ and the
 ring $P$.  Let $\mathfrak H_2^{(\lambda)}$ be another representation of
 $\mathfrak H$, with the weight-
-
 % p. 434
 function $\sigma _2(\lambda)$.  If these two representations are equivalent,
 they must have, as we proved in \secref{sec:11}, the same rings; therefore
@@ -2795,8 +2825,8 @@ $\beta(\Lambda_2)$ respectively.  As $\tau _1(\lambda),\tau _2(\lambda)$ are
 constant outside of the finite interval $-2\leq\lambda\leq-1$, the \hyperref[rem:7.1]{Remark} in
 \secref{sec:7} applies: The operators $\Lambda_1,\Lambda_2$ exist and are
 bounded, and $\alpha(\Lambda_1),\beta(\Lambda_2)$ are their respective
-operator-functions in the usual sense.  Now apply Lemma~\ref{lem:4}:
-$\alpha(\lambda)=\lambda$ is bounded if we disregard the set $\lambda<-2$ or
+operator-functions in the usual sense.
+Now apply Lemma~\ref{lem:4}: $\alpha(\lambda)=\lambda$ is bounded if we disregard the set $\lambda<-2$ or
 $\lambda>-1$, which has $\tau _1(\lambda)$- and $\tau _2(\lambda)$-measure
 $0$, so $\Lambda_1,\Lambda_2\in P$.  Therefore
 $\Lambda_1=m(\Lambda_2)$, where $m(\lambda)$ is a bounded Baire-function, and
@@ -2823,27 +2853,20 @@ of $N'_1$ on the complement of $N'_2$ and has there the inverse
 $\lambda\rightleftarrows n(\lambda)$.
 
 Consider a non-negative, bounded Baire-function $\gamma(\lambda)$.  We have
-\[
+\begin{align*}
  \int\gamma(\lambda)d\tau _1(\lambda)
- =\sum_n a_n\int\gamma(\lambda)
+ &=\sum_n a_n\int\gamma(\lambda)
        d\bigl(\lVert E_1(\lambda)\varphi_n\rVert^2\bigr)
- =\sum_n a_n(\gamma(\Lambda_1)\varphi_n,\varphi_n)
-\]
-\[
- \left(\text{observe that }
- \int\gamma(\lambda)d\bigl(\lVert E_1(\lambda)\varphi_n\rVert^2\bigr)
- =\int\gamma(\lambda)d\left[
+ =\sum_n a_n(\gamma(\Lambda_1)\varphi_n,\varphi_n)\\
+\Bigl(&\text{observe that }
+ \int\gamma(\lambda)d\bigl(\lVert E_1(\lambda)\varphi_n\rVert^2\bigr)\\
+&=\int\gamma(\lambda)d\left[
      \int_{\mu\leq\lambda}\lVert\varphi_n(\mu)\rVert^2d\tau _1(\mu)
-   \right]
- \right.
-\]
-\[
- \left.
- =\int\gamma(\lambda)\lVert\varphi_n(\lambda)\rVert^2d\tau _1(\lambda)
- =\int(\gamma(\lambda)\varphi_n(\lambda),\varphi_n(\lambda))d\tau _1(\lambda)
- =(\gamma(\Lambda_1)\varphi_n,\varphi_n)\right)
-\]
-
+   \right]\\
+&=\int\gamma(\lambda)\lVert\varphi_n(\lambda)\rVert^2d\tau _1(\lambda)\\
+ &=\int(\gamma(\lambda)\varphi_n(\lambda),\varphi_n(\lambda))d\tau _1(\lambda)\\
+ &=(\gamma(\Lambda_1)\varphi_n,\varphi_n)\Bigr)
+\end{align*}
 % p. 435
 and similarly
 \[
@@ -2896,8 +2919,9 @@ If $K_1$ is an arbitrary Borel-set, then its
 $\lambda\rightleftarrows m(\lambda)$-image is the sum of those of
 $K_1\cdot N'_1$ and of $K_1\cdot\operatorname{Complement}N'_1$.  The former is
 a subset of $N'_2$ and thus has the $\tau _2(\lambda)$ measure $0$.  The latter
-is the image of a Borel-subset of $\operatorname{Complement}N'_1$, thus a Borel
-set, with the $\tau _2(\lambda)$-measure
+ is the image of a Borel-subset of $\operatorname{Complement}N'_1$,
+ thus a Borel set,
+ with the $\tau _2(\lambda)$-measure
 $\mu_{\tau _1(\lambda)}(K_1\cdot\operatorname{Complement}N'_1)
 =\mu_{\tau _1(\lambda)}(K_1)$.  Thus the total image $K_2$ of $K_1$ is
 $\tau _2(\lambda)$-measurable, and \eqref{eq:12.1} holds again.  If $K_1$ is any
@@ -2939,8 +2963,7 @@ $\mathfrak H$
 
 % p. 436
 We have for any bounded Baire-function $\alpha(\lambda)$
-\[
- \begin{aligned}
+\begin{align*}
  (\alpha(\Lambda _1)f_m,f_n)
  &=\left(\int_{-}\alpha(\lambda)\varphi_m(\lambda)
           \sqrt{d\tau _1(\lambda)},
@@ -2953,11 +2976,9 @@ We have for any bounded Baire-function $\alpha(\lambda)$
     0,&m\ne n,\\
     \displaystyle\int\alpha(\lambda)d\tau _1(\lambda),&m=n,
    \end{cases}
- \end{aligned}
-\]
+\end{align*}
 and at the same time
-\[
- \begin{aligned}
+\begin{align*}
  (\alpha(\Lambda _2)f_m,f_n)
  &=\left(\int_{-}\alpha(\lambda)\psi_m(\lambda)
           \sqrt{d\tau _2(\lambda)},
@@ -2966,25 +2987,21 @@ and at the same time
        d\tau _2(\lambda)\\
  &=\int\alpha(\lambda)(\psi_m(\lambda),\psi_n(\lambda))
        d\tau _2(\lambda).
- \end{aligned}
-\]
+\end{align*}
 Considering $\alpha(\Lambda _2)=\alpha(m(\Lambda _1))$ this means:
-\[
- \begin{aligned}
- &\int\alpha(\lambda)(\psi_m(\lambda),\psi_n(\lambda))d\tau _2(\lambda)\\[-1mm]
+\begin{align*}
+ &\int\alpha(\lambda)(\psi_m(\lambda),\psi_n(\lambda))d\tau _2(\lambda)\\
  &\quad=\begin{cases}
-   0,&m\ne n,\\[2mm]
+   0,&m\ne n,\\
    \displaystyle\begin{aligned}
    &\int_{\{k_1(\lambda)\geq m\}}\alpha(m(\lambda))d\tau _1(\lambda)\\
    &\quad=\int_{\{k_1(n(\lambda))\geq m\}}\alpha(\lambda)d\tau _2(\lambda)
    \end{aligned},
    &m=n.
   \end{cases}
- \end{aligned}
-\]
+\end{align*}
 Thus
-\[
- \begin{aligned}
+\begin{align*}
  &\int\alpha(\lambda)\bigl((\psi_m(\lambda),\psi_n(\lambda))
              -e_{mn}(\lambda)\bigr)d\tau _2(\lambda)=0,\\
  &e_{mn}(\lambda)=
@@ -2992,8 +3009,7 @@ Thus
    1,&m=n\leq k_1(n(\lambda)),\\
    0,&\text{otherwise},
   \end{cases}
- \end{aligned}
-\]
+\end{align*}
 for every bounded Baire-function $\alpha(\lambda)$, and therefore for every
 bounded $\tau _2(\lambda)$-measurable $\alpha(\lambda)$.  This implies
 $(\psi_m(\lambda),\psi_n(\lambda))-e_{mn}(\lambda)=0$, except for a set
@@ -3018,10 +3034,10 @@ $N'''_2$, and $N_2$ the sum of $N'_2,N'''_2$, and the
 $\lambda\rightleftarrows m(\lambda)$-image of $N'''_1$.  Clearly $N_1,N_2$ are
 respective sets of $\tau _1(\lambda),\tau _2(\lambda)$-measure $0$, and
 $\lambda\rightleftarrows m(\lambda)$ is a one-to-one mapping of the complement
-of $N_1$ on the complement of $N_2$, its inverse
-
+of $N_1$ on the complement of $N_2$,
+its inverse being there $\lambda\rightleftarrows n(\lambda)$.
 % p. 437
-being there $\lambda\rightleftarrows n(\lambda)$.  Furthermore we have for
+Furthermore we have for
 $\lambda\notin N_1$, $k_1(\lambda)\geq k_2(m(\lambda))$ and for
 $\lambda\notin N_2$, $k_2(\lambda)\geq k_1(n(\lambda))$.
 $\lambda\notin N_1$ implies $m(\lambda)\notin N_2$,
@@ -3029,15 +3045,15 @@ $k_2(m(\lambda))\geq k_1(n(m(\lambda)))=k_1(\lambda)$ too, so
 $k_1(\lambda)=k_2(m(\lambda))$.
 
 Choose a measurable family $\varphi_{1m}(\lambda)$ for the
-$E_1(\lambda),\tau _1(\lambda)$-representation,\linebreak and one
+$E_1(\lambda),\tau _1(\lambda)$-representation, and one
 $\varphi_{2m}(\lambda)$ for the $E_2(\lambda),\tau _2(\lambda)$-representation.
 Define the isomorphism $g^{(\lambda)}$ of $\mathfrak H_1^{(\lambda)}$ on
 $\mathfrak H_2^{(m(\lambda))}$, for $\lambda\notin N_1$, by
-\[
- g^{(\lambda)}\left(\sum_m x_m\varphi_{1m}(\lambda)\right)
-   =\sum_m x_m\varphi_{2m}(m(\lambda))
- \qquad(\text{remember }k_1(\lambda)=k_2(m(\lambda))!).
-\]
+\begin{align*}
+g^{(\lambda)}\left(\sum_m x_m\varphi_{1m}(\lambda)\right)
+  &=\sum_m x_m\varphi_{2m}(m(\lambda)),\\
+&\text{where }k_1(\lambda)=k_2(m(\lambda)).
+\end{align*}
 Introduce now the functions $x_{1m}(\lambda)$ and $x_{2m}(\lambda)$ in the
 sense of Definition~\ref{def:2} for the respective
 $E_1(\lambda),\tau _1(\lambda)$- and
@@ -3072,8 +3088,8 @@ and the range of $P$ is precisely the set of all Abelian rings containing $1$.
 
 \section{Discussion of the decomposition of an operator
 \texorpdfstring{$A\in P'$}{A in P'}:
-\texorpdfstring{$A\sim\sum A(\lambda)$}{A as a sum of A(lambda)}. Necessary and
-sufficient conditions and uniqueness}
+\texorpdfstring{$A\sim\sum A(\lambda)$}{A as a sum of A(lambda)}.
+\texorpdfstring{\\}{ }Necessary and sufficient conditions and uniqueness}
 \label{sec:13}
 
 Let $\mathfrak H$ be the generalized direct sum of the
@@ -3090,8 +3106,8 @@ Consider an operator $A\in P'$, put
 Let $\varphi_m(\lambda)$, $m\leq k(\lambda)$, be a measurable family, and
 define again $\varphi_m(\lambda)=0$ for $m>k(\lambda)$.
 $\varphi_m(\lambda)$ is $\sigma(\lambda)$-summable, put
-$\omega_m=\int_{-}\varphi_m(\lambda)\sqrt{d\sigma(\lambda)}$.  Form now the
-$f_m(\lambda)$ with
+$\omega_m=\int_{-}\varphi_m(\lambda)\sqrt{d\sigma(\lambda)}$.
+Form now the $f_m(\lambda)$ with
 \[
  A^*\omega_m=\int_{-}f_m(\lambda)\sqrt{d\sigma(\lambda)}
 \]
@@ -3141,18 +3157,16 @@ effect of replacing $Af$ by
  \end{cases}
 \]
 Thus the above formula becomes
-\[
+\begin{gather*}
  \int_{\lambda\leq\mu}\left(\bar f(\lambda),
        \sum_n\overline{a_{mn}(\lambda)}\varphi_n(\lambda)\right)
        d\sigma(\lambda)
   =\int_{\lambda\leq\mu}(\bar{\bar f}(\lambda),\varphi_m(\lambda))
-       d\sigma(\lambda),
-\]
-\[
+       d\sigma(\lambda),\\
  \int_{\lambda\leq\mu}\left[
   \sum_n a_{mn}(\lambda)(\bar f(\lambda),\varphi_n(\lambda))
   -(\bar{\bar f}(\lambda),\varphi_m(\lambda))\right]d\sigma(\lambda)=0.
-\]
+\end{gather*}
 Thus
 \[
  \sum_n a_{mn}(\lambda)(\bar f(\lambda),\varphi_n(\lambda))
@@ -3162,7 +3176,8 @@ except perhaps for a set $\widetilde N^{(m)}$ of $\sigma(\lambda)$-measure $0$
 (cf. the argument of footnote~\ref{fn:7}).  The sum of all $\widetilde N^{(m)}$, say
 $\widetilde N$, is a fixed set of $\sigma(\lambda)$-measure $0$ (depending of course
 on the $\bar f(\lambda)$ and $\bar{\bar f}(\lambda)$) and with the same
-property.  If we put
+property.
+If we put
 \[
  \bar f(\lambda)=\sum_m x_m(\lambda)\varphi_m(\lambda),
  \qquad
@@ -3173,8 +3188,8 @@ then we can formulate the above result as follows:
  y_m(\lambda)=\sum_n a_{mn}(\lambda)x_n(\lambda),
  \label{eq:13.1}
 \end{equation}
-except for a set of $\sigma(\lambda)$-measure $0$.  (The series on the right
-side converges absolutely in any event, because
+except for a set of $\sigma(\lambda)$-measure $0$.
+(The series on the right side converges absolutely in any event, because
 \[
  \sum_n|a_{mn}(\lambda)|^2=\lVert f_m(\lambda)\rVert^2,
  \qquad
@@ -3194,7 +3209,6 @@ Consider now the function
  \frac{\sum_m\left|\sum_n a_{mn}(\lambda)x_n\right|^2}
       {\sum_m|x_m|^2}=C(\lambda).
 \]
-
 % p. 439
 The $\sum_n$ in the numerator are absolutely convergent (because
 $\sum_n|a_{mn}(\lambda)|^2$, $\sum_n|x_n|^2$ are finite), the $\sum_m$ in the
@@ -3214,8 +3228,7 @@ which the ratios
 $\Re x_1:\Im x_1:\Re x_2:\Im x_2:\cdots$ are all rational.  They form a
 countable set, and we can therefore enumerate them:
 $x_1^{(\nu)},x_2^{(\nu)},\ldots$ for $\nu=1,2,\ldots$.  Now clearly
-\[
- \begin{aligned}
+\begin{align*}
  &\mathop{\mathrm{l.u.b.}}_{\substack{\sum_m|x_m|^2<+\infty\\
                                      \sum_m|x_m|^2>0}}
  \frac{\sum_m\left|\sum_n a_{mn}(\lambda)x_n\right|^2}
@@ -3226,8 +3239,7 @@ $x_1^{(\nu)},x_2^{(\nu)},\ldots$ for $\nu=1,2,\ldots$.  Now clearly
  &\quad=
  \mathop{\mathrm{l.u.b.}}_{\nu=1,2,\ldots}
  \sum_m\left|\sum_n a_{mn}(\lambda)x_n^{(\nu)}\right|^2.
- \end{aligned}
-\]
+\end{align*}
 Therefore
 \[
  S=\sum_{p,\nu=1,2,\ldots}S_p(x_1^{(\nu)},x_2^{(\nu)},\ldots).
@@ -3253,7 +3265,8 @@ the $\sigma(\lambda)$-measurability of $S_p(x_1,x_2,\ldots)$, give, by
 $\bar f(\lambda)$ is $\sigma(\lambda)$-summable.  Now put
 $f=\int_{-}\bar f(\lambda)\sqrt{d\sigma(\lambda)}$.  Thus
 $\lVert f\rVert^2=\int\lVert\bar f(\lambda)\rVert^2d\sigma(\lambda)
-=\mu_{\sigma(\lambda)}(S_p(x_1,x_2,\ldots))$.  For
+ =\mu_{\sigma(\lambda)}(S_p(x_1,x_2,\ldots))$.
+For
 $Af=\int_{-}\bar{\bar f}(\lambda)\sqrt{d\sigma(\lambda)}$ we have
 \[
  \bar{\bar f}(\lambda)=
@@ -3272,8 +3285,7 @@ $\lVert Af\rVert^2=\int\lVert\bar{\bar f}(\lambda)\rVert^2d\sigma(\lambda)
 >C^2\mu_{\sigma(\lambda)}(S_p(x_1,x_2,\ldots))$.  This gives
 $\lVert Af\rVert^2>C^2\lVert f\rVert^2$, therefore $f\ne0$ and
 $\lVert Af\rVert/\lVert f\rVert>C$.  Considering the definition of $C$, this
-is impossible.  Thus
-
+ is impossible.  Thus
 % p. 440
 there must be $\mu_{\sigma(\lambda)}(S_p(x_1,x_2,\ldots))=0$, and this proves,
 as we saw above, $\mu_{\sigma(\lambda)}(S)=0$.
@@ -3294,13 +3306,11 @@ without exception.  In other words:
 \]
 This enables us to define an operation $A(\lambda)$ in
 $\mathfrak H^{(\lambda)}$ by
-\[
- f(\lambda)=\sum_m x_m\varphi_m(\lambda),
- \qquad
- A(\lambda)f(\lambda)=\sum_m y_m\varphi_m(\lambda),
- \qquad
- y_m=\sum_n a_{mn}(\lambda)x_n.
-\]
+\begin{align*}
+f(\lambda)&=\sum_m x_m\varphi_m(\lambda),\\
+A(\lambda)f(\lambda)&=\sum_m y_m\varphi_m(\lambda),
+& y_m&=\sum_n a_{mn}(\lambda)x_n.
+\end{align*}
 Our inequality proves first of all that the series for $A(\lambda)f(\lambda)$
 converges, so that $A(\lambda)$ is an everywhere defined operator, obviously
 linear.  Second, it proves
@@ -3338,8 +3348,8 @@ $A\sim\sum A(\lambda)$, if
 holds for all $\sigma(\lambda)$-summable $f(\lambda)$'s.
 \end{definition}
 
-The results obtained in the first part of this section put us in the position
-to prove:
+The results obtained in the first part of this section put us in the
+position to prove:
 
 \begin{theorem}
 \label{thm:V}
@@ -3375,8 +3385,7 @@ The formula
  =\int_{-}A(\lambda)f(\lambda)\sqrt{d\sigma(\lambda)}
 \]
 implies
-\[
- \begin{aligned}
+\begin{align*}
  A\alpha(\Lambda)\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}
  &=A\int_{-}\alpha(\lambda)f(\lambda)\sqrt{d\sigma(\lambda)}\\
  &=\int_{-}A(\lambda)\alpha(\lambda)f(\lambda)
@@ -3386,8 +3395,7 @@ implies
  &=\alpha(\Lambda)\int_{-}A(\lambda)f(\lambda)
        \sqrt{d\sigma(\lambda)}\\
  &=\alpha(\Lambda)A\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)},
- \end{aligned}
-\]
+\end{align*}
 that is $A\alpha(\Lambda)f=\alpha(\Lambda)Af$.  Thus $A$ commutes with every
 $\alpha(\Lambda)$, that is with every element of $P$.  Therefore $A\in P'$.
 
@@ -3442,16 +3450,14 @@ $\tnormleft A(\lambda)\tnormright\leq C$, except for a
 set of $\sigma(\lambda)$-measure $0$.  Let $f(\lambda)$ be
 $\sigma(\lambda)$-summable, then all
 $(f(\lambda),\varphi_m(\lambda))$ are $\sigma(\lambda)$-measurable, and so
-\[
- \begin{aligned}
+\begin{align*}
  (A(\lambda)f(\lambda),\varphi_n(\lambda))
  &=(f(\lambda),A^*(\lambda)\varphi_n(\lambda))\\
  &=\sum_m(f(\lambda),\varphi_m(\lambda))
           (\varphi_m(\lambda),A^*(\lambda)\varphi_n(\lambda))\\
  &=\sum_m(f(\lambda),\varphi_m(\lambda))
           (A(\lambda)\varphi_m(\lambda),\varphi_n(\lambda))
- \end{aligned}
-\]
+\end{align*}
 is $\sigma(\lambda)$-measurable too.  Furthermore
 $\int\lVert f(\lambda)\rVert^2d\sigma(\lambda)$ is finite, and so
 \[
@@ -3460,7 +3466,6 @@ $\int\lVert f(\lambda)\rVert^2d\sigma(\lambda)$ is finite, and so
  =C^2\int\lVert f(\lambda)\rVert^2d\sigma(\lambda)
 \]
 is finite too.
-
 % p. 442
 Thus $A(\lambda)f(\lambda)$ is $\sigma(\lambda)$-summable, and we can define
 an operator $A$ by
@@ -3469,16 +3474,14 @@ an operator $A$ by
  =\int_{-}A(\lambda)f(\lambda)\sqrt{d\sigma(\lambda)}.
 \]
 This $A$ is clearly linear, and as
-\[
- \begin{aligned}
+\begin{align*}
  \left\lVert A\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}\right\rVert^2
  &=\left\lVert\int_{-}A(\lambda)f(\lambda)
        \sqrt{d\sigma(\lambda)}\right\rVert^2\\
  &=\int\lVert A(\lambda)f(\lambda)\rVert^2d\sigma(\lambda)\\
  &\leq C^2\int\lVert f(\lambda)\rVert^2d\sigma(\lambda)\\
  &=C^2\left\lVert\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}\right\rVert^2,
- \end{aligned}
-\]
+\end{align*}
 that is $\lVert Af\rVert^2\leq C^2\lVert f\rVert^2$,
 $\lVert Af\rVert\leq C\lVert f\rVert$, therefore $A$ is bounded too.
 $A\sim\sum A(\lambda)$ is obvious from $A$'s definition.
@@ -3488,8 +3491,8 @@ $A\int_{-}f(\lambda)\sqrt{d\sigma(\lambda)}$, that is each $Af$.
 \end{proof}
 
 \section{Computation rules for \texorpdfstring{$A\sim\sum A(\lambda)$}{operator
-decompositions}. Convergence criteria. Operator functions. Behavior under
-equivalences}
+decompositions}. Convergence criteria.\texorpdfstring{\\}{ } Operator
+functions. Behavior under equivalences}
 \label{sec:14}
 
 We now derive some properties of the decomposition $A\sim\sum A(\lambda)$,
@@ -3502,7 +3505,9 @@ $\tnormleft A(\lambda)\tnormright
 $\sigma(\lambda)$-measure $0$, and that if
 $\tnormleft A(\lambda)\tnormright\leq C$, except for a
 set of $\sigma(\lambda)$-measure $0$, then
-$\tnormleft A\tnormright\leq C$.  This means:
+$\tnormleft A\tnormright\leq C$.
+
+This means:
 
 \emph{$\tnormleft A\tnormright$ is the smallest number
 $C$ for which
@@ -3548,7 +3553,6 @@ The statements concerning $\alpha A,A+B,AB$ are obvious.  The one concerning $A^
  \tnormleft A(\lambda)^*\tnormright
  =\tnormleft A(\lambda)\tnormright,
 \]
-
 % p. 443
 there exists an $A_1\sim\sum A(\lambda)^*$ owing to the existence of
 $A\sim\sum A(\lambda)$.  Now one verifies immediately $A_1=A^*$.  All other
@@ -3570,8 +3574,7 @@ following conditions are fulfilled:
 \begin{enumerate}
 \item[(I)] The
 $\tnormleft A_n(\lambda)\tnormright$ are uniformly
-bounded, disregarding a suitable $\lambda$-set of $\sigma(\lambda)$-measure
-$0$.
+  bounded, disregarding a suitable $\lambda$-set of $\sigma(\lambda)$-measure $0$.
 \item[(II)] Every subsequence $n_1,n_2,\ldots$ of $1,2,\ldots$ has a
 subsequence $m_1,m_2,\ldots$, such that $A(\lambda)$ is the strong limit of
 $A_{m_1}(\lambda),A_{m_2}(\lambda),\ldots$, disregarding a suitable
@@ -3633,7 +3636,8 @@ Observe that
 Application of Lemma~\ref{lem:2} in \secref{sec:5}, to the
 $A_{m_1}f,A_{m_2}f,\ldots$ and $Af$ (for $g_1,g_2,\ldots$ and
 $\lim_{n\to\infty}g_n$) shows, that our condition is necessary.  In order to
-prove its sufficiency, assume that it is fulfilled.  We have then
+prove its sufficiency, assume that it is fulfilled.
+We have then
 \[
  \lim_{r\to\infty}
  \lVert A_{m_r}(\lambda)f(\lambda)-A(\lambda)f(\lambda)\rVert^2=0,
@@ -3687,8 +3691,8 @@ general $\alpha(x)$ apply \cite[p.~231]{ref11}: Two Baire-function
 $\alpha_1(x),\alpha_2(x)$ can be found, for which
 $\alpha_1(x)\leq\alpha(x)\leq\alpha_2(x)$, and which differ from each other
 (and thus from $\alpha(x)$) only on a set, which, using the terminology of
-\cite[p.~227]{ref11}, is a ``null set with respect to $A$''.  Thus
-$\alpha_1(A)=\alpha_2(A)=\alpha(A)$.  Besides
+\cite[p.~227]{ref11}, is a ``null set with respect to $A$''.
+Thus $\alpha_1(A)=\alpha_2(A)=\alpha(A)$.  Besides
 $\alpha_1(A)\sim\sum\alpha_1(A(\lambda))$,
 $\alpha_2(A)\sim\sum\alpha_2(A(\lambda))$, therefore both
 $\alpha(A)\sim\sum\alpha_1(A(\lambda))$ and
@@ -3726,7 +3730,8 @@ effect on the $B(\lambda)$.
 \section{\texorpdfstring{$\sigma(\lambda)$}{sigma(lambda)}-measurable
 dependence of \texorpdfstring{$\lambda$}{lambda}: for
 \texorpdfstring{$f(\lambda)$, $A(\lambda)$, $M(\lambda)$}{f(lambda), A(lambda),
-M(lambda)}. Discussion of \texorpdfstring{$f(\lambda)$, $A(\lambda)$}{f(lambda),
+M(lambda)}.\texorpdfstring{\\}{ } Discussion of
+\texorpdfstring{$f(\lambda)$, $A(\lambda)$}{f(lambda),
 A(lambda)}}
 \label{sec:15}
 
@@ -3798,14 +3803,13 @@ suffices to postulate the $\sigma(\lambda)$-measurability of all
 $(A(\lambda)\varphi_m(\lambda),\varphi_n(\lambda))$, $m,n=1,2,\ldots$.  This
 is clearly necessary, and it is sufficient too, because if
 $f(\lambda),g(\lambda)$ are $\sigma(\lambda)$-measurable, then
-\[
- (A(\lambda)f(\lambda),g(\lambda))
- =\sum_n\left[\sum_m
+\begin{align*}
+&(A(\lambda)f(\lambda),g(\lambda))\\
+&\quad=\sum_n\left[\sum_m
  (A(\lambda)\varphi_m(\lambda),\varphi_n(\lambda))
  (f(\lambda),\varphi_m(\lambda))
  \overline{(g(\lambda),\varphi_n(\lambda))}\right]
-\]
-
+\end{align*}
 % p. 446
 will also be $\sigma(\lambda)$-measurable.  This form of our definition is
 clearly the condition (i) in the criterium for the existence of an
@@ -3824,7 +3828,8 @@ the
 $\sigma(\lambda)$-measurability of $A(\lambda)$ implies that one of
 $A^*(\lambda)$.  If $A(\lambda),B(\lambda)$ are
 $\sigma(\lambda)$-measurable, then $A(\lambda)B(\lambda)$ has that property
-too: Let $f(\lambda),g(\lambda)$ be $\sigma(\lambda)$-measurable, then
+too:
+Let $f(\lambda),g(\lambda)$ be $\sigma(\lambda)$-measurable, then
 $B(\lambda)f(\lambda)$ is $\sigma(\lambda)$-measurable, and hence
 $A(\lambda)B(\lambda)f(\lambda)$ is $\sigma(\lambda)$-measurable too.
 
@@ -3880,8 +3885,8 @@ This is clearly a metric, and as the weak topology in $S$ is separable
 establish its equivalence to the weak topology, that
 $\lim_{p\to\infty}\operatorname{Dist}(A_p,A)=0$ is equivalent to weak
 $\lim_{p\to\infty}A_p=A$.  The latter means
-$\lim_{p\to\infty}(A_p\varphi_m,\varphi_n)=(A\varphi_m,\varphi_n)$ for all
-$m,n=1,2,\ldots$ (cf. \cite[pp.~385--386]{ref2}) and this is equivalent to the
+$\lim_{p\to\infty}(A_p\varphi_m,\varphi_n)=(A\varphi_m,\varphi_n)$
+for all $m,n=1,2,\ldots$ (cf. \cite[pp.~385--386]{ref2}) and this is equivalent to the
 former, as all series for $(\operatorname{Dist}(A,B))^2$ converge uniformly:
 \[
  \frac{1}{2^{m+n}}|(A\varphi_m,\varphi_n)-(B\varphi_m,\varphi_n)|^2
@@ -3889,16 +3894,15 @@ former, as all series for $(\operatorname{Dist}(A,B))^2$ converge uniformly:
  \qquad
  \sum_{m,n=1}^{\infty}\frac{4}{2^{m+n}}=4.
 \]
-
 % p. 447
 This metric space is separable, as $S$ in the weak topology is separable
 (cf. loc. cit. above), and it is complete too.  If
 $\lim_{p,q\to\infty}\operatorname{Dist}(A_p,A_q)=0$, then
 $\lim_{p,q\to\infty}|(A_p\varphi_m,\varphi_n)-(A_q\varphi_m,\varphi_n)|=0$,
-and so $\lim_{p\to\infty}(A_p\varphi_m,\varphi_n)=a_{mn}$ exists.  If
+and so $\lim_{p\to\infty}(A_p\varphi_m,\varphi_n)=a_{mn}$ exists.
+If
 $\sum_{m=1}^{\infty}|x_m|^2\leq1$ then
-\[
- \begin{aligned}
+\begin{align*}
  \sum_{n=1}^M\left|\sum_{m=1}^N a_{mn}x_m\right|^2
  &=\lim_{p\to\infty}\sum_{n=1}^M
       \left|\sum_{m=1}^N(A_p\varphi_m,\varphi_n)x_m\right|^2\\
@@ -3912,8 +3916,7 @@ $\sum_{m=1}^{\infty}|x_m|^2\leq1$ then
  &\leq\limsup_{p\to\infty}
       \left\lVert\sum_{m=1}^N x_m\varphi_m\right\rVert^2\\
  &=\limsup_{p\to\infty}\sum_{m=1}^N|x_m|^2\leq1,
- \end{aligned}
-\]
+\end{align*}
 and $N\to\infty$ and then $M\to\infty$ give
 $\sum_{n=1}^{\infty}|\sum_{m=1}^{\infty}a_{mn}x_m|^2\leq1$.
 
@@ -3996,8 +3999,8 @@ and nowhere constant $N$-function too.  It is clear from ($\gamma$) in
 \secref{sec:2} that $\sigma(\lambda)-\tau_1(\lambda)$ is
 $\sigma(\lambda)-\tau_1(\lambda)+\tau_2(\lambda)=\tau(\lambda)$-totally
 continuous.  Therefore $\tau(\lambda)$-measurability implies
-$\sigma(\lambda)-\tau_1(\lambda)$-measurability, and thus
-$\sigma(\lambda)$-measurability too.  Thus we may prove our lemma for
+$\sigma(\lambda)-\tau_1(\lambda)$-measurability,
+and thus $\sigma(\lambda)$-measurability too.  Thus we may prove our lemma for
 $\tau(\lambda)$ instead of $\sigma(\lambda)$.
 
 Since $\tau(\lambda)$ is a continuous and nowhere constant $N$-function,
@@ -4027,12 +4030,12 @@ definition
  \begin{cases}
   0,
     &\begin{aligned}
-      &m_\nu=n_\nu\text{ for all}\\[-1mm]
+      &m_\nu=n_\nu\text{ for all}\\
       &\nu=1,2,\ldots,
-     \end{aligned}\\[2mm]
+     \end{aligned}\\
   \dfrac1{\nu_0},
     &\begin{aligned}
-      &\nu_0\text{ is the smallest }\nu=1,2,\ldots\\[-1mm]
+      &\nu_0\text{ is the smallest }\nu=1,2,\ldots\\
       &\text{for which }m_\nu\ne n_\nu.
      \end{aligned}
  \end{cases}
@@ -4082,8 +4085,8 @@ Consider now a $\lambda\in K$.  Denote the set of all $\alpha\in S_0$ with
 $F(\varphi(\alpha))=\lambda$ by $T(\lambda)$.  As $\lambda\in K$,
 $T(\lambda)$ is not empty, and as $F(\varphi(\alpha))$ is continuous,
 $T(\lambda)$ is closed.  Denote the smallest $n_1$ with
-$[n_1,n_2,n_3,\ldots]\in T(\lambda)$ (for any $n_2,n_3,\ldots$) by $n_1^0$,
-the smallest $n_2$ with
+$[n_1,n_2,n_3,\ldots]\in T(\lambda)$ (for any $n_2,n_3,\ldots$)
+by $n_1^0$, the smallest $n_2$ with
 $[n_1^0,n_2,n_3,\ldots]\in T(\lambda)$ (for any $n_3,n_4,\ldots$) by $n_2^0$,
 the smallest $n_3$ with
 $[n_1^0,n_2^0,n_3,\ldots]\in T(\lambda)$ (for any $n_4,n_5,\ldots$) by
@@ -4113,7 +4116,6 @@ $N(T_1),N(T_2),\ldots$ are all measurable, so is $N(T)$.
 
 Let finally $O$ be an open subset of $S$, and denote by $T(O)$ the set of all
 $\alpha\in S_0$
-
 % p. 450
 with $\varphi(\alpha)\in O$.  As $O$ is open and $\varphi(\alpha)$ is
 continuous, therefore $T(O)$ is open too.  Thus $N(T(O))$ is measurable.
@@ -4199,14 +4201,15 @@ means
  \label{eq:17.1}
 \end{equation}
 The second means that $(g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}$ commute with all
-elements of $M(\lambda)$.  In order that this be the case, it suffices for
+ elements of $M(\lambda)$.  In order that this be the case, it suffices for
 $(g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}$ to commute with the
 $A_i(\lambda)$, $i=1,2,\ldots$.  In other words:
 \[
  (g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}A_i(\lambda)
  =A_i(\lambda)(g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}
 \]
-for $i=1,2,\ldots$, or:
+for $i=1,2,\ldots$,
+or:
 \[
  \bigl((g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}A_i(\lambda)
        \varphi_m(\lambda),\varphi_n(\lambda)\bigr)
@@ -4214,11 +4217,9 @@ for $i=1,2,\ldots$, or:
        \varphi_m(\lambda),\varphi_n(\lambda)\bigr)
 \]
 for $i,m,n=1,2,\ldots$.
-
 % p. 451
 We have however:
-\[
- \begin{aligned}
+\begin{align*}
  &\bigl((g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}A_i(\lambda)
        \varphi_m(\lambda),\varphi_n(\lambda)\bigr)\\
  &\quad=(A_i(\lambda)\varphi_m(\lambda),
@@ -4231,30 +4232,25 @@ We have however:
         g_p^{(\lambda)}\varphi_n(\lambda))\\
  &\quad=\sum_{l=1}^p(A_i(\lambda)\varphi_m(\lambda),\varphi_l(\lambda))
        (A\psi'_l,\psi'_n),
- \end{aligned}
-\]
+\end{align*}
 and similarly:
-\[
- \begin{aligned}
+\begin{align*}
  &\bigl(A_i(\lambda)(g_p^{(\lambda)})^{-1}Ag_p^{(\lambda)}
        \varphi_m(\lambda),\varphi_n(\lambda)\bigr)\\
  &\quad=\sum_{l=1}^p(A\psi'_m,\psi'_l)
        (A_i(\lambda)\varphi_l(\lambda),\varphi_n(\lambda)).
- \end{aligned}
-\]
+\end{align*}
 So we obtain the following conditions:
-\begin{equation}
- \begin{aligned}
+\begin{align}
  &\sum_{l=1}^p
-   (A_i(\lambda)\varphi_m(\lambda),\varphi_l(\lambda))
-   (A\psi'_l,\psi'_n)\\
+    (A_i(\lambda)\varphi_m(\lambda),\varphi_l(\lambda))
+    (A\psi'_l,\psi'_n)\notag\\
  &\qquad-
-   \sum_{l=1}^p(A\psi'_m,\psi'_l)
-   (A_i(\lambda)\varphi_l(\lambda),\varphi_n(\lambda))=0,\\
- &\hspace{8em}\text{for }i,m,n=1,2,\ldots.
- \end{aligned}
- \label{eq:17.2}
-\end{equation}
+    \sum_{l=1}^p(A\psi'_m,\psi'_l)
+    (A_i(\lambda)\varphi_l(\lambda),\varphi_n(\lambda))=0,
+    \label{eq:17.2}\\
+ &\text{for }i,m,n=1,2,\ldots.\notag
+\end{align}
 The left side of \eqref{eq:17.1} is clearly a Baire-function in $\lambda$, and
 independent of $A$.  In the left side of \eqref{eq:17.2} the factors
 $(A_i(\lambda)\varphi_m(\lambda),\varphi_l(\lambda))$ are Baire-functions in
@@ -4292,7 +4288,6 @@ Borel-set too.
 As $O^*_{pj}M_p^*$ is a Borel-set in $r\times S_p$, it is \emph{a fortiori} an
 analytic set.  Therefore Lemma~\ref{lem:5} applies to it: Define
 $F(\lambda,A)=\lambda$, which is obviously a continuous
-
 % p. 452
 function.  We denote the set $K$ and the function $f(\lambda)$, as defined
 there, by $K_{pj}$, $f_{pj}(\lambda)$ (because their dependence on $p,j$ is now
@@ -4303,21 +4298,19 @@ put: $f_{pj}(\lambda)=(\lambda,B^0_{pj}(\lambda))$.
 Let $U$ be an open set in the complex-number-plane.  The set of all $A\in S_p$
 with $(A\psi'_m,\psi'_n)\in U$ is obviously open, and thus the set of all
 $(\lambda,A)\in r\times S_p$ with $(A\psi'_m,\psi'_n)\in U$ is open too.
-Therefore the set of all those $\lambda\in K_{pj}$, for which
+Therefore the set of all those $\lambda\in K_{pj}$ for which
 $f_{pj}(\lambda)=(\lambda,B^0_{pj}(\lambda))$ belongs to this set, is
 $\sigma(\lambda)$-measurable by Lemma~\ref{lem:5}.  This set is characterized
 by $(B^0_{pj}(\lambda)\psi'_m,\psi'_n)\in U$.  As this is true for all open
 $U$'s, it means that the function
 $(B^0_{pj}(\lambda)\psi'_m,\psi'_n)$ is $\sigma(\lambda)$-measurable.  As
-\[
- \begin{aligned}
+\begin{align*}
  (B^0_{pj}(\lambda)\psi'_m,\psi'_n)
  &=\bigl(B^0_{pj}(\lambda)g_p^{(\lambda)}\varphi_m(\lambda),
           g_p^{(\lambda)}\varphi_n(\lambda)\bigr)\\
  &=\bigl((g_p^{(\lambda)})^{-1}B^0_{pj}(\lambda)g_p^{(\lambda)}
           \varphi_m(\lambda),\varphi_n(\lambda)\bigr),
- \end{aligned}
-\]
+\end{align*}
 we can apply \hyperref[rem:15.2]{Remark 2} after Definition~\ref{def:5}: The operator
 $(g_p^{(\lambda)})^{-1}B^0_{pj}(\lambda)g_p^{(\lambda)}$ (in
 $\mathfrak H^{(\lambda)}$) is $\sigma(\lambda)$-measurable.
@@ -4384,7 +4377,6 @@ $D_i(\lambda)$, $i=1,2,\ldots$.  Then we have proved: $N$ has the
 $\sigma(\lambda)$-measure $0$, each $D_i(\lambda)$ (in
 $\mathfrak H^{(\lambda)}$) is $\sigma(\lambda)$-measurable, if
 $\lambda\notin N$ then the $D_i(\lambda)$,
-
 % p. 453
 $i=1,2,\ldots$, generate the ring $M(\lambda)'$.  Now change the
 $D_i(\lambda)$, $i=1,2,\ldots$, for each $\lambda\in N$ in an arbitrary way
@@ -4423,12 +4415,12 @@ generate the ring $P(\lambda)$.  So $P(\lambda)$ is
 $\sigma(\lambda)$-measurable by Definition~\ref{def:5}.
 
 This, together with Lemma~\ref{lem:7}, gives now our result for $N(\lambda)$
-too, because
+too,\footnotemark\ because
 \[
  N(\lambda)=M_1(\lambda)M_2(\lambda)\cdots
  =\bigl(R(M_1(\lambda)',M_2(\lambda)',\ldots)\bigr)'.
 \]
-\footnote{The general relation
+\footnotetext{The general relation
 $M_1M_2\cdots=(R(M'_1,M'_2,\ldots))'$ is proved as follows: The operators which
 commute with a given $A$ form a ring, so if they include
 $M_1,M_2,\ldots$ they must also include $R(M_1,M_2,\ldots)$.  The converse is
@@ -4484,13 +4476,11 @@ characterized by $E^*=E$, $E^2=E$, that is:
 $(E^*\psi'_m,\psi'_n)=(E\psi'_m,\psi'_n)$,
 $(E^2\psi'_m,\psi'_n)=(E\psi'_m,\psi'_n)$, that is (cf. the analogous
 computations in the proof of Lemma~\ref{lem:6}):
-\[
- \overline{(E\psi'_n,\psi'_m)}-(E\psi'_m,\psi'_n)=0,
-\]
-\[
+\begin{gather*}
+ \overline{(E\psi'_n,\psi'_m)}-(E\psi'_m,\psi'_n)=0,\\
  \sum_{l=1}^p(E\psi'_m,\psi'_l)(E\psi'_l,\psi'_n)
  -(E\psi'_m,\psi'_n)=0.
-\]
+\end{gather*}
 As the left sides are Baire-functions of $E$ (in the weak topology of $S_p$,
 cf. the considerations loc. cit. above), we conclude as loc. cit., that they
 determine a Borel-set in $S_p$.  Now we can infer, that the set $\mathfrak E_p$
@@ -4564,7 +4554,6 @@ and
  +(\Delta_2-\widetilde N_2-\overline{\widetilde N}_2)+\cdots
  +(\Delta_\infty-\widetilde N_\infty-\overline{\widetilde N}_\infty)=r-N.
 \]
-
 % p. 455
 Thus if $\lambda\notin N$, then $\lambda$ belongs to some
 $\Delta_p-\widetilde N_p-\overline{\widetilde N}_p$,
@@ -4678,7 +4667,7 @@ $\sigma(\lambda)$-measurable along with $A_i(\lambda)$. Thus the operators
 A_i^0(\lambda)=
 \begin{cases}
 \dfrac{1}{\tnormleft A_i(\lambda)\tnormright}\,A_i(\lambda),
-  &\text{for }\tnormleft A_i(\lambda)\tnormright\ne0,\\[6pt]
+  &\text{for }\tnormleft A_i(\lambda)\tnormright\ne0,\\[0.35\baselineskip]
 0,&\text{for }\tnormleft A_i(\lambda)\tnormright=0
    \quad(\text{that is }A_i(\lambda)=0)
 \end{cases}
@@ -4716,8 +4705,10 @@ $\widetilde M,\widetilde M'$ are both $\supset P$ and $\subset P'$. As the
 space of all operators $A$ (in $\mathfrak H$) with
 $\tnormleft A\tnormright\leq1$ is separable
 (cf. \cite[p.~386]{ref2}), therefore the part of $\widetilde M'$ in it is
-separable too. Thus there exists a sequence of operators $B_j$,
-$j=1,2,\ldots$, which is dense in it. As all $B_j\in\widetilde M'$, therefore
+separable too.
+Thus there exists a sequence of operators $B_j$,
+$j=1,2,\ldots$, which is dense in it.
+As all $B_j\in\widetilde M'$, therefore
 $R(B_1,B_2,\ldots)\subset\widetilde M'$; and by our construction
 $R(B_1,B_2,\ldots)$ contains all $A\in\widetilde M'$,
 $\tnormleft A\tnormright\leq1$, thus all $A\in\widetilde M'$, that is
@@ -4742,7 +4733,6 @@ $\sigma(\lambda)$-measure $0$. On this $\lambda$-set we may replace
 $A(\lambda)$ by $0$, so we see: The condition is
 $A\sim\sum A(\lambda)$, where $A(\lambda)$ commutes with all
 $B_j(\lambda),B_j(\lambda)^*$.
-
 \origpage{457}
 Denote the ring generated by $1,B_j(\lambda),B_j(\lambda)^*$ (in
 $\mathfrak H^{(\lambda)}$) by $N(\lambda)$, then our condition is:
@@ -4791,13 +4781,13 @@ $E,F$ with $E\sim\sum E(\lambda)$, $F\sim\sum F(\lambda)$. As
 $E(\lambda)\in N(\lambda)'$ for all $\lambda$, we have
 $E\in\widetilde M$. As $F(\lambda)\in M(\lambda)'$, $F(\lambda)$ commutes
 with all $A_i(\lambda),A_i(\lambda)^*$, therefore $F$ commutes with all
-$A_i,A_i^*$. By \hyperref[thm:V]{Theorem~V}, $F\in P'$, so $F$ commutes with all $P$ too. Thus
-$F$ commutes with $\widetilde M$, hence with $E$, and therefore $F(\lambda)$
+$A_i,A_i^*$. By \hyperref[thm:V]{Theorem~V}, $F\in P'$, so $F$ commutes with all $P$ too.
+Thus $F$ commutes with $\widetilde M$, hence with $E$, and therefore $F(\lambda)$
 with $E(\lambda)$, except for a set of $\sigma(\lambda)$-measure $0$. For the
 non-exceptional $\lambda$, $F(\lambda)$ commutes with $E(\lambda)$, and as
 $F(\lambda)\in M(\lambda)'$, with all $M(\lambda)$ too, thus $F(\lambda)$
-commutes with the ring generated by $M(\lambda)$ and $E(\lambda)$ too. This
-means $F(\lambda)\in R(M(\lambda),E(\lambda))'$, and thus implies
+commutes with the ring generated by $M(\lambda)$ and $E(\lambda)$ too.
+This means $F(\lambda)\in R(M(\lambda),E(\lambda))'$, and thus implies
 $\lambda\notin\mathcal M$. Therefore $\mathcal M$ must have the
 $\sigma(\lambda)$-measure $0$.
 
@@ -4854,8 +4844,9 @@ That the change of the $M(\lambda)$ on a set of $\sigma(\lambda)$-measure
 $0$ does not affect $M\approx\sum M(\lambda)$, is obvious. Thus it remains
 to prove only this: If $M\approx\sum M(\lambda)$ and
 $M\approx\sum N(\lambda)$, then $M(\lambda)=N(\lambda)$, except for a
-$\sigma(\lambda)$-set of measure $0$. Consider $M(\lambda)N(\lambda)$ and
-$N(\lambda)$, both are $\sigma(\lambda)$-measurable
+$\sigma(\lambda)$-set of measure $0$.
+Consider $M(\lambda)N(\lambda)$ and $N(\lambda)$, both are
+$\sigma(\lambda)$-measurable
 (cf. \hyperref[lem:8]{Lemma 8}). As there is always
 $M(\lambda)N(\lambda)\subset N(\lambda)$, we can apply
 \hyperref[lem:9]{Lemma 9}. There exists a $\sigma(\lambda)$-measurable
@@ -4919,7 +4910,6 @@ $M'\approx\sum M(\lambda)'$.
 \begin{itshape}
 $M_s\approx\sum M_s(\lambda)$, $s=1,2,\ldots$ (the sequence of the
 $s$ may be finite
-
 \origpage{459}
 or infinite) implies
 \[
@@ -4938,7 +4928,8 @@ The questions of $\sigma(\lambda)$-measurability are settled by
 \hyperref[lem:8]{Lemma 8}. The statement
 $M_1\cdot M_2\cdot\ldots\approx
 \sum M_1(\lambda)\cdot M_2(\lambda)\cdot\ldots$ is obvious, if we only
-remember \hyperref[def:6]{Definition~6}. Now this gives, together with
+remember \hyperref[def:6]{Definition~6}.
+Now this gives, together with
 \hyperref[lem:13]{Lemma 13}, the statement
 \[
 R(M_1,M_2,\ldots)'
@@ -5020,7 +5011,6 @@ $M\cdot M'\subset M$ so $(M\cdot M')'\supset M'\supset M\cdot M'$.
 By \hyperref[lem:13]{Lemmas 13}, \hyperref[lem:14]{14},
 $M\cdot M'\approx\sum M(\lambda)\cdot M(\lambda)'$ and by the second
 statement of
-
 \origpage{460}
 \secref{sec:14}, $P\approx\sum 0(\lambda)$. Thus
 \hyperref[thm:VI]{Theorem VI} shows that
@@ -5086,9 +5076,9 @@ is a relative dimensionality function in the case III only
 
 \par\smallskip\noindent\textbf{Remark:}\phantomsection\label{rem:21}
 It will appear from the proof, that this lemma remains true if we replace the
-condition (ii) in \hyperref[def:7]{Definition 7}, by the weaker condition
+condition (ii) in \hyperref[def:7]{\mbox{Definition 7}}, by the weaker condition
 (ii)$'$, which arises from (ii) by permitting two addends $E_j$ ($j=1,2$)
-only. Thus it would not affect \hyperref[def:7]{Definition 7} essentially if
+only. Thus it would not affect \hyperref[def:7]{\mbox{Definition 7}} essentially if
 we replaced in it (ii) by (ii)$'$, provided that $M$ is a factor. But for
 general rings $M$ this replacement is essential, as we will see in $(\gamma)$
 in \secref{sec:24}.
@@ -5102,7 +5092,6 @@ fulfills (ii) by \cite[Lemma~8.3.2]{ref10}; and (iii) follows from
 $d_M(V^*V)=d_M(VV^*)$ for every partially isometric $V$
 (cf. \cite[Definition~6.1.1 and Lemma~4.3.1]{ref10}), and we need only put
 $V=UE$ (then $V^*=E^*U^*=EU^{-1}$,
-
 \origpage{461}
 and so $V^*V=E$, $VV^*=UEU^{-1}$). Thus we must only prove the converse
 statement. If a weight function $d_M(E)$ is not $\Delta_M^{\infty}(E)$, that
@@ -5176,7 +5165,6 @@ Let $d_{M(\lambda)}(E)$ be a relative dimensionality function, let the
 projection $E(\lambda)\in M(\lambda)$ depend
 $\sigma(\lambda)$-measurably on $\lambda$. Denote the sets of all
 $\lambda$'s where
-
 \origpage{462}
 $d_{M(\lambda)}(E)=0$, or $=\infty$, or $>0$, $<\infty$, by
 $M_0$ or $M_\infty$ or $M_r$, respectively. These sets are
@@ -5253,7 +5241,7 @@ operators $\widetilde A$ in $\mathfrak H_p'$ with
 $\tnormleft\widetilde A\tnormright\leq1$ (in its weak topology) by
 $S_p$. Let the set of all pairs $(\lambda,\widetilde V)$ in $r\times S_p$
 with $\lambda\in\Delta_p'$ and fulfilling \eqref{eq:21.2} be $D_p$. Proceed
-as in the proof of \hyperref[lem:6]{Lemma 6}: Replace the operator equations
+as in the proof of \hyperref[lem:6]{\mbox{Lemma 6}}: Replace the operator equations
 $X=Y$ of \eqref{eq:21.2} by the equivalent numerical equations
 $(X\psi_m',\psi_n')=(Y\psi_m',\psi_n')$, $m,n=1,2,\ldots$. Now these
 expressions are convergent, infinite sums, the terms of which are polynomials
@@ -5357,9 +5345,8 @@ Proceed now as in the proofs of \hyperref[lem:6]{Lemmas 6},
 $\lambda$'s with $k(\lambda)=p$, $p=1,2,\ldots,\infty$, choose
 $N_p$, $\Delta_p'=\Delta_p-N_p$ as there, with respect to the operators
 $E(\lambda),F(\lambda),A_q(\lambda),A_q(\lambda)^*$, $q=1,2,\ldots$.
-Introduce $\mathfrak H_p'$, the $\psi_1',\psi_2',\ldots$, and the isomorphism
-$J^{(\lambda)}$ as there. Replace now in our
-
+Introduce $\mathfrak H_p'$, the $\psi_1',\psi_2',\ldots$, and the
+isomorphism $J^{(\lambda)}$ as there. Replace now in our
 \origpage{464}
 above conditions the $V_s$ in $\mathfrak H^{(\lambda)}$ by their
 $J^{(\lambda)}$-isomorphic
@@ -5446,7 +5433,8 @@ $>\alpha$. Then we can put
 d_{M(\lambda)}(K)=\frac{1}{v}d_{M(\lambda)}(F(\lambda))
 \quad\text{and hence}\quad
 \leq\frac{1}{u}d_{M(\lambda)}(E(\lambda)).
-\]} Therefore
+\]}
+Therefore
 \[
 Q_\alpha=M_rP_r\sum_{\substack{u,v=1,2,\ldots\\u/v>\alpha}}M_{u,v},
 \]
@@ -5546,7 +5534,6 @@ A weight function $\Delta_{M(\lambda)}(E)$ is
 $\sigma(\lambda)$-measurable (in its dependence on $\lambda$) if the
 (numerical) function $\Delta_{M(\lambda)}(E(\lambda))$ is
 $\sigma(\lambda)$-measurable whenever
-
 \origpage{466}
 $E(\lambda)$ is $\sigma(\lambda)$-measurable. (This nomenclature applies to
 the relative dimensionality functions $d_{M(\lambda)}(E)$ too, as they
@@ -5605,7 +5592,7 @@ d^*_{M(\lambda)}(E)=a^*(\lambda)d_{M(\lambda)}(E),\qquad
 a^*(\lambda)=
 \begin{cases}
 \dfrac{1}{d_{M(\lambda)}(\overline E(\lambda))},
-   &\text{for }\lambda\in\overline M,\\[6pt]
+   &\text{for }\lambda\in\overline M,\\[0.35\baselineskip]
 1,&\text{for }\lambda\notin\overline M.
 \end{cases}
 \]
@@ -5648,10 +5635,8 @@ $a(\lambda)$ in $r-C_{III}$ uniquely, but that it leaves $a(\lambda)$
 completely arbitrary in $C_{III}$. ($C_{III}$ is the set of all $\lambda$'s,
 for which $M(\lambda)$ belongs to the class III, cf.
 \cite[Theorem~VIII]{ref10}. Cf. also the notations introduced in
-\secref{sec:22}, and in particular
-
-\origpage{467}
-in \hyperref[def:9]{Definition 9}.) Besides
+\secref{sec:22}, and in particular \origpage{467}in
+\hyperref[def:9]{\mbox{Definition~9}}.) Besides
 $\overline M\subset r-C_{III}$, because $\lambda\in\overline M$ implies
 $d_{M(\lambda)}(\overline E(\lambda))>0$, $<+\infty$, and therefore
 $\lambda\notin C_{III}$. Thus our result would be very natural, if
@@ -5694,7 +5679,7 @@ space over the following classes:
 \qquad (III,III).
 \]
 (This is really a classification for the ``coupled factorizations''
-$M^*,M^{*'}$ of $\mathfrak H^*$, cf. \cite[Definition~3.1.3]{ref10}, but we
+$M^*,M^{*'}$ of $\mathfrak H^*$, cf. \mbox{\cite[Definition~3.1.3]{ref10}}, but we
 wish to use it for the factors $M^*$ themselves.) Denote the set of these
 classes by $\mathfrak C$, and the general element of $\mathfrak C$ by $c$.
 
@@ -5726,14 +5711,12 @@ C_{I_m}=\sum_{n=1,2,\ldots,\infty}C_{(I_m,I_n)},\qquad
 C_I=\sum_{m=1,2,\ldots,\infty}C_{I_m}
 =\sum_{m,n=1,2,\ldots,\infty}C_{(I_m,I_n)},
 \]
-\[
-\begin{aligned}
+\begin{align*}
 C_{II_\alpha}&=\sum_{\beta=1,\infty}C_{(II_\alpha,II_\beta)},\qquad
 C_{II}=\sum_{\alpha=1,\infty}C_{II_\alpha}
 =\sum_{\alpha,\beta=1,\infty}C_{(II_\alpha,II_\beta)},\\
 C_{III}&=C_{(III,III)}.
-\end{aligned}
-\]
+\end{align*}
 
 \origpage{468}
 We define furthermore two sets $C_f,C_i$:
@@ -5813,10 +5796,9 @@ $\varphi_m^{(\lambda)}$ corresponds to
 $\psi_m^*$. Let the $A_q(\lambda)$, $q=1,2,\ldots$, be
 $\sigma(\lambda)$-measurable, such that $A_q(\lambda)$, $q=1,2,\ldots$,
 generate the ring $M(\lambda)$ and the $B_q(\lambda)$,
-$q=1,2,\ldots$, the same for $M(\lambda)'$. Let the
-$\overline A_1,\overline A_2,\ldots$ be operators in $\mathfrak H^*$
+$q=1,2,\ldots$, the same for $M(\lambda)'$.
+Let the $\overline A_1,\overline A_2,\ldots$ be operators in $\mathfrak H^*$
 generating the ring $M^*$, and
-
 \origpage{469}
 $\overline B_1,\overline B_2,\ldots$ the ring $M^{*'}$. Choose a set
 $N_p\subset\Delta_p$ of $\sigma(\lambda)$-measure $0$, as in the proofs
@@ -5867,10 +5849,10 @@ $\tnormleft U\tnormright\leq1$.
 Consider now the set $C_p$ of all pairs $(\lambda,U)$ in $r\times S_p$, for
 which $\lambda\in\Delta_p'$ and $\lambda,U$ fulfill \eqref{eq:22.1}. One
 proves by the same computations as in the proofs of
-\hyperref[lem:17]{Lemmas 17} and \hyperref[lem:18]{18}, that $C_p$ is a
+\hyperref[lem:17]{\mbox{Lemmas 17}} and \hyperref[lem:18]{18}, that $C_p$ is a
 Borel-set in $r\times S_p$. $\lambda\in\Delta_p'D_{M^*}$ means that there
 exists a $U$ with $(\lambda,U)\in C_p$. From this we infer as in
-\hyperref[lem:17]{Lemmas 17} and \hyperref[lem:18]{18} that
+\hyperref[lem:17]{\mbox{Lemmas 17}} and \hyperref[lem:18]{18} that
 $\Delta_p'D_{M^*}$ is $\sigma(\lambda)$-measurable.
 
 As $D_{M^*}\subset\Delta_p$, therefore
@@ -5895,7 +5877,8 @@ open for $C_{(II_\infty,II_\infty)}$ and $C_{(III,III)}$ separately.
 Choose two $m,n=1,2,\ldots,\infty$, an $mn$-dimensional unitary space
 $\mathfrak H^*$, and in it a coupled factorization $M^*,M^{*'}$ of class
 $(I_m,I_n)$. (Cf. \cite[Definitions~3.1.1--3.1.3 and
-Theorem~VIII]{ref10}.) We know from \cite[Lemma~8.6.1]{ref10} that
+Theorem~VIII]{ref10}.)
+We know from \cite[Lemma~8.6.1]{ref10} that
 $M(\lambda)$ in $\mathfrak H^{(\lambda)}$ is of class $(I_m,I_n)$ if and
 only if an isomorphic mapping $J^*$ of $\mathfrak H^*$ on
 $\mathfrak H^{(\lambda)}$ exists, which carries $M^*$ into $M(\lambda)$.
@@ -5911,7 +5894,6 @@ C_f=\sum_{m,n=1,2,\ldots,\infty}C_{(I_m,I_n)}
 \]
 these results imply the $\sigma(\lambda)$-measurability of
 $C_{(II_1,II_1)}+C_{(II_1,II_\infty)}$. If we replace $M$ by $M'$, then
-
 \origpage{470}
 $M(\lambda)$ and $M(\lambda)'$ are interchanged, and so
 $C_{(II_1,II_1)},C_{(II_1,II_\infty)}$ become
@@ -5972,8 +5954,8 @@ The connection of these sets with the set $\overline M$ of
 \hyperref[lem:19]{Lemma 19} is of interest, too. We have already proved
 $\overline M\subset r-C_{III}=r-C_{(III,III)}$. Consider now
 $E(\lambda)=1$, for this $M_r=C_f$, and so by \hyperref[lem:19]{Lemma 19}
-$\mu_{\sigma(\lambda)}(C_f-C_f\overline M)=0$. In other words: If we
-disregard a set of $\sigma(\lambda)$-measure $0$, then
+$\mu_{\sigma(\lambda)}(C_f-C_f\overline M)=0$. In other words:
+If we disregard a set of $\sigma(\lambda)$-measure $0$, then
 $\overline M\supset C_f$. As $\overline M$ is only defined up to such a set,
 we may assume $\overline M\supset C_f$. One can prove furthermore that
 $\overline M\supset C_{(I_\infty,I_\infty)}$, and that $\overline M$ is
@@ -5985,19 +5967,16 @@ $C_{(I_m,I_\infty)}$ into $C_{(I_\infty,I_m)}$, and
 $C_{(II_1,II_\infty)}$ into $C_{(II_\infty,II_1)}$, this implies
 $\overline M\supset C_{(I_\infty,I_m)}$, $m=1,2,\ldots$, and
 $\supset C_{(II_\infty,II_1)}$. Thus we have
-\[
-\begin{aligned}
+\begin{align*}
 \overline M\supset{}&C_f+C_{(I_\infty,I_1)}+C_{(I_\infty,I_2)}+\cdots
 +C_{(I_\infty,I_\infty)}+C_{(II_\infty,II_1)}\\
 ={}&r-\bigl(C_{(II_\infty,II_\infty)}+C_{(III,III)}\bigr).
-\end{aligned}
-\]
+\end{align*}
 So we have
 \[
 r-\bigl(C_{(II_\infty,II_\infty)}+C_{(III,III)}\bigr)
 \subset\overline M\subset r-C_{(III,III)}.
 \]
-
 \origpage{471}
 The two first sets are $\sigma(\lambda)$-measurable, while we do not know
 this about the third one; but we saw that there are reasons to surmise that
@@ -6055,8 +6034,8 @@ $\sigma(\lambda)$-measurability.
 Now choose $\sigma(\lambda)$-measurable operators $A_q(\lambda)$,
 $q=1,2,\ldots$, generating $M(\lambda)'$. For each
 $p=1,2,\ldots,\infty$ proceed as in the proofs of
-\hyperref[lem:17]{Lemmas 17}, \hyperref[lem:18]{18}, and
-\hyperref[lem:20]{20}: Choose $N_p$ as a set with
+\mbox{\hyperref[lem:17]{Lemmas 17}, \hyperref[lem:18]{18}, and
+\hyperref[lem:20]{20}}: Choose $N_p$ as a set with
 $\mu_{\sigma(\lambda)}(N_p)=0$, such that $\Delta_p'=\Delta_p-N_p$ is a
 Borel-set, and the (numerical) functions
 $(E(\lambda)\varphi_m(\lambda),\varphi_n(\lambda))$,
@@ -6070,25 +6049,20 @@ $\mathfrak H^{(\lambda)}$ on $\mathfrak H_p$ which carries
 $\varphi_m(\lambda)$ into $\psi_m'$.
 
 Under these conditions our $V_j(\lambda)$'s are characterized by
-\begin{equation}
-\begin{gathered}
-(j=1)\qquad V^*V=E(\lambda),\quad VV^*=F(\lambda),\\
+\begin{gather}
+(j=1)\qquad V^*V=E(\lambda),\quad VV^*=F(\lambda),\notag\\
 VA_q(\lambda)=A_q(\lambda)V,\quad
 VA_q(\lambda)^*=A_q(\lambda)^*V\quad(q=1,2,\ldots),
-\end{gathered}
 \tag{23.1$_1$}\label{eq:23.1.1}
-\end{equation}
+\end{gather}
 and
-\begin{equation}
-\begin{gathered}
-(j=2)\qquad V^*V=E(\lambda),\quad VV^*F(\lambda)=VV^*,\\
+\begin{gather}
+(j=2)\qquad V^*V=E(\lambda),\quad VV^*F(\lambda)=VV^*,\notag\\
 VA_q(\lambda)=A_q(\lambda)V,\quad
 VA_q(\lambda)^*=A_q(\lambda)^*V\quad(q=1,2,\ldots),
-\end{gathered}
 \tag{23.1$_2$}\label{eq:23.1.2}
-\end{equation}
+\end{gather}
 and
-
 \origpage{472}
 \begin{equation}
 \left\{
@@ -6114,13 +6088,13 @@ satisfy the equivalent of any of \eqref{eq:23.1.1},
 \eqref{eq:23.1.2}, and \eqref{eq:23.1.3}, then they are partially
 isometric, implying
 $\tnormleft\widetilde V\tnormright\leq1$,
-$\tnormleft\widetilde V'\tnormright\leq1$. Denote the sets of all
-pairs $(\lambda,\widetilde V)$ and triplets
+$\tnormleft\widetilde V'\tnormright\leq1$.
+Denote the sets of all pairs $(\lambda,\widetilde V)$ and triplets
 $(\lambda,\widetilde V,\widetilde V')$ fulfilling
 $\lambda\in\Delta_p'$ and \eqref{eq:23.1.1}, \eqref{eq:23.1.2}, and
 \eqref{eq:23.1.3}, respectively by $G_p^1,G_p^2$ and $G_p^3$. We prove as in
-the proofs of \hyperref[lem:17]{Lemmas 17}, \hyperref[lem:18]{18} and
-\hyperref[lem:20]{20} that these are respectively Borel-sets in
+the proofs of \mbox{\hyperref[lem:17]{Lemmas 17}, \hyperref[lem:18]{18} and
+\hyperref[lem:20]{20}} that these are respectively Borel-sets in
 $r\times S_p$ and $r\times S_p\times S_p$. Now apply \hyperref[lem:5]{Lemma~5} to
 $S=r\times S_p$ and $r\times S_p\times S_p$, $A=G_p^1,G_p^2$ and $G_p^3$
 and $F((\lambda,V))=\lambda$ and
@@ -6172,8 +6146,8 @@ $\sigma(\lambda)$-measurable set $K$ form the function
 0&\text{for }\lambda\notin K,
 \end{cases}
 \]
-and the operator $1_K$ (cf. \secref{sec:7}). As
-$1_K(\lambda)^2=1_K(\lambda)=\overline{1_K(\lambda)}$, therefore $1_K$ is a
+and the operator $1_K$ (cf. \secref{sec:7}).
+As $1_K(\lambda)^2=1_K(\lambda)=\overline{1_K(\lambda)}$, therefore $1_K$ is a
 projection, and by definition (in \secref{sec:11})
 $1_K\in P=M\cdot M'$. Thus for every $E\in M$, $E$ and $1_K$ commute, and
 therefore $1_K E$ is a projection along with $E$. So we can form
@@ -6205,33 +6179,27 @@ such a $K_j$ with $\mu_{\sigma(\lambda)}(K_j)\geq\alpha-1/j$. If $m(K)$ is
 finite and $K'\subset K$, then $(\beta)$ gives
 $m(K')+m(K-K')=m(K)$, and so $m(K')$ is finite too; if $m(K')$, $m(K'')$ are
 finite, then $m(K'-K'K'')$ is finite, and so by $(\beta)$
-\[
-\begin{aligned}
+\begin{align*}
 m(K'+K'')&=m(K'+(K''-K'K''))\\
 &=m(K')+m(K''-K'K'').
-\end{aligned}
-\]
+\end{align*}
 is finite too. Thus if we define
 $L_j=K_j-(K_1+\cdots+K_{j-1})K_j$, then $m(L_j)$ is finite too; besides
 $L_jL_k=0$ for $j\ne k$, and $L_1+L_2+\cdots=K_1+K_2+\cdots$. If $m(K)$ is
 finite, then $m(K_j+K)$ is finite too, so
 $\mu_{\sigma(\lambda)}(K_j+K)\leq\alpha$. Therefore
-\[
-\begin{aligned}
+\begin{align*}
 \mu_{\sigma(\lambda)}(K-K_jK)
  &=\mu_{\sigma(\lambda)}((K_j+K)-K_j)\\
  &=\mu_{\sigma(\lambda)}(K_j+K)-\mu_{\sigma(\lambda)}(K_j)\\
  &\leq\alpha-(\alpha-1/j)=1/j.
-\end{aligned}
-\]
+\end{align*}
 and \textit{a fortiori}
-\[
-\begin{aligned}
+\begin{align*}
 \mu_{\sigma(\lambda)}(K-(L_1+L_2+\cdots)K)
  &=\mu_{\sigma(\lambda)}(K-(K_1+K_2+\cdots)K)\\
  &\leq\mu_{\sigma(\lambda)}(K-K_jK)\leq1/j.
-\end{aligned}
-\]
+\end{align*}
 As this holds for every $j=1,2,\ldots$, it gives
 $\mu_{\sigma(\lambda)}(K-(L_1+L_2+\cdots)K)=0$. In particular: if
 $K\subset r-(L_1+L_2+\cdots)=L_\infty$ and $m(K)$ finite, then
@@ -6281,7 +6249,6 @@ m(L_\infty K)=
 \]
 Now put
 $\delta_M^{(\lambda)}(E)=\sum_{j=1}^{\infty}w_j(\lambda)$ (we
-
 \origpage{474}
 indicate in this way the dependence on $\lambda,M,E$), then summation of
 \eqref{eq:23.2} over $j=1,2,\ldots,\infty$ gives, considering $(\beta)$:
@@ -6363,7 +6330,6 @@ EG_n&\text{for $n$ even},\\
 FG_n&\text{for $n$ odd}.
 \end{cases}
 \]
-
 \origpage{475}
 From \hyperref[eq:23.II]{(II)} with $m=n$
 \[
@@ -6379,14 +6345,12 @@ Consequently,
 \tag{VI}\label{eq:23.VI}\lim_{n\to\infty}(G_{2n-1}f,f)\text{ exists and is finite.}
 \]
 Now by \hyperref[eq:23.II]{(II)}
-\[
-\begin{aligned}
+\begin{align*}
 \lVert G_mf-G_nf\rVert^2
  &=\lVert(G_m-G_n)f\rVert^2\\
  &=((G_m-G_n)^*(G_m-G_n)f,f)\\
  &=((G_{2m-1}-2G_p+G_{2n-1})f,f)
-\end{aligned}
-\]
+\end{align*}
 ($p$ according to \hyperref[eq:23.II]{(II)}). Hence $m,n\to\infty$ and \hyperref[eq:23.VI]{(VI)} give
 \[
 \tag{VII}\label{eq:23.VII}\lim_{m,n\to\infty}\lVert G_mf-G_nf\rVert=0.
@@ -6434,7 +6398,6 @@ $H(\lambda)\leq F(\lambda)$ (except for a $\lambda$-set of
 $\sigma(\lambda)$-measure $0$), hence
 $H(\lambda)\leq E(\lambda)\mathbin{\#}F(\lambda)$ (except as above), hence
 $H\leq E_1$. Now $E_1\in M$ by
-
 \origpage{476}
 its definition and $E\mathbin{\#}F\in M$ by (a). Therefore, the equivalence
 of $H\leq E\mathbin{\#}F$ and of $H\leq E_1$ for all projections $H\in M$
@@ -6445,7 +6408,8 @@ E(\lambda)\mathbin{\#}F(\lambda)$.
 
 The following further construction is necessary:
 
-For every $A\in M$ form an operator $A_u\in M$ as follows: Form
+For every $A\in M$ form an operator $A_u\in M$ as follows:
+Form
 $A\sim\sum A(\lambda)$, then $A(\lambda)\in M(\lambda)$ and
 $\sigma(\lambda)$-measurable. Thus $1-A(\lambda)^*A(\lambda)$ and
 $1-A(\lambda)A(\lambda)^*$ are $\sigma(\lambda)$-measurable too, and
@@ -6483,13 +6447,20 @@ $U_1,U_2,\ldots$, and if $A_m$ is $E_n$ or $U_n$, denote $A_m(\lambda)$ by
 $E_n(\lambda)$ or $U_n(\lambda)$, respectively.
 
 Let $A_p$ be successively equal to each one of
-$1,A_m^*,(A_m)_u,A_m\pm A_n,A_mA_n,A_m\mathbin{\#}A_n$, then we have
-correspondingly for all $\lambda$
-$A_p(\lambda)=1,A_m(\lambda)^*,(A_m)_u(\lambda),
-A_m(\lambda)\pm A_n(\lambda),A_m(\lambda)A_n(\lambda),
-A_m(\lambda)\mathbin{\#}A_n(\lambda)$, except for certain $\lambda$-sets of
+\begin{gather*}
+1,\quad A_m^*,\quad (A_m)_u,\quad A_m\pm A_n,\\
+A_mA_n,\quad A_m\mathbin{\#}A_n.
+\end{gather*}
+Then, correspondingly for all $\lambda$,
+\begin{align*}
+A_p(\lambda)={}&1,\quad A_m(\lambda)^*,\quad (A_m)_u(\lambda),\\
+&A_m(\lambda)\pm A_n(\lambda),\quad A_m(\lambda)A_n(\lambda),\\
+&A_m(\lambda)\mathbin{\#}A_n(\lambda),
+\end{align*}
+except for certain $\lambda$-sets of
 $\sigma(\lambda)$-measure $0$, say
-$N_3,N_4(m),N_5(m),N_6(m,n),N_7(m,n),N_8(m,n),N_9(m,n)$.
+$N_3$, $N_4(m)$, $N_5(m)$, $N_6(m,n)$,
+$N_7(m,n)$, $N_8(m,n)$, $N_9(m,n)$.
 ($N_1,N_2$, or to be more specific, $N_1(E,F),N_2(E,U)$, were defined
 earlier, in this section, in connection with \eqref{eq:23.4} further above.)
 
@@ -6499,14 +6470,12 @@ $\delta_M^{(\lambda)}(E_m)>\delta_M^{(\lambda)}(E_n)$, by $K_{m,n}$; it is
 clearly $\sigma(\lambda)$-measurable. Now
 $1_{K_{m,n}}(\lambda)E_m(\lambda)=1_{K_{m,n}}(\lambda)E_n(\lambda)$ for all
 $\lambda$, so $1_{K_{m,n}}(\lambda)E_m=1_{K_{m,n}}(\lambda)E_n$,
-\[
-\begin{aligned}
+\begin{align*}
 \Delta_M(1_{K_{m,n}}(\lambda)E_m)
  &=\Delta_M(1_{K_{m,n}}(\lambda)E_n),\\
 \int_{K_{m,n}}\delta_M^{(\lambda)}(E_m)\,d\sigma(\lambda)
  &=\int_{K_{m,n}}\delta_M^{(\lambda)}(E_n)\,d\sigma(\lambda).
-\end{aligned}
-\]
+\end{align*}
 As $\delta_M^{(\lambda)}(E_m)>\delta_M^{(\lambda)}(E_n)$ for all
 $\lambda\in K_{m,n}$, this necessitates
 $\mu_{\sigma(\lambda)}(K_{m,n})=0$. Put
@@ -6516,15 +6485,12 @@ $\lambda\notin N_{10}(m,n)$, then $E_m(\lambda)=E_n(\lambda)$ implies
 $\delta_M^{(\lambda)}(E_m)=\delta_M^{(\lambda)}(E_n)$.
 
 Now put
-\[
-\begin{aligned}
+\begin{align*}
 N_{11}={}&\sum_{m,n=1}^{\infty}N_1(E_m,E_n)
 +\sum_{m,n=1}^{\infty}N_2(E_m,U_n)+N_3\\
 &+\sum_{m=1}^{\infty}\bigl(N_4(m)+N_5(m)\bigr)
 +\sum_{m,n=1}^{\infty}\bigl(N_6(m,n)+\cdots+N_{10}(m,n)\bigr).
-\end{aligned}
-\]
-
+\end{align*}
 \origpage{477}
 Then $\mu_{\sigma(\lambda)}(N_{11})=0$ and
 $\lambda\notin N_{11}$ has the following consequences:
@@ -6566,7 +6532,8 @@ $A_r(\lambda^*)A_r(\lambda^*)^*=E_q(\lambda^*)$. Now
 $d_{M(\lambda)}(E_q(\lambda))=d_{M(\lambda)}(E_m(\lambda))$ is finite, so
 $d_{M(\lambda)}(1-E_q(\lambda))=d_{M(\lambda)}(1-E_m(\lambda))$. Therefore a
 partially isometric $W\in M(\lambda)$ exists, which has the initial and final
-projections $1-E_m(\lambda)$ resp. $1-E_q(\lambda)$. Therefore if $A_s=V_1$
+projections $1-E_m(\lambda)$ resp. $1-E_q(\lambda)$.
+Therefore if $A_s=V_1$
 (in the sense of \hyperref[lem:21]{Lemma 21} for $E=1-E_m$, $F=1-E_q$), then
 $A_s(\lambda)$ is such a $W$. Thus if $A_r+A_s=A_t$, then
 $A_t(\lambda)=A_r(\lambda)+A_s(\lambda)$ is a unitary operator, which maps
@@ -6596,8 +6563,9 @@ We now proceed to discuss the following question:
 
 \begin{itshape}
 For which (real) numbers $\theta>0$ does $\lambda\notin N_{11}$ and
-$d_{M(\lambda)}(E_m(\lambda))\leq$ or
-$\geq\theta d_{M(\lambda)}(E_n(\lambda))$ ($d_{M(\lambda)}(E_m)$ or
+$d_{M(\lambda)}(E_m(\lambda))
+\mathrel{\leq\text{ or }\geq}\theta d_{M(\lambda)}(E_n(\lambda))$
+($d_{M(\lambda)}(E_m)$ or
 $d_{M(\lambda)}(E_n)$ being finite for $\leq$ or $\geq$, respectively)
 imply $\delta_M^{(\lambda)}(E_m)\leq$ resp.
 $\geq\theta\delta_M^{(\lambda)}(E_n)$?
@@ -6622,7 +6590,6 @@ $\geq(\theta+1)\delta_M^{(\lambda)}(E_n)$.
 Assume first $d_{M(\lambda)}(E_m(\lambda))<d_{M(\lambda)}(E_n(\lambda))$.
 This excludes the $\geq$ in the assumption, so it can only occur in the case
 with $\leq$, and then $\delta_M^{(\lambda)}(E_m)$ is finite.
-
 \origpage{478}
 Now we have
 $d_{M(\lambda)}(E_m(\lambda))\leq d_{M(\lambda)}(E_n(\lambda))$, so by (I)
@@ -6647,13 +6614,12 @@ $E_r(\lambda)=U_p(\lambda)E_n(\lambda)U_p(\lambda)^{-1}\leq E_m(\lambda)$),
 we may replace $s$ by $r$ in these equations; and as
 $E_r(\lambda)=U_p(\lambda)E_n(\lambda)U_p(\lambda)^{-1}$,
 $E_r=U_pE_nU_p^{-1}$, even by $n$. Thus we have
-\[
+\begin{align*}
 d_{M(\lambda)}(E_m(\lambda))
-=d_{M(\lambda)}(E_t(\lambda))+d_{M(\lambda)}(E_n(\lambda)),
-\quad
+ &=d_{M(\lambda)}(E_t(\lambda))+d_{M(\lambda)}(E_n(\lambda)),\\
 \delta_M^{(\lambda)}(E_m)
-=\delta_M^{(\lambda)}(E_t)+\delta_M^{(\lambda)}(E_n).
-\]
+ &=\delta_M^{(\lambda)}(E_t)+\delta_M^{(\lambda)}(E_n).
+\end{align*}
 As $d_{M(\lambda)}(E_n(\lambda))$ is finite, the first equation leads
 respectively to
 $d_{M(\lambda)}(E_t(\lambda))\leq$ and
@@ -6682,15 +6648,13 @@ $d_{M(\lambda)}(E_m(\lambda)),d_{M(\lambda)}(E_n(\lambda))>0$, $<+\infty$,
 we can put
 $\theta=d_{M(\lambda)}(E_m(\lambda))/d_{M(\lambda)}(E_n(\lambda))$ and apply
 $\leq$ and $\geq$ simultaneously: This gives
-\[
+\begin{align*}
 \delta_M^{(\lambda)}(E_m)
-=\frac{d_{M(\lambda)}(E_m(\lambda))}
-       {d_{M(\lambda)}(E_n(\lambda))}\delta_M^{(\lambda)}(E_n),
-\]
-\[
+ &=\frac{d_{M(\lambda)}(E_m(\lambda))}
+         {d_{M(\lambda)}(E_n(\lambda))}\delta_M^{(\lambda)}(E_n),\\
 \frac{\delta_M^{(\lambda)}(E_m)}{d_{M(\lambda)}(E_m(\lambda))}
-=\frac{\delta_M^{(\lambda)}(E_n)}{d_{M(\lambda)}(E_n(\lambda))}.
-\]
+ &=\frac{\delta_M^{(\lambda)}(E_n)}{d_{M(\lambda)}(E_n(\lambda))}.
+\end{align*}
 \end{enumerate}
 
 In other words:
@@ -6727,7 +6691,6 @@ $1_{\overline K_0\cdot\overline M}(\lambda)\overline E
 $1_{\overline K_0\cdot\overline M}(\lambda)\overline E(\lambda)=0$, except
 for a $\lambda$-set of $\sigma(\lambda)$-measure $0$. Now for
 $\lambda\in\overline K_0\cdot\overline M$,
-
 \origpage{479}
 $1_{\overline K_0\cdot\overline M}(\lambda)=1$, and as
 $\lambda\in\overline M$, $\overline E(\lambda)\ne0$, therefore
@@ -6735,10 +6698,11 @@ $1_{\overline K_0\cdot\overline M}(\lambda)\overline E(\lambda)\ne0$. All
 of this implies
 $\mu_{\sigma(\lambda)}(\overline K_0\cdot\overline M)=0$. Putting
 $N_{12}=N_{11}+\overline K_0\cdot\overline M$, we still have
-$\mu_{\sigma(\lambda)}(N_{12})=0$, and we can state: For
-$\lambda\notin N_{12}$, $\lambda\in\overline M$ implies
-$\gamma(\lambda)\notin\overline K_0$, that is $\gamma(\lambda)>0$. So
-$0<\gamma(\lambda)\leq+\infty$, and as
+$\mu_{\sigma(\lambda)}(N_{12})=0$, and
+we can state: For $\lambda\notin N_{12}$,
+$\lambda\in\overline M$ implies
+$\gamma(\lambda)\notin\overline K_0$, that is $\gamma(\lambda)>0$.
+So $0<\gamma(\lambda)\leq+\infty$, and as
 $0<d_{M(\lambda)}(E_m(\lambda))\leq+\infty$ too (if
 $E_m(\lambda)\ne0$), we can write for \eqref{eq:23.6}:
 \begin{equation}
@@ -6751,7 +6715,8 @@ $E_m(\lambda)\ne0$), we can write for \eqref{eq:23.6}:
 Here $d_{M(\lambda)}(E_m(\lambda))=0$ or $=+\infty$ is to be excluded. But
 $d_{M(\lambda)}(E_m(\lambda))=0$ means $E_m(\lambda)=0$, and so
 $\delta_M^{(\lambda)}(E_m)=\delta_M^{(\lambda)}(0)=0$, so that
-\eqref{eq:23.7} holds in this case too, if we use again the convention
+\eqref{eq:23.7} holds in this case too,
+if we use again the convention
 $0\cdot+\infty=0$. If $d_{M(\lambda)}(E_m(\lambda))=+\infty$, then we have
 $d_{M(\lambda)}(E_m(\lambda))\geq
 \theta d_{M(\lambda)}(\overline E(\lambda))$ for all $\theta>0$, so
@@ -6793,8 +6758,9 @@ $d_{M(\lambda)}(E_m(\lambda))=+\infty$). In both cases there are two
 partially isometric $V,V'\in M(\lambda)$, which have both the initial
 projection $E_m(\lambda)$, and final projections with the sum $E_m(\lambda)$:
 For $E_m(\lambda)=0$ these are $0,0$; for $E_m(\lambda)$ infinite apply
-\cite[Lemma~7.2.3]{ref10}. Now form $A_p=V_3$ (in the sense of
-\hyperref[lem:21]{Lemma 21} for $E=E_m$). As $A_p$ is partially isometric,
+\cite[Lemma~7.2.3]{ref10}. Now form $A_p=V_3$
+(in the sense of \hyperref[lem:21]{Lemma 21} for $E=E_m$).
+As $A_p$ is partially isometric,
 $A_pA_p^*$ is a projection, say $E_q$. Thus
 $E_q(\lambda)=A_p(\lambda)A_p(\lambda)^*$ is
 $\sim E_m(\lambda)\vnmod{M(\lambda)}$ and so is $E_m(\lambda)-E_q(\lambda)$.
@@ -6820,11 +6786,10 @@ them $E_q(\lambda),E_s(\lambda),E_t(\lambda),E_w(\lambda)$ as well as
 $1-E_q(\lambda)\geq E_s(\lambda)$ and
 $1-E_t(\lambda)\geq E_w(\lambda)$ are infinite, too. Thus partially
 isometric $W,W'$'s with the initial projections $E_q(\lambda)$,
-
 \origpage{480}
 $1-E_q(\lambda)$ and the final projections $E_t(\lambda)$,
 $1-E_t(\lambda)$ exist. If $A_x,A_y$ are the resp. $V_1$ (in the sense of
-\hyperref[lem:21]{Lemma 21}, with $E=E_q$ resp. $1-E_q$, and $F=E_t$ resp.
+\hyperref[lem:21]{\mbox{Lemma 21}}, with $E=E_q$ resp. $1-E_q$, and $F=E_t$ resp.
 $1-E_t$), then $A_x(\lambda),A_y(\lambda)$ are such $W,W'$'s, and thus if
 $A_z=A_x+A_y$, then $A_z(\lambda)=A_x(\lambda)+A_y(\lambda)$ is unitary, and
 maps $E_q(\lambda)$ on $E_t(\lambda)$. $(A_z)_u$ is unitary, say $U_a$, and
@@ -6834,16 +6799,14 @@ $U_aE_qU_a^{-1}=E_b$, then $E_b(\lambda)=E_t(\lambda)$. So we have:
 $\delta_M^{(\lambda)}(E_q)=\delta_M^{(\lambda)}(E_b)
 =\delta_M^{(\lambda)}(E_t)$. Similarly
 $\delta_M^{(\lambda)}(E_s)=\delta_M^{(\lambda)}(E_w)$. Thus
-\[
-\begin{aligned}
+\begin{align*}
 \delta_M^{(\lambda)}(E_m)
  &=\delta_M^{(\lambda)}(E_q+E_s)
-  =\delta_M^{(\lambda)}(E_q)+\delta_M^{(\lambda)}(E_s)\\
+   =\delta_M^{(\lambda)}(E_q)+\delta_M^{(\lambda)}(E_s)\\
  &=\delta_M^{(\lambda)}(E_t)+\delta_M^{(\lambda)}(E_w)
-  =\delta_M^{(\lambda)}(E_t+E_w)
-  =\delta_M^{(\lambda)}(E_n).
-\end{aligned}
-\]
+   =\delta_M^{(\lambda)}(E_t+E_w)
+   =\delta_M^{(\lambda)}(E_n).
+\end{align*}
 In other words: $\delta_M^{(\lambda)}(E_m)$ has the same value for all
 $E_m(\lambda)\ne0$, say $\delta$. Now this applies to $E_m,E_q,E_s$ also.
 Then $\delta_M^{(\lambda)}(E_m)
@@ -6921,7 +6884,6 @@ $\Delta_M(E)$ (with respect to $M$) can be obtained by this process.
 \par\smallskip\noindent\textit{Proof:}
 One verifies easily the conditions (i)--(iii) of
 \hyperref[def:7]{Definition 7} for
-
 \origpage{481}
 $\Delta_M(E)$ (and $M$) if they do hold for all
 $\Delta_{M(\lambda)}(E)$ (and $M(\lambda)$). This proves the first statement.
@@ -6964,8 +6926,8 @@ $\lambda\in\overline M$, therefore $a(\lambda)$ is determined to the same
 extent. In $r-\overline M$ we have by \hyperref[lem:19]{Lemma 19} always
 $d_{M(\lambda)}(\overline E(\lambda))=0$ or $+\infty$, except for a set of
 $\sigma(\lambda)$-measure $0$, and therefore the numerical value of
-$a(\lambda)$ (which must be $>0$, $\leq+\infty$) does not matter at all. So
-we see:
+$a(\lambda)$ (which must be $>0$, $\leq+\infty$) does not matter at all.
+So we see:
 
 \begin{itshape}
 $a(\lambda)$ may be any function which fulfills
@@ -7016,7 +6978,6 @@ Another obvious way to formulate (iii)$'$ is this:
 \begin{itshape}
 (iii)$''$ If $E,F$ are the initial resp. final projections of a partially
 isometric
-
 \origpage{482}
 $V\in M$ (that is: if $V$ maps their resp. linear, closed sets on each other;
 or, using the notations of \cite[Definition~6.1.1]{ref10}: if
@@ -7045,7 +7006,8 @@ $\sigma(\lambda)$-measure $0$, as usual).
 
 Now the general element of $M$ is (as $M=P$) $\alpha(\lambda)$, and this is
 a projection if $\alpha(\lambda)^2=\alpha(\lambda)=\overline{\alpha(\lambda)}$,
-that is if $\alpha(\lambda)=0$ or $1$. In other words:
+that is if $\alpha(\lambda)=0$ or $1$.
+In other words:
 \[
 \alpha(\lambda)=1_K(\lambda)=
 \begin{cases}
@@ -7124,7 +7086,8 @@ $\lambda$, with $V(\lambda)^*V(\lambda)=E(\lambda)$,
 $V(\lambda)V(\lambda)^*\leq F(\lambda)$ for each $\lambda$ (except, of
 course, for a $\lambda$-set of $\sigma(\lambda)$-measure $0$). Thus
 $d_{M(\lambda)}(E(\lambda))\leq d_{M(\lambda)}(F(\lambda))$ (with the same
-exceptions) is necessary. But it is sufficient, too, because it involves
+exceptions) is necessary.
+But it is sufficient, too, because it involves
 for each $\lambda$ (with the same exceptions as above) the existence of a
 partially isometric $V'\in M(\lambda)$ with $V'^*V'=E(\lambda)$,
 $V'V'^*\leq F(\lambda)$, and then the $V_2$ of
