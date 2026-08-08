@@ -21,7 +21,7 @@ blockquote { font-size: 0.85em; }
 <style>
 .literature-controls {
   display: flex;
-  gap: 0.6rem;
+  gap: 1rem;
   margin: 1.5rem 0 2rem 0;
 }
 
@@ -32,7 +32,7 @@ blockquote { font-size: 0.85em; }
   </style>
 
 
-<!-- Expand all与Collapse all按键与上面和下面的距离设为1.5rem和2rem 
+<!-- Expand all与Collapse all按键之间的距离设为1rem，与上面和下面的距离设为1.5rem和2rem 
 按钮调大，字体设为1rem。控制按钮内部留白上下各 0.5rem，左右各 1rem
 -->
 
