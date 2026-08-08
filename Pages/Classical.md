@@ -48,7 +48,8 @@ details.year-group {
 # Classical Mathematical Literature
 
 
-Below are some LaTeX and PDF files that I had ChatGPT create from early mathematical works that interest me. For works originally written in languages other than English, I also had ChatGPT translate them into English. 
+Since I have been very interested in the history of functional analysis, I had ChatGPT generate some LaTeX and PDF files from early mathematical works related to my interests. For works originally written in languages other than English, I also had ChatGPT translate them into English.
+
 
 
 <div class="literature-controls">
