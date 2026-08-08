@@ -1,0 +1,5857 @@
+\documentclass[
+  paper=b5,
+  fontsize=13pt,
+  twoside,
+  headings=normal,
+  bookmarkpackage=false
+]{scrartcl}
+
+\usepackage[
+  paperwidth=176mm,
+  paperheight=250mm,
+  left=7mm,
+  right=7mm,
+  top=9.1mm,
+  bottom=9.1mm,
+  includehead,
+  headheight=6.1mm,
+  headsep=2.4mm
+]{geometry}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{newpxtext}
+\usepackage[amsthm]{newpxmath}
+\usepackage{enumitem}
+\usepackage{xparse}
+\usepackage{needspace}
+\usepackage{scrlayer-scrpage}
+
+\allowdisplaybreaks[2]
+\linespread{1.1}
+\frenchspacing
+\raggedbottom
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{0.62\baselineskip plus 0.16\baselineskip minus 0.10\baselineskip}
+\setlength{\belowdisplayskip}{0.62\baselineskip plus 0.16\baselineskip minus 0.10\baselineskip}
+\setlength{\abovedisplayshortskip}{0.38\baselineskip plus 0.12\baselineskip}
+\setlength{\belowdisplayshortskip}{0.48\baselineskip plus 0.12\baselineskip}
+\emergencystretch=1.4em
+\clubpenalty=8000
+\widowpenalty=8000
+\displaywidowpenalty=6000
+
+\clearpairofpagestyles
+\lehead*{\pagemark}
+\rohead*{\pagemark}
+\setkomafont{pageheadfoot}{\normalfont\small}
+\setkomafont{pagenumber}{\normalfont\small}
+\KOMAoptions{headsepline=false,footsepline=false}
+\pagestyle{scrheadings}
+\setkomafont{disposition}{\rmfamily\bfseries}
+
+\newtheoremstyle{stieltjesplain}
+  {0.70\baselineskip}{0.70\baselineskip}
+  {\itshape}{}{\bfseries}{.}{0.5em}{}
+\newtheoremstyle{stieltjesdefinition}
+  {0.70\baselineskip}{0.70\baselineskip}
+  {\normalfont}{}{\bfseries}{.}{0.5em}{}
+
+\theoremstyle{stieltjesplain}
+\newtheorem*{stieltjestheorem}{Theorem}
+\newtheorem*{stieltjesproposition}{Proposition}
+\newtheorem*{stieltjeslemma}{Lemma}
+\newtheorem*{stieltjescorollary}{Corollary}
+
+\theoremstyle{stieltjesdefinition}
+\newtheorem*{stieltjesdefinition}{Definition}
+\newtheorem*{stieltjesremark}{Remark}
+\newtheorem*{stieltjesexample}{Example}
+
+\NewDocumentEnvironment{theorem}{o}
+  {\par\Needspace{8\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjestheorem}}{\begin{stieltjestheorem}[#1]}}
+  {\end{stieltjestheorem}}
+\NewDocumentEnvironment{proposition}{o}
+  {\par\Needspace{8\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjesproposition}}{\begin{stieltjesproposition}[#1]}}
+  {\end{stieltjesproposition}}
+\NewDocumentEnvironment{lemma}{o}
+  {\par\Needspace{8\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjeslemma}}{\begin{stieltjeslemma}[#1]}}
+  {\end{stieltjeslemma}}
+\NewDocumentEnvironment{corollary}{o}
+  {\par\Needspace{8\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjescorollary}}{\begin{stieltjescorollary}[#1]}}
+  {\end{stieltjescorollary}}
+\NewDocumentEnvironment{definition}{o}
+  {\par\Needspace{6\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjesdefinition}}{\begin{stieltjesdefinition}[#1]}}
+  {\end{stieltjesdefinition}}
+\NewDocumentEnvironment{remark}{o}
+  {\par\Needspace{6\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjesremark}}{\begin{stieltjesremark}[#1]}}
+  {\end{stieltjesremark}}
+\NewDocumentEnvironment{example}{o}
+  {\par\Needspace{6\baselineskip}\phantomsection
+   \IfNoValueTF{#1}{\begin{stieltjesexample}}{\begin{stieltjesexample}[#1]}}
+  {\end{stieltjesexample}}
+
+\renewcommand{\proofname}{Proof}
+\renewcommand{\qedsymbol}{}
+
+\definecolor{StieltjesLink}{HTML}{1B5E8C}
+\definecolor{StieltjesCite}{HTML}{2E6B4F}
+\definecolor{StieltjesURL}{HTML}{7A3E8E}
+\usepackage[
+  unicode,
+  colorlinks=true,
+  linkcolor=StieltjesLink,
+  citecolor=StieltjesCite,
+  urlcolor=StieltjesURL,
+  pdfborder={0 0 0},
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  pdfauthor={T.-J. Stieltjes},
+  pdftitle={Recherches sur les fractions continues / Researches on Continued Fractions},
+  pdfsubject={Independent English translation of the 1894 installment}
+]{hyperref}
+\usepackage[nameinlink,noabbrev,capitalise]{cleveref}
+
+\pdfstringdefDisableCommands{%
+  \def\({}\def\){}%
+  \def\displaystyle{}%
+  \def\int{integral}%
+  \def\frac#1#2{#1/#2}%
+  \def\psi{psi}%
+  \def\infty{infinity}%
+  \def\,{ }%
+}
+
+\NewDocumentCommand{\chapterheading}{s m m g}{%
+  \IfBooleanTF{#1}{%
+    \par\addvspace{0.65\baselineskip}%
+    \phantomsection\label{#3}%
+    \addcontentsline{toc}{section}{#2}%
+    \begin{center}
+      {\Large\bfseries #2\par}
+    \end{center}
+    \nobreak\smallskip
+  }{%
+    \clearpage
+    \phantomsection\label{#4}%
+    \addcontentsline{toc}{section}{Chapter #2. #3}%
+    \begin{center}
+      {\Large\bfseries Chapter #2\par}
+      \vspace{0.30\baselineskip}
+      {\large\bfseries #3\par}
+    \end{center}
+    \nobreak\medskip
+  }%
+}
+
+\newcommand{\origsection}[1]{%
+  \par\addvspace{0.85\baselineskip}%
+  \phantomsection\label{sec:#1}%
+  \addcontentsline{toc}{subsection}{\texorpdfstring{\S~#1}{Section #1}}%
+  \noindent\textbf{#1.}\quad\ignorespaces
+}
+
+\newcommand{\extsectionref}[1]{%
+  \href{https://afst.centre-mersenne.org/articles/10.5802/afst.109/}%
+       {\S~#1 of the continuation}%
+}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pdfbookmark[0]{Recherches sur les fractions continues / Researches on Continued Fractions}{title}
+
+% Source page J.1
+\thispagestyle{empty}
+\begin{center}
+  {\Large\bfseries RECHERCHES SUR LES FRACTIONS CONTINUES\par}
+  \vspace{0.35em}
+  {\LARGE\bfseries Researches on Continued Fractions\par}
+  \vspace{0.8em}
+  {\large By T.-J. Stieltjes\par}
+  \vspace{0.2em}
+  {\normalsize Professor in the Faculty of Sciences of Toulouse\par}
+\end{center}
+
+\chapterheading*{Introduction}{chap:introduction}
+
+The object of this work is the study of the continued fraction
+\begin{equation}
+ \cfrac{1}{a_1z+
+  \cfrac{1}{a_2+
+   \cfrac{1}{a_3z+\ddots+
+    \cfrac{1}{a_{2n}+
+     \cfrac{1}{a_{2n+1}z+\ddots}}}}}
+ \tag{I}\label{eq:intro-I}
+\end{equation}
+in which the \(a_i\) are positive real numbers, while \(z\) is a variable
+that may take any real or imaginary value.
+
+Denoting by \(P_n(z)/Q_n(z)\) the \(n\)th convergent, which depends only
+on the first \(n\) coefficients \(a_i\), we shall seek the cases in which
+this convergent tends to a limit as \(n\to\infty\), and we shall have to
+investigate the nature of that limit when regarded as a function of \(z\).
+
+We shall summarize the most essential result of this study. Two cases
+must be distinguished.
+
+\emph{First case.} The series
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+is convergent.
+
+% Source page J.2
+In this case, for every finite value of \(z\),
+\begin{align*}
+ \lim_{n\to\infty}P_{2n}(z)&=p(z),&
+ \lim_{n\to\infty}Q_{2n}(z)&=q(z),\\
+ \lim_{n\to\infty}P_{2n+1}(z)&=p_1(z),&
+ \lim_{n\to\infty}Q_{2n+1}(z)&=q_1(z),
+\end{align*}
+where \(p(z),q(z),p_1(z),q_1(z)\) are functions holomorphic throughout
+the plane and satisfy
+\[
+ q(z)p_1(z)-q_1(z)p(z)=1.
+\]
+These functions are of genus zero and have only simple, real, negative
+zeros.
+
+Thus the even-order convergents and the odd-order convergents each tend
+to a limit, but the two limits are different. They may also be written as
+series of simple fractions:
+\begin{align*}
+ \frac{p(z)}{q(z)}
+   &=\frac{\mu_1}{z+\lambda_1}
+     +\frac{\mu_2}{z+\lambda_2}+\cdots
+     +\frac{\mu_k}{z+\lambda_k}+\cdots,\\
+ \frac{p_1(z)}{q_1(z)}
+   &=\frac{\nu_0}{z}
+     +\frac{\nu_1}{z+\theta_1}+\frac{\nu_2}{z+\theta_2}+\cdots
+     +\frac{\nu_k}{z+\theta_k}+\cdots,
+\end{align*}
+where \(\mu_k,\lambda_k,\nu_k,\theta_k\) are positive real numbers.
+
+\emph{Second case.} The series
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+is divergent.
+
+In this case the convergents tend to a finite limit for every value of
+\(z\), except when \(z\) is real and negative; the negative part of the
+real axis must therefore be regarded as a cut. This limit is an analytic
+function of \(z\) which may be written in the form
+\phantomsection\label{eq:intro-stieltjes-integral}
+\begin{equation*}
+ \int_0^{\infty}\frac{\Phi(u)\,du}{(z+u)^2}
+   =\int_0^{\infty}\frac{d\Phi(u)}{z+u}.
+\end{equation*}
+Here \(\Phi(u)\) is a real increasing function (not analytic in general),
+which increases from \(\Phi(0)=0\) to
+\(\Phi(\infty)=1/a_1\). The function \(\Phi(u)\) may, moreover, have a
+finite or infinite number of jumps. The cut will thus be a line of
+essential singularities when \(\Phi(u)\) has discontinuities in every
+interval (which must be regarded as the general case), or even when it is
+merely nonanalytic.
+
+% Source page J.3
+Continued fractions are often encountered in forms that differ somewhat
+from \eqref{eq:intro-I} but in fact belong to its type, so that our
+theorems apply to them. First put
+\[
+ b_0=\frac{1}{a_1},\qquad
+ b_n=\frac{1}{a_na_{n+1}}.
+\]
+Then the continued fraction \eqref{eq:intro-I} may be written
+\begin{equation}
+ \cfrac{b_0}{z+
+  \cfrac{b_1}{1+
+   \cfrac{b_2}{z+
+    \cfrac{b_3}{1+
+     \cfrac{b_4}{z+\ddots}}}}}
+ \tag{I\textsuperscript{a}}\label{eq:intro-Ia}
+\end{equation}
+and, on putting \(tz=1\), as
+\begin{equation}
+ \cfrac{b_0t}{1+
+  \cfrac{b_1t}{1+
+   \cfrac{b_2t}{1+
+    \cfrac{b_3t}{1+\ddots}}}}
+ \tag{I\textsuperscript{b}}\label{eq:intro-Ib}
+\end{equation}
+Using the identity
+\[
+ z+\cfrac{b_1}{1+\cfrac{b_2}{\lambda}}
+   =z+b_1-\frac{b_1b_2}{b_2+\lambda},
+\]
+the continued fraction \eqref{eq:intro-Ia} can be transformed into
+\begin{equation}
+ \cfrac{b_0}{z+b_1-
+  \cfrac{b_1b_2}{z+b_2+b_3-
+   \cfrac{b_3b_4}{z+b_4+b_5-\ddots}}}
+ \tag{I\textsuperscript{c}}\label{eq:intro-Ic}
+\end{equation}
+The \(n\)th convergent of \eqref{eq:intro-Ic} is identical with the
+\(2n\)th convergent of \eqref{eq:intro-I}, or of
+\eqref{eq:intro-Ia}. The fraction \eqref{eq:intro-Ic} has the form
+\begin{equation}
+ \cfrac{\lambda_0}{z+\alpha_1-
+  \cfrac{\lambda_1}{z+\alpha_2-
+   \cfrac{\lambda_2}{z+\alpha_3-
+    \cfrac{\lambda_3}{z+\alpha_4-\ddots}}}}
+ \tag{I\textsuperscript{d}}\label{eq:intro-Id}
+\end{equation}
+with positive values of the \(\lambda_i\) and \(\alpha_i\). This form is
+encountered rather frequently; it is therefore useful to know whether it
+can be put in the form \eqref{eq:intro-Ic} with positive values of the
+\(b_i\), so that our theorems are applicable. Identification gives
+\[
+\begin{array}{lll}
+ b_0=\lambda_0,& b_1=\alpha_1,\\
+ b_1b_2=\lambda_1,& b_2+b_3=\alpha_2,\\
+ b_3b_4=\lambda_2,& b_4+b_5=\alpha_3,\\
+ \ldots&\ldots
+\end{array}
+\]
+from which \(b_0,b_1,b_2,\ldots\) are obtained successively, and in
+general
+\[
+ b_{2n}=\cfrac{\lambda_n}{\alpha_n-
+  \cfrac{\lambda_{n-1}}{\alpha_{n-1}-\ddots-
+   \cfrac{\lambda_1}{\alpha_1}}},
+ \qquad
+ b_{2n-1}=\frac{\lambda_n}{b_{2n}}.
+\]
+
+% Source page J.4
+The calculation of the \(b_i\) may, however, become complicated. Since
+all that is required is to determine whether these quantities are all
+positive, the following proposition can sometimes be used to advantage.
+
+\begin{proposition}
+The quantities \(b_i\) are certainly all positive if there exists a
+positive function \(P_n\) of \(n\), with \(P_1=0\), such that
+\phantomsection\label{eq:intro-positivity-condition}
+\begin{equation*}
+ P_n<\alpha_n,\qquad
+ \frac{\lambda_n}{\alpha_n-P_n}\leq P_{n+1}
+ \quad(n=1,2,3,\ldots).
+\end{equation*}
+\end{proposition}
+
+Indeed, \(b_2=\lambda_1/\alpha_1\) is positive and does not exceed
+\(\lambda_1/(\alpha_1-P_1)\leq P_2\). If \(b_{2n-2}\) lies between \(0\)
+and \(P_n\), then
+\[
+ b_{2n}=\frac{\lambda_n}{\alpha_n-b_{2n-2}}
+\]
+is positive and smaller than
+\[
+ \frac{\lambda_n}{\alpha_n-P_n}\leq P_{n+1}.
+\]
+Hence, in general,
+\[
+ 0<b_{2n}\leq P_{n+1},
+\]
+and then \(b_{2n-1}=\lambda_n/b_{2n}\) is also positive.
+
+In particular, all the \(b_i\) are positive in the following two cases:
+\begin{enumerate}[label=\(\arabic*^{\circ}\),leftmargin=2.4em]
+ \item when \(\alpha_n\geq 1+\lambda_n\), since the proposition applies
+ by taking \(P_n=1\) (with \(P_1=0\));
+ \item when \(\alpha_{n+1}\geq 1+\lambda_n\), for it is then enough to
+ take \(P_n=\lambda_{n-1}\).
+\end{enumerate}
+
+% Source page J.5
+Consider, for example, the continued fraction studied by Laguerre~\cite{Laguerre1879}. It is
+of the form \eqref{eq:intro-Id}, with
+\[
+ \lambda_0=1,\qquad \lambda_n=n^2,\qquad
+ \alpha_n=2n-1\quad(n\geq1).
+\]
+The calculation of the \(b_i\) presents no difficulty here, and gives
+\[
+ b_0=1,\qquad b_{2n-1}=b_{2n}=n\quad(n\geq1),
+\]
+and consequently
+\[
+ a_{2n-1}=1,\qquad a_{2n}=\frac1n.
+\]
+Laguerre proved, under the assumption that \(z\) is positive and real,
+that the continued fraction converges and is equal to
+\[
+ \int_0^{\infty}\frac{e^{-u}\,du}{z+u}.
+\]
+It now follows from our theory that this statement extends to all real or
+imaginary values of \(z\), except the negative real values.
+
+As a second example, consider the continued fraction encountered in
+volume III of these \emph{Annales}~\cite{Stieltjes1889}. Apart from replacing \(z\) by
+\(z^2\), it is again of the form \eqref{eq:intro-Id}. We have
+\[
+ \lambda_0=1,\qquad
+ \lambda_n=(2n-1)(2n)^2(2n+1)k^2,
+ \qquad
+ \alpha_n=(2n-1)^2(1+k^2),
+\]
+where \(k^2\) is positive. The calculation of the \(b_i\) is more
+complicated here. But if we take
+\[
+ P_n=\frac{n-1}{2n-1}\alpha_n,
+ \qquad
+ \alpha_n-P_n=\frac{n}{2n-1}\alpha_n,
+\]
+ the \hyperref[eq:intro-positivity-condition]{inequality in the proposition} reduces to
+\[
+ 4k^2\leq(1+k^2)^2,
+\]
+and is therefore satisfied. Thus the continued fraction in question also
+ belongs to the type studied here.
+
+% Source page J.6
+\chapterheading{I}{Study of the Polynomials
+\texorpdfstring{\(P_n(z)\), \(Q_n(z)\)}{Pn(z), Qn(z)}}{chap:I}
+
+\origsection{1}
+Consider a sequence of numbers \(N,N_1,N_2,\ldots\), connected by the
+relations
+\[
+ \begin{aligned}
+ N&=a_1N_1+N_2,\\
+ N_1&=a_2N_2+N_3,\\
+ &\hspace{1.2em}\vdots\\
+ N_{k-1}&=a_kN_k+N_{k+1}.
+ \end{aligned}
+\]
+We may successively express \(N\) in terms of \(N_1,N_2\), then in terms
+of \(N_2,N_3\), then \(N_3,N_4\), and so on. Thus
+\[
+ N=(a_1a_2+1)N_2+a_1N_3
+   =(a_1a_2a_3+a_1+a_3)N_3+(a_1a_2+1)N_4+\cdots.
+\]
+Introduce a symbol
+\[
+ [a_1,a_2,\ldots,a_k],
+\]
+defined by
+\begin{equation}
+ \begin{gathered}
+ [a_1]=a_1,\qquad [a_1,a_2]=a_1a_2+1,\\
+ [a_1,a_2,\ldots,a_k]
+   =[a_1,a_2,\ldots,a_{k-1}]a_k
+    +[a_1,a_2,\ldots,a_{k-2}].
+ \end{gathered}
+ \tag{1}\label{eq:s1-1}
+\end{equation}
+Then
+\begin{equation}
+ N=[a_1,a_2,\ldots,a_k]N_k
+   +[a_1,a_2,\ldots,a_{k-1}]N_{k+1}.
+ \tag{2}\label{eq:s1-2}
+\end{equation}
+It is clear that \(N,N_k,N_{k+l}\) are connected by a homogeneous linear
+relation, and this relation is easy to obtain. Multiply
+\eqref{eq:s1-2} by \(a_{k+1}\) and replace \(a_{k+1}N_{k+1}\) by
+\(N_k-N_{k+2}\); this gives
+\[
+ [a_{k+1}]N=[a_1,a_2,\ldots,a_{k+1}]N_k
+  -[a_1,a_2,\ldots,a_{k-1}]N_{k+2}.
+\]
+Multiplying by \(a_{k+2}\) and adding \eqref{eq:s1-2} member by member,
+we obtain
+\[
+ [a_{k+1},a_{k+2}]N=[a_1,a_2,\ldots,a_{k+2}]N_k
+  +[a_1,a_2,\ldots,a_{k-1}]N_{k+3},
+\]
+and it is clear that, in general,
+\begin{equation}
+ \begin{split}
+ [a_{k+1},a_{k+2},\ldots,a_{k+l-1}]N
+  ={}&[a_1,a_2,\ldots,a_{k+l-1}]N_k\\
+    &+(-1)^{l+1}[a_1,a_2,\ldots,a_{k-1}]N_{k+l}.
+ \end{split}
+ \tag{3}\label{eq:s1-3}
+\end{equation}
+
+% Source page J.7
+From this we shall deduce an identity needed below. Replacing \(k\) by
+\(\alpha\) and \(l\) by \(\beta+\gamma+1\), we have
+\begin{equation}
+ \begin{split}
+ [a_{\alpha+1},\ldots,a_{\alpha+\beta+\gamma}]N
+  ={}&[a_1,\ldots,a_{\alpha+\beta+\gamma}]N_\alpha\\
+    &+(-1)^{\beta+\gamma}[a_1,\ldots,a_{\alpha-1}]
+      N_{\alpha+\beta+\gamma+1}.
+ \end{split}
+ \tag{4}\label{eq:s1-4}
+\end{equation}
+On the other hand, eliminate \(N_{\alpha+\beta+1}\) between
+\begin{align*}
+ [a_{\alpha+1},\ldots,a_{\alpha+\beta}]N
+  &=[a_1,\ldots,a_{\alpha+\beta}]N_\alpha
+    +(-1)^\beta[a_1,\ldots,a_{\alpha-1}]N_{\alpha+\beta+1},\\
+ [a_{\alpha+\beta+2},\ldots,a_{\alpha+\beta+\gamma}]N
+  &=[a_1,\ldots,a_{\alpha+\beta+\gamma}]N_{\alpha+\beta+1}
+    +(-1)^{\gamma+1}[a_1,\ldots,a_{\alpha+\beta}]
+      N_{\alpha+\beta+\gamma+1}.
+\end{align*}
+The resulting relation between \(N,N_\alpha,N_{\alpha+\beta+\gamma+1}\)
+is
+\begin{equation}
+ \begin{split}
+ \Delta N=[a_1,\ldots,a_{\alpha+\beta}]
+ \bigl(&[a_1,\ldots,a_{\alpha+\beta+\gamma}]N_\alpha\\
+ &+(-1)^{\beta+\gamma}[a_1,\ldots,a_{\alpha-1}]
+ N_{\alpha+\beta+\gamma+1}\bigr),
+ \end{split}
+ \tag{5}\label{eq:s1-5}
+\end{equation}
+where
+\[
+ \begin{split}
+ \Delta={}&[a_1,\ldots,a_{\alpha+\beta+\gamma}]
+             [a_{\alpha+1},\ldots,a_{\alpha+\beta}]\\
+ &+(-1)^{\beta+1}[a_1,\ldots,a_{\alpha-1}]
+             [a_{\alpha+\beta+2},\ldots,a_{\alpha+\beta+\gamma}].
+ \end{split}
+\]
+Comparison of \eqref{eq:s1-4} and \eqref{eq:s1-5} shows identically that
+\[
+ \Delta=[a_1,\ldots,a_{\alpha+\beta}]
+         [a_{\alpha+1},\ldots,a_{\alpha+\beta+\gamma}].
+\]
+We therefore have the relation
+\begin{equation}
+ \begin{split}
+ &[a_1,\ldots,a_{\alpha+\beta+\gamma}]
+  [a_{\alpha+1},\ldots,a_{\alpha+\beta}]\\
+ &\quad=[a_1,\ldots,a_{\alpha+\beta}]
+  [a_{\alpha+1},\ldots,a_{\alpha+\beta+\gamma}]\\
+ &\qquad\quad+(-1)^\beta[a_1,\ldots,a_{\alpha-1}]
+  [a_{\alpha+\beta+2},\ldots,a_{\alpha+\beta+\gamma}].
+ \end{split}
+ \tag{A}\label{eq:s1-A}
+\end{equation}
+It is useful to record some special cases. For \(\beta=0\),
+\begin{equation}
+ \begin{split}
+ [a_1,\ldots,a_{\alpha+\gamma}]
+ ={}&[a_1,\ldots,a_\alpha][a_{\alpha+1},\ldots,a_{\alpha+\gamma}]\\
+ &+[a_1,\ldots,a_{\alpha-1}]
+   [a_{\alpha+2},\ldots,a_{\alpha+\gamma}],
+ \end{split}
+ \tag{B}\label{eq:s1-B}
+\end{equation}
+and, for \(\alpha=\gamma=1\),
+\begin{equation}
+ [a_1,\ldots,a_{\beta+2}][a_2,\ldots,a_{\beta+1}]
+ =[a_1,\ldots,a_{\beta+1}][a_2,\ldots,a_{\beta+2}]+(-1)^\beta.
+ \tag{C}\label{eq:s1-C}
+\end{equation}
+For \(\gamma=1\), \eqref{eq:s1-B} reproduces the recurrence
+\eqref{eq:s1-1}; for \(\alpha=1\), it gives
+\begin{equation}
+ [a_1,\ldots,a_{\gamma+1}]
+ =a_1[a_2,\ldots,a_{\gamma+1}]+[a_3,\ldots,a_{\gamma+1}].
+ \tag{6}\label{eq:s1-6}
+\end{equation}
+It follows readily that
+\[
+ \frac{[a_1,\ldots,a_k]}{[a_2,\ldots,a_k]}
+ =a_1+\cfrac{1}{a_2+
+  \cfrac{1}{a_3+\ddots+
+   \cfrac{1}{a_k}}}.
+\]
+
+% Source page J.8
+On the other hand, \eqref{eq:s1-1} gives
+\[
+ \frac{[a_1,\ldots,a_k]}{[a_1,\ldots,a_{k-1}]}
+ =a_k+\cfrac{1}{a_{k-1}+
+  \cfrac{1}{\ddots+
+   \cfrac{1}{a_1}}}.
+\]
+By what precedes, the latter continued fraction is also equal to
+\[
+ \frac{[a_k,\ldots,a_1]}{[a_{k-1},\ldots,a_1]};
+\]
+hence
+\begin{equation}
+ [a_1,a_2,\ldots,a_k]=[a_k,a_{k-1},\ldots,a_1].
+ \tag{7}\label{eq:s1-7}
+\end{equation}
+The symbol \([a_1,\ldots,a_k,\ldots,a_n]\) is plainly linear in any one
+of its elements \(a_k\). From \eqref{eq:s1-B} one easily obtains
+\begin{equation}
+ [a_1,\ldots,a_n]
+ =[a_1,\ldots,a_{k-1}][a_{k+1},\ldots,a_n]a_k+\mathcal R,
+ \tag{8}\label{eq:s1-8}
+\end{equation}
+where \(\mathcal R\) is independent of \(a_k\) and may be written
+\[
+ \begin{split}
+ \mathcal R
+ &=[a_1,\ldots,a_{k-1},0,a_{k+1},\ldots,a_n]\\
+ &=[a_1,\ldots,a_{k-2},a_{k-1}+a_{k+1},a_{k+2},\ldots,a_n].
+ \end{split}
+\]
+Finally, the following relations, in which \(m\) is arbitrary, are also
+easily verified:
+\begin{equation}
+ \left\{
+ \begin{aligned}
+ &[ma_1,a_2/m,ma_3,a_4/m,\ldots,ma_{2n-1},a_{2n}/m]
+   =[a_1,a_2,\ldots,a_{2n}],\\
+ &[ma_1,a_2/m,ma_3,a_4/m,\ldots,ma_{2n-1},a_{2n}/m,ma_{2n+1}]
+   =m[a_1,a_2,\ldots,a_{2n+1}].
+ \end{aligned}\right.
+ \tag{9}\label{eq:s1-9}
+\end{equation}
+
+\origsection{2}
+It is clear from the foregoing that the numerators and denominators of
+the convergents of our continued fraction are expressed by the symbol
+just introduced as follows:
+\begin{align*}
+ P_{2n}(z)&=[a_2,a_3z,a_4,\ldots,a_{2n-1}z,a_{2n}],\\
+ Q_{2n}(z)&=[a_1z,a_2,a_3z,\ldots,a_{2n}],\\
+ P_{2n+1}(z)&=[a_2,a_3z,a_4,\ldots,a_{2n},a_{2n+1}z],\\
+ Q_{2n+1}(z)&=[a_1z,a_2,\ldots,a_{2n},a_{2n+1}z].
+\end{align*}
+We shall denote by \(P_n^k(z),Q_n^k(z)\) what \(P_n(z),Q_n(z)\)
+become when every \(a_i\) is replaced by \(a_{i+k}\). The formulas of
+\hyperref[sec:1]{\S~1} therefore give identical relations among these
+polynomials after replacing \(a_i\) by \(a_iz\) whenever \(i\) is odd.
+
+% Source page J.9
+Thus
+\[
+ Q_{2n}(z)=a_{2n}Q_{2n-1}(z)+Q_{2n-2}(z),
+ \qquad
+ Q_{2n+1}(z)=a_{2n+1}zQ_{2n}(z)+Q_{2n-1}(z).
+\]
+In general we plainly have
+\begin{align*}
+ P_{2n}(z)&=\mathfrak A_0+\mathfrak A_1z+\cdots
+                   +\mathfrak A_{n-1}z^{n-1},\\
+ Q_{2n}(z)&=\mathfrak B_0+\mathfrak B_1z+\cdots
+                   +\mathfrak B_nz^n,\\
+ P_{2n+1}(z)&=\mathfrak C_0+\mathfrak C_1z+\cdots
+                   +\mathfrak C_nz^n,\\
+ Q_{2n+1}(z)&=\mathfrak D_0+\mathfrak D_1z+\cdots
+                   +\mathfrak D_{n+1}z^{n+1},
+\end{align*}
+where the coefficients are polynomials in the \(a_i\). Their general law
+is somewhat complicated and would be of no use to us; the following few
+expressions, however, are easily recognized and will be useful:
+\begin{align*}
+ \mathfrak A_0&=a_2+a_4+\cdots+a_{2n},\\
+ \mathfrak A_{n-2}&=\mathfrak A_{n-1}
+  \left(\frac1{a_2a_3}+\frac1{a_3a_4}+\cdots+
+        \frac1{a_{2n-1}a_{2n}}\right),\\
+ \mathfrak A_{n-1}&=a_2a_3\cdots a_{2n},\\
+ \mathfrak B_0&=1,\\
+ \mathfrak B_1&=\sum_{k=1}^{n}(a_1+a_3+\cdots+a_{2k-1})a_{2k},\\
+ \mathfrak B_{n-1}&=\mathfrak B_n
+  \left(\frac1{a_1a_2}+\frac1{a_2a_3}+\cdots+
+        \frac1{a_{2n-1}a_{2n}}\right),\\
+ \mathfrak B_n&=a_1a_2\cdots a_{2n},\\
+ \mathfrak C_0&=1,\\
+ \mathfrak C_1&=\sum_{k=1}^{n}(a_2+a_4+\cdots+a_{2k})a_{2k+1},\\
+ \mathfrak C_{n-1}&=\mathfrak C_n
+  \left(\frac1{a_2a_3}+\frac1{a_3a_4}+\cdots+
+        \frac1{a_{2n}a_{2n+1}}\right),\\
+ \mathfrak C_n&=a_2a_3\cdots a_{2n+1},\displaybreak[3]\\
+ \mathfrak D_0&=0,\\*
+ \mathfrak D_1&=a_1+a_3+\cdots+a_{2n+1},\\
+ \mathfrak D_n&=\mathfrak D_{n+1}
+  \left(\frac1{a_1a_2}+\frac1{a_2a_3}+\cdots+
+        \frac1{a_{2n}a_{2n+1}}\right),\\
+ \mathfrak D_{n+1}&=a_1a_2\cdots a_{2n+1}.
+\end{align*}
+
+% Source page J.10
+The identity
+\[
+ Q_{2n}(z)P_{2n+1}(z)-P_{2n}(z)Q_{2n+1}(z)=1
+\]
+implies
+\[
+ \mathfrak B_1+\mathfrak C_1=\mathfrak A_0\mathfrak D_1.
+\]
+
+\origsection{3}
+We now establish several propositions concerning the roots of the
+equations obtained by setting the polynomials \(P\) and \(Q\) equal to
+zero. The \(P\)'s do not differ essentially from the \(Q\)'s, and we shall
+concentrate chiefly on the latter. In relation \eqref{eq:s1-A} of
+\hyperref[sec:1]{\S~1}, put
+\[
+ \alpha=2n-3,\qquad\beta=1,\qquad\gamma=2.
+\]
+Replacing \(a_i\) by \(a_iz\) whenever \(i\) is odd gives
+\[
+ a_{2n-2}Q_{2n}(z)
+ =[a_{2n-2},a_{2n-1}z,a_{2n}]Q_{2n-2}(z)
+  -a_{2n}Q_{2n-4}(z).
+\]
+Thus
+\[
+ Q_{2n}(z),Q_{2n-2}(z),Q_{2n-4}(z),\ldots,Q_2(z),Q_0(z)=1
+\]
+form a Sturm sequence. At \(z=-\infty\) this sequence has \(n\) changes
+of sign, while at \(z=0\) it has none. Consequently the \(n\) roots of
+\(Q_{2n}(z)=0\) are real, distinct, and negative, and are separated by
+the roots of \(Q_{2n-2}(z)=0\). As \(z\) increases through a root of
+\(Q_{2n}(z)=0\), the ratio \(Q_{2n-2}(z)/Q_{2n}(z)\) jumps from
+\(-\infty\) to \(+\infty\).
+
+Now put in \eqref{eq:s1-A}
+\[
+ \alpha=2n-2,\qquad\beta=1,\qquad\gamma=2.
+\]
+Then
+\[
+ a_{2n-1}\frac{Q_{2n+1}(z)}{z}
+ =[a_{2n-1}z,a_{2n},a_{2n+1}z]\frac{Q_{2n-1}(z)}{z}
+  -a_{2n+1}\frac{Q_{2n-3}(z)}{z};
+\]
+hence
+\[
+ \frac{Q_{2n+1}(z)}z,\frac{Q_{2n-1}(z)}z,\ldots,
+ \frac{Q_1(z)}z=a_1
+\]
+form a Sturm sequence. The \(n\) roots of
+\(Q_{2n+1}(z)/z=0\) are real, distinct, and negative, and are separated
+by those of \(Q_{2n-1}(z)/z=0\). The ratio
+\(Q_{2n-1}(z)/Q_{2n+1}(z)\) again jumps from \(-\infty\) to
+\(+\infty\).
+
+% Source page J.11
+Next take
+\[
+ \alpha=2n-2,\qquad\beta=1,\qquad\gamma=1.
+\]
+We obtain
+\[
+ a_{2n-1}Q_{2n}(z)
+ =[a_{2n-1}z,a_{2n}]\frac{Q_{2n-1}(z)}z
+  -\frac{Q_{2n-3}(z)}z.
+\]
+Therefore
+\[
+ Q_{2n}(z),\frac{Q_{2n-1}(z)}z,\frac{Q_{2n-3}(z)}z,
+ \ldots,\frac{Q_1(z)}z=a_1
+\]
+form a Sturm sequence: the roots of \(Q_{2n}(z)=0\) are separated by
+those of \(Q_{2n-1}(z)/z=0\). Finally put
+\[
+ \alpha=2n-1,\qquad\beta=1,\qquad\gamma=1.
+\]
+This gives
+\[
+ a_{2n}Q_{2n+1}(z)
+ =[a_{2n},a_{2n+1}z]Q_{2n}(z)-Q_{2n-2}(z),
+\]
+and hence
+\[
+ Q_{2n+1}(z),Q_{2n}(z),Q_{2n-2}(z),\ldots,Q_2(z),Q_0(z)=1
+\]
+form a Sturm sequence. The roots of \(Q_{2n+1}(z)=0\) are separated by
+those of \(Q_{2n}(z)=0\).
+
+We have just seen that the roots of
+\[
+ \frac{Q_{2n-1}(z)}z
+ =[a_1,a_2z,a_3,\ldots,a_{2n-2}z,a_{2n-1}]=0
+\]
+separate the roots of
+\[
+ Q_{2n}(z)=[a_1,a_2z,a_3,\ldots,a_{2n-1},a_{2n}z]=0.
+\]
+By the reversal identity \eqref{eq:s1-7}, the roots of
+\[
+ [a_{2n},a_{2n-1}z,a_{2n-2},\ldots,a_3z,a_2]=0
+\]
+therefore separate those of
+\[
+ [a_{2n},a_{2n-1}z,a_{2n-2},\ldots,a_3z,a_2,a_1z]=0.
+\]
+
+% Source page J.12
+This is equivalent to saying that the roots of \(P_{2n}(z)=0\) separate
+the roots of \(Q_{2n}(z)=0\). Similarly, the assertion that the roots of
+\(Q_{2n}(z)=0\) separate those of \(Q_{2n+1}(z)=0\) is essentially the
+same as the assertion that the roots of \(P_{2n+1}(z)=0\) separate those
+of \(Q_{2n+1}(z)=0\).
+
+It follows that, in the partial-fraction decompositions
+\begin{align*}
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  &=\frac{M_1}{z+x_1}+\frac{M_2}{z+x_2}+\cdots+
+    \frac{M_n}{z+x_n},\\
+ \frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  &=\frac{N_0}{z}+\frac{N_1}{z+x_1}+\frac{N_2}{z+x_2}
+    +\cdots+\frac{N_n}{z+x_n},
+\end{align*}
+all the quantities \(M_i,N_i\) are positive. (The \(x_i\) in the two
+formulas are, of course, not the same.)
+
+\origsection{4}
+The roots of \(Q_n(z)=0\) are plainly functions of the first \(n\)
+numbers \(a_i\). Can such a root nevertheless be independent of one of
+these \(a_i\)? We now examine this question. Formula \eqref{eq:s1-B},
+with the notation introduced at the beginning of
+\hyperref[sec:2]{\S~2}, gives
+\begin{align}
+ Q_{2n+2n'}(z)
+  &=Q_{2n}(z)Q_{2n'}^{2n}(z)
+    +Q_{2n-1}(z)P_{2n'}^{2n}(z),
+    \tag{1}\label{eq:s4-1}\\
+ Q_{2n+2n'+1}(z)
+  &=Q_{2n}(z)Q_{2n'+1}^{2n}(z)
+    +Q_{2n-1}(z)P_{2n'+1}^{2n}(z).
+    \tag{2}\label{eq:s4-2}
+\end{align}
+We know that \(Q_n(z)\) and \(P_n(z)\) never vanish for the same value of
+\(z\), and neither do \(Q_n(z)\) and \(Q_{n-1}(z)\). It follows at once
+from \eqref{eq:s4-1} that if \(z=a\) annihilates two of the three
+functions
+\[
+ Q_{2n+2n'}(z),\quad Q_{2n}(z),\quad P_{2n'}^{2n}(z),
+\]
+it also annihilates the third. Likewise, if \(z=a\) annihilates two of
+\[
+ Q_{2n+2n'}(z),\quad Q_{2n-1}(z),\quad Q_{2n'}^{2n}(z),
+\]
+it also annihilates the third.
+
+In the right-hand side of \eqref{eq:s4-1}, only the polynomial
+\(Q_{2n'}^{2n}(z)\) depends on \(a_{2n+1}\). Displaying this coefficient
+gives
+\begin{equation}
+ Q_{2n+2n'}(z)
+  =a_{2n+1}zQ_{2n}(z)P_{2n'}^{2n}(z)+R(z),
+ \tag{3}\label{eq:s4-3}
+\end{equation}
+where \(R(z)\) is independent of \(a_{2n+1}\). Roots of
+\(Q_{2n+2n'}(z)=0\) independent of \(a_{2n+1}\) must therefore satisfy
+\[
+ Q_{2n}(z)P_{2n'}^{2n}(z)=0,\qquad R(z)=0.
+\]
+
+% Source page J.13
+Such a root must annihilate one of the polynomials \(Q_{2n}(z)\) and
+\(P_{2n'}^{2n}(z)\), and, by the preceding observation, then
+annihilates the other as well. Conversely, if \(z=a\) annihilates both
+\(Q_{2n}(z)\) and \(P_{2n'}^{2n}(z)\), it also annihilates
+\(Q_{2n+2n'}(z)\) by \eqref{eq:s4-1}, and then \(R(z)\) by
+\eqref{eq:s4-3}; it is consequently a root of \(Q_{2n+2n'}(z)=0\)
+independent of \(a_{2n+1}\). Thus the roots of that equation which are
+independent of \(a_{2n+1}\) coincide with the common roots of
+\[
+ Q_{2n}(z)=0,\qquad P_{2n'}^{2n}(z)=0.
+\]
+These equations can indeed have common roots, since the first depends
+only on \(a_1,a_2,\ldots,a_{2n}\), while the second depends on
+\(a_{2n+2},a_{2n+3},\ldots,a_{2n+2n'}\). In general, however--that is,
+unless the \(a_i\) satisfy certain special conditions--no such roots
+exist.
+
+The same argument shows that the roots of \(Q_{2n+2n'}(z)=0\) which are
+independent of \(a_{2n}\) coincide with the common roots of
+\[
+ Q_{2n-1}(z)=0,\qquad Q_{2n'}^{2n}(z)=0.
+\]
+Formula \eqref{eq:s4-2} yields analogous conclusions, which it is enough
+to state:
+\begin{itemize}[leftmargin=2em]
+ \item the roots of \(Q_{2n+2n'+1}(z)=0\) independent of \(a_{2n}\)
+ coincide with the common roots of
+ \[
+  Q_{2n-1}(z)=0,\qquad Q_{2n'+1}^{2n}(z)=0;
+ \]
+ \item the roots of \(Q_{2n+2n'+1}(z)=0\) independent of \(a_{2n+1}\)
+ coincide with the common roots of
+ \[
+  Q_{2n}(z)=0,\qquad P_{2n'+1}^{2n}(z)=0.
+ \]
+\end{itemize}
+
+\origsection{5}
+We now establish the following propositions, which supplement those in
+\hyperref[sec:3]{\S~3}.
+
+\begin{proposition}
+The roots of \(Q_{2n+2n'}(z)=0\) are separated by the roots of
+\[
+ Q_{2n}(z)P_{2n'}^{2n}(z)=0,
+\]
+and also by the roots of
+\[
+ \frac{Q_{2n-1}(z)Q_{2n'}^{2n}(z)}{z}=0.
+\]
+The roots of \(Q_{2n+2n'+1}(z)/z=0\) are separated by the roots of
+\[
+ \frac{Q_{2n-1}(z)Q_{2n'+1}^{2n}(z)}{z^2}=0.
+\]
+The roots of \(Q_{2n+2n'+1}(z)=0\) are separated by the roots of
+\[
+ Q_{2n}(z)P_{2n'+1}^{2n}(z)=0.
+\]
+\end{proposition}
+
+% Source page J.14
+For \(n'=0\) or \(1\) these reduce to the propositions of
+\hyperref[sec:3]{\S~3}. It is enough to give the proof of the first.
+Return to the relation
+\[
+ Q_{2n+2n'}(z)=Q_{2n}(z)Q_{2n'}^{2n}(z)
+                +Q_{2n-1}(z)P_{2n'}^{2n}(z),
+\]
+and denote the roots of \(Q_{2n}(z)=0\), in increasing order, by
+\[
+ \alpha<\alpha'<\alpha''<\alpha'''<\cdots;
+\]
+the roots of \(P_{2n'}^{2n}(z)=0\) by
+\[
+ \beta<\beta'<\beta''<\cdots;
+\]
+and the combined set of the \(\alpha\)'s and \(\beta\)'s by
+\[
+ x_1<x_2<x_3<\cdots<x_{n+n'-1}.
+\]
+The assertion is equivalent to saying that the sequence
+\[
+ Q_{2n+2n'}(x_i)\qquad(i=0,1,2,\ldots,n+n'),
+\]
+where \(x_0=-\infty\) and \(x_{n+n'}=0\), consists entirely of changes
+of sign. First, \(Q_{2n+2n'}(x_0)\) has sign \((-1)^{n+n'}\). For
+\(Q_{2n+2n'}(x_1)\) two cases arise, according as \(x_1=\alpha\) or
+\(x_1=\beta\). In the first case,
+\[
+ Q_{2n+2n'}(x_1)=Q_{2n-1}(\alpha)P_{2n'}^{2n}(\alpha);
+\]
+in the second,
+\[
+ Q_{2n+2n'}(x_1)=Q_{2n}(\beta)Q_{2n'}^{2n}(\beta).
+\]
+
+% Source page J.15
+In the first case, \(Q_{2n-1}(\alpha)\) has sign \((-1)^n\) and
+\(P_{2n'}^{2n}(\alpha)\) sign \((-1)^{n'+1}\), since \(\alpha\) is
+smaller than the least root of \(Q_{2n-1}(z)=0\) and also smaller than
+\(\beta\). In the second case, \(Q_{2n}(\beta)\) has sign \((-1)^n\) and
+\(Q_{2n'}^{2n}(\beta)\) sign \((-1)^{n'+1}\), because \(\beta\) lies
+between the two smallest roots of \(Q_{2n'}^{2n}(z)=0\). Thus in every
+case \(Q_{2n+2n'}(x_1)\) has sign \((-1)^{n+n'+1}\), so that the terms at
+\(x_0,x_1\) present a variation.
+
+Suppose next that two consecutive roots \(x_k,x_{k+1}\) are both
+\(\alpha\)-roots. Then
+\[
+ \begin{aligned}
+ Q_{2n+2n'}(x_k)&=Q_{2n-1}(\alpha)P_{2n'}^{2n}(\alpha),\\
+ Q_{2n+2n'}(x_{k+1})&=Q_{2n-1}(\alpha')P_{2n'}^{2n}(\alpha').
+ \end{aligned}
+\]
+The consecutive roots \(\alpha,\alpha'\) of \(Q_{2n}(z)=0\) enclose
+exactly one root of \(Q_{2n-1}(z)=0\), so the first factors have opposite
+signs. By hypothesis there is no \(\beta\)-root between them, so the
+second factors have the same sign. The two displayed values therefore
+present a variation. If \(x_k=\beta,x_{k+1}=\beta'\), then
+\[
+ \begin{aligned}
+ Q_{2n+2n'}(x_k)&=Q_{2n}(\beta)Q_{2n'}^{2n}(\beta),\\
+ Q_{2n+2n'}(x_{k+1})&=Q_{2n}(\beta')Q_{2n'}^{2n}(\beta').
+ \end{aligned}
+\]
+Here the first factors have the same sign and the second opposite signs,
+so there is again a variation.
+
+The same conclusion holds in the two remaining cases,
+\(x_k=\alpha,x_{k+1}=\beta\) and
+\(x_k=\beta,x_{k+1}=\alpha\). In the former case,
+\[
+ \begin{aligned}
+ Q_{2n+2n'}(x_k)&=Q_{2n-1}(\alpha)P_{2n'}^{2n}(\alpha),\\
+ Q_{2n+2n'}(x_{k+1})&=Q_{2n}(\beta)Q_{2n'}^{2n}(\beta).
+ \end{aligned}
+\]
+The function \(Q_{2n-1}(z)/z\) has, relative to \(Q_{2n}(z)\), the
+properties of the derivative \(Q'_{2n}(z)\); furthermore,
+\(Q_{2n}(\beta)\) has the sign of \(Q_{2n}(\alpha+\varepsilon)\), and
+\(Q_{2n-1}(\alpha)\) the sign of
+\(Q_{2n-1}(\alpha+\varepsilon)\), where \(\varepsilon>0\) is very small.
+
+% Source page J.16
+It follows that \(Q_{2n-1}(\alpha)/Q_{2n}(\beta)\) is negative.
+Likewise \(P_{2n'}^{2n}(z)\) has, relative to
+\(Q_{2n'}^{2n}(z)\), the properties of the derivative;
+\(P_{2n'}^{2n}(\alpha)\) has the sign of
+\(P_{2n'}^{2n}(\beta-\varepsilon)\), while
+\(Q_{2n'}^{2n}(\beta)\) has the sign of
+\(Q_{2n'}^{2n}(\beta-\varepsilon)\). Hence
+\(P_{2n'}^{2n}(\alpha)/Q_{2n'}^{2n}(\beta)\) has the sign of
+\[
+ \frac{P_{2n'}^{2n}(\beta-\varepsilon)}
+      {Q_{2n'}^{2n}(\beta-\varepsilon)},
+\]
+which is positive, because \(\beta\) is a root of
+\(P_{2n'}^{2n}(z)=0\) lying between two consecutive roots of
+\(Q_{2n'}^{2n}(z)=0\). There is therefore again a variation.
+
+Finally, in the case
+\[
+ \begin{aligned}
+ Q_{2n+2n'}(x_k)&=Q_{2n}(\beta)Q_{2n'}^{2n}(\beta),\\
+ Q_{2n+2n'}(x_{k+1})&=Q_{2n-1}(\alpha)P_{2n'}^{2n}(\alpha),
+ \end{aligned}
+\]
+one finds that \(Q_{2n}(\beta)/Q_{2n-1}(\alpha)\) is positive, whereas
+\(Q_{2n'}^{2n}(\beta)/P_{2n'}^{2n}(\alpha)\) is negative.
+
+Thus the first \(n+n'\) terms of the sequence
+\[
+ Q_{2n+2n'}(x_i)\qquad(i=0,1,2,\ldots,n+n')
+\]
+present only variations; the penultimate term is negative and the last
+is positive. This proves the proposition.
+
+We have assumed that no \(\alpha\)-root equals a \(\beta\)-root. This is
+the general situation, but the nature of the proposition itself shows
+that exceptional cases can occur. Indeed, each of the \(n+n'-1\)
+intervals formed by the roots of \(Q_{2n+2n'}(z)=0\) contains either an
+\(\alpha\)-root or a \(\beta\)-root. It cannot be said \emph{a priori}
+which intervals contain one kind and which the other: their distribution
+varies from one choice of the \(a_i\) to another.
+
+As the positive coefficients \(a_i\) vary continuously, exceptional
+cases must arise when this distribution changes. Such a change can occur
+only as follows. Of two consecutive intervals, the first containing an
+\(\alpha\)-root and the second a \(\beta\)-root, the \(\alpha\)-root passes
+into the second while the \(\beta\)-root simultaneously enters the first.
+
+% Source page J.17
+At the critical moment the \(\alpha\)- and \(\beta\)-roots coincide with a
+root of \(Q_{2n+2n'}(z)=0\). This is precisely the exceptional case
+studied in \hyperref[sec:4]{\S~4}.
+
+\origsection{6}
+We may now establish very easily the following proposition. Let \(x_k\)
+be a root of \(Q_n(z)=0\).
+
+\begin{proposition}
+The root \(x_k\), regarded as a function of \(a_i\), satisfies
+\[
+ \frac{\partial x_k}{\partial a_i}\geq0.
+\]
+\end{proposition}
+
+For the proof four cases must be distinguished according to the parities
+of \(n\) and \(i\); it is enough to give the argument in one case. Suppose
+\[
+ Q_{2n+2n'}(x_k)
+ =a_{2n+1}x_kQ_{2n}(x_k)P_{2n'}^{2n}(x_k)+R(x_k)=0.
+\]
+Then
+\[
+ \frac{\partial x_k}{\partial a_{2n+1}}
+ =-\frac{x_kQ_{2n}(x_k)P_{2n'}^{2n}(x_k)}
+         {Q'_{2n+2n'}(x_k)}.
+\]
+We have proved that \(Q_{2n}(z)P_{2n'}^{2n}(z)\) has, relative to
+\(Q_{2n+2n'}(z)\), the properties of its derivative; hence
+\[
+ \frac{Q_{2n}(x_k)P_{2n'}^{2n}(x_k)}
+      {Q'_{2n+2n'}(x_k)}>0.
+\]
+Since \(x_k\) is nonpositive, the asserted property follows in the case
+where \(n\) is even and \(i\) odd. Exceptionally, the derivative may be
+ zero.
+
+% Source page J.18
+\chapterheading{II}{The Expansion in Descending Powers of
+\texorpdfstring{\(z\)}{z}}{chap:II}
+
+\origsection{7}
+The formula
+\[
+ \frac{P_{n+1}(z)}{Q_{n+1}(z)}-\frac{P_n(z)}{Q_n(z)}
+ =\frac{(-1)^n}{Q_n(z)Q_{n+1}(z)},
+\]
+in which \(Q_n(z)Q_{n+1}(z)\) is a polynomial of degree \(n+1\), shows
+that when the convergents \(P_n(z)/Q_n(z)\) and
+\(P_{n+1}(z)/Q_{n+1}(z)\) are expanded in descending powers of \(z\),
+the first \(n\) terms agree. Writing
+\begin{equation}
+ \frac{P_n(z)}{Q_n(z)}
+ =\frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+  +(-1)^{n-1}\frac{c_{n-1}}{z^n}
+  +(-1)^n\frac{\alpha_n^{n}}{z^{n+1}}
+  +(-1)^{n+1}\frac{\alpha_{n+1}^{n}}{z^{n+2}}+\cdots,
+ \tag{1}\label{eq:s7-1}
+\end{equation}
+we thereby define a sequence
+\[
+ c_0,c_1,c_2,c_3,\ldots
+\]
+which is completely determined and may be continued as far as desired.
+The \(c_i\) are plainly rational functions of the \(a_i\); if the \(b_i\)
+of the Introduction are introduced, the \(c_i\) are polynomials in the
+\(b_i\) with positive integral coefficients.
+
+The most elegant way of obtaining the \(c_i\) in terms of the \(b_i\)
+seems to be the following, which we obtained in the memoir published in
+volume III of these \emph{Annales}~\cite{Stieltjes1889}. First compute the quantities
+\(\alpha_{i,k},\beta_{i,k}\) from
+\begin{gather*}
+ \alpha_{0,0}=1,\qquad \alpha_{i,0}=0\quad(i>0),\\
+ \beta_{0,k}=\alpha_{0,k}+b_2\alpha_{1,k},\\
+ \beta_{1,k}=\alpha_{1,k}+b_4\alpha_{2,k},\\
+ \beta_{2,k}=\alpha_{2,k}+b_6\alpha_{3,k},\\
+ \hspace{3em}\vdots\\
+ \beta_{i,k}=\alpha_{i,k}+b_{2i+2}\alpha_{i+1,k};
+\end{gather*}
+
+% Source page J.19
+\begin{gather*}
+ \alpha_{0,k+1}=b_1\beta_{0,k},\\
+ \alpha_{1,k+1}=b_3\beta_{1,k}+\beta_{0,k},\\
+ \alpha_{2,k+1}=b_5\beta_{2,k}+\beta_{1,k},\\
+ \hspace{3em}\vdots\\
+ \alpha_{i,k+1}=b_{2i+1}\beta_{i,k}+\beta_{i-1,k}.
+\end{gather*}
+It follows that \(\alpha_{i,k}=\beta_{i,k}=0\) when \(i>k\). Once the
+\(\alpha_{i,k},\beta_{i,k}\) have been obtained, any coefficient \(c_n\)
+may be calculated in several ways from either of the formulas
+\begin{align*}
+ c_{i+k}={}&b_0\alpha_{0,i}\alpha_{0,k}
+  +b_0b_1b_2\alpha_{1,i}\alpha_{1,k}
+  +b_0b_1b_2b_3b_4\alpha_{2,i}\alpha_{2,k}+\cdots,\\
+ c_{i+k+1}={}&b_0b_1\beta_{0,i}\beta_{0,k}
+  +b_0b_1b_2b_3\beta_{1,i}\beta_{1,k}
+  +b_0b_1b_2b_3b_4b_5\beta_{2,i}\beta_{2,k}+\cdots.
+\end{align*}
+
+Having defined the coefficients \(c_n\), consider the infinite series
+\phantomsection\label{eq:s7-formal-series}
+\begin{equation*}
+ \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}
+ -\frac{c_3}{z^4}+\cdots.
+\end{equation*}
+\begin{definition}
+This is called the expansion of the continued fraction in descending
+powers of \(z\).
+\end{definition}
+The definition is purely formal. We shall soon see that the series is
+often divergent for every value of \(z\); for the moment it must therefore
+be regarded from the purely formal point of view.
+
+The \(c_n\) are rational functions of the \(a_n\). A little later we shall
+give formulas that express the \(a_n\) conversely in terms of the \(c_n\).
+These formulas will therefore make it possible to reduce formally a
+series in descending powers of \(z\) to a continued fraction.
+
+\origsection{8}
+We have
+\[
+ \frac{P_n(z)}{Q_n(z)}
+ =\frac1{Q_0(z)Q_1(z)}-\frac1{Q_1(z)Q_2(z)}+\cdots
+  +\frac{(-1)^{n-1}}{Q_{n-1}(z)Q_n(z)}.
+\]
+Expanding the terms on the right in descending powers of \(z\) gives
+
+% Source page J.20
+\begin{align*}
+ \frac1{Q_0(z)Q_1(z)}&=\frac{\varepsilon_1^{1}}z,\\
+ -\frac1{Q_1(z)Q_2(z)}&=-\frac{\varepsilon_2^{2}}{z^2}
+    +\frac{\varepsilon_3^{2}}{z^3}
+    -\frac{\varepsilon_4^{2}}{z^4}
+    +\frac{\varepsilon_5^{2}}{z^5}-\cdots,\\
+ \frac1{Q_2(z)Q_3(z)}&=\frac{\varepsilon_3^{3}}{z^3}
+    -\frac{\varepsilon_4^{3}}{z^4}
+    +\frac{\varepsilon_5^{3}}{z^5}-\cdots,\\
+ -\frac1{Q_3(z)Q_4(z)}&=-\frac{\varepsilon_4^{4}}{z^4}
+    +\frac{\varepsilon_5^{4}}{z^5}-\cdots,\\
+ \frac1{Q_4(z)Q_5(z)}&=\frac{\varepsilon_5^{5}}{z^5}-\cdots.
+\end{align*}
+Adding the first \(n\) series gives the expansion of \(P_n(z)/Q_n(z)\).
+But
+\[
+ Q_{n-1}(z)Q_n(z)=cz(z+x_1)(z+x_2)\cdots(z+x_{n-1}),
+\]
+where \(c,x_1,x_2,\ldots,x_{n-1}\) are positive. Hence all the
+coefficients \(\varepsilon_k^{i}\) are positive, and in expansion
+\eqref{eq:s7-1} of \(P_n(z)/Q_n(z)\) the first \(n\) coefficients
+\(c_0,c_1,\ldots,c_{n-1}\) are positive, while the following coefficients
+\(\alpha_n^{n},\alpha_{n+1}^{n},\alpha_{n+2}^{n},\ldots\) are
+respectively smaller than \(c_n,c_{n+1},c_{n+2},\ldots\).
+
+The expansion of a convergent may also be obtained by first decomposing
+it into simple fractions. As in \hyperref[sec:3]{\S~3}, put
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ =\frac{M_1}{z+x_1}+\frac{M_2}{z+x_2}+\cdots+
+   \frac{M_n}{z+x_n}.
+\]
+Then
+\[
+ c_k=\sum_{i=1}^n M_i x_i^k
+ \qquad[k=0,1,2,\ldots,2n-1].
+\]
+For an odd-order convergent,
+\[
+ \frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+ =\frac{N_0}{z}+\frac{N_1}{z+x_1}+\frac{N_2}{z+x_2}
+  +\cdots+\frac{N_n}{z+x_n},
+\]
+
+% Source page J.21
+and therefore
+\[
+ c_k=\sum_{i=0}^nN_ix_i^k
+ \qquad(k=0,1,2,\ldots,2n),\qquad x_0=0.
+\]
+These expressions imply the following consequence.
+
+\begin{theorem}
+The quadratic form
+\[
+ \sum_{i=0}^{m-1}\sum_{k=0}^{m-1}c_{p+i+k}X_iX_k
+\]
+is positive definite; consequently the determinant
+\[
+ \begin{vmatrix}
+ c_p&c_{p+1}&c_{p+2}&\cdots&c_{p+m-1}\\
+ c_{p+1}&c_{p+2}&c_{p+3}&\cdots&c_{p+m}\\
+ \vdots&\vdots&\vdots&&\vdots\\
+ c_{p+m-1}&c_{p+m}&c_{p+m+1}&\cdots&c_{p+2m-2}
+ \end{vmatrix}
+\]
+is positive.
+\end{theorem}
+
+Indeed, choose \(n\) so that \(p+2m-2\leq2n-1\). The quadratic form can
+then be written
+\[
+ \sum_{i=1}^nM_ix_i^p
+  (X_0+X_1x_i+X_2x_i^2+\cdots+X_{m-1}x_i^{m-1})^2.
+\]
+
+\origsection{9}
+From what has just been proved,
+\[
+ \frac{c_{n+1}}{c_n}<\frac{c_{n+2}}{c_{n+1}},
+\]
+so \(c_{n+1}/c_n\) increases with \(n\). Two cases are possible. Either
+the ratio increases beyond every bound, in which case
+\[
+ \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+\]
+always diverges; or it tends to a finite limit \(\lambda\), in which case
+the series converges for \(|z|>\lambda\).
+
+On the other hand, we know that the largest root of \(Q_n(-z)=0\) also
+increases with \(n\).
+
+% Source page J.22
+We shall show that in the first case this root also grows beyond every
+bound, and in the second it tends to \(\lambda\). Without distinguishing
+between even and odd \(n\), write
+\[
+ \frac{P_n(z)}{Q_n(z)}=\sum_{i=1}^{n'}\frac{m_i}{z+x_i},
+\]
+where \(n'=n/2\) or \((n+1)/2\), and \(x_{n'}\) is the largest root. Then
+\[
+ \frac{c_{n-1}}{c_{n-2}}
+ =\frac{\sum_{i=1}^{n'}m_ix_i^{n-1}}
+        {\sum_{i=1}^{n'}m_ix_i^{n-2}}
+ <x_{n'}.
+\]
+Consequently, if \(c_{n+1}/c_n\) grows beyond every bound, then so does
+\(x_{n'}\).
+
+Now suppose
+\[
+ \lim_{n\to\infty}\frac{c_{n+1}}{c_n}=\lambda.
+\]
+The limit of \(x_{n'}\) cannot be less than \(\lambda\); we claim that it
+equals \(\lambda\). It is enough to show that \(x_{n'}\) cannot become
+larger than \(\lambda\). Suppose, indeed, that
+\(x_{n'}=\lambda+\varepsilon\), with \(\varepsilon>0\), and consider the
+two series
+\begin{align}
+ &\frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots,
+   \tag{1}\label{eq:s9-1}\\
+ \frac{P_n(z)}{Q_n(z)}={}&\frac{c_0}{z}-\frac{c_1}{z^2}+\cdots
+  +(-1)^{n-1}\frac{c_{n-1}}{z^n}
+  +(-1)^n\frac{\alpha_n^{n}}{z^{n+1}}
+  +(-1)^{n+1}\frac{\alpha_{n+1}^{n}}{z^{n+2}}+\cdots.
+   \tag{2}\label{eq:s9-2}
+\end{align}
+Series \eqref{eq:s9-2} converges for \(|z|>x_{n'}=\lambda+\varepsilon\)
+but diverges for \(|z|<x_{n'}\), and in particular when
+\[
+ \lambda<|z|<\lambda+\varepsilon.
+\]
+Since \(c_{n+1}/c_n\to\lambda\), series \eqref{eq:s9-1} converges for
+\(|z|>\lambda\). Moreover,
+\(\alpha_n^{n}<c_n,\alpha_{n+1}^{n}<c_{n+1},\ldots\), so
+\eqref{eq:s9-2} must converge for the same values of \(z\), and in
+particular when \(\lambda<|z|<\lambda+\varepsilon\).
+
+% Source page J.23
+Thus the same series would be both convergent and divergent there. This
+contradiction proves that \(x_{n'}\) cannot increase beyond \(\lambda\),
+and hence
+\begin{equation*}
+ \lim_{n\to\infty}x_{n'}=\lambda.
+ \tag*{\textit{Q.E.D.}}
+\end{equation*}
+
+\origsection{10}
+Given the continued fraction, how can one tell whether
+\(c_{n+1}/c_n\) grows beyond every bound or tends to a finite limit? The
+answer is very simple. Consider the numbers
+\phantomsection\label{eq:s10-bn}
+\begin{equation*}
+ b_n=\frac1{a_na_{n+1}}\qquad(n=1,2,3,\ldots).
+\end{equation*}
+If these numbers are not bounded above, then \(c_{n+1}/c_n\) grows
+beyond every bound. If they have an upper bound \(l\), the ratio tends to
+a finite limit not exceeding \(4l\).
+
+If the \(b_n\) have no upper bound, then, however large \(M\) may be, an
+integer \(m\) can always be found such that
+\[
+ b_m=\frac1{a_ma_{m+1}}>M.
+\]
+According as the case requires, put \(m=2n\) or \(m=2n+1\), and arrange
+the roots of
+\[
+ Q_{2n}(-z)=0,\qquad Q_{2n+2}(-z)=0
+\]
+in increasing order as
+\[
+ \alpha_1,\alpha_2,\ldots,\alpha_n,
+ \qquad
+ \beta_1,\beta_2,\ldots,\beta_{n+1}.
+\]
+By \hyperref[sec:2]{\S~2},
+\[
+ \alpha_1+\cdots+\alpha_n=b_1+b_2+\cdots+b_{2n-1},
+\]
+\[
+ \beta_1+\cdots+\beta_{n+1}=b_1+b_2+\cdots+b_{2n+1},
+\]
+and therefore
+\[
+ \beta_{n+1}-(\alpha_n-\beta_n)-(\alpha_{n-1}-\beta_{n-1})
+ -\cdots-(\alpha_1-\beta_1)=b_{2n}+b_{2n+1}.
+\]
+Since the differences
+\(\alpha_1-\beta_1,\ldots,\alpha_n-\beta_n\) are positive, it follows
+that
+\[
+ \beta_{n+1}>b_{2n}+b_{2n+1}>M.
+\]
+
+% Source page J.24
+Thus the largest root of \(Q_{2n+2}(-z)=0\), and consequently also the
+ratio \(c_{n+1}/c_n\), grows beyond every bound.
+
+If \(b_1,b_2,b_3,\ldots\) have an upper bound \(l\), choose \(C\) so that
+\(Cl>b_0\), and consider the continued fraction
+\[
+ \cfrac{Cl}{z+
+  \cfrac{l}{1+
+   \cfrac{l}{z+
+    \cfrac{l}{1+\ddots}}}}.
+\]
+Since the \(c_n\) are polynomials with positive coefficients in the
+\(b_n\), the coefficients obtained by expanding this continued fraction
+as a series are greater than the corresponding coefficients of
+\[
+ \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots.
+\]
+The former series is readily seen to be the expansion of the algebraic
+function
+\[
+ \frac C2\left(\sqrt{1+\frac{4l}{z}}-1\right),
+\]
+which converges for \(|z|>4l\). The expansion in the \(c_n\) therefore
+also converges for \(|z|>4l\), and \(c_{n+1}/c_n\) tends to a finite limit
+not exceeding \(4l\).
+
+\origsection{11}
+The expansion
+\[
+ \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+\]
+and that of \(P_n(z)/Q_n(z)\) differ only in the terms in
+\(z^{-(n+1)},z^{-(n+2)},\ldots\). It follows that the expansion of
+\[
+ Q_n(z)\left(\frac{c_0}{z}-\frac{c_1}{z^2}
+                  +\frac{c_2}{z^3}-\cdots\right)
+\]
+
+% Source page J.25
+differs from \(P_n(z)\) only by terms in
+\[
+ z^{-(n-n'+1)},z^{-(n-n'+2)},\ldots,
+\]
+where \(n'\) is the degree of \(Q_n(z)\). Consequently, in the displayed
+product the terms in
+\[
+ \frac1z,\frac1{z^2},\ldots,\frac1{z^{n-n'}}
+\]
+are absent. This condition determines \(Q_n(z)\) up to a constant
+factor.
+
+First let the order be even and write
+\[
+ Q_{2n}(-z)=\alpha_0+\alpha_1z+\alpha_2z^2+\cdots+\alpha_nz^n.
+\]
+The absence of the terms \(1/z,\ldots,1/z^n\) from the product with
+\(c_0/z+c_1/z^2+c_2/z^3+\cdots\) gives
+\begin{equation}
+ \alpha_0c_k+\alpha_1c_{k+1}+\cdots+\alpha_nc_{k+n}=0
+ \qquad(k=0,1,2,\ldots,n-1).
+ \tag{1}\label{eq:s11-1}
+\end{equation}
+Since \(Q_{2n}(0)=1\),
+\begin{equation}
+ Q_{2n}(-z)=
+ \frac{
+ \begin{vmatrix}
+  1&z&z^2&\cdots&z^n\\
+  c_0&c_1&c_2&\cdots&c_n\\
+  c_1&c_2&c_3&\cdots&c_{n+1}\\
+  \vdots&\vdots&\vdots&&\vdots\\
+  c_{n-1}&c_n&c_{n+1}&\cdots&c_{2n-1}
+ \end{vmatrix}}
+ {\begin{vmatrix}
+  c_1&c_2&\cdots&c_n\\
+  c_2&c_3&\cdots&c_{n+1}\\
+  \vdots&\vdots&&\vdots\\
+  c_n&c_{n+1}&\cdots&c_{2n-1}
+ \end{vmatrix}}.
+ \tag{2}\label{eq:s11-2}
+\end{equation}
+
+For a simpler expression of \eqref{eq:s11-1}, introduce a symbol
+\(\mathcal S f(u)\) as follows: if \(f(u)\) is a polynomial,
+\(\mathcal S f(u)\) denotes the result of replacing in \(f(u)\) the
+successive powers \(u^0,u^1,u^2,\ldots\) by
+\(c_0,c_1,c_2,\ldots\), respectively. Then
+\begin{equation}
+ \mathcal S\!\left\{u^kQ_{2n}(-u)\right\}=0
+ \qquad(k=0,1,2,\ldots,n-1).
+ \tag{3}\label{eq:s11-3}
+\end{equation}
+
+% Source page J.26
+For an odd order write
+\[
+ Q_{2n+1}(-z)=\beta_1z+\beta_2z^2+\cdots+\beta_{n+1}z^{n+1}.
+\]
+Then
+\begin{equation}
+ \mathcal S\!\left\{u^kQ_{2n+1}(-u)\right\}=0
+ \qquad(k=0,1,2,\ldots,n-1).
+ \tag{4}\label{eq:s11-4}
+\end{equation}
+The constant term in the product of \(Q_{2n+1}(-z)\) with
+\(c_0/z+c_1/z^2+c_2/z^3+\cdots\) equals the constant term of
+\(-P_{2n+1}(-z)\), namely \(-1\). Therefore
+\begin{equation}
+ \mathcal S\!\left\{\frac{Q_{2n+1}(-u)}u\right\}=-1.
+ \tag{5}\label{eq:s11-5}
+\end{equation}
+This relation determines the constant factor left undetermined by
+\eqref{eq:s11-4}, and
+\begin{equation}
+ Q_{2n+1}(-z)=
+ -\frac{
+ \begin{vmatrix}
+  z&z^2&\cdots&z^{n+1}\\
+  c_1&c_2&\cdots&c_{n+1}\\
+  c_2&c_3&\cdots&c_{n+2}\\
+  \vdots&\vdots&&\vdots\\
+  c_n&c_{n+1}&\cdots&c_{2n}
+ \end{vmatrix}}
+ {\begin{vmatrix}
+  c_0&c_1&\cdots&c_n\\
+  c_1&c_2&\cdots&c_{n+1}\\
+  \vdots&\vdots&&\vdots\\
+  c_n&c_{n+1}&\cdots&c_{2n}
+ \end{vmatrix}}.
+ \tag{6}\label{eq:s11-6}
+\end{equation}
+
+The coefficients of the highest powers of \(z\) in \(Q_{2n}(z)\) and
+\(Q_{2n+1}(z)\) are known from \hyperref[sec:2]{\S~2}. Comparison with
+\eqref{eq:s11-2} and \eqref{eq:s11-6} gives
+\[
+ a_1a_2\cdots a_{2n}=\frac{A_n}{B_n},
+ \qquad
+ a_1a_2\cdots a_{2n+1}=\frac{B_n}{A_{n+1}},
+\]
+where
+\[
+ A_n=\begin{vmatrix}
+ c_0&c_1&\cdots&c_{n-1}\\
+ c_1&c_2&\cdots&c_n\\
+ \vdots&\vdots&&\vdots\\
+ c_{n-1}&c_n&\cdots&c_{2n-2}
+ \end{vmatrix},\qquad
+ B_n=\begin{vmatrix}
+ c_1&c_2&\cdots&c_n\\
+ c_2&c_3&\cdots&c_{n+1}\\
+ \vdots&\vdots&&\vdots\\
+ c_n&c_{n+1}&\cdots&c_{2n-1}
+ \end{vmatrix},
+ \qquad A_0=B_0=1.
+\]
+Hence
+\begin{equation}
+ a_{2n}=\frac{A_n^2}{B_nB_{n-1}},
+ \qquad
+ a_{2n+1}=\frac{B_n^2}{A_nA_{n+1}}.
+ \tag{7}\label{eq:s11-7}
+\end{equation}
+These are the formulas expressing the \(a_i\) in terms of the \(c_i\).
+
+% Source page J.27
+The coefficient of \(z\) in \(Q_{2n+1}(z)\) is
+\(a_1+a_3+\cdots+a_{2n+1}\); hence \eqref{eq:s11-6} gives
+\begin{equation}
+ a_1+a_3+\cdots+a_{2n+1}=\frac{C_n}{A_{n+1}},
+ \tag{8}\label{eq:s11-8}
+\end{equation}
+where
+\[
+ C_n=\begin{vmatrix}
+ c_2&c_3&\cdots&c_{n+1}\\
+ c_3&c_4&\cdots&c_{n+2}\\
+ \vdots&\vdots&&\vdots\\
+ c_{n+1}&c_{n+2}&\cdots&c_{2n}
+ \end{vmatrix},\qquad C_0=1.
+\]
+
+\origsection{12}
+The expressions for the numerators \(P_{2n}(z),P_{2n+1}(z)\) are a
+little more complicated, but follow readily from the observation that
+the polynomial part of
+\[
+ f(z)\left(\frac{c_0}{z}+\frac{c_1}{z^2}+\frac{c_2}{z^3}+\cdots\right)
+\]
+is
+\[
+ \mathcal S\!\left\{\frac{f(z)-f(u)}{z-u}\right\}.
+\]
+It is enough to verify this for \(f(z)=z^k\). Thus
+\[
+ P_n(-z)=-\mathcal S\!\left\{
+  \frac{Q_n(-z)-Q_n(-u)}{z-u}\right\}.
+\]
+From \eqref{eq:s11-2} and \eqref{eq:s11-6} one readily obtains the
+following expressions. Put
+\[
+ R_0=c_0,\qquad R_1=c_0z+c_1,\qquad
+ R_2=c_0z^2+c_1z+c_2,\quad\ldots,
+\]
+\[
+ R_k=c_0z^k+c_1z^{k-1}+\cdots+c_k.
+\]
+Then
+\begin{equation}
+ P_{2n}(-z)=-\frac1{B_n}
+ \begin{vmatrix}
+  0&R_0&R_1&\cdots&R_{n-1}\\
+  c_0&c_1&c_2&\cdots&c_n\\
+  c_1&c_2&c_3&\cdots&c_{n+1}\\
+  \vdots&\vdots&\vdots&&\vdots\\
+  c_{n-1}&c_n&c_{n+1}&\cdots&c_{2n-1}
+ \end{vmatrix}.
+ \tag{9}\label{eq:s12-9}
+\end{equation}
+
+% Source page J.28
+Likewise,
+\begin{equation}
+ P_{2n+1}(-z)=\frac1{A_{n+1}}
+ \begin{vmatrix}
+  R_0&R_1&\cdots&R_n\\
+  c_1&c_2&\cdots&c_{n+1}\\
+  c_2&c_3&\cdots&c_{n+2}\\
+  \vdots&\vdots&&\vdots\\
+  c_n&c_{n+1}&\cdots&c_{2n}
+ \end{vmatrix}.
+ \tag{10}\label{eq:s12-10}
+\end{equation}
+Putting \(z=0\) in \eqref{eq:s12-9} yields
+\begin{equation}
+ a_2+a_4+\cdots+a_{2n}
+ =-\frac1{B_n}
+ \begin{vmatrix}
+  0&c_0&\cdots&c_{n-1}\\
+  c_0&c_1&\cdots&c_n\\
+  \vdots&\vdots&&\vdots\\
+  c_{n-1}&c_n&\cdots&c_{2n-1}
+ \end{vmatrix}.
+ \tag{11}\label{eq:s12-11}
+\end{equation}
+
+Concerning the symbol \(\mathcal S\), we record the nearly evident
+observation that, if \(V_n(u)\) is a polynomial of degree \(n\), then
+\(\mathcal S\{V_n(u)\}\) is the coefficient of \(1/u\) in the expansion
+of
+\[
+ V_n(-u)\frac{P_m(u)}{Q_m(u)},
+\]
+provided \(m\geq n+1\). We write this as
+\[
+ \mathcal S\{V_n(u)\}
+ =\operatorname{Res}\!\left\{V_n(-u)\frac{P_m(u)}{Q_m(u)}\right\}.
+\]
+For example,
+\begin{align*}
+ \mathcal S\{Q_{2n}^2(-u)\}
+ &=\operatorname{Res}\!\left\{Q_{2n}^2(u)
+        \frac{P_{2n+1}(u)}{Q_{2n+1}(u)}\right\}\\
+ &=\operatorname{Res}\!\left\{Q_{2n}(u)
+        \frac{1+P_{2n}(u)Q_{2n+1}(u)}{Q_{2n+1}(u)}\right\}\\
+ &=\operatorname{Res}\!\left\{\frac{Q_{2n}(u)}{Q_{2n+1}(u)}\right\}
+ =\frac1{a_{2n+1}}.
+\end{align*}
+
+% Source page J.29
+We collect here several formulas of this kind:
+\begin{align*}
+ \mathcal S\{Q_{2n}^2(-u)\}
+   &=\frac1{a_{2n+1}},\\
+ \mathcal S\{uQ_{2n}^2(-u)\}
+   &=\frac1{a_{2n+1}}
+     \left(\frac1{a_{2n}a_{2n+1}}
+          +\frac1{a_{2n+1}a_{2n+2}}\right),\\
+ \mathcal S\!\left\{\frac1uQ_{2n+1}^2(-u)\right\}
+   &=\frac1{a_{2n+2}},\\
+ \mathcal S\!\left\{\frac1{u^2}Q_{2n+1}^2(-u)\right\}
+   &=a_1+a_3+\cdots+a_{2n+1},\\
+ \mathcal S\!\left\{\frac{[Q_{2n}(-u)-1]^2}{u}\right\}
+   &=-\mathcal S\!\left\{\frac{Q_{2n}(-u)-1}{u}\right\}
+    =a_2+a_4+\cdots+a_{2n}.
+\end{align*}
+
+One final remark. If
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ =\sum_{i=1}^n\frac{M_i}{z+x_i},
+\]
+then
+\[
+ \mathcal S\{V_n(u)\}=\sum_{i=1}^nM_iV_n(x_i).
+\]
+It follows that if the polynomial \(V_n(u)\) is nonnegative for \(u>0\),
+then \(\mathcal S\{V_n(u)\}\) is always positive.
+
+% Source page J.30
+\chapterheading{III}{Oscillation and Convergence of a Continued Fraction. Case Where the Real Part of \texorpdfstring{\(z\)}{z} Is Positive}{chap:III}
+
+\origsection{13}
+Suppose that \(z=1\), and write \(P_n,Q_n\) in place of
+\(P_n(1),Q_n(1)\). The relations
+\[
+ P_n=a_nP_{n-1}+P_{n-2},
+ \qquad
+ Q_n=a_nQ_{n-1}+Q_{n-2}
+\]
+show that
+\[
+ \begin{gathered}
+ P_1<P_3<P_5<\cdots,\qquad
+ P_0<P_2<P_4<\cdots,\\
+ Q_1<Q_3<Q_5<\cdots,\qquad
+ Q_0<Q_2<Q_4<\cdots,
+ \end{gathered}
+\]
+so that, on the right-hand side of
+\[
+ \frac{P_n}{Q_n}
+ =\frac1{Q_0Q_1}-\frac1{Q_1Q_2}+\frac1{Q_2Q_3}
+  +\cdots+\frac{(-1)^{n-1}}{Q_{n-1}Q_n},
+\]
+the terms decrease in magnitude.
+
+It follows that the convergents of odd order decrease, without ever
+becoming smaller than any convergent of even order. The convergents of
+even order increase, without ever exceeding any convergent of odd order.
+Thus the convergents of odd order always tend to a finite limit, and the
+same is true of the convergents of even order:
+\[
+ \lim_{n\to\infty}\frac{P_{2n+1}}{Q_{2n+1}}=L_1,
+ \qquad
+ \lim_{n\to\infty}\frac{P_{2n}}{Q_{2n}}=L,
+ \qquad L_1\geq L.
+\]
+If the increasing quantity \(Q_{n-1}Q_n\) increases beyond every bound,
+then
+\[
+ L_1=L;
+\]
+
+% Source page J.31
+if, on the contrary, \(Q_{n-1}Q_n\) tends to a limit \(\lambda\), then
+\[
+ L_1=L+\frac1\lambda.
+\]
+
+Now it is readily seen that \(Q_{2n}>1\); hence
+\[
+ Q_{2n+1}=a_{2n+1}Q_{2n}+Q_{2n-1}
+  >Q_{2n-1}+a_{2n+1},
+\]
+and therefore
+\[
+ Q_{2n+1}>a_1+a_3+\cdots+a_{2n+1}.
+\]
+Next one obtains
+\[
+ Q_{2n}=a_{2n}Q_{2n-1}+Q_{2n-2}
+  >Q_{2n-2}+a_1a_{2n},
+\]
+whence
+\[
+ Q_{2n}>a_1(a_2+a_4+\cdots+a_{2n}).
+\]
+Consequently, if the series
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+diverges, at least one of the quantities \(Q_{2n},Q_{2n+1}\) increases
+beyond every bound, and
+\[
+ L_1=L.
+\]
+In this case we shall say that the continued fraction is
+\emph{convergent}.
+
+On the other hand, since
+\[
+ Q_n=a_nQ_{n-1}+Q_{n-2},
+\]
+we infer that
+\[
+ Q_{n-1}+Q_n=(1+a_n)Q_{n-1}+Q_{n-2}
+ <(1+a_n)(Q_{n-2}+Q_{n-1}),
+\]
+and therefore
+\[
+ Q_{n-1}+Q_n<(1+a_1)(1+a_2)\cdots(1+a_n).
+\]
+Now, if the series \(\sum_{n=1}^{\infty}a_n\) converges, the product
+\[
+ (1+a_1)(1+a_2)(1+a_3)\cdots
+\]
+also converges and does not increase beyond a finite bound. In this case,
+therefore, \(Q_{2n}\) and \(Q_{2n+1}\) also tend to finite limits, and
+\[
+ L_1>L.
+\]
+
+% Source page J.32
+The continued fraction is then \emph{oscillatory}. If, in this case, we put
+\[
+ s=\sum_{n=1}^{\infty}a_n,
+\]
+then
+\[
+ Q_{n-1}+Q_n<e^s,
+ \qquad
+ Q_{n-1}Q_n<\frac14e^{2s},
+ \qquad
+ L_1-L>4e^{-2s}.
+\]
+
+The propositions concerning the convergence and oscillation of the
+continued fraction were obtained long ago by Mr.~Stern
+(\emph{Crelle's Journal}, vol.~37)~\cite{Stern1848}.
+
+In the oscillatory case we have just seen that \(Q_{2n}\) and
+\(Q_{2n+1}\) tend to finite limits; it is clear that the same is true of
+\(P_{2n}\) and \(P_{2n+1}\).
+
+\origsection{14}
+Suppose now that \(z=x\) is real and positive. From what precedes we have
+\[
+ \lim_{n\to\infty}\frac{P_{2n+1}(x)}{Q_{2n+1}(x)}=F_1(x),
+ \qquad
+ \lim_{n\to\infty}\frac{P_{2n}(x)}{Q_{2n}(x)}=F(x),
+ \qquad
+ F_1(x)\geq F(x).
+\]
+There will be oscillation or convergence according as the series
+\[
+ a_1x+a_2+a_3x+a_4+\cdots
+\]
+converges or diverges. But it is clear that this does not depend in any
+way on the particular value of \(x\), and we reach the following
+conclusion: if the series
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+converges, the continued fraction is oscillatory for every positive value
+of \(x\), and
+\[
+ F_1(x)>F(x);
+\]
+if, on the contrary, the series diverges, the continued fraction
+converges, and
+\[
+ F_1(x)=F(x)=\lim_{n\to\infty}\frac{P_n(x)}{Q_n(x)}.
+\]
+
+\origsection{15}
+Let us pass to imaginary values of \(z\). In order to study separately
+the convergents of even order and those of odd order, we observe that
+
+% Source page J.33
+\begin{align*}
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  &=\frac{a_2}{Q_0(z)Q_2(z)}
+    +\frac{a_4}{Q_2(z)Q_4(z)}+\cdots
+    +\frac{a_{2n}}{Q_{2n-2}(z)Q_{2n}(z)},\\
+ \frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  &=\frac1{a_1z}-\frac{a_3z}{Q_1(z)Q_3(z)}
+    -\frac{a_5z}{Q_3(z)Q_5(z)}-\cdots
+    -\frac{a_{2n+1}z}{Q_{2n-1}(z)Q_{2n+1}(z)}.
+\end{align*}
+Thus it is a matter of studying the convergence of the series
+\begin{equation}
+ \sum_{k=1}^{\infty}
+ \frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)},
+ \tag{1}\label{eq:s15-1}
+\end{equation}
+and
+\begin{equation}
+ \frac1{a_1z}-\sum_{k=1}^{\infty}
+ \frac{a_{2k+1}z}{Q_{2k-1}(z)Q_{2k+1}(z)}.
+ \tag{2}\label{eq:s15-2}
+\end{equation}
+
+Suppose \(z=x+yi\), the real part of \(z\) being positive, and consider
+any domain \(S\) in which \(x\) has a positive lower bound \(\lambda\).
+I say that in this domain the series \eqref{eq:s15-1} converges uniformly;
+indeed,
+\[
+ \left|\sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}\right|
+ <\sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{|Q_{2k-2}(z)Q_{2k}(z)|}.
+\]
+Now it is clear that
+\[
+ Q_{2k-2}(z)Q_{2k}(z)
+  =C(z+\alpha_1)(z+\alpha_2)\cdots(z+\alpha_{2k-1}),
+\]
+where \(C,\alpha_1,\alpha_2,\ldots,\alpha_{2k-1}\) are positive
+constants. For \(z=x+yi\), with \(x\) positive, we plainly have
+\[
+ |z+\alpha_i|>x+\alpha_i,
+\]
+and hence
+\[
+ |Q_{2k-2}(z)Q_{2k}(z)|
+  >Q_{2k-2}(x)Q_{2k}(x).
+\]
+Since \(x\geq\lambda\), still more
+\[
+ |Q_{2k-2}(z)Q_{2k}(z)|
+  >Q_{2k-2}(\lambda)Q_{2k}(\lambda);
+\]
+therefore
+\[
+ \left|\sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}\right|
+ <\sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{Q_{2k-2}(\lambda)Q_{2k}(\lambda)}.
+\]
+But the series
+\[
+ \sum_{k=1}^{\infty}
+  \frac{a_{2k}}{Q_{2k-2}(\lambda)Q_{2k}(\lambda)}
+  =F(\lambda)=\lim_{n\to\infty}\frac{P_{2n}(\lambda)}{Q_{2n}(\lambda)}
+\]
+
+% Source page J.34
+converges; consequently one can determine a number \(\nu\) such that,
+for \(n\geq\nu\),
+\[
+ \sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{Q_{2k-2}(\lambda)Q_{2k}(\lambda)}<\varepsilon,
+\]
+whatever \(n'\) may be, \(\varepsilon\) being as small as desired. For
+the same values of \(n\), therefore,
+\[
+ \left|\sum_{k=n}^{n+n'}
+  \frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}\right|<\varepsilon.
+\]
+Since \(z\) is any point of the domain \(S\), this proves that the series
+\eqref{eq:s15-1} converges uniformly in \(S\). Since, moreover, the terms
+of this series are holomorphic in \(S\), it follows from a familiar
+theorem that
+\[
+ F(z)=\sum_{k=1}^{\infty}
+  \frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}
+  =\lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}
+\]
+is also holomorphic in \(S\).
+
+It is readily seen that the same arguments apply, with scarcely any
+change, to the series \eqref{eq:s15-2}; it will suffice to state the
+following result. The series
+\[
+ F_1(z)=\frac1{a_1z}-\sum_{k=1}^{\infty}
+  \frac{a_{2k+1}z}{Q_{2k-1}(z)Q_{2k+1}(z)}
+  =\lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+\]
+converges uniformly in \(S\), and \(F_1(z)\) is holomorphic in the same
+domain.
+
+Thus, throughout the part of the plane in which the real part of \(z\)
+is positive,
+\[
+ \lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}=F(z),
+ \qquad
+ \lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}=F_1(z),
+\]
+where \(F(z),F_1(z)\) are holomorphic functions. These functions are not
+identical when \(\sum_{n=1}^{\infty}a_n\) converges; they are identical
+when this series diverges. Suppose \(z=x\) is real and positive, and let
+\(x\) tend to zero. From the series expressions for \(F(x),F_1(x)\) we
+
+% Source page J.35
+readily obtain
+\[
+ \lim_{x\to0}F(x)=a_2+a_4+a_6+\cdots,
+ \qquad
+ \lim_{x\to0}xF_1(x)=\frac1{a_1+a_3+a_5+\cdots}.
+\]
+If the series \(\sum a_{2n}\) diverges, \(F(x)\) increases beyond every
+bound. If the series \(\sum a_{2n-1}\) diverges, \(xF_1(x)\) tends to
+zero.
+
+Observe that
+\begin{align*}
+ \frac{P_{2n}(x)}{Q_{2n}(x)}
+ &=\sum_{k=1}^{n}\frac{M_k}{x+x_k}\\
+ &=\sum_{k=1}^{n}\left\{
+   \frac{M_k}{x}-\frac{M_kx_k}{x^2}+\cdots
+   +(-1)^{p-1}\frac{M_kx_k^{p-1}}{x^p}
+   +(-1)^p\frac{M_kx_k^p}{x^p(x+x_k)}\right\},
+\end{align*}
+and hence
+\[
+ \frac{P_{2n}(x)}{Q_{2n}(x)}
+ =\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+  +(-1)^{p-1}\frac{c_{p-1}}{x^p}
+  +(-1)^p\frac{\xi c_p}{x^{p+1}},
+ \qquad 0<\xi<1.
+\]
+We shall therefore also have
+\[
+ F(x)=\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+  +(-1)^{p-1}\frac{c_{p-1}}{x^p}
+  +(-1)^p\frac{\xi c_p}{x^{p+1}},
+ \qquad 0<\xi<1,
+\]
+and similarly
+\[
+ F_1(x)=\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+  +(-1)^{p-1}\frac{c_{p-1}}{x^p}
+  +(-1)^p\frac{\xi'c_p}{x^{p+1}},
+ \qquad 0<\xi'<1.
+\]
+
+\origsection{16}
+It remains to extend these results to the case where the real part of
+\(z\) is negative. This is readily done with the aid of a proposition from
+the theory of functions which we shall establish later. Before undertaking
+that study, however, we shall examine the case in which the series
+\(\sum_{n=1}^{\infty}a_n\) converges. This case can be treated by a
+special method, owing to the circumstance that the polynomials
+\[
+ P_{2n}(x),\quad Q_{2n}(x),\quad P_{2n+1}(x),\quad Q_{2n+1}(x)
+\]
+tend to finite limits.
+
+% Source page J.36
+\chapterheading{IV}{Study of the Case Where the Series \texorpdfstring{\(\sum a_n\)}{sum a(n)} Is Convergent}{chap:IV}
+
+\origsection{17}
+We have identically
+\begin{align*}
+ P_{2n}(z)&=\sum_{k=1}^{n}a_{2k}P_{2k-1}(z),\\
+ Q_{2n}(z)&=1+\sum_{k=1}^{n}a_{2k}Q_{2k-1}(z),\\
+ P_{2n+1}(z)&=1+\sum_{k=1}^{n}a_{2k+1}zP_{2k}(z),\\
+ Q_{2n+1}(z)&=\sum_{k=0}^{n}a_{2k+1}zQ_{2k}(z).
+\end{align*}
+Consequently, assuming that the series
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+converges, the series
+\[
+ \sum_{k=1}^{\infty}a_{2k}P_{2k-1}(z),\qquad
+ 1+\sum_{k=1}^{\infty}a_{2k}Q_{2k-1}(z),
+\]
+\[
+ 1+\sum_{k=1}^{\infty}a_{2k+1}zP_{2k}(z),\qquad
+ \sum_{k=0}^{\infty}a_{2k+1}zQ_{2k}(z)
+\]
+converge when \(z\) is real and positive.
+
+Consider any domain \(S\) in which the modulus of \(z\) has a finite
+upper bound \(\lambda\). I say that the preceding series converge
+uniformly in \(S\); and, since their terms are holomorphic there, it
+follows that they represent holomorphic functions in \(S\). It will
+suffice to consider the first series. We have
+
+% Source page J.37
+\[
+ \left|\sum_{k=n}^{n+n'}a_{2k}P_{2k-1}(z)\right|
+ <\sum_{k=n}^{n+n'}a_{2k}|P_{2k-1}(z)|.
+\]
+Now \(P_{2k-1}(z)\) is a polynomial with positive coefficients; hence
+\[
+ |P_{2k-1}(z)|<P_{2k-1}(|z|)\leq P_{2k-1}(\lambda),
+\]
+since \(|z|\leq\lambda\), and therefore
+\[
+ \left|\sum_{k=n}^{n+n'}a_{2k}P_{2k-1}(z)\right|
+ <\sum_{k=n}^{n+n'}a_{2k}P_{2k-1}(\lambda).
+\]
+Since the series
+\[
+ \sum_{k=1}^{\infty}a_{2k}P_{2k-1}(\lambda)
+\]
+converges, one can determine a number \(\nu\) such that, for
+\(n\geq\nu\),
+\[
+ \sum_{k=n}^{n+n'}a_{2k}P_{2k-1}(\lambda)<\varepsilon,
+\]
+whatever \(n'\) may be, with \(\varepsilon\) as small as desired. For the
+same values of \(n\), therefore,
+\[
+ \left|\sum_{k=n}^{n+n'}a_{2k}P_{2k-1}(z)\right|<\varepsilon,
+\]
+and, since \(z\) is any point of the domain \(S\), this proves that the
+series under consideration converges uniformly in \(S\).
+
+It follows that
+\begin{align*}
+ p(z)&=\sum_{k=1}^{\infty}a_{2k}P_{2k-1}(z)
+       =\lim_{n\to\infty}P_{2n}(z),\\
+ q(z)&=1+\sum_{k=1}^{\infty}a_{2k}Q_{2k-1}(z)
+       =\lim_{n\to\infty}Q_{2n}(z),\\
+ p_1(z)&=1+\sum_{k=1}^{\infty}a_{2k+1}zP_{2k}(z)
+       =\lim_{n\to\infty}P_{2n+1}(z),\\
+ q_1(z)&=\sum_{k=0}^{\infty}a_{2k+1}zQ_{2k}(z)
+       =\lim_{n\to\infty}Q_{2n+1}(z),
+\end{align*}
+
+% Source page J.38
+the four functions \(p(z),q(z),p_1(z),q_1(z)\) being holomorphic
+throughout the plane. They are plainly connected by the relation
+\[
+ p_1(z)q(z)-p(z)q_1(z)=1.
+\]
+
+\origsection{18}
+It is clear from what precedes that the series
+\[
+ \sum_{k=1}^{\infty}a_{2k}P_{2k-1}(z)
+\]
+is absolutely convergent, and even that the new series obtained by
+replacing \(P_{2k-1}(z)\) by its expression as a polynomial in \(z\) is
+absolutely convergent. In the new series it is therefore permissible to
+arrange the terms according to the powers of \(z\), giving
+\[
+ p(z)=\sum_{k=0}^{\infty}\alpha_kz^k,
+\]
+and the coefficient \(\alpha_k\) is the limit of the coefficient
+\(\mathfrak A_k\) of \(z^k\) in \(P_{2n}(z)\)
+(\hyperref[sec:2]{\S~2}). The same conclusions plainly apply to
+\(q(z),p_1(z),q_1(z)\).
+
+We have just seen that \(P_{2n}(z)\) tends uniformly to \(p(z)\), and it
+is clear that \(p(z)\) is a continuous function of \(z\). We may conclude
+that if
+\[
+ z_1,z_2,z_3,\ldots
+\]
+is an infinite sequence of numbers and \(\lim z_n=Z\) as
+\(n\to\infty\), then also
+\[
+ \lim_{n\to\infty}P_{2n}(z_n)=p(Z).
+\]
+Indeed, surround the limiting point \(Z\), assumed finite, by a circle
+\(C\). From some \(n\geq\nu\) onward, \(z_n\) lies inside the circle;
+and, by uniform convergence,
+\begin{equation}
+ |P_{2n}(z)-p(z)|<\varepsilon
+ \tag{1}\label{eq:s18-1}
+\end{equation}
+for \(n\geq\nu'\), where \(z\) is any point inside \(C\). On the other
+hand, since \(z_n\) tends to \(Z\), we also have
+\[
+ |p(z_n)-p(Z)|<\varepsilon
+\]
+from some \(n\geq\nu''\) onward. Now
+\[
+ |P_{2n}(z_n)-p(Z)|
+ <|P_{2n}(z_n)-p(z_n)|+|p(z_n)-p(Z)|,
+\]
+
+% Source page J.39
+and in \eqref{eq:s18-1} it is permissible to replace \(z\) by \(z_n\).
+Consequently
+\[
+ |P_{2n}(z_n)-p(Z)|<2\varepsilon
+\]
+for \(n\geq N\), where \(N\) is the largest of \(\nu,\nu',\nu''\).
+
+Finally, by considering the series
+\[
+ p(z+h)=\sum_{k=1}^{\infty}a_{2k}P_{2k-1}(z+h),
+\]
+one readily finds that its right-hand side may be arranged according to
+the powers of \(h\), and hence that the series
+\[
+ p(z)=\sum_{k=1}^{\infty}a_{2k}P_{2k-1}(z)
+\]
+may be differentiated as many times as desired. Thus
+\[
+ p'(z)=\lim_{n\to\infty}P'_{2n}(z),
+\]
+and the convergence of \(P'_{2n}(z)\) to \(p'(z)\) is uniform in every
+domain \(S\) in which \(|z|\) is bounded. If \(\lim z_n=Z\), then also
+\[
+ \lim_{n\to\infty}P'_{2n}(z_n)=p'(Z).
+\]
+
+\origsection{19}
+We shall now obtain the functions \(p(z)\), etc., in the form of infinite
+products, confining ourselves to the development of the argument in the
+case
+\[
+ q(z)=\lim_{n\to\infty}Q_{2n}(z).
+\]
+The polynomials \(P\) do not differ essentially from the polynomials
+\(Q\). We have already observed at the end of
+\hyperref[sec:3]{\S~3} that
+\[
+ P_{2n}(z)=\frac1zQ_{2n-1}^{1}(z),
+ \qquad
+ P_{2n+1}(z)=Q_{2n}^{1}(z),
+\]
+and it will therefore be easy to extend to \(p(z),p_1(z),q_1(z)\) the
+result that we shall establish for \(q(z)\). We have
+\[
+ Q_{2n}(z)=\left(1+\frac z{x_1}\right)
+            \left(1+\frac z{x_2}\right)\cdots
+            \left(1+\frac z{x_n}\right).
+\]
+
+% Source page J.40
+We suppose the \(x_k\) arranged in increasing order of magnitude. Then
+\[
+ \frac1{x_1}+\frac1{x_2}+\cdots+\frac1{x_n}
+   =\mathfrak B_1<\beta_1,
+\]
+where \(\beta_1\) is the coefficient of \(z\) in the expansion
+\[
+ q(z)=\sum_{k=0}^{\infty}\beta_kz^k.
+\]
+When \(n\) is replaced by \(n+1\), we know that
+\(x_1,x_2,\ldots,x_k\) decrease; but clearly we shall always have
+\[
+ x_k>\frac1{\beta_1}.
+\]
+Consequently, as \(n\to\infty\), \(x_k\) tends to a positive limit,
+which we denote by \(\lambda_k\), and
+\[
+ \lambda_1\leq\lambda_2\leq\lambda_3\leq\lambda_4\leq\cdots.
+\]
+
+I first say that the series
+\[
+ \frac1{\lambda_1}+\frac1{\lambda_2}+\frac1{\lambda_3}+\cdots
+\]
+converges. Indeed, let \(k\) be any finite number. On taking \(n>k\),
+we have
+\[
+ \frac1{\lambda_1}+\frac1{\lambda_2}+\cdots+\frac1{\lambda_k}
+ >\frac1{x_1}+\frac1{x_2}+\cdots+\frac1{x_k},
+\]
+since \(x_i\) always decreases toward \(\lambda_i\). But, on the other
+hand, since \(\lambda_i\) is the limit of \(x_i\), we may suppose \(n\)
+so large that the difference
+\[
+ \left(\frac1{\lambda_1}+\cdots+\frac1{\lambda_k}\right)
+ -\left(\frac1{x_1}+\cdots+\frac1{x_k}\right)
+\]
+is less than \(\varepsilon\). Then
+\[
+ \frac1{\lambda_1}+\cdots+\frac1{\lambda_k}
+ <\frac1{x_1}+\cdots+\frac1{x_k}+\varepsilon
+ <\frac1{x_1}+\cdots+\frac1{x_n}+\varepsilon,
+\]
+and therefore
+\[
+ \frac1{\lambda_1}+\frac1{\lambda_2}+\cdots+\frac1{\lambda_k}
+ <\beta_1+\varepsilon.
+\]
+
+% Source page J.41
+This proves that the series \(\sum_{k=1}^{\infty}1/\lambda_k\)
+converges and that its sum cannot exceed \(\beta_1\).
+
+Since \(x_k\) tends to \(\lambda_k\), we have
+\[
+ \lim_{n\to\infty}Q_{2n}(-x_k)=0=q(-\lambda_k);
+\]
+the \(\lambda_k\) are zeros of the function \(q(-z)\).
+
+\origsection{20}
+Can several of the \(\lambda\)'s be equal? Suppose, for example, that
+\[
+ \lambda_{k+1}=\lambda_{k+2}=\cdots=\lambda_{k+i},
+\]
+with \(\lambda_k<\lambda_{k+1}\) and
+\(\lambda_{k+i+1}>\lambda_{k+i}\). First, \(i\) must necessarily be
+finite, since the series \(\sum_{k=1}^{\infty}1/\lambda_k\) converges.
+Next we may take \(n\) so large that
+\[
+ x_1,\ldots,x_k,x_{k+1},\ldots,x_{k+i},x_{k+i+1}
+\]
+differ as little as desired from their limits
+\[
+ \lambda_1,\ldots,\lambda_k,\lambda_{k+1},\ldots,
+ \lambda_{k+i},\lambda_{k+i+1}.
+\]
+We may therefore suppose that
+\[
+ x_{k+1},x_{k+2},\ldots,x_{k+i}
+\]
+all lie in the interval \((\lambda_{k+1},\lambda_{k+i+1})\).
+
+We can then find a number \(n'\) such that the roots
+\[
+ x'_{k+1},x'_{k+2},\ldots,x'_{k+i}
+\]
+of
+\[
+ Q_{2n+2n'}(-z)=0
+\]
+all lie in the interval \((\lambda_{k+1},x_{k+1})\), while
+\(x'_{k+i+1}\) remains greater than \(\lambda_{k+i+1}\).
+
+% Source page J.42
+In this way we see that the interval
+\[
+ (x'_{k+i},x'_{k+i+1})
+\]
+between two consecutive roots of \(Q_{2n+2n'}(-z)=0\) contains the roots
+\[
+ x_{k+1},x_{k+2},\ldots,x_{k+i}
+\]
+of \(Q_{2n}(-z)=0\). But we saw in \hyperref[sec:5]{\S~5} that, in the
+interval between two consecutive roots of
+\[
+ Q_{2n+2n'}(-z)=0,
+\]
+there lies either one root of \(Q_{2n}(-z)=0\), or one root of
+\[
+ P_{2n'}^{2n}(-z)=0.
+\]
+We must therefore have \(i=1\); that is, no two of the numbers
+\[
+ \lambda_1,\lambda_2,\lambda_3,\ldots
+\]
+are equal.
+
+\origsection{21}
+Let \(\varepsilon\) be an arbitrarily small positive number. Since the
+product
+\begin{equation}
+ \mathcal P=\prod_{k=1}^{\infty}\left(1+\frac z{\lambda_k}\right)
+ \tag{1}\label{eq:s21-1}
+\end{equation}
+converges for every finite value of \(z\), it is possible to determine a
+number \(m\) such that
+\[
+ \left|\prod_{k=m+1}^{\infty}
+  \left(1+\frac{|z|}{\lambda_k}\right)-1\right|<\varepsilon.
+\]
+Here \(z\) is supposed to have some fixed finite value. Put
+\[
+ M=\prod_{k=1}^{\infty}\left(1+\frac{|z|}{\lambda_k}\right).
+\]
+It is clear that
+\[
+ \left|\prod_{k=1}^{m}\left(1+\frac z{\lambda_k}\right)\right|<M,
+\]
+and also
+\[
+ \left|\prod_{k=m+1}^{\infty}
+  \left(1+\frac z{\lambda_k}\right)-1\right|<\varepsilon.
+\]
+
+% Source page J.43
+Since
+\[
+ \mathcal P=\prod_{k=1}^{m}\left(1+\frac z{\lambda_k}\right)
+ \prod_{k=m+1}^{\infty}\left(1+\frac z{\lambda_k}\right),
+\]
+we readily infer
+\begin{equation}
+ \mathcal P=\prod_{k=1}^{m}\left(1+\frac z{\lambda_k}\right)
+  +M\varepsilon',
+ \qquad |\varepsilon'|<\varepsilon.
+ \tag{2}\label{eq:s21-2}
+\end{equation}
+
+On the other hand, for \(n>m\), consider the expression
+\[
+ Q_{2n}(z)=\prod_{k=1}^{m}\left(1+\frac z{x_k}\right)
+            \prod_{k=m+1}^{n}\left(1+\frac z{x_k}\right).
+\]
+Clearly we again have
+\[
+ \left|\prod_{k=1}^{m}\left(1+\frac z{x_k}\right)\right|<M,
+ \qquad
+ \left|\prod_{k=m+1}^{n}\left(1+\frac z{x_k}\right)-1\right|
+ <\varepsilon,
+\]
+whence
+\begin{equation}
+ Q_{2n}(z)=\prod_{k=1}^{m}\left(1+\frac z{x_k}\right)
+  +M\varepsilon'',
+ \qquad |\varepsilon''|<\varepsilon.
+ \tag{3}\label{eq:s21-3}
+\end{equation}
+As \(n\) increases indefinitely,
+\[
+ \prod_{k=1}^{m}\left(1+\frac z{x_k}\right)
+ \quad\hbox{tends to}\quad
+ \prod_{k=1}^{m}\left(1+\frac z{\lambda_k}\right).
+\]
+Comparison of \eqref{eq:s21-2} and \eqref{eq:s21-3} therefore shows that
+\[
+ \lim_{n\to\infty}Q_{2n}(z)=\mathcal P;
+\]
+
+% Source page J.44
+that is, the holomorphic function \(q(z)\) may be written
+\[
+ q(z)=\prod_{k=1}^{\infty}\left(1+\frac z{\lambda_k}\right).
+\]
+Thus \(q(z)\) is of genus zero and has no zeros other than the
+\(-\lambda_k\), which are simple zeros. Entirely similar conclusions hold
+for \(p(z),p_1(z),q_1(z)\).
+
+\origsection{22}
+For every value of \(z\) which does not annul \(q(z)\) or \(q_1(z)\),
+we have
+\[
+ \lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}=\frac{p(z)}{q(z)},
+ \qquad
+ \lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  =\frac{p_1(z)}{q_1(z)}.
+\]
+We shall obtain these limits also in the form of a series of simple
+fractions. For this purpose consider the partial-fraction decomposition
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\frac{M_1}{z+x_1}+\frac{M_2}{z+x_2}+\cdots+\frac{M_n}{z+x_n},
+ \qquad
+ M_k=\frac{P_{2n}(-x_k)}{Q'_{2n}(-x_k)}.
+\]
+As \(n\to\infty\), \(x_k\) tends to \(\lambda_k\), and hence \(M_k\)
+also tends to a finite limit \(\mu_k\geq0\), where
+\[
+ \mu_k=\frac{p(-\lambda_k)}{q'(-\lambda_k)}.
+\]
+It is clear that \(\mu_k\) is positive, since, by the relation
+\[
+ p_1(z)q(z)-p(z)q_1(z)=1,
+\]
+the functions \(p(z)\) and \(q(z)\) cannot vanish for the same value
+\(z=-\lambda_k\).
+
+The series
+\[
+ \mu_1+\mu_2+\mu_3+\cdots
+\]
+converges. Indeed, on taking \(n\) sufficiently large,
+\[
+ \mu_1+\mu_2+\cdots+\mu_k
+\]
+differs as little as desired from
+\[
+ M_1+M_2+\cdots+M_k;
+\]
+
+% Source page J.45
+hence
+\[
+ \mu_1+\cdots+\mu_k<M_1+M_2+\cdots+M_k+\varepsilon,
+\]
+and
+\[
+ \mu_1+\cdots+\mu_k
+ <M_1+\cdots+M_n+\varepsilon=\frac1{a_1}+\varepsilon.
+\]
+It follows that \(\sum_{k=1}^{\infty}\mu_k\) converges and that its sum
+cannot exceed \(1/a_1\).
+
+Since the numbers \(\lambda_1,\lambda_2,\lambda_3,\ldots\) increase
+beyond every bound, it is clear that the series
+\[
+ s=\sum_{k=1}^{\infty}\frac{\mu_k}{z+\lambda_k}
+\]
+defines a meromorphic function throughout the plane.
+
+Let \(\varepsilon\) be an arbitrarily small positive number. Since
+\(\lambda_k\) increases beyond every bound, we can find an integer \(m\)
+such that
+\[
+ \lambda_{m+1}-|z|>\frac1\varepsilon,
+\]
+and then, a fortiori,
+\[
+ \lambda_{m+i}-|z|>\frac1\varepsilon
+ \qquad(i=1,2,3,\ldots).
+\]
+It follows that
+\[
+ |\lambda_{m+i}+z|>\lambda_{m+i}-|z|>\frac1\varepsilon,
+ \qquad
+ \frac1{|\lambda_{m+i}+z|}<\varepsilon
+ \quad(i=1,2,3,\ldots).
+\]
+Writing
+\[
+ s=\sum_{k=1}^{m}\frac{\mu_k}{z+\lambda_k}
+   +\sum_{k=m+1}^{\infty}\frac{\mu_k}{z+\lambda_k},
+\]
+we have
+\[
+ \left|\sum_{k=m+1}^{\infty}\frac{\mu_k}{z+\lambda_k}\right|
+ <\sum_{k=m+1}^{\infty}\frac{\mu_k}{|z+\lambda_k|}
+ <\varepsilon\sum_{k=m+1}^{\infty}\mu_k<\frac\varepsilon{a_1},
+\]
+and hence
+\begin{equation}
+ s=\sum_{k=1}^{m}\frac{\mu_k}{z+\lambda_k}
+   +\frac{\varepsilon'}{a_1},
+ \qquad |\varepsilon'|<\varepsilon.
+ \tag{4}\label{eq:s22-4}
+\end{equation}
+
+% Source page J.46
+On the other hand,
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\sum_{k=1}^{m}\frac{M_k}{z+x_k}
+   +\sum_{k=m+1}^{n}\frac{M_k}{z+x_k},
+\]
+and, remembering that \(x_k>\lambda_k\), we conclude
+\[
+ \left|\sum_{k=m+1}^{n}\frac{M_k}{z+x_k}\right|
+ <\sum_{k=m+1}^{n}\frac{M_k}{|z+x_k|}
+ <\varepsilon\sum_{k=m+1}^{n}M_k<\frac\varepsilon{a_1}.
+\]
+Thus
+\begin{equation}
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\sum_{k=1}^{m}\frac{M_k}{z+x_k}+\frac{\varepsilon''}{a_1},
+ \qquad |\varepsilon''|<\varepsilon.
+ \tag{5}\label{eq:s22-5}
+\end{equation}
+Now, as \(n\to\infty\),
+\[
+ \lim_{n\to\infty}\sum_{k=1}^{m}\frac{M_k}{z+x_k}
+  =\sum_{k=1}^{m}\frac{\mu_k}{z+\lambda_k},
+\]
+and comparison of \eqref{eq:s22-4} and \eqref{eq:s22-5} therefore gives
+\[
+ \lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\frac{p(z)}{q(z)}=s.
+ \qquad\text{\textsc{q.e.d.}}
+\]
+
+\origsection{23}
+We have just seen that the series \(\sum_{k=1}^{\infty}\mu_k\)
+converges. More generally,
+\[
+ \sum_{k=1}^{\infty}\mu_k\lambda_k^i=c_i
+ \qquad(i=0,1,2,3,\ldots).
+\]
+First, the series in question does converge, for the sum
+\[
+ \mu_1\lambda_1^i+\mu_2\lambda_2^i+\cdots+\mu_k\lambda_k^i
+\]
+differs as little as desired from
+\[
+ M_1x_1^i+M_2x_2^i+\cdots+M_kx_k^i;
+\]
+consequently it is less than
+\[
+ M_1x_1^i+\cdots+M_kx_k^i+\varepsilon,
+\]
+
+% Source page J.47
+and, a fortiori, less than \(c_i+\varepsilon\), since
+\[
+ c_i=\sum_{k=1}^{n}M_kx_k^i.
+\]
+Put, then,
+\[
+ \sigma=\sum_{k=1}^{\infty}\mu_k\lambda_k^i.
+\]
+We have \(\sigma\leq c_i\). Choose \(m\) such that
+\[
+ \frac{c_{i+1}}{\lambda_{m+1}}<\varepsilon.
+\]
+Then
+\begin{equation}
+ \sigma=\sum_{k=1}^{m}\mu_k\lambda_k^i+\varepsilon',
+ \qquad 0\leq\varepsilon'<\varepsilon.
+ \tag{6}\label{eq:s23-6}
+\end{equation}
+Indeed,
+\[
+ \sum_{k=m+1}^{\infty}\mu_k\lambda_k^i
+ <\frac1{\lambda_{m+1}}\sum_{k=m+1}^{\infty}
+   \mu_k\lambda_k^{i+1}
+ <\frac1{\lambda_{m+1}}\sum_{k=1}^{\infty}
+   \mu_k\lambda_k^{i+1}
+ \leq\frac{c_{i+1}}{\lambda_{m+1}}<\varepsilon.
+\]
+On the other hand,
+\[
+ c_i=\sum_{k=1}^{m}M_kx_k^i+\sum_{k=m+1}^{n}M_kx_k^i,
+\]
+and clearly
+\[
+ \sum_{k=m+1}^{n}M_kx_k^i
+ <\frac1{x_{m+1}}\sum_{k=m+1}^{n}M_kx_k^{i+1}
+ <\frac{c_{i+1}}{\lambda_{m+1}}<\varepsilon.
+\]
+Thus
+\begin{equation}
+ c_i=\sum_{k=1}^{m}M_kx_k^i+\varepsilon'',
+ \qquad 0\leq\varepsilon''<\varepsilon.
+ \tag{7}\label{eq:s23-7}
+\end{equation}
+As \(n\to\infty\),
+\[
+ \lim_{n\to\infty}\sum_{k=1}^{m}M_kx_k^i
+  =\sum_{k=1}^{m}\mu_k\lambda_k^i.
+\]
+Comparison of \eqref{eq:s23-6} and \eqref{eq:s23-7} therefore gives
+\[
+ \sigma=c_i.\qquad\text{\textsc{q.e.d.}}
+\]
+
+% Source page J.48
+\origsection{24}
+It will suffice to state the analogous conclusions obtained by studying
+the formula
+\[
+ \frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  =\frac{N_0}{z}+\frac{N_1}{z+x_1}+\cdots+\frac{N_n}{z+x_n}
+\]
+as \(n\to\infty\). We have
+\[
+ \nu_k=\lim_{n\to\infty}N_k\quad(k=0,1,2,3,\ldots),
+ \qquad
+ \theta_k=\lim_{n\to\infty}x_k\quad(k=1,2,3,\ldots),
+\]
+\[
+ \lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  =\frac{p_1(z)}{q_1(z)}
+  =\frac{\nu_0}{z}+\sum_{k=1}^{\infty}\frac{\nu_k}{z+\theta_k},
+\]
+\[
+ c_0=\sum_{k=0}^{\infty}\nu_k,
+ \qquad
+ c_i=\sum_{k=1}^{\infty}\nu_k\theta_k^i
+ \quad(i=1,2,3,\ldots).
+\]
+
+Consider on an infinite straight line \(O\infty\) a positive
+distribution of mass, the mass \(m_i\) being concentrated at distance
+\(\xi_i\) from the origin \(O\). The sum
+\[
+ \sum_i m_i\xi_i^k
+\]
+may be called the moment of order \(k\) of the mass with respect to the
+origin. It follows from the preceding formulas that the system of masses
+\[
+ (\mu_i,\lambda_i)\qquad(i=1,2,3,\ldots)
+\]
+has moment of order \(k\) equal to \(c_k\)
+\((k=0,1,2,3,\ldots)\). Similarly, the system of masses
+\[
+ (\nu_i,\theta_i)\qquad(i=0,1,2,3,\ldots),
+\]
+where \(\theta_0=0\), has the same moments \(c_k\).
+
+We shall call the following problem the \emph{moment problem}:
+\begin{quote}\itshape
+Find a positive distribution of mass on a straight line \((O\infty)\),
+the moments of order \(k\), \(k=0,1,2,3,\ldots\), being given.
+\end{quote}
+Denote these moments by \(c_k\), and observe first that the data of the
+problem must satisfy certain inequalities. Indeed, suppose that it is
+possible to find \(m_i,\xi_i\) such that
+\[
+ c_k=\sum_i m_i\xi_i^k;
+\]
+
+% Source page J.49
+it follows (see the end of \hyperref[sec:8]{\S~8}) that all the
+determinants
+\[
+ \begin{vmatrix}
+ c_p&c_{p+1}&\cdots&c_{p+m-1}\\
+ c_{p+1}&c_{p+2}&\cdots&c_{p+m}\\
+ \vdots&\vdots&\ddots&\vdots\\
+ c_{p+m-1}&c_{p+m}&\cdots&c_{p+2m-2}
+ \end{vmatrix}
+\]
+must be positive, and in particular the determinants \(A_n,B_n\) of
+\hyperref[sec:11]{\S~11}. We conclude that if the series
+\[
+ \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+\]
+is expanded as a continued fraction, one must obtain a continued fraction
+of the type studied here, with positive values of the \(a_i\).
+
+We shall distinguish two cases in the moment problem: the determinate
+case and the indeterminate case.
+
+The indeterminate case occurs when the data \(c_k\) are such that the
+series \(\sum_{n=1}^{\infty}a_n\) converges. The designation is readily
+justified: we have just seen that in this case the problem has at least two
+solutions, one given by the system of masses \((\mu_i,\lambda_i)\), the
+other by the system \((\nu_i,\theta_i)\); and it is then easy to see that
+there are infinitely many solutions. We shall show later that there are
+even always infinitely many solutions in which the mass is distributed
+continuously along the axis, with a finite density at every point.
+
+The determinate case occurs when the series
+\(\sum_{n=1}^{\infty}a_n\) diverges. We shall show that in this case the
+moment problem always has one and only one solution.
+
+% Source page J.50
+\chapterheading{V}{On Some Theorems from the Theory of Functions, and Their Application to the Theory of Our Continued Fraction}{chap:V}
+
+\origsection{25}
+Let
+\[
+ f_1(z),\quad f_2(z),\quad f_3(z),\quad\ldots
+\]
+be an infinite sequence of analytic functions, all holomorphic in a circle
+\(C\) drawn about the origin with radius \(R\). Thus
+\[
+ f_k(z)=\sum_{i=0}^{\infty}A_i^kz^i,
+\]
+these series converging as long as \(|z|<R\).
+
+Consider the series
+\[
+ \sum_{k=1}^{\infty}f_k(z).
+\]
+We suppose it to converge uniformly for \(|z|\leq R_1\), that is, in
+the interior and on the circumference of a circle \(C_1\) drawn about
+the origin with radius \(R_1<R\).
+
+Let \(R'\) be a number less than \(R\), but capable of differing from
+\(R\) by as little as desired. We further suppose that the modulus of
+the sum
+\[
+ f_1(z)+f_2(z)+\cdots+f_n(z)
+\]
+has an upper bound \(L\), whatever \(n\) may be and whatever value \(z\)
+may have in the interior or on the circumference of the circle \(C'\)
+drawn about the origin with radius \(R'\). The finite number \(L\) may,
+of course, increase beyond every bound as \(R'\) tends to \(R\).
+
+Under these conditions we shall prove the following theorem.
+
+\begin{theorem}
+The series
+\[
+ \sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly for \(|z|\leq R'\).
+\end{theorem}
+
+% Source page J.51
+By a familiar theorem of Mr.~Weierstrass, which we have already applied
+more than once (\hyperref[sec:15]{\S~15} and
+\hyperref[sec:17]{\S~17}), one may add that this series represents a
+holomorphic function in the circle \(C\). This will, moreover, also
+follow from our proof.
+
+\origsection{26}
+First recall the following lemma.
+
+\begin{lemma}
+If the series
+\[
+ f(z)=\sum_{i=0}^{\infty}a_iz^i
+\]
+converges uniformly for \(|z|=R\), then
+\[
+ |a_i|<\frac{M}{R^i},
+\]
+where \(M\) is the maximum of \(|f(z)|\) for \(|z|=R\).
+\end{lemma}
+
+It is well known that uniform convergence of the series for \(|z|=R\)
+is assured when its radius of convergence exceeds \(R\). We could also
+have considered a series
+\[
+ f(z)=\sum_{i=-\infty}^{\infty}a_iz^i;
+\]
+the bound
+\[
+ |a_i|<\frac{M}{R^i}
+\]
+then holds for positive as well as negative values of \(i\).
+
+The series \(\sum_{k=1}^{\infty}f_k(z)\) being uniformly convergent for
+\(|z|\leq R_1\), this means that, given an arbitrarily small number
+\(\varepsilon\), it is possible to find an integer \(n\) such that
+\[
+ \left|\sum_{k=n}^{n+n'}f_k(z)\right|<\varepsilon,
+\]
+whatever \(n'\) may be, for all values of \(z\) whose modulus does not
+exceed \(R_1\).
+
+% Source page J.52
+The sum
+\[
+ \sum_{k=n}^{n+n'}f_k(z)
+\]
+is a sum of a finite number of series
+\[
+ \sum_{i=0}^{\infty}A_i^kz^i,
+\]
+all convergent in the circle \(C\). It can therefore itself be put in the
+form of such a series:
+\[
+ \sum_{k=n}^{n+n'}f_k(z)
+  =\sum_{i=0}^{\infty}z^i\left(\sum_{k=n}^{n+n'}A_i^k\right).
+\]
+Applying the preceding lemma to this series, with \(|z|=R_1\), gives
+\[
+ \left|\sum_{k=n}^{n+n'}A_i^k\right|<\frac\varepsilon{R_1^i}.
+\]
+This bound shows that the series
+\[
+ \sum_{k=1}^{\infty}A_i^k
+\]
+converges; put
+\[
+ c_i=\sum_{k=1}^{\infty}A_i^k.
+\]
+
+\origsection{27}
+In the interior or on the circumference of the circle \(C'\), we have
+\[
+ |f_1(z)+f_2(z)+\cdots+f_n(z)|<L.
+\]
+But this sum can again be put in the form of a series
+\[
+ \sum_{i=0}^{\infty}z^i\left(\sum_{k=1}^{n}A_i^k\right),
+\]
+convergent in the circle \(C\). Applying the lemma for \(|z|=R'\), we
+
+% Source page J.53
+obtain
+\[
+ \left|\sum_{k=1}^{n}A_i^k\right|<\frac{L}{R'^i}.
+\]
+This bound holds for every \(n\). We already know that, as \(n\) increases
+indefinitely,
+\[
+ \sum_{k=1}^{n}A_i^k
+\]
+tends to the finite limit \(c_i\). It follows that
+\[
+ |c_i|\leq\frac{L}{R'^i},
+\]
+and hence the series
+\[
+ F(z)=\sum_{i=0}^{\infty}c_iz^i
+\]
+converges in the circle \(C\), since it converges in the circle \(C'\),
+which may be taken to differ from \(C\) by as little as desired.
+
+\origsection{28}
+Let \(\varepsilon\) be arbitrarily small. We have seen that one can
+determine a number \(n\) such that
+\[
+ \left|\sum_{k=n}^{n+n'}A_i^k\right|<\frac\varepsilon{R_1^i},
+\]
+and hence also
+\[
+ \left|\sum_{k=n}^{\infty}A_i^k\right|\leq
+ \frac\varepsilon{R_1^i}.
+\]
+Since
+\[
+ \sum_{k=n+n'+1}^{\infty}A_i^k
+ =\sum_{k=n}^{\infty}A_i^k-\sum_{k=n}^{n+n'}A_i^k,
+\]
+we have
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon}{R_1^i}.
+\]
+We obtain another bound for the same expression by the following
+
+% Source page J.54
+argument. By hypothesis,
+\[
+ \left|\sum_{k=n+n'+1}^{n+n'+n''}f_k(z)\right|<2L
+\]
+as long as \(|z|\leq R'\). But
+\[
+ \sum_{k=n+n'+1}^{n+n'+n''}f_k(z)
+ =\sum_{i=0}^{\infty}z^i
+  \left(\sum_{k=n+n'+1}^{n+n'+n''}A_i^k\right).
+\]
+Applying the lemma for \(|z|=R'\) gives
+\[
+ \left|\sum_{k=n+n'+1}^{n+n'+n''}A_i^k\right|
+ <\frac{2L}{R'^i},
+\]
+and hence, on letting \(n''\) increase indefinitely,
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ \leq\frac{2L}{R'^i}.
+\]
+
+\origsection{29}
+We shall now prove the stated theorem, showing at the same time that the
+sum of the series is \(F(z)\).
+
+For this purpose consider
+\[
+ F(z)-\sum_{k=1}^{n+n'}f_k(z),
+\]
+and let \(R''\) be a number slightly less than \(R'\), with
+\(R'-R''\) as small as desired. Let \(\varepsilon\) be arbitrarily small.
+We shall show that one can always find an integer \(n\) such that
+\[
+ \left|F(z)-\sum_{k=1}^{n+n'}f_k(z)\right|<\varepsilon,
+\]
+whatever \(n'\) may be and whatever the value of \(z\), provided only
+that its modulus does not exceed \(R''\).
+
+Here is how this number \(n\) is obtained. First choose an integer \(p\)
+such that
+\[
+ 2L\left(\frac{R''}{R'}\right)^{p+1}
+ \frac1{1-R''/R'}<\frac12\varepsilon.
+\]
+
+% Source page J.55
+This is possible since \(R''<R'\). Next put
+\[
+ M=1+\frac{R''}{R_1}+\left(\frac{R''}{R_1}\right)^2
+  +\cdots+\left(\frac{R''}{R_1}\right)^p,
+\]
+and choose a positive number \(\varepsilon'\) such that
+\[
+ 2M\varepsilon'<\frac12\varepsilon.
+\]
+Having obtained \(\varepsilon'\), determine \(n\) by the condition
+\[
+ \left|\sum_{k=n}^{n+n'}f_k(z)\right|<\varepsilon'
+\]
+as long as \(|z|\leq R_1\). This choice is possible because the series
+\(\sum_{k=1}^{\infty}f_k(z)\) is assumed to converge uniformly for
+\(|z|\leq R_1\).
+
+From \hyperref[sec:26]{\S~26} and \hyperref[sec:28]{\S~28} we infer
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon'}{R_1^i},
+ \qquad
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ \leq\frac{2L}{R'^i}.
+\]
+Now
+\[
+ F(z)-\sum_{k=1}^{n+n'}f_k(z)
+ =\sum_{i=0}^{\infty}z^i
+  \left(c_i-\sum_{k=1}^{n+n'}A_i^k\right),
+\]
+or, recalling the definition of \(c_i\),
+\[
+ F(z)-\sum_{k=1}^{n+n'}f_k(z)
+ =\sum_{i=0}^{\infty}z^i
+  \left(\sum_{k=n+n'+1}^{\infty}A_i^k\right).
+\]
+Consequently, as long as \(|z|\leq R''\),
+\[
+ \left|F(z)-\sum_{k=1}^{n+n'}f_k(z)\right|
+ <\sum_{i=0}^{\infty}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|.
+\]
+
+% Source page J.56
+This upper bound equals
+\[
+ \sum_{i=0}^{p}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ +\sum_{i=p+1}^{\infty}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|,
+\]
+and is consequently less than
+\[
+ \sum_{i=0}^{p}R''^i\frac{2\varepsilon'}{R_1^i}
+ +\sum_{i=p+1}^{\infty}R''^i\frac{2L}{R'^i},
+\]
+that is, less than
+\[
+ 2M\varepsilon'
+ +2L\left(\frac{R''}{R'}\right)^{p+1}
+   \frac1{1-R''/R'},
+\]
+and therefore, finally, less than \(\varepsilon\). Our theorem is thus
+proved, since replacing \(R'\) by \(R''\) is of no consequence.
+
+\origsection{30}
+Consider now an infinite sequence of functions
+\[
+ f_1(z),\quad f_2(z),\quad f_3(z),\quad\ldots,
+\]
+holomorphic in an arbitrary region \(S\), whose boundary we denote by
+\(s\). Suppose that the series
+\[
+ \sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly in the interior and on the circumference of a circle
+\(C_1\), drawn about a point \(z_0\) of \(S\) as center with radius
+\(R_1\), this domain of convergence having no point in common with
+\(s\). Suppose further that the modulus of the sum
+\[
+ f_1(z)+f_2(z)+\cdots+f_n(z)
+\]
+has an upper bound independent of \(n\) in every region \(S'\) lying
+inside \(S\) and having no point in common with \(s\).
+
+\begin{theorem}
+The series
+\[
+ F(z)=\sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly in \(S'\) and represents a holomorphic function in
+\(S\).
+\end{theorem}
+
+% Source page J.57
+This theorem is readily deduced from the one just proved. About \(z_0\)
+as center draw a circle \(C\) with the largest possible radius that does
+not extend outside \(S\). Let \(R>R_1\) be its radius, and let
+\(R'<R\) be the radius of a concentric circle \(C'\) that does not extend
+outside \(S'\). We can plainly apply the theorem just proved and conclude
+that the series in question converges uniformly in \(C'\) and represents
+a holomorphic function in \(C\). In this way the domain of convergence
+has been extended from the circle \(C_1\) to the circle \(C'\).
+
+Now let \(z'_0\) be any point inside \(C'\), and draw about it a circle
+\(C'_1\), with radius \(R'_1\), lying wholly inside \(C'\). The series is
+then uniformly convergent for \(|z-z'_0|\leq R'_1\). We may repeat the
+same argument used for the point \(z_0\) and the circle \(C_1\); and,
+continuing in this way, we ultimately recognize that the series
+\[
+ F(z)=\sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly in every region \(S''\) lying inside \(S'\) and
+having no point in common with the boundary of \(S'\). At the same time
+it is plain that \(F(z)\) is holomorphic. This is the asserted theorem,
+since replacing \(S'\) by \(S''\) is of no consequence.
+
+It is known that the maximum of
+\(|f_1(z)+\cdots+f_n(z)|\) in \(S'\) always occurs on the boundary of
+\(S'\). In the statement of our theorem, therefore, we could merely have
+required that \(|f_1(z)+\cdots+f_n(z)|\) on the boundary of \(S'\)
+remain below a fixed number.
+
+Finally, it would be easy to generalize our theorem to a series whose
+terms are functions of two imaginary variables.
+
+\origsection{31}
+Our first theorem can be given a somewhat more general form by considering
+a sequence of functions
+\[
+ f_1(z),\quad f_2(z),\quad f_3(z),\quad\ldots
+\]
+holomorphic for \(r<|z|<R\), and consequently expandable in series
+\[
+ f_k(z)=\sum_{i=-\infty}^{\infty}A_i^kz^i,
+\]
+
+% Source page J.58
+convergent for
+\[
+ r<|z|<R.
+\]
+Although the arguments are entirely analogous to those already given,
+we must nevertheless indicate them briefly, because they lead to an
+observation that will be indispensable later.
+
+Suppose that the series
+\[
+ \sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly for \(r_1\leq|z|\leq R_1\), where
+\[
+ r<r_1<R_1<R.
+\]
+Next, if \(r'\) is any number greater than \(r\), and \(R'\) any number
+less than \(R\), with
+\[
+ r<r'<r_1<R_1<R'<R,
+\]
+suppose that for \(r'\leq|z|\leq R'\) the modulus of the sum
+\[
+ f_1(z)+f_2(z)+\cdots+f_n(z)
+\]
+has an upper bound independent of \(n\). Then the series
+\[
+ F(z)=\sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly for \(r'\leq|z|\leq R'\). At the same time \(F(z)\)
+is holomorphic for \(r<|z|<R\).
+
+We can first determine a number \(n\) such that
+\[
+ \left|\sum_{k=n}^{n+n'}f_k(z)\right|<\varepsilon
+\]
+for \(r_1\leq|z|\leq R_1\). It follows that
+\[
+ \left|\sum_{k=n}^{n+n'}A_i^k\right|<\frac\varepsilon{R_1^i},
+ \qquad
+ \left|\sum_{k=n}^{n+n'}A_i^k\right|<\frac\varepsilon{r_1^i},
+\]
+for positive and negative values of \(i\), respectively.
+
+% Source page J.59
+Hence the series
+\[
+ c_i=\sum_{k=1}^{\infty}A_i^k
+\]
+converges. For \(r'\leq|z|\leq R'\), we have
+\[
+ \left|\sum_{k=1}^{n}f_k(z)\right|<L,
+\]
+whence
+\[
+ \left|\sum_{k=1}^{n}A_i^k\right|<\frac{L}{R'^i},
+ \qquad
+ \left|\sum_{k=1}^{n}A_i^k\right|<\frac{L}{r'^i},
+\]
+for positive and negative \(i\), respectively, and then
+\[
+ |c_i|<\frac{L}{R'^i},
+ \qquad
+ |c_i|<\frac{L}{r'^i}.
+\]
+It follows that the Laurent series
+\[
+ F(z)=\sum_{i=-\infty}^{\infty}c_iz^i
+\]
+converges for \(r<|z|<R\), since it converges for
+\(r'<|z|<R'\).
+
+It is then easy to see that, with \(\varepsilon\) arbitrarily small,
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon}{R_1^i},
+ \qquad
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon}{r_1^i},
+\]
+for positive and negative \(i\), respectively, and also
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2L}{R'^i},
+ \qquad
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2L}{r'^i}.
+\]
+
+\origsection{32}
+By a suitable choice of \(n\), we can now make
+\[
+ \left|F(z)-\sum_{k=1}^{n+n'}f_k(z)\right|<\varepsilon
+\]
+for \(r''\leq|z|\leq R''\), where \(r'<r''\) and \(R''<R'\).
+
+% Source page J.60
+For this purpose first determine integers \(p\) and \(q\) from the
+conditions
+\[
+ 2L\left(\frac{R''}{R'}\right)^{p+1}
+  \frac1{1-R''/R'}<\frac14\varepsilon,
+\]
+\[
+ 2L\left(\frac{r'}{r''}\right)^{q+1}
+  \frac1{1-r'/r''}<\frac14\varepsilon.
+\]
+Next let \(M\) be the larger of the two numbers
+\[
+ 1+\frac{R''}{R_1}+\left(\frac{R''}{R_1}\right)^2
+  +\cdots+\left(\frac{R''}{R_1}\right)^p,
+\]
+\[
+ \frac{r_1}{r''}+\left(\frac{r_1}{r''}\right)^2
+  +\cdots+\left(\frac{r_1}{r''}\right)^q,
+\]
+and choose a positive number \(\varepsilon'\) such that
+\[
+ 2M\varepsilon'<\frac14\varepsilon.
+\]
+Having obtained \(\varepsilon'\), determine \(n\) by the condition
+\[
+ \left|\sum_{k=n}^{n+n'}f_k(z)\right|<\varepsilon'
+\]
+as long as \(r_1\leq|z|\leq R_1\).
+
+To see that this choice of \(n\) does indeed satisfy the stated
+condition, observe first that
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon'}{R_1^i},
+ \qquad
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2\varepsilon'}{r_1^i},
+\]
+and also
+\[
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2L}{R'^i},
+ \qquad
+ \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ <\frac{2L}{r'^i}.
+\]
+Next,
+\[
+ F(z)-\sum_{k=1}^{n+n'}f_k(z)
+ =\sum_{i=-\infty}^{\infty}z^i
+  \left(\sum_{k=n+n'+1}^{\infty}A_i^k\right).
+\]
+
+% Source page J.61
+For \(r''\leq|z|\leq R''\), therefore,
+\begin{align*}
+ \left|F(z)-\sum_{k=1}^{n+n'}f_k(z)\right|
+ <{}&\sum_{i=0}^{\infty}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|\\
+ &+\sum_{i=-\infty}^{-1}r''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|.
+\end{align*}
+This upper bound equals
+\begin{align*}
+ &\sum_{i=0}^{p}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ +\sum_{i=p+1}^{\infty}R''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|\\
+ &\quad+\sum_{i=-q}^{-1}r''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|
+ +\sum_{i=-\infty}^{-(q+1)}r''^i
+  \left|\sum_{k=n+n'+1}^{\infty}A_i^k\right|,
+\end{align*}
+and is consequently less than
+\[
+ \sum_{i=0}^{p}R''^i\frac{2\varepsilon'}{R_1^i}
+ +\sum_{i=p+1}^{\infty}R''^i\frac{2L}{R'^i}
+ +\sum_{i=-q}^{-1}r''^i\frac{2\varepsilon'}{r_1^i}
+ +\sum_{i=-\infty}^{-(q+1)}r''^i\frac{2L}{r'^i},
+\]
+that is, less than
+\[
+ 2M\varepsilon'
+ +2L\left(\frac{R''}{R'}\right)^{p+1}\frac1{1-R''/R'}
+ +2M\varepsilon'
+ +2L\left(\frac{r'}{r''}\right)^{q+1}\frac1{1-r'/r''},
+\]
+and therefore less than \(\varepsilon\).
+
+It follows from this proof that in the expansion
+\[
+ F(z)=\sum_{i=-\infty}^{\infty}c_iz^i,
+\]
+the coefficient \(c_i\) is the limit, as \(n\to\infty\), of the
+coefficient of \(z^i\) in the expansion of
+\[
+ \sum_{k=1}^{n}f_k(z).
+\]
+This observation will be useful later.
+
+\origsection{33}
+We saw in \hyperref[sec:15]{\S~15} that, as long as the real part of
+\(z\) is positive, the convergent
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ =\sum_{k=1}^{n}\frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}
+\]
+
+% Source page J.62
+tends, as \(n\to\infty\), to a limit \(F(z)\) which is a holomorphic
+function of \(z\). The series
+\[
+ \sum_{k=1}^{\infty}\frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)}
+\]
+converges uniformly in every domain \(S\) in which the real part of
+\(z\) has a positive lower bound.
+
+Put
+\[
+ f_k(z)=\frac{a_{2k}}{Q_{2k-2}(z)Q_{2k}(z)};
+\]
+then
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}=\sum_{k=1}^{n}f_k(z),
+\]
+that is,
+\[
+ \sum_{k=1}^{n}f_k(z)=\sum_{k=1}^{n}\frac{M_k}{z+x_k}.
+\]
+Let \(z\) have any value not on the cut. Then
+\[
+ \left|\sum_{k=1}^{n}f_k(z)\right|
+ <\sum_{k=1}^{n}\frac{M_k}{|z+x_k|}.
+\]
+Denote by \(\rho(z)\) the minimum of \(|z+u|\) as \(u\) runs from zero
+to infinity through all positive real values. It is clear that when the
+real part of \(z\) is positive or zero,
+\[
+ \rho(z)=|z|,
+\]
+whereas, if \(z=\alpha+\beta i\) and \(\alpha\) is negative,
+\[
+ \rho(z)=|\beta|.
+\]
+Thus \(\rho(z)\) is positive and nonzero as long as \(z\) is not on the
+cut. Since, by definition,
+\[
+ |z+x_i|\geq\rho(z),
+\]
+we obtain
+\[
+ \left|\sum_{k=1}^{n}f_k(z)\right|
+ <\frac1{\rho(z)}\sum_{k=1}^{n}M_k,
+\]
+or
+\[
+ \left|\sum_{k=1}^{n}f_k(z)\right|<\frac1{a_1\rho(z)}.
+\]
+
+% Source page J.63
+Now consider any domain \(S\) that remains at a finite distance from the
+cut. In this domain \(\rho(z)\) has a positive lower bound \(\lambda\).
+Throughout \(S\), therefore,
+\[
+ \left|\sum_{k=1}^{n}f_k(z)\right|<\frac1{a_1\lambda},
+\]
+and this upper bound is independent of \(n\).
+
+Let \(a\) be any point of the plane not on the cut. We shall show that
+the series \(\sum_{k=1}^{\infty}f_k(z)\) converges at \(z=a\), and that
+the convergence is uniform in a neighborhood of \(a\), that is, in a
+circle \(C\) drawn about \(a\) with radius small enough to have no point
+in common with the cut.
+
+Choose arbitrarily a point \(z_0\) and a circle \(C_1\), centered at
+\(z_0\), lying wholly in the part of the plane in which the real part of
+\(z\) is positive. In infinitely many ways we can construct a domain
+\(S\) containing the circles \(C\) and \(C_1\), and remaining at a finite
+distance from the cut. In this domain \(S\), as just seen, the modulus of
+the sum
+\[
+ \sum_{k=1}^{n}f_k(z)
+\]
+has an upper bound independent of \(n\). On the other hand, we know that
+in the circle \(C_1\) the series
+\[
+ F(z)=\sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly. We may therefore apply the theorem of
+\hyperref[sec:30]{\S~30} and assert that this series converges uniformly
+in \(S\), and hence in \(C\). At the same time we know that \(F(z)\) is
+holomorphic in \(S\).
+
+This amounts to saying that the convergents
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}=\sum_{k=1}^{n}f_k(z)
+\]
+
+% Source page J.64
+tend to a holomorphic function \(F(z)\) as long as \(z\) is not on the
+cut.
+
+\origsection{34}
+The study of the convergents of odd order,
+\[
+ \frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+ =\frac1{a_1z}-\sum_{k=1}^{n}
+  \frac{a_{2k+1}z}{Q_{2k-1}(z)Q_{2k+1}(z)},
+\]
+is carried out in the same manner and leads to the same result. We know
+that the series
+\[
+ F_1(z)=\frac1{a_1z}-\sum_{k=1}^{\infty}
+  \frac{a_{2k+1}z}{Q_{2k-1}(z)Q_{2k+1}(z)}
+\]
+converges uniformly in every domain \(S\) where the real part of \(z\)
+has a positive lower bound. By means of the theorem of
+\hyperref[sec:30]{\S~30}, we may conclude that the series converges
+throughout the plane outside the cut and represents a holomorphic
+function. That theorem applies, indeed, by virtue of the bound
+\[
+ \left|\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}\right|
+ <\frac1{a_1\rho(z)},
+\]
+which is obtained without difficulty.
+
+In all that precedes, we have not had to distinguish the two cases in
+which the series \(\sum_{n=1}^{\infty}a_n\) converges or diverges. In the
+first case the functions \(F(z)\) and \(F_1(z)\) are distinct, but we
+learn nothing new, this case having already been studied more thoroughly.
+
+In the second case, however, the functions \(F(z)\) and \(F_1(z)\) are
+plainly identical, and for any point of the plane not on the cut we may
+write
+\[
+ \lim_{n\to\infty}\frac{P_n(z)}{Q_n(z)}=F(z),
+\]
+the convergence being uniform in a neighborhood of the point considered.
+
+The nature of the function \(F(z)\) is thus brought to light; the only
+obscure point that remains to be clarified is the nature of the cut. For
+this purpose
+
+% Source page J.65
+we shall obtain another analytic expression for \(F(z)\), more explicit
+than the series by which we have defined it thus far. But this inquiry
+still encounters serious difficulties and requires rather delicate
+considerations.
+
+\origsection{35}
+Let us first study a special case in which a segment of the cut presents
+no singularity of any kind for the function \(F(z)\). Let
+\[
+ \nu_1,\quad\nu_2,\quad\nu_3,\quad\ldots,\quad\nu_k,\quad\ldots
+\]
+be an infinite increasing sequence of positive integers. Evidently, as
+\(n\) runs through this sequence,
+\[
+ \lim\frac{P_{2n}(z)}{Q_{2n}(z)}=F(z),
+\]
+and the convergence is still uniform in a neighborhood of the point
+\(z\). Let \(a,b\), with \(0<a<b\), be two positive numbers, and suppose
+that for \(n=\nu_k\) the equation
+\[
+ Q_{2n}(z)=0
+\]
+never has a root between \(-b\) and \(-a\).
+
+Consider a circle \(C\) whose center is the point
+\(-\frac{a+b}{2}\) and whose radius \(R\) is slightly less than
+\((b-a)/2\). It is readily verified that for every point in the interior
+or on the circumference of this circle,
+\[
+ \left|\frac{P_{2n}(z)}{Q_{2n}(z)}\right|
+ <\frac1{a_1\left(\frac{b-a}{2}-R\right)},
+\]
+where throughout \(n=\nu_k\). It follows readily from our theorem that,
+if we put, for \(n=\nu_k\),
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =f_1(z)+f_2(z)+\cdots+f_k(z),
+\]
+then the series
+\[
+ \sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly throughout the circle \(C\) and represents a
+holomorphic function. Thus in this case the function \(F(z)\) is
+holomorphic even
+
+% Source page J.66
+in a domain containing part of the cut in its interior, and \(F(z)\) has
+no singularities on the segment of the cut between \(-b\) and \(-a\).
+It must, however, be observed that in this case, if \(z\) lies on the cut
+between \(-b\) and \(-a\), the relation
+\[
+ \lim\frac{P_{2n}(z)}{Q_{2n}(z)}=F(z)
+\]
+holds only while \(n\) runs through the numbers \(\nu_k\).
+
+Let \(r_1,R_1\), with \(r_1<R_1\), be two numbers between \(a\) and
+\(b\). The functions \(f_k(z)\) are all holomorphic for
+\[
+ a<|z|<b;
+\]
+and for \(r_1\leq|z|\leq R_1\) the series
+\[
+ \sum_{k=1}^{\infty}f_k(z)
+\]
+converges uniformly, as follows readily from what has just been said and
+from what we proved earlier. We are therefore under the conditions of the
+theorem of \hyperref[sec:31]{\S~31}, and may conclude that, for
+\(a<|z|<b\), the series
+\[
+ F(z)=\sum_{k=1}^{\infty}f_k(z)
+\]
+represents a holomorphic function which can be written in the form
+\[
+ F(z)=\sum_{i=-\infty}^{\infty}c_iz^i.
+\]
+By the observation at the end of \hyperref[sec:32]{\S~32}, the
+coefficient \(c_i\) is the limit of the coefficient of \(z^i\) in the
+expansion of
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}\qquad(n=\nu_k).
+\]
+Thus \(c_{-1}\) is the limit of the coefficient of \(z^{-1}\) in the
+expansion of
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\frac{M_1}{z+x_1}+\frac{M_2}{z+x_2}+\cdots+\frac{M_n}{z+x_n}.
+\]
+
+% Source page J.67
+If \(x_p\leq a\) and \(x_{p+1}\geq b\), this coefficient is plainly
+\[
+ M_1+M_2+\cdots+M_p,
+\]
+for, when \(a<|z|<b\),
+\begin{align*}
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ ={}&\sum_{k=1}^{p}M_k
+  \left(\frac1z-\frac{x_k}{z^2}+\frac{x_k^2}{z^3}-\cdots\right)\\
+ &+\sum_{k=p+1}^{n}M_k
+  \left(\frac1{x_k}-\frac z{x_k^2}+\frac{z^2}{x_k^3}-\cdots\right).
+\end{align*}
+
+\origsection{36}
+We shall express this result somewhat differently by introducing an
+increasing, discontinuous function \(\varphi_n(u)\), which will play an
+important role in what follows.
+
+Having put
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+  =\sum_{k=1}^{n}\frac{M_k}{z+x_k},
+\]
+we define \(\varphi_n(u)\) as follows:
+\[
+ \begin{array}{lll}
+ \varphi_n(u)=0,
+   &&0\leq u<x_1,\\
+ \varphi_n(u)=M_1,
+   &&x_1\leq u<x_2,\\
+ \varphi_n(u)=M_1+M_2,
+   &&x_2\leq u<x_3,\\
+ \varphi_n(u)=M_1+M_2+M_3,
+   &&x_3\leq u<x_4,\\
+ \multicolumn{3}{c}{\dotfill}\\
+ \varphi_n(u)=M_1+M_2+\cdots+M_{n-1},
+   &&x_{n-1}\leq u<x_n,\\
+ \varphi_n(u)=M_1+M_2+\cdots+M_n,
+   &&x_n\leq u<\infty.
+ \end{array}
+\]
+If \(c\) is a number between \(a\) and \(b\), then
+\[
+ M_1+M_2+\cdots+M_p=\varphi_n(c).
+\]
+Thus, in the special case under consideration,
+\[
+ F(z)=\sum_{i=-\infty}^{\infty}c_iz^i
+\]
+for \(a<|z|<b\), and the value of \(c_{-1}\) is given by
+\[
+ c_{-1}=\lim\varphi_n(c),
+\]
+where \(n\) continues to run through the numbers \(\nu_k\).
+
+% Source page J.68
+\chapterheading{VI}{Remarks on Increasing Functions and Definite Integrals}{chap:VI}
+
+\origsection{37}
+The moment problem which we posed in \hyperref[sec:24]{no.~24} will lead us to consider an arbitrary distribution of mass on a straight line $Ox$. Such a distribution will be perfectly determined if we know how to calculate the total mass distributed over the segment $Ox$. This will evidently be an increasing function of $x$; and conversely, given an increasing function of $x$, one may always imagine that it represents, in the manner indicated, a distribution of mass. This leads us to make a few remarks on increasing functions.
+
+Let $\varphi(x)$ be an increasing function defined on the interval $(a,b)$, and let
+\[
+  \varepsilon_1,\ \varepsilon_2,\ \varepsilon_3,\ldots
+\]
+be an infinite decreasing sequence of positive numbers tending to zero. The numbers
+\[
+  \varphi(x+\varepsilon_n) \qquad (n=1,2,3,\ldots)
+\]
+will also decrease, but they will remain greater than or equal to $\varphi(x)$. They therefore tend to a definite limit $A$. Let
+\[
+  \varepsilon'_1,\ \varepsilon'_2,\ \varepsilon'_3,\ldots
+\]
+be another infinite decreasing sequence of positive numbers tending to zero; we shall again have
+\[
+  \lim_{n\to\infty}\varphi(x+\varepsilon'_n)=B.
+\]
+But it is easy to see that $A=B$, and we may say that $\varphi(x+\varepsilon)$ tends to a definite limit whenever the positive quantity $\varepsilon$ tends to zero in an arbitrary manner. We shall write
+\[
+  \lim_{\varepsilon\downarrow0}\varphi(x+\varepsilon)=\varphi^{+}(x),
+\]
+and it is clear that, similarly, $\varphi(x-\varepsilon)$ tends to a limit which we shall denote by $\varphi^{-}(x)$.
+
+% Source page J.69
+We have evidently
+\[
+  \varphi^{-}(x)\leq \varphi(x)\leq \varphi^{+}(x).
+\]
+When $\varphi^{+}(x)=\varphi^{-}(x)$, we shall say that $x$ is a point of \emph{continuity}; when $\varphi^{+}(x)>\varphi^{-}(x)$, $x$ is a point of discontinuity, and $\varphi^{+}(x)-\varphi^{-}(x)$ is the magnitude of the discontinuity.
+
+In every interval $(\alpha,\beta)$ there are points of continuity. Indeed, put
+\[
+  \lambda=\varphi(\beta)-\varphi(\alpha),
+\]
+and choose four numbers $p,q,r,s$ such that
+\[
+  \alpha<p<q<r<s<\beta.
+\]
+It is clear that at least one of the two differences
+\[
+  \varphi(q)-\varphi(p),\qquad \varphi(s)-\varphi(r)
+\]
+will be less than $\lambda/2$. Suppose, for example, that it is the first of these differences. Write $p=\alpha'$, $q=\beta'$; we now have an interval $(\alpha',\beta')$ such that
+\[
+  \varphi(\beta')-\varphi(\alpha')<\frac{\lambda}{2},
+  \qquad
+  \alpha<\alpha'<\beta'<\beta.
+\]
+In the same way, starting from the interval $(\alpha',\beta')$, one can find an interval $(\alpha'',\beta'')$ such that
+\[
+  \varphi(\beta'')-\varphi(\alpha'')<\frac{\lambda}{4},
+  \qquad
+  \alpha'<\alpha''<\beta''<\beta'.
+\]
+Continuing in this way, one obtains infinitely many intervals
+\[
+  (\alpha,\beta),\ (\alpha',\beta'),\ (\alpha'',\beta''),\ldots,
+  (\alpha^{(n)},\beta^{(n)}),\ldots,
+\]
+such that
+\[
+  \varphi(\beta^{(n)})-\varphi(\alpha^{(n)})<\frac{\lambda}{2^n}.
+\]
+
+% Source page J.70
+They may be chosen so that
+\[
+  \lim_{n\to\infty}\alpha^{(n)}=\lim_{n\to\infty}\beta^{(n)}=\gamma.
+\]
+Now $\gamma$ must necessarily be a point of continuity, since
+\[
+  \varphi^{+}(\gamma)-\varphi^{-}(\gamma)
+\]
+cannot exceed $\varphi(\beta^{(n)})-\varphi(\alpha^{(n)})$ for any $n$; this difference is therefore zero. It is nearly evident that the sum of the discontinuities which $\varphi(x)$ can have in the interior of the interval $(a,b)$ can never exceed $\varphi(b)-\varphi(a)$. Hence the number of discontinuities exceeding a given number is finite, and it is clear from this that the discontinuities may be arranged in decreasing order of magnitude.
+
+The points of discontinuity in the interval $(a,b)$ may therefore be arranged in a simply infinite sequence with positive integral indices,
+\[
+  x_1,x_2,x_3,x_4,\ldots.
+\]
+This remains true even when the interval under consideration extends to infinity: divide it into the intervals
+\[
+  (a,b),\ (b,c),\ (c,d),\ (d,e),\ldots.
+\]
+One obtains an infinite sequence of discontinuities for each interval; the totality of the discontinuities forms a doubly indexed sequence, which can be arranged as a simple sequence. It follows again, by a theorem of Mr.~Cantor, that there are points of continuity in every interval. In fact, that theorem has already been proved by the preceding considerations.
+
+\origsection{38}
+If we now wish to associate the picture of a distribution of mass with this notion of an increasing function, we are led to say that at a point of discontinuity a finite mass is concentrated. Such a point is a material point of mass $\varphi^{+}(x)-\varphi^{-}(x)$; superposed upon these masses concentrated at points, there will be a continuous distribution of mass. It is convenient always to regard $\varphi(b)-\varphi(a)$ as the mass contained in the interval $(a,b)$. The interval $(Ox)$ then contains the mass $\varphi(x)-\varphi(0)$, or simply $\varphi(x)$ if $\varphi(0)=0$. We see that $\varphi(x)-\varphi^{-}(x)$ is that part of the mass concentrated at the point $x$ which is
+
+% Source page J.71
+regarded as belonging to the interval $Ox$, while the mass $\varphi^{+}(x)-\varphi(x)$ is regarded as belonging to the interval $(x,x')$, where $x'>x$. Thus, by changing the value of $\varphi(x)$ at a point of discontinuity---subject, of course, always to
+\[
+  \varphi^{-}(x)\leq\varphi(x)\leq\varphi^{+}(x),
+\]
+we do not change the distribution of mass at all; we merely adopt a new convention as to how a mass concentrated at $x$ is to be counted as belonging to the intervals $(0,x)$ and $(x,x')$.
+
+Let us now consider the moment, with respect to the origin, of such a distribution of mass. Put $a=x_0$, $b=x_n$, and insert between $x_0$ and $x_n$ the $n-1$ values
+\[
+  x_0<x_1<x_2<\cdots<x_{n-1}<x_n.
+\]
+Next choose $n$ numbers $\xi_1,\xi_2,\ldots,\xi_n$ such that
+\[
+  x_{k-1}\leq\xi_k\leq x_k.
+\]
+By definition, the limit of the sum
+\[
+  \xi_1[\varphi(x_1)-\varphi(x_0)]
+  +\xi_2[\varphi(x_2)-\varphi(x_1)]+\cdots
+  +\xi_n[\varphi(x_n)-\varphi(x_{n-1})]
+\]
+is the moment. More generally, consider the sum
+\begin{multline}
+ f(\xi_1)[\varphi(x_1)-\varphi(x_0)]
+ +f(\xi_2)[\varphi(x_2)-\varphi(x_1)]+\cdots\\
+ {}+f(\xi_n)[\varphi(x_n)-\varphi(x_{n-1})].
+ \tag{A}\label{eq:s38-A}
+\end{multline}
+It too has a limit, which we shall denote by
+\[
+  \int_a^b f(u)\,d\varphi(u).
+\]
+We shall have to consider only a few very simple cases, such as $f(u)=u^k$ and $f(u)=1/(z+u)$, and there is no advantage in giving the function $f(u)$ its full generality. It will suffice, for example, to suppose that $f(u)$ is continuous; the proof then presents no difficulty, and we need not give it, since it proceeds as in the ordinary case of a definite integral.
+
+The value of such an integral is unchanged if one changes the value of $\varphi(x)$ at points of discontinuity lying in the interior of the interval $(a,b)$. Indeed, since there are points of continuity in every interval, there is nothing to prevent us from always taking $x_1,x_2,\ldots,x_{n-1}$ to be
+
+% Source page J.72
+points of continuity. It must only be observed that $a$ and $b$ may themselves be points of discontinuity; a change in the value at those points does affect the value of the integral, since $\varphi(a)$ and $\varphi(b)$ occur explicitly in the definition of the integral as the limit of \eqref{eq:s38-A}.
+
+Put $a=\xi_0$, $b=\xi_{n+1}$. Expression \eqref{eq:s38-A} may be written
+\begin{align*}
+ f(b)\varphi(b)-f(a)\varphi(a)
+ &-\varphi(x_0)[f(\xi_1)-f(\xi_0)]\\
+ &-\varphi(x_1)[f(\xi_2)-f(\xi_1)]-\cdots\\
+ &-\varphi(x_n)[f(\xi_{n+1})-f(\xi_n)],
+\end{align*}
+where
+\[
+  \xi_k\leq x_k\leq\xi_{k+1}.
+\]
+Passing to the limit therefore gives
+\[
+  \int_a^b f(u)\,d\varphi(u)
+  =f(b)\varphi(b)-f(a)\varphi(a)-\int_a^b\varphi(u)\,df(u).
+\]
+In the case $f(u)=1/(u+x)$, $a=0=\varphi(0)$,
+\[
+  \int_0^b\frac{d\varphi(u)}{u+x}
+  =\frac{\varphi(b)}{b+x}+\int_0^b\frac{\varphi(u)\,du}{(u+x)^2}.
+\]
+Letting $b$ increase indefinitely and supposing that $\varphi(b)$ remains finite, we obtain
+\[
+  \int_0^\infty\frac{d\varphi(u)}{u+x}
+  =\int_0^\infty\frac{\varphi(u)\,du}{(u+x)^2}.
+\]
+It was important to leave no doubt concerning the legitimacy of integration by parts under the present circumstances.
+
+\origsection{39}
+Let $\varphi(u)$ still be an increasing function such that
+\[
+  \varphi(0)=0,\qquad \varphi(\infty)=c,
+\]
+and put
+\[
+  F(z)=\int_0^\infty\frac{d\varphi(u)}{z+u}.
+\]
+We thereby define a function holomorphic throughout the plane except on the cut
+
+% Source page J.73
+consisting of the negative part of the real axis. The function $\varphi(u)$ characterizes a certain distribution of total mass $c$ on a straight line $OX$.
+
+Let $\varphi_1(u)$ be a function of the same nature as $\varphi(u)$,
+\[
+  \varphi_1(0)=0,\qquad \varphi_1(\infty)=c_1,
+\]
+and put
+\[
+  F_1(z)=\int_0^\infty\frac{d\varphi_1(u)}{z+u}.
+\]
+
+\begin{theorem}\label{thm:s39-uniqueness}
+If the functions $F(z)$ and $F_1(z)$ are identical, then the functions $\varphi(u)$ and $\varphi_1(u)$ characterize the same distribution of mass. They can differ only at points of discontinuity, and may be regarded as identical when only the distribution of mass is in question.
+\end{theorem}
+
+\begin{proof}
+It is first easy to see that one may write
+\[
+  F(z)=\int_0^\infty\frac{\varphi(u)\,du}{(z+u)^2},
+\]
+and then that $F(z)=\Phi'(z)$ on putting
+\[
+  \Phi(z)=\int_0^\infty
+  \left(\frac{1}{a+u}-\frac{1}{z+u}\right)\varphi(u)\,du.
+\]
+Let $x$ now be positive, and let $\varepsilon$ be positive and tend to zero. Following the example of M.~Hermite, consider the difference
+\[
+  \Phi(-x+\varepsilon i)-\Phi(-x-\varepsilon i)
+  =\int_0^\infty\frac{2\varepsilon i\,\varphi(u)\,du}
+  {(u-x)^2+\varepsilon^2}.
+\]
+We shall see that as $\varepsilon\to0$ this expression has a finite limit. Split the integral into two parts,
+\[
+  \int_0^x\frac{2\varepsilon i\,\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+  +\int_x^\infty\frac{2\varepsilon i\,\varphi(u)\,du}{(u-x)^2+\varepsilon^2}.
+\]
+I claim that
+\begin{align*}
+ \lim_{\varepsilon\to0}\int_0^x
+  \frac{2\varepsilon i\,\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+  &=\pi i\,\varphi^{-}(x),\\
+ \lim_{\varepsilon\to0}\int_x^\infty
+  \frac{2\varepsilon i\,\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+  &=\pi i\,\varphi^{+}(x).
+\end{align*}
+
+% Source page J.74
+Indeed, write
+\begin{multline*}
+ \int_0^x\frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+ =\int_0^{x-\sqrt{\varepsilon}}
+   \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}\\
+ {}+\int_{x-\sqrt{\varepsilon}}^x
+   \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}.
+\end{multline*}
+We have
+\begin{align*}
+ \int_0^{x-\sqrt{\varepsilon}}
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+ &<c\int_0^{x-\sqrt{\varepsilon}}
+ \frac{\varepsilon\,du}{(u-x)^2+\varepsilon^2}\\
+ &=c\left(\arctan\frac{x}{\varepsilon}
+       -\arctan\frac{1}{\sqrt{\varepsilon}}\right),
+\end{align*}
+and hence
+\[
+ \lim_{\varepsilon\to0}\int_0^{x-\sqrt{\varepsilon}}
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}=0.
+\]
+On the other hand, in the integral
+\[
+ \int_{x-\sqrt{\varepsilon}}^x
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2},
+\]
+the function $\varphi(u)$, for $x-\sqrt{\varepsilon}\leq u<x$, assumes values infinitely close to $\varphi^{-}(x)$. It is true that the value $\varphi(x)$ may exceed $\varphi^{-}(x)$ by a finite amount, but that single value of $\varphi(x)$ has no influence on the integral. The last integral therefore differs by an infinitesimal amount from
+\[
+ \varphi^{-}(x)\int_{x-\sqrt{\varepsilon}}^x
+ \frac{\varepsilon\,du}{(u-x)^2+\varepsilon^2}
+ =\varphi^{-}(x)\arctan\frac{1}{\sqrt{\varepsilon}}.
+\]
+Consequently,
+\[
+ \lim_{\varepsilon\to0}\int_{x-\sqrt{\varepsilon}}^x
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+ =\frac{\pi}{2}\varphi^{-}(x)
+ =\lim_{\varepsilon\to0}\int_0^x
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}.
+\]
+Similarly, without difficulty, one finds
+\[
+ \lim_{\varepsilon\to0}\int_x^\infty
+ \frac{\varepsilon\varphi(u)\,du}{(u-x)^2+\varepsilon^2}
+ =\frac{\pi}{2}\varphi^{+}(x),
+\]
+and hence
+\[
+ \lim_{\varepsilon\to0}
+ [\Phi(-x+\varepsilon i)-\Phi(-x-\varepsilon i)]
+ =\pi i[\varphi^{-}(x)+\varphi^{+}(x)].
+\]
+
+% Source page J.75
+Now put
+\[
+ \Phi_1(z)=\int_0^\infty
+ \left(\frac{1}{a+u}-\frac{1}{z+u}\right)\varphi_1(u)\,du.
+\]
+Then $F_1(z)=\Phi_1'(z)$; and since we suppose $F(z)=F_1(z)$, the functions $\Phi(z)$ and $\Phi_1(z)$ can differ only by a constant. Thus
+\[
+ \Phi(-x+\varepsilon i)-\Phi(-x-\varepsilon i)
+ =\Phi_1(-x+\varepsilon i)-\Phi_1(-x-\varepsilon i),
+\]
+and, on letting $\varepsilon$ tend to zero,
+\[
+ \varphi^{-}(x)+\varphi^{+}(x)
+ =\varphi_1^{-}(x)+\varphi_1^{+}(x).
+\]
+This relation holds for every positive value of $x$, while we suppose $\varphi(0)=\varphi_1(0)=0$. It follows that $\varphi(u)$ and $\varphi_1(u)$ characterize the same distribution of mass. Indeed, when only a distribution of mass is to be characterized, the values of $\varphi(u)$ and $\varphi_1(u)$ at points of discontinuity may be chosen arbitrarily. Nothing therefore prevents us from always taking
+\[
+ \varphi(x)=\frac{\varphi^{-}(x)+\varphi^{+}(x)}{2},
+ \qquad
+ \varphi_1(x)=\frac{\varphi_1^{-}(x)+\varphi_1^{+}(x)}{2}.
+\]
+In this way we see that $\varphi(x)=\varphi_1(x)$ for every positive $x$; and since $\varphi(0)=\varphi_1(0)=0$, the two functions are identical.
+\end{proof}
+
+% Source page J.76
+\chapterheading{VII}{Proof of the Fundamental Theorem}{chap:VII}
+
+\origsection{40}
+Let
+\[
+ u_1,u_2,u_3,\ldots
+\]
+be an infinite sequence of numbers, which we suppose bounded above and below. The same is then true of the numbers
+\[
+ u_n,u_{n+1},u_{n+2},u_{n+3},\ldots,
+\]
+which therefore possess a maximum, or upper limit $L_n$, and likewise a minimum, or lower limit $l_n$. The number $L_n$ has the following properties:
+
+\emph{$1^\circ$} None of the numbers $u_n,u_{n+1},u_{n+2},\ldots$ can exceed $L_n$.
+
+\emph{$2^\circ$} At least one of these numbers is equal to $L_n$; or, if this does not occur, one can find at least one which exceeds $L_n-\varepsilon$, where $\varepsilon$ is an arbitrary positive number. As $n$ increases, $L_n$ can only decrease, while $l_n$ can only increase. It is therefore clear that, as $n\to\infty$,
+\[
+ \lim L_n=L,\qquad \lim l_n=l,\qquad L\geq l.
+\]
+
+The number $L$ now has the following properties.
+
+\emph{I. The numbers $u_1,u_2,u_3,\ldots$, from some rank onward, are all less than $L+\varepsilon$, where $\varepsilon$ is an arbitrary positive number.}
+
+Indeed, since $L_n$ decreases to $L$, one can always choose
+
+% Source page J.77
+$n$ so that $L_n<L+\varepsilon$; and none of the numbers $u_n,u_{n+1},u_{n+2},\ldots$ exceeds $L_n$, so all of them are also less than $L+\varepsilon$.
+
+Among the numbers $u_1,u_2,u_3,\ldots$ there is always one which either equals $L_1$ or exceeds $L_1-\varepsilon$. Let this number be $u_k$; it plainly exceeds $L-\varepsilon$, since $L_1\geq L$. Next, among
+\[
+ u_{k+1},u_{k+2},u_{k+3},\ldots
+\]
+there is one which either equals $L_{k+1}$ or exceeds $L_{k+1}-\varepsilon$. Call it $u_l$; it too exceeds $L-\varepsilon$. Likewise, among
+\[
+ u_{l+1},u_{l+2},u_{l+3},\ldots
+\]
+there is always a number $u_m$ exceeding $L_{l+1}-\varepsilon$, and hence also $L-\varepsilon$.
+
+Continuing in this way, it is clear that in the sequence $u_1,u_2,u_3,\ldots$ one can find infinitely many numbers
+\[
+ u_k,u_l,u_m,\ldots
+\]
+all exceeding $L-\varepsilon$. The indices $k,l,m,\ldots$ increase; but we already know that all terms of the original sequence, from some rank onward, are less than $L+\varepsilon$. The same is therefore true of the subsequence $u_k,u_l,u_m,\ldots$, and we arrive at the following result:
+
+\emph{II. In the sequence $u_1,u_2,u_3,\ldots$ there are always infinitely many numbers lying between $L-\varepsilon$ and $L+\varepsilon$, where $\varepsilon$ is an arbitrary positive number.}
+
+% Source page J.78
+In the same way one finds:
+
+\emph{$\mathrm{I}^{\circ}$. The numbers $u_1,u_2,u_3,\ldots$, from some rank onward, are all greater than $l-\varepsilon$.}
+
+\emph{$\mathrm{II}^{\circ}$. In the sequence $u_1,u_2,u_3,\ldots$ there are always infinitely many numbers lying between $l-\varepsilon$ and $l+\varepsilon$.}
+
+The consideration of the numbers $L$ and $l$ is due to Mr.~du Bois-Reymond, who presented it in a book published in 1882 and translated into French by Messrs.~Milhaud and Girot~\cite{DuBoisReymond1882}. Mr.~du Bois-Reymond calls $L$ and $l$ the \emph{limits of indeterminacy} of the numbers $u_n$; indeed, as $n$ becomes infinite, $u_n$ ultimately oscillates between these limits. It is also evident that the numbers $u_n$ tend to a definite limit only when $L=l$.
+
+The first application of this idea seems due to
+Mr.~Hadamard~\cite{Hadamard1892}, who observed that, when
+\[
+ u_n=\sqrt[n]{|c_n|},
+\]
+the radius of convergence of the series
+\[
+ \sum_{n=0}^{\infty}c_nz^n
+\]
+is equal to $1/L$.
+
+\origsection{41}
+I now return to the function $\varphi_n(u)$ defined in \hyperref[sec:36]{no.~36}. It is an increasing function, well determined even at its points of discontinuity. It varies only between the limits
+\[
+ \varphi_n(0)=0,\qquad \varphi_n(\infty)=\frac1{a_1}.
+\]
+Let $u$ now be a fixed nonnegative number, and consider the infinite sequence
+\[
+ \varphi_1(u),\varphi_2(u),\varphi_3(u),\ldots.
+\]
+
+% Source page J.79
+These numbers are bounded. I shall denote the corresponding limits $L$ and $l$ by
+\[
+ L=\psi(u),\qquad l=\chi(u),
+\]
+so that
+\[
+ \psi(u)\geq\chi(u).
+\]
+Clearly $\psi(0)=\chi(0)=0$; and if, for some particular value of $u$,
+\[
+ \psi(u)=\chi(u),
+\]
+then, by what precedes, we may conclude that as $n\to\infty$,
+\[
+ \lim_{n\to\infty}\varphi_n(u)=\psi(u)=\chi(u).
+\]
+Since $\varphi_n(u)$ is increasing, it follows immediately that $\psi(u)$ and $\chi(u)$ are also increasing functions. Thus, if $a<b$, we have
+\begin{align}
+ \psi(a)&\leq\psi(b), \tag{1}\label{eq:s41-1}\\
+ \chi(a)&\leq\chi(b). \tag{2}\label{eq:s41-2}
+\end{align}
+To these inequalities we shall add another of very great importance:
+\begin{equation}
+ \psi(a)\leq\chi(b).
+ \tag{3}\label{eq:s41-3}
+\end{equation}
+The proof of this inequality requires some preparation.
+
+\origsection{42}
+Let us first calculate the integral
+\[
+ \int_0^\infty\left[\frac1{a_1}-\varphi_n(u)\right]u^k\,du.
+\]
+Its value is evidently
+\begin{align*}
+ &\frac1{k+1}(M_1+M_2+\cdots+M_n)x_1^{k+1}\\
+ &\quad+\frac1{k+1}(M_2+M_3+\cdots+M_n)(x_2^{k+1}-x_1^{k+1})\\
+ &\quad+\frac1{k+1}(M_3+\cdots+M_n)(x_3^{k+1}-x_2^{k+1})+\cdots\\
+ &\quad+\frac1{k+1}M_n(x_n^{k+1}-x_{n-1}^{k+1}),
+\end{align*}
+
+% Source page J.80
+that is,
+\[
+ \frac1{k+1}(M_1x_1^{k+1}+M_2x_2^{k+1}+\cdots+M_nx_n^{k+1}).
+\]
+Hence
+\[
+ \int_0^\infty\left[\frac1{a_1}-\varphi_n(u)\right]u^k\,du
+ =\frac{c_{k+1}}{k+1}
+ \quad(k=0,1,2,3,\ldots,2n-2).
+\]
+Similarly,
+\[
+ \int_0^\infty\left[\frac1{a_1}-\varphi_{n+n'}(u)\right]u^k\,du
+ =\frac{c_{k+1}}{k+1}
+ \quad(k=0,1,2,3,\ldots,2n+2n'-2),
+\]
+and consequently
+\[
+ \int_0^\infty[\varphi_n(u)-\varphi_{n+n'}(u)]u^k\,du=0
+ \quad(k=0,1,2,3,\ldots,2n-2).
+\]
+By a well-known argument due to Legendre, it follows that the function
+\[
+ \varphi_n(u)-\varphi_{n+n'}(u)
+\]
+must change sign at least $2n-1$ times. Now both $\varphi_n(u)$ and $\varphi_{n+n'}(u)$ are increasing functions, and $\varphi_n(u)$ is constant in each of the intervals
+\[
+ (x_1,x_2),(x_2,x_3),\ldots,(x_{n-1},x_n).
+\]
+In each such interval, $\varphi_n(u)-\varphi_{n+n'}(u)$ can change sign at most once. There may then be a change of sign at each of the points of discontinuity $x_1,\ldots,x_n$, giving at most $n$ further changes; altogether there are therefore at most $2n-1$. But since
+\[
+ \varphi_n(0)=\varphi_{n+n'}(0)=0,
+ \qquad
+ \varphi_n(\infty)=\varphi_{n+n'}(\infty)=\frac1{a_1},
+\]
+there can plainly be no other changes of sign. Thus there must in fact be one change of sign in each interval
+\[
+ (x_1,x_2),\ldots,(x_{n-1},x_n),
+\]
+and one at
+\[
+ u=x_k\qquad(k=1,2,\ldots,n).
+\]
+
+% Source page J.81
+For $u=x_k$ one must therefore have
+\[
+ \varphi_n^{-}(x_k)<\varphi_{n+n'}(x_k)<\varphi_n^{+}(x_k).
+\]
+Even if $\varphi_{n+n'}(u)$ also has a discontinuity at $u=x_k$---which may happen exceptionally when the equations
+\[
+ Q_{2n}(z)=0,\qquad Q_{2n+2n'}(z)=0
+\]
+have common roots---we have
+\[
+ \varphi_n^{-}(x_k)<\varphi_{n+n'}^{-}(x_k)
+ <\varphi_{n+n'}^{+}(x_k)<\varphi_n^{+}(x_k).
+\]
+Next observe that, since $\varphi_n(u)-\varphi_{n+n'}(u)$ must change sign in $(x_k,x_{k+1})$ and $\varphi_n(u)$ is constant there, $\varphi_{n+n'}(u)$ must actually increase in that interval. But this function increases only by abrupt jumps, its points of discontinuity being the roots of
+\[
+ Q_{2n+2n'}(-z)=0.
+\]
+It follows that this equation must have at least one root in $(x_k,x_{k+1})$. We thus recover a proposition already obtained more completely in \hyperref[sec:5]{no.~5}.
+
+\origsection{43}
+To prove inequality \eqref{eq:s41-3}, suppose the contrary, namely
+\[
+ \psi(a)>\chi(b).
+\]
+Then one can find a positive number $\varepsilon$ such that
+\[
+ \psi(a)-\varepsilon>\chi(b)+\varepsilon.
+\]
+By the properties of the limits of indeterminacy, there exists an infinite increasing sequence of indices
+\[
+ \nu_1,\nu_2,\nu_3,\ldots,\nu_k,\ldots
+\]
+such that $\varphi_n(a)$, for $n=\nu_k$, is always greater than $\psi(a)-\varepsilon$. There is likewise
+
+% Source page J.82
+a second increasing sequence of indices
+\[
+ \nu'_1,\nu'_2,\nu'_3,\ldots,\nu'_k,\ldots
+\]
+such that $\varphi_n(b)$, for $n=\nu'_k$, is always less than $\chi(b)+\varepsilon$.
+
+I now say that, for $n=\nu_k$ and also for $n=\nu'_k$, the equation
+\[
+ Q_{2n}(-z)=0
+\]
+can never have a root between $a$ and $b$. Indeed, suppose that for $n=\nu_k$ it has a root $c$ between $a$ and $b$. Then $\varphi_n(u)$ has a discontinuity at $u=c$, and since $\varphi_n(a)>\psi(a)-\varepsilon$, we have
+\[
+ \varphi_n^{-}(c)>\psi(a)-\varepsilon,
+ \qquad
+ \varphi_n(c)>\psi(a)-\varepsilon.
+\]
+In the sequence $\nu'_1,\nu'_2,\ldots$ one can always choose a number $\nu'_r=n'$ greater than $n=\nu_k$. We should then have
+\[
+ \varphi_n^{-}(c)<\varphi_{n'}(c)<\varphi_n^{+}(c).
+\]
+But this is plainly absurd, since
+\[
+ \varphi_{n'}(c)\leq\varphi_{n'}(b)<\chi(b)+\varepsilon,
+\]
+whereas
+\[
+ \varphi_n^{-}(c)>\psi(a)-\varepsilon>\chi(b)+\varepsilon.
+\]
+Thus $Q_{2n}(-z)=0$ has no root between $a$ and $b$ when $n=\nu_k$; the same argument proves the assertion for $n=\nu'_k$.
+
+Since, for infinitely many values $n=\nu_k$, the equation $Q_{2n}(-z)=0$ has no root between $a$ and $b$, we know from \hyperref[sec:35]{no.~35} and \hyperref[sec:36]{no.~36} that the
+
+% Source page J.83
+function $F(z)$ has an expansion
+\[
+ \sum_{i=-\infty}^{+\infty}c_i z^i
+\]
+convergent for $a<|z|<b$, and that $c_{-1}$ is the limit of $\varphi_n(c)$, where $c$ is fixed between $a$ and $b$ and $n$ runs through the values $\nu_1,\nu_2,\nu_3,\ldots$. But the same reasoning may be applied with $n$ running through $\nu'_1,\nu'_2,\nu'_3,\ldots$; and since in the two cases the function $F(z)$ is the same, we should have
+\[
+ c_{-1}=\lim_{k\to\infty}\varphi_{\nu_k}(c)
+ =\lim_{k\to\infty}\varphi_{\nu'_k}(c).
+\]
+This is plainly absurd, since every $\varphi_{\nu_k}(c)$ exceeds $\psi(a)-\varepsilon$, while every $\varphi_{\nu'_k}(c)$ is less than
+\[
+ \chi(b)+\varepsilon<\psi(a)-\varepsilon.
+\]
+The contradiction shows that the assumption $\psi(a)>\chi(b)$ must be rejected. Inequality \eqref{eq:s41-3} is proved.
+
+\origsection{44}
+This important point being established, we may introduce the function which plays the principal role in our fundamental theorem. Put
+\[
+ \Phi(u)=\frac{\psi(u)+\chi(u)}{2}.
+\]
+It follows immediately from \eqref{eq:s41-1} and \eqref{eq:s41-2} that this is an increasing function. Moreover, $\Phi(0)=0$, and, like $\psi(u)$ and $\chi(u)$, it cannot increase beyond $1/a_1$. Clearly
+\[
+ \Phi(u+\varepsilon)\geq\chi(u+\varepsilon)\geq\psi(u),
+\]
+and hence
+\[
+ \Phi^{+}(u)\geq\psi(u).
+\]
+
+% Source page J.84
+Similarly,
+\[
+ \Phi^{-}(u)\leq\chi(u).
+\]
+Thus, when $\psi(u)>\chi(u)$, $\Phi(u)$ is discontinuous and the magnitude of its discontinuity is not less than $\psi(u)-\chi(u)$, though it may be greater. The function $\Phi(u)$ may also be discontinuous at points where $\psi(u)=\chi(u)$. But since $\Phi(u)$ is increasing, it has points of continuity in every interval.
+
+Now, if
+\[
+ \Phi^{+}(u)=\Phi^{-}(u),
+\]
+then
+\[
+ \psi(u)=\chi(u)=\lim_{n\to\infty}\varphi_n(u).
+\]
+Hence every interval contains points $u$ for which $\varphi_n(u)$ tends to a finite limit as $n\to\infty$.
+
+We shall need the following property of $\Phi(u)$. Consider $\varphi_n(u)$; it is discontinuous at $u=x_k$, and for $n'>n$ one has
+\[
+ \varphi_n^{-}(x_k)<\varphi_{n'}(x_k)<\varphi_n^{+}(x_k).
+\]
+It follows that $\psi(x_k)$ and $\chi(x_k)$, the limits of indeterminacy of $\varphi_{n'}(x_k)$ as $n'\to\infty$, also lie between $\varphi_n^{-}(x_k)$ and $\varphi_n^{+}(x_k)$; therefore
+\[
+ \varphi_n^{-}(x_k)\leq\Phi(x_k)\leq\varphi_n^{+}(x_k).
+\]
+
+\origsection{45}
+Consider now the equations
+\[
+ Q_{2n}(-z)=0\qquad(n=1,2,3,\ldots)
+\]
+and an arbitrary interval $(a,b)$, where
+\[
+ 0\leq a<b.
+\]
+Two cases may occur. Either there are only finitely many equations $Q_{2n}(-z)=0$ having no root between $a$ and $b$, or there are infinitely many. In the first case we shall call $(a,b)$ an interval of the \emph{first kind}; in the second, an interval of the \emph{second kind}.
+
+% Source page J.85
+When $(a,b)$ is of the first kind, there is a number $\nu$ such that, for $n>\nu$, the equation
+\[
+ Q_{2n}(-z)=0
+\]
+always has at least one root between $a$ and $b$; this property plainly characterizes an interval of the first kind. Thus, if for some particular value of $n$ the equation has two roots between $a$ and $b$, the interval is always of the first kind, for all subsequent equations of higher degree will have at least one root between these two roots.
+
+Suppose that $(a,b)$ is of the second kind and, in addition, that $a$ and $b$ are points of continuity of $\Phi(u)$ and of all the functions $\varphi_n(u)$. It follows that
+\[
+ \Phi(a)=\lim_{n\to\infty}\varphi_n(a),
+ \qquad
+ \Phi(b)=\lim_{n\to\infty}\varphi_n(b).
+\]
+I claim that necessarily $\Phi(a)=\Phi(b)$. Suppose, on the contrary, that
+\[
+ \Phi(a)<\Phi(b).
+\]
+One can choose a positive number $\varepsilon$ such that
+\[
+ \Phi(a)+\varepsilon<\Phi(b)-\varepsilon.
+\]
+For all $n$ exceeding some bound $n>\nu$, we have
+\[
+ |\varphi_n(a)-\Phi(a)|<\varepsilon,
+ \qquad
+ |\varphi_n(b)-\Phi(b)|<\varepsilon.
+\]
+It follows that, for those same values of $n$,
+\[
+ \varphi_n(a)<\varphi_n(b).
+\]
+Thus $\varphi_n(u)$ must actually increase as $u$ goes from $a$ to $b$. This is possible only if $Q_{2n}(-z)=0$ has at least one root between $a$ and $b$. Since this must occur for every $n>\nu$, the interval $(a,b)$ would be
+
+% Source page J.86
+of the first kind, contrary to the hypothesis. Hence indeed
+\[
+ \Phi(a)=\Phi(b).
+\]
+For $n>\nu$ we always have
+\[
+ |\varphi_n(a)-\Phi(a)|<\varepsilon,
+ \qquad
+ |\varphi_n(b)-\Phi(b)|<\varepsilon;
+\]
+and since $\Phi(a)=\Phi(b)$, it plainly follows that
+\[
+ |\varphi_n(u)-\Phi(u)|<\varepsilon
+ \qquad(a\leq u\leq b).
+\]
+This is an important result. It assumes that $(a,b)$ is of the second kind and that $a$ and $b$ are points of continuity of $\Phi(u)$ and of all the functions $\varphi_n(u)$.
+
+When $a=0$, the interval $(0,b)$ can be of the second kind only under the following circumstances. The equation $Q_{2n}(-z)=0$ must never have a root equal to or less than $b$; for, if this happened, the equation
+\[
+ Q_{2n'}(-z)=0
+\]
+would always, for $n'>n$, have a root in $(0,b)$, making that interval one of the first kind. Thus, if $(0,b)$ is of the second kind, one always has
+\[
+ \varphi_n(b)=0,
+\]
+and consequently $\Phi(b)=0$. The functions $\varphi_n(u)$ and $\Phi(u)$ vanish identically throughout
+\[
+ 0\leq u\leq b.
+\]
+
+\origsection{46}
+Let $L$ be any positive number and consider the integral
+\[
+ \int_0^L|\varphi_n(u)-\Phi(u)|\,du.
+\]
+Between $0$ and $L$ insert, in an arbitrary manner, $k-1$ numbers $u_1,u_2,\ldots,u_{k-1}$,
+\[
+ u_0=0<u_1<u_2<\cdots<u_{k-1}<u_k=L.
+\]
+
+% Source page J.87
+Let $\varepsilon$ denote the length of the largest interval $(u_{i-1},u_i)$, $i=1,2,\ldots,k$.
+
+To simplify the reasoning, suppose that no point $u_i$ ($i=1,2,\ldots,k$) is a root of an equation $Q_{2n}(-z)=0$ or a point of discontinuity of $\Phi(u)$. Since all the roots and all the discontinuities of $\Phi(u)$ can be arranged in an infinite sequence, such points $u_i$ exist in every interval. The point $u_0=0$ is not a root, though it may be a point of discontinuity of $\Phi(u)$. This can never occur, however, when $(u_0,u_1)$ is of the second kind, since then $\Phi(u)$ vanishes throughout the interval.
+
+Associate with each interval $(u_{i-1},u_i)$ an integer $\nu_i$ as follows. If the interval is of the first kind, choose $\nu_i$ so that, for $n>\nu_i$, the equation $Q_{2n}(-z)=0$ has at least one root in the interval. If it is of the second kind, choose $\nu_i$ so that, for $n>\nu_i$ and $u_{i-1}\leq u\leq u_i$,
+\[
+ |\varphi_n(u)-\Phi(u)|<\varepsilon',
+\]
+where $\varepsilon'$ is an arbitrary positive number, the same for all intervals of the second kind.
+
+Let $N$ be the greatest of the numbers $\nu_1,\nu_2,\ldots,\nu_k$. Henceforth suppose $n>N$, and seek an upper bound for
+\[
+ \int_0^L|\varphi_n(u)-\Phi(u)|\,du.
+\]
+For this purpose decompose it into the sum of $k$ integrals
+\[
+ \sum_{i=1}^k\int_{u_{i-1}}^{u_i}|\varphi_n(u)-\Phi(u)|\,du.
+\]
+
+% Source page J.88
+If $(u_{i-1},u_i)$ is of the first kind, $\varphi_n(u)$ has at least one abrupt jump in the interval, say at $u=c$, and
+\[
+ \varphi_n^{-}(c)\leq\Phi(c)\leq\varphi_n^{+}(c).
+\]
+The two intervals
+\[
+ [\varphi_n(u_{i-1}),\varphi_n(u_i)]
+ \quad\text{and}\quad
+ [\Phi(u_{i-1}),\Phi(u_i)]
+\]
+therefore have at least one point in common, and consequently
+\[
+ \varphi_n(u_i)\geq\Phi(u_{i-1}),
+ \qquad
+ \Phi(u_i)\geq\varphi_n(u_{i-1}).
+\]
+Throughout the interval we plainly have
+\[
+ \varphi_n(u_{i-1})-\Phi(u_i)
+ \leq\varphi_n(u)-\Phi(u)
+ \leq\varphi_n(u_i)-\Phi(u_{i-1}),
+\]
+and hence, a fortiori,
+\begin{align*}
+ \varphi_n(u)-\Phi(u)
+ &\leq\varphi_n(u_i)-\varphi_n(u_{i-1})
+       +\Phi(u_i)-\Phi(u_{i-1}),\\
+ \varphi_n(u)-\Phi(u)
+ &\geq\varphi_n(u_{i-1})-\varphi_n(u_i)
+       +\Phi(u_{i-1})-\Phi(u_i).
+\end{align*}
+That is,
+\[
+ |\varphi_n(u)-\Phi(u)|
+ \leq\varphi_n(u_i)-\varphi_n(u_{i-1})
+      +\Phi(u_i)-\Phi(u_{i-1}).
+\]
+It follows that
+\begin{multline*}
+ \int_{u_{i-1}}^{u_i}|\varphi_n(u)-\Phi(u)|\,du\\
+ \leq\varepsilon\{\varphi_n(u_i)-\varphi_n(u_{i-1})
+      +\Phi(u_i)-\Phi(u_{i-1})\}.
+\end{multline*}
+The factor multiplying $\varepsilon$ is the sum of the variations of $\varphi_n(u)$ and $\Phi(u)$ in $(u_{i-1},u_i)$. The sum of all such integrals belonging to intervals of the first kind therefore has upper bound
+\[
+ \varepsilon(\sigma_1+\sigma_2),
+\]
+where $\sigma_1$ is the sum of the variations of $\varphi_n(u)$ in those intervals and $\sigma_2$ the sum of the variations of $\Phi(u)$. Clearly $\sigma_1$ is less than the total variation
+
+% Source page J.89
+of $\varphi_n(u)$, namely
+\[
+ \varphi_n(\infty)-\varphi_n(0)=\frac1{a_1}.
+\]
+Likewise $\sigma_2$ is less than the total variation of $\Phi(u)$, which also cannot exceed $1/a_1$. Thus $2\varepsilon/a_1$ may be taken as an upper bound for the sum in question.
+
+If $(u_{i-1},u_i)$ is of the second kind, then throughout it, since $n>N\geq\nu_i$,
+\[
+ |\varphi_n(u)-\Phi(u)|<\varepsilon',
+ \qquad
+ \int_{u_{i-1}}^{u_i}|\varphi_n(u)-\Phi(u)|\,du
+ <\varepsilon'(u_i-u_{i-1}).
+\]
+The sum of all integrals of this kind is therefore less than $L\varepsilon'$, since the sum of the intervals is plainly less than $L$.
+
+\begin{proposition}\label{prop:s46-L1}
+Given arbitrary positive numbers $L,\varepsilon,\varepsilon'$, there exists an integer $N$ such that, for $n>N$,
+\[
+ \int_0^L|\varphi_n(u)-\Phi(u)|\,du
+ <\frac{2\varepsilon}{a_1}+L\varepsilon'.
+\]
+\end{proposition}
+
+\origsection{47}
+It is evident that
+\begin{align*}
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ &=\int_0^\infty\frac{d\varphi_n(u)}{z+u}
+  =\int_0^\infty\frac{\varphi_n(u)\,du}{(z+u)^2},\\
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ -\int_0^\infty\frac{\Phi(u)\,du}{(z+u)^2}
+ &=\int_0^\infty\frac{\varphi_n(u)-\Phi(u)}{(z+u)^2}\,du,
+\end{align*}
+where $z$ is any point not on the cut. Hence
+\[
+ \left|\frac{P_{2n}(z)}{Q_{2n}(z)}
+ -\int_0^\infty\frac{\Phi(u)\,du}{(z+u)^2}\right|
+ <\int_0^\infty\frac{|\varphi_n(u)-\Phi(u)|}{|z+u|^2}\,du.
+\]
+The upper bound may be written
+\[
+ \int_0^L\frac{|\varphi_n(u)-\Phi(u)|}{|z+u|^2}\,du
+ +\int_L^\infty\frac{|\varphi_n(u)-\Phi(u)|}{|z+u|^2}\,du.
+\]
+
+% Source page J.90
+Choose two positive numbers $\varepsilon,\varepsilon'$ and determine $N$ as in \hyperref[sec:46]{no.~46}. Then, for $n>N$,
+\[
+ \int_0^L\frac{|\varphi_n(u)-\Phi(u)|}{|z+u|^2}\,du
+ <\frac1{\rho(z)^2}\left(\frac{2\varepsilon}{a_1}+L\varepsilon'\right),
+\]
+where, as in \hyperref[sec:33]{no.~33}, $\rho(z)$ denotes the minimum of $|z+u|$ as $u$ varies from $0$ to $\infty$.
+
+For the integral from $L$ to $\infty$, observe that
+\[
+ |\varphi_n(u)-\Phi(u)|<\frac1{a_1};
+\]
+and, if $z=\alpha+\beta i$,
+\[
+ |z+u|^2=(u+\alpha)^2+\beta^2\geq(u+\alpha)^2.
+\]
+Thus, supposing $L+\alpha>0$,
+\[
+ \int_L^\infty\frac{|\varphi_n(u)-\Phi(u)|}{|z+u|^2}\,du
+ <\frac1{a_1}\int_L^\infty\frac{du}{(u+\alpha)^2}
+ =\frac1{a_1(L+\alpha)}.
+\]
+It follows that
+\begin{multline*}
+ \left|\frac{P_{2n}(z)}{Q_{2n}(z)}
+ -\int_0^\infty\frac{\Phi(u)\,du}{(z+u)^2}\right|\\
+ <\frac1{\rho(z)^2}\left(\frac{2\varepsilon}{a_1}+L\varepsilon'\right)
+ +\frac1{a_1(L+\alpha)}.
+\end{multline*}
+Since $L,\varepsilon,\varepsilon'$ are arbitrary (or nearly so), the upper bound can be made as small as desired. Thus, for every point $z$ not on the cut,
+\[
+ \lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}
+ =\int_0^\infty\frac{\Phi(u)\,du}{(z+u)^2}
+ =\int_0^\infty\frac{d\Phi(u)}{z+u}.
+\]
+We already knew that $P_{2n}(z)/Q_{2n}(z)$ tends to a holomorphic function $F(z)$; we now see that
+\[
+ F(z)=\int_0^\infty\frac{d\Phi(u)}{z+u}.
+\]
+As for uniformity, the preceding bound shows that convergence is uniform in every domain $S$ in which the real part
+
+% Source page J.91
+of $-z$ and $1/\rho(z)$ are bounded above. Such a domain may extend to infinity.
+
+\origsection{48}
+The odd-order convergents may be studied in the same way as the even-order ones, and one finds
+\[
+ \lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+ =F_1(z)=\int_0^\infty\frac{d\Phi_1(u)}{z+u},
+\]
+where $\Phi_1(u)$ is again an increasing function characterizing a certain distribution of mass on an axis $OX$.
+
+It is scarcely necessary, however, to carry out this investigation, for the only case which interests us is that in which
+\[
+ \sum_{n=1}^{\infty}a_n
+\]
+diverges. We then know that $F(z)=F_1(z)$, and a separate investigation to obtain a more explicit analytic form for $F_1(z)$ becomes unnecessary. By the theorem of \hyperref[sec:39]{no.~39}, the functions $\Phi(u)$ and $\Phi_1(u)$ necessarily characterize the same distribution.
+
+When $\sum_{n=1}^{\infty}a_n$ converges, the distributions of mass characterized by $\Phi(u)$ and $\Phi_1(u)$ are plainly those given by the systems
+\[
+ (\mu_i,\lambda_i),\quad i=1,2,3,\ldots,
+ \qquad
+ (\nu_i,\theta_i),\quad i=0,1,2,3,\ldots,
+\]
+considered in \hyperref[sec:24]{no.~24}. The integrals
+\[
+ \int_0^\infty\frac{d\Phi(u)}{z+u},
+ \qquad
+ \int_0^\infty\frac{d\Phi_1(u)}{z+u}
+\]
+then reduce to the series
+\[
+ \sum_{i=1}^{\infty}\frac{\mu_i}{z+\lambda_i},
+ \qquad
+ \sum_{i=0}^{\infty}\frac{\nu_i}{z+\theta_i}.
+\]
+
+% Source page J.92
+We saw in \hyperref[sec:15]{no.~15} that, for positive real $x$,
+\begin{equation}
+ F(x)=\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+ +(-1)^{n-1}\frac{c_{n-1}}{x^n}
+ +(-1)^n\frac{\xi c_n}{x^{n+1}},
+ \qquad 0<\xi<1.
+ \tag{1}\label{eq:s48-1}
+\end{equation}
+On the other hand,
+\[
+ xF(x)=\int_0^\infty\frac{x}{x+u}\,d\Phi(u).
+\]
+It is easy to see that as $x\to+\infty$ the right-hand side tends to
+\[
+ \int_0^\infty d\Phi(u)=\Phi(\infty).
+\]
+Indeed, since this integral is finite, one may choose $L$ so that
+\[
+ \int_L^\infty d\Phi(u)=\varepsilon_1,
+\]
+where $\varepsilon_1$ is smaller than an arbitrary number $\varepsilon$. Then
+\[
+ \int_L^\infty\frac{x}{x+u}\,d\Phi(u)=\varepsilon'_1,
+\]
+where $\varepsilon'_1<\varepsilon$. Next, $x$ may clearly be taken large enough that
+\[
+ \int_0^L\frac{x}{x+u}\,d\Phi(u)
+ =\int_0^L d\Phi(u)-\varepsilon''_1,
+\]
+where $\varepsilon''_1<\varepsilon$. Consequently,
+\[
+ \int_0^\infty\frac{x}{x+u}\,d\Phi(u)
+ =\int_0^L d\Phi(u)+\varepsilon'_1-\varepsilon''_1
+ =\int_0^\infty d\Phi(u)-\varepsilon_1+\varepsilon'_1-\varepsilon''_1.
+\]
+But by \eqref{eq:s48-1},
+\[
+ \lim_{x\to\infty}xF(x)=c_0=\frac1{a_1};
+\]
+hence
+\[
+ \int_0^\infty d\Phi(u)=c_0.
+\]
+
+% Source page J.93
+This being established, we may write
+\[
+ F(x)=\int_0^\infty
+ \left[\frac1x-\frac{u}{x(x+u)}\right]d\Phi(u)
+ =\frac{c_0}{x}-\frac1x\int_0^\infty\frac{u}{x+u}\,d\Phi(u),
+\]
+and therefore
+\begin{equation}
+ x^2\left[F(x)-\frac{c_0}{x}\right]
+ =-\int_0^\infty\frac{x}{x+u}\,u\,d\Phi(u).
+ \tag{2}\label{eq:s48-2}
+\end{equation}
+We know that, as $x\to\infty$,
+\[
+ \lim x^2\left[F(x)-\frac{c_0}{x}\right]=-c_1.
+\]
+It follows that the integral
+\begin{equation}
+ \int_0^\infty u\,d\Phi(u)
+ \tag{3}\label{eq:s48-3}
+\end{equation}
+is finite and has the value $c_1$. For if $\int_0^L u\,d\Phi(u)$ grew beyond every bound with $L$, the right-hand side of \eqref{eq:s48-2} would likewise grow beyond every bound as $x\to\infty$, which cannot occur. Integral \eqref{eq:s48-3} therefore has a finite value; and to obtain that value it suffices to let $x$ grow indefinitely in \eqref{eq:s48-2}. Continuing this reasoning gives, in general,
+\[
+ \int_0^\infty u^k\,d\Phi(u)=c_k.
+\]
+Thus the distribution of mass characterized by $\Phi(u)$ is a solution of the \emph{moment problem}.
+
+When $\sum_{n=1}^{\infty}a_n$ diverges, this yields only one solution of the problem; and indeed we shall soon prove that in this case there are no others.
+
+% Source page J.94
+We saw in \hyperref[sec:42]{no.~42} that
+\[
+ \int_0^\infty\left[\frac1{a_1}-\varphi_n(u)\right]u^k\,du
+ =\frac{c_{k+1}}{k+1}
+ \quad[k=0,1,2,\ldots,2n-2],
+\]
+and the result just obtained gives at once
+\[
+ \int_0^\infty\left[\frac1{a_1}-\Phi(u)\right]u^k\,du
+ =\frac{c_{k+1}}{k+1}
+ \quad(k=0,1,2,3,\ldots).
+\]
+It follows that $\varphi_n(u)-\Phi(u)$ must change sign at least $2n-1$ times. If $x_k$ is a point of discontinuity of $\varphi_n(u)$, it is easy to conclude that
+\[
+ \varphi_n^{-}(x_k)<\Phi^{-}(x_k)
+ \leq\Phi^{+}(x_k)<\varphi_n^{+}(x_k).
+\]
+This sharpens the result obtained at the end of \hyperref[sec:44]{no.~44}. It is also clear that, in an interval on which $\Phi(u)$ is constant, the equation
+\[
+ Q_{2n}(-z)=0
+\]
+can have at most one root.
+
+\origsection{49}
+Return to the proposition of \hyperref[sec:46]{no.~46}; for $n>N$,
+\[
+ \int_0^L|\varphi_n(u)-\Phi(u)|\,du
+ <\frac{2\varepsilon}{a_1}+L\varepsilon'.
+\]
+We have just seen that $\Phi(\infty)=\varphi_n(\infty)=c_0$. Hence $c_0-\varphi_n(u)$ and $c_0-\Phi(u)$ are never negative; and since
+\[
+ \varphi_n(u)-\Phi(u)
+ =c_0-\Phi(u)-[c_0-\varphi_n(u)],
+\]
+we have
+\[
+ |\varphi_n(u)-\Phi(u)|
+ \leq|c_0-\Phi(u)|+|c_0-\varphi_n(u)|.
+\]
+It is easy to see that
+\[
+ |c_0-\varphi_n(u)|<\frac{c_2}{u^2},
+ \qquad
+ |c_0-\Phi(u)|<\frac{c_2}{u^2}.
+\]
+
+% Source page J.95
+Indeed, consider the distribution of mass characterized by $\Phi(u)$ (or by $\varphi_n(u)$). Its second-order moment is $c_2$; the total mass contained in the segment from $u$ to $\infty$ is $c_0-\Phi(u)$, and the second-order moment of this mass is less than $c_2$. Concentrating this mass at the point $u$ decreases that moment still further; hence
+\[
+ u^2|c_0-\Phi(u)|<c_2.
+\]
+Thus
+\[
+ |\varphi_n(u)-\Phi(u)|<\frac{2c_2}{u^2},
+\]
+and
+\[
+ \int_L^\infty|\varphi_n(u)-\Phi(u)|\,du<\frac{2c_2}{L}.
+\]
+Consequently,
+\[
+ \int_0^\infty|\varphi_n(u)-\Phi(u)|\,du
+ <\frac{2\varepsilon}{a_1}+L\varepsilon'+\frac{2c_2}{L}.
+\]
+By a suitable choice of $L,\varepsilon,\varepsilon'$, the upper bound can be made smaller than any prescribed number; therefore
+\[
+ \lim_{n\to\infty}\int_0^\infty|\varphi_n(u)-\Phi(u)|\,du=0.
+\]
+
+\origsection{50}
+Here is an interpretation of this result. Let $D_n$ and $D$ denote the distributions of mass characterized by $\varphi_n(u)$ and $\Phi(u)$. One may pass from $D_n$ to $D$ by a certain transport of masses. Let us agree that transporting a mass $m$ through a distance $l$ requires an amount of work measured by $ml$. It is then easy to see that the minimum total work required to pass from $D_n$ to $D$ (or conversely) is measured by
+\[
+ \int_0^\infty|\varphi_n(u)-\Phi(u)|\,du.
+\]
+We shall also denote this minimum work by $\{D_n,D\}$, and it seems natural to say that $D_n$ differs infinitesimally from $D$ when $\{D_n,D\}$ is infinitesimal. Thus $D$ may be regarded as the limit of $D_n$.
+
+In general, given an infinite sequence of distributions
+\[
+ D_1,D_2,D_3,\ldots,
+\]
+and a distribution $D$ such that $\{D_n,D\}$
+
+% Source page J.96
+becomes less than $\varepsilon$ as soon as $n$ exceeds some bound, we shall say that $D$ is the limit of $D_n$.
+
+One objection to this definition is that the limit $D$ itself enters into it. Since
+\[
+ \{D_n,D_{n+n'}\}\leq\{D_n,D\}+\{D,D_{n+n'}\}<2\varepsilon,
+\]
+one might be led to adopt the following definition: the sequence $D_1,D_2,D_3,\ldots$ tends to a limit if one can choose $n$ so that
+\[
+ \{D_n,D_{n+n'}\}<\varepsilon,
+\]
+where $\varepsilon$ is an arbitrary positive number. But it is clear that this definition has no precise meaning until it has been proved that there actually exists a distribution $D$ for which $\{D_n,D\}$ becomes infinitesimal. We merely wished to point out this question, which we shall not examine here.
+
+Since
+\[
+ \frac{P_{2n}(z)}{Q_{2n}(z)}
+ =\sum_{i=1}^n\frac{M_i}{z+x_i},
+\]
+the convergent itself may be regarded as a kind of \emph{parametric moment}, depending on the parameter $z$, of the distribution $D_n$. The principal result of our researches thus amounts to saying that the parametric moment of $D_n$ tends to the parametric moment of $D$.
+
+Now consider the definite integral expressing the parametric moment of $D$, and recall the definition of a definite integral as the limit of a certain sum. For that sum one may take precisely the parametric moment of $D_n$, that is, the $2n$th convergent of the continued fraction. We may therefore say that the continued fraction is an \emph{identical transformation} of the definite integral. We first observed this remarkable reduction of two such different analytic expressions---a definite integral and a continued fraction---to one another in the special case where $Q_{2n}(z)$ is a Legendre polynomial $X_n$. (See \emph{Comptes rendus}, vol.~XCIX, p.~508; 1884.)~\cite{Stieltjes1884CF}
+
+It was the desire to generalize this result that led us to undertake the researches presented here.
+
+% Source page J.97
+\chapterheading{VIII}{Study of the Integral
+\texorpdfstring{\(\displaystyle\int_0^\infty \frac{d\psi(u)}{z+u}\)}
+{integral d psi(u)/(z+u) from 0 to infinity}}{chap:VIII}
+
+\origsection{51}
+Let $\psi(u)$ be any increasing function, with $\psi(0)=0$. We shall suppose only that the distribution of mass which it represents has finite moments of every order, and we shall put
+\[
+  c_k=\int_0^\infty u^k\,d\psi(u).
+\]
+Consider now the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u},
+\]
+which represents a function holomorphic throughout the plane except for the cut. If the function $\psi(u)$ is constant from $u=a$ onward, the integral reduces to
+\[
+  \int_0^a\frac{d\psi(u)}{z+u},
+\]
+and the cut extends only from $z=0$ to $z=-a$. All the moments are then finite as soon as this is the case for $c_0=\psi(a)$. The integral evidently admits the asymptotic expansion
+\[
+  \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots,
+\]
+which is divergent in general, and convergent for $|z|>a$ in the particular case just mentioned.
+
+But when $z=x$ is real and positive, one always has
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  =\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+   +(-1)^{n-1}\frac{c_{n-1}}{x^n}
+   +(-1)^n\frac{\xi c_n}{x^{n+1}},
+  \qquad 0<\xi<1.
+\]
+The expansion into a continued fraction of this integral, or, more precisely, of its asymptotic expansion, has been the subject of investigations by Chebyshev, Heine, and Darboux.
+
+% Source page J.98
+We shall take up this study here, attaching ourselves especially to the question of convergence, which has scarcely been considered in the earlier works just recalled, and in which the continued fraction was always taken in the form $(\mathrm{I}^{d})$ (see the Introduction).
+
+To reduce the series to a continued fraction, one need only apply the formulas of \hyperref[sec:11]{no.~11}; the determinants $A_n$ and $B_n$ will be positive, as determinants of the positive quadratic forms
+\[
+  \int_0^\infty
+  \bigl(X_0+uX_1+u^2X_2+\cdots+u^{n-1}X_{n-1}\bigr)^2\,d\psi(u),
+\]
+\[
+  \int_0^\infty
+  u\bigl(X_0+uX_1+u^2X_2+\cdots+u^{n-1}X_{n-1}\bigr)^2\,d\psi(u).
+\]
+Thus one obtains a continued fraction of the type which we have studied, the $a_i$ being positive.
+
+We may therefore apply the results obtained by the direct study of the continued fraction.
+
+Two cases must be distinguished:
+
+\emph{First case: the series $\sum_{n=1}^{\infty}a_n$ is convergent.}
+
+In this case,
+\begin{align*}
+  \lim_{n\to\infty}\frac{P_{2n}(z)}{Q_{2n}(z)}
+  &=F(z)=\frac{p(z)}{q(z)}
+   =\sum_{i=1}^{\infty}\frac{\mu_i}{z+\lambda_i}
+   =\int_0^\infty\frac{d\Phi(u)}{z+u},\\
+  \lim_{n\to\infty}\frac{P_{2n+1}(z)}{Q_{2n+1}(z)}
+  &=F_1(z)=\frac{p_1(z)}{q_1(z)}
+   =\sum_{i=0}^{\infty}\frac{\nu_i}{z+\theta_i}
+   =\int_0^\infty\frac{d\Phi_1(u)}{z+u}.
+\end{align*}
+
+\emph{Second case: the series $\sum_{n=1}^{\infty}a_n$ is divergent.}
+
+In this case,
+\[
+  \lim_{n\to\infty}\frac{P_n(z)}{Q_n(z)}
+  =F(z)=\int_0^\infty\frac{d\Phi(u)}{z+u}.
+\]
+But what relation do these limits bear to the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u},
+\]
+from which the continued fraction originated?
+
+% Source page J.99
+\origsection{52}
+To answer this question, first suppose that $z=x$ is real and positive. We then have the following theorem (see \emph{Comptes rendus}, vol.~CVIII, p.~1297; 1889)~\cite{Stieltjes1889CF}.
+
+\begin{theorem}\label{thm:s52-even-minimum}
+The minimum of the expression
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  \bigl[1+X_1(x+u)+X_2(x+u)^2+\cdots+X_n(x+u)^n\bigr]^2
+\]
+is equal to
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  -\frac{P_{2n}(x)}{Q_{2n}(x)},
+\]
+and consequently one necessarily has
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  >\frac{P_{2n}(x)}{Q_{2n}(x)}.
+\]
+\end{theorem}
+
+\begin{proof}
+The verification is easy. Put
+\[
+  \mathcal L
+  =1+X_1(x+u)+X_2(x+u)^2+\cdots+X_n(x+u)^n.
+\]
+The conditions for the minimum are
+\begin{equation}
+  \int_0^\infty (x+u)^k\mathcal L\,d\psi(u)=0,
+  \qquad k=0,1,2,\ldots,n-1.
+  \tag{1}\label{eq:s52-1}
+\end{equation}
+These relations are visibly equivalent to
+\[
+  \int_0^\infty u^k\mathcal L\,d\psi(u)=0,
+  \qquad k=0,1,2,\ldots,n-1,
+\]
+or, recalling the symbol $\mathcal S$ introduced in \hyperref[sec:11]{no.~11},
+\[
+  \mathcal S\{u^k\mathcal L\}=0,
+  \qquad k=0,1,2,\ldots,n-1.
+\]
+By \eqref{eq:s11-3}, the polynomial $\mathcal L$, in the case of the minimum, therefore differs only by a constant factor from $Q_{2n}(-u)$; and since $\mathcal L$ reduces to unity for $u=-x$, we have
+\[
+  \mathcal L=\frac{Q_{2n}(-u)}{Q_{2n}(x)}.
+\]
+
+% Source page J.100
+The minimum is
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}\mathcal L^2
+  =\int_0^\infty\frac{d\psi(u)}{x+u}\mathcal L
+   \bigl[1+X_1(x+u)+\cdots+X_n(x+u)^n\bigr],
+\]
+which, by virtue of \eqref{eq:s52-1}, reduces to
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}\mathcal L
+  =\int_0^\infty\frac{d\psi(u)}{x+u}
+   -\frac{1}{Q_{2n}(x)}
+    \int_0^\infty
+    \frac{Q_{2n}(x)-Q_{2n}(-u)}{x+u}\,d\psi(u).
+\]
+The last integral is evidently equal to
+\[
+  \mathcal S\left[
+    \frac{Q_{2n}(x)-Q_{2n}(-u)}{x+u}
+  \right]=P_{2n}(x),
+\]
+which completes the proof.
+\end{proof}
+
+The following second theorem is verified just as easily.
+
+\begin{theorem}\label{thm:s52-odd-minimum}
+The minimum of the expression
+\[
+  \int_0^\infty
+  \frac{u\,d\psi(u)}{x(x+u)}
+  \bigl[1+X_1(x+u)+X_2(x+u)^2+\cdots+X_n(x+u)^n\bigr]^2
+\]
+is equal to
+\[
+  \frac{P_{2n+1}(x)}{Q_{2n+1}(x)}
+  -\int_0^\infty\frac{d\psi(u)}{x+u},
+\]
+and consequently one necessarily has
+\[
+  \frac{P_{2n+1}(x)}{Q_{2n+1}(x)}
+  >\int_0^\infty\frac{d\psi(u)}{x+u}.
+\]
+\end{theorem}
+
+To these theorems I add the following observation. In the first theorem, $\mathcal L$ is the most general polynomial in $u$ which reduces to unity for $u=-x$. Now $(-u/x)^n$ is also such a polynomial; hence
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  -\frac{P_{2n}(x)}{Q_{2n}(x)}
+  <\int_0^\infty\frac{u^{2n}\,d\psi(u)}{x^{2n}(x+u)},
+\]
+that is,
+\[
+  \frac{P_{2n}(x)}{Q_{2n}(x)}
+  >\frac{c_0}{x}-\frac{c_1}{x^2}+\frac{c_2}{x^3}
+   -\cdots-\frac{c_{2n-1}}{x^{2n}},
+\]
+
+% Source page J.101
+and in the same way one finds
+\[
+  \frac{P_{2n+1}(x)}{Q_{2n+1}(x)}
+  <\frac{c_0}{x}-\frac{c_1}{x^2}+\cdots
+   +\frac{c_{2n}}{x^{2n+1}}.
+\]
+We had already obtained these inequalities in \hyperref[sec:15]{no.~15}, but let us now compare them with
+\[
+  \frac{P_{2n}(x)}{Q_{2n}(x)}
+  <\int_0^\infty\frac{d\psi(u)}{x+u}
+  <\frac{P_{2n+1}(x)}{Q_{2n+1}(x)}.
+\]
+
+To calculate numerically the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u},
+\]
+one may use the series, even when divergent,
+\[
+  \frac{c_0}{x}-\frac{c_1}{x^2}+\frac{c_2}{x^3}-\cdots;
+\]
+the sum of an even number of terms will always give a lower bound, and the sum of an odd number of terms an upper bound. But one may also reduce the series to a continued fraction: the successive convergents will likewise give, alternately, upper and lower bounds.
+
+We now see that there is always an advantage in reducing the series to a continued fraction: the bounds given by the convergents are closer than those given by the series.
+
+The limit of the approximation obtainable from the continued fraction is characterized by the inequalities
+\[
+  F(x)\leq\int_0^\infty\frac{d\psi(u)}{x+u}\leq F_1(x).
+\]
+
+\origsection{53}
+It is now easy to answer the question posed at the end of \hyperref[sec:51]{no.~51}.
+
+In the first case, when the series
+\[
+  \sum_{n=1}^\infty a_n
+\]
+
+% Source page J.102
+is convergent, we know that the moment problem is indeterminate (\hyperref[sec:24]{no.~24}). That is, there exists an infinity of integrals
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u},\qquad
+  \int_0^\infty\frac{d\psi_1(u)}{z+u},\qquad
+  \int_0^\infty\frac{d\psi_2(u)}{z+u},\qquad\ldots,
+\]
+which are distinct holomorphic functions of $z$, but which give the same asymptotic expansion
+\[
+  \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+\]
+and consequently also the same continued fraction.
+
+Calculation of the convergents of this continued fraction leads to the two limits
+\[
+  \int_0^\infty\frac{d\Phi(u)}{z+u}
+  =\frac{p(z)}{q(z)}
+  =\sum_{i=1}^\infty\frac{\mu_i}{z+\lambda_i},
+\]
+\[
+  \int_0^\infty\frac{d\Phi_1(u)}{z+u}
+  =\frac{p_1(z)}{q_1(z)}
+  =\sum_{i=0}^\infty\frac{\nu_i}{z+\theta_i};
+\]
+but evidently no precise connection can be established between these two perfectly determined functions and an integral such as
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u},
+\]
+since this function is capable of varying.
+
+The only assertion that can be made is that, for $z=x$, one will always have
+\[
+  \frac{p(x)}{q(x)}
+  \leq\int_0^\infty\frac{d\psi(u)}{x+u}
+  \leq\frac{p_1(x)}{q_1(x)}.
+\]
+The functions $\Phi(u)$ and $\Phi_1(u)$ themselves occur among the possible determinations of $\psi(u)$.
+
+For a particular value $x=x_0$, one cannot have
+\[
+  \frac{p(x_0)}{q(x_0)}
+  =\int_0^\infty\frac{d\psi(u)}{x_0+u}
+\]
+without having identically throughout the plane
+\[
+  \frac{p(z)}{q(z)}
+  =\int_0^\infty\frac{d\psi(u)}{z+u}
+  =\int_0^\infty\frac{d\Phi(u)}{z+u},
+\]
+
+% Source page J.103
+and the functions $\psi(u)$ and $\Phi(u)$ may be regarded as identical, since they characterize the same distribution of mass.
+
+Indeed, we have seen that
+\[
+  \int_0^\infty\frac{d\psi(u)}{x_0+u}
+  -\frac{P_{2n}(x_0)}{Q_{2n}(x_0)}
+  =\int_0^\infty\frac{d\psi(u)}{x_0+u}
+   \left[\frac{Q_{2n}(-u)}{Q_{2n}(x_0)}\right]^2.
+\]
+Now if the right-hand side tends to zero as $n\to\infty$, as we suppose here, this will hold all the more when $x_0$ is replaced by a larger number. Consequently,
+\[
+  \frac{p(z)}{q(z)}
+  =\int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+as soon as $z$ is real, positive, and greater than $x_0$. But then this equality holds throughout the plane.
+
+One sees in the same way that the equality
+\[
+  \frac{p_1(x_0)}{q_1(x_0)}
+  =\int_0^\infty\frac{d\psi(u)}{x_0+u}
+\]
+implies the identity
+\[
+  \frac{p_1(z)}{q_1(z)}
+  =\int_0^\infty\frac{d\psi(u)}{z+u}.
+\]
+So long as the distribution of mass characterized by $\psi(u)$ is not identical with one of those represented by $\Phi(u)$ and $\Phi_1(u)$, one has
+\[
+  \frac{p(x)}{q(x)}
+  <\int_0^\infty\frac{d\psi(u)}{x+u}
+  <\frac{p_1(x)}{q_1(x)},
+\]
+equality being excluded.
+
+\origsection{54}
+In the second case, the continued fraction is convergent and, for $z=x$, one has
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}
+  =\lim_{n\to\infty}\frac{P_n(x)}{Q_n(x)}
+  =\int_0^\infty\frac{d\Phi(u)}{x+u},
+\]
+because in this case $F(x)=F_1(x)$. It follows that
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+  =\int_0^\infty\frac{d\Phi(u)}{z+u};
+\]
+
+% Source page J.104
+for this equality cannot hold for $z=x$ without holding throughout the plane. The functions $\psi(u)$ and $\Phi(u)$ will be identical, or at least will represent the same distribution of mass.
+
+It is also seen that the moment problem is determinate in the present case, and admits no solution other than that characterized by the function $\Phi(u)$ or $\psi(u)$. Indeed, if the problem had another solution characterized by $\psi_1(u)$, the integral
+\[
+  \int_0^\infty\frac{d\psi_1(u)}{z+u}
+\]
+would always give the same continued fraction, and it would follow that
+\[
+  \int_0^\infty\frac{d\psi_1(u)}{z+u}
+  =\int_0^\infty\frac{d\psi(u)}{z+u}
+  =\int_0^\infty\frac{d\Phi(u)}{z+u}.
+\]
+
+It should be observed that this second case may occur even when the expansion
+\[
+  \frac{c_0}{z}-\frac{c_1}{z^2}+\frac{c_2}{z^3}-\cdots
+\]
+is always divergent. Indeed, the series is in this case when
+\[
+  \frac{c_{n+1}}{c_n}
+\]
+increases beyond every bound. We know that for this it is necessary and sufficient that the numbers
+\[
+  \frac{1}{a_na_{n+1}}
+  \qquad(n=1,2,3,\ldots)
+\]
+should not be bounded above. Now it is clear that this in no way prevents the series
+\[
+  a_1+a_2+a_3+\cdots
+\]
+from being divergent. One could, for example, take all the $a_i$ arbitrarily, except those of a certain infinite sequence
+\[
+  a_p,\ a_q,\ a_r,\ a_s,\ldots,
+\]
+and then determine these so that the numbers
+\[
+  \frac{1}{a_pa_{p+1}},\qquad
+  \frac{1}{a_qa_{q+1}},\qquad
+  \frac{1}{a_ra_{r+1}},\ldots
+\]
+increase beyond every bound.
+
+% Source page J.105
+\origsection{55}
+To give an example of the theory just set forth, consider the integral
+\[
+  \int_0^\infty
+  \frac{\bigl[1+\lambda\sin(\sqrt[4]{u})\bigr]
+  e^{-\sqrt[4]{u}}}{z+u}\,du,
+  \qquad -1\leq\lambda\leq1.
+\]
+Since
+\[
+  d\psi(u)=\bigl[1+\lambda\sin(\sqrt[4]{u})\bigr]
+  e^{-\sqrt[4]{u}}\,du,
+\]
+we are dealing here with a distribution of mass having a finite density. This distribution moreover varies with the parameter $\lambda$. But if the moments are calculated, one finds
+\[
+  c_k=\int_0^\infty u^k e^{-\sqrt[4]{u}}\,du
+  \qquad(k=0,1,2,3,\ldots);
+\]
+they do not depend on the parameter $\lambda$. Indeed, one verifies without difficulty that the integrals
+\[
+  \int_0^\infty u^k\sin(\sqrt[4]{u})e^{-\sqrt[4]{u}}\,du
+  =4\int_0^\infty u^{4k+3}\sin u\,e^{-u}\,du
+  \qquad(k=0,1,2,3,\ldots)
+\]
+all vanish. The moment problem therefore manifestly has infinitely many solutions; we are in the indeterminate case, and it is certain that the values of the $a_i$ are such that the series
+\[
+  \sum_{n=1}^\infty a_n
+\]
+is convergent. The continued fraction will give two limits
+\[
+  \frac{p(z)}{q(z)}
+  =\sum_{i=1}^\infty\frac{\mu_i}{z+\lambda_i},
+  \qquad
+  \frac{p_1(z)}{q_1(z)}
+  =\sum_{i=0}^\infty\frac{\nu_i}{z+\theta_i},
+\]
+and the distributions of mass $(\mu_i,\lambda_i)$ and $(\nu_i,\theta_i)$ will again constitute two particular solutions of the moment problem. But no precise connection can be established between the value of the integral and the limits furnished by the continued fraction. Nevertheless, when $z=x$ is real and positive, upper and lower bounds for the integral can always be obtained by calculating the convergents. But since the $c_k$ and the $a_k$ do not depend on $\lambda$, one
+
+% Source page J.106
+sees that no account is taken of the part
+\[
+  \lambda\int_0^\infty
+  \frac{\sin(\sqrt[4]{u})e^{-\sqrt[4]{u}}}{x+u}\,du
+  =\pi\lambda e^{-\sqrt[4]{4x}}.
+\]
+Since $\lambda$ may vary from $-1$ to $+1$, it necessarily follows that
+\[
+  \frac{p_1(x)}{q_1(x)}-\frac{p(x)}{q(x)}
+  >2\pi e^{-\sqrt[4]{4x}}.
+\]
+The continued fraction can give only a limited approximation, as is also the case with the series expansion. On calculating $a_1,a_2,\ldots$, one sees that these numbers follow a very complicated law, so that the convergence of the series
+\[
+  \sum_{n=1}^\infty a_n
+\]
+cannot be verified directly.
+
+\origsection{56}
+I shall give another example in which this verification can be made.
+
+Let $f(u)$ be an odd and periodic function of $u$, with
+\[
+  f\left(u+\frac12\right)=-f(u).
+\]
+Then the integral
+\[
+  \int_0^\infty u^k u^{-\log u}f(\log u)\,du,
+\]
+where $k$ is any positive, zero, or negative integer, always vanishes. To see this, it suffices to observe that
+\[
+  \int_{-\infty}^{+\infty}e^{-v^2}f(v)\,dv=0
+\]
+and to make the substitution
+\[
+  v=-\frac{k+1}{2}+\log u.
+\]
+Thus, in the case $f(u)=\sin(2\pi u)$,
+\[
+  \int_0^\infty
+  u^k u^{-\log u}\sin(2\pi\log u)\,du=0.
+\]
+
+% Source page J.107
+I now consider the integral
+\[
+  \frac{1}{\sqrt{\pi}}\int_0^\infty
+  \frac{1+\lambda\sin(2\pi\log u)}{z+u}\,
+  u^{-\log u}\,du,
+  \qquad -1\leq\lambda\leq+1.
+\]
+We see that matters proceed as in the preceding example: the value of
+\[
+  c_k=\frac{1}{\sqrt{\pi}}\int_0^\infty u^k u^{-\log u}\,du
+  =\frac{1}{\sqrt{\pi}}\int_{-\infty}^{+\infty}
+  e^{-u^2+(k+1)u}\,du
+  =e^{\frac14(k+1)^2}
+\]
+is independent of the parameter $\lambda$.
+
+The continued fraction must therefore be oscillatory; this is verified directly here, since
+\[
+  a_{2n}
+  =(1-e^{-1/2})(1-e^{-1})(1-e^{-3/2})\cdots
+   (1-e^{-(n-1)/2})e^{-n/2},
+\]
+\[
+  a_{2n+1}
+  =\frac{e^{-(2n+1)/4}}
+  {(1-e^{-1/2})(1-e^{-1})(1-e^{-3/2})\cdots(1-e^{-n/2})}.
+\]
+Because $e>1$, the convergence of the series
+\[
+  \sum a_{2n},\qquad \sum a_{2n+1}
+\]
+is manifest. For brevity, I omit the calculation giving the values of the $a_n$ (and which remains valid without the need to suppose that $e$ has the particular value $2.71828\ldots$).
+
+In the present case, the difference
+\[
+  \frac{p_1(x)}{q_1(x)}-\frac{p(x)}{q(x)}
+\]
+must necessarily exceed
+\[
+  \frac{2}{\sqrt{\pi}}\int_0^\infty
+  \frac{\sin(2\pi\log u)}{x+u}u^{-\log u}\,du
+  =2e^{-\pi^2}\sqrt{\pi}\,x^{-\log x}.
+\]
+
+\origsection{57}
+As an example of the determinate case, I shall first recall the continued fraction studied by Laguerre, of which we spoke in the Introduction. Since in this case
+\[
+  a_{2n-1}=1,\qquad a_{2n}=\frac1n,
+\]
+
+% Source page J.108
+the continued fraction is convergent and represents, throughout the plane except on the cut, the integral
+\[
+  \int_0^\infty\frac{e^{-u}\,du}{z+u}.
+\]
+Here the mass extends to infinity and, indeed, the numbers
+\[
+  b_n=\frac{1}{a_na_{n+1}}
+\]
+are not bounded above.
+
+When the mass does not extend to infinity, the continued fraction is naturally always convergent, for the series expansion is then itself convergent for sufficiently large values of $z$. As an example of this case, consider a periodic continued fraction such that
+\[
+  b_{2n}=p,\qquad b_{2n-1}=q.
+\]
+In this case the function $F(z)$ is known immediately:
+\[
+  F(z)=
+  \frac{\sqrt{z^2+2(p+q)z+(p-q)^2}-z+p-q}{2z},
+\]
+and
+\[
+  a_{2n}=\left(\frac pq\right)^n,
+  \qquad
+  a_{2n+1}=\frac1p\left(\frac qp\right)^n;
+\]
+one of the two series
+\[
+  \sum_{k=1}^\infty a_{2k},
+  \qquad
+  \sum_{k=0}^\infty a_{2k+1}
+\]
+will always be divergent. But the function $F(z)$ must be expressible in the form
+\[
+  \int_0^\infty\frac{d\Phi(u)}{z+u},
+\]
+and we saw in \hyperref[sec:39]{no.~39} how $F(z)$ may be put into this form when its explicit expression is known.
+
+This calculation leads here to the following results. Two cases must be distinguished according as $p\gtreqless q$.
+
+\emph{First case: $p>q$.}
+
+Put
+\[
+  \alpha=(\sqrt p-\sqrt q)^2,\qquad
+  \beta=(\sqrt p+\sqrt q)^2;
+\]
+
+% Source page J.109
+then
+\[
+  F(z)=\frac{\sqrt{\alpha\beta}}{z}
+  +\frac{1}{2\pi}\int_\alpha^\beta
+  \frac{\sqrt{(u-\alpha)(\beta-u)}}{u}\,
+  \frac{du}{z+u}.
+\]
+Thus there is at the origin a concentration of mass equal to
+\[
+  \sqrt{\alpha\beta}=p-q,
+\]
+followed by a continuous distribution of mass in the interval $(\alpha,\beta)$.
+
+\emph{Second case: $p<q$.}
+
+One finds simply
+\[
+  F(z)=\frac{1}{2\pi}\int_\alpha^\beta
+  \frac{\sqrt{(u-\alpha)(\beta-u)}}{u}\,
+  \frac{du}{z+u};
+\]
+the mass concentrated at the origin in the first case has disappeared. In the particular case $p=q$, one has $\alpha=0$, and either of the formulas found may be applied. There is no mass concentrated at the origin, but the density becomes infinite there.
+
+In the first case, the series
+\[
+  \sum_{k=0}^\infty a_{2k+1}
+\]
+is convergent, and its sum is $1/(p-q)$.
+
+\origsection{58}
+We shall show that, still in the determinate case, the mass concentrated at the origin is
+\[
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}};
+\]
+it is zero when the series diverges.
+
+In the indeterminate case,
+\[
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}
+\]
+is the maximum mass that can be concentrated at the origin; it is in fact found in the distribution
+\[
+  (\nu_i,\theta_i),
+\]
+since
+\[
+  \theta_0=0,\qquad
+  \nu_0=\frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}};
+\]
+
+% Source page J.110
+but in every other distribution the mass concentrated at the origin is smaller.
+
+Recall the bound
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}\leq F_1(x);
+\]
+we know from \hyperref[sec:15]{no.~15} that
+\[
+  \lim_{x\to0}xF_1(x)
+  =\frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+We shall show that
+\[
+  \lim_{x\to0}\int_0^\infty\frac{x\,d\psi(u)}{x+u}
+  =\lim_{\varepsilon\to0}\psi(\varepsilon)=\mu,
+\]
+where $\mu$ denotes the mass concentrated at the origin.
+
+Indeed,
+\begin{multline*}
+  \int_0^\infty\frac{x\,d\psi(u)}{x+u}
+  =\int_0^{x^2}\frac{x\,d\psi(u)}{x+u}
+   +\int_{x^2}^{\sqrt{x}}\frac{x\,d\psi(u)}{x+u}\\
+   {}+\int_{\sqrt{x}}^\infty\frac{x\,d\psi(u)}{x+u},
+\end{multline*}
+and it is evident that
+\[
+  \int_0^{x^2}\frac{x\,d\psi(u)}{x+u}
+  =\frac{\psi(x^2)}{1+\xi x},
+  \qquad 0<\xi<1,
+\]
+\[
+  \int_{x^2}^{\sqrt{x}}\frac{x\,d\psi(u)}{x+u}
+  <\psi(\sqrt{x})-\psi(x^2),
+\]
+\[
+  \int_{\sqrt{x}}^\infty\frac{x\,d\psi(u)}{x+u}
+  <\frac{\sqrt{x}}{1+\sqrt{x}}
+   \bigl[\psi(\infty)-\psi(\sqrt{x})\bigr].
+\]
+The first integral tends to $\mu$, and the other two to zero. In the determinate case,
+\[
+  \int_0^\infty\frac{d\psi(u)}{x+u}=F_1(x);
+\]
+hence
+\[
+  \mu=\frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+In the indeterminate case one can conclude only that
+\[
+  \mu\leq
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}},
+\]
+
+% Source page J.111
+and this holds for all equivalent distributions which give the same moments and the same continued fraction.
+
+We know, moreover, that for the distribution characterized by $\Phi_1(u)$,
+\[
+  \mu=\nu_0=
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+\begin{proposition}\label{prop:s58-origin-mass}
+For every other solution of the moment problem,
+\[
+  \mu<
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Suppose that for $\Phi_1(u)$ and $\Psi(u)$ one had
+\[
+  \mu=
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+If from each of these two distributions, which are supposed different, the mass $\mu$ concentrated at the origin is removed, there remain two systems of masses giving the same moments, that is, two equivalent systems. There then exists a third distribution of mass, equivalent to these two, and having at the origin a finite mass $\mu'$. This distribution is characterized by a function $\Phi'_1(u)$ analogous to $\Phi_1(u)$. If the mass $\mu$ is now restored, one would have a solution of the original moment problem with a mass $\mu+\mu'$ at the origin greater than
+\[
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+This is impossible.
+\end{proof}
+
+\origsection{59}
+When the series
+\[
+  \sum_{k=1}^\infty a_k
+\]
+is divergent, we have seen that the continued fraction is convergent and that the limit of its convergents is
+\[
+  F(z)=\int_0^\infty\frac{d\Phi(u)}{z+u}.
+\]
+
+% Source page J.112
+It is now clear that the function $\Phi(u)$ which occurs here is subject, in any interval $(a,b)$, to no restrictive condition other than that of being increasing. It follows that in general the cut is indeed a singular line across which it is impossible to continue the function $F(z)$ analytically. Indeed, for this analytic continuation to be possible across the interval $(-a,-b)$ of the cut, the function $\Phi(u)$ must be an analytic function of $u$ in the interval $(a,b)$. But this is a very restrictive condition which will not in general be satisfied.
+
+If, however, one wishes to give particular examples, one can scarcely begin by prescribing the $a_k$, or this is possible only in very restricted cases. One must resign oneself to taking some analytic function for $\Phi(u)$; this explains why in fact we have been unable to give any example of the general case in which the cut is a singular line. In all our examples the cut is only an artificial cut.
+
+\origsection{60}
+The function $\psi(u)$, or the distribution of mass which it represents, being given, how can one know whether the continued fraction for
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+is convergent or divergent? This problem presents some analogies with that of deciding the convergence or divergence of a given series. A general solution can scarcely be given; all that can be done is to give a few rules which permit the question to be answered in a certain number of particular cases.
+
+When the continued fraction is convergent, the moment problem admits only one solution; in that case we shall also say that the distribution of mass represented by $\psi(u)$ is determinate. One can scarcely vary this distribution, if the moments are to be preserved, without introducing negative masses. But negative masses will always be excluded. The distribution of mass is indeterminate, on the contrary, when the continued fraction is not convergent but oscillatory.
+
+Here first are a few almost evident remarks. If new masses are added to an indeterminate distribution of mass, one will always remain in the indeterminate case. If from a determinate distribution
+
+% Source page J.113
+part of the mass is removed, always without introducing negative masses, one will remain in the determinate case.
+
+As soon as two equivalent distributions which are not identical are found, one is certainly in the indeterminate case.
+
+Refer now to formulas \eqref{eq:s11-8} and \eqref{eq:s12-11} of
+\hyperref[sec:11]{no.~11} and \hyperref[sec:12]{no.~12}, respectively,
+by which the sums
+\[
+  a_1+a_3+\cdots+a_{2n+1},
+  \qquad
+  a_2+a_4+\cdots+a_{2n}
+\]
+are expressed in terms of the $c_k$. One readily finds that
+\[
+  \sum_{i=0}^n\sum_{k=0}^n C_{i,k}X_iX_k
+  =\mathfrak F(X_0,X_1,X_2,\ldots,X_n)
+\]
+is a positive definite quadratic form, and that the minimum of
+\[
+  \mathfrak F(1,X_1,X_2,\ldots,X_n)
+\]
+is expressed by
+\[
+  \frac{
+  \begin{vmatrix}
+    C_{0,0}&C_{0,1}&\cdots&C_{0,n}\\
+    C_{1,0}&C_{1,1}&\cdots&C_{1,n}\\
+    \vdots&\vdots&&\vdots\\
+    C_{n,0}&C_{n,1}&\cdots&C_{n,n}
+  \end{vmatrix}}
+  {\begin{vmatrix}
+    C_{1,1}&\cdots&C_{1,n}\\
+    \vdots&&\vdots\\
+    C_{n,1}&\cdots&C_{n,n}
+  \end{vmatrix}}.
+\]
+It follows that the minimum of
+\[
+  \int_0^\infty
+  (1+X_1u+\cdots+X_nu^n)^2\,d\psi(u)
+\]
+is equal to
+\[
+  \frac{1}{a_1+a_3+\cdots+a_{2n+1}},
+\]
+and that the maximum of
+\[
+  \int_0^\infty
+  \left[1-(1+X_1u+X_2u^2+\cdots+X_nu^n)^2\right]
+  \frac{d\psi(u)}{u}
+\]
+is equal to
+\[
+  a_2+a_4+\cdots+a_{2n}.
+\]
+One readily finds, moreover, that in the first case
+\[
+  1+X_1u+\cdots+X_nu^n
+  =\frac{Q_{2n+1}(-u)}{uQ'_{2n+1}(0)},
+\]
+
+% Source page J.114
+and in the second,
+\[
+  1+X_1u+\cdots+X_nu^n=Q_{2n}(-u).
+\]
+For brevity, we write the first result as
+\[
+  \{d\psi(u)\}_n
+  =\frac{1}{a_1+a_3+\cdots+a_{2n+1}}.
+\]
+Observe that the integral whose minimum is $\{d\psi(u)\}_n$ has, at $u=0$, an element equal to the mass $\mu$ concentrated at the origin; hence
+\[
+  \mu<\{d\psi(u)\}_n,
+\]
+so that in this way we recover the bound
+\[
+  \mu\leq
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+As $n$ increases, $\{d\psi(u)\}_n$ can only decrease; for $n\to\infty$ this expression tends to a positive or zero limit, which we shall denote by
+\[
+  \{d\psi(u)\}_\infty
+  =\frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}}.
+\]
+
+\origsection{61}
+Consider first the case in which there is no mass concentrated at the origin. We know that in the determinate case the mass concentrated at the origin equals
+\[
+  \frac{1}{\displaystyle\sum_{k=0}^\infty a_{2k+1}},
+\]
+and hence
+\[
+  \{d\psi(u)\}_\infty=0.
+\]
+But in the indeterminate case the series
+\[
+  \sum_{k=0}^\infty a_{2k+1}
+\]
+is convergent, and consequently
+\[
+  \{d\psi(u)\}_\infty>0.
+\]
+\begin{proposition}\label{prop:s61-criterion}
+If there is no concentration of mass at the origin, the continued
+% Source page J.115
+fraction will be convergent or oscillatory according as
+$\{d\psi(u)\}_\infty$ is zero or positive.
+\end{proposition}
+
+If the distribution $\omega$ represented by $\psi(u)$ has a mass $\mu$ at the origin, remove this mass and let $\omega'$ be the distribution thus modified. Suppose that, in one way or another, for example by means of the \hyperref[prop:s61-criterion]{preceding proposition}, it is known whether the distribution $\omega'$ is determinate or indeterminate. What may one conclude from this about $\omega$?
+
+If the distribution $\omega'$ is indeterminate, $\omega$ is also indeterminate. If, on the contrary, $\omega'$ is determinate, I say that $\omega$ also is determinate in general; exception must be made only for a singular case which we shall indicate.
+
+Indeed, here is how one may reason in the case where $\omega$ is indeterminate and $\omega'$ determinate. Let $\omega_1$ be the distribution equivalent to $\omega$ but having at the origin the greatest possible concentration of mass, this mass being $\mu_1$. It is given by a function $\Phi_1$:
+\[
+  \int_0^\infty\frac{d\Phi_1(u)}{z+u}
+  =\frac{p_1(z)}{q_1(z)}
+  =\sum_{i=0}^\infty\frac{\nu_i}{z+\theta_i},
+\]
+and $\nu_0=\mu_1$. So long as $\omega$ is not identical with $\omega_1$, one has
+\[
+  \mu_1>\mu.
+\]
+Remove from $\omega_1$ the mass $\mu$, which can be done without introducing a negative mass; one obtains a distribution $\omega'_1$ equivalent to $\omega'$. Thus, if $\omega'$ is determinate, $\omega'_1$ and $\omega'$ must be identical, and consequently so too, for example, must $\omega$ and $\omega_1$.
+
+One may therefore say that if $\omega'$ is determinate, then $\omega$ is also determinate in general; there is an exception only when $\omega$ is a distribution of the type $(\nu_i,\theta_i)$.
+
+\origsection{62}
+I shall now suppose, as happens in the particular examples which can be treated, that
+\[
+  d\psi(u)=f(u)\,du,
+\]
+where $f(u)$ is a positive and generally continuous function. Here
+\[
+  \{f(u)\,du\}_n
+  =\min_{X_1,\ldots,X_n}
+  \int_0^\infty f(u)
+  (1+X_1u+\cdots+X_nu^n)^2\,du.
+\]
+First, in certain particular cases, this minimum can be calculated, or
+
+% Source page J.116
+the continued fraction can be obtained. Thus, for example, in the case
+\[
+  \frac{b^a}{\Gamma(a)}
+  \int_0^\infty\frac{u^{a-1}e^{-bu}}{z+u}\,du,
+\]
+one finds
+\[
+  a_1=1,\qquad
+  a_{2n+1}
+  =\frac{a(a+1)\cdots(a+n-1)}{1\cdot2\cdots n},
+\]
+\[
+  a_2=\frac ba,\qquad
+  a_{2n}
+  =\frac{1\cdot2\cdot3\cdots(n-1)b}
+  {a(a+1)\cdots(a+n-1)},
+\]
+\[
+  a_1+a_3+\cdots+a_{2n+1}
+  =\frac{(a+1)(a+2)\cdots(a+n)}{1\cdot2\cdots n}.
+\]
+Since $a>0$, the series $\sum_{k=0}^\infty a_{2k+1}$ is divergent, and hence
+\[
+  \{u^{a-1}e^{-bu}\,du\}_\infty=0.
+\]
+
+It is clear that, $c$ being a positive constant,
+\[
+  \{f(cu)\,du\}_n=\frac1c\{f(u)\,du\}_n,
+\]
+\[
+  \{f(cu)\,du\}_\infty=\frac1c\{f(u)\,du\}_\infty.
+\]
+On the other hand, if
+\[
+  \frac{f_1(u)}{f(u)}
+\]
+remains less than a fixed number, then
+\[
+  \{f_1(u)\,du\}_\infty=0
+\]
+as soon as it is known that
+\[
+  \{f(u)\,du\}_\infty=0.
+\]
+If, on the contrary, the ratio
+\[
+  \frac{f_1(u)}{f(u)}
+\]
+is constantly greater than a positive number, then certainly
+\[
+  \{f_1(u)\,du\}_\infty>0
+\]
+as soon as it is known that
+\[
+  \{f(u)\,du\}_\infty>0.
+\]
+
+\origsection{63}
+One may go further in this direction, and we shall prove the following proposition.
+
+% Source page J.117
+\begin{proposition}\label{prop:s63-comparison}
+Suppose that
+\[
+  \{f(u)\,du\}_\infty=0,
+\]
+and that the ratio $f_1(u):f(u)$ has a finite maximum $M_\alpha$ in the
+interval $(\alpha,\infty)$ (the number $M_\alpha$ may, moreover, increase
+indefinitely as $\alpha$ tends to zero). Then
+\[
+  \{f_1(u)\,du\}_\infty=0.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $\varepsilon$ be an arbitrarily small positive number. First choose a
+positive number $\alpha$ by the condition
+\[
+  \int_0^\alpha f_1(u)\,du<\frac12\varepsilon.
+\]
+Next let $\bar f(u)$ be a function which is zero in the interval
+$(0,\alpha)$ and equal to $f(u)$ for $u>\alpha$. We shall have
+\[
+  \{\bar f(u)\,du\}_n
+  =\int_0^\infty \bar f(u)\,\bar{\mathcal L}(u)^2\,du
+  =\int_\alpha^\infty f(u)\,\bar{\mathcal L}(u)^2\,du,
+\]
+where $\bar{\mathcal L}(u)$ is a certain polynomial of degree $n$ in $u$
+which reduces to unity when $u=0$.
+
+On the other hand, if
+\[
+  \{f(u)\,du\}_n
+  =\int_0^\infty f(u)\,\mathcal L(u)^2\,du,
+\]
+then
+\[
+  \{\bar f(u)\,du\}_n
+  <\int_0^\infty \bar f(u)\,\mathcal L(u)^2\,du
+  =\int_\alpha^\infty f(u)\,\mathcal L(u)^2\,du
+  <\{f(u)\,du\}_n.
+\]
+Therefore, since we suppose that
+\[
+  \{f(u)\,du\}_\infty=0,
+\]
+we shall also have
+\[
+  \{\bar f(u)\,du\}_\infty=0.
+\]
+Next I observe that
+\[
+  \{f_1(u)\,du\}_n
+  <\int_0^\infty f_1(u)\,\bar{\mathcal L}(u)^2\,du
+  =\int_0^\alpha f_1(u)\,\bar{\mathcal L}(u)^2\,du
+   +\int_\alpha^\infty f_1(u)\,\bar{\mathcal L}(u)^2\,du.
+\]
+
+% Source page J.118
+Now the polynomial $\bar{\mathcal L}(u)$ is determined, apart from a
+factor, by the conditions
+\[
+  \int_0^\infty \bar f(u)\,\bar{\mathcal L}(u)u^k\,du=0
+  \qquad(k=1,2,\ldots,n),
+\]
+or
+\[
+  \int_\alpha^\infty f(u)\,\bar{\mathcal L}(u)u^k\,du=0.
+\]
+It follows that all the roots of
+\[
+  \bar{\mathcal L}(u)=0
+\]
+are positive and greater than $\alpha$. And since
+$\bar{\mathcal L}(0)=1$, we see that in the interval $(0,\alpha)$
+\[
+  0<\bar{\mathcal L}(u)\leq1,
+\]
+and consequently
+\[
+  \int_0^\alpha f_1(u)\,\bar{\mathcal L}(u)^2\,du
+  <\int_0^\alpha f_1(u)\,du<\frac12\varepsilon.
+\]
+Next,
+\[
+  \int_\alpha^\infty f_1(u)\,\bar{\mathcal L}(u)^2\,du
+  <M_\alpha\int_\alpha^\infty
+       f(u)\,\bar{\mathcal L}(u)^2\,du
+  =M_\alpha\{\bar f(u)\,du\}_n;
+\]
+hence
+\[
+  \{f_1(u)\,du\}_n
+  <\frac12\varepsilon+M_\alpha\{\bar f(u)\,du\}_n.
+\]
+But there exists a number $\nu$ such that, for $n>\nu$,
+\[
+  M_\alpha\{\bar f(u)\,du\}_n<\frac12\varepsilon,
+\]
+and it is clear from this that
+\[
+  \{f_1(u)\,du\}_\infty=0.
+\]
+\end{proof}
+
+In the case
+\[
+  f(u)=\frac{4}{e^{2\pi\sqrt u}-e^{-2\pi\sqrt u}},
+\]
+the continued fraction (see below, \extsectionref{86}) is obtained with
+the simple values
+\[
+  a_k=\frac4k;
+\]
+consequently
+\[
+  \left\{\frac{4\,du}
+  {e^{2\pi\sqrt u}-e^{-2\pi\sqrt u}}\right\}_\infty=0,
+\]
+
+% Source page J.119
+and also, $c$ being a positive constant,
+\[
+  \left\{\frac{du}
+  {e^{c\sqrt u}-e^{-c\sqrt u}}\right\}_\infty=0.
+\]
+
+This being so, put
+\[
+  f_1(u)=u^{a-1}e^{-bu^\lambda}G(u),
+  \qquad
+  f(u)=\frac{1}{e^{c\sqrt u}-e^{-c\sqrt u}},
+\]
+where $a>0$, $b>0$, $\lambda\geq\frac12$, while we suppose $c<b$.
+Further, $G(u)$ is to be a positive function of $u$ which, in every
+interval $(\alpha,\infty)$, remains less than a fixed number. We have
+\[
+  f_1(u):f(u)
+  =u^{a-1}G(u)e^{-bu^\lambda+c\sqrt u}
+   \bigl(1-e^{-2c\sqrt u}\bigr),
+\]
+and we see that this ratio tends to zero when $u=\infty$. We may apply
+the proposition just proved and conclude that
+\[
+  \{u^{a-1}e^{-bu^\lambda}G(u)\,du\}_\infty=0.
+\]
+Thus the integral
+\[
+  \int_0^\infty
+  \frac{u^{a-1}e^{-bu^\lambda}G(u)}{z+u}\,du
+\]
+gives a convergent continued fraction whenever $\lambda\geq\frac12$.
+Suppose $G(u)=1$; the continued fraction will be oscillatory for
+$\lambda<\frac12$. For brevity, I omit the proof.
+
+\origsection{64}
+Let us apply this result to Stirling's series. It is known that, on
+putting
+\[
+  \log\Gamma(z)
+  =\left(z-\frac12\right)\log z-z+\frac12\log(2\pi)+J(z),
+\]
+we have
+\[
+  J(z)=\frac1\pi\int_0^\infty
+  \frac{z\,du}{z^2+u^2}
+  \log\left(\frac1{1-e^{-2\pi u}}\right),
+\]
+or
+\[
+  J(z)=\frac1{2\pi}\int_0^\infty
+  \frac{zu^{-1/2}\,du}{z^2+u}
+  \log\left(\frac1{1-e^{-2\pi\sqrt u}}\right).
+\]
+
+% Source page J.120
+This is an integral such as the one we have studied; only $z$ has been
+replaced by $z^2$, and the result multiplied by $z$. The series
+expansion therefore takes the form
+\begin{equation}
+  \frac{B_1}{1\cdot2\,z}
+  -\frac{B_2}{3\cdot4\,z^3}
+  +\frac{B_3}{5\cdot6\,z^5}-\cdots ,
+  \tag{A}\label{eq:s64-A}
+\end{equation}
+and the continued fraction becomes
+\begin{equation}
+  \cfrac{1}{a_1z+\cfrac{1}{a_2z+\cfrac{1}{a_3z+\ddots}}}.
+  \tag{B}\label{eq:s64-B}
+\end{equation}
+Here
+\[
+  f(u)=\frac1{2\pi}u^{-1/2}
+  \log\left(\frac1{1-e^{-2\pi\sqrt u}}\right)
+  =\frac1{2\pi}u^{-1/2}e^{-2\pi\sqrt u}G(u),
+\]
+\[
+  G(u)=e^{2\pi\sqrt u}
+  \log\left(\frac1{1-e^{-2\pi\sqrt u}}\right).
+\]
+Here $G(u)$ tends to unity when $u=\infty$, and thus satisfies the
+condition imposed upon this function in our statement. It therefore
+suffices to transform Stirling's series \eqref{eq:s64-A} into the
+continued fraction \eqref{eq:s64-B} to obtain a convergent expression
+which represents $J(z)$ whenever the real part of $z$ is positive.
+
+The continued fraction changes sign with $z$, as does Binet's integral,
+of which it is an identical transformation; but when the sign of $z$ is
+thus changed, these expressions give $-J(z)$, not $J(-z)$. The imaginary
+axis is a cut, for the integral as well as for the continued fraction.
+
+The calculation of the $a_k$ is very laborious; one finds
+\[
+  a_1=12,\qquad
+  a_2=\frac52,\qquad
+  a_3=\frac{84}{53},\qquad
+  a_4=\frac{2809}{2340},\qquad
+  a_5=\frac{1003860}{1218947},\qquad\ldots;
+\]
+the law of these numbers appears extremely complicated.
+
+\origsection{65}
+We conclude here this study of the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+
+% Source page J.121
+by stating the following propositions, whose proofs follow easily from
+the formulas which we shall give below
+(\extsectionref{76}, \extsectionref{77}, \extsectionref{78}).
+
+\begin{proposition}[I]\label{prop:s65-I}
+If the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+gives a convergent continued fraction, then so too will there be a
+convergent continued fraction for
+\[
+  \frac{\mu}{z}+\int_0^\infty\frac{d\psi(u)}{z+u},
+\]
+where $\mu$ is a positive constant, except in one singular case. This
+singular case occurs when the distribution of mass characterized by
+$\psi(u)$ is identical with the one given by a function $\Phi_1(u)$,
+\[
+  (\nu_i,\theta_i),
+\]
+from which the mass $\nu_0$ concentrated at the origin has been
+removed.
+\end{proposition}
+
+\begin{proposition}[II]\label{prop:s65-II}
+If the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+gives a convergent continued fraction, the integral
+\[
+  \int_0^\infty\frac{u\,d\psi(u)}{z+u}
+\]
+will also give a convergent continued fraction, except in one singular
+case.
+
+The exceptional singular case is the same as for
+\hyperref[prop:s65-I]{Proposition I}.
+\end{proposition}
+
+\begin{proposition}[III]\label{prop:s65-III}
+If the integral
+\[
+  \int_0^\infty\frac{d\psi(u)}{z+u}
+\]
+gives a convergent continued fraction, the integral
+\[
+  \int_\lambda^\infty\frac{d\psi(u-\lambda)}{z+u},
+\]
+where $\lambda$ is a positive constant, will also give a convergent
+continued fraction, except in one singular case.
+
+This singular case occurs when the distribution of mass characterized
+by
+
+% Source page J.122
+$\psi(u)$ is
+\[
+  (\mu_i,\lambda_i-\lambda_1)
+  \qquad(i=1,2,3,\ldots);
+\]
+that is, when this distribution is obtained by bringing nearer to the
+origin, by the amount $\lambda_1$, the masses of a distribution
+$(\mu_i,\lambda_i)$ arising from a function $\Phi(u)$,
+\[
+  \frac{p(z)}{q(z)}
+  =\sum_{i=1}^\infty\frac{\mu_i}{z+\lambda_i}.
+\]
+\end{proposition}
+
+\begin{flushright}
+  \textit{(To be continued.)}
+\end{flushright}
+
+\subsection*{Errata}
+
+\noindent Page J.85, line 11 from the top: after \emph{of $\Phi(u)$}, add
+\emph{and of all the functions $\varphi_n(u)$}.
+
+\noindent Page J.86, line 11 from the top: after \emph{of $\Phi_1(u)$}, add
+\emph{and of all the functions $\varphi_{n,1}(u)$}.
+
+
+\clearpage
+\renewcommand{\refname}{Bibliographical References}
+\begin{thebibliography}{9}
+
+\bibitem{Laguerre1879}
+E.~Laguerre,
+\href{https://doi.org/10.24033/bsmf.157}
+{\emph{Sur l'intégrale \(\int_x^\infty e^{-x}\,dx/x\)}},
+\emph{Bulletin de la Société Mathématique de France} \textbf{7}
+(1879), 72--81.
+
+\bibitem{Stern1848}
+M.~A.~Stern,
+\href{https://eudml.org/doc/147428}
+{\emph{Über die Kennzeichen der Convergenz eines Kettenbruchs}},
+\emph{Journal für die reine und angewandte Mathematik} \textbf{37}
+(1848), 255--272.
+
+\bibitem{Stieltjes1884CF}
+T.-J.~Stieltjes,
+\href{https://gallica.bnf.fr/ark:/12148/bpt6k3055h/f508.item}
+{\emph{Sur un développement en fraction continue}},
+\emph{Comptes rendus hebdomadaires des séances de l'Académie des sciences}
+\textbf{99} (1884), 508--509.
+
+\bibitem{Stieltjes1889CF}
+T.-J.~Stieltjes,
+\href{https://gallica.bnf.fr/ark:/12148/bpt6k3064g/f1297.item}
+{\emph{Sur un développement en fraction continue}},
+\emph{Comptes rendus hebdomadaires des séances de l'Académie des sciences}
+\textbf{108} (1889), 1297--1298.
+
+\bibitem{Stieltjes1889}
+T.-J.~Stieltjes,
+\href{https://doi.org/10.5802/afst.34}
+{\emph{Sur la réduction en fraction continue d'une série procédant suivant les puissances descendantes d'une variable}},
+\emph{Annales de la Faculté des sciences de Toulouse}, 1st series,
+\textbf{3} (1889), H1--H17.
+
+\bibitem{DuBoisReymond1882}
+P.~du Bois-Reymond,
+\href{https://www.deutsche-digitale-bibliothek.de/item/JNG6MB5BMWTAHQMWQDAE2ERGOXUNPXEM}
+{\emph{Die allgemeine Functionentheorie. Erster Theil: Metaphysik und
+Theorie der mathematischen Grundbegriffe: Grösse, Grenze, Argument und Function}},
+Laupp, Tübingen, 1882; French trans. G.~Milhaud and A.~Girot,
+\href{https://archive.org/details/thoriegnra01dubouoft}
+{\emph{Théorie générale des fonctions}},
+Imprimerie niçoise, Nice, 1887.
+
+\bibitem{Hadamard1892}
+J.~Hadamard,
+\href{https://www.numdam.org/item/JMPA_1892_4_8__101_0/}
+{\emph{Essai sur l'étude des fonctions données par leur développement de Taylor}},
+\emph{Journal de Mathématiques Pures et Appliquées}, 4th series,
+\textbf{8} (1892), 101--186.
+
+\bibitem{Stieltjes1894}
+T.-J.~Stieltjes,
+\href{https://doi.org/10.5802/afst.108}
+{\emph{Recherches sur les fractions continues}},
+\emph{Annales de la Faculté des sciences de Toulouse}, 1st series,
+\textbf{8}, no.~4 (1894), J1--J122.
+
+\bibitem{Stieltjes1895}
+T.-J.~Stieltjes,
+\href{https://doi.org/10.5802/afst.109}
+{\emph{Recherches sur les fractions continues} (continuation)},
+\emph{Annales de la Faculté des sciences de Toulouse}, 1st series,
+\textbf{9}, no.~1 (1895), A5--A47.
+
+\end{thebibliography}
+
+\end{document}
