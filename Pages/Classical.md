@@ -18,11 +18,13 @@ blockquote { font-size: 0.85em; }
 
 <!-- 调整quote大小 -->
 
+<style>
 .literature-controls {
   display: flex;
   gap: 0.6rem;
   margin: 0rem 0 2rem 0;
 }
+  </style>
 
 <!-- Expand all与Collapse all按键与下面的距离设为2rem -->
 
