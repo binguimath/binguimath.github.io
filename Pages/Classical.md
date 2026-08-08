@@ -121,8 +121,10 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [tex](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
 
+- 1937 Murray, von Neumann. On rings of operators II.
+[tex](https://binguimath.github.io/Pages/Classical/1937%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators%20II_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1937%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators%20II_GPT.pdf)
 
-> 懂得都懂
 
 
 - 1938 von Neumann. On rings of operators, reduction theory.
