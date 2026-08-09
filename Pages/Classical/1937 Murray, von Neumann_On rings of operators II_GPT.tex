@@ -18,6 +18,7 @@
 \providecommand{\DocumentEmergencyStretch}{5em} % flexible line-breaking reserve
 \providecommand{\DocumentChapterBeforeSkip}{0.6\baselineskip}
 \providecommand{\DocumentChapterAfterSkip}{\smallskipamount}
+\providecommand{\DocumentSectionBeforeSkip}{0.4\baselineskip}
 \providecommand{\DocumentTitleToBySkip}{0.6ex}
 \providecommand{\DocumentByToAuthorSkip}{0.2ex}
 \providecommand{\DocumentTitleBlockAfterSkip}{0.7\baselineskip}
@@ -60,7 +61,9 @@
   pdftitle={On Rings of Operators. II},
   pdfauthor={F. J. Murray and J. von Neumann},
   pdfsubject={Faithful LaTeX transcription of the 1937 paper},
-  pdfdisplaydoctitle=true
+  pdfdisplaydoctitle=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=2
 }
 \urlstyle{same}
 
@@ -133,8 +136,10 @@
 }
 \makeatother
 \newcommand{\SectionTarget}[1]{\phantomsection\hypertarget{sec:#1}{}}
-\newcommand{\SectionStart}[1]{%
-  \par\noindent\SectionTarget{#1}\hspace*{\parindent}\ignorespaces
+\newcommand{\SectionStart}[2]{%
+  \par\addvspace{\DocumentSectionBeforeSkip}\noindent
+  \SectionTarget{#1}\pdfbookmark[2]{#2}{outline:sec:#1}%
+  \hspace*{\parindent}\ignorespaces
 }
 \newcommand{\SectionRef}[1]{\hyperlink{sec:#1}{\S#1}}
 \newcommand{\ChapterTarget}[1]{\phantomsection\hypertarget{chap:#1}{}}
@@ -148,13 +153,15 @@
   \noindent\StatementTarget{#1}\hspace*{\parindent}\textbf{#2.}\ \itshape\ignorespaces
 }{\par}
 \newcommand{\proofhead}{\par\smallskip\noindent\textit{Proof.}\ \ignorespaces}
-\newcommand{\chapterhead}[2]{%
+\newcommand{\chapterhead}[3]{%
   \par\addvspace{\DocumentChapterBeforeSkip}\noindent\ChapterTarget{#1}%
+  \pdfbookmark[1]{#3}{outline:chap:#1}%
   \makebox[\linewidth][c]{\bfseries\MakeUppercase{Chapter #1. #2}}%
   \par\addvspace{\DocumentChapterAfterSkip}
 }
 \newcommand{\appendixhead}{%
   \par\addvspace{\DocumentChapterBeforeSkip}\noindent\ChapterTarget{Appendix}%
+  \pdfbookmark[1]{Appendix. The matrix-aspect of the M of class (II₁)}{outline:chap:Appendix}%
   \makebox[\linewidth][c]{\bfseries APPENDIX}%
   \par\addvspace{\DocumentChapterAfterSkip}
 }
@@ -163,6 +170,7 @@
 \setcounter{page}{1}
 \thispagestyle{empty}
 \hypertarget{doc-start}{}
+\pdfbookmark[0]{On Rings of Operators. II}{outline:document}
 
 \begingroup
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
@@ -176,7 +184,9 @@
 \endgroup
 \vspace{\DocumentTitleBlockAfterSkip}
 
-\par\noindent\hypertarget{sec:introduction}{}\hspace*{\parindent}%
+\par\noindent\hypertarget{sec:introduction}{}%
+\pdfbookmark[1]{Introduction}{outline:introduction}%
+\hspace*{\parindent}%
 \textbf{Introduction.} This paper is a continuation of one by the same authors:
 \href{https://doi.org/10.2307/1968693}{\textit{On rings of operators}},
 Annals of Mathematics, (2), vol.~37 (1936), pp.~116--229.
@@ -237,7 +247,7 @@ as well as a way of applying the present theory to quantum-mechanics. These
 subjects too will be discussed in papers which will follow soon.
 
 \begin{center}
-  \textsc{Contents}
+  \hypertarget{contents}{}\pdfbookmark[1]{Contents}{outline:contents}\textsc{Contents}
 \end{center}
 \noindent\hyperlink{sec:introduction}{Introduction.}\\
 \hyperlink{chap:I}{Chapter I. Approximate form of $\TrM(A)$ (for $\alpha\geq1$).}\\
@@ -274,9 +284,10 @@ $E\mathrel{\underset p\geq}\lambda$, $E\mathrel{\underset p\leq}\lambda$.}\\
 \hspace*{2em}\hyperlink{sec:4.6}{4.6. Description of further results.}\\
 \hyperlink{chap:Appendix}{Appendix. The matrix-aspect of the $M$ of class $(\mathrm{II}_1)$.}
 
-\chapterhead{I}{Approximate form of $\TrM(A)$ (for $\alpha\geq1$)}
+\chapterhead{I}{Approximate form of $\TrM(A)$ (for $\alpha\geq1$)}%
+  {Chapter I. Approximate form of Tr M(A) (for α ≥ 1)}
 
-\SectionStart{1.1}
+\SectionStart{1.1}{1.1. The normalization}
 1.1. We assume that we have given a factor $M$ in case $\mathrm{II}_1$. Now we normalize
 $\DM$ and $\DMp$ so that $C=1$ (cf. \RO{}, pp.~179--182). This means (\RO{},
 loc. cit.) that for every $f\in\cH$, $\DM(\mathfrak M_f^{M'})=\DMp(\mathfrak M_f^M)$ and that the range of $\DM$
@@ -296,7 +307,7 @@ Thus we have an $f$ such that $\DM(E_f^{M'})=1=\DM(1)$ or $\DM(1-E_f^{M'})=0$
 which implies $1-E_f^{M'}=0$; that is, $E_f^{M'}=1$. We now assume that such an $f$
 has been chosen and is held fixed for the following discussion.
 
-\SectionStart{1.2}
+\SectionStart{1.2}{1.2. The notions E ≥ λ, E ≤ λ, E ≥ₚ λ, E ≤ₚ λ}
 1.2. With respect to this fixed $f$, we now define certain relations concerning
 a projection $E\in M$.
 
@@ -357,7 +368,7 @@ $F\mathrel{\underset p\geq}\lambda$ ($F\mathrel{\underset p\leq}\lambda$).
 If $F_1$ is such that $F\geq F_1$, $F_1\ne0$ then $E\geq F\geq F_1$ and hence by
 \StatementRef{definition:1.2.1}{Definition 1.2.1}, $F_1\geq\lambda$. This statement implies that $F\mathrel{\underset p\geq}\lambda$.
 
-\SectionStart{1.3}
+\SectionStart{1.3}{1.3. Selection of an approximately homogeneous piece}
 1.3. Now $(1f,f)=\lVert f\rVert^2=\lVert f\rVert^2D(1)$. Now let
 $\theta_0=\lVert f\rVert^2$ which is of course not zero for $\mathfrak M_f^M=\cH$ and this precludes
 $f=0$. Thus 1 (the projection, not the number) is $\geq\theta_0$. By
@@ -387,7 +398,7 @@ for every $F\in M$ with the property $E\geq F$,
 \]
 \end{statement}
 
-\SectionStart{1.4}
+\SectionStart{1.4}{1.4. Properties of such a piece}
 1.4. We can now show
 
 \begin{statement}{lemma:1.4.1}{Lemma 1.4.1}
@@ -492,7 +503,7 @@ Combining \EquationRef{alpha}{$(\alpha)$}, \EquationRef{beta}{$(\beta)$}, and
 Since $(A^*Af,f)=(Af,Af)=\lVert Af\rVert^2$,
 $(AA^*f,f)=(A^*f,A^*f)=\lVert A^*f\rVert^2$; this is the desired inequality.
 
-\SectionStart{1.5}
+\SectionStart{1.5}{1.5. Extension of the approximately homogeneous piece}
 1.5. Now if $E$ is as in \StatementRef{lemma:1.3.1}{Lemma 1.3.1}, let $n$ be the smallest integer such
 that $1/n\leq\DM(E)$. Then if $E^0\leq E$ is such that $\DM(E^0)=1/n$,
 \StatementRef{lemma:1.3.1}{Lemma 1.3.1} will hold with $E^0$ in place of $E$. Now $f$ was chosen in such a manner that
@@ -581,7 +592,7 @@ every $A\in M$, $\lVert A^*g\rVert^2\leq K\lVert Ag\rVert^2$. Obviously we may a
 $\lVert g\rVert=1$.
 \end{statement}
 
-\SectionStart{1.6}
+\SectionStart{1.6}{1.6. Properties of the extension}
 1.6. We now have
 
 \begin{statement}{lemma:1.6.1}{Lemma 1.6.1}
@@ -645,7 +656,7 @@ Let $K$ and $g$ be as in \StatementRef{lemma:1.5.1}{Lemma 1.5.1}, then for every
 \]
 \end{statement}
 
-\SectionStart{1.7}
+\SectionStart{1.7}{1.7. Formulation of the result. Theorem I}
 1.7. From \StatementRef{lemma:1.6.2}{Lemma 1.6.2} we can conclude, using
 \StatementRef{lemma:1.4.2}{Lemma 1.4.2}, that if $A\in M$ is positive definite, then
 \[
@@ -666,9 +677,9 @@ every positive definite $A\in M$,
 \]
 \end{statement}
 
-\chapterhead{II}{Immediate consequences}
+\chapterhead{II}{Immediate consequences}{Chapter II. Immediate consequences}
 
-\SectionStart{2.1}
+\SectionStart{2.1}{2.1. Additivity and restricted weak continuity of Tr M(A). Properties I, II}
 2.1. We are now able to show that $\TrM$ has the following two properties
 when $M$ is in a finite case (cf. \RO{}, Theorem VIII); that is, when $M$ is in a
 case $\mathrm I_n$ ($n=1,2,\cdots$) or $\mathrm{II}_1$.
@@ -813,7 +824,7 @@ $C=(D_{M^{(2)}}(\cH)/D_{M^{(2)\prime}}(\mathfrak M))C^{(2)}
 =mC^{(2)}$
 or $C^{(2)}=C/m\leq1$.
 
-\SectionStart{2.2}
+\SectionStart{2.2}{2.2. Definition of Tr M(A) for all (not necessarily Hermitian) A in M. Uniqueness. Properties III, IV}
 2.2. Previously $\TrM(A)$ has only been considered for Hermitian $A\in M$. We
 now define it for all $A\in M$.
 
@@ -873,9 +884,10 @@ $\Tr'(C)=\Tr'(A+iB)=\Tr'(A)+\Tr'(iB)=\Tr'(A)+i\Tr'(B)
 =\TrM(A)+i\TrM(B)=\TrM(A+iB)=\TrM(C)$
 or $\Tr'(C)=\TrM(C)$.
 
-\chapterhead{III}{The exact form of $\TrM(A)$ (for $\alpha\geq1$)}
+\chapterhead{III}{The exact form of $\TrM(A)$ (for $\alpha\geq1$)}%
+  {Chapter III. The exact form of Tr M(A) (for α ≥ 1)}
 
-\SectionStart{3.1}
+\SectionStart{3.1}{3.1. The spectral form ∫₀¹ φ(λ) dE(λ) with D M(E(λ)) = λ}
 3.1. We again assume $M$ in case $\mathrm{II}_1$. Some lemmas about families of
 projections and spectral forms in $M$ are needed. Of these the two last ones
 have some interest of their own.
@@ -1168,7 +1180,7 @@ and
 \]
 completing the proof.
 
-\SectionStart{3.2}3.2. We return now to the normalization of
+\SectionStart{3.2}{3.2. The maximum problems (A) and (B)}3.2. We return now to the normalization of
 \SectionRef{1.1}, and assume that an $M$ in case $\mathrm{II}_1$
 is given with $\alpha\geq1$.
 
@@ -1372,7 +1384,7 @@ maxima
 $K^{-1}\lVert E_0g\rVert^2\leq m_a=m_b\leq K\lVert E_0g\rVert^2$.
 \end{statement}
 
-\SectionStart{3.3}3.3. We hold $g$ fixed, and make the following
+\SectionStart{3.3}{3.3. Reducibility of a g ∈ H by an E ∈ M}3.3. We hold $g$ fixed, and make the following
 
 \begin{statement}{definition:3.3.1}{Definition 3.3.1}
 Let $E,G$ be two projections in $M$, $E\leq G$. We say that $E$ reduces
@@ -1520,7 +1532,7 @@ Thus by Lemma~3.2.6
 \StatementRef{lemma:1.4.2}{Lemma~1.4.2} now implies
 $E\mathrel{\underset p{\geq}}\lambda$.
 
-\SectionStart{3.4}3.4. We still suppose that $g$ is held fixed.
+\SectionStart{3.4}{3.4. Decomposition of a g from Theorem I}3.4. We still suppose that $g$ is held fixed.
 
 \begin{statement}{lemma:3.4.1}{Lemma 3.4.1}
 Let $E\ne0$ be a projection, in $M$, and such that
@@ -1883,7 +1895,7 @@ $\bigl((E(\alpha_i)-E(\alpha_{i-1}))A
 (use \StatementRef{lemma:3.3.5}{Lemma~3.3.5}). Thus the proof is
 completed.
 
-\SectionStart{3.5}3.5. We can now take the decisive step.
+\SectionStart{3.5}{3.5. Construction of an exact g for Tr M(A). Removal of α ≥ 1. Unrestricted weak continuity of Tr M(A). Theorems II, III, IV}3.5. We can now take the decisive step.
 
 \begin{statement}{lemma:3.5.1}{Lemma 3.5.1}
 Let $g$ and $K$ be as in \StatementRef{theorem:I}{Theorem~I}. Let $K'$ be
@@ -2092,9 +2104,9 @@ continuous.
 \end{statement}
 
 \chapterhead{IV}{The isomorphism of $M$, $M'$ and $\mathfrak H$
-(for $\alpha=1$)}
+  (for $\alpha=1$)}{Chapter IV. The isomorphism of M, M', and H (for α = 1)}
 
-\SectionStart{4.1}4.1. We assume that $M,M'$ is in case
+\SectionStart{4.1}{4.1. The isomorphism of H and Q(M) with the help of a u.d.f.}4.1. We assume that $M,M'$ is in case
 $\mathrm{II}_1,\mathrm{II}_1$ and $\alpha=1$ or what is the same thing that
 $C=1$ and we have the standard normalization. We know by the discussion of
 \RO{}, \S\S11.3 and 11.4 how all other cases II can be reduced to this case.
@@ -2184,7 +2196,7 @@ Thus for \(h\in\cH\) we have three correspondences defined by the equations
 \(\mathfrak I_{M'}\) of \(\cH\) and \(\Q_f(M')\), and (3) the correspondence
 \(\mathfrak I_{M,M'}\) of \(\Q_f(M)\) and \(\Q_f(M')\).
 
-\SectionStart{4.2}4.2.\quad
+\SectionStart{4.2}{4.2. The correspondences of H, Q(M), and Q(M'). Criteria for u.d. Equivalence of u.d. for M and for M'. Isomorphism properties of these correspondences. Theorems V, VI}4.2.\quad
 We now investigate these three correspondences. We know that they are
 one-to-one. They are obviously linear and of course along with \(\cH\) the
 sets \(\Q_f(M)\) and \(\Q_f(M')\) are linear. But inasmuch as
@@ -2472,7 +2484,7 @@ that \(\alpha^2\cdot1-A^*A\) is definite, so
 \(\Tr_M(A)=(Af_0,f_0)=(A'f_0,f_0)=\Tr_M(A')\)
 by \StatementRef{thm:V}{Theorem V}.
 
-\SectionStart{4.3}4.3.\quad
+\SectionStart{4.3}{4.3. Analysis of Q(M), Q(M'); their Hilbert-space character. Theorems VII, VIII, IX}4.3.\quad
 In what follows \(f_0\) will always be assumed to be u.d. The discussion
 which follows could be based on an extension of the notion of \(\Tr_M(A)\)
 (and of \(\Tr_{M'}(A')\)) to unbounded \(A\,\eta M\) (or \(A'\,\eta M'\))
@@ -2656,7 +2668,7 @@ anti-isomorphism.
 
 The corresponding facts hold for \(M'\); the formulation is obvious.
 
-\SectionStart{4.4}4.4.\quad
+\SectionStart{4.4}{4.4. Algebraic properties of Q(M). Roles of M and M' in it. Properties I⁰-V⁰. Theorem X}4.4.\quad
 We next discuss the algebra of \(\Q(M)\).
 
 \begin{statement}{prop:I0}{Property \(\mathrm{I}^{0}\)}
@@ -2812,7 +2824,7 @@ the choice of \(f_0\) is however a further transformation \(R_U\),
 \(\cH\) into the totality of unitary elements \(U\in\Q(M)\), \(f_0\) being
 that element which corresponds to \(1\).
 
-\SectionStart{4.5}4.5.\quad
+\SectionStart{4.5}{4.5. Implication of a spatial isomorphism by an algebraic ring-isomorphism. Theorem XI}4.5.\quad
 The following important isomorphism theorem can now be proved.
 
 \begin{statement}{thm:XI}{Theorem XI}
@@ -2855,7 +2867,7 @@ which carries \(M_1^0,M_{1,0}\) into \(M_2^0,M_{2,0}\) (by
 isomorphism of \(\cH_1\) and \(\cH_2\) which carries \(M_1,M_1'\) into
 \(M_2,M_2'\).
 
-\SectionStart{4.6}\StatementRef{thm:XI}{Theorem XI} could be extended to cover cases
+\SectionStart{4.6}{4.6. Description of further results}\StatementRef{thm:XI}{Theorem XI} could be extended to cover cases
 \((\mathrm{II}_1,\mathrm{II}_1)\), where
 \(C\mathrel{\substack{\geq\\<}}1\) in the standard
 normalization as well as other combinations of \(\mathrm{II}_1\) and
@@ -2871,7 +2883,7 @@ detail in later publications.
 
 \appendixhead
 
-\SectionStart{A.1}1.\quad
+\SectionStart{A.1}{1.}1.\quad
 Consider a ring \(M\) of class \(\mathrm{II}_1\) in \(\cH\). Then \(M'\) is
 of class \(\mathrm{II}_1\) or \(\mathrm{II}_\infty\). Normalize \(D_M\) and
 \(D_{M'}\), so as to have \(D_M(\cH)=1\) and \(C=1\), so
@@ -2910,7 +2922,7 @@ weak operator topology, but it will be shown elsewhere that for subrings of
 \(M\) weak, relative closure in \(M\) for the \([\![X-Y]\!]\) metric is
 equivalent to closure in the weak topology.
 
-\SectionStart{A.2}2.\quad
+\SectionStart{A.2}{2.}2.\quad
 Under these conditions there is an analogy between \(M\) and the matrices
 of a Euclidean space \(E_n\), described by an interesting
 Lebesgue-Stieltjes-Radon measure in the plane.
@@ -2994,7 +3006,7 @@ So we have
 \]
 \end{statement}
 
-\SectionStart{A.3}3.\quad
+\SectionStart{A.3}{3.}3.\quad
 We can use \StatementRef{lem:A}{Lemma A} to define a
 Lebesgue-Stieltjes-Radon measure \(\mu(X;T)\) for all plane Borel-sets
 \(T(\subset P)\) with the help of \(\omega(X;S_1\otimes S_2)\).
@@ -3132,7 +3144,7 @@ So we have proved
 \]
 results.
 
-\SectionStart{A.4}4.\quad
+\SectionStart{A.4}{4.}4.\quad
 The plane measure \(\mu(X;T)\) may be used to \lq\lq locate\rq\rq\ the
 \lq\lq position\rq\rq\ of \(X\) in the \(\lambda,\mu\)-plane \(P\). It
 gives the entire plane a total \lq\lq measure\rq\rq\ or
