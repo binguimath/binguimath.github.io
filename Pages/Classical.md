@@ -137,6 +137,23 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 </details>
 
 
+<details class="year-group" markdown="1">
+<summary><strong>1950–1979</strong></summary>
+
+
+- 1957 Dixmier. Les algèbres dopérateurs dans lespace hilbertien (Algèbres de von Neumann) v.1969. (Operator Algebras on Hilbert Space (von Neumann Algebras) v.1969)
+[tex](https://binguimath.github.io/Pages/Classical/1957%20Dixmier_Operator%20Algebras%20on%20Hilbert%20Space%20(von%20Neumann%20Algebras)%20v.1969_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1957%20Dixmier_Operator%20Algebras%20on%20Hilbert%20Space%20(von%20Neumann%20Algebras)%20v.1969_GPT.pdf)
+
+
+
+</details>
+
+
+
+
+
+
 <script>
 function toggleAllLiterature(openState) {
   document.querySelectorAll('details.year-group').forEach(function(section) {
@@ -144,5 +161,8 @@ function toggleAllLiterature(openState) {
   });
 }
 </script>
+
+
+
 
 <!-- 一键展开和折叠，续 -->
