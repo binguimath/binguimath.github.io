@@ -153,7 +153,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 - 1970 Takesaki. Tomita's Theory of Modular Hilbert Algebras and its Applications.
 [tex](https://binguimath.github.io/Pages/Classical/1970%20Takesaki_Tomita's%20Theory%20of%20Modular%20Hilbert%20Algebras%20and%20its%20Applications_GPT.tex)
-[pdf](https://binguimath.github.io/Pages/Classical/1970%20Takesaki_Tomita's%20Theory%20of%20Modular%20Hilbert%20Algebras%20and%20its%20Applications_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1970%20Takesaki_Tomita's%20Theory%20of%20Modular%20Hilbert%20Algebras%20and%20its%20Applications_GPT.pdf)
 
 
 </details>
