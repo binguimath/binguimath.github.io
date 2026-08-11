@@ -146,6 +146,11 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1957%20Dixmier_Operator%20Algebras%20on%20Hilbert%20Space%20(von%20Neumann%20Algebras)%20v.1969_GPT.pdf)
 
 
+- 1957 1964 Dixmier. Les C*-algèbres et leurs représentations v.1969. (C*-Algebras and Their Representations v.1969.)
+[tex](https://binguimath.github.io/Pages/Classical/1964%20Dixmier_C∗-Algebras%20and%20Their%20Representations%20v.1969_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1964%20Dixmier_C∗-Algebras%20and%20Their%20Representations%20v.1969_GPT.pdf)
+
+
 
 </details>
 
