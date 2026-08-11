@@ -151,6 +151,10 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1964%20Dixmier_C∗-Algebras%20and%20Their%20Representations%20v.1969_GPT.pdf)
 
 
+- 1970 Takesaki. Tomita's Theory of Modular Hilbert Algebras and its Applications.
+[tex](https://binguimath.github.io/Pages/Classical/1970%20Takesaki_Tomita's%20Theory%20of%20Modular%20Hilbert%20Algebras%20and%20its%20Applications_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1970%20Takesaki_Tomita's%20Theory%20of%20Modular%20Hilbert%20Algebras%20and%20its%20Applications_GPT.tex)
+
 
 </details>
 
