@@ -142,9 +142,20 @@
   \footnote{Translator's note: #1}%
   \endgroup
 }
-\NewDocumentCommand{\NumberedParagraph}{m m}{%
+% Match the PDF outline to the three-level hierarchy printed in the source
+% table of contents: chapter, section, then numbered paragraph.  Appendices
+% use the same numbered paragraphs one level below their unnumbered chapters.
+\newcounter{dixmieroutlineparagraph}
+\newcommand*{\DixmierOutlineParagraphLevel}{2}
+\NewDocumentCommand{\NumberedParagraph}{o m m}{%
   \par\addvspace{0.55\baselineskip}%
-  \phantomsection\noindent\textbf{#1. #2.}\nobreak\ ---\enspace
+  \stepcounter{dixmieroutlineparagraph}%
+  \IfNoValueTF{#1}
+    {\pdfbookmark[\DixmierOutlineParagraphLevel]{#2. #3}%
+       {dixmier.numberedparagraph.\arabic{dixmieroutlineparagraph}}}%
+    {\pdfbookmark[\DixmierOutlineParagraphLevel]{#2. #1}%
+       {dixmier.numberedparagraph.\arabic{dixmieroutlineparagraph}}}%
+  \phantomsection\noindent\textbf{#2. #3.}\nobreak\ ---\enspace
 }
 
 \setlist[enumerate]{leftmargin=*,itemsep=0.35\baselineskip}
@@ -3366,7 +3377,7 @@ projection of \(\mathcal A\otimes\mathcal L(\mathfrak L)\) defined by
 
 \section{Density Theorems}\label{sec:I-3}
 
-\NumberedParagraph{1}{Topologies on \(\mathcal L(\mathfrak H)\)}
+\NumberedParagraph[Topologies on L(H)]{1}{Topologies on \(\mathcal L(\mathfrak H)\)}
 \label{no:I-3-1}
 \emph{Norm topology.} --- The norm defines a topology on
 \(\mathcal L(\mathfrak H)\), called the norm topology. It is the
@@ -3705,7 +3716,7 @@ sufficient that \(T^*T\) tend ultra-weakly to zero.
 \noindent\textbf{Bibliography:} \ArticleRef{15}, \ArticleRef{73},
 \ArticleRef{74}.
 
-\NumberedParagraph{3}{Linear functionals on \(\mathcal L(\mathfrak H)\)}
+\NumberedParagraph[Linear functionals on L(H)]{3}{Linear functionals on \(\mathcal L(\mathfrak H)\)}
 \label{no:I-3-3}
 The space \(\mathcal L(\mathfrak H)=\mathcal L\) is a complex Banach
 space. The set of linear functionals on \(\mathcal L\) that are
@@ -10241,7 +10252,7 @@ identical.
 
 \noindent\textit{Bibliography.}\quad \ArticleRef{101}.
 
-\NumberedParagraph{6}{Normal Traces on \(\mathcal L(\mathfrak H)\)}
+\NumberedParagraph[Normal Traces on L(H)]{6}{Normal Traces on \(\mathcal L(\mathfrak H)\)}
 \label{no:I-6-6}
 
 \begin{theorem}\label{thm:I-6-5}
@@ -11271,7 +11282,7 @@ the problem posed at the end of \hyperref[no:I-2-4]{\S~2, no.~4}.
 \noindent\textbf{Bibliography:}
 \ArticleRef{65}, \ArticleRef{128}, \ArticleRef{432}.
 
-\NumberedParagraph{10}{The Space \(L^1\) Defined by a Trace}
+\NumberedParagraph[The Space L¹ Defined by a Trace]{10}{The Space \(L^1\) Defined by a Trace}
 \label{no:I-6-10}
 Let \(\mathcal A\) be a von Neumann algebra, and let \(\varphi\) be a
 trace defined on the two-sided ideal \(\mathfrak m\) of
@@ -18185,7 +18196,7 @@ A Hilbert algebra \(\mathfrak A\) in \(\mathfrak H\) is said to be
 Bibliography: \ArticleRef{13}, \ArticleRef{29}, \ArticleRef{86},
 \ArticleRef{106}, \ArticleRef{116}, \ArticleRef{117}.
 
-\NumberedParagraph{3}{Involution and the von Neumann Algebras
+\NumberedParagraph[Involution and the von Neumann Algebras Associated with 𝔄]{3}{Involution and the von Neumann Algebras
 Associated with \(\mathfrak A\)}
 \label{no:II-4-3}
 Let \(J\) (respectively, \(J(\zeta)\)) be the involution of
@@ -18318,7 +18329,7 @@ This follows from Proposition~3 and \S~3, Theorem~3.
 Bibliography: \ArticleRef{13}, \ArticleRef{29}, \ArticleRef{86},
 \ArticleRef{106}, \ArticleRef{116}, \ArticleRef{117}.
 
-\NumberedParagraph{4}{Elements Bounded Relative to \(\mathfrak A\)}
+\NumberedParagraph[Elements Bounded Relative to 𝔄]{4}{Elements Bounded Relative to \(\mathfrak A\)}
 \label{no:II-4-4}
 
 \begin{proposition}\label{prop:II-4-4}
@@ -18455,7 +18466,7 @@ is a Hilbert algebra dense in \(\mathfrak H\), of which
 
 Bibliography: \ArticleRef{116}.
 
-\NumberedParagraph{5}{Elements Central Relative to \(\mathfrak A\)}
+\NumberedParagraph[Elements Central Relative to 𝔄]{5}{Elements Central Relative to \(\mathfrak A\)}
 \label{no:II-4-5}
 Let \(\mathfrak C\) (respectively, \(\mathfrak C(\zeta)\)) be the
 subspace of \(\mathfrak H\) (respectively,
@@ -20663,7 +20674,7 @@ see that this corollary plays the role of ``Euclidean division.''
 
 % Source PDF page 229 (printed p. 220)
 \phantomsection\label{srcpage:220}
-\NumberedParagraph{3}{Cyclic Projections of \(\mathcal A\) and Cyclic
+\NumberedParagraph[Cyclic Projections of 𝒜 and Cyclic Projections of 𝒜′]{3}{Cyclic Projections of \(\mathcal A\) and Cyclic
 Projections of \(\mathcal A'\)}
 \label{no:III-1-3}
 
@@ -21670,7 +21681,7 @@ semifinite projection.
 \noindent\textit{Bibliography.}
 \ArticleRef{10}, \ArticleRef{42}, \ArticleRef{65}.
 
-\NumberedParagraph{2}{Cyclic projections of \(\mathcal A\) and cyclic
+\NumberedParagraph[Cyclic projections of 𝒜 and cyclic projections of 𝒜′]{2}{Cyclic projections of \(\mathcal A\) and cyclic
 projections of \(\mathcal A'\)}
 \label{no:III-2-2}
 
@@ -23001,7 +23012,7 @@ The mapping \(\dot\Phi\) is sometimes called a
 Bibliography: \ArticleRef{6}, \ArticleRef{12}, \ArticleRef{63},
 \ArticleRef{101}, \ArticleRef{104}, \ArticleRef{105}.
 
-\NumberedParagraph{2}{Traces on \(\widehat{\mathcal Z}_+\)}
+\NumberedParagraph[Traces on Ẑ₊]{2}{Traces on \(\widehat{\mathcal Z}_+\)}
 \label{no:III-4-2}
 A finite or infinite nonnegative function \(\omega\) on
 \(\widehat{\mathcal Z}_+\) will be called a \emph{trace on
@@ -23884,7 +23895,7 @@ We shall prove later some converses to this corollary
 
 Bibliography: \ArticleRef{6}.
 
-\NumberedParagraph{2}{Application: Two-Sided Ideals of
+\NumberedParagraph[Application: Two-Sided Ideals of 𝒜 and Ideals of 𝒵]{2}{Application: Two-Sided Ideals of
 \(\mathcal A\) and Ideals of \(\mathcal Z\)}
 \label{no:III-5-2}
 The algebra \(\mathcal A\) is no longer assumed finite.
@@ -27509,7 +27520,7 @@ which is absurd by Lemma~1.
 
 \noindent Bibliography: \ArticleRef{6}, \ArticleRef{65}.
 
-\NumberedParagraph{4}{Construction of a Trace to Within
+\NumberedParagraph[Construction of a Trace to Within ε]{4}{Construction of a Trace to Within
 \(\boldsymbol{\varepsilon}\)}
 \label{no:III-8-4}
 
@@ -28679,7 +28690,7 @@ and both \(\frac12(\delta+\delta^*)\) and
 
 % Source PDF page 317 (printed p. 308)
 \phantomsection\label{srcpage:308}
-\NumberedParagraph{2}{Derivations of \(\boldsymbol{C^*}\)-Algebras:
+\NumberedParagraph[Derivations of C*-Algebras: Continuity and Extension]{2}{Derivations of \(\boldsymbol{C^*}\)-Algebras:
 Continuity and Extension}
 \label{no:III-9-2}
 
@@ -29402,6 +29413,7 @@ There are factors possessing outer automorphisms (cf. \S~7,
 Exercise~15).
 
 % Source PDF page 326 (printed p. 317)
+\renewcommand*{\DixmierOutlineParagraphLevel}{1}
 \chapter*{Appendix I}\label{srcpage:317}
 \addcontentsline{toc}{chapter}{Appendix I}
 \label{app:I}
