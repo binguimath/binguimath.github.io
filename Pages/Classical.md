@@ -139,6 +139,11 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 > The theory of direct integrals for VN algebras was established.
 
 
+- 1943 Murray, von Neumann. On rings of operators IV.
+[tex](https://binguimath.github.io/Pages/Classical/1943%20Murray%2C%20von%20Neumann_On%20Rings%20of%20Operators%20IV_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1943%20Murray%2C%20von%20Neumann_On%20Rings%20of%20Operators%20IV_GPT.pdf)
+
+
 </details>
 
 
