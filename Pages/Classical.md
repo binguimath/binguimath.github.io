@@ -121,6 +121,9 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [tex](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.pdf)
 
+> Given a VN factor, the (relative) dimension function was constructed. VN factors are divided into types according to the range of the dimension functions. The coupling constants were introduced and studied, with the help of which it was shown that a factor has type I, II, or III iff its commutant is so. The dimension function was extended to a trace function, though the linearity and the $\sigma$-weak continuity was not proved. Application to unbounded operators was given. 
+
+
 - 1937 Murray, von Neumann. On rings of operators II.
 [tex](https://binguimath.github.io/Pages/Classical/1937%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators%20II_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1937%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators%20II_GPT.pdf)
