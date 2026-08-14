@@ -129,6 +129,8 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1937%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators%20II_GPT.pdf)
 
 
+> Given a finite VN factor $\mathcal M$, the trace function was proved to be linear and $\sigma$-weakly continuous on the closed unit ball. It was shown that the trace function is a vector state when the coupling constant is $1$. In this case, an isomorphism $\mathcal M \to \mathcal M^{\mathrm{op}}$ was obtained, although the modular conjugation was not introduced.
+
 
 - 1938 von Neumann. On rings of operators, reduction theory.
 [tex](https://binguimath.github.io/Pages/Classical/1938%20von%20Neumann_On%20rings%20of%20operators%2C%20reduction%20theory_GPT.tex)
