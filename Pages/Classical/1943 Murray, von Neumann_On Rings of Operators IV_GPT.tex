@@ -61,11 +61,27 @@
 \renewcommand{\thesection}{\arabic{paperchapter}.\arabic{section}}
 \renewcommand{\theHsection}{\arabic{paperchapter}.\arabic{section}}
 
+\makeatletter
+\newcommand{\MvNSetCurrentLabel}[2]{%
+  \edef\@currentlabel{#1}%
+  \edef\@currentlabelname{#2}%
+}
+\newcommand{\MvNTargetLabel}[3]{%
+  \phantomsection
+  \begingroup
+    \MvNSetCurrentLabel{#2}{#3}%
+    \label{#1}%
+  \endgroup
+}
+\newcommand{\FootnoteTarget}[1]{%
+  \MvNTargetLabel{#1}{\thefootnote}{Footnote \thefootnote}}
+\makeatother
+
 \NewDocumentCommand{\PaperChapter}{m m m O{#3}}{%
   \par\medskip
   \setcounter{paperchapter}{#1}%
   \setcounter{section}{0}%
-  \phantomsection\label{#2}%
+  \MvNTargetLabel{#2}{\Roman{paperchapter}}{Chapter \Roman{paperchapter}}%
   \addcontentsline{toc}{section}{\texorpdfstring{Chapter \Roman{paperchapter}. #3}{Chapter \Roman{paperchapter}}}%
   \begin{center}\bfseries\MakeUppercase{Chapter \Roman{paperchapter}. #3}\end{center}%
   \nobreak\smallskip
@@ -79,7 +95,7 @@
 }
 
 \NewDocumentCommand{\IntroductionHeading}{}{%
-  \phantomsection\label{chapter:introduction}%
+  \MvNTargetLabel{chapter:introduction}{Introduction}{Introduction}%
   \pdfbookmark[1]{Introduction}{bookmark.chapter.introduction}%
   \begin{center}\bfseries\MakeUppercase{Introduction}\end{center}%
 }
@@ -90,11 +106,11 @@
   \noindent\textbf{\S\arabic{introsection}.}\quad\ignorespaces
 }
 
-\newcommand{\secref}[2]{\hyperref[#1]{\S#2}}
-\newcommand{\chapterref}[2]{\hyperref[#1]{Chapter~#2}}
-\newcommand{\thmref}[2]{\hyperref[#1]{Theorem~#2}}
-\newcommand{\lemref}[2]{\hyperref[#1]{Lemma~#2}}
-\newcommand{\defref}[2]{\hyperref[#1]{Definition~#2}}
+\newcommand{\secref}[2]{\hyperref[#1]{\mbox{\S#2}}}
+\newcommand{\chapterref}[2]{\hyperref[#1]{\mbox{Chapter~#2}}}
+\newcommand{\thmref}[2]{\hyperref[#1]{\mbox{Theorem~#2}}}
+\newcommand{\lemref}[2]{\hyperref[#1]{\mbox{Lemma~#2}}}
+\newcommand{\defref}[2]{\hyperref[#1]{\mbox{Definition~#2}}}
 
 \newtheoremstyle{mvnplain}%
   {0.55\baselineskip}{0.35\baselineskip}%
@@ -110,6 +126,7 @@
 
 \NewDocumentEnvironment{namedstatement}{m m}{%
   \par\addvspace{0.55\baselineskip}%
+  \MvNSetCurrentLabel{#2}{#1 #2}%
   \noindent\textbf{#1 #2.}\ \itshape\ignorespaces
 }{%
   \par\addvspace{0.35\baselineskip}%
@@ -128,7 +145,9 @@
 \newcommand{\A}{\mathbf A}
 \newcommand{\Hilbert}{\mathfrak H}
 \newcommand{\Metric}[1]{\left[\!\left[#1\right]\!\right]}
-\newcommand{\OpNorm}[1]{\left\lvert\!\left\lvert\!\left\lvert#1\right\rvert\!\right\rvert\!\right\rvert}
+% Three visibly distinct strokes are required here. Negative kerns collapse
+% the three vertical delimiters into an apparent ordinary norm in newpxmath.
+\newcommand{\OpNorm}[1]{\left\lvert\left\lvert\left\lvert#1\right\rvert\right\rvert\right\rvert}
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\given}{\,\middle|\,}
 
@@ -391,7 +410,7 @@ John von Neumann,
 of operator rings}}, Annals of Math., vol.~44, preceding immediately.
 \end{thebibliography}
 
-\phantomsection\label{contents}
+\MvNTargetLabel{contents}{Contents}{Contents}
 \pdfbookmark[1]{Contents}{bookmark.contents}
 \begin{center}\bfseries\MakeUppercase{Contents}\end{center}
 
@@ -424,7 +443,7 @@ of operator rings}}, Annals of Math., vol.~44, preceding immediately.
 
 \ContentsChapter{chapter:II}{Chapter II. The algebraical type and its operations. The fundamental group}
 \ContentsSection{sec:2.1}{2.1}{Algebraical type $\overline{\M}$. Discussion.}
-\ContentsSection{sec:2.2}{2.2}{Conjugate dual isomorphisms. $\overline{\M}^{c}$ and $\overline{\M'}$.}
+\ContentsSection{sec:2.2}{2.2}{Conjugate dual isomorphisms. $\overline{\M}^{c}$ and $\overline{\M}'$.}
 \ContentsSection{sec:2.3}{2.3}{Properties of the above. $\overline{\M}^{cc}=\overline{\M}=\overline{\M}''$.}
 \ContentsStatement{thm:III}{Theorem III}{Properties of $\overline{\M}^{c}$.}
 \ContentsSection{sec:2.4}{2.4}{$p$-matrix isomorphisms. Construction of $\overline{\M}^{p}$.}
@@ -444,8 +463,8 @@ of operator rings}}, Annals of Math., vol.~44, preceding immediately.
 \ContentsChapter{chapter:III}{Chapter III. Characterization of all spatial types in terms of algebraical types}
 \ContentsSection{sec:3.1}{3.1}{Commensurability. The genus $\widetilde{\overline{\M}}$.}
 \ContentsSection{sec:3.2}{3.2}{Elementary properties of the genus. Genus and fundamental group.}
-\ContentsSection{sec:3.3}{3.3}{The spatial type $\widetilde{\M}$. The number $\theta=(1/c)(D_{\M'}(\Hilbert)/D_{\M}(\Hilbert))$. Characterization of $\widetilde{\M}$ in terms of $\overline{\M}$, $\overline{\M'}$ and $\theta$. Precise relationship between $\overline{\M}$, $\overline{\M'}$ and $\theta$.}
-\ContentsStatement{thm:X}{Theorem X}{$\widetilde{\M}$ and $\overline{\M}$, $\overline{\M'}$ and $\theta$.}
+\ContentsSection{sec:3.3}{3.3}{The spatial type $\widetilde{\M}$. The number $\theta=(1/c)(D_{\M'}(\Hilbert)/D_{\M}(\Hilbert))$. Characterization of $\widetilde{\M}$ in terms of $\overline{\M}$, $\overline{\M}'$ and $\theta$. Precise relationship between $\overline{\M}$, $\overline{\M}'$ and $\theta$.}
+\ContentsStatement{thm:X}{Theorem X}{$\widetilde{\M}$ and $\overline{\M}$, $\overline{\M}'$ and $\theta$.}
 
 \ContentsChapter{chapter:IV}{Chapter IV. Approximate finiteness}
 \ContentsSection{sec:4.1}{4.1}{Approximate finiteness of type $[p_1,p_2,\ldots]$.}
@@ -525,7 +544,7 @@ These assertions were established in \cite[p.~145, Lemma~5.2.1;
 p.~173, Theorem~IX]{ref5}; \cite[p.~219, Property~IV]{ref6} (since that
 characterization is purely algebraical).
 
-We assume now that $\M$ is a factor in a finite case.\footnote{A finite case is
+We assume now that $\M$ is a factor in a finite case.\footnote{\FootnoteTarget{fn:1}A finite case is
 either a $(\mathrm I_n)$, $n=1,2,\ldots$, or a $(\mathrm{II}_1)$.  The inclusion
 of the former is unnecessary, since our real interest is in case
 $(\mathrm{II}_1)$.  But these considerations have the totality of all finite
@@ -623,8 +642,8 @@ For a fixed $i$ ($=1,\ldots,m$) the $A'g_i$, $A'\in\M'$, span the closed
 linear set $\mathfrak M_{g_i}^{\M'}$ (cf. \cite[p.~143,
 Definition~5.1.1]{ref5}).  Put
 $\mathfrak N=[\mathfrak M_{g_i}^{\M'},\ i=1,\ldots,m]$.  We must prove
-$\mathfrak N=\Hilbert$.  Now $\mathfrak N\eta\M'$ (cf. loc. cit.,
-Lemma~5.1.1).  Hence $\mathfrak N\eta\M$ and $E=P_{\mathfrak N}\in\M$.
+$\mathfrak N=\Hilbert$.  Now $\mathfrak N\mathrel{\eta}\M'$ (cf. loc. cit.,
+Lemma~5.1.1).  Hence $\mathfrak N\mathrel{\eta}\M$ and $E=P_{\mathfrak N}\in\M$.
 Also $g_i\in\mathfrak M_{g_i}^{\M'}\subset\mathfrak N$, so
 \begin{equation}
   Eg_i=g_i.
@@ -865,12 +884,11 @@ Therefore we may even assume $\nu>0$.  In this case, however,
   U^\nu-V^\nu
   &=\sum_{\mu=1}^{\nu}
     \bigl(U^\mu V^{\nu-\mu}-U^{\mu-1}V^{\nu-\mu+1}\bigr)\\
-  &=\sum_{\mu=1}^{\nu}U^{\mu-1}(U-V)V^{\nu-\mu},
-\end{align*}
-and
-\begin{align*}
+  &=\sum_{\mu=1}^{\nu}U^{\mu-1}(U-V)V^{\nu-\mu},\\
   \Metric{U^\nu-V^\nu}
   &=\Metric{\sum_{\mu=1}^{\nu}U^{\mu-1}(U-V)V^{\nu-\mu}}\\
+  % Editorial note E67: the source prints an equality sign in this estimate;
+  % the triangle inequality requires the displayed \leq sign.
   &\leq\sum_{\mu=1}^{\nu}
   \OpNorm{U^{\mu-1}}\Metric{U-V}\OpNorm{V^{\nu-\mu}}\\
   &=\sum_{\mu=1}^{\nu}\Metric{U-V}
@@ -971,7 +989,7 @@ Now form the function
   \psi(\lambda)=
   \begin{cases}
     \lambda, & |\lambda|\leq\OpNorm{A},\\[2pt]
-    \displaystyle\frac{\OpNorm{A}^{,2}}{\lambda},
+    \displaystyle\frac{\OpNorm{A}^{2}}{\lambda},
       & |\lambda|\geq\OpNorm{A}.
   \end{cases}
 \]
@@ -995,19 +1013,19 @@ $|\lambda|\leq\OpNorm{A}$ contains the entire spectrum of $A$.}  Thus we have
 
 Form next the function
 \[
-  \vartheta(\lambda)=
+  \theta(\lambda)=
   \begin{cases}
     1, & |\lambda|\leq\OpNorm{A},\\[2pt]
-    \displaystyle\frac{\OpNorm{A}^{,2}}{\lambda^2},
+    \displaystyle\frac{\OpNorm{A}^{2}}{\lambda^2},
       & |\lambda|\geq\OpNorm{A}.
   \end{cases}
 \]
-It is clear that $\psi(\lambda)=\lambda\vartheta(\lambda)$.  Choose a
+It is clear that $\psi(\lambda)=\lambda\theta(\lambda)$.  Choose a
 polynomial $p_\nu(\lambda)$ with
 \[
-  \vartheta(\lambda)\geq p_\nu(\lambda)
+  \theta(\lambda)\geq p_\nu(\lambda)
   \geq\operatorname{Max}\!\left(
-    \vartheta(\lambda)-\frac1{\nu|\lambda|},0\right)
+    \theta(\lambda)-\frac1{\nu|\lambda|},0\right)
   \quad\text{for }|\lambda|\leq\OpNorm{A_{\nu'}}.\footnote{This is an easy
   variant of the Weierstrass (polynomial) approximation theorem.}
 \]
@@ -1024,7 +1042,7 @@ Furthermore $0\leq q_\nu(\lambda)\leq\psi(\lambda)\leq\OpNorm{A}$ and thus
 \]
 These two inequalities imply
 \[
-  \OpNorm{q_\nu(A_{\nu'})-\psi(A_{\nu'})}\leq\frac1\nu,\footnote{The set
+  \OpNorm{q_\nu(A_{\nu'})-\psi(A_{\nu'})}\leq\frac1\nu,\footnote{\hypertarget{fn:11}{}The set
   $|\lambda|\leq\OpNorm{A_{\nu'}}$ contains the entire spectrum of
   $A_{\nu'}$.}
 \]
@@ -1035,7 +1053,7 @@ and hence, \emph{a fortiori},
 \end{equation}
 and
 \begin{equation}
-  \OpNorm{q_\nu(A_{\nu'})}\leq\OpNorm{A}.
+  \OpNorm{q_\nu(A_{\nu'})}\leq\OpNorm{A}.{}^{\hyperlink{fn:11}{11}}
   \tag{1.5.\ensuremath{\delta}}\label{eq:1.5.delta}
 \end{equation}
 Combining \eqref{eq:1.5.beta} and \eqref{eq:1.5.gamma} gives
@@ -1072,7 +1090,7 @@ closure are equivalent to each other:
   \item[$\gamma)$] Weak (topological) closure
   \item[$\delta)$] Weak convergence closure
   \item[$\epsilon)$] Strong (topological) closure
-  \item[$\vartheta)$] Strong convergence closure
+  \item[$\theta)$] Strong convergence closure
   \item[$\zeta)$] Strongest (topological) closure
   \item[$\eta)$] Strongest convergence closure.
 \end{description}
@@ -1083,20 +1101,20 @@ $\beta)\Rightarrow\epsilon)$, $\alpha)\Rightarrow\beta)$ were established in
 \lemref{lem:1.4.1}{1.4.1}, \lemref{lem:1.4.2}{1.4.2},
 \lemref{lem:1.6.1}{1.6.1}, respectively.  Consequently
 $\alpha)\Leftrightarrow\beta)\Leftrightarrow\epsilon)$.  Also
-\lemref{lem:1.3.2}{1.3.2} yields $\alpha)\Leftrightarrow\vartheta)$.  From
+\lemref{lem:1.3.2}{1.3.2} yields $\alpha)\Leftrightarrow\theta)$.  From
 \cite[p.~396, end of \S3]{ref2}, we have
 $\gamma)\Leftrightarrow\epsilon)$.  \cite[p.~112, beginning of \S3]{ref4}
 yields $\gamma)\Leftrightarrow\zeta)$.  Also
 \cite[p.~112, end of \S2]{ref4} implies
-$\vartheta)\Leftrightarrow\eta)$.  These equivalences give together
+$\theta)\Leftrightarrow\eta)$.  These equivalences give together
 \[
   \alpha)\Leftrightarrow\beta)\Leftrightarrow\gamma)
-  \Leftrightarrow\epsilon)\Leftrightarrow\vartheta)
+  \Leftrightarrow\epsilon)\Leftrightarrow\theta)
   \Leftrightarrow\zeta)\Leftrightarrow\eta).
 \]
 And obviously
 \[
-  \gamma)\Rightarrow\delta)\Rightarrow\vartheta).
+  \gamma)\Rightarrow\delta)\Rightarrow\theta).
 \]
 Thus $\delta)$ also is equivalent to the others.
 \end{proof}
@@ -1126,7 +1144,7 @@ to have the same algebraical type if and only if they are algebraically
 isomorphic.  We denote the algebraic type of the ring $\M$ by
 $\overline{\M}$.  Notions in $\M$ which are purely algebraical, i.e. invariant
 under algebraical isomorphisms, will be said to be notions concerning the
-algebraical type $\overline{\M}$ (and not $\M$ itself).\footnote{This definition
+algebraical type $\overline{\M}$ (and not $\M$ itself).\footnote{\FootnoteTarget{fn:12}This definition
 should be compared and contrasted with that of spatial type in
 \secref{sec:3.3}{3.3}.}
 
@@ -1180,13 +1198,13 @@ $\Hilbert$ is also one in $\Hilbert_c$.  But we shall denote the $A,\M$ of
 $\Hilbert$, when considered in $\Hilbert_c$, by $A_c,\M_c$.
 
 Now consider an operator ring $\M$ in $\Hilbert$.  The identical mapping
-$\mathfrak I^{\circ}$ then maps $\M$ in $\Hilbert$ on $\M_c$ in $\Hilbert_c$
+$\mathfrak J^{\circ}$ then maps $\M$ in $\Hilbert$ on $\M_c$ in $\Hilbert_c$
 and it is in this aspect a conjugate isomorphism of $\M$ and $\M_c$.
 
-Consider next the mapping $\mathfrak I^*$, $A\mapsto A^*$.  This maps $\M$ in
+Consider next the mapping $\mathfrak J^*$, $A\mapsto A^*$.  This maps $\M$ in
 $\Hilbert$ on $\M$ in $\Hilbert$ and it is, in this aspect, a conjugate dual
 isomorphism of $\M$ and $\M$.  Consequently
-$\mathfrak I^*\mathfrak I^{\circ}$ (i.e. $\mathfrak I^*$ in a new aspect) is a
+$\mathfrak J^*\mathfrak J^{\circ}$ (i.e. $\mathfrak J^*$ in a new aspect) is a
 dual isomorphism of $\M$ and $\M_c$.
 
 Thus we have
@@ -1537,14 +1555,14 @@ $\mathfrak M^1,\mathfrak M^2,\ldots$.  Thus we see
   \tag{2.5.\ensuremath{\gamma}}\label{eq:2.5.gamma}
 \end{equation}
 Since the $\mathfrak M^1,\mathfrak M^2,\ldots$ are together dense, the set
-of \eqref{eq:2.5.gamma} is necessarily $\Hilbert_1\otimes\Hilbert_2$ itself.
+of \eqref{eq:2.5.gamma} is necessarily $\Hilbert$ itself.
 Denote the limit of $A^1f,A^2f,\ldots$ by $Af$.  Then $A$ belongs to $\M_1$
 along with $A^1,A^2,\ldots$.  Thus we have shown
 \begin{equation}
   \left\{
   \begin{minipage}{0.78\linewidth}
   The sequence $A^1,A^2,\ldots$ converges for all
-  $f\in\Hilbert_1\otimes\Hilbert_2$ to an $A\in\M_1$ in the strong sense.
+  $f\in\infty\otimes\Hilbert$ to an $A\in\M_1$ in the strong sense.
   \end{minipage}
   \right.
   \tag{2.5.\ensuremath{\delta}}\label{eq:2.5.delta}
@@ -1674,7 +1692,7 @@ $W_{1,1}$ is a projection.  Let $\mathfrak M$ be the closed linear set with
 $P_{\mathfrak M}=W_{1,1}$.  Then $\overline{\M_{(\mathfrak M)}}$ must be
 algebraically isomorphic to $\overline{\N}$.
 % Editorial note E2: corrected the original typo ``circumstqnces'' to ``circumstances'' in footnote 15.
-\footnote{Observe that in this presentation $\overline{\N}$ is determined
+\footnote{\FootnoteTarget{fn:15}Observe that in this presentation $\overline{\N}$ is determined
 by $\overline{\M}$ and $W_{1,1}$ together.  Whether $\overline{\M}$ alone
 suffices to determine $\overline{\N}$ is a different question.  If, however,
 $p$ is finite and $\M$ is a factor, we do have that $\overline{\M}$ and $p$
@@ -1694,7 +1712,8 @@ $\overline{\M}$ fails to determine $\overline{\N}$ as may be seen from
 $\delta)$ in \lemref{lem:3.1.5}{3.1.5} (write $\overline{\M}$ for its
 $\overline{\M}^{\infty}$).}
 \end{theorem}
-(Concerning the omission of this extra condition, cf. the corollary below.)
+(Concerning the omission of this extra condition, cf.
+\hyperref[cor:2.6.1]{the corollary below}.)
 \begin{proof}
 Sufficiency: Assume the existence of $W_{\mu,\nu}$ ($\mu,\nu\leq p$) as
 described.  $W_{1,1}\in\M$ is a projection.  Let $\mathfrak M$ be such that
@@ -1801,7 +1820,7 @@ $\M_{(\mathfrak M)}$ is algebraically isomorphic to $\N$.
 Thus all our requirements are fulfilled.
 \end{proof}
 
-\begin{corollary}\phantomsection\label{cor:2.6.1}
+\begin{corollary}\MvNTargetLabel{cor:2.6.1}{2.6.1}{Corollary to Lemma 2.6.1}
 Given $\overline{\M}$ and $p$, the equation
 $\overline{\M}=\overline{\N}^{p}$ possesses a solution $\overline{\N}$ if
 and only if there exists a system of $p$-matrix units,
@@ -1871,8 +1890,8 @@ Sufficiency: If $p$ divides $n$, we can find $p$ dimensionally equivalent
 pairwise orthogonal projections $E_1,\ldots,E_p\in\M$ and with
 $\sum_{n=1}^{p}E_n=1$.  For if $D_{\M}(\Hilbert)=n$, we can find a
 projection $E_1\in\M$ with $D_{\M}(E_1)=n/p$ and we proceed as in the proof
-of \lemref{lem:2.6.2}{2.6.2} to find $E_2,\ldots,E_p$.  The rest of that
-proof then applies to the present situation.
+of \lemref{lem:2.6.2}{2.6.2} to find $E_2,\ldots,E_p$.
+\mbox{The rest of that proof then applies to the present situation.}
 \end{proof}
 
 \thmref{thm:V}{V} yields
@@ -1891,7 +1910,7 @@ $D_{\M}(\mathfrak M)=(1/p)D_{\M}(\Hilbert)$.
 \end{enumerate}
 \end{lemma}
 
-As we remarked in footnote 15, we may add
+As we remarked in \hyperref[fn:15]{footnote~\ref*{fn:15}}, we may add
 \begin{lemma}\phantomsection\label{lem:2.6.5}
 If $p$ is finite, $\M$ is a factor and if $\overline{\N}$ is such that
 $\overline{\N}^{p}=\overline{\M}$ then $\overline{\N}$ is uniquely
@@ -1936,7 +1955,10 @@ $\M_{(\mathfrak M)}$.  Hence our assertion follows from
 
 Ad (iii).  The $W_{\mu,\mu}$ ($\mu\leq p$) are pairwise orthogonal
 projections $\in\M$ all with the same relative dimension in $\M$ owing to
-(i), (ii) in \lemref{lem:2.6.1}{2.6.1}.  Hence
+(i), (ii) in \lemref{lem:2.6.1}{2.6.1}.
+
+\newpage
+Hence
 \refstepcounter{footnote}
 \begin{equation}
   D_{\M}(1)=\sum_{\mu=1}^{p}D_{\M}(W_{\mu,\mu})
@@ -1970,7 +1992,7 @@ We consider again the rings $\M^{E}$ and $\M_{(\mathfrak M)}$ as described
 in the beginning of \secref{sec:2.5}{2.5}.
 
 \begin{lemma}\phantomsection\label{lem:2.8.1}
-If $\mathfrak M_1,\mathfrak M_2$ are two closed linear sets $\eta\M$ with
+If $\mathfrak M_1,\mathfrak M_2$ are two closed linear sets $\mathrel{\eta}\M$ with
 $D_{\M}(\mathfrak M_1)=D_{\M}(\mathfrak M_2)$ then
 $\M_{(\mathfrak M_1)}$ and $\M_{(\mathfrak M_2)}$ (in $\mathfrak M_1$ and
 $\mathfrak M_2$, respectively) are spatially isomorphic.
@@ -2004,7 +2026,7 @@ $E_1\in\M_1$ with
 $\alpha=D_{\M_1}(E_1)/D_{\M_1}(1)$.  Then the isomorphism carries $E_1$
 into an $E_2\in\M_2$ with
 $\alpha=D_{\M_2}(E_2)/D_{\M_2}(1)$.  Let
-$\mathfrak M_1,\mathfrak M_2$ be $\eta\M_1,\eta\M_2$ respectively, and such
+$\mathfrak M_1,\mathfrak M_2$ be $\mathrel{\eta}\M_1,\mathrel{\eta}\M_2$ respectively, and such
 that $P_{\mathfrak M_1}=E_1$, $P_{\mathfrak M_2}=E_2$.  The isomorphism
 carries $\M_1^{E_1}$ into $\M_2^{E_2}$, in particular $E_1$ into $E_2$, and
 it leaves the operations $\alpha A,A^{*},A+B,AB$ invariant.  Hence it
@@ -2177,8 +2199,7 @@ Also, by the use of \eqref{eq:2.4.beta}, \eqref{eq:2.8.gamma} and
 \[
   \left(((\overline{\M}^{\alpha})^{p})^{\beta}\right)^{q}
   =\left(((\overline{\M}^{\alpha})^{\beta})^{p}\right)^{q}
-  =(\overline{\M}^{\alpha\beta})^{pq}
-  =\overline{\M}^{pq\alpha\beta}.
+  =(\overline{\M}^{\alpha\beta})^{pq}.
 \]
 Hence if we put $\theta=p\alpha$, $\xi=q\beta$, then
 \begin{equation}
@@ -2255,7 +2276,7 @@ Now we have
 If $\M$ is in case $(\mathrm I_n)$, ($n=1,2,\ldots$), then
 $\overline{\M}^{\alpha}$ ($\alpha$ finite) exists if and only if
 $n\alpha=1,2,\ldots$, and then
-$\overline{\M}^{\alpha}=\overline{\boldsymbol\Theta}^{,n\alpha}$.
+$\overline{\M}^{\alpha}=\overline{\boldsymbol\Theta}^{n\alpha}$.
 \end{lemma}
 \begin{proof}
 The range asserted for $\alpha$ is the same as that of
@@ -2279,15 +2300,15 @@ $\alpha\cdot1$ in $\mathfrak M$, i.e.
 \]
 Consequently
 \[
-  \overline{\M}^{\alpha}=\overline{\boldsymbol\Theta}^{,k},
+  \overline{\M}^{\alpha}=\overline{\boldsymbol\Theta}^{k},
   \qquad k=n\alpha,
 \]
 as desired.
 \end{proof}
 
-\begin{corollary}\phantomsection\label{cor:2.10.3}
+\begin{corollary}\MvNTargetLabel{cor:2.10.3}{2.10.3}{Corollary to Lemma 2.10.3}
 If $\M$ is in a case $(\mathrm I_n)$ ($n=1,2,\ldots$) then
-$\overline{\M}=\overline{\boldsymbol\Theta}^{,n}$.
+$\overline{\M}=\overline{\boldsymbol\Theta}^{n}$.
 \end{corollary}
 \begin{proof}
 Put $\alpha=1$ in the above lemma.
@@ -2302,10 +2323,12 @@ $\mathfrak G=\mathfrak G(\overline{\M})=(1)$.
 considerations.}
 Ad $\overline{\M}^{c}=\overline{\M}$.  Clearly
 $\overline{\boldsymbol\Theta}^{c}=\overline{\boldsymbol\Theta}$.  Hence the
-corollary to \lemref{lem:2.10.3}{2.10.3}, and \eqref{eq:2.4.alpha} or
+\hyperref[cor:2.10.3]{corollary} to \lemref{lem:2.10.3}{2.10.3}, and
+\eqref{eq:2.4.alpha} or
 \eqref{eq:2.9.alpha} imply $\overline{\M}^{c}=\overline{\M}$.
 
-Ad $\mathfrak G=(1)$.  By \lemref{lem:2.10.3}{2.10.3} and its corollary,
+Ad $\mathfrak G=(1)$.  By \lemref{lem:2.10.3}{2.10.3} and
+\hyperref[cor:2.10.3]{its corollary},
 $\overline{\M}^{\alpha}$ is in case $(\mathrm I_k)$, $k=n\alpha$.  Hence
 $\overline{\M}^{\alpha}=\overline{\M}$ implies $n\alpha=n$ or
 $\alpha=1$.  So $\mathfrak G=(1)$.
@@ -2345,11 +2368,11 @@ We need some auxiliary lemmas which lead up to the desired definition.
 Throughout this section \(\M\) will be a factor in a Hilbert space \(\Hilbert\).
 As before, we denote by \(D_{\M}(E)\) and \(D_{\M}(\mathfrak M)\) a fixed
 relative dimension function of \(\M\) applicable to the \(E\in\M\) or the
-\(\mathfrak M\eta\M\).
+\(\mathfrak M\mathrel{\eta}\M\).
 
 % Source PDF p. 28 (journal p. 743).
 \begin{lemma}\phantomsection\label{lem:3.1.1}
-If \(\mathfrak M\) is a closed linear set, \(\mathfrak M\eta\M\), and such
+If \(\mathfrak M\) is a closed linear set, \(\mathfrak M\mathrel{\eta}\M\), and such
 that \(\mathfrak M\ne(0)\) and
 \(D_{\M}(\Hilbert\ominus\mathfrak M)=\infty\), then
 \[
@@ -2402,7 +2425,7 @@ result.
 \end{proof}
 
 \begin{lemma}\phantomsection\label{lem:3.1.2}
-If \(\mathfrak M\) is a closed linear set, \(\mathfrak M\eta\M\) and
+If \(\mathfrak M\) is a closed linear set, \(\mathfrak M\mathrel{\eta}\M\) and
 \(\mathfrak M\ne(0)\), and if \(\M\) is in an infinite case, then
 \[
   \overline{\M}=\bigl(\overline{\M_{(\mathfrak M)}}\bigr)^{\infty}.
@@ -2420,6 +2443,8 @@ infinite case, \(D_{\M}(\Hilbert)\) is infinite and hence
 \]
 is infinite also.
 
+% Editorial note E64: the source prints ``Lemma 2.7.3''; corrected to
+% ``Lemma 7.2.3'', the lemma actually appearing on the cited page.
 Since \(D_{\M}(\Hilbert)\) is infinite, there exists by
 \cite[p.~157, Lemma~7.2.3]{ref5} a closed linear set \(\mathfrak N\) such
 that \(D_{\M}(\mathfrak N)\) and
@@ -2452,7 +2477,7 @@ If, for two factors, \(\M,\N\),
   \overline{\N}=\overline{\M_{(\mathfrak M)}}
 \]
 for a suitable closed set \(\mathfrak M\ne(0)\) and
-\(\mathfrak M\eta\M\) in the Hilbert space \(\Hilbert\) of \(\M\), then we
+\(\mathfrak M\mathrel{\eta}\M\) in the Hilbert space \(\Hilbert\) of \(\M\), then we
 say that \(\overline{\M}\) is a \emph{multiple} of \(\overline{\N}\), or that
 \(\overline{\N}\) is a \emph{divisor} of \(\overline{\M}\).
 \end{definition}
@@ -2626,8 +2651,8 @@ On the other hand, \(\overline{\M}=\overline{\N}^{\theta}\), for a
 \(\overline{\M}^{1/\theta}=\overline{\N}\), with \(1/\theta\) in the range
 of \thmref{thm:VII}{VII} (for \(\overline{\M}\)). (Cf.
 \eqref{eq:2.9.beta}. That \(\theta\) is in the correct sets in the discrete
-cases is readily shown by reference to \lemref{lem:2.10.3}{2.10.3} and its
-corollary.) \lemref{lem:3.1.4}{3.1.4}, with \(\overline{\M}\) and
+cases is readily shown by reference to \lemref{lem:2.10.3}{2.10.3} and
+\hyperref[cor:2.10.3]{its corollary}.) \lemref{lem:3.1.4}{3.1.4}, with
 \(\overline{\N}\) interchanged, shows that this is equivalent to
 \(\overline{\N}\) is a multiple of \(\overline{\M}\).
 
@@ -2651,21 +2676,21 @@ Thus the cases I, II, III are notions concerning the genus. This follows from
 characterization \(\delta\)) in \lemref{lem:3.1.5}{3.1.5}.
 
 % Source PDF p. 31 (journal p. 746).
-Similarly \(\overline{\M}^{,c}\) is an operation concerning the genus. This
+Similarly \(\overline{\M}^{c}\) is an operation concerning the genus. This
 follows from \eqref{eq:2.5.epsilon} and the above-mentioned characterization.
 Therefore we can define
 \[
-  \widetilde{\overline{\M}}^{,c}
-  =\widetilde{\overline{\M}^{,c}}.
+ \widetilde{\overline{\M}}^{c}
+ =\widetilde{\overline{\M}^{c}}.
 \]
 
 Observe finally that \(\overline{\M_{(\mathfrak M)}}\),
-\(\overline{\M}^{,p}\), \(p=1,2,\ldots,\infty\), and (when it is defined,
+\(\overline{\M}^{p}\), \(p=1,2,\ldots,\infty\), and (when it is defined,
 i.e. for \(\overline{\M}\) in a finite case)
 \(\overline{\M}^{\,\theta}\) (\(\theta\) in the range of
 \thmref{thm:VII}{VII}) have the same genus as \(\overline{\M}\) (for
 \(\overline{\M_{(\mathfrak M)}}\) this follows from \(\alpha\)) in
-\lemref{lem:3.1.5}{3.1.5}; for \(\overline{\M}^{,p}\) this is implied by
+\lemref{lem:3.1.5}{3.1.5}; for \(\overline{\M}^{p}\) this is implied by
 \thmref{thm:V}{V} and \lemref{lem:3.1.5}{3.1.5}, \(\alpha\)); and for
 \(\overline{\M}^{\,\theta}\) this follows from
 \lemref{lem:3.1.6}{3.1.6}, \(\delta\)).)
@@ -2741,7 +2766,7 @@ We shall therefore denote the fundamental group from now on by
 
 \begin{lemma}\phantomsection\label{lem:3.2.2}
 Consider a genus \(\widetilde{\overline{\M}}\) as above. Form the ring
-\(\M\) and two closed linear sets \(\mathfrak M,\mathfrak N\eta\M\), which
+\(\M\) and two closed linear sets \(\mathfrak M,\mathfrak N\mathrel{\eta}\M\), which
 are both \(\ne(0)\) and of finite relative dimension. Then we have
 \begin{enumerate}[label=(\roman*)]
 \item
@@ -2768,7 +2793,7 @@ Ad (i). Suppose first that
 \lemref{lem:2.8.1}{2.8.1}
 \(\overline{\M_{(\mathfrak N')}}=\overline{\M_{(\mathfrak M)}}\), we may
 suppose \(\mathfrak M\subseteq\mathfrak N\). If \(\mathfrak P\) is a set
-\(\eta\M\) and \(\subseteq\mathfrak N\), \(D_{\M}(\mathfrak P)\) is a
+\(\mathrel{\eta}\M\) and \(\subseteq\mathfrak N\), \(D_{\M}(\mathfrak P)\) is a
 dimension function for \(\M_{(\mathfrak N)}\). Since
 \(\mathfrak M\subseteq\mathfrak N\), by definition
 \[
@@ -2789,7 +2814,8 @@ On the other hand, if
 Equation \eqref{eq:2.9.beta} can now be used to show that
 \(\overline{\M_{(\mathfrak M)}}
 =\bigl(\overline{\M_{(\mathfrak N)}}\bigr)^\alpha\), suitable use of
-\lemref{lem:2.10.3}{2.10.3} and its corollary being made in the discrete case.
+\lemref{lem:2.10.3}{2.10.3} and
+\hyperref[cor:2.10.3]{its corollary} being made in the discrete case.
 
 Ad (ii). By the definition of
 \(\mathfrak G(\overline{\M_{(\mathfrak N)}})\), (i) implies
@@ -2827,16 +2853,19 @@ the desired \(\theta\).
 
 \PaperSection{sec:3.3}{}
 The moment has now come when it is opportune to introduce the notion of a
-spatial type (cf. footnote~12). We shall call the abstraction of \(\M\) with
+spatial type (cf. \hyperref[fn:12]{footnote~\ref*{fn:12}}). We shall call the
+abstraction of \(\M\) with
 respect to spatial isomorphism its spatial type. Thus two rings \(\M_1\) and
 \(\M_2\), in two Hilbert spaces \(\Hilbert_1\) and \(\Hilbert_2\),
 respectively, will be said to have the same spatial type if and only if they are
 spatially isomorphic. We denote the spatial type of the ring \(\M\) by
 \(\widetilde{\M}\).
 
-We shall now answer Question II in \S2 in the introduction, for the cases (I)
+We shall now answer Question II in
+\hyperref[intro:2]{\S2 in the introduction}, for the cases (I)
 and (II)\footnote{In the cases (I) of course the answer is known. Nevertheless
-we include them for the reason given in footnote~1.}; i.e. determine when an
+we include them for the reason given in
+\hyperref[fn:1]{footnote~\ref*{fn:1}}.}; i.e. determine when an
 algebraic isomorphism determines a spatial one. Thus we shall establish the
 relationship of \(\widetilde{\M}\) to \(\overline{\M}\). For the cases (I)
 and (II) we shall determine all spatial types \(\widetilde{\M}\) in terms of
@@ -2847,7 +2876,8 @@ The notions \(\overline{\M}^{\,\theta}\),
 \(\widetilde{\overline{\M}}\), will be basic in these considerations.
 
 A spatial isomorphism of \(\M_1\) in \(\Hilbert_1\) and \(\M_2\) in
-\(\Hilbert_2\) (cf. Definition A in \S2 in the Introduction) will also carry
+\(\Hilbert_2\) (cf.
+\hyperref[intro:2]{Definition A in \S2 in the Introduction}) will also carry
 \(\M'_1\) into \(\M'_2\). So the spatial type \(\widetilde{\M}\) of a ring
 \(\M\) determines not only the algebraical type \(\overline{\M}\), but also
 the algebraical type \(\overline{\M'}\). Now \(\overline{\M}\) does not
@@ -2870,13 +2900,13 @@ For every factor \(\M\) in the cases (I) and (II),
 
 \begin{proof}
 Due to our assumptions concerning \(\M\), there exists a closed linear set
-\(\mathfrak M\eta\M\) which is not \(=(0)\) and has a finite
+\(\mathfrak M\mathrel{\eta}\M\) which is not \(=(0)\) and has a finite
 \(D_{\M}(\mathfrak M)\). Choose an \(f\in\mathfrak M\), with \(f\ne0\),
 and form \(\mathfrak M_f^{\M'}\), \(\mathfrak M_f^{\M}\) by
 \cite[p.~143, Def.~5.1.1]{ref5}. These are closed linear sets, clearly
-\(\eta\M\) and \(\eta\M'\), respectively, both \(\ne(0)\), and
+\(\mathrel{\eta}\M\) and \(\mathrel{\eta}\M'\), respectively, both \(\ne(0)\), and
 \(\mathfrak M_f^{\M'}\subseteq\mathfrak M\), since
-\(f\in\mathfrak M\eta\M\). Hence \(D_{\M}(\mathfrak M_f^{\M'})\) is
+\(f\in\mathfrak M\mathrel{\eta}\M\). Hence \(D_{\M}(\mathfrak M_f^{\M'})\) is
 finite.
 
 We now normalize \(D_{\M}\) so as to make
@@ -2923,7 +2953,8 @@ Second, they fulfill the requirements of \cite[p.~235, beginning of
 \S4.1]{ref6}, on which the Theorem~VI on p.~239 eod. is based.\footnote{\hypertarget{fn:21}{}The
 theorem referred to is stated for the case \((\mathrm {II}_1)\) only. It holds
 however for the cases \((\mathrm I_n)\), \(n=1,2,\ldots\), too, and with
-precisely the same proof. Our remark in footnote~1 could have been applied to
+precisely the same proof. Our remark in
+\hyperref[fn:1]{footnote~\ref*{fn:1}} could have been applied to
 \cite{ref6} also.} Now this theorem states that the coupled factors to which it
 applies are dual isomorphic.\footnote{\hypertarget{fn:22}{}Called anti-isomorphic, loc. cit.} Again,
 by \cite[p.~188, Lemma~11.4.1]{ref5},
@@ -3031,24 +3062,24 @@ We choose the normalization of \(D_{\M},D_{\M'}\) exactly as in the proof of
 \eqref{eq:3.3.beta} in that proof give
 \[
   \overline{\M_{(\mathfrak M_1)}}
-    =\overline{\M}^{,1/D_{\M}(\Hilbert)},
+ =\overline{\M}^{1/D_{\M}(\Hilbert)},
   \qquad
   \overline{\M'_{(\mathfrak M'_1)}}
-    =\overline{\M'}^{,1/D_{\M'}(\Hilbert)}.
+ =\overline{\M'}^{1/D_{\M'}(\Hilbert)}.
 \]
 
 % Source PDF p. 35 (journal p. 750).
 Then \eqref{eq:3.3.gamma} and \eqref{eq:2.9.alpha} yield
 \[
-  \overline{\M'}^{,1/D_{\M'}(\Hilbert)}
-  =\left(\overline{\M}^{,1/D_{\M}(\Hilbert)}\right)^c
-  =\left(\overline{\M}^{,c}\right)^{1/D_{\M}(\Hilbert)},
+ \overline{\M'}^{1/D_{\M'}(\Hilbert)}
+ =\left(\overline{\M}^{1/D_{\M}(\Hilbert)}\right)^c
+ =\left(\overline{\M}^{c}\right)^{1/D_{\M}(\Hilbert)},
 \]
 or
 \[
   \overline{\M'}
-  =\left(\overline{\M}^{,c}\right)^{D_{\M'}(\Hilbert)/D_{\M}(\Hilbert)}
-  =\left(\overline{\M}^{,c}\right)^\theta,
+ =\left(\overline{\M}^{c}\right)^{D_{\M'}(\Hilbert)/D_{\M}(\Hilbert)}
+ =\left(\overline{\M}^{c}\right)^\theta,
 \]
 as desired.
 \end{proof}
@@ -3071,19 +3102,19 @@ Let \(\M\) and \(\theta\) be as above. Then the spatial type
 \end{lemma}
 
 \begin{proof}
-As in the introduction, \S2, for each \(i=1,2\) a Hilbert space
+As in \hyperref[intro:2]{the introduction, \S2}, for each \(i=1,2\) a Hilbert space
 \(\Hilbert_i\) and an operator ring \(\M_i\) in \(\Hilbert_i\) must be given.
 We assume that both \(\M_i\) are factors in case (I) or (II), and form for each
 \(\M_i\) its \(\theta_i\) in the sense of \defref{def:3.3.1}{3.3.1}. We
 assume further that
 \[
   \overline{\M}_1=\overline{\M}_2,\qquad
-  \overline{\M'_1}=\overline{\M'_2},qquad
+ \overline{\M'_1}=\overline{\M'_2},\qquad
   \theta_1=\theta_2=\theta.
 \]
 Then our task is to establish \(\widetilde{\M}_1=\widetilde{\M}_2\), i.e. to
 find an isomorphic mapping of \(\Hilbert_1\) on \(\Hilbert_2\) (cf. A) in the
-Introduction, \S2) which carries \(\M_1\) into \(\M_2\).
+\hyperref[intro:2]{Introduction, \S2}) which carries \(\M_1\) into \(\M_2\).
 
 In proving this we must distinguish several alternatives corresponding to
 various values of \(\theta\) (the joint value of \(\theta_i\)).
@@ -3106,7 +3137,7 @@ normalizations of both \(D_{\M_i},D_{\M'_i}\) so that
 \(D_{\M_i}(\Hilbert_i)=1/\theta_i=1/\theta\geq1\). Hence 1 belongs to the
 range of \(D_{\M_i}\) (cf. \cite[p.~182, the discussion of the ranges of
 \(\Delta,\Delta_0,\Delta',\Delta'_0\) in Theorem~X and preceding it]{ref5}).
-Choose accordingly a \(\mathfrak K_i\eta\M_i\), with
+Choose accordingly a \(\mathfrak K_i\mathrel{\eta}\M_i\), with
 \(D_{\M_i}(\mathfrak K_i)=1\). There exists furthermore an \(\epsilon\) in
 the range of \(D_{\M_1}\) for which there is a \(p=1,2,\ldots\), with
 \(0<\epsilon\leq1\), \(p\epsilon=1/\theta\).\footnote{The discussion of
@@ -3125,7 +3156,7 @@ Case \((\mathrm {II}_1)\). Choose \(p=1,2,\ldots\) so that
 \(p\epsilon=1/\theta\), and besides \(\epsilon\leq1,1/\theta\). Since
 \(\epsilon\) belongs to the range of \(D_{\M_1}\), it belongs to the range
 of \(D_{\M'_1}\) also.} Choose accordingly a
-\(\mathfrak L_1\eta\M_1\), with
+\(\mathfrak L_1\mathrel{\eta}\M_1\), with
 \(D_{\M_1}(\mathfrak L_1)=\epsilon\),
 \(\mathfrak L_1\subseteq\mathfrak K_1\).
 
@@ -3158,11 +3189,11 @@ of its \(\Hilbert_i,\M_i,\M'_i\). There exists an isomorphic mapping
 \(\mathfrak I\) of \(\mathfrak K_1\) on \(\mathfrak K_2\) which carries
 \(\M_{1(\mathfrak K_1)}\) into \(\M_{2(\mathfrak K_2)}\), and
 \(\M'_{1(\mathfrak K_1)}\) into \(\M'_{2(\mathfrak K_2)}\).
-\(\mathfrak L_1\eta\M_1\),
+\(\mathfrak L_1\mathrel{\eta}\M_1\),
 \(\mathfrak L_1\subseteq\mathfrak K_1\) imply
-\(\mathfrak L_1\eta\M_{1(\mathfrak K_1)}\). So \(\mathfrak I\) carries
-\(\mathfrak L_1\) into an \(\mathfrak L_2\eta\M_{2(\mathfrak K_2)}\). It
-follows that \(\mathfrak L_2\eta\M_2\) and
+\(\mathfrak L_1\mathrel{\eta}\M_{1(\mathfrak K_1)}\). So \(\mathfrak I\) carries
+\(\mathfrak L_1\) into an \(\mathfrak L_2\mathrel{\eta}\M_{2(\mathfrak K_2)}\). It
+follows that \(\mathfrak L_2\mathrel{\eta}\M_2\) and
 \(\mathfrak L_2\subseteq\mathfrak K_2\). Now
 \[
   D_{\M_2}(\mathfrak L_2)
@@ -3264,7 +3295,7 @@ Let \(E_i=P_{\mathfrak L_i}\). We proceed to obtain an infinite number of
 pairwise orthogonal manifolds
 \(\mathfrak N_{i;1},\mathfrak N_{i;2},\ldots\), with
 \(\mathfrak N_{i;1}=\mathfrak L_i\),
-\(\mathfrak N_{i;u}\eta\M_i\),
+\(\mathfrak N_{i;u}\mathrel{\eta}\M_i\),
 \(D_{\M_i}(\mathfrak N_{i;u})=1\), for \(u=1,2,\ldots\), and finally
 \(\Hilbert_i=[\mathfrak N_{i;1},\mathfrak N_{i;2},\ldots]\) (cf.
 \cite[p.~155, Lemma~7.1.2]{ref5}). We obtain the \(W_{i;u,v}\) as in the
@@ -3275,7 +3306,8 @@ As in the discussion of the preceding alternative, we now obtain
 a literal repetition of that argument, the isomorphic mapping
 \(\mathfrak F^*\) of \(\Hilbert_1\) on \(\Hilbert_2\) is seen to carry
 \(\M_1\) into \(\M_2\).\footnote{\hyperlink{fn:24}{Footnote~24} applies to this case too. The
-convergence of \(\sum_{u,v=1}^{\infty}\) in footnote~24 is readily seen to
+convergence of \(\sum_{u,v=1}^{\infty}\) in
+\hyperlink{fn:24}{footnote~24} is readily seen to
 be a consequence of the convergence of the sum
 \(\sum_{u=1}^{\infty}W_{i;u,u}\). And in connection with the latter
 convergence, the remarks made in the proof of (iii) in
@@ -3285,12 +3317,12 @@ Thus the second alternative too is settled.
 
 Third alternative: \(\theta=\infty/\infty\). For both \(i=1,2\), the
 factors \(\M_i,\M'_i\) are in infinite cases. Choose a finite
-\(\mathfrak K_1\eta\M_1\), \(\mathfrak K_1\ne(0)\), and put
+\(\mathfrak K_1\mathrel{\eta}\M_1\), \(\mathfrak K_1\ne(0)\), and put
 \(P_{\mathfrak K_1}=E_1\in\M_1\). Under the (algebraic ring) isomorphism of
 \(\M_1,\M_2\) (due to \(\overline{\M}_1=\overline{\M}_2\)), this projection
 \(E_1\in\M_1\) corresponds to a projection \(E_2\in\M_2\). Let
 \(\mathfrak K_2\) be the range of \(E_2\). Then
-\(\mathfrak K_2\eta\M_2\), \(\mathfrak K_2\ne(0)\). Then the isomorphism of
+\(\mathfrak K_2\mathrel{\eta}\M_2\), \(\mathfrak K_2\ne(0)\). Then the isomorphism of
 \(\M_1,\M_2\) also induces one of
 \(\M_{1(\mathfrak K_1)},\M_{2(\mathfrak K_2)}\), owing to
 \cite[p.~187, Lemma~11.3.3(i)]{ref5}. Thus
@@ -3373,7 +3405,7 @@ what we propose to prove.) The relations \(\alpha\))--\(\delta\)) in
 \lemref{lem:3.3.2}{3.3.2}, which we assumed, imply for the genera
 \begin{equation}
   \widetilde{\overline{\M'}}
-  =\widetilde{\overline{\M}}^{,c}.
+ =\widetilde{\overline{\M}}^{c}.
   \tag{3.3.\ensuremath{\mu}}\label{eq:3.3.mu}
 \end{equation}
 (This cannot be deduced from \lemref{lem:3.3.1}{3.3.1}, since
@@ -3409,9 +3441,9 @@ case. We do this, but we continue using the original notations
 \(\mathfrak R,\R\).
 
 By \lemref{lem:3.3.1}{3.3.1},
-\(\widetilde{\overline{\R'}}=\widetilde{\overline{\R}}^{,c}\). Now
+\(\widetilde{\overline{\R'}}=\widetilde{\overline{\R}}^{c}\). Now
 \(\widetilde{\overline{\R}}=\widetilde{\overline{\M}}\); hence
-\(\widetilde{\overline{\R'}}=\widetilde{\overline{\M}}^{,c}\). By
+\(\widetilde{\overline{\R'}}=\widetilde{\overline{\M}}^{c}\). By
 \eqref{eq:3.3.mu}, this means
 \(\widetilde{\overline{\R'}}=\widetilde{\overline{\M'}}\). Since
 \(\overline{\R},\overline{\R'}\) are both infinite, we have (cf.
@@ -3426,11 +3458,11 @@ genera }\widetilde{\overline{\M}},\widetilde{\overline{\M'}},
 \end{equation}
 
 Choose an \(f_0\ne0\) in \(\mathfrak R\), and form the closed linear sets
-\(\mathfrak M_{f_0}^{\R'}\eta\R\),
-\(\mathfrak M_{f_0}^{\R}\eta\R'\) (cf.
+\(\mathfrak M_{f_0}^{\R'}\mathrel{\eta}\R\),
+\(\mathfrak M_{f_0}^{\R}\mathrel{\eta}\R'\) (cf.
 \cite[p.~143, Def.~5.1.1]{ref5}). We may assume that
 \(\mathfrak M_{f_0}^{\R'}\) is finite dimensional. (Choose a finite
-dimensional \(\mathfrak M\eta\R\), \(\mathfrak M\ne(0)\), and then
+dimensional \(\mathfrak M\mathrel{\eta}\R\), \(\mathfrak M\ne(0)\), and then
 \(f_0\in\mathfrak M\). Clearly
 \(\mathfrak M_{f_0}^{\R'}\subseteq\mathfrak M\).) In this case,
 \(\mathfrak M_{f_0}^{\R}\) is automatically finite dimensional. (Use
@@ -3495,7 +3527,7 @@ in an infinite case. Hence \(\alpha\)), \(\beta\)) in
 \defref{def:3.1.1}{3.1.1},
 \begin{equation}
   \overline{\M}=\overline{\R_{(\mathfrak L)}}
-  \quad\text{for a suitable }\mathfrak L\eta\R.
+ \quad\text{for a suitable }\mathfrak L\mathrel{\eta}\R.
   \tag{3.3.\ensuremath{\rho}}\label{eq:3.3.rho}
 \end{equation}
 If \(\mathfrak L\) is of finite relative dimension, we may assume by
@@ -3503,7 +3535,7 @@ If \(\mathfrak L\) is of finite relative dimension, we may assume by
 \(f_0\). Similarly,
 \begin{equation}
   \overline{\M'}=\overline{\R'_{(\mathfrak L')}}
-  \quad\text{for a suitable }\mathfrak L'\eta\R',\quad
+ \quad\text{for a suitable }\mathfrak L'\mathrel{\eta}\R',\quad
   \mathfrak L'=\mathfrak M_{g_0}^{\R}\text{ when finite}.
   \tag{3.3.\ensuremath{\sigma}}\label{eq:3.3.sigma}
 \end{equation}
@@ -3514,16 +3546,16 @@ corresponding to various values of \(\theta\).
 % Source PDF p. 40 (journal p. 755).
 First alternative: \(0<\theta<\infty\). We have the case \(\delta\)) in
 \lemref{lem:3.3.2}{3.3.2}. Hence
-\(\overline{\M'}=(\overline{\M}^{,c})^\theta\), or by
+\(\overline{\M'}=(\overline{\M}^{c})^\theta\), or by
 \eqref{eq:3.3.rho} and \eqref{eq:3.3.sigma},
 \[
   \overline{\R'_{(\mathfrak L')}}
-  =\left(\overline{\R_{(\mathfrak L)}}^{,c}\right)^\theta.
+ =\left(\overline{\R_{(\mathfrak L)}}^{c}\right)^\theta.
 \]
 Now \eqref{eq:3.3.pi} and (i) in \lemref{lem:3.2.2}{3.2.2} give
 \[
   \overline{\R'_{(\mathfrak L')}}
-  =\left(\overline{\R_{(\mathfrak L)}}^{,c}\right)^\beta,
+ =\left(\overline{\R_{(\mathfrak L)}}^{c}\right)^\beta,
 \]
 where \(\beta=D_{\R'}(\mathfrak L')/D_{\R}(\mathfrak L)\). Hence (ii) in
 \lemref{lem:3.2.2}{3.2.2} gives
@@ -3541,15 +3573,15 @@ assume \(\alpha\leq1\). Hence
 constructability of \(\overline{\R_{(\mathfrak L)}}^{\alpha}\) in the original
 sense of \secref{sec:2.8}{2.8}. Thus there exists an
 \(\mathfrak L''\subseteq\mathfrak L\), with
-\(\mathfrak L''\eta\R_{(\mathfrak L)}\), and
+\(\mathfrak L''\mathrel{\eta}\R_{(\mathfrak L)}\), and
 \[
   \alpha
   =\frac{D_{\R_{(\mathfrak L)}}(\mathfrak L'')}
           {D_{\R_{(\mathfrak L)}}(\mathfrak L)}
   =\frac{D_{\R}(\mathfrak L'')}{D_{\R}(\mathfrak L)}.
 \]
-(\(\mathfrak L''\eta\R_{(\mathfrak L)}\) implies
-\(\mathfrak L''\eta\R\).) The membership
+(\(\mathfrak L''\mathrel{\eta}\R_{(\mathfrak L)}\) implies
+\(\mathfrak L''\mathrel{\eta}\R\).) The membership
 \(\alpha\in\mathfrak G(\overline{\R_{(\mathfrak L)}})\) gives
 \[
   \overline{\R_{(\mathfrak L'')}}
@@ -3749,7 +3781,8 @@ It is clear by (ii) that the ring \(\N\) is generated by the \(W_{u,v}\),
 \noindent\textbf{Remark 2.}\ 
 The two sets (\(\alpha\)), (\(\beta\)) are of course not empty. This follows
 in numerous ways from past results; the equivalent was even stated explicitly
-in the Corollary to \lemref{lem:2.10.3}{2.10.3}.
+in the \hyperref[cor:2.10.3]{Corollary} to
+\lemref{lem:2.10.3}{2.10.3}.
 
 \begin{lemma}\phantomsection\label{lem:4.1.2}
 Let \(\N,\mathbf O\) be two factors in the cases \((\mathrm I_p)\),
@@ -4127,7 +4160,7 @@ partially isometric \(W'\in\M\) with an initial set
 Form the canonical decomposition of \(A=FE\) in the sense of
 \cite[p.~143, Definition~4.4.1]{ref5}:
 \begin{equation}\label{eq:4.2.delta}
-  FE=A=W'B,qquad EF=A^*=BW'^*.
+ FE=A=W'B,\qquad EF=A^*=BW'^*.
   \tag{4.2.\ensuremath{\delta}}
 \end{equation}
 Here \(B\) is Hermitian and definite, \(W'\) is partially isometric with
@@ -4201,7 +4234,7 @@ Now our assumption, \(\Metric{E-F}<w_4\), implies by
 \eqref{eq:4.2.eta} that \(\Metric{(E-F)E}<w_4\) and
 \(\Metric{E(E-F)E}<w_4\), or
 \begin{equation}\label{eq:4.2.mu}
-  \Metric{E-FE}<w_4,qquad \Metric{E-EFE}<w_4.
+ \Metric{E-FE}<w_4,\qquad \Metric{E-EFE}<w_4.
   \tag{4.2.\ensuremath{\mu}}
 \end{equation}
 \eqref{eq:4.2.mu}, \lemref{lem:1.5.3}{1.5.3}, and
@@ -4361,7 +4394,8 @@ which we have specified satisfies the condition of our lemma.
 
 \PaperSection{sec:4.3}{}
 We shall recast the definition of approximate finiteness in a series of steps,
-i.e. Definitions 4.3.1, 4.5.2 and 4.6.1, below:
+i.e. \hyperref[def:4.3.1]{Definitions 4.3.1},
+\hyperref[def:4.5.2]{4.5.2} and \hyperref[def:4.6.1]{4.6.1}, below:
 
 \begin{definition}\phantomsection\label{def:4.3.1}
 \(\M\) is approximately finite (A) if this is true:
@@ -4478,7 +4512,7 @@ there exists a projection \(F\in\N\) with
 and we can even choose \(F_1\gtreqless F\). This latter implies
 \[
   \Metric{F_1-F}
-  =\bigl(\lvert D_{\M}(F_1)-D_{\M}(F)\rvert\bigr)^{1/2}.\footnote{
+  =\bigl(\lvert D_{\M}(F_1)-D_{\M}(F)\rvert\bigr)^{1/2}.\footnote{\hypertarget{fn:35}{}
   For any two projections \(E,F\in\M\) with
   \(E\gtreqless F\),
   \[
@@ -4854,6 +4888,8 @@ system of \(r\)-order matrix units with \(\sum_{o=1}^{r}W^+_{o,o}=1\), and
 
 Put
 \begin{equation}\tag{4.4.\(\delta\)}\label{eq:4.4-delta}
+ % Editorial note E65: the source prints the lower limit as i=0; corrected
+ % to i=1, which is forced by the matrix-unit index range used here.
  W^{++}_{u,v}=\sum_{i=1}^{r/p}
  W^+_{(u-1)r/p+i,(v-1)r/p+i}.
 \end{equation}
@@ -4869,7 +4905,8 @@ that \(V^*V=W^{++}_{1,1}\), \(VV^*=W^0_{1,1}\). Now put
 Clearly \(U\in\mathbf O\). One verifies by direct computation that
 \(U^*U=UU^*=1\), and hence that \(U\) is unitary. Also
 \begin{equation}\tag{4.4.\(\epsilon\)}\label{eq:4.4-epsilon}
- UW^{++}_{u,v}=W^0_{u,v}U,qquad
+ UW^{++}_{u,v}=W^0_{u,v}U
+ \quad\text{or}\quad
  W^0_{u,v}=UW^{++}_{u,v}U^{-1}.
 \end{equation}
 Hence the replacement of \(\R^+\) by \(U\R^+U^{-1}\), and of the system
@@ -5182,7 +5219,7 @@ Thus \eqref{eq:4.5-gamma} holds.
 Sufficiency: Assume that \(\N\) fulfills \eqref{eq:4.5-gamma}. Considering
 \lemref{lem:4.5.5}{4.5.5}, we must prove this:
 \begin{equation}\tag{4.5.\(\delta\)}\label{eq:4.5-delta}
-\begin{minipage}{0.80\linewidth}
+\left\{\begin{minipage}{0.78\linewidth}
 Let a system of mutually orthogonal projections \(\ne0\) from \(\M\) be given:
 \(\bar E_1,\ldots,\bar E_{\bar r}\). For each \(s\), let a system of
 \(q_s\)-order matrix units \(W^s_{u,v}\) from \(\M\) be given, with
@@ -5190,7 +5227,7 @@ Let a system of mutually orthogonal projections \(\ne0\) from \(\M\) be given:
 given \(q\), every \(qD_{\M}(W^s_{1,1})\) be an integer. Then there exists a
 factor \(\mathbf O\subseteq\M\) in a case \((\mathrm I_q)\) such that all
 \(W^s_{u,v}\in\mathbf O\).
-\end{minipage}
+\end{minipage}\right.
 \end{equation}
 We therefore disregard \(\N\) completely and deal with
 \eqref{eq:4.5-delta} alone.
@@ -5200,7 +5237,7 @@ We therefore disregard \(\N\) completely and deal with
 \(W^s_{1,1}\) and \(W^s_{u,u}\) are equivalent in virtue of the partially
 isometric \(W^s_{u,1}\) (cf. \lemref{lem:2.6.1}{2.6.1}). Hence
 \begin{equation}\tag{4.5.\(\epsilon\)}\label{eq:4.5-epsilon}
- D_{\M}(W^s_{u,u})=p_s/q,qquad
+ D_{\M}(W^s_{u,u})=p_s/q,\qquad
  D_{\M}(\bar E_s)=p_sq_s/q.
 \end{equation}
 We may assume that
@@ -5227,24 +5264,30 @@ By \eqref{eq:4.5-epsilon} and \eqref{eq:4.5-zeta},
 As \(\M\) is in case \((\mathrm{II}_1)\), by \lemref{lem:2.6.2}{2.6.2}
 there exists a factor \(\mathbf O^+\subseteq\M\) in the case
 \((\mathrm I_q)\), with its matrix base \(W^+_{o,w}\),
+% Editorial note E68: the source prints q_s as the upper index range here;
+% q is required for the q-order matrix base of O^+.
 \(o,w=1,\ldots,q\). Thus \(W^+_{o,w}\) is a system of \(q\)-order matrix
 units, with \(\sum_{u=1}^{q}W^+_{u,u}=1\).
 
 Put
 \begin{equation}\tag{4.5.\(\theta\)}\label{eq:4.5-theta}
- E^{+s}=\sum_{u=l_{s-1}+1}^{l_s}W^+_{u,u}
+ E_s^+=\sum_{u=l_{s-1}+1}^{l_s}W^+_{u,u}
  \qquad(s=1,\ldots,\bar r),
 \end{equation}
 \begin{equation}\tag{4.5.\(\iota\)}\label{eq:4.5-iota}
- W^{+s}_{u,v}=\sum_{i=1}^{p_s}
- W^+_{l_{s-1}+(u-1)p_s+i,\,l_{s-1}+(v-1)p_s+i}
- \quad\begin{matrix}s=1,\ldots,\bar r,\\u,v=1,\ldots,q_s.\end{matrix}
+ \left\{\begin{aligned}
+ W^{+s}_{u,v}&=\sum_{i=1}^{p_s}
+ W^+_{l_{s-1}+(u-1)p_s+i,\,l_{s-1}+(v-1)p_s+i}\\
+ &\quad\text{for }s=1,\ldots,\bar r,\quad u,v=1,\ldots,q_s.
+ \end{aligned}\right.
+ % Editorial note E69: the source prints u=1 as the lower summation index;
+ % i=1 is required because i is the summation variable in the summand.
 \end{equation}
-Then one verifies by a direct computation that the \(E^{+s}\) are mutually
-orthogonal projections \(\ne0\), with \(\sum_{s=1}^{\bar r}E^{+s}=1\), and
+Then one verifies by a direct computation that the \(E_s^+\) are mutually
+orthogonal projections \(\ne0\), with \(\sum_{s=1}^{\bar r}E_s^+=1\), and
 (using \defref{def:2.6.1}{2.6.1}) that the \(W^{+s}_{u,v}\) form, for any
 fixed \(s\), a system of \(q_s\)-order matrix units with
-\(\sum_{u=1}^{q_s}W^{+s}_{u,u}=E^{+s}\). All these operators are in \(\M\).
+\(\sum_{u=1}^{q_s}W^{+s}_{u,u}=E_s^+\). All these operators are in \(\M\).
 
 The \(W^+_{u,u}\) are equivalent (due to the \(W^+_{u,v}\)), and since
 \(\sum_{u=1}^{q}W^+_{u,u}=1\), \(D_{\M}(W^+_{u,u})=1/q\). Hence by
@@ -5261,7 +5304,8 @@ Now put
 Clearly \(U\in\M\). One verifies, by direct computation,
 \(U^*U=UU^*=1\), which implies that \(U\) is unitary, and similarly that
 \begin{equation}\tag{4.5.\(\kappa\)}\label{eq:4.5-kappa}
- UW^{+s}_{u,v}=W^s_{u,v}U,qquad
+ UW^{+s}_{u,v}=W^s_{u,v}U
+ \quad\text{or}\quad
  W^s_{u,v}=UW^{+s}_{u,v}U^{-1}.
 \end{equation}
 \(\mathbf O=U\mathbf O^+U^{-1}\) is a factor \(\subseteq\M\) and in case
@@ -5399,11 +5443,15 @@ given. Apply \defref{def:4.5.2}{4.5.2} to these \(A_1,\ldots,A_m\) and to
 \begin{equation}\tag{4.6.\(\pi\)}\label{eq:4.6-pi}
  \epsilon'=\left(\frac{\epsilon}{2\operatorname{Max}
  (\OpNorm{B_s};\ s=1,\ldots,m)}\right)^2
+ % Editorial note E66: the source prints the upper index as \bar r;
+ % corrected to m, the range of the given operators B_1,...,B_m.
 \end{equation}
 we apply \lemref{lem:4.6.1}{4.6.1}, thus obtaining
 \(n_5=n_5(\N,\epsilon')\). For any \(q\geq n_5\), we form the projection
 \(E=E(q,\N,\epsilon')\) of \lemref{lem:4.6.1}{4.6.1}.
 
+% Editorial note E70: the source prints E in M' dot N; the proof and
+% equation (4.6.mu) require E in M dot N'.
 Accordingly we have \(E\in\M\mathbin{\cdot}\N'\), and
 \(\N_E=E\mathbin{\cdot}\N=\N E\) is a finite-order ring \(\subseteq\M\)
 along with \(\N\). Thus \(E\bar E_1,\ldots,E\bar E_{\bar r}\) and the
@@ -5422,7 +5470,8 @@ applicable to \(\N_E\), and we obtain a factor \(\mathbf O\) in case
 \end{equation}
 Now (i) in \lemref{lem:4.6.1}{4.6.1} gives
 \(D_{\M}(1-E)<\epsilon'\). Hence
-\(\Metric{1-E}<\epsilon'^{1/2}\), and therefore
+\(\Metric{1-E}<\epsilon'^{1/2}\)\hspace{0.08em}%
+\raisebox{0.45ex}{\textsuperscript{\hyperlink{fn:35}{35}}}, and therefore
 \[
  \Metric{B_s-C_s}=\Metric{B_s(1-E)}
  <\OpNorm{B_s}\epsilon'^{1/2}.
@@ -5437,10 +5486,11 @@ Combining \eqref{eq:4.6-omicron} and \eqref{eq:4.6-tau} gives
 \end{equation}
 Thus we can satisfy \defref{def:4.3.1}{4.3.1} by putting
 \[
- n_1=n_1(A_1,\ldots,A_m;\epsilon)=n_5(\N,\epsilon'),
+ n_1=n_1(A_1,\ldots,A_m;\epsilon)=n_5(\N,\epsilon')
+ {}^{\hyperref[fn:38]{38}},
 \]
 and then, for \(q\geq n_1=n_5\),
-\(\N_1=\N_1(q,A_1,\ldots,A_m,\epsilon)=\mathbf O\).\footnote{Observe
+\(\N_1=\N_1(q,A_1,\ldots,A_m,\epsilon)=\mathbf O\).\footnote{\phantomsection\label{fn:38}Observe
 that the (indirectly defined) expression at the extreme right has the proper
 dependence---i.e. that one indicated by the expression in the middle.} Then our
 \(C_1,\ldots,C_m\) replace the \(B_1,\ldots,B_m\) of
@@ -5473,8 +5523,8 @@ also approximately finite (C).
 \end{lemma}
 
 \begin{proof}
-Immediate by comparison of Definitions \defref{def:4.1.1}{4.1.1} and
-\defref{def:4.6.1}{4.6.1}.
+Immediate by comparison of \hyperref[def:4.1.1]{\mbox{Definitions 4.1.1}}
+and \hyperref[def:4.6.1]{\mbox{4.6.1}}.
 \end{proof}
 
 \begin{lemma}\phantomsection\label{lem:4.6.4}
@@ -5515,8 +5565,8 @@ The implications
  (A)\longrightarrow\text{type }[p_1,p_2,\ldots]
  \longrightarrow(B)\longrightarrow(A)
 \]
-were established in \lemref{lem:4.4.3}{4.4.3},
-\lemref{lem:4.5.1}{4.5.1}, and \lemref{lem:4.6.2}{4.6.2}, respectively.
+were established in Lemmas \hyperref[lem:4.4.3]{4.4.3},
+\hyperref[lem:4.5.1]{4.5.1}, and \hyperref[lem:4.6.2]{4.6.2}, respectively.
 Consequently
 \[
  \text{type }[p_1,p_2,\ldots]\Longleftrightarrow(A)\Longleftrightarrow(B).
@@ -5525,7 +5575,8 @@ Further,
 \[
  \text{type }[p_1,p_2,\ldots]\longrightarrow(C)\longrightarrow(B)
 \]
-by \lemref{lem:4.6.3}{4.6.3}, \lemref{lem:4.6.4}{4.6.4}, respectively;
+by Lemmas \hyperref[lem:4.6.3]{4.6.3},
+\hyperref[lem:4.6.4]{4.6.4}, respectively;
 hence
 \[
  \text{type }[p_1,p_2,\ldots]\Longleftrightarrow(C)
@@ -5535,8 +5586,8 @@ too.
 
 \PaperSection{sec:4.7}{Existence of approximately finite factors.}
 We have not shown so far that approximately finite factors exist at all. In
-\secref{sec:5.2}{\S\S5.2}, \secref{sec:5.3}{5.3} and
-\secref{sec:5.6}{5.6} we shall give various examples of such factors. Actually
+\hyperref[sec:5.2]{\S\S5.2}, \hyperref[sec:5.3]{5.3} and
+\hyperref[sec:5.6]{5.6} we shall give various examples of such factors. Actually
 it is more difficult to show that there are factors in case (II\(_1\)) which
 are not approximately finite.
 
@@ -5798,7 +5849,7 @@ and the definition of \(\overline{\mathbf A}\) is justified.
 
 \PaperSection{sec:4.8}{Algebraical isomorphism invariants of the approximately finite type.}
 The algebraical isomorphism invariants described at the end of
-\secref{sec:2.10}{\S2.10} will now be studied for the algebraical type
+\secref{sec:2.10}{2.10} will now be studied for the algebraical type
 \(\overline{\mathbf A}\). These invariants are
 \begin{enumerate}[label=(\arabic*)]
 \item Validity of \(\overline{\mathbf A}^{c}=\overline{\mathbf A}\),
@@ -5815,7 +5866,7 @@ By \thmref{thm:XIV}{XIV} on one hand and \thmref{thm:III}{III} on the other,
 it suffices to show that a definition of approximate finiteness is unaffected
 by a conjugate or by a dual isomorphism. This is obviously true, even for all
 the definitions given in \thmref{thm:XII}{XII} and for both types of general
-isomorphisms (cf. \(B^*\)) in \secref{sec:2.2}{\S2.2}) mentioned above.
+isomorphisms (cf. \(B^*\)) in \secref{sec:2.2}{2.2}) mentioned above.
 \end{proof}
 
 \begin{lemma}\phantomsection\label{lem:4.8.2}
@@ -5952,11 +6003,13 @@ From this
   ((A^*)_{(\mathfrak M)}A_{(\mathfrak M)})
 \]
 for the same \(A,A_{(\mathfrak M)}\), hence
+\refstepcounter{footnote}
 \begin{equation}\tag{4.8.\(\theta\)}\label{eq:4.8-theta}
- \Metric{A_{(\mathfrak M)}}_{\M_{(\mathfrak M)}}^2
- =\frac1{\alpha^2}\Metric{A}_{\M}^2.
+ \Metric{A_{(\mathfrak M)}}_{\M_{(\mathfrak M)}}
+ =\left(\frac1\alpha\right)^{1/2}\Metric{A}_{\M}.
+ \text{\textsuperscript{\hyperref[fn:41]{\thefootnote}}}
 \end{equation}
-\footnote{As a rule we did not indicate the factor (in a finite case) with
+\footnotetext[\value{footnote}]{\phantomsection\label{fn:41}As a rule we did not indicate the factor (in a finite case) with
 respect to which \(\Metric{A}\) is formed. However, here it is desirable.}
 
 Now put \(B_s=EA_sE\), \(s=1,\ldots,m\). Then we have
@@ -5976,13 +6029,14 @@ Now \(B_s\in\M\) and \(EB_s=B_sE=B_s\) imply
 \(B_{s(\mathfrak M)}\in\M_{(\mathfrak M)}\). We now apply
 \defref{def:4.5.2}{4.5.2} to the approximately finite
 \(\M_{(\mathfrak M)}\) with
-\(B_{1(\mathfrak M)},\ldots,B_{m(\mathfrak M)},\epsilon/2\alpha^2\) in
+\(B_{1(\mathfrak M)},\ldots,B_{m(\mathfrak M)},
+\epsilon/(2\alpha^{1/2})\) in
 place of its \(A_1,\ldots,A_m\) and \(\epsilon\). This yields a ring
 \(\N^+\subseteq\M_{(\mathfrak M)}\) of finite order with
 \(C_1^+,\ldots,C_m^+\in\N^+\) such that
 \begin{equation}\tag{4.8.\(\kappa\)}\label{eq:4.8-kappa}
  \Metric{C_s^+-B_{s(\mathfrak M)}}_{\M_{(\mathfrak M)}}
- <\epsilon/2\alpha^2.
+ <\frac{\epsilon}{2\alpha^{1/2}}.
 \end{equation}
 As \(\N^+\subseteq\M_{(\mathfrak M)}\) we extend every \(C^+\in\N^+\) to a
 \(C\in\M\) with \(EC=CE=C\) and \(C^+=C_{(\mathfrak M)}\).\footnote{
@@ -5995,7 +6049,7 @@ ring \(\N\subseteq\M\) of finite order with
 \[
  \Metric{C_s^+-B_{s(\mathfrak M)}}_{\M_{(\mathfrak M)}}
  =\Metric{(C_s-B_s)_{(\mathfrak M)}}_{\M_{(\mathfrak M)}}
- =\frac1{\alpha^2}\Metric{C_s-B_s}_{\M}
+ =\frac1{\alpha^{1/2}}\Metric{C_s-B_s}_{\M}
 \]
 and so \eqref{eq:4.8-kappa} becomes
 \begin{equation}\tag{4.8.\(\lambda\)}\label{eq:4.8-lambda}
@@ -6035,8 +6089,8 @@ its \(\M\). Consequently \thmref{thm:XIV}{XIV} gives
 \(\theta\in\mathfrak G\) as desired.
 \end{proof}
 
-We restate the results of Lemmas \lemref{lem:4.8.1}{4.8.1} and
-\lemref{lem:4.8.4}{4.8.4}.
+We restate the results of \hyperref[lem:4.8.1]{\mbox{Lemmas 4.8.1}} and
+\hyperref[lem:4.8.4]{\mbox{4.8.4}}.
 
 \begin{theorem}\phantomsection\label{thm:XV}
 The algebraical isomorphism invariants in (1), (2) at the beginning of this
@@ -6056,8 +6110,8 @@ are approximately finite: If all were, then \thmref{thm:XIV}{XIV} would give
 case (II\(_1\)) would exist and thus no invariants for these
 \(\overline{\M}\) would be needed at all.
 
-Now we shall prove in Theorems \thmref{thm:XVI}{XVI},
-\thmref{thm:XVI-prime}{XVI\(^{\prime}\)} that not approximately finite
+Now we shall prove in \hyperref[thm:XVI]{\mbox{Theorems XVI}},
+\hyperref[thm:XVI-prime]{\mbox{XVI\(^{\prime}\)}} that not approximately finite
 \(\overline{\M}\) in the case (II\(_1\)) exist. By making advance use of
 this result we prove:
 
@@ -6097,8 +6151,9 @@ yields that there exists only one type \(\overline{\M}\) in the case
 \(\overline{\M}\) in the case (II\(_1\)) must equal
 \(\overline{\mathbf A}\), i.e. be approximately finite.
 
-However, as stated above, the opposite will be proven in Theorems
-\thmref{thm:XVI}{XVI}, \thmref{thm:XVI-prime}{XVI\(^{\prime}\)}, and we
+However, as stated above, the opposite will be proven in
+\hyperref[thm:XVI]{\mbox{Theorems XVI}},
+\hyperref[thm:XVI-prime]{\mbox{XVI\(^{\prime}\)}}, and we
 propose to use this now. Thus we have a contradiction and the
 proof is completed.
 \end{proof}
@@ -6106,16 +6161,17 @@ proof is completed.
 We conclude with the observation that the existence of not approximately
 finite factors \(\M\) in the case (II\(_1\)) will be established with the help
 of algebraic invariants other than (1), (2) above (cf. the beginning of
-\secref{sec:6.1}{\S6.1}).
+\secref{sec:6.1}{6.1}).
 
 \PaperChapter{5}{chapter:V}{On Various Examples}
 
 \PaperSection{sec:5.1}{General remarks on the examples.}
 We established the existence of approximately finite factors (i.e. of their
-type \(\overline{\mathbf A}\)) by the indirect procedure of Theorems
-\thmref{thm:XIII}{XIII} and \thmref{thm:XIV}{XIV}.\footnote{The decisive
-passage from Theorem \thmref{thm:XIII}{XIII} to Theorem
-\thmref{thm:XIV}{XIV} makes use
+type \(\overline{\mathbf A}\)) by the indirect procedure of
+\hyperref[thm:XIII]{\mbox{Theorems XIII}} and
+\hyperref[thm:XIV]{\mbox{XIV}}.\footnote{The decisive
+passage from \hyperref[thm:XIII]{\mbox{Theorem XIII}} to
+\hyperref[thm:XIV]{\mbox{Theorem XIV}} makes use
 of the existence of factors in the case (II\(_1\)), for instance the examples
 of \cite{ref5}.} It is therefore desirable to furnish examples of
 this by explicit and direct construction and also to investigate those examples
@@ -6238,7 +6294,7 @@ possesses these further properties:
 These being understood, we have
 \begin{equation}\tag{5.2.\(\delta\)}\label{eq:5.2-delta}
  \M=\R(\overline U_{a_0},\overline L_{\chi_{\overline T_i}(x)};
- a_0\in\mathfrak G,\ i=1,2,\ldots).
+ a_0\in\mathfrak G_1,\ i=1,2,\ldots).
 \end{equation}
 
 Consider now the finite groups \(\mathfrak G_1,\mathfrak G_2,\ldots\) of
@@ -6264,7 +6320,8 @@ Thus \(\N_1\subseteq\N_2\subseteq\cdots\) and therefore \(\M\) is
 approximately finite by \defref{def:4.6.1}{4.6.1} if the \(\N_n\) are shown
 to be of finite order.\footnote{This time we really must use
 \defref{def:4.6.1}{4.6.1} and it would not be possible to replace it by
-\defref{def:4.1.1}{4.1.1}---in contrast with footnote~\ref{fn:44}.}
+\defref{def:4.1.1}{4.1.1}---in contrast with
+\hyperref[fn:44]{footnote~\ref*{fn:44}}.}
 
 Now the group character of \(\mathfrak G_n\) and the construction of \(I_n\)
 show that the operators
@@ -6302,7 +6359,7 @@ published elsewhere. We shall not pursue this matter further on this occasion.
 \PaperSection{sec:5.3}{A simplified construction of factors from groups.}
 We proceed to expound the new (simplified) method for the construction of
 examples of factors in the case (II\(_1\)), announced in
-\secref{sec:5.1}{\S5.1}.
+\secref{sec:5.1}{5.1}.
 
 Let a group \(\mathfrak G\) be given. For the moment \(\mathfrak G\) could be
 finite or countably infinite, but we shall be forced to assume the latter at a
@@ -6333,7 +6390,7 @@ Define the operators
 \end{align*}
 These operators are unitary and
 \[
- W=W^{-1},\qquad WU_{a_0}W=V_{a_0}.\footnote{\phantomsection\label{fn:48}One also verifies immediately
+ W=W^{-1},\qquad WU_{a_0}W=V_{a_0}.\footnote{\hypertarget{fn:48}{}One also verifies immediately
 \[
  U_{a_1}U_{a_0}=U_{a_1a_0},\qquad
  V_{a_1}V_{a_0}=V_{a_1a_0},
@@ -6411,7 +6468,7 @@ i.e.
 \]
 The matrix operations for these (complex numerical) matrices are defined in
 the same way as for the (operator) matrices of \(B_p\) in
-\secref{sec:2.4}{\S2.4}.}
+\secref{sec:2.4}{2.4}.}
 
 Then \(A\in I'\) if and only if \(\alpha_{a,b}\) has the form
 \(\alpha_{a,b}=\eta_{ab^{-1}}\) and \(A\in J'\) if and only if
@@ -6476,7 +6533,8 @@ and hence \(J\subseteq I'\). As \(I'\) is a ring, this implies
 If \(A\in I'\), \(B\in J'\), then
 \(A\sim\{\eta_{ab^{-1}}\}\), \(B\sim\{\theta_{a^{-1}b}\}\). Direct
 computation shows that \(AB=BA\) (use the matrix computation rules as
-mentioned at the end of footnote~\ref{fn:49}). Thus \(A\in J''\) and hence
+mentioned at the end of \hyperref[fn:49]{footnote~\ref*{fn:49}}). Thus
+\(A\in J''\) and hence
 \(I'\subseteq J''\). Since \(1\in J\), \(J''=\R(J)\) (cf.
 \cite{ref2}, p.~397). Therefore \(I'\subseteq\R(J)\).
 
@@ -6566,8 +6624,8 @@ not a factor.
 This last result forces us to assume that \(\mathfrak G\) is infinite, since
 even its classes \(\mathfrak L_a\), \(a\ne1\), are to be infinite. Groups
 \(\mathfrak G\) with this property are easy to construct. We shall give some
-examples at the end of \secref{sec:5.5}{\S5.5} and in
-\secref{sec:5.6}{\S5.6}. Clearly no such group can be abelian.
+examples at the end of \secref{sec:5.5}{5.5} and in
+\secref{sec:5.6}{5.6}. Clearly no such group can be abelian.
 
 There is, however, another circumstance worth pointing out before we go
 further. Our construction is obviously nothing but an extension of
@@ -6579,7 +6637,7 @@ peculiarities of our present discussion. In those cases the infinite group
 behaves almost entirely like the finite group.} The unitary space \(\Hilbert\)
 and its operators are only technical devices to take care of convergence
 difficulties. Both the \(U_a\) and \(V_a\) furnish representations of
-\(\mathfrak G\) (cf. footnote~\ref{fn:48}), and so both \(\M=\R(I)\) and
+\(\mathfrak G\) (cf. \hyperlink{fn:48}{footnote~48}), and so both \(\M=\R(I)\) and
 \(\M'=\R(J)\) are the equivalents of Frobenius's group numbers. But in the
 case of finite \(\mathfrak G\) this procedure does not give a factor. The group
 numbers notoriously possess other central elements than the \(\alpha\cdot1\).
@@ -6628,7 +6686,8 @@ If \(A\sim\{\alpha_{a,b}\}=\{\eta_{a^{-1}b}\}\),
 \(B\sim\{\beta_{a,b}\}=\{\theta_{a^{-1}b}\}\), then clearly
 \(AB\sim\{\gamma_{a,b}\}=\{\zeta_{a^{-1}b}\}\), where
 \(\zeta_a=\sum_{c\in\mathfrak G}\eta_c\theta_{ac^{-1}}\). (Use the matrix
-computation rules indicated at the end of footnote~\ref{fn:49}.) Hence
+computation rules indicated at the end of
+\hyperref[fn:49]{footnote~\ref*{fn:49}}.) Hence
 \(T'(AB)=\zeta_1=\sum_{c\in\mathfrak G}\eta_c\theta_{c^{-1}}\). This
 expression is symmetric in \(\eta_a\) and \(\theta_a\). Hence
 \begin{equation}\tag{5.3.\(\mu\)}\label{eq:5.3-mu}
@@ -6744,7 +6803,7 @@ Since this holds for any enumeration \(a^{(1)},a^{(2)},\ldots\) of
 \end{proof}
 
 \PaperSection{sec:5.4}{Relation with the earlier construction.}
-As we pointed out, the construction of \secref{sec:5.3}{\S5.3} is closely
+As we pointed out, the construction of \secref{sec:5.3}{5.3} is closely
 related to that of \cite{ref5}, pp.~192--209, Part IV. The group
 \(\mathfrak G\) plays the same role in both cases, and the difference consists
 in the disappearance of the space \(S\).
@@ -6760,10 +6819,13 @@ Now the difference between our two constructions can be expressed as follows:
 In \cite{ref5}, \(\mathfrak G\) was entirely unrestricted, but \(S\)
 had to obey (among other things) (iii) in Definition 12.1.5, loc. cit., p.~195:
 for \(a\ne1\) and \(x\in S\) always \(xa\ne x\).\footnote{Except for an
-\(x\) set of measure zero.} In \secref{sec:5.3}{\S5.3}, \(\mathfrak G\) had
+\(x\) set of measure zero.} In \secref{sec:5.3}{5.3}, \(\mathfrak G\) had
 to fulfill (i) of \lemref{lem:5.3.4}{5.3.4}, but the (iii) referred to was most
-flagrantly violated.\footnote{We have \(x_0a=x_0\) and
-\(\mu((x_0))=\mu(S)\ne0\).}\footnote{There is no difference between the two
+flagrantly violated.\textsuperscript{\hyperref[fn:56]{56},\,\hyperref[fn:57]{57}}
+\addtocounter{footnote}{2}
+\footnotetext[56]{\phantomsection\label{fn:56}We have \(x_0a=x_0\) and
+\(\mu((x_0))=\mu(S)\ne0\).}
+\footnotetext[57]{\phantomsection\label{fn:57}There is no difference between the two
 constructions as regards the other conditions of Definition 12.1.5, loc. cit.,
 p.~195. In particular, \(\mathfrak G\) is ergodic in our present construction,
 since \(S=(x_0)\) is a one-element set.} Thus our two procedures correspond
@@ -6924,11 +6986,14 @@ Before we go on we form the following system of functions in \(\Hilbert_S\):
  \quad
  (\bar x=[\bar\alpha_a;a\in\mathfrak G]\in\mathfrak S,
  \ x=[\alpha_a;a\in\mathfrak G]\in S).
+ \text{\textsuperscript{\hyperref[fn:62]{62}}}
 \]
 % Editorial note E40: The printed source jumps directly from footnote 60 to
 % footnote 62; the counter is advanced here to preserve the source numbering.
 \addtocounter{footnote}{1}
-\footnote{Owing to \(\bar x=[\bar\alpha_a;a\in\mathfrak G]\in\mathfrak S\)
+\refstepcounter{footnote}
+\footnotetext[62]{\phantomsection\label{fn:62}Owing to
+\(\bar x=[\bar\alpha_a;a\in\mathfrak G]\in\mathfrak S\)
 we have \(\bar\alpha_a\ne0\) only for a finite set of \(a\)'s. Hence the sum
 \(\sum_{a\in\mathfrak G}\bar\alpha_a\alpha_a\) is really finite.}
 It is easy to verify that these functions (for all \(\bar x\in\mathfrak S\))
@@ -6974,7 +7039,7 @@ write:
 \]
 Now consider any \(f\in\Hilbert_S\) with \(U_{a_0}f=f\) for all
 \(a_0\in\mathfrak G\). Use the orthogonal expansion
-\(f(x)=\sum_{\bar x\in\mathfrak S}\lambda_{\bar x}omega_{\bar x}(x)\).
+\(f(x)=\sum_{\bar x\in\mathfrak S}\lambda_{\bar x}\omega_{\bar x}(x)\).
 Then the above formula gives
 \[
  f=\sum_{\bar x\in\mathfrak S}\lambda_{\bar x}\omega_{\bar x},
@@ -6991,7 +7056,7 @@ this implies that \(\lambda_{\bar x}=0\) if there are infinitely many distinct
 \(\bar x\in\mathfrak S\), \(\bar x\ne0\).\footnote{\phantomsection\label{fn:65}We prove this as follows:
 Put \(\bar x=[\bar\alpha_a;a\in\mathfrak G]\). Since \(\bar x\ne0\) there
 is an \(a^*\) such that \(\bar\alpha_{a^*}\ne0\). Now as in
-footnote~\ref{fn:60}, we
+\hyperref[fn:60]{footnote~\ref*{fn:60}}, we
 can construct an infinite sequence of the \(a\)'s \(\in\mathfrak G\) such
 that \(a_1a^*,a_2a^*,\ldots\) are all different. Then
 \(\bar x a_i^{-1}=[\bar\alpha_{a_i^{-1}a};a\in\mathfrak G]\) has for its
@@ -7048,7 +7113,7 @@ Hence \eqref{eq:5.5-epsilon} becomes
  =F_{\{\bar y,\bar b\}\{\bar x,\bar a\}^{-1}}(x,a).
 \end{equation}
 
-(V) Apply the construction of \secref{sec:5.3}{\S5.3} to the group
+(V) Apply the construction of \secref{sec:5.3}{5.3} to the group
 \(\{\mathfrak S,\mathfrak G\}\) of \eqref{eq:5.5-zeta} above, instead of
 its \(\mathfrak G\). This is possible since
 \(\{\mathfrak S,\mathfrak G\}\) fulfills (i) in
@@ -7061,7 +7126,8 @@ its \(\mathfrak G\). This is possible since
  =\{\bar x\bar b,\bar b^{-1}\bar a\bar b\}.
 \]
 There are infinitely many distinct \(\bar x\bar b\) for
-\(\bar b\in\mathfrak G\). Cf. footnote~\ref{fn:65}. Thus our statement is true for
+\(\bar b\in\mathfrak G\). Cf.
+\hyperref[fn:65]{footnote~\ref*{fn:65}}. Thus our statement is true for
 \(\bar x\ne0\). If however \(\bar x=0\), then necessarily \(\bar a\ne1\).
 Form
 \[
@@ -7107,7 +7173,7 @@ Given any countably infinite group \(\mathfrak G\), define
 \eqref{eq:5.5-zeta} (IV) above. Then the construction of
 \cite{ref5}, pp.~192--209, Part IV, can be applied to
 \(\mathfrak G\) and \(S\), and our construction of
-\secref{sec:5.3}{\S5.3} to \(\{\mathfrak S,\mathfrak G\}\) (in place of its
+\secref{sec:5.3}{5.3} to \(\{\mathfrak S,\mathfrak G\}\) (in place of its
 \(\mathfrak G\)).
 
 These two constructions produce spatially isomorphic factors \(\M\).
@@ -7115,7 +7181,7 @@ These two constructions produce spatially isomorphic factors \(\M\).
 
 The mappings
 \begin{equation}\tag{5.5.\(\kappa\)}\label{eq:5.5-kappa}
- x\{\bar y,\bar b\}=x\bar b\oplus\bar y
+ x\{\bar y,\bar b\}=x\bar b+\bar y
 \end{equation}
 provide a convenient representation of the group
 \(\{\mathfrak S,\mathfrak G\}\) of \eqref{eq:5.5-zeta} in (V). If we
@@ -7131,7 +7197,7 @@ specify \(x\in S\), then \eqref{eq:5.5-kappa} appears as a permutation of
 Our above result can also be interpreted in this way:
 
 We start with an arbitrary (countably infinite) group \(\mathfrak G\) and
-should like to apply the construction of \secref{sec:5.3}{\S5.3}. Since
+should like to apply the construction of \secref{sec:5.3}{5.3}. Since
 \(\mathfrak G\) may not fulfill the condition (i) of
 \lemref{lem:5.3.4}{5.3.4}, this cannot always be done directly. We therefore
 propose to expand \(\mathfrak G\) to a group \(\mathfrak G_I\) which fulfills
@@ -7140,19 +7206,20 @@ mechanism to do just that. This has the further interesting consequence that
 within \(\M\), the set of group numbers for any \(\mathfrak G\), the metric
 closure of a subalgebra is equivalent to the topological closure for any of the
 ring topologies. For we extend \(\M\) to \(\M_I\) as above, and
-\thmref{thm:I}{I} (of \secref{sec:1.6}{\S1.6} above) shows that our statement
+\thmref{thm:I}{I} (of \secref{sec:1.6}{1.6} above) shows that our statement
 is true in the extended space \(\Hilbert_I\). Since any subalgebra of \(\M\)
 will be reduced by the original space \(\Hilbert\), topological closure in
 \(\Hilbert_I\) will yield topological closure. Similarly the discussion of
-Chapter I may be carried through on the assumption that \(\M\) is a group
+\chapterref{chapter:I}{I} may be carried through on the assumption that
+\(\M\) is a group
 algebra.
 
 \PaperSection{sec:5.6}{Approximate finiteness of the new examples.}
 The analogue of \lemref{lem:5.2.2}{5.2.2} is true for the construction of
-\secref{sec:5.3}{\S5.3} too, and this time it is even easier to prove.
+\secref{sec:5.3}{5.3} too, and this time it is even easier to prove.
 
 \begin{lemma}\phantomsection\label{lem:5.6.1}
-The ring \(\M\) of \secref{sec:5.3}{\S5.3} is approximately finite if
+The ring \(\M\) of \secref{sec:5.3}{5.3} is approximately finite if
 \(\mathfrak G\) possesses the property (i) of \lemref{lem:5.2.2}{5.2.2}
 (besides the property (i) of \lemref{lem:5.3.4}{5.3.4}).
 \end{lemma}
@@ -7226,14 +7293,14 @@ those permutations which move no number other than \(1,\ldots,n\). Then
 \(\mathfrak G_n\) is a finite subset of \(\mathfrak G\).
 \end{proof}
 
-The analysis of the invariants (1), (2) of \secref{sec:4.8}{\S4.8}, gives no
+The analysis of the invariants (1), (2) of \secref{sec:4.8}{4.8}, gives no
 new information. As to (1), all examples of \cite{ref5} as well as
-those of \secref{sec:5.3}{\S5.3} have
+those of \secref{sec:5.3}{5.3} have
 \(\overline{\M}^{c}=\overline{\M}\). Indeed: Neither of these definitions
 ever mentions any specific non-real (complex) number. Hence
 \(\Hilbert_c,\M_c\) coincide with \(\Hilbert,\M\), so that
 \(\overline{\M}^{c}=\overline{\M_c}=\overline{\M}\) (cf.
-\secref{sec:2.3}{\S2.3}).
+\secref{sec:2.3}{2.3}).
 
 Thus we possess no examples of a factor \(\M\) in the case (II\(_1\)) with
 \(\overline{\M}^{c}\ne\overline{\M}\). Possibly a generalization of the
@@ -7259,9 +7326,11 @@ in order to achieve this aim.
 
 Throughout what follows, $\M$ is again a factor in case $(\mathrm{II}_1)$.
 
+\pagebreak[4]
 \begin{definition}\phantomsection\label{def:6.1.1}
 $\M$ has the property $\Gamma$ if this is true:
 
+\begin{samepage}
 Given any system $A_1,\ldots,A_m\in\M$ and any $\epsilon>0$ there exists a
 unitary
 \[
@@ -7277,8 +7346,12 @@ and
 \[
   \Metric{U^{-1}A_hU-A_h}<\epsilon
   \qquad\text{for }h=1,\ldots,m.
+  \text{\textsuperscript{\hyperref[fn:68]{68},\,\hyperref[fn:69]{69}}}
 \]
-\footnote{The requirement $\operatorname{Tr}_{\M}(U)=0$ is necessary,
+\end{samepage}
+\addtocounter{footnote}{2}
+\footnotetext[68]{\phantomsection\label{fn:68}The requirement
+$\operatorname{Tr}_{\M}(U)=0$ is necessary,
 since otherwise we could choose $U=1$. Outright commutativity of $U$ with
 $A_1,\ldots,A_m$ (instead of the last inequality) would not do for the
 following reason: If $\M=\mathbf R(A_1,\ldots,A_m)$ then this commutativity
@@ -7287,8 +7360,9 @@ $\operatorname{Tr}_{\M}(U)=0$ this would mean $U=0$, contradicting the
 unitarity of $U$. Hence no $\M=\mathbf R(A_1,\ldots,A_m)$ could then have
 this property. Now it can be shown that an approximately finite
 $\M=\mathbf R(A_1,A_2)$ for two suitable $A_1,A_2$. Hence an approximately
-finite $\M$ would not have this property---but we need Lemma 6.1.2.}
-\footnote{This property could be further subdivided, according to the values
+finite $\M$ would not have this property---but we need
+\lemref{lem:6.1.2}{6.1.2}.}
+\footnotetext[69]{\phantomsection\label{fn:69}This property could be further subdivided, according to the values
 of $m$ and of expressions like
 $\epsilon/\operatorname{Max}(\OpNorm{A_1},\ldots,\OpNorm{A_m})$. We could
 also require $A_1,\ldots,A_m$ to be unitary, etc. For our present purpose,
@@ -7326,7 +7400,7 @@ Now apply our assumption (i) to these $a^{(1)},\ldots,a^{(n)}$, obtaining a
 $c_0\in\mathfrak G$, $c_0\ne1$, which commutes with them.
 
 Then $U_{c_0}$ and $U_{a^{(i)}}$ commute
-(cf. \hyperref[fn:48]{footnote~48}) and so
+(cf. \hyperlink{fn:48}{footnote~48}) and so
 \[
   U_{c_0}^{-1}\left(A_h-\sum_{i=1}^{n}\zeta_{h,i}U_{a^{(i)}}\right)U_{c_0}
   =U_{c_0}^{-1}A_hU_{c_0}-\sum_{i=1}^{n}\zeta_{h,i}U_{a^{(i)}}.
@@ -7369,7 +7443,7 @@ Approximate finiteness implies the Property $\Gamma$.
 \end{lemma}
 
 \begin{proof}\footnote{There exists also a relatively simple direct proof,
-based on Def. 4.1.1.}
+based on \hyperref[def:4.1.1]{Def.~4.1.1}.}
 It suffices to find a group $\mathfrak G$ which fulfills the condition (i) in
 \lemref{lem:5.3.4}{5.3.4} (so that the $\M$ of \secref{sec:5.3}{5.3} is a
 factor, of course, in case $(\mathrm{II}_1)$), (i) in
@@ -7396,7 +7470,7 @@ given, which possesses this property:
 % Editorial note E63: corrected the source's ``Hausdorf's'' to ``Hausdorff's''.
 \footnote{This proof copies to a certain
 extent Hausdorff's famous $1/2-1/3$ division of the sphere. In this connection
-the use of the free group in Lemma 6.2.2 should be noted.}
+the use of the free group in \lemref{lem:6.2.2}{6.2.2} should be noted.}
 
 \begin{enumerate}[label=(i),leftmargin=3em]
 \item There exists a set $\mathfrak F\subseteq\mathfrak G$ with these
@@ -7610,7 +7684,8 @@ minimum length end with a $c_1^n$, $n=\pm1,\pm2,\ldots$. Then (i$_1$) and
 verified.
 \end{proof}
 
-Combining \lemref{lem:6.2.2}{6.2.2} with Corollary 1 to
+Combining \lemref{lem:6.2.2}{6.2.2} with
+\hyperref[cor:6.2.1]{Corollary 1} to
 \lemref{lem:6.2.1}{6.2.1} gives
 \begin{theorem}\phantomsection\label{thm:XVI}
 There exist not approximately finite factors $\M$ in the case
@@ -7634,7 +7709,7 @@ product of $\mathfrak F_1$ and $\mathfrak F_2$ and that $\mathfrak F_1$
 contains at least two elements and $\mathfrak F_2$ contains at least three.
 Then $\mathfrak G$ satisfies condition (i) of \lemref{lem:5.3.4}{5.3.4},
 condition (i$_1$) of \lemref{lem:6.2.1}{6.2.1} and condition (i$_2'$) of
-Corollary 2 of that lemma (for the same $\mathfrak F$).
+\hyperref[cor:6.2.2]{Corollary 2} of that lemma (for the same $\mathfrak F$).
 \end{lemma}
 
 \begin{proof}
@@ -7681,8 +7756,9 @@ $\mathfrak L_a$ is infinite.
 
 Thus we have established (i) of \lemref{lem:5.3.4}{5.3.4}.
 
-To establish (i$_1$) of \lemref{lem:6.2.1}{6.2.1} and (i$_2'$) of Corollary
-2 of that lemma for the same $\mathfrak F$, we define $\mathfrak F$ as the
+To establish (i$_1$) of \lemref{lem:6.2.1}{6.2.1} and (i$_2'$) of
+\hyperref[cor:6.2.2]{Corollary 2} of that lemma for the same $\mathfrak F$,
+we define $\mathfrak F$ as the
 set of $a$'s, $a\ne1$, having a factorization $a_1\cdots a_p$ in which $a_p$
 is in $\mathfrak F_1$.
 
@@ -7710,7 +7786,8 @@ $\mathfrak F+c_1^{-1}\mathfrak F c_1$. We can now conclude
 \[
   \mathfrak F+c_1^{-1}\mathfrak F c_1=\mathfrak G-(1).
 \]
-One can establish (i$_2'$) of Corollary 2 of \lemref{lem:6.2.1}{6.2.1} in
+One can establish (i$_2'$) of \hyperref[cor:6.2.2]{Corollary 2} of
+\lemref{lem:6.2.1}{6.2.1} in
 a similar (indeed easier) way.
 
 Thus our Lemma has been proven.
@@ -7733,7 +7810,8 @@ The restriction that $\mathfrak F_2$ contains at least 3 members rules out the
 case in which $\mathfrak F_1$ and $\mathfrak F_2$ are both groups of order 2,
 i.e. $\mathfrak F_1$ consists of $(1,a)$ and $\mathfrak F_2$ consists of
 $(1,b)$. Here of course we do not have the (i$_2$) of
-\lemref{lem:6.2.1}{6.2.1} or the (i$_2'$) of its second corollary. However,
+\lemref{lem:6.2.1}{6.2.1} or the (i$_2'$) of
+\hyperref[cor:6.2.2]{its second corollary}. However,
 condition (i) of \lemref{lem:5.3.4}{5.3.4} also fails. For the element $ab$
 has only $ba$ and itself as conjugates, i.e. $\mathfrak L_{ab}=(ab,ba)$. Thus
 $\mathfrak L_{ab}$ is finite. Hence by \lemref{lem:5.3.4}{5.3.4}, the $\M$
@@ -7759,7 +7837,7 @@ $\mathfrak L_a$ infinite for $\mathfrak G$ itself, and thus (i) of
 \lemref{lem:5.3.4}{5.3.4} holds.
 \end{proof}
 
-\phantomsection\label{appendix}
+\MvNTargetLabel{appendix}{Appendix}{Appendix}
 \pdfbookmark[1]{Appendix}{bookmark.appendix}
 \begin{center}\bfseries\MakeUppercase{Appendix}\footnote{This example was
 originally part of a later investigation by the second-named author, but it
@@ -7819,8 +7897,9 @@ $\mathfrak H_{r+n}$ is isomorphic to $\mathfrak H_r$.
 \item $\mathfrak G_r$ has property (i) of \lemref{lem:5.3.4}{5.3.4}.
 \item $\mathfrak G_r$ has property (i) of \lemref{lem:6.1.1}{6.1.1}.
 \item Assume $r\in A$. Then $\mathfrak H_r$ satisfies the
-hypotheses of \lemref{lem:6.3.1}{6.3.1}, and consequently it satisfies
-(i$_1$) and (i$_2'$) of \lemref{lem:6.2.1}{6.2.1} and its Corollary 2 and (i)
+  hypotheses of \lemref{lem:6.3.1}{6.3.1}, and consequently it satisfies
+  (i$_1$) and (i$_2'$) of \lemref{lem:6.2.1}{6.2.1} and
+  \hyperref[cor:6.2.2]{its Corollary 2} and (i)
 in \lemref{lem:5.3.4}{5.3.4}.
 \end{enumerate}
 \end{namedstatement}
@@ -7861,7 +7940,8 @@ infinite order and the first commutation rule shows that
 $\mathfrak H_r$ is the free product of $\mathfrak G_r$ and
 $\mathfrak F_2$. These show that the hypotheses of
 \lemref{lem:6.3.1}{6.3.1} are fulfilled. That lemma itself now shows that
-(i$_1$) and (i$_2'$) of \lemref{lem:6.2.1}{6.2.1} and its Corollary 2 are
+(i$_1$) and (i$_2'$) of \lemref{lem:6.2.1}{6.2.1} and
+\hyperref[cor:6.2.2]{its Corollary 2} are
 satisfied, and (i) in \lemref{lem:5.3.4}{5.3.4}.
 \end{proof}
 
@@ -7892,7 +7972,7 @@ $|Ag|>\lambda|g|$. Furthermore $g\in\mathfrak M_f^{\M}=\mathfrak M$. Thus if
 $A$ is unbounded, it is unbounded on $\mathfrak M$.
 \end{proof}
 
-\begin{corollary}\phantomsection\label{cor:A.2}
+\begin{corollary}\MvNTargetLabel{cor:A.2}{}{Corollary}
 If $A\in\M$ the bound of $A$ on $\mathfrak M$ is the same as the bound of
 $A$ $(\OpNorm{A})$.
 \end{corollary}
@@ -7903,7 +7983,7 @@ show that it can't be less one uses an argument similar to the above.
 
 We wish to apply \lemref{lem:A.2}{A.2} to the case in which $\M$ is a subring
 of the set of group numbers in the sense of \secref{sec:5.3}{5.3}. We may do
-this by taking $f=\varphi_1$ in the sense of (5.3.$\alpha$). For if $A\in\M$,
+this by taking $f=\varphi_1$ in the sense of \eqref{eq:5.3-alpha}. For if $A\in\M$,
 we have that $A\sim\{\eta_{a^{-1}b}\}$ by \lemref{lem:5.3.2}{5.3.2} and
 \[
   A\varphi_1=\sum_{c\in\mathfrak G}\eta_c\varphi_c
@@ -7915,14 +7995,15 @@ It is also useful to notice in applying this to group numbers that if we have
 any sequence $\{\eta_c\}$ with $\sum_{c\in\mathfrak G}|\eta_c|^2<\infty$ then
 the matrix $\{\eta_{a^{-1}b}\}$ determines an $A$ with a closure and domain
 dense. For it is clear from \eqref{eq:49-gamma} that $A$ is defined for all
-$\varphi_a$, $a\in\mathfrak G$ of (5.3.$\alpha$) and hence for the linear
+$\varphi_a$, $a\in\mathfrak G$ of \eqref{eq:5.3-alpha} and hence for the linear
 combinations of these. Since the latter are dense, $A$ has domain dense.
 Furthermore the matrix $\{\overline{\eta}_{b^{-1}a}\}$ is adjoint to it. Since
 this latter also has domain dense, $A$ must have a closure. We shall consider
 $A$ to be the least closed transformation, with matrix
 $\{\eta_{a^{-1}b}\}$. On its domain, $A$ is the limit of finite linear
-combinations of the $U_c$ and hence is $\mathbin{\eta}\M$. Cf. Lemmas 5.3.1,
-5.3.2 and 5.3.6.
+combinations of the $U_c$ and hence is $\mathbin{\eta}\M$. Cf.
+\hyperref[lem:5.3.1]{Lemmas 5.3.1},
+\hyperref[lem:5.3.2]{5.3.2} and \hyperref[lem:5.3.6]{5.3.6}.
 
 \begin{namedstatement}{Lemma}{A.3}\phantomsection\label{lem:A.3}
 Suppose $\mathfrak G^0$ and $\mathfrak G^{00}$ are two groups and $\M^0$ and
@@ -7942,8 +8023,8 @@ set of $A$'s is metrically closed, and as we mentioned at the end of
 closure. Thus $\M^{0+}$ is a ring, and indeed is the ring determined by the
 $U_c$, $c\in\mathfrak G^0$.
 
-Let $\mathfrak M^0$ be the set $\subseteq\Hilbert^{00}$ determined by the
-$\varphi_a$ with $a\in\mathfrak G^0$ (cf. (5.3.$\alpha$)). It is clear that we
+Let $\mathfrak M^0$ be the set $\subseteq\Hilbert^{0,0}$ determined by the
+$\varphi_a$ with $a\in\mathfrak G^0$ (cf. \eqref{eq:5.3-alpha}). It is clear that we
 can identify this with $\Hilbert^0$, the space on which we have $\M^0$
 defined. Now for every $A\in\M^0$ we have a sequence
 $\{\zeta_c;c\in\mathfrak G^0\}$ and corresponding matrix
@@ -8000,7 +8081,8 @@ isomorphic to a subring of $\M_1$.
 Ad (iv). This is implied by \lemref{lem:A.1}{A.1} (v) and
 \lemref{lem:6.1.1}{6.1.1}.
 
-Ad (v). This is implied by \lemref{lem:A.1}{A.1} (vi) and Corollary 2 of
+Ad (v). This is implied by \lemref{lem:A.1}{A.1} (vi) and
+\hyperref[cor:6.2.2]{Corollary 2} of
 \lemref{lem:6.2.1}{6.2.1}.
 
 Since property $\Gamma$ is an isomorphism invariant, (iv) and (v) imply that
