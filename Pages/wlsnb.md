@@ -11,7 +11,7 @@ https://paoluz.com/
 
 ------------------------------------------
 
-[Pdf阅读chrome插件](https://binguimath.github.io/Pages/pdf-reading/pdf-reading-companion-0.3.4.zip)
+[Pdf阅读chrome插件](https://binguimath.github.io/Pages/pdf-reading/pdf-reading-companion.zip) 解压后放进一个单独的文件夹内，并让chrome加载该文件夹（管理扩展程序→加载未打包的扩展程序）
 
 
 
