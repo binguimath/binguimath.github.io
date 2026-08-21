@@ -95,21 +95,32 @@
 }
 \newcommand{\literature}[2]{\href{#1}{#2}}
 \newcounter{translatornote}
-\makeatletter
-\newcommand{\translatornotealpha}{%
-  \ifnum\value{translatornote}>26
-    a\@alph{\numexpr\value{translatornote}-26\relax}%
-  \else
-    \@alph{\value{translatornote}}%
-  \fi
-}
-\makeatother
+\newcommand{\translatornotelabel}{T\arabic{translatornote}}
 \newcommand{\translatornote}[1]{%
   \stepcounter{translatornote}%
   \begingroup
     \edef\savedfootnotenumber{\number\value{footnote}}%
-    \renewcommand{\thefootnote}{\translatornotealpha}%
+    \renewcommand{\thefootnote}{\translatornotelabel}%
     \footnote{\emph{Translator's note:} #1}%
+    \setcounter{footnote}{\savedfootnotenumber}%
+  \endgroup
+}
+\newcommand{\translatornotemark}{%
+  \stepcounter{translatornote}%
+  \begingroup
+    \edef\savedfootnotenumber{\number\value{footnote}}%
+    \renewcommand{\thefootnote}{\translatornotelabel}%
+    \footnotemark
+    \xdef\pendingtranslatorfootnotenumber{\number\value{footnote}}%
+    \setcounter{footnote}{\savedfootnotenumber}%
+  \endgroup
+}
+\newcommand{\translatornotetext}[1]{%
+  \begingroup
+    \edef\savedfootnotenumber{\number\value{footnote}}%
+    \setcounter{footnote}{\pendingtranslatorfootnotenumber}%
+    \renewcommand{\thefootnote}{\translatornotelabel}%
+    \footnotetext{\emph{Translator's note:} #1}%
     \setcounter{footnote}{\savedfootnotenumber}%
   \endgroup
 }
@@ -466,7 +477,9 @@ When there is only one root of least absolute value and this root is simple, it 
 \[
   R(x)=\frac1{c_0+c_1x+\cdots+c_mx^m}
 \]
-has the power-series expansion
+has the power-series expansion\translatornote{The printed series has \(x^4\)
+in the term involving \(\Delta_3\). The power \(x^3\), required by the
+power-series expansion, is used here.}
 \[
   R(x)=\frac1{c_0}-\frac{\Delta_1}{c_0^2}x
        +\frac{\Delta_2}{c_0^3}x^2
@@ -942,7 +955,7 @@ Replace in our array the elements of column $k$ by quantities $c_i$, assumed bou
 \]
 Thus the determinant $\Delta^{(k)}=\lim\Delta_n^{(k)}$ converges and $|\Delta^{(k)}|\leq C\Pi$.
 
-In particular, put $c_i=1$ and $c_j=0$ for $j\ne i$; $\Delta^{(k)}$ then becomes what is called the minor
+In particular, put $c_i=1$ and $c_j=0$ for $j\ne i$; $\Delta_n^{(k)}$ then becomes what is called the minor
 % [Source printed page 26]
 $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of the determinant $\Delta_n$. Similarly, we shall call $\Delta^{(k)}$ the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ of $\Delta$. It follows at once from the analogous fact for finite determinants that the minor $\left(\begin{smallmatrix}i\\k\end{smallmatrix}\right)$ is unchanged if the elements of row $i$, except the $k$th, are replaced by zeros or by arbitrary quantities. This observation shows that rows and columns play the same role in forming minors.
 
@@ -1906,7 +1919,7 @@ The resulting equations are linear when $p=2$; we shall return later to this par
  \frac{C(\mu_1^{(n)},\ldots,\mu_n^{(n)})}
       {A(\mu_1^{(n)},\ldots,\mu_n^{(n)})},
 \]
-whatever the values $\mu_1,\ldots,\mu_n$. Since, on the other hand, by~\eqref{eq:38:20},\translatornote{The French original refers here to equation~(15); the asserted equality is equation~(20).}
+whatever the values $\mu_1,\ldots,\mu_n$. Since, on the other hand, by~\eqref{eq:38:20},\translatornote{The French original refers here to equation~\eqref{eq:37:15}; the asserted equality is equation~\eqref{eq:38:20}.}
 \[
  A(\mu_1^{(n)},\ldots,\mu_n^{(n)})=1,
 \]
@@ -1927,7 +1940,7 @@ in infinite-dimensional space as the distance from the point with coordinates $a
 \]
 
 \section{Theorems Concerning Sequences of Systems
-\texorpdfstring{\((y_k)\)}{(y-k)}}
+\texorpdfstring{\((y_k)\)}{(y\_k)}}
 
 \numberedparagraph{40}
 Before passing to the general case, let us establish several theorems which we shall use.
@@ -2151,12 +2164,11 @@ while inequality~\eqref{eq:36:13} gives, for every solution $(x_k)$ of~\eqref{eq
 \end{equation}
 
 But there is more. System~\eqref{eq:35:8} has only one extremal solution. We have already proved this for the finite system~\eqref{eq:37:15};
-
 % End inlined .parts/pages_001_060.tex
 % Begin inlined .parts/pages_061_120.tex
 % Translation of source printed pages 61--120.
 % [Source printed page 61]
-The same reasoning applies in the general case. Now, $(x_k^*)$ is such an
+the same reasoning applies in the general case. Now, $(x_k^*)$ is such an
 extremal solution; and the same would be true of every other system obtained,
 in accordance with our principle of choice, from the sequence of systems
 $(x_k^{(n)})$. Consequently, by \hyperref[sec:42]{no.~42},
@@ -2246,7 +2258,7 @@ just cited---the circles may be replaced by segments of the real axis, and
 % [Source printed page 63]
 the necessary geometric considerations become much simpler.
 
-\section{Homogeneous systems}
+\section{Homogeneous Systems}
 
 \numberedparagraph{46}
 One may also ask whether system~\eqref{eq:35:8} possesses, besides $(x_k^*)$, other
@@ -2817,8 +2829,9 @@ Indeed, if \eqref{eq:52:55} has a solution $(x_k)$ such that
 then, putting $x_{m+1}=x_{m+2}=\cdots=0$, we obtain a solution of the
 original system satisfying \eqref{eq:52:53}. By the stated property of
 $m$, condition \eqref{eq:52:54} holds for the reduced system
-\eqref{eq:52:55}.\translatornote{The French text refers here to system~(56),
-evidently a misprint for the reduced system~(55).} On the other hand, for every $p>1$,
+\eqref{eq:52:55}.\translatornote{The French text refers here to
+system~\eqref{eq:52:56}, evidently a misprint for the reduced
+system~\eqref{eq:52:55}.} On the other hand, for every $p>1$,
 \[
  \operatorname*{sup}_{k=1,\ldots,m}
  \left|\sum_{i=1}^{n}\mu_i a_{ik}\right|
@@ -2999,7 +3012,8 @@ The reduced elements
 tend strongly to $(x_k)$. If $(a_{ik})_{i=1}^{\infty}$ denotes the element
 corresponding to the element whose $k$th coordinate is $1$ and whose other
 coordinates vanish,\translatornote{The French text says that the $j$th
-coordinate is $1$ when $j=i$; the column $(a_{ik})_i$ and formula~(4) show
+coordinate is $1$ when $j=i$; the column $(a_{ik})_i$ and
+formula~\eqref{eq:56:4} show
 that $j=k$ is intended.} distributivity and the preceding observation give
 \begin{equation}
   \sum_{i=1}^{\infty}
@@ -3278,7 +3292,10 @@ maps $(x_k)$ to $(x'_i)$ and $\mathfrak A$ maps $(y_i)$ to $(y''_k)$, then
     \left|\sum_{i=1}^{\infty}a_{ik}y_i\right|^2.
   \tag{14}\label{eq:60:14}
 \end{equation}
-These inequalities give a necessary condition for the existence of
+These inequalities\translatornote{The printed right-hand side of
+\eqref{eq:60:14} is raised to the third power. The square required by the
+norm and by the two quotients immediately below is used here.} give a
+necessary condition for the existence of
 $A^{-1}$: the two quotients
 \[
   \frac{\displaystyle\sum_i\left|\sum_k a_{ik}x_k\right|^2}
@@ -3656,7 +3673,6 @@ $A^{-1}$. While these conditions hold, systems \eqref{eq:56:4} and
 $\mathfrak A^{-1}$ to the given elements. Up to this point the substitutions
 behave exactly as if there were only finitely many variables. What happens
 when the inverse does not exist?
-
 % [Source printed page 95]
 Recall the finite-dimensional result. When the inverse does not exist,
 each of the homogeneous systems
@@ -3920,9 +3936,34 @@ gives the solution of \eqref{eq:68:23}; equivalently,
 \end{split}
  \tag{27}\label{eq:69:27}
 \end{equation}
-An analogous argument for \eqref{eq:68:25} supplies a right inverse of
-$E-A$. The two one-sided inverses must coincide; therefore the substitution
-displayed in \eqref{eq:69:27} is $(E-A)^{-1}$.
+This formula may also be verified by a straightforward symbolic calculation.
+
+Analogous considerations applied to systems \eqref{eq:68:25} and
+\eqref{eq:68:26} lead to the determination of a substitution \(\mathfrak F\)
+such that
+\[
+  (E-\mathfrak A)\mathfrak F=E.
+\]
+There is no need to calculate \(\mathfrak F\) explicitly. It is enough to
+observe that it exists; from this we shall conclude that the substitution
+\(E-A\) has an inverse and that this inverse is furnished by the substitution
+\[
+  E-E_n+B+C_n^{-1}D+Q_nC_n^{-1}D+BQ_nC_n^{-1}D
+\]
+which we have just calculated. Indeed, let \(F\) be the transpose of
+\(\mathfrak F\). Then
+\[
+  F(E-A)=E.
+\]
+Multiplying both sides of \eqref{eq:69:27} on the left by \(F\), we obtain
+\[
+  E-E_n+B+C_n^{-1}D+Q_nC_n^{-1}D+BQ_nC_n^{-1}D=F,
+\]
+and consequently
+\[
+  \bigl(E-E_n+B+C_n^{-1}D+Q_nC_n^{-1}D
+    +BQ_nC_n^{-1}D\bigr)(E-A)=E.
+\]
 
 \emph{Second case.} The determinant $|c_{ik}|_n$ vanishes.
 
@@ -4364,11 +4405,11 @@ converse is also true: if $M_{A-A_n}\to0$, then $A$ is completely
 continuous. This is contained in the more general proposition that a
 uniform limit of completely continuous substitutions is completely
 continuous. It also covers the condition $M_{R_n}\to0$ of
-\hyperref[sec:67]{no.~67}. Indeed, $A_n+P_n+Q_n$ is always completely
+\hyperref[sec:67]{no.~67}. Indeed, $A_n+P_n+Q_n$\translatornotemark{} is always completely
 continuous, and $M_{R_n}\to0$ says that these substitutions converge
 uniformly to $A$. Consequently, together with \hyperref[sec:67]{no.~67}, $M_{R_n}\to0$ is a
 necessary and sufficient condition for complete continuity of $A$.}
-\nobreak\hspace{0.12em}\translatornote{In this footnote the French original prints
+\translatornotetext{In this footnote the French original prints
 \(A_n-P_n+Q_n\) instead of \(A_n+P_n+Q_n\), and concludes with \(B\) instead
 of \(A\); both misprints are corrected above.}
 Therefore $E-A_n$ converges uniformly to $E-A$. If $(E-A)^{-1}$ exists,
@@ -4699,12 +4740,11 @@ isolated, by \hyperref[sec:70]{no.~70}. If $\lambda_0$ is singular, choose
 $D$ to be a small circle about it. Then $B_\lambda$ exists for every
 $\lambda\neq\lambda_0$. The substitution $A^{(0)}$, applied to all of
 Hilbert space, gives the principal elements corresponding to $\lambda_0$.
-But $A^{(0)}$ is completely continuous.
-
+But $A^{(0)}$ is completely continuous, and it is easily seen that, if
 % End inlined .parts/pages_061_120.tex
 % Begin inlined .parts/pages_121_180.tex
 % [Source printed page 121]
-If a completely continuous substitution is applied to Hilbert space, the
+a completely continuous substitution is applied to Hilbert space, the
 resulting elements can be expressed as linear combinations of finitely many of them.
 Thus the study of the one-to-one
 correspondence defined by \(A\) on the set of principal elements---and hence the
@@ -4845,7 +4885,7 @@ analogous to those in \eqref{eq:84:2} and \eqref{eq:84:3}; on the other, one
 must integrate with respect to a continuous parameter.  I observed elsewhere
 that these two procedures may be united by using the notion of the Stieltjes
 integral, and that this way of stating Hilbert's theorem offers some advantages
-for the proof.\footnote{See my letter to Hilbert, ``Ueber quadratische Formen von
+for the proof.\footnote{\phantomsection\label{fn:riesz-letter-hilbert}See my letter to Hilbert, ``Ueber quadratische Formen von
 unendlich vielen Veränderlichen,'' \emph{Nachrichten der Gesellschaft der
 Wissenschaften zu Göttingen} (1910), pp.~190--195.}
 
@@ -5421,14 +5461,15 @@ fonctionnelles,'' \emph{Comptes rendus}, February 9, 1903, and which I succeeded
 in expressing by a single integral by using the Stieltjes integral, ``Sur les
 opérations fonctionnelles linéaires,'' \emph{Comptes rendus}, November 29, 1909.
 Cf. also the more detailed memoir, ``Sur certains systèmes singuliers d'équations
-intégrales,'' \emph{Annales de l'École Normale} (1911), pp.~33--62, and, in
-particular for the correspondence considered here, my note cited on p.~124.
+intégrales,'' \emph{Annales de l'École Normale} (1911), pp.~33--62,\translatornotemark{} and, in
+particular for the correspondence considered here,
+\hyperref[fn:riesz-letter-hilbert]{my note cited on source p.~124}.
 
 Formula \eqref{eq:94:14} could easily be extended to forms corresponding to
 discontinuous functions; one need only modify Stieltjes's definition to a
 greater or lesser extent.  Cf. also H.~Lebesgue, ``Sur les intégrales de
 Stieltjes et les opérations fonctionnelles linéaires,'' \emph{Comptes rendus},
-January 12, 1910.}\nobreak\hspace{0.12em}\translatornote{The French original prints pp.~31--62 for
+January 12, 1910.}\translatornotetext{The French original prints pp.~31--62 for
 Riesz's ``Sur certains systèmes singuliers d'équations intégrales''; the
 article begins on p.~33.}  In particular, putting
 \(f(\mu)=1/(\lambda-\mu)\), we obtain
@@ -6159,10 +6200,10 @@ The preceding integrals give
   \qquad a_{ik}=0\quad(i+k=0).
 \]
 
-The lower and upper bounds of the piecewise-defined function \(u(\mu)\) on
-\((-\pi,\pi)\) are \(-\pi\) and \(\pi\)\translatornote{The French text
+The lower and upper bounds of the piecewise-defined function\translatornote{The French text
 mistakenly writes \(u(\mu)=\mu\) here; the statement concerns the piecewise
-function just defined.}; hence these are also the
+function just defined.} \(u(\mu)\) on \((-\pi,\pi)\) are \(-\pi\) and
+\(\pi\); hence these are also the
 lower and upper bounds of \(A(x,x)\), and therefore, by
 \hyperref[sec:85]{no.~85}, of the corresponding bilinear form
 \(A(x,y)\).  These forms include, in particular, the two forms considered by
@@ -6558,7 +6599,7 @@ vol.~LXVI (1908), pp.~273--324; M.~Plancherel, ``Note sur les équations
 intégrales singulières,'' \emph{Rivista di Fisica, Matematica e Scienze
 Naturali} (Pavia, 1909), pp.~37--53; A.~J.~Pell, ``Biorthogonal Systems of
 Functions,'' \emph{Transactions of the American Mathematical Society},
-vol.~XII (1911), pp.~135--164.}\nobreak\hspace{0.12em}\translatornote{The French original prints
+vol.~XII\translatornotemark{} (1911), pp.~135--164.}\translatornotetext{The French original prints
 ``vol.~XIX''; the article appeared in vol.~XII.}
 
 The relations between the two theories are not limited to a formal analogy;
@@ -6742,7 +6783,7 @@ which, by means of the orthogonal system \([\alpha_k(s)]\), becomes
 in the unknowns \(\psi_k\).  Every solution \((\varphi_k)\) of
 \eqref{eq:108:8} for which \(\sum_k|\varphi_k|^2\) converges corresponds to a
 summable function \(\varphi(s)\) with summable \(|\varphi(s)|^2\); the same is
-true of every admissible solution \((\psi_k)\) of \eqref{eq:110:14}.\translatornote{The French original refers here to equation~(15); equation~(14) is meant.}  The
+true of every admissible solution \((\psi_k)\) of \eqref{eq:110:14}.\translatornote{The French original refers here to equation~\eqref{eq:111:15}; equation~\eqref{eq:110:14} is meant.}  The
 function
 \[
   \varphi(s)-\int_a^bH(s,t)\varphi(t)\,dt,
