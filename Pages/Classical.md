@@ -168,10 +168,15 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 </details>
 
+<details class="year-group" markdown="1">
+<summary><strong>1980–</strong></summary>
+
+- 1983 Sauvogeot. On the Relative Tensor Product of Hilbert Spaces. (Sur le produit tensoriel relatif d’espace d’Hilbert)
+[tex](https://binguimath.github.io/Pages/Classical/1983%20Sauvogeot_On%20the%20Relative%20Tensor%20Product%20of%20Hilbert%20Spaces%20%20_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1983%20Sauvogeot_On%20the%20Relative%20Tensor%20Product%20of%20Hilbert%20Spaces%20%20_GPT.pdf)
 
 
-
-
+</details>
 
 <script>
 function toggleAllLiterature(openState) {
