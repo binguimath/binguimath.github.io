@@ -1,7 +1,7 @@
 # Full publications
 
 
-> The following articles are listed in the order they were finished and submitted to arXiv. The arXiv indentifiers (YYMM.NNNNN) indicate the time of submission. Note that the preprints on this website might be more updated than the arXiv versions.
+> The following articles are listed in the order they were finished and submitted to arXiv. The arXiv identifiers (YYMM.NNNNN) indicate the time of submission. Note that the preprints on this website might be more updated than the arXiv versions.
 
 1. Unitarity of The Modular Tensor Categories Associated to Unitary Vertex Operator Algebras, I, ***Comm. Math. Phys.***, (2019) 366(1), pp.333-396. `arXiv:1711.02840` [Preprint](https://binguimath.github.io/Files/2017_UU1.pdf) [Errata](https://binguimath.github.io/Files/Errata/2017_UU1_Errata.pdf)
 
