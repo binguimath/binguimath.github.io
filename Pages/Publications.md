@@ -22,7 +22,7 @@ unitary affine vertex operator algebras,  ***Trans. Amer. Math. Soc.***, 372 (20
 
 1. Bisognano-Wichmann Property for Rigid Categorical Extensions and Non-local Extensions of Conformal Nets, ***Ann. Henri Poincaré***, 22, 4017-4062 (2021). `arXiv:1912.10682` [Preprint](https://binguimath.github.io/Files/2019_Bisognano-Wichmann.pdf)
 
-1. Unbounded Field Operators in Categorical Extensions of Conformal Nets. ***Invent. Math.***, 233 (2026), no. 3, 899--965. `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf) [Errata](https://binguimath.github.io/Files/Errata/2020_Strong-Braiding_Errata.pdf)
+1. Unbounded Field Operators in Categorical Extensions of Conformal Nets. ***Invent. Math.***, 244 (2026), no. 3, 899--965. `arXiv:2001.03095` [Preprint](https://binguimath.github.io/Files/2020_Strong-Braiding.pdf) [Errata](https://binguimath.github.io/Files/Errata/2020_Strong-Braiding_Errata.pdf)
 
 
 1. Regular Vertex Operator Subalgebras and Compressions of Intertwining Operators, ***J. Algebra***, (2020) 564. 32-48. `arXiv:2003.02921` [Preprint](https://binguimath.github.io/Files/2020_Compressions.pdf)
