@@ -31,6 +31,8 @@ window.MathJax = {
 [Qiuzhen Lectures on Analysis](https://binguimath.github.io/Pages/2023_Analysis.html)
 
 
+- 可以通过讨论、网上查资料、AI等方式来帮助自己理解课程与作业内容。但作业请大家用自己的理解来独立完成写作。严禁抄袭和照搬他人的作业或者AI的解答。若有查出照搬现成解答或AI解答的作业，当次作业算作0分。
+
 
 
 
@@ -39,7 +41,7 @@ window.MathJax = {
 
 - [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Pages/2025_FA.html)
 
-注意：以下Schedule中提到的定义与定理编号皆参照2026.06.09版的讲义。之后的讲义版本可能有编号变动。
+<!--注意：以下Schedule中提到的定义与定理编号皆参照2026.06.09版的讲义。之后的讲义版本可能有编号变动。  -->
 
 
 
