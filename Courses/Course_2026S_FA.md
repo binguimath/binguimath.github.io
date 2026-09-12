@@ -41,6 +41,16 @@ window.MathJax = {
 
 
 
+## 参考书
+
+- Reed, Simon. Methods of Modern Mathematical Physics, I.
+
+- Simon. Operator Theory, a Comprehensive Course in Analysis IV.
+
+- Van Neerven. Functional Analysis.
+
+- Lax. Functional Analysis
+
 ## Schedule
 
 课程安排与25年秋季的泛函分析课程大致相当。想要提前了解计划进度的同学可查看该课的[课程主页](https://binguimath.github.io/Courses/Course_2025_FA.html)。
