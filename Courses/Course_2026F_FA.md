@@ -63,9 +63,9 @@ details.literature {
 
 -->
 
-
+## 历史文献（GPT英译）
 <details class="literature" markdown="1">
-<summary><strong>历史文献（GPT英译）</strong></summary>
+<summary><strong>展开/折叠</strong></summary>
 
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
