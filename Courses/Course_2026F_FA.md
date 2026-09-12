@@ -44,7 +44,7 @@ window.MathJax = {
 <!--注意：以下Schedule中提到的定义与定理编号皆参照2026.06.09版的讲义。之后的讲义版本可能有编号变动。  -->
 
 
-## 参考书
+<!-- ## 参考书
 
 - Reed, Simon. Methods of Modern Mathematical Physics, I.
 
@@ -54,18 +54,36 @@ window.MathJax = {
 
 - Lax. Functional Analysis
 
-## Schedule
-
-课程安排与26年春季的泛函分析课程大致相当。想要提前了解计划进度的同学可查看该课的[课程主页](https://binguimath.github.io/Courses/Course_2026S_FA.html)。
+-->
 
 
-1) 9/14
 
 ## 历史文献（GPT英译）
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
-> 在这篇文章中，Hilbert引入了Hilbert空间$l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的Hilbert-Schmidt定理。Hilbert对有界对称双线性型证明了一般的谱定理。
+> 在这篇文章中，Hilbert引入了Hilbert空间$l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的Hilbert-Schmidt定理。Hilbert对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
 
+
+- 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
+with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.pdf)
+
+
+> 在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对Hilbert关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近Riesz的方法。对应讲义章节：5
+
+
+- 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
+[pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
+
+> Von Neumann在这篇文章中建立了无界对称算子的谱理论。对应讲义章节：6
+
+
+## Schedule
+
+课程安排与26年春季的泛函分析课程大致相当。想要提前了解计划进度的同学可查看该课的[课程主页](https://binguimath.github.io/Courses/Course_2026S_FA.html)。
+
+
+1) 9/14
 
