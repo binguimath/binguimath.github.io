@@ -67,6 +67,11 @@ details.literature {
 <details class="literature" markdown="1">
 <summary><strong>展开/折叠</strong></summary>
 
+- 1894 Stieltjes. Recherches sur les fractions continues. (Researches on Continued Fractions.) [tex](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.pdf)
+
+> 在这篇文章中，Stieltjes 通过引入 Stieltjes 积分来刻画连分数的积分表示。Stieltjes 积分（及其现代形式：关于有限 Borel 测度的积分）是描述谱分解和连续谱的关键语言。Stieltjes 的这篇文章展示了这个关键语言是如何出现的。对应讲义章节：4 
+
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
