@@ -87,7 +87,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.pdf)
 
 
-在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对 Hilbert 关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近Riesz的方法。这篇文章是历史上第一次，线性算子的视角被引入并且被发展成系统的理论，以取代双线性型的视角。对应讲义章节：5
+在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对 Hilbert 关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近Riesz的方法。这篇文章是历史上第一次，线性算子的视角被引入并且被发展成系统的理论，以取代双线性型的视角。对应讲义章节：3，5
 
 
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
