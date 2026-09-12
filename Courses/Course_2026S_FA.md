@@ -41,15 +41,6 @@ window.MathJax = {
 
 
 
-## 参考书
-
-- Reed, Simon. Methods of Modern Mathematical Physics, I.
-
-- Simon. Operator Theory, a Comprehensive Course in Analysis IV.
-
-- Van Neerven. Functional Analysis.
-
-- Lax. Functional Analysis
 
 ## Schedule
 
