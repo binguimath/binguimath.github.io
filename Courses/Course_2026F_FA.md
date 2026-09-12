@@ -43,7 +43,7 @@ details.literature {
 
 
 
-## Lecture notes (in English)
+## 课程讲义
 
 
 - [Qiuzhen Lectures on Functional Analysis](https://binguimath.github.io/Pages/2025_FA.html)
