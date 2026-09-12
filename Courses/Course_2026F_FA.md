@@ -73,13 +73,13 @@ details.literature {
 - 1894 Stieltjes. Recherches sur les fractions continues. (Researches on Continued Fractions.) [tex](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1894%20Stieltjes_Researches%20on%20Continued%20Fractions_GPT.pdf)
 
-> 在这篇文章中，Stieltjes 通过引入 Stieltjes 积分来刻画连分数的积分表示。Stieltjes 积分（及其现代形式：关于有限 Borel 测度的积分）是描述谱分解和连续谱的关键语言。Stieltjes 的这篇文章展示了这个关键语言是如何出现的。对应讲义章节：4 
+在这篇文章中，Stieltjes 通过引入 Stieltjes 积分来刻画连分数的积分表示。Stieltjes 积分（及其现代形式：关于有限 Borel 测度的积分）是描述谱分解和连续谱的关键语言。Stieltjes 的这篇文章展示了这个关键语言是如何出现的。对应讲义章节：4 
 
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
-> 在这篇文章中，Hilbert 引入 了Hilbert 空间 $l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert 对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的 Hilbert-Schmidt 定理。Hilbert 对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
+在这篇文章中，Hilbert 引入 了Hilbert 空间 $l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert 对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的 Hilbert-Schmidt 定理。Hilbert 对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
 
 
 - 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
@@ -87,19 +87,19 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 [pdf](https://binguimath.github.io/Pages/Classical/1913%20F.Riesz_Linear%20systems%20of%20equations%20with%20infinitely%20many%20unknowns_GPT.pdf)
 
 
-> 在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对 Hilbert 关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近Riesz的方法。这篇文章是历史上第一次，线性算子的视角被引入并且被发展成系统的理论，以取代双线性型的视角。对应讲义章节：5
+在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对 Hilbert 关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近Riesz的方法。这篇文章是历史上第一次，线性算子的视角被引入并且被发展成系统的理论，以取代双线性型的视角。对应讲义章节：5
 
 
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
 
-> Von Neumann在这篇文章中建立了无界对称算子的谱理论。对应讲义章节：6
+Von Neumann在这篇文章中建立了无界对称算子的谱理论。对应讲义章节：6
 
 - 1932 von Neumann. Über adjungierte Funktionaloperatoren. (On adjoint functional operators.) 
 [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_On%20adjoint%20functional%20operators_GPT.pdf)
 
-> Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了闭算子、闭包、可闭、伴随算子等概念及其基本性质，对于闭算子，von Neumann 证明了极分解定理。对应讲义章节：6，7
+Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了闭算子、闭包、可闭、伴随算子等概念及其基本性质，对于闭算子，von Neumann 证明了极分解定理。对应讲义章节：6，7
 
 
 </details>
