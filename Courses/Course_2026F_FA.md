@@ -60,7 +60,7 @@ details.literature {
 
 - Van Neerven. Functional Analysis.
 
-- Lax. Functional Analysis
+- Lax. Functional Analysis.
 
 </details>
 
