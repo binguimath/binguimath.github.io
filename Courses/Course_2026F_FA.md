@@ -9,6 +9,13 @@ window.MathJax = {
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
+<style>
+details.literature {
+  margin: 0 0 1.25rem 0;
+}
+</style>
+
+
 # 2026 秋季, 泛函分析
 
 
@@ -57,13 +64,14 @@ window.MathJax = {
 -->
 
 
+<details class="literature" markdown="1">
+<summary><strong>历史文献（GPT英译）</strong></summary>
 
-## 历史文献（GPT英译）
 
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
-> 在这篇文章中，Hilbert引入了Hilbert空间$l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的Hilbert-Schmidt定理。Hilbert对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
+> 在这篇文章中，Hilbert引入了Hilbert空间 $l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的Hilbert-Schmidt定理。Hilbert对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
 
 
 - 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
@@ -85,6 +93,8 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 > Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了闭算子、闭包、可闭、伴随算子等概念及其基本性质，对于闭算子，von Neumann 证明了极分解定理。对应讲义章节：6，7
 
+
+</details>
 
 ## Schedule
 
