@@ -44,6 +44,15 @@ window.MathJax = {
 <!--注意：以下Schedule中提到的定义与定理编号皆参照2026.06.09版的讲义。之后的讲义版本可能有编号变动。  -->
 
 
+## 参考书
+
+- Reed, Simon. Methods of Modern Mathematical Physics, I.
+
+- Simon. Operator Theory, a Comprehensive Course in Analysis IV.
+
+- Van Neerven. Functional Analysis.
+
+- Lax. Functional Analysis
 
 ## Schedule
 
