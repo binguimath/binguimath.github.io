@@ -79,7 +79,7 @@ details.literature {
 - 1906 Hilbert. Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen, Vierte Mitteilung. (Fundamentals of a General Theory of Linear Integral Equations, Fourth Communication.) [tex](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1906%20Hilbert_Fundamentals%20of%20a%20General%20Theory%20of%20Linear%20Integral%20Equations%20IV_GPT.pdf)
 
-在这篇文章中，Hilbert 引入了 Hilbert 空间 $l^2$，引入了有界双线性型和紧双线性型（对应到现在的有界算子和紧算子）。Hilbert 对紧对称双线性型证明了（离散的）谱分解定理，即现在所说的 Hilbert-Schmidt 定理。Hilbert 对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
+在这篇文章中，Hilbert 引入了 Hilbert 空间 $l^2$，引入了有界双线性型和全连续双线性型（对应到现在的有界算子和紧算子）。Hilbert 对全连续对称双线性型证明了（离散的）谱分解定理，即现在所说的 Hilbert-Schmidt 定理。Hilbert 对有界对称双线性型证明了一般的谱定理。对应讲义章节：3，4，5，8
 
 
 - 1913 F.Riesz. Les systèmes d'équations linéaires à une infinité d'inconnues. (Linear Systems of Equations
