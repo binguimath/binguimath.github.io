@@ -131,9 +131,9 @@ Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了�
 
 讲义章节：1.2.3，1.3.1（从 Prop. 1.3.5 开始的部分课上没细讲，请自行阅读），1.3.2（Prop. 1.3.12 可跳过），2.6（可分情形的讨论用到了 Prop. 1.4.16），3.1.1（讲完 Def. 3.1.4）
 
-6) 9/30 Hermitian form，positive sesquilinear form，内积空间，共轭内积空间，sesquilinear form的算子范数被其二次型的算子范数控制，（标准）正交向量，毕达哥拉斯等式与不等式，Bessel不等式，正交分解，投影算子，关于有限维子空间的投影算子表达式，标准正交基，正交直和，投影算子的标准型，子集的正交补，$E^\perp=(\mathrm{Span}E)^\perp=\overline{(\mathrm{Span}E)}^\perp$
+6) 9/30 Hermitian form，positive sesquilinear form，内积空间，线性与反线性的等距映射，酉算子与反酉算子，共轭内积空间，sesquilinear form转化为双线性型，sesquilinear form的算子范数被其二次型的算子范数控制，（标准）正交向量，毕达哥拉斯等式与不等式，Bessel不等式，正交分解，投影算子，关于有限维子空间的投影算子表达式，标准正交基，正交直和，投影算子的标准型，子集的正交补，$E^\perp=(\mathrm{Span}E)^\perp=\overline{(\mathrm{Span}E)}^\perp$
 
-讲义章节：3.1.1，3.1.2，3.2，3.3.1-3.3.4，3.3.4
+讲义章节：3.1.1，3.1.2，3.2，3.3.1-3.3.4，3.3.4（讲到 Thm. 3.3.24 之前），1.2.5（局限于正函数的情形，刻画了 $\sum f$ 的等价描述，讲了 Prop. 1.2.45）
 
 10/12
 
