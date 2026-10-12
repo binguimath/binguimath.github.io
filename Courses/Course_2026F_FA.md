@@ -135,7 +135,9 @@ Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了�
 
 讲义章节：3.1.1，3.1.2，3.2，3.3.1-3.3.4，3.3.4（讲到 Thm. 3.3.24 之前），1.2.5（局限于正函数的情形，刻画了 $\sum f$ 的等价描述，讲了 Prop. 1.2.45）
 
-7) 10/12 向量被标准正交基的线性组合逼近，无序和的定义与Cauchy判别法，Parseval等式，Hilbert空间的等价刻画，无序和收敛的Cauchy判别法，Hilbert空间关于闭线性子空间存在投影算子，线性子空间的二次正交补等于闭包，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随矩阵，$\Vert TS\Vert\leq\Vert T\Vert\cdot\Vert S\Vert$，条件 $\vert T\vert<\vert z\vert$ 推出 $(z-T)^{-1}$ 存在，有界sesquilinear form的乘法，乘法结合律涉及的极限交换问题，
+7) 10/12 向量被标准正交基的线性组合逼近，无序和的定义与Cauchy判别法，Parseval等式，Hilbert空间的等价刻画，Hilbert空间关于闭线性子空间存在投影算子，线性子空间的二次正交补等于闭包，Riesz-Frechet定理，有界线性算子与有界sesquilinear form等价，伴随算子，$\Vert TS\Vert\leq\Vert T\Vert\cdot\Vert S\Vert$，条件 $\vert T\vert<\vert z\vert$ 推出 $(z-T)^{-1}$ 存在，有界sesquilinear form的乘法，乘法结合律涉及的极限交换问题，无限矩阵及其算子范数的定义
+
+讲义章节：3.3.4，3.4，1.2.5（就讲了 Def. 1.2.40 和 Rem. 1.2.41），3.5，3.6（就讲了定义 3.6.1）
 
 10/14
 
