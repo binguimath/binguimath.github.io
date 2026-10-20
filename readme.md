@@ -15,6 +15,8 @@ binguimath(at)gmail(dot)com <br>  bingui(at)tsinghua(dot)edu(dot)cn
 
 [Biography](Bio.md)
 
+[知乎](https://www.zhihu.com/people/terabyte-37) (This is my Chinese social media account, where I like to write comments and articles about my mathematical viewpoints and the history of mathematics. Everything is written in Chinese.)
+
 
 
 
