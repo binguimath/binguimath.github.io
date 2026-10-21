@@ -93,7 +93,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 - 1927 von Neumann. Mathematische Begründung der Quantenmechanik. (Mathematical Foundation of Quantum Mechanics.) [tex](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.pdf)
 
-> This work presents von Neumann’s early ideas on how to understand quantum mechanics from a mathematically rigorous perspective. It also foreshadows his 1929 paper, in which he established a systematic spectral theory for unbounded Hermitian operators.
+> This work presents von Neumann’s early ideas on how to understand quantum mechanics from a mathematically rigorous perspective. The notion of abstract Hilbert spaces (as opposed to the concrete Hilbert space $l^2$) was introduced in this paper. This work also foreshadows his 1929 paper, in which he established a systematic spectral theory for unbounded Hermitian operators.
 
 
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
