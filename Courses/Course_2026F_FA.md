@@ -90,6 +90,11 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 在第4和5章中，Riesz 利用函数演算和正线性泛函扩张，对 Hilbert 关于有界对称双线性型的谱定理进行了重新诠释和大大加强。现代教科书中对谱理论的处理更加接近 Riesz 的方法。这篇文章是历史上第一次，线性算子的视角被引入并且被发展成系统的理论，以取代双线性型的视角。对应讲义章节：3，5
 
 
+- 1927 von Neumann. Mathematische Begründung der Quantenmechanik. (Mathematical Foundation of Quantum Mechanics.) [tex](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.pdf)
+
+这是 von Neumann 尝试系统性地给出量子力学的严格数学理论的首篇文章，也是下面的 1929 年关于无界对称算子谱理论的论文的先声。在这篇文章中，von Neumann 已经展现了他对描述量子力学可观测量的无界对称算子的谱分解应该长什么样的想法。抽象的 Hilbert 空间概念也是在这篇文章里给出的（在此之前，Hilbert 空间指的是 $l^2$）。
+
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
 
