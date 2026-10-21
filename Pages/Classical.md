@@ -90,6 +90,11 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 <details class="year-group" markdown="1">
 <summary><strong>1920–1949</strong></summary>
 
+- 1927 von Neumann. Mathematische Begründung der Quantenmechanik. (Mathematical Foundation of Quantum Mechanics.) [tex](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1927%20von%20Neumann_Mathematical%20Foundation%20of%20Quantum%20Mechanics_GPT.pdf)
+
+
+
 - 1929 von Neumann. Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren. (General Eigenvalue Theory of Hermitian Functional Operators.) [tex](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.zip)
 [pdf](https://binguimath.github.io/Pages/Classical/1929%20von%20Neumann_General%20eigenvalue%20theory%20of%20Hermitian%20functional%20operators_GPT.pdf)
 
