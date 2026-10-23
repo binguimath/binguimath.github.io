@@ -23,6 +23,8 @@
 \widowpenalty=1000
 \displaywidowpenalty=1000
 \usepackage{graphicx}
+\graphicspath{{./}{../}}
+% Resolve shared figures from either the main directory or a font-edition subdirectory.
 % A Western word space at a Chinese-text/math boundary, in the current math style.
 \newcommand{\mathwordspace}{\text{\hspace{\fontdimen2\font}}}
 \renewcommand{\thechapter}{\Roman{chapter}}
@@ -56,13 +58,23 @@
 \definecolor{LinkColor}{HTML}{255A83}
 \usepackage[colorlinks=true,allcolors=LinkColor,linktoc=all,unicode=true,hypertexnames=false,hyperfootnotes=false]{hyperref}
 \usepackage[all]{hypcap}
-% Preserve xeCJK's native punctuation-pair kerning across a hyperlink boundary.
-% Metrics come from the active CJK font and punctuation style, not fixed lengths.
+% Link boundaries already retain each punctuation character's elastic spacing.
+% Restore only the native pair's natural-width correction, without adding a
+% second source of stretch/shrink. All metrics follow the active font/style.
 \ExplSyntaxOn
 \NewDocumentCommand\CJKlinkpunctkern{mm}
   {\group_begin:\xeCJK_select_punct_font:
+   \__xeCJK_punct_if_right:NTF #1
+     {\xeCJK_get_punct_bounds:NN \c__xeCJK_right_tl #1}
+     {\xeCJK_get_punct_bounds:NN \c__xeCJK_left_tl #1}
+   \__xeCJK_punct_if_right:NTF #2
+     {\xeCJK_get_punct_bounds:NN \c__xeCJK_right_tl #2}
+     {\xeCJK_get_punct_bounds:NN \c__xeCJK_left_tl #2}
    \xeCJK_get_punct_kerning:NN #1 #2
-   \xeCJK_punct_kern:NN #1 #2\group_end:}
+   \skip_set:Nn \l_tmpa_skip
+     {\__xeCJK_use_dim_or_skip:nNN {kern} #1 #2}
+   \dim_set:Nn \l_tmpa_dim {\l_tmpa_skip}
+   \nobreak\tex_kern:D \l_tmpa_dim\group_end:}
 \ExplSyntaxOff
 \AtBeginDocument{\pagenumbering{arabic}\thispagestyle{empty}
   \renewcommand{\contentsname}{目录}\renewcommand{\figurename}{图}}
@@ -298,6 +310,17 @@
          {\dim_add:Nn \l__vn_note_gap_dim {\l__vn_note_removed_skip_dim}}}
     \hskip \l__vn_note_gap_dim
   }
+% Restrict the reference character to a Han/CJK text character.
+% Fullwidth punctuation still supplies its actual sidebearing in the final
+% ink-position correction, but does not replace the Han reference glyph.
+% Semantic wrappers only select the measured font; unwrap them for charclass.
+\cs_new_protected:Npn \__vn_note_reference_han:n #1
+  {\tl_if_single_token:nTF {#1}
+     {\int_compare:nNnT {\XeTeXcharclass `#1} = {\xeCJK_class_num:n {CJK}}
+        {\dim_set_eq:NN \l__vn_note_next_left_dim \g__vn_note_glyph_left_dim}}
+     {\__vn_note_reference_han:nn #1}}
+\cs_new_protected:Npn \__vn_note_reference_han:nn #1#2
+  {\__vn_note_reference_han:n {#2}}
 \cs_set_protected:Npn \__vn_note_after:n #1
   {
     \__vn_note_glyph:n {，}
@@ -306,8 +329,7 @@
     \dim_set_eq:NN \l__vn_note_next_left_dim \g__vn_note_glyph_left_dim
     \tl_if_blank:nF {#1}
       {\__vn_note_glyph:n {#1}
-       \bool_if:NT \g__vn_note_hint_cjk_bool
-         {\dim_set_eq:NN \l__vn_note_next_left_dim \g__vn_note_glyph_left_dim}}
+       \__vn_note_reference_han:n {#1}}
     \hbox_set:Nn \l__vn_note_glue_box {\CJKglue}
     \dim_set:Nn \l__vn_note_gap_dim
       {(\l__vn_note_comma_right_dim+\box_wd:N \l__vn_note_glue_box
@@ -537,7 +559,7 @@
 
 \originalnote{27}[]{$\delta_{\mu\nu}$是熟知的Kronecker–Weierstraß记号：$\mu=\nu$时等于$1$，$\mu\ne\nu$时等于$0$。}
 
-\originalnote{28}[对]{对所有满足$w_\varrho=\lambda$的$\varrho$，由$s_{1\varrho},\allowbreak s_{2\varrho},\allowbreak \ldots$构成的$\mathsf S$的各列形成一个完全解系；所以把它们看成矩阵的列时，它们必须线性无关，因为该矩阵具有逆矩阵。}
+\originalnote{28}[对]{对所有满足$w_\varrho=\lambda$的$\varrho$，由$s_{1\varrho},\allowbreak s_{2\varrho},\allowbreak \ldots$构成的$\mathsf S$的各列形成一个完全解系；这些列还必定线性无关，因为矩阵$\mathsf S$可逆。}
 
 \originalnote{29}[]{$\mathsf S$的列可以任意置换，只要同时对$\mathsf S^{-1}$的行作相应置换，$\mathsf H$的对角元就以相同方式置换。因此，$w_1,\allowbreak w_2,\allowbreak \ldots$的次序实际上是不确定、不可确定的。}
 
@@ -596,7 +618,7 @@ g=\frac{c}{c+1}f+\frac1{c+1}h.
 
 \originalnote{44}[这]{这个聚点定义也很常见：对每个$\varepsilon>0$，都有某个属于$\mathfrak A$的$f'$，使$\lVert f-f'\rVert<\varepsilon$。两种定义等价，证明与实数分析中的完全一样。}
 
-\originalnote{45}[为]{为简便起见，我们采用拓扑学的专门术语；例如参见Hausdorff：\emph{Mengenlehre}，Berlin，1927。前面的正文已对它作了解释。}
+\originalnote{45}[为]{为简便起见，我们采用拓扑学的专门术语；例如参见Hausdorff：\emph{Mengenlehre}，Berlin，1927。正文随后会对这些术语作出解释。}
 
 \originalnote{46}[因]{因为$\lVert f\rVert=\sqrt{(f,\allowbreak f)}=1$。}
 
@@ -837,7 +859,7 @@ f^{(\varepsilon)}_{a,b}(q)=\frac12-\frac12\operatorname{Tg\,hyp}\left(
 \]
 只须研究$(E(\sigma)f,\allowbreak f)$。而$\int_0^1 f(\sigma)\,d(E(\sigma)f,\allowbreak f)$的被积函数有界，$d$后面的$\sigma$函数又单调，因此结论显然成立。}
 
-\originalnote{102}[也]{也就是说，把Stieltjes积分应用于$\mathfrak R_\infty$中的元素，而非数。所有这些关系都应作如下理解：在$\mathfrak R_\infty$中固定一个$g$，把其中出现的每个$\mathfrak R_\infty$元素都与$g$取内积；这样得到的等式，对一切$g$都成立。与 \hyperref[sec:II.7]{II.7} 中的算符Stieltjes积分相比，这是一种半符号化的做法：当时不是选$\mathfrak R_\infty$中的一个$g$，而是选两个$f,\allowbreak g$，并且不是形成$(\ldots,\allowbreak g)$，而是形成$(\ldots f,\allowbreak g)$；在这里，省略号所代表的是算符。}
+\originalnote{102}[也]{也就是说，把Stieltjes积分应用于$\mathfrak R_\infty$中的元素，而非数。所有这些关系都应作如下理解：在$\mathfrak R_\infty$中固定一个$g$，把其中出现的每个$\mathfrak R_\infty$元素都与$g$取内积；这样得到的等式，对一切$g$都成立。与 \hyperref[sec:II.7]{II.7} 中的算符Stieltjes积分相比，这是一种半符号化的做法：当时不是选$\mathfrak R_\infty$中的一个$g$，而是选两个$f,\allowbreak g$，并且不是形成$(\ldots,\allowbreak g)$，而是形成$(\ldots f,\allowbreak g)$；后一个式子中的省略号代表算符。}
 
 \originalnote{103}[这]{这里隐含着一个前提：对于每个给定的单位分解$F(\lambda)$，确实存在这样的算符。也就是说，当$\int_{-\infty}^{\infty}\lambda^2\,d\|F(\lambda)f\|^2$有限时，可以找到$f^*$，使对一切$g$都有
 \[
@@ -853,7 +875,7 @@ f^{(\varepsilon)}_{a,b}(q)=\frac12-\frac12\operatorname{Tg\,hyp}\left(
 
 \originalnote{106}[这]{这个概念出自Erhard Schmidt，参见原注 \hyperlink{note-78}{\getrefnumber{orig-note-78}} 所引之处。}
 
-\originalnote{107}[因]{因为根据 \hyperref[sec:II.5]{II.5}，$R\cdot1$、$1\cdot R$有意义，当且仅当$R$有意义；当$a\ne0$时，$R\cdot a1$、$a1\cdot R$也一样。所以，这两个乘积相等，即$R$与$a1$对易。因此，$R$与$a1$的对易性只有一种例外：$a=0$而$R$不处处有意义。这相当不美观，也提示我们修改对易性的定义。}
+\originalnote{107}[因]{因为根据 \hyperref[sec:II.5]{II.5}，$R\cdot1$、$1\cdot R$有意义，当且仅当$R$有意义；当$a\ne0$时，$R\cdot a1$、$a1\cdot R$也一样。所以，这两个乘积相等，即$R$与$a1$对易。因此，$R$与$a1$的对易性只有一种例外：$a=0$而$R$不处处有意义。这个例外颇不理想，也提示我们应当修改对易性的定义。}
 
 \originalnote{108}[]{$a1$对应单位分解
 \[
@@ -937,7 +959,7 @@ A=\int_{-\infty}^{\infty}\lambda\,dE(\lambda)
 
 \originalnote{118}[最]{最早对系统处于状态$\varphi$时的行为作出统计断言的是 M. Born；Dirac 和 Jordan 作了更深入的论述。参看\CJKglue \hyperlink{note-8}{原注 \getrefnumber{orig-note-8}} 及\CJKglue \hyperlink{note-2}{原注 \getrefnumber{orig-note-2}} 所引文献。}
 
-\originalnote{119}[将]{将每个物理量各自与一个厄米算符相对应的这种关系，还将在 \hyperref[sec:IV.1]{IV.1} 中详述。目前，根据 \hyperref[sec:I.2]{I.2}，我们只知道：坐标对应于算符$q_1,\allowbreak \ldots,\allowbreak q_k$，动量对应于算符$\frac{h}{2\pi i}\frac{\partial}{\partial q_1},\allowbreak \ldots,\allowbreak \frac{h}{2\pi i}\frac{\partial}{\partial q_k}$，能量对应于“能量算符”$\mathsf H$。}
+\originalnote{119}[每]{每个物理量都对应一个厄米算符，这种对应关系将在 \hyperref[sec:IV.1]{IV.1} 中详述。目前，根据 \hyperref[sec:I.2]{I.2}，我们只知道：坐标对应于算符$q_1,\allowbreak \ldots,\allowbreak q_k$，动量对应于算符$\frac{h}{2\pi i}\frac{\partial}{\partial q_1},\allowbreak \ldots,\allowbreak \frac{h}{2\pi i}\frac{\partial}{\partial q_k}$，能量对应于“能量算符”$\mathsf H$。}
 
 \originalnote{120}[气]{气体动理论可以很好地说明这些关系。
 
@@ -979,7 +1001,7 @@ A=\int_{-\infty}^{\infty}\lambda\,dE(\lambda)
 \end{align*}
 $\eta^2$同理。}
 
-\originalnote{131}[\emph{Z}]{\emph{Z. Physik}，第43卷（1927）。Bohr 对这些考察作了深化，见\emph{Naturwiss.}第16卷（1928）。下文所作的解析处理，由 Kennard 发起，见\emph{Z. Physik}第44卷（1926）；现在的形式则由 Robertson 给出。}
+\originalnote{131}[\emph{Z}]{\emph{Z. Physik}，第43卷（1927）。Bohr 对这些考察作了深化，见\emph{Naturwiss.}第16卷（1928）。下文采用的解析方法，首先由 Kennard 着手研究，见\emph{Z. Physik}第44卷（1926）；现在的形式则由 Robertson 给出。}
 
 \originalnote{132}[B]{Bohr 已强调这一点的根本意义，见\CJKglue \hyperlink{note-131}{原注 \getrefnumber{orig-note-131}} 所引文献。顺便说明，以下描述在某一点上并非完全经典：我们利用了光量子的存在，也就是频率为$\nu$的光，从不以小于$h\nu$的能量份额出现这一事实。}
 
@@ -1039,7 +1061,7 @@ a_\nu&=\frac{2\alpha\nu_0\sqrt{2-2(-1)^n\cos\pi\nu\tau}}{\pi(\nu^2-\nu_0^2)}\\
 [\mathfrak a,\operatorname{rot}\mathfrak b]-[\operatorname{rot}\mathfrak a,\mathfrak b]
 =\operatorname{grad}(\mathfrak a\times\mathfrak b)
 \]
-（$\mathfrak a\times\mathfrak b$是$\mathfrak a,\allowbreak \mathfrak b$的所谓外积，即向量积），条件是$\mathfrak a\times\mathfrak b$的法向分量在$\boldsymbol H$的边界上为零。由于$\mathfrak a\times\mathfrak b$既垂直于$\mathfrak a$，也垂直于$\mathfrak b$，所以只要$\mathfrak a$或$\mathfrak b$垂直于$\boldsymbol H$的边界，上述条件必然满足。这里$\mathfrak a=\operatorname{rot}\overline{\mathfrak A}_m$、$\mathfrak b=\overline{\mathfrak A}_n$，所以第一种情形必然成立。}
+（$\mathfrak a\times\mathfrak b$是$\mathfrak a,\allowbreak \mathfrak b$的所谓外积，即向量积），条件是$\mathfrak a\times\mathfrak b$的法向分量在$\boldsymbol H$的边界上为零。由于$\mathfrak a\times\mathfrak b$既垂直于$\mathfrak a$，也垂直于$\mathfrak b$，所以只要$\mathfrak a$或$\mathfrak b$垂直于$\boldsymbol H$的边界，上述条件必然满足。这里$\mathfrak a=\operatorname{rot}\overline{\mathfrak A}_m$、$\mathfrak b=\overline{\mathfrak A}_n$，所以所要求的边界条件必然满足。\tnote[。][][原]{原文恒等式的右端印作$\operatorname{grad}(\mathfrak a\times\mathfrak b)$。按本节采用的通常向量微分记号，此处应为$-\operatorname{div}(\mathfrak a\times\mathfrak b)$。所给边界条件使相应曲面积分为零，因此前面的分部积分等式不受这一误印影响。原式予以保留。}}
 
 \originalnote{142}[例]{例如参看\CJKglue \hyperlink{note-138}{原注 \getrefnumber{orig-note-138}} 所引文献。}
 
@@ -1060,7 +1082,7 @@ p_x=\frac{h\nu}{c}\alpha_x,\qquad p_y=\frac{h\nu}{c}\alpha_y,\qquad p_z=\frac{h\
 \nu=\frac ch\sqrt{p_x^2+p_y^2+p_z^2},\qquad \lambda=\frac c\nu,\qquad \text{能量}=h\nu,\\
 \alpha_x=\frac{cp_x}{h\nu},\qquad\alpha_y=\frac{cp_y}{h\nu},\qquad\alpha_z=\frac{cp_z}{h\nu}\text{。}
 \end{gather*}
-这里出现了一个不便：我们的本征振荡$\overline{\mathfrak A}_n(xyz)\cdot\gamma\cos2\pi\varrho_n(t-\tau)$是光的驻波；由于空腔$\boldsymbol H$的壁面反射，光波必定如此。这就不能给$\overline{\mathfrak A}_n$指定一个“射线方向”$\alpha_x,\allowbreak \alpha_y,\allowbreak \alpha_z$。立即可以看出，除$\alpha_x,\allowbreak \alpha_y,\allowbreak \alpha_z$外，至少还须有相反方向$-\alpha_x,\allowbreak -\alpha_y,\allowbreak -\alpha_z$；动量也有相应的情形。因此，在$\boldsymbol H$中，必须采用$p_x,\allowbreak p_y,\allowbreak p_z,\allowbreak \pi$之外的坐标。
+这里出现了一个不便：我们的本征振动$\overline{\mathfrak A}_n(xyz)\cdot\gamma\cos2\pi\varrho_n(t-\tau)$是光的驻波；由于空腔$\boldsymbol H$的壁面反射，光波必定如此。这就不能给$\overline{\mathfrak A}_n$指定一个“射线方向”$\alpha_x,\allowbreak \alpha_y,\allowbreak \alpha_z$。立即可以看出，除$\alpha_x,\allowbreak \alpha_y,\allowbreak \alpha_z$外，至少还须有相反方向$-\alpha_x,\allowbreak -\alpha_y,\allowbreak -\alpha_z$；动量也有相应的情形。因此，在$\boldsymbol H$中，必须采用$p_x,\allowbreak p_y,\allowbreak p_z,\allowbreak \pi$之外的坐标。
 
 近来关于这一问题的一些论述，用如下办法克服了这个困难：把$\boldsymbol H$取为长方体
 \[
@@ -1084,7 +1106,7 @@ p_x=\frac{h\nu}{c}\alpha_x,\qquad p_y=\frac{h\nu}{c}\alpha_y,\qquad p_z=\frac{h\
 
 \originalnote{147}[若]{若不借助量子力学，而只考察这一措施的后果，那么引入$\overline{\mathfrak R}^{(S)}_\infty$来代替$\mathfrak R^{(S)}_\infty$，就相当于把通常的统计法改为所谓 Bose--Einstein 统计法。例如参看\CJKglue \hyperlink{note-138}{原注 \getrefnumber{orig-note-138}} 所引 Dirac 的论文。}
 
-\originalnote{148}[人]{人们如何设想这种“二重性”，又觉得它如何悖谬，读者可在当时的文献中找到更详细的讨论，例如\CJKglue \hyperlink{note-6}{原注 \getrefnumber{orig-note-6}} 所引著作。
+\originalnote{148}[关]{关于人们如何理解这种“二重性”、又为何认为它悖谬，读者可在当时的文献中找到更详细的讨论，例如\CJKglue \hyperlink{note-6}{原注 \getrefnumber{orig-note-6}} 所引著作。
 
 人们常说，量子力学也赋予物质同样的二重性，因为离散的粒子，如电子、质子，也用波函数描述，并表现出典型的波动性质，例如在光栅上的衍射等。［参看 Davison--Germer 的实验，\emph{Physic. Rev.}第30卷（1927），\emph{Proc. nat. Acad. Sci. U.S.A.}第14卷（1928）；另见 C. P. Thompson，\emph{Proc. Roy. Soc., Lond.}第117卷（1928），以及 Rupp，\emph{Ann. Physik}第85卷（1928）。］对此必须强调，量子力学是从一种统一的基本现象理论中，推导出这两种“本性”的。旧量子理论的悖谬之处，是为了解释经验，不得不交替诉诸两个彼此矛盾的理论：Maxwell--Hertz 的电磁光理论和 Einstein 的光量子理论。}
 
@@ -1162,7 +1184,7 @@ w_{\mathfrak R}(a)=\begin{cases}1,&a\ge a_0,\\0,&a<a_0.\end{cases}
 \[
 \mathsf H_0=\frac{(P^x)^2+(P^y)^2+(P^z)^2}{2m}+V(Q^x,Q^y,Q^z),
 \]
-例如参看 \hyperref[sec:III.6]{III.6}；它是两个不相交换的算符之和：
+例如参看 \hyperref[sec:III.6]{III.6}；它是两个不对易的算符之和：
 \[
 R=\frac{(P^x)^2+(P^y)^2+(P^z)^2}{2m},\qquad S=V(Q^x,Q^y,Q^z).
 \]
@@ -1369,7 +1391,7 @@ b(\varphi,\psi)x+by=\lambda y.
 \end{align*}
 但是，并非一切$E_n$，也就是说，并非一切宏观可观测量，\hypertarget{origpage-262}{}\phantomsection\label{origpage-262}都与$\mathsf H$对易：其中很多量，例如扩散过程中气体的重心，会随$t$明显变化，所以$\operatorname{Spur}(UE_n)$并不恒定。由于一切宏观量彼此对易，$\mathsf H$绝不可能是宏观量；即能量不可能用宏观方法测得完全精确。这一点本来也很合理。}
 
-\originalnote{205}[关]{关于经典$\mathsf H$定理，参见Boltzmann，\emph{Vorlesungen über Gastheorie}，Leipzig，1896，以及P.和T.~Ehrenfest在\CJKglue \hyperlink{note-185}{原注 \getrefnumber{orig-note-185}} 所引文献中极具启发性的讨论。在量子力学中，可代替Boltzmann相应假定的“无序假定”，由W.~Pauli提出（\emph{Sommerfeld-Festschrift}，1928），并用来证明$\mathsf H$定理。最近，作者也证明了经典力学的遍历定理，见\emph{Proc. Nat. Ac.}，1930年1月与3月；另见G.~D.~Birkhoff的加强结果，\emph{Proc. Nat. Ac.}，1929年12月与1930年3月。}
+\originalnote{205}[关]{关于经典$\mathsf H$定理，参见Boltzmann，\emph{Vorlesungen über Gastheorie}，Leipzig，1896，以及P.和T.~Ehrenfest在\CJKglue \hyperlink{note-185}{原注 \getrefnumber{orig-note-185}} 所引文献中极具启发性的讨论。在量子力学中，可代替Boltzmann相应假设的“无序假设”，由W.~Pauli提出（\emph{Sommerfeld-Festschrift}，1928），并用来证明$\mathsf H$定理。最近，作者也证明了经典力学的遍历定理，见\emph{Proc. Nat. Ac.}，1930年1月与3月；另见G.~D.~Birkhoff的加强结果，\emph{Proc. Nat. Ac.}，1929年12月与1930年3月。}
 
 \originalnote{206}[\emph{Z}]{\emph{Z. Physik}，第57卷（1929）。\tnote[。][][原]{原书把本注编号印作266；根据它在原注205与207之间的位置及正文引用，可确定应为206。}}
 
@@ -1509,11 +1531,11 @@ Dirac 的上述方法清楚而优美，如今量子力学文献中已有很大�
 
 % 源PDF顺序页11，原印第4页。
 \chapter{初步考察}\label{chap:I}\hypertarget{origpage-4}{}\phantomsection\label{origpage-4}\section{变换理论的产生}\label{sec:I.1}
-量子理论在1900年至1925年间取得了巨大成就；Planck、Einstein 和 Bohr 的名字标志着这段发展历程。\origNote[。][这]{5}这里无须详述这些成就。到这一时期结束时，几乎已经无可怀疑地确定：一切基本过程，也就是原子和分子尺度上发生的一切，都受量子“不连续”规律的支配。几乎各个方面也都有了定量的量子理论方法，所得结果通常同经验符合得很好，或至少尚能令人满意。还有一项具有根本意义的进展：理论物理的思想世界接受了这样的观念——我们在宏观世界中所感知的连续性原则，即“自然不作跳跃”（\emph{natura non facit saltus}），不过是平均过程造成的表象，世界本质上仍是不连续的。人通常一次感知的是大量基本过程的总和，其数目为$10^{24}$的许多倍；\tnote[；][于][原]{原文的\emph{Quadrillionen}采用德语长阶命数法，单位为$10^{24}$，这里直接写出数值。}于是，抹平一切差异的大数定律，就把个别过程的真实面貌完全掩盖了。
+量子理论在1900年至1925年间取得了巨大成就；Planck、Einstein 和 Bohr 的名字标志着这段发展历程。\origNote[。][这]{5}这里无须详述这些成就。到这一时期结束时，几乎已经无可怀疑地确定：一切基本过程，也就是原子和分子尺度上发生的一切，都受量子“不连续”规律的支配。几乎各个方面也都有了定量的量子理论方法，所得结果通常同经验符合得很好，或至少尚能令人满意。还有一项具有根本意义的进展：理论物理研究中已接受这样一种观念——我们在宏观世界中所感知的连续性原则，即“自然不作跳跃”（\emph{natura non facit saltus}），不过是平均过程造成的表象，世界本质上仍是不连续的。人通常一次感知的是大量基本过程的总和，其数目为$10^{24}$的许多倍；\tnote[；][于][原]{原文的\emph{Quadrillionen}采用德语长阶命数法，单位为$10^{24}$，这里直接写出数值。}于是，抹平一切差异的大数定律，就把个别过程的真实面貌完全掩盖了。
 
 然而，在上述时期，量子理论还没有一个数学和物理的体系，能把当时已知的一切统一起来；更谈不上具有力学、电动力学和相对论原有体系那样恢宏而严整的统一性——这种统一性已经被量子现象打破。量子理论要求普遍有效，显然有充分理由，却缺少相应的形式工具和思想工具。它把本质上不同、各自独立、彼此异质，甚至部分相互矛盾的各种方案混合在一起，难以理清。其中最突出的，一是仍有一半属于经典力学和电动力学的对应原理；不过，这一原理在后来澄清问题时将发挥决定性作用。二是光的本性中自相矛盾的二重性，即波与微粒，参看\CJKglue \hyperlink{note-5}{原注 \getrefnumber{orig-note-5}} 和\CJKglue \hyperlink{note-148}{原注 \getrefnumber{orig-note-148}}。此外，还存在不量子化的运动，即非周期运动，以及量子化的运动，即周期运动或多重周期运动。\origNote[。][]{6}
 
-1925年带来了解决问题的契机。Heisenberg 提出的一种思路，经 Born、Heisenberg、Jordan，以及稍后的 Dirac，发展成了新的\hypertarget{origpage-5}{}\phantomsection\label{origpage-5}量子理论体系；这是物理学第一次拥有完整的量子理论体系。不久之后，Schrödinger 从完全不同的出发点建立了“波动力学”，取得了同样的成果，而且很快就证明，它同 Heisenberg--Born--Jordan 及 Dirac 的体系等价；至少在数学意义上如此，参看 \hyperref[sec:I.3]{I.3} 和 \hyperref[sec:I.4]{I.4}。\origNote[。][B]{7}Born 从统计的角度诠释了量子理论对自然界的描述。\origNote[。][在]{8}在此基础上，Dirac 和 Jordan 把两种理论融合成一种理论，即“变换理论”。\origNote[。][两]{9}两者在其中相互补充，从而能够以数学上特别简单的方式处理物理问题。
+1925年，人们找到了解决办法。Heisenberg 提出的一种思路，经 Born、Heisenberg、Jordan，以及稍后的 Dirac，发展成了新的\hypertarget{origpage-5}{}\phantomsection\label{origpage-5}量子理论体系；这是物理学第一次拥有完整的量子理论体系。不久之后，Schrödinger 从完全不同的出发点建立了“波动力学”，取得了同样的成果，而且很快就证明，它同 Heisenberg--Born--Jordan 及 Dirac 的体系等价；至少在数学意义上如此，参看 \hyperref[sec:I.3]{I.3} 和 \hyperref[sec:I.4]{I.4}。\origNote[。][B]{7}Born 从统计的角度诠释了量子理论对自然界的描述。\origNote[。][在]{8}在此基础上，Dirac 和 Jordan 把两种理论融合成一种理论，即“变换理论”。\origNote[。][两]{9}两者在其中相互补充，从而能够以数学上特别简单的方式处理物理问题。
 
 还应当提到，尽管这已不属于本书的主要论题：Goudsmit 和 Uhlenbeck 又发现了电子的磁矩和角动量，此后旧量子理论的困难几乎全部消失，我们由此有了一个几乎完全令人满意的力学体系。诚然，开头提到的同电动力学及相对论的大统一，尚未恢复；但至少已经有了一种普遍有效的力学。量子规律以不言而喻的必然性纳入其中，而我们的绝大部分经验也得到了令人满意的解释。\origNote[。][]{10}
 
@@ -1764,7 +1786,7 @@ Dirac 的上述方法清楚而优美，如今量子力学文献中已有很大�
    +\int_{-\infty}^{\infty}\delta(q)\bigl(\varphi(q)-\varphi(0)\bigr)\,dq\\
  &=\varphi(0)\cdot1+\int_{-\infty}^{\infty}0\,dq=\varphi(0),
 \end{align*}
-从而也满足 \hyperref[eq:I.3.D1]{$\Delta_1$}、\hyperref[eq:I.3.D2]{$\Delta_2$}。我们应当设想，它除零点外处处为零，但在零点变成那样大的无穷大，以至于$\delta(q)$的积分总计仍为$1$。\origNote[。][]{32}
+从而也满足 \hyperref[eq:I.3.D1]{$\Delta_1$}、\hyperref[eq:I.3.D2]{$\Delta_2$}。我们应当设想，它除零点外处处为零，但在零点却无穷大，使$\delta(q)$的积分仍然等于$1$。\origNote[。][]{32}
 
 一旦接受这种虚设，只要在$\delta(q)$之外也引入它的导数，就能把种种微分算符表示成积分算符。例如，
 \begin{align*}
@@ -1800,7 +1822,7 @@ Dirac 的上述方法清楚而优美，如今量子力学文献中已有很大�
 
 \hypertarget{origpage-15}{}\phantomsection\label{origpage-15}这样，实际上几乎所有算符都能强行采用积分表示 \hyperref[eq:I.3.I]{I}。
 
-一旦有了这种表示，问题 \hyperref[eq:I.3.E1]{$E_1$} 与 \hyperref[eq:I.3.E3]{$E_3$} 的类比就完全了；只须作如下替换：
+一旦有了这种表示，问题 \hyperref[eq:I.3.E1]{$E_1$} 与 \hyperref[eq:I.3.E3]{$E_3$} 便完全对应起来；只须作如下替换：
 \begin{align*}
  \nu&\mapsto q_1\cdots q_k,& \nu'&\mapsto q'_1\cdots q'_k,\\
  \sum_{\nu'}&\mapsto\int_\Omega\cdots\int\cdots\,dq'_1\cdots dq'_k,& x&\mapsto\varphi.
@@ -2212,7 +2234,7 @@ $\gamma)$恒有
 \]
 （由\CJKglue \hyperref[thm:II.4]{定理4} 知级数绝对收敛）。
 
-\textkaishu{证明。}若$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$完全，则根据\CJKglue \hyperref[thm:II.6]{定理6}，$f-\sum_\nu x_\nu\varphi_\nu$（$x_\nu=(f,\allowbreak \varphi_\nu)$，$\nu=1,\allowbreak 2,\allowbreak \ldots$）与$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$正交，所以必为零，即$\beta)$成立。若$\beta)$成立，则每个$f$在系无限时都是其部分和$\sum_{\nu=1}^Nx_\nu\varphi_\nu$在$N\to\infty$时的极限，因而属于$[\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots]$。所以这个流形等于$\mathfrak{R}$，即$\alpha)$成立。若$\alpha)$成立，则作如下推论：一个与所有$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$正交的$f$，也与它们的一切线性组合正交；又由连续性，它还与这些线性组合的全部聚点正交，也就是与整个$[\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots]$正交。因此它与整个$\mathfrak{R}$正交，特别也与自身正交：$(f,\allowbreak f)=0$，即$f=0$。所以这个系完全。
+\textkaishu{证明。}若$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$完全，则根据\CJKglue \hyperref[thm:II.6]{定理6}，$f-\sum_\nu x_\nu\varphi_\nu$（$x_\nu=(f,\allowbreak \varphi_\nu)$，$\nu=1,\allowbreak 2,\allowbreak \ldots$）与$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$正交，所以必为零，即$\beta)$成立。若$\beta)$成立，那么在正交系有无限多项的情形下，每个$f$都是部分和$\sum_{\nu=1}^Nx_\nu\varphi_\nu$在$N\to\infty$时的极限，因而属于$[\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots]$。所以这个流形等于$\mathfrak{R}$，即$\alpha)$成立。若$\alpha)$成立，则作如下推论：一个与所有$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$正交的$f$，也与它们的一切线性组合正交；又由连续性，它还与这些线性组合的全部聚点正交，也就是与整个$[\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots]$正交。因此它与整个$\mathfrak{R}$正交，特别也与自身正交：$(f,\allowbreak f)=0$，即$f=0$。所以这个系完全。
 
 这样便得到如下逻辑关系：
 \[
@@ -2344,7 +2366,7 @@ n_3\geq n_1,n_2,N\left(\frac1{8^3}\right);\quad\ldots.
 |f_{n_{\nu''}}-f_{n_{\nu'}}|&<|f_{n_{\nu'+1}}-f_{n_{\nu'}}|+|f_{n_{\nu'+2}}-f_{n_{\nu'+1}}|+\cdots+|f_{n_{\nu''}}-f_{n_{\nu''-1}}|\\
 &<\frac1{2^{\nu'}}+\frac1{2^{\nu'+1}}+\cdots+\frac1{2^{\nu''-1}}<\frac1{2^{\nu'-1}}.
 \end{align*}
-当$\nu'\to\infty$时，这个量趋于零，而且与$\nu''$无关。也就是说，只要$q_1\cdots q_k$不属于$Q^{(\nu)}$，序列$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$就满足Cauchy收敛条件。对于固定的$q_1\cdots q_k$，它是一个数列，所以确实收敛。反过来说，若$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$在某个$q_1\cdots q_k$处不收敛，该点就必属于$Q^{(\nu)}$。把所有不收敛的点$q_1\cdots q_k$构成的集合记为$Q$，则$Q$包含于$Q^{(\nu)}$，所以它的测度小于$Q^{(\nu)}$的测度，从而小于$1/2^{\nu-1}$。$Q$的定义与$\nu$无关，而这个结论对一切$\nu$成立，因此$Q$的Lebesgue测度为零。于是，例如把所有$f_n$在$Q$上的值改成零，也没有影响（见\CJKglue \hyperlink{note-54}{原注 \getrefnumber{orig-note-54}}）。这样，$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$在$Q$上也收敛，也就处处收敛了。
+当$\nu'\to\infty$时，这个量趋于零，且这一趋近不依赖于$\nu''$。也就是说，只要$q_1\cdots q_k$不属于$Q^{(\nu)}$，序列$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$就满足Cauchy收敛条件。对于固定的$q_1\cdots q_k$，它是一个数列，所以确实收敛。反过来说，若$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$在某个$q_1\cdots q_k$处不收敛，该点就必属于$Q^{(\nu)}$。把所有不收敛的点$q_1\cdots q_k$构成的集合记为$Q$，则$Q$包含于$Q^{(\nu)}$，所以它的测度小于$Q^{(\nu)}$的测度，从而小于$1/2^{\nu-1}$。$Q$的定义与$\nu$无关，而这个结论对一切$\nu$成立，因此$Q$的Lebesgue测度为零。于是，例如把所有$f_n$在$Q$上的值改成零，也没有影响（见\CJKglue \hyperlink{note-54}{原注 \getrefnumber{orig-note-54}}）。这样，$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$在$Q$上也收敛，也就处处收敛了。
 
 这样就从$f_1,\allowbreak f_2,\allowbreak \ldots$中找到了一个在每一点$q_1\cdots q_k$处都收敛的子序列$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$；原序列$f_1,\allowbreak f_2,\allowbreak \ldots$本身未必如此。把子序列的极限记为$f=f(q_1\cdots q_k)$。还须证明：1. $f$属于$F_\Omega$，即$\int_\Omega|f|^2$有限；2. $f$不仅是$f_{n_1},\allowbreak f_{n_2},\allowbreak \ldots$的逐点极限，也是它在希尔伯特空间中按范数收敛的极限，即$\|f-f_{n_\nu}\|\to0$，或$\int_\Omega|f-f_{n_\nu}|^2\to0$；3. 在后一意义下，$f$甚至是整个序列$f_1,\allowbreak f_2,\allowbreak \ldots$的极限，即$\|f-f_n\|\to0$，或$\int_\Omega|f-f_n|^2\to0$。
 
@@ -2364,7 +2386,7 @@ f(q_1\cdots q_k),&q_1\cdots q_k\in\Omega_N\mathwordspace{}\text{与}\mathwordspa
 \]
 当$N\to\infty$时，$f_N(q_1\cdots q_k)\to f(q_1\cdots q_k)$，甚至从某个$N$起两者就相等，所以$|f-f_N|^2\to0$。此外，$f-f_N$不是$0$就是$f$，故$|f-f_N|^2\leq|f|^2$。所以这些积分$\int_\Omega|f-f_N|^2$均受同一个有限积分$\int_\Omega|f|^2$控制；而被积函数趋于零，根据刚才引用的收敛定理，积分也趋于零：$\int_\Omega|f-f_N|^2\to0$，即$\|f-f_N\|\to0$。
 
-把满足以下条件的一切函数$g=g(q_1\cdots q_k)$构成的类记为$G$：$g\ne0$的点集测度有限，且在整个空间恒有$|g|\leq C$，其中$C$任意但固定。上面的所有$f_N$都属于$G$，所以$G$在$F_\Omega$中处处稠密。
+把满足以下条件的一切函数$g=g(q_1\cdots q_k)$构成的类记为$G$：$g\ne0$的点集测度有限，且在整个空间恒有$|g|\leq C$，其中$C$是任意选定的常数。上面的所有$f_N$都属于$G$，所以$G$在$F_\Omega$中处处稠密。
 
 设$g$属于$G$，$\varepsilon>0$。令$M$为$g\ne0$的点集的测度，$C$为$|g|$的一个上界。取一串有理数$-C<\rho_1<\rho_2<\cdots<\rho_t<C$，使$\rho_1<-C+\varepsilon,\allowbreak \rho_2<\rho_1+\varepsilon,\allowbreak \ldots,\allowbreak \rho_t<\rho_{t-1}+\varepsilon,\allowbreak C<\rho_t+\varepsilon$；这很容易做到。把$\operatorname{Re}g(q_1\cdots q_k)$的每个值改为最接近的$\rho_s$（$s=1,\allowbreak 2,\allowbreak \ldots,\allowbreak t$），唯独$0$保持不变，便得到新函数$h_1(q_1\cdots q_k)$，它与$\operatorname{Re}g$在各处的差的绝对值都小于$\varepsilon$。对$\operatorname{Im}g$也同样构造$h_2(q_1\cdots q_k)$。令$h=h_1+ih_2$，则
 \begin{align*}
@@ -2698,7 +2720,7 @@ A(a_1f_1+\cdots+a_kf_k)=a_1Af_1+\cdots+a_kAf_k
 \]
 就称$A$为线性算符。以后只考察线性算符，而且只考察定义域处处稠密的线性算符。
 
-对于量子力学中的算符，我们必须放弃处处有定义的要求；而最后这条规定，则可在某些用途上充当足够的替代条件。这一点很重要，值得稍加细究。例如，考察Schr\"odinger波动力学的位形空间，为简单起见，设它是一维的：$-\infty<q<+\infty$。
+对于量子力学中的算符，我们必须放弃处处有定义的要求；不过，在某些情况下，要求定义域处处稠密就已足够。这一点很重要，值得稍加细究。例如，考察Schr\"odinger波动力学的位形空间，为简单起见，设它是一维的：$-\infty<q<+\infty$。
 
 \hypertarget{origpage-48}{}\phantomsection\label{origpage-48}波函数是使$\int_{-\infty}^{+\infty}|\varphi(q)|^2\,dq$有限的$\varphi(q)$，它们构成一个希尔伯特空间（见 \hyperref[sec:II.3]{II.3}）。再考察算符$q\cdots$和$\frac{h}{2\pi i}\frac{d}{dq}\cdots$。它们显然是线性算符，但其定义域都不是整个希尔伯特空间。对于$q\cdots$，这是因为即使$\int_{-\infty}^{+\infty}|\varphi(q)|^2\,dq$有限，
 \[
@@ -2826,7 +2848,7 @@ UU^*f=UU^*\cdot Ug=U\cdot U^*Ug=Ug=f,\qquad\text{故}\mathwordspace{}UU^*=1.
 \]
 例如，一切$XX^*$（取$A=1$）和$X^*X$（以$X^*$代$X$）都是如此。对酉算符$U$，$UAU^{-1}$厄米，因为$U^{-1}=U^*$。
 
-对于算符，与分析学中熟悉的数值函数一样，连续性是一种根本重要的性质。因此，下面给出线性算符连续的若干特征条件。
+连续性对于算符至关重要，就像它对于分析学中熟悉的数值函数一样。因此，下面给出线性算符连续的若干特征条件。
 
 \leavevmode\phantomsection\textbf{定理18.}\label{thm:II.18} 线性算符$R$只要在$f=0$处连续，就处处连续。而在$f=0$处连续的充分必要条件，是存在常数$C$，使普遍有$\|Rf\|\leq C\|f\|$。这个条件又等价于普遍有
 \[
@@ -3459,7 +3481,7 @@ a\leq\frac{b-a}{2\pi}x\leq b
 \end{align*}
 当$q\to+\infty$时，$f(q)\overline{g(q)}\to0$，证明与 \hyperref[sec:II.5]{II.5} 中区间$-\infty,\allowbreak +\infty$的情形相同。因此须有$f(0)\overline{g(0)}=0$。令$f=g$就知，边界条件必须是$f(0)=0$。
 
-这时出现了严重困难。$A'\varphi=\lambda\varphi$的解，与区间$-\infty<q<+\infty$的情形相同，即$ce^{\frac{2\pi i}{h}\lambda q}$；它们不属于$\mathfrak{R}_\infty$，还违反边界条件。后一现象已经提示，这种求解方法可能有问题。更奇怪的是，按前面勾画的方法，由于这些形式解，即不属于$\mathfrak{R}_\infty$的解相同，就应得到与$-\infty<q<+\infty$的情形相同的$E(\lambda)$。这怎么能与算符已经不同相容呢？而且，所得结果也不符合我们的要求。因为，在由使$\int_0^{+\infty}|f(q)|^2\,dq$有限的$f(q)$（$0\leq q<+\infty$）构成的希尔伯特空间$F_{\Omega'}$中，若仍以
+这时出现了严重困难。$A'\varphi=\lambda\varphi$的解，与区间$-\infty<q<+\infty$的情形相同，即$ce^{\frac{2\pi i}{h}\lambda q}$；它们不属于$\mathfrak{R}_\infty$，还违反边界条件。后一现象已经提示，这种求解方法可能有问题。更奇怪的是，按前面勾画的方法，由于这些形式解，即不属于$\mathfrak{R}_\infty$的解相同，就应得到与$-\infty<q<+\infty$的情形相同的$E(\lambda)$。可是，算符已经不同，怎么会仍得到相同的结果呢？而且，所得结果也不符合我们的要求。因为，在由使$\int_0^{+\infty}|f(q)|^2\,dq$有限的$f(q)$（$0\leq q<+\infty$）构成的希尔伯特空间$F_{\Omega'}$中，若仍以
 \begin{align*}
 Mf(q)=F(p)&=\frac1{\sqrt h}\int_0^{\infty}e^{\frac{2\pi i}{h}pq}f(q)\,dq,\\
 M^{-1}F(p)=f(q)&=\frac1{\sqrt h}\int_{-\infty}^{\infty}e^{-\frac{2\pi i}{h}pq}F(p)\,dp
@@ -3660,14 +3682,14 @@ Hilbert的结论如下：每个连续厄米算符都有且仅有一个属于它�
 
 可以设想，厄米算符在希尔伯特空间的某些点上没有定义，尽管在那些点定义它是合理的。例如，算符$A'=\frac{h}{2\pi i}\frac{\partial}{\partial q}$对$f(q)=e^{-|q|}$没有定义；我们本来也可以把$\frac{h}{2\pi i}\frac{\partial}{\partial q}$限制在$-\infty<q<+\infty$（$q$为实数）上的解析函数上，\origNote[，][等]{97}等等。要求定义域处处稠密，固然可防止过于任意的限制；我们也还能只考察闭算符。但这仍不够有效。
 
-\hypertarget{origpage-79}{}\phantomsection\label{origpage-79}例如，取区间$0\leq q\leq1$上的算符$A'=\frac{h}{2\pi i}\frac{\partial}{\partial q}$。设$f(q)$处处可微，且$\int_0^1|f(q)|^2\,dq,\allowbreak \int_0^1|f'(q)|^2\,dq$有限。为使$A'$厄米，还须加上边界条件$f(0):f(1)=e^{-i\alpha}$，$0\leq\alpha<2\pi$。把这些$f(q)$的定义域记作$\mathfrak A_\alpha$，相应的$A'$记作$A'_\alpha$。再考察边界条件$f(1)=f(0)=0$，把相应的$f(q)$定义域记作$\mathfrak A^0$，算符记作$A'{}^0$。一切$A'_\alpha$都扩张$A'{}^0$；因此$A'{}^0$厄米，且定义域处处稠密。\origNote[。][于]{98}于是它们的闭包$\widetilde A'_\alpha$也都扩张$\widetilde A'{}^0$。所有$\widetilde A'_\alpha$彼此不同，也都不同于$\widetilde A'{}^0$。因为，显然为酉的运算$f(q)\mapsto e^{i\beta q}f(q)$，把$A'$变为$A'+\frac{h\beta}{2\pi}1$，把$\mathfrak A_\alpha$变为$\mathfrak A_{\alpha+\beta}$，把$\mathfrak A^0$变为$\mathfrak A^0$；所以它把$A'_\alpha$变为$A'_{\alpha-\beta}+\frac{h\beta}{2\pi}1$，把$A'{}^0$变为$A'{}^0+\frac{h\beta}{2\pi}1$；进而把$\widetilde A'_\alpha$变为$\widetilde A'_{\alpha-\beta}+\frac{h\beta}{2\pi}1$，把$\widetilde A'{}^0$变为$\widetilde A'{}^0+\frac{h\beta}{2\pi}1$。因此，若$\widetilde A'_\alpha=\widetilde A'{}^0$，就有$\widetilde A'_{\alpha-\beta}=\widetilde A'{}^0$，从而所有$\widetilde A'_\gamma$都相等。所以只须证明$\alpha\ne\gamma$时$\widetilde A'_\alpha\ne\widetilde A'_\gamma$即可。只要$A'_\alpha,\allowbreak A'_\gamma$没有共同的厄米扩张，这便成立；也就是说，只要$A'$在$\mathfrak A_\alpha,\allowbreak \mathfrak A_\gamma$的并集上不厄米即可。由于$e^{i\alpha q}$属于$\mathfrak A_\alpha$，$e^{i\gamma q}$属于$\mathfrak A_\gamma$，而
+\hypertarget{origpage-79}{}\phantomsection\label{origpage-79}例如，取区间$0\leq q\leq1$上的算符$A'=\frac{h}{2\pi i}\frac{\partial}{\partial q}$。设$f(q)$处处可微，且$\int_0^1|f(q)|^2\,dq,\allowbreak \int_0^1|f'(q)|^2\,dq$有限。为使$A'$厄米，还须加上边界条件$f(0):f(1)=e^{-i\alpha}$，$0\leq\alpha<2\pi$。把这些$f(q)$构成的定义域记作$\mathfrak A_\alpha$，相应的$A'$记作$A'_\alpha$。再考察边界条件$f(1)=f(0)=0$，把相应的$f(q)$构成的定义域记作$\mathfrak A^0$，算符记作$A'{}^0$。一切$A'_\alpha$都扩张$A'{}^0$；因此$A'{}^0$厄米，且定义域处处稠密。\origNote[。][于]{98}于是它们的闭包$\widetilde A'_\alpha$也都扩张$\widetilde A'{}^0$。所有$\widetilde A'_\alpha$彼此不同，也都不同于$\widetilde A'{}^0$。因为，显然为酉的运算$f(q)\mapsto e^{i\beta q}f(q)$，把$A'$变为$A'+\frac{h\beta}{2\pi}1$，把$\mathfrak A_\alpha$变为$\mathfrak A_{\alpha+\beta}$，把$\mathfrak A^0$变为$\mathfrak A^0$；所以它把$A'_\alpha$变为$A'_{\alpha-\beta}+\frac{h\beta}{2\pi}1$，把$A'{}^0$变为$A'{}^0+\frac{h\beta}{2\pi}1$；进而把$\widetilde A'_\alpha$变为$\widetilde A'_{\alpha-\beta}+\frac{h\beta}{2\pi}1$，把$\widetilde A'{}^0$变为$\widetilde A'{}^0+\frac{h\beta}{2\pi}1$。因此，若$\widetilde A'_\alpha=\widetilde A'{}^0$，就有$\widetilde A'_{\alpha-\beta}=\widetilde A'{}^0$，从而所有$\widetilde A'_\gamma$都相等。所以只须证明$\alpha\ne\gamma$时$\widetilde A'_\alpha\ne\widetilde A'_\gamma$即可。只要$A'_\alpha,\allowbreak A'_\gamma$没有共同的厄米扩张，这便成立；也就是说，只要$A'$在$\mathfrak A_\alpha,\allowbreak \mathfrak A_\gamma$的并集上不厄米即可。由于$e^{i\alpha q}$属于$\mathfrak A_\alpha$，$e^{i\gamma q}$属于$\mathfrak A_\gamma$，而
 \begin{align*}
 (A'e^{i\alpha q},e^{i\gamma q})-(e^{i\alpha q},A'e^{i\gamma q})
 &=i\alpha\int_0^1e^{i(\alpha-\gamma)q}\,dq-i\gamma\int_0^1e^{i(\alpha-\gamma)q}\,dq\\
 &=\int_0^1e^{i(\alpha-\gamma)q}i(\alpha-\gamma)\,dq
 =e^{i(\alpha-\gamma)}-1\ne0,
 \end{align*}
-所以确实如此。因此，闭厄米算符$\widetilde A'{}^0$的定义域过窄：它有真正的闭厄米扩张，即$\widetilde A'_\alpha$；“真正”就是说与它本身不同。而且，这种扩张有无限多种选择，因为每个$\widetilde A'_\alpha$都可采用，并给出不同的本征值问题解答：谱总是纯点谱，但依赖于$\alpha$，即由$h(\frac{\alpha}{2\pi}+k)$，$k=0,\allowbreak \pm1,\allowbreak \pm2,\allowbreak \ldots$组成的集合。反之，对$\widetilde A'{}^0$本身，则根本不能期待本征值问题有合理解答。事实上，本节稍后将证明：属于某个单位分解的厄米算符，即本征值问题可解的厄米算符，没有真正扩张。没有真正扩张的算符，亦即在一切能不破坏厄米性而合理定义它的点上都已有定义的算符，称为极大算符。由此已经看到：单位分解只能属于极大算符。
+所以确实如此。因此，闭厄米算符$\widetilde A'{}^0$的定义域过窄：它有闭厄米真扩张，即$\widetilde A'_\alpha$；所谓“真”，就是说与它本身不同。而且，这种扩张有无限多种选择，因为每个$\widetilde A'_\alpha$都可采用，并给出不同的本征值问题解答：谱总是纯点谱，但依赖于$\alpha$，即由$h(\frac{\alpha}{2\pi}+k)$，$k=0,\allowbreak \pm1,\allowbreak \pm2,\allowbreak \ldots$组成的集合。反之，对$\widetilde A'{}^0$本身，则根本不能期待本征值问题有合理解答。事实上，本节稍后将证明：具有单位分解的厄米算符，即本征值问题可解的厄米算符，没有真扩张。没有真扩张的算符，亦即在一切能不破坏厄米性而合理定义它的点上都已有定义的算符，称为极大算符。由此已经看到：单位分解只能属于极大算符。
 
 \hypertarget{origpage-80}{}\phantomsection\label{origpage-80}另一方面，可以证明，每个厄米算符都能扩张成极大厄米算符；若算符闭而不极大，总能以无限多种不同方式扩张。因此，扩张过程唯一确定的阶段，只是从$A$到闭包$\widetilde A$（参见\CJKglue \hyperlink{note-95}{原注 \getrefnumber{orig-note-95}} 末尾）。所以，我们至多能希望得到这样一种最好的结果：每个极大厄米算符都有且仅有一个属于它的单位分解。每个闭的连续厄米算符都处处有定义，所以是极大的。
 
@@ -3824,7 +3846,7 @@ $U$的定义如下：$U\varphi$有意义，当且仅当$\varphi=Af+if$，此时�
 
 因此，$U$定义在闭线性流形$\mathfrak E$上，并把它映满闭线性流形$\mathfrak F$。它是线性的，且由于$\|Uf-Ug\|=\|U(f-g)\|=\|f-g\|$，它保持一切距离不变，我们称之为保长映射。于是$f\ne g$必有$Uf\ne Ug$，所以映射是一一的。还有$(f,\allowbreak g)=(Uf,\allowbreak Ug)$；证明与 \hyperref[sec:II.5]{II.5} 中酉算符情形完全相同。因此$U$也保持一切内积不变。不过，显然只有当$\mathfrak E=\mathfrak F=\mathfrak R_\infty$时，$U$才是酉的，反之亦然。
 
-现设$A,\allowbreak B$为两个闭厄米算符，$U,\allowbreak V$为它们的Cayley变换，相应的上述集合分别为$\mathfrak E,\allowbreak \mathfrak F$及$\mathfrak G,\allowbreak \mathfrak H$。立即可见，若$B$是$A$的真正扩张，$V$也是$U$的真正扩张：$\mathfrak E$是$\mathfrak G$的真子集，$\mathfrak F$是$\mathfrak H$的真子集。因此$\mathfrak E\ne\mathfrak R_\infty,\allowbreak \mathfrak F\ne\mathfrak R_\infty$，于是$U$不酉，$A$的本征值问题不可解。这样就证明了前面多次引用的定理：$A$的本征值问题若可解，$A$就没有真正扩张，即$A$为极大的。
+现设$A,\allowbreak B$为两个闭厄米算符，$U,\allowbreak V$为它们的Cayley变换，相应的上述集合分别为$\mathfrak E,\allowbreak \mathfrak F$及$\mathfrak G,\allowbreak \mathfrak H$。立即可见，若$B$是$A$的真扩张，$V$也是$U$的真扩张：$\mathfrak E$是$\mathfrak G$的真子集，$\mathfrak F$是$\mathfrak H$的真子集。因此$\mathfrak E\ne\mathfrak R_\infty,\allowbreak \mathfrak F\ne\mathfrak R_\infty$，于是$U$不酉，$A$的本征值问题不可解。这样就证明了前面多次引用的定理：$A$的本征值问题若可解，$A$就没有真扩张，即$A$为极大的。
 
 回到单个闭厄米算符$A$及其$\mathfrak E,\allowbreak \mathfrak F,\allowbreak U$。若$Af$有意义，则对$\varphi=Af+if$，$U\varphi$有意义且等于$Af-if$。所以$f=\frac1{2i}(\varphi-U\varphi),\allowbreak Af=\frac12(\varphi+U\varphi)$；或令$\psi=\varphi/(2i)$，就有$f=\psi-U\psi,\allowbreak Af=i(\psi+U\psi)$。反过来，若$f=\psi-U\psi$，$Af$必定有意义：因为$U\psi$有意义，所以$\psi=Af'+if'$，其中$Af'$有意义，而$U\psi=Af'-if'$，故$f=\psi-U\psi=2if'$。因此，$A$的定义域是一切$\psi-U\psi$的集合，且当$f=\psi-U\psi$时，$Af=i(\psi+U\psi)$。所以，$U$及其$\mathfrak E,\allowbreak \mathfrak F$也唯一确定$A$。同时可见，一切$\psi-U\psi$必须处处稠密，因为它们构成$A$的定义域。
 
@@ -3862,13 +3884,13 @@ V(2i\varphi)&=V(Af+if)=Af-if\\
 \|f\|^2=\|\varphi\|^2+|a|^2,\qquad
 \|Vf\|^2=\|U\varphi\|^2+|a|^2,
 \]
-所以$\|Vf\|=\|f\|$，即$V$保长。最后，$V$是$U$的真正扩张。因此，$A$极大的特征条件是：$\mathfrak E=\mathfrak R_\infty$或$\mathfrak F=\mathfrak R_\infty$。
+所以$\|Vf\|=\|f\|$，即$V$保长。最后，$V$是$U$的真扩张。因此，$A$极大的特征条件是：$\mathfrak E=\mathfrak R_\infty$或$\mathfrak F=\mathfrak R_\infty$。
 
-反之，若$A$不极大，则两个闭线性流形$\mathfrak R_\infty-\mathfrak E,\allowbreak \mathfrak R_\infty-\mathfrak F$都非零。设张成它们的规范正交系分别为$\varphi_1,\allowbreak \ldots,\allowbreak \varphi_p$与$\psi_1,\allowbreak \ldots,\allowbreak \psi_q$（见 \hyperref[sec:II.2]{II.2} 的\CJKglue \hyperref[thm:II.9]{定理9}）。这里$p,\allowbreak q=1,\allowbreak 2,\allowbreak \ldots,\allowbreak \infty$；$p=\infty$或$q=\infty$时，相应的$\varphi$或$\psi$序列不终止。令$r=\operatorname{Min}(p,\allowbreak q)$，在$[\mathfrak E,\allowbreak \varphi_1,\allowbreak \ldots,\allowbreak \varphi_r]$上如下定义$V$：当$f=\varphi+\sum_{\nu=1}^ra_\nu\varphi_\nu$，其中$\varphi$属于$\mathfrak E$、$a_1,\allowbreak \ldots,\allowbreak a_r$为数时，令$Vf=U\varphi+\sum_{\nu=1}^ra_\nu\psi_\nu$。仍不难看出，$V$线性、保长，并且是$U$的真正扩张。它的定义域为$[\mathfrak E,\allowbreak \varphi_1,\allowbreak \ldots,\allowbreak \varphi_r]$，当$r=p$时等于$[\mathfrak E,\allowbreak \mathfrak R_\infty-\mathfrak E]=\mathfrak R_\infty$；值域为$[\mathfrak F,\allowbreak \psi_1,\allowbreak \ldots,\allowbreak \psi_r]$，当$r=q$时等于$[\mathfrak F,\allowbreak \mathfrak R_\infty-\mathfrak F]=\mathfrak R_\infty$。因此，两者中至少有一个必等于$\mathfrak R_\infty$。设$V$为厄米算符$B$的Cayley变换，依上述结论，$B$扩张$A$而且极大。须注意，$\varphi,\allowbreak \psi$的选择有无限多种，例如可把$\psi_1$换成任意$\theta\psi_1$，$|\theta|=1$；所以$V,\allowbreak B$也有无限多种选择。
+反之，若$A$不极大，则两个闭线性流形$\mathfrak R_\infty-\mathfrak E,\allowbreak \mathfrak R_\infty-\mathfrak F$都非零。设张成它们的规范正交系分别为$\varphi_1,\allowbreak \ldots,\allowbreak \varphi_p$与$\psi_1,\allowbreak \ldots,\allowbreak \psi_q$（见 \hyperref[sec:II.2]{II.2} 的\CJKglue \hyperref[thm:II.9]{定理9}）。这里$p,\allowbreak q=1,\allowbreak 2,\allowbreak \ldots,\allowbreak \infty$；$p=\infty$或$q=\infty$时，相应的$\varphi$或$\psi$序列不终止。令$r=\operatorname{Min}(p,\allowbreak q)$，在$[\mathfrak E,\allowbreak \varphi_1,\allowbreak \ldots,\allowbreak \varphi_r]$上如下定义$V$：当$f=\varphi+\sum_{\nu=1}^ra_\nu\varphi_\nu$，其中$\varphi$属于$\mathfrak E$、$a_1,\allowbreak \ldots,\allowbreak a_r$为数时，令$Vf=U\varphi+\sum_{\nu=1}^ra_\nu\psi_\nu$。仍不难看出，$V$线性、保长，并且是$U$的真扩张。它的定义域为$[\mathfrak E,\allowbreak \varphi_1,\allowbreak \ldots,\allowbreak \varphi_r]$，当$r=p$时等于$[\mathfrak E,\allowbreak \mathfrak R_\infty-\mathfrak E]=\mathfrak R_\infty$；值域为$[\mathfrak F,\allowbreak \psi_1,\allowbreak \ldots,\allowbreak \psi_r]$，当$r=q$时等于$[\mathfrak F,\allowbreak \mathfrak R_\infty-\mathfrak F]=\mathfrak R_\infty$。因此，两者中至少有一个必等于$\mathfrak R_\infty$。设$V$为厄米算符$B$的Cayley变换，依上述结论，$B$扩张$A$而且极大。须注意，$\varphi,\allowbreak \psi$的选择有无限多种，例如可把$\psi_1$换成任意$\theta\psi_1$，$|\theta|=1$；所以$V,\allowbreak B$也有无限多种选择。
 
 至此，本征值问题已讨论完毕，结论如下：只要可解，解就只有一个；非极大算符的本征值问题则一定不可解。非极大算符总能以无限多种不同方式扩张成极大算符。这里始终说的是闭厄米算符。不过，极大性的条件与本征值问题可解的条件并不完全相同：前者是$\mathfrak E=\mathfrak R_\infty$\textbf{或}$\mathfrak F=\mathfrak R_\infty$，后者却是$\mathfrak E=\mathfrak R_\infty$\textbf{且}$\mathfrak F=\mathfrak R_\infty$。
 
-对于满足前一个条件却不满足后一个条件的算符，这里不作进一步研究。它们的本征值问题不可解，而且又因极大性而不能作真正扩张，因而也无法用扩张来改变这一状况。它们的特征是$\mathfrak E=\mathfrak R_\infty,\allowbreak \mathfrak F\ne\mathfrak R_\infty$，或$\mathfrak E\ne\mathfrak R_\infty,\allowbreak \mathfrak F=\mathfrak R_\infty$。这样的算符确实存在，且全都可由两个简单的标准形得到；所以，与本征值问题可解的极大算符相比，可以把它们看作例外。详情见\CJKglue \hyperlink{note-95}{原注 \getrefnumber{orig-note-95}} 所引作者本人的论文。无论如何，暂且必须把这些算符排除在量子力学的讨论之外。因为，如下文将看到的，属于厄米算符的单位分解，在量子力学各个概念的构造中都起着如此重要的作用，\hypertarget{origpage-88}{}\phantomsection\label{origpage-88}以至于我们不能放弃它的存在，也就不能放弃本征值问题的可解性。\origNote[。][因]{105}因此，通常只允许本征值问题可解的厄米算符。由于这个性质加强了极大性，这类算符称为超极大算符；\origNote[；][恰]{106}恰好是它们与单位分解一一对应。
+对于满足前一个条件却不满足后一个条件的算符，这里不作进一步研究。它们的本征值问题不可解，而且又因极大性而不能作真扩张，因而也无法用扩张来改变这一状况。它们的特征是$\mathfrak E=\mathfrak R_\infty,\allowbreak \mathfrak F\ne\mathfrak R_\infty$，或$\mathfrak E\ne\mathfrak R_\infty,\allowbreak \mathfrak F=\mathfrak R_\infty$。这样的算符确实存在，且全都可由两个简单的标准形得到；所以，与本征值问题可解的极大算符相比，可以把它们看作例外。详情见\CJKglue \hyperlink{note-95}{原注 \getrefnumber{orig-note-95}} 所引作者本人的论文。无论如何，暂且必须把这些算符排除在量子力学的讨论之外。因为，如下文将看到的，属于厄米算符的单位分解，在量子力学各个概念的构造中都起着如此重要的作用，\hypertarget{origpage-88}{}\phantomsection\label{origpage-88}以至于我们不能放弃它的存在，也就不能放弃本征值问题的可解性。\origNote[。][因]{105}因此，通常只允许本征值问题可解的厄米算符。由于这个性质加强了极大性，这类算符称为超极大算符；\origNote[；][恰]{106}恰好是它们与单位分解一一对应。
 
 最后，提到两类一定超极大的闭厄米算符。第一类是连续算符：它们处处有定义，所以极大；又因根据Hilbert理论，其本征值问题可解（参见\CJKglue \hyperlink{note-70}{原注 \getrefnumber{orig-note-70}} 所引文献），因而甚至超极大。第二类是在$\mathfrak R_\infty$的某个实现中为实的算符，前提是它们极大。因为$\mathfrak E,\allowbreak \mathfrak F$的定义只差$i$的符号，当其他一切都为实时，这个差别就无关紧要。因此，$\mathfrak E=\mathfrak R_\infty$能推出$\mathfrak F=\mathfrak R_\infty$，反之亦然；即极大性推出超极大性。不假定极大性，至少也能说$\mathfrak R_\infty-\mathfrak E$与$\mathfrak R_\infty-\mathfrak F$的维数相同。于是，用前面研究扩张时的记号，有$p=q$，所以$r=p=q$，且
 \begin{align*}\relax
@@ -4054,7 +4076,7 @@ y_\mu=\sum_{\nu=1}^n a_{\mu\nu}x_\nu,
 \quad\text{且}\quad
 \sum_{\mu=1}^\infty(A\varphi_\mu,\varphi_\mu)
 \]
-时完全不顾其收敛性，又重排求和次序，把它们互相变形；也就是说，凡是严格说来不该做的事，我们几乎都做了。当然，理论物理的其他地方也不乏这样的疏忽；这里的疏忽，在量子力学的应用中也不会造成不良后果。但无论如何，必须承认这是一种疏忽。正因如此，更须强调：量子力学的基本统计断言，只对$A,\allowbreak B$均定号的算符$AB$使用迹；而这个概念也完全能够得到严格的奠定。因此，本节余下部分将汇集有关迹的那些可以用完全严格的数学论证证明的事实。
+时完全不顾其收敛性，又重排求和次序，把它们互相变形；也就是说，凡是严格说来不该做的事，我们几乎都做了。当然，理论物理的其他地方也不乏这样的疏忽；这里的疏忽，在量子力学的应用中也不会造成不良后果。但无论如何，必须承认这是一种疏忽。正因如此，更须强调：量子力学的基本统计断言，只对$A,\allowbreak B$均定号的算符$AB$使用迹；而迹的这个概念也完全可以建立在严格的基础上。因此，本节余下部分将汇集有关迹的那些可以用完全严格的数学论证证明的事实。
 
 先考察$A^*A$的迹，其中$A$任意。依 \hyperref[sec:II.4]{II.4}，$A^*A$厄米，且因$(A^*Af,\allowbreak f)=(Af,\allowbreak Af)\geq0$而定号。有
 \[
@@ -4143,7 +4165,7 @@ y_\mu=\sum_{\nu=1}^n a_{\mu\nu}x_\nu,
 &=\sum_{\mu=1}^{\infty}(\sqrt A\cdot\sqrt A\sqrt B\varphi_\mu,\sqrt B\varphi_\mu)\\
 &=\sum_{\mu=1}^{\infty}(A\sqrt B\varphi_\mu,\sqrt B\varphi_\mu)
 \end{align*}
-便可看出。至此，迹概念已在上面所要求的范围内得到严格奠定。
+便可看出。至此，我们已在上述所需的范围内，为迹的概念建立了严格的基础。
 
 最后一个公式还给出如下结论：若$A,\allowbreak B$定号，则
 \[
@@ -4357,7 +4379,7 @@ Af(P)=\int_\Omega a(P,P')f(P')\,dv',
 \int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}
 |f(q_1\cdots q_k)|^2\,dq_1\cdots dq_k
 \]
-为有限值的函数$f(q_1\cdots q_k)$所成的希尔伯特空间$\mathfrak R_\infty$（这是一个$F_\Omega$），$\varphi$在其中的范数为$\|\varphi\|=1$。也就是说，$\varphi$应落在希尔伯特空间的单位球面上\origNote[上][。]{117}。我们已经知道，给$\varphi$乘上一个常数因子，即与$q_1,\allowbreak \ldots,\allowbreak q_k$无关的因子，并不改变其物理意义。（这就是用$a\varphi$代替$\varphi$，其中$a$为复数。由于有归一化条件$\|\varphi\|=1$，必须满足$|a|=1$。）还要指出，除了系统位形空间的坐标$q_1,\allowbreak \ldots,\allowbreak q_k$，$\varphi$也依赖于时间$t$。不过，希尔伯特空间是只针对$q_1,\allowbreak \ldots,\allowbreak q_k$构造的，因为归一化条件也只涉及这些变量。因此，必须留意$t$这一依赖关系；更恰当地说，在这里应把$t$看作一个参数。由此，$\varphi$作为$\mathfrak R_\infty$中的点，依赖于$t$，却不依赖于$q_1,\allowbreak \ldots,\allowbreak q_k$：作为$\mathfrak R_\infty$中的一个点，它表示的是整个$q_1,\allowbreak \ldots,\allowbreak q_k$函数。为此，当我们把$\varphi$看作$\mathfrak R_\infty$中的点时，有时会将参数$t$写出来，记作$\varphi_t$。
+为有限值的函数$f(q_1\cdots q_k)$所成的希尔伯特空间$\mathfrak R_\infty$（这是一个$F_\Omega$），$\varphi$在其中的范数为$\|\varphi\|=1$。也就是说，$\varphi$应落在希尔伯特空间的单位球面上\origNote[上][。]{117}。我们已经知道，给$\varphi$乘上一个常数因子，即与$q_1,\allowbreak \ldots,\allowbreak q_k$无关的因子，并不改变其物理意义。（这就是用$a\varphi$代替$\varphi$，其中$a$为复数。由于有归一化条件$\|\varphi\|=1$，必须满足$|a|=1$。）还要指出，除了系统位形空间的坐标$q_1,\allowbreak \ldots,\allowbreak q_k$，$\varphi$也依赖于时间$t$。不过，希尔伯特空间是只针对$q_1,\allowbreak \ldots,\allowbreak q_k$构造的，因为归一化条件也只涉及这些变量。因此，必须留意$t$这一依赖关系；更恰当地说，在这里应把$t$看作一个参数。由此，$\varphi$作为$\mathfrak R_\infty$中的点，依赖于$t$，却不依赖于$q_1,\allowbreak \ldots,\allowbreak q_k$：作为$\mathfrak R_\infty$中的一个点，它表示的是这个函数随$q_1,\allowbreak \ldots,\allowbreak q_k$变化的完整情形。为此，当我们把$\varphi$看作$\mathfrak R_\infty$中的点时，有时会将参数$t$写出来，记作$\varphi_t$。
 
 现在考察状态$\varphi=\varphi(q_1\cdots q_k)$。关于这个状态的统计断言是：系统在位形空间的点$q_1,\allowbreak \ldots,\allowbreak q_k$处的概率密度为$|\varphi(q_1\cdots q_k)|^2$。也就是说，系统位于位形空间某一区域$V$内的概率为
 \[
@@ -4412,7 +4434,7 @@ E(I)=E(\lambda'')-E(\lambda')=\sum_{\lambda'<\lambda_n\le\lambda''}P_{[\varphi_n
 
 第一种情形对应于$l=k$、$R_1=q_1\cdots,\allowbreak \ldots,\allowbreak R_k=q_k\cdots$；第二种情形对应于$l=1$、$R_1=\mathsf H$。现在，我们把这个断言 \hyperref[post:III.1.W]{W.} 假定为普遍有效的。它确实包含了迄今为止量子力学作出的一切统计断言。
 
-不过，必须对它的适用范围加一项限制。问题本身完全不涉及$R_1,\allowbreak \ldots,\allowbreak R_l$的先后次序，因此结果也必须与次序无关。也就是说，$E_1(I_1),\allowbreak \ldots,\allowbreak E_l(I_l)$，或者说所有$E_1(\lambda_1),\allowbreak \ldots,\allowbreak E_l(\lambda_l)$，必须彼此对易。根据 \hyperref[sec:II.10]{II.10}，这意味着$R_1,\allowbreak \ldots,\allowbreak R_l$彼此对易。$q_1\cdots,\allowbreak \ldots,\allowbreak q_k\cdots$满足这一条件；当$l=1$、$R_1=\mathsf H$时，这项条件则无从谈起。
+不过，必须对它的适用范围加一项限制。问题本身完全不涉及$R_1,\allowbreak \ldots,\allowbreak R_l$的先后次序，因此结果也必须与次序无关。也就是说，$E_1(I_1),\allowbreak \ldots,\allowbreak E_l(I_l)$，或者说所有$E_1(\lambda_1),\allowbreak \ldots,\allowbreak E_l(\lambda_l)$，必须彼此对易。根据 \hyperref[sec:II.10]{II.10}，这意味着$R_1,\allowbreak \ldots,\allowbreak R_l$彼此对易。$q_1\cdots,\allowbreak \ldots,\allowbreak q_k\cdots$满足这一条件；当$l=1$、$R_1=\mathsf H$时，则无需再考虑这一条件。
 
 因此，我们对彼此对易的$R_1,\allowbreak \ldots,\allowbreak R_l$普遍提出公设 \hyperref[post:III.1.W]{W.}。此时$E_1(I_1),\allowbreak \ldots,\allowbreak E_l(I_l)$也彼此对易，所以$E_1(I_1)\cdots E_l(I_l)$为投影算符（\hyperref[thm:II.14]{II.4的定理14}），所述概率因而等于
 \[
@@ -4569,7 +4591,7 @@ W=(E_1(I_1)\cdots E_l(I_l)\varphi,\varphi).
 
 要客观检验能否引入隐参数，还须更深入地分析量子力学的断言；这项检验将在前面提到的地方进行。在此以前，我们暂不采用这种解释方式，而采取相反的立场：承认支配基本过程的自然规律，也就是量子力学的定律，本来就是统计性的。（宏观世界所呈现的因果性，至多可能只是一种表象，来自“大数定律”的平均效应；这种效应在许多基本过程同时相互作用时便会显现。参见原注 \hyperlink{note-120}{\getrefnumber{orig-note-120}} 末尾的说明及原注 \hyperlink{note-175}{\getrefnumber{orig-note-175}}。）据此，我们把 \hyperref[post:III.1.W]{W.}，或者 \hyperref[post:III.1.E2]{$E_2$}，看作对基本过程所能作出的最充分的断言。
 
-这种量子力学的理解方式，承认它的统计断言就是自然规律的真正形式，并放弃因果性原则，称为统计解释。这一解释由M.~Born提出\origNote[出][。]{122}。它是唯一能够贯彻到底的量子力学解释——这里的量子力学指我们关于基本过程的经验的总和。下面我们将采用这种解释，但不能在这里详细讨论各种解释之间的关系。
+这种量子力学的理解方式，承认它的统计断言就是自然规律的真正形式，并放弃因果性原则，称为统计解释。这一解释由M.~Born提出\origNote[出][。]{122}。它是目前唯一能够贯彻到底的量子力学解释——这里的量子力学指我们关于基本过程的经验的总和。下面我们将采用这种解释，但不能在这里详细讨论各种解释之间的关系。
 
 \hypertarget{origpage-110}{}\phantomsection\label{origpage-110}\section{同时可测性与一般的可测性}\label{sec:III.3}
 \hyperref[sec:III.1]{III.1} 末尾所说的第二个值得注意之处，与这样一件事有关：\hyperref[post:III.1.W]{W.} 不仅给出一个物理量$\mathfrak R$取某些数值的概率，也说明几个物理量$\mathfrak R_1,\allowbreak \ldots,\allowbreak \mathfrak R_l$之间的概率联系。因为 \hyperref[post:III.1.W]{W.} 给出的是它们同时取某些给定值——更确切地说，分别落在某些区间$I_1,\allowbreak \ldots,\allowbreak I_l$内——的概率。（这一切都针对某个给定状态$\varphi$。）可是，物理量$\mathfrak R_1,\allowbreak \ldots,\allowbreak \mathfrak R_l$受到一个特别的限制：其算符$R_1,\allowbreak \ldots,\allowbreak R_l$必须彼此对易。当$R_1,\allowbreak \ldots,\allowbreak R_l$不对易时，\hyperref[post:III.1.W]{W.} 完全不能说明$\mathfrak R_1,\allowbreak \ldots,\allowbreak \mathfrak R_l$之间的相互概率依赖关系；它只能用来分别确定各个物理量的概率分布，而不顾及其他物理量。
@@ -4586,7 +4608,7 @@ W=(E_1(I_1)\cdots E_l(I_l)\varphi,\varphi).
 
 更一般地说：同一个物理量，即碰撞位置的某个坐标或中心线的方向，被用两种不同的方式测量——分别截获光量子和电子——而所得结果总是相同的。
 
-这两次测量并不完全同时发生。光量子和电子不会同时到达；适当安排测量装置，就能先截获想先截获的那一个，当然，两者只相差$10^{-9}$至$10^{-10}$秒。将先进行的测量记作$M_1$，后进行的记作$M_2$，所测物理量记作$\mathfrak R$。关键在于：虽然整个装置的性质决定了，在测量以前，对$\mathfrak R$，也就是对$M_1,\allowbreak M_2$，只能作出统计预言（尤其参见原注 \hyperlink{note-123}{\getrefnumber{orig-note-123}}），但$M_1,\allowbreak M_2$之间的统计关联却是完全确定的，即因果性的：$M_1$确定的$\mathfrak R$值与$M_2$确定的值必定相等。在$M_1,\allowbreak M_2$测量以前，两次测量的结果都在很大程度上尚未确定；可是一旦$M_1$完成，即使$M_2$尚未进行，$M_2$的结果也已经由因果关系唯一确定了。
+这两次测量并不完全同时发生。光量子和电子不会同时到达；适当安排测量装置，就能先截获想先截获的那一个，当然，两者只相差$10^{-9}$至$10^{-10}$秒。将先进行的测量记作$M_1$，后进行的记作$M_2$，所测物理量记作$\mathfrak R$。关键在于：由于整个测量安排的性质，在测量之前，我们只能从统计上预言$\mathfrak R$的值，也就是$M_1,\allowbreak M_2$的结果（尤其参见原注 \hyperlink{note-123}{\getrefnumber{orig-note-123}}）；然而，$M_1,\allowbreak M_2$之间的统计关联却是完全确定的，即因果性的：$M_1$确定的$\mathfrak R$值与$M_2$确定的值必定相等。在$M_1,\allowbreak M_2$测量以前，两次测量的结果都在很大程度上尚未确定；可是一旦$M_1$完成，即使$M_2$尚未进行，$M_2$的结果也已经由因果关系唯一确定了。
 
 从原则上说，可以设想因果性或非因果性有三个层次。第一种可能是，$\mathfrak R$的值完全是统计性的：一次测量的结果只能从统计上预言；即使紧接着第一次测量再作第二次测量，第二次的结果仍可能有一定的散布程度，不受第一次测得的值的约束，例如，散布程度可能与第一次一样大\origNote[大][。]{124}。\hypertarget{origpage-112}{}\phantomsection\label{origpage-112}第二种可能是，$\mathfrak R$在第一次测量时所得的值有一定的散布程度，但紧随其后的每次测量都必须给出与第一次相同的结果。第三种可能是，$\mathfrak R$从一开始就由因果关系确定了。
 
@@ -4639,7 +4661,7 @@ W&=\|E(I)\psi\|^2=(E(I)\psi,\psi)
 \[
 W_n=\|P_{[\varphi_n]}\psi\|^2=|(\psi,\varphi_n)|^2.
 \]
-这样，在上述关于算符$R$的假定下，测量物理量$\mathfrak R$时发生什么，已经有了回答。不过，至于这一过程“怎样”发生，目前仍不清楚：$\psi$不连续地、跳跃式地变为$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$中的某个状态，这种变化显然不同于含时Schrödinger微分方程所描述的变化。各个$\varphi_n$本身与$\psi$无关，只有各次跃变的概率$W_n=|(\psi,\allowbreak \varphi_n)|^2$，$n=1,\allowbreak 2,\allowbreak \ldots$，才取决于$\psi$；微分方程所描述的却总是$\psi$的连续变化，终态唯一确定，并依赖于$\psi$。参见 \hyperref[sec:III.2]{III.2}。以后我们才尝试弥合这一鸿沟，参见\CJKglue \hyperref[chap:VI]{第VI章}\origNote[章][！]{125}！
+这样，在上述关于算符$R$的假定下，测量物理量$\mathfrak R$时发生什么，已经有了回答。不过，至于这一过程“怎样”发生，目前仍不清楚：$\psi$不连续地、跳跃式地变为$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$中的某个状态，这种变化显然不同于含时Schrödinger微分方程所描述的变化。各个$\varphi_n$本身与$\psi$无关，只有各次跃变的概率$W_n=|(\psi,\allowbreak \varphi_n)|^2$，$n=1,\allowbreak 2,\allowbreak \ldots$，才取决于$\psi$；微分方程所描述的却总是$\psi$的连续变化，终态唯一确定，并依赖于$\psi$。参见 \hyperref[sec:III.2]{III.2}。我们将在后面尝试弥合这一鸿沟，参见\CJKglue \hyperref[chap:VI]{第VI章}\origNote[章][。]{125}。
 
 仍假定$R$具有纯点谱，但不再假定所有本征值都是单重的。这时仍能构造$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$及$\lambda_1,\allowbreak \lambda_2,\allowbreak \ldots$，只是$\lambda_n$中允许有相等的值。测量$\mathfrak R$之后，系统必处于某个满足$R\varphi=\lambda^*\varphi$的状态$\varphi$，其中$\lambda^*$就是测量结果。因此，$\lambda^*$等于某个$\lambda_n$；但关于$\varphi$，我们只能说：设等于$\lambda^*$的那些$\lambda_n$为$\lambda_{n_1},\allowbreak \lambda_{n_2},\allowbreak \ldots$，其个数有限或无限，则
 \[
@@ -4822,7 +4844,7 @@ EFE+FE^2=2EFE^2,\quad EFE+FE=2EFE,\quad FE=EFE.
 
 给定这样的两个物理量$\mathfrak R,\allowbreak \mathfrak S$及其不对易的算符$R,\allowbreak S$。尽管作了这一假定，仍可能存在某些状态$\varphi$，使两个物理量都具有确定的值，即散布程度为$0$；这些状态就是两者的共同本征函数。只是它们不可能构成完全正交系，否则$R,\allowbreak S$便会对易。参见 \hyperref[sec:II.8]{II.8} 中相应单位分解$E(\lambda),\allowbreak F(\lambda)$的构造：若$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$就是上述完全正交系，则$E(\lambda)$及$F(\lambda)$都由$P_{[\varphi_\varrho]}$相加而成；这些$P_{[\varphi_\varrho]}$彼此对易，所以两者也对易。因此，这些$\varphi$张成的闭线性流形$\mathfrak M$必小于$\mathfrak R_\infty$；如果它就是$\mathfrak R_\infty$，则按 \hyperref[sec:II.6]{II.6} 开头对单个算符所作的讨论，便能构造出所需的完全规范正交系。
 
-对于$\mathfrak M$中的状态，给出一个同时测量的模型，就最容易证明$\mathfrak R,\allowbreak \mathfrak S$可以同时测量。\hypertarget{origpage-122}{}\phantomsection\label{origpage-122}由于$R,\allowbreak S$的共同本征函数$\varphi$张成$\mathfrak M$，其中也存在一个由这些$\varphi$构成、同样张成$\mathfrak M$的规范正交系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$，即它在$\mathfrak M$中是完全的。这也可以借助前面提到的 \hyperref[sec:II.6]{II.6} 中的构造得到。加入一个张成$\mathfrak R_\infty-\mathfrak M$的规范正交系$\psi_1,\allowbreak \psi_2,\allowbreak \ldots$，就能把$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$扩充为完全系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots,\allowbreak \psi_1,\allowbreak \psi_2,\allowbreak \ldots$。再取互不相同的数$\lambda_1,\allowbreak \lambda_2,\allowbreak \ldots,\allowbreak \mu_1,\allowbreak \mu_2,\allowbreak \ldots$，并定义$T$为
+对于$\mathfrak M$中的状态，$\mathfrak R,\allowbreak \mathfrak S$仍然可以同时测量。要证明这一点，最简单的办法是给出一个同时测量的模型。\hypertarget{origpage-122}{}\phantomsection\label{origpage-122}由于$R,\allowbreak S$的共同本征函数$\varphi$张成$\mathfrak M$，其中也存在一个由这些$\varphi$构成、同样张成$\mathfrak M$的规范正交系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$，即它在$\mathfrak M$中是完全的。这也可以借助前面提到的 \hyperref[sec:II.6]{II.6} 中的构造得到。加入一个张成$\mathfrak R_\infty-\mathfrak M$的规范正交系$\psi_1,\allowbreak \psi_2,\allowbreak \ldots$，就能把$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$扩充为完全系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots,\allowbreak \psi_1,\allowbreak \psi_2,\allowbreak \ldots$。再取互不相同的数$\lambda_1,\allowbreak \lambda_2,\allowbreak \ldots,\allowbreak \mu_1,\allowbreak \mu_2,\allowbreak \ldots$，并定义$T$为
 \[
 T\left(\sum_nx_n\varphi_n+\sum_ny_n\psi_n\right)
 =\sum_n\lambda_nx_n\varphi_n+\sum_n\mu_ny_n\psi_n,
@@ -4836,7 +4858,7 @@ T\left(\sum_nx_n\varphi_n+\sum_ny_n\psi_n\right)
 =\|P_{\mathfrak R_\infty-\mathfrak M}\varphi\|^2\\
 &=\|\varphi-P_{\mathfrak M}\varphi\|^2.
 \end{align*}
-因此，当$\varphi=P_{\mathfrak M}\varphi$，即$\varphi$属于$\mathfrak M$时，这个概率为$0$，也就是说，$\mathfrak R,\allowbreak \mathfrak S$必定被同时测量\origNote[量][。]{129}。
+因此，当$\varphi=P_{\mathfrak M}\varphi$，即$\varphi$属于$\mathfrak M$时，这个概率为$0$，也就是说，这次测量必定同时测出了$\mathfrak R,\allowbreak \mathfrak S$的值\origNote[值][。]{129}。
 
 不过，我们现在关心的是不能同时测量的物理量，所以假定最极端的情形$\mathfrak M=(0)$：$\mathfrak R,\allowbreak \mathfrak S$在任何状态中都不能同时测量；或者说，$R,\allowbreak S$没有任何共同本征函数。
 
@@ -4856,7 +4878,7 @@ T\left(\sum_nx_n\varphi_n+\sum_ny_n\psi_n\right)
 \varepsilon^2=\|R\varphi\|^2-(R\varphi,\varphi)^2,\qquad
 \eta^2=\|S\varphi\|^2-(S\varphi,\varphi)^2.
 \]
-由于$\|\varphi\|=1$，Schwarz不等式，即 \hyperref[thm:II.1]{II.1的定理1}，已能说明左边的量非负。于是问题是：$\varepsilon=0$、$\eta=0$既然不可能同时成立，而单独的$\varepsilon$又可以任意小，\hypertarget{origpage-123}{}\phantomsection\label{origpage-123}$\eta$也一样，因为$\mathfrak R,\allowbreak \mathfrak S$分别都能任意准确地测量，甚至可能绝对准确地测量，那么$\varepsilon,\allowbreak \eta$之间就必须存在某种关系，阻止两者同时变小。这种关系究竟是什么？
+由于$\|\varphi\|=1$，Schwarz不等式，即 \hyperref[thm:II.1]{II.1的定理1}，已能说明左边的量非负。问题在于，$\varepsilon=0$与$\eta=0$不可能同时成立，$\varepsilon$和$\eta$却又各自都可以任意小。\hypertarget{origpage-123}{}\phantomsection\label{origpage-123}这是因为$\mathfrak R,\allowbreak \mathfrak S$分别都能任意准确地测量，甚至可能绝对准确地测量。因此，$\varepsilon,\allowbreak \eta$之间必须存在某种关系，使两者不能同时变小。这种关系究竟是什么？
 
 Heisenberg发现了这类关系的存在\origNote[在][。]{131}。它们对于认识量子力学给自然界的描述带来的不确定性，具有重大的意义，因此称为不确定性关系。下面先从数学上推导其中最重要的一条，再讨论它的根本意义，以及它与经验的关系。
 
@@ -4966,7 +4988,7 @@ $\varepsilon,\allowbreak \eta$已经知道：
 
 先研究位置的确定。为此，要看见$\boldsymbol{T}$，也就是照亮它，并让眼睛吸收散射光。从光源$\boldsymbol{l}$射出的一个光量子$\boldsymbol{L}$朝向$\boldsymbol{T}$，与$\boldsymbol{T}$碰撞后，从直线路径$\beta\beta_1$偏转到$\beta\beta_2$，最后在屏$Sch$上被吸收而消失；屏代替了眼睛或照相底片，见\CJKglue \hyperref[fig:1]{图1}\tnote[1][。][图]{图中的$Sch$是德文Schirm的缩写，意为“屏”；$\boldsymbol l$为光源，$\boldsymbol L$为光量子，$\boldsymbol T$为被观测粒子。}。测量就是确定$\boldsymbol{L}$击中屏$Sch$的位置：它不在自然路径$\beta\beta_1$末端的$1$处，而在$\beta\beta_2$末端的$2$处。不过，要据此确定碰撞的位置，也就是$\boldsymbol{T}$的位置，还必须知道$\beta$及$\beta_2$的方向，即$\boldsymbol{L}$在碰撞前后的方向。\hypertarget{origpage-127}{}\phantomsection\label{origpage-127}为此，可以插入适当的光阑组$ss$及$s's'$。（这样做实际上不是测量$\boldsymbol{T}$的坐标，而是判断它是否等于某一个值；这个值就是方向$\beta$与$\beta_2$的交点，适当安排光阑便可任意选定。把几个这样的判断结合起来，也就是设置几个$s's'$光阑，才相当于测量坐标。）这种位置测量能有多高的精度呢？
 
-光学成像定律对此规定了一个根本的界限。用波长为$\lambda$的光，确实不能清晰地成像出比$\lambda$更小的物体，甚至不能将模糊程度降低到足以形成图像的地步，哪怕只是失真的图像。不过，这里并不要求光学成像，因为仅凭$\boldsymbol{L}$发生偏转的事实，就足以确定$\boldsymbol{T}$的位置。然而，光阑$ss$及$s's'$的开口不能小于$\lambda$；否则$\boldsymbol{L}$就不能简单地穿过，而会形成一组干涉条纹。这时便无法从前后设置的光阑$ss$或$s's'$的方向，推知光线的方向$\beta$或$\beta_2$。所以，即使用$\boldsymbol{L}$作为射弹，也不能以高于$\lambda$的精度瞄准并击中目标。
+光学成像定律对此规定了一个根本的界限。用波长为$\lambda$的光，确实不能使小于$\lambda$的物体成清晰的像，甚至不能将模糊程度降低到足以形成图像的地步，哪怕只是失真的图像。不过，这里并不要求光学成像，因为仅凭$\boldsymbol{L}$发生偏转的事实，就足以确定$\boldsymbol{T}$的位置。然而，光阑$ss$及$s's'$的开口不能小于$\lambda$；否则$\boldsymbol{L}$就不能简单地穿过，而会形成一组干涉条纹。这时便无法从前后设置的光阑$ss$或$s's'$的方向，推知光线的方向$\beta$或$\beta_2$。所以，即使用$\boldsymbol{L}$作为射弹，也不能以高于$\lambda$的精度瞄准并击中目标。
 
 \begin{figure}[tbp]
 \centering
@@ -5004,7 +5026,7 @@ $\varepsilon,\allowbreak \eta$已经知道：
 \[
 \frac{\nu-\nu_0}{\nu_0}=\frac vc\cos\theta
 \]
-确定，$\theta$为运动方向与发光方向之间的夹角。这个公式是非相对论的，只对很小的$v/c$有效，不过很容易加以修正。因此，观察到$\nu$并知道$\nu_0$，例如已知元素的一条特定谱线，就能测定速度。更确切地说，所测的是沿观察方向，即发光方向的速度分量：\tnote[：][][原]{原书下一式的分母印作$\nu$；由上一式解出应为$\nu_0$。这里保留原式。}
+确定，$\theta$为运动方向与发光方向之间的夹角。这个公式是非相对论的，只对很小的$v/c$有效，不过很容易加以修正。因此，只要测出$\nu$并知道$\nu_0$，就能测定速度。例如，若所观察的光属于某种已知元素的一条特定谱线，$\nu_0$便是已知的。更确切地说，所测的是沿观察方向，即发光方向的速度分量：\tnote[：][][原]{原书下一式的分母印作$\nu$；由上一式解出应为$\nu_0$。这里保留原式。}
 \[
 v\cos\theta=\frac{c(\nu-\nu_0)}\nu,
 \]
@@ -5019,7 +5041,7 @@ a\sin\left(2\pi\left(\frac q\lambda-\nu t\right)+\alpha\right),
 F(x)=\int_0^{+\infty}a_\nu\sin(2\pi\nu x+\alpha_\nu)\,d\nu,
 \]\hypertarget{origpage-130}{}\phantomsection\label{origpage-130}干涉图样会显示所有满足$a_\nu\ne0$的频率$\nu$；其中，频率区间$\nu,\allowbreak \nu+d\nu$的相对强度为$a_\nu^2\,d\nu$。频率$\nu$的散布宽度，即$\Delta\nu$，应从这一分布计算。
 
-若波列在$x$方向的长度为$\tau$，也就是在$t$方向长为$\tau$、在$q$方向长为$c\tau$，那么可以看出，频率$\nu$的散布宽度为$\sim1/\tau$。\origNote[。][另]{137}另一方面，这种测量会造成位置不确定性，因为每次发光时，$\boldsymbol{T}$都会受到沿观察方向、大小为$h\nu/c$的反冲，即速度改变$h\nu/(mc)$。然而，发射过程需要时间$\tau$，所以这次速度改变发生的时刻，无法比$\tau$更准确地定位；因而位置不确定性为$\varepsilon\sim(h\nu/(mc))\tau$。于是
+若波列在变量$x$上的延伸范围为$\tau$，也就是说，其持续时间为$\tau$、空间长度为$c\tau$，那么可以看出，频率$\nu$的散布宽度为$\sim1/\tau$。\origNote[。][另]{137}另一方面，这种测量会造成位置不确定性，因为每次发光时，$\boldsymbol{T}$都会受到沿观察方向、大小为$h\nu/c$的反冲，即速度改变$h\nu/(mc)$。然而，发射过程需要时间$\tau$，所以这次速度改变发生的时刻，无法比$\tau$更准确地定位；因而位置不确定性为$\varepsilon\sim(h\nu/(mc))\tau$。于是
 \[
 \varepsilon\sim\frac{h\nu}{mc}\tau,\qquad
 \eta\sim\frac{mc\Delta\nu}\nu=\frac{mc}\nu\frac1\tau,\qquad
@@ -5284,7 +5306,7 @@ F(\lambda)=\begin{cases}1,&\lambda'<\lambda\le\mu',\\0,&\text{其他情形},\end
 \[
  E=\tfrac12\sum_{n=1}^{\infty}(\widetilde p_n^2+4\pi^2\varrho_n^2\widetilde q_n^2).
 \]
-这些坐标与描述场的瞬时矢势$\mathfrak A$的关系为
+这些坐标与描述场在该时刻状态的矢势$\mathfrak A$的关系为
 \[
  \mathfrak A=\mathfrak A(xyz)=\sum_{n=1}^{\infty}\widetilde q_n\overline{\mathfrak A}_n(xyz)
 \]
@@ -5407,7 +5429,7 @@ F(\lambda)=\begin{cases}1,&\lambda'<\lambda\le\mu',\\0,&\text{其他情形},\end
 \[
  \sum_{k=1}^{\infty}\sum_{M_1=0}^{\infty}\cdots\sum_{M_N=0}^{\infty}|a_{kM_1\cdots M_N}|^2
 \]
-为有限值。采用这种希尔伯特空间的理解方式时，$\mathsf{H}$又是什么算符呢？
+为有限值。在希尔伯特空间的这种表示下，算符$\mathsf{H}$又具有什么形式呢？
 
 为求出这一点，先计算$\mathsf{H}\Phi_{kM_1\cdots M_N}$。$\mathsf{H}_0$只作用于$\xi$，而$\psi_k(\xi)$是$\mathsf{H}_0$的本征函数，本征值为$W_k$；另外，$\widetilde R_n^*\widetilde R_n$只作用于$\widetilde q_n$，$\psi_{M_n}^n(\widetilde q_n)$是$\widetilde R_n^*\widetilde R_n$的本征函数，本征值为$M_n$。\hypertarget{origpage-143}{}\phantomsection\label{origpage-143}因此
 \begin{align*}
@@ -5455,7 +5477,7 @@ F(\lambda)=\begin{cases}1,&\lambda'<\lambda\le\mu',\\0,&\text{其他情形},\end
  &\quad{}\times\left(\sqrt{M_n}\,a_{jM_1\cdots M_n-1\cdots M_N}
  +\sqrt{M_n+1}\,a_{jM_1\cdots M_n+1\cdots M_N}\right).
 \end{align*}
-对$\mathsf{H}$的讨论已进行到适宜作极限过程$N\longrightarrow\infty$的地步。由于$a_{kM_1\cdots M_N}$的指标结构随之改变，这将产生一种全新的$\mathsf{H}$算符。必须引入具有无限多个指标$M_1,\allowbreak M_2,\allowbreak \ldots$的分量$a_{kM_1M_2\cdots}$；但仅仅为了保证$\mathsf{H}$中出现的和$\sum_{n=1}^{\infty}h\varrho_n M_n$有限，\hypertarget{origpage-144}{}\phantomsection\label{origpage-144}就必须把$M_1,\allowbreak M_2,\allowbreak \ldots$限制为仅有限项不等于$0$的序列。由此，希尔伯特空间由所有满足$\sum_{k=1}^{\infty}\sum_{M_1=0}^{\infty}\sum_{M_2=0}^{\infty}\cdots|a_{kM_1M_2\cdots}|^2$有限的序列$a_{kM_1M_2\cdots}$构成，其中指标$k,\allowbreak M_1,\allowbreak M_2,\allowbreak \ldots$的取值范围为：$k=1,\allowbreak 2,\allowbreak \ldots$，$M_1,\allowbreak M_2,\allowbreak \ldots=0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$，但只允许有限个$M_n\ne0$，个数本身可以任意\origNote[意][。]{144}。$\mathsf{H}$的最终形式为：\tnote[：][][从]{从前面的有限$N$公式过渡到这个极限时，原书将两项系数所对应的$M_n+1$与$M_n-1$互换了。这里分别保留两式的原印形式。}
+对$\mathsf{H}$的讨论进行到这里，便可以取极限$N\longrightarrow\infty$了。由于$a_{kM_1\cdots M_N}$的指标结构随之改变，这将产生一种全新的$\mathsf{H}$算符。必须引入具有无限多个指标$M_1,\allowbreak M_2,\allowbreak \ldots$的分量$a_{kM_1M_2\cdots}$；但仅仅为了保证$\mathsf{H}$中出现的和$\sum_{n=1}^{\infty}h\varrho_n M_n$有限，\hypertarget{origpage-144}{}\phantomsection\label{origpage-144}就必须把$M_1,\allowbreak M_2,\allowbreak \ldots$限制为仅有限项不等于$0$的序列。由此，希尔伯特空间由所有满足$\sum_{k=1}^{\infty}\sum_{M_1=0}^{\infty}\sum_{M_2=0}^{\infty}\cdots|a_{kM_1M_2\cdots}|^2$有限的序列$a_{kM_1M_2\cdots}$构成，其中指标$k,\allowbreak M_1,\allowbreak M_2,\allowbreak \ldots$的取值范围为：$k=1,\allowbreak 2,\allowbreak \ldots$，$M_1,\allowbreak M_2,\allowbreak \ldots=0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$，但只允许有限个$M_n\ne0$，个数本身可以任意\origNote[意][。]{144}。$\mathsf{H}$的最终形式为：\tnote[：][][从]{从前面的有限$N$公式过渡到这个极限时，原书将两项系数所对应的$M_n+1$与$M_n-1$互换了。这里分别保留两式的原印形式。}
 \begin{align*}
  &\mathsf{H}a_{kM_1M_2\cdots}=a'_{kM_1M_2\cdots}\\
  &\quad={}\left(W_k+\sum_{n=1}^{\infty}h\varrho_n M_n\right)a_{kM_1M_2\cdots}\\
@@ -5475,7 +5497,7 @@ F(\lambda)=\begin{cases}1,&\lambda'<\lambda\le\mu',\\0,&\text{其他情形},\end
 \[
  \mathsf{H}_1a_{kM_1M_2\cdots}=\left(W_k+\sum_{n=1}^{\infty}h\varrho_n M_n\right)a_{kM_1M_2\cdots}.
 \]
-第二项代表某种扰动，如我们很快将看到的，系统$\boldsymbol{S}$从一个“定态”向另一个定态的量子跃迁正由它引起。这才是我们真正关心的现象；但这项远小于物质系统$\boldsymbol{S}$与已有辐射的影响，后两者如我们将看到的，由第一项体现。上面的能量表达式可以解释为：系统$\boldsymbol{S}$的能量$W_k$，加上各项能量$h\varrho_n M_n$，$n=1,\allowbreak 2,\allowbreak \ldots$。很自然，可以把$M_n=0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$理解为能量分别等于$h\varrho_n$的粒子数；而$h\varrho_n$恰是按照Einstein的观点应赋予频率为$\varrho_n$的光量子的能量，参见原注 \hyperlink{note-134}{\getrefnumber{orig-note-134}}。因此，$\mathsf{H}_1$的结构使我们猜想，\hypertarget{origpage-145}{}\phantomsection\label{origpage-145}在$\boldsymbol H$中的电磁场，扣除静电部分后，也就是辐射$\boldsymbol{L}$，可以理解为以下情形：频率为$\varrho_1,\allowbreak \varrho_2,\allowbreak \ldots$、因而能量为$h\varrho_1,\allowbreak h\varrho_2,\allowbreak \ldots$的光量子，其数目分别为$M_1,\allowbreak M_2,\allowbreak \ldots$，各为$0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$。为什么只计入$\varrho_1,\allowbreak \varrho_2,\allowbreak \ldots$这些频率，也有合理的解释：它们正是空腔$\boldsymbol H$的本征频率，因为矢势$\overline{\mathfrak A}_n(xyz)\gamma\cos2\pi\varrho_n(t-\tau)$表示的是$\boldsymbol H$中仅有的那些定态电磁振动。
+第二项代表某种扰动，如我们很快将看到的，系统$\boldsymbol{S}$从一个“定态”向另一个定态的量子跃迁正由它引起。这才是我们真正关心的现象。但这种扰动的作用远弱于物质系统$\boldsymbol{S}$与已有辐射的作用；如后面将看到的，这两者体现在第一项中。上面的能量表达式可以解释为：系统$\boldsymbol{S}$的能量$W_k$，加上各项能量$h\varrho_n M_n$，$n=1,\allowbreak 2,\allowbreak \ldots$。很自然，可以把$M_n=0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$理解为能量分别等于$h\varrho_n$的粒子数；而$h\varrho_n$恰是按照Einstein的观点应赋予频率为$\varrho_n$的光量子的能量，参见原注 \hyperlink{note-134}{\getrefnumber{orig-note-134}}。因此，$\mathsf{H}_1$的结构使我们猜想，\hypertarget{origpage-145}{}\phantomsection\label{origpage-145}在$\boldsymbol H$中的电磁场，扣除静电部分后，也就是辐射$\boldsymbol{L}$，可以理解为以下情形：频率为$\varrho_1,\allowbreak \varrho_2,\allowbreak \ldots$、因而能量为$h\varrho_1,\allowbreak h\varrho_2,\allowbreak \ldots$的光量子，其数目分别为$M_1,\allowbreak M_2,\allowbreak \ldots$，各为$0,\allowbreak 1,\allowbreak 2,\allowbreak \ldots$。为什么只计入$\varrho_1,\allowbreak \varrho_2,\allowbreak \ldots$这些频率，也有合理的解释：它们正是空腔$\boldsymbol H$的本征频率，因为矢势$\overline{\mathfrak A}_n(xyz)\gamma\cos2\pi\varrho_n(t-\tau)$表示的是$\boldsymbol H$中仅有的那些定态电磁振动。
 
 不过，这些推测和解释还只有启发性的价值。只有当我们能从辐射$\boldsymbol{L}$的光量子模型出发，同样得到上述$\mathsf{H}$的能量表达式时，问题才算有了满意而最终的答案。前面先作经典考察，是因为光量子与物质相互作用能的表达式尚无从设定；在这一点上，经典电动力学无法直接改写为量子力学。现在却可以了：只要从一般的相互作用能推导出的结果，在形式上与$\mathsf{H}$相符，就可以比较系数，确定相互作用能。
 
@@ -5679,7 +5701,7 @@ $a_{kM_1M_2\cdots}$及$b_{kM_1M_2\cdots}$的物理意义，由它们的构造已
 \]
 因而根本不必直接求出这个$b_{\bar k\overline M_1\overline M_2\cdots}$。
 
-这里已能清楚看出过程的定性特征。$b_{k\overline M_1\overline M_2\cdots\overline M_n+1\cdots}$对应于发射一个频率为$\varrho_n$、属于$\overline{\mathfrak A}_n$振动的光量子；分母$W_{\bar k}-W_k-h\varrho_n$越小，它增长得越多，也就是说，光的本征频率$\varrho_n$越接近“Bohr频率”$(W_{\bar k}-W_k)/h$，\origNote[，][增]{150}增长就越多。相应地，代表吸收的$b_{k\overline M_1\overline M_2\cdots\overline M_n-1\cdots}$，则在$\varrho_n$越接近$(W_k-W_{\bar k})/h$时增长越多。可见，Bohr频率关系并不严格成立，因为$\varrho_n$并不包含一切频率；但当时间$t$很短、$\varrho_n$又排列得很密时，即空腔$\boldsymbol H$很大时，它却以压倒性的概率成立。此外，$w_{\bar k k}^n$也会提高这些过程的发生频率；很快就能把它们与跃迁概率联系起来。
+这里已能清楚看出过程的定性特征。$b_{k\overline M_1\overline M_2\cdots\overline M_n+1\cdots}$对应于发射一个频率为$\varrho_n$、属于$\overline{\mathfrak A}_n$振动的光量子；分母$W_{\bar k}-W_k-h\varrho_n$越小，它增长得越多，也就是说，光的本征频率$\varrho_n$越接近“Bohr频率”$(W_{\bar k}-W_k)/h$，\origNote[，][增]{150}增长就越多。相应地，代表吸收的$b_{k\overline M_1\overline M_2\cdots\overline M_n-1\cdots}$，则在$\varrho_n$越接近$(W_k-W_{\bar k})/h$时增长越多。可见，Bohr频率关系并不严格成立，因为$\varrho_n$并不包含一切频率；但当时间$t$很短、$\varrho_n$又排列得很密时，即空腔$\boldsymbol H$很大时，它却以压倒性的概率成立。此外，系数$w_{\bar k k}^n$也会提高这些过程的发生频率；稍后我们就能用跃迁概率来解释这些系数。
 
 \hypertarget{origpage-153}{}\phantomsection\label{origpage-153}由上面的$b_{k\overline M_1\overline M_2\cdots\overline M_n\pm1\cdots}$公式，还可得发射概率\origNote[率][、]{151}、吸收概率\origNote[率][及]{151}及其余构型的概率：
 \begin{align*}
@@ -5773,7 +5795,7 @@ $a_{kM_1M_2\cdots}$及$b_{kM_1M_2\cdots}$的物理意义，由它们的构造已
  \left|\sum_{\nu=1}^{l}\frac{e_\nu}{m_\nu}
  \bigl(P_\nu^x\overline{\mathfrak A}_{n,x}(Q_\nu^x,Q_\nu^y,Q_\nu^z)+\cdots\bigr)_{k\bar k}\right|^2
 \]
-改写成不含$\overline{\mathfrak A}_n$的表达式。考虑到$\overline{\mathfrak A}_n$变化很快，可以用一个长度恒定、方向随机的向量代替它；由于它恒定，不依赖$Q_\nu^x,\allowbreak Q_\nu^y,\allowbreak Q_\nu^z$，所以只相当于一个数因子乘以单位矩阵$1$。其恒定长度$\gamma_n$须从归一化条件
+改写成不含$\overline{\mathfrak A}_n$的表达式。考虑到$\overline{\mathfrak A}_n$变化很快，可以用一个长度恒定、方向随机的向量代替它。在这种近似中，向量不再依赖$Q_\nu^x,\allowbreak Q_\nu^y,\allowbreak Q_\nu^z$，其分量因而只相当于一个数因子乘以单位矩阵$1$。其恒定长度$\gamma_n$须从归一化条件
 \[
  \iiint_{\boldsymbol H}[\overline{\mathfrak A}_n,\overline{\mathfrak A}_n]\,dx\,dy\,dz=4\pi c^2
 \]
@@ -5887,7 +5909,7 @@ U=\sum_nw_nP_{[\varphi_n]}
 \]
 可见，除了状态之外，还须研究状态的混合。记住这一点，下面转入一般性的讨论。
 
-现在暂且撇开整个量子力学，只保留下面的设定。给定一个系统$\boldsymbol{S}$；\origNote[；][对]{155}对实验者来说，只要列明在它上面实际能够测量的所有物理量，以及这些量之间的函数关系，就确定了这个系统。严格地说，一个物理量就是一套测量规程：怎样测量，以及怎样根据测量仪器指针的位置读出或算出它的数值。若$\mathfrak R$是一个物理量，$f(x)$是任意函数，那么物理量$f(\mathfrak R)$定义如下：测量$f(\mathfrak R)$时，先测量$\mathfrak R$；如果后者的测得值为$a$，前者的值就是$f(a)$。可见，固定$\mathfrak R$而任取$f(x)$，这样得到的所有物理量$f(\mathfrak R)$，都能在测量$\mathfrak R$的同时一并测得。这就是同时可测物理量的第一个例子。
+现在暂且撇开整个量子力学，只保留下面的设定。给定一个系统$\boldsymbol{S}$；\origNote[；][对]{155}对实验者来说，只要列出在该系统上实际能够测量的所有物理量，以及这些量之间的函数关系，就确定了这个系统。严格地说，一个物理量就是一套测量规程：怎样测量，以及怎样根据测量仪器指针的位置读出或算出它的数值。若$\mathfrak R$是一个物理量，$f(x)$是任意函数，那么物理量$f(\mathfrak R)$定义如下：测量$f(\mathfrak R)$时，先测量$\mathfrak R$；如果后者的测得值为$a$，前者的值就是$f(a)$。可见，固定$\mathfrak R$而任取$f(x)$，这样得到的所有物理量$f(\mathfrak R)$，都能在测量$\mathfrak R$的同时一并测得。这就是同时可测物理量的第一个例子。
 
 一般地说，如果存在一种装置，能够在同一系统上同时测量两个（或更多）物理量$\mathfrak R,\allowbreak \mathfrak S$，只是要以不同方法根据读数算出各自的值，我们就称这些量同时可测。众所周知，经典力学中的所有物理量都同时可测；量子力学则不然，参见 \hyperref[sec:III.3]{III.3}。对于同时可测的量，还可以由二元函数$f(x,\allowbreak y)$定义物理量$f(\mathfrak R,\allowbreak \mathfrak S)$：同时测量$\mathfrak R,\allowbreak \mathfrak S$，若测得$a,\allowbreak b$，则$f(\mathfrak R,\allowbreak \mathfrak S)$的值为$f(a,\allowbreak b)$。但须明确，若$\mathfrak R,\allowbreak \mathfrak S$不能同时测量，试图组成$f(\mathfrak R,\allowbreak \mathfrak S)$就是全无意义的，因为无法给出相应的测量装置。
 
@@ -5992,7 +6014,7 @@ f_a(x)=\begin{cases}1,&x\leq a,\\0,&x>a,\end{cases}
 
 这一切都直接来自所考察物理量的定义（即测量规程），以及期望值的定义：在一个足够大的统计系综中，把所有测量结果取算术平均。关于 \hyperref[cond:IV.1.D]{D}，应注意它所依据的是概率论中的一条定理：一个和的期望值总等于各个加项的期望值之和，不论这些加项之间是否存在概率上的依赖关系；例如乘积就没有这样的性质。我们只对同时可测的$\mathfrak R,\allowbreak \mathfrak S,\allowbreak \ldots$提出这一条件，自然是因为否则$\mathfrak R+\mathfrak S+\cdots$便没有意义。
 
-不过，量子力学中还存在一种超出上述讨论的运算：任意两个物理量都可以相加，不要求它们同时可观测。这是因为，两个厄米算符$R,\allowbreak S$的和$R+S$仍是厄米的，即使$R,\allowbreak S$不对易也是如此；而它们的乘积$RS$，例如，就只有在二者对易时才是厄米的，参见 \hyperref[sec:II.5]{II.5}。在每个状态$\varphi$中，期望值相加：
+不过，量子力学中还存在一种超出上述讨论的运算：任意两个物理量都可以相加，不要求它们同时可观测。这是因为，两个厄米算符$R,\allowbreak S$的和$R+S$仍是厄米的，即使$R,\allowbreak S$不对易也是如此；例如，它们的乘积$RS$就只有在二者对易时才是厄米的，参见 \hyperref[sec:II.5]{II.5}。在每个状态$\varphi$中，期望值相加：
 \[
 (R\varphi,\varphi)+(S\varphi,\varphi)=((R+S)\varphi,\varphi);
 \]
@@ -6193,7 +6215,7 @@ Vf=(f,\varphi)V\varphi+Vf'=(f,\varphi)c'\varphi=c'P_{[\varphi]}f=c'Uf.
 
 在量子力学用算符表示的那些已知物理量之外，即使还有尚未发现的其他物理量，也不足以解决问题；因为即便对前面那些已知量，量子力学所规定的运算关系，即 \hyperref[cond:IV.2.I]{I}、\hyperref[cond:IV.2.II]{II}，也必须失效。因此，这并不像人们常以为的那样，只是怎样诠释量子力学的问题。要使基本过程可能表现出统计行为以外的行为，量子力学本身就必须在客观上是错误的。
 
-另有一点也值得提出。初看起来，不确定性关系与相对论的基本公设颇为相似。相对论说：原则上不可能确定两个相距$r$的点上发生的事件是否同时，其精度不能超过长度为$r/c$的时间区间（$c$为光速）。\hypertarget{origpage-172}{}\phantomsection\label{origpage-172}不确定性关系则说：原则上不可能在相空间中指定一个质点的位置，使其精度超过体积为$(h/4\pi)^3$的区域。\origNote[。][然]{174}然而，二者有根本区别。相对论固然否认客观而精确地测量同时性的可能，却仍可通过引入一个伽利略参考系，在世界中设置一个坐标系，由此定义一种与我们通常的同时性概念足够相符的同时性。之所以不赋予这种定义客观意义，只是因为坐标系可以有无穷多种不同选择，从而产生无穷多种同样好的同时性定义。也就是说，在测量不可能的背后，是可能的理论定义有无穷多解。量子力学则不同：即使引入新的、假设的、未被观察到的坐标，即“隐参数”，也根本无法用相空间中的点来描述波函数为$\varphi$的系统，因为这将导向零方差系综。因此，不仅测量不可能，任何合理的理论定义也不可能。这里说的合理定义，是指像相对论中的定义那样，虽不能由经验来证明，却至少也不能由经验来驳倒的定义。因此，测量之所以原则上不可能，在一种情形中，是因为有关概念有无穷多种定义方式，都不违背直接经验或理论的一般基本假设；在另一种情形中，则是因为这样的定义根本不存在。
+另有一点也值得提出。初看起来，不确定性关系与相对论的基本公设颇为相似。相对论说：原则上不可能确定两个相距$r$的点上发生的事件是否同时，其精度不能超过长度为$r/c$的时间区间（$c$为光速）。\hypertarget{origpage-172}{}\phantomsection\label{origpage-172}不确定性关系则说：原则上不可能在相空间中指定一个质点的位置，使其精度超过体积为$(h/4\pi)^3$的区域。\origNote[。][然]{174}然而，二者有根本区别。相对论固然否认客观而精确地测量同时性的可能，却仍可通过引入一个伽利略参考系，在世界中设置一个坐标系，由此定义一种与我们通常的同时性概念足够相符的同时性。之所以不赋予这种定义客观意义，只是因为坐标系可以有无穷多种不同选择，从而产生无穷多种同样好的同时性定义。也就是说，这里不能测量，是因为可采用的理论定义有无穷多种。量子力学则不同：即使引入新的、假设的、未被观察到的坐标，即“隐参数”，也根本无法用相空间中的点来描述波函数为$\varphi$的系统，因为这将导向零方差系综。因此，不仅测量不可能，任何合理的理论定义也不可能。这里说的合理定义，是指像相对论中的定义那样，虽不能由经验来证明，却至少也不能由经验来驳倒的定义。因此，测量之所以原则上不可能，在一种情形中，是因为有关概念有无穷多种定义方式，都不违背直接经验或理论的一般基本假设；在另一种情形中，则是因为这样的定义根本不存在。
 
 据此，可以这样概括因果性在当代物理学中的处境。在宏观领域，没有支持它的经验，也不可能有。世界在大尺度上（即对肉眼可见的对象）表现出的因果秩序，原因无疑只是“大数定律”，与支配基本过程的自然规律——即真正的自然规律——是否具有因果性毫不相干。\origNote[。][宏]{175}宏观上相同的对象在宏观上表现相同，与因果性并没有多大关系。它们其实并不相同：精确规定各原子状态的那些坐标，几乎从不相等；宏观描述则对这些坐标取了平均，在这里，它们就是“隐参数”。然而，这些坐标的数量极大（$1\,\mathrm g$物质中约有$10^{25}$个），所以按照概率论的已知定理，取平均会使一切方差大幅减小。当然，这只是一般情况；在某些特殊场合，例如布朗运动、不稳定状态等，这种表面上的宏观因果性就不成立。只有在原子领域、在基本过程本身中，才能真正检验\hypertarget{origpage-173}{}\phantomsection\label{origpage-173}因果性问题；但以我们目前的知识，一切都不利于它。现有的形式理论中，唯一能把经验相当令人满意地整理、归纳起来的，就是量子力学，而它与因果性有着不可回避的逻辑矛盾。固然，若说因果性就此被彻底否定，未免言过其实。量子力学目前的形式无疑还有缺漏，甚至可能是错误的；不过，考虑到它在理解一般问题和计算具体问题时表现出的惊人效能，后一种可能相当小。它虽然与经验极为吻合，也让我们看到了世界在性质上全新的一面，但对任何理论，我们都不能说它已被经验证实，只能说它是目前已知对经验最好的概括。即使充分保留这些限制，我们仍可以说：目前既没有理由，也没有借口，主张自然中存在因果性。没有任何经验支持它的存在，因为宏观经验原则上就不适合做这件事；而与我们关于基本过程的经验相容的唯一已知理论——量子力学——又与它矛盾。
 
@@ -6211,7 +6233,7 @@ U=\sum_n w_nP_{[\varphi_n]}.
 \]
 也参见 \hyperref[sec:IV.1]{IV.1} 开头。因此，$U$已正确归一化时，$\sum_nw_n=1$。按照 \hyperref[sec:IV.1]{IV.1} 开头的说明，$U$便可看成状态$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$以相对权重$w_1,\allowbreak w_2,\allowbreak \ldots$混合的结果；若$U$已正确归一化，这些权重在绝对意义上也正确。
 
-但由 \hyperref[sec:II.11]{II.11}（特别参见原注 \hyperlink{note-115}{\getrefnumber{orig-note-115}}），正确归一化的$U$，即$\operatorname{Spur}U=1$，是全连续的，因而有纯点谱；当然，只要$\operatorname{Spur}U$有限也是如此。$\operatorname{Spur}U$为无穷大的情形可以视为极限，这里不深入讨论。因此，在真正值得关心的情形中，所考察的系综总能表示为状态的混合，而且我们还把这些状态选成了两两正交的。以下就把一般系综称为\textbf{混合态}，以区别于纯系综，即状态。
+但由 \hyperref[sec:II.11]{II.11}（特别参见原注 \hyperlink{note-115}{\getrefnumber{orig-note-115}}），正确归一化的$U$，即$\operatorname{Spur}U=1$，是全连续的，因而有纯点谱；当然，只要$\operatorname{Spur}U$有限也是如此。$\operatorname{Spur}U$为无穷大的情形可以视为极限，这里不深入讨论。因此，在真正值得研究的情形中，所考察的系综总能表示为状态的混合，而且我们还把这些状态选成了两两正交的。以下就把一般系综称为\textbf{混合态}，以区别于纯系综，即状态。
 
 若$U$的所有本征值都是单重的，即$w_1,\allowbreak w_2,\allowbreak \ldots$彼此不同，那么我们知道，$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$只差模为$1$的常数因子便唯一确定；因此相应的状态以及$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$都完全确定。权重$w_1,\allowbreak w_2,\allowbreak \ldots$也唯一确定，当然不计排列次序。所以，此时能唯一指出构成混合态$U$的那些两两正交的状态。但若$U$还有重本征值（“简并”），情形便本质不同。在 \hyperref[sec:II.8]{II.8} 中，我们已详细讨论$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$的选法：它们有无穷多种本质不同的选择，而$w_1,\allowbreak w_2,\allowbreak \ldots$仍然唯一确定。只须把$w_1,\allowbreak w_2,\allowbreak \ldots$中互不相同的值列为$w',\allowbreak w'',\allowbreak \ldots$，对每一个写出其本征函数构成的闭线性流形，即$Uf=wf$的解空间$\mathfrak M_{w'},\allowbreak \mathfrak M_{w''},\allowbreak \ldots$。然后，在各个$\mathfrak M_{w'},\allowbreak \mathfrak M_{w''},\allowbreak \ldots$中任意选择张成它的规范正交系，分别记为$\chi'_1,\allowbreak \chi'_2,\allowbreak \ldots$、$\chi''_1,\allowbreak \chi''_2,\allowbreak \ldots$，等等。$\chi'_1,\allowbreak \chi'_2,\allowbreak \ldots,\allowbreak \chi''_1,\allowbreak \chi''_2,\allowbreak \ldots,\allowbreak \ldots$就是所求$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$，相应的本征值$w',\allowbreak w',\allowbreak \ldots,\allowbreak w'',\allowbreak w'',\allowbreak \ldots,\allowbreak \ldots$就是$w_1,\allowbreak w_2,\allowbreak \ldots$。只要有一个$\mathfrak M_w$的维数超过一，即存在重本征值，其中的$\chi_1,\allowbreak \chi_2,\allowbreak \ldots$就不再只是相差模为$1$的常数因子；例如，$\chi_1$可以是$\mathfrak M_w$中的任何归一化元素。也就是说，它们的状态本身也不唯一。
 
@@ -6309,7 +6331,7 @@ E(a)f=\begin{cases}f,&a\geq\lambda^*,\\0,&a<\lambda^*;\end{cases}
 
 现在这三个假设仍然可用：第一个由 \hyperref[sec:IV.2]{IV.2} 的 \hyperref[eq:IV.2.Sp]{Sp.} 得出，另两个分别对应那里的 \hyperref[cond:IV.2.I]{I}、\hyperref[cond:IV.2.II]{II}。\hyperref[post:IV.3.M]{M} 也应视为成立，因为我们已经认识到，它对量子力学的概念构建不可缺少。因此，\hyperref[sec:III.3]{III.3} 对 \hyperref[criterion:IV.3.1]{1}—\hyperref[criterion:IV.3.4]{4} 的证明在这里仍然适用，以上答案也就仍然正确。
 
-我们在 \hyperref[sec:III.5]{III.5} 考察了只取$0,\allowbreak 1$两个值的物理量，它们与性质$\mathfrak E$一一对应。给定性质$\mathfrak E$时，可以如下定义一个物理量：测量它，就是判断$\mathfrak E$\hypertarget{origpage-178}{}\phantomsection\label{origpage-178}是否具备；具备时取值$1$，不具备时取值$0$。反之，若给定这个量，$\mathfrak E$就是“此量取值$1$而非$0$”这一性质。由那里的 \hyperref[post:III.5.F]{F}，即 \hyperref[sec:IV.2]{IV.2} 的 \hyperref[cond:IV.2.I]{I}，得知相应算符$E$恰好是全体投影算符。具备$\mathfrak E$的概率，等于上述物理量的期望值。在 \hyperref[sec:III.5]{III.5} 中，我们只对状态$\varphi$，即$U=P_{[\varphi]}$、$\|\varphi\|=1$，计算了这一概率；现在可由 \hyperref[eq:IV.2.Sp]{Sp.} 一般地求得它为$\operatorname{Spur}(UE)$。这是相对概率；只有$U$正确归一化，即$\operatorname{Spur}U=1$时，才是绝对概率。
+我们在 \hyperref[sec:III.5]{III.5} 考察了只取$0,\allowbreak 1$两个值的物理量，它们与性质$\mathfrak E$一一对应。给定性质$\mathfrak E$时，可以如下定义一个物理量：测量它，就是判断$\mathfrak E$\hypertarget{origpage-178}{}\phantomsection\label{origpage-178}是否具备；具备时取值$1$，不具备时取值$0$。反之，若给定这个量，$\mathfrak E$就是“此量取值$1$而非$0$”这一性质。由那里的 \hyperref[post:III.5.F]{F}，即 \hyperref[sec:IV.2]{IV.2} 的 \hyperref[cond:IV.2.I]{I}，可知，与这些量对应的算符$E$都是投影算符，而且每个投影算符都对应这样的量。具备$\mathfrak E$的概率，等于上述物理量的期望值。在 \hyperref[sec:III.5]{III.5} 中，我们只对状态$\varphi$，即$U=P_{[\varphi]}$、$\|\varphi\|=1$，计算了这一概率；现在可由 \hyperref[eq:IV.2.Sp]{Sp.} 一般地求得它为$\operatorname{Spur}(UE)$。这是相对概率；只有$U$正确归一化，即$\operatorname{Spur}U=1$时，才是绝对概率。
 
 既然 \hyperref[criterion:IV.3.1]{1}—\hyperref[criterion:IV.3.4]{4} 已经确立，\hyperref[sec:III.5]{III.5} 由它们导出的 \hyperref[post:III.5.alpha]{$\alpha)$}—\hyperref[post:III.5.zeta]{$\zeta)$} 也就确立了。不过须注意，那里 \hyperref[post:III.5.alpha]{$\alpha)$} 只涉及状态；我们刚才已把它推广到一切混合态：
 
@@ -6428,17 +6450,17 @@ U_0\varphi=U_0P_{[\varphi]}\varphi=P_{[\varphi]}U_0\varphi=(U_0\varphi,\varphi)\
 \]
 即$\varphi$是$U_0$的本征函数。由此推出$U_0=1$，与前面由相应关系推出$U=E$完全相同，只须把$\mathfrak M,\allowbreak E$换成$\mathfrak R,\allowbreak 1$。
 
-因此，在$U_0=1$中，所有可能状态都处于尽可能充分的平衡，任何测量干预都不能改变它。对每个\hypertarget{origpage-184}{}\phantomsection\label{origpage-184}完全规范正交系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$都有
+因此，在$U_0=1$中，所有可能状态达到最大限度的平衡，任何测量干预都不能改变这种平衡。对每个\hypertarget{origpage-184}{}\phantomsection\label{origpage-184}完全规范正交系$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$都有
 \[
 U_0=1=\sum_{n=1}^{\infty}P_{[\varphi_n]},
 \]
-即所有状态$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$的$1:1:\cdots$混合。由此可见，$U_0=1$对应于旧量子论中惯用的热力学假设：“\textkaishu{所有简单量子轨道的先验等概率性}”。在下面几节的热力学讨论中，它也将起重要作用。
+即所有状态$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$的$1:1:\cdots$混合。由此可见，$U_0=1$对应于旧量子论中惯用的热力学假设：“\textkaishu{所有非简并量子轨道的先验等概率性}”。在下面几节的热力学讨论中，它也将起重要作用。
 
 \chapter{一般性讨论}\label{chap:V}
 \section{测量与可逆性}\label{sec:V.1}
 在统计算符为$U$的混合态中测量一个算符为$R$的物理量$\mathfrak R$，会发生什么？只要这个问题本身容许唯一答案，我们就能够作出预言。这里是说，在系综的每个元素上都作测量，再把经过测量的各个系统重新汇成一个系综。
 
-第一，设$R$有单重的纯点谱，$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$是其本征函数构成的完全规范正交系，$\lambda_1,\allowbreak \lambda_2,\allowbreak \ldots$为相应本征值，按假设彼此不同。测量之后，原系综中占$(U\varphi_m,\allowbreak \varphi_m)$的那一部分，$\mathfrak R$取值$\lambda_n$（$n=1,\allowbreak 2,\allowbreak \ldots$）。因此，这一部分构成一个系综，其中$\mathfrak R$必定取值$\lambda_n$，参见 \hyperref[sec:IV.3]{IV.3} 的 \hyperref[post:IV.3.M]{M}；它就是状态$\varphi_n$，其正确归一化的统计算符为$P_{[\varphi_n]}$。把它们汇集起来，所得混合态的统计算符便是
+第一，设$R$有单重的纯点谱，$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$是其本征函数构成的完全规范正交系，$\lambda_1,\allowbreak \lambda_2,\allowbreak \ldots$为相应本征值，按假设彼此不同。测量之后，原系综中占$(U\varphi_m,\allowbreak \varphi_m)$的那一部分，$\mathfrak R$取值$\lambda_n$（$n=1,\allowbreak 2,\allowbreak \ldots$）。\tnote[。][因][原]{原文此处写作$(U\varphi_m,\allowbreak \varphi_m)$；按上下文，下标$m$应为$n$。正文保留原印。}因此，这一部分构成一个系综，其中$\mathfrak R$必定取值$\lambda_n$，参见 \hyperref[sec:IV.3]{IV.3} 的 \hyperref[post:IV.3.M]{M}；它就是状态$\varphi_n$，其正确归一化的统计算符为$P_{[\varphi_n]}$。把它们汇集起来，所得混合态的统计算符便是
 \[
 U'=\sum_{n=1}^{\infty}(U\varphi_n,\varphi_n)P_{[\varphi_n]}.
 \]
@@ -6541,7 +6563,7 @@ U\longrightarrow U_t=e^{-\frac{2\pi i}{h}t\mathsf{H}}Ue^{\frac{2\pi i}{h}t\maths
 \]
 其中$m$为质量，$V$为势能。我们的判据分别要求：$w_{kj}^n$为零，$V$为常数，或$m$极大。而这些条件恰好使$M_n$，或$P^x,\allowbreak P^y,\allowbreak P^z$，或$Q^x,\allowbreak Q^y,\allowbreak Q^z$，与上述$\mathsf{H}$对易。
 
-这一讨论最后还应提到：使真正关心的状态（这里是$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$）成为定态，在理论物理学的其他地方也起作用。物理化学的“思想实验”常常不得不假定，可以通过“毒化”中止化学反应；这种假设正属于此类。\origNote[。][]{183}
+这一讨论最后还应提到：在理论物理学的其他问题中，也会用到把所研究的状态（这里是$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$）变为定态的办法。物理化学的“思想实验”常常不得不假定，可以通过“毒化”中止化学反应；这种假设正属于此类。\origNote[。][]{183}
 
 两种干预 \hyperref[eq:V.1.1]{1}、\hyperref[eq:V.1.2]{2} 根本不同。它们在形式上都唯一确定，因而都是因果的，这一点无关紧要。因为我们所考察的是系综的统计性质，任何变化，即使是统计性的变化，也会使概率和期望值按因果律改变，并不足为奇；引入统计系综和概率，本来就是为此。关键在于：\hyperref[eq:V.1.2]{2} 不会增加$U$中已有的统计不确定性，\hyperref[eq:V.1.1]{1} 却会。前者把状态变为状态：
 \[
@@ -6568,7 +6590,7 @@ U\longrightarrow U'=\sum_{n=1}^{\infty}(U\varphi_n,\varphi_n)P_{[\varphi_n]}
 
 因此，先从唯象讨论开始；它还将使我们能够消解经典热力学中一个著名的悖论。这里先指出，我们的“思想实验”虽然很大胆，实际上不能实行，却不因此\hypertarget{origpage-192}{}\phantomsection\label{origpage-192}失去证明效力。在唯象热力学中，任何可以设想的过程，只要不违背基本定律，都能用来论证。
 
-目标是确定统计算符为$U$的系综$[\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N]$的熵，并假设$U$已正确归一化，即$\operatorname{Spur}U=1$。用经典统计力学的说法，这是一个Gibbs系综：统计与热力学所涉及的，不是单个极其复杂的力学系统中彼此作用的各组成部分——这种系统有许多自由度，我们只能不完全地知道它们\origNote[们][—]{185}——而是由大量力学系统组成的系综。每个系统本身可以有（但不必有）多得无法把握的自由度，但各系统彼此完全分离，互不作用。\origNote[。][由]{186}由于$\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N$完全分离，而且我们要用的是概率论中纯粹计数的方法，因此毫无疑问，应采用通常的概率算法。Bose--Einstein与Fermi--Dirac的不同计数法，在这里都不适用；它们适用于某些由不可区分而彼此作用的个体组成的系综，即分别适用于光量子，以及电子与质子，参见 \hyperref[sec:III.6]{III.6}，特别是原注 \hyperlink{note-147}{\getrefnumber{orig-note-147}}。
+目标是确定统计算符为$U$的系综$[\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N]$的熵，并假设$U$已正确归一化，即$\operatorname{Spur}U=1$。用经典统计力学的说法，这是一个Gibbs系综：统计与热力学所涉及的，不是单个极其复杂的力学系统中彼此作用的各组成部分——这种系统的自由度很多，而我们对这些自由度所知有限\origNote[限][—]{185}——而是由大量力学系统组成的系综。每个系统本身可以有（但不必有）多得无法把握的自由度，但各系统彼此完全分离，互不作用。\origNote[。][由]{186}由于$\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N$完全分离，而且我们要用的是概率论中纯粹计数的方法，因此毫无疑问，应采用通常的概率算法。Bose--Einstein与Fermi--Dirac的不同计数法，在这里都不适用；它们适用于某些由不可区分而彼此作用的个体组成的系综，即分别适用于光量子，以及电子与质子，参见 \hyperref[sec:III.6]{III.6}，特别是原注 \hyperlink{note-147}{\getrefnumber{orig-note-147}}。
 
 Einstein提出的、从热力学处理这类系综$[\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N]$的方法如下。\origNote[。][把]{187}把每个系统$\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N$分别装进一个盒子$\boldsymbol{K}_1,\allowbreak \ldots,\allowbreak \boldsymbol{K}_N$，盒壁隔绝一切作用的传递；各系统既然互不作用，这样做是允许的。每个盒子还须有很大的质量，使$\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N$可能发生的状态变化，以及随之而来的能量即质量变化，对盒子的质量只产生很小影响。这也使下面思想实验中的盒子速度足够小，可以用非相对论方法计算。再把$\boldsymbol{K}_1,\allowbreak \ldots,\allowbreak \boldsymbol{K}_N$放进一个极大的盒子$\overline{\boldsymbol{K}}$中，其体积$\mathcal V$远大于小盒子总体积。为简单起见，设$\overline{\boldsymbol{K}}$中没有力场，特别是远离一切引力场，并大到可以忽略小盒子的质量所产生的作用。于是，可以把内含$\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N$的盒子$\boldsymbol{K}_1,\allowbreak \ldots,\allowbreak \boldsymbol{K}_N$，视为封在大盒子$\overline{\boldsymbol{K}}$中的气体分子。若使$\overline{\boldsymbol{K}}$接触一个温度为$\mathbf T$的巨大热库，盒壁也会达到这一温度，其真正的分子便会作相应的布朗运动。因此，它们\hypertarget{origpage-193}{}\phantomsection\label{origpage-193}会把动量传给邻近的$\boldsymbol{K}_1,\allowbreak \ldots,\allowbreak \boldsymbol{K}_N$，使这些盒子运动起来，继而把动量传给其他盒子。不久，全部小盒子都会运动，在$\overline{\boldsymbol{K}}$的壁上与壁分子交换动量，并在内部互相碰撞、交换动量。只有当小盒子取得与温度为$\mathbf T$的壁分子布朗运动相平衡的速度分布时，运动才达到稳定的平衡；这就是温度为$\mathbf T$、以$\boldsymbol{K}_1,\allowbreak \ldots,\allowbreak \boldsymbol{K}_N$为“分子”的气体的Maxwell速度分布。\origNote[。][所]{188}所以可以说，$[\boldsymbol{S}_1,\allowbreak \ldots,\allowbreak \boldsymbol{S}_N]$气体已达到温度$\mathbf T$。为简便起见，以下把统计算符为$U$的系综称为$U$系综，相应气体称为$U$气体。
 
@@ -6620,7 +6642,7 @@ Einstein提出的、从热力学处理这类系综$[\boldsymbol{S}_1,\allowbreak
 \]
 由于$\operatorname{Spur}U^{(k)}=1$，且$k\to\infty$时$(\cos(\pi/2k))^{2k}\to1$，可用 \hyperref[sec:II.11]{II.11} 所得结果，得知$U^{(k)}$收敛到$P_{[\psi]}$。目的至此达到。
 
-接着须讨论：唯象热力学“思想实验”的一项主要工具——所谓半透壁——在多大程度上也能用于量子力学系统？唯象热力学容许如下命题：若I、II是同一系统$\boldsymbol{S}$的两个不同状态，就可以假定存在一种壁，对I完全透过，对II完全不透。\origNote[。][可]{193}可以说，这就是两个状态之不同、因而也是相同的热力学定义。在量子力学中，这种假定有多大适用范围呢？
+接着须讨论：唯象热力学“思想实验”的一项主要工具——所谓半透壁——在多大程度上也能用于量子力学系统？唯象热力学容许如下命题：若I、II是同一系统$\boldsymbol{S}$的两个不同状态，就可以假定存在一种壁，对I完全透过，对II完全不透。\origNote[。][可]{193}可以说，这从热力学上定义了两个状态何为不同，因而也定义了何为相同。在量子力学中，这种假定有多大适用范围呢？
 
 先证明：若$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots,\allowbreak \psi_1,\allowbreak \psi_2,\allowbreak \ldots$为规范正交系，就存在一种半透壁，让处于任一$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$状态的系统$\boldsymbol{S}$无阻碍地透过，让处于任一$\psi_1,\allowbreak \psi_2,\allowbreak \ldots$状态的系统原状反射。其他状态的系统则可能在碰撞壁时改变。
 
@@ -6642,7 +6664,7 @@ Einstein提出的、从热力学处理这类系综$[\boldsymbol{S}_1,\allowbreak
 \end{figure}
 在这个过程中，$\varphi$分子不受影响，$\psi$分子却被推到$\overline{\boldsymbol{K}}$的右半部，即$bb$与$23$之间。也就是说，$\tfrac12(P_{[\varphi]}+P_{[\psi]})$气体是$P_{[\varphi]}$气体与$P_{[\psi]}$气体的$1:1$混合；前者不变，后者则等温压缩到一半体积。由理想气体状态方程知，所作机械功为$(N/2)\varkappa\mathbf T\ln2$，其中$N/2$是$P_{[\psi]}$气体的分子数，$\varkappa$为Boltzmann常数。\origNote[。][因]{195}因为等温过程不改变气体能量\origNote[量][，]{196}，这部分能量被热库$\boldsymbol{W}$吸收，所以热库的熵增加$\mathbf Q/\mathbf T=N\varkappa\cdot\tfrac12\ln2$，参见原注 \hyperlink{note-186}{\getrefnumber{orig-note-186}}。
 
-过程结束后，$bb$左侧是原$P_{[\varphi]}$气体的一半，即$N/4$个分子；右侧则是\hypertarget{origpage-199}{}\phantomsection\label{origpage-199}另一半$P_{[\varphi]}$气体（$N/4$个分子），以及全部$P_{[\psi]}$气体（$N/2$个分子），合计是含$3N/4$个分子的$\tfrac13P_{[\varphi]}+\tfrac23P_{[\psi]}$气体。把前者压缩至体积$\mathcal V/4$，后者膨胀至$3\mathcal V/4$，相应的机械功仍由热库$\boldsymbol{W}$吸收或供给，分别为$(N/4)\varkappa\mathbf T\ln2$与$(3N/4)\varkappa\mathbf T\ln(3/2)$，参见原注 \hyperlink{note-191}{\getrefnumber{orig-note-191}}。因此，热库的熵增分别为$N\varkappa\cdot\tfrac14\ln2$与$-N\varkappa\cdot\tfrac34\ln(3/2)$，合计
+过程结束后，$bb$左侧是原$P_{[\varphi]}$气体的一半，即$N/4$个分子；右侧则是\hypertarget{origpage-199}{}\phantomsection\label{origpage-199}另一半$P_{[\varphi]}$气体（$N/4$个分子），以及全部$P_{[\psi]}$气体（$N/2$个分子），合计是含$3N/4$个分子的$\tfrac13P_{[\varphi]}+\tfrac23P_{[\psi]}$气体。把前者压缩至体积$\mathcal V/4$，后者膨胀至$3\mathcal V/4$，相应的机械功仍由热库$\boldsymbol{W}$吸收或供给，分别为$(N/4)\varkappa\mathbf T\ln2$与$(3N/4)\varkappa\mathbf T\ln(3/2)$，参见原注 \hyperlink{note-191}{\getrefnumber{orig-note-191}}。因此，热库的熵变化量分别为$N\varkappa\cdot\tfrac14\ln2$与$-N\varkappa\cdot\tfrac34\ln(3/2)$，合计
 \[
 N\varkappa\left(\tfrac12\ln2+\tfrac14\ln2-\tfrac34\ln\tfrac32\right)
 =N\varkappa\cdot\tfrac34\ln\tfrac43.
@@ -6660,7 +6682,7 @@ P_{[\varphi]},\qquad\tfrac12P_{[\varphi]}+\tfrac12P_{[\psi]},\qquad
 1,0;\qquad \frac{1+\alpha}2,\frac{1-\alpha}2,0;\qquad
 \frac{3+\sqrt{1+8\alpha^2}}6,\frac{3-\sqrt{1+8\alpha^2}}6,0,
 \]
-其中$\alpha=|(\varphi,\allowbreak \psi)|$，故$0\leq\alpha\leq1$；零本征值总是无穷重，其他本征值则是单重的。\origNote[。][因]{197}因此，气体的熵增加了
+其中$\alpha=|(\varphi,\allowbreak \psi)|$，故$0\leq\alpha\leq1$；零本征值总是无穷重，其他本征值则是单重的。\origNote[。][因]{197}因此，气体的熵变化量为
 \begin{align*}
 &-\frac N4\varkappa\cdot0
 -\frac{3N}4\varkappa\Biggl[
@@ -6687,9 +6709,13 @@ P_{[\varphi]},\qquad\tfrac12P_{[\varphi]}+\tfrac12P_{[\psi]},\qquad
 \end{figure}
 我们知道，$U$有纯点谱$w_1,\allowbreak w_2,\allowbreak \ldots$，其中$w_1\geq0,\allowbreak w_2\geq0,\allowbreak \ldots$，$w_1+w_2+\cdots=1$。相应本征函数设为$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$，则$U=\sum_{n=1}^{\infty}w_nP_{[\varphi_n]}$，参见 \hyperref[sec:IV.3]{IV.3}。所以$U$气体是$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$气体的混合，各分别含$w_1N,\allowbreak w_2N,\allowbreak \ldots$个分子，均占同一体积$\mathcal V$。仍选取$\mathbf T,\allowbreak \mathcal V$使所有气体都理想，并设$\overline{\boldsymbol{K}}$为矩形截面。为把$\varphi_1,\allowbreak \varphi_2,\allowbreak \ldots$分子互相分离，作如下可逆操作，参见图 \ref{fig:4}。\tnote[。][在][图]{图中字母$a,\allowbreak b,\allowbreak c,\allowbreak d$分别标记各隔板的位置；箭头表示移动方向。}在盒子$\overline{\boldsymbol{K}}$（$23452$）旁接上同样大小的矩形盒$\overline{\boldsymbol{K}}'$（$12561$）。把公共壁$25$换成两片紧贴的壁：一片固定在$25$处，半透，对$\varphi_1$透过，对$\varphi_2,\allowbreak \varphi_3,\allowbreak \ldots$反射；另一片$bb$可移动，是普通的完全不透壁。再在紧邻$34$的$dd$处插入另一半透壁，对$\varphi_2,\allowbreak \varphi_3,\allowbreak \ldots$透过，对$\varphi_1$反射。然后保持$bb,\allowbreak dd$间距不变，分别把它们移至$aa,\allowbreak cc$，即紧邻$16,\allowbreak 25$处。这样，\hypertarget{origpage-201}{}\phantomsection\label{origpage-201}$\varphi_2,\allowbreak \varphi_3,\allowbreak \ldots$分子全不受影响，$\varphi_1$分子却被迫留在两片移动壁$bb,\allowbreak dd$之间。由于两壁间距恒定，不必克服气体压力作功，因而也没有热的产生。最后，把$25,\allowbreak cc$换成一片固定的完全不透壁$25$，并撤去$aa$，便恢复了盒子$\overline{\boldsymbol{K}},\allowbreak \overline{\boldsymbol{K}}'$。现在全部$\varphi_1$分子都在$\overline{\boldsymbol{K}}'$中；我们就这样把它们从$\overline{\boldsymbol{K}}$可逆地“抽取”到同样大的$\overline{\boldsymbol{K}}'$，既不作功，也不产生热，更不改变温度。\origNote[。][]{199}
 
-同样，把$\varphi_2,\allowbreak \varphi_3,\allowbreak \ldots$分子分别“抽取”到等大的盒子$\overline{\boldsymbol{K}}'',\allowbreak \overline{\boldsymbol{K}}''',\allowbreak \ldots$中，最后得到$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$气体，各含$w_1N,\allowbreak w_2N,\allowbreak \ldots$个分子，每份体积都是$\mathcal V$。再分别等温压缩至$w_1\mathcal V,\allowbreak w_2\mathcal V,\allowbreak \ldots$。为了补偿，须从温度为$\mathbf T$的大热库向它们供给热量$w_1N\varkappa\mathbf T\ln w_1$、$w_2N\varkappa\mathbf T\ln w_2$等，以保证过程可逆。这些热量全是负的；对各气体所作压缩机械功恰好等于它们的相反数，参见原注 \hyperlink{note-191}{\getrefnumber{orig-note-191}}。所以，这些过程中的熵增为$\sum_{n=1}^{\infty}w_nN\varkappa\ln w_n$。最后，把$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$气体全变成$P_{[\varphi]}$气体，$\varphi$为任取的状态。现在只有$P_{[\varphi]}$气体，分别有$w_1N,\allowbreak w_2N,\allowbreak \ldots$个分子，占据体积$w_1\mathcal V,\allowbreak w_2\mathcal V,\allowbreak \ldots$。由于它们完全相同，密度也同为$N:\mathcal V$，便可把它们混合，且仍是可逆的；由$\sum_{n=1}^{\infty}w_n=1$，得到体积$\mathcal V$内含$N$个分子的$P_{[\varphi]}$气体。
+同样，把$\varphi_2,\allowbreak \varphi_3,\allowbreak \ldots$分子分别“抽取”到等大的盒子$\overline{\boldsymbol{K}}'',\allowbreak \overline{\boldsymbol{K}}''',\allowbreak \ldots$中，最后得到$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$气体，各含$w_1N,\allowbreak w_2N,\allowbreak \ldots$个分子，每份体积都是$\mathcal V$。再分别等温压缩至$w_1\mathcal V,\allowbreak w_2\mathcal V,\allowbreak \ldots$。为了补偿，须从温度为$\mathbf T$的大热库向它们供给热量$w_1N\varkappa\mathbf T\ln w_1$、$w_2N\varkappa\mathbf T\ln w_2$等，以保证过程可逆。这些热量全是负的；对各气体所作压缩机械功恰好等于它们的相反数，参见原注 \hyperlink{note-191}{\getrefnumber{orig-note-191}}。所以，气体在这些过程中的熵变化量为$\sum_{n=1}^{\infty}w_nN\varkappa\ln w_n$。最后，把$P_{[\varphi_1]},\allowbreak P_{[\varphi_2]},\allowbreak \ldots$气体全变成$P_{[\varphi]}$气体，$\varphi$为任取的状态。现在只有$P_{[\varphi]}$气体，分别有$w_1N,\allowbreak w_2N,\allowbreak \ldots$个分子，占据体积$w_1\mathcal V,\allowbreak w_2\mathcal V,\allowbreak \ldots$。由于它们完全相同，密度也同为$N:\mathcal V$，便可把它们混合，且仍是可逆的；由$\sum_{n=1}^{\infty}w_n=1$，得到体积$\mathcal V$内含$N$个分子的$P_{[\varphi]}$气体。
 
-这样就完成了所需的可逆转变。熵增加$N\varkappa\sum_{n=1}^{\infty}w_n\ln w_n$，而最终的熵按规定为零，所以原先的熵是
+这样就完成了所需的可逆转变。气体的熵变化量为
+\[
+N\varkappa\sum_{n=1}^{\infty}w_n\ln w_n\text{，}
+\]
+而最终的熵按规定为零，所以原先的熵是
 \[
 -N\varkappa\sum_{n=1}^{\infty}w_n\ln w_n.
 \]
@@ -6911,7 +6937,7 @@ U=\sum_{n=1}^{\infty}ae^{-\beta W_n}P_{[\varphi_n]}
 \[
 N\mathbf E=-N\frac{Z'(\beta)}{Z(\beta)}.
 \]
-应当与$\mathbf S$并列的是这个量，而不是$\mathbf E$本身。至此已把$U,\allowbreak \mathbf S,\allowbreak N\mathbf E$用$\beta$表示出来。与其只把$\beta$表示成$\mathbf E$的函数，更实用的是求平衡混合态的温度$\mathbf T$，再把一切归结为它。方法如下：使平衡混合态接触温度为$\mathbf T'$的热库，并从中取得能量$N\,d\mathbf E$。按照两条基本定律，总能量不变，熵不能减少。因此，热库损失能量$N\,d\mathbf E$，其熵增为$-N\,d\mathbf E/\mathbf T'$，同时须有
+应当与$\mathbf S$并列的是这个量，而不是$\mathbf E$本身。至此已把$U,\allowbreak \mathbf S,\allowbreak N\mathbf E$用$\beta$表示出来。与其只把$\beta$表示成$\mathbf E$的函数，更实用的是求平衡混合态的温度$\mathbf T$，再把一切归结为它。方法如下：使平衡混合态接触温度为$\mathbf T'$的热库，并从中取得能量$N\,d\mathbf E$。按照两条基本定律，总能量不变，熵不能减少。因此，热库损失能量$N\,d\mathbf E$，其熵变化量为$-N\,d\mathbf E/\mathbf T'$，同时须有
 \[
 d\mathbf S-\frac{N\,d\mathbf E}{\mathbf T'}
 =\left(\frac{d\mathbf S}{N\,d\mathbf E}-\frac1{\mathbf T'}\right)N\,d\mathbf E\geq0.
@@ -6991,7 +7017,7 @@ G(\lambda)=\begin{cases}1,&c_{n-1}<\lambda\leq c_n,\\0,&\text{其他情形}.\end
 
 宏观测量的本意是：凡是这样可测的，就都同时可测；即所有宏观上可回答的问题$\mathfrak E$都能同时回答，也就是所有$E$彼此对易。量子力学物理量不能同时测量，最初之所以显得如此矛盾，恰是因为宏观观点中没有这一概念。这一点在原理上十分重要，宜再详细讨论。
 
-回想怎样以有限精度同时测量两个公认不能同时测量的量，例如坐标$q$和动量$p$（参见 \hyperref[sec:III.4]{III.4}）。设平均测量误差分别为$\varepsilon,\allowbreak \eta$，由不确定性关系$\varepsilon\eta\sim h$。\hyperref[sec:III.4]{III.4} 的讨论说明，在这种精度要求下，同时测量确实可能：$q$（位置）测量用不太短波长的光，$p$（动量）测量用不太长的光波列。一切安排就绪后，真正的测量在于以某种方法，例如照相，探测两个光量子：\hypertarget{origpage-215}{}\phantomsection\label{origpage-215}一个是在$q$测量中经Compton效应偏转的光量子；另一个是在$p$测量中经Doppler效应反射、频率改变，又被棱镜或衍射光栅等光学装置偏转，以便测定该频率的光量子。因此，实验结束时留下两个光量子，甚至两张照相底片；我们须根据光量子的方向，或底片上感光斑的位置，计算$q,\allowbreak p$。但应强调：我们完全可以任意精确地确定这两个方向或感光斑位置；它们显然是同时可测的量，是两个不同对象的动量或坐标。然而，这对测量$q,\allowbreak p$帮助不大。正如 \hyperref[sec:III.4]{III.4} 所示，这些量与$q,\allowbreak p$的耦合使后者恰好仍留下$\varepsilon,\allowbreak \eta$的不确定度，即使前者已完全精确地知道也是如此；不可能安排到$\varepsilon\eta\ll h$。若把这两个方向或感光斑位置本身引入为物理量，算符记为$Q',\allowbreak P'$，便知$Q',\allowbreak P'$确实精确对易，但$q,\allowbreak p$的算符$Q,\allowbreak P$不能借助它们表示到分别优于$\varepsilon,\allowbreak \eta$的精度。设$Q',\allowbreak P'$对应的量为$q',\allowbreak p'$，那么真正宏观可测的是$q',\allowbreak p'$而非$q,\allowbreak p$本身，这种解释就十分自然（实际测得的确实是$q',\allowbreak p'$），也与一切宏观量同时可测的公设相容。
+回想怎样以有限精度同时测量两个公认不能同时测量的量，例如坐标$q$和动量$p$（参见 \hyperref[sec:III.4]{III.4}）。设测量的均方根误差分别为$\varepsilon,\allowbreak \eta$，由不确定性关系$\varepsilon\eta\sim h$。\hyperref[sec:III.4]{III.4} 的讨论说明，在这种精度要求下，同时测量确实可能：$q$（位置）测量用不太短波长的光，$p$（动量）测量用不太长的光波列。一切安排就绪后，真正的测量在于以某种方法，例如照相，探测两个光量子：\hypertarget{origpage-215}{}\phantomsection\label{origpage-215}一个是在$q$测量中经Compton效应偏转的光量子；另一个是在$p$测量中经Doppler效应反射、频率改变，又被棱镜或衍射光栅等光学装置偏转，以便测定该频率的光量子。因此，实验结束时留下两个光量子，甚至两张照相底片；我们须根据光量子的方向，或底片上感光斑的位置，计算$q,\allowbreak p$。但应强调：我们完全可以任意精确地确定这两个方向或感光斑位置；它们显然是同时可测的量，是两个不同对象的动量或坐标。然而，这对测量$q,\allowbreak p$帮助不大。正如 \hyperref[sec:III.4]{III.4} 所示，这些量与$q,\allowbreak p$的耦合使后者恰好仍留下$\varepsilon,\allowbreak \eta$的不确定度，即使前者已完全精确地知道也是如此；不可能安排到$\varepsilon\eta\ll h$。若把这两个方向或感光斑位置本身引入为物理量，算符记为$Q',\allowbreak P'$，便知$Q',\allowbreak P'$确实精确对易，但$q,\allowbreak p$的算符$Q,\allowbreak P$不能借助它们表示到分别优于$\varepsilon,\allowbreak \eta$的精度。设$Q',\allowbreak P'$对应的量为$q',\allowbreak p'$，那么真正宏观可测的是$q',\allowbreak p'$而非$q,\allowbreak p$本身，这种解释就十分自然（实际测得的确实是$q',\allowbreak p'$），也与一切宏观量同时可测的公设相容。
 
 宜把这一事实作一般解释，视为宏观观点的特征：把各种一般不对易的算符$A,\allowbreak B,\allowbreak C,\allowbreak \ldots$，换成另一组彼此对易的算符$A',\allowbreak B',\allowbreak C',\allowbreak \ldots$，而前者近似为后者的函数。由于这些函数也可直接记为$A',\allowbreak B',\allowbreak C',\allowbreak \ldots$，便可说：$A',\allowbreak B',\allowbreak C',\allowbreak \ldots$分别近似$A,\allowbreak B,\allowbreak C,\allowbreak \ldots$，却精确地彼此对易。若以$\varepsilon_A,\allowbreak \varepsilon_B,\allowbreak \varepsilon_C,\allowbreak \ldots$衡量$A'-A,\allowbreak B'-B,\allowbreak C'-C,\allowbreak \ldots$的大小，就知$\varepsilon_A\varepsilon_B$应与$AB-BA$（一般非零）同数量级，其他亦然。这给出了所能达到的近似限度。当然，列举$A,\allowbreak B,\allowbreak C,\allowbreak \ldots$时，合理的做法是只考虑这样一些算符：其对应的物理量至少能够以尚可接受的精度作宏观测量。
 
@@ -7153,7 +7179,7 @@ $\psi_1^{(n)},\allowbreak \ldots,\allowbreak \psi_{s_n}^{(n)}$构成规范正交
 % 中文编写中间材料：chapter-VI.tex
 \chapter{测量过程}\label{chap:VI}
 \section{问题的表述}\label{sec:VI.1}
-此前，我们讨论了量子力学与各种因果性、统计性的自然描述方法之间的关系，却发现它的做法具有一种奇特的两重性，未能得到充分解释。一方面，状态$\varphi$在能量算符$\mathsf H$的影响下，在时间区间$0\leq\tau\leq t$内，按如下方式变为状态$\varphi'$：
+此前讨论量子力学与各种因果性、统计性的自然描述方法之间的关系时，我们发现量子力学的描述方式存在一种奇特的两重性，尚未得到充分解释。一方面，状态$\varphi$在能量算符$\mathsf H$的影响下，在时间区间$0\leq\tau\leq t$内，按如下方式变为状态$\varphi'$：
 \begin{align*}
  \frac{\partial}{\partial\tau}\varphi_\tau
  &=-\frac{2\pi i}{h}\mathsf H\varphi_\tau\qquad(0\leq\tau\leq t),\\
@@ -7179,13 +7205,13 @@ $\varphi$按照因果律变为$\varphi'$时，状态$U=P_{[\varphi]}$也变为�
 
 这两个过程$U\longrightarrow U'$的差别是根本性的：除了对因果性原则表现不同，前者在热力学上可逆，后者则不可逆，参见 \hyperref[sec:V.3]{V.3}。
 
-\hypertarget{origpage-223}{}\phantomsection\label{origpage-223}现在把这些情况，与自然界及其观察中实际存在的情况比较。首先，测量，或者与测量相伴的主观统觉过程，相对于物理环境确实是一种全新的现象，不能还原为物理环境中的过程。因为它把我们引向物理环境之外；更确切地说，是引向个体内在的思想生活。这种内在生活无法检验，因为任何检验的尝试都已经以它为前提，参见下文。不过，自然科学的世界观有一个基本要求，即所谓心物平行原则（\textit{psychophysikalischer Parallelismus}）：主观统觉其实是物理范围之外的过程，但必须能像它发生于物理世界中那样描述它。也就是说，必须能把它的各个部分，分别配上普通空间中、客观环境内的物理过程。当然，在作这种对应时，总会需要把这些过程定位于我们身体所占据的空间区域内；但这不改变它们属于环境这一点。
+\hypertarget{origpage-223}{}\phantomsection\label{origpage-223}现在把这些情况，与自然界及其观察中实际存在的情况比较。首先，测量，或者与测量相伴的主观统觉过程，相对于物理环境确实是一种全新的现象，不能还原为物理环境中的过程。因为它把我们引向物理环境之外；更确切地说，是引向个体内在的思想生活。这种内在生活无法检验，因为任何检验的尝试都已经以它为前提，参见下文。不过，自然科学的世界观有一个基本要求，即所谓心物平行原则（\textit{psychophysikalischer Parallelismus}）：主观统觉其实是物理范围之外的过程，但必须能像它发生于物理世界中那样描述它。也就是说，必须能把这一主观过程的各个环节，分别与普通空间中、客观环境内的物理过程对应起来。当然，在作这种对应时，总会需要把这些过程定位于我们身体所占据的空间区域内；但这不改变它们属于环境这一点。
 
-用一个简单例子说明这种看法。要测量某个温度，可以只计算到温度计水银球周围的温度，然后说：温度计测量了这一温度。但也可继续计算，根据分子动理论所解释的水银性质，算出它如何受热、膨胀，以及由此形成的水银柱长度，再说：观察者看到了这个长度。再往前，还可把他的光源包括进来，求光量子在不透明水银柱上的反射、其余光量子进入眼睛的路径、在晶状体中的折射，以及视网膜上的成像，然后才说：观察者的视网膜接收了这个像。假如生理学知识比今天更精确，还可继续追踪这个像在视网膜、神经通路、脑中引起的化学反应，最后才说：观察者统觉到自己脑细胞中的这些化学变化。但不论计算到哪里——水银球、温度计刻度、视网膜，还是脑内——总有一处必须说：然后观察者感知到它。也就是说，总须把世界分成两部分，一部分是被观察的系统，另一部分是观察者。\hypertarget{origpage-224}{}\phantomsection\label{origpage-224}前一部分中的一切物理过程，至少原则上都可以任意精确地追踪；对后一部分，这样做则没有意义。两者的界限有很大的任意性；上例中就有四种不同划法。特别是，这种意义上的观察者，绝不必等同于实际观察者的身体：上例中，有一次甚至把温度计也归到观察者一侧，另一次却连观察者的眼睛和神经通路也不包括在内。界限可以任意深入实际观察者身体内部，这就是心物平行原则的内容。但这不改变如下事实：任何一种描述，只要不想成为空谈，只要还要能够与经验比较，就必须在某处划出这条界限。因为经验只作这样的陈述：“\textkaishu{某个观察者有了某种主观感知}”，从不作这样的陈述：“\textkaishu{某个物理量具有某个数值}”。
+用一个简单例子说明这种看法。要测量某个温度，可以只计算到温度计水银球周围的温度，然后说：温度计测量了这一温度。但也可继续计算，根据分子动理论所解释的水银性质，算出它如何受热、膨胀，以及由此形成的水银柱长度，再说：观察者看到了这个长度。再往前，还可把他的光源包括进来，求光量子在不透明水银柱上的反射、其余光量子进入眼睛的路径、在晶状体中的折射，以及视网膜上的成像，然后才说：观察者的视网膜接收了这个像。假如生理学知识比今天更精确，还可继续追踪这个像在视网膜、神经通路、脑中引起的化学反应，最后才说：观察者统觉到自己脑细胞中的这些化学变化。但不论计算到哪里——水银球、温度计刻度、视网膜，还是脑内——总有一处必须说：然后观察者感知到它。也就是说，总须把世界分成两部分，一部分是被观察的系统，另一部分是观察者。\hypertarget{origpage-224}{}\phantomsection\label{origpage-224}前一部分中的一切物理过程，至少原则上都可以任意精确地追踪；对后一部分，这样做则没有意义。两者的界限有很大的任意性；上例中就有四种不同划法。特别是，这种意义上的观察者，绝不必等同于实际观察者的身体：上例中，有一次甚至把温度计也归到观察者一侧，另一次却连观察者的眼睛和神经通路也不包括在内。界限可以任意深入实际观察者身体内部，这就是心物平行原则的内容。但这不改变如下事实：任何一种描述，要避免成为空谈，也就是要能够与经验比较，就必须在某处划出这条界限。因为经验只作这样的陈述：“\textkaishu{某个观察者有了某种主观感知}”，从不作这样的陈述：“\textkaishu{某个物理量具有某个数值}”。
 
 量子力学用过程 \hyperref[eq:V.1.2]{\textbf{2}}（\hyperref[sec:V.1]{V.1}）描述世界中被观察部分的事件，条件是它们不与观察者部分相互作用；一旦发生这种相互作用，即发生测量，就规定用过程 \hyperref[eq:V.1.1]{\textbf{1}}。这样，两重性便有了理由。\origNote[。][不]{207}不过，在证明被观察系统与观察者的界限能按上述意义任意移动之前，仍有违背心物平行原则的危险。
 
-为讨论这一点，把世界分为$I,\allowbreak II,\allowbreak III$三部分：$I$为真正被观察的系统，$II$为测量仪器，$III$为实际观察者。\origNote[。][须]{208}须证明：界限既可划在$I$与$II+III$之间，也可划在$I+II$与$III$之间。在上例中，比较第一、第二种划法时，$I$为待研究系统，$II$为温度计，$III$为光加观察者；比较第二、第三种时，$I$为待研究系统加温度计，$II$为光加观察者的眼睛，$III$为从视网膜开始的观察者；比较第三、第四种时，$I$为直到观察者视网膜之前的一切，$II$为其视网膜、神经通路和脑，$III$为抽象的“我”。因此，第一种划法把过程 \hyperref[eq:V.1.2]{\textbf{2}} 用于$I$，把过程 \hyperref[eq:V.1.1]{\textbf{1}} 用于$I$与$II+III$间的相互作用；第二种则把 \hyperref[eq:V.1.2]{\textbf{2}} 用于$I+II$，把 \hyperref[eq:V.1.1]{\textbf{1}} 用于$I+II$与$III$间的相互作用。$III$本身在两种情况下都不纳入计算。我们真正的任务，是证明两种方法对$I$给出相同论断；两种情况下，只有它始终属于世界中被观察的部分。
+为讨论这一点，把世界分为$I,\allowbreak II,\allowbreak III$三部分：$I$为被观察的系统本身，$II$为测量仪器，$III$为观察者本身。\origNote[。][须]{208}须证明：界限既可划在$I$与$II+III$之间，也可划在$I+II$与$III$之间。在上例中，比较第一、第二种划法时，$I$为待研究系统，$II$为温度计，$III$为光加观察者；比较第二、第三种时，$I$为待研究系统加温度计，$II$为光加观察者的眼睛，$III$为从视网膜开始的观察者；比较第三、第四种时，$I$为直到观察者视网膜之前的一切，$II$为其视网膜、神经通路和脑，$III$为抽象的“我”。因此，第一种划法把过程 \hyperref[eq:V.1.2]{\textbf{2}} 用于$I$，把过程 \hyperref[eq:V.1.1]{\textbf{1}} 用于$I$与$II+III$间的相互作用；第二种则把 \hyperref[eq:V.1.2]{\textbf{2}} 用于$I+II$，把 \hyperref[eq:V.1.1]{\textbf{1}} 用于$I+II$与$III$间的相互作用。$III$本身在两种情况下都不纳入计算。我们真正的任务，是证明两种方法对$I$给出相同论断；两种情况下，只有它始终属于世界中被观察的部分。
 
 \hypertarget{origpage-225}{}\phantomsection\label{origpage-225}但要顺利开展这一工作，须先详细研究两个物理系统的合并过程，即从$I$、$II$到$I+II$的过程。
 
@@ -7256,7 +7282,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
  \sum_{n=1}^{\infty}v_{mn/m'n}=u_{m/m'},\qquad
  \sum_{m=1}^{\infty}v_{mn/mn'}=u_{n/n'}.
 \]
-由$\sum_{m=1}^{\infty}u_{m/m}=1$、$\sum_{n=1}^{\infty}u_{n/n}=1$，便自动得$\sum_{m,\allowbreak n=1}^{\infty}v_{mn/mn}=1$，所以正确归一化得以保留。问题总是有解，例如$v_{mn/m'n'}=u_{m/m'}u_{n/n'}$总是一个解；不难看出这个矩阵定号。不过，要问的是，它何时是唯一解。
+由$\sum_{m=1}^{\infty}u_{m/m}=1$、$\sum_{n=1}^{\infty}u_{n/n}=1$，便自动得$\sum_{m,\allowbreak n=1}^{\infty}v_{mn/mn}=1$，因此仍满足所需的归一化条件。问题总是有解，例如$v_{mn/m'n'}=u_{m/m'}u_{n/n'}$总是一个解；不难看出这个矩阵定号。不过，要问的是，它何时是唯一解。
 
 我们证明：当且仅当两个矩阵$\{u_{m/m'}\}$、$\{u_{n/n'}\}$中至少有一个对应于状态时，解才唯一。先证必要性，即两个矩阵都对应混合态时，存在多个解。这时（参见 \hyperref[sec:IV.2]{IV.2}）
 \[
@@ -7320,7 +7346,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
  F\varphi(q)&=\int\overline{\Phi(qr)}\varphi(q)\,dq,\\
  F^*\xi(r)&=\int\Phi(qr)\xi(r)\,dr
 \end{align*}
-定义两个算符$F,\allowbreak F^*$。它们线性，但有一个特点：定义域分别是$\mathfrak R^I$、$\mathfrak R^{II}$，值却分别取在$\mathfrak R^{II}$、$\mathfrak R^I$中。二者互为伴随，因为显然$(F\varphi,\allowbreak \xi)=(\varphi,\allowbreak F^*\xi)$；左边内积在$\mathfrak R^{II}$中取，右边在$\mathfrak R^I$中取！$\mathfrak R^I$与$\mathfrak R^{II}$的差别在数学上无关紧要，因而可用 \hyperref[sec:II.11]{II.11} 的结果：由于它们是积分算符，$\Sigma(F),\allowbreak \Sigma(F^*)$都等于
+定义两个算符$F,\allowbreak F^*$。这两个算符都是线性的，但有一点特殊：定义域分别是$\mathfrak R^I$、$\mathfrak R^{II}$，值却分别取在$\mathfrak R^{II}$、$\mathfrak R^I$中。二者互为伴随，因为显然$(F\varphi,\allowbreak \xi)=(\varphi,\allowbreak F^*\xi)$；左边内积在$\mathfrak R^{II}$中取，右边在$\mathfrak R^I$中取！$\mathfrak R^I$与$\mathfrak R^{II}$的差别在数学上无关紧要，因而可用 \hyperref[sec:II.11]{II.11} 的结果：由于它们是积分算符，$\Sigma(F),\allowbreak \Sigma(F^*)$都等于
 \[
  \iint|\Phi(qr)|^2\,dq\,dr=\|\Phi\|^2=1
  \qquad(\|\Phi\|\mathwordspace{}\text{在}\mathwordspace{}\mathfrak R^{I+II}\mathwordspace{}\text{中取}!),
@@ -7430,7 +7456,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
 \[
  \boldsymbol U'=\sum_{n=1}^{\infty}w_nP_{[e^{-\frac{2\pi i}{h}t\boldsymbol H}\Phi_n]}.
 \]
-如果每个$\Phi_n(q,\allowbreak r)$都形如$\psi_n(q)\eta_n(r)$，其中$\psi_n$是$A$的本征函数，$\eta_n$是某个固定的完全规范正交系，那么这一干预就具有测量的性质\tnote[质][：][原]{原书此句仍用测量前的记号$\Phi_n$。按上文的演化式及此处论证，应指演化后的$e^{-\frac{2\pi i}{h}t\boldsymbol H}\Phi_n$具有$\psi_n(q)\eta_n(r)$的形式。正文保留原印记号。}：把$I$的每个状态$\varphi$都变成$A$的本征函数$\psi_n$的混合。统计性质是这样产生的：测量前$I$虽处于单一状态，$II$却是混合态；相互作用期间，$II$的混合性质“传染”了$I+II$，特别使它在$I$中的投影成为混合态。也就是说，测量结果不确定，是因为测量前不知道观察者的确切状态。这样的机制似乎可能存在，因为自然规律也许限制了观察者对自身状态的了解。这些限制表现为$w_n$的取值，它们应完全由观察者决定，因而与$\varphi$无关！
+如果每个$\Phi_n(q,\allowbreak r)$都形如$\psi_n(q)\eta_n(r)$，其中$\psi_n$是$A$的本征函数，$\eta_n$是某个固定的完全规范正交系，那么这一干预就具有测量的性质\tnote[质][：][原]{原书此句仍用测量前的记号$\Phi_n$。按上文的演化式及此处论证，应指演化后的$e^{-\frac{2\pi i}{h}t\boldsymbol H}\Phi_n$具有$\psi_n(q)\eta_n(r)$的形式。正文保留原印记号。}：把$I$的每个状态$\varphi$都变成$A$的本征函数$\psi_n$的混合。统计性质是这样产生的：测量前$I$虽处于单一状态，$II$却是混合态；相互作用期间，$II$的混合性质“传染”了$I+II$，特别使它在$I$中的投影成为混合态。也就是说，测量结果不确定，是因为测量前不知道观察者的确切状态。这样的机制似乎可能存在，因为自然规律也许限制了观察者对自身状态的了解。这样的限制会体现在$w_n$的取值上；而这些数值必须完全由观察者决定，因而与$\varphi$无关！
 
 但这一解释尝试恰在此失败：量子力学要求$w_n=(P_{\psi_n}\varphi,\allowbreak \varphi)=|(\varphi,\allowbreak \psi_n)|^2$，即$w_n$依赖$\varphi$！即使可能另有一种分解$\boldsymbol U'=\sum_{n=1}^{\infty}w'_nP_{[\Phi'_n]}$，也无济于事；这里$\Phi'_n(q,\allowbreak r)=\psi_n(q)\eta_n(r)$是规范正交的。因为$w'_n$除次序外已由$\boldsymbol U'$唯一确定（\hyperref[sec:IV.3]{IV.3}），故与$w_n$相等。\origNote[。][]{214}
 
@@ -7440,7 +7466,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
 
 若$I$是被观察系统，$II+III$是观察者，就须采用过程 \hyperref[eq:V.1.1]{\textbf{2}}\tnote[\textbf{2}][，][原]{原书这里印作“过程2”；但按 \hyperref[sec:V.1]{V.1} 及 \hyperref[sec:VI.1]{VI.1} 的术语，同句所述的测量变换是过程1。这里保留原印数字。}，得到：测量使$I$从状态$\varphi$转入$\varphi_n$之一（$n=1,\allowbreak 2,\allowbreak \ldots$），概率分别为$|(\varphi,\allowbreak \varphi_n)|^2$（$n=1,\allowbreak 2,\allowbreak \ldots$）。那么，若以$I+II$为被观察系统，只有$III$为观察者，应怎样描述呢？
 
-此时必须说：$II$是一台测量仪器，在刻度上显示$A$（在$I$中）的值；刻度上的指针位置是物理量$B$（在$II$中），这才是$III$真正观察的量。若$II$已经在观察者体内，刻度和指针位置就须换成相应生理概念，例如视网膜及其上的像等。$B$的值与$A$的值一一耦合。设$A$取值$a_1,\allowbreak a_2,\allowbreak \ldots$，$B$取值$b_1,\allowbreak b_2,\allowbreak \ldots$，编号使$a_n$与$b_n$对应。
+此时必须说：$II$是一台测量仪器，在刻度上显示$A$（在$I$中）的值；刻度上的指针位置是物理量$B$（在$II$中），这才是$III$真正观察的量。若$II$已经在观察者体内，刻度和指针位置就须换成相应生理概念，例如视网膜及其上的像等。$B$的值与$A$的值一一对应。设$A$取值$a_1,\allowbreak a_2,\allowbreak \ldots$，$B$取值$b_1,\allowbreak b_2,\allowbreak \ldots$，编号使$a_n$与$b_n$对应。
 
 起初，$I$处于未知状态$\varphi(q)$，$II$处于已知状态$\xi(r)$，因此$I+II$处于状态$\Phi(q,\allowbreak r)=\varphi(q)\xi(r)$。由$II$对$I$实行的测量，如前例一样，是在时间$t$内由$I+II$中的能量算符$\boldsymbol H$实现的；这是过程 \hyperref[eq:V.1.2]{\textbf{2}}，把$\Phi$变为$\Phi'=e^{-\frac{2\pi i}{h}t\boldsymbol H}\Phi$。从观察者$III$看来，只有满足以下条件才能称为测量：若$III$用过程 \hyperref[eq:V.1.1]{\textbf{1}} 测量同时可测的$A,\allowbreak B$（分别在$I,\allowbreak II$中，或都在$I+II$中），$m\ne n$的值对$a_m,\allowbreak b_n$概率为零，$m=n$的值对则有某些概率$w_n$。也就是说，只须“看一眼”$II$，便已测量了$I$中的$A$。量子力学还要求$w_n=|(\varphi,\allowbreak \varphi_n)|^2$。
 
@@ -7501,7 +7527,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
  \Phi(q,r)&=\varphi(q)\xi(r),\\
  \Phi'(q,r)&=\psi_1(q,r)=\varphi(q)\xi(r-q).
 \end{align*}
-现在要证明，这可以用来由$II$测量$I$的位置，也就是使坐标$q,\allowbreak r$相互耦合。由于$q,\allowbreak r$有连续谱，只能任意精确而不能绝对精确地测量，这一目标也只能近似达到。
+现在要证明，这可以用来由$II$测量$I$的位置，也就是说，坐标$q,\allowbreak r$的值相互对应。由于$q,\allowbreak r$有连续谱，只能任意精确而不能绝对精确地测量，这一目标也只能近似达到。
 
 为此，设$\xi(r)$只在很窄的区间$-\varepsilon<r<\varepsilon$内非零，即测量前观察者的坐标$r$已十分精确地知道。此外，$\xi$当然须归一化：
 \[
@@ -7515,7 +7541,7 @@ $\boldsymbol U$表示$I+II$中的统计，$\mathsf U,\allowbreak U$分别表示�
  =\int_{q_0-\delta}^{q_0+\delta}\int_{r_0-\delta'}^{r_0+\delta'}
  |\varphi(q)|^2|\xi(r-q)|^2\,dq\,dr.
 \end{multline*}
-如果$q_0,\allowbreak r_0$相差超过$\delta+\delta'+\varepsilon$，此式为零；也就是说，$q,\allowbreak r$的耦合很紧密，差别不可能超过$\delta+\delta'+\varepsilon$。而当$r_0=q_0$时，只要选$\delta'\geq\delta+\varepsilon$，根据对$\xi$的假设，此式便等于$\int_{q_0-\delta}^{q_0+\delta}|\varphi(q)|^2\,dq$。由于$\delta,\allowbreak \delta',\allowbreak \varepsilon$可以任意小，只须大于零，这就说明：$q,\allowbreak r$可以任意精确地耦合，概率密度也具有量子力学所要求的值$|\varphi(q)|^2$。
+如果$q_0,\allowbreak r_0$相差超过$\delta+\delta'+\varepsilon$，此式为零；也就是说，$q,\allowbreak r$的取值彼此紧密对应，差别不可能超过$\delta+\delta'+\varepsilon$。而当$r_0=q_0$时，只要选$\delta'\geq\delta+\varepsilon$，根据对$\xi$的假设，此式便等于$\int_{q_0-\delta}^{q_0+\delta}|\varphi(q)|^2\,dq$。由于$\delta,\allowbreak \delta',\allowbreak \varepsilon$可以任意小，只须大于零，这就说明：$q,\allowbreak r$的值可以在任意高的精度下相互对应，概率密度也具有量子力学所要求的值$|\varphi(q)|^2$。
 
 这样，\hyperref[sec:VI.1]{VI.1} 及本节所讨论的测量情况就实现了。
 
