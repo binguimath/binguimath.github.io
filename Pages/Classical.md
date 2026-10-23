@@ -125,7 +125,7 @@ with Infinitely Many Unknowns.) [tex](https://binguimath.github.io/Pages/Classic
 
 - 1932 von Neumann. Mathematische Grundlagen der Quantenmechanik. (Mathematical Foundations of Quantum Mechanics.) [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_Mathematical%20Foundations%20of%20Quantum%20Mechanics_GPT.tex)
 [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_Mathematical%20Foundations%20of%20Quantum%20Mechanics_GPT.pdf)
-（中译文[tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.tex) [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.pdf)）
+（中译文 [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.tex) [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.pdf)）
 
 - 1936 Murray, von Neumann. On rings of operators.
 [tex](https://binguimath.github.io/Pages/Classical/1936%20Murray%2C%20von%20Neumann_On%20rings%20of%20operators_GPT.tex)
