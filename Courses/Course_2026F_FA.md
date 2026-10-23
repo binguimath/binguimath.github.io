@@ -107,6 +107,12 @@ Von Neumann在这篇文章中建立了无界对称算子的谱理论。对应讲
 Von Neumann 在这篇文章中对（不一定对称的）无界算子引入了闭算子、闭包、可闭、伴随算子等概念及其基本性质。对于闭算子，von Neumann 证明了极分解定理。对应讲义章节：6，7
 
 
+- 1932 von Neumann. Mathematische Grundlagen der Quantenmechanik. (Mathematical Foundations of Quantum Mechanics.) [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_Mathematical%20Foundations%20of%20Quantum%20Mechanics_GPT.tex)
+[pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_Mathematical%20Foundations%20of%20Quantum%20Mechanics_GPT.pdf)
+（中译文 [tex](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.tex) [pdf](https://binguimath.github.io/Pages/Classical/1932%20von%20Neumann_量子力学的数学原理_GPT.pdf)）
+
+Von Neumann 关于量子力学的数学理解的系统诠释。注意本书和 1927 年的论文不是同一个文献，德语名和英译名都有细微差别。
+
 </details>
 
 ## Schedule
