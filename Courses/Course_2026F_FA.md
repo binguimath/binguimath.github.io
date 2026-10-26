@@ -169,7 +169,9 @@ Von Neumann 关于量子力学的数学理解的系统诠释。注意本书和 1
 注：讲义出于完备性，允许field $\mathbb F$ 或 $\mathbb K$ 取复数域和实数域。大家阅读讲义的时候可以把 $\mathbb F$ 和 $\mathbb K$ 都当作复数域 $\mathbb C$。
 
 
-10/26
+11) 10/26 抽象Hausdorff矩定理，Stone-Weierstrass定理的表述，Riesz谱定理的表述，星代数的酉表示，正酉表示，normal酉表示，universal L^2 topology，有界Borel函数代数里的universal L^2-稠密星子代数
+
+讲义章节：1.5（定理1.5.14不讲），5.3，5.4，5.5.1，5.5.2，5.5.3（刚介绍完定理5.5.13的陈述）
 
 10/28
 
