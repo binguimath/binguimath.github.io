@@ -26,7 +26,7 @@ details.literature {
 
 - Office hour: 鉴于固定的office hour时间段通常没有同学来，因此本课程不设置固定的office hour。欢迎单独约时间。
   
-- 办公室: 双清综合楼A座C648
+- 办公室: 清华大学求真书院 厚德斋 G044
   
 - 给分方式: 40%作业 + 60%期末
   
